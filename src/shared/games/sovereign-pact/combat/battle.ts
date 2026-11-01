@@ -9,7 +9,7 @@ import { canShift, feralPick, graft, revert, shift } from "./forms.ts";
 import { keepParts, missingParts, offerParts, spendParts } from "./parts.ts";
 import { playSong } from "./songs.ts";
 import { atCap, deathThroes, hasRoom, openingSummons, sacrifice, summon } from "./summons.ts";
-import { strike } from "./damage.ts";
+import { offHandStrike, strike } from "./damage.ts";
 import { hasStatus, isFree, standing } from "./grid.ts";
 import { kill } from "./injury.ts";
 import { addStatus, extraOf, meta, removeStatus } from "./status.ts";
@@ -280,6 +280,8 @@ export function resolve(b: Battle, rng: Rng, u: Combatant, ab: AbilityDef, at: C
       // Multi-hit weapons sometimes strike again, weaker (§13.4).
       if (ab.id === "attack" && hit.hit && u.mods.multiHit && !t.dead && !u.dead && rng.int(100) < u.mods.multiHit)
         strike(b, rng, u, t, { ...ab, power: ab.power * C.props.multiHitPower });
+      // Dual wield: the off hand follows the Attack (§13.2).
+      if (ab.id === "attack" && u.offWeapon && !t.dead && !u.dead) offHandStrike(b, rng, u, t, ab);
     }
   }
   for (const t of targets) {

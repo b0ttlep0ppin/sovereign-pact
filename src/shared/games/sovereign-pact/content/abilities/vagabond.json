@@ -15,7 +15,7 @@
     {"id": "coup_de_grace", "name": "Coup de Grâce", "jp": 300, "text": "Always crits; fatal to a target below 20% HP (bosses take the crit).", "shape": "single", "side": "foe", "power": 1, "tp": 35, "crit": 100, "execute": {"below": 20, "kills": true}}
   ],
   "passives": [
-    {"id": "dual_wield_mastery", "name": "Dual Wield Mastery", "points": 2, "jp": 200, "text": "Off-hand hits at 80% instead of 50%.", "later": true},
+    {"id": "dual_wield_mastery", "name": "Dual Wield Mastery", "points": 2, "jp": 200, "text": "Off-hand hits at 80% instead of 50%.", "mods": {"dualWieldMastery": 1}},
     {"id": "knife_flurry", "name": "Knife Flurry", "points": 2, "jp": 200, "text": "A Guile/4 % chance of an extra hit with knives.", "later": true},
     {"id": "cutthroat", "name": "Cutthroat", "points": 2, "jp": 200, "text": "Crit damage ×1.75 instead of ×1.5.", "mods": {"critMult": 25}},
     {"id": "light_step", "name": "Light Step", "points": 1, "jp": 100, "text": "Movement CT −5 per cell.", "mods": {"moveCostPerCell": -5}},

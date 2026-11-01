@@ -65,8 +65,10 @@ export interface GearTotals {
   mpPct: number;
   /** Battle mods from properties, summed (content/properties.json `mods` × value). */
   mods: Record<string, number>;
-  /** The off hand's item type ("shield", "thrown"…). */
+  /** The off hand's item type ("shield", "thrown", or a weapon type when dual wielding). */
   offhand?: string;
+  /** A second one-hand weapon in the off hand (§13.2). */
+  offWeapon?: Weapon;
 }
 
 /** What a Scion's worn gear adds up to (§13.1–13.3), carry overload included. */
@@ -83,6 +85,7 @@ export function gearTotals(s: Pick<SovState, "items">, p: Person): GearTotals {
     }
     if (slot === "main" && b.power !== undefined) t.weapon = weaponOf(item);
     if (slot === "off") t.offhand = b.type;
+    if (slot === "off" && b.slot === "main" && b.power !== undefined) t.offWeapon = weaponOf(item);
     if (b.type === "shield") t.guard += b.guard ?? 0;
     if (b.armor && b.slot !== "main" && b.slot !== "off" && b.slot !== "acc") {
       const loc = b.slot as Location;
@@ -114,7 +117,8 @@ export const carry = (p: Person): number => Math.floor(T.carry.base + jobStat(p,
 export function cannotEquip(s: Pick<SovState, "items">, p: Person, item: Item, slot: GearSlot): string | null {
   const b = baseOf(item);
   if (item.house !== p.host) return "not this House's";
-  const want = b.slot === "acc" ? ["acc1", "acc2"] : [b.slot];
+  // Any one-hand weapon may go in the off hand too: dual wield (§13.2).
+  const want = b.slot === "acc" ? ["acc1", "acc2"] : b.slot === "main" && (b.hands ?? 1) === 1 ? ["main", "off"] : [b.slot];
   if (!want.includes(slot)) return "wrong slot";
   if (b.slot === "main" && !mayWield(p, b.type, b.hands ?? 1)) return "the Job forbids it";
   if (b.type === "shield" && !jobOf(p)?.shields) return "the Job forbids shields";

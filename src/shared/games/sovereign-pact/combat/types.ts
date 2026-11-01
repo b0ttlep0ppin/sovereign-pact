@@ -238,6 +238,8 @@ export interface Combatant {
   weapon: Weapon;
   /** What the off hand holds ("shield", a weapon type), for abilities that need it. */
   offhand?: string;
+  /** A second one-hand weapon: the basic Attack strikes with it too (§13.2). */
+  offWeapon?: Weapon;
   /** Enemies: damage = power × (1 + 2L/25) instead of Might (§14.2). */
   enemyScale?: number;
   /** Locations' Durability (Scions only; enemies have no hit locations, §14.1). */
