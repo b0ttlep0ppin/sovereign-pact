@@ -1,0 +1,71 @@
+{
+  "id": "forge_sings",
+  "scope": "house",
+  "weight": 2,
+  "years": [
+    3,
+    20
+  ],
+  "requires": [
+    "building:forge"
+  ],
+  "title": "The Forge Sings",
+  "text": "The smith says the iron hums when it cools, and will not stop.",
+  "rule": "house",
+  "options": [
+    {
+      "id": "listen",
+      "label": "Let the smith follow the song.",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "What comes off the anvil is beautiful and wrong.",
+          "effects": [
+            {
+              "score": {
+                "relics": 3
+              }
+            },
+            {
+              "sanity": -5
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "The smith hammers for three days and nights and remembers none of it.",
+          "effects": [
+            {
+              "resources": {
+                "iron": -10
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "quench",
+      "label": "Quench the forge for a season.",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The humming stops.",
+          "effects": [
+            {
+              "resources": {
+                "iron": -5
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

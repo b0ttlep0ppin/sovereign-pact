@@ -1,0 +1,49 @@
+{
+  "id": "market_caravan",
+  "scope": "settlement",
+  "weight": 2,
+  "years": [
+    3,
+    20
+  ],
+  "title": "The Market Caravan",
+  "text": "A caravan from beyond the mountains camps in the Commons, selling things no one here has seen.",
+  "rule": "each_house",
+  "options": [
+    {
+      "id": "buy",
+      "label": "Buy rare materials (40 Gold).",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Strange stuff, carefully wrapped.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -40,
+                "moonsilver": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pass",
+      "label": "Look, but buy nothing.",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The caravan moves on.",
+          "effects": []
+        }
+      ]
+    }
+  ]
+}

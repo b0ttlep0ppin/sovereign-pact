@@ -4,7 +4,8 @@
 import { cannotAssign, slots, type AssignMove } from "./assign.ts";
 import { cannotPledge, projectCost, stillNeeded } from "./commons.ts";
 import { cannotPropose } from "./votes.ts";
-import { BUILDING_BY_ID } from "./content.ts";
+import { BUILDING_BY_ID, TOWN_EVENT_BY_ID } from "./content.ts";
+import { cautious } from "./omens.ts";
 import { maxSanity } from "./formulas.ts";
 import type { Assignment, SovState } from "./state.ts";
 import { buildCost, cannotBuild, levelOf } from "./town.ts";
@@ -169,10 +170,20 @@ export function botPropose(s: SovState, house: number): string | null {
   return PROJECT_PLAN.find((id) => !cannotPropose(s, id)) ?? null;
 }
 
-/** The bot votes for spending the Commons on any project of its plan, against the rest. */
-export function botVote(s: SovState): number {
+/** The bot votes for spending the Commons on any project of its plan, against the rest; on an event, as it would choose. */
+export function botVote(s: SovState, house: number): number {
   const v = s.vote!;
-  return v.kind === "spend" && PROJECT_PLAN.includes(v.subject) ? v.options.indexOf("yes") : v.options.indexOf("no");
+  if (v.kind === "event") return botChoice(s, house, v.subject);
+  return PROJECT_PLAN.includes(v.subject) ? v.options.indexOf("yes") : v.options.indexOf("no");
+}
+
+/** A town event's option for the bot: a kind one it can afford (it is co-operative), else the cautious one. */
+export function botChoice(s: SovState, house: number, id: string): number {
+  const ev = TOWN_EVENT_BY_ID.get(id)!;
+  const h = s.houses[house]!;
+  const cost = (i: number) => -Math.min(0, ...ev.options![i]!.outcomes.flatMap((o) => o.effects.map((e) => (e.to ?? "house") === "house" ? (e.resources?.gold ?? 0) : 0)));
+  const kind = ev.options!.findIndex((o, i) => o.tags?.includes("kind") && h.gold - cost(i) >= 2 * upkeepGold(s, house));
+  return kind >= 0 ? kind : cautious(ev);
 }
 
 /**

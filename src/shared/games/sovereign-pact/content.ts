@@ -461,6 +461,14 @@ export interface TownEffect {
   score?: Partial<Record<string, number>>;
   flag?: string;
   timeline?: { event: string; years: number };
+  recruit_gain?: number;
+}
+/** An option of a town event: who picks it is the event's rule; its outcome is drawn by weight. */
+export interface TownOption {
+  id: string;
+  label: string;
+  tags?: string[];
+  outcomes: { w: number; text: string; effects: TownEffect[] }[];
 }
 export interface TownBand {
   text: string;
@@ -486,6 +494,9 @@ export interface TownEventDef {
   text: string;
   rule: string;
   crisis?: CrisisDef;
+  options?: TownOption[];
+  /** Secret choices: what follows when no House, or every House, picks `option`. */
+  together?: { when: "none" | "all"; option: string; text: string; effects: TownEffect[] }[];
 }
 export const TOWN_EVENTS = townFiles as unknown as readonly TownEventDef[];
 export const TOWN_EVENT_BY_ID: ReadonlyMap<string, TownEventDef> = new Map(TOWN_EVENTS.map((e) => [e.id, e]));

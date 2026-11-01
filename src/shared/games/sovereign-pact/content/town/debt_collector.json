@@ -1,0 +1,102 @@
+{
+  "id": "debt_collector",
+  "scope": "settlement",
+  "weight": 2,
+  "years": [
+    4,
+    20
+  ],
+  "title": "The Debt Collector",
+  "text": "A grey man with a ledger arrives to collect the kingdom's old debt from its richest House, and will not leave until he is paid or refused.",
+  "rule": "most_gold",
+  "options": [
+    {
+      "id": "pay",
+      "label": "Pay the old debt (50 Gold).",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "He tips his hat and leaves the ledger closed.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -50
+              }
+            },
+            {
+              "score": {
+                "renown": 4
+              }
+            },
+            {
+              "accord": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "refuse",
+      "label": "Refuse.",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "He writes something in the ledger and leaves. Trade turns cold.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -10
+              },
+              "to": "all"
+            },
+            {
+              "accord": -5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "vagabonds",
+      "label": "Set the Vagabonds on him.",
+      "tags": [
+        "cruel",
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "The ledger burns. No one asks where he went.",
+          "effects": [
+            {
+              "score": {
+                "intrigue": 3
+              }
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "He was expecting that. The ledger's debt doubles.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -20
+              },
+              "to": "all"
+            },
+            {
+              "accord": -8
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

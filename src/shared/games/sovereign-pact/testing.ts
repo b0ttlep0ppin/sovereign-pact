@@ -9,6 +9,15 @@ export function campaign(houses: number, seed = 1, options?: Record<string, stri
   return sovereignPact.setup(seats(houses), createRng(seed), undefined, options);
 }
 
+/** Stills the Omens (tests of exact amounts): this Year's events, Crisis and event vote are cleared, and none come. */
+export function calm(s: SovState): SovState {
+  s.flags.push("calm");
+  s.events = [];
+  delete s.crisis;
+  if (s.vote?.kind === "event") delete s.vote;
+  return s;
+}
+
 /** Plays bots in every seat until the campaign ends (or `maxMoves`), calling `each` on every state. */
 export function playOut(start: SovState, each?: (s: SovState) => void, maxMoves = 10_000): SovState {
   let s = start;

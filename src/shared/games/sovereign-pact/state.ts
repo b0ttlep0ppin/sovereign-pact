@@ -209,7 +209,7 @@ export interface Commons {
  */
 export interface Vote {
   /** What it decides: "spend" (the Commons' stock on a project); events add their own kinds. */
-  kind: "spend";
+  kind: "spend" | "event";
   /** The project (or event) it is about. */
   subject: string;
   /** Option ids, in order; "yes" and "no" for a spend. */
@@ -225,6 +225,17 @@ export interface Crisis {
   need: Partial<Record<string, number>>;
   pledges: Partial<Record<string, number>>[];
   tempted: boolean[];
+}
+
+/** A town event waiting on choices (§8.8): who must choose, and what each House chose (by option index). */
+export interface PendingEvent {
+  /** The event id, with "@<House>" for a House event (two Houses may draw the same one). */
+  key: string;
+  id: string;
+  /** The House it concerns, for a House event. */
+  house?: number;
+  deciders: number[];
+  choices: (number | null)[];
 }
 
 export type Phase = "omens" | "settlement" | "expedition" | "reckoning" | "over";
@@ -284,6 +295,8 @@ export interface SovState {
   /** At 100 the city is overwhelmed (§3.3). */
   doom: number;
   timeline: TimelineEntry[];
+  /** Town events drawn in the Omens and waiting on choices. */
+  events: PendingEvent[];
   /** This Year's Crisis, open through the Settlement Phase. */
   crisis?: Crisis;
   /** The vote now open, if any. */
@@ -311,6 +324,8 @@ export type SovMove =
   | { type: "pledge"; project: string; give: Partial<Record<string, number>> }
   /** Pledge to this Year's Crisis, privately (§3.5). */
   | { type: "crisis_pledge"; give: Partial<Record<string, number>> }
+  /** Choose an option of a town event this House decides (`key` as in the view). */
+  | { type: "choose"; event: string; option: number }
   /** Give in to the Crisis's private temptation. */
   | { type: "tempt" }
   /** Propose spending the Commons' stock on a shared project (a vote of the Houses, §8.1). */

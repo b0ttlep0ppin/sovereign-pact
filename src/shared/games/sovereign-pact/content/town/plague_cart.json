@@ -1,0 +1,91 @@
+{
+  "id": "plague_cart",
+  "scope": "settlement",
+  "weight": 3,
+  "years": [
+    1,
+    20
+  ],
+  "title": "The Plague Cart",
+  "text": "A cart rolls in at dawn with no driver, its cargo shrouded and humming with flies. The physicians want it; the priests want it burned.",
+  "rule": "vote",
+  "options": [
+    {
+      "id": "burn",
+      "label": "Burn it, cart and all.",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The smoke is black and smells of honey. Nothing comes of it.",
+          "effects": []
+        }
+      ]
+    },
+    {
+      "id": "quarantine",
+      "label": "Quarantine it outside the walls.",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "It rots in a field, watched by nervous guards.",
+          "effects": [
+            {
+              "accord": -2
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "Something crawls from it in the night and is never found.",
+          "effects": [
+            {
+              "doom": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "study",
+      "label": "Let the physicians study it.",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "The physicians learn much, and the Apothecary's shelves fill with new tinctures.",
+          "effects": [
+            {
+              "flag": "plague_studied"
+            },
+            {
+              "score": {
+                "lore": 3
+              },
+              "to": "all"
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "The physicians learn much, and two of them die of it. The fever spreads to a House.",
+          "effects": [
+            {
+              "flag": "plague_studied"
+            },
+            {
+              "sanity": -15
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

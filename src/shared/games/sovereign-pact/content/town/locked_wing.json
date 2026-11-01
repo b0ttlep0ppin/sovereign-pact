@@ -1,0 +1,70 @@
+{
+  "id": "locked_wing",
+  "scope": "house",
+  "weight": 1,
+  "years": [
+    5,
+    20
+  ],
+  "title": "The Locked Wing",
+  "text": "A door in the Seat that was never there opens onto a wing that was never built.",
+  "rule": "house",
+  "options": [
+    {
+      "id": "enter",
+      "label": "Go in.",
+      "tags": [
+        "bold",
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 40,
+          "text": "A treasure room, dusty and real.",
+          "effects": [
+            {
+              "score": {
+                "relics": 4
+              }
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "A nursery, with a child in it who knows your name.",
+          "effects": [
+            {
+              "recruit_gain": 1
+            },
+            {
+              "sanity": -5
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "Nothing but corridors that lead back to the door. Some never stop walking them in their sleep.",
+          "effects": [
+            {
+              "sanity": -20
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "brick",
+      "label": "Brick it up.",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The bricks are warm for a week.",
+          "effects": []
+        }
+      ]
+    }
+  ]
+}

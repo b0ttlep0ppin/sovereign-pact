@@ -1,0 +1,49 @@
+{
+  "id": "the_suitor",
+  "scope": "house",
+  "weight": 2,
+  "years": [
+    4,
+    20
+  ],
+  "title": "The Suitor",
+  "text": "A noble of a fallen line proposes a match: their blood and their grudges for your name.",
+  "rule": "house",
+  "options": [
+    {
+      "id": "accept",
+      "label": "Accept the match.",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A new face at table, and new enemies at court.",
+          "effects": [
+            {
+              "recruit_gain": 1
+            },
+            {
+              "accord": -3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "decline",
+      "label": "Decline politely.",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The suitor bows and leaves.",
+          "effects": []
+        }
+      ]
+    }
+  ]
+}

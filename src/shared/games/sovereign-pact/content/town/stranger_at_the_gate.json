@@ -1,0 +1,83 @@
+{
+  "id": "stranger_at_the_gate",
+  "scope": "settlement",
+  "weight": 3,
+  "years": [
+    1,
+    20
+  ],
+  "title": "A Stranger at the Gate",
+  "text": "A traveller in rift-stained mail asks for shelter at one House's door, and will not give a name.",
+  "rule": "random_house",
+  "options": [
+    {
+      "id": "admit",
+      "label": "Admit them.",
+      "tags": [
+        "kind",
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "The stranger swears to the House and asks to be taught.",
+          "effects": [
+            {
+              "recruit_gain": 1
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "In the night the stranger is gone, and so is a strongbox.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -30
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "interrogate",
+      "label": "Admit them, under guard, and ask questions.",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "They talk, eventually, about what lies past the Gate.",
+          "effects": [
+            {
+              "score": {
+                "lore": 2
+              }
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "They say nothing and slip away at dawn.",
+          "effects": []
+        }
+      ]
+    },
+    {
+      "id": "turn_away",
+      "label": "Turn them away.",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "They walk off into the dark without a word.",
+          "effects": []
+        }
+      ]
+    }
+  ]
+}

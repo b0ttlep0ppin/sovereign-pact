@@ -1,0 +1,63 @@
+{
+  "id": "night_of_open_doors",
+  "scope": "settlement",
+  "weight": 2,
+  "years": [
+    2,
+    20
+  ],
+  "title": "The Night of Open Doors",
+  "text": "For one night no lock in the city will hold. Every House must choose: guard its halls, or hide its stores.",
+  "rule": "each_house",
+  "options": [
+    {
+      "id": "guard",
+      "label": "Post guards through the night.",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "Shapes test the doors and move on.",
+          "effects": []
+        },
+        {
+          "w": 30,
+          "text": "The guards meet something in the cellars, and come back changed.",
+          "effects": [
+            {
+              "sanity": -15
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hide",
+      "label": "Hide the stores and bar the inner rooms.",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "The stores are safe.",
+          "effects": []
+        },
+        {
+          "w": 40,
+          "text": "Someone, or something, found the stores anyway.",
+          "effects": [
+            {
+              "resources": {
+                "grain": -10,
+                "gold": -15
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
