@@ -5,6 +5,7 @@ import { TUNING } from "../tuning.ts";
 import { chargeTicks, moveCost, nextActor, step } from "./clock.ts";
 import { cannotCombo, comboCt, comboTp } from "./combos.ts";
 import { abilityDice, castLots, rolledAbility } from "./dice.ts";
+import { canShift, feralPick, graft, revert, shift } from "./forms.ts";
 import { keepParts, missingParts, offerParts, spendParts } from "./parts.ts";
 import { playSong } from "./songs.ts";
 import { atCap, deathThroes, hasRoom, openingSummons, sacrifice, summon } from "./summons.ts";
@@ -62,6 +63,9 @@ export function cannotUse(u: Combatant, ab: AbilityDef): string | null {
   if (ab.move?.finisher) return "finisher";
   if (ab.requires && !ab.requires.some((w) => (w === "shield" ? u.offhand === "shield" : u.weapon.kind === w))) return `needs ${ab.requires.join(" or ")}`;
   if (ab.summon && atCap(u)) return "binding";
+  // A feral Form allows only its pick (§12.17); Revert and Graft need a Form.
+  if (u.feral && ab.id !== u.feral) return "feral";
+  if ((ab.revert || ab.graft) && !u.form) return "no form";
   if (missingParts(u, ab).length) return "parts";
   if (mpCost(u, ab) > u.mp) return "mp";
   if (tpCost(u, ab) > u.tp) return "tp";
@@ -112,6 +116,7 @@ function beginTurn(b: Battle, rng: Rng, u: Combatant): boolean {
   }
   if (u.mods.castLots) castLots(b, rng, u);
   offerParts(rng, u);
+  feralPick(rng, u, (ab) => !cannotUse({ ...u, feral: undefined }, ab));
   b.actor = u.id;
   b.moved = false;
   b.acted = false;
@@ -123,7 +128,7 @@ export function move(b: Battle, u: Combatant, col: number, row: number): void {
   if (b.actor !== u.id || b.moved) throw new Error("not this combatant's move");
   if (u.mods.noMove || hasStatus(u, "rooted") || hasStatus(u, "frozen")) throw new Error("cannot move");
   const cells = Math.abs(col - u.col) + Math.abs(row - u.row);
-  if (cells < 1 || cells > C.move.maxCells) throw new Error("too far");
+  if (cells < 1 || cells > Math.min(C.move.maxCells, u.mods.maxMove ?? C.move.maxCells)) throw new Error("too far");
   const there = b.units.find((o) => o.id !== u.id && !o.dead && o.side === u.side && o.col === col && o.row === row);
   if (there) {
     if (cells !== 1 || there.size[0] * there.size[1] !== 1 || u.size[0] * u.size[1] !== 1) throw new Error("cannot swap");
@@ -171,6 +176,7 @@ export function act(b: Battle, rng: Rng, u: Combatant, action: Action): void {
       if (ab.homing !== false) homingOn = t.id;
     }
     if (ab.summon && !hasRoom(b, u, ab.summon)) throw new Error("no room for the summon");
+    if (ab.form && !canShift(b, u, ab.form)) throw new Error("no room for the Form");
     u.mp -= mpCost(u, ab);
     if (ab.summon) u.flags = u.flags.filter((f) => f !== "free_summon");
     spendParts(u, ab.parts ?? []);
@@ -239,9 +245,11 @@ function resolveCharge(b: Battle, rng: Rng, u: Combatant): void {
 /** An ability lands: every target, every hit (§10.6). */
 export function resolve(b: Battle, rng: Rng, u: Combatant, ab: AbilityDef, at: Cell, homingOn?: number, doubleDown = 0): void {
   if (ab.song) return playSong(b, rng, u, ab);
-  if (ab.summon) {
+  if (ab.summon || ab.form || ab.revert) {
     b.events.push({ t: "use", unit: u.id, ability: ab.id, target: at });
-    summon(b, u, ab.summon, at);
+    if (ab.summon) summon(b, u, ab.summon, at);
+    else if (ab.form) shift(b, u, ab.form);
+    else revert(b, u);
     return;
   }
   let targets = resolveTargets(b, rng, u, ab, at, homingOn);
@@ -280,6 +288,7 @@ export function resolve(b: Battle, rng: Rng, u: Combatant, ab: AbilityDef, at: C
       t.col = Math.max(0, t.col - ab.pull);
       b.events.push({ t: "move", unit: t.id, col: t.col, row: t.row });
     }
+    if (ab.graft) graft(b, u, t, C.jobs.graftTicks);
     // Sacrifice and Banish (§12.15): only summons and adds answer them.
     if (ab.sacrifice) sacrifice(b, u, t, ab.sacrifice);
     if (ab.banish && !t.dead && !t.boss && (t.owner !== undefined || t.tags.includes("add"))) kill(b, t);

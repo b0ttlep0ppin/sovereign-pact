@@ -2,6 +2,7 @@
 // by id, so Josh can edit the JSON (validated by schemas/ in CI) without touching rules (CLAUDE.md).
 import abjurerSet from "./content/abilities/abjurer.json" with { type: "json" };
 import conjurerSet from "./content/abilities/conjurer.json" with { type: "json" };
+import altererSet from "./content/abilities/alterer.json" with { type: "json" };
 import gamblerSet from "./content/abilities/gambler.json" with { type: "json" };
 import knightSet from "./content/abilities/knight.json" with { type: "json" };
 import minstrelSet from "./content/abilities/minstrel.json" with { type: "json" };
@@ -13,6 +14,7 @@ import soothsayerSet from "./content/abilities/soothsayer.json" with { type: "js
 import tinkererSet from "./content/abilities/tinkerer.json" with { type: "json" };
 import swordSaintSet from "./content/abilities/sword_saint.json" with { type: "json" };
 import vagabondSet from "./content/abilities/vagabond.json" with { type: "json" };
+import formsJson from "./content/forms.json" with { type: "json" };
 import summonsJson from "./content/summons.json" with { type: "json" };
 import banshee from "./content/enemies/barrows/barrow_banshee.json" with { type: "json" };
 import cursedArcher from "./content/enemies/barrows/barrow_cursed_archer.json" with { type: "json" };
@@ -272,7 +274,7 @@ export interface AbilitySet {
 }
 
 /** Every Job's ability file (content/abilities/<job>.json), imported by name like the enemies. */
-export const ABILITY_SETS = [soldierSet, knightSet, magusSet, soothsayerSet, vagabondSet, gamblerSet, minstrelSet, pugilistSet, ravagerSet, swordSaintSet, abjurerSet, conjurerSet, tinkererSet] as unknown as readonly AbilitySet[];
+export const ABILITY_SETS = [soldierSet, knightSet, magusSet, soothsayerSet, vagabondSet, gamblerSet, minstrelSet, pugilistSet, ravagerSet, swordSaintSet, abjurerSet, conjurerSet, tinkererSet, altererSet] as unknown as readonly AbilitySet[];
 export const ABILITY_SET_BY_JOB: ReadonlyMap<JobId, AbilitySet> = new Map(ABILITY_SETS.map((a) => [a.job, a]));
 export const ACTIVE_BY_ID: ReadonlyMap<string, ActiveDef & { job: JobId }> = new Map(
   ABILITY_SETS.flatMap((set) => set.actives.map((a) => [a.id, { ...a, job: set.job }] as const)),
@@ -325,3 +327,26 @@ export const SUMMONS: readonly SummonDef[] = (summonsJson.summons as unknown as 
   onDeath: s.onDeath && fromEnemySide(s.onDeath),
 }));
 export const SUMMON_BY_ID = byId(SUMMONS);
+
+/** An Alterer's Form (§12.2, §12.17): what a Shift puts on, for how long, and what Revert costs. */
+export interface FormDef {
+  id: string;
+  name: string;
+  text: string;
+  control: "controlled" | "feral";
+  ticks: number;
+  size?: [number, number];
+  hpMult?: number;
+  guard?: number;
+  mods: Record<string, number>;
+  start?: string[];
+  graft?: Record<string, number>;
+  abilities: AbilityDef[];
+  revert?: { statuses?: { id: string; ticks: number; mods?: Record<string, number> }[]; sanityPct?: number; durability?: { loc: Location; pct: number } };
+}
+
+export const FORMS: readonly FormDef[] = (formsJson.forms as unknown as (Omit<FormDef, "abilities"> & { abilities: EnemyAbility[] })[]).map((f) => ({
+  ...f,
+  abilities: f.abilities.map(fromEnemySide),
+}));
+export const FORM_BY_ID = byId(FORMS);

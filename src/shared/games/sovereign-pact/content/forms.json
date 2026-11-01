@@ -1,0 +1,45 @@
+{
+  "forms": [
+    {"id": "werewolf", "name": "Werewolf", "text": "Frenzied: claws cost 70 CT, bleed on hit and heal a quarter of the damage; Might ×1.3; no Defending.", "control": "controlled", "ticks": 500,
+      "mods": {"mightPct": 30, "onHit.bleed": 100, "drainPct": 25, "noDefend": 1}, "graft": {"drainPct": 25},
+      "abilities": [
+        {"id": "werewolf_claw", "shape": "single", "side": "player", "power": 1, "cost": 70},
+        {"id": "werewolf_pounce", "shape": "single", "side": "player", "power": 1.4, "cost": 70, "cooldown": 2}
+      ],
+      "revert": {"statuses": [{"id": "exhausted", "ticks": 300, "mods": {"speed": -2}}]}},
+    {"id": "ember_elemental", "name": "Ember Elemental", "text": "Every attack is Fire; immune to Burn.", "control": "controlled", "ticks": 400,
+      "mods": {"enchant.fire": 1, "immune.burn": 1, "immune.frozen": 1}, "graft": {"immune.burn": 1},
+      "abilities": [
+        {"id": "ember_lash", "shape": "single", "side": "player", "power": 1, "kind": "magic", "element": "fire"},
+        {"id": "ember_flare", "shape": "burst:3x3", "side": "player", "power": 0.7, "kind": "magic", "element": "fire", "cooldown": 2, "statuses": [{"id": "burn", "chance": 30, "ticks": 0}]}
+      ]},
+    {"id": "marsh_thing", "name": "Marsh Thing", "text": "Poison immune; melee attackers are Poisoned; Regen; moves only one cell.", "control": "controlled", "ticks": 400,
+      "mods": {"immune.poison": 1, "poisonAttackers": 100, "maxMove": 1}, "start": ["regen"], "graft": {"immune.poison": 1},
+      "abilities": [
+        {"id": "marsh_grasp", "shape": "single", "side": "player", "power": 0.8, "statuses": [{"id": "poison", "chance": 60, "ticks": 0}]},
+        {"id": "marsh_mire", "shape": "single", "side": "player", "power": 0.5, "reach": "ranged", "cooldown": 2, "statuses": [{"id": "rooted", "chance": 100, "ticks": 200}]}
+      ],
+      "revert": {"statuses": [{"id": "slow", "ticks": 200}]}},
+    {"id": "stone_colossus", "name": "Stone Colossus", "text": "Two cells tall: Provokes, Guards half the time, ignores Readiness damage, and cannot be healed.", "control": "controlled", "ticks": 400, "size": [1, 2], "guard": 50,
+      "mods": {"readinessImmune": 1, "noHeal": 1}, "start": ["provoke"], "graft": {"readinessImmune": 1},
+      "abilities": [
+        {"id": "colossus_crush", "shape": "single", "side": "player", "power": 1.4, "readiness": 20},
+        {"id": "colossus_quake", "shape": "column:F", "side": "player", "power": 0.8, "cooldown": 2, "statuses": [{"id": "knockdown", "chance": 30, "ticks": 0}]}
+      ],
+      "revert": {"durability": {"loc": "body", "pct": 30}}},
+    {"id": "shrike", "name": "Shrike", "text": "Flying: reaches anywhere, Speed +3, lobbed strikes; HP ×0.7.", "control": "controlled", "ticks": 300, "hpMult": 0.7,
+      "mods": {"speed": 3}, "graft": {"speed": 1},
+      "abilities": [
+        {"id": "shrike_talons", "shape": "single", "side": "player", "power": 0.9, "reach": "ranged"},
+        {"id": "shrike_dive", "shape": "lob", "side": "player", "power": 1.2, "reach": "ranged", "cooldown": 1}
+      ]},
+    {"id": "rift_spawn", "name": "Rift Spawn", "text": "Feral: the Form picks a potent ability each turn.", "control": "feral", "ticks": 300,
+      "mods": {"immune.fear": 1, "immune.confusion": 1}, "graft": {"immune.fear": 1},
+      "abilities": [
+        {"id": "rift_nova", "shape": "all", "side": "player", "power": 1.2, "kind": "magic", "element": "dark"},
+        {"id": "rift_swarm", "shape": "all", "side": "player", "power": 0.4, "kind": "magic", "statuses": [{"id": "poison", "chance": 50, "ticks": 0}, {"id": "blind", "chance": 40, "ticks": 0}]},
+        {"id": "rift_tempest", "shape": "burst:3x3", "side": "player", "power": 1.5, "kind": "magic", "element": "wind"}
+      ],
+      "revert": {"sanityPct": -20}}
+  ]
+}

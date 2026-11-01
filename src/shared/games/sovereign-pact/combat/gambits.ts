@@ -3,6 +3,7 @@
 import type { Rng } from "../../../rng.ts";
 import { TUNING } from "../tuning.ts";
 import { abilityOf, cannotUse, type Action } from "./battle.ts";
+import { canShift } from "./forms.ts";
 import { hasRoom } from "./summons.ts";
 import { hasStatus, isFree, other, pickWeighted, standing } from "./grid.ts";
 import { allegiance, bestCell, cellOf, crossDistance, isSingle, singleTargets, targetSide } from "./targets.ts";
@@ -97,6 +98,8 @@ const defaultTarget = (u: Combatant, ab: AbilityDef) => (ab.side === "ally" ? "a
 export function aim(b: Battle, rng: Rng, u: Combatant, ab: AbilityDef, rule = defaultTarget(u, ab)): Action | undefined {
   if (cannotUse(u, ab)) return undefined;
   if (ab.summon && !hasRoom(b, u, ab.summon)) return undefined;
+  // Bots take a Form when they have none and never Revert on their own.
+  if ((ab.form && (u.form || !canShift(b, u, ab.form))) || ab.revert) return undefined;
   if (ab.shape === "self" || ab.side === "self") return { do: "ability", ability: ab.id, target: cellOf(u) };
   if (isSingle(ab)) {
     let pool = singleTargets(b, u, ab);
@@ -120,7 +123,7 @@ function approach(b: Battle, rng: Rng, u: Combatant, ab: AbilityDef, rule?: stri
   for (let dc = -2; dc <= 2; dc++) {
     for (let dr = -2; dr <= 2; dr++) {
       const d = Math.abs(dc) + Math.abs(dr);
-      if (d < 1 || d > TUNING.combat.move.maxCells || !isFree(b, u.side, col + dc, row + dr, u.size, u.id)) continue;
+      if (d < 1 || d > Math.min(TUNING.combat.move.maxCells, u.mods.maxMove ?? 9) || !isFree(b, u.side, col + dc, row + dr, u.size, u.id)) continue;
       options.push([col + dc, row + dr, d * 10 + (col + dc)]);
     }
   }
@@ -160,6 +163,8 @@ export function decide(b: Battle, rng: Rng, u: Combatant): Plan {
     const plan = usable.length ? aimOrApproach(b, rng, u, rng.pick(usable), "random") : undefined;
     if (plan) return plan;
   }
+  // A feral Form's pick is the only thing to do.
+  if (u.feral) return aimOrApproach(b, rng, u, abilityOf(u, u.feral)!) ?? { action: { do: "wait" } };
   for (const g of u.gambits.length ? u.gambits : defaultGambits(u)) {
     if (!holds(b, u, g.if)) continue;
     if (g.do === "wait" || g.do === "defend") return { action: { do: g.do } };

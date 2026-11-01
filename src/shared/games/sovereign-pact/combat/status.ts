@@ -1,7 +1,7 @@
 // Statuses (§10.8): what kind each is (for resist checks and cures), what it does to the clock and to
 // a turn, and applying and ending them. Damage-over-time pulses run in clock.ts.
 import type { Rng } from "../../../rng.ts";
-import { ABILITY_SETS } from "../content.ts";
+import { ABILITY_SETS, FORMS } from "../content.ts";
 import { TUNING } from "../tuning.ts";
 import { hasStatus } from "./grid.ts";
 import type { Battle, Combatant, StatusInst, StatusKind } from "./types.ts";
@@ -22,6 +22,8 @@ export interface StatusMeta {
   oneTurn?: boolean;
   /** Ends when the combatant's next turn starts, without costing it (Mirror Stance). */
   endsOnTurn?: boolean;
+  /** Never dispelled or cured: it ends by its own rule (a Form's status ends with the Form). */
+  fixed?: boolean;
   /** Default duration in ticks when none is given (0: battle). */
   ticks: number;
 }
@@ -78,7 +80,13 @@ export const STATUSES: Record<string, StatusMeta> = {
   enchant: { kind: "buff", ticks: 300 },
   anchored: { kind: "buff", ticks: 300 },
   null_zone: { kind: "debuff", ticks: 200, cancelsCharge: "spells" },
+  // The Alterer (§12.17): a Revert's Exhaustion and a Graft.
+  exhausted: { kind: "debuff", ticks: 300 },
+  graft: { kind: "buff", ticks: 200 },
 };
+
+// A Form's mods ride on a status of its own, which only Revert removes.
+for (const f of FORMS) STATUSES[`form_${f.id}`] = { kind: "buff", ticks: 0, fixed: true };
 
 // Songs are statuses on their hearers: buffs on allies, debuffs on enemies (§12.2).
 for (const set of ABILITY_SETS)
