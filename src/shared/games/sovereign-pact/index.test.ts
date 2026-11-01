@@ -115,6 +115,8 @@ describe("a whole campaign with bots", () => {
   });
 
   it("plays the Short campaign in 10 Years", () => {
-    expect(playOut(campaign(2, 3, { length: "short" })).year).toBe(10);
+    // Bots can lose a campaign early (seed 3 loses its Accord in Year 9); seed 1 endures.
+    const end = playOut(campaign(2, 1, { length: "short" }));
+    expect([end.year, end.outcome?.won]).toEqual([10, true]);
   });
 });

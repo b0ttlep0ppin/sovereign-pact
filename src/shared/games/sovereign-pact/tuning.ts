@@ -358,6 +358,8 @@ export const TUNING = {
 
   /** §6.3 recruit generation. */
   recruits: {
+    /** §6.7: how many individual traits a recruit rolls (1–3, chance in % each), and the weight × for a trait of the House's element (§5.6). */
+    traits: { count: [50, 35, 15], alignedWeight: 2 },
     /** Base stats roll in this range before House modifiers. */
     baseRoll: [8, 12] as const,
     /** Speed is "mostly static, baseline 10" (§7.1). */
@@ -369,8 +371,6 @@ export const TUNING = {
       gifted: { chance: 9, growth: [80, 140] },
       prodigy: { chance: 1, growth: [100, 160] },
     },
-    /** Individual traits rolled at generation (§6.3: 1–3). */
-    traits: [1, 3] as const,
     age: [16, 40] as const,
   },
 

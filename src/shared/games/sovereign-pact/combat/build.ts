@@ -1,7 +1,7 @@
 // Making combatants: a Scion from a Person with the §7.3 formulas in their Job (§12.3), an enemy from
 // its content at an expedition level with the §14.2 block, and a battle from both sides. Gear arrives
 // as the `weapon` and `armor` arguments until items exist.
-import { ENEMY_BY_ID, fromEnemySide, INJURY_BY_ID, type EnemyAbility, type EnemyDef } from "../content.ts";
+import { ENEMY_BY_ID, fromEnemySide, INJURY_BY_ID, TRAIT_BY_ID, type EnemyAbility, type EnemyDef } from "../content.ts";
 import { jobStat, maxHp, maxMp, maxSanity } from "../formulas.ts";
 import { houseEffects } from "../houses.ts";
 import { gearTotals, UNARMED, type GearTotals } from "../items.ts";
@@ -41,13 +41,15 @@ export interface Armor {
   guard?: number;
 }
 
-/** Mods the Person carries into battle: lasting injuries (§11: maxHpPct, mightPct, speed…), free passives (§12.1) and their birth House (§5.3). */
+/** Mods the Person carries into battle: lasting injuries (§11: maxHpPct, mightPct, speed…), free passives (§12.1), their birth House (§5.3) and their own traits (§6.7). */
 export function carriedMods(p: Person, house?: ScionOpts["house"]): Record<string, number> {
   const mods: Record<string, number> = {};
   const add = (m: Record<string, number> | undefined) => {
     for (const [k, v] of Object.entries(m ?? {})) mods[k] = (mods[k] ?? 0) + v;
   };
   if (house) add(houseEffects(house).mods);
+  // Individual traits (§6.7): Fleet's Speed, Thick Skull's Durability…
+  for (const id of p.traits) add(TRAIT_BY_ID.get(id)?.mods);
   for (const inj of p.injuries) {
     const res = INJURY_BY_ID.get(inj.id);
     add(res?.lasting?.mods);

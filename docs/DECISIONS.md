@@ -2,6 +2,20 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-01 (implementation, Milestone 5d: individual traits) — implementer
+- **The trait set** (`content/traits.json`, `schemas/traits.schema.json`): 55 traits.
+  - §6.7's 30, counting each listed Curse as its own trait, plus 25 new first-pass ones in the same pattern (Hardy/Frail, Stout-Hearted/Brittle Mind, Keen-Eyed, Cold-Blooded/Tidebound, Stone-Steady/Windborn…), toward the target of 60.
+  - Each has flavor and crunch, battle `mods`, event `tags`, a generation `weight`, a `group` and an `element`.
+  - Weight 0 means the trait is gained, never rolled: Veteran of the Rift, Touched by the Deep, Grafted, Grit-Marked and the Curses.
+  - A `group` keeps opposites apart (never Fleet and Sluggish). An `element` is rolled twice as often for a House aligned with it (§5.6, `tuning.recruits.traits.alignedWeight`).
+- **Generation** (`rollTraits`, §6.3): first the House's innate traits by their chance (Fleet of Foot: 30% Fleet; Fae Changeling: 50%), then the table up to 1–3 traits in all (50/35/15%, first pass).
+- **In battle** (`carriedMods`) traits add their mods.
+  - Readings: "Dual wield penalty removed" is Dual Wield Mastery. Lucky rerolls a miss, like the Lucky property: §6.7 says a failed injury roll, but injury rolls have no failure to reroll yet.
+  - Tag-only effects wait on events or later systems: Bleeder, Berserker, Steady, Nightmares, Clumsy, Cruel, the stealth, charm and intimidation options, and the Curses' Withering and Hunger.
+- **Tests:**
+  - The assignment tests now measure Sanity against `caps` (the ceiling, traits included).
+  - The Short-campaign test uses a seed the bots win, since seed 3 now loses its Accord in Year 9. Bots losing a campaign is a legal outcome; tuning will look at it.
+
 ## 2026-11-01 (implementation, Milestone 5c: founding the Houses) — implementer
 - **A founding phase before Year 1** (`founding.ts`, §5.1).
   - Every seat starts on a themed Random House draft: name and motto, colors, emblem, Seat, element, a valid set of traits, and two Ambitions dealt in secret.
