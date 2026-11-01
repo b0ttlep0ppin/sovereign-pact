@@ -1,0 +1,308 @@
+{
+  "bases": [
+    {
+      "id": "sword",
+      "name": "Sword",
+      "slot": "main",
+      "type": "sword",
+      "hands": 1,
+      "power": 100,
+      "acc": 90,
+      "crit": 5,
+      "reach": "melee",
+      "aims": []
+    },
+    {
+      "id": "greatsword",
+      "name": "Greatsword",
+      "slot": "main",
+      "type": "sword",
+      "hands": 2,
+      "power": 140,
+      "acc": 90,
+      "crit": 5,
+      "reach": "melee",
+      "aims": []
+    },
+    {
+      "id": "axe",
+      "name": "Axe",
+      "slot": "main",
+      "type": "axe",
+      "hands": 1,
+      "power": 115,
+      "acc": 85,
+      "crit": 8,
+      "reach": "melee",
+      "aims": ["arms", "body"],
+      "critStatus": "bleed"
+    },
+    {
+      "id": "greataxe",
+      "name": "Greataxe",
+      "slot": "main",
+      "type": "axe",
+      "hands": 2,
+      "power": 161,
+      "acc": 85,
+      "crit": 8,
+      "reach": "melee",
+      "aims": ["arms", "body"],
+      "critStatus": "bleed"
+    },
+    {
+      "id": "mace",
+      "name": "Mace",
+      "slot": "main",
+      "type": "mace",
+      "hands": 1,
+      "power": 105,
+      "acc": 85,
+      "crit": 5,
+      "reach": "melee",
+      "aims": ["head"],
+      "critStatus": "stun",
+      "armorPierce": 25
+    },
+    {
+      "id": "maul",
+      "name": "Maul",
+      "slot": "main",
+      "type": "mace",
+      "hands": 2,
+      "power": 147,
+      "acc": 85,
+      "crit": 5,
+      "reach": "melee",
+      "aims": ["head"],
+      "critStatus": "stun",
+      "armorPierce": 25
+    },
+    {
+      "id": "spear",
+      "name": "Spear",
+      "slot": "main",
+      "type": "spear",
+      "hands": 2,
+      "power": 95,
+      "acc": 90,
+      "crit": 5,
+      "reach": "reach",
+      "aims": ["body"]
+    },
+    {
+      "id": "knife",
+      "name": "Knife",
+      "slot": "main",
+      "type": "knife",
+      "hands": 1,
+      "power": 60,
+      "acc": 95,
+      "crit": 12,
+      "reach": "melee",
+      "aims": ["arms", "head"],
+      "tpGain": 5
+    },
+    {
+      "id": "knuckles",
+      "name": "Knuckles",
+      "slot": "main",
+      "type": "knuckles",
+      "hands": 1,
+      "power": 50,
+      "acc": 95,
+      "crit": 8,
+      "reach": "melee",
+      "aims": []
+    },
+    {
+      "id": "bow",
+      "name": "Bow",
+      "slot": "main",
+      "type": "bow",
+      "hands": 2,
+      "power": 85,
+      "acc": 85,
+      "crit": 8,
+      "reach": "ranged",
+      "aims": ["legs", "head"]
+    },
+    {
+      "id": "crossbow",
+      "name": "Crossbow",
+      "slot": "main",
+      "type": "crossbow",
+      "hands": 2,
+      "power": 110,
+      "acc": 80,
+      "crit": 10,
+      "reach": "ranged",
+      "aims": [],
+      "attackCost": 120
+    },
+    {
+      "id": "staff",
+      "name": "Staff",
+      "slot": "main",
+      "type": "staff",
+      "hands": 2,
+      "power": 60,
+      "acc": 90,
+      "crit": 2,
+      "reach": "melee",
+      "aims": [],
+      "spellPct": 10,
+      "mpPct": 10
+    },
+    {
+      "id": "instrument",
+      "name": "Lute",
+      "slot": "main",
+      "type": "instrument",
+      "hands": 2,
+      "power": 40,
+      "acc": 90,
+      "crit": 0,
+      "reach": "melee",
+      "aims": []
+    },
+    {
+      "id": "throwing_knives",
+      "name": "Throwing Knives",
+      "slot": "off",
+      "type": "thrown",
+      "hands": 1,
+      "power": 70,
+      "acc": 90,
+      "crit": 5,
+      "reach": "ranged",
+      "aims": []
+    },
+    {
+      "id": "buckler",
+      "name": "Buckler",
+      "slot": "off",
+      "type": "shield",
+      "guard": 15,
+      "weight": 1
+    },
+    {
+      "id": "heater_shield",
+      "name": "Heater Shield",
+      "slot": "off",
+      "type": "shield",
+      "guard": 25,
+      "weight": 2
+    },
+    {
+      "id": "tower_shield",
+      "name": "Tower Shield",
+      "slot": "off",
+      "type": "shield",
+      "guard": 35,
+      "weight": 3
+    },
+    {
+      "id": "hood",
+      "name": "Hood",
+      "slot": "head",
+      "type": "armor",
+      "armor": "light"
+    },
+    {
+      "id": "coif",
+      "name": "Coif",
+      "slot": "head",
+      "type": "armor",
+      "armor": "medium"
+    },
+    {
+      "id": "helm",
+      "name": "Helm",
+      "slot": "head",
+      "type": "armor",
+      "armor": "heavy"
+    },
+    {
+      "id": "jerkin",
+      "name": "Jerkin",
+      "slot": "body",
+      "type": "armor",
+      "armor": "light"
+    },
+    {
+      "id": "hauberk",
+      "name": "Hauberk",
+      "slot": "body",
+      "type": "armor",
+      "armor": "medium"
+    },
+    {
+      "id": "plate",
+      "name": "Plate",
+      "slot": "body",
+      "type": "armor",
+      "armor": "heavy"
+    },
+    {
+      "id": "gloves",
+      "name": "Gloves",
+      "slot": "arms",
+      "type": "armor",
+      "armor": "light"
+    },
+    {
+      "id": "bracers",
+      "name": "Bracers",
+      "slot": "arms",
+      "type": "armor",
+      "armor": "medium"
+    },
+    {
+      "id": "gauntlets",
+      "name": "Gauntlets",
+      "slot": "arms",
+      "type": "armor",
+      "armor": "heavy"
+    },
+    {
+      "id": "boots",
+      "name": "Boots",
+      "slot": "legs",
+      "type": "armor",
+      "armor": "light"
+    },
+    {
+      "id": "greaves",
+      "name": "Greaves",
+      "slot": "legs",
+      "type": "armor",
+      "armor": "medium"
+    },
+    {
+      "id": "sabatons",
+      "name": "Sabatons",
+      "slot": "legs",
+      "type": "armor",
+      "armor": "heavy"
+    },
+    {
+      "id": "ring",
+      "name": "Ring",
+      "slot": "acc",
+      "type": "accessory"
+    },
+    {
+      "id": "amulet",
+      "name": "Amulet",
+      "slot": "acc",
+      "type": "accessory"
+    },
+    {
+      "id": "charm",
+      "name": "Charm",
+      "slot": "acc",
+      "type": "accessory"
+    }
+  ]
+}

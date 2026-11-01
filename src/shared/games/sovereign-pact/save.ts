@@ -1,15 +1,16 @@
 // Checkpoint saves (§4.4; Vibe Pulse docs/decisions/2026-10-18-saves.md): the state at the start of
 // each Settlement Phase, as plain JSON with a version and no player ids, at most 64 KB.
 import type { PlayerId } from "../../game.ts";
-import { packPeople, unpackPeople, type PackedPeople } from "./codec.ts";
+import { packItems, packPeople, unpackItems, unpackPeople, type PackedItems, type PackedPeople } from "./codec.ts";
 import type { SovState } from "./state.ts";
 import { campaignYears, clone, trackName } from "./year.ts";
 
-export const SAVE_VERSION = 1;
+// 2: people and items packed as varint strings (Milestone 2b).
+export const SAVE_VERSION = 2;
 export const GAME_ID = "sovereign-pact";
 
-/** The campaign without who sat where or the public log, its people packed (codec.ts). */
-export type SavedCampaign = Omit<SovState, "players" | "log" | "people"> & { people: PackedPeople };
+/** The campaign without who sat where or the public log, its people and items packed (codec.ts). */
+export type SavedCampaign = Omit<SovState, "players" | "log" | "people" | "items"> & { people: PackedPeople; items: PackedItems };
 
 export interface SovSave {
   v: typeof SAVE_VERSION;
@@ -24,7 +25,9 @@ export function checkpoint(s: SovState): SovSave | null {
   delete campaign.players;
   delete campaign.log;
   delete campaign.people;
-  return { v: SAVE_VERSION, game: GAME_ID, campaign: { ...(campaign as Omit<SovState, "players" | "log" | "people">), people: packPeople(s.people) } };
+  delete campaign.items;
+  const rest = campaign as Omit<SovState, "players" | "log" | "people" | "items">;
+  return { v: SAVE_VERSION, game: GAME_ID, campaign: { ...rest, people: packPeople(s.people), items: packItems(s.items) } };
 }
 
 export function describeSave(save: SovSave): string {
@@ -47,7 +50,7 @@ export function restore(save: unknown, players: readonly PlayerId[]): SovState |
     if (c.v !== 1 || !Array.isArray(c.houses) || !isObject(c.people) || c.houses.length !== players.length) return null;
     if (typeof c.year !== "number" || typeof c.rng !== "number" || c.phase !== "settlement") return null;
     const saved = clone(c) as unknown as SavedCampaign;
-    const state: SovState = { ...saved, people: unpackPeople(saved.people), players: [...players], log: [] };
+    const state: SovState = { ...saved, people: unpackPeople(saved.people), items: unpackItems(saved.items), players: [...players], log: [] };
     state.log.push(`The campaign resumes in Year ${state.year}.`);
     return state;
   } catch {

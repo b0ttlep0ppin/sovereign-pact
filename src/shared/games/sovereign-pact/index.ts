@@ -5,6 +5,7 @@ import type { GameDefinition, GameResult, MoveResult, PlayerId } from "../../gam
 import type { Rng } from "../../rng.ts";
 import type { TableOption, TableOptions } from "../../table-options.ts";
 import { promote, randomHouse, rollRecruit } from "./generate.ts";
+import { equipStarter } from "./items.ts";
 import { checkpoint, describeSave, restore, type SovSave } from "./save.ts";
 import { placements } from "./score.ts";
 import { BASE_JOBS, type CampaignOptions, type House, type SovMove, type SovState } from "./state.ts";
@@ -64,6 +65,7 @@ export function newCampaign(players: readonly PlayerId[], rng: Rng, opts: Campai
     phaseMoves: 0,
     houses,
     people: [],
+    items: [],
     nextId: 1,
     commons: { gold: 0, stores: {} },
     accord: TUNING.tracks.accordStart,
@@ -74,7 +76,9 @@ export function newCampaign(players: readonly PlayerId[], rng: Rng, opts: Campai
   };
   houses.forEach((_, i) => {
     for (let n = 0; n < forHouses(TUNING.houses.startScions, H); n++) {
-      state.people.push(promote(rollRecruit(rng, state.nextId++, i), rng.pick(BASE_JOBS)));
+      const scion = promote(rollRecruit(rng, state.nextId++, i), rng.pick(BASE_JOBS));
+      state.people.push(scion);
+      equipStarter(state, scion);
     }
     for (let n = 0; n < forHouses(TUNING.houses.startRecruits, H); n++) {
       state.people.push(rollRecruit(rng, state.nextId++, i));

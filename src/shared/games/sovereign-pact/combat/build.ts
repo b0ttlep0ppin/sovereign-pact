@@ -3,17 +3,17 @@
 // as the `weapon` and `armor` arguments until items exist.
 import { ENEMY_BY_ID, INJURY_BY_ID, type EnemyAbility, type EnemyDef } from "../content.ts";
 import { jobStat, maxHp, maxMp, maxSanity } from "../formulas.ts";
+import { UNARMED, type GearTotals } from "../items.ts";
 import { freePassives } from "../progression.ts";
-import { meta } from "./status.ts";
 import { LOCATIONS, type Location, type Person } from "../state.ts";
 import { TUNING } from "../tuning.ts";
+import { meta } from "./status.ts";
 import type { AbilityDef, Battle, Combatant, GambitRule, Weapon } from "./types.ts";
 
 const F = TUNING.formulas;
 const C = TUNING.combat;
 
-/** Bare hands, until gear exists (Milestone 2). */
-export const UNARMED: Weapon = { kind: "fist", power: 5, acc: 85, crit: 0, reach: "melee", hands: 1 };
+export { UNARMED };
 
 export interface ScionOpts {
   id: number;
@@ -22,8 +22,10 @@ export interface ScionOpts {
   weapon?: Weapon;
   abilities?: AbilityDef[];
   gambits?: GambitRule[];
-  /** Worn armor, summed over slots (§13.3); gear items replace this in Milestone 2. */
+  /** Worn armor, summed over slots (§13.3), when not built from items. */
   armor?: Armor;
+  /** The Scion's worn items added up (items.ts `gearTotals`): weapon, armor, staff bonuses. */
+  gear?: GearTotals;
   /** CT at the start (ambush 0, surprise 50, boss 30; §10.12, §14.6). */
   ct?: number;
 }
@@ -53,8 +55,10 @@ function carriedMods(p: Person): Record<string, number> {
 
 const pctMod = (n: number, mods: Record<string, number>, key: string) => Math.max(1, Math.floor(n * (1 + (mods[key] ?? 0) / 100)));
 
-export function scionCombatant(p: Person, o: ScionOpts): Combatant {
+export function scionCombatant(p: Person, opts: ScionOpts): Combatant {
+  const o: ScionOpts = opts.gear ? { ...opts, weapon: opts.weapon ?? opts.gear.weapon, armor: opts.armor ?? opts.gear } : opts;
   const mods = carriedMods(p);
+  if (o.gear?.spellPct) mods.spellPct = (mods.spellPct ?? 0) + o.gear.spellPct;
   const s = (k: Parameters<typeof jobStat>[1]) => pctMod(jobStat(p, k), mods, `${k}Pct`);
   const might = s("might"), resilience = s("resilience"), guile = s("guile"), acuity = s("acuity"), sagacity = s("sagacity");
   const hp = pctMod(maxHp(p), mods, "maxHpPct");
@@ -65,7 +69,7 @@ export function scionCombatant(p: Person, o: ScionOpts): Combatant {
     const raw = Math.floor((d.base + d.per * stats[d.stat as keyof typeof stats] + F.durabilityPerLevel * p.level) * (1 + (o.armor?.durabilityPct?.[loc] ?? 0) / 100));
     dur[loc] = pctMod(raw, mods, `${loc}DurabilityPct`);
   }
-  const mp = maxMp(p);
+  const mp = Math.floor(maxMp(p) * (1 + (o.gear?.mpPct ?? 0) / 100));
   const sanity = maxSanity(p);
   return {
     id: o.id,

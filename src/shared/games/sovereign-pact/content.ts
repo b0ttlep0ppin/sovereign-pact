@@ -7,6 +7,7 @@ import hollowSoldier from "./content/enemies/barrows/barrow_hollow_soldier.json"
 import skeleton from "./content/enemies/barrows/barrow_skeleton.json" with { type: "json" };
 import heraldryJson from "./content/heraldry.json" with { type: "json" };
 import injuriesJson from "./content/injuries.json" with { type: "json" };
+import itemsJson from "./content/items.json" with { type: "json" };
 import jobsJson from "./content/jobs.json" with { type: "json" };
 import namesJson from "./content/names.json" with { type: "json" };
 import seatsJson from "./content/seats.json" with { type: "json" };
@@ -169,6 +170,33 @@ export interface JobDef {
 
 export const JOBS = jobsJson.jobs as readonly JobDef[];
 export const JOB_BY_ID: ReadonlyMap<JobId, JobDef> = new Map(JOBS.map((j) => [j.id, j]));
+
+/** An item base (§13.1–13.3): a weapon type, shield, armor piece by slot and class, or accessory. */
+export interface ItemBase {
+  id: string;
+  name: string;
+  slot: "main" | "off" | "head" | "body" | "arms" | "legs" | "acc";
+  type: string;
+  hands?: 1 | 2;
+  /** Power index (a sword is 100). */
+  power?: number;
+  acc?: number;
+  crit?: number;
+  reach?: "melee" | "reach" | "ranged";
+  aims?: Location[];
+  critStatus?: string;
+  armorPierce?: number;
+  tpGain?: number;
+  attackCost?: number;
+  spellPct?: number;
+  mpPct?: number;
+  guard?: number;
+  weight?: number;
+  armor?: ArmorClass;
+}
+
+export const ITEM_BASES = itemsJson.bases as readonly ItemBase[];
+export const ITEM_BASE_BY_ID: ReadonlyMap<string, ItemBase> = new Map(ITEM_BASES.map((b) => [b.id, b]));
 
 export const TAROT: readonly TarotCard[] = tarotJson.cards;
 export const SEATS: readonly SeatStyle[] = seatsJson.seats;

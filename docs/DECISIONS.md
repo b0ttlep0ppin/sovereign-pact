@@ -2,6 +2,14 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-01 (implementation, Milestone 2b: items) — implementer
+- **Item bases are content** (`content/items.json`, 32 bases: 13 weapon types, throwing knives, three shields, light/medium/heavy armor for each of the four slots, and three accessory kinds). A weapon's `power` is an index (Sword = 100) on the enemy power block at the item's level (6 + 3L + 0.1L², §14.2); armor's defense is its class weight (0.5/1/1.5) × slot share (head .2, body .4, arms .2, legs .2) × the defense block (1 + L + 0.08L²). So a Fine sword and full armor at level L keep pace with enemies of level L. Tier multiplies both (Crude 0.9 … Relic 1.3) and each dent takes a tier step off.
+- **Item level (`ilvl`) is a stored number on each item**, set when it drops or is bought; the spec gives tiers but not how stats grow with the expedition, and this keeps old gear falling behind as the campaign gets harder. Reading taken: drops will be minted at the expedition's level (Milestone 4).
+- **Starting kit**: every Scion promoted at campaign start gets a Crude weapon of their Job's first weapon type and Crude body and head armor of their Job's class (heavy-armor Jobs start in medium: plate is earned). Recruits promoted later get the same kit (wired in when promotion is a move).
+- **Carry**: 10 + Might/2; each point of weight over it is −1 Evasion (§13.1 says over-carry slows; the exact penalty is a first pass in `tuning.items`).
+- **Gear is visible**: what any visible Scion wears is public; a House's unworn items (its stash) are seen only by that House.
+- **Saves are version 2**: people and items are packed as varint strings (codec.ts). The crowded Year-20 test fixture (4 Houses, 12 veterans each in full Fine-to-Relic gear, 16 spare items each) is 38.7 KB of 64 KB.
+
 ## 2026-11-01 (implementation, Milestone 2) — implementer
 - **XP is flat: 100 per level**, cap 30. First pass: 15 XP a battle won and 60 for finishing an expedition (about 1.3 levels a Year, so a Scion on most expeditions reaches the mid-20s by Year 20, §7.2); JP per §12.1. All in `tuning.progression`.
 - **Job multipliers apply to the stats everything else reads**: MP, Sanity, HP, Durability, Evasion and resists come from the multiplied stats, then the Job's HP or MP multiplier (§7.3 "× Job HP mult").

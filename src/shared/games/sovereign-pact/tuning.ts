@@ -142,6 +142,23 @@ export const TUNING = {
     passiveEvery: 6,
   },
 
+  /** §13: item scaling. Weapon power = index/100 × the enemy power block at the item level; armor defense likewise from the defense block. */
+  items: {
+    /** Crude −10%, Common, Fine +10%, Masterwork +20%, Relic +30% (§13.4). */
+    tierMult: [0.9, 1, 1.1, 1.2, 1.3],
+    /** Defense of a full set by class, × (1 + L + 0.08L²), shared out by slot. */
+    armorDefense: { light: 0.5, medium: 1, heavy: 1.5 },
+    slotShare: { head: 0.2, body: 0.4, arms: 0.2, legs: 0.2 },
+    /** §13.3: Durability bonus to the slot's location, Evasion per slot, weight per slot. */
+    armorDurabilityPct: { light: 10, medium: 25, heavy: 50 },
+    armorEvasion: { light: 0, medium: -3, heavy: -6 },
+    armorWeight: { light: 1, medium: 2, heavy: 3 },
+    /** Weapon weight by hands (the spec gives shields only). */
+    weaponWeight: [1, 2],
+    /** §13.1: carry = 10 + Might/2; each point over costs Evasion −1% and movement +1 CT. */
+    carry: { base: 10, mightDiv: 2 },
+  },
+
   /** §14.2 enemy base block at expedition level L: a + b·L + c·L², then role and `stats` multipliers. */
   enemies: {
     hp: [30, 22, 0.5],
