@@ -16,6 +16,13 @@ export const TUNING = {
   },
 
   /** §6.2 [DECIDED as a starting point]. */
+  /**
+   * §6.9 [DECIDED model, numbers to tune]: Loyalty's start (Bad Blood givers, Hound-Loyal hosts), the
+   * Years before a Ward may go home, Sworn and Estranged, the leak below 50 (Hound-Loyal cuts it by 20%),
+   * and the Estranged's chance to slip home each Year.
+   */
+  wards: { start: 40, badBlood: 20, houndLoyal: 60, noReturnYears: 3, sworn: 80, estranged: 10, leakBelow: 50, leakPct: 25, houndLeakCut: 20, defectPct: 50 },
+
   /** §6.5 [PROPOSED numbers]: a promotion's Gold, ceremony slots a Year, and the Chapel's extra slot; the bot promotes while under its target of Scions. */
   promotion: { gold: 20, slots: 1, chapelSlots: 1, botScions: [8, 5, 4, 4] as ByHouses },
 

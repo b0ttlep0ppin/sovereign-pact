@@ -220,7 +220,8 @@ export function botCrisis(s: SovState, house: number): Partial<Record<string, nu
  * it gives, counting every unit of Gold or material and an item as 20, and declines otherwise.
  */
 export function botDeal(s: SovState, house: number, d: Deal): SovMove {
-  const worth = (x: Deal["give"]) => (x.gold ?? 0) + Object.values(x.stores ?? {}).reduce<number>((a, n) => a + (n ?? 0), 0) + 20 * (x.items?.length ?? 0);
-  const ok = worth(d.give) >= worth(d.get) && !cannotAccept(s, house, d.id);
+  const worth = (x: Deal["give"]) => (x.gold ?? 0) + Object.values(x.stores ?? {}).reduce<number>((a, n) => a + (n ?? 0), 0) + 20 * (x.items?.length ?? 0) + 40 * (x.wards?.length ?? 0);
+  // The bot keeps its own people: it never gives a Ward.
+  const ok = !d.get.wards?.length && worth(d.give) >= worth(d.get) && !cannotAccept(s, house, d.id);
   return ok ? { type: "accept", deal: d.id } : { type: "decline", deal: d.id };
 }

@@ -113,6 +113,8 @@ export interface Person {
   hist: Partial<Record<HistKey, number>>;
   /** Wards only: 0–100, hidden from both Houses (§6.9). */
   loyalty?: number;
+  /** Wards only: the Year the host took them in (no giving back within 3 Years). */
+  wardSince?: number;
 }
 
 /** A dead Scion, kept in the House's Chronicle (§6.13). */
@@ -252,6 +254,8 @@ export interface DealSide {
   gold?: number;
   stores?: Partial<Record<string, number>>;
   items?: number[];
+  /** Scions given as Wards (§6.9). */
+  wards?: number[];
 }
 
 /** A deal offered by one House to another (§8.9): instant when accepted, gone at the seal. */

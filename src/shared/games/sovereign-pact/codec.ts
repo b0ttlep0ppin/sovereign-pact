@@ -94,6 +94,7 @@ export function packPeople(people: readonly Person[]): PackedPeople {
     list(trimZeros(GEAR_SLOTS.map((slot) => p.gear[slot] ?? 0)));
     list(trimZeros(HIST_KEYS.map((key) => p.hist[key] ?? 0)));
     int(p.loyalty ?? -1);
+    int(p.wardSince ?? -1);
     return encodeInts(out);
   });
   return { dict, rows };
@@ -148,6 +149,7 @@ export function unpackPeople({ dict, rows }: PackedPeople): Person[] {
     const gear = list();
     const hist = list();
     const loyalty = int();
+    const wardSince = int();
     const person: Person = {
       id, status, house, host, name, sex, look, age, base, growth, carry, potential, level, xp,
       job: job === -1 ? null : (str(job) as JobId),
@@ -159,6 +161,7 @@ export function unpackPeople({ dict, rows }: PackedPeople): Person[] {
     if (reversed) person.reversed = true;
     if (aff.length) person.aff = Object.fromEntries(aff.flatMap((n, i) => (n ? [[ELEMENTS[i]! as Element, n]] : [])));
     if (loyalty !== -1) person.loyalty = loyalty;
+    if (wardSince !== -1) person.wardSince = wardSince;
     return person;
   });
 }

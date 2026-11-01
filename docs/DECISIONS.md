@@ -2,6 +2,23 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-01 (implementation, Milestone 5f: Wards and Loyalty) — implementer
+- **Wards in deals** (`wards.ts`, §6.9): a deal side may list `wards`, Scions of the giving House.
+  - On acceptance the Scion moves to the host. Their worn gear stays in the giver's stash, except a cursed piece, which goes with them and becomes the host's (per batch 10: the host outfits Wards, cursed items travel with the Ward).
+  - Loyalty starts at 40: 20 if the birth House has Bad Blood, 60 with a Hound-Loyal host.
+  - A Ward may not be given back to their birth House within 3 Years. They may be given to a third House only once Sworn, and then keep their Loyalty.
+  - Going home ends the wardship.
+  - The bot never gives a Ward and values receiving one like 40 Gold.
+- **Loyalty** is hidden. Only a host with Insight 3 sees it, in the person's view.
+- **The Reckoning's Ward step** (`wardYear`): first-pass numbers in `tuning.wards`.
+  - Below 50, a 25% chance each Year (20% less with a Hound-Loyal host) that the birth House reads one secret of the host's in its own notes: exact Gold and Debt, exact Ascendancy, or the size of the recruit pool.
+  - A Crisis pledge cannot leak yet, because the Crisis is settled before the Reckoning.
+  - At 10 or less, a 50% chance each Year that the Ward slips home, publicly.
+  - At 80 or more the Ward is Sworn: no leaks, no split.
+- **Score split** (`creditWard`): Valor and Lore a Ward earns go to the host at Loyalty % and to the birth House for the rest. The Expedition Phase calls it in Milestone 6.
+- **Waiting on expeditions:** the Year's Loyalty changes (fielded with good gear, saved or injured on the host's expedition, fielded while Retired, withheld in a Crisis). So does the Estranged Ward's one sabotage, a Crisis pledge quietly halved. Hostages (solo) come with events.
+- **Save version 11:** a person's `wardSince` is saved.
+
 ## 2026-11-01 (implementation, Milestone 5e: promotion and the Tarot) — implementer
 - **Promotion** (`promotion.ts`, §6.5, first-pass numbers in `tuning.promotion`): a Settlement move, `promote` (recruit, base Job).
   - It costs 20 Gold and a ceremony slot: one a Year, two with a Chapel.
