@@ -3,10 +3,12 @@
 import type { Rng } from "../../rng.ts";
 import { HERALDRY, NAMES, SEATS, TAROT } from "./content.ts";
 import { maxMp, maxSanity } from "./formulas.ts";
+import { houseEffects } from "./houses.ts";
 import {
   BASE_JOBS,
   ELEMENTS,
   SCORE_CATEGORIES,
+  STATS,
   type Ambition,
   type House,
   type Person,
@@ -38,14 +40,19 @@ export function dealAmbition(rng: Rng): Ambition {
   return { double: double!, halve: halve! };
 }
 
-/** A new recruit for House `house` (§6.3). Speed starts at its baseline and barely grows (§7.1). */
-export function rollRecruit(rng: Rng, id: number, house: number): Person {
+/**
+ * A new recruit for House `house` (§6.3). Speed starts at its baseline and barely grows (§7.1). The
+ * House's traits scale each rolled growth rate by their % (§5.3), after the roll, so the draws match.
+ */
+export function rollRecruit(rng: Rng, id: number, house: number, blood?: Pick<House, "traits" | "element" | "bane">): Person {
   const sex = rng.int(2) === 0 ? "f" : "m";
   const [lo, hi] = TUNING.recruits.baseRoll;
   const potential = rollPotential(rng);
   const [glo, ghi] = TUNING.recruits.potential[potential].growth;
   const base: Six = [between(rng, lo, hi), between(rng, lo, hi), between(rng, lo, hi), between(rng, lo, hi), between(rng, lo, hi), TUNING.recruits.speedBase];
   const growth: Six = [between(rng, glo, ghi), between(rng, glo, ghi), between(rng, glo, ghi), between(rng, glo, ghi), between(rng, glo, ghi), 0];
+  const pct = blood ? houseEffects(blood).growth : {};
+  STATS.forEach((stat, i) => (growth[i] = Math.max(0, Math.round(growth[i]! * (1 + (pct[stat] ?? 0) / 100)))));
   const person: Person = {
     id,
     status: "recruit",

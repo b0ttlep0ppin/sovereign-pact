@@ -3,7 +3,7 @@
 // next Year until changed; a slot that no longer exists (a ruined building) leaves its person idle.
 import { built } from "./commons.ts";
 import { BUILDING_BY_ID, INJURY_TABLE_BY_ID } from "./content.ts";
-import { maxSanity } from "./formulas.ts";
+import { caps } from "./combat/build.ts";
 import { gainJp, gainXpUpTo } from "./progression.ts";
 import type { Assignment, AssignmentKind, JobId, Person, SovState } from "./state.ts";
 import { TUNING } from "./tuning.ts";
@@ -118,7 +118,7 @@ export function yearOfAssignments(s: SovState): void {
     }
     if (to === "chapel") injuries = injuries.filter((x) => !(SANITY_RESULTS.has(x.id) && x.years > 0));
     p = { ...p, injuries: injuries.filter((x) => x.years !== 0) };
-    const max = maxSanity(p);
+    const max = caps(s, p).sanity;
     const pct =
       (to === "rest" ? A.restSanityPct : A.idleSanityPct) +
       (lvl(s, p.host, "chapel") ? A.chapelBuildingSanityPct : 0) +

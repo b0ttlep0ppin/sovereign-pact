@@ -23,6 +23,7 @@ import projectsJson from "./content/projects.json" with { type: "json" };
 import summonsJson from "./content/summons.json" with { type: "json" };
 import hazardsJson from "./content/hazards.json" with { type: "json" };
 import heraldryJson from "./content/heraldry.json" with { type: "json" };
+import houseTraitsJson from "./content/house_traits.json" with { type: "json" };
 import injuriesJson from "./content/injuries.json" with { type: "json" };
 import itemsJson from "./content/items.json" with { type: "json" };
 import jobsJson from "./content/jobs.json" with { type: "json" };
@@ -34,7 +35,7 @@ import tarotJson from "./content/tarot.json" with { type: "json" };
 import variantsJson from "./content/variants.json" with { type: "json" };
 import templatesJson from "./content/templates.json" with { type: "json" };
 import type { AbilityDef, GambitRule } from "./combat/types.ts";
-import type { Element, JobId, Location, Material } from "./state.ts";
+import type { Element, JobId, Location, Material, ScoreCategory, Stat } from "./state.ts";
 
 export interface TarotCard {
   id: string;
@@ -605,3 +606,26 @@ export const FORMS: readonly FormDef[] = (formsJson.forms as unknown as (Omit<Fo
   abilities: f.abilities.map(fromEnemySide),
 }));
 export const FORM_BY_ID = byId(FORMS);
+
+/** A House trait (§5.3, §5.7). Each effect kind is read by the system that owns it; tags wait on later ones. */
+export interface HouseTraitDef {
+  id: string;
+  name: string;
+  kind: "major" | "minor" | "major_flaw" | "minor_flaw" | "bloodline";
+  flavor: string;
+  crunch: string;
+  /** Battle mods every person of the House carries. */
+  mods?: Record<string, number>;
+  /** Recruit growth rate in % of the rolled rate; `all` is every stat but Speed. */
+  growth?: Partial<Record<Exclude<Stat, "speed"> | "all", number>>;
+  jobXp?: Partial<Record<JobId, number>>;
+  economy?: Record<string, number>;
+  score?: Partial<Record<ScoreCategory, number>>;
+  /** Chance in % that a recruit rolls an individual trait. */
+  innate?: Record<string, number>;
+  tags?: string[];
+  look?: string[];
+  choice?: "element";
+}
+export const HOUSE_TRAITS = houseTraitsJson.traits as readonly HouseTraitDef[];
+export const HOUSE_TRAIT_BY_ID = byId(HOUSE_TRAITS);

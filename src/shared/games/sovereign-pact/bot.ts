@@ -6,7 +6,7 @@ import { cannotPledge, projectCost, stillNeeded } from "./commons.ts";
 import { cannotPropose } from "./votes.ts";
 import { BUILDING_BY_ID, TOWN_EVENT_BY_ID } from "./content.ts";
 import { cautious } from "./omens.ts";
-import { maxSanity } from "./formulas.ts";
+import { caps } from "./combat/build.ts";
 import { cannotAccept } from "./deals.ts";
 import type { Assignment, Deal, SovMove, SovState } from "./state.ts";
 import { buildCost, cannotBuild, levelOf } from "./town.ts";
@@ -98,7 +98,7 @@ export function assignPlan(s: SovState, house: number): Map<number, Assignment |
   for (const p of mine) {
     if (p.status === "recruit") continue;
     if (p.injuries.some((x) => x.years > 0) && take("infirmary")) plan.set(p.id, { to: "infirmary" });
-    else if (p.sanity * 2 < maxSanity(p) && take("chapel")) plan.set(p.id, { to: "chapel" });
+    else if (p.sanity * 2 < caps(s, p).sanity && take("chapel")) plan.set(p.id, { to: "chapel" });
     else if ((p.status === "retired" || p.mastered.length) && take("teach")) {
       plan.set(p.id, { to: "teach" });
       if (p.mastered.length) mentors.push({ id: p.id, job: p.mastered[0], room: TUNING.assignments.studentsPerSeat });

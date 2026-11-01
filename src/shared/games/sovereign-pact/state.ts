@@ -144,6 +144,8 @@ export interface House {
   element: Element | null;
   /** House trait ids: Majors, Minors, Flaws, or a Bloodline (§5.7). */
   traits: string[];
+  /** The element Elemental Bane names, when the House took it. */
+  bane?: Element;
   /** Music track id for the Settlement theme (§5.9). */
   theme: string;
   /** Hidden: only this House sees it. */

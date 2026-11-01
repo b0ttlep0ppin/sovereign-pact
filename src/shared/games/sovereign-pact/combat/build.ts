@@ -3,9 +3,10 @@
 // as the `weapon` and `armor` arguments until items exist.
 import { ENEMY_BY_ID, fromEnemySide, INJURY_BY_ID, type EnemyAbility, type EnemyDef } from "../content.ts";
 import { jobStat, maxHp, maxMp, maxSanity } from "../formulas.ts";
-import { UNARMED, type GearTotals } from "../items.ts";
+import { houseEffects } from "../houses.ts";
+import { gearTotals, UNARMED, type GearTotals } from "../items.ts";
 import { battleActives, freePassives, passiveMods } from "../progression.ts";
-import { ELEMENTS, LOCATIONS, type Location, type Person } from "../state.ts";
+import { ELEMENTS, LOCATIONS, type House, type Location, type Person, type SovState } from "../state.ts";
 import { TUNING } from "../tuning.ts";
 import { meta } from "./status.ts";
 import type { AbilityDef, Battle, Combatant, GambitRule, Weapon } from "./types.ts";
@@ -28,6 +29,8 @@ export interface ScionOpts {
   gear?: GearTotals;
   /** CT at the start (ambush 0, surprise 50, boss 30; §10.12, §14.6). */
   ct?: number;
+  /** The House the Scion was born to: its traits and element ride into battle (§5.3). */
+  house?: Pick<House, "traits" | "element" | "bane">;
 }
 
 export interface Armor {
@@ -38,12 +41,13 @@ export interface Armor {
   guard?: number;
 }
 
-/** Mods the Person carries into battle: lasting injuries (§11: maxHpPct, mightPct, speed…) and free passives (§12.1). */
-function carriedMods(p: Person): Record<string, number> {
+/** Mods the Person carries into battle: lasting injuries (§11: maxHpPct, mightPct, speed…), free passives (§12.1) and their birth House (§5.3). */
+export function carriedMods(p: Person, house?: ScionOpts["house"]): Record<string, number> {
   const mods: Record<string, number> = {};
   const add = (m: Record<string, number> | undefined) => {
     for (const [k, v] of Object.entries(m ?? {})) mods[k] = (mods[k] ?? 0) + v;
   };
+  if (house) add(houseEffects(house).mods);
   for (const inj of p.injuries) {
     const res = INJURY_BY_ID.get(inj.id);
     add(res?.lasting?.mods);
@@ -55,10 +59,22 @@ function carriedMods(p: Person): Record<string, number> {
 }
 
 const pctMod = (n: number, mods: Record<string, number>, key: string) => Math.max(1, Math.floor(n * (1 + (mods[key] ?? 0) / 100)));
+const mpCap = (p: Person, mods: Record<string, number>, gearPct = 0) => Math.floor(maxMp(p) * (1 + (gearPct + (mods.maxMpPct ?? 0)) / 100));
+
+/**
+ * A Person's Sanity and MP ceilings in town, the same a battle sets (injuries, passives, birth House,
+ * worn gear), so the Chapel and the Year's rest fill them to the top a battle starts from.
+ */
+export function caps(s: Pick<SovState, "items" | "houses">, p: Person): { sanity: number; mp: number } {
+  const mods = carriedMods(p, s.houses[p.house]);
+  const gear = gearTotals(s, p);
+  for (const [k, v] of Object.entries(gear.mods)) mods[k] = (mods[k] ?? 0) + v;
+  return { sanity: pctMod(maxSanity(p), mods, "maxSanityPct"), mp: mpCap(p, mods, gear.mpPct) };
+}
 
 export function scionCombatant(p: Person, opts: ScionOpts): Combatant {
   const o: ScionOpts = opts.gear ? { ...opts, weapon: opts.weapon ?? opts.gear.weapon, armor: opts.armor ?? opts.gear } : opts;
-  const mods = carriedMods(p);
+  const mods = carriedMods(p, o.house);
   let weapon = o.weapon ?? UNARMED;
   // Iron Fists and Counterpunch: a Pugilist's bare hands (§12.10).
   const bare = weapon.kind === "unarmed";
@@ -75,7 +91,7 @@ export function scionCombatant(p: Person, opts: ScionOpts): Combatant {
     const raw = Math.floor((d.base + d.per * stats[d.stat as keyof typeof stats] + F.durabilityPerLevel * p.level) * (1 + (o.armor?.durabilityPct?.[loc] ?? 0) / 100));
     dur[loc] = pctMod(raw, mods, `${loc}DurabilityPct`);
   }
-  const mp = Math.floor(maxMp(p) * (1 + (o.gear?.mpPct ?? 0) / 100));
+  const mp = mpCap(p, mods, o.gear?.mpPct);
   const sanity = pctMod(maxSanity(p), mods, "maxSanityPct");
   // Warded and Exposed shift the element's affinity (§7.3: +50 takes half).
   const affinity: Combatant["affinity"] = { ...p.aff };
@@ -126,7 +142,8 @@ export function scionCombatant(p: Person, opts: ScionOpts): Combatant {
     abilities: o.abilities ?? battleActives(p),
     gambits: o.gambits ?? [],
     cooldowns: {},
-    ct: o.ct ?? 0,
+    // Slow to Wake (§5.7): a House's people may start behind the clock.
+    ct: (o.ct ?? 0) + (mods.ctStart ?? 0),
     statuses,
     down: false,
     dead: false,
