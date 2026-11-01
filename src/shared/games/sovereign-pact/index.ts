@@ -9,6 +9,8 @@ import { equipStarter } from "./items.ts";
 import { checkpoint, describeSave, restore, type SovSave } from "./save.ts";
 import { placements } from "./score.ts";
 import { BASE_JOBS, type CampaignOptions, type House, type SovMove, type SovState } from "./state.ts";
+import { botBuild } from "./bot.ts";
+import { build, cannotBuild, unbuild } from "./town.ts";
 import { forHouses, TUNING } from "./tuning.ts";
 import { view, type SovView } from "./view.ts";
 import { clone, closeSettlement, openYear } from "./year.ts";
@@ -120,6 +122,22 @@ export function applyMove(state: SovState, playerId: PlayerId, move: SovMove): M
       if (s.houses.every((x) => x.sealed)) closeSettlement(s);
       return { ok: true, state: s };
     }
+    case "build": {
+      if (s.phase !== "settlement") return fail("Buildings go up in the Settlement Phase.");
+      if (h.sealed) return fail("Unseal the Year to build.");
+      const why = cannotBuild(s, house, move.building);
+      if (why) return fail(why);
+      build(s, house, move.building);
+      s.phaseMoves += 1;
+      return { ok: true, state: s };
+    }
+    case "unbuild": {
+      if (s.phase !== "settlement") return fail("Nothing is being built now.");
+      if (h.sealed) return fail("Unseal the Year first.");
+      if (!unbuild(s, house, move.building)) return fail("That building is not going up this Year.");
+      s.phaseMoves += 1;
+      return { ok: true, state: s };
+    }
     case "unseal": {
       if (s.phase !== "settlement") return fail("There is nothing to unseal now.");
       if (!h.sealed) return fail("You have not sealed the Year.");
@@ -157,8 +175,13 @@ export function describeResult(s: SovState): string | null {
   return `${s.outcome.reason} ${sovereigns.join(" and ")} ${sovereigns.length > 1 ? "share" : "takes"} the throne.`;
 }
 
-/** The settlement bot is cautious (HANDOFF §3.4): until there are decisions to make, it seals. */
-export function botMove(): SovMove {
+/** The settlement bot is cautious (HANDOFF §3.4): it builds what it can afford by its plan, then seals. */
+export function botMove(s: SovState, playerId: PlayerId): SovMove {
+  const house = houseOf(s, playerId);
+  if (house >= 0 && s.phase === "settlement" && !s.houses[house]!.sealed) {
+    const next = botBuild(s, house);
+    if (next) return { type: "build", building: next };
+  }
   return { type: "seal" };
 }
 
@@ -174,7 +197,7 @@ export const sovereignPact: GameDefinition<SovState, SovMove, SovView, SovSave> 
   describeResult,
   view,
   botMove,
-  timeoutMove: () => botMove(),
+  timeoutMove: (s, playerId) => botMove(s, playerId),
   passiveMoves: (s, playerId) => {
     const house = houseOf(s, playerId);
     return s.phase === "settlement" && house >= 0 && s.houses[house]!.sealed ? ["unseal"] : [];

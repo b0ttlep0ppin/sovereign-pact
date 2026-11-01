@@ -16,6 +16,7 @@ import soothsayerSet from "./content/abilities/soothsayer.json" with { type: "js
 import tinkererSet from "./content/abilities/tinkerer.json" with { type: "json" };
 import swordSaintSet from "./content/abilities/sword_saint.json" with { type: "json" };
 import vagabondSet from "./content/abilities/vagabond.json" with { type: "json" };
+import buildingsJson from "./content/buildings.json" with { type: "json" };
 import formsJson from "./content/forms.json" with { type: "json" };
 import summonsJson from "./content/summons.json" with { type: "json" };
 import hazardsJson from "./content/hazards.json" with { type: "json" };
@@ -31,7 +32,7 @@ import tarotJson from "./content/tarot.json" with { type: "json" };
 import variantsJson from "./content/variants.json" with { type: "json" };
 import templatesJson from "./content/templates.json" with { type: "json" };
 import type { AbilityDef, GambitRule } from "./combat/types.ts";
-import type { Element, JobId, Location } from "./state.ts";
+import type { Element, JobId, Location, Material } from "./state.ts";
 
 export interface TarotCard {
   id: string;
@@ -422,6 +423,20 @@ export const NAMES: Names = namesJson;
 const byId = <T extends { id: string }>(items: readonly T[]): ReadonlyMap<string, T> => new Map(items.map((item) => [item.id, item]));
 
 export const TAROT_BY_ID = byId(TAROT);
+
+/** A House building (§8.4): three levels, a cost table by class, and for producers the material made. */
+export interface BuildingDef {
+  id: string;
+  name: string;
+  cost: "cheap" | "standard" | "expensive";
+  produces?: Exclude<Material, "essence">;
+  /** What each level does, as shown in Crunch. */
+  levels: string[];
+}
+export const BUILDINGS = buildingsJson.buildings as readonly BuildingDef[];
+export const BUILDING_BY_ID = byId(BUILDINGS);
+/** Rare materials (§8.1): kept in Stores by id beside the five common ones. */
+export const RARE_MATERIALS: readonly { id: string; name: string }[] = buildingsJson.rareMaterials;
 export const SEAT_BY_ID = byId(SEATS);
 export const SWATCH_BY_ID = byId(HERALDRY.palette);
 

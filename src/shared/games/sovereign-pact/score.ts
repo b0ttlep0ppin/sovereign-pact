@@ -8,12 +8,13 @@ import { TUNING } from "./tuning.ts";
 export function categories(state: SovState, house: number): Score {
   const h = state.houses[house]!;
   const mine = state.people.filter((p) => p.host === house && p.status !== "lost");
+  const vault = h.buildings.vault ?? 0;
   const held: Partial<Score> = {
     // First pass, Milestone 4 replaces these: Lineage counts the living, Treasury the Gold held,
     // Holdings the building levels.
     lineage: mine.filter((p) => p.status !== "recruit").length * 2 + mine.filter((p) => p.status === "recruit").length,
-    treasury: Math.floor(Math.max(0, h.gold - h.debt) / 10),
-    holdings: Object.values(h.buildings).reduce<number>((sum, level) => sum + (level ?? 0) * 3, 0),
+    treasury: Math.floor((Math.max(0, h.gold - h.debt) / 10) * (1 + (vault ? TUNING.town.vaultTreasuryPct[vault - 1]! : 0) / 100)),
+    holdings: Object.values(h.buildings).reduce<number>((sum, level) => sum + (level ?? 0) * TUNING.town.holdingsPerLevel, 0),
   };
   return Object.fromEntries(SCORE_CATEGORIES.map((c) => [c, h.score[c] + (held[c] ?? 0)])) as Score;
 }

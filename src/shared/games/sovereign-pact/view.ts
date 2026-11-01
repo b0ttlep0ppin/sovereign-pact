@@ -35,6 +35,8 @@ export interface PublicHouse {
   element: Element | null;
   traits: string[];
   buildings: House["buildings"];
+  /** Buildings going up this Year: scaffolding on the Town Map is public. */
+  works: string[];
   chronicle: ChronicleEntry[];
   standing: StandingTier;
   sealed: boolean;
@@ -117,6 +119,7 @@ function publicHouse(s: SovState, h: House, index: number): PublicHouse {
     element: h.element,
     traits: h.traits,
     buildings: h.buildings,
+    works: h.works,
     chronicle: h.chronicle,
     standing: standing(s, index),
     sealed: h.sealed,

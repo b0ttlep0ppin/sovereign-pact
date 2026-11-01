@@ -5,6 +5,7 @@ import { createRng, type Rng } from "../../rng.ts";
 import { rollRecruit } from "./generate.ts";
 import { maxMp, maxSanity } from "./formulas.ts";
 import type { House, SovState } from "./state.ts";
+import { completeWorks, produce } from "./town.ts";
 import { forHouses, TUNING } from "./tuning.ts";
 
 /** A deep copy, so a rule never changes the state it was given (plain JSON, so this is exact). */
@@ -72,11 +73,12 @@ function payUpkeep(s: SovState, house: number, h: House): void {
   }
 }
 
-/** §8.10, the parts that exist so far: income and tithe, upkeep, recovery, the tracks, arrivals. */
+/** §8.10, the parts that exist so far: income and tithe, upkeep, buildings, recovery, the tracks, arrivals. */
 export function reckoning(s: SovState): void {
   s.phase = "reckoning";
   const H = s.houses.length;
   const scale = forHouses(TUNING.economy.incomeScale, H);
+  produce(s);
   s.houses.forEach((h, i) => {
     const gold = Math.round(TUNING.economy.income.gold * scale);
     const grain = Math.round(TUNING.economy.income.grain * scale);
@@ -88,6 +90,7 @@ export function reckoning(s: SovState): void {
     h.stores.grain = (h.stores.grain ?? 0) + grain - titheGrain;
     payUpkeep(s, i, h);
   });
+  completeWorks(s);
   for (const p of s.people) {
     // Injuries tick down a Year; Durability and MP refill; idle Scions recover a little Sanity (§8.3, §8.10).
     p.injuries = p.injuries.map((inj) => (inj.years > 0 ? { ...inj, years: inj.years - 1 } : inj)).filter((inj) => inj.years !== 0);

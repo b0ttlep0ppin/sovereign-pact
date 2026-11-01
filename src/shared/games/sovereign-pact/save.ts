@@ -5,8 +5,8 @@ import { packItems, packPeople, unpackItems, unpackPeople, type PackedItems, typ
 import type { SovState } from "./state.ts";
 import { campaignYears, clone, trackName } from "./year.ts";
 
-// 2: people and items packed as varint strings (Milestone 2b).
-export const SAVE_VERSION = 2;
+// 2: people and items packed as varint strings (Milestone 2b). 3: Houses' works (Milestone 4a).
+export const SAVE_VERSION = 3;
 export const GAME_ID = "sovereign-pact";
 
 /** The campaign without who sat where or the public log, its people and items packed (codec.ts). */

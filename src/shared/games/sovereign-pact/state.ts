@@ -158,6 +158,8 @@ export interface House {
   stores: Stores;
   /** Building id → level 1–3 (§8.4). */
   buildings: Partial<Record<string, number>>;
+  /** Buildings started this Year, each one level up at the Reckoning (§8.3); public on the Town Map. */
+  works: string[];
   chronicle: ChronicleEntry[];
   /** Pressed Seal the Year (§8.2). */
   sealed: boolean;
@@ -240,4 +242,8 @@ export interface SovState {
 
 export type SovMove =
   | { type: "seal" }
-  | { type: "unseal" };
+  | { type: "unseal" }
+  /** Start a House building, or its next level, paying now (§8.3). */
+  | { type: "build"; building: string }
+  /** Take back a build started this Year, for a full refund. */
+  | { type: "unbuild"; building: string };

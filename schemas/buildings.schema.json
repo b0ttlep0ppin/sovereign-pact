@@ -1,0 +1,38 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "House buildings, three levels each, and the rare materials (SPEC §8.1, §8.4)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["buildings", "rareMaterials"],
+  "properties": {
+    "buildings": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "name", "cost", "levels"],
+        "properties": {
+          "id": { "$ref": "defs.schema.json#/definitions/id" },
+          "name": { "type": "string", "minLength": 1 },
+          "cost": { "enum": ["cheap", "standard", "expensive"], "description": "The cost table in tuning.ts (town.costs) this building pays by level." },
+          "produces": { "enum": ["grain", "timber", "stone", "iron"], "description": "A producer: its yearly output by level is tuning.ts town.produce." },
+          "levels": { "type": "array", "minItems": 3, "maxItems": 3, "items": { "type": "string", "minLength": 1 } }
+        }
+      }
+    },
+    "rareMaterials": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "name"],
+        "properties": {
+          "id": { "$ref": "defs.schema.json#/definitions/id" },
+          "name": { "type": "string", "minLength": 1 }
+        }
+      }
+    }
+  }
+}

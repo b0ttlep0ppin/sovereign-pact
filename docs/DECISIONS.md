@@ -2,6 +2,16 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-01 (implementation, Milestone 4a: House buildings) — implementer
+- **Buildings are content** (`content/buildings.json`, `schemas/buildings.schema.json`): the 16 House buildings of §8.4 with their level texts, each in a cost class. The rare materials of §8.1 live there too.
+- **Costs by class, first pass** (`tuning.town.costs`): the standard row is §8.4's example (L1 20 Timber + 20 Gold; L2 30 Timber + 20 Stone + 40 Gold; L3 40 Stone + 20 Iron + 80 Gold). Producers are "cheap" at about half; the Vault, Shrine and Crypt are "expensive", and L3 of those also takes 10 Essence.
+- **Reading:** a build is paid when started and stands at the Reckoning (step 2), so producers pay out from the next Reckoning. A build can be taken back the same Year for a full refund. One build a Year; Masons' Guild (2) waits for traits in Milestone 5.
+- **Producer output, the Shrine's Essence and the Mine's rare materials are income**, so the Commons takes its 10% tithe from them (§8.1 "every House's income"). The Vault's interest (L2) is on Gold held before the Year's income.
+- **Implementation default:** each House starts with 30 Timber and 10 Stone (scaled like income), so Year 1 can start a building before expeditions bring materials (Milestone 6).
+- **Holdings** score 3 points a building level; the Vault adds its 10/20/30% to Treasury. Both are first pass.
+- **Other buildings' effects** are read by their own systems by level (Insight already reads the Scriptorium); they come with assignments (4b), events (4d) and later milestones.
+- **The settlement bot** keeps a reserve of a Year's Gold upkeep and builds along a fixed plan (materials, then the Infirmary, Chapel, Training Ground and Scriptorium), a Farm first when the House cannot feed itself. Save version 3 (Houses' `works`).
+
 ## 2026-11-01 (implementation, Milestone 3x: the Overlord; Q87 answered) — implementer
 - **Q87 answered by Josh (decision card, 2026-11-01): Durability does not grow with level, as specified.** `formulas.durabilityPerLevel` is back to 0. To make up for it, `combat.enemyLevelFactor` drops from 0.03 to 0.015: enemy damage grows ×1.15 by L10, where §14.2's formula had ×1.8. The other pass-1 knobs and the pass-2 boss stats stay.
 - **Encounters after this** (every pool, 40 fights a template; win / HP lost / injury rolls):
