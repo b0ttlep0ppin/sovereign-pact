@@ -1,0 +1,26 @@
+{
+  "id": "void_unknown_satan",
+  "name": "Unknown Satan",
+  "pool": "outer_dark",
+  "tags": ["unknown", "demon", "royal"],
+  "role": "elite",
+  "size": [1, 1],
+  "levels": [8, 10],
+  "stats": {"sanityTouch": 2, "speed": 11},
+  "affinity": {"fire": 25, "water": 25, "wind": 25, "earth": 25, "dark": 50, "holy": -50},
+  "immune": ["charm", "fear", "sleep"],
+  "abilities": [
+    {"id": "abyss_flame", "shape": "band:3", "side": "player", "power": 1.2, "kind": "magic", "charge": 80, "telegraph": true, "cooldown": 3, "sanity": 4, "element": "dark"},
+    {"id": "ruin_blade", "shape": "single", "side": "player", "power": 1.5, "crit": 15},
+    {"id": "tempt", "shape": "single", "side": "player", "power": 0.2, "kind": "magic", "sanity": 6, "statuses": [{"id": "madness", "chance": 30, "ticks": 300}], "cooldown": 3, "reach": "ranged"}
+  ],
+  "gambits": [
+    {"if": "turn%3==1", "do": "tempt", "target": "highest_might"},
+    {"if": "turn%3==2", "do": "abyss_flame", "target": "densest_row"},
+    {"do": "ruin_blade", "target": "lowest_durability"}
+  ],
+  "bestiary": {
+    "lore": "The Pit's lord, after the Unknown took him: still a king, of something worse.",
+    "weakness": "Holy."
+  }
+}

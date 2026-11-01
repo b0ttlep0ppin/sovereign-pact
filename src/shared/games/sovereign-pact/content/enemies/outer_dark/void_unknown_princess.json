@@ -1,0 +1,26 @@
+{
+  "id": "void_unknown_princess",
+  "name": "Unknown Princess",
+  "pool": "outer_dark",
+  "tags": ["unknown", "royal"],
+  "role": "elite",
+  "size": [1, 1],
+  "levels": [7, 10],
+  "stats": {"sanityTouch": 2, "speed": 12},
+  "affinity": {"fire": 25, "water": 25, "wind": 25, "earth": 25, "dark": 50, "holy": -50},
+  "immune": ["charm", "fear", "sleep"],
+  "abilities": [
+    {"id": "court_of_nothing", "shape": "all", "side": "player", "power": 0.3, "kind": "magic", "sanity": 6, "cooldown": 3},
+    {"id": "unmaking_kiss", "shape": "single", "side": "player", "power": 1.3, "kind": "magic", "drain": 40, "sanity": 4, "element": "dark", "reach": "ranged"},
+    {"id": "royal_decree", "shape": "all", "side": "ally", "power": 0, "kind": "support", "statuses": [{"id": "haste", "chance": 100, "ticks": 200}, {"id": "might_up", "chance": 100, "ticks": 200, "value": 20}], "cooldown": 4}
+  ],
+  "gambits": [
+    {"if": "turn%4==1", "do": "royal_decree"},
+    {"if": "turn%3==2", "do": "court_of_nothing"},
+    {"do": "unmaking_kiss", "target": "lowest_hp"}
+  ],
+  "bestiary": {
+    "lore": "A daughter of the Unknown, who holds court among the stars.",
+    "weakness": "Holy."
+  }
+}

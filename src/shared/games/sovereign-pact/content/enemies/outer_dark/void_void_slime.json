@@ -1,0 +1,24 @@
+{
+  "id": "void_void_slime",
+  "name": "Void Slime",
+  "pool": "outer_dark",
+  "tags": ["unknown", "slime"],
+  "role": "fodder",
+  "size": [1, 1],
+  "levels": [6, 9],
+  "stats": {"sanityTouch": 2, "speed": 8},
+  "affinity": {"fire": 25, "water": 25, "wind": 25, "earth": 25, "dark": 50, "holy": -100},
+  "immune": ["charm", "fear", "poison", "sleep"],
+  "abilities": [
+    {"id": "null_ooze", "shape": "single", "side": "player", "power": 1.0, "statuses": [{"id": "silence", "chance": 20, "ticks": 200}]},
+    {"id": "absorb_light", "shape": "adjacent", "side": "player", "power": 0.6, "kind": "magic", "element": "dark", "cooldown": 3, "sanity": 3}
+  ],
+  "gambits": [
+    {"if": "turn%3==2", "do": "absorb_light"},
+    {"do": "null_ooze", "target": "column_weighted"}
+  ],
+  "bestiary": {
+    "lore": "A puddle of the space between stars.",
+    "weakness": "Holy, twice over."
+  }
+}

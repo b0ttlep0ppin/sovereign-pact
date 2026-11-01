@@ -1,0 +1,24 @@
+{
+  "id": "void_unknown_core",
+  "name": "Unknown Core",
+  "pool": "outer_dark",
+  "tags": ["unknown", "construct"],
+  "role": "support",
+  "size": [1, 1],
+  "levels": [6, 10],
+  "stats": {"sanityTouch": 2, "hp": 1.0, "speed": 8},
+  "affinity": {"fire": 25, "water": 25, "wind": 25, "earth": 25, "dark": 50, "holy": -50},
+  "immune": ["bleed", "charm", "fear", "poison", "sleep"],
+  "abilities": [
+    {"id": "void_shell", "shape": "all", "side": "ally", "power": 0, "kind": "support", "shieldPct": 10, "cooldown": 3},
+    {"id": "pulse", "shape": "single", "side": "player", "power": 0.7, "kind": "magic", "sanity": 4, "element": "dark", "reach": "ranged"}
+  ],
+  "gambits": [
+    {"if": "turn%3==1", "do": "void_shell"},
+    {"do": "pulse", "target": "lowest_sanity"}
+  ],
+  "bestiary": {
+    "lore": "The thing in the middle of the Unknown's formations, humming. It shields them all.",
+    "weakness": "Holy. Kill it first."
+  }
+}

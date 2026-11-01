@@ -1,0 +1,25 @@
+{
+  "id": "void_unknown_grappler",
+  "name": "Unknown Grappler",
+  "pool": "outer_dark",
+  "tags": ["unknown"],
+  "role": "bruiser",
+  "size": [1, 1],
+  "levels": [6, 10],
+  "stats": {"sanityTouch": 2, "hp": 1.6, "speed": 9},
+  "affinity": {"fire": 25, "water": 25, "wind": 25, "earth": 25, "dark": 50, "holy": -50},
+  "immune": ["charm", "sleep"],
+  "abilities": [
+    {"id": "drag_into_dark", "shape": "single", "side": "player", "power": 0.9, "reach": "ranged", "pull": 2, "sanity": 4, "statuses": [{"id": "rooted", "chance": 50, "ticks": 200}]},
+    {"id": "crush", "shape": "single", "side": "player", "power": 1.4}
+  ],
+  "gambits": [
+    {"if": "turn%3==1", "do": "drag_into_dark", "target": "back_random"},
+    {"if": "foe.rooted", "do": "crush", "target": "rooted"},
+    {"do": "crush", "target": "column_weighted"}
+  ],
+  "bestiary": {
+    "lore": "Its arms are longer than the battlefield. It pulls you in, and then it holds on.",
+    "weakness": "Holy. It drags a Back Scion to the Front and crushes the held."
+  }
+}

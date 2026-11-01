@@ -1,0 +1,24 @@
+{
+  "id": "void_unknown_seed",
+  "name": "Unknown Seed",
+  "pool": "outer_dark",
+  "tags": ["unknown"],
+  "role": "fodder",
+  "size": [1, 1],
+  "levels": [6, 9],
+  "stats": {"sanityTouch": 2, "hp": 0.7, "speed": 9},
+  "affinity": {"fire": 25, "water": 25, "wind": 25, "earth": 25, "dark": 50, "holy": -50},
+  "immune": ["charm", "sleep"],
+  "abilities": [
+    {"id": "root_in", "shape": "single", "side": "player", "power": 0.8, "sanity": 3, "statuses": [{"id": "rooted", "chance": 30, "ticks": 200}]},
+    {"id": "sprout", "shape": "self", "side": "self", "power": 0, "kind": "support", "cooldown": 4, "statuses": [{"id": "regen", "chance": 100, "ticks": 300, "value": 8}]}
+  ],
+  "gambits": [
+    {"if": "self.hp<0.6", "do": "sprout"},
+    {"do": "root_in", "target": "column_weighted"}
+  ],
+  "bestiary": {
+    "lore": "A seed of the Unknown. It wants to take root in something that thinks.",
+    "weakness": "Holy. Kill seeds before they grow."
+  }
+}

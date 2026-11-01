@@ -1,0 +1,26 @@
+{
+  "id": "void_void_rift_varga",
+  "name": "Void Rift Varga",
+  "pool": "outer_dark",
+  "tags": ["unknown", "giant"],
+  "role": "colossus",
+  "size": [3, 4],
+  "levels": [8, 10],
+  "stats": {"sanityTouch": 2, "speed": 8},
+  "affinity": {"fire": 25, "water": 25, "wind": 25, "earth": 25, "dark": 50, "holy": -50},
+  "immune": ["charm", "fear", "poison", "sleep", "stun"],
+  "abilities": [
+    {"id": "rift_tear", "shape": "band:4", "side": "player", "power": 1.2, "kind": "magic", "element": "dark", "charge": 100, "telegraph": true, "cooldown": 3, "sanity": 5},
+    {"id": "void_swipe", "shape": "column:F", "side": "player", "power": 1.2, "cooldown": 2},
+    {"id": "maw", "shape": "single", "side": "player", "power": 1.5}
+  ],
+  "gambits": [
+    {"if": "turn%3==1", "do": "rift_tear"},
+    {"if": "turn%2==0", "do": "void_swipe"},
+    {"do": "maw", "target": "lowest_durability"}
+  ],
+  "bestiary": {
+    "lore": "It came through the rift whole, and the rift is still trying to close around it.",
+    "weakness": "Holy."
+  }
+}

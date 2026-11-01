@@ -1,0 +1,24 @@
+{
+  "id": "void_unknown_fighter",
+  "name": "Unknown Fighter",
+  "pool": "outer_dark",
+  "tags": ["unknown"],
+  "role": "bruiser",
+  "size": [1, 1],
+  "levels": [6, 10],
+  "stats": {"sanityTouch": 2, "hp": 1.7, "speed": 10},
+  "affinity": {"fire": 25, "water": 25, "wind": 25, "earth": 25, "dark": 50, "holy": -50},
+  "immune": ["charm", "sleep"],
+  "abilities": [
+    {"id": "unmaking_fist", "shape": "single", "side": "player", "power": 1.3, "sanity": 3},
+    {"id": "flurry", "shape": "single", "side": "player", "power": 0.5, "hits": 3}
+  ],
+  "gambits": [
+    {"if": "turn%2==0", "do": "unmaking_fist", "target": "lowest_durability"},
+    {"do": "flurry", "target": "column_weighted"}
+  ],
+  "bestiary": {
+    "lore": "It learned to fight by watching you.",
+    "weakness": "Holy."
+  }
+}

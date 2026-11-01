@@ -1,0 +1,24 @@
+{
+  "id": "void_unknown_valkyrie",
+  "name": "Unknown Valkyrie",
+  "pool": "outer_dark",
+  "tags": ["unknown", "flyer"],
+  "role": "caster",
+  "size": [1, 1],
+  "levels": [7, 10],
+  "stats": {"sanityTouch": 2, "speed": 12},
+  "affinity": {"fire": 25, "water": 25, "wind": 25, "earth": 25, "dark": 50, "holy": -50},
+  "immune": ["charm", "sleep"],
+  "abilities": [
+    {"id": "chooser_of_the_slain", "shape": "single", "side": "player", "power": 1.3, "kind": "magic", "sanity": 4, "element": "dark", "reach": "ranged"},
+    {"id": "black_wings", "shape": "column:B", "side": "player", "power": 1.0, "kind": "magic", "charge": 60, "telegraph": true, "cooldown": 2, "element": "wind"}
+  ],
+  "gambits": [
+    {"if": "turn%2==1", "do": "black_wings"},
+    {"do": "chooser_of_the_slain", "target": "lowest_hp"}
+  ],
+  "bestiary": {
+    "lore": "It picks who falls. It has already picked.",
+    "weakness": "Holy. It flies; it chooses the weakest."
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "id": "void_unknown_colony",
+  "name": "Unknown Colony",
+  "pool": "outer_dark",
+  "tags": ["unknown"],
+  "role": "swarm",
+  "size": [1, 1],
+  "levels": [6, 10],
+  "stats": {"sanityTouch": 2, "speed": 12},
+  "affinity": {"fire": 25, "water": 25, "wind": 25, "earth": 25, "dark": 50, "holy": -50},
+  "immune": ["charm", "fear", "sleep"],
+  "abilities": [
+    {"id": "many_mouths", "shape": "single", "side": "player", "power": 0.8, "sanity": 2},
+    {"id": "overrun", "shape": "band:3", "side": "player", "power": 0.6, "cooldown": 1, "sanity": 3}
+  ],
+  "gambits": [
+    {"if": "swarm>=5", "do": "overrun"},
+    {"do": "many_mouths", "target": "lowest_sanity"}
+  ],
+  "bestiary": {
+    "lore": "A great many small Unknowns that move as one.",
+    "weakness": "Holy and anything that hits a row."
+  }
+}

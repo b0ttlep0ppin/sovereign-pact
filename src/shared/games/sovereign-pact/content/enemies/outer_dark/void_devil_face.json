@@ -1,0 +1,24 @@
+{
+  "id": "void_devil_face",
+  "name": "Devil Face",
+  "pool": "outer_dark",
+  "tags": ["unknown"],
+  "role": "horror",
+  "size": [1, 1],
+  "levels": [8, 10],
+  "stats": {"sanityTouch": 5, "speed": 9},
+  "affinity": {"fire": 25, "water": 25, "wind": 25, "earth": 25, "dark": 50, "holy": -50},
+  "immune": ["charm", "fear", "poison", "sleep"],
+  "abilities": [
+    {"id": "unbearable_grin", "shape": "all", "side": "player", "power": 0.3, "kind": "magic", "sanity": 8, "cooldown": 3, "element": "dark"},
+    {"id": "whisper_name", "shape": "single", "side": "player", "power": 0.7, "kind": "magic", "sanity": 8, "statuses": [{"id": "fear", "chance": 50, "ticks": 200}], "reach": "ranged"}
+  ],
+  "gambits": [
+    {"if": "turn%3==1", "do": "unbearable_grin"},
+    {"do": "whisper_name", "target": "lowest_sanity"}
+  ],
+  "bestiary": {
+    "lore": "A face as wide as a wall. It knows your name and says it.",
+    "weakness": "Holy. Keep everyone's Sanity up."
+  }
+}
