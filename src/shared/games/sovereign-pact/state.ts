@@ -175,6 +175,18 @@ export interface TimelineEntry {
   hidden?: true;
 }
 
+/** What a person does with the Year (§8.3). Expedition, Sortie and Special come with Milestone 6 and events. */
+export const ASSIGNMENTS = ["rest", "chapel", "infirmary", "train", "teach", "study", "work", "guard"] as const;
+export type AssignmentKind = (typeof ASSIGNMENTS)[number];
+export interface Assignment {
+  to: AssignmentKind;
+  /** Work: the producer building worked. */
+  at?: string;
+  /** Train: the Mentor's person id, and the mastered Job taught. */
+  mentor?: number;
+  job?: JobId;
+}
+
 export type Phase = "omens" | "settlement" | "expedition" | "reckoning" | "over";
 
 export interface CampaignOptions {
@@ -232,6 +244,8 @@ export interface SovState {
   /** At 100 the city is overwhelmed (§3.3). */
   doom: number;
   timeline: TimelineEntry[];
+  /** Year assignments by person id; kept from Year to Year until changed. Unassigned people idle. */
+  assign: Record<number, Assignment>;
   /** Campaign-wide flags set by events, by id. */
   flags: string[];
   /** Recent public happenings, newest last. Not saved. */
@@ -246,4 +260,6 @@ export type SovMove =
   /** Start a House building, or its next level, paying now (§8.3). */
   | { type: "build"; building: string }
   /** Take back a build started this Year, for a full refund. */
-  | { type: "unbuild"; building: string };
+  | { type: "unbuild"; building: string }
+  /** Set a person's Year assignment; "idle" clears it (§8.3). */
+  | { type: "assign"; person: number; to: AssignmentKind | "idle"; at?: string; mentor?: number; job?: JobId };

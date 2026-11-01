@@ -2,6 +2,7 @@
 // Reckoning, so its benefit starts the next Year. Producers, the Shrine and the Vault pay out at the
 // Reckoning; the other buildings' effects are read by the systems they belong to (Insight, the
 // Infirmary, the Chapel…), each by its level in `House.buildings`.
+import { workers } from "./assign.ts";
 import { BUILDING_BY_ID, RARE_MATERIALS } from "./content.ts";
 import type { House, Material, SovState } from "./state.ts";
 import { TUNING } from "./tuning.ts";
@@ -73,10 +74,10 @@ export function income(s: SovState, h: House, material: string, n: number): void
 
 /** §8.10 step 1, the buildings' part: producers, the Shrine's Essence, the Mine's rare finds and the Vault's interest. */
 export function produce(s: SovState): void {
-  for (const h of s.houses) {
+  for (const [i, h] of s.houses.entries()) {
     for (const [id, level] of Object.entries(h.buildings)) {
       const made = BUILDING_BY_ID.get(id)?.produces;
-      if (made && level) income(s, h, made, T.produce[level - 1]!);
+      if (made && level) income(s, h, made, T.produce[level - 1]! + TUNING.assignments.work * workers(s, i, id));
     }
     if (levelOf(h, "shrine") >= 1) income(s, h, "essence", T.shrineEssence);
     if (levelOf(h, "mine") >= 3 && s.year % T.mineRareEvery === 0) {

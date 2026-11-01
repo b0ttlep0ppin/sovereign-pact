@@ -64,6 +64,37 @@ export const TUNING = {
     startStores: { timber: 30, stone: 10 },
   },
 
+  /** §8.3 Year assignments, first pass: slots by building level, and what a Year of each gives. */
+  assignments: {
+    /** Chapel slots by level; Infirmary slots by level; Training Ground Mentor seats (2 students each). */
+    chapelSlots: [2, 4, 6],
+    infirmarySlots: [1, 2, 4],
+    mentorSeats: [1, 2, 3],
+    studentsPerSeat: 2,
+    /** Guard slots per House; Study slots from Scriptorium L1 (University: unlimited, with shared projects). */
+    guardSlots: 2,
+    studySlots: 1,
+    /** Sanity recovered in a Year, % of max: idle, Rest; the Chapel building adds its own for all in town (§8.4). */
+    idleSanityPct: 10,
+    restSanityPct: 25,
+    chapelBuildingSanityPct: 25,
+    /** §6.6: "a normal expedition's XP" (the finish plus ~5 battles), and training's share of it. */
+    expeditionXpRef: 135,
+    mentorXpPct: 60,
+    aloneXpPct: 30,
+    /** Without a Mentor, training stops this many levels below the House's highest Scion; never past 20. */
+    aloneBelow: 3,
+    trainCap: 20,
+    /** JP a Year: under a Mentor (in a Job the Mentor mastered), alone (current Job), Study (current Job). */
+    mentorJp: 300,
+    aloneJp: 150,
+    studyJp: 150,
+    /** Training Ground L2: students +50% JP. */
+    tg2JpPct: 50,
+    /** Output a worker adds to a producer (§8.3). */
+    work: 4,
+  },
+
   /** §3.3. */
   tracks: {
     /** Starting Accord (H ≥ 2) or Unrest (H = 1). Implementation default. */

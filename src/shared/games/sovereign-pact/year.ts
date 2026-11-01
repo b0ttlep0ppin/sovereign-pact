@@ -3,7 +3,8 @@
 // (Omens and Reckoning: 4, the Expedition Phase: 6) give them decisions.
 import { createRng, type Rng } from "../../rng.ts";
 import { rollRecruit } from "./generate.ts";
-import { maxMp, maxSanity } from "./formulas.ts";
+import { yearOfAssignments } from "./assign.ts";
+import { maxMp } from "./formulas.ts";
 import type { House, SovState } from "./state.ts";
 import { completeWorks, produce } from "./town.ts";
 import { forHouses, TUNING } from "./tuning.ts";
@@ -91,12 +92,9 @@ export function reckoning(s: SovState): void {
     payUpkeep(s, i, h);
   });
   completeWorks(s);
-  for (const p of s.people) {
-    // Injuries tick down a Year; Durability and MP refill; idle Scions recover a little Sanity (§8.3, §8.10).
-    p.injuries = p.injuries.map((inj) => (inj.years > 0 ? { ...inj, years: inj.years - 1 } : inj)).filter((inj) => inj.years !== 0);
-    p.mp = maxMp(p);
-    p.sanity = Math.min(maxSanity(p), p.sanity + Math.ceil(maxSanity(p) / 10));
-  }
+  // Injuries tick down, everyone recovers and grows by assignment, and MP refills (§8.3, §8.10).
+  yearOfAssignments(s);
+  for (const p of s.people) p.mp = maxMp(p);
   s.doom = Math.min(100, s.doom + TUNING.tracks.doomPerYear);
   arrivals(s);
   if (s.doom >= 100) return end(s, false, `The city was overwhelmed in Year ${s.year}.`);
