@@ -5,6 +5,7 @@ import { TUNING } from "../tuning.ts";
 import { chargeTicks, moveCost, nextActor, step } from "./clock.ts";
 import { cannotCombo, comboCt, comboTp } from "./combos.ts";
 import { abilityDice, castLots, rolledAbility } from "./dice.ts";
+import { keepParts, missingParts, offerParts, spendParts } from "./parts.ts";
 import { playSong } from "./songs.ts";
 import { atCap, deathThroes, hasRoom, openingSummons, sacrifice, summon } from "./summons.ts";
 import { strike } from "./damage.ts";
@@ -20,12 +21,14 @@ const C = TUNING.combat;
 export const ATTACK: AbilityDef = { id: "attack", name: "Attack", shape: "single", side: "foe", power: 1 };
 
 /** `doubleDown`: how many times a Gambler rolls an ability's dice again (§12.2). */
-export type Action =
+/** `keep`: the Components a Tinkerer keeps from this turn's offer (the bots' pick when missing, §12.2). */
+export type Action = (
   | { do: "ability"; ability: string; target: Cell; doubleDown?: number }
   /** A Pugilist's sequence of moves on one target (§12.2). */
   | { do: "combo"; moves: string[]; target: Cell }
   | { do: "wait" }
-  | { do: "defend" };
+  | { do: "defend" }
+) & { keep?: string[] };
 
 /** The battle stops after this many ticks with a retreat, so a stalemate cannot run forever. */
 export const MAX_TICKS = 30_000;
@@ -59,6 +62,7 @@ export function cannotUse(u: Combatant, ab: AbilityDef): string | null {
   if (ab.move?.finisher) return "finisher";
   if (ab.requires && !ab.requires.some((w) => (w === "shield" ? u.offhand === "shield" : u.weapon.kind === w))) return `needs ${ab.requires.join(" or ")}`;
   if (ab.summon && atCap(u)) return "binding";
+  if (missingParts(u, ab).length) return "parts";
   if (mpCost(u, ab) > u.mp) return "mp";
   if (tpCost(u, ab) > u.tp) return "tp";
   if (ab.hpCost && hpCost(u, ab) >= u.hp) return "hp";
@@ -107,6 +111,7 @@ function beginTurn(b: Battle, rng: Rng, u: Combatant): boolean {
     return false;
   }
   if (u.mods.castLots) castLots(b, rng, u);
+  offerParts(rng, u);
   b.actor = u.id;
   b.moved = false;
   b.acted = false;
@@ -136,6 +141,7 @@ export function move(b: Battle, u: Combatant, col: number, row: number): void {
 /** The actor's action; ends the turn. */
 export function act(b: Battle, rng: Rng, u: Combatant, action: Action): void {
   if (b.actor !== u.id || b.acted) throw new Error("not this combatant's action");
+  keepParts(u, action.keep);
   let cost: number;
   if (action.do === "wait") {
     cost = C.cost.wait;
@@ -154,7 +160,7 @@ export function act(b: Battle, rng: Rng, u: Combatant, action: Action): void {
     // A single Pugilist move is a sequence of one (a finisher alone never fits its pattern).
     cost = playCombo(b, rng, u, [action.ability], action.target);
   } else {
-    const ab = abilityOf(u, action.ability);
+    let ab = abilityOf(u, action.ability);
     if (!ab) throw new Error(`unknown ability ${action.ability}`);
     const why = cannotUse(u, ab);
     if (why) throw new Error(`cannot use ${ab.id}: ${why}`);
@@ -167,6 +173,13 @@ export function act(b: Battle, rng: Rng, u: Combatant, action: Action): void {
     if (ab.summon && !hasRoom(b, u, ab.summon)) throw new Error("no room for the summon");
     u.mp -= mpCost(u, ab);
     if (ab.summon) u.flags = u.flags.filter((f) => f !== "free_summon");
+    spendParts(u, ab.parts ?? []);
+    // Bolt with a Lens never misses; Precision adds crit to it (§12.16).
+    if (ab.lens && u.parts?.includes("lens")) {
+      spendParts(u, ["lens"]);
+      u.flags.push("sure_hit");
+      if (u.mods.precision) ab = { ...ab, crit: (ab.crit ?? 0) + u.mods.precision };
+    }
     const tp = tpCost(u, ab);
     if (ab.tp && !tp) u.flags.push("iaijutsu_used");
     u.tp -= tp;
@@ -262,6 +275,11 @@ export function resolve(b: Battle, rng: Rng, u: Combatant, ab: AbilityDef, at: C
     }
   }
   for (const t of targets) {
+    // Grapple Line: pulled toward the gap if the cell is free.
+    if (ab.pull && !t.dead && t.col > 0 && isFree(b, t.side, Math.max(0, t.col - ab.pull), t.row, t.size, t.id)) {
+      t.col = Math.max(0, t.col - ab.pull);
+      b.events.push({ t: "move", unit: t.id, col: t.col, row: t.row });
+    }
     // Sacrifice and Banish (§12.15): only summons and adds answer them.
     if (ab.sacrifice) sacrifice(b, u, t, ab.sacrifice);
     if (ab.banish && !t.dead && !t.boss && (t.owner !== undefined || t.tags.includes("add"))) kill(b, t);

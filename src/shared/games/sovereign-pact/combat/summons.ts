@@ -31,7 +31,9 @@ function cellFor(b: Battle, u: Combatant, def: SummonDef, at?: Cell): { col: num
 export const hasRoom = (b: Battle, u: Combatant, id: string): boolean => !!cellFor(b, u, SUMMON_BY_ID.get(id)!);
 
 function summonCombatant(b: Battle, u: Combatant, def: SummonDef, id: number, col: number, row: number): Combatant {
-  const hp = Math.max(1, Math.round((u.maxHp * def.hp) / 100));
+  // Field Engineer: sturdier constructs that act sooner.
+  const construct = def.tags.includes("construct");
+  const hp = Math.max(1, Math.round(((u.maxHp * def.hp) / 100) * (construct ? 1 + (u.mods.constructHpPct ?? 0) / 100 : 1)));
   const ticks = def.ticks ? def.ticks + (u.mods.summonTicks ?? 0) : 0;
   return {
     id,
@@ -76,9 +78,9 @@ function summonCombatant(b: Battle, u: Combatant, def: SummonDef, id: number, co
     counter: 0,
     steps: 0,
     abilities: def.abilities,
-    gambits: [],
+    gambits: def.gambits ?? [],
     cooldowns: {},
-    ct: def.ct ?? 0,
+    ct: (def.ct ?? 0) + (construct ? (u.mods.constructCt ?? 0) : 0),
     statuses: [],
     down: false,
     dead: false,

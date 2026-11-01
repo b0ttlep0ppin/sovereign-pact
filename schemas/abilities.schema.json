@@ -475,6 +475,44 @@
         "banish": {
           "type": "boolean",
           "description": "Removes an enemy summon or add"
+        },
+        "parts": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "spring",
+              "gear",
+              "powder",
+              "lens",
+              "wire",
+              "vial",
+              "plate",
+              "core"
+            ]
+          },
+          "description": "Tinkerer Components it uses up (§12.2)"
+        },
+        "lens": {
+          "type": "boolean",
+          "description": "Uses a held Lens, if any, to never miss (Bolt)"
+        },
+        "pull": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 2,
+          "description": "Columns the target is pulled toward the gap"
+        },
+        "ctGrant": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 100,
+          "description": "CT given to each target"
+        },
+        "constructHpPct": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 100,
+          "description": "HP restored to a construct target, % of its max"
         }
       }
     },

@@ -15,6 +15,9 @@
       "abilities": [{"id": "drowned_hymn", "shape": "single", "side": "player", "power": 0.5, "kind": "magic", "element": "water", "sanity": 8}]},
     {"id": "wyrmling", "name": "Wyrmling", "text": "Heavy: Fire breath down a line of three.", "place": "any", "count": 1, "size": [1, 2], "ticks": 0, "hp": 120, "atk": 1, "speed": 0, "tags": ["dragon"], "affinity": {"fire": 50},
       "abilities": [{"id": "wyrm_breath", "shape": "line:3", "side": "player", "power": 1.8, "kind": "magic", "element": "fire", "cooldown": 1}]},
+    {"id": "turret", "name": "Turret", "text": "Follows every ally's physical hit on a Marked target at 50%.", "place": "back", "count": 1, "size": [1, 1], "ticks": 300, "hp": 50, "atk": 1, "speed": 0, "defense": 1.5, "tags": ["construct"], "immune": ["poison", "bleed", "fear", "charm", "sleep", "confusion"], "mods": {"noMove": 1}, "gambits": [{"do": "wait"}], "abilities": []},
+    {"id": "shield_drone", "name": "Shield Drone", "text": "Keeps a 15% Shield on the weakest ally.", "place": "back", "count": 1, "size": [1, 1], "ticks": 0, "hp": 40, "atk": 0, "speed": 0, "evasion": 20, "tags": ["construct", "flying"], "immune": ["poison", "bleed", "fear", "charm", "sleep", "confusion"], "mods": {"noMove": 1},
+      "abilities": [{"id": "drone_shield", "shape": "single", "side": "ally", "power": 0, "kind": "support", "cost": 150, "shieldPct": 15, "shieldRefill": true}]},
     {"id": "hollow_host", "name": "The Hollow Host", "text": "Finisher: strikes every enemy each turn for 300 ticks, then leaves.", "place": "any", "count": 1, "size": [1, 3], "ticks": 300, "hp": 200, "atk": 1, "speed": 2, "ct": 100, "tags": ["spirit"],
       "abilities": [{"id": "host_descends", "shape": "all", "side": "player", "power": 1.5, "kind": "magic", "element": "dark"}]}
   ]

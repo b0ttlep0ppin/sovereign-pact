@@ -10,6 +10,7 @@ import pugilistSet from "./content/abilities/pugilist.json" with { type: "json" 
 import ravagerSet from "./content/abilities/ravager.json" with { type: "json" };
 import soldierSet from "./content/abilities/soldier.json" with { type: "json" };
 import soothsayerSet from "./content/abilities/soothsayer.json" with { type: "json" };
+import tinkererSet from "./content/abilities/tinkerer.json" with { type: "json" };
 import swordSaintSet from "./content/abilities/sword_saint.json" with { type: "json" };
 import vagabondSet from "./content/abilities/vagabond.json" with { type: "json" };
 import summonsJson from "./content/summons.json" with { type: "json" };
@@ -26,7 +27,7 @@ import namesJson from "./content/names.json" with { type: "json" };
 import propertiesJson from "./content/properties.json" with { type: "json" };
 import seatsJson from "./content/seats.json" with { type: "json" };
 import tarotJson from "./content/tarot.json" with { type: "json" };
-import type { AbilityDef } from "./combat/types.ts";
+import type { AbilityDef, GambitRule } from "./combat/types.ts";
 import type { Element, JobId, Location } from "./state.ts";
 
 export interface TarotCard {
@@ -114,7 +115,7 @@ export interface EnemyAbility {
   side: "player" | "ally" | "self";
   power: number;
   base?: number;
-  kind?: "physical" | "magic" | "heal";
+  kind?: "physical" | "magic" | "heal" | "support";
   element?: Element | null;
   reach?: "melee" | "reach" | "ranged";
   locationBias?: Location;
@@ -271,7 +272,7 @@ export interface AbilitySet {
 }
 
 /** Every Job's ability file (content/abilities/<job>.json), imported by name like the enemies. */
-export const ABILITY_SETS = [soldierSet, knightSet, magusSet, soothsayerSet, vagabondSet, gamblerSet, minstrelSet, pugilistSet, ravagerSet, swordSaintSet, abjurerSet, conjurerSet] as unknown as readonly AbilitySet[];
+export const ABILITY_SETS = [soldierSet, knightSet, magusSet, soothsayerSet, vagabondSet, gamblerSet, minstrelSet, pugilistSet, ravagerSet, swordSaintSet, abjurerSet, conjurerSet, tinkererSet] as unknown as readonly AbilitySet[];
 export const ABILITY_SET_BY_JOB: ReadonlyMap<JobId, AbilitySet> = new Map(ABILITY_SETS.map((a) => [a.job, a]));
 export const ACTIVE_BY_ID: ReadonlyMap<string, ActiveDef & { job: JobId }> = new Map(
   ABILITY_SETS.flatMap((set) => set.actives.map((a) => [a.id, { ...a, job: set.job }] as const)),
@@ -310,6 +311,8 @@ export interface SummonDef {
   aura?: Record<string, number>;
   abilities: AbilityDef[];
   onDeath?: AbilityDef;
+  /** Its own gambit list (a Turret only waits); none: the default. */
+  gambits?: GambitRule[];
 }
 
 /** An enemy-shaped ability from its user's point of view: "player" is the foe. */

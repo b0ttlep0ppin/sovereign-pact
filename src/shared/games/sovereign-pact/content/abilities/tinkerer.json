@@ -1,0 +1,23 @@
+{
+  "job": "tinkerer",
+  "actives": [
+    {"id": "bolt", "name": "Bolt", "jp": 50, "text": "Crossbow 100%; with a Lens it never misses.", "shape": "single", "side": "foe", "power": 1, "tp": 10, "reach": "ranged", "lens": true},
+    {"id": "scatter_shot", "name": "Scatter Shot", "jp": 100, "text": "Powder: 70% to the burst.", "shape": "burst:3x3", "side": "foe", "power": 0.7, "reach": "ranged", "parts": ["powder"]},
+    {"id": "shrapnel_mine", "name": "Shrapnel Mine", "jp": 150, "text": "Powder and Plate: triggers on the next enemy to act, hitting the burst around it.", "shape": "single", "side": "foe", "power": 0.9, "reach": "ranged", "parts": ["powder", "plate"], "later": true},
+    {"id": "turret", "name": "Turret", "jp": 250, "text": "Gear and Core: a construct that follows every ally's physical hit on a Marked target at 50%, for 300 ticks.", "shape": "self", "side": "self", "power": 0, "kind": "support", "parts": ["gear", "core"], "summon": "turret"},
+    {"id": "shield_drone", "name": "Shield Drone", "jp": 250, "text": "Plate and Wire: a construct that keeps a 15% Shield on the weakest ally, recharging every 150 CT.", "shape": "self", "side": "self", "power": 0, "kind": "support", "parts": ["plate", "wire"], "summon": "shield_drone"},
+    {"id": "smoke_canister", "name": "Smoke Canister", "jp": 100, "text": "Vial: allies in the burst are Hidden for 100 ticks.", "shape": "burst:3x3", "side": "ally", "power": 0, "kind": "support", "parts": ["vial"], "statuses": [{"id": "hidden", "chance": 100, "ticks": 100}]},
+    {"id": "tonic_sprayer", "name": "Tonic Sprayer", "jp": 150, "text": "Vial and Spring: heal 0.8× to the cross and cure Poison.", "shape": "cross", "side": "ally", "power": 0.8, "kind": "heal", "parts": ["vial", "spring"], "cure": ["poison"]},
+    {"id": "grapple_line", "name": "Grapple Line", "jp": 100, "text": "Wire: pull an enemy one column closer, into melee reach.", "shape": "single", "side": "foe", "power": 0.5, "reach": "ranged", "parts": ["wire"], "pull": 1},
+    {"id": "overclock", "name": "Overclock", "jp": 200, "text": "Core: an ally gains 30 CT now, and their next charge is instant.", "shape": "single", "side": "ally", "power": 0, "kind": "support", "parts": ["core"], "ctGrant": 30, "flag": "instant_charge"},
+    {"id": "flashbang", "name": "Flashbang", "jp": 150, "text": "Powder and Lens: Blind and 20 Readiness damage to the band.", "shape": "band:3", "side": "foe", "power": 0, "kind": "support", "parts": ["powder", "lens"], "readiness": 20, "statuses": [{"id": "blind", "chance": 70, "ticks": 0}]},
+    {"id": "repair", "name": "Repair", "jp": 100, "text": "Gear: restore 30% Durability on an ally's worst location, or 40% of a construct's HP.", "shape": "single", "side": "ally", "power": 0, "kind": "support", "parts": ["gear"], "restore": {"durPct": 30, "loc": "lowest"}, "constructHpPct": 40},
+    {"id": "jury_rig", "name": "Jury-Rig", "jp": 150, "text": "Turn any three Components into a random magic consumable.", "shape": "self", "side": "self", "power": 0, "kind": "support", "later": true}
+  ],
+  "passives": [
+    {"id": "scavenger", "name": "Scavenger", "points": 2, "jp": 200, "text": "Keep 2 of the Components offered.", "mods": {"keepParts": 1}},
+    {"id": "field_engineer", "name": "Field Engineer", "points": 2, "jp": 200, "text": "Constructs have +50% HP and act 10 CT sooner.", "mods": {"constructHpPct": 50, "constructCt": 10}},
+    {"id": "pack_rat", "name": "Pack Rat", "points": 1, "jp": 100, "text": "Start each battle with one Component from the last.", "later": true},
+    {"id": "precision", "name": "Precision", "points": 1, "jp": 100, "text": "Lens effects also add +10% crit.", "mods": {"precision": 10}}
+  ]
+}

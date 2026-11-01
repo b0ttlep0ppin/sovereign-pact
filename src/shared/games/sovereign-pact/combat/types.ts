@@ -147,6 +147,18 @@ export interface AbilityDef {
   shieldPct?: number;
   /** Buffs removed from each target, most recent first (Dispel: all, Purge: one). */
   dispelBuffs?: number;
+  /** Tinkerer Components it uses up (§12.2). */
+  parts?: string[];
+  /** Uses a held Lens, if any, to never miss (Bolt). */
+  lens?: boolean;
+  /** Columns each target is pulled toward the gap (Grapple Line). */
+  pull?: number;
+  /** CT given to each target (Overclock). */
+  ctGrant?: number;
+  /** HP restored to a construct target, % of its max (Repair). */
+  constructHpPct?: number;
+  /** Tops a Shield up to its size instead of adding to it (the Shield Drone). */
+  shieldRefill?: boolean;
   /** Calls a summon from summons.json (§12.15). */
   summon?: string;
   /** Dismisses one of the user's summons; allies around it heal this % of max HP (Sacrifice). */
@@ -247,6 +259,9 @@ export interface Combatant {
   ct: number;
   statuses: StatusInst[];
   charge?: Charge;
+  /** A Tinkerer's Components: held, and offered this turn (§12.2). */
+  parts?: string[];
+  offer?: string[];
   /** The songs a Minstrel is playing, by layer. */
   songs?: Partial<Record<SongLayer, string>>;
   defending?: boolean;

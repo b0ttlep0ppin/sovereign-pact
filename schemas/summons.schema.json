@@ -157,7 +157,7 @@
         },
         "abilities": {
           "type": "array",
-          "minItems": 1,
+          "minItems": 0,
           "items": {
             "$ref": "enemies.schema.json#/definitions/ability"
           },
@@ -165,6 +165,12 @@
         },
         "onDeath": {
           "$ref": "enemies.schema.json#/definitions/ability"
+        },
+        "gambits": {
+          "type": "array",
+          "items": {
+            "$ref": "enemies.schema.json#/definitions/gambit"
+          }
         }
       }
     }
