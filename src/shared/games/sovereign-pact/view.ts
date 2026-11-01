@@ -66,6 +66,8 @@ export interface PrivateHouse {
   assign: Record<number, Assignment>;
   /** What happened at home: this House's own events and their outcomes (Q89), newest last. */
   notes: string[];
+  /** At founding: the two Ambitions dealt, to keep one (§5.1 step 7). */
+  dealt: [Ambition, Ambition] | null;
 }
 
 /**
@@ -227,6 +229,7 @@ export function view(s: SovState, playerId: PlayerId): SovView {
             insight,
             crisis: s.crisis ? { pledge: s.crisis.pledges[me]!, tempted: s.crisis.tempted[me]! } : null,
             notes: s.notes[me] ?? [],
+            dealt: own.dealt ?? null,
             assign: Object.fromEntries(s.people.filter((p) => p.host === me && s.assign[p.id]).map((p) => [p.id, s.assign[p.id]!])),
           },
     people,

@@ -4,12 +4,10 @@
 import type { GameDefinition, GameResult, MoveResult, PlayerId } from "../../game.ts";
 import type { Rng } from "../../rng.ts";
 import type { TableOption, TableOptions } from "../../table-options.ts";
-import { promote, randomHouse, rollRecruit } from "./generate.ts";
-import { econ } from "./houses.ts";
-import { equipStarter } from "./items.ts";
+import { botFounding, cannotDesign, cannotSwear, design, draftHouse, reroll, swear } from "./founding.ts";
 import { checkpoint, describeSave, restore, type SovSave } from "./save.ts";
 import { placements } from "./score.ts";
-import { BASE_JOBS, type CampaignOptions, type House, type SovMove, type SovState } from "./state.ts";
+import { type CampaignOptions, type House, type SovMove, type SovState } from "./state.ts";
 import { assign, cannotAssign } from "./assign.ts";
 import { cannotPledge, pledge } from "./commons.ts";
 import { cannotChoose, choose } from "./omens.ts";
@@ -19,9 +17,9 @@ import { cannotCrisisPledge, cannotTempt, crisisPledge, tempt } from "./crisis.t
 import { cannotPropose, cannotVote, castVote, propose } from "./votes.ts";
 import { botDeal, botAssign, botBuild, botChoice, botCrisis, botPledge, botPropose, botVote } from "./bot.ts";
 import { build, cannotBuild, unbuild } from "./town.ts";
-import { forHouses, TUNING } from "./tuning.ts";
+import { TUNING } from "./tuning.ts";
 import { view, type SovView } from "./view.ts";
-import { clone, closeSettlement, openYear } from "./year.ts";
+import { clone, closeSettlement } from "./year.ts";
 
 export type { SovMove, SovState } from "./state.ts";
 export type { SovView } from "./view.ts";
@@ -58,20 +56,18 @@ function readOptions(options?: TableOptions): CampaignOptions {
   };
 }
 
-/** A new campaign: one random House per seat, its starting Scions and recruits (§6.2), Year 1 open. */
+/** A new campaign: one Random House draft per seat to found (§5.1); Year 1 opens when all have sworn. */
 export function newCampaign(players: readonly PlayerId[], rng: Rng, opts: CampaignOptions): SovState {
   const H = players.length;
   const houses: House[] = [];
-  for (let i = 0; i < H; i++) {
-    houses.push(randomHouse(rng, houses.map((h) => h.name), houses.map((h) => h.colors[0]), H));
-  }
+  for (let i = 0; i < H; i++) houses.push(draftHouse(rng, houses, H));
   const state: SovState = {
     v: 1,
     rng: 0,
     opts,
     players: [...players],
     year: 1,
-    phase: "omens",
+    phase: "founding",
     phaseMoves: 0,
     houses,
     people: [],
@@ -90,24 +86,12 @@ export function newCampaign(players: readonly PlayerId[], rng: Rng, opts: Campai
     log: [],
     notes: houses.map(() => []),
   };
-  houses.forEach((h, i) => {
-    // Debt-Ridden: the creditors followed them through the rift (§5.7).
-    h.debt += econ(h, "startDebt");
-    for (let n = 0; n < forHouses(TUNING.houses.startScions, H); n++) {
-      const scion = promote(rollRecruit(rng, state.nextId++, i, houses[i]), rng.pick(BASE_JOBS));
-      state.people.push(scion);
-      equipStarter(state, scion);
-    }
-    for (let n = 0; n < forHouses(TUNING.houses.startRecruits, H); n++) {
-      state.people.push(rollRecruit(rng, state.nextId++, i, houses[i]));
-    }
-  });
   const years = TUNING.campaign.years[opts.length];
   for (const year of TUNING.campaign.mandatoryYears[opts.length]) {
     state.timeline.push({ year, id: year === years ? "mandatory_final" : "mandatory" });
   }
   state.rng = rng.int(2 ** 32);
-  openYear(state);
+  state.log.push("The Houses gather to swear the Pact.");
   return state;
 }
 
@@ -129,7 +113,31 @@ export function applyMove(state: SovState, playerId: PlayerId, move: SovMove): M
   if (state.phase === "over") return fail("The campaign is over.");
   const s = clone(state);
   const h = s.houses[house]!;
+  if (s.phase === "founding" && !["design", "random_house", "swear", "unseal"].includes(move.type)) return fail("Found your House first.");
   switch (move.type) {
+    case "design": {
+      if (s.phase !== "founding") return fail("Your House is already founded.");
+      if (h.sealed) return fail("You have sworn the Pact; take back your oath to change your House.");
+      const why = cannotDesign(s, house, move.house ?? {});
+      if (why) return fail(why);
+      design(s, house, move.house);
+      return { ok: true, state: s };
+    }
+    case "random_house": {
+      if (s.phase !== "founding") return fail("Your House is already founded.");
+      if (h.sealed) return fail("You have sworn the Pact; take back your oath to change your House.");
+      if (move.step !== undefined && !["name", "colors", "emblem", "seat", "element", "traits"].includes(move.step)) return fail("There is no such step.");
+      reroll(s, house, move.step);
+      return { ok: true, state: s };
+    }
+    case "swear": {
+      if (s.phase !== "founding") return fail("The Pact is already sworn.");
+      if (h.sealed) return fail("You have already sworn the Pact.");
+      const why = cannotSwear(s, house, move.ambition);
+      if (why) return fail(why);
+      swear(s, house, move.ambition);
+      return { ok: true, state: s };
+    }
     case "seal": {
       if (s.phase !== "settlement") return fail("Only the Settlement Phase can be sealed.");
       if (h.sealed) return fail("You have already sealed the Year.");
@@ -270,6 +278,12 @@ export function applyMove(state: SovState, playerId: PlayerId, move: SovMove): M
       return { ok: true, state: s };
     }
     case "unseal": {
+      if (s.phase === "founding") {
+        // Taking back an oath before the last House swears.
+        if (!h.sealed) return fail("You have not sworn the Pact.");
+        h.sealed = false;
+        return { ok: true, state: s };
+      }
       if (s.phase !== "settlement") return fail("There is nothing to unseal now.");
       if (!h.sealed) return fail("You have not sealed the Year.");
       h.sealed = false;
@@ -282,7 +296,7 @@ export function applyMove(state: SovState, playerId: PlayerId, move: SovMove): M
 }
 
 export function activePlayers(s: SovState): PlayerId[] {
-  if (s.phase !== "settlement") return [];
+  if (s.phase !== "settlement" && s.phase !== "founding") return [];
   return s.houses.flatMap((h, i) => (h.sealed ? [] : [s.players[i]!]));
 }
 
@@ -309,6 +323,8 @@ export function describeResult(s: SovState): string | null {
 /** The settlement bot is cautious (HANDOFF §3.4): it builds what it can afford by its plan, then seals. */
 export function botMove(s: SovState, playerId: PlayerId): SovMove {
   const house = houseOf(s, playerId);
+  // A bot founds the Random House it was dealt, keeping the first Ambition (§5.1).
+  if (s.phase === "founding") return house >= 0 && !s.houses[house]!.sealed ? botFounding(s, house) : { type: "swear", ambition: 0 };
   if (house >= 0 && s.phase === "settlement" && s.vote && s.vote.by[house] === null) return { type: "vote", choice: botVote(s, house) };
   const offered = house >= 0 && s.phase === "settlement" ? s.deals.find((d) => d.to === house) : undefined;
   if (offered) return botDeal(s, house, offered);
@@ -344,7 +360,7 @@ export const sovereignPact: GameDefinition<SovState, SovMove, SovView, SovSave> 
   timeoutMove: (s, playerId) => botMove(s, playerId),
   passiveMoves: (s, playerId) => {
     const house = houseOf(s, playerId);
-    return s.phase === "settlement" && house >= 0 && s.houses[house]!.sealed ? ["unseal"] : [];
+    return (s.phase === "settlement" || s.phase === "founding") && house >= 0 && s.houses[house]!.sealed ? ["unseal"] : [];
   },
   checkpoint,
   describeSave,

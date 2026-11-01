@@ -2,7 +2,7 @@
 // same props Vibe Pulse's room gives a game). Milestone 0 is a plain read-out of the campaign so the
 // rules can be watched in play; the Town Map, battle screen and the rest replace it in Milestone 8.
 import type { GameClientProps } from "@vibepulse/shared";
-import type { SovMove, SovView } from "@vibepulse/shared/games/sovereign-pact";
+import { Content, type SovMove, type SovView } from "@vibepulse/shared/games/sovereign-pact";
 import { HERALDRY_COLORS, Emblem } from "./Emblem";
 import "./SovereignPact.css";
 
@@ -20,6 +20,7 @@ const CATEGORY_NAMES: Record<string, string> = {
 };
 
 const PHASE_NAMES: Record<SovView["phase"], string> = {
+  founding: "Founding the Houses",
   omens: "Omens",
   settlement: "Settlement Phase",
   expedition: "Expedition Phase",
@@ -112,7 +113,7 @@ export default function SovereignPact({ view, isMyTurn, sendMove, lastError }: P
         {mine && view.mine ? (
           <section className="sp-panel" aria-label={`House ${mine.name}`}>
             <h2>House {mine.name}</h2>
-            <p className="sp-private">
+            <p className="sp-private" hidden={view.phase === "founding"}>
               Only you see this. Ambition: <strong>{CATEGORY_NAMES[view.mine.ambition.double]}</strong> counts double,{" "}
               <strong>{CATEGORY_NAMES[view.mine.ambition.halve]}</strong> half.
             </p>
@@ -132,6 +133,7 @@ export default function SovereignPact({ view, isMyTurn, sendMove, lastError }: P
                 </div>
               ))}
             </dl>
+            {view.phase === "founding" && view.mine.dealt ? <Founding view={view} sworn={mine.sealed} sendMove={sendMove} /> : null}
             {view.phase === "settlement" ? (
               <div className="sp-actions">
                 {isMyTurn ? (
@@ -215,6 +217,50 @@ function PeopleTable({ people, houses }: { people: SovView["people"]; houses?: S
           ))}
         </tbody>
       </table>
+    </div>
+  );
+}
+
+const KIND_NAMES: Record<string, string> = { major: "Major", minor: "Minor", major_flaw: "Major Flaw", minor_flaw: "Minor Flaw", bloodline: "Bloodline" };
+
+/** House creation, for now a Random House to reroll and swear (§5.1); the step-by-step screens come in Milestone 8. */
+function Founding({ view, sworn, sendMove }: { view: SovView; sworn: boolean; sendMove: (m: SovMove) => void }) {
+  const h = view.houses[view.me!]!;
+  const crunch = view.display === "crunch";
+  return (
+    <div className="sp-founding">
+      <ul className="sp-traits">
+        {h.traits.map((id) => {
+          const t = Content.HOUSE_TRAIT_BY_ID.get(id);
+          return (
+            <li key={id}>
+              <strong>{t?.name ?? id}</strong> <small>{KIND_NAMES[t?.kind ?? ""]}</small> — {crunch ? t?.crunch : t?.flavor}
+            </li>
+          );
+        })}
+      </ul>
+      {sworn ? (
+        <div className="sp-actions">
+          <span>Sworn. Waiting for the other Houses.</span>
+          <button type="button" className="sp-button sp-button--quiet" onClick={() => sendMove({ type: "unseal" })}>
+            Take back the oath
+          </button>
+        </div>
+      ) : (
+        <div className="sp-actions">
+          <button type="button" className="sp-button sp-button--quiet" onClick={() => sendMove({ type: "random_house" })}>
+            Random House
+          </button>
+          <button type="button" className="sp-button sp-button--quiet" onClick={() => sendMove({ type: "random_house", step: "traits" })}>
+            Reroll traits
+          </button>
+          {view.mine!.dealt!.map((a, i) => (
+            <button key={i} type="button" className="sp-button" onClick={() => sendMove({ type: "swear", ambition: i as 0 | 1 })}>
+              Swear, keeping {CATEGORY_NAMES[a.double]} double and {CATEGORY_NAMES[a.halve]} half
+            </button>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

@@ -3,6 +3,7 @@
 // Hidden information (Ambition, exact score, pledges, Loyalty, unrevealed recruit potential, Pact
 // marks) lives here like everything else and is filtered out per seat by view.ts.
 import type { PlayerId } from "../../game.ts";
+import type { FoundingStep, HouseDesign } from "./founding.ts";
 
 export const ELEMENTS = ["holy", "dark", "fire", "water", "earth", "wind"] as const;
 /** Three opposed pairs: Holy/Dark, Fire/Water, Earth/Wind (§5.6). */
@@ -150,6 +151,8 @@ export interface House {
   theme: string;
   /** Hidden: only this House sees it. */
   ambition: Ambition;
+  /** Hidden: the two Ambitions dealt at founding, until the House swears with one (§5.1 step 7). */
+  dealt?: [Ambition, Ambition];
   /** Hidden: the raw points per category, before the Ambition (§3.4). */
   score: Score;
   /** Hidden: Pact marks from Dark Bargains, revealed only at the final score (§14.7a). */
@@ -277,7 +280,7 @@ export interface Lot {
   bids: (number | null)[];
 }
 
-export type Phase = "omens" | "settlement" | "expedition" | "reckoning" | "over";
+export type Phase = "founding" | "omens" | "settlement" | "expedition" | "reckoning" | "over";
 
 export interface CampaignOptions {
   /** Flavor shows trait text only; Crunch shows exact numbers (§5.2). */
@@ -359,6 +362,10 @@ export interface SovState {
 }
 
 export type SovMove =
+  /** House creation (§5.1): change the draft, reroll a step or the whole House, swear with Ambition 0 or 1. */
+  | { type: "design"; house: HouseDesign }
+  | { type: "random_house"; step?: FoundingStep }
+  | { type: "swear"; ambition: 0 | 1 }
   | { type: "seal" }
   | { type: "unseal" }
   /** Start a House building, or its next level, paying now (§8.3). */

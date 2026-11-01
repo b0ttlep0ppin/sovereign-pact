@@ -2,6 +2,23 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-01 (implementation, Milestone 5c: founding the Houses) — implementer
+- **A founding phase before Year 1** (`founding.ts`, §5.1).
+  - Every seat starts on a themed Random House draft: name and motto, colors, emblem, Seat, element, a valid set of traits, and two Ambitions dealt in secret.
+  - The moves are `design` (change any parts, checked against every rule), `random_house` (reroll a step, or the whole House) and `swear` (keep Ambition 0 or 1). `unseal` takes an oath back until the last House swears.
+  - When every House has sworn, its starting Scions and recruits are born with its blood, Debt-Ridden takes its debt, and Year 1's Omens open.
+  - Bots swear the draft they were dealt and keep the first Ambition; if another House has sworn under their primary color, they reroll their colors first.
+- **Trait rules** [DECIDED §5.7]: 2 Majors, 2 Minors, a Major Flaw and a Minor Flaw; or a Bloodline in place of one Major and the Major Flaw. No duplicates. Elemental Bane must name an element, and no other trait may.
+  - A Random House takes a Bloodline 25% of the time (`tuning.founding.bloodlinePct`, PROPOSED). Its traits are drawn evenly within each kind; theming traits by element is left for later.
+- **Readings:**
+  - The ten §5.1 steps are one screen each in the client (Milestone 8). The rules take a whole or partial design in one move, so Back is only the client's.
+  - Only sworn Houses reserve a primary color (later pickers see it greyed). A Random House avoids every other draft's color.
+  - The profanity filter is Vibe Pulse's, applied at the port (Milestone 9).
+  - The look of the line (§5.8) waits on the sprite generator.
+  - The theme is a free id of up to 40 letters until the music list exists.
+- **Tests:** `calm()` now also strips the Houses' traits and starting debt, so exact-amount tests keep the plain rules' numbers.
+- The standalone client shows the draft's traits (Flavor or Crunch), Random House, Reroll traits, and one Swear button per dealt Ambition. Save version stays 10: saves are only taken in the Settlement Phase.
+
 ## 2026-11-01 (implementation, Milestone 5b: House traits in the economy) — implementer
 - **What the economy reads now** (`econ`, `byPct` in `houses.ts`):
   - Income % moves the House's Gold income only (Deep Coffers +20, Poor Lands −20). Grain income stays as it is, so a poor House is not also starved.

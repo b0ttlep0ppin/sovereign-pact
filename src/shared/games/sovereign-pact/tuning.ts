@@ -16,6 +16,9 @@ export const TUNING = {
   },
 
   /** §6.2 [DECIDED as a starting point]. */
+  /** §5.1 [PROPOSED]: how often a Random House takes a Bloodline. */
+  founding: { bloodlinePct: 25 },
+
   houses: {
     /** §5.6: an aligned House's people resist its element by this % and take it from the opposite; its spells cost this % less MP. Unaligned: + to every ailment resistance. Elemental Bane (§5.7): −% to the named element. */
     element: { aligned: 25, spellMpPct: 10, unaligned: 5, bane: 50 },
