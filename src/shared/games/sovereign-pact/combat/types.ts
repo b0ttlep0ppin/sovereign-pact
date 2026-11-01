@@ -125,6 +125,14 @@ export interface AbilityDef {
   flag?: string;
   /** The Gambler's 2d6 (§12.7): power = total × scale %, or HP restored = total × restorePct %; or at `high`+ power becomes highPower, at `low` or under lowPower (or it hits the user), otherwise `otherwise`. */
   dice?: { scale?: number; restorePct?: number; high?: number; highPower?: number; low?: number; lowPower?: number; lowHitsSelf?: boolean; otherwise?: number; doubleDown?: boolean };
+  /** A Pugilist move (§12.2): its tag, and for a finisher the pattern the moves before it must make. */
+  move?: { tag: string; finisher?: string };
+  /** TP back to the user per hit (Jab). */
+  tpOnHit?: number;
+  /** Damage +% against multi-cell foes (Spine Breaker). */
+  bigPct?: number;
+  /** Power is shared among every target hit (Hundred Fists). */
+  split?: boolean;
   /** A Minstrel's song (§12.2): its layer and what every hearer gets while it plays. */
   song?: { layer: SongLayer; mods: Record<string, number> };
   /** On the user after it resolves. */

@@ -1,0 +1,23 @@
+{
+  "job": "pugilist",
+  "actives": [
+    {"id": "jab", "name": "Jab", "jp": 50, "text": "60% damage; 8 TP back on a hit.", "shape": "single", "side": "foe", "power": 0.6, "tp": 5, "move": {"tag": "jab"}, "tpOnHit": 8},
+    {"id": "hook", "name": "Hook", "jp": 100, "text": "90% damage.", "shape": "single", "side": "foe", "power": 0.9, "tp": 10, "move": {"tag": "jab"}},
+    {"id": "low_kick", "name": "Low Kick", "jp": 100, "text": "Legs-aimed 70%; Slow.", "shape": "single", "side": "foe", "power": 0.7, "tp": 10, "move": {"tag": "kick"}, "aim": "legs", "statuses": [{"id": "slow", "chance": 100, "ticks": 0}]},
+    {"id": "high_kick", "name": "High Kick", "jp": 100, "text": "Head-aimed 90%.", "shape": "single", "side": "foe", "power": 0.9, "tp": 15, "move": {"tag": "kick"}, "aim": "head"},
+    {"id": "grapple", "name": "Grapple", "jp": 150, "text": "The target cannot Move until its next turn.", "shape": "single", "side": "foe", "power": 0.5, "tp": 15, "move": {"tag": "grapple"}, "statuses": [{"id": "rooted", "chance": 100, "ticks": 100}]},
+    {"id": "throw", "name": "Throw", "jp": 150, "text": "80% damage (moving the target comes later).", "shape": "single", "side": "foe", "power": 0.8, "tp": 20, "move": {"tag": "grapple"}},
+    {"id": "breath", "name": "Breath", "jp": 100, "text": "Cure Stun and Knockdown on yourself; TP +15.", "shape": "self", "side": "self", "power": 0, "kind": "support", "mp": 10, "move": {"tag": "breath"}, "cure": ["stun", "knockdown"], "tpGrant": 15},
+    {"id": "palm_strike", "name": "Palm Strike", "jp": 100, "text": "Body 100%; Readiness damage 15.", "shape": "single", "side": "foe", "power": 1, "tp": 15, "move": {"tag": "jab"}, "aim": "body", "readiness": 15},
+    {"id": "flurry", "name": "Flurry", "jp": 200, "text": "Finisher (jab, jab, jab): 5 hits at 50%.", "shape": "single", "side": "foe", "power": 0.5, "tp": 20, "move": {"tag": "finisher", "finisher": "jab,jab,jab"}, "hits": 5},
+    {"id": "dragon_kick", "name": "Dragon Kick", "jp": 250, "text": "Finisher (kick, kick, jab): 200% at the Legs; Knockdown.", "shape": "single", "side": "foe", "power": 2, "tp": 25, "move": {"tag": "finisher", "finisher": "kick,kick,jab"}, "aim": "legs", "statuses": [{"id": "knockdown", "chance": 100, "ticks": 0}]},
+    {"id": "spine_breaker", "name": "Spine Breaker", "jp": 250, "text": "Finisher (grapple, grapple): 180% at the Body, +50% against large enemies; Knockdown.", "shape": "single", "side": "foe", "power": 1.8, "tp": 30, "move": {"tag": "finisher", "finisher": "grapple,grapple"}, "aim": "body", "bigPct": 50, "statuses": [{"id": "knockdown", "chance": 100, "ticks": 0}]},
+    {"id": "hundred_fists", "name": "Hundred Fists", "jp": 400, "text": "Finisher (5 different moves): 300% shared across a 3×3 burst.", "shape": "burst:3x3", "side": "foe", "power": 3, "tp": 35, "move": {"tag": "finisher", "finisher": "distinct:5"}, "split": true}
+  ],
+  "passives": [
+    {"id": "rising_spirit", "name": "Rising Spirit", "points": 2, "jp": 200, "text": "TP +20 at battle start.", "mods": {"tpStart": 20}},
+    {"id": "counterpunch", "name": "Counterpunch", "points": 2, "jp": 200, "text": "Counter chance +25% unarmed.", "mods": {"unarmedCounter": 25}},
+    {"id": "iron_fists", "name": "Iron Fists", "points": 1, "jp": 150, "text": "Unarmed weapon power = level × 2.", "mods": {"ironFists": 2}},
+    {"id": "second_breath", "name": "Second Breath", "points": 2, "jp": 200, "text": "Breath also cures Fear and Confusion.", "later": true}
+  ]
+}

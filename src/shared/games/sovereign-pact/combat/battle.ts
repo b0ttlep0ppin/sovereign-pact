@@ -3,6 +3,7 @@
 import type { Rng } from "../../../rng.ts";
 import { TUNING } from "../tuning.ts";
 import { chargeTicks, moveCost, nextActor, step } from "./clock.ts";
+import { cannotCombo, comboCt, comboTp } from "./combos.ts";
 import { abilityDice, castLots, rolledAbility } from "./dice.ts";
 import { playSong } from "./songs.ts";
 import { strike } from "./damage.ts";
@@ -18,7 +19,12 @@ const C = TUNING.combat;
 export const ATTACK: AbilityDef = { id: "attack", name: "Attack", shape: "single", side: "foe", power: 1 };
 
 /** `doubleDown`: how many times a Gambler rolls an ability's dice again (§12.2). */
-export type Action = { do: "ability"; ability: string; target: Cell; doubleDown?: number } | { do: "wait" } | { do: "defend" };
+export type Action =
+  | { do: "ability"; ability: string; target: Cell; doubleDown?: number }
+  /** A Pugilist's sequence of moves on one target (§12.2). */
+  | { do: "combo"; moves: string[]; target: Cell }
+  | { do: "wait" }
+  | { do: "defend" };
 
 /** The battle stops after this many ticks with a retreat, so a stalemate cannot run forever. */
 export const MAX_TICKS = 30_000;
@@ -41,6 +47,8 @@ export function cannotUse(u: Combatant, ab: AbilityDef): string | null {
   }
   if (ab.id === "attack" && hasStatus(u, "disarmed")) return "disarmed";
   if ((u.cooldowns[ab.id] ?? 0) > 0) return "cooldown";
+  // A finisher only ends a combo whose moves fit its pattern (combos.ts).
+  if (ab.move?.finisher) return "finisher";
   if (ab.requires && !ab.requires.some((w) => (w === "shield" ? u.offhand === "shield" : u.weapon.kind === w))) return `needs ${ab.requires.join(" or ")}`;
   if (mpCost(u, ab) > u.mp) return "mp";
   if ((ab.tp ?? 0) > u.tp) return "tp";
@@ -125,6 +133,11 @@ export function act(b: Battle, rng: Rng, u: Combatant, action: Action): void {
     cost = u.mods.defendCost ?? C.cost.defend;
     u.defending = true;
     b.events.push({ t: "defend", unit: u.id });
+  } else if (action.do === "combo") {
+    cost = playCombo(b, rng, u, action.moves, action.target);
+  } else if (abilityOf(u, action.ability)?.move) {
+    // A single Pugilist move is a sequence of one (a finisher alone never fits its pattern).
+    cost = playCombo(b, rng, u, [action.ability], action.target);
   } else {
     const ab = abilityOf(u, action.ability);
     if (!ab) throw new Error(`unknown ability ${action.ability}`);
@@ -160,6 +173,28 @@ export function act(b: Battle, rng: Rng, u: Combatant, action: Action): void {
   checkEnd(b);
 }
 
+/** Plays a combo: each move pays its TP and lands in turn until the target falls. Returns the CT. */
+function playCombo(b: Battle, rng: Rng, u: Combatant, ids: string[], at: Cell): number {
+  const moves = ids.map((id) => {
+    const ab = abilityOf(u, id);
+    if (!ab) throw new Error(`unknown move ${id}`);
+    return ab;
+  });
+  const why = cannotCombo(u, moves) ?? moves.map((m) => cannotUse({ ...u, tp: 999, mp: 999 }, { ...m, move: undefined })).find(Boolean);
+  if (why) throw new Error(`cannot play that combo: ${why}`);
+  const target = moves.some((m) => m.side === "foe") ? singleTargets(b, u, moves.find((m) => m.side === "foe")!).find((x) => x.col === at.col && x.row === at.row) : u;
+  if (!target) throw new Error("no valid target there");
+  const tp = comboTp(moves);
+  moves.forEach((m, i) => {
+    if (u.dead || u.down || b.outcome) return;
+    u.tp -= tp[i]!;
+    u.mp -= m.mp ?? 0;
+    const t = m.side === "foe" ? target : u;
+    if (!t.dead) resolve(b, rng, u, m, cellOf(t), t.id);
+  });
+  return comboCt(moves.length);
+}
+
 function resolveCharge(b: Battle, rng: Rng, u: Combatant): void {
   const { ability, target, homingOn } = u.charge!;
   delete u.charge;
@@ -182,6 +217,8 @@ export function resolve(b: Battle, rng: Rng, u: Combatant, ab: AbilityDef, at: C
   }
   b.events.push({ t: "use", unit: u.id, ability: ab.id, target: homingOn !== undefined && targets[0] ? cellOf(targets[0]) : at });
   const hits = (ab.hits ?? 1) + (ab.hitsMax ? rng.int(ab.hitsMax - (ab.hits ?? 1) + 1) : 0);
+  // Hundred Fists: the power is shared among everyone it hits.
+  if (ab.split && targets.length > 1) ab = { ...ab, power: ab.power / targets.length };
   for (const t of targets) {
     for (let i = 0; i < hits && !t.dead && !u.dead; i++) {
       const hit = strike(b, rng, u, t, ab, { telegraphed: !!ab.telegraph });

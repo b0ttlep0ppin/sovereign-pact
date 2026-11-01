@@ -70,6 +70,8 @@ export const TUNING = {
     ticksPerStep: 10,
     turnAt: 100,
     cost: { action: 100, wait: 60, defend: 60, song: 35 },
+    /** Pugilist combos (§12.2): +5 TP per repeat of a move, +10 CT per move beyond the third. */
+    combo: { repeatTp: 5, extraCt: 10, freeMoves: 3 },
     /** §7.3: 20 CT a cell, −1 per 5 Guile, at least 10; up to 2 cells a turn (§10.4). */
     move: { perCell: 20, guilePer: 5, min: 10, maxCells: 2 },
     hitClamp: [5, 95] as const,

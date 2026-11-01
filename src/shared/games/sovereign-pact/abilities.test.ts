@@ -83,7 +83,8 @@ describe("abilities in battle", () => {
     const weapon = ab.requires?.find((w) => w !== "shield");
     if (weapon) u.weapon = { ...u.weapon, kind: weapon };
     if (ab.requires?.includes("shield")) u.offhand = "shield";
-    expect(cannotUse(u, ab)).toBeNull();
+    // Finishers are only played at the end of a combo (combos.test.ts).
+    expect(cannotUse(u, ab)).toBe(ab.move?.finisher ? "finisher" : null);
     const { cell, on } = target(b, u, ab);
     expect(() => resolve(b, createRng(3), u, ab, cell, on)).not.toThrow();
     expect(b.events.some((e) => e.t === "use" && e.ability === ab.id)).toBe(true);
