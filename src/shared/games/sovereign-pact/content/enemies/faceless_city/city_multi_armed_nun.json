@@ -1,0 +1,23 @@
+{
+  "id": "city_multi_armed_nun",
+  "name": "Multi-Armed Nun",
+  "pool": "faceless_city",
+  "tags": ["humanoid", "cultist"],
+  "role": "artillery",
+  "size": [1, 1],
+  "levels": [3, 9],
+  "stats": {"sanityTouch": 1, "speed": 9},
+  "affinity": {"dark": 25, "holy": -25},
+  "abilities": [
+    {"id": "many_blessings", "shape": "checker:b", "side": "player", "power": 0.9, "kind": "magic", "charge": 60, "telegraph": true, "cooldown": 2, "sanity": 3, "element": "dark"},
+    {"id": "thrown_rosary", "shape": "single", "side": "player", "power": 0.9, "reach": "ranged"}
+  ],
+  "gambits": [
+    {"if": "turn%2==1", "do": "many_blessings"},
+    {"do": "thrown_rosary", "target": "back_random"}
+  ],
+  "bestiary": {
+    "lore": "She has more arms to pray with now.",
+    "weakness": "Holy. Her blessing strikes every other cell."
+  }
+}

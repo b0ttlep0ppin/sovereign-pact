@@ -1,0 +1,26 @@
+{
+  "id": "city_flesh_mass",
+  "name": "Flesh Mass",
+  "pool": "faceless_city",
+  "tags": ["flesh", "cursed"],
+  "role": "colossus",
+  "size": [2, 2],
+  "levels": [3, 8],
+  "stats": {"sanityTouch": 3, "hp": 4, "speed": 7},
+  "affinity": {"dark": 25, "holy": -25, "fire": -25},
+  "immune": ["fear", "charm", "sleep", "poison"],
+  "abilities": [
+    {"id": "engulf", "shape": "band:2", "side": "player", "power": 1.0, "cooldown": 2, "sanity": 4},
+    {"id": "lash", "shape": "single", "side": "player", "power": 1.2},
+    {"id": "absorb", "shape": "single", "side": "player", "power": 0.8, "drain": 50, "cooldown": 2}
+  ],
+  "gambits": [
+    {"if": "turn%2==1", "do": "engulf"},
+    {"if": "self.hp<0.6", "do": "absorb", "target": "lowest_hp"},
+    {"do": "lash", "target": "column_weighted"}
+  ],
+  "bestiary": {
+    "lore": "Several of the villagers, at once.",
+    "weakness": "Holy and fire. It drinks the weak to mend itself."
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "id": "city_faceless_man",
+  "name": "Faceless Man",
+  "pool": "faceless_city",
+  "tags": ["humanoid", "faceless"],
+  "role": "horror",
+  "size": [1, 1],
+  "levels": [3, 9],
+  "stats": {"sanityTouch": 4, "speed": 10},
+  "affinity": {"dark": 25, "holy": -25},
+  "immune": ["fear", "charm"],
+  "abilities": [
+    {"id": "your_face", "shape": "single", "side": "player", "power": 0.4, "kind": "magic", "sanity": 8, "statuses": [{"id": "fear", "chance": 40, "ticks": 200}], "element": "dark", "reach": "ranged"},
+    {"id": "everyone_watching", "shape": "row", "side": "player", "power": 0.3, "kind": "magic", "sanity": 6, "cooldown": 2}
+  ],
+  "gambits": [
+    {"if": "turn%3==1", "do": "everyone_watching", "target": "densest_row"},
+    {"do": "your_face", "target": "lowest_sanity"}
+  ],
+  "bestiary": {
+    "lore": "He has no face. He would like yours.",
+    "weakness": "Holy. Keep the Back's Sanity up."
+  }
+}

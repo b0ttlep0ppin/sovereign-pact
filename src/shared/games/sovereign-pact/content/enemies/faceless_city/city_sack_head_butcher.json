@@ -1,0 +1,23 @@
+{
+  "id": "city_sack_head_butcher",
+  "name": "Sack-Head Butcher",
+  "pool": "faceless_city",
+  "tags": ["humanoid"],
+  "role": "bruiser",
+  "size": [1, 1],
+  "levels": [3, 7],
+  "stats": {"sanityTouch": 1, "hp": 1.7, "speed": 9},
+  "affinity": {"dark": 25, "holy": -25},
+  "abilities": [
+    {"id": "cleaver", "shape": "single", "side": "player", "power": 1.3, "locationBias": "arms", "statuses": [{"id": "bleed", "chance": 30, "ticks": 0}]},
+    {"id": "hook_drag", "shape": "single", "side": "player", "power": 0.7, "reach": "ranged", "pull": 1, "cooldown": 3}
+  ],
+  "gambits": [
+    {"if": "turn%3==1", "do": "hook_drag", "target": "back_random"},
+    {"do": "cleaver", "target": "lowest_durability"}
+  ],
+  "bestiary": {
+    "lore": "His shop is open. It is always open.",
+    "weakness": "Holy. His hook drags a Scion forward."
+  }
+}

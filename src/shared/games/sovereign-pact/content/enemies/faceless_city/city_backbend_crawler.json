@@ -1,0 +1,22 @@
+{
+  "id": "city_backbend_crawler",
+  "name": "Backbend Crawler",
+  "pool": "faceless_city",
+  "tags": ["humanoid", "cursed"],
+  "role": "lurker",
+  "size": [1, 1],
+  "levels": [4, 9],
+  "stats": {"sanityTouch": 1, "speed": 15},
+  "affinity": {"dark": 25, "holy": -25},
+  "abilities": [
+    {"id": "skitter_bite", "shape": "single", "side": "player", "power": 1.3, "leap": true, "sanity": 4, "statuses": [{"id": "fear", "chance": 30, "ticks": 200}]}
+  ],
+  "gambits": [
+    {"if": "turn%2==0", "do": "skitter_bite", "target": "empty_cell"},
+    {"do": "skitter_bite", "target": "lowest_sanity"}
+  ],
+  "bestiary": {
+    "lore": "It comes down the stairs on its hands and feet, belly up, faster than you can run.",
+    "weakness": "Holy. Hit it when it lands."
+  }
+}

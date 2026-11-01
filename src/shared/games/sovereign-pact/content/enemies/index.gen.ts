@@ -90,6 +90,31 @@ import marsh_shark from "./drowned_marches/marsh_shark.json" with { type: "json"
 import marsh_siren from "./drowned_marches/marsh_siren.json" with { type: "json" };
 import marsh_tadpole from "./drowned_marches/marsh_tadpole.json" with { type: "json" };
 import marsh_undine from "./drowned_marches/marsh_undine.json" with { type: "json" };
+import city_axe_mad_farmer from "./faceless_city/city_axe_mad_farmer.json" with { type: "json" };
+import city_backbend_crawler from "./faceless_city/city_backbend_crawler.json" with { type: "json" };
+import city_black_nun from "./faceless_city/city_black_nun.json" with { type: "json" };
+import city_chained_escapee from "./faceless_city/city_chained_escapee.json" with { type: "json" };
+import city_cult_priest from "./faceless_city/city_cult_priest.json" with { type: "json" };
+import city_cursed_doll from "./faceless_city/city_cursed_doll.json" with { type: "json" };
+import city_executioner from "./faceless_city/city_executioner.json" with { type: "json" };
+import city_face_swarm from "./faceless_city/city_face_swarm.json" with { type: "json" };
+import city_faceless_farmer from "./faceless_city/city_faceless_farmer.json" with { type: "json" };
+import city_faceless_man from "./faceless_city/city_faceless_man.json" with { type: "json" };
+import city_faceless_woman from "./faceless_city/city_faceless_woman.json" with { type: "json" };
+import city_fanatical_villager from "./faceless_city/city_fanatical_villager.json" with { type: "json" };
+import city_flesh_mass from "./faceless_city/city_flesh_mass.json" with { type: "json" };
+import city_inquisitor from "./faceless_city/city_inquisitor.json" with { type: "json" };
+import city_limbstalker from "./faceless_city/city_limbstalker.json" with { type: "json" };
+import city_masked_priest from "./faceless_city/city_masked_priest.json" with { type: "json" };
+import city_meat_golem from "./faceless_city/city_meat_golem.json" with { type: "json" };
+import city_mirror_woman from "./faceless_city/city_mirror_woman.json" with { type: "json" };
+import city_multi_armed_nun from "./faceless_city/city_multi_armed_nun.json" with { type: "json" };
+import city_plague_doctor from "./faceless_city/city_plague_doctor.json" with { type: "json" };
+import city_reaper_of_ruin from "./faceless_city/city_reaper_of_ruin.json" with { type: "json" };
+import city_sack_head_butcher from "./faceless_city/city_sack_head_butcher.json" with { type: "json" };
+import city_spider_leg_woman from "./faceless_city/city_spider_leg_woman.json" with { type: "json" };
+import city_straw_doll_shaman from "./faceless_city/city_straw_doll_shaman.json" with { type: "json" };
+import city_wheeled_flesh_mass from "./faceless_city/city_wheeled_flesh_mass.json" with { type: "json" };
 import forge_arcane_cannon from "./forge_ruins/forge_arcane_cannon.json" with { type: "json" };
 import forge_arcane_core from "./forge_ruins/forge_arcane_core.json" with { type: "json" };
 import forge_arcane_soldieress from "./forge_ruins/forge_arcane_soldieress.json" with { type: "json" };
@@ -259,6 +284,31 @@ export default [
   marsh_siren,
   marsh_tadpole,
   marsh_undine,
+  city_axe_mad_farmer,
+  city_backbend_crawler,
+  city_black_nun,
+  city_chained_escapee,
+  city_cult_priest,
+  city_cursed_doll,
+  city_executioner,
+  city_face_swarm,
+  city_faceless_farmer,
+  city_faceless_man,
+  city_faceless_woman,
+  city_fanatical_villager,
+  city_flesh_mass,
+  city_inquisitor,
+  city_limbstalker,
+  city_masked_priest,
+  city_meat_golem,
+  city_mirror_woman,
+  city_multi_armed_nun,
+  city_plague_doctor,
+  city_reaper_of_ruin,
+  city_sack_head_butcher,
+  city_spider_leg_woman,
+  city_straw_doll_shaman,
+  city_wheeled_flesh_mass,
   forge_arcane_cannon,
   forge_arcane_core,
   forge_arcane_soldieress,

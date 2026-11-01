@@ -377,7 +377,9 @@ function applyHit(b: Battle, rng: Rng, u: Combatant, t: Combatant, ab: AbilityDe
   const sword = physical && u.weapon.kind === "sword" ? (u.mods.swordTpPct ?? 0) : 0;
   gainTp(u, physical ? (u.weapon.tpGain ?? 0) : 0, (isWeaponHit(ab) ? (u.mods.tpGainPct ?? 0) : 0) + sword);
   if (!t.dead) gainTp(t, t.mods.tpWhenHit ?? 0, t.mods.tpWhenHitPct ?? 0);
-  const sanity = Math.round(((ab.sanity ?? 0) + (ab.power > 0 ? u.sanityTouch : 0)) * pct(t.mods.sanityTakenPct ?? 0));
+  // The Village Evil God's hits cost a Sanity more for each of its living adds (§14.6).
+  const thralls = ab.sanityPerAdd ? ab.sanityPerAdd * b.units.filter((x) => !x.dead && x.side === u.side && x.tags.includes("add")).length : 0;
+  const sanity = Math.round(((ab.sanity ?? 0) + thralls + (ab.power > 0 ? u.sanityTouch : 0)) * pct(t.mods.sanityTakenPct ?? 0));
   const sanityBefore = t.sanity;
   if (sanity > 0 && t.maxSanity > 0) {
     t.sanity = Math.max(0, t.sanity - sanity);

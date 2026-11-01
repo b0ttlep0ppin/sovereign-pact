@@ -1,0 +1,23 @@
+{
+  "id": "city_straw_doll_shaman",
+  "name": "Straw Doll Shaman",
+  "pool": "faceless_city",
+  "tags": ["humanoid", "cursed"],
+  "role": "caster",
+  "size": [1, 1],
+  "levels": [5, 9],
+  "stats": {"sanityTouch": 1, "speed": 11},
+  "affinity": {"dark": 25, "holy": -25},
+  "abilities": [
+    {"id": "pin_the_doll", "shape": "single", "side": "player", "power": 1.1, "kind": "magic", "locationBias": "head", "sanity": 4, "statuses": [{"id": "stun", "chance": 20, "ticks": 100}], "element": "dark", "reach": "ranged"},
+    {"id": "hex_bundle", "shape": "row", "side": "player", "power": 0.6, "kind": "magic", "cooldown": 2, "statuses": [{"id": "might_down", "chance": 40, "ticks": 300, "value": 20}], "element": "dark"}
+  ],
+  "gambits": [
+    {"if": "turn%2==0", "do": "hex_bundle", "target": "densest_row"},
+    {"do": "pin_the_doll", "target": "lowest_durability"}
+  ],
+  "bestiary": {
+    "lore": "She has a doll of each of you already.",
+    "weakness": "Holy. Kill her and the dolls are only straw."
+  }
+}

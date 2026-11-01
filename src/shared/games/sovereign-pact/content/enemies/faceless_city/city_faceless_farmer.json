@@ -1,0 +1,23 @@
+{
+  "id": "city_faceless_farmer",
+  "name": "Faceless Farmer",
+  "pool": "faceless_city",
+  "tags": ["humanoid", "faceless"],
+  "role": "fodder",
+  "size": [1, 1],
+  "levels": [3, 6],
+  "stats": {"sanityTouch": 1, "speed": 9},
+  "affinity": {"dark": 25, "holy": -25},
+  "abilities": [
+    {"id": "scythe", "shape": "single", "side": "player", "power": 1.0},
+    {"id": "blank_stare", "shape": "single", "side": "player", "power": 0.3, "kind": "magic", "sanity": 4, "cooldown": 2, "reach": "ranged"}
+  ],
+  "gambits": [
+    {"if": "turn%2==0", "do": "blank_stare", "target": "lowest_sanity"},
+    {"do": "scythe", "target": "column_weighted"}
+  ],
+  "bestiary": {
+    "lore": "He tends a field on a street that was never a farm. He has no face, and he is glad to see you.",
+    "weakness": "Holy. Every look at it costs Sanity."
+  }
+}

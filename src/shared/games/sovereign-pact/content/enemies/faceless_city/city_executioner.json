@@ -1,0 +1,24 @@
+{
+  "id": "city_executioner",
+  "name": "Executioner",
+  "pool": "faceless_city",
+  "tags": ["humanoid", "armored"],
+  "role": "bruiser",
+  "size": [1, 1],
+  "levels": [5, 9],
+  "stats": {"sanityTouch": 1, "hp": 1.7, "speed": 8},
+  "affinity": {"dark": 25, "holy": -25},
+  "immune": ["fear"],
+  "abilities": [
+    {"id": "beheading", "shape": "single", "side": "player", "power": 1.6, "locationBias": "head", "crit": 15},
+    {"id": "iron_stake", "shape": "single", "side": "player", "power": 1.0, "statuses": [{"id": "rooted", "chance": 40, "ticks": 200}]}
+  ],
+  "gambits": [
+    {"if": "foe.hp<0.4", "do": "beheading", "target": "lowest_hp"},
+    {"do": "iron_stake", "target": "column_weighted"}
+  ],
+  "bestiary": {
+    "lore": "The city's justice, hooded, still carrying out sentences no court passed.",
+    "weakness": "Holy. He finishes the wounded."
+  }
+}

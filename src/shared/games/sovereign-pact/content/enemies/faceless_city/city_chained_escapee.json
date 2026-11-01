@@ -1,0 +1,23 @@
+{
+  "id": "city_chained_escapee",
+  "name": "Chained Escapee",
+  "pool": "faceless_city",
+  "tags": ["humanoid", "cursed"],
+  "role": "artillery",
+  "size": [1, 1],
+  "levels": [4, 9],
+  "stats": {"sanityTouch": 1, "speed": 11},
+  "affinity": {"dark": 25, "holy": -25},
+  "abilities": [
+    {"id": "chain_whip", "shape": "line:3", "side": "player", "power": 1.1, "reach": "ranged", "cooldown": 2, "statuses": [{"id": "rooted", "chance": 30, "ticks": 200}]},
+    {"id": "shackle_throw", "shape": "single", "side": "player", "power": 0.9, "reach": "ranged"}
+  ],
+  "gambits": [
+    {"if": "turn%2==1", "do": "chain_whip"},
+    {"do": "shackle_throw", "target": "back_random"}
+  ],
+  "bestiary": {
+    "lore": "Escaped from something in the cellars, and still wearing the chains.",
+    "weakness": "Holy. Its chain runs down its row."
+  }
+}

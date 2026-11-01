@@ -1,0 +1,41 @@
+{
+  "id": "village_evil_god",
+  "name": "The Village Evil God",
+  "pool": "faceless_city",
+  "tags": ["god", "cursed", "unknown"],
+  "role": "boss",
+  "size": [3, 3],
+  "at": "E1",
+  "levels": [6, 7],
+  "stats": {"speed": 9, "hp": 8, "sanityTouch": 2},
+  "affinity": {"holy": -50, "dark": 75},
+  "immune": ["fear", "charm", "sleep", "poison"],
+  "abilities": [
+    {"id": "gaze", "shape": "single", "side": "player", "power": 0.7, "kind": "magic", "sanity": 3, "sanityPerAdd": 1, "element": "dark", "reach": "ranged"},
+    {"id": "eyes_open", "shape": "all", "side": "player", "power": 0.3, "kind": "magic", "element": "dark", "sanity": 10, "sanityPerAdd": 1, "charge": 200, "telegraph": true, "cooldown": 3},
+    {"id": "tendrils", "shape": "column:F", "side": "player", "power": 1.0, "sanityPerAdd": 1, "cooldown": 1},
+    {"id": "call_the_faithful", "shape": "all", "side": "ally", "power": 0, "kind": "support", "cooldown": 4, "statuses": [{"id": "might_up", "chance": 100, "ticks": 300, "value": 20}]}
+  ],
+  "gambits": [
+    {"if": "turn%4==2", "do": "eyes_open"},
+    {"if": "turn%4==0 && adds>=1", "do": "call_the_faithful"},
+    {"if": "turn%2==1", "do": "tendrils"},
+    {"do": "gaze", "target": "lowest_sanity"}
+  ],
+  "adds": [
+    {"spawn": ["city_fanatical_villager"], "count": 4, "at": "E1"}
+  ],
+  "phases": [
+    {"at": "hp<=0.6", "name": "Many Eyes", "speed": 11, "adds": {"spawn": ["city_fanatical_villager"], "count": 2, "at": "E1"}, "say": "WE SEE YOU. WE HAVE ALWAYS SEEN YOU.", "gambits": [{"if": "turn%3==1", "do": "eyes_open"}, {"if": "turn%2==0", "do": "tendrils"}, {"do": "gaze", "target": "lowest_sanity"}]},
+    {"at": "hp<=0.3", "name": "The Feast", "speed": 12, "transform": {"from": "city_fanatical_villager", "into": "city_flesh_mass"}, "say": "COME CLOSER. BECOME US.", "gambits": [{"if": "turn%2==0", "do": "eyes_open"}, {"if": "turn%2==1", "do": "tendrils"}, {"do": "gaze", "target": "lowest_sanity"}]}
+  ],
+  "say": {
+    "open": "THE FAITHFUL HAVE BROUGHT GUESTS.",
+    "death": "we... will... dream... of you..."
+  },
+  "bestiary": {
+    "lore": "What the old square worships: a god of the lost districts, made of the faces it took.",
+    "weakness": "Holy. Every villager who stands costs a Sanity more on each of its hits: thin the faithful first. Sanity-proof Scions are worth their weight here.",
+    "pattern": "Its tendrils sweep the Front every other turn and its gaze finds the most shaken Scion; every fourth turn its eyes open on everyone for 10 Sanity and more. At 60% two more villagers come and the eyes open every third turn; at 30% it turns one of its villagers into a Flesh Mass and the eyes open every other turn."
+  }
+}

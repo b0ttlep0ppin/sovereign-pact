@@ -97,7 +97,17 @@ function enterPhase(b: Battle, u: Combatant, def: BossDef, i: number): void {
     }
   for (const s of p.statuses ?? []) addStatus(b, u, s.id, s.ticks);
   if (p.weak) u.weak = p.weak;
+  if (p.transform) transform(b, u, p.transform.from, p.transform.into);
   if (p.adds) spawnAdds(b, u, p.adds);
+}
+
+/** One living `from` add turns into `into` on its own column; nothing happens if there is none or no room. */
+function transform(b: Battle, boss: Combatant, from: string, into: string): void {
+  const thrall = b.units.find((x) => !x.dead && x.side === boss.side && x.enemy === from);
+  if (!thrall) return;
+  thrall.flags.push("transformed");
+  kill(b, thrall);
+  spawnAdds(b, boss, { spawn: [into], count: 1, at: (["E1", "E2", "E3"] as const)[thrall.col]! });
 }
 
 /** A boss that fled the field (the fight is won, the boss lives on). */

@@ -1,0 +1,23 @@
+{
+  "id": "city_cult_priest",
+  "name": "Cult Priest",
+  "pool": "faceless_city",
+  "tags": ["humanoid", "cultist"],
+  "role": "caster",
+  "size": [1, 1],
+  "levels": [4, 9],
+  "stats": {"sanityTouch": 1, "speed": 10},
+  "affinity": {"dark": 25, "holy": -25},
+  "abilities": [
+    {"id": "blood_rite", "shape": "burst:3x3", "side": "player", "power": 0.9, "kind": "magic", "charge": 80, "telegraph": true, "cooldown": 3, "sanity": 4, "element": "dark"},
+    {"id": "curse", "shape": "single", "side": "player", "power": 0.7, "kind": "magic", "statuses": [{"id": "hex", "chance": 50, "ticks": 300}], "element": "dark", "reach": "ranged"}
+  ],
+  "gambits": [
+    {"if": "turn%3==1", "do": "blood_rite", "target": "densest_cluster"},
+    {"do": "curse", "target": "highest_might"}
+  ],
+  "bestiary": {
+    "lore": "The square's high priest, who knows its god's name.",
+    "weakness": "Holy. Interrupt the rite."
+  }
+}

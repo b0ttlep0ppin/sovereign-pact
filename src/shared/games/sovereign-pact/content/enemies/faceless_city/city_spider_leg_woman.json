@@ -1,0 +1,23 @@
+{
+  "id": "city_spider_leg_woman",
+  "name": "Spider-Leg Woman",
+  "pool": "faceless_city",
+  "tags": ["flesh", "cursed"],
+  "role": "lurker",
+  "size": [1, 1],
+  "levels": [6, 9],
+  "stats": {"sanityTouch": 1, "speed": 14},
+  "affinity": {"dark": 25, "holy": -25, "fire": -25},
+  "abilities": [
+    {"id": "eight_stabs", "shape": "single", "side": "player", "power": 0.4, "leap": true, "hits": 4},
+    {"id": "web_whisper", "shape": "single", "side": "player", "power": 0.2, "kind": "magic", "sanity": 5, "statuses": [{"id": "rooted", "chance": 50, "ticks": 200}], "reach": "ranged"}
+  ],
+  "gambits": [
+    {"if": "turn%3==1", "do": "web_whisper", "target": "back_random"},
+    {"do": "eight_stabs", "target": "empty_cell"}
+  ],
+  "bestiary": {
+    "lore": "From the waist up she is a woman you might know.",
+    "weakness": "Holy and fire."
+  }
+}

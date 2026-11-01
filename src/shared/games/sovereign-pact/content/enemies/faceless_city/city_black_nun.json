@@ -1,0 +1,25 @@
+{
+  "id": "city_black_nun",
+  "name": "Black Nun",
+  "pool": "faceless_city",
+  "tags": ["humanoid", "cultist"],
+  "role": "support",
+  "size": [1, 1],
+  "levels": [3, 9],
+  "stats": {"sanityTouch": 1, "speed": 9},
+  "affinity": {"dark": 25, "holy": -25},
+  "abilities": [
+    {"id": "dark_communion", "shape": "single", "side": "ally", "power": 1.4, "kind": "heal"},
+    {"id": "veil", "shape": "single", "side": "ally", "power": 0, "kind": "support", "statuses": [{"id": "shell", "chance": 100, "ticks": 300}], "cooldown": 3},
+    {"id": "rebuke", "shape": "single", "side": "player", "power": 0.6, "kind": "magic", "sanity": 3, "element": "dark", "reach": "ranged"}
+  ],
+  "gambits": [
+    {"if": "ally.hp<0.5", "do": "dark_communion", "target": "ally_lowest_hp"},
+    {"if": "turn%3==1", "do": "veil", "target": "ally_lowest_hp"},
+    {"do": "rebuke", "target": "lowest_sanity"}
+  ],
+  "bestiary": {
+    "lore": "A sister of an order that kept its vows when the god changed.",
+    "weakness": "Holy. Kill her first."
+  }
+}

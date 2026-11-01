@@ -1,0 +1,24 @@
+{
+  "id": "city_fanatical_villager",
+  "name": "Fanatical Villager",
+  "pool": "faceless_city",
+  "tags": ["humanoid", "cultist"],
+  "role": "fodder",
+  "size": [1, 1],
+  "levels": [4, 9],
+  "stats": {"sanityTouch": 1, "speed": 10},
+  "affinity": {"dark": 25, "holy": -25},
+  "immune": ["fear"],
+  "abilities": [
+    {"id": "pitchfork", "shape": "single", "side": "player", "power": 1.0},
+    {"id": "zeal", "shape": "self", "side": "self", "power": 0, "kind": "support", "statuses": [{"id": "might_up", "chance": 100, "ticks": 200, "value": 20}], "cooldown": 4}
+  ],
+  "gambits": [
+    {"if": "turn==1", "do": "zeal"},
+    {"do": "pitchfork", "target": "column_weighted"}
+  ],
+  "bestiary": {
+    "lore": "They worship something in the old square. It answers.",
+    "weakness": "Holy. They fight harder for their god."
+  }
+}

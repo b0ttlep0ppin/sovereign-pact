@@ -1,0 +1,23 @@
+{
+  "id": "city_axe_mad_farmer",
+  "name": "Axe-Mad Farmer",
+  "pool": "faceless_city",
+  "tags": ["humanoid", "cursed"],
+  "role": "bruiser",
+  "size": [1, 1],
+  "levels": [3, 8],
+  "stats": {"sanityTouch": 1, "speed": 10},
+  "affinity": {"dark": 25, "holy": -25},
+  "abilities": [
+    {"id": "wild_chop", "shape": "single", "side": "player", "power": 0.7, "hits": 2},
+    {"id": "frenzy", "shape": "self", "side": "self", "power": 0, "kind": "support", "statuses": [{"id": "berserk", "chance": 100, "ticks": 300}], "cooldown": 5}
+  ],
+  "gambits": [
+    {"if": "self.hp<0.6", "do": "frenzy"},
+    {"do": "wild_chop", "target": "column_weighted"}
+  ],
+  "bestiary": {
+    "lore": "He was a kind man. The city found the thing in him that was not.",
+    "weakness": "Holy. Hurt, he goes berserk."
+  }
+}

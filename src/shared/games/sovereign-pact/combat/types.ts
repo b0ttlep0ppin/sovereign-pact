@@ -183,6 +183,8 @@ export interface AbilityDef {
   selfDestruct?: boolean;
   /** The user leaves the battle once it resolves, alive (a Gem Thief's getaway). */
   flee?: boolean;
+  /** Extra Sanity damage for each of the user's living adds. */
+  sanityPerAdd?: number;
 }
 
 export interface Charge {

@@ -136,6 +136,7 @@
         "leap": { "type": "boolean", "description": "A lurker's leap: reaches any Scion, then it stands Exposed (§14.3)" },
         "raise": { "type": "integer", "minimum": 1, "maximum": 100, "description": "Raises a fallen fodder or swarm ally at this % of its max HP" },
         "constructHpPct": { "type": "integer", "minimum": 1, "maximum": 100, "description": "Mends constructs among its targets by this % of their max HP" },
+        "sanityPerAdd": { "type": "integer", "minimum": 1, "maximum": 5, "description": "Extra Sanity damage for each of the user's living adds" },
         "tpSteal": { "type": "integer", "minimum": 1, "maximum": 100, "description": "TP taken from each target hit and given to the user" },
         "selfDestruct": { "type": "boolean", "description": "The user is destroyed once it resolves" },
         "flee": { "type": "boolean", "description": "The user leaves the battle alive once it resolves" },

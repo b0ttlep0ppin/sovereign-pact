@@ -1,0 +1,26 @@
+{
+  "id": "city_inquisitor",
+  "name": "Inquisitor",
+  "pool": "faceless_city",
+  "tags": ["humanoid", "armored", "cultist"],
+  "role": "elite",
+  "size": [1, 1],
+  "levels": [3, 9],
+  "stats": {"sanityTouch": 1, "speed": 11},
+  "affinity": {"dark": 25, "holy": -25},
+  "immune": ["fear", "charm"],
+  "abilities": [
+    {"id": "verdict", "shape": "single", "side": "player", "power": 1.5, "crit": 15},
+    {"id": "confess", "shape": "single", "side": "player", "power": 0.4, "kind": "magic", "sanity": 6, "statuses": [{"id": "silence", "chance": 50, "ticks": 200}], "reach": "ranged"},
+    {"id": "purge", "shape": "column:F", "side": "player", "power": 1.0, "kind": "magic", "element": "fire", "cooldown": 2}
+  ],
+  "gambits": [
+    {"if": "foe.charging", "do": "confess", "target": "charging"},
+    {"if": "turn%3==1", "do": "purge"},
+    {"do": "verdict", "target": "lowest_hp"}
+  ],
+  "bestiary": {
+    "lore": "He asks one question. Nobody has given the right answer.",
+    "weakness": "Holy. He silences anyone charging a spell."
+  }
+}
