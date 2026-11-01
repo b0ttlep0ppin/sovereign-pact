@@ -46,7 +46,9 @@ describe("shops (§8.6)", () => {
   });
 
   it("sells Common and Fine goods at list price, first come", () => {
-    let { s, id } = shop(2, 3);
+    const lot = shop(2, 3);
+    const id = lot.id;
+    let s = lot.s;
     s = move(s, "p1", { type: "buy", item: id });
     expect(s.houses[0]!.gold).toBe(1000 - listPrice({ tier: 3, ilvl: 1 }));
     expect(s.items.find((i) => i.id === id)!.house).toBe(0);
@@ -68,7 +70,9 @@ describe("auctions (§13.4a)", () => {
   });
 
   it("sells to a lone bidder at list price", () => {
-    let { s, id } = shop(2, 4);
+    const lot = shop(2, 4);
+    const id = lot.id;
+    let s = lot.s;
     s = sealAll(move(s, "p2", { type: "bid", item: id, gold: 400 }));
     const price = listPrice({ tier: 4, ilvl: 1 });
     expect(s.items.find((i) => i.id === id)!.house).toBe(1);
@@ -76,7 +80,9 @@ describe("auctions (§13.4a)", () => {
   });
 
   it("sells to the highest of several bids, which stay private until the result", () => {
-    let { s, id } = shop(3, 4);
+    const lot = shop(3, 4);
+    const id = lot.id;
+    let s = lot.s;
     s = move(s, "p1", { type: "bid", item: id, gold: 150 });
     s = move(s, "p2", { type: "bid", item: id, gold: 180 });
     expect(view(s, "p1").market[0]!.bids).toEqual([150, null, null]);
@@ -87,7 +93,9 @@ describe("auctions (§13.4a)", () => {
   });
 
   it("breaks a tie by Renown at a cost of Accord", () => {
-    let { s, id } = shop(2, 4);
+    const lot = shop(2, 4);
+    const id = lot.id;
+    let s = lot.s;
     s.houses[0]!.score.renown = 9;
     const accord = s.accord;
     s = move(move(s, "p1", { type: "bid", item: id, gold: 200 }), "p2", { type: "bid", item: id, gold: 200 });
