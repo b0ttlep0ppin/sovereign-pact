@@ -1,0 +1,38 @@
+{
+  "id": "divine_beast_fusion",
+  "name": "Divine Beast Fusion",
+  "pool": "shrine_of_six",
+  "tags": ["divine", "beast"],
+  "role": "boss",
+  "size": [3, 3],
+  "at": "E1",
+  "levels": [10, 10],
+  "stats": {"speed": 11, "hp": 10},
+  "affinity": {"fire": 100, "water": -100},
+  "immune": ["fear", "stun", "sleep", "charm"],
+  "abilities": [
+    {"id": "fire_storm", "shape": "band:3", "side": "player", "power": 1.2, "kind": "magic", "charge": 80, "telegraph": true, "cooldown": 2, "statuses": [{"id": "burn", "chance": 40, "ticks": 300}], "element": "fire"},
+    {"id": "fire_strike", "shape": "single", "side": "player", "power": 1.3, "kind": "magic", "element": "fire", "reach": "ranged"},
+    {"id": "earth_storm", "shape": "band:4", "side": "player", "power": 1.2, "kind": "magic", "charge": 80, "telegraph": true, "cooldown": 2, "statuses": [{"id": "knockdown", "chance": 40, "ticks": 0}], "element": "earth"},
+    {"id": "earth_strike", "shape": "single", "side": "player", "power": 1.3, "kind": "magic", "element": "earth", "reach": "ranged"},
+    {"id": "dark_storm", "shape": "all", "side": "player", "power": 0.7, "kind": "magic", "sanity": 6, "charge": 80, "telegraph": true, "cooldown": 2, "element": "dark"},
+    {"id": "dark_strike", "shape": "single", "side": "player", "power": 1.3, "kind": "magic", "sanity": 3, "element": "dark", "reach": "ranged"}
+  ],
+  "gambits": [
+    {"if": "turn%3==1", "do": "fire_storm"},
+    {"do": "fire_strike", "target": "lowest_hp"}
+  ],
+  "phases": [
+    {"at": "hp<=0.66", "name": "Stone", "affinity": {"earth": 100, "wind": -100}, "say": "THE EARTH REMEMBERS.", "gambits": [{"if": "turn%3==1", "do": "earth_storm"}, {"do": "earth_strike", "target": "lowest_hp"}]},
+    {"at": "hp<=0.33", "name": "Eclipse", "affinity": {"dark": 100, "holy": -100}, "say": "LIGHT AND DARK ARE ONE THING.", "gambits": [{"if": "turn%3==1", "do": "dark_storm"}, {"do": "dark_strike", "target": "lowest_hp"}]}
+  ],
+  "say": {
+    "open": "SIX SHRINES. ONE BEAST. YOU CAME TO THE WRONG ONE.",
+    "death": "the shrines... are... quiet..."
+  },
+  "bestiary": {
+    "lore": "What the six Divine Beasts become when the shrines are broken: all of them at once, and none of them for long.",
+    "weakness": "The opposite of its current element: Water while it burns, Wind in the stone, Holy in the eclipse. Each shrine's Relic nullifies that shrine's element.",
+    "pattern": "It takes one element at a time and is immune to it: Fire, then Earth at two thirds, then Dark at a third. Each form storms every third turn and strikes the weakest Scion between."
+  }
+}

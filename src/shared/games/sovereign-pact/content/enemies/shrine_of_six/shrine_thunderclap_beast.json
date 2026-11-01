@@ -1,0 +1,23 @@
+{
+  "id": "shrine_thunderclap_beast",
+  "name": "Thunderclap Beast",
+  "pool": "shrine_of_six",
+  "tags": ["beast"],
+  "role": "artillery",
+  "size": [1, 1],
+  "levels": [4, 10],
+  "stats": {"speed": 9},
+  "affinity": {"wind": 50, "earth": -50},
+  "abilities": [
+    {"id": "thunderclap", "shape": "checker:a", "side": "player", "power": 1.0, "kind": "magic", "charge": 60, "telegraph": true, "cooldown": 2, "element": "wind"},
+    {"id": "spark", "shape": "single", "side": "player", "power": 0.9, "reach": "ranged", "element": "wind"}
+  ],
+  "gambits": [
+    {"if": "turn%2==1", "do": "thunderclap"},
+    {"do": "spark", "target": "back_random"}
+  ],
+  "bestiary": {
+    "lore": "Its drum is its belly. When it beats it, lightning falls in a lattice.",
+    "weakness": "Earth."
+  }
+}

@@ -216,6 +216,30 @@ import pit_trident_demon from "./pit/pit_trident_demon.json" with { type: "json"
 import pit_walking_brazier from "./pit/pit_walking_brazier.json" with { type: "json" };
 import pit_winged_demon from "./pit/pit_winged_demon.json" with { type: "json" };
 import pit_zombie_demon from "./pit/pit_zombie_demon.json" with { type: "json" };
+import shrine_balloon from "./shrine_of_six/shrine_balloon.json" with { type: "json" };
+import shrine_dark_divine_beast from "./shrine_of_six/shrine_dark_divine_beast.json" with { type: "json" };
+import shrine_duck_fighter from "./shrine_of_six/shrine_duck_fighter.json" with { type: "json" };
+import shrine_earth_divine_beast from "./shrine_of_six/shrine_earth_divine_beast.json" with { type: "json" };
+import shrine_earth_serpent from "./shrine_of_six/shrine_earth_serpent.json" with { type: "json" };
+import shrine_element from "./shrine_of_six/shrine_element.json" with { type: "json" };
+import shrine_elemental_slime from "./shrine_of_six/shrine_elemental_slime.json" with { type: "json" };
+import shrine_ergo_angel from "./shrine_of_six/shrine_ergo_angel.json" with { type: "json" };
+import shrine_fairy from "./shrine_of_six/shrine_fairy.json" with { type: "json" };
+import shrine_fallen_angel from "./shrine_of_six/shrine_fallen_angel.json" with { type: "json" };
+import shrine_fire_divine_beast from "./shrine_of_six/shrine_fire_divine_beast.json" with { type: "json" };
+import shrine_flame_beastman from "./shrine_of_six/shrine_flame_beastman.json" with { type: "json" };
+import shrine_flare_armor from "./shrine_of_six/shrine_flare_armor.json" with { type: "json" };
+import shrine_gnome from "./shrine_of_six/shrine_gnome.json" with { type: "json" };
+import shrine_holy_armor from "./shrine_of_six/shrine_holy_armor.json" with { type: "json" };
+import shrine_holy_divine_beast from "./shrine_of_six/shrine_holy_divine_beast.json" with { type: "json" };
+import shrine_raiju from "./shrine_of_six/shrine_raiju.json" with { type: "json" };
+import shrine_salamander from "./shrine_of_six/shrine_salamander.json" with { type: "json" };
+import shrine_shade from "./shrine_of_six/shrine_shade.json" with { type: "json" };
+import shrine_sylph from "./shrine_of_six/shrine_sylph.json" with { type: "json" };
+import shrine_thunderbird from "./shrine_of_six/shrine_thunderbird.json" with { type: "json" };
+import shrine_thunderclap_beast from "./shrine_of_six/shrine_thunderclap_beast.json" with { type: "json" };
+import shrine_water_divine_beast from "./shrine_of_six/shrine_water_divine_beast.json" with { type: "json" };
+import shrine_wind_divine_beast from "./shrine_of_six/shrine_wind_divine_beast.json" with { type: "json" };
 
 export default [
   court_axe_executioner,
@@ -435,4 +459,28 @@ export default [
   pit_walking_brazier,
   pit_winged_demon,
   pit_zombie_demon,
+  shrine_balloon,
+  shrine_dark_divine_beast,
+  shrine_duck_fighter,
+  shrine_earth_divine_beast,
+  shrine_earth_serpent,
+  shrine_element,
+  shrine_elemental_slime,
+  shrine_ergo_angel,
+  shrine_fairy,
+  shrine_fallen_angel,
+  shrine_fire_divine_beast,
+  shrine_flame_beastman,
+  shrine_flare_armor,
+  shrine_gnome,
+  shrine_holy_armor,
+  shrine_holy_divine_beast,
+  shrine_raiju,
+  shrine_salamander,
+  shrine_shade,
+  shrine_sylph,
+  shrine_thunderbird,
+  shrine_thunderclap_beast,
+  shrine_water_divine_beast,
+  shrine_wind_divine_beast,
 ];

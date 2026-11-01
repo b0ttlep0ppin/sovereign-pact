@@ -338,3 +338,18 @@ describe("the Village Evil God", () => {
     expect(villagers()).toHaveLength(5);
   });
 });
+
+describe("Divine Beast Fusion", () => {
+  it("takes one element at a time, immune to it and twice as weak to its opposite", () => {
+    const b = bossBattle(15, standardParty(15, 30), "divine_beast_fusion", 10);
+    const fusion = b.units.find((u) => u.enemy === "divine_beast_fusion")!;
+    const form = () => [affinityMult(fusion, "fire"), affinityMult(fusion, "water"), affinityMult(fusion, "earth"), affinityMult(fusion, "wind"), affinityMult(fusion, "dark"), affinityMult(fusion, "holy")];
+    expect(form()).toEqual([0, 2, 1, 1, 1, 1]);
+    fusion.hp = Math.floor(fusion.maxHp * 0.6);
+    checkEnd(b);
+    expect(form()).toEqual([1, 1, 0, 2, 1, 1]);
+    fusion.hp = Math.floor(fusion.maxHp * 0.3);
+    checkEnd(b);
+    expect(form()).toEqual([1, 1, 1, 1, 0, 2]);
+  });
+});

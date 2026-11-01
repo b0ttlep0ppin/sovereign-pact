@@ -1,0 +1,24 @@
+{
+  "id": "shrine_elemental_slime",
+  "name": "Elemental Slime",
+  "pool": "shrine_of_six",
+  "tags": ["elemental", "slime"],
+  "role": "fodder",
+  "size": [1, 1],
+  "levels": [4, 9],
+  "variants": ["ashen", "drowned", "storm", "stone"],
+  "stats": {"speed": 8},
+  "immune": ["poison", "fear"],
+  "abilities": [
+    {"id": "engulf", "shape": "single", "side": "player", "power": 1.0, "statuses": [{"id": "slow", "chance": 25, "ticks": 200}]},
+    {"id": "split_burst", "shape": "adjacent", "side": "player", "power": 0.6, "kind": "magic", "cooldown": 3}
+  ],
+  "gambits": [
+    {"if": "turn%3==2", "do": "split_burst"},
+    {"do": "engulf", "target": "column_weighted"}
+  ],
+  "bestiary": {
+    "lore": "Slime that soaked in a shrine's power until it became that power.",
+    "weakness": "The opposite of its shrine."
+  }
+}

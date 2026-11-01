@@ -97,6 +97,7 @@ function enterPhase(b: Battle, u: Combatant, def: BossDef, i: number): void {
     }
   for (const s of p.statuses ?? []) addStatus(b, u, s.id, s.ticks);
   if (p.weak) u.weak = p.weak;
+  if (p.affinity) u.affinity = { ...p.affinity };
   if (p.transform) transform(b, u, p.transform.from, p.transform.into);
   if (p.adds) spawnAdds(b, u, p.adds);
 }

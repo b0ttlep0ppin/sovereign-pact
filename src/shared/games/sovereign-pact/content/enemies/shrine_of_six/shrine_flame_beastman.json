@@ -1,0 +1,24 @@
+{
+  "id": "shrine_flame_beastman",
+  "name": "Flame Beastman",
+  "pool": "shrine_of_six",
+  "tags": ["beastfolk"],
+  "role": "bruiser",
+  "size": [1, 1],
+  "levels": [6, 10],
+  "stats": {"speed": 12},
+  "affinity": {"fire": 75, "water": -50},
+  "immune": ["burn"],
+  "abilities": [
+    {"id": "burning_claws", "shape": "single", "side": "player", "power": 0.7, "hits": 2, "element": "fire", "statuses": [{"id": "burn", "chance": 25, "ticks": 300}]},
+    {"id": "blaze_up", "shape": "self", "side": "self", "power": 0, "kind": "support", "statuses": [{"id": "might_up", "chance": 100, "ticks": 300, "value": 25}], "cooldown": 4}
+  ],
+  "gambits": [
+    {"if": "turn==1", "do": "blaze_up"},
+    {"do": "burning_claws", "target": "lowest_hp"}
+  ],
+  "bestiary": {
+    "lore": "A beast-folk warrior who bathed in the Fire shrine and came out burning.",
+    "weakness": "Water."
+  }
+}

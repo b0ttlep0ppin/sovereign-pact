@@ -1,0 +1,26 @@
+{
+  "id": "shrine_water_divine_beast",
+  "name": "Water Divine Beast",
+  "pool": "shrine_of_six",
+  "tags": ["divine", "beast"],
+  "role": "colossus",
+  "size": [3, 3],
+  "levels": [4, 10],
+  "stats": {"hp": 4, "atk": 1.2, "speed": 9},
+  "affinity": {"water": 100, "fire": -100},
+  "immune": ["fear", "stun", "sleep", "charm"],
+  "abilities": [
+    {"id": "deluge", "shape": "band:4", "side": "player", "power": 1.0, "kind": "magic", "charge": 100, "telegraph": true, "cooldown": 3, "statuses": [{"id": "slow", "chance": 40, "ticks": 200}], "element": "water"},
+    {"id": "tide_lash", "shape": "column:F", "side": "player", "power": 1.1, "kind": "magic", "element": "water", "cooldown": 2},
+    {"id": "spring_renewal", "shape": "single", "side": "ally", "power": 1.0, "kind": "heal", "cooldown": 4}
+  ],
+  "gambits": [
+    {"if": "turn%3==1", "do": "deluge", "target": "densest_row"},
+    {"if": "ally.hp<0.5", "do": "spring_renewal", "target": "ally_lowest_hp"},
+    {"do": "tide_lash"}
+  ],
+  "bestiary": {
+    "lore": "The keeper of the Water shrine, coiled in its pool.",
+    "weakness": "Fire, twice over."
+  }
+}

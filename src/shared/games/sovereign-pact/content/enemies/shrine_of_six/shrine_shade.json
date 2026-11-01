@@ -1,0 +1,24 @@
+{
+  "id": "shrine_shade",
+  "name": "Shade",
+  "pool": "shrine_of_six",
+  "tags": ["spirit"],
+  "role": "horror",
+  "size": [1, 1],
+  "levels": [4, 10],
+  "stats": {"speed": 11, "sanityTouch": 3},
+  "affinity": {"dark": 100, "holy": -75},
+  "immune": ["poison", "sleep", "fear"],
+  "abilities": [
+    {"id": "umbral_touch", "shape": "single", "side": "player", "power": 0.5, "kind": "magic", "sanity": 7, "statuses": [{"id": "blind", "chance": 30, "ticks": 200}], "element": "dark", "reach": "ranged"},
+    {"id": "dark_pulse", "shape": "row", "side": "player", "power": 0.3, "kind": "magic", "sanity": 5, "cooldown": 2, "element": "dark"}
+  ],
+  "gambits": [
+    {"if": "turn%3==1", "do": "dark_pulse", "target": "densest_row"},
+    {"do": "umbral_touch", "target": "lowest_sanity"}
+  ],
+  "bestiary": {
+    "lore": "A shadow cast by the Dark Divine Beast, still walking after the Beast moved on.",
+    "weakness": "Holy."
+  }
+}

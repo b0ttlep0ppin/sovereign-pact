@@ -1,0 +1,26 @@
+{
+  "id": "shrine_fire_divine_beast",
+  "name": "Fire Divine Beast",
+  "pool": "shrine_of_six",
+  "tags": ["divine", "beast"],
+  "role": "colossus",
+  "size": [3, 3],
+  "levels": [6, 10],
+  "stats": {"hp": 4, "atk": 1.2, "speed": 9},
+  "affinity": {"fire": 100, "water": -100},
+  "immune": ["fear", "stun", "sleep", "charm"],
+  "abilities": [
+    {"id": "sacred_flame", "shape": "band:3", "side": "player", "power": 1.2, "kind": "magic", "charge": 100, "telegraph": true, "cooldown": 3, "statuses": [{"id": "burn", "chance": 50, "ticks": 300}], "element": "fire"},
+    {"id": "pyre_claw", "shape": "column:F", "side": "player", "power": 1.1, "kind": "magic", "element": "fire", "cooldown": 2},
+    {"id": "ember_fang", "shape": "single", "side": "player", "power": 1.3}
+  ],
+  "gambits": [
+    {"if": "turn%3==1", "do": "sacred_flame", "target": "densest_row"},
+    {"if": "turn%2==0", "do": "pyre_claw"},
+    {"do": "ember_fang", "target": "lowest_durability"}
+  ],
+  "bestiary": {
+    "lore": "The keeper of the Fire shrine, a beast of living flame.",
+    "weakness": "Water, twice over."
+  }
+}

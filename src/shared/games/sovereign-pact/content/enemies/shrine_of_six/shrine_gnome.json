@@ -1,0 +1,24 @@
+{
+  "id": "shrine_gnome",
+  "name": "Gnome",
+  "pool": "shrine_of_six",
+  "tags": ["elemental", "spirit"],
+  "role": "caster",
+  "size": [1, 1],
+  "levels": [4, 10],
+  "stats": {"speed": 9},
+  "affinity": {"earth": 100, "wind": -75},
+  "immune": ["poison"],
+  "abilities": [
+    {"id": "stone_spike", "shape": "line:3", "side": "player", "power": 1.1, "kind": "magic", "cooldown": 2, "element": "earth"},
+    {"id": "quake_rune", "shape": "burst:3x3", "side": "player", "power": 0.9, "kind": "magic", "charge": 80, "telegraph": true, "cooldown": 3, "statuses": [{"id": "knockdown", "chance": 25, "ticks": 0}], "element": "earth"}
+  ],
+  "gambits": [
+    {"if": "turn%3==1", "do": "quake_rune", "target": "densest_cluster"},
+    {"do": "stone_spike"}
+  ],
+  "bestiary": {
+    "lore": "The spirit of the Earth shrine's deep stone.",
+    "weakness": "Wind."
+  }
+}
