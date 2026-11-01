@@ -1,0 +1,36 @@
+{
+  "id": "overlord_final",
+  "name": "The Overlord, Last Form",
+  "pool": "pit",
+  "tags": ["demon", "royal", "giant"],
+  "role": "boss",
+  "addOnly": true,
+  "size": [3, 3],
+  "at": "E1",
+  "levels": [9, 10],
+  "stats": {"speed": 11, "hp": 4, "atk": 1.3, "sanityTouch": 2},
+  "affinity": {"holy": -50, "water": -25, "fire": 50, "dark": 50},
+  "immune": ["fear", "poison", "blind"],
+  "abilities": [
+    {"id": "crushing_maw", "shape": "single", "side": "player", "power": 1.5, "reach": "reach", "locationBias": "body"},
+    {"id": "hell_rain", "shape": "random:4", "side": "player", "power": 0.9, "kind": "magic", "element": "fire"},
+    {"id": "doom_pulse", "shape": "all", "side": "player", "power": 1.1, "kind": "magic", "element": "dark", "sanity": 6, "charge": 80, "telegraph": true}
+  ],
+  "gambits": [
+    {"if": "turn%4==0", "do": "doom_pulse"},
+    {"if": "turn%2==1", "do": "hell_rain"},
+    {"do": "crushing_maw", "target": "column_weighted"}
+  ],
+  "phases": [
+    {"at": "hp<=0.3", "name": "Despair", "speed": 13, "say": "If I fall, I take the light down with me.", "gambits": [{"if": "turn%3==0", "do": "doom_pulse"}, {"if": "turn%2==1", "do": "hell_rain"}, {"do": "crushing_maw", "target": "column_weighted"}]}
+  ],
+  "say": {
+    "open": "What rises last fills the hall from wall to wall, and the floor begins to pulse.",
+    "death": "The Pit goes quiet, for the first time in a thousand years."
+  },
+  "bestiary": {
+    "lore": "The Overlord as he truly is: the Pit given a mouth.",
+    "weakness": "Holy and Water. Readiness damage still half-works on him: knock his clock back to delay the Doom Pulse.",
+    "pattern": "Crushes two columns deep and rains fire on four random cells. Every fourth turn it charges the Doom Pulse, telegraphed: a blow and 6 Sanity on every Scion. In Despair it pulses every third turn."
+  }
+}

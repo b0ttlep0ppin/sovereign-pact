@@ -1,0 +1,36 @@
+{
+  "id": "overlord_ascendant",
+  "name": "The Overlord Ascendant",
+  "pool": "pit",
+  "tags": ["demon", "royal", "giant"],
+  "role": "boss",
+  "addOnly": true,
+  "size": [2, 2],
+  "at": "E2",
+  "levels": [9, 10],
+  "stats": {"speed": 12, "hp": 3, "atk": 1.2},
+  "affinity": {"holy": -50, "water": -25, "fire": 50, "dark": 50},
+  "immune": ["fear", "poison", "blind"],
+  "abilities": [
+    {"id": "rending_claws", "shape": "single", "side": "player", "power": 0.8, "hits": 2, "reach": "reach", "statuses": [{"id": "bleed", "chance": 30, "ticks": 0}]},
+    {"id": "hellfire", "shape": "band:3", "side": "player", "power": 1.1, "kind": "magic", "element": "fire", "charge": 60, "telegraph": true, "cooldown": 2, "statuses": [{"id": "burn", "chance": 40, "ticks": 300}]},
+    {"id": "brimstone", "shape": "burst:3x3", "side": "player", "power": 1.0, "kind": "magic", "element": "fire", "charge": 60, "telegraph": true, "cooldown": 3}
+  ],
+  "gambits": [
+    {"if": "turn%3==1", "do": "hellfire", "target": "densest_cluster"},
+    {"if": "turn%3==2", "do": "brimstone", "target": "densest_cluster"},
+    {"do": "rending_claws", "target": "column_weighted"}
+  ],
+  "phases": [
+    {"at": "hp<=0.3", "name": "The Last Form", "rise": "overlord_final", "dispel": true, "say": "Enough masks.", "gambits": [{"do": "rending_claws", "target": "column_weighted"}]}
+  ],
+  "say": {
+    "open": "Wings unfold from the ruin of the first body, and the Pit's heat doubles.",
+    "death": "Not yet. Not yet."
+  },
+  "bestiary": {
+    "lore": "The Overlord's second body: winged, burning, and done pretending to be a man.",
+    "weakness": "Holy and Water. Spread out: both of its fires land on the densest knot of the party.",
+    "pattern": "Claws twice and makes Scions bleed; alternates a three-row band of hellfire with a brimstone burst, both telegraphed. Beaten down, it rises a last time."
+  }
+}

@@ -590,3 +590,28 @@ describe("the End Ruler", () => {
     expect(ruler.gambits.some((g) => g.do === "aspect_fall")).toBe(true);
   });
 });
+
+describe("the Overlord", () => {
+  it("rises twice, larger each time, tearing every buff off the party at each change", () => {
+    const b = bossBattle(27, standardParty(27, 27), "overlord", 9);
+    const party = b.units.filter((u) => u.side === "party");
+    const form = (id: string) => b.units.find((u) => u.enemy === id && !u.dead);
+    const buffAll = () => party.forEach((p) => addStatus(b, p, "protect", 300));
+    const buffed = () => party.filter((p) => p.statuses.some((s) => s.id === "protect")).length;
+
+    buffAll();
+    form("overlord")!.hp = 1;
+    checkEnd(b);
+    expect(form("overlord_ascendant")!.size).toEqual([2, 2]);
+    expect(buffed()).toBe(0);
+
+    buffAll();
+    form("overlord_ascendant")!.hp = 1;
+    checkEnd(b);
+    const last = form("overlord_final")!;
+    expect(last.size).toEqual([3, 3]);
+    expect(buffed()).toBe(0);
+    expect(b.outcome).toBeUndefined();
+    expect(last.gambits[0]).toMatchObject({ if: "turn%4==0", do: "doom_pulse" });
+  });
+});

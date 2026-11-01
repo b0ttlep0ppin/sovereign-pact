@@ -1,0 +1,35 @@
+{
+  "id": "overlord",
+  "name": "The Overlord",
+  "pool": "pit",
+  "tags": ["demon", "royal"],
+  "role": "boss",
+  "size": [1, 1],
+  "at": "E2",
+  "levels": [9, 10],
+  "stats": {"speed": 14, "hp": 2.5, "atk": 1.2},
+  "affinity": {"holy": -50, "water": -25, "fire": 50, "dark": 50},
+  "immune": ["fear", "poison", "blind"],
+  "abilities": [
+    {"id": "hellblade", "shape": "single", "side": "player", "power": 1.4, "reach": "reach", "crit": 15},
+    {"id": "infernal_bolt", "shape": "single", "side": "player", "power": 1.3, "kind": "magic", "element": "dark", "reach": "ranged"},
+    {"id": "sovereign_scorn", "shape": "row", "side": "player", "power": 0.8, "kind": "magic", "element": "fire", "charge": 50, "telegraph": true, "cooldown": 3}
+  ],
+  "gambits": [
+    {"if": "turn%3==2", "do": "sovereign_scorn", "target": "densest_row"},
+    {"if": "turn%2==1", "do": "infernal_bolt", "target": "lowest_hp"},
+    {"do": "hellblade", "target": "column_weighted"}
+  ],
+  "phases": [
+    {"at": "hp<=0.3", "name": "The Second Form", "rise": "overlord_ascendant", "dispel": true, "say": "You thought that was my body? That was my patience.", "gambits": [{"do": "hellblade", "target": "column_weighted"}]}
+  ],
+  "say": {
+    "open": "The lord of the Pit sets down his cup. Guests. How long it has been since anything came this deep alive.",
+    "death": "Then let the Pit choose another."
+  },
+  "bestiary": {
+    "lore": "The Pit's true lord, who let the Dark General think he ruled. Three bodies, each worn inside the last.",
+    "weakness": "Holy, and Water a little. Every form change strips the party's buffs: hold the big ones until the last form.",
+    "pattern": "A swordsman who bolts the weakest Scion and scorns a whole row. Beaten down, he sheds the body and rises larger, twice, and each time every buff on the party is torn away."
+  }
+}
