@@ -66,7 +66,7 @@ describe("checkpoint", () => {
     expect(resumed.houses).toEqual(s.houses);
     expect(resumed.people).toEqual(s.people);
     // The RNG carries on from the save, so the rest of the campaign plays out identically.
-    const strip = (x: SovState) => ({ ...x, players: [], log: [] });
+    const strip = (x: SovState) => ({ ...x, players: [], log: [], notes: [] });
     expect(strip(playOut(resumed))).toEqual(strip(playOut({ ...s, players: ["a", "b", "c"] })));
   });
 

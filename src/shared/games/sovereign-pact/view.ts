@@ -64,6 +64,8 @@ export interface PrivateHouse {
   crisis: { pledge: Partial<Record<string, number>>; tempted: boolean } | null;
   /** This House's Year assignments, by person id (§8.3). */
   assign: Record<number, Assignment>;
+  /** What happened at home: this House's own events and their outcomes (Q89), newest last. */
+  notes: string[];
 }
 
 /**
@@ -224,6 +226,7 @@ export function view(s: SovState, playerId: PlayerId): SovView {
             stores: own.stores,
             insight,
             crisis: s.crisis ? { pledge: s.crisis.pledges[me]!, tempted: s.crisis.tempted[me]! } : null,
+            notes: s.notes[me] ?? [],
             assign: Object.fromEntries(s.people.filter((p) => p.host === me && s.assign[p.id]).map((p) => [p.id, s.assign[p.id]!])),
           },
     people,

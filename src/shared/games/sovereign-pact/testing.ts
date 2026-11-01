@@ -13,6 +13,7 @@ export function campaign(houses: number, seed = 1, options?: Record<string, stri
 export function calm(s: SovState): SovState {
   s.flags.push("calm");
   s.events = [];
+  s.notes = s.houses.map(() => []);
   delete s.crisis;
   if (s.vote?.kind === "event") delete s.vote;
   return s;

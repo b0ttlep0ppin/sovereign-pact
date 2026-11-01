@@ -51,6 +51,24 @@ describe("the Omens (§8.8)", () => {
     expect([eligible(s, forge, 0), eligible(s, forge, 1)]).toEqual([true, false]);
   });
 
+  it("keeps a House event to its House: rivals see only a hint, in the log and on the strip (Q89)", () => {
+    let s = withEvent(2, "cousins_claim", 1);
+    expect(view(s, "p2").events.map((e) => e.key)).toEqual(["cousins_claim@1"]);
+    expect(view(s, "p1").events).toEqual([]);
+    expect(view(s, null as never).events).toEqual([]);
+    const title = TOWN_EVENT_BY_ID.get("cousins_claim")!.title;
+    expect(s.log.at(-1)).toBe(`House ${s.houses[1]!.name} has troubles at home.`);
+    expect(s.log.some((l) => l.includes(title))).toBe(false);
+    expect(view(s, "p2").mine!.notes).toEqual([`${title}.`]);
+    expect(view(s, "p1").mine!.notes).toEqual([]);
+    s = move(s, "p2", { type: "choose", event: "cousins_claim@1", option: 0 });
+    expect(s.notes[1]).toHaveLength(2);
+    expect(s.log.some((l) => l.includes(title))).toBe(false);
+    s.timeline.push({ year: 9, id: "cousins_claim", house: 1 });
+    expect(view(s, "p1").timeline.at(-1)).toEqual({ year: 9, id: "?", house: 1 });
+    expect(view(s, "p2").timeline.at(-1)).toEqual({ year: 9, id: "cousins_claim", house: 1 });
+  });
+
   it("lets the richest House decide a most_gold event, the outcome falling on it", () => {
     let s = withEvent(3, "debt_collector");
     s.houses[2]!.gold = 900;
