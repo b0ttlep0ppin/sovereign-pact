@@ -123,6 +123,9 @@ export interface EnemyAbility {
   charge?: number;
   telegraph?: boolean;
   homing?: boolean;
+  leap?: boolean;
+  raise?: number;
+  drain?: number;
   cooldown?: number;
   sanity?: number;
   readiness?: number;

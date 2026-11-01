@@ -62,6 +62,8 @@ export const STATUSES: Record<string, StatusMeta> = {
   shield: { kind: "buff", ticks: 0 },
   enrage: { kind: "buff", ticks: 300 },
   marked: { kind: "debuff", ticks: 200 },
+  /** A lurker that leapt into the formation (§14.3): any Scion's melee reaches it until its next turn. */
+  exposed: { kind: "debuff", ticks: 0, endsOnTurn: true },
   rooted: { kind: "physical", ticks: 200 },
   // From Job abilities (§12.4–12.11): their value is the %.
   counter_up: { kind: "buff", ticks: 500 },

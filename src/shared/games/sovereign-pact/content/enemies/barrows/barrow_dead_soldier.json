@@ -1,0 +1,24 @@
+{
+  "id": "barrow_dead_soldier",
+  "name": "Dead Soldier",
+  "pool": "barrows",
+  "tags": ["undead", "humanoid", "armored", "reach"],
+  "role": "fodder",
+  "size": [1, 1],
+  "levels": [4, 8],
+  "stats": {"speed": 9},
+  "affinity": {"holy": -50, "dark": 50},
+  "immune": ["poison", "fear", "sleep"],
+  "abilities": [
+    {"id": "spear_thrust", "shape": "single", "side": "player", "power": 1.0, "reach": "reach"},
+    {"id": "shield_wall", "shape": "self", "side": "self", "power": 0, "kind": "support", "cooldown": 3, "statuses": [{"id": "guard_up", "chance": 100, "ticks": 200}]}
+  ],
+  "gambits": [
+    {"if": "self.hp<0.5", "do": "shield_wall"},
+    {"do": "spear_thrust", "target": "column_weighted"}
+  ],
+  "bestiary": {
+    "lore": "Still in rank and file. The officer who would dismiss them is three centuries gone.",
+    "weakness": "Holy. Its spear reaches past the Front; its shield does not cover its back."
+  }
+}

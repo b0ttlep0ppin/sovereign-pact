@@ -1,0 +1,26 @@
+{
+  "id": "barrow_shadow_armor",
+  "name": "Shadow Armor",
+  "pool": "barrows",
+  "tags": ["undead", "armored", "construct"],
+  "role": "bruiser",
+  "size": [1, 1],
+  "levels": [5, 8],
+  "stats": {"def": 1.6, "speed": 8},
+  "affinity": {"holy": -50, "dark": 75},
+  "immune": ["poison", "bleed", "fear", "sleep", "charm"],
+  "weak": {"location": "head", "mult": 1.5},
+  "abilities": [
+    {"id": "heavy_blow", "shape": "single", "side": "player", "power": 1.3, "locationBias": "head"},
+    {"id": "dark_cleave", "shape": "row", "side": "player", "power": 1.0, "kind": "magic", "element": "dark", "charge": 60, "telegraph": true, "cooldown": 2}
+  ],
+  "gambits": [
+    {"if": "turn%3==2", "do": "dark_cleave", "target": "densest_row"},
+    {"if": "enemy.marked", "do": "heavy_blow", "target": "marked"},
+    {"do": "heavy_blow", "target": "lowest_durability"}
+  ],
+  "bestiary": {
+    "lore": "Nothing is inside it. Nothing is all it needs.",
+    "weakness": "Holy, and blunt blows to the Head. Its cleave gives warning."
+  }
+}

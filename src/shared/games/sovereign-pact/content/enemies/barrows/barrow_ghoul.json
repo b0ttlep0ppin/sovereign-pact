@@ -1,0 +1,25 @@
+{
+  "id": "barrow_ghoul",
+  "name": "Ghoul",
+  "pool": "barrows",
+  "tags": ["undead", "humanoid"],
+  "role": "bruiser",
+  "size": [1, 1],
+  "levels": [3, 7],
+  "stats": {"speed": 11},
+  "affinity": {"holy": -50, "fire": -25, "dark": 50},
+  "immune": ["poison", "fear", "sleep"],
+  "abilities": [
+    {"id": "rend", "shape": "single", "side": "player", "power": 0.7, "hits": 2, "statuses": [{"id": "bleed", "chance": 30, "ticks": 0}]},
+    {"id": "paralytic_claw", "shape": "single", "side": "player", "power": 0.8, "cooldown": 3, "statuses": [{"id": "stun", "chance": 25, "ticks": 100}]}
+  ],
+  "gambits": [
+    {"if": "enemy.marked", "do": "rend", "target": "marked"},
+    {"if": "turn%3==1", "do": "paralytic_claw", "target": "nearest"},
+    {"do": "rend", "target": "lowest_durability"}
+  ],
+  "bestiary": {
+    "lore": "It eats what the barrows leave. Lately that has not been enough.",
+    "weakness": "Fire and Holy. Its claws open wounds; close them quickly."
+  }
+}

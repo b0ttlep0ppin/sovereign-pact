@@ -1,0 +1,24 @@
+{
+  "id": "barrow_grave_robber",
+  "name": "Grave Robber",
+  "pool": "barrows",
+  "tags": ["humanoid"],
+  "role": "support",
+  "size": [1, 1],
+  "levels": [2, 6],
+  "stats": {"speed": 13},
+  "abilities": [
+    {"id": "cheap_shot", "shape": "single", "side": "player", "power": 0.8, "crit": 20, "statuses": [{"id": "blind", "chance": 25, "ticks": 200}]},
+    {"id": "grave_salve", "shape": "single", "side": "ally", "power": 1.5, "kind": "heal", "cooldown": 2},
+    {"id": "smoke_pot", "shape": "self", "side": "self", "power": 0, "kind": "support", "cooldown": 4, "statuses": [{"id": "hidden", "chance": 100, "ticks": 100}]}
+  ],
+  "gambits": [
+    {"if": "ally.hp<0.5", "do": "grave_salve", "target": "ally_lowest_hp"},
+    {"if": "self.hp<0.5", "do": "smoke_pot"},
+    {"do": "cheap_shot", "target": "back_random"}
+  ],
+  "bestiary": {
+    "lore": "He robs the dead, and patches up whatever pays him to.",
+    "weakness": "Anything that finds him: he hides when hurt."
+  }
+}

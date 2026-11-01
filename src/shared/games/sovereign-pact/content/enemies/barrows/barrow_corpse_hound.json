@@ -1,0 +1,23 @@
+{
+  "id": "barrow_corpse_hound",
+  "name": "Corpse Hound",
+  "pool": "barrows",
+  "tags": ["undead", "beast"],
+  "role": "bruiser",
+  "size": [1, 1],
+  "levels": [2, 5],
+  "stats": {"hp": 1.3, "speed": 12},
+  "affinity": {"holy": -50, "dark": 50},
+  "immune": ["poison", "fear"],
+  "abilities": [
+    {"id": "hamstring", "shape": "single", "side": "player", "power": 1.2, "locationBias": "legs"}
+  ],
+  "gambits": [
+    {"if": "enemy.marked", "do": "hamstring", "target": "marked"},
+    {"do": "hamstring", "target": "lowest_durability"}
+  ],
+  "bestiary": {
+    "lore": "Kennelled with its master and let out when he was not.",
+    "weakness": "Holy. It goes for the legs: armor them."
+  }
+}

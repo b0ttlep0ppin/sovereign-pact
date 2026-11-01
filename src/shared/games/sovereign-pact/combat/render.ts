@@ -84,6 +84,8 @@ export function describeEvent(b: Battle, e: BattleEvent): string {
       return `${n(e.unit)} counters ${n(e.target)}'s spell`;
     case "summon":
       return `${n(e.unit)} calls ${e.ids.map(n).join(" and ")}`;
+    case "raise":
+      return `${n(e.unit)} raises ${n(e.target)} from the dead`;
     case "vanish":
       return `${n(e.unit)} leaves the field`;
     case "shift":

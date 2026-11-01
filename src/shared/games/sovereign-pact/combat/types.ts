@@ -57,6 +57,10 @@ export interface Weapon {
 export interface AbilityDef {
   id: string;
   name?: string;
+  /** A lurker's leap (§14.3): reaches any standing foe, then the user stands Exposed among them. */
+  leap?: boolean;
+  /** Raises a fallen fodder or swarm ally at this % of its max HP (the Dark Necromancer, §14.5). */
+  raise?: number;
   /** A shape from §10.2: single, row, column[:F|M|B], band:n, lob, line:n, cross, burst:3x3, burst:5x5, checker:a|b, front_each_row, nearest:n, random:n, all, self, adjacent, ring. */
   shape: string;
   /** Whose side it lands on, from the user's point of view. */
@@ -306,6 +310,7 @@ export type BattleEvent =
   | { t: "reflect" | "counterspell"; unit: number; target: number }
   | { t: "summon"; unit: number; summon: string; ids: number[] }
   | { t: "vanish"; unit: number }
+  | { t: "raise"; unit: number; target: number }
   | { t: "shift"; unit: number; form: string | null }
   | { t: "dead"; target: number }
   | { t: "wait" | "defend"; unit: number }

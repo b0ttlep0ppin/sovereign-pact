@@ -1,0 +1,23 @@
+{
+  "id": "barrow_dark_wizard",
+  "name": "Dark Wizard",
+  "pool": "barrows",
+  "tags": ["humanoid"],
+  "role": "caster",
+  "size": [1, 1],
+  "levels": [2, 6],
+  "stats": {"speed": 10},
+  "affinity": {"holy": -25, "dark": 50},
+  "abilities": [
+    {"id": "dark_bolt", "shape": "single", "side": "player", "power": 1.0, "kind": "magic", "element": "dark", "reach": "ranged"},
+    {"id": "shadow_burst", "shape": "burst:3x3", "side": "player", "power": 1.2, "kind": "magic", "element": "dark", "charge": 100, "telegraph": true, "cooldown": 3}
+  ],
+  "gambits": [
+    {"if": "turn%3==1", "do": "shadow_burst"},
+    {"do": "dark_bolt", "target": "lowest_hp"}
+  ],
+  "bestiary": {
+    "lore": "A living man who came to the barrows to learn. He has learned.",
+    "weakness": "Interrupt the burst. Light armor: anything reaches him."
+  }
+}

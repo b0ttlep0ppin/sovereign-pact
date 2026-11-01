@@ -1,0 +1,26 @@
+{
+  "id": "barrow_curse_priest",
+  "name": "Curse Priest",
+  "pool": "barrows",
+  "tags": ["humanoid", "undead"],
+  "role": "support",
+  "size": [1, 1],
+  "levels": [3, 8],
+  "stats": {"speed": 11},
+  "affinity": {"holy": -50, "dark": 50},
+  "immune": ["poison", "fear", "sleep"],
+  "abilities": [
+    {"id": "unholy_mending", "shape": "single", "side": "ally", "power": 1.6, "kind": "heal", "element": "dark"},
+    {"id": "black_ward", "shape": "single", "side": "ally", "power": 0, "kind": "support", "shieldPct": 15, "cooldown": 2},
+    {"id": "hex_rite", "shape": "single", "side": "player", "power": 0, "kind": "support", "reach": "ranged", "cooldown": 3, "statuses": [{"id": "hex", "chance": 60, "ticks": 300}]}
+  ],
+  "gambits": [
+    {"if": "ally.hp<0.5", "do": "unholy_mending", "target": "ally_lowest_hp"},
+    {"if": "turn%3==0", "do": "black_ward", "target": "ally_lowest_hp"},
+    {"do": "hex_rite", "target": "back_random"}
+  ],
+  "bestiary": {
+    "lore": "He blesses the dead to keep them walking. The dead are grateful, in their way.",
+    "weakness": "Holy. Silence stops his prayers."
+  }
+}

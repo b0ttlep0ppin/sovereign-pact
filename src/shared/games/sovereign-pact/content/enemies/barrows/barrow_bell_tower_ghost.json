@@ -1,0 +1,24 @@
+{
+  "id": "barrow_bell_tower_ghost",
+  "name": "Bell Tower Ghost",
+  "pool": "barrows",
+  "tags": ["spirit", "flyer"],
+  "role": "horror",
+  "size": [1, 1],
+  "levels": [5, 8],
+  "stats": {"speed": 10, "sanityTouch": 3},
+  "affinity": {"holy": -75, "dark": 75},
+  "immune": ["poison", "bleed", "sleep", "fear"],
+  "abilities": [
+    {"id": "death_knell", "shape": "all", "side": "player", "power": 0, "kind": "magic", "reach": "ranged", "sanity": 7, "charge": 100, "telegraph": true, "cooldown": 4},
+    {"id": "toll", "shape": "single", "side": "player", "power": 0.7, "kind": "magic", "element": "dark", "reach": "ranged", "sanity": 4, "readiness": 30}
+  ],
+  "gambits": [
+    {"if": "turn%4==1", "do": "death_knell"},
+    {"do": "toll", "target": "lowest_sanity"}
+  ],
+  "bestiary": {
+    "lore": "It rings for every funeral. It has started ringing early.",
+    "weakness": "Holy. Interrupt the knell; Deaf Scions hear none of it."
+  }
+}

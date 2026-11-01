@@ -1,0 +1,24 @@
+{
+  "id": "barrow_hanged_shadow",
+  "name": "Hanged Shadow",
+  "pool": "barrows",
+  "tags": ["spirit"],
+  "role": "horror",
+  "size": [1, 1],
+  "levels": [2, 8],
+  "stats": {"speed": 10, "sanityTouch": 4},
+  "affinity": {"holy": -75, "dark": 75},
+  "immune": ["poison", "bleed", "sleep"],
+  "abilities": [
+    {"id": "noose", "shape": "single", "side": "player", "power": 0.6, "kind": "magic", "element": "dark", "reach": "ranged", "sanity": 6, "statuses": [{"id": "silence", "chance": 30, "ticks": 200}]},
+    {"id": "creak", "shape": "row", "side": "player", "power": 0, "kind": "magic", "reach": "ranged", "sanity": 8, "charge": 60, "cooldown": 3, "statuses": [{"id": "fear", "chance": 30, "ticks": 200}]}
+  ],
+  "gambits": [
+    {"if": "turn%3==2", "do": "creak", "target": "densest_row"},
+    {"do": "noose", "target": "lowest_sanity"}
+  ],
+  "bestiary": {
+    "lore": "It sways where the gallows tree used to be. The rope creaks when you look away.",
+    "weakness": "Holy. Keep Sanity high at the Back."
+  }
+}

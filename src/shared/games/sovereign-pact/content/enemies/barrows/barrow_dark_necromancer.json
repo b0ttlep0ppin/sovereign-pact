@@ -1,0 +1,23 @@
+{
+  "id": "barrow_dark_necromancer",
+  "name": "Dark Necromancer",
+  "pool": "barrows",
+  "tags": ["humanoid"],
+  "role": "caster",
+  "size": [1, 1],
+  "levels": [4, 8],
+  "stats": {"speed": 10},
+  "affinity": {"holy": -25, "dark": 50},
+  "abilities": [
+    {"id": "raise_dead", "shape": "self", "side": "self", "power": 0, "kind": "support", "raise": 50, "cooldown": 3, "charge": 60, "telegraph": true},
+    {"id": "bone_spear", "shape": "lob", "side": "player", "power": 1.0, "kind": "magic", "element": "dark", "reach": "ranged"}
+  ],
+  "gambits": [
+    {"if": "fallen>=1", "do": "raise_dead"},
+    {"do": "bone_spear", "target": "lob"}
+  ],
+  "bestiary": {
+    "lore": "Every fight in the barrows goes on as long as he does.",
+    "weakness": "Kill him first, or the fallen get up. His raise can be interrupted."
+  }
+}

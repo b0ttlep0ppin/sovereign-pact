@@ -1,0 +1,24 @@
+{
+  "id": "barrow_grudge_coffin",
+  "name": "Grudge Coffin",
+  "pool": "barrows",
+  "tags": ["undead", "construct"],
+  "role": "artillery",
+  "size": [1, 1],
+  "levels": [4, 8],
+  "stats": {"speed": 7},
+  "affinity": {"holy": -25, "fire": -50, "dark": 50},
+  "immune": ["poison", "bleed", "fear", "sleep", "charm"],
+  "abilities": [
+    {"id": "coffin_slam", "shape": "band:3", "side": "player", "power": 1.4, "charge": 120, "telegraph": true, "cooldown": 2},
+    {"id": "nail_spit", "shape": "lob", "side": "player", "power": 0.8, "reach": "ranged", "statuses": [{"id": "bleed", "chance": 25, "ticks": 0}]}
+  ],
+  "gambits": [
+    {"if": "turn%3==1", "do": "coffin_slam"},
+    {"do": "nail_spit", "target": "lob"}
+  ],
+  "bestiary": {
+    "lore": "Whoever is inside has a grievance and a very long arm.",
+    "weakness": "Fire. The slam is slow: leave the rows it names."
+  }
+}

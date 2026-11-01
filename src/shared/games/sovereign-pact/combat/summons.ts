@@ -145,3 +145,15 @@ export function sacrifice(b: Battle, u: Combatant, s: Combatant, hpPct: number):
   }
   vanish(b, s);
 }
+
+/** Fallen fodder and swarm of `u`'s side whose cells are free again: what a raise can bring back (§14.5). */
+export const fallen = (b: Battle, u: Combatant): Combatant[] =>
+  b.units.filter((o) => o.dead && o.side === u.side && o.owner === undefined && (o.role === "fodder" || o.role === "swarm") && isFree(b, o.side, o.col, o.row, o.size));
+
+/** Raises the first fallen ally at `pct`% of its max HP, its statuses gone and its clock at zero. */
+export function raise(b: Battle, u: Combatant, pct: number): void {
+  const t = fallen(b, u)[0];
+  if (!t) return;
+  Object.assign(t, { dead: false, down: false, hp: Math.max(1, Math.round((t.maxHp * pct) / 100)), statuses: [], ct: 0, charge: undefined });
+  b.events.push({ t: "raise", unit: u.id, target: t.id });
+}

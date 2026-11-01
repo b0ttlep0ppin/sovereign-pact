@@ -1,0 +1,24 @@
+{
+  "id": "barrow_skull_bird",
+  "name": "Skull Bird",
+  "pool": "barrows",
+  "tags": ["undead", "beast", "flyer"],
+  "role": "swarm",
+  "size": [1, 1],
+  "levels": [2, 6],
+  "stats": {"speed": 13},
+  "affinity": {"holy": -50, "dark": 50},
+  "immune": ["poison", "sleep"],
+  "abilities": [
+    {"id": "peck", "shape": "single", "side": "player", "power": 1.0},
+    {"id": "overrun", "shape": "band:3", "side": "player", "power": 0.6, "cooldown": 1}
+  ],
+  "gambits": [
+    {"if": "swarm>=5", "do": "overrun"},
+    {"do": "peck", "target": "back_random"}
+  ],
+  "bestiary": {
+    "lore": "The barrow crows died and kept circling.",
+    "weakness": "Anything that hits a row. Five or more swoop together."
+  }
+}

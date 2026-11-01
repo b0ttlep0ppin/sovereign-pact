@@ -1,0 +1,25 @@
+{
+  "id": "barrow_dark_crow",
+  "name": "Dark Crow",
+  "pool": "barrows",
+  "tags": ["beast", "flyer", "undead"],
+  "role": "elite",
+  "size": [1, 1],
+  "levels": [2, 6],
+  "stats": {"speed": 12},
+  "affinity": {"holy": -50, "dark": 50},
+  "immune": ["poison", "sleep"],
+  "abilities": [
+    {"id": "eye_peck", "shape": "single", "side": "player", "power": 1.1, "locationBias": "head", "statuses": [{"id": "blind", "chance": 40, "ticks": 200}]},
+    {"id": "murder", "shape": "random:3", "side": "player", "power": 0.7, "charge": 60, "telegraph": true, "cooldown": 3}
+  ],
+  "gambits": [
+    {"if": "foe.charging", "do": "eye_peck", "target": "charging"},
+    {"if": "turn%3==1", "do": "murder"},
+    {"do": "eye_peck", "target": "back_random"}
+  ],
+  "bestiary": {
+    "lore": "The biggest crow of the barrows, and the others do what it says.",
+    "weakness": "Holy. It flies: only the Front's melee touches it."
+  }
+}
