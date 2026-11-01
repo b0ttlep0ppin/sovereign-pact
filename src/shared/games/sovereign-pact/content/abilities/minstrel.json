@@ -1,0 +1,23 @@
+{
+  "job": "minstrel",
+  "actives": [
+    {"id": "march", "name": "March", "jp": 100, "text": "Allies Speed +1.", "shape": "all", "side": "ally", "power": 0, "kind": "support", "mp": 15, "song": {"layer": "melody", "mods": {"speed": 1}}},
+    {"id": "hymn_of_iron", "name": "Hymn of Iron", "jp": 150, "text": "Allies take 15% less physical damage.", "shape": "all", "side": "ally", "power": 0, "kind": "support", "mp": 15, "song": {"layer": "melody", "mods": {"physicalTakenPct": -15}}},
+    {"id": "ballad_of_embers", "name": "Ballad of Embers", "jp": 150, "text": "Allies' weapon hits add 10% Fire.", "shape": "all", "side": "ally", "power": 0, "kind": "support", "mp": 15, "song": {"layer": "melody", "mods": {"edge.fire": 10}}},
+    {"id": "lullaby", "name": "Lullaby", "jp": 150, "text": "Enemies Speed −1; a Sleep chance as it begins.", "shape": "all", "side": "foe", "power": 0, "kind": "support", "mp": 20, "song": {"layer": "harmony", "mods": {"speed": -1}}, "statuses": [{"id": "sleep", "chance": 20, "ticks": 0}]},
+    {"id": "dirge", "name": "Dirge", "jp": 200, "text": "Enemies' healing −50%; undead are struck with Fear.", "shape": "all", "side": "foe", "power": 0, "kind": "support", "mp": 20, "song": {"layer": "harmony", "mods": {"healingReceivedPct": -50}}, "statuses": [{"id": "fear", "chance": 100, "ticks": 0, "tag": "undead"}]},
+    {"id": "mockery", "name": "Mockery", "jp": 100, "text": "Enemies' accuracy −10%.", "shape": "all", "side": "foe", "power": 0, "kind": "support", "mp": 15, "song": {"layer": "harmony", "mods": {"accuracy": -10}}},
+    {"id": "requiem", "name": "Requiem", "jp": 200, "text": "Enemy buffs run out twice as fast.", "shape": "all", "side": "foe", "power": 0, "kind": "support", "mp": 25, "song": {"layer": "harmony", "mods": {"buffDecay": 1}}},
+    {"id": "hearthsong", "name": "Hearthsong", "jp": 150, "text": "Allies regain 3% HP every 50 ticks.", "shape": "all", "side": "ally", "power": 0, "kind": "support", "mp": 15, "song": {"layer": "chorus", "mods": {"regenPct": 3}}},
+    {"id": "fountain", "name": "Fountain", "jp": 150, "text": "Allies regain 2 MP every 50 ticks.", "shape": "all", "side": "ally", "power": 0, "kind": "support", "mp": 15, "song": {"layer": "chorus", "mods": {"mpPerPulse": 2}}},
+    {"id": "drumbeat", "name": "Drumbeat", "jp": 150, "text": "Allies gain 5 TP every 50 ticks.", "shape": "all", "side": "ally", "power": 0, "kind": "support", "mp": 15, "song": {"layer": "chorus", "mods": {"tpPerPulse": 5}}},
+    {"id": "cleansing_air", "name": "Cleansing Air", "jp": 200, "text": "Each ally loses one physical ailment every 100 ticks.", "shape": "all", "side": "ally", "power": 0, "kind": "support", "mp": 20, "song": {"layer": "chorus", "mods": {"cleansePer100": 1}}},
+    {"id": "plague_chant", "name": "Plague Chant", "jp": 200, "text": "Enemies are Poisoned every 100 ticks.", "shape": "all", "side": "foe", "power": 0, "kind": "support", "mp": 20, "song": {"layer": "chorus", "mods": {"poisonPer100": 1}}}
+  ],
+  "passives": [
+    {"id": "carrying_voice", "name": "Carrying Voice", "points": 1, "jp": 100, "text": "Songs also reach Deaf allies at half effect.", "later": true},
+    {"id": "crescendo", "name": "Crescendo", "points": 2, "jp": 200, "text": "Each layer that has lasted 300 ticks is 50% stronger.", "later": true},
+    {"id": "heartstring", "name": "Heartstring", "points": 2, "jp": 200, "text": "Replacing a layer restores 5% Sanity to every ally.", "mods": {"heartstring": 5}},
+    {"id": "finale", "name": "Finale", "points": 3, "jp": 300, "text": "Dropping all three layers at once deals 2.0× Sagacity damage to every enemy.", "later": true}
+  ]
+}

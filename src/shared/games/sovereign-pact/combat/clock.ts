@@ -4,7 +4,7 @@ import type { Rng } from "../../../rng.ts";
 import { TUNING } from "../tuning.ts";
 import { hasStatus } from "./grid.ts";
 import { down, injure, kill, steel } from "./injury.ts";
-import { frozenClock, speedOf, statusValue, tickStatuses } from "./status.ts";
+import { addStatus, frozenClock, meta, removeStatus, speedOf, statusValue, tickStatuses } from "./status.ts";
 import type { Battle, Combatant } from "./types.ts";
 
 const C = TUNING.combat;
@@ -27,13 +27,23 @@ export function step(b: Battle, rng: Rng): Combatant[] {
     }
     if (pulse) pulseOf(b, rng, u);
     // Meditation, Wellspring, Mana Font: MP per 100 ticks.
-    if (b.tick % C.regenEvery === 0 && u.mods.mpPer100) u.mp = Math.min(u.maxMp, u.mp + u.mods.mpPer100);
+    if (b.tick % C.regenEvery === 0) per100(b, u);
     if (!u.dead) tickStatuses(b, u);
   }
   return ready;
 }
 
 const pctOf = (n: number, p: number) => Math.max(1, Math.round((n * p) / 100));
+
+/** Every 100 ticks: Meditation, Wellspring, Mana Font; Cleansing Air and Plague Chant. */
+function per100(b: Battle, u: Combatant): void {
+  if (u.mods.mpPer100) u.mp = Math.min(u.maxMp, u.mp + u.mods.mpPer100);
+  if (u.mods.cleansePer100) {
+    const ail = u.statuses.find((s) => meta(s.id).kind === "physical");
+    if (ail) removeStatus(b, u, ail.id);
+  }
+  if (u.mods.poisonPer100 && !hasStatus(u, "poison")) addStatus(b, u, "poison");
+}
 
 /** Every 50 ticks: Poison, Bleed, Burn hurt; Regen, MP Regen, TP Regen restore (§10.8). */
 function pulseOf(b: Battle, rng: Rng, u: Combatant): void {
@@ -48,6 +58,10 @@ function pulseOf(b: Battle, rng: Rng, u: Combatant): void {
   if (hasStatus(u, "regen")) u.hp = Math.min(u.maxHp, u.hp + pctOf(u.maxHp, C.regen));
   if (hasStatus(u, "mp_regen")) u.mp = Math.min(u.maxMp, u.mp + 2);
   if (hasStatus(u, "tp_regen")) u.tp = Math.min(C.tp.max, u.tp + 5);
+  // Chorus songs (§12.11): Hearthsong, Fountain, Drumbeat.
+  if (u.mods.regenPct) u.hp = Math.min(u.maxHp, u.hp + pctOf(u.maxHp, u.mods.regenPct));
+  if (u.mods.mpPerPulse) u.mp = Math.min(u.maxMp, u.mp + u.mods.mpPerPulse);
+  if (u.mods.tpPerPulse) u.tp = Math.min(C.tp.max, u.tp + u.mods.tpPerPulse);
   if (!hurt) return;
   u.hp = Math.max(0, u.hp - hurt);
   b.events.push({ t: "hit", unit: u.id, target: u.id, damage: hurt });

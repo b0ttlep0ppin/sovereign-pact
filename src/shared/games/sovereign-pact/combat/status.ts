@@ -1,6 +1,7 @@
 // Statuses (§10.8): what kind each is (for resist checks and cures), what it does to the clock and to
 // a turn, and applying and ending them. Damage-over-time pulses run in clock.ts.
 import type { Rng } from "../../../rng.ts";
+import { ABILITY_SETS } from "../content.ts";
 import { TUNING } from "../tuning.ts";
 import { hasStatus } from "./grid.ts";
 import type { Battle, Combatant, StatusInst, StatusKind } from "./types.ts";
@@ -67,6 +68,10 @@ export const STATUSES: Record<string, StatusMeta> = {
   loaded_card: { kind: "debuff", ticks: 0 },
 };
 
+// Songs are statuses on their hearers: buffs on allies, debuffs on enemies (§12.2).
+for (const set of ABILITY_SETS)
+  for (const a of set.actives) if (a.song) STATUSES[a.id] = { kind: a.side === "foe" ? "debuff" : "buff", ticks: 0 };
+
 export const meta = (id: string): StatusMeta => STATUSES[id] ?? { kind: "debuff", ticks: 0 };
 
 export const isMental = (id: string): boolean => meta(id).kind === "mental";
@@ -94,12 +99,16 @@ export function addStatus(b: Battle, u: Combatant, id: string, ticks?: number, e
   const i = u.statuses.findIndex((s) => s.id === id);
   if (i >= 0) {
     const old = u.statuses[i]!;
+    addMods(u, old.mods, -1);
     // Battle-long beats timed; a longer time beats a shorter; values add for Shields.
     const ticksLeft = old.ticks === 0 || inst.ticks === 0 ? 0 : Math.max(old.ticks, inst.ticks);
     u.statuses[i] = { ...old, ...inst, ticks: ticksLeft, value: id === "shield" ? (old.value ?? 0) + (inst.value ?? 0) : inst.value ?? old.value };
   } else u.statuses.push(inst);
+  addMods(u, inst.mods, 1);
   b.events.push({ t: "status", target: u.id, status: id, on: true });
   if (id === "stun") u.ct = 0;
+  // A Silenced or Deaf Minstrel stops playing (§12.2).
+  if ((id === "silence" || id === "deaf") && u.songs) endSongs(b, u);
   if (u.charge && (m.cancelsCharge === true || (m.cancelsCharge === "spells" && u.charge.ability.kind === "magic"))) {
     b.events.push({ t: "cancel", unit: u.id, ability: u.charge.ability.id });
     delete u.charge;
@@ -114,8 +123,28 @@ export function tryStatus(b: Battle, rng: Rng, u: Combatant, id: string, chance:
   return addStatus(b, u, id, ticks, value === undefined ? undefined : { value });
 }
 
+/** Adds (sign 1) or takes back (−1) a status's mods. */
+function addMods(u: Combatant, mods: Record<string, number> | undefined, sign: 1 | -1): void {
+  for (const [k, v] of Object.entries(mods ?? {})) {
+    u.mods[k] = (u.mods[k] ?? 0) + sign * v;
+    if (u.mods[k] === 0) delete u.mods[k];
+  }
+}
+
+/** Ends a Minstrel's songs (all layers, or one): every hearer loses them. */
+export function endSongs(b: Battle, u: Combatant, layer?: keyof NonNullable<Combatant["songs"]>): void {
+  const ids = layer ? [u.songs?.[layer]] : Object.values(u.songs ?? {});
+  for (const id of ids) {
+    if (!id) continue;
+    for (const t of b.units) if (t.statuses.some((s) => s.id === id && s.src === u.id)) removeStatus(b, t, id);
+  }
+  if (layer && u.songs) delete u.songs[layer];
+  else delete u.songs;
+}
+
 export function removeStatus(b: Battle, u: Combatant, id: string): void {
   if (!hasStatus(u, id)) return;
+  for (const s of u.statuses) if (s.id === id) addMods(u, s.mods, -1);
   u.statuses = u.statuses.filter((s) => s.id !== id);
   b.events.push({ t: "status", target: u.id, status: id, on: false });
 }
@@ -135,9 +164,11 @@ export const frozenClock = (u: Combatant): boolean => u.statuses.some((s) => met
 /** Counts statuses down one clock step; ends the ones that ran out. */
 export function tickStatuses(b: Battle, u: Combatant): void {
   const step = TUNING.combat.ticksPerStep;
+  // Requiem: an enemy's buffs run out faster.
+  const decay = 1 + (u.mods.buffDecay ?? 0);
   for (const s of [...u.statuses]) {
     if (s.ticks === 0) continue;
-    s.ticks -= step;
+    s.ticks -= meta(s.id).kind === "buff" ? step * decay : step;
     if (s.ticks <= 0) removeStatus(b, u, s.id);
   }
 }
