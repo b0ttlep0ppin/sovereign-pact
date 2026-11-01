@@ -262,6 +262,11 @@ export function strike(b: Battle, rng: Rng, u: Combatant, t: Combatant, ab: Abil
   const owner = u.owner !== undefined && damage > 0 ? b.units.find((o) => o.id === u.owner && o.mods.bloodbound && !o.dead && !o.down) : undefined;
   if (owner) owner.hp = Math.max(owner.hp, Math.min(hpCap(owner), owner.hp + Math.round((damage * owner.mods.bloodbound!) / 100)));
   if (ab.drain && damage > 0 && !u.down && !u.dead) u.hp = Math.min(hpCap(u), u.hp + Math.round((damage * ab.drain) / 100));
+  if (ab.tpSteal && damage > 0) {
+    const took = Math.min(t.tp, ab.tpSteal);
+    t.tp -= took;
+    u.tp = Math.min(C.tp.max, u.tp + took);
+  }
   if (ab.breaksCharge && t.charge && !t.dead) {
     b.events.push({ t: "cancel", unit: t.id, ability: t.charge.ability.id });
     delete t.charge;

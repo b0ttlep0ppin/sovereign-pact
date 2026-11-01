@@ -2,6 +2,7 @@
 import dark_general from "./dark_general.json" with { type: "json" };
 import goblin_lord from "./goblin_lord.json" with { type: "json" };
 import scylla from "./scylla.json" with { type: "json" };
+import stone_colossus from "./stone_colossus.json" with { type: "json" };
 import tree_king from "./tree_king.json" with { type: "json" };
 import vampire_queen from "./vampire_queen.json" with { type: "json" };
 
@@ -9,6 +10,7 @@ export default [
   dark_general,
   goblin_lord,
   scylla,
+  stone_colossus,
   tree_king,
   vampire_queen,
 ];

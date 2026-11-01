@@ -1,0 +1,24 @@
+{
+  "id": "forge_bomb",
+  "name": "Bomb",
+  "pool": "forge_ruins",
+  "tags": ["construct", "elemental"],
+  "role": "artillery",
+  "size": [1, 1],
+  "levels": [3, 8],
+  "stats": {"hp": 0.6, "speed": 9},
+  "affinity": {"earth": 25, "water": -75, "wind": -25, "fire": 50},
+  "immune": ["bleed", "charm", "fear", "poison", "sleep"],
+  "abilities": [
+    {"id": "detonate", "shape": "burst:3x3", "side": "player", "power": 1.6, "kind": "magic", "element": "fire", "charge": 100, "telegraph": true, "selfDestruct": true},
+    {"id": "fizz", "shape": "single", "side": "player", "power": 0.5}
+  ],
+  "gambits": [
+    {"if": "turn>=2", "do": "detonate", "target": "densest_cluster"},
+    {"do": "fizz", "target": "nearest"}
+  ],
+  "bestiary": {
+    "lore": "A walking bomb. The fuse is the part you can see.",
+    "weakness": "Water puts it out; kill it before the fuse burns down."
+  }
+}

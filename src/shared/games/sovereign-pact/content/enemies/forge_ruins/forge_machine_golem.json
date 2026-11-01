@@ -1,0 +1,26 @@
+{
+  "id": "forge_machine_golem",
+  "name": "Machine Golem",
+  "pool": "forge_ruins",
+  "tags": ["construct", "armored"],
+  "role": "elite",
+  "size": [1, 1],
+  "levels": [5, 9],
+  "stats": {"speed": 9},
+  "affinity": {"earth": 25, "water": -25, "wind": -25},
+  "immune": ["bleed", "charm", "fear", "poison", "sleep"],
+  "abilities": [
+    {"id": "hydraulic_fist", "shape": "single", "side": "player", "power": 1.5, "statuses": [{"id": "knockdown", "chance": 30, "ticks": 0}]},
+    {"id": "steam_vent", "shape": "adjacent", "side": "player", "power": 0.9, "kind": "magic", "element": "water", "cooldown": 2, "statuses": [{"id": "blind", "chance": 30, "ticks": 200}]},
+    {"id": "rivet_storm", "shape": "random:4", "side": "player", "power": 0.4, "reach": "ranged"}
+  ],
+  "gambits": [
+    {"if": "turn%3==1", "do": "steam_vent"},
+    {"if": "turn%3==2", "do": "rivet_storm"},
+    {"do": "hydraulic_fist", "target": "lowest_durability"}
+  ],
+  "bestiary": {
+    "lore": "The workshop's masterpiece, still walking its rounds.",
+    "weakness": "Water and Wind. Its vents blind whoever is close."
+  }
+}

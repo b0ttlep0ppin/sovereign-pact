@@ -130,6 +130,10 @@ export interface EnemyAbility {
   raise?: number;
   drain?: number;
   pull?: number;
+  tpSteal?: number;
+  constructHpPct?: number;
+  selfDestruct?: boolean;
+  flee?: boolean;
   cooldown?: number;
   sanity?: number;
   readiness?: number;
@@ -199,6 +203,8 @@ export interface BossPhase {
   regrow?: boolean;
   flee?: boolean;
   statuses?: { id: string; ticks: number }[];
+  /** A weak point it shows from this phase on (aimed hits on the location do × mult). */
+  weak?: { location: Location; mult: number };
   say: string;
 }
 

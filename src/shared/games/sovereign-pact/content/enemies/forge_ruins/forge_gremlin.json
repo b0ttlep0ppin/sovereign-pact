@@ -1,0 +1,23 @@
+{
+  "id": "forge_gremlin",
+  "name": "Gremlin",
+  "pool": "forge_ruins",
+  "tags": ["fey"],
+  "role": "fodder",
+  "size": [1, 1],
+  "levels": [3, 8],
+  "stats": {"hp": 0.7, "speed": 14},
+  "affinity": {"earth": 25, "water": -25, "wind": -25},
+  "abilities": [
+    {"id": "sabotage", "shape": "single", "side": "player", "power": 0.9, "tpSteal": 20},
+    {"id": "monkey_wrench", "shape": "single", "side": "player", "power": 1.0, "statuses": [{"id": "disarmed", "chance": 20, "ticks": 200}]}
+  ],
+  "gambits": [
+    {"if": "turn%2==1", "do": "sabotage", "target": "highest_might"},
+    {"do": "monkey_wrench", "target": "column_weighted"}
+  ],
+  "bestiary": {
+    "lore": "It lives in the machines and takes them apart from the inside. It does the same to you.",
+    "weakness": "Anything. It steals the TP you were saving."
+  }
+}

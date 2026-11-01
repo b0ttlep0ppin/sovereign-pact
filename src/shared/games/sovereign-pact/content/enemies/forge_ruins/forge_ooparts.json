@@ -1,0 +1,24 @@
+{
+  "id": "forge_ooparts",
+  "name": "Ooparts",
+  "pool": "forge_ruins",
+  "tags": ["construct", "unknown"],
+  "role": "horror",
+  "size": [1, 1],
+  "levels": [5, 9],
+  "stats": {"speed": 8, "sanityTouch": 4},
+  "affinity": {"earth": 25, "water": -25, "wind": -25, "holy": -50, "dark": 50},
+  "immune": ["bleed", "charm", "fear", "poison", "sleep"],
+  "abilities": [
+    {"id": "impossible_shape", "shape": "row", "side": "player", "power": 0.4, "kind": "magic", "sanity": 7, "cooldown": 2, "statuses": [{"id": "madness", "chance": 20, "ticks": 300}], "element": "dark"},
+    {"id": "hum", "shape": "single", "side": "player", "power": 0.6, "kind": "magic", "sanity": 6, "reach": "ranged"}
+  ],
+  "gambits": [
+    {"if": "turn%3==1", "do": "impossible_shape", "target": "densest_row"},
+    {"do": "hum", "target": "lowest_sanity"}
+  ],
+  "bestiary": {
+    "lore": "An object that does not belong in any age. Looking at it is a mistake.",
+    "weakness": "Holy. Its shape costs Sanity."
+  }
+}

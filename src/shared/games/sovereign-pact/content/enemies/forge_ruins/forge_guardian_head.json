@@ -1,0 +1,26 @@
+{
+  "id": "forge_guardian_head",
+  "name": "Guardian Head",
+  "pool": "forge_ruins",
+  "tags": ["construct"],
+  "role": "elite",
+  "size": [1, 1],
+  "levels": [3, 7],
+  "stats": {"def": 1.6, "speed": 9},
+  "affinity": {"earth": 25, "water": -25, "wind": 50},
+  "immune": ["bleed", "charm", "fear", "poison", "sleep"],
+  "abilities": [
+    {"id": "eye_beam", "shape": "row", "side": "player", "power": 1.2, "kind": "magic", "charge": 60, "telegraph": true, "cooldown": 2, "element": "wind"},
+    {"id": "ward_field", "shape": "self", "side": "self", "power": 0, "kind": "support", "statuses": [{"id": "shell", "chance": 100, "ticks": 300}, {"id": "protect", "chance": 100, "ticks": 300}], "cooldown": 4},
+    {"id": "glare", "shape": "single", "side": "player", "power": 0.9, "kind": "magic", "statuses": [{"id": "stop", "chance": 20, "ticks": 100}], "element": "wind", "reach": "ranged"}
+  ],
+  "gambits": [
+    {"if": "turn%4==1", "do": "ward_field"},
+    {"if": "turn%2==0", "do": "eye_beam", "target": "densest_row"},
+    {"do": "glare", "target": "lowest_hp"}
+  ],
+  "bestiary": {
+    "lore": "A great carved head that guarded the workshop door. Its eyes still work.",
+    "weakness": "Water. Interrupt its beam."
+  }
+}

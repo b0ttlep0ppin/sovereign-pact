@@ -1,0 +1,24 @@
+{
+  "id": "forge_puppet",
+  "name": "Puppet",
+  "pool": "forge_ruins",
+  "tags": ["construct", "cursed"],
+  "role": "fodder",
+  "size": [1, 1],
+  "levels": [3, 8],
+  "stats": {"speed": 11},
+  "affinity": {"earth": 25, "water": -25, "wind": -25, "holy": -25},
+  "immune": ["bleed", "charm", "fear", "poison", "sleep"],
+  "abilities": [
+    {"id": "string_cut", "shape": "single", "side": "player", "power": 1.0, "sanity": 3},
+    {"id": "dance_for_me", "shape": "single", "side": "player", "power": 0.2, "kind": "magic", "sanity": 4, "cooldown": 3, "statuses": [{"id": "confusion", "chance": 30, "ticks": 200}], "reach": "ranged"}
+  ],
+  "gambits": [
+    {"if": "turn%3==1", "do": "dance_for_me", "target": "highest_might"},
+    {"do": "string_cut", "target": "column_weighted"}
+  ],
+  "bestiary": {
+    "lore": "Its strings go up into the dark. Nobody has seen what holds them.",
+    "weakness": "Holy and Water. It makes a Scion dance for it."
+  }
+}

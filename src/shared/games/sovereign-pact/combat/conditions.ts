@@ -25,6 +25,9 @@ export function holds(b: Battle, u: Combatant, cond: string | undefined): boolea
   if (all.length > 1) return all.every((c) => holds(b, u, c));
   if (all[0]!.startsWith("!")) return !holds(b, u, all[0]!.slice(1));
   const c = all[0]!;
+  // An ability its own destroyed Parts took away: `lost.left_slam`.
+  const lostM = /^lost\.([a-z_]+)$/.exec(c);
+  if (lostM) return (u.lost ?? []).includes(lostM[1]!);
   // A status on itself: `self.rooted`, `!self.hidden`.
   let m = /^self\.([a-z_]+)$/.exec(c);
   if (m && !["hp", "sanity", "mp", "tp"].includes(m[1]!)) return hasStatus(u, m[1]!);
@@ -74,6 +77,7 @@ export function holds(b: Battle, u: Combatant, cond: string | undefined): boolea
 const SHAPES = [
   /^always$/,
   /^self\.[a-z_]+$/,
+  /^lost\.[a-z_]+$/,
   /^turn%\d+==\d+$/,
   /^(turn|adds|foes|allies|swarm|fallen|parts)(<=|>=|<|>|==)\d+$/,
   /^(?:(self|ally|foe|enemy)\.)?(hp|sanity|mp|tp)(<=|>=|<|>)[\d.]+$/,

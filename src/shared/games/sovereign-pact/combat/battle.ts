@@ -309,6 +309,13 @@ export function resolve(b: Battle, rng: Rng, u: Combatant, ab: AbilityDef, at: C
   if (ab.self?.tp) u.tp = Math.min(C.tp.max, u.tp + ab.self.tp);
   for (const x of ab.self?.statuses ?? []) addStatus(b, u, x.id, x.ticks, extraOf(x.value, x.mods));
   for (const [k, v] of Object.entries(ab.self?.mods ?? {})) u.mods[k] = (u.mods[k] ?? 0) + v;
+  if ((ab.flee || ab.selfDestruct) && !u.dead) {
+    if (ab.flee) {
+      u.flags.push("fled");
+      b.events.push({ t: "flee", unit: u.id });
+    }
+    kill(b, u);
+  }
   checkEnd(b);
 }
 

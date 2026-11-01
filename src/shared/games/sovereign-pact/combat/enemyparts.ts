@@ -75,6 +75,11 @@ export function partBroken(b: Battle, part: Combatant): void {
   body.lost = [...new Set([...(body.lost ?? []), ...(part.disables ?? [])])];
   body.ct = Math.max(0, body.ct - P.stagger);
   partMods(body, part, 1);
+  // Breaking the Part that powers a charging ability stops the charge (the Stone Colossus's core).
+  if (body.charge && part.disables?.includes(body.charge.ability.id)) {
+    b.events.push({ t: "cancel", unit: body.id, ability: body.charge.ability.id });
+    delete body.charge;
+  }
   b.events.push({ t: "part", unit: body.id, part: part.part! });
 }
 

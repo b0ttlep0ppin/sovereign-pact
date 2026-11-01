@@ -1,0 +1,26 @@
+{
+  "id": "forge_repair_construct",
+  "name": "Repair Construct",
+  "pool": "forge_ruins",
+  "tags": ["construct"],
+  "role": "support",
+  "size": [1, 1],
+  "levels": [3, 9],
+  "stats": {"hp": 0.9, "speed": 9},
+  "affinity": {"earth": 25, "water": -25, "wind": -25},
+  "immune": ["bleed", "charm", "fear", "poison", "sleep"],
+  "abilities": [
+    {"id": "weld", "shape": "single", "side": "ally", "power": 0, "kind": "support", "constructHpPct": 25, "cooldown": 2},
+    {"id": "reinforce", "shape": "single", "side": "ally", "power": 0, "kind": "support", "statuses": [{"id": "protect", "chance": 100, "ticks": 300}], "cooldown": 3},
+    {"id": "rivet_gun", "shape": "single", "side": "player", "power": 0.7}
+  ],
+  "gambits": [
+    {"if": "ally.hp<0.6", "do": "weld", "target": "ally_lowest_hp"},
+    {"if": "turn%3==1", "do": "reinforce", "target": "ally_lowest_hp"},
+    {"do": "rivet_gun", "target": "nearest"}
+  ],
+  "bestiary": {
+    "lore": "Still doing its job: keeping the other machines running.",
+    "weakness": "Anything. Kill it first or the machines get up again."
+  }
+}

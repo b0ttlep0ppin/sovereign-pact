@@ -90,6 +90,31 @@ import marsh_shark from "./drowned_marches/marsh_shark.json" with { type: "json"
 import marsh_siren from "./drowned_marches/marsh_siren.json" with { type: "json" };
 import marsh_tadpole from "./drowned_marches/marsh_tadpole.json" with { type: "json" };
 import marsh_undine from "./drowned_marches/marsh_undine.json" with { type: "json" };
+import forge_arcane_cannon from "./forge_ruins/forge_arcane_cannon.json" with { type: "json" };
+import forge_arcane_core from "./forge_ruins/forge_arcane_core.json" with { type: "json" };
+import forge_arcane_soldieress from "./forge_ruins/forge_arcane_soldieress.json" with { type: "json" };
+import forge_auto_armor from "./forge_ruins/forge_auto_armor.json" with { type: "json" };
+import forge_bomb from "./forge_ruins/forge_bomb.json" with { type: "json" };
+import forge_clay_armor from "./forge_ruins/forge_clay_armor.json" with { type: "json" };
+import forge_clockwork_bat from "./forge_ruins/forge_clockwork_bat.json" with { type: "json" };
+import forge_death_machine from "./forge_ruins/forge_death_machine.json" with { type: "json" };
+import forge_gargoyle from "./forge_ruins/forge_gargoyle.json" with { type: "json" };
+import forge_gear_giant from "./forge_ruins/forge_gear_giant.json" with { type: "json" };
+import forge_gem_thief from "./forge_ruins/forge_gem_thief.json" with { type: "json" };
+import forge_gremlin from "./forge_ruins/forge_gremlin.json" with { type: "json" };
+import forge_guardian from "./forge_ruins/forge_guardian.json" with { type: "json" };
+import forge_guardian_head from "./forge_ruins/forge_guardian_head.json" with { type: "json" };
+import forge_living_stone from "./forge_ruins/forge_living_stone.json" with { type: "json" };
+import forge_machine_golem from "./forge_ruins/forge_machine_golem.json" with { type: "json" };
+import forge_mad_hand from "./forge_ruins/forge_mad_hand.json" with { type: "json" };
+import forge_metal_hydra from "./forge_ruins/forge_metal_hydra.json" with { type: "json" };
+import forge_ooparts from "./forge_ruins/forge_ooparts.json" with { type: "json" };
+import forge_puppet from "./forge_ruins/forge_puppet.json" with { type: "json" };
+import forge_repair_construct from "./forge_ruins/forge_repair_construct.json" with { type: "json" };
+import forge_rock_golem from "./forge_ruins/forge_rock_golem.json" with { type: "json" };
+import forge_siege_machine from "./forge_ruins/forge_siege_machine.json" with { type: "json" };
+import forge_toy_soldier from "./forge_ruins/forge_toy_soldier.json" with { type: "json" };
+import forge_warped_clock from "./forge_ruins/forge_warped_clock.json" with { type: "json" };
 import hollow_bomber_cactus from "./hollow_wood/hollow_bomber_cactus.json" with { type: "json" };
 import hollow_centipede_warrior from "./hollow_wood/hollow_centipede_warrior.json" with { type: "json" };
 import hollow_devil_tree from "./hollow_wood/hollow_devil_tree.json" with { type: "json" };
@@ -234,6 +259,31 @@ export default [
   marsh_siren,
   marsh_tadpole,
   marsh_undine,
+  forge_arcane_cannon,
+  forge_arcane_core,
+  forge_arcane_soldieress,
+  forge_auto_armor,
+  forge_bomb,
+  forge_clay_armor,
+  forge_clockwork_bat,
+  forge_death_machine,
+  forge_gargoyle,
+  forge_gear_giant,
+  forge_gem_thief,
+  forge_gremlin,
+  forge_guardian,
+  forge_guardian_head,
+  forge_living_stone,
+  forge_machine_golem,
+  forge_mad_hand,
+  forge_metal_hydra,
+  forge_ooparts,
+  forge_puppet,
+  forge_repair_construct,
+  forge_rock_golem,
+  forge_siege_machine,
+  forge_toy_soldier,
+  forge_warped_clock,
   hollow_bomber_cactus,
   hollow_centipede_warrior,
   hollow_devil_tree,

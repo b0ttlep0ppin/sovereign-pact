@@ -1,0 +1,24 @@
+{
+  "id": "forge_gargoyle",
+  "name": "Gargoyle",
+  "pool": "forge_ruins",
+  "tags": ["construct", "flyer"],
+  "role": "bruiser",
+  "size": [1, 1],
+  "levels": [3, 8],
+  "stats": {"hp": 1.4, "speed": 10},
+  "affinity": {"earth": 50, "water": -25, "wind": -25},
+  "immune": ["bleed", "charm", "fear", "poison", "sleep"],
+  "abilities": [
+    {"id": "stone_talon", "shape": "single", "side": "player", "power": 1.2},
+    {"id": "statue_form", "shape": "self", "side": "self", "power": 0, "kind": "support", "statuses": [{"id": "protect", "chance": 100, "ticks": 200}, {"id": "shell", "chance": 100, "ticks": 200}], "cooldown": 4}
+  ],
+  "gambits": [
+    {"if": "self.hp<0.5", "do": "statue_form"},
+    {"do": "stone_talon", "target": "lowest_durability"}
+  ],
+  "bestiary": {
+    "lore": "It watched the workshop from the roof for a thousand years. Now it watches you.",
+    "weakness": "Water and Wind. It turns to stone when hurt."
+  }
+}

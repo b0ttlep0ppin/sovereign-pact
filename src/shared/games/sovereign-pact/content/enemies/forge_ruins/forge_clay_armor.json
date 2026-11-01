@@ -1,0 +1,24 @@
+{
+  "id": "forge_clay_armor",
+  "name": "Clay Armor",
+  "pool": "forge_ruins",
+  "tags": ["construct", "armored"],
+  "role": "bruiser",
+  "size": [1, 1],
+  "levels": [4, 9],
+  "stats": {"def": 1.5, "speed": 8},
+  "affinity": {"earth": 25, "water": -50, "wind": -25},
+  "immune": ["bleed", "charm", "fear", "poison", "sleep"],
+  "abilities": [
+    {"id": "clay_maul", "shape": "single", "side": "player", "power": 1.3},
+    {"id": "remold", "shape": "self", "side": "self", "power": 0, "kind": "support", "statuses": [{"id": "regen", "chance": 100, "ticks": 300, "value": 8}], "cooldown": 4}
+  ],
+  "gambits": [
+    {"if": "self.hp<0.6", "do": "remold"},
+    {"do": "clay_maul", "target": "lowest_durability"}
+  ],
+  "bestiary": {
+    "lore": "Fired armor with nobody inside. It reshapes itself where it cracks.",
+    "weakness": "Water softens it."
+  }
+}

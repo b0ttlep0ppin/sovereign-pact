@@ -1,0 +1,24 @@
+{
+  "id": "forge_living_stone",
+  "name": "Living Stone",
+  "pool": "forge_ruins",
+  "tags": ["construct", "elemental"],
+  "role": "fodder",
+  "size": [1, 1],
+  "levels": [4, 9],
+  "stats": {"def": 1.6, "speed": 7},
+  "affinity": {"earth": 50, "water": -25, "wind": -25},
+  "immune": ["bleed", "charm", "fear", "poison", "sleep"],
+  "abilities": [
+    {"id": "rock_slam", "shape": "single", "side": "player", "power": 1.1, "statuses": [{"id": "stun", "chance": 15, "ticks": 100}]},
+    {"id": "harden", "shape": "self", "side": "self", "power": 0, "kind": "support", "statuses": [{"id": "protect", "chance": 100, "ticks": 300}], "cooldown": 4}
+  ],
+  "gambits": [
+    {"if": "turn==1", "do": "harden"},
+    {"do": "rock_slam", "target": "column_weighted"}
+  ],
+  "bestiary": {
+    "lore": "A block of the workshop's wall that got up.",
+    "weakness": "Water and Wind. Its harden blunts blades; use magic."
+  }
+}

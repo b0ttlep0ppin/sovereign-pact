@@ -1,0 +1,43 @@
+{
+  "id": "stone_colossus",
+  "name": "The Stone Colossus",
+  "pool": "forge_ruins",
+  "tags": ["construct", "giant", "elemental"],
+  "role": "boss",
+  "size": [3, 4],
+  "at": "E1",
+  "levels": [5, 6],
+  "stats": {"speed": 7, "hp": 8},
+  "affinity": {"earth": 75, "water": -50, "wind": -25},
+  "immune": ["bleed", "charm", "fear", "poison", "sleep", "stun"],
+  "abilities": [
+    {"id": "left_slam", "shape": "band:4", "side": "player", "power": 0.7, "cooldown": 1},
+    {"id": "right_slam", "shape": "band:4", "side": "player", "power": 0.7, "cooldown": 1},
+    {"id": "earthquake", "shape": "all", "side": "player", "power": 1.2, "kind": "magic", "element": "earth", "charge": 300, "telegraph": true, "cooldown": 4, "statuses": [{"id": "knockdown", "chance": 40, "ticks": 0}]},
+    {"id": "stone_stomp", "shape": "column:F", "side": "player", "power": 1.0}
+  ],
+  "gambits": [
+    {"if": "turn%4==0 && !lost.left_slam && !lost.right_slam", "do": "earthquake"},
+    {"if": "turn%2==1", "do": "left_slam"},
+    {"do": "right_slam"},
+    {"do": "stone_stomp"}
+  ],
+  "parts": [
+    {"id": "left_fist", "name": "Left Fist", "cells": [[0, 0], [1, 0]], "hp": 0.12, "disables": ["left_slam"]},
+    {"id": "colossus_core", "name": "Core", "cells": [[0, 1], [0, 2]], "hp": 0.1, "disables": ["earthquake"]},
+    {"id": "right_fist", "name": "Right Fist", "cells": [[0, 3], [1, 3]], "hp": 0.12, "disables": ["right_slam"]}
+  ],
+  "phases": [
+    {"at": "lost.left_slam || lost.right_slam", "name": "One Knee", "speed": 5, "weak": {"location": "head", "mult": 1.5}, "say": "(Stone grinds on stone. It drops to one knee and lifts its head.)", "gambits": [{"if": "turn%2==1", "do": "left_slam"}, {"do": "right_slam"}, {"do": "left_slam"}, {"do": "stone_stomp"}]},
+    {"at": "hp<=0.25", "name": "Crumbling", "speed": 8, "say": "(Cracks run up its body. It moves faster, as if it knows.)", "gambits": [{"if": "turn%2==1", "do": "left_slam"}, {"do": "right_slam"}, {"do": "left_slam"}, {"do": "stone_stomp"}]}
+  ],
+  "say": {
+    "open": "(The Colossus turns its head toward the light of your torches.)",
+    "death": "(It comes apart, and the hall is quiet.)"
+  },
+  "bestiary": {
+    "lore": "The workshop's last guardian, as tall as the hall, walking on the oldest orders it has.",
+    "weakness": "Water rusts it. Break the core while it charges Earthquake; break a fist and it drops to one knee, its Head open to aimed blows.",
+    "pattern": "Its fists slam four rows in turn. Every fourth turn, while both fists live, the core charges Earthquake on everyone for three turns: break the core or interrupt it. With a fist gone it kneels, slows, and its Head takes aimed blows at ×1.5; at a quarter it crumbles and speeds up."
+  }
+}

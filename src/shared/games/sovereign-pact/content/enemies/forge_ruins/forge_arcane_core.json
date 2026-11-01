@@ -1,0 +1,24 @@
+{
+  "id": "forge_arcane_core",
+  "name": "Arcane Core",
+  "pool": "forge_ruins",
+  "tags": ["construct"],
+  "role": "caster",
+  "size": [1, 1],
+  "levels": [3, 9],
+  "stats": {"speed": 10},
+  "affinity": {"earth": 25, "water": -50, "wind": 50},
+  "immune": ["bleed", "charm", "fear", "poison", "sleep"],
+  "abilities": [
+    {"id": "lattice_bolt", "shape": "checker:a", "side": "player", "power": 0.9, "kind": "magic", "charge": 60, "telegraph": true, "cooldown": 2, "element": "wind"},
+    {"id": "spark", "shape": "single", "side": "player", "power": 1.0, "kind": "magic", "element": "wind", "reach": "ranged"}
+  ],
+  "gambits": [
+    {"if": "turn%2==1", "do": "lattice_bolt"},
+    {"do": "spark", "target": "lowest_hp"}
+  ],
+  "bestiary": {
+    "lore": "The workshop's power, loose and humming, striking in a lattice.",
+    "weakness": "Earth? No: Water shorts it. Its lattice strikes every other cell."
+  }
+}
