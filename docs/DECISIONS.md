@@ -2,6 +2,22 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-01 (implementation, Milestone 1) — implementer
+Combat-core readings; numbers are in `tuning.ts` (`combat`, `formulas`, `enemies`).
+- **Clock scale.** One clock step adds Speed to CT and counts every duration down by **10 ticks**, so a status of 300 ticks lasts about three turns at Speed 10 (§10.8's "per 50 ticks" pulses fall every fifth step). Charges count the same ticks: a 100-tick charge resolves about one turn later at Acuity 0.
+- **Melee is row-bound** (§10.3): enemy melee reaches the front-most Scion in each row it occupies; an empty Front in that row exposes Middle, then Back. Scion melee from Middle reaches only E1–E2; from Back it needs a reach weapon. Flyers reach anyone in their rows. So formation is per row: a Back Scion with nobody in front of them in their row is a melee target.
+- **Single-target weights** (§10.3): pick a column 45/35/20 (Back-heavy 20/30/50 for `lob`) among occupied columns, an empty column's weight passing to the next one back; then a combatant in it, Provoke ×3.
+- **Spells** hit on 90 + 0.5 × Sagacity (Evasion does not apply) and are reduced by the target's 0.5 × Sagacity % (§7.3). Spells carry their own power (`base`); weapon abilities use the weapon's. Enemies scale both by their level factor and have no Sagacity, so only affinity and Shell reduce spells against them.
+- **One injury roll per hit.** HP 0 rolls on the hit's location at −1 step (and the Scion goes Down); otherwise a location reaching 0 Durability rolls, at −1 more if it was already Broken (§7.4); then the Resilience check. A telegraphed hit that names a location is −1 step; Defend +1. A Down Scion caught by an AoE rolls on each hit (§10.9). Sanity at 0 rolls on the Sanity table, then the Sagacity check.
+- **Last Stand** Scions take no further rolls, and dropping to 0 HP kills them (they were dying at the battle's end anyway, §11.4).
+- **Lost turns:** Knockdown and Skip end the next turn and cost 100 CT; Stun, Sleep and Stop freeze CT.
+- **Movement** happens before the action in bot plans. A melee combatant with nothing in reach closes in on the nearest foe's rows and Waits.
+- **Enemy `stats` replace the role's multipliers** (the §14.1 Hollow Soldier's `hp 1.6 … eva 0.6` are the bruiser's); an enemy that names none takes its role's. Content writes an enemy ability's `side` as `"player"` (§14.1); the rules read that as its foe.
+- **Enemy Power follows the formula** (6 + 3L + 0.1L²): 23.5 at L5 and 46 at L10 where §14.2's table shows 23 and 43.
+- **Elements are the six of §7.3 and the Glossary** (Holy, Dark, Fire, Water, Earth, Wind). The enemy schema rejects Lightning until Q86 is answered.
+- **Stand-in gear for the simulator** (`combat/fixtures.ts`): weapons and armor scaled to the expedition level each party is built for, until Milestone 2's items. Nothing in it is content.
+- **First balance run** (`npm run sim`, a 4-Scion party at level 3L against a Barrows Warband, 300 battles each): L1 is on §14.2's target (all wins, 20% HP lost, 4.5 turns per Scion, 0.1 injury rolls a battle). The rolls climb with level (1.1 at L3, 3.7 at L7, 6.3 at L10) and L10 parties lose 19% of Warbands, because enemy damage grows about five times from L1 to L10 while Durability has no level term. See Q87; `formulas.durabilityPerLevel` is the knob (0 as specified).
+
 ## 2026-11-01 (implementation, Milestone 0) — implementer
 Readings and defaults taken while building; each is a knob in `tuning.ts` or easy to move.
 - **Repo layout follows Hardpoint Contract**, not HANDOFF §5's sketch: the rules live in `src/shared/games/sovereign-pact/`, the client in `src/client/games/sovereign-pact/`, and a copy of Vibe Pulse's game interface in `src/shared/` (`game.ts`, `rng.ts`…). The game imports `../../rng.ts` exactly as it will inside Vibe Pulse, so `npm run sync:game` can copy the two folders unchanged (`games-synced.json`). Content therefore sits in `src/shared/games/sovereign-pact/content/` (it ships with the rules); `schemas/` and `tools/` stay at the top level.
@@ -116,6 +132,8 @@ Readings and defaults taken while building; each is a knob in `tuning.ts` or eas
 Batches 1–12 (answered 2026-10-31 / 2026-11-01): Q1–Q84 closed, see above. The design is handed off; see HANDOFF.md.
 
 - **Q85 (asked 2026-11-01, Milestone 0): how is a House's Standing tier worked out?** §3.4 names the four tiers (Waning / Steady / Rising / Ascendant) but not the rule, and it decides how much the other Houses can read. Built as the default, PROPOSED: a House's Ascendancy divided by the kingdom's mean, Waning below 0.75, Steady 0.75–1, Rising 1–1.25, Ascendant 1.25 and up; Steady when solo or before anyone scores. Alternatives: tiers by rank (the leader is always Ascendant, which tells everyone who leads), or fixed Ascendancy thresholds that rise with the Year (tiers say how well a House does, not how it compares).
+- **Q86 (asked 2026-11-01, Milestone 1): is Lightning an element?** §7.3 and the Glossary list six elements (Holy, Dark, Fire, Water, Earth, Wind), but §14.5 gives the Drowned Marches and the Forge Ruins a Lightning weakness, the Arcane Core casts `checker` lightning, and the Thunderbird and Raiju are lightning creatures. Options: Lightning as a seventh element (opposed to Earth, with Wind opposing Water?), or Lightning is Wind's damage type and the pool notes read "weak Wind". Built as the default: six elements; content uses Wind for lightning.
+- **Q87 (asked 2026-11-01, Milestone 1): should Durability grow with level?** The simulator finds injury rolls in an ordinary fight climbing from 0.1 at L1 to about 6 at L10, because §7.3's Durability (10–15 + 1.5–2 × a stat) grows slowly while enemy damage grows about fivefold. A level term (+1 or +2 Durability per level on every location) brings L10 to about 2–3 rolls; heavier armor in Milestone 2 may do the rest. Built as specified (no level term) until Josh decides; `formulas.durabilityPerLevel` is the knob.
 
 Implementation items (not design questions):
 - LPC sprite runtime: the folder holds one exported male base; runtime recruit generation needs the generator's full layer set exported with its per-layer `CREDITS.csv`.
