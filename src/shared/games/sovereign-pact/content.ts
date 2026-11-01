@@ -7,10 +7,11 @@ import hollowSoldier from "./content/enemies/barrows/barrow_hollow_soldier.json"
 import skeleton from "./content/enemies/barrows/barrow_skeleton.json" with { type: "json" };
 import heraldryJson from "./content/heraldry.json" with { type: "json" };
 import injuriesJson from "./content/injuries.json" with { type: "json" };
+import jobsJson from "./content/jobs.json" with { type: "json" };
 import namesJson from "./content/names.json" with { type: "json" };
 import seatsJson from "./content/seats.json" with { type: "json" };
 import tarotJson from "./content/tarot.json" with { type: "json" };
-import type { Element, Location } from "./state.ts";
+import type { Element, JobId, Location } from "./state.ts";
 
 export interface TarotCard {
   id: string;
@@ -136,6 +137,38 @@ export interface EnemyDef {
 /** Every enemy file. A new file is added here once (one import per file keeps the rules free of bundler globs). */
 export const ENEMIES = [skeleton, hollowSoldier, ghost, cursedArcher, banshee] as unknown as readonly EnemyDef[];
 export const ENEMY_BY_ID: ReadonlyMap<string, EnemyDef> = new Map(ENEMIES.map((e) => [e.id, e]));
+
+/** A passive as content: rules text plus simple combat `mods` and statuses on self at battle `start`. */
+export interface PassiveDef {
+  id: string;
+  name: string;
+  text: string;
+  mods?: Record<string, number>;
+  start?: string[];
+}
+
+export type ArmorClass = "light" | "medium" | "heavy";
+
+/** A Job (§12.3): multipliers while in it, what it may wield, how it unlocks, its free passives. */
+export interface JobDef {
+  id: JobId;
+  name: string;
+  set: string;
+  advanced: boolean;
+  requires?: { job: JobId; jp: number }[];
+  unlockedBy?: ("bloodline" | "event")[];
+  mult: Partial<Record<"might" | "resilience" | "guile" | "acuity" | "sagacity" | "hp" | "mp", number>>;
+  speed?: number;
+  /** Weapon types, optionally limited to one or two hands ("sword:1h"). */
+  weapons: string[];
+  armor: ArmorClass;
+  shields: boolean;
+  innate: PassiveDef;
+  mastery: PassiveDef;
+}
+
+export const JOBS = jobsJson.jobs as readonly JobDef[];
+export const JOB_BY_ID: ReadonlyMap<JobId, JobDef> = new Map(JOBS.map((j) => [j.id, j]));
 
 export const TAROT: readonly TarotCard[] = tarotJson.cards;
 export const SEATS: readonly SeatStyle[] = seatsJson.seats;

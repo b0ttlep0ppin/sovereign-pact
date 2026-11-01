@@ -127,6 +127,21 @@ export const TUNING = {
     enemyResist: { base: 5, perLevel: 3 },
   },
 
+  /** §6.6 and §12.1: levels, XP and JP. XP per level is flat (FFT-like); a Scion on most expeditions reaches 20–30 by Year 20. */
+  progression: {
+    levelCap: 30,
+    xpPerLevel: 100,
+    /** XP and JP per battle won and per expedition finished (§6.6, §12.1: ~100 JP a battle, ~300 an expedition). */
+    battleXp: 15,
+    expeditionXp: 60,
+    battleJp: 100,
+    expeditionJp: 300,
+    sortieJp: 25,
+    /** Passive budget: 5 at level 1, +1 every 6 levels (10 at 30). */
+    passiveBase: 5,
+    passiveEvery: 6,
+  },
+
   /** §14.2 enemy base block at expedition level L: a + b·L + c·L², then role and `stats` multipliers. */
   enemies: {
     hp: [30, 22, 0.5],

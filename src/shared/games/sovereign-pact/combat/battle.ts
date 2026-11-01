@@ -26,6 +26,10 @@ export function abilityOf(u: Combatant, id: string): AbilityDef | undefined {
   return id === "attack" ? ATTACK : u.abilities.find((a) => a.id === id);
 }
 
+/** MP an ability costs `u`: spells with the Scion's spell-MP mods (Attunement −10%, §12.3). */
+export const mpCost = (u: Combatant, ab: AbilityDef): number =>
+  ab.mp ? Math.max(1, Math.round(ab.mp * (1 + (ab.kind === "magic" || ab.kind === "heal" ? (u.mods.spellMpPct ?? 0) : 0) / 100))) : 0;
+
 /** Why `u` cannot use `ab` now, or null if it can. */
 export function cannotUse(u: Combatant, ab: AbilityDef): string | null {
   if (ab.id !== "attack" && hasStatus(u, "berserk")) return "berserk";
@@ -34,7 +38,7 @@ export function cannotUse(u: Combatant, ab: AbilityDef): string | null {
   }
   if (ab.id === "attack" && hasStatus(u, "disarmed")) return "disarmed";
   if ((u.cooldowns[ab.id] ?? 0) > 0) return "cooldown";
-  if ((ab.mp ?? 0) > u.mp) return "mp";
+  if (mpCost(u, ab) > u.mp) return "mp";
   if ((ab.tp ?? 0) > u.tp) return "tp";
   return null;
 }
@@ -117,7 +121,7 @@ export function act(b: Battle, rng: Rng, u: Combatant, action: Action): void {
       if (!t) throw new Error("no valid target there");
       if (ab.homing !== false) homingOn = t.id;
     }
-    u.mp -= ab.mp ?? 0;
+    u.mp -= mpCost(u, ab);
     u.tp -= ab.tp ?? 0;
     if (ab.cooldown) u.cooldowns[ab.id] = ab.cooldown + 1;
     cost = ab.cost ?? C.cost.action;

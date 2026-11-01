@@ -1,0 +1,74 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "The 14 Jobs: multipliers, permissions, prerequisites, innate and mastery passives (SPEC §12.1, §12.3)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["jobs"],
+  "properties": {
+    "jobs": { "type": "array", "minItems": 14, "maxItems": 14, "items": { "$ref": "#/definitions/job" } }
+  },
+  "definitions": {
+    "passive": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "name", "text"],
+      "properties": {
+        "id": { "$ref": "defs.schema.json#/definitions/id" },
+        "name": { "type": "string", "minLength": 1, "maxLength": 32 },
+        "text": { "type": "string", "minLength": 1 },
+        "mods": {
+          "type": "object",
+          "description": "Combat modifiers the passive gives: flat points, …Pct percentages, …Steps injury steps",
+          "additionalProperties": { "type": "number" }
+        },
+        "start": { "type": "array", "description": "Statuses on self at battle start", "items": { "$ref": "defs.schema.json#/definitions/id" } }
+      }
+    },
+    "job": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "name", "set", "advanced", "mult", "weapons", "armor", "shields", "innate", "mastery"],
+      "properties": {
+        "id": {
+          "enum": ["soldier", "knight", "magus", "soothsayer", "vagabond", "pugilist", "minstrel", "gambler", "ravager", "sword_saint", "abjurer", "conjurer", "tinkerer", "alterer"]
+        },
+        "name": { "type": "string", "minLength": 1, "maxLength": 24 },
+        "set": { "type": "string", "minLength": 1, "maxLength": 24, "description": "The ability set's name (Warfare, Sorcery…)" },
+        "advanced": { "type": "boolean" },
+        "requires": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["job", "jp"],
+            "properties": { "job": { "$ref": "defs.schema.json#/definitions/id" }, "jp": { "type": "integer", "minimum": 0 } }
+          }
+        },
+        "unlockedBy": { "type": "array", "items": { "enum": ["bloodline", "event"] }, "description": "Other ways the Job opens (§12.1)" },
+        "mult": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "might": { "type": "number" },
+            "resilience": { "type": "number" },
+            "guile": { "type": "number" },
+            "acuity": { "type": "number" },
+            "sagacity": { "type": "number" },
+            "hp": { "type": "number" },
+            "mp": { "type": "number" }
+          }
+        },
+        "speed": { "type": "integer", "minimum": -3, "maximum": 3 },
+        "weapons": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "pattern": "^(unarmed|sword|axe|mace|spear|knife|knuckles|bow|crossbow|thrown|staff|instrument)(:(1h|2h))?$" }
+        },
+        "armor": { "enum": ["light", "medium", "heavy"], "description": "The heaviest class allowed" },
+        "shields": { "type": "boolean" },
+        "innate": { "$ref": "#/definitions/passive" },
+        "mastery": { "$ref": "#/definitions/passive" }
+      }
+    }
+  }
+}
