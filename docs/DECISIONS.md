@@ -2,6 +2,15 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-01 (implementation, Milestone 4b: Year assignments) — implementer
+- **Assignments** (§8.3): Rest, Chapel, Infirmary, Train, Teach, Study, Work and Guard, with §8.3's slots (`tuning.assignments`). Expedition, Sortie and Special arrive with Milestone 6 and the events. An assignment **carries over from Year to Year** until changed (reading: the screen keeps the cards where they were).
+- **Who may take what:** recruits may Rest, Train or Work; Scions and the Retired anything; only the Retired or a Scion who has mastered a Job may Teach. A Mentor teaches 2 students a mastered Job; a Mentor who stops teaching leaves the students training alone.
+- **At the Reckoning:** injuries tick down; an Infirmary slot takes one more Year off the longest Moderate injury; a Chapel slot restores Sanity fully and ends Moderate results of the Sanity table. Sanity: idle +10%, Rest +25%, and Chapel L1 adds +25% for everyone of the House in town (reading: §8.4's "Sanity +25% per Year in town" is the building's own effect, like the Cathedral's).
+- **Training numbers, first pass:** a normal expedition's XP is taken as 135 (the finish plus about five battles). Under a Mentor: 60% of it, below the Mentor's level, and 300 JP in the Mentor's Job. Alone: 30%, at most 3 levels below the House's best Scion, and 150 JP in the current Job. Never past level 20. Study: 150 JP. Training Ground L2: students +50% JP.
+- **Work** adds 4 to a producer's output (one worker each); the tithe applies to it.
+- **Hidden information:** a House sees only its own assignments (`view().mine.assign`). Reading: recruits are private (§6.9) and the spec does not say others' Scion assignments are public, so none are shown until Josh says otherwise.
+- **The bot** plans from who its people are, not what they are doing, so its plan holds still: the hurt to the Infirmary, Sanity under half to the Chapel, those who can teach to the Training Ground, recruits to producers, the rest training or resting. Save version 4.
+
 ## 2026-11-01 (implementation, Milestone 4a: House buildings) — implementer
 - **Buildings are content** (`content/buildings.json`, `schemas/buildings.schema.json`): the 16 House buildings of §8.4 with their level texts, each in a cost class. The rare materials of §8.1 live there too.
 - **Costs by class, first pass** (`tuning.town.costs`): the standard row is §8.4's example (L1 20 Timber + 20 Gold; L2 30 Timber + 20 Stone + 40 Gold; L3 40 Stone + 20 Iron + 80 Gold). Producers are "cheap" at about half; the Vault, Shrine and Crypt are "expensive", and L3 of those also takes 10 Essence.

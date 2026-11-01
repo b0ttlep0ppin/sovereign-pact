@@ -5,6 +5,7 @@ import type { PlayerId } from "../../game.ts";
 import { ascendancy, categories, standing } from "./score.ts";
 import type {
   Ambition,
+  Assignment,
   ChronicleEntry,
   Element,
   Emblem,
@@ -52,6 +53,8 @@ export interface PrivateHouse {
   stores: Stores;
   /** The Scriptorium's level: how much of a recruit shows (§6.4). */
   insight: number;
+  /** This House's Year assignments, by person id (§8.3). */
+  assign: Record<number, Assignment>;
 }
 
 /**
@@ -196,6 +199,7 @@ export function view(s: SovState, playerId: PlayerId): SovView {
             debt: own.debt,
             stores: own.stores,
             insight,
+            assign: Object.fromEntries(s.people.filter((p) => p.host === me && s.assign[p.id]).map((p) => [p.id, s.assign[p.id]!])),
           },
     people,
     items: s.items.filter((i) => worn.has(i.id) || (me !== null && i.house === me && !wornByAnyone.has(i.id))),
