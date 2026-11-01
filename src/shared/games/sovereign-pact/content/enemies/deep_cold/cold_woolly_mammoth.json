@@ -1,0 +1,29 @@
+{
+  "id": "cold_woolly_mammoth",
+  "name": "Woolly Mammoth",
+  "pool": "deep_cold",
+  "tags": ["ice", "beast"],
+  "role": "colossus",
+  "size": [2, 2],
+  "levels": [3, 7],
+  "stats": {"hp": 5, "speed": 7},
+  "affinity": {"water": 25, "fire": -50},
+  "immune": ["fear", "stun", "frozen"],
+  "abilities": [
+    {"id": "frozen_trample", "shape": "band:2", "side": "player", "power": 1.2, "charge": 60, "telegraph": true, "cooldown": 2, "statuses": [{"id": "knockdown", "chance": 25, "ticks": 0}]},
+    {"id": "tusk_sweep", "shape": "column:F", "side": "player", "power": 1.0},
+    {"id": "trunk_slam", "shape": "single", "side": "player", "power": 1.1}
+  ],
+  "gambits": [
+    {"if": "turn%3==1", "do": "frozen_trample"},
+    {"if": "turn%2==0", "do": "tusk_sweep"},
+    {"do": "trunk_slam", "target": "column_weighted"}
+  ],
+  "parts": [
+    {"id": "frost_tusks", "name": "Tusks", "cells": [[0, 0], [0, 1]], "hp": 0.25, "disables": ["tusk_sweep"]}
+  ],
+  "bestiary": {
+    "lore": "The mountain herds' last bull, with ice in its coat.",
+    "weakness": "Fire. Break its tusks and it only tramples."
+  }
+}

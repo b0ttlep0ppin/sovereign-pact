@@ -1,0 +1,24 @@
+{
+  "id": "cold_ice_armor",
+  "name": "Ice Armor",
+  "pool": "deep_cold",
+  "tags": ["ice", "construct", "armored"],
+  "role": "bruiser",
+  "size": [1, 1],
+  "levels": [5, 8],
+  "stats": {"def": 1.8, "speed": 8},
+  "affinity": {"water": 25, "fire": -50},
+  "immune": ["poison", "sleep", "fear", "charm", "bleed", "frozen"],
+  "abilities": [
+    {"id": "frost_blade", "shape": "single", "side": "player", "power": 1.3, "element": "water", "statuses": [{"id": "frozen", "chance": 15, "ticks": 200}]},
+    {"id": "refreeze", "shape": "self", "side": "self", "power": 0, "kind": "support", "statuses": [{"id": "regen", "chance": 100, "ticks": 300, "value": 6}], "cooldown": 4}
+  ],
+  "gambits": [
+    {"if": "self.hp<0.5", "do": "refreeze"},
+    {"do": "frost_blade", "target": "lowest_durability"}
+  ],
+  "bestiary": {
+    "lore": "A knight's armor that froze with the knight inside. Only one of them is still here.",
+    "weakness": "Fire. It mends itself while it is cold."
+  }
+}

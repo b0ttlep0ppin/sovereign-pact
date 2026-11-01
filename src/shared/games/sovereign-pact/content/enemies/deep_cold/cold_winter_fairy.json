@@ -1,0 +1,24 @@
+{
+  "id": "cold_winter_fairy",
+  "name": "Winter Fairy",
+  "pool": "deep_cold",
+  "tags": ["ice", "fey", "flyer"],
+  "role": "caster",
+  "size": [1, 1],
+  "levels": [3, 6],
+  "stats": {"hp": 0.7, "speed": 12},
+  "affinity": {"water": 25, "fire": -25},
+  "immune": ["frozen"],
+  "abilities": [
+    {"id": "frost_kiss", "shape": "single", "side": "player", "power": 1.0, "kind": "magic", "statuses": [{"id": "frozen", "chance": 25, "ticks": 200}], "element": "water", "reach": "ranged"},
+    {"id": "thaw_dew", "shape": "single", "side": "ally", "power": 1.2, "kind": "heal", "cooldown": 3}
+  ],
+  "gambits": [
+    {"if": "ally.hp<0.5", "do": "thaw_dew", "target": "ally_lowest_hp"},
+    {"do": "frost_kiss", "target": "lowest_hp"}
+  ],
+  "bestiary": {
+    "lore": "She paints the frost on the windows. She would like to paint you.",
+    "weakness": "Fire. She flies: the Back must reach her."
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "id": "cold_ice_shell",
+  "name": "Ice Shell",
+  "pool": "deep_cold",
+  "tags": ["ice", "aquatic", "armored"],
+  "role": "fodder",
+  "size": [1, 1],
+  "levels": [3, 8],
+  "stats": {"def": 1.4, "speed": 8},
+  "affinity": {"water": 25, "fire": -25},
+  "immune": ["frozen"],
+  "abilities": [
+    {"id": "shell_snap", "shape": "single", "side": "player", "power": 1.0},
+    {"id": "clam_up", "shape": "self", "side": "self", "power": 0, "kind": "support", "statuses": [{"id": "protect", "chance": 100, "ticks": 200}], "cooldown": 3}
+  ],
+  "gambits": [
+    {"if": "self.hp<0.6", "do": "clam_up"},
+    {"do": "shell_snap", "target": "column_weighted"}
+  ],
+  "bestiary": {
+    "lore": "Shells in the ice caves that open when warm things pass.",
+    "weakness": "Fire and magic: its shell stops blades."
+  }
+}

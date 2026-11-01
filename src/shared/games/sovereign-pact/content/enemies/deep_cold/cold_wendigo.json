@@ -1,0 +1,25 @@
+{
+  "id": "cold_wendigo",
+  "name": "Wendigo",
+  "pool": "deep_cold",
+  "tags": ["ice", "spirit", "cursed"],
+  "role": "lurker",
+  "size": [1, 1],
+  "levels": [3, 8],
+  "stats": {"speed": 14, "sanityTouch": 2},
+  "affinity": {"water": 25, "fire": -50, "holy": -50},
+  "immune": ["fear", "sleep", "frozen"],
+  "abilities": [
+    {"id": "hunger_bite", "shape": "single", "side": "player", "power": 1.2, "leap": true, "drain": 25, "sanity": 4},
+    {"id": "starving_howl", "shape": "row", "side": "player", "power": 0.3, "kind": "magic", "sanity": 5, "cooldown": 3}
+  ],
+  "gambits": [
+    {"if": "turn%3==1", "do": "starving_howl", "target": "densest_row"},
+    {"if": "foe.sanity<0.5", "do": "hunger_bite", "target": "lowest_sanity"},
+    {"do": "hunger_bite", "target": "lowest_hp"}
+  ],
+  "bestiary": {
+    "lore": "The hunger that walks the passes in winter. Once it was a traveller who ate the others.",
+    "weakness": "Fire and Holy. It hunts the shaken first, then the weak."
+  }
+}

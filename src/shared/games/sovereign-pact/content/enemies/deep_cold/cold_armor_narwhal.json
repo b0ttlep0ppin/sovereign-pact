@@ -1,0 +1,26 @@
+{
+  "id": "cold_armor_narwhal",
+  "name": "Armor Narwhal",
+  "pool": "deep_cold",
+  "tags": ["ice", "aquatic", "armored", "reach"],
+  "role": "elite",
+  "size": [1, 1],
+  "levels": [3, 7],
+  "stats": {"def": 1.8, "speed": 10},
+  "affinity": {"water": 25, "fire": -25},
+  "immune": ["fear", "frozen"],
+  "abilities": [
+    {"id": "tusk_lance", "shape": "single", "side": "player", "power": 1.5, "crit": 20},
+    {"id": "ice_breaker", "shape": "line:3", "side": "player", "power": 1.2, "charge": 60, "telegraph": true, "cooldown": 2},
+    {"id": "plate_up", "shape": "self", "side": "self", "power": 0, "kind": "support", "statuses": [{"id": "protect", "chance": 100, "ticks": 300}], "cooldown": 4}
+  ],
+  "gambits": [
+    {"if": "turn%3==1", "do": "ice_breaker"},
+    {"if": "self.hp<0.6", "do": "plate_up"},
+    {"do": "tusk_lance", "target": "lowest_durability"}
+  ],
+  "bestiary": {
+    "lore": "It breaks up through the ice of the lake, and its tusk reaches the Middle.",
+    "weakness": "Fire and magic: its plates turn blades."
+  }
+}

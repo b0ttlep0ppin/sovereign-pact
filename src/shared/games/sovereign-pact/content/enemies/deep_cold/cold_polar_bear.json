@@ -1,0 +1,25 @@
+{
+  "id": "cold_polar_bear",
+  "name": "Polar Bear",
+  "pool": "deep_cold",
+  "tags": ["ice", "beast"],
+  "role": "bruiser",
+  "size": [1, 1],
+  "levels": [3, 8],
+  "variants": ["stone"],
+  "stats": {"speed": 10},
+  "affinity": {"water": 25, "fire": -25},
+  "immune": ["frozen"],
+  "abilities": [
+    {"id": "maul", "shape": "single", "side": "player", "power": 1.2, "hits": 2, "statuses": [{"id": "bleed", "chance": 25, "ticks": 0}]},
+    {"id": "thick_fur", "shape": "self", "side": "self", "power": 0, "kind": "support", "statuses": [{"id": "guard_up", "chance": 100, "ticks": 300, "value": 25}], "cooldown": 4}
+  ],
+  "gambits": [
+    {"if": "turn==1", "do": "thick_fur"},
+    {"do": "maul", "target": "lowest_hp"}
+  ],
+  "bestiary": {
+    "lore": "White on white, until it stands up.",
+    "weakness": "Fire. It goes for the wounded."
+  }
+}

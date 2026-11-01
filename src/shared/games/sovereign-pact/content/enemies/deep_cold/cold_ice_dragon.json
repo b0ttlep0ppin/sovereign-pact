@@ -1,0 +1,26 @@
+{
+  "id": "cold_ice_dragon",
+  "name": "Ice Dragon",
+  "pool": "deep_cold",
+  "tags": ["ice", "dragon", "flyer"],
+  "role": "colossus",
+  "size": [3, 3],
+  "levels": [6, 8],
+  "stats": {"speed": 9},
+  "affinity": {"water": 75, "fire": -50},
+  "immune": ["fear", "stun", "sleep", "charm", "frozen"],
+  "abilities": [
+    {"id": "frost_breath", "shape": "band:3", "side": "player", "power": 1.2, "kind": "magic", "charge": 100, "telegraph": true, "cooldown": 3, "statuses": [{"id": "frozen", "chance": 40, "ticks": 200}], "element": "water"},
+    {"id": "wing_gale", "shape": "column:B", "side": "player", "power": 0.9, "kind": "magic", "element": "wind", "cooldown": 2},
+    {"id": "rime_claw", "shape": "single", "side": "player", "power": 1.4}
+  ],
+  "gambits": [
+    {"if": "turn%3==1", "do": "frost_breath", "target": "densest_row"},
+    {"if": "turn%2==0", "do": "wing_gale"},
+    {"do": "rime_claw", "target": "lowest_durability"}
+  ],
+  "bestiary": {
+    "lore": "It sleeps under the glacier and wakes when the glacier cracks.",
+    "weakness": "Fire. Its breath freezes three rows; its wings scour the Back."
+  }
+}

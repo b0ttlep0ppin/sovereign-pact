@@ -1,0 +1,24 @@
+{
+  "id": "cold_yuki_onna",
+  "name": "Yuki-onna",
+  "pool": "deep_cold",
+  "tags": ["ice", "spirit", "flyer"],
+  "role": "caster",
+  "size": [1, 1],
+  "levels": [3, 8],
+  "stats": {"speed": 11, "sanityTouch": 2},
+  "affinity": {"water": 25, "fire": -50, "holy": -25},
+  "immune": ["poison", "frozen"],
+  "abilities": [
+    {"id": "white_breath", "shape": "band:3", "side": "player", "power": 0.9, "kind": "magic", "charge": 80, "telegraph": true, "cooldown": 3, "statuses": [{"id": "frozen", "chance": 35, "ticks": 200}], "element": "water"},
+    {"id": "cold_gaze", "shape": "single", "side": "player", "power": 0.7, "kind": "magic", "sanity": 4, "element": "water", "reach": "ranged"}
+  ],
+  "gambits": [
+    {"if": "turn%3==1", "do": "white_breath", "target": "densest_row"},
+    {"do": "cold_gaze", "target": "lowest_sanity"}
+  ],
+  "bestiary": {
+    "lore": "A woman in white in the blizzard, who asks for shelter.",
+    "weakness": "Fire and Holy. Her breath freezes three rows: scatter or interrupt it."
+  }
+}
