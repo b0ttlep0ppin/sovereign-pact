@@ -12,6 +12,7 @@ import { BASE_JOBS, type CampaignOptions, type House, type SovMove, type SovStat
 import { assign, cannotAssign } from "./assign.ts";
 import { cannotPledge, pledge } from "./commons.ts";
 import { cannotChoose, choose } from "./omens.ts";
+import { bid, buy, cannotAuction, cannotBid, cannotBuy, putUp } from "./market.ts";
 import { accept, cannotAccept, cannotDecline, cannotOffer, decline, offer } from "./deals.ts";
 import { cannotCrisisPledge, cannotTempt, crisisPledge, tempt } from "./crisis.ts";
 import { cannotPropose, cannotVote, castVote, propose } from "./votes.ts";
@@ -83,6 +84,7 @@ export function newCampaign(players: readonly PlayerId[], rng: Rng, opts: Campai
     proposers: [],
     events: [],
     deals: [],
+    market: [],
     flags: [],
     log: [],
   };
@@ -163,6 +165,33 @@ export function applyMove(state: SovState, playerId: PlayerId, move: SovMove): M
       const why = cannotCrisisPledge(s, house, move.give ?? {});
       if (why) return fail(why);
       crisisPledge(s, house, move.give);
+      s.phaseMoves += 1;
+      return { ok: true, state: s };
+    }
+    case "buy": {
+      if (s.phase !== "settlement") return fail("The shops open in the Settlement Phase.");
+      if (h.sealed) return fail("Unseal the Year first.");
+      const why = cannotBuy(s, house, move.item);
+      if (why) return fail(why);
+      buy(s, house, move.item);
+      s.phaseMoves += 1;
+      return { ok: true, state: s };
+    }
+    case "bid": {
+      if (s.phase !== "settlement") return fail("Bids are made in the Settlement Phase.");
+      if (h.sealed) return fail("Unseal the Year first.");
+      const why = cannotBid(s, house, move.item, move.gold);
+      if (why) return fail(why);
+      bid(s, house, move.item, move.gold);
+      s.phaseMoves += 1;
+      return { ok: true, state: s };
+    }
+    case "auction": {
+      if (s.phase !== "settlement") return fail("Auctions are held in the Settlement Phase.");
+      if (h.sealed) return fail("Unseal the Year first.");
+      const why = cannotAuction(s, house, move.item, move.reserve);
+      if (why) return fail(why);
+      putUp(s, house, move.item, move.reserve);
       s.phaseMoves += 1;
       return { ok: true, state: s };
     }

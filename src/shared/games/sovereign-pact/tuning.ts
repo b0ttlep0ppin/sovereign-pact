@@ -118,6 +118,25 @@ export const TUNING = {
   /** §8.8 town events [DECIDED cadence]: one settlement event a Year; each House's own event at this % chance. */
   omens: { houseEventPct: 50 },
 
+  /** §8.6 shops and §13.4a auctions, first pass. */
+  shops: {
+    /** Lots a shop stocks a Year, by its stock tier 1–3. */
+    lots: [3, 4, 5],
+    /** Quality odds (% Common, Fine, Masterwork, Relic) by stock tier. */
+    quality: [
+      [70, 30, 0, 0],
+      [30, 55, 15, 0],
+      [0, 50, 40, 10],
+    ] as readonly (readonly number[])[],
+    /** List price by item tier (Crude…Relic), × (1 + perLevel × (item level − 1)). */
+    price: [10, 20, 45, 100, 220],
+    perLevel: 0.2,
+    /** The Curio Dealer's one random magic item a Year is at least Fine. */
+    curioTier: 3,
+    /** Properties that send any item to auction (§13.4a: Quickening, Multi-hit, Massive crits). */
+    rareProps: ["quickening", "multi_hit", "massive_crits"] as readonly string[],
+  },
+
   /** §8.9 deals, first pass: score for a deal honored (Intrigue, each side) and for a public one (Renown, each side). */
   deals: { intrigue: 1, publicRenown: 1, maxOpen: 6 },
 
