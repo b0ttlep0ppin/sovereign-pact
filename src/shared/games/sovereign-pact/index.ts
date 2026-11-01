@@ -12,9 +12,10 @@ import { BASE_JOBS, type CampaignOptions, type House, type SovMove, type SovStat
 import { assign, cannotAssign } from "./assign.ts";
 import { cannotPledge, pledge } from "./commons.ts";
 import { cannotChoose, choose } from "./omens.ts";
+import { accept, cannotAccept, cannotDecline, cannotOffer, decline, offer } from "./deals.ts";
 import { cannotCrisisPledge, cannotTempt, crisisPledge, tempt } from "./crisis.ts";
 import { cannotPropose, cannotVote, castVote, propose } from "./votes.ts";
-import { botAssign, botBuild, botChoice, botCrisis, botPledge, botPropose, botVote } from "./bot.ts";
+import { botDeal, botAssign, botBuild, botChoice, botCrisis, botPledge, botPropose, botVote } from "./bot.ts";
 import { build, cannotBuild, unbuild } from "./town.ts";
 import { forHouses, TUNING } from "./tuning.ts";
 import { view, type SovView } from "./view.ts";
@@ -81,6 +82,7 @@ export function newCampaign(players: readonly PlayerId[], rng: Rng, opts: Campai
     assign: {},
     proposers: [],
     events: [],
+    deals: [],
     flags: [],
     log: [],
   };
@@ -161,6 +163,31 @@ export function applyMove(state: SovState, playerId: PlayerId, move: SovMove): M
       const why = cannotCrisisPledge(s, house, move.give ?? {});
       if (why) return fail(why);
       crisisPledge(s, house, move.give);
+      s.phaseMoves += 1;
+      return { ok: true, state: s };
+    }
+    case "offer": {
+      if (s.phase !== "settlement") return fail("Deals are made in the Settlement Phase.");
+      if (h.sealed) return fail("Unseal the Year first.");
+      const why = cannotOffer(s, house, move.to, move.give ?? {}, move.get ?? {});
+      if (why) return fail(why);
+      offer(s, house, move.to, move.give ?? {}, move.get ?? {}, !!move.open);
+      s.phaseMoves += 1;
+      return { ok: true, state: s };
+    }
+    case "accept": {
+      if (s.phase !== "settlement") return fail("Deals are made in the Settlement Phase.");
+      const why = cannotAccept(s, house, move.deal);
+      if (why) return fail(why);
+      accept(s, move.deal);
+      s.phaseMoves += 1;
+      return { ok: true, state: s };
+    }
+    case "decline": {
+      if (s.phase !== "settlement") return fail("Deals are made in the Settlement Phase.");
+      const why = cannotDecline(s, house, move.deal);
+      if (why) return fail(why);
+      decline(s, move.deal);
       s.phaseMoves += 1;
       return { ok: true, state: s };
     }
@@ -250,6 +277,8 @@ export function describeResult(s: SovState): string | null {
 export function botMove(s: SovState, playerId: PlayerId): SovMove {
   const house = houseOf(s, playerId);
   if (house >= 0 && s.phase === "settlement" && s.vote && s.vote.by[house] === null) return { type: "vote", choice: botVote(s, house) };
+  const offered = house >= 0 && s.phase === "settlement" ? s.deals.find((d) => d.to === house) : undefined;
+  if (offered) return botDeal(s, house, offered);
   const pick = house >= 0 && s.phase === "settlement" ? s.events.find((e) => e.deciders.includes(house) && e.choices[house] === null) : undefined;
   if (pick) return { type: "choose", event: pick.key, option: botChoice(s, house, pick.id) };
   if (house >= 0 && s.phase === "settlement" && !s.houses[house]!.sealed) {

@@ -118,6 +118,9 @@ export const TUNING = {
   /** §8.8 town events [DECIDED cadence]: one settlement event a Year; each House's own event at this % chance. */
   omens: { houseEventPct: 50 },
 
+  /** §8.9 deals, first pass: score for a deal honored (Intrigue, each side) and for a public one (Renown, each side). */
+  deals: { intrigue: 1, publicRenown: 1, maxOpen: 6 },
+
   /** §3.5 Crises [DECIDED resolution, numbers to tune]. */
   crises: {
     /** The hidden swing, ± this many points. */

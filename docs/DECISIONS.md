@@ -2,6 +2,13 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-01 (implementation, Milestone 4g: deals) — implementer
+- **Deals** (`deals.ts`) [DECIDED: instant]: a House offers (`offer`: what it gives and what it asks, Gold, materials and stashed items), the other accepts or declines, the maker may withdraw (`decline` either way). An accepted deal executes at once; both sides are checked again at acceptance, and offers that can no longer be paid fall away. Offers lapse at the seal. Wards, Mentor loans and facility use join with Milestone 5.
+- **Readings:** only stashed (unworn) items can be traded; a House may have 6 offers out at once (implementation default). Private deals are seen only by the two Houses; a public deal is logged and seen by all.
+- **Score, first pass:** every deal honored is +1 Intrigue to each side (§3.4 "deals honored"); a public deal is also +1 Renown to each (§8.9).
+- **Solo:** no deals (§8.9: NPC dealings come through events).
+- **The bot** never offers; it accepts a trade when it gets at least as much as it gives (a unit of Gold or material each 1, an item 20) and can pay, and declines otherwise. Save version 9.
+
 ## 2026-11-01 (implementation, Milestone 4f: the Omens and town events) — implementer
 - **The Omens** draw one settlement event every Year from all eligible settlement events by weight; the six Crises carry about 40% of that weight (§8.8). Each House draws a House event at 50% (`tuning.omens.houseEventPct`). The Watchtower, Haunted Halls and the like will move these odds when their systems exist.
 - **Sixteen events to start**, from §8.8's tables where the systems exist: the Plague Cart, A Stranger at the Gate, the Eclipse, Bread and Circuses, the Debt Collector, the Night of Open Doors, A Saint's Bones, the Mold in the Granary, the Rebellious Commons and the Market Caravan; House events the Cousin's Claim, Portrait Gallery, the Forge Sings, Feast of the Dead, the Suitor and the Locked Wing. Events that need Tarots, traits, Wards or items (the Rift Whispers, Tithe of the Pale Saint, the Ward's Request…) come with Milestones 5–7. Every option is tagged (§9.5).

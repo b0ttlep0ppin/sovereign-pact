@@ -53,6 +53,8 @@ export function closeSettlement(s: SovState): void {
   // An open vote is settled with the votes cast; the rest abstain.
   settleVote(s);
   closeEvents(s);
+  // Offers left on the table lapse.
+  s.deals = [];
   resolveCrisis(s);
   s.phase = "expedition";
   // The Rift Gate, the party and the chain go here (Milestone 6).
