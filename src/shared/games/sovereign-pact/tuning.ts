@@ -369,6 +369,32 @@ export const TUNING = {
     age: [16, 40] as const,
   },
 
+  /**
+   * §3.4 what a House holds, first pass (the earned categories live in `house.score`): Lineage per
+   * living person, a point per few levels, by potential and per Ward hosted; Treasury a point per 10
+   * Gold of wealth (stores at a Gold a unit, rare materials at 10); Relics per Relic-tier or named item.
+   */
+  scoring: {
+    lineage: { scion: 2, recruit: 1, levelsPerPoint: 5, ward: 2, potential: { common: 0, promising: 1, gifted: 2, prodigy: 4 } },
+    goldPerPoint: 10,
+    storeGold: 1,
+    rareGold: 10,
+    relic: 10,
+    named: 5,
+  },
+
+  /**
+   * §3.3 Devastation, PROPOSED: a failed mandatory expedition ruins 1–3 building levels across the
+   * settlement, takes a share of every store, cancels the next arrivals, costs Accord and adds Doom; a
+   * failed forced expedition ruins one and costs less (§3.2). Each level of Walls ruins one fewer and
+   * takes 5 off the Doom.
+   */
+  devastation: {
+    mandatory: { ruin: [1, 3] as const, storesPct: 25, accord: 20, doom: 25, noArrivals: true },
+    forced: { ruin: [1, 1] as const, storesPct: 0, accord: 10, doom: 10, noArrivals: false },
+    wallsDoom: 5,
+  },
+
   /** §3.4 Standing tiers: a House's Ascendancy over the kingdom's mean. PROPOSED, see DECISIONS Q85. */
   standing: { steady: 0.75, rising: 1.0, ascendant: 1.25 },
 

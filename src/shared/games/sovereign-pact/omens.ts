@@ -7,6 +7,7 @@ import type { Rng } from "../../rng.ts";
 import { TOWN_EVENT_BY_ID, TOWN_EVENTS, type TownEventDef, type TownOption } from "./content.ts";
 import { eligible, openCrisis } from "./crisis.ts";
 import { applyEffects } from "./effects.ts";
+import { dueEvents } from "./timeline.ts";
 import type { PendingEvent, SovState } from "./state.ts";
 import { TUNING } from "./tuning.ts";
 import { log, withRng } from "./year.ts";
@@ -20,10 +21,15 @@ export function drawOmens(s: SovState): void {
   s.events = [];
   // The "calm" flag stills the Omens, for tests and tuning runs that measure the economy alone.
   if (s.flags.includes("calm")) return;
-  const settlement = withRng(s, (rng) => draw(rng, TOWN_EVENTS.filter((e) => e.scope === "settlement" && eligible(s, e))));
+  // Consequences come due first, and take the draws they stand in for (§8.7).
+  const queued = dueEvents(s).map((t) => ({ ev: TOWN_EVENT_BY_ID.get(t.id)!, house: t.house ?? 0 }));
+  const fromTimeline = queued.find((q) => q.ev.scope !== "house")?.ev;
+  const settlement = fromTimeline ?? withRng(s, (rng) => draw(rng, TOWN_EVENTS.filter((e) => e.scope === "settlement" && eligible(s, e))));
   if (settlement?.crisis) openCrisis(s, settlement);
   else if (settlement) openEvent(s, settlement);
   s.houses.forEach((_, i) => {
+    const owed = queued.find((q) => q.ev.scope === "house" && q.house === i);
+    if (owed) return void openEvent(s, owed.ev, i);
     const ev = withRng(s, (rng) => (rng.int(100) < TUNING.omens.houseEventPct ? draw(rng, TOWN_EVENTS.filter((e) => e.scope === "house" && eligible(s, e, i))) : undefined));
     if (ev) openEvent(s, ev, i);
   });

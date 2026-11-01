@@ -12,6 +12,7 @@ import { settleVote } from "./votes.ts";
 import { resolveCrisis } from "./crisis.ts";
 import { closeEvents, drawOmens } from "./omens.ts";
 import { restock, settleAuctions } from "./market.ts";
+import { foreshadow } from "./timeline.ts";
 import { forHouses, TUNING } from "./tuning.ts";
 
 /** A deep copy, so a rule never changes the state it was given (plain JSON, so this is exact). */
@@ -39,7 +40,7 @@ export function withRng<T>(s: SovState, fn: (rng: Rng) => T): T {
 export function openYear(s: SovState): void {
   s.phase = "omens";
   log(s, `Year ${s.year} of ${campaignYears(s)}.`);
-  const due = mandatoryYears(s).filter((y) => y > s.year && y - s.year <= 2);
+  const due = mandatoryYears(s).filter((y) => y > s.year && y - s.year <= foreshadow(s));
   for (const y of due) log(s, `The timeline darkens: a mandatory expedition comes in Year ${y}.`);
   // Omens: the settlement event (perhaps a Crisis) and the House events (§8.8).
   drawOmens(s);
@@ -128,6 +129,11 @@ export function reckoning(s: SovState): void {
 
 /** Recruit arrivals per House (§6.2); a full pool turns them away. */
 function arrivals(s: SovState): void {
+  // A Devastation turns the roads empty for a Year (§3.3).
+  if (s.flags.includes("no_arrivals")) {
+    s.flags = s.flags.filter((f) => f !== "no_arrivals");
+    return log(s, "No one comes to the settlement this Year: the roads remember the Devastation.");
+  }
   withRng(s, (rng) => {
     // Not logged: a House's recruit pool is its own business (§6.9 counts it among the secrets a Ward can leak).
     s.houses.forEach((_, i) => {
