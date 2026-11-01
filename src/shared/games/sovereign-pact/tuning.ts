@@ -23,6 +23,28 @@ export const TUNING = {
    */
   wards: { start: 40, badBlood: 20, houndLoyal: 60, noReturnYears: 3, sworn: 80, estranged: 10, leakBelow: 50, leakPct: 25, houndLeakCut: 20, defectPct: 50 },
 
+  /**
+   * §9.1: cards a Year (2–3), the level band by Year of 20, the mandatory arc in order (§14.7: its
+   * boss names the pool), and party sizes by weight (first pass: mostly 4, sometimes 8, rarely 2×4).
+   */
+  gate: {
+    cards: [2, 3] as const,
+    bands: [
+      { until: 4, levels: [1, 3] },
+      { until: 9, levels: [3, 5] },
+      { until: 14, levels: [5, 7] },
+      { until: 19, levels: [7, 9] },
+      { until: 20, levels: [10, 10] },
+    ],
+    arc: [
+      { boss: "siege_beast", level: 3 },
+      { boss: "cursed_king", level: 6 },
+      { boss: "unknown_mother", level: 8 },
+      { boss: "end_ruler", level: 10 },
+    ],
+    sizes: [[4, 70], [8, 20], ["2x4", 10]] as const,
+  },
+
   /** §6.5 [PROPOSED numbers]: a promotion's Gold, ceremony slots a Year, and the Chapel's extra slot; the bot promotes while under its target of Scions. */
   promotion: { gold: 20, slots: 1, chapelSlots: 1, botScions: [8, 5, 4, 4] as ByHouses },
 

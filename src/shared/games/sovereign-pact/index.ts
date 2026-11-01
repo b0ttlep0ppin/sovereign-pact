@@ -19,6 +19,7 @@ import { botDeal, botAssign, botPromote, botBuild, botChoice, botCrisis, botPled
 import { build, cannotBuild, unbuild } from "./town.ts";
 import { cannotPromote, promoteRecruit } from "./promotion.ts";
 import { cannotReinstate, cannotRetire, reinstate, retire } from "./lifecycle.ts";
+import { botCard, cannotPick, pick } from "./gate.ts";
 import { TUNING } from "./tuning.ts";
 import { view, type SovView } from "./view.ts";
 import { clone, closeSettlement } from "./year.ts";
@@ -155,6 +156,15 @@ export function applyMove(state: SovState, playerId: PlayerId, move: SovMove): M
       const why = move.type === "retire" ? cannotRetire(s, house, move.person) : cannotReinstate(s, house, move.person);
       if (why) return fail(why);
       (move.type === "retire" ? retire : reinstate)(s, move.person);
+      s.phaseMoves += 1;
+      return { ok: true, state: s };
+    }
+    case "pick_card": {
+      if (s.phase !== "settlement") return fail("The Rift Gate is chosen in the Settlement Phase.");
+      if (h.sealed) return fail("Unseal the Year first.");
+      const why = cannotPick(s, move.card);
+      if (why) return fail(why);
+      pick(s, house, move.card);
       s.phaseMoves += 1;
       return { ok: true, state: s };
     }
@@ -354,6 +364,7 @@ export function botMove(s: SovState, playerId: PlayerId): SovMove {
   if (house >= 0 && s.phase === "settlement" && !s.houses[house]!.sealed) {
     const help = botCrisis(s, house);
     if (help) return { type: "crisis_pledge", give: help };
+    if (s.gate && s.gate.cards.length > 1 && s.gate.votes[house] === null) return { type: "pick_card", card: botCard(s) };
     const raise = botPromote(s, house);
     if (raise) return { type: "promote", ...raise };
     const job = botAssign(s, house);

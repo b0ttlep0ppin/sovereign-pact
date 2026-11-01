@@ -214,10 +214,21 @@ export interface Commons {
   shopTiers?: Partial<Record<string, number>>;
 }
 
+/** An expedition the Rift Gate offers (§9.1): type, enemy pool, level 1–10 and party size. */
+export interface ExpeditionCard {
+  type: "mandatory" | "forced" | "resource" | "hunt" | "rescue" | "delve" | "pilgrimage";
+  pool: string;
+  level: number;
+  size: 4 | 8 | "2x4";
+  /** The mandatory arc's boss (§14.7); other cards draw theirs from the pool. */
+  boss?: string;
+}
+
 /**
  * A vote of the Houses (§8.1, §8.8): open in the Settlement Phase, settled when every House has voted or
  * when the Year is sealed (those who did not vote abstain). Votes are cast in the open.
  */
+
 export interface Vote {
   /** What it decides: "spend" (the Commons' stock on a project); events add their own kinds. */
   kind: "spend" | "event";
@@ -353,6 +364,8 @@ export interface SovState {
   crisis?: Crisis;
   /** The vote now open, if any. */
   vote?: Vote;
+  /** The Rift Gate's cards this Year and each House's vote for one (§9.1). */
+  gate?: { cards: ExpeditionCard[]; votes: (number | null)[] };
   /** Houses that proposed a vote this Year: one proposal each a Year. */
   proposers: number[];
   /** Year assignments by person id; kept from Year to Year until changed. Unassigned people idle. */
@@ -373,6 +386,8 @@ export type SovMove =
   | { type: "random_house"; step?: FoundingStep }
   | { type: "swear"; ambition: 0 | 1 }
   | { type: "seal" }
+  /** Vote for one of the Rift Gate's cards (§9.1). */
+  | { type: "pick_card"; card: number }
   /** Retire a Scion, or bring a Retired one back (§6.12). */
   | { type: "retire"; person: number }
   | { type: "reinstate"; person: number }
