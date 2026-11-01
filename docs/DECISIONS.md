@@ -2,6 +2,12 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-01 (implementation, Milestone 3r: the Siege Beast, Year 5) — implementer
+- **The Siege Beast** (`content/bosses/siege_beast.json`, L3, 3×4 across all three enemy columns, filed under the Pit, tagged `arc`): the first boss of the mandatory arc (§14.7). Gore (`single`, reach), Trample (`band:3`, telegraphed, may Knock Down), Howl (`all`, Sanity 6, telegraphed), and **Devour**, a new enemy ability that eats a living ally among listed ids and heals a % of max HP for each (`devour: {of, healPct, all?}`; the Unknown Mother's Consume will use `all`). Weakness Holy (−50) and Head ×1.5.
+- **Reading taken: "Demon Recruits in two Reinforcement waves"** is two Recruits at the start and three more at each of two phases (two thirds and one third HP); the last wave also speeds it up and lets it devour at any HP. The Recruits are the Pit's own (`pit_demon_recruit`), at the boss's level.
+- **How the campaign finds the arc bosses:** for now by the `arc` tag; the Year, the stakes (Devastation on a loss; the Bastion and a Relic on a win) and the gate background come with the campaign layer (Milestone 4) and the screens.
+- **Simulator** (baseline party, 200 fights): L3 wins 100%, 45% HP lost, 0.48 Scion deaths per fight; the Goblin Lord at L2 is 95% and 0.36. A first wall that is won but costs a Scion half the time; tune in play.
+
 ## 2026-11-01 (implementation, Milestone 3q: the Outer Dark) — implementer
 - **The Outer Dark roster** (`content/enemies/outer_dark/`, ids `void_*`, 25 enemies, L6–10): the Unknown kin, the Void Demon and Rift Varga, the Shoggoth, the Mi-Go, the Lloigor, the Meteoros and the watchers. Every Outer Dark enemy takes −50% from Holy and resists the four base elements by 25 and Dark by 50; most touch Sanity. Enemies tagged `unknown` are immune to Charm and Sleep (nothing there thinks like a mind).
 - **Reading taken: the Unknown Grappler's drag** pulls a Scion to the party's Front, like a Kelpie's; dragging across into the enemy grid is not modeled.

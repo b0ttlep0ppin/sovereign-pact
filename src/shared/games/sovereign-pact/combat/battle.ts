@@ -10,7 +10,7 @@ import { abilityDice, castLots, rolledAbility } from "./dice.ts";
 import { canShift, feralPick, graft, revert, shift } from "./forms.ts";
 import { keepParts, missingParts, offerParts, spendParts } from "./parts.ts";
 import { playSong } from "./songs.ts";
-import { atCap, deathThroes, hasRoom, openingSummons, raise, sacrifice, summon } from "./summons.ts";
+import { atCap, deathThroes, devour, hasRoom, openingSummons, raise, sacrifice, summon } from "./summons.ts";
 import { offHandStrike, strike } from "./damage.ts";
 import { hasStatus, isFree, standing } from "./grid.ts";
 import { kill } from "./injury.ts";
@@ -251,9 +251,10 @@ function resolveCharge(b: Battle, rng: Rng, u: Combatant): void {
 /** An ability lands: every target, every hit (§10.6). */
 export function resolve(b: Battle, rng: Rng, u: Combatant, ab: AbilityDef, at: Cell, homingOn?: number, doubleDown = 0): void {
   if (ab.song) return playSong(b, rng, u, ab);
-  if (ab.summon || ab.form || ab.revert || ab.raise) {
+  if (ab.summon || ab.form || ab.revert || ab.raise || ab.devour) {
     b.events.push({ t: "use", unit: u.id, ability: ab.id, target: at });
     if (ab.raise) raise(b, u, ab.raise);
+    else if (ab.devour) devour(b, u, ab.devour);
     else if (ab.summon) summon(b, u, ab.summon, at);
     else if (ab.form) shift(b, u, ab.form);
     else revert(b, u);

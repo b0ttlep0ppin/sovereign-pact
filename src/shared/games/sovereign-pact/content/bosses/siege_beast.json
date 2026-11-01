@@ -1,0 +1,43 @@
+{
+  "id": "siege_beast",
+  "name": "The Siege Beast",
+  "pool": "pit",
+  "tags": ["unknown", "beast", "demon", "giant", "arc"],
+  "role": "boss",
+  "size": [3, 4],
+  "levels": [3, 3],
+  "stats": {"speed": 10, "hp": 8, "atk": 1.2},
+  "affinity": {"holy": -50, "dark": 25, "fire": 25},
+  "immune": ["fear"],
+  "weak": {"location": "head", "mult": 1.5},
+  "abilities": [
+    {"id": "gore", "shape": "single", "side": "player", "power": 1.2, "reach": "reach", "locationBias": "body"},
+    {"id": "trample", "shape": "band:3", "side": "player", "power": 0.9, "charge": 40, "telegraph": true, "cooldown": 2, "statuses": [{"id": "knockdown", "chance": 30, "ticks": 0}]},
+    {"id": "devour", "shape": "self", "side": "self", "power": 0, "kind": "support", "cooldown": 3, "devour": {"of": ["pit_demon_recruit"], "healPct": 15}},
+    {"id": "howl", "shape": "all", "side": "player", "power": 0.2, "kind": "magic", "sanity": 6, "charge": 50, "telegraph": true, "cooldown": 4, "element": "dark"}
+  ],
+  "gambits": [
+    {"if": "hp<0.8 && adds>=1", "do": "devour"},
+    {"if": "turn%4==2", "do": "howl"},
+    {"if": "turn%3==1", "do": "trample", "target": "densest_cluster"},
+    {"do": "gore", "target": "column_weighted"}
+  ],
+  "adds": [
+    {"spawn": ["pit_demon_recruit"], "count": 2, "at": "E1"}
+  ],
+  "phases": [
+    {"at": "hp<=0.66", "name": "The Second Wave", "say": "Horns on the ridge. More of them.", "adds": {"spawn": ["pit_demon_recruit"], "count": 3, "at": "E1"},
+      "gambits": [{"if": "hp<0.6 && adds>=1", "do": "devour"}, {"if": "turn%4==0", "do": "howl"}, {"if": "turn%3==1", "do": "trample", "target": "densest_cluster"}, {"do": "gore", "target": "column_weighted"}]},
+    {"at": "hp<=0.33", "name": "The Last Wave", "speed": 12, "say": "The whole Pit is at the gate.", "adds": {"spawn": ["pit_demon_recruit"], "count": 3, "at": "E1"},
+      "gambits": [{"if": "adds>=1", "do": "devour"}, {"if": "turn%3==0", "do": "howl"}, {"if": "turn%2==1", "do": "trample", "target": "densest_cluster"}, {"do": "gore", "target": "column_weighted"}]}
+  ],
+  "say": {
+    "open": "Something huge moves behind the warband, and the Recruits part to let it through.",
+    "death": "It falls against the wall, and the wall holds."
+  },
+  "bestiary": {
+    "lore": "Something of the Unknown wearing a beast of the Pit like armor, driving the first warband to the settlement's gate.",
+    "weakness": "Holy, and its head: aimed blows there land half again as hard. Kill the Recruits before it eats them.",
+    "pattern": "Gores two columns deep and tramples three rows at a time. Every few turns it howls, and every Scion loses Sanity. Wounded, it devours a Recruit to heal. At two thirds and one third a fresh wave of Recruits comes over the ridge, and in the last wave it speeds up and eats whenever it can."
+  }
+}

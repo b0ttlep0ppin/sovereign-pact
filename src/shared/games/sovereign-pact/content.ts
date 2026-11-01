@@ -128,6 +128,8 @@ export interface EnemyAbility {
   homing?: boolean;
   leap?: boolean;
   raise?: number;
+  /** Eats living allies of these ids to heal (the Siege Beast's Devour, the Unknown Mother's Consume). */
+  devour?: Devour;
   drain?: number;
   pull?: number;
   tpSteal?: number;
@@ -142,6 +144,13 @@ export interface EnemyAbility {
   accuracy?: number;
   crit?: number;
   statuses?: { id: string; chance: number; ticks: number; value?: number }[];
+}
+
+/** What a Devour eats: one (or `all`) of its living allies among `of`, healing `healPct`% of max HP for each. */
+export interface Devour {
+  of: string[];
+  healPct: number;
+  all?: boolean;
 }
 
 /** One enemy (§14.1): content/enemies/<pool>/<id>.json, schemas/enemies.schema.json. */

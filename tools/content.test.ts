@@ -111,6 +111,8 @@ describe("content", () => {
       const abilities = boss.abilities.map((a) => a.id);
       for (const g of [...boss.gambits, ...boss.phases.flatMap((p) => p.gambits)]) if (!["wait", "defend", "retreat"].includes(g.do)) expect(abilities, `${boss.id}: ${g.do}`).toContain(g.do);
       for (const a of [...(boss.adds ?? []), ...boss.phases.flatMap((p) => (p.adds ? [p.adds] : []))]) for (const id of a.spawn) expect(ENEMY_BY_ID.has(id), `${boss.id}: add ${id}`).toBe(true);
+      // A Devour eats something the boss brings.
+      for (const a of boss.abilities) for (const id of a.devour?.of ?? []) expect(ENEMY_BY_ID.has(id), `${boss.id}: devours ${id}`).toBe(true);
       expect(POOL_BY_ID.has(boss.pool), boss.id).toBe(true);
       expect(boss.bestiary.weakness.length && boss.bestiary.pattern.length, boss.id).toBeTruthy();
     }
