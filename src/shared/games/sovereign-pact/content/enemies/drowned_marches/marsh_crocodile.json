@@ -1,0 +1,24 @@
+{
+  "id": "marsh_crocodile",
+  "name": "Crocodile",
+  "pool": "drowned_marches",
+  "tags": ["aquatic", "beast", "armored"],
+  "role": "bruiser",
+  "size": [1, 1],
+  "levels": [3, 7],
+  "variants": ["stone"],
+  "stats": {"speed": 8},
+  "affinity": {"water": 25, "wind": -25},
+  "abilities": [
+    {"id": "death_roll", "shape": "single", "side": "player", "power": 1.4, "locationBias": "legs", "statuses": [{"id": "rooted", "chance": 50, "ticks": 200}]},
+    {"id": "snap", "shape": "single", "side": "player", "power": 1.1}
+  ],
+  "gambits": [
+    {"if": "turn%2==1", "do": "death_roll", "target": "lowest_durability"},
+    {"do": "snap", "target": "column_weighted"}
+  ],
+  "bestiary": {
+    "lore": "A log until it is not.",
+    "weakness": "Wind. Its roll holds a Scion in place."
+  }
+}

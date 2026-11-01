@@ -1,0 +1,24 @@
+{
+  "id": "marsh_jelly_king",
+  "name": "Jelly King",
+  "pool": "drowned_marches",
+  "tags": ["aquatic"],
+  "role": "support",
+  "size": [1, 1],
+  "levels": [2, 7],
+  "stats": {"hp": 1.1, "speed": 7},
+  "affinity": {"water": 25, "wind": -25},
+  "immune": ["poison", "fear"],
+  "abilities": [
+    {"id": "tide_balm", "shape": "band:3", "side": "ally", "power": 1.0, "kind": "heal", "charge": 80, "cooldown": 3},
+    {"id": "sting_veil", "shape": "single", "side": "player", "power": 0.7, "statuses": [{"id": "stun", "chance": 20, "ticks": 100}]}
+  ],
+  "gambits": [
+    {"if": "ally.hp<0.6", "do": "tide_balm"},
+    {"do": "sting_veil", "target": "nearest"}
+  ],
+  "bestiary": {
+    "lore": "A crown of glass, trailing a court of stinging threads.",
+    "weakness": "Wind. Its heal is slow: interrupt it."
+  }
+}

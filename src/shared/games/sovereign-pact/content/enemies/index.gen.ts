@@ -48,6 +48,31 @@ import beast_troll from "./beast_lands/beast_troll.json" with { type: "json" };
 import beast_weasel_ninja from "./beast_lands/beast_weasel_ninja.json" with { type: "json" };
 import beast_werewolf from "./beast_lands/beast_werewolf.json" with { type: "json" };
 import beast_wild_boar from "./beast_lands/beast_wild_boar.json" with { type: "json" };
+import marsh_aqua_cancer from "./drowned_marches/marsh_aqua_cancer.json" with { type: "json" };
+import marsh_clione from "./drowned_marches/marsh_clione.json" with { type: "json" };
+import marsh_crocodile from "./drowned_marches/marsh_crocodile.json" with { type: "json" };
+import marsh_drowned_villager from "./drowned_marches/marsh_drowned_villager.json" with { type: "json" };
+import marsh_frog from "./drowned_marches/marsh_frog.json" with { type: "json" };
+import marsh_frog_rikishi from "./drowned_marches/marsh_frog_rikishi.json" with { type: "json" };
+import marsh_giant_squid from "./drowned_marches/marsh_giant_squid.json" with { type: "json" };
+import marsh_hippo from "./drowned_marches/marsh_hippo.json" with { type: "json" };
+import marsh_hydra from "./drowned_marches/marsh_hydra.json" with { type: "json" };
+import marsh_jelly_king from "./drowned_marches/marsh_jelly_king.json" with { type: "json" };
+import marsh_kelpie from "./drowned_marches/marsh_kelpie.json" with { type: "json" };
+import marsh_kraken from "./drowned_marches/marsh_kraken.json" with { type: "json" };
+import marsh_manta_ray from "./drowned_marches/marsh_manta_ray.json" with { type: "json" };
+import marsh_melusine from "./drowned_marches/marsh_melusine.json" with { type: "json" };
+import marsh_mermaid from "./drowned_marches/marsh_mermaid.json" with { type: "json" };
+import marsh_moray_eel from "./drowned_marches/marsh_moray_eel.json" with { type: "json" };
+import marsh_octopus from "./drowned_marches/marsh_octopus.json" with { type: "json" };
+import marsh_piranha from "./drowned_marches/marsh_piranha.json" with { type: "json" };
+import marsh_sahagin from "./drowned_marches/marsh_sahagin.json" with { type: "json" };
+import marsh_sea_horse from "./drowned_marches/marsh_sea_horse.json" with { type: "json" };
+import marsh_sea_scorpion from "./drowned_marches/marsh_sea_scorpion.json" with { type: "json" };
+import marsh_shark from "./drowned_marches/marsh_shark.json" with { type: "json" };
+import marsh_siren from "./drowned_marches/marsh_siren.json" with { type: "json" };
+import marsh_tadpole from "./drowned_marches/marsh_tadpole.json" with { type: "json" };
+import marsh_undine from "./drowned_marches/marsh_undine.json" with { type: "json" };
 import hollow_bomber_cactus from "./hollow_wood/hollow_bomber_cactus.json" with { type: "json" };
 import hollow_centipede_warrior from "./hollow_wood/hollow_centipede_warrior.json" with { type: "json" };
 import hollow_devil_tree from "./hollow_wood/hollow_devil_tree.json" with { type: "json" };
@@ -125,6 +150,31 @@ export default [
   beast_weasel_ninja,
   beast_werewolf,
   beast_wild_boar,
+  marsh_aqua_cancer,
+  marsh_clione,
+  marsh_crocodile,
+  marsh_drowned_villager,
+  marsh_frog,
+  marsh_frog_rikishi,
+  marsh_giant_squid,
+  marsh_hippo,
+  marsh_hydra,
+  marsh_jelly_king,
+  marsh_kelpie,
+  marsh_kraken,
+  marsh_manta_ray,
+  marsh_melusine,
+  marsh_mermaid,
+  marsh_moray_eel,
+  marsh_octopus,
+  marsh_piranha,
+  marsh_sahagin,
+  marsh_sea_horse,
+  marsh_sea_scorpion,
+  marsh_shark,
+  marsh_siren,
+  marsh_tadpole,
+  marsh_undine,
   hollow_bomber_cactus,
   hollow_centipede_warrior,
   hollow_devil_tree,

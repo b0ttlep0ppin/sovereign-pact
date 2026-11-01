@@ -1,0 +1,23 @@
+{
+  "id": "marsh_octopus",
+  "name": "Octopus",
+  "pool": "drowned_marches",
+  "tags": ["aquatic", "beast", "reach"],
+  "role": "bruiser",
+  "size": [1, 1],
+  "levels": [3, 7],
+  "stats": {"speed": 10},
+  "affinity": {"water": 25, "wind": -25},
+  "abilities": [
+    {"id": "tentacle_grab", "shape": "single", "side": "player", "power": 0.6, "hits": 2, "statuses": [{"id": "rooted", "chance": 30, "ticks": 200}]},
+    {"id": "ink_cloud", "shape": "burst:3x3", "side": "player", "power": 0.2, "kind": "magic", "cooldown": 3, "statuses": [{"id": "blind", "chance": 50, "ticks": 200}], "element": "water"}
+  ],
+  "gambits": [
+    {"if": "turn%3==1", "do": "ink_cloud", "target": "densest_cluster"},
+    {"do": "tentacle_grab", "target": "column_weighted"}
+  ],
+  "bestiary": {
+    "lore": "Eight arms, and each of them thinks for itself.",
+    "weakness": "Wind. It reaches two columns deep."
+  }
+}

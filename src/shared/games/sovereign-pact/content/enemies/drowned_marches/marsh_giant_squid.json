@@ -1,0 +1,25 @@
+{
+  "id": "marsh_giant_squid",
+  "name": "Giant Squid",
+  "pool": "drowned_marches",
+  "tags": ["aquatic", "beast", "reach"],
+  "role": "elite",
+  "size": [2, 2],
+  "levels": [3, 7],
+  "stats": {"hp": 3.0, "speed": 10},
+  "affinity": {"water": 25, "wind": -25},
+  "abilities": [
+    {"id": "tentacle_sweep", "shape": "band:2", "side": "player", "power": 1.0, "cooldown": 2},
+    {"id": "beak", "shape": "single", "side": "player", "power": 1.4},
+    {"id": "ink_jet", "shape": "row", "side": "player", "power": 0.3, "kind": "magic", "statuses": [{"id": "blind", "chance": 40, "ticks": 200}], "cooldown": 3, "element": "water"}
+  ],
+  "gambits": [
+    {"if": "turn%3==1", "do": "ink_jet", "target": "densest_row"},
+    {"if": "turn%2==0", "do": "tentacle_sweep"},
+    {"do": "beak", "target": "lowest_hp"}
+  ],
+  "bestiary": {
+    "lore": "Its tentacles come out of the water across two columns.",
+    "weakness": "Wind. Its reach runs two columns deep."
+  }
+}

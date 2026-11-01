@@ -1,0 +1,24 @@
+{
+  "id": "marsh_clione",
+  "name": "Clione",
+  "pool": "drowned_marches",
+  "tags": ["aquatic", "spirit"],
+  "role": "horror",
+  "size": [1, 1],
+  "levels": [2, 7],
+  "stats": {"speed": 11, "sanityTouch": 3},
+  "affinity": {"water": 25, "wind": -25, "holy": -50},
+  "immune": ["sleep", "charm"],
+  "abilities": [
+    {"id": "angel_bloom", "shape": "row", "side": "player", "power": 0.4, "kind": "magic", "sanity": 7, "charge": 60, "cooldown": 2, "statuses": [{"id": "fear", "chance": 30, "ticks": 200}], "element": "dark"},
+    {"id": "cold_wing", "shape": "single", "side": "player", "power": 0.5, "kind": "magic", "sanity": 5, "element": "water", "reach": "ranged"}
+  ],
+  "gambits": [
+    {"if": "turn%3==1", "do": "angel_bloom", "target": "densest_row"},
+    {"do": "cold_wing", "target": "lowest_sanity"}
+  ],
+  "bestiary": {
+    "lore": "A sea angel, beautiful, until its head opens.",
+    "weakness": "Holy. Keep the Back's Sanity up."
+  }
+}

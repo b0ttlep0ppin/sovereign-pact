@@ -2,6 +2,14 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-01 (implementation, Milestone 3i: the Drowned Marches and Scylla) — implementer
+- **The Drowned Marches roster** (`content/enemies/drowned_marches/`, ids `marsh_*`, 25 enemies, L2–7, resisting Water and weak to Wind, which holds Lightning since Q86). Trimmed to the budget: Water Lizard, Earth Frog, Bunyip and the Abyss Kragen (3×8) wait for later. The Octopus and the Giant Squid (2×2) carry `reach`, two columns deep. The Kraken (3×4, its tentacles a Part that powers the coils) and the Hydra (2×3, a water head and a venom head as Parts) are the colossi.
+- **Pulling Scions forward:** enemy abilities can `pull` (1–2 columns toward the Front, the Grapple Line rule turned around). The Kelpie drags a Back Scion to the Front; the Giant Frog's tongue pulls one column.
+- **Submerged** (new status, 200 ticks, not dispellable): nothing can pick a submerged combatant, and areas, lines and the Front-of-each-row pass over it. It still acts. A Hidden one could still be caught by an area; a Submerged one cannot.
+- **Scylla** (L4–5, 2×3 on E1, two Kelpies beside her, also on E1 so the Front can reach them): she lashes two hits, drags a Back Scion forward every third turn, and wards herself with a Shield (5% of her HP) only while a Kelpie lives (§14.6's "the Kelpies feed her shield"). **The Deep**, at half: she dives at once and every fourth turn, Speed 14, another Kelpie comes, and while under she sends the undertow up through the Back, Middle and Front columns in turn.
+- **First-pass numbers:** with her Kelpies placed behind her on E3 and at full lurker damage the party lost 86% of the time in about 11 turns, nearly all of it to Kelpie bites; Kelpies now bite at 0.9 and drag at 0.6, and Scylla has 8× HP.
+- **Simulator:** the baseline party beats Scylla about half the time at L4–6 (52/45/45%, 17 turns). Drowned Marches Encounters: 98–100% at L2; at L7 the elite patrol (37%) bites.
+
 ## 2026-11-01 (implementation, Milestone 3h: the Hollow Wood and the Ancient Tree King) — implementer
 - **The Hollow Wood roster** (`content/enemies/hollow_wood/`, 25 enemies, L1–7, resisting Earth and Water, weak to Fire) from §14.5's list, trimmed to the 25 budget: Mushroom Baby, Paper Swarm, Dragonfly, Giant Weta, Nymph, Pitcher Plant, Devil Flower, Devil Pine and Emperor Cicada are left for later variety. The Tree King is a boss only, not a drawn colossus; the Sunflower Giant (its flower head a Part that powers the solar beam) and Tsuchigumo are the colossi.
 - **The Ancient Tree King** (L2–3, 3×4 on E1–E3, Fire ×2): roots the Front every third turn and brings the canopy down on three rows with 200 ticks' warning (§14.6's "telegraph 2"). **Seedfall** at two thirds (Sprouts, sap drinking) and **Old Growth** at a third (Speed 9, limbs regrow, Regen, more Sprouts, the canopy every other turn).

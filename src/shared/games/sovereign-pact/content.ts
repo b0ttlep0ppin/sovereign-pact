@@ -129,6 +129,7 @@ export interface EnemyAbility {
   leap?: boolean;
   raise?: number;
   drain?: number;
+  pull?: number;
   cooldown?: number;
   sanity?: number;
   readiness?: number;

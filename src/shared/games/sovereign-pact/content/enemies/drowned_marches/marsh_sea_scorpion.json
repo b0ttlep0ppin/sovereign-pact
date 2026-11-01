@@ -1,0 +1,24 @@
+{
+  "id": "marsh_sea_scorpion",
+  "name": "Sea Scorpion",
+  "pool": "drowned_marches",
+  "tags": ["aquatic", "armored"],
+  "role": "lurker",
+  "size": [1, 1],
+  "levels": [2, 6],
+  "variants": ["stone"],
+  "stats": {"speed": 12},
+  "affinity": {"water": 25, "wind": -25},
+  "abilities": [
+    {"id": "tail_spike", "shape": "single", "side": "player", "power": 1.2, "leap": true, "statuses": [{"id": "poison", "chance": 50, "ticks": 300}]},
+    {"id": "claw", "shape": "single", "side": "player", "power": 0.9}
+  ],
+  "gambits": [
+    {"if": "turn%2==0", "do": "tail_spike", "target": "empty_cell"},
+    {"do": "claw", "target": "nearest"}
+  ],
+  "bestiary": {
+    "lore": "It walks out of the shallows and over the Front.",
+    "weakness": "Wind. Its sting poisons the Back."
+  }
+}

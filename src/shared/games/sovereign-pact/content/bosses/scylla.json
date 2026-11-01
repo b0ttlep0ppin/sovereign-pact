@@ -1,0 +1,41 @@
+{
+  "id": "scylla",
+  "name": "Scylla",
+  "pool": "drowned_marches",
+  "tags": ["aquatic", "monster"],
+  "role": "boss",
+  "size": [2, 3],
+  "at": "E1",
+  "levels": [4, 5],
+  "stats": {"speed": 12, "hp": 8},
+  "immune": ["fear"],
+  "abilities": [
+    {"id": "tentacle_lash", "shape": "single", "side": "player", "power": 0.7, "hits": 2},
+    {"id": "tidal_pull", "shape": "single", "side": "player", "power": 0.8, "reach": "ranged", "pull": 2, "cooldown": 2, "statuses": [{"id": "slow", "chance": 50, "ticks": 200}]},
+    {"id": "kelp_ward", "shape": "self", "side": "self", "power": 0, "kind": "support", "statuses": [], "shieldPct": 5, "cooldown": 3},
+    {"id": "dive", "shape": "self", "side": "self", "power": 0, "kind": "support", "statuses": [{"id": "submerged", "chance": 100, "ticks": 200}], "cooldown": 4},
+    {"id": "undertow_f", "shape": "column:F", "side": "player", "power": 1.2, "kind": "magic", "element": "water", "charge": 40, "telegraph": true},
+    {"id": "undertow_m", "shape": "column:M", "side": "player", "power": 1.2, "kind": "magic", "element": "water", "charge": 40, "telegraph": true},
+    {"id": "undertow_b", "shape": "column:B", "side": "player", "power": 1.2, "kind": "magic", "element": "water", "charge": 40, "telegraph": true}
+  ],
+  "gambits": [
+    {"if": "adds>=1 && turn%3==1", "do": "kelp_ward"},
+    {"if": "turn%3==2", "do": "tidal_pull", "target": "back_random"},
+    {"do": "tentacle_lash", "target": "column_weighted"}
+  ],
+  "adds": [
+    {"spawn": ["marsh_kelpie"], "count": 2, "at": "E1"}
+  ],
+  "phases": [
+    {"at": "hp<=0.5", "name": "The Deep", "speed": 14, "statuses": [{"id": "submerged", "ticks": 200}], "adds": {"spawn": ["marsh_kelpie"], "count": 1, "at": "E2"}, "say": "The lake is mine. All of it.", "gambits": [{"if": "turn%4==0", "do": "dive"}, {"if": "self.submerged && turn%3==0", "do": "undertow_b"}, {"if": "self.submerged && turn%3==1", "do": "undertow_m"}, {"if": "self.submerged", "do": "undertow_f"}, {"if": "adds>=1 && turn%3==1", "do": "kelp_ward"}, {"if": "turn%3==2", "do": "tidal_pull", "target": "back_random"}, {"do": "tentacle_lash", "target": "column_weighted"}]}
+  ],
+  "say": {
+    "open": "Sailors, fishers, heroes. You all taste of the same salt.",
+    "death": "Back... into the dark water..."
+  },
+  "bestiary": {
+    "lore": "Six dogs' heads and a woman's voice, at the narrows where the Marches meet the black lake.",
+    "weakness": "Wind. Kill her Kelpies and her kelp ward fails; nothing reaches her while she is under.",
+    "pattern": "Lashes two columns deep and drags a Back Scion to the Front every third turn; while a Kelpie lives she wards herself. At half she dives, untouchable for two turns, and the undertow comes up through one column after another."
+  }
+}

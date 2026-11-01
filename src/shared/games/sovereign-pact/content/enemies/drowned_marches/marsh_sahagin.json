@@ -1,0 +1,24 @@
+{
+  "id": "marsh_sahagin",
+  "name": "Sahagin",
+  "pool": "drowned_marches",
+  "tags": ["aquatic", "humanoid"],
+  "role": "fodder",
+  "size": [1, 1],
+  "levels": [2, 7],
+  "variants": ["storm"],
+  "stats": {"speed": 10},
+  "affinity": {"water": 25, "wind": -25},
+  "abilities": [
+    {"id": "trident_jab", "shape": "single", "side": "player", "power": 1.0, "locationBias": "legs"},
+    {"id": "net_throw", "shape": "single", "side": "player", "power": 0.4, "cooldown": 3, "reach": "ranged", "statuses": [{"id": "rooted", "chance": 40, "ticks": 200}]}
+  ],
+  "gambits": [
+    {"if": "turn%3==1", "do": "net_throw", "target": "back_random"},
+    {"do": "trident_jab", "target": "column_weighted"}
+  ],
+  "bestiary": {
+    "lore": "Fish-folk of the black lake, who come up the rivers in the wet season.",
+    "weakness": "Wind. Their nets hold the Back in place."
+  }
+}

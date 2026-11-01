@@ -1,0 +1,23 @@
+{
+  "id": "marsh_manta_ray",
+  "name": "Manta Ray",
+  "pool": "drowned_marches",
+  "tags": ["aquatic", "beast"],
+  "role": "artillery",
+  "size": [1, 1],
+  "levels": [2, 7],
+  "stats": {"speed": 10},
+  "affinity": {"water": 25, "wind": -25},
+  "abilities": [
+    {"id": "wing_sweep", "shape": "column:M", "side": "player", "power": 1.0, "charge": 60, "telegraph": true, "cooldown": 2},
+    {"id": "barb", "shape": "single", "side": "player", "power": 0.9, "reach": "ranged"}
+  ],
+  "gambits": [
+    {"if": "turn%2==1", "do": "wing_sweep"},
+    {"do": "barb", "target": "back_random"}
+  ],
+  "bestiary": {
+    "lore": "It glides over the water like a shadow and sweeps a column clean.",
+    "weakness": "Wind. Its sweep crosses the Middle."
+  }
+}

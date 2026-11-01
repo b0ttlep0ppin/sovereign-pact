@@ -1,0 +1,22 @@
+{
+  "id": "marsh_moray_eel",
+  "name": "Moray Eel",
+  "pool": "drowned_marches",
+  "tags": ["aquatic", "beast"],
+  "role": "lurker",
+  "size": [1, 1],
+  "levels": [3, 7],
+  "stats": {"speed": 14},
+  "affinity": {"water": 25, "wind": -25},
+  "abilities": [
+    {"id": "lunge", "shape": "single", "side": "player", "power": 1.3, "leap": true, "crit": 20, "statuses": [{"id": "bleed", "chance": 30, "ticks": 0}]}
+  ],
+  "gambits": [
+    {"if": "turn%2==1", "do": "lunge", "target": "empty_cell"},
+    {"do": "lunge", "target": "lowest_hp"}
+  ],
+  "bestiary": {
+    "lore": "It waits in a crack in the stone and strikes from it.",
+    "weakness": "Wind. Hit it when it lands."
+  }
+}

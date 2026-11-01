@@ -1,0 +1,23 @@
+{
+  "id": "marsh_sea_horse",
+  "name": "Sea Horse",
+  "pool": "drowned_marches",
+  "tags": ["aquatic", "beast"],
+  "role": "artillery",
+  "size": [1, 1],
+  "levels": [2, 6],
+  "stats": {"hp": 0.8, "speed": 10},
+  "affinity": {"water": 50, "wind": -25},
+  "abilities": [
+    {"id": "water_spout", "shape": "lob", "side": "player", "power": 0.9, "reach": "ranged", "element": "water"},
+    {"id": "bubble_screen", "shape": "single", "side": "ally", "power": 0, "kind": "support", "statuses": [{"id": "shell", "chance": 100, "ticks": 300}], "cooldown": 3}
+  ],
+  "gambits": [
+    {"if": "turn%3==0", "do": "bubble_screen", "target": "ally_lowest_hp"},
+    {"do": "water_spout", "target": "lob"}
+  ],
+  "bestiary": {
+    "lore": "It spits from behind the others, and shields them in bubbles.",
+    "weakness": "Wind. It cannot take a hit."
+  }
+}

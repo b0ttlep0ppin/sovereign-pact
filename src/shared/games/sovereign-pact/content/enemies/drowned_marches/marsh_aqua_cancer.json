@@ -1,0 +1,25 @@
+{
+  "id": "marsh_aqua_cancer",
+  "name": "Aqua Cancer",
+  "pool": "drowned_marches",
+  "tags": ["aquatic", "armored"],
+  "role": "elite",
+  "size": [1, 1],
+  "levels": [2, 6],
+  "stats": {"def": 2.0, "speed": 8},
+  "affinity": {"water": 25, "wind": -25},
+  "abilities": [
+    {"id": "great_pincer", "shape": "single", "side": "player", "power": 1.5, "statuses": [{"id": "disarmed", "chance": 30, "ticks": 200}]},
+    {"id": "bubble_spray", "shape": "row", "side": "player", "power": 0.8, "kind": "magic", "element": "water"},
+    {"id": "shell_up", "shape": "self", "side": "self", "power": 0, "kind": "support", "statuses": [{"id": "protect", "chance": 100, "ticks": 300}, {"id": "shell", "chance": 100, "ticks": 300}], "cooldown": 4}
+  ],
+  "gambits": [
+    {"if": "self.hp<0.6", "do": "shell_up"},
+    {"if": "turn%3==1", "do": "bubble_spray", "target": "densest_row"},
+    {"do": "great_pincer", "target": "lowest_durability"}
+  ],
+  "bestiary": {
+    "lore": "A crab the size of a cart, armored like a siege wagon.",
+    "weakness": "Wind, and magic: its shell stops blades."
+  }
+}
