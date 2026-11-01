@@ -198,12 +198,18 @@
       "innate": {
         "id": "cast_lots",
         "name": "Cast Lots",
-        "text": "2d6 at the start of every turn, with an effect per total."
+        "text": "2d6 at the start of every turn, with an effect per total.",
+        "mods": {
+          "castLots": 1
+        }
       },
       "mastery": {
         "id": "house_edge",
         "name": "House Edge",
-        "text": "Double Down fizzles only at −5 or lower."
+        "text": "Double Down fizzles only at −5 or lower.",
+        "mods": {
+          "fizzleAt": 1
+        }
       }
     },
     {

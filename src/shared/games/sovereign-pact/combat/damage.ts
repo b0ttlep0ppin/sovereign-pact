@@ -25,11 +25,11 @@ export function hitChance(u: Combatant, t: Combatant, ab: AbilityDef): number {
   let chance: number;
   if (kindOf(ab) === "magic") chance = C.spellAccuracy.base + C.spellAccuracy.sagacity * u.sagacity;
   else {
-    let evasion = t.evasion + (t.mods.evasion ?? 0);
+    let evasion = t.evasion + (t.mods.evasion ?? 0) + (t.mods["turn.evasion"] ?? 0);
     if (hasStatus(t, "knockdown")) evasion += C.knockdownEvasion;
     if (hasStatus(t, "frozen")) evasion += C.frozenEvasion;
     const drill = reachOf(u, ab) !== "ranged" ? (u.mods.meleeAccuracy ?? 0) : 0;
-    chance = u.weapon.acc + u.accuracy + (u.mods.accuracy ?? 0) + drill + (ab.accuracy ?? 0) - Math.max(0, evasion);
+    chance = u.weapon.acc + u.accuracy + (u.mods.accuracy ?? 0) + (u.mods["turn.accuracy"] ?? 0) + drill + (ab.accuracy ?? 0) - Math.max(0, evasion);
     if (hasStatus(u, "blind")) chance += C.blind;
   }
   if (t.charge) chance += C.chargingHitBonus;
@@ -134,6 +134,18 @@ export function strike(b: Battle, rng: Rng, u: Combatant, t: Combatant, ab: Abil
   }
   const weaponHit = isWeaponHit(ab);
   let missed = rng.int(100) >= hitChance(u, t, ab);
+  // Cast Lots 11: the next hit cannot miss.
+  const sure = u.flags.indexOf("sure_hit");
+  if (sure >= 0 && t.side !== u.side) {
+    u.flags.splice(sure, 1);
+    missed = false;
+  }
+  // Mulligan: an ally's granted reroll of one miss.
+  const mulligan = u.flags.indexOf("mulligan");
+  if (missed && mulligan >= 0) {
+    u.flags.splice(mulligan, 1);
+    missed = rng.int(100) >= hitChance(u, t, ab);
+  }
   // Lucky: one miss a battle is rolled again.
   if (missed && weaponHit && u.mods.lucky && !u.flags.includes("lucky_used")) {
     u.flags.push("lucky_used");
@@ -150,7 +162,11 @@ export function strike(b: Battle, rng: Rng, u: Combatant, t: Combatant, ab: Abil
 
   // Crit: base + weapon + ability, Head +10 (§10.6 step 3). A primed crit (Sanity "next_crit") always lands.
   const primed = u.flags.indexOf("next_crit");
-  let crit = rng.int(100) < C.crit.base + u.weapon.crit + (ab.crit ?? 0) + (u.mods.crit ?? 0) + (loc === "head" ? C.crit.headBonus : 0);
+  // Loaded Dice: the next attack's crit chance up, once. Lucky Streak: +2% per 7+ Cast Lots in a row.
+  const loaded = statusValue(u, "loaded_dice") ?? 0;
+  if (loaded) removeStatus(b, u, "loaded_dice");
+  const streak = u.mods.luckyStreak ? (u.mods.lotsStreak ?? 0) * u.mods.luckyStreak : 0;
+  let crit = rng.int(100) < C.crit.base + u.weapon.crit + (ab.crit ?? 0) + (u.mods.crit ?? 0) + loaded + streak + (loc === "head" ? C.crit.headBonus : 0);
   if (primed >= 0) {
     crit = true;
     u.flags.splice(primed, 1);
@@ -366,6 +382,7 @@ function supportEffects(b: Battle, rng: Rng, u: Combatant, t: Combatant, ab: Abi
   for (const c of ab.cure ?? []) for (const x of [...t.statuses]) if (x.id === c || meta(x.id).kind === c) removeStatus(b, t, x.id);
   if (ab.sanityPct && t.maxSanity) t.sanity = Math.min(t.maxSanity, t.sanity + Math.round((t.maxSanity * ab.sanityPct) / 100));
   if (ab.tpGrant) t.tp = Math.min(C.tp.max, t.tp + ab.tpGrant);
+  if (ab.flag && !t.flags.includes(ab.flag)) t.flags.push(ab.flag);
   for (const x of ab.statuses ?? []) {
     if (t.side === u.side) addStatus(b, t, x.id, x.ticks, x.value === undefined ? undefined : { value: x.value });
     else tryStatus(b, rng, t, x.id, x.chance, x.ticks, x.value);

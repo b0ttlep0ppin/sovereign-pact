@@ -3,6 +3,7 @@
 import type { Rng } from "../../../rng.ts";
 import { TUNING } from "../tuning.ts";
 import { chargeTicks, moveCost, nextActor, step } from "./clock.ts";
+import { abilityDice, castLots, rolledAbility } from "./dice.ts";
 import { strike } from "./damage.ts";
 import { hasStatus, isFree, standing } from "./grid.ts";
 import { kill } from "./injury.ts";
@@ -15,7 +16,8 @@ const C = TUNING.combat;
 /** Every combatant can make a plain attack with its weapon. */
 export const ATTACK: AbilityDef = { id: "attack", name: "Attack", shape: "single", side: "foe", power: 1 };
 
-export type Action = { do: "ability"; ability: string; target: Cell } | { do: "wait" } | { do: "defend" };
+/** `doubleDown`: how many times a Gambler rolls an ability's dice again (§12.2). */
+export type Action = { do: "ability"; ability: string; target: Cell; doubleDown?: number } | { do: "wait" } | { do: "defend" };
 
 /** The battle stops after this many ticks with a retreat, so a stalemate cannot run forever. */
 export const MAX_TICKS = 30_000;
@@ -64,6 +66,9 @@ function beginTurn(b: Battle, rng: Rng, u: Combatant): boolean {
   b.events.push({ t: "turn", unit: u.id, tick: b.tick });
   u.turns++;
   u.defending = false;
+  // Cast Lots' "until next turn" effects end here.
+  for (const k of Object.keys(u.mods)) if (k.startsWith("turn.")) delete u.mods[k];
+  u.flags = u.flags.filter((f) => f !== "lots_twelve");
   for (const k of Object.keys(u.cooldowns)) if (u.cooldowns[k]! > 0) u.cooldowns[k]!--;
   if (u.lastStand) u.tp = Math.min(C.tp.max, u.tp + C.lastStand.tp);
   // Attuned and Resolute accessories (§13.4).
@@ -77,6 +82,7 @@ function beginTurn(b: Battle, rng: Rng, u: Combatant): boolean {
     u.ct = Math.max(0, u.ct - C.cost.action);
     return false;
   }
+  if (u.mods.castLots) castLots(b, rng, u);
   b.actor = u.id;
   b.moved = false;
   b.acted = false;
@@ -140,7 +146,7 @@ export function act(b: Battle, rng: Rng, u: Combatant, action: Action): void {
       b.events.push({ t: "charge", unit: u.id, ability: ab.id, target: action.target, ticks, telegraph: !!ab.telegraph });
     } else {
       if (ab.charge) u.flags.splice(instant, 1);
-      resolve(b, rng, u, ab, action.target, homingOn);
+      resolve(b, rng, u, ab, action.target, homingOn, action.doubleDown);
     }
   }
   if (u.mods.nextActionCt) {
@@ -160,8 +166,18 @@ function resolveCharge(b: Battle, rng: Rng, u: Combatant): void {
 }
 
 /** An ability lands: every target, every hit (§10.6). */
-export function resolve(b: Battle, rng: Rng, u: Combatant, ab: AbilityDef, at: Cell, homingOn?: number): void {
-  const targets = resolveTargets(b, rng, u, ab, at, homingOn);
+export function resolve(b: Battle, rng: Rng, u: Combatant, ab: AbilityDef, at: Cell, homingOn?: number, doubleDown = 0): void {
+  let targets = resolveTargets(b, rng, u, ab, at, homingOn);
+  if (ab.dice) {
+    const total = abilityDice(b, rng, u, targets[0], ab.dice.doubleDown ? doubleDown : 0);
+    if (total === null) {
+      b.events.push({ t: "use", unit: u.id, ability: ab.id, target: at });
+      return;
+    }
+    const rolled = rolledAbility(ab, total);
+    ab = rolled.ab;
+    if (rolled.self) targets = [u];
+  }
   b.events.push({ t: "use", unit: u.id, ability: ab.id, target: homingOn !== undefined && targets[0] ? cellOf(targets[0]) : at });
   const hits = (ab.hits ?? 1) + (ab.hitsMax ? rng.int(ab.hitsMax - (ab.hits ?? 1) + 1) : 0);
   for (const t of targets) {

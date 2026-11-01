@@ -315,6 +315,43 @@
               }
             }
           }
+        },
+        "flag": {
+          "type": "string",
+          "description": "A one-use flag given to each target"
+        },
+        "dice": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "scale": {
+              "type": "number"
+            },
+            "restorePct": {
+              "type": "number"
+            },
+            "high": {
+              "type": "number"
+            },
+            "highPower": {
+              "type": "number"
+            },
+            "low": {
+              "type": "number"
+            },
+            "lowPower": {
+              "type": "number"
+            },
+            "otherwise": {
+              "type": "number"
+            },
+            "lowHitsSelf": {
+              "type": "boolean"
+            },
+            "doubleDown": {
+              "type": "boolean"
+            }
+          }
         }
       }
     },

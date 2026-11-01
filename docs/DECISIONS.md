@@ -2,6 +2,14 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-01 (implementation, Milestone 2e: the Gambler) — implementer
+- **Cast Lots** runs at the start of every Gambler turn that is not lost, per the §12.7 table. The "until next turn" results (6: Evasion, 10: Accuracy) end at the Gambler's next turn; 11 makes the next hit on a foe land; 12 makes the next action a crit. Numbers in `combat.dice`.
+- **Double Down** is part of the action (`doubleDown`: 0–3 extra rolls). Each new roll replaces the total unless it is 4 or more lower, which fizzles the ability and spends the turn. House Edge and Risk Taker each add a point to that margin; §12.7 says Risk Taker lowers the threshold by 1, and that is read as "fizzles one point later". Bots never Double Down yet.
+- **Marked Card**'s 11 applies to the next ability dice rolled against that target and is then used up. **All In** at 4 or under hits the Gambler instead of the burst. **Last Chip** ("(100 − your HP%) × 3% of max") and **Cheat Death** wait: whose max HP the first means needs a reading in play, and the second needs injury rerolls.
+
+## 2026-11-01 (Q88 answered) — Josh
+- **Keep the placeholder names for now** for the negative and cursed item properties (Brittle nerve, Sickly, Unnerving, Exposed: <Element>, Curse of the Withered Mind, of the Unhallowed, of the Open Guard, of the Beacon, of Whispers). Renaming later changes only `name` in `content/properties.json`.
+
 ## 2026-11-01 (implementation, Milestone 2d: Job abilities, first five) — implementer
 - **Ability sets are content**, one file per Job (`content/abilities/<job>.json`, schema `abilities.schema.json`): Soldier, Knight, Magus, Soothsayer and Vagabond, every drafted active and passive with a JP price. Gambler, Pugilist and Minstrel come with Cast Lots, combos and songs; the advanced Jobs after that.
 - **JP earned stay earned**: buying spends from what is left (earned − prices of what was bought in that Job), so buying never re-locks an advanced Job. Buying the last ability masters the Job.
@@ -158,12 +166,11 @@ Readings and defaults taken while building; each is a knob in `tuning.ts` or eas
 
 ## Open questions
 
-Batches 1–12 (answered 2026-10-31 / 2026-11-01): Q1–Q84 closed, see above. The design is handed off; see HANDOFF.md.
+Batches 1–12 (answered 2026-10-31 / 2026-11-01): Q1–Q84 closed, see above. Q86 and Q88 answered 2026-11-01. The design is handed off; see HANDOFF.md.
 
 - **Q85 (asked 2026-11-01, Milestone 0): how is a House's Standing tier worked out?** §3.4 names the four tiers (Waning / Steady / Rising / Ascendant) but not the rule, and it decides how much the other Houses can read. Built as the default, PROPOSED: a House's Ascendancy divided by the kingdom's mean, Waning below 0.75, Steady 0.75–1, Rising 1–1.25, Ascendant 1.25 and up; Steady when solo or before anyone scores. Alternatives: tiers by rank (the leader is always Ascendant, which tells everyone who leads), or fixed Ascendancy thresholds that rise with the Year (tiers say how well a House does, not how it compares).
 - **Q87 (asked 2026-11-01, Milestone 1): should Durability grow with level?** The simulator finds injury rolls in an ordinary fight climbing from 0.1 at L1 to about 6 at L10, because §7.3's Durability (10–15 + 1.5–2 × a stat) grows slowly while enemy damage grows about fivefold. A level term (+1 or +2 Durability per level on every location) brings L10 to about 2–3 rolls; heavier armor in Milestone 2 may do the rest. Built as specified (no level term) until Josh decides; `formulas.durabilityPerLevel` is the knob.
 
-- **Q88 (asked 2026-11-01, Milestone 2c): what are the negative and cursed properties called?** §13.4–13.5 give their effects but no names. Built with placeholders: Brittle nerve (mental ailment resist −25%), Sickly (physical ailment resist −25%), Unnerving (max Sanity −10%), Exposed: <Element> (that element +20% taken), and the curses Curse of the Withered Mind (Sanity −15%), Curse of the Unhallowed (Holy +30% taken), Curse of the Open Guard (cannot Defend), Curse of the Beacon (Marked at battle start), Curse of Whispers. Only the names change; ids stay.
 
 Implementation items (not design questions):
 - LPC sprite runtime: the folder holds one exported male base; runtime recruit generation needs the generator's full layer set exported with its per-layer `CREDITS.csv`.
