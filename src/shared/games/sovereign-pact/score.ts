@@ -1,20 +1,34 @@
 // Ascendancy (§3.4): eight categories, an Ambition that doubles one and halves another, and the rough
-// Standing tier other Houses see. Milestone 4 fills in what earns each category; for now the
-// state-based ones are counted from what a House holds and the rest come from `house.score`.
+// Standing tier other Houses see. Lineage, Treasury, Holdings and Relics are counted from what a House
+// holds now; Valor, Lore, Renown and Intrigue are earned as they happen, into `house.score`.
+import { RARE_MATERIALS } from "./content.ts";
 import { SCORE_CATEGORIES, type Score, type ScoreCategory, type SovState, type StandingTier } from "./state.ts";
 import { TUNING } from "./tuning.ts";
+
+const RARE = new Set(RARE_MATERIALS.map((m) => m.id));
 
 /** A House's points per category before its Ambition: earned points plus what it holds now. */
 export function categories(state: SovState, house: number): Score {
   const h = state.houses[house]!;
+  const T = TUNING.scoring;
+  const L = T.lineage;
   const mine = state.people.filter((p) => p.host === house && p.status !== "lost");
   const vault = h.buildings.vault ?? 0;
+  const stores = Object.entries(h.stores).reduce((sum, [k, n]) => sum + (n ?? 0) * (RARE.has(k) ? T.rareGold : T.storeGold), 0);
+  const owned = state.items.filter((i) => i.house === house);
   const held: Partial<Score> = {
-    // First pass, Milestone 4 replaces these: Lineage counts the living, Treasury the Gold held,
-    // Holdings the building levels.
-    lineage: mine.filter((p) => p.status !== "recruit").length * 2 + mine.filter((p) => p.status === "recruit").length,
-    treasury: Math.floor((Math.max(0, h.gold - h.debt) / 10) * (1 + (vault ? TUNING.town.vaultTreasuryPct[vault - 1]! : 0) / 100)),
+    lineage: mine.reduce(
+      (sum, p) =>
+        sum +
+        (p.status === "recruit" ? L.recruit : L.scion) +
+        Math.floor(p.level / L.levelsPerPoint) +
+        L.potential[p.potential] +
+        (p.house !== house ? L.ward : 0),
+      0,
+    ),
+    treasury: Math.floor((Math.max(0, h.gold - h.debt + stores) / T.goldPerPoint) * (1 + (vault ? TUNING.town.vaultTreasuryPct[vault - 1]! : 0) / 100)),
     holdings: Object.values(h.buildings).reduce<number>((sum, level) => sum + (level ?? 0) * TUNING.town.holdingsPerLevel, 0),
+    relics: owned.reduce((sum, i) => sum + (i.tier === 5 ? T.relic : 0) + (i.named ? T.named : 0), 0),
   };
   return Object.fromEntries(SCORE_CATEGORIES.map((c) => [c, h.score[c] + (held[c] ?? 0)])) as Score;
 }

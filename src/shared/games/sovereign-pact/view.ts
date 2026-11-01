@@ -5,6 +5,7 @@ import type { PlayerId } from "../../game.ts";
 import { dealsFor } from "./deals.ts";
 import { marketFor } from "./market.ts";
 import { eventsFor } from "./omens.ts";
+import { timelineFor } from "./timeline.ts";
 import { ascendancy, categories, standing } from "./score.ts";
 import type {
   Ambition,
@@ -118,8 +119,8 @@ export interface SovView {
   events: PendingEvent[];
   /** The open vote, cast in the open (§8.1). */
   vote: SovState["vote"] | null;
-  /** Hidden entries show only their Year. */
-  timeline: { year: number; id: string }[];
+  /** Hidden entries show only their Year, unless a Watchtower or the Observatory reveals them. */
+  timeline: { year: number; id: string; house?: number }[];
   houses: PublicHouse[];
   mine: PrivateHouse | null;
   people: PersonView[];
@@ -209,7 +210,7 @@ export function view(s: SovState, playerId: PlayerId): SovView {
     deals: dealsFor(s, me),
     market: marketFor(s, me),
     crisis: s.crisis ? { id: s.crisis.id, need: s.crisis.need } : null,
-    timeline: s.timeline.map((t) => ({ year: t.year, id: t.hidden ? "?" : t.id })),
+    timeline: timelineFor(s, me),
     houses: s.houses.map((h, i) => publicHouse(s, h, i)),
     mine:
       me === null || !own

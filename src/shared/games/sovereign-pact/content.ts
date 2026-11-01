@@ -460,7 +460,7 @@ export interface TownEffect {
   sanity?: number;
   score?: Partial<Record<string, number>>;
   flag?: string;
-  timeline?: { event: string; years: number };
+  timeline?: { event: string; years: number; hidden?: boolean };
   recruit_gain?: number;
 }
 /** An option of a town event: who picks it is the event's rule; its outcome is drawn by weight. */

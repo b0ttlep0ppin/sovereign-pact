@@ -25,7 +25,7 @@ export function applyEffects(s: SovState, effects: readonly TownEffect[], subjec
     }
     if (e.doom) s.doom = Math.max(0, Math.min(100, s.doom + e.doom));
     if (e.flag && !s.flags.includes(e.flag)) s.flags.push(e.flag);
-    if (e.timeline) s.timeline.push({ year: s.year + e.timeline.years, id: e.timeline.event, ...(subject === null ? {} : { house: subject }) });
+    if (e.timeline) s.timeline.push({ year: s.year + e.timeline.years, id: e.timeline.event, ...(subject === null ? {} : { house: subject }), ...(e.timeline.hidden ? { hidden: true as const } : {}) });
     if (e.resources && e.to === "commons") {
       for (const [k, n] of Object.entries(e.resources)) {
         if (k === "gold") s.commons.gold = Math.max(0, s.commons.gold + (n ?? 0));
@@ -35,6 +35,14 @@ export function applyEffects(s: SovState, effects: readonly TownEffect[], subjec
     const hit = e.resources || e.ruin || e.recruits_lost || e.sanity || e.score || e.recruit_gain ? targets(s, e, subject) : [];
     for (const i of hit) touch(s, e, i);
   }
+}
+
+/** A House building loses a level; at 0 it is gone. */
+export function damage(s: SovState, house: number, building: string): void {
+  const h = s.houses[house]!;
+  h.buildings[building] = (h.buildings[building] ?? 1) - 1;
+  if (!h.buildings[building]) delete h.buildings[building];
+  log(s, `House ${h.name}'s ${building.replace(/_/g, " ")} is damaged.`);
 }
 
 function touch(s: SovState, e: TownEffect, i: number): void {
@@ -47,10 +55,7 @@ function touch(s: SovState, e: TownEffect, i: number): void {
   for (let n = 0; n < (e.ruin ?? 0); n++) {
     const standing = Object.keys(h.buildings).filter((b) => h.buildings[b]);
     if (!standing.length) break;
-    const b = withRng(s, (rng) => rng.pick(standing));
-    h.buildings[b] = h.buildings[b]! - 1;
-    if (!h.buildings[b]) delete h.buildings[b];
-    log(s, `House ${h.name}'s ${b.replace(/_/g, " ")} is damaged.`);
+    damage(s, i, withRng(s, (rng) => rng.pick(standing)));
   }
   for (let n = 0; n < (e.recruits_lost ?? 0); n++) {
     const pool = s.people.filter((p) => p.host === i && p.status === "recruit");

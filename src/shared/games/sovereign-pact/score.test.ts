@@ -1,6 +1,8 @@
 import { describe, expect, it } from "vitest";
 import { ascendancy, categories, placements, standing } from "./score.ts";
+import { mint } from "./items.ts";
 import { campaign } from "./testing.ts";
+import { TUNING } from "./tuning.ts";
 
 describe("Ascendancy (§3.4)", () => {
   it("doubles the Ambition's category and halves its other", () => {
@@ -16,11 +18,35 @@ describe("Ascendancy (§3.4)", () => {
     expect(ascendancy(s, 0)).toBe(before + 35);
   });
 
-  it("counts Treasury from Gold held, net of debt", () => {
+  it("counts Treasury from Gold held, net of debt, and stores at a Gold a unit, rare ones at ten", () => {
     const s = campaign(1);
+    s.houses[0]!.stores = {};
     s.houses[0]!.gold = 95;
     s.houses[0]!.debt = 25;
     expect(categories(s, 0).treasury).toBe(7);
+    s.houses[0]!.stores = { timber: 20, wyrmbone: 1 };
+    expect(categories(s, 0).treasury).toBe(Math.floor((70 + 20 * TUNING.scoring.storeGold + TUNING.scoring.rareGold) / TUNING.scoring.goldPerPoint));
+  });
+
+  it("counts Lineage from the living, their levels and potential, and Wards hosted", () => {
+    const s = campaign(2);
+    const L = TUNING.scoring.lineage;
+    s.people = s.people.filter((p) => p.host !== 0);
+    expect(categories(s, 0).lineage).toBe(0);
+    const ward = { ...s.people.find((p) => p.host === 1 && p.status === "scion")!, id: 900, host: 0, level: 10, potential: "gifted" as const };
+    s.people.push(ward);
+    expect(categories(s, 0).lineage).toBe(L.scion + 10 / L.levelsPerPoint + L.potential.gifted + L.ward);
+    s.people.push({ ...ward, id: 901, status: "lost" });
+    expect(categories(s, 0).lineage).toBe(L.scion + 10 / L.levelsPerPoint + L.potential.gifted + L.ward);
+  });
+
+  it("counts Relics from Relic-tier and named items the House owns", () => {
+    const s = campaign(2);
+    const before = categories(s, 0).relics;
+    mint(s, "sword", 0, 5);
+    mint(s, "ring", 1, 5);
+    mint(s, "ring", 0, 3).named = "x";
+    expect(categories(s, 0).relics).toBe(before + TUNING.scoring.relic + TUNING.scoring.named);
   });
 
   it("shows Standing as a tier against the kingdom's mean, Steady when alone", () => {
