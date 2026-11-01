@@ -115,6 +115,10 @@ export interface AbilityDef {
   tpGrant?: number;
   /** Raises a Down target at this % of HP. */
   revive?: number;
+  /** Gives each target a one-use flag (Mulligan: "mulligan"; House Rules: "lots_floor7"). */
+  flag?: string;
+  /** The Gambler's 2d6 (§12.7): power = total × scale %, or HP restored = total × restorePct %; or at `high`+ power becomes highPower, at `low` or under lowPower (or it hits the user), otherwise `otherwise`. */
+  dice?: { scale?: number; restorePct?: number; high?: number; highPower?: number; low?: number; lowPower?: number; lowHitsSelf?: boolean; otherwise?: number; doubleDown?: boolean };
   /** On the user after it resolves. */
   self?: { tp?: number; statuses?: { id: string; ticks: number; value?: number }[] };
 }
@@ -228,6 +232,7 @@ export type BattleEvent =
   | { t: "injury"; target: number; table: string; roll: number; total: number; result: string }
   | { t: "steeled"; target: number; loc: Location | "sanity" }
   | { t: "down"; target: number }
+  | { t: "lots" | "fizzle"; unit: number; total: number }
   | { t: "dead"; target: number }
   | { t: "wait" | "defend"; unit: number }
   | { t: "end"; outcome: BattleOutcome };

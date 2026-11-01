@@ -118,6 +118,8 @@ export const TUNING = {
     lastStand: { damage: 25, tp: 20 },
     /** Damage-over-time per 50 ticks, % of max HP (§10.8); Bleed also takes Durability. */
     pulse: 50,
+    /** Cast Lots and Double Down (§12.2, §12.7): a 2 adds CT to the next action; 3–4 and 9 move TP; 6 and 10 are until-next-turn bonuses; 7 and 8 restore %. A Double Down fizzles when the new roll is this much lower. */
+    dice: { snakeEyesCt: 25, tp: 10, evasion: 10, accuracy: 10, restorePct: 5, fizzleMargin: 4, maxDoubleDown: 3 },
     /** Per-100-tick regeneration from passives (Meditation, Wellspring). */
     regenEvery: 100,
     /** A Scion's spell power at 1.0× is the power block at level ÷ this (party level 3L fights expedition level L, §14.2). */

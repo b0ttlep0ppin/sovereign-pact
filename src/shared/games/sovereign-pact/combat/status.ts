@@ -63,6 +63,8 @@ export const STATUSES: Record<string, StatusMeta> = {
   thorns: { kind: "buff", ticks: 200 },
   envenom: { kind: "buff", ticks: 300 },
   hex: { kind: "debuff", ticks: 300 },
+  loaded_dice: { kind: "buff", ticks: 0 },
+  loaded_card: { kind: "debuff", ticks: 0 },
 };
 
 export const meta = (id: string): StatusMeta => STATUSES[id] ?? { kind: "debuff", ticks: 0 };

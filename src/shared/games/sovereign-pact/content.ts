@@ -1,5 +1,6 @@
 // The content catalog: everything under content/ as typed data. Rules read content only through here,
 // by id, so Josh can edit the JSON (validated by schemas/ in CI) without touching rules (CLAUDE.md).
+import gamblerSet from "./content/abilities/gambler.json" with { type: "json" };
 import knightSet from "./content/abilities/knight.json" with { type: "json" };
 import magusSet from "./content/abilities/magus.json" with { type: "json" };
 import soldierSet from "./content/abilities/soldier.json" with { type: "json" };
@@ -263,7 +264,7 @@ export interface AbilitySet {
 }
 
 /** Every Job's ability file (content/abilities/<job>.json), imported by name like the enemies. */
-export const ABILITY_SETS = [soldierSet, knightSet, magusSet, soothsayerSet, vagabondSet] as unknown as readonly AbilitySet[];
+export const ABILITY_SETS = [soldierSet, knightSet, magusSet, soothsayerSet, vagabondSet, gamblerSet] as unknown as readonly AbilitySet[];
 export const ABILITY_SET_BY_JOB: ReadonlyMap<JobId, AbilitySet> = new Map(ABILITY_SETS.map((a) => [a.job, a]));
 export const ACTIVE_BY_ID: ReadonlyMap<string, ActiveDef & { job: JobId }> = new Map(
   ABILITY_SETS.flatMap((set) => set.actives.map((a) => [a.id, { ...a, job: set.job }] as const)),
