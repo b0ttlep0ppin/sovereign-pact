@@ -6,6 +6,7 @@ import { chargeTicks, moveCost, nextActor, step } from "./clock.ts";
 import { cannotCombo, comboCt, comboTp } from "./combos.ts";
 import { abilityDice, castLots, rolledAbility } from "./dice.ts";
 import { playSong } from "./songs.ts";
+import { atCap, deathThroes, hasRoom, openingSummons, sacrifice, summon } from "./summons.ts";
 import { strike } from "./damage.ts";
 import { hasStatus, isFree, standing } from "./grid.ts";
 import { kill } from "./injury.ts";
@@ -35,9 +36,9 @@ export function abilityOf(u: Combatant, id: string): AbilityDef | undefined {
   return id === "attack" ? ATTACK : u.abilities.find((a) => a.id === id);
 }
 
-/** MP an ability costs `u`: spells with the Scion's spell-MP mods (Attunement −10%, §12.3). */
+/** MP an ability costs `u`: spells with the Scion's spell-MP mods (Attunement −10%, §12.3); a summon after Pact of Blood is free. */
 export const mpCost = (u: Combatant, ab: AbilityDef): number =>
-  ab.mp ? Math.max(1, Math.round(ab.mp * (1 + (ab.kind === "magic" || ab.kind === "heal" ? (u.mods.spellMpPct ?? 0) : 0) / 100))) : 0;
+  ab.summon && u.flags.includes("free_summon") ? 0 : ab.mp ? Math.max(1, Math.round(ab.mp * (1 + (ab.kind === "magic" || ab.kind === "heal" ? (u.mods.spellMpPct ?? 0) : 0) / 100))) : 0;
 
 /** TP an ability costs `u`: none for the first sword technique of a battle under Iaijutsu (§12.3). */
 export const tpCost = (u: Combatant, ab: AbilityDef): number =>
@@ -57,6 +58,7 @@ export function cannotUse(u: Combatant, ab: AbilityDef): string | null {
   // A finisher only ends a combo whose moves fit its pattern (combos.ts).
   if (ab.move?.finisher) return "finisher";
   if (ab.requires && !ab.requires.some((w) => (w === "shield" ? u.offhand === "shield" : u.weapon.kind === w))) return `needs ${ab.requires.join(" or ")}`;
+  if (ab.summon && atCap(u)) return "binding";
   if (mpCost(u, ab) > u.mp) return "mp";
   if (tpCost(u, ab) > u.tp) return "tp";
   if (ab.hpCost && hpCost(u, ab) >= u.hp) return "hp";
@@ -65,6 +67,10 @@ export function cannotUse(u: Combatant, ab: AbilityDef): string | null {
 
 /** Runs the clock until someone may act; resolves charges as they come due. Returns the actor, or undefined when the battle is over. */
 export function advance(b: Battle, rng: Rng): Combatant | undefined {
+  if (!b.begun) {
+    b.begun = true;
+    openingSummons(b);
+  }
   while (!b.outcome) {
     const actor = nextActor(b, rng);
     if (actor) {
@@ -158,7 +164,9 @@ export function act(b: Battle, rng: Rng, u: Combatant, action: Action): void {
       if (!t) throw new Error("no valid target there");
       if (ab.homing !== false) homingOn = t.id;
     }
+    if (ab.summon && !hasRoom(b, u, ab.summon)) throw new Error("no room for the summon");
     u.mp -= mpCost(u, ab);
+    if (ab.summon) u.flags = u.flags.filter((f) => f !== "free_summon");
     const tp = tpCost(u, ab);
     if (ab.tp && !tp) u.flags.push("iaijutsu_used");
     u.tp -= tp;
@@ -168,7 +176,8 @@ export function act(b: Battle, rng: Rng, u: Combatant, action: Action): void {
     cost = ab.cost ?? (ab.song ? (u.mods.songCt ?? C.cost.song) : ab.id === "attack" ? (u.weapon.attackCost ?? C.cost.action) + (u.mods.attackCt ?? 0) : C.cost.action);
     const instant = u.flags.indexOf("instant_charge");
     if (ab.charge && instant < 0) {
-      const ticks = chargeTicks(u, ab.charge);
+      // Quick Rites: summons come sooner (§12.15).
+      const ticks = Math.round(chargeTicks(u, ab.charge) * (ab.summon ? 1 + (u.mods.summonChargePct ?? 0) / 100 : 1));
       u.charge = { ability: ab, target: action.target, homingOn, ticks };
       b.events.push({ t: "charge", unit: u.id, ability: ab.id, target: action.target, ticks, telegraph: !!ab.telegraph });
     } else {
@@ -217,6 +226,11 @@ function resolveCharge(b: Battle, rng: Rng, u: Combatant): void {
 /** An ability lands: every target, every hit (§10.6). */
 export function resolve(b: Battle, rng: Rng, u: Combatant, ab: AbilityDef, at: Cell, homingOn?: number, doubleDown = 0): void {
   if (ab.song) return playSong(b, rng, u, ab);
+  if (ab.summon) {
+    b.events.push({ t: "use", unit: u.id, ability: ab.id, target: at });
+    summon(b, u, ab.summon, at);
+    return;
+  }
   let targets = resolveTargets(b, rng, u, ab, at, homingOn);
   if (counterspelled(b, rng, u, ab, targets)) return;
   if (ab.dice) {
@@ -247,6 +261,12 @@ export function resolve(b: Battle, rng: Rng, u: Combatant, ab: AbilityDef, at: C
         strike(b, rng, u, t, { ...ab, power: ab.power * C.props.multiHitPower });
     }
   }
+  for (const t of targets) {
+    // Sacrifice and Banish (§12.15): only summons and adds answer them.
+    if (ab.sacrifice) sacrifice(b, u, t, ab.sacrifice);
+    if (ab.banish && !t.dead && !t.boss && (t.owner !== undefined || t.tags.includes("add"))) kill(b, t);
+    if (t.dead) deathThroes(b, rng, t);
+  }
   if (hasStatus(u, "hidden")) removeStatus(b, u, "hidden");
   if (ab.self?.tp) u.tp = Math.min(C.tp.max, u.tp + ab.self.tp);
   for (const x of ab.self?.statuses ?? []) addStatus(b, u, x.id, x.ticks, extraOf(x.value, x.mods));
@@ -270,7 +290,8 @@ function counterspelled(b: Battle, rng: Rng, u: Combatant, ab: AbilityDef, targe
 export function checkEnd(b: Battle): void {
   if (b.outcome) return;
   if (!standing(b, "enemy").length) end(b, "victory");
-  else if (!standing(b, "party").length) end(b, "defeat");
+  // Summons cannot hold the field alone (§10.12: defeat when every Scion is Down or dead).
+  else if (!standing(b, "party").some((u) => u.owner === undefined)) end(b, "defeat");
 }
 
 /** Ends the battle: the Down get up at 10% after a victory; the mortally wounded die (§10.9, §11.4). */
@@ -278,6 +299,12 @@ export function end(b: Battle, outcome: NonNullable<Battle["outcome"]>): undefin
   if (b.outcome) return undefined;
   b.outcome = outcome;
   b.actor = null;
+  // Summons vanish at battle end (§12.2).
+  for (const u of b.units) {
+    if (u.owner === undefined || u.dead) continue;
+    u.dead = true;
+    b.events.push({ t: "vanish", unit: u.id });
+  }
   for (const u of b.units) {
     delete u.charge;
     if (u.dead) continue;

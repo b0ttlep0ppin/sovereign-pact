@@ -4,7 +4,7 @@ import type { Rng } from "../../../rng.ts";
 import { INJURY_TABLE_BY_ID, type InjuryResult, type InjuryTableId } from "../content.ts";
 import type { Location } from "../state.ts";
 import { TUNING } from "../tuning.ts";
-import { addStatus, endSongs } from "./status.ts";
+import { addStatus, endSongs, removeStatus } from "./status.ts";
 import type { Battle, Combatant } from "./types.ts";
 
 /** The result a final roll lands on: the first row whose `max` reaches it. */
@@ -90,7 +90,7 @@ function apply(b: Battle, u: Combatant, res: InjuryResult, table: InjuryTableId)
 /** Down at 0 HP (§10.9); a Last Stand Scion cannot be Downed, and dies instead (they were going to). */
 export function down(b: Battle, u: Combatant): void {
   if (u.dead || u.down) return;
-  if (u.side === "enemy") return kill(b, u);
+  if (u.side === "enemy" || u.owner !== undefined) return kill(b, u);
   if (u.lastStand && !u.catatonic) return kill(b, u);
   u.down = true;
   u.hp = 0;
@@ -110,6 +110,12 @@ export function kill(b: Battle, u: Combatant): void {
   u.hp = 0;
   delete u.charge;
   if (u.songs) endSongs(b, u);
+  // Auras it held end with it; the last of a summon's call frees the Conjurer's binding (§12.15).
+  for (const o of b.units) for (const s of o.statuses.filter((x) => x.src === u.id)) removeStatus(b, o, s.id);
+  if (u.owner !== undefined && !b.units.some((o) => o.binding === u.binding && o.id !== u.id && !o.dead)) {
+    const owner = b.units.find((o) => o.id === u.owner);
+    if (owner?.mods.bound) owner.mods.bound--;
+  }
   b.events.push({ t: "dead", target: u.id });
 }
 

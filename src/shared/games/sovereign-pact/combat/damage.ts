@@ -253,6 +253,9 @@ export function strike(b: Battle, rng: Rng, u: Combatant, t: Combatant, ab: Abil
   if (crit && physical && u.weapon.critStatus && !t.dead) tryStatus(b, rng, t, u.weapon.critStatus, 100, 0);
   if (weaponHit && damage > 0) afterWeaponHit(b, rng, u, t, damage);
   for (const id of ab.dispel ?? []) if (!t.dead) removeStatus(b, t, id);
+  // Bloodbound: a summon's blows heal its Conjurer (§12.15).
+  const owner = u.owner !== undefined && damage > 0 ? b.units.find((o) => o.id === u.owner && o.mods.bloodbound && !o.dead && !o.down) : undefined;
+  if (owner) owner.hp = Math.max(owner.hp, Math.min(hpCap(owner), owner.hp + Math.round((damage * owner.mods.bloodbound!) / 100)));
   if (ab.drain && damage > 0 && !u.down && !u.dead) u.hp = Math.min(hpCap(u), u.hp + Math.round((damage * ab.drain) / 100));
   if (ab.breaksCharge && t.charge && !t.dead) {
     b.events.push({ t: "cancel", unit: t.id, ability: t.charge.ability.id });

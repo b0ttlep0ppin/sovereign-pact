@@ -73,6 +73,8 @@ export const TUNING = {
     /** Pugilist combos (§12.2): +5 TP per repeat of a move, +10 CT per move beyond the third. */
     combo: { repeatTp: 5, extraCt: 10, freeMoves: 3 },
     /** Ravager and Sword Saint (§12.12–12.13): Hold Together's HP cap %, Iron Will's HP % threshold, Mirror Stance's TP per counter, One Cut's crit multiplier, Still Water's power %. */
+    /** Conjurer summons (§12.2): two bound at once (+1 with Legion), and their accuracy. */
+    summons: { cap: 2, accuracy: 90 },
     jobs: { healCapPct: 50, lowHpBelow: 30, mirrorTp: 20, oneCutMult: 2, stillWaterPct: 20 },
     /** §7.3: 20 CT a cell, −1 per 5 Guile, at least 10; up to 2 cells a turn (§10.4). */
     move: { perCell: 20, guilePer: 5, min: 10, maxCells: 2 },

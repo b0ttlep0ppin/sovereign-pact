@@ -359,7 +359,10 @@
       "mastery": {
         "id": "legion",
         "name": "Legion",
-        "text": "Binding cap +1."
+        "text": "Binding cap +1.",
+        "mods": {
+          "bindingCap": 1
+        }
       }
     },
     {

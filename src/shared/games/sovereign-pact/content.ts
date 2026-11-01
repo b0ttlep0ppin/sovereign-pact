@@ -1,6 +1,7 @@
 // The content catalog: everything under content/ as typed data. Rules read content only through here,
 // by id, so Josh can edit the JSON (validated by schemas/ in CI) without touching rules (CLAUDE.md).
 import abjurerSet from "./content/abilities/abjurer.json" with { type: "json" };
+import conjurerSet from "./content/abilities/conjurer.json" with { type: "json" };
 import gamblerSet from "./content/abilities/gambler.json" with { type: "json" };
 import knightSet from "./content/abilities/knight.json" with { type: "json" };
 import minstrelSet from "./content/abilities/minstrel.json" with { type: "json" };
@@ -11,6 +12,7 @@ import soldierSet from "./content/abilities/soldier.json" with { type: "json" };
 import soothsayerSet from "./content/abilities/soothsayer.json" with { type: "json" };
 import swordSaintSet from "./content/abilities/sword_saint.json" with { type: "json" };
 import vagabondSet from "./content/abilities/vagabond.json" with { type: "json" };
+import summonsJson from "./content/summons.json" with { type: "json" };
 import banshee from "./content/enemies/barrows/barrow_banshee.json" with { type: "json" };
 import cursedArcher from "./content/enemies/barrows/barrow_cursed_archer.json" with { type: "json" };
 import ghost from "./content/enemies/barrows/barrow_ghost.json" with { type: "json" };
@@ -269,7 +271,7 @@ export interface AbilitySet {
 }
 
 /** Every Job's ability file (content/abilities/<job>.json), imported by name like the enemies. */
-export const ABILITY_SETS = [soldierSet, knightSet, magusSet, soothsayerSet, vagabondSet, gamblerSet, minstrelSet, pugilistSet, ravagerSet, swordSaintSet, abjurerSet] as unknown as readonly AbilitySet[];
+export const ABILITY_SETS = [soldierSet, knightSet, magusSet, soothsayerSet, vagabondSet, gamblerSet, minstrelSet, pugilistSet, ravagerSet, swordSaintSet, abjurerSet, conjurerSet] as unknown as readonly AbilitySet[];
 export const ABILITY_SET_BY_JOB: ReadonlyMap<JobId, AbilitySet> = new Map(ABILITY_SETS.map((a) => [a.job, a]));
 export const ACTIVE_BY_ID: ReadonlyMap<string, ActiveDef & { job: JobId }> = new Map(
   ABILITY_SETS.flatMap((set) => set.actives.map((a) => [a.id, { ...a, job: set.job }] as const)),
@@ -277,3 +279,46 @@ export const ACTIVE_BY_ID: ReadonlyMap<string, ActiveDef & { job: JobId }> = new
 export const JOB_PASSIVE_BY_ID: ReadonlyMap<string, JobPassiveDef & { job: JobId }> = new Map(
   ABILITY_SETS.flatMap((set) => set.passives.map((a) => [a.id, { ...a, job: set.job }] as const)),
 );
+
+/** A Conjurer's summon (§12.2, §12.15): stats relative to the Conjurer, abilities from its own point of view. */
+export interface SummonDef {
+  id: string;
+  name: string;
+  text: string;
+  place: "front" | "back" | "any";
+  count: number;
+  size: [number, number];
+  /** How long it stays; 0: the whole battle. */
+  ticks: number;
+  /** % of the Conjurer's max HP. */
+  hp: number;
+  /** × the spell power block at the Conjurer's level. */
+  atk: number;
+  /** Added to the Conjurer's Speed. */
+  speed: number;
+  ct?: number;
+  evasion?: number;
+  /** × the Conjurer's defense. */
+  defense?: number;
+  guard?: number;
+  tags: string[];
+  start?: string[];
+  immune?: string[];
+  affinity?: Partial<Record<Element, number>>;
+  mods?: Record<string, number>;
+  /** Mods on every enemy while it stands (the Drowned Choir's dirge). */
+  aura?: Record<string, number>;
+  abilities: AbilityDef[];
+  onDeath?: AbilityDef;
+}
+
+/** An enemy-shaped ability from its user's point of view: "player" is the foe. */
+export const fromEnemySide = (a: EnemyAbility): AbilityDef => ({ ...a, side: a.side === "player" ? "foe" : a.side }) as AbilityDef;
+
+/** Summon abilities are written like enemies' ("player" is the foe) and turned to the summon's point of view here. */
+export const SUMMONS: readonly SummonDef[] = (summonsJson.summons as unknown as (Omit<SummonDef, "abilities" | "onDeath"> & { abilities: EnemyAbility[]; onDeath?: EnemyAbility })[]).map((s) => ({
+  ...s,
+  abilities: s.abilities.map(fromEnemySide),
+  onDeath: s.onDeath && fromEnemySide(s.onDeath),
+}));
+export const SUMMON_BY_ID = byId(SUMMONS);

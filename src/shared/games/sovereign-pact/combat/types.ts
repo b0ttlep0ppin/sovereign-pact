@@ -147,6 +147,12 @@ export interface AbilityDef {
   shieldPct?: number;
   /** Buffs removed from each target, most recent first (Dispel: all, Purge: one). */
   dispelBuffs?: number;
+  /** Calls a summon from summons.json (§12.15). */
+  summon?: string;
+  /** Dismisses one of the user's summons; allies around it heal this % of max HP (Sacrifice). */
+  sacrifice?: number;
+  /** Removes an enemy summon or add outright (Banish). */
+  banish?: boolean;
   /** Cancels the target's charge in progress, a boss's too (Zenith Strike). */
   breaksCharge?: boolean;
   /** On the user after it resolves: TP, statuses, and mods (`turn.*` ones end at its next turn). */
@@ -177,6 +183,13 @@ export interface Combatant {
   /** The Person this is (Scions), and their House (for Oathbound). */
   person?: number;
   house?: number;
+  /** A summon: who called it, its content id, the call it came with (Carrion Crows come two to a call), and the tick it leaves at. */
+  owner?: number;
+  summon?: string;
+  binding?: number;
+  expires?: number;
+  /** What it does as it dies (the Ember Imp bursts). */
+  onDeath?: AbilityDef;
   /** The enemy content id (enemies). */
   enemy?: string;
   role?: string;
@@ -266,6 +279,8 @@ export type BattleEvent =
   | { t: "down"; target: number }
   | { t: "lots" | "fizzle"; unit: number; total: number }
   | { t: "reflect" | "counterspell"; unit: number; target: number }
+  | { t: "summon"; unit: number; summon: string; ids: number[] }
+  | { t: "vanish"; unit: number }
   | { t: "dead"; target: number }
   | { t: "wait" | "defend"; unit: number }
   | { t: "end"; outcome: BattleOutcome };
@@ -284,4 +299,6 @@ export interface Battle {
   acted: boolean;
   events: BattleEvent[];
   outcome?: BattleOutcome;
+  /** Battle-start effects have run (Familiar). */
+  begun?: boolean;
 }

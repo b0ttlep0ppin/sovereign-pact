@@ -3,6 +3,7 @@
 import type { Rng } from "../../../rng.ts";
 import { TUNING } from "../tuning.ts";
 import { abilityOf, cannotUse, type Action } from "./battle.ts";
+import { hasRoom } from "./summons.ts";
 import { hasStatus, isFree, other, pickWeighted, standing } from "./grid.ts";
 import { allegiance, bestCell, cellOf, crossDistance, isSingle, singleTargets, targetSide } from "./targets.ts";
 import type { AbilityDef, Battle, Combatant, GambitRule } from "./types.ts";
@@ -95,10 +96,14 @@ const defaultTarget = (u: Combatant, ab: AbilityDef) => (ab.side === "ally" ? "a
 /** An action for `ab` aimed by `rule`, or undefined if nothing valid is in reach. */
 export function aim(b: Battle, rng: Rng, u: Combatant, ab: AbilityDef, rule = defaultTarget(u, ab)): Action | undefined {
   if (cannotUse(u, ab)) return undefined;
+  if (ab.summon && !hasRoom(b, u, ab.summon)) return undefined;
   if (ab.shape === "self" || ab.side === "self") return { do: "ability", ability: ab.id, target: cellOf(u) };
   if (isSingle(ab)) {
     let pool = singleTargets(b, u, ab);
     if (ab.kind === "heal") pool = pool.filter((x) => x.hp < x.maxHp);
+    // Sacrifice takes one of the user's summons; Banish only something summoned or added.
+    if (ab.sacrifice) pool = pool.filter((x) => x.owner === u.id);
+    if (ab.banish) pool = pool.filter((x) => !x.boss && (x.owner !== undefined || x.tags.includes("add")));
     const t = choose(rng, u, pool, rule);
     return t ? { do: "ability", ability: ab.id, target: cellOf(t) } : undefined;
   }

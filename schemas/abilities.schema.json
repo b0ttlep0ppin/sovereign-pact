@@ -461,6 +461,20 @@
           "type": "integer",
           "minimum": 1,
           "description": "Buffs removed from each target (99: all)"
+        },
+        "summon": {
+          "$ref": "defs.schema.json#/definitions/id",
+          "description": "A summon id from summons.json (§12.15)"
+        },
+        "sacrifice": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 100,
+          "description": "Dismisses one of the user's summons; allies around it heal this % of max HP"
+        },
+        "banish": {
+          "type": "boolean",
+          "description": "Removes an enemy summon or add"
         }
       }
     },
