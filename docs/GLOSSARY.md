@@ -17,7 +17,7 @@ Canonical terms. Code identifiers, UI text and the spec use these spellings. **S
 | Mentor | Retired Scion assigned to train recruits/Scions; can be loaned to other Houses. | ✅ |
 | Flavor Mode / Crunch Mode | House-creation display rule: evocative text only / evocative text plus exact effects. | ✅ |
 | Major Trait, Minor Trait, Major Flaw, Minor Flaw | House trait categories. | ✅ (structure flexible) |
-| Elemental affinity | % resistance or weakness to an element. Elements: Holy, Dark, Fire, Water, Earth, Wind (opposed pairs proposed). | ✅ / ❓ (pairs) |
+| Elemental affinity | % resistance or weakness to an element. Elements: Holy, Dark, Fire, Water, Earth, Wind (opposed pairs proposed). Lightning is Wind, not an element of its own. | ✅ / ❓ (pairs) |
 | Tarot | Random small innate bonus per Scion; also an event trigger. | ✅ |
 | HP, Mana (MP), Tactical Points (TP) | Resource pools. MP persists between combats; TP is per-combat. | ✅ |
 | Might, Resilience, Guile, Acuity, Sagacity, Speed | Core stats. | ✅ |

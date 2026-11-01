@@ -2,6 +2,9 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-01 (Q86 answered) — Josh
+- **Lightning is part of Wind.** There are six elements (Holy, Dark, Fire, Water, Earth, Wind). Lightning creatures, spells and the pools' "weak Lightning" use Wind. → SPEC §7.3, §14.5 (read "Lightning" as Wind)
+
 ## 2026-11-01 (implementation, Milestone 1) — implementer
 Combat-core readings; numbers are in `tuning.ts` (`combat`, `formulas`, `enemies`).
 - **Clock scale.** One clock step adds Speed to CT and counts every duration down by **10 ticks**, so a status of 300 ticks lasts about three turns at Speed 10 (§10.8's "per 50 ticks" pulses fall every fifth step). Charges count the same ticks: a 100-tick charge resolves about one turn later at Acuity 0.
@@ -14,7 +17,7 @@ Combat-core readings; numbers are in `tuning.ts` (`combat`, `formulas`, `enemies
 - **Movement** happens before the action in bot plans. A melee combatant with nothing in reach closes in on the nearest foe's rows and Waits.
 - **Enemy `stats` replace the role's multipliers** (the §14.1 Hollow Soldier's `hp 1.6 … eva 0.6` are the bruiser's); an enemy that names none takes its role's. Content writes an enemy ability's `side` as `"player"` (§14.1); the rules read that as its foe.
 - **Enemy Power follows the formula** (6 + 3L + 0.1L²): 23.5 at L5 and 46 at L10 where §14.2's table shows 23 and 43.
-- **Elements are the six of §7.3 and the Glossary** (Holy, Dark, Fire, Water, Earth, Wind). The enemy schema rejects Lightning until Q86 is answered.
+- **Elements are the six of §7.3 and the Glossary** (Holy, Dark, Fire, Water, Earth, Wind). Lightning is Wind (Q86, answered).
 - **Stand-in gear for the simulator** (`combat/fixtures.ts`): weapons and armor scaled to the expedition level each party is built for, until Milestone 2's items. Nothing in it is content.
 - **First balance run** (`npm run sim`, a 4-Scion party at level 3L against a Barrows Warband, 300 battles each): L1 is on §14.2's target (all wins, 20% HP lost, 4.5 turns per Scion, 0.1 injury rolls a battle). The rolls climb with level (1.1 at L3, 3.7 at L7, 6.3 at L10) and L10 parties lose 19% of Warbands, because enemy damage grows about five times from L1 to L10 while Durability has no level term. See Q87; `formulas.durabilityPerLevel` is the knob (0 as specified).
 
@@ -132,7 +135,6 @@ Readings and defaults taken while building; each is a knob in `tuning.ts` or eas
 Batches 1–12 (answered 2026-10-31 / 2026-11-01): Q1–Q84 closed, see above. The design is handed off; see HANDOFF.md.
 
 - **Q85 (asked 2026-11-01, Milestone 0): how is a House's Standing tier worked out?** §3.4 names the four tiers (Waning / Steady / Rising / Ascendant) but not the rule, and it decides how much the other Houses can read. Built as the default, PROPOSED: a House's Ascendancy divided by the kingdom's mean, Waning below 0.75, Steady 0.75–1, Rising 1–1.25, Ascendant 1.25 and up; Steady when solo or before anyone scores. Alternatives: tiers by rank (the leader is always Ascendant, which tells everyone who leads), or fixed Ascendancy thresholds that rise with the Year (tiers say how well a House does, not how it compares).
-- **Q86 (asked 2026-11-01, Milestone 1): is Lightning an element?** §7.3 and the Glossary list six elements (Holy, Dark, Fire, Water, Earth, Wind), but §14.5 gives the Drowned Marches and the Forge Ruins a Lightning weakness, the Arcane Core casts `checker` lightning, and the Thunderbird and Raiju are lightning creatures. Options: Lightning as a seventh element (opposed to Earth, with Wind opposing Water?), or Lightning is Wind's damage type and the pool notes read "weak Wind". Built as the default: six elements; content uses Wind for lightning.
 - **Q87 (asked 2026-11-01, Milestone 1): should Durability grow with level?** The simulator finds injury rolls in an ordinary fight climbing from 0.1 at L1 to about 6 at L10, because §7.3's Durability (10–15 + 1.5–2 × a stat) grows slowly while enemy damage grows about fivefold. A level term (+1 or +2 Durability per level on every location) brings L10 to about 2–3 rolls; heavier armor in Milestone 2 may do the rest. Built as specified (no level term) until Josh decides; `formulas.durabilityPerLevel` is the knob.
 
 Implementation items (not design questions):
