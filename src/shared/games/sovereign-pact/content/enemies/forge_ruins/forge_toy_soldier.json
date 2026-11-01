@@ -1,0 +1,24 @@
+{
+  "id": "forge_toy_soldier",
+  "name": "Toy Soldier",
+  "pool": "forge_ruins",
+  "tags": ["construct"],
+  "role": "fodder",
+  "size": [1, 1],
+  "levels": [3, 7],
+  "stats": {"hp": 0.8, "speed": 10},
+  "affinity": {"earth": 25, "water": -25, "wind": -25},
+  "immune": ["bleed", "charm", "fear", "poison", "sleep"],
+  "abilities": [
+    {"id": "tin_bayonet", "shape": "single", "side": "player", "power": 1.0},
+    {"id": "cork_musket", "shape": "single", "side": "player", "power": 0.8, "reach": "ranged"}
+  ],
+  "gambits": [
+    {"if": "turn%2==0", "do": "cork_musket", "target": "back_random"},
+    {"do": "tin_bayonet", "target": "column_weighted"}
+  ],
+  "bestiary": {
+    "lore": "Wound up in a nursery that is not there any more, and still marching.",
+    "weakness": "Water rusts its spring."
+  }
+}

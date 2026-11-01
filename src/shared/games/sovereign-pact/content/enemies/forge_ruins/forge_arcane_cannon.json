@@ -1,0 +1,24 @@
+{
+  "id": "forge_arcane_cannon",
+  "name": "Arcane Cannon",
+  "pool": "forge_ruins",
+  "tags": ["construct"],
+  "role": "artillery",
+  "size": [1, 1],
+  "levels": [3, 9],
+  "stats": {"speed": 7},
+  "affinity": {"earth": 25, "water": -25, "wind": 50},
+  "immune": ["bleed", "charm", "fear", "poison", "sleep"],
+  "abilities": [
+    {"id": "cannon_blast", "shape": "column:B", "side": "player", "power": 1.1, "kind": "magic", "element": "wind", "charge": 80, "telegraph": true, "cooldown": 2},
+    {"id": "bolt", "shape": "single", "side": "player", "power": 0.9, "reach": "ranged"}
+  ],
+  "gambits": [
+    {"if": "turn%2==1", "do": "cannon_blast"},
+    {"do": "bolt", "target": "back_random"}
+  ],
+  "bestiary": {
+    "lore": "It points at the Back and hums louder.",
+    "weakness": "Water shorts it. It cannot move."
+  }
+}

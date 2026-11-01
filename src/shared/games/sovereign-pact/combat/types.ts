@@ -177,6 +177,12 @@ export interface AbilityDef {
   breaksCharge?: boolean;
   /** On the user after it resolves: TP, statuses, and mods (`turn.*` ones end at its next turn). */
   self?: { tp?: number; statuses?: { id: string; ticks: number; value?: number; mods?: Record<string, number> }[]; mods?: Record<string, number> };
+  /** Takes this much TP from each target it hits and gives it to the user (a Gremlin's). */
+  tpSteal?: number;
+  /** The user is destroyed once it resolves (a Bomb's burst). */
+  selfDestruct?: boolean;
+  /** The user leaves the battle once it resolves, alive (a Gem Thief's getaway). */
+  flee?: boolean;
 }
 
 export interface Charge {

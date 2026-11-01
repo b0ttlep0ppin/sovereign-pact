@@ -96,6 +96,7 @@ function enterPhase(b: Battle, u: Combatant, def: BossDef, i: number): void {
       u.lost = (u.lost ?? []).filter((a) => !part.disables?.includes(a));
     }
   for (const s of p.statuses ?? []) addStatus(b, u, s.id, s.ticks);
+  if (p.weak) u.weak = p.weak;
   if (p.adds) spawnAdds(b, u, p.adds);
 }
 

@@ -1,0 +1,23 @@
+{
+  "id": "forge_gem_thief",
+  "name": "Gem Thief",
+  "pool": "forge_ruins",
+  "tags": ["humanoid"],
+  "role": "lurker",
+  "size": [1, 1],
+  "levels": [4, 9],
+  "stats": {"hp": 0.8, "speed": 15},
+  "affinity": {"earth": 25, "water": -25, "wind": -25},
+  "abilities": [
+    {"id": "cutpurse", "shape": "single", "side": "player", "power": 1.0, "leap": true, "crit": 20},
+    {"id": "vanish", "shape": "self", "side": "self", "power": 0, "kind": "support", "flee": true, "cooldown": 0}
+  ],
+  "gambits": [
+    {"if": "turn>=4", "do": "vanish"},
+    {"do": "cutpurse", "target": "empty_cell"}
+  ],
+  "bestiary": {
+    "lore": "A scavenger of the ruins who robs the dead and the living alike.",
+    "weakness": "Kill her fast: on her fourth turn she is gone."
+  }
+}

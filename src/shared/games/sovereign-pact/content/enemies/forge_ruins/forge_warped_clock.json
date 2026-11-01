@@ -1,0 +1,24 @@
+{
+  "id": "forge_warped_clock",
+  "name": "Warped Clock",
+  "pool": "forge_ruins",
+  "tags": ["construct", "cursed"],
+  "role": "horror",
+  "size": [1, 1],
+  "levels": [3, 9],
+  "stats": {"speed": 9, "sanityTouch": 3},
+  "affinity": {"earth": 25, "water": -25, "wind": -25, "holy": -50},
+  "immune": ["bleed", "charm", "fear", "poison", "sleep"],
+  "abilities": [
+    {"id": "lost_hour", "shape": "all", "side": "player", "power": 0.2, "kind": "magic", "readiness": 40, "sanity": 4, "cooldown": 3},
+    {"id": "tick_tock", "shape": "single", "side": "player", "power": 0.5, "kind": "magic", "sanity": 5, "statuses": [{"id": "slow", "chance": 40, "ticks": 200}], "reach": "ranged"}
+  ],
+  "gambits": [
+    {"if": "turn%3==1", "do": "lost_hour"},
+    {"do": "tick_tock", "target": "lowest_sanity"}
+  ],
+  "bestiary": {
+    "lore": "Its hands go round the wrong way and take your time with them.",
+    "weakness": "Holy. It takes Readiness from everyone."
+  }
+}

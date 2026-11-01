@@ -1,0 +1,24 @@
+{
+  "id": "forge_siege_machine",
+  "name": "Siege Machine",
+  "pool": "forge_ruins",
+  "tags": ["construct"],
+  "role": "artillery",
+  "size": [1, 1],
+  "levels": [5, 9],
+  "stats": {"hp": 1.4, "speed": 6},
+  "affinity": {"earth": 25, "water": -25, "wind": -25},
+  "immune": ["bleed", "charm", "fear", "poison", "sleep"],
+  "abilities": [
+    {"id": "stone_volley", "shape": "band:4", "side": "player", "power": 1.0, "charge": 100, "telegraph": true, "cooldown": 3},
+    {"id": "ballista", "shape": "single", "side": "player", "power": 1.2, "reach": "ranged"}
+  ],
+  "gambits": [
+    {"if": "turn%3==1", "do": "stone_volley"},
+    {"do": "ballista", "target": "back_random"}
+  ],
+  "bestiary": {
+    "lore": "A war machine the workshop never finished, still loading.",
+    "weakness": "Water and Wind. Its volley falls on four rows."
+  }
+}

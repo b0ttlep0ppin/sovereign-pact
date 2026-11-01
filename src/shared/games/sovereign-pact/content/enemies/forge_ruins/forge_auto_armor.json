@@ -1,0 +1,24 @@
+{
+  "id": "forge_auto_armor",
+  "name": "Auto Armor",
+  "pool": "forge_ruins",
+  "tags": ["construct", "armored"],
+  "role": "bruiser",
+  "size": [1, 1],
+  "levels": [5, 9],
+  "stats": {"def": 1.6, "speed": 10},
+  "affinity": {"earth": 25, "water": -25, "wind": -25},
+  "immune": ["bleed", "charm", "fear", "poison", "sleep"],
+  "abilities": [
+    {"id": "piston_blade", "shape": "single", "side": "player", "power": 0.7, "hits": 2},
+    {"id": "overdrive", "shape": "self", "side": "self", "power": 0, "kind": "support", "cooldown": 4, "statuses": [{"id": "haste", "chance": 100, "ticks": 200}, {"id": "might_up", "chance": 100, "ticks": 200, "value": 20}]}
+  ],
+  "gambits": [
+    {"if": "turn%4==1", "do": "overdrive"},
+    {"do": "piston_blade", "target": "lowest_durability"}
+  ],
+  "bestiary": {
+    "lore": "A knight's suit with a clockwork heart where the knight should be.",
+    "weakness": "Water and Wind. It overdrives every fourth turn."
+  }
+}

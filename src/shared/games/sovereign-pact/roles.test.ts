@@ -98,3 +98,36 @@ describe("the Barrows roster", () => {
     }
   });
 });
+
+describe("the Forge Ruins' tricks", () => {
+  const forge = (id: string, n: number, col: number, row: number, level = 5): Combatant => enemyCombatant(`forge_${id}`, { id: n, level, col, row });
+  const sure = (u: Combatant, id: string) => ({ ...ab(u, id), accuracy: 999 });
+
+  it("a Gremlin's sabotage takes TP from the Scion it hits", () => {
+    const hit = (steal: boolean) => {
+      const party = standardParty(3, 15);
+      const g = forge("gremlin", 10, 0, 0);
+      const b = newBattle(3, [...party, g]);
+      party[0]!.tp = 50;
+      const sabotage = sure(g, "sabotage");
+      resolve(b, createRng(1), g, steal ? sabotage : { ...sabotage, tpSteal: undefined }, cellOf(party[0]!));
+      return [party[0]!.tp, g.tp];
+    };
+    const [plain, stolen] = [hit(false), hit(true)];
+    expect(plain[0]! - stolen[0]!).toBe(20);
+    expect(stolen[1]! - plain[1]!).toBe(20);
+  });
+
+  it("a Bomb's burst destroys the Bomb, and a Gem Thief's vanish takes her off the field alive", () => {
+    const party = standardParty(4, 15);
+    const bomb = forge("bomb", 10, 0, 0);
+    const thief = forge("gem_thief", 11, 1, 4);
+    const b = newBattle(4, [...party, bomb, thief, forge("rock_golem", 12, 0, 7)]);
+    resolve(b, createRng(1), bomb, sure(bomb, "detonate"), cellOf(party[0]!));
+    expect(bomb.dead).toBe(true);
+    resolve(b, createRng(1), thief, ab(thief, "vanish"), cellOf(thief));
+    expect(thief.dead).toBe(true);
+    expect(thief.flags).toContain("fled");
+    expect(b.events.some((e) => e.t === "flee" && e.unit === thief.id)).toBe(true);
+  });
+});

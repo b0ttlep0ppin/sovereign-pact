@@ -1,0 +1,26 @@
+{
+  "id": "forge_metal_hydra",
+  "name": "Metal Hydra",
+  "pool": "forge_ruins",
+  "tags": ["construct", "dragon"],
+  "role": "elite",
+  "size": [1, 1],
+  "levels": [7, 9],
+  "stats": {"hp": 2.8, "speed": 10},
+  "affinity": {"earth": 25, "water": -25, "wind": -25},
+  "immune": ["bleed", "charm", "fear", "poison", "sleep"],
+  "abilities": [
+    {"id": "triple_snap", "shape": "single", "side": "player", "power": 0.6, "hits": 3},
+    {"id": "arc_breath", "shape": "row", "side": "player", "power": 1.1, "kind": "magic", "charge": 60, "telegraph": true, "cooldown": 2, "element": "wind"},
+    {"id": "smelter_breath", "shape": "band:3", "side": "player", "power": 0.9, "kind": "magic", "cooldown": 3, "statuses": [{"id": "burn", "chance": 40, "ticks": 300}], "element": "fire"}
+  ],
+  "gambits": [
+    {"if": "turn%3==1", "do": "arc_breath", "target": "densest_row"},
+    {"if": "turn%3==2", "do": "smelter_breath"},
+    {"do": "triple_snap", "target": "column_weighted"}
+  ],
+  "bestiary": {
+    "lore": "Someone built a hydra out of a forge, and it worked.",
+    "weakness": "Water. Two breaths in turn."
+  }
+}

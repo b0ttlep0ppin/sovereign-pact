@@ -1,0 +1,26 @@
+{
+  "id": "forge_guardian",
+  "name": "Guardian",
+  "pool": "forge_ruins",
+  "tags": ["construct"],
+  "role": "colossus",
+  "size": [2, 3],
+  "levels": [3, 7],
+  "stats": {"speed": 7},
+  "affinity": {"earth": 25, "water": -25, "wind": -25, "holy": 50, "dark": -25},
+  "immune": ["bleed", "charm", "fear", "poison", "sleep"],
+  "abilities": [
+    {"id": "halberd_sweep", "shape": "column:F", "side": "player", "power": 1.1, "cooldown": 2},
+    {"id": "purge_beam", "shape": "row", "side": "player", "power": 1.2, "kind": "magic", "charge": 100, "telegraph": true, "cooldown": 3, "element": "holy"},
+    {"id": "shield_crush", "shape": "single", "side": "player", "power": 1.3}
+  ],
+  "gambits": [
+    {"if": "turn%3==1", "do": "purge_beam", "target": "densest_row"},
+    {"if": "turn%2==0", "do": "halberd_sweep"},
+    {"do": "shield_crush", "target": "lowest_durability"}
+  ],
+  "bestiary": {
+    "lore": "A temple guardian, carved to keep the faithless out. It decided you are faithless.",
+    "weakness": "Water and Dark."
+  }
+}

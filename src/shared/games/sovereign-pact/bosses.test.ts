@@ -278,3 +278,32 @@ describe("the Dark General", () => {
     expect(before - gunner.ct).toBe(50);
   });
 });
+
+describe("the Stone Colossus", () => {
+  const sc = () => {
+    const b = bossBattle(11, standardParty(11, 15), "stone_colossus", 5);
+    const colossus = b.units.find((u) => u.enemy === "stone_colossus" && u.partOf === undefined)!;
+    const part = (id: string) => b.units.find((u) => u.partOf === colossus.id && u.part === id)!;
+    return { b, colossus, part };
+  };
+
+  it("breaking the core while it charges Earthquake stops the quake for good", () => {
+    const { b, colossus, part } = sc();
+    colossus.charge = { ability: abilityOf(colossus, "earthquake")!, target: { side: "party", col: 0, row: 0 }, ticks: 300 };
+    kill(b, part("colossus_core"));
+    expect(colossus.charge).toBeUndefined();
+    expect(colossus.lost).toContain("earthquake");
+    expect(b.events.some((e) => e.t === "cancel" && e.unit === colossus.id)).toBe(true);
+  });
+
+  it("drops to one knee when a fist breaks, slower and with its Head open to aimed blows", () => {
+    const { b, colossus, part } = sc();
+    expect(colossus.weak).toBeUndefined();
+    kill(b, part("left_fist"));
+    checkEnd(b);
+    expect(colossus.phase).toBe(1);
+    expect(colossus.speed).toBe(5);
+    expect(colossus.weak).toEqual({ location: "head", mult: 1.5 });
+    expect(holds(b, colossus, "lost.left_slam && !lost.right_slam")).toBe(true);
+  });
+});
