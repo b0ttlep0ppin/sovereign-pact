@@ -96,6 +96,9 @@ const isWeaponHit = (ab: AbilityDef) => kindOf(ab) === "physical" && ab.base ===
 /** The location a Headsman's, Hamstringer, Mauler or Breaker weapon favors. */
 const biasOf = (u: Combatant): Location | undefined => LOCATIONS.find((l) => u.mods[`bias.${l}`]);
 
+/** The element a Brand puts on the weapon (§12.14). */
+const enchantOf = (u: Combatant): Element | undefined => ELEMENTS.find((e) => u.mods[`enchant.${e}`]);
+
 /** The element of an edge property, if the weapon has one. */
 const edgeOf = (u: Combatant): Element | undefined => ELEMENTS.find((e) => u.mods[`edge.${e}`]);
 
@@ -125,6 +128,8 @@ export interface StrikeOpts {
   telegraphed?: boolean;
   /** A counter-attack, which cannot itself be countered. */
   counter?: boolean;
+  /** A spell turned back by Reflect, which cannot be turned again. */
+  reflected?: boolean;
 }
 
 /** One hit of `ab` from `u` on `t`, through the whole pipeline. */
@@ -134,6 +139,11 @@ export function strike(b: Battle, rng: Rng, u: Combatant, t: Combatant, ab: Abil
     const healed = kindOf(ab) === "heal" ? heal(b, u, t, ab) : 0;
     supportEffects(b, rng, u, t, ab);
     return { hit: true, damage: -healed };
+  }
+  // Reflect: a hostile spell turns back on its caster (§12.14).
+  if (kindOf(ab) === "magic" && u.side !== t.side && !opts.reflected && hasStatus(t, "reflect")) {
+    b.events.push({ t: "reflect", unit: t.id, target: u.id });
+    return strike(b, rng, u, u, ab, { ...opts, reflected: true });
   }
   const weaponHit = isWeaponHit(ab);
   let missed = rng.int(100) >= hitChance(u, t, ab);
@@ -190,7 +200,7 @@ export function strike(b: Battle, rng: Rng, u: Combatant, t: Combatant, ab: Abil
   if (guard > 0 && rng.int(100) < guard) dmg *= C.block / 100;
 
   dmg *= pct(columnMod(u, ab));
-  const element = ab.element === undefined ? (physical ? u.weapon.element : undefined) : ab.element;
+  const element = ab.element === undefined ? (physical ? (enchantOf(u) ?? u.weapon.element) : undefined) : ab.element;
   dmg *= affinityMult(t, element);
   if (physical && hasStatus(t, "protect")) dmg *= pct(-C.protect);
   if (!physical && hasStatus(t, "shell")) dmg *= pct(-C.shell);
@@ -316,7 +326,7 @@ function applyHit(b: Battle, rng: Rng, u: Combatant, t: Combatant, ab: AbilityDe
 
   // Readiness damage (§10.4): bosses take half.
   const readiness = (ab.readiness ?? 0) + (isWeaponHit(ab) ? (u.mods.readiness ?? 0) : 0);
-  if (readiness) t.ct = Math.max(0, t.ct - Math.round(readiness * (t.boss ? C.bossReadiness : 1)));
+  if (readiness && !t.mods.readinessImmune) t.ct = Math.max(0, t.ct - Math.round(readiness * (t.boss ? C.bossReadiness : 1)));
 
   // On-hit: TP both ways, Sanity, statuses (§10.6 step 7).
   const physical = kindOf(ab) === "physical";
@@ -411,6 +421,9 @@ function supportEffects(b: Battle, rng: Rng, u: Combatant, t: Combatant, ab: Abi
   if (ab.sanityPct && t.maxSanity) t.sanity = Math.min(t.maxSanity, t.sanity + Math.round((t.maxSanity * ab.sanityPct) / 100));
   if (ab.tpGrant) t.tp = Math.min(C.tp.max, t.tp + ab.tpGrant);
   if (ab.flag && !t.flags.includes(ab.flag)) t.flags.push(ab.flag);
+  // Barrier and Bulwark (§12.14), stronger from an Aegis caster.
+  if (ab.shieldPct) addStatus(b, t, "shield", 0, { value: Math.round(((t.maxHp * ab.shieldPct) / 100) * pct(u.mods.shieldCastPct ?? 0)) });
+  if (ab.dispelBuffs) for (const x of t.statuses.filter((s) => meta(s.id).kind === "buff").reverse().slice(0, ab.dispelBuffs)) removeStatus(b, t, x.id);
   for (const x of ab.statuses ?? []) {
     // Breath of Steel and Lasting Wards: timed buffs cast with MP last longer.
     const longer = ab.mp && x.ticks > 0 && meta(x.id).kind === "buff" ? (u.mods.buffTicks ?? 0) : 0;

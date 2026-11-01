@@ -143,6 +143,10 @@ export interface AbilityDef {
   critIfMarked?: boolean;
   /** Crit chance + on the user's first turn of the battle (Draw Cut). */
   critFirstTurn?: number;
+  /** A Shield of this % of each target's max HP (Barrier, Bulwark). */
+  shieldPct?: number;
+  /** Buffs removed from each target, most recent first (Dispel: all, Purge: one). */
+  dispelBuffs?: number;
   /** Cancels the target's charge in progress, a boss's too (Zenith Strike). */
   breaksCharge?: boolean;
   /** On the user after it resolves: TP, statuses, and mods (`turn.*` ones end at its next turn). */
@@ -261,6 +265,7 @@ export type BattleEvent =
   | { t: "steeled"; target: number; loc: Location | "sanity" }
   | { t: "down"; target: number }
   | { t: "lots" | "fizzle"; unit: number; total: number }
+  | { t: "reflect" | "counterspell"; unit: number; target: number }
   | { t: "dead"; target: number }
   | { t: "wait" | "defend"; unit: number }
   | { t: "end"; outcome: BattleOutcome };
