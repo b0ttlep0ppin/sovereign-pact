@@ -50,8 +50,8 @@ export const TUNING = {
   formulas: {
     maxHp: { base: 20, might: 1, resilience: 3, level: 2 },
     maxMp: { base: 10, acuity: 2, sagacity: 2, level: 1 },
-    /** Durability per location: base + coefficient × stat (§7.3), plus `durabilityPerLevel` × level (0 in the spec). */
-    durabilityPerLevel: 0,
+    /** Durability per location: base + coefficient × stat (§7.3), plus `durabilityPerLevel` × level (0 in the spec; 2 from the M3 tuning pass, Q87). */
+    durabilityPerLevel: 2,
     durability: {
       head: { base: 10, stat: "acuity", per: 1.5 },
       body: { base: 15, stat: "resilience", per: 2 },
@@ -112,8 +112,8 @@ export const TUNING = {
     spellReduction: 0.5,
     acuityDivisor: 25,
     sagacityDivisor: 25,
-    /** Enemy melee: Might-free damage = power × atk × (1 + 2L/25) (§14.2). */
-    enemyLevelFactor: 2 / 25,
+    /** Enemy melee: Might-free damage = power × atk × (1 + factor × L) (§14.2 has 2/25; 0.03 from the M3 tuning pass). */
+    enemyLevelFactor: 0.03,
     mightDivisor: 25,
     tp: { max: 100, gainBase: 10, gainPer: 20 },
     /** §11.1: a step is 2 points; +1 step per 15 Resilience. */
@@ -185,16 +185,17 @@ export const TUNING = {
     evasion: [8, 2, 0],
     defense: [0, 1, 0.08],
     speed: [9, 1 / 3, 0],
+    /** Role multipliers (§14.2), as retuned in the Milestone 3 tuning pass (atk about −10%, elites 2.5/1.4 → 2.2/1.2). */
     roles: {
-      fodder: { hp: 0.7, atk: 0.8, def: 0.8, eva: 1.0 },
-      swarm: { hp: 0.35, atk: 0.6, def: 0.5, eva: 1.3 },
-      bruiser: { hp: 1.6, atk: 1.2, def: 1.3, eva: 0.6 },
-      caster: { hp: 0.8, atk: 1.3, def: 0.7, eva: 1.0 },
-      support: { hp: 0.9, atk: 0.6, def: 1.0, eva: 1.0 },
-      lurker: { hp: 0.8, atk: 1.3, def: 0.7, eva: 1.5 },
-      artillery: { hp: 1.0, atk: 1.1, def: 0.9, eva: 0.8 },
-      horror: { hp: 1.0, atk: 0.8, def: 1.0, eva: 1.1 },
-      elite: { hp: 2.5, atk: 1.4, def: 1.4, eva: 1.0 },
+      fodder: { hp: 0.7, atk: 0.7, def: 0.8, eva: 1.0 },
+      swarm: { hp: 0.35, atk: 0.55, def: 0.5, eva: 1.3 },
+      bruiser: { hp: 1.6, atk: 1.1, def: 1.3, eva: 0.6 },
+      caster: { hp: 0.8, atk: 1.15, def: 0.7, eva: 1.0 },
+      support: { hp: 0.9, atk: 0.55, def: 1.0, eva: 1.0 },
+      lurker: { hp: 0.8, atk: 1.15, def: 0.7, eva: 1.5 },
+      artillery: { hp: 1.0, atk: 1.0, def: 0.9, eva: 0.8 },
+      horror: { hp: 1.0, atk: 0.7, def: 1.0, eva: 1.1 },
+      elite: { hp: 2.2, atk: 1.2, def: 1.4, eva: 1.0 },
       colossus: { hp: 6, atk: 1.5, def: 1.5, eva: 0.3 },
       boss: { hp: 15, atk: 1.6, def: 1.5, eva: 0.8 },
     },

@@ -2,6 +2,26 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-01 (implementation, Milestone 3v: tuning pass 1, the enemy curve) — implementer
+- **Why:** with every pool and boss in, the baseline party (Soldier, Knight, Vagabond, Soothsayer at level 3L) fell off with level. Averaged over every pool at each level (40 fights a template): Warbands went from 100% and 35% HP lost at L1 to 38% and 84% at L10; Elite patrols from 96% (L2) to 8%; injury rolls from 0.2 to 10–15 a fight. Enemy damage grew about 8× from L1 to L10 while Scion HP grew about 4× and Durability barely at all.
+- **Knobs turned (`tuning.ts`):**
+  - `combat.enemyLevelFactor` 2/25 → 0.03 (enemy damage × 1.3 at L10 instead of × 1.8).
+  - `formulas.durabilityPerLevel` 0 → 2 (Q87, recommended to Josh on a decision card; this is the default until he answers).
+  - Role atk about −10% (fodder 0.7, swarm 0.55, bruiser 1.1, caster 1.15, support 0.55, lurker 1.15, artillery 1.0, horror 0.7).
+  - Elite 2.5 HP / 1.4 atk → 2.2 / 1.2.
+  - The formulas themselves and the boss role are unchanged.
+- **After** (win / HP lost / injury rolls):
+
+  | | Warband | Coven | Stalkers | Behemoth | Elite patrol |
+  |---|---|---|---|---|---|
+  | L1 | 100% / 31% / 0.1 | 100% / 34% / 1.8 | | | |
+  | L4 | 100% / 29% / 0.3 | 100% / 31% / 0.7 | 99% / 30% / 1.9 | 99% / 36% / 0.6 | 98% / 34% / 1.2 |
+  | L7 | 100% / 25% / 0.4 | 100% / 29% / 0.5 | 97% / 29% / 2.0 | 94% / 38% / 1.8 | 93% / 39% / 5.4 |
+  | L10 | 98% / 31% / 1.2 | 90% / 34% / 1.5 | 83% / 48% / 2.8 | 85% / 51% / 3.0 | 73% / 48% / 5.4 |
+
+  The curve is flat now. Normal fights cost 25–35% HP, above §14.2's 10–20%, and Elite patrols still roll several injuries; both are left for play, since bot parties play worse than people.
+- **Bosses after this pass** (60 fights at each boss's first level): Goblin Lord, Tree King, Siege Beast and Stone Colossus 100%; Village Evil God 97%; Unknown Mother 77%; Scylla 67%; Orochi 50%. Still near-unwinnable: Dark General and Cursed King 22%, Vampire Queen 17%, Divine Beast Fusion 3%, End Ruler 0%. Pass 2 takes those on one by one.
+
 ## 2026-11-01 (implementation, Milestone 3u: the End Ruler, Year 20) — implementer
 - **The End Ruler** (`content/bosses/end_ruler.json`, L10, Outer Dark, tagged `arc`), the final boss. **Reading taken: 2×8 (E2–E3), like the Mother**, so its Unknown Satan and Princess have the front column to fight from.
 - **The Throne:** it starts Guarded (nothing can target or reach it) and only Decrees (Mark, Sanity 4, a chance of Fear) or waits. **Reading taken:** it stands when both its champions have fallen (`adds==0`), not at an HP mark, since it cannot be hurt while it sits.
@@ -378,7 +398,7 @@ Readings and defaults taken while building; each is a knob in `tuning.ts` or eas
 Batches 1–12 (answered 2026-10-31 / 2026-11-01): Q1–Q84 closed, see above. Q86 and Q88 answered 2026-11-01. The design is handed off; see HANDOFF.md.
 
 - **Q85 (asked 2026-11-01, Milestone 0): how is a House's Standing tier worked out?** §3.4 names the four tiers (Waning / Steady / Rising / Ascendant) but not the rule, and it decides how much the other Houses can read. Built as the default, PROPOSED: a House's Ascendancy divided by the kingdom's mean, Waning below 0.75, Steady 0.75–1, Rising 1–1.25, Ascendant 1.25 and up; Steady when solo or before anyone scores. Alternatives: tiers by rank (the leader is always Ascendant, which tells everyone who leads), or fixed Ascendancy thresholds that rise with the Year (tiers say how well a House does, not how it compares).
-- **Q87 (asked 2026-11-01, Milestone 1): should Durability grow with level?** The simulator finds injury rolls in an ordinary fight climbing from 0.1 at L1 to about 6 at L10, because §7.3's Durability (10–15 + 1.5–2 × a stat) grows slowly while enemy damage grows about fivefold. A level term (+1 or +2 Durability per level on every location) brings L10 to about 2–3 rolls; heavier armor in Milestone 2 may do the rest. Built as specified (no level term) until Josh decides; `formulas.durabilityPerLevel` is the knob.
+- **Q87 (asked 2026-11-01, Milestone 1): should Durability grow with level?** The simulator finds injury rolls in an ordinary fight climbing from 0.1 at L1 to about 6 at L10, because §7.3's Durability (10–15 + 1.5–2 × a stat) grows slowly while enemy damage grows about fivefold. A level term (+1 or +2 Durability per level on every location) brings L10 to about 2–3 rolls; heavier armor in Milestone 2 may do the rest. Built as specified (no level term) until Josh decides; `formulas.durabilityPerLevel` is the knob. **2026-11-01, tuning pass 1:** set to 2, recommended to Josh on a decision card; revert to 0 or 1 if he picks otherwise.
 
 
 Implementation items (not design questions):
