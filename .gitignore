@@ -1,0 +1,7 @@
+node_modules/
+dist/
+.env
+*.log
+# raw asset packs never enter the repo (see docs/CREDITS.md)
+assets-src/
+art-src/
