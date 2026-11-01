@@ -1,14 +1,19 @@
 // The headless battle simulator from the command line (HANDOFF §7):
-//   npm run sim -- [--seed N] [--level L] [--runs N] [--fight warband|battery] [--jobs a,b,c,d] [--log]
-//   npm run sim -- --sweep [--levels 1,3,6] [--runs N] [--fight warband|battery]
+//   npm run sim -- [--seed N] [--level L] [--runs N] [--jobs a,b,c,d] [--pool P] [--template T|any] [--openings] [--log]
+//   npm run sim -- --sweep [--levels 1,3,6] [--runs N] [--pool P] [--template T]
+//   npm run sim -- --templates [--levels 2,5,8] [--runs N] [--pool P] [--jobs a,b,c,d]
 // With --log it prints one battle turn by turn; otherwise it sums up many seeded battles. --jobs builds
-// a real party (combat/roster.ts: rolled Scions, JP spent, real items); without it the stand-in party
-// fights. --sweep puts each of the 14 Jobs into the real baseline party in turn, at each level.
+// a real party (combat/roster.ts: rolled Scions, JP spent, real items) that fights a drawn Encounter
+// (combat/encounter.ts; a Barrows Warband unless --pool/--template say otherwise, `any` draws by weight,
+// --openings rolls Ambush and Surprise); without it the stand-in party fights the hand-placed --fight.
+// --sweep puts each of the 14 Jobs into the real baseline party in turn, at each level; --templates
+// runs one party against every template at each level.
 import type { JobId } from "../src/shared/games/sovereign-pact/state.ts";
-import { JOBS } from "../src/shared/games/sovereign-pact/content.ts";
+import { JOBS, TEMPLATES } from "../src/shared/games/sovereign-pact/content.ts";
+import { templatesAt } from "../src/shared/games/sovereign-pact/combat/encounter.ts";
 import { warbandBattle, type EncounterId } from "../src/shared/games/sovereign-pact/combat/fixtures.ts";
 import { renderGrid, renderLog, renderUnits } from "../src/shared/games/sovereign-pact/combat/render.ts";
-import { BASELINE, realBattle, withJob } from "../src/shared/games/sovereign-pact/combat/roster.ts";
+import { BASELINE, realBattle, withJob, type FightSpec } from "../src/shared/games/sovereign-pact/combat/roster.ts";
 import { simulate } from "../src/shared/games/sovereign-pact/combat/sim.ts";
 import type { Battle } from "../src/shared/games/sovereign-pact/combat/types.ts";
 
@@ -24,7 +29,10 @@ const runs = opt("runs", 200);
 const fight = (arg("fight") ?? "warband") as EncounterId;
 const jobs = arg("jobs")?.split(",") as JobId[] | undefined;
 
-const battle = (s: number, lvl: number, party?: readonly JobId[]): Battle => (party ? realBattle(s, lvl, party, fight) : warbandBattle(s, lvl, fight));
+const pool = arg("pool") ?? "barrows";
+const template = arg("template") ?? "warband";
+const spec: FightSpec = { pool, template: template === "any" ? undefined : template, modifier: args.includes("--openings") ? undefined : null };
+let battle = (s: number, lvl: number, party?: readonly JobId[]): Battle => (party ? realBattle(s, lvl, party, spec) : warbandBattle(s, lvl, fight));
 
 function tally(lvl: number, party: readonly JobId[] | undefined, n: number) {
   const out = { win: 0, turns: 0, hp: 0, rolls: 0, dead: 0, bands: {} as Record<string, number> };
@@ -49,14 +57,26 @@ if (args.includes("--log")) {
   console.log(s);
 } else if (args.includes("--sweep")) {
   const levels = (arg("levels") ?? "1,3,6").split(",").map(Number);
-  console.log(`Barrows ${fight}, ${runs} battles each from seed ${seed}; each Job in place of the baseline member in its column`);
+  console.log(`${pool} ${template}, ${runs} battles each from seed ${seed}; each Job in place of the baseline member in its column`);
   for (const lvl of levels) {
     console.log(`\nL${lvl} (Scion level ${lvl * 3})`);
     console.log(`  ${"baseline".padEnd(12)} ${tally(lvl, BASELINE, runs).line}`);
     for (const j of JOBS) console.log(`  ${j.id.padEnd(12)} ${tally(lvl, withJob(j.id), runs).line}`);
   }
+} else if (args.includes("--templates")) {
+  const levels = (arg("levels") ?? "2,5,8").split(",").map(Number);
+  const party = jobs ?? BASELINE;
+  console.log(`${pool}, ${party.join("/")}, ${runs} battles each from seed ${seed}`);
+  for (const lvl of levels) {
+    console.log(`\nL${lvl} (Scion level ${lvl * 3})`);
+    for (const t of TEMPLATES) {
+      if (!templatesAt(lvl).includes(t)) continue;
+      battle = (s, l, p) => realBattle(s, l, p!, { ...spec, template: t.id });
+      console.log(`  ${t.id.padEnd(13)} ${tally(lvl, party, runs).line}`);
+    }
+  }
 } else {
   const t = tally(level, jobs, runs);
-  console.log(`Barrows ${fight}, L${level}, party level ${level * 3}, ${jobs ? jobs.join("/") : "stand-in party"}, ${runs} battles from seed ${seed}`);
+  console.log(`${jobs ? `${pool} ${template}` : `Barrows ${fight} (hand-placed)`}, L${level}, party level ${level * 3}, ${jobs ? jobs.join("/") : "stand-in party"}, ${runs} battles from seed ${seed}`);
   console.log(`  ${t.line}`, t.bands);
 }

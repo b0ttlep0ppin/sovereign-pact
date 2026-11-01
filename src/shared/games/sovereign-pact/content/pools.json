@@ -1,0 +1,16 @@
+{
+  "pools": [
+    { "id": "beast_lands", "name": "The Beast Lands", "levels": [1, 6], "cards": ["resource", "hunt"], "resist": [], "weak": ["fire"], "hazardPct": 10 },
+    { "id": "hollow_wood", "name": "The Hollow Wood", "levels": [1, 7], "cards": ["resource", "delve"], "resist": ["earth", "water"], "weak": ["fire"], "hazardPct": 10 },
+    { "id": "drowned_marches", "name": "The Drowned Marches", "levels": [2, 7], "cards": ["resource", "rescue", "delve"], "resist": ["water"], "weak": ["wind"], "hazardPct": 20 },
+    { "id": "barrows", "name": "The Barrows", "levels": [2, 8], "cards": ["delve", "rescue", "pilgrimage"], "resist": ["dark"], "weak": ["holy", "fire"], "hazardPct": 20 },
+    { "id": "deep_cold", "name": "The Deep Cold", "levels": [3, 8], "cards": ["hunt", "resource"], "resist": ["water"], "weak": ["fire"], "hazardPct": 10 },
+    { "id": "pit", "name": "The Pit", "levels": [4, 10], "cards": ["delve", "hunt"], "resist": ["fire", "dark"], "weak": ["holy", "water"], "hazardPct": 20 },
+    { "id": "forge_ruins", "name": "The Forge Ruins", "levels": [3, 9], "cards": ["resource", "delve"], "resist": ["earth", "wind"], "weak": ["water", "wind"], "hazardPct": 30 },
+    { "id": "faceless_city", "name": "The Faceless City", "levels": [3, 9], "cards": ["delve", "rescue"], "resist": ["dark"], "weak": [], "hazardPct": 30 },
+    { "id": "apostate_court", "name": "The Apostate Court", "levels": [2, 9], "cards": ["rescue", "hunt"], "resist": [], "weak": [], "hazardPct": 30 },
+    { "id": "shrine_of_six", "name": "The Shrine of Six", "levels": [4, 10], "cards": ["pilgrimage", "hunt"], "resist": [], "weak": [], "hazardPct": 20 },
+    { "id": "dragon_reaches", "name": "The Dragon Reaches", "levels": [5, 10], "cards": ["hunt"], "resist": [], "weak": [], "hazardPct": 10 },
+    { "id": "outer_dark", "name": "The Outer Dark", "levels": [6, 10], "cards": ["delve"], "resist": ["dark"], "weak": ["holy"], "hazardPct": 20 }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Enemy pools: the twelve regions of the otherworld (SPEC §14.5)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["pools"],
+  "properties": {
+    "pools": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "name", "levels", "cards", "resist", "weak", "hazardPct"],
+        "properties": {
+          "id": { "$ref": "defs.schema.json#/definitions/id" },
+          "name": { "type": "string", "minLength": 1 },
+          "levels": { "$ref": "enemies.schema.json#/properties/levels" },
+          "cards": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "enum": ["resource", "hunt", "delve", "rescue", "pilgrimage"] } },
+          "resist": { "$ref": "#/definitions/elements" },
+          "weak": { "$ref": "#/definitions/elements" },
+          "hazardPct": { "type": "integer", "minimum": 0, "maximum": 100, "description": "Chance an Encounter carries a hazard (§14.8)" }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "elements": { "type": "array", "uniqueItems": true, "items": { "enum": ["holy", "dark", "fire", "water", "earth", "wind"] } }
+  }
+}

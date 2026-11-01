@@ -9,8 +9,9 @@ import { equip, gearTotals, mint } from "../items.ts";
 import { changeJob, equipPassive, gainJp, jpLeft, knows, learn, passiveBudget, passivePoints, setSecondary } from "../progression.ts";
 import type { BASE_JOBS, ItemTier, JobId, Person, SovState } from "../state.ts";
 import { TUNING } from "../tuning.ts";
-import { newBattle, scionCombatant } from "./build.ts";
-import { atLevel, ENCOUNTERS, type EncounterId } from "./fixtures.ts";
+import { scionCombatant } from "./build.ts";
+import { encounterBattle, type EncounterSpec } from "./encounter.ts";
+import { atLevel } from "./fixtures.ts";
 import type { Battle, Combatant } from "./types.ts";
 
 const S = TUNING.sim;
@@ -106,7 +107,11 @@ export function withJob(job: JobId): JobId[] {
   return BASELINE.map((j, i) => (i === slot ? job : j));
 }
 
-/** A Barrows fight against a real party at Scion level 3L (§14.2). */
-export function realBattle(seed: number, level: number, jobs: readonly JobId[], encounter: EncounterId = "warband"): Battle {
-  return newBattle(seed, [...realParty(seed, level * 3, jobs), ...ENCOUNTERS[encounter](level)]);
+/** What the simulator fights by default: a Barrows Warband with no Ambush or Surprise. */
+export type FightSpec = Partial<Omit<EncounterSpec, "party" | "level">>;
+const FIGHT = { pool: "barrows", template: "warband", modifier: null } as const;
+
+/** An Encounter (§14.4) against a real party at Scion level 3L (§14.2). */
+export function realBattle(seed: number, level: number, jobs: readonly JobId[], fight: FightSpec = {}): Battle {
+  return encounterBattle(seed, realParty(seed, level * 3, jobs), { ...FIGHT, ...fight, level }).battle;
 }
