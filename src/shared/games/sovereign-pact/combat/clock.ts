@@ -99,7 +99,8 @@ function pulseOf(b: Battle, rng: Rng, u: Combatant): void {
  * random (§10.4). Undefined if nobody is ready.
  */
 export function nextActor(b: Battle, rng: Rng): Combatant | undefined {
-  const ready = ticking(b).filter((u) => u.ct >= C.turnAt && !u.charge);
+  // Parts take no turns of their own (§14.1).
+  const ready = ticking(b).filter((u) => u.ct >= C.turnAt && !u.charge && u.partOf === undefined);
   if (!ready.length) return undefined;
   const top = Math.max(...ready.map((u) => u.ct));
   const atTop = ready.filter((u) => u.ct === top);

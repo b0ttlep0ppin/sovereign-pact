@@ -2,6 +2,12 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-01 (implementation, Milestone 3c: Parts) — implementer
+- **Parts are combatants of their own** (`combat/enemyparts.ts`): each sits on its rectangle of the body's cells (relative to its top-left), with its own HP (a share of the body's max), the body's defenses, Evasion and leanings plus its own `affinity`, `immune` and `weak`. On a Part's cell a single strike or an area hits the Part; the body is struck through its other cells. In melee a body and its Parts in the same front column are one front: either can be struck. Parts take no turns, die with the body, and do not hold the field once the body falls.
+- **Reading taken: a blow on a Part also hurts the body**, at 50% (`tuning.enemies.parts.bodySharePct`), so breaking a Part is never wasted time; §14.1 gives each Part its own HP but is silent on whether that damage carries. Destroying a Part loses the body the abilities in its `disables` and staggers it (Readiness −50, §14.1). An enemy with Parts does not move (they would come apart).
+- Gambits gain the `part` target (the most hurt Part) and the `parts<N` condition (the body's living Parts). The content test checks each Part sits on its enemy's cells, is a rectangle, and disables abilities the enemy has.
+- **The Barrows' Dragon Zombie** has the first Part: its Rotting Skull (20% HP, Holy −100) powers Rot Breath.
+
 ## 2026-11-01 (implementation, Milestone 3b: the Barrows roster and role behaviors) — implementer
 - **The Barrows is the first full pool**: 25 enemies (L2–8) covering every role at every level, 11 of them back-line threats (lurkers, artillery, horrors, flyers and the reach-armed Dead Soldier). The content lint (every template fillable at every level from the pool's own roster; 15–25 enemies; a third back-line) now runs for it. Of §14.5's list, the Mini-Mummy, Gravekeeper, Lingering Thought, Weeping Madonna and Royal Tomb Guardian were left out to keep within the 25 budget (they make good variants or event enemies later); Gashadokuro and the Lich-as-boss wait for the boss step.
 - **Sprites are not referenced yet.** The pack file names are on Josh's PC; each enemy's `sprite` is filled in with the sprite manifest (Milestone 8).

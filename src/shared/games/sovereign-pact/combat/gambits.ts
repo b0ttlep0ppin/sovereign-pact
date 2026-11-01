@@ -17,7 +17,7 @@ export interface Plan {
 }
 
 const frac = (u: Combatant) => (u.maxHp ? u.hp / u.maxHp : 1);
-const allies = (b: Battle, u: Combatant) => standing(b, allegiance(u)).filter((x) => x.id !== u.id);
+const allies = (b: Battle, u: Combatant) => standing(b, allegiance(u)).filter((x) => x.id !== u.id && x.partOf === undefined);
 const foes = (b: Battle, u: Combatant) => standing(b, other(allegiance(u)));
 const OPS: Record<string, (a: number, b: number) => boolean> = {
   "<": (a, b) => a < b,
@@ -33,7 +33,7 @@ export function holds(b: Battle, u: Combatant, cond: string | undefined): boolea
   const c = cond.replace(/\s+/g, "");
   let m = /^turn%(\d+)==(\d+)$/.exec(c);
   if (m) return u.turns % Number(m[1]) === Number(m[2]);
-  m = /^(turn|adds|foes|allies|swarm|fallen)(<=|>=|<|>|==)(\d+)$/.exec(c);
+  m = /^(turn|adds|foes|allies|swarm|fallen|parts)(<=|>=|<|>|==)(\d+)$/.exec(c);
   if (m) {
     const n = {
       turn: u.turns,
@@ -43,6 +43,8 @@ export function holds(b: Battle, u: Combatant, cond: string | undefined): boolea
       // Living swarm on its side, itself included (the overrun, §14.3), and fallen kin a raise could lift.
       swarm: standing(b, allegiance(u)).filter((x) => x.role === "swarm").length,
       fallen: fallen(b, u).length,
+      // Its own living Parts (§14.1).
+      parts: b.units.filter((x) => x.partOf === u.id && !x.dead).length,
     }[m[1] as "turn"];
     return OPS[m[2]!]!(n, Number(m[3]));
   }
@@ -94,6 +96,11 @@ export function choose(rng: Rng, u: Combatant, candidates: Combatant[], rule: st
     case "densest_cluster":
       // The one with the most of its side around it (rows for densest_row, the 3×3 for a cluster).
       return by((x) => -candidates.filter((o) => (rule === "densest_row" ? o.row === x.row : Math.abs(o.row - x.row) <= 1 && Math.abs(o.col - x.col) <= 1)).length);
+    case "part": {
+      // A Part of a big foe, the most hurt first (§14.1).
+      const parts = candidates.filter((x) => x.partOf !== undefined);
+      return parts.length ? [...parts].sort((x, y) => frac(x) - frac(y) || x.id - y.id)[0] : undefined;
+    }
     case "empty_cell":
     case "back_random": {
       const back = Math.max(...candidates.map((x) => x.col));

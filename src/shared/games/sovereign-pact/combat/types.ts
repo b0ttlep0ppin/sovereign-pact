@@ -273,6 +273,12 @@ export interface Combatant {
   form?: { id: string; ends: number; abilities: AbilityDef[]; size: [number, number]; maxHp: number; guard: number };
   /** A feral Form's pick for this turn: the only ability the Alterer may use. */
   feral?: string;
+  /** A Part (§14.1): the body's id and the Part's id; the abilities it powers, lost with it. */
+  partOf?: number;
+  part?: string;
+  disables?: string[];
+  /** Abilities lost to destroyed Parts. */
+  lost?: string[];
   /** A Tinkerer's Components: held, and offered this turn (§12.2). */
   parts?: string[];
   offer?: string[];
@@ -311,6 +317,7 @@ export type BattleEvent =
   | { t: "summon"; unit: number; summon: string; ids: number[] }
   | { t: "vanish"; unit: number }
   | { t: "raise"; unit: number; target: number }
+  | { t: "part"; unit: number; part: string }
   | { t: "shift"; unit: number; form: string | null }
   | { t: "dead"; target: number }
   | { t: "wait" | "defend"; unit: number }

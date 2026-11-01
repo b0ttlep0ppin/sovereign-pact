@@ -53,6 +53,7 @@ export const hpCost = (u: Combatant, ab: AbilityDef): number => (ab.hpCost ? Mat
 
 /** Why `u` cannot use `ab` now, or null if it can. */
 export function cannotUse(u: Combatant, ab: AbilityDef): string | null {
+  if (u.lost?.includes(ab.id)) return "part";
   if (ab.id !== "attack" && hasStatus(u, "berserk")) return "berserk";
   if (ab.kind === "magic" || ab.kind === "heal") {
     if (hasStatus(u, "silence") || hasStatus(u, "null_zone") || u.mods.mute) return "silenced";
@@ -287,7 +288,7 @@ export function resolve(b: Battle, rng: Rng, u: Combatant, ab: AbilityDef, at: C
   }
   for (const t of targets) {
     // Grapple Line: pulled toward the gap if the cell is free.
-    if (ab.pull && !t.dead && t.col > 0 && isFree(b, t.side, Math.max(0, t.col - ab.pull), t.row, t.size, t.id)) {
+    if (ab.pull && !t.dead && t.col > 0 && t.partOf === undefined && !b.units.some((o) => o.partOf === t.id) && isFree(b, t.side, Math.max(0, t.col - ab.pull), t.row, t.size, t.id)) {
       t.col = Math.max(0, t.col - ab.pull);
       b.events.push({ t: "move", unit: t.id, col: t.col, row: t.row });
     }
@@ -320,7 +321,7 @@ function counterspelled(b: Battle, rng: Rng, u: Combatant, ab: AbilityDef, targe
 /** Victory when every enemy is gone; defeat when every Scion is Down or dead (§10.12). */
 export function checkEnd(b: Battle): void {
   if (b.outcome) return;
-  if (!standing(b, "enemy").length) end(b, "victory");
+  if (!standing(b, "enemy").some((u) => u.partOf === undefined)) end(b, "victory");
   // Summons cannot hold the field alone (§10.12: defeat when every Scion is Down or dead).
   else if (!standing(b, "party").some((u) => u.owner === undefined)) end(b, "defeat");
 }

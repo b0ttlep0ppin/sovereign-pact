@@ -3,6 +3,7 @@
 import type { Rng } from "../../../rng.ts";
 import { ELEMENTS, LOCATIONS, type Element, type Location } from "../state.ts";
 import { TUNING } from "../tuning.ts";
+import { bodyOf, bodyShare } from "./enemyparts.ts";
 import { hasStatus } from "./grid.ts";
 import { down, injure, kill, steel, steelSanity } from "./injury.ts";
 import { addStatus, extraOf, meta, removeStatus, statusValue, tryStatus } from "./status.ts";
@@ -342,6 +343,17 @@ function applyHit(b: Battle, rng: Rng, u: Combatant, t: Combatant, ab: AbilityDe
     else t.statuses.find((s) => s.id === "shield")!.value = shield - soak;
   }
   t.hp = Math.max(0, t.hp - left);
+  // A blow on a Part reaches the body too, at a share (§14.1).
+  const body = bodyOf(b, t);
+  if (body && left > 0) {
+    const share = bodyShare(left);
+    body.hp = Math.max(0, body.hp - share);
+    b.events.push({ t: "hit", unit: u.id, target: body.id, damage: share });
+    if (body.hp <= 0) {
+      kill(b, body);
+      u.kills++;
+    }
+  }
   // Second Wind: once a battle, a blow that would Down a Scion leaves them at 1 HP.
   if (t.hp <= 0 && !wasDown && t.side === "party" && t.mods.secondWind && !t.flags.includes("second_wind")) {
     t.flags.push("second_wind");

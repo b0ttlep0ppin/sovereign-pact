@@ -151,7 +151,21 @@ export interface EnemyDef {
   weak?: { location: Location; mult: number };
   abilities: EnemyAbility[];
   gambits: { if?: string; do: string; target?: string }[];
+  /** Parts (§14.1): sub-entities on some of its cells. */
+  parts?: PartDef[];
   bestiary?: { lore: string; weakness: string };
+}
+
+/** A Part of a big enemy (§14.1): cells relative to its top-left, HP as a share of its max, the abilities it powers. */
+export interface PartDef {
+  id: string;
+  name: string;
+  cells: [number, number][];
+  hp: number;
+  disables?: string[];
+  affinity?: Partial<Record<Element, number>>;
+  immune?: string[];
+  weak?: { location: Location; mult: number };
 }
 
 /** Every enemy file, through the generated index (`npm run gen:content`; one import per file keeps the rules free of bundler globs). */

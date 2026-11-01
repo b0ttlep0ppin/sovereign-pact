@@ -19,8 +19,11 @@
     {"if": "turn%2==0", "do": "tail_sweep"},
     {"do": "bone_claw", "target": "column_weighted"}
   ],
+  "parts": [
+    {"id": "rotting_skull", "name": "Rotting Skull", "cells": [[0, 1]], "hp": 0.2, "disables": ["rot_breath"], "affinity": {"holy": -100}}
+  ],
   "bestiary": {
     "lore": "A dragon buried with its rider. Neither stayed down.",
-    "weakness": "Holy and fire. The breath gives warning; the tail sweeps the Front."
+    "weakness": "Holy and fire. Break the skull and it cannot breathe; the tail sweeps the Front."
   }
 }
