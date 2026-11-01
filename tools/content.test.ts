@@ -9,7 +9,7 @@ import { join, relative, sep } from "node:path";
 import { fileURLToPath } from "node:url";
 import { Ajv, type ValidateFunction } from "ajv";
 import { describe, expect, it } from "vitest";
-import { ABILITY_SETS, BOSSES, ENEMIES, ENEMY_BY_ID, JOBS, POOL_BY_ID, rosterOf, TEMPLATES, type TemplateRole } from "../src/shared/games/sovereign-pact/content.ts";
+import { ABILITY_SETS, BOSSES, ENEMIES, ENEMY_BY_ID, JOBS, POOL_BY_ID, rosterOf, TEMPLATES, VARIANT_BY_ID, type TemplateRole } from "../src/shared/games/sovereign-pact/content.ts";
 import { partBox } from "../src/shared/games/sovereign-pact/combat/enemyparts.ts";
 import { INDEXED, renderIndex } from "./gen-content.ts";
 
@@ -116,6 +116,10 @@ describe("content", () => {
   it("files bosses as bosses/<id>.json", () => {
     const files = contentFiles.filter((f) => f.startsWith("bosses/")).map((f) => f.split("/").at(-1)!.replace(/\.json$/, ""));
     expect(BOSSES.map((e) => e.id).sort()).toEqual(files.sort());
+  });
+
+  it("names only elemental variants that exist (§14.10)", () => {
+    for (const e of ENEMIES) for (const v of e.variants ?? []) expect(VARIANT_BY_ID.get(v)?.family, `${e.id}: ${v}`).toBe("elemental");
   });
 
   // HANDOFF §6's roster lints, switched on for each pool as its roster is completed (Milestone 3).

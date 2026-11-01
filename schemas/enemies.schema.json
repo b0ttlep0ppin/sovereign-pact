@@ -34,6 +34,7 @@
       "minItems": 2,
       "maxItems": 2
     },
+    "variants": { "type": "array", "uniqueItems": true, "items": { "$ref": "defs.schema.json#/definitions/id" }, "description": "Elemental variants it can appear as (content/variants.json, §14.10)" },
     "addOnly": { "type": "boolean", "description": "Only a boss brings it: never drawn for an Encounter" },
     "levels": {
       "type": "array",

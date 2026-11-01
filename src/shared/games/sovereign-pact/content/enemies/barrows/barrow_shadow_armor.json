@@ -6,6 +6,7 @@
   "role": "bruiser",
   "size": [1, 1],
   "levels": [5, 8],
+  "variants": ["stone", "ashen"],
   "stats": {"def": 1.6, "speed": 8},
   "affinity": {"holy": -50, "dark": 75},
   "immune": ["poison", "bleed", "fear", "sleep", "charm"],

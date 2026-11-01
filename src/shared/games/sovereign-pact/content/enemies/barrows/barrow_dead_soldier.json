@@ -6,6 +6,7 @@
   "role": "fodder",
   "size": [1, 1],
   "levels": [4, 8],
+  "variants": ["stone"],
   "stats": {"speed": 9},
   "affinity": {"holy": -50, "dark": 50},
   "immune": ["poison", "fear", "sleep"],

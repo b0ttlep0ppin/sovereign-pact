@@ -27,6 +27,7 @@ import poolsJson from "./content/pools.json" with { type: "json" };
 import propertiesJson from "./content/properties.json" with { type: "json" };
 import seatsJson from "./content/seats.json" with { type: "json" };
 import tarotJson from "./content/tarot.json" with { type: "json" };
+import variantsJson from "./content/variants.json" with { type: "json" };
 import templatesJson from "./content/templates.json" with { type: "json" };
 import type { AbilityDef, GambitRule } from "./combat/types.ts";
 import type { Element, JobId, Location } from "./state.ts";
@@ -156,6 +157,8 @@ export interface EnemyDef {
   parts?: PartDef[];
   /** Only a boss brings it: never drawn for an Encounter. */
   addOnly?: boolean;
+  /** Elemental variants it can appear as (§14.10). */
+  variants?: string[];
   bestiary?: { lore: string; weakness: string };
 }
 
@@ -209,6 +212,25 @@ export const BOSSES = bossFiles as unknown as readonly BossDef[];
 export const BOSS_BY_ID: ReadonlyMap<string, BossDef> = new Map(BOSSES.map((e) => [e.id, e]));
 /** Enemies and bosses by id: anything that can stand on the enemy grid. */
 export const ENEMY_BY_ID: ReadonlyMap<string, EnemyDef> = new Map([...ENEMIES, ...BOSSES].map((e) => [e.id, e]));
+
+/** A variant family member (§14.10): content/variants.json. */
+export interface VariantDef {
+  id: string;
+  family: "elemental" | "hollow" | "unknown";
+  prefix: string;
+  tint: string;
+  affinity?: Partial<Record<Element, number>>;
+  tags?: string[];
+  element?: Element;
+  sanityTouch?: number;
+  level?: number;
+  roles?: EnemyRole[];
+  immune?: string[];
+  minYear?: number;
+}
+
+export const VARIANTS = variantsJson.variants as unknown as readonly VariantDef[];
+export const VARIANT_BY_ID: ReadonlyMap<string, VariantDef> = new Map(VARIANTS.map((v) => [v.id, v]));
 
 export type CardType = "resource" | "hunt" | "delve" | "rescue" | "pilgrimage";
 

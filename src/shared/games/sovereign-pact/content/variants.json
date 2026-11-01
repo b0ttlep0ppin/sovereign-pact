@@ -1,0 +1,10 @@
+{
+  "variants": [
+    { "id": "ashen", "family": "elemental", "prefix": "Ashen", "tint": "#c0392b", "affinity": { "fire": 50, "water": -50 }, "tags": ["fire"], "element": "fire" },
+    { "id": "drowned", "family": "elemental", "prefix": "Drowned", "tint": "#2e86c1", "affinity": { "water": 50, "fire": -50 }, "tags": ["water"], "element": "water" },
+    { "id": "storm", "family": "elemental", "prefix": "Storm", "tint": "#a3e4a1", "affinity": { "wind": 50, "earth": -50 }, "tags": ["wind"], "element": "wind" },
+    { "id": "stone", "family": "elemental", "prefix": "Stone", "tint": "#b9770e", "affinity": { "earth": 50, "wind": -50 }, "tags": ["earth"], "element": "earth" },
+    { "id": "hollow", "family": "hollow", "prefix": "Hollow", "tint": "#5b4a6b", "affinity": { "dark": 50, "holy": -50 }, "tags": ["undead"], "sanityTouch": 2, "roles": ["fodder", "bruiser"], "immune": ["poison", "fear"] },
+    { "id": "unknown_touched", "family": "unknown", "prefix": "Unknown-touched", "tint": "#3b1f5c", "affinity": { "fire": 25, "water": 25, "earth": 25, "wind": 25, "dark": 25, "holy": -25 }, "tags": ["unknown"], "level": 1, "minYear": 10 }
+  ]
+}
