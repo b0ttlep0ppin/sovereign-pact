@@ -6,6 +6,9 @@ import divine_beast_fusion from "./divine_beast_fusion.json" with { type: "json"
 import end_ruler from "./end_ruler.json" with { type: "json" };
 import goblin_lord from "./goblin_lord.json" with { type: "json" };
 import orochi from "./orochi.json" with { type: "json" };
+import overlord from "./overlord.json" with { type: "json" };
+import overlord_ascendant from "./overlord_ascendant.json" with { type: "json" };
+import overlord_final from "./overlord_final.json" with { type: "json" };
 import scylla from "./scylla.json" with { type: "json" };
 import siege_beast from "./siege_beast.json" with { type: "json" };
 import stone_colossus from "./stone_colossus.json" with { type: "json" };
@@ -22,6 +25,9 @@ export default [
   end_ruler,
   goblin_lord,
   orochi,
+  overlord,
+  overlord_ascendant,
+  overlord_final,
   scylla,
   siege_beast,
   stone_colossus,

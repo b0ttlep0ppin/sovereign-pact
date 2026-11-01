@@ -50,8 +50,8 @@ export const TUNING = {
   formulas: {
     maxHp: { base: 20, might: 1, resilience: 3, level: 2 },
     maxMp: { base: 10, acuity: 2, sagacity: 2, level: 1 },
-    /** Durability per location: base + coefficient × stat (§7.3), plus `durabilityPerLevel` × level (0 in the spec; 2 from the M3 tuning pass, Q87). */
-    durabilityPerLevel: 2,
+    /** Durability per location: base + coefficient × stat (§7.3), plus `durabilityPerLevel` × level (0: Josh kept the spec, Q87). */
+    durabilityPerLevel: 0,
     durability: {
       head: { base: 10, stat: "acuity", per: 1.5 },
       body: { base: 15, stat: "resilience", per: 2 },
@@ -112,8 +112,8 @@ export const TUNING = {
     spellReduction: 0.5,
     acuityDivisor: 25,
     sagacityDivisor: 25,
-    /** Enemy melee: Might-free damage = power × atk × (1 + factor × L) (§14.2 has 2/25; 0.03 from the M3 tuning pass). */
-    enemyLevelFactor: 0.03,
+    /** Enemy melee: Might-free damage = power × atk × (1 + factor × L) (§14.2 has 2/25; 0.015 from the M3 tuning passes). */
+    enemyLevelFactor: 0.015,
     mightDivisor: 25,
     tp: { max: 100, gainBase: 10, gainPer: 20 },
     /** §11.1: a step is 2 points; +1 step per 15 Resilience. */

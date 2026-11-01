@@ -2,6 +2,24 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-01 (implementation, Milestone 3x: the Overlord; Q87 answered) — implementer
+- **Q87 answered by Josh (decision card, 2026-11-01): Durability does not grow with level, as specified.** `formulas.durabilityPerLevel` is back to 0. To make up for it, `combat.enemyLevelFactor` drops from 0.03 to 0.015: enemy damage grows ×1.15 by L10, where §14.2's formula had ×1.8. The other pass-1 knobs and the pass-2 boss stats stay.
+- **Encounters after this** (every pool, 40 fights a template; win / HP lost / injury rolls):
+  - L1 Warband: 100% / 30% / 0.1.
+  - L4 Warband 100% / 28% / 0.9; Elite patrol 97% / 35% / 2.8.
+  - L7 Warband 100% / 23% / 1.4; Elite patrol 97% / 33% / 5.4.
+  - L10 Warband 100% / 26% / 3.3; Stalkers 93% / 42% / 5.7; Elite patrol 88% / 37% / 7.9.
+  - Injury rolls still climb with level, now from Durability alone, as Josh chose to keep it.
+- **Bosses after this** (60 fights, baseline party):
+  - Arc: Siege Beast 100%, Cursed King 77%, Unknown Mother 75%, End Ruler 48%.
+  - Hunts: Scylla 77%, Fusion 77%, Dark General 58%, Vampire Queen 58%, Orochi 57%; the early Hunts 97–100%.
+- **The Overlord** (`overlord.json` → `overlord_ascendant.json` → `overlord_final.json`, L9–10, the Pit), the optional superboss and the fourteenth scripted boss. Three forms, 1×1 → 2×2 → 3×3, each `rise` at 30%.
+  - The dispel now runs before a `rise`, so every form change strips the party's buffs (§14.6).
+  - Form 1 is a swordsman with a dark bolt and a row of fire. Form 2 claws (Bleed), with alternating telegraphed hellfire bands and brimstone bursts. Form 3 crushes, rains fire on four random cells, and charges a telegraphed Doom Pulse (`all`, Sanity 6) every fourth turn, every third in Despair.
+  - Readiness damage half-works on him, like any boss.
+  - Simulator at L9: the baseline party wins 31%; a Ravager, Knight, Conjurer and Soothsayer party wins 95%.
+- **Milestone 3 is complete:** 12 pool rosters, hazards, variants, and all 14 scripted bosses from §14.6's table.
+
 ## 2026-11-01 (implementation, Milestone 3w: tuning pass 2, the bosses) — implementer
 - **Targets taken:** mandatory-arc bosses about 60–85% for the baseline party at their level (do-or-die, but a well-built party should usually live); Hunt bosses about 50–70% (optional, and real parties with advanced Jobs and better gear do better); the final boss below half for the baseline, well above for a stronger party.
 - **Boss stats changed** (hp and atk are multipliers on the level block, replacing the boss role's 15 and 1.6):
@@ -412,7 +430,7 @@ Readings and defaults taken while building; each is a knob in `tuning.ts` or eas
 Batches 1–12 (answered 2026-10-31 / 2026-11-01): Q1–Q84 closed, see above. Q86 and Q88 answered 2026-11-01. The design is handed off; see HANDOFF.md.
 
 - **Q85 (asked 2026-11-01, Milestone 0): how is a House's Standing tier worked out?** §3.4 names the four tiers (Waning / Steady / Rising / Ascendant) but not the rule, and it decides how much the other Houses can read. Built as the default, PROPOSED: a House's Ascendancy divided by the kingdom's mean, Waning below 0.75, Steady 0.75–1, Rising 1–1.25, Ascendant 1.25 and up; Steady when solo or before anyone scores. Alternatives: tiers by rank (the leader is always Ascendant, which tells everyone who leads), or fixed Ascendancy thresholds that rise with the Year (tiers say how well a House does, not how it compares).
-- **Q87 (asked 2026-11-01, Milestone 1): should Durability grow with level?** The simulator finds injury rolls in an ordinary fight climbing from 0.1 at L1 to about 6 at L10, because §7.3's Durability (10–15 + 1.5–2 × a stat) grows slowly while enemy damage grows about fivefold. A level term (+1 or +2 Durability per level on every location) brings L10 to about 2–3 rolls; heavier armor in Milestone 2 may do the rest. Built as specified (no level term) until Josh decides; `formulas.durabilityPerLevel` is the knob. **2026-11-01, tuning pass 1:** set to 2, recommended to Josh on a decision card; revert to 0 or 1 if he picks otherwise.
+- **Q87 (asked 2026-11-01, Milestone 1): should Durability grow with level?** The simulator finds injury rolls in an ordinary fight climbing from 0.1 at L1 to about 6 at L10, because §7.3's Durability (10–15 + 1.5–2 × a stat) grows slowly while enemy damage grows about fivefold. A level term (+1 or +2 Durability per level on every location) brings L10 to about 2–3 rolls; heavier armor in Milestone 2 may do the rest. Built as specified (no level term) until Josh decides; `formulas.durabilityPerLevel` is the knob. **Answered 2026-11-01 by Josh: no level term (keep it as specified).** Pass 1 had set it to 2; Milestone 3x puts it back to 0 and lowers `combat.enemyLevelFactor` instead.
 
 
 Implementation items (not design questions):

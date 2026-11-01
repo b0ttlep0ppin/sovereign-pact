@@ -96,14 +96,14 @@ function enterPhase(b: Battle, u: Combatant, def: BossDef, i: number): void {
     end(b, "victory");
     return;
   }
+  if (p.dispel)
+    for (const t of b.units.filter((x) => x.side !== u.side && !x.dead))
+      for (const s of t.statuses.filter((x) => meta(x.id).kind === "buff" && !meta(x.id).fixed)) removeStatus(b, t, s.id);
   if (p.rise && rise(b, u, p.rise)) return;
   u.gambits = p.gambits;
   if (p.speed) u.speed = p.speed;
   // A new phase breaks off whatever the boss was charging.
   delete u.charge;
-  if (p.dispel)
-    for (const t of b.units.filter((x) => x.side !== u.side && !x.dead))
-      for (const s of t.statuses.filter((x) => meta(x.id).kind === "buff" && !meta(x.id).fixed)) removeStatus(b, t, s.id);
   if (p.regrow)
     for (const part of b.units.filter((x) => x.partOf === u.id && x.dead)) {
       Object.assign(part, { dead: false, hp: part.maxHp, statuses: [] });
