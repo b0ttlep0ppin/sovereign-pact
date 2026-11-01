@@ -10,6 +10,7 @@ import injuriesJson from "./content/injuries.json" with { type: "json" };
 import itemsJson from "./content/items.json" with { type: "json" };
 import jobsJson from "./content/jobs.json" with { type: "json" };
 import namesJson from "./content/names.json" with { type: "json" };
+import propertiesJson from "./content/properties.json" with { type: "json" };
 import seatsJson from "./content/seats.json" with { type: "json" };
 import tarotJson from "./content/tarot.json" with { type: "json" };
 import type { Element, JobId, Location } from "./state.ts";
@@ -197,6 +198,30 @@ export interface ItemBase {
 
 export const ITEM_BASES = itemsJson.bases as readonly ItemBase[];
 export const ITEM_BASE_BY_ID: ReadonlyMap<string, ItemBase> = new Map(ITEM_BASES.map((b) => [b.id, b]));
+
+/** What an item property rolls on: a kind of item, or an armor location. */
+export type PropertyOn = "weapon" | "armor" | "shield" | "accessory" | Location;
+
+/** An item property (§13.4–13.5): battle mods per point of its rolled value; `@` in a key is the piece's location. */
+export interface PropertyDef {
+  id: string;
+  name: string;
+  on: PropertyOn[];
+  text: string;
+  roll?: [number, number];
+  mods: Record<string, number>;
+  weight?: number;
+  minTier?: 3 | 4 | 5;
+  group?: string;
+  negative?: boolean;
+  curse?: boolean;
+  /** Works outside battle (campaign) or waits on a later system. */
+  effect?: "campaign" | "later";
+  eventTag?: string;
+}
+
+export const PROPERTIES = propertiesJson.properties as unknown as readonly PropertyDef[];
+export const PROPERTY_BY_ID: ReadonlyMap<string, PropertyDef> = new Map(PROPERTIES.map((x) => [x.id, x]));
 
 export const TAROT: readonly TarotCard[] = tarotJson.cards;
 export const SEATS: readonly SeatStyle[] = seatsJson.seats;

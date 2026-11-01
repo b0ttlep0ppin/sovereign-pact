@@ -65,6 +65,9 @@ function beginTurn(b: Battle, rng: Rng, u: Combatant): boolean {
   u.defending = false;
   for (const k of Object.keys(u.cooldowns)) if (u.cooldowns[k]! > 0) u.cooldowns[k]!--;
   if (u.lastStand) u.tp = Math.min(C.tp.max, u.tp + C.lastStand.tp);
+  // Attuned and Resolute accessories (§13.4).
+  if (u.mods.mpPerTurn) u.mp = Math.min(u.maxMp, u.mp + u.mods.mpPerTurn);
+  if (u.mods.sanityPerTurn) u.sanity = Math.min(u.maxSanity, u.sanity + u.mods.sanityPerTurn);
   if (hasStatus(u, "fear")) u.sanity = Math.max(0, u.sanity - 5);
   if (hasStatus(u, "hidden") && u.turns > 1) removeStatus(b, u, "hidden");
   const lost = u.statuses.find((s) => meta(s.id).oneTurn || meta(s.id).blocks);
@@ -104,6 +107,10 @@ export function act(b: Battle, rng: Rng, u: Combatant, action: Action): void {
   if (b.actor !== u.id || b.acted) throw new Error("not this combatant's action");
   let cost: number;
   if (action.do === "wait") {
+    cost = C.cost.wait;
+    b.events.push({ t: "wait", unit: u.id });
+  } else if (action.do === "defend" && u.mods.noDefend) {
+    // A curse that forbids Defending (§13.5): the turn is a Wait.
     cost = C.cost.wait;
     b.events.push({ t: "wait", unit: u.id });
   } else if (action.do === "defend") {
@@ -156,7 +163,12 @@ export function resolve(b: Battle, rng: Rng, u: Combatant, ab: AbilityDef, at: C
   const targets = resolveTargets(b, rng, u, ab, at, homingOn);
   b.events.push({ t: "use", unit: u.id, ability: ab.id, target: homingOn !== undefined && targets[0] ? cellOf(targets[0]) : at });
   for (const t of targets) {
-    for (let i = 0; i < (ab.hits ?? 1) && !t.dead && !u.dead; i++) strike(b, rng, u, t, ab, { telegraphed: !!ab.telegraph });
+    for (let i = 0; i < (ab.hits ?? 1) && !t.dead && !u.dead; i++) {
+      const hit = strike(b, rng, u, t, ab, { telegraphed: !!ab.telegraph });
+      // Multi-hit weapons sometimes strike again, weaker (§13.4).
+      if (ab.id === "attack" && hit.hit && u.mods.multiHit && !t.dead && !u.dead && rng.int(100) < u.mods.multiHit)
+        strike(b, rng, u, t, { ...ab, power: ab.power * C.props.multiHitPower });
+    }
   }
   if (hasStatus(u, "hidden")) removeStatus(b, u, "hidden");
   checkEnd(b);

@@ -114,8 +114,9 @@ export interface Combatant {
   id: number;
   side: Side;
   name: string;
-  /** The Person this is (Scions). */
+  /** The Person this is (Scions), and their House (for Oathbound). */
   person?: number;
+  house?: number;
   /** The enemy content id (enemies). */
   enemy?: string;
   role?: string;

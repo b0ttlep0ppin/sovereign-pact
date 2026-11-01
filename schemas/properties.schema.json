@@ -1,0 +1,112 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Item properties (SPEC §13.4–13.5): what they roll on, the value range, and the battle mods each point gives",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "properties"
+  ],
+  "properties": {
+    "properties": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/definitions/property"
+      }
+    }
+  },
+  "definitions": {
+    "property": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "name",
+        "on",
+        "text",
+        "mods"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "defs.schema.json#/definitions/id"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 40
+        },
+        "on": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "weapon",
+              "armor",
+              "shield",
+              "accessory",
+              "head",
+              "body",
+              "arms",
+              "legs"
+            ]
+          },
+          "description": "Item kinds, or armor locations, it can roll on"
+        },
+        "text": {
+          "type": "string",
+          "minLength": 1
+        },
+        "roll": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          },
+          "minItems": 2,
+          "maxItems": 2,
+          "description": "The value's range; missing: always 1"
+        },
+        "mods": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "number"
+          },
+          "description": "Battle mods per point of value; @ stands for the piece's location"
+        },
+        "weight": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 100,
+          "description": "Roll weight; 10 unless said"
+        },
+        "minTier": {
+          "enum": [
+            3,
+            4,
+            5
+          ]
+        },
+        "group": {
+          "type": "string",
+          "description": "At most one property of a group per item"
+        },
+        "negative": {
+          "type": "boolean"
+        },
+        "curse": {
+          "type": "boolean"
+        },
+        "effect": {
+          "enum": [
+            "campaign",
+            "later"
+          ],
+          "description": "campaign: works outside battle (Milestone 4+); later: needs a system not built yet"
+        },
+        "eventTag": {
+          "$ref": "defs.schema.json#/definitions/id"
+        }
+      }
+    }
+  }
+}

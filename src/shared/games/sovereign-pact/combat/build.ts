@@ -5,7 +5,7 @@ import { ENEMY_BY_ID, INJURY_BY_ID, type EnemyAbility, type EnemyDef } from "../
 import { jobStat, maxHp, maxMp, maxSanity } from "../formulas.ts";
 import { UNARMED, type GearTotals } from "../items.ts";
 import { freePassives } from "../progression.ts";
-import { LOCATIONS, type Location, type Person } from "../state.ts";
+import { ELEMENTS, LOCATIONS, type Location, type Person } from "../state.ts";
 import { TUNING } from "../tuning.ts";
 import { meta } from "./status.ts";
 import type { AbilityDef, Battle, Combatant, GambitRule, Weapon } from "./types.ts";
@@ -58,8 +58,9 @@ const pctMod = (n: number, mods: Record<string, number>, key: string) => Math.ma
 export function scionCombatant(p: Person, opts: ScionOpts): Combatant {
   const o: ScionOpts = opts.gear ? { ...opts, weapon: opts.weapon ?? opts.gear.weapon, armor: opts.armor ?? opts.gear } : opts;
   const mods = carriedMods(p);
+  for (const [k, v] of Object.entries(o.gear?.mods ?? {})) mods[k] = (mods[k] ?? 0) + v;
   if (o.gear?.spellPct) mods.spellPct = (mods.spellPct ?? 0) + o.gear.spellPct;
-  const s = (k: Parameters<typeof jobStat>[1]) => pctMod(jobStat(p, k), mods, `${k}Pct`);
+  const s = (k: Parameters<typeof jobStat>[1]) => pctMod(jobStat(p, k) + (mods[`${k}Flat`] ?? 0), mods, `${k}Pct`);
   const might = s("might"), resilience = s("resilience"), guile = s("guile"), acuity = s("acuity"), sagacity = s("sagacity");
   const hp = pctMod(maxHp(p), mods, "maxHpPct");
   const dur = {} as Record<Location, number>;
@@ -70,12 +71,18 @@ export function scionCombatant(p: Person, opts: ScionOpts): Combatant {
     dur[loc] = pctMod(raw, mods, `${loc}DurabilityPct`);
   }
   const mp = Math.floor(maxMp(p) * (1 + (o.gear?.mpPct ?? 0) / 100));
-  const sanity = maxSanity(p);
+  const sanity = pctMod(maxSanity(p), mods, "maxSanityPct");
+  // Warded and Exposed shift the element's affinity (§7.3: +50 takes half).
+  const affinity: Combatant["affinity"] = { ...p.aff };
+  for (const el of ELEMENTS) if (mods[`ward.${el}`]) affinity[el] = (affinity[el] ?? 0) + mods[`ward.${el}`]!;
+  const statuses = freePassives(p).flatMap((x) => (x.start ?? []).map((id) => ({ id, ticks: meta(id).ticks })));
+  if (mods.markedStart) statuses.push({ id: "marked", ticks: meta("marked").ticks });
   return {
     id: o.id,
     side: "party",
     name: p.name,
     person: p.id,
+    house: p.house,
     tags: [],
     col: o.col,
     row: o.row,
@@ -89,7 +96,7 @@ export function scionCombatant(p: Person, opts: ScionOpts): Combatant {
     mp: Math.min(mp, p.mp),
     tp: Math.min(C.tp.max, mods.tpStart ?? 0),
     maxSanity: sanity,
-    sanity: Math.min(sanity, p.sanity),
+    sanity: Math.max(0, Math.min(sanity, p.sanity + (mods.sanityStart ?? 0))),
     evasion: Math.max(0, Math.floor(F.evasion.base + F.evasion.guile * guile + (o.armor?.evasion ?? 0))),
     accuracy: Math.floor(F.accuracy.guile * guile),
     defense: o.armor?.defense ?? 0,
@@ -97,18 +104,21 @@ export function scionCombatant(p: Person, opts: ScionOpts): Combatant {
     dur,
     maxDur: { ...dur },
     broken: [],
-    affinity: { ...p.aff },
-    resist: { physical: Math.floor(F.resist.physical * resilience), mental: Math.floor(F.resist.mental * acuity) + (mods.mentalResist ?? 0) },
+    affinity,
+    resist: {
+      physical: Math.floor(F.resist.physical * resilience) + (mods["resist.physical"] ?? 0),
+      mental: Math.floor(F.resist.mental * acuity) + (mods.mentalResist ?? 0) + (mods["resist.mental"] ?? 0),
+    },
     immune: [],
     sanityTouch: 0,
     guard: (o.armor?.guard ?? 0) + (mods.guard ?? 0),
-    counter: 0,
+    counter: mods.counter ?? 0,
     steps: 0,
     abilities: o.abilities ?? [],
     gambits: o.gambits ?? [],
     cooldowns: {},
     ct: o.ct ?? 0,
-    statuses: freePassives(p).flatMap((x) => (x.start ?? []).map((id) => ({ id, ticks: meta(id).ticks }))),
+    statuses,
     down: false,
     dead: false,
     mods,

@@ -93,6 +93,8 @@ export function down(b: Battle, u: Combatant): void {
   u.tp = 0;
   delete u.charge;
   u.defending = false;
+  // Hungry weapons lose what they fed on (§13.4).
+  if (u.mods.hungry && !u.flags.includes("hungry_lost")) u.flags.push("hungry_lost");
   b.events.push({ t: "down", target: u.id });
 }
 
