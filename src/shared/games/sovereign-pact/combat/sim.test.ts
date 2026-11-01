@@ -18,7 +18,7 @@ describe("enemy scaling (§14.2)", () => {
     expect(e.weapon.power).toBeCloseTo(power, 0);
     expect(e.weapon.acc).toBe(acc);
     expect(e.evasion / 0.6).toBeCloseTo(eva, -1);
-    expect(e.enemyScale).toBeCloseTo(1.1 * (1 + (2 * L) / 25));
+    expect(e.enemyScale).toBeCloseTo(TUNING.enemies.roles.bruiser.atk * (1 + TUNING.combat.enemyLevelFactor * L));
   });
 
   it("takes role multipliers when an enemy names no stats of its own", () => {
