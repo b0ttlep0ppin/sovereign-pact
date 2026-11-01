@@ -69,7 +69,7 @@ export const TUNING = {
     /** Each clock step every combatant gains CT equal to its Speed; durations count 10 ticks a step (§10.4, DECISIONS). */
     ticksPerStep: 10,
     turnAt: 100,
-    cost: { action: 100, wait: 60, defend: 60 },
+    cost: { action: 100, wait: 60, defend: 60, song: 35 },
     /** §7.3: 20 CT a cell, −1 per 5 Guile, at least 10; up to 2 cells a turn (§10.4). */
     move: { perCell: 20, guilePer: 5, min: 10, maxCells: 2 },
     hitClamp: [5, 95] as const,

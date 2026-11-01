@@ -164,6 +164,10 @@
               },
               "value": {
                 "type": "number"
+              },
+              "tag": {
+                "type": "string",
+                "description": "Only on targets with this tag"
               }
             }
           }
@@ -350,6 +354,29 @@
             },
             "doubleDown": {
               "type": "boolean"
+            }
+          }
+        },
+        "song": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "layer",
+            "mods"
+          ],
+          "properties": {
+            "layer": {
+              "enum": [
+                "melody",
+                "harmony",
+                "chorus"
+              ]
+            },
+            "mods": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "number"
+              }
             }
           }
         }

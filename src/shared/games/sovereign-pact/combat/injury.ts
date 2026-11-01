@@ -4,7 +4,7 @@ import type { Rng } from "../../../rng.ts";
 import { INJURY_TABLE_BY_ID, type InjuryResult, type InjuryTableId } from "../content.ts";
 import type { Location } from "../state.ts";
 import { TUNING } from "../tuning.ts";
-import { addStatus } from "./status.ts";
+import { addStatus, endSongs } from "./status.ts";
 import type { Battle, Combatant } from "./types.ts";
 
 /** The result a final roll lands on: the first row whose `max` reaches it. */
@@ -93,6 +93,7 @@ export function down(b: Battle, u: Combatant): void {
   u.tp = 0;
   delete u.charge;
   u.defending = false;
+  if (u.songs) endSongs(b, u);
   // Hungry weapons lose what they fed on (§13.4).
   if (u.mods.hungry && !u.flags.includes("hungry_lost")) u.flags.push("hungry_lost");
   b.events.push({ t: "down", target: u.id });
@@ -104,6 +105,7 @@ export function kill(b: Battle, u: Combatant): void {
   u.down = false;
   u.hp = 0;
   delete u.charge;
+  if (u.songs) endSongs(b, u);
   b.events.push({ t: "dead", target: u.id });
 }
 

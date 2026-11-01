@@ -23,7 +23,13 @@ export interface StatusInst {
   value?: number;
   /** Bleed: the bleeding location. */
   loc?: Location;
+  /** Who put it on (a Minstrel's song ends with the Minstrel). */
+  src?: number;
+  /** Mods it adds to the combatant while it lasts. */
+  mods?: Record<string, number>;
 }
+
+export type SongLayer = "melody" | "harmony" | "chorus";
 
 export type Reach = "melee" | "reach" | "ranged";
 
@@ -83,7 +89,7 @@ export interface AbilityDef {
   /** Sanity damage per target hit. */
   sanity?: number;
   /** Statuses it may inflict: chance %, before the target's resist. */
-  statuses?: { id: string; chance: number; ticks: number; value?: number }[];
+  statuses?: { id: string; chance: number; ticks: number; value?: number; tag?: string }[];
   /** Readiness damage (CT taken from each target). */
   readiness?: number;
   /** Hits per target. */
@@ -119,6 +125,8 @@ export interface AbilityDef {
   flag?: string;
   /** The Gambler's 2d6 (§12.7): power = total × scale %, or HP restored = total × restorePct %; or at `high`+ power becomes highPower, at `low` or under lowPower (or it hits the user), otherwise `otherwise`. */
   dice?: { scale?: number; restorePct?: number; high?: number; highPower?: number; low?: number; lowPower?: number; lowHitsSelf?: boolean; otherwise?: number; doubleDown?: boolean };
+  /** A Minstrel's song (§12.2): its layer and what every hearer gets while it plays. */
+  song?: { layer: SongLayer; mods: Record<string, number> };
   /** On the user after it resolves. */
   self?: { tp?: number; statuses?: { id: string; ticks: number; value?: number }[] };
 }
@@ -204,6 +212,8 @@ export interface Combatant {
   ct: number;
   statuses: StatusInst[];
   charge?: Charge;
+  /** The songs a Minstrel is playing, by layer. */
+  songs?: Partial<Record<SongLayer, string>>;
   defending?: boolean;
   down: boolean;
   dead: boolean;

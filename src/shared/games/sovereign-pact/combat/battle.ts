@@ -4,6 +4,7 @@ import type { Rng } from "../../../rng.ts";
 import { TUNING } from "../tuning.ts";
 import { chargeTicks, moveCost, nextActor, step } from "./clock.ts";
 import { abilityDice, castLots, rolledAbility } from "./dice.ts";
+import { playSong } from "./songs.ts";
 import { strike } from "./damage.ts";
 import { hasStatus, isFree, standing } from "./grid.ts";
 import { kill } from "./injury.ts";
@@ -138,7 +139,7 @@ export function act(b: Battle, rng: Rng, u: Combatant, action: Action): void {
     u.mp -= mpCost(u, ab);
     u.tp -= ab.tp ?? 0;
     if (ab.cooldown) u.cooldowns[ab.id] = ab.cooldown + 1;
-    cost = ab.cost ?? (ab.id === "attack" ? (u.weapon.attackCost ?? C.cost.action) : C.cost.action);
+    cost = ab.cost ?? (ab.song ? (u.mods.songCt ?? C.cost.song) : ab.id === "attack" ? (u.weapon.attackCost ?? C.cost.action) : C.cost.action);
     const instant = u.flags.indexOf("instant_charge");
     if (ab.charge && instant < 0) {
       const ticks = chargeTicks(u, ab.charge);
@@ -167,6 +168,7 @@ function resolveCharge(b: Battle, rng: Rng, u: Combatant): void {
 
 /** An ability lands: every target, every hit (§10.6). */
 export function resolve(b: Battle, rng: Rng, u: Combatant, ab: AbilityDef, at: Cell, homingOn?: number, doubleDown = 0): void {
+  if (ab.song) return playSong(b, rng, u, ab);
   let targets = resolveTargets(b, rng, u, ab, at, homingOn);
   if (ab.dice) {
     const total = abilityDice(b, rng, u, targets[0], ab.dice.doubleDown ? doubleDown : 0);

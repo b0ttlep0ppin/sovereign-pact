@@ -2,6 +2,10 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-01 (implementation, Milestone 2f: the Minstrel) — implementer
+- **A song is a status on each hearer** that carries the song's mods, and it ends for everyone when the Minstrel is Silenced, Deaf, Down or dead, or replaces that layer (§12.2). Songs start at 35 CT; Perfect Pitch (the Minstrel's innate) makes it 25. Hearers are every ally (or, for Harmonies and Plague Chant, every enemy) on the field who is not Deaf when it begins.
+- **Readings**: Lullaby's Sleep is a 20% chance on each enemy as it begins; Dirge Fears undead as it begins (chance 100 before resist); Ballad of Embers is a Fire edge of 10%; Cleansing Air removes one physical ailment per ally each 100 ticks; Plague Chant re-Poisons enemies each 100 ticks. Carrying Voice, Crescendo, Finale and Encore's fourth layer wait for a later pass.
+
 ## 2026-11-01 (implementation, Milestone 2e: the Gambler) — implementer
 - **Cast Lots** runs at the start of every Gambler turn that is not lost, per the §12.7 table. The "until next turn" results (6: Evasion, 10: Accuracy) end at the Gambler's next turn; 11 makes the next hit on a foe land; 12 makes the next action a crit. Numbers in `combat.dice`.
 - **Double Down** is part of the action (`doubleDown`: 0–3 extra rolls). Each new roll replaces the total unless it is 4 or more lower, which fizzles the ability and spends the turn. House Edge and Risk Taker each add a point to that margin; §12.7 says Risk Taker lowers the threshold by 1, and that is read as "fizzles one point later". Bots never Double Down yet.

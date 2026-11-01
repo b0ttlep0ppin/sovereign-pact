@@ -175,7 +175,10 @@
       "innate": {
         "id": "perfect_pitch",
         "name": "Perfect Pitch",
-        "text": "Songs cost 25 CT."
+        "text": "Songs cost 25 CT.",
+        "mods": {
+          "songCt": 25
+        }
       },
       "mastery": {
         "id": "encore",
