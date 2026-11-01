@@ -52,7 +52,7 @@
     {"id": "quick_healer", "name": "Quick Healer", "flavor": "Bruises fade by morning.", "crunch": "Healing received +10%.", "mods": {"healingReceivedPct": 10}, "weight": 10},
     {"id": "light_footed", "name": "Light-Footed", "flavor": "Crosses the field in half the time.", "crunch": "Moving costs 10% less CT.", "mods": {"moveCostPct": -10}, "weight": 10, "group": "pace"},
     {"id": "hot_headed", "name": "Hot-Headed", "flavor": "First to the fight, first to fall.", "crunch": "Berserk resist −20%; Crit chance +2%.", "mods": {"resist.berserk": -20, "crit": 2}, "weight": 10},
-    {"id": "superstitious", "name": "Superstitious", "flavor": "Salt over the shoulder, every time.", "crunch": "Fear resist −10%; omen-tagged events offer an extra option.", "mods": {"resist.fear": -10}, "tags": ["omens"], "weight": 10},
+    {"id": "omen_watcher", "name": "Omen-Watcher", "flavor": "Salt over the shoulder, every time.", "crunch": "Fear resist −10%; omen-tagged events offer an extra option.", "mods": {"resist.fear": -10}, "tags": ["omens"], "weight": 10},
     {"id": "pious_hands", "name": "Pious Hands", "flavor": "Their bandages smell of incense.", "crunch": "Healing they cast +5%; Holy +5%.", "mods": {"healingDealtPct": 5, "ward.holy": 5}, "weight": 10, "element": "holy"},
     {"id": "gravebound", "name": "Gravebound", "flavor": "The dead are such easy company.", "crunch": "Dark +10%; the dead speak to them in events.", "mods": {"ward.dark": 10}, "tags": ["gravebound"], "weight": 10, "element": "dark"}
   ]

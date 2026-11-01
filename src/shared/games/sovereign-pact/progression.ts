@@ -1,7 +1,7 @@
 // Growing a Scion (§6.6, §7.2, §12.1): XP into levels through the growth accumulator, JP per Job,
 // Job prerequisites, the passive budget, and the stats a Job's multipliers make. Pure: every function
 // returns a new Person.
-import { ABILITY_SET_BY_JOB, ACTIVE_BY_ID, JOB_BY_ID, JOB_PASSIVE_BY_ID, type ActiveDef, type JobDef } from "./content.ts";
+import { ABILITY_SET_BY_JOB, ACTIVE_BY_ID, JOB_BY_ID, JOB_PASSIVE_BY_ID, TAROT_BY_ID, type ActiveDef, type JobDef } from "./content.ts";
 import { jobStat, maxMp } from "./formulas.ts";
 import { STATS, type JobId, type Person, type Six, type Stat } from "./state.ts";
 import { TUNING } from "./tuning.ts";
@@ -43,8 +43,19 @@ export function gainJp(p: Person, jp: number, job: JobId | null = p.job): Person
   return { ...p, jp: { ...p.jp, [job]: (p.jp[job] ?? 0) + Math.max(0, Math.round(jp)) } };
 }
 
-/** Points to spend on passives: 5, +1 every 6 levels (§12.1), plus extras from Tarot, items and events. */
-export const passiveBudget = (p: Pick<Person, "level">, extra = 0): number => P.passiveBase + Math.floor(p.level / P.passiveEvery) + extra;
+/**
+ * The mods a Person's Tarot card gives (§6.8). Reversed (Superstitious) turns each bonus into its loss
+ * and an immunity into nothing.
+ */
+export function tarotMods(p: Pick<Person, "tarot" | "reversed">): Record<string, number> {
+  const mods = TAROT_BY_ID.get(p.tarot)?.mods ?? {};
+  if (!p.reversed) return mods;
+  return Object.fromEntries(Object.entries(mods).flatMap(([k, v]) => (k.startsWith("immune.") ? [] : [[k, -v]])));
+}
+
+/** Points to spend on passives: 5, +1 every 6 levels (§12.1), plus extras from Tarot (The World), items and events. */
+export const passiveBudget = (p: Pick<Person, "level"> & Partial<Pick<Person, "tarot" | "reversed">>, extra = 0): number =>
+  P.passiveBase + Math.floor(p.level / P.passiveEvery) + extra + (p.tarot ? (tarotMods({ tarot: p.tarot, reversed: p.reversed }).passiveBudget ?? 0) : 0);
 
 /** Whether a Scion may take `job`: base Jobs always; advanced ones by JP held in their prerequisites (§12.1). */
 export function canTakeJob(p: Person, job: JobId): boolean {

@@ -16,6 +16,9 @@ export const TUNING = {
   },
 
   /** §6.2 [DECIDED as a starting point]. */
+  /** §6.5 [PROPOSED numbers]: a promotion's Gold, ceremony slots a Year, and the Chapel's extra slot; the bot promotes while under its target of Scions. */
+  promotion: { gold: 20, slots: 1, chapelSlots: 1, botScions: [8, 5, 4, 4] as ByHouses },
+
   /** §5.1 [PROPOSED]: how often a Random House takes a Bloodline. */
   founding: { bloodlinePct: 25 },
 

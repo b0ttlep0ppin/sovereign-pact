@@ -43,6 +43,8 @@ export interface TarotCard {
   number: number;
   name: string;
   crunch: string;
+  /** Battle mods the bearer carries (inverted when Reversed). */
+  mods?: Record<string, number>;
 }
 
 export interface SeatStyle {
@@ -419,7 +421,7 @@ export interface PropertyDef {
 export const PROPERTIES = propertiesJson.properties as unknown as readonly PropertyDef[];
 export const PROPERTY_BY_ID: ReadonlyMap<string, PropertyDef> = new Map(PROPERTIES.map((x) => [x.id, x]));
 
-export const TAROT: readonly TarotCard[] = tarotJson.cards;
+export const TAROT = tarotJson.cards as readonly TarotCard[];
 export const SEATS: readonly SeatStyle[] = seatsJson.seats;
 export const HERALDRY: Heraldry = heraldryJson;
 export const NAMES: Names = namesJson;

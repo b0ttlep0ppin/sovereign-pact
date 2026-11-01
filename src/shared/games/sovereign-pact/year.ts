@@ -56,7 +56,10 @@ export function openYear(s: SovState): void {
   s.phase = "settlement";
   s.phaseMoves = 0;
   s.proposers = [];
-  for (const h of s.houses) h.sealed = false;
+  for (const h of s.houses) {
+    h.sealed = false;
+    delete h.promotions;
+  }
 }
 
 /** Everyone sealed: the Expedition Phase, the Reckoning, and the next Year (or the end). */

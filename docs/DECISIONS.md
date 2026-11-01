@@ -2,6 +2,19 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-01 (implementation, Milestone 5e: promotion and the Tarot) — implementer
+- **Promotion** (`promotion.ts`, §6.5, first-pass numbers in `tuning.promotion`): a Settlement move, `promote` (recruit, base Job).
+  - It costs 20 Gold and a ceremony slot: one a Year, two with a Chapel.
+  - The Scion keeps any level training gave them. Their Tarot becomes visible to everyone, as a Scion's does.
+  - Reading: the House outfits a new Scion with plain starting gear (a weapon, body and head armor, as at the start), since the spec has no other way to arm them and a bare Scion is useless.
+  - The bot promotes its best recruit (stats plus growths) into the base Job its top stat suits. It does so while it has fewer Scions than its target (8/5/4/4 by House count) and can still pay two Years of upkeep.
+- **The Tarot's bonuses** (`content/tarot.json` `mods`, `tarotMods`) ride into battle.
+  - The Fool's Evasion, the Magician's MP, the High Priestess's Sanity, the Empress's healing, the Hierophant's Holy, the Chariot's −5 CT a cell, Strength's +2 Might, the Wheel's crit, Justice's counter, the Devil's Dark/Holy, the Star's MP each pulse, the Moon's mental resistance, the Sun's Blind immunity and Holy.
+  - The World's +1 passive point goes to the passive budget.
+  - Conditional cards wait as text until the systems they name exist: the Emperor, the Lovers, the Hermit, the Hanged Man, Death, Temperance, the Tower and Judgement.
+- **Reversed** (Superstitious, 25% at generation): each bonus becomes the same loss, and an immunity becomes nothing.
+- Renamed the individual trait Superstitious to **Omen-Watcher** so it does not share a name with the House flaw.
+
 ## 2026-11-01 (implementation, Milestone 5d: individual traits) — implementer
 - **The trait set** (`content/traits.json`, `schemas/traits.schema.json`): 55 traits.
   - §6.7's 30, counting each listed Curse as its own trait, plus 25 new first-pass ones in the same pattern (Hardy/Frail, Stout-Hearted/Brittle Mind, Keen-Eyed, Cold-Blooded/Tidebound, Stone-Steady/Windborn…), toward the target of 60.

@@ -5,7 +5,7 @@ import { ENEMY_BY_ID, fromEnemySide, INJURY_BY_ID, TRAIT_BY_ID, type EnemyAbilit
 import { jobStat, maxHp, maxMp, maxSanity } from "../formulas.ts";
 import { houseEffects } from "../houses.ts";
 import { gearTotals, UNARMED, type GearTotals } from "../items.ts";
-import { battleActives, freePassives, passiveMods } from "../progression.ts";
+import { battleActives, freePassives, passiveMods, tarotMods } from "../progression.ts";
 import { ELEMENTS, LOCATIONS, type House, type Location, type Person, type SovState } from "../state.ts";
 import { TUNING } from "../tuning.ts";
 import { meta } from "./status.ts";
@@ -50,6 +50,10 @@ export function carriedMods(p: Person, house?: ScionOpts["house"]): Record<strin
   if (house) add(houseEffects(house).mods);
   // Individual traits (§6.7): Fleet's Speed, Thick Skull's Durability…
   for (const id of p.traits) add(TRAIT_BY_ID.get(id)?.mods);
+  // The Tarot's battle bonuses; The World's passive point is read by the passive budget instead.
+  const tarot = { ...tarotMods(p) };
+  delete tarot.passiveBudget;
+  add(tarot);
   for (const inj of p.injuries) {
     const res = INJURY_BY_ID.get(inj.id);
     add(res?.lasting?.mods);

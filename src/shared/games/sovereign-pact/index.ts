@@ -7,7 +7,7 @@ import type { TableOption, TableOptions } from "../../table-options.ts";
 import { botFounding, cannotDesign, cannotSwear, design, draftHouse, reroll, swear } from "./founding.ts";
 import { checkpoint, describeSave, restore, type SovSave } from "./save.ts";
 import { placements } from "./score.ts";
-import { type CampaignOptions, type House, type SovMove, type SovState } from "./state.ts";
+import { BASE_JOBS, type CampaignOptions, type House, type SovMove, type SovState } from "./state.ts";
 import { assign, cannotAssign } from "./assign.ts";
 import { cannotPledge, pledge } from "./commons.ts";
 import { cannotChoose, choose } from "./omens.ts";
@@ -15,8 +15,9 @@ import { bid, buy, cannotAuction, cannotBid, cannotBuy, putUp } from "./market.t
 import { accept, cannotAccept, cannotDecline, cannotOffer, decline, offer } from "./deals.ts";
 import { cannotCrisisPledge, cannotTempt, crisisPledge, tempt } from "./crisis.ts";
 import { cannotPropose, cannotVote, castVote, propose } from "./votes.ts";
-import { botDeal, botAssign, botBuild, botChoice, botCrisis, botPledge, botPropose, botVote } from "./bot.ts";
+import { botDeal, botAssign, botPromote, botBuild, botChoice, botCrisis, botPledge, botPropose, botVote } from "./bot.ts";
 import { build, cannotBuild, unbuild } from "./town.ts";
+import { cannotPromote, promoteRecruit } from "./promotion.ts";
 import { TUNING } from "./tuning.ts";
 import { view, type SovView } from "./view.ts";
 import { clone, closeSettlement } from "./year.ts";
@@ -144,6 +145,15 @@ export function applyMove(state: SovState, playerId: PlayerId, move: SovMove): M
       h.sealed = true;
       s.phaseMoves += 1;
       if (s.houses.every((x) => x.sealed)) closeSettlement(s);
+      return { ok: true, state: s };
+    }
+    case "promote": {
+      if (s.phase !== "settlement") return fail("Promotions are held in the Settlement Phase.");
+      if (h.sealed) return fail("Unseal the Year first.");
+      const why = cannotPromote(s, house, move.person, move.job);
+      if (why) return fail(why);
+      promoteRecruit(s, house, move.person, move.job as (typeof BASE_JOBS)[number]);
+      s.phaseMoves += 1;
       return { ok: true, state: s };
     }
     case "build": {
@@ -333,6 +343,8 @@ export function botMove(s: SovState, playerId: PlayerId): SovMove {
   if (house >= 0 && s.phase === "settlement" && !s.houses[house]!.sealed) {
     const help = botCrisis(s, house);
     if (help) return { type: "crisis_pledge", give: help };
+    const raise = botPromote(s, house);
+    if (raise) return { type: "promote", ...raise };
     const job = botAssign(s, house);
     if (job) return { type: "assign", ...job };
     const next = botBuild(s, house);

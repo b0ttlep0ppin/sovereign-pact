@@ -17,7 +17,8 @@
           "id": { "$ref": "defs.schema.json#/definitions/id" },
           "number": { "type": "integer", "minimum": 0, "maximum": 21 },
           "name": { "type": "string", "minLength": 1 },
-          "crunch": { "type": "string", "minLength": 1, "description": "The exact bonus, shown in Crunch Mode" }
+          "crunch": { "type": "string", "minLength": 1, "description": "The exact bonus, shown in Crunch Mode" },
+          "mods": { "type": "object", "additionalProperties": { "type": "number" }, "description": "Battle mods the bearer carries (inverted when Reversed); passiveBudget adds passive points" }
         }
       }
     }
