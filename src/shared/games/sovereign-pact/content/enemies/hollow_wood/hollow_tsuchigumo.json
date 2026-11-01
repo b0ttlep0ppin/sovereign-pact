@@ -1,0 +1,26 @@
+{
+  "id": "hollow_tsuchigumo",
+  "name": "Tsuchigumo",
+  "pool": "hollow_wood",
+  "tags": ["insect", "giant", "spirit"],
+  "role": "colossus",
+  "size": [3, 3],
+  "levels": [5, 7],
+  "stats": {"speed": 8},
+  "affinity": {"earth": 50, "water": 25, "fire": -25},
+  "immune": ["fear", "stun", "sleep", "poison"],
+  "abilities": [
+    {"id": "web_net", "shape": "band:3", "side": "player", "power": 0.6, "cooldown": 2, "statuses": [{"id": "rooted", "chance": 50, "ticks": 200}]},
+    {"id": "earth_fang", "shape": "single", "side": "player", "power": 1.5, "statuses": [{"id": "poison", "chance": 50, "ticks": 300}]},
+    {"id": "burrow_quake", "shape": "band:4", "side": "player", "power": 1.1, "charge": 100, "telegraph": true, "cooldown": 3}
+  ],
+  "gambits": [
+    {"if": "turn%3==1", "do": "burrow_quake"},
+    {"if": "turn%2==0", "do": "web_net"},
+    {"do": "earth_fang", "target": "rooted"}
+  ],
+  "bestiary": {
+    "lore": "The earth spider, old as the hills it lives under.",
+    "weakness": "Fire. It webs the party, then bites the webbed."
+  }
+}

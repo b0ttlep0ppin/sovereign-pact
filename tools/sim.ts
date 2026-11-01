@@ -1,5 +1,5 @@
 // The headless battle simulator from the command line (HANDOFF §7):
-//   npm run sim -- [--seed N] [--level L] [--runs N] [--jobs a,b,c,d] [--pool P] [--template T|any] [--openings] [--log]
+//   npm run sim -- [--seed N] [--level L] [--runs N] [--jobs a,b,c,d] [--pool P] [--template T|any] [--openings] [--log [--boss B]]
 //   npm run sim -- --sweep [--levels 1,3,6] [--runs N] [--pool P] [--template T]
 //   npm run sim -- --templates [--levels 2,5,8] [--runs N] [--pool P] [--jobs a,b,c,d]
 //   npm run sim -- --boss ID [--levels 4,5] [--runs N] [--jobs a,b,c,d]
@@ -51,7 +51,8 @@ function tally(lvl: number, party: readonly JobId[] | undefined, n: number) {
 }
 
 if (args.includes("--log")) {
-  const b = battle(seed, level, jobs);
+  const boss = arg("boss");
+  const b = boss ? bossBattle(seed, realParty(seed, level * 3, jobs ?? BASELINE), boss, level) : battle(seed, level, jobs);
   console.log(renderGrid(b) + "\n");
   const s = simulate(b);
   console.log(renderLog(b));

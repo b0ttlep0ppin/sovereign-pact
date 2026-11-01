@@ -5,7 +5,7 @@ import { BOSS_BY_ID, ENEMY_BY_ID, type BossAdds, type BossDef } from "../content
 import { TUNING } from "../tuning.ts";
 import { enemyCombatant, newBattle } from "./build.ts";
 import { holds } from "./conditions.ts";
-import { partsOf } from "./enemyparts.ts";
+import { partMods, partsOf } from "./enemyparts.ts";
 import { isFree } from "./grid.ts";
 import { kill } from "./injury.ts";
 import { addStatus, meta, removeStatus } from "./status.ts";
@@ -92,6 +92,7 @@ function enterPhase(b: Battle, u: Combatant, def: BossDef, i: number): void {
   if (p.regrow)
     for (const part of b.units.filter((x) => x.partOf === u.id && x.dead)) {
       Object.assign(part, { dead: false, hp: part.maxHp, statuses: [] });
+      partMods(u, part, -1);
       u.lost = (u.lost ?? []).filter((a) => !part.disables?.includes(a));
     }
   for (const s of p.statuses ?? []) addStatus(b, u, s.id, s.ticks);

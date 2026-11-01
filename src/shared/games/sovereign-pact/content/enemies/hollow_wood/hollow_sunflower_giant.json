@@ -1,0 +1,29 @@
+{
+  "id": "hollow_sunflower_giant",
+  "name": "Sunflower Giant",
+  "pool": "hollow_wood",
+  "tags": ["plant", "giant"],
+  "role": "colossus",
+  "size": [2, 3],
+  "levels": [3, 7],
+  "stats": {"speed": 7},
+  "affinity": {"earth": 25, "water": 25, "fire": -25},
+  "immune": ["fear", "stun", "sleep"],
+  "abilities": [
+    {"id": "solar_beam", "shape": "row", "side": "player", "power": 1.3, "kind": "magic", "element": "fire", "charge": 100, "telegraph": true, "cooldown": 3},
+    {"id": "seed_volley", "shape": "band:3", "side": "player", "power": 0.8, "cooldown": 2},
+    {"id": "stalk_slam", "shape": "single", "side": "player", "power": 1.2}
+  ],
+  "gambits": [
+    {"if": "turn%3==1", "do": "solar_beam", "target": "densest_row"},
+    {"if": "turn%2==0", "do": "seed_volley"},
+    {"do": "stalk_slam", "target": "column_weighted"}
+  ],
+  "parts": [
+    {"id": "head", "name": "Flower Head", "cells": [[0, 0], [1, 0]], "hp": 0.25, "disables": ["solar_beam"]}
+  ],
+  "bestiary": {
+    "lore": "It turns to the sun all day, and at dusk it turns to you.",
+    "weakness": "Fire still burns it, though it throws fire back."
+  }
+}

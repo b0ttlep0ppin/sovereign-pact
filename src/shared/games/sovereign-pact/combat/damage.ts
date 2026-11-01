@@ -217,6 +217,7 @@ export function strike(b: Battle, rng: Rng, u: Combatant, t: Combatant, ab: Abil
   if (hasStatus(u, "enrage")) dmg *= pct(C.enrage);
   if (u.lastStand) dmg *= pct(C.lastStand.damage);
   if (physical) dmg *= pct(u.mods.physicalDamagePct ?? 0);
+  dmg *= pct(u.mods.damagePct ?? 0);
   if (physical) dmg *= pct(t.mods.physicalTakenPct ?? 0);
   dmg *= pct(t.mods.damageTakenPct ?? 0);
   if (weaponHit) {

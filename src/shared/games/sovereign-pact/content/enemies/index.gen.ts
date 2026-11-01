@@ -48,6 +48,32 @@ import beast_troll from "./beast_lands/beast_troll.json" with { type: "json" };
 import beast_weasel_ninja from "./beast_lands/beast_weasel_ninja.json" with { type: "json" };
 import beast_werewolf from "./beast_lands/beast_werewolf.json" with { type: "json" };
 import beast_wild_boar from "./beast_lands/beast_wild_boar.json" with { type: "json" };
+import hollow_bomber_cactus from "./hollow_wood/hollow_bomber_cactus.json" with { type: "json" };
+import hollow_centipede_warrior from "./hollow_wood/hollow_centipede_warrior.json" with { type: "json" };
+import hollow_devil_tree from "./hollow_wood/hollow_devil_tree.json" with { type: "json" };
+import hollow_dryad from "./hollow_wood/hollow_dryad.json" with { type: "json" };
+import hollow_giant_hornet from "./hollow_wood/hollow_giant_hornet.json" with { type: "json" };
+import hollow_insect_swarm from "./hollow_wood/hollow_insect_swarm.json" with { type: "json" };
+import hollow_kamaitachi from "./hollow_wood/hollow_kamaitachi.json" with { type: "json" };
+import hollow_man_eater_plant from "./hollow_wood/hollow_man_eater_plant.json" with { type: "json" };
+import hollow_mandrake from "./hollow_wood/hollow_mandrake.json" with { type: "json" };
+import hollow_moth from "./hollow_wood/hollow_moth.json" with { type: "json" };
+import hollow_mushroom_general from "./hollow_wood/hollow_mushroom_general.json" with { type: "json" };
+import hollow_mushroom_monster from "./hollow_wood/hollow_mushroom_monster.json" with { type: "json" };
+import hollow_orchid_mantis from "./hollow_wood/hollow_orchid_mantis.json" with { type: "json" };
+import hollow_poison_flower_fairy from "./hollow_wood/hollow_poison_flower_fairy.json" with { type: "json" };
+import hollow_propeller_seed from "./hollow_wood/hollow_propeller_seed.json" with { type: "json" };
+import hollow_rafflesia from "./hollow_wood/hollow_rafflesia.json" with { type: "json" };
+import hollow_reaper_flower from "./hollow_wood/hollow_reaper_flower.json" with { type: "json" };
+import hollow_spider from "./hollow_wood/hollow_spider.json" with { type: "json" };
+import hollow_sprout from "./hollow_wood/hollow_sprout.json" with { type: "json" };
+import hollow_sprout_sprite from "./hollow_wood/hollow_sprout_sprite.json" with { type: "json" };
+import hollow_stag_knight from "./hollow_wood/hollow_stag_knight.json" with { type: "json" };
+import hollow_sunflower_giant from "./hollow_wood/hollow_sunflower_giant.json" with { type: "json" };
+import hollow_termite_queen from "./hollow_wood/hollow_termite_queen.json" with { type: "json" };
+import hollow_treant from "./hollow_wood/hollow_treant.json" with { type: "json" };
+import hollow_tsuchigumo from "./hollow_wood/hollow_tsuchigumo.json" with { type: "json" };
+import hollow_vine_golem from "./hollow_wood/hollow_vine_golem.json" with { type: "json" };
 
 export default [
   barrow_banshee,
@@ -99,4 +125,30 @@ export default [
   beast_weasel_ninja,
   beast_werewolf,
   beast_wild_boar,
+  hollow_bomber_cactus,
+  hollow_centipede_warrior,
+  hollow_devil_tree,
+  hollow_dryad,
+  hollow_giant_hornet,
+  hollow_insect_swarm,
+  hollow_kamaitachi,
+  hollow_man_eater_plant,
+  hollow_mandrake,
+  hollow_moth,
+  hollow_mushroom_general,
+  hollow_mushroom_monster,
+  hollow_orchid_mantis,
+  hollow_poison_flower_fairy,
+  hollow_propeller_seed,
+  hollow_rafflesia,
+  hollow_reaper_flower,
+  hollow_spider,
+  hollow_sprout,
+  hollow_sprout_sprite,
+  hollow_stag_knight,
+  hollow_sunflower_giant,
+  hollow_termite_queen,
+  hollow_treant,
+  hollow_tsuchigumo,
+  hollow_vine_golem,
 ];

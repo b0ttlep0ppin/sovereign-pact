@@ -1,0 +1,24 @@
+{
+  "id": "hollow_rafflesia",
+  "name": "Rafflesia",
+  "pool": "hollow_wood",
+  "tags": ["plant"],
+  "role": "horror",
+  "size": [1, 1],
+  "levels": [1, 7],
+  "stats": {"speed": 7, "sanityTouch": 3},
+  "affinity": {"earth": 25, "water": 25, "fire": -25},
+  "immune": ["poison", "sleep", "charm"],
+  "abilities": [
+    {"id": "corpse_stench", "shape": "band:3", "side": "player", "power": 0.3, "kind": "magic", "sanity": 7, "cooldown": 2, "statuses": [{"id": "confusion", "chance": 20, "ticks": 200}]},
+    {"id": "rot_kiss", "shape": "single", "side": "player", "power": 0.6, "kind": "magic", "sanity": 5, "element": "dark", "reach": "ranged"}
+  ],
+  "gambits": [
+    {"if": "turn%3==1", "do": "corpse_stench", "target": "densest_row"},
+    {"do": "rot_kiss", "target": "lowest_sanity"}
+  ],
+  "bestiary": {
+    "lore": "A flower the size of a cart that smells of every grave you have dug.",
+    "weakness": "Fire. Its stench takes Sanity from three rows."
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "id": "hollow_mushroom_general",
+  "name": "Mushroom General",
+  "pool": "hollow_wood",
+  "tags": ["plant", "fungus"],
+  "role": "support",
+  "size": [1, 1],
+  "levels": [1, 7],
+  "stats": {"hp": 1.2, "speed": 8},
+  "affinity": {"earth": 25, "water": 25, "fire": -25},
+  "immune": ["poison"],
+  "abilities": [
+    {"id": "spore_cloud", "shape": "all", "side": "ally", "power": 1.0, "kind": "heal", "cooldown": 3},
+    {"id": "fungal_rally", "shape": "all", "side": "ally", "power": 0, "kind": "support", "statuses": [{"id": "might_up", "chance": 100, "ticks": 300, "value": 20}], "cooldown": 4},
+    {"id": "cap_strike", "shape": "single", "side": "player", "power": 0.8}
+  ],
+  "gambits": [
+    {"if": "ally.hp<0.6", "do": "spore_cloud"},
+    {"if": "turn%4==1", "do": "fungal_rally"},
+    {"do": "cap_strike", "target": "nearest"}
+  ],
+  "bestiary": {
+    "lore": "Every mushroom in the clearing answers to it. They grow back when it says so.",
+    "weakness": "Fire. Kill it first or the clearing heals."
+  }
+}

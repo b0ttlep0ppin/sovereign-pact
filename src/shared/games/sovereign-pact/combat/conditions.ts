@@ -61,6 +61,30 @@ export function holds(b: Battle, u: Combatant, cond: string | undefined): boolea
     if (m[2] === "marked") return pool.some((x) => !x.down && hasStatus(x, "marked"));
     return pool.some((x) => !!x.charge && (m![2] === "charging" || x.charge.ability.telegraph));
   }
+  // A status on someone of a side: `foe.rooted`, `ally.poison`.
+  m = /^(ally|foe|enemy)\.([a-z_]+)$/.exec(c);
+  if (m) {
+    const side = m[1] === "ally" ? allegiance(u) : other(allegiance(u));
+    return b.units.some((x) => !x.dead && !x.down && x.side === side && x.id !== u.id && hasStatus(x, m![2]!));
+  }
   return false;
 }
+
+/** The shapes a single condition can take (for the content lint: an unknown condition is silently false). */
+const SHAPES = [
+  /^always$/,
+  /^self\.[a-z_]+$/,
+  /^turn%\d+==\d+$/,
+  /^(turn|adds|foes|allies|swarm|fallen|parts)(<=|>=|<|>|==)\d+$/,
+  /^(?:(self|ally|foe|enemy)\.)?(hp|sanity|mp|tp)(<=|>=|<|>)[\d.]+$/,
+  /^(ally|foe|enemy)\.[a-z_]+$/,
+];
+
+/** Whether `cond` is made only of conditions `holds` understands. */
+export const knownCondition = (cond: string): boolean =>
+  cond
+    .replace(/\s+/g, "")
+    .split("||")
+    .flatMap((c) => c.split("&&"))
+    .every((c) => SHAPES.some((r) => r.test(c.replace(/^!/, ""))));
 

@@ -1,0 +1,23 @@
+{
+  "id": "hollow_orchid_mantis",
+  "name": "Orchid Mantis",
+  "pool": "hollow_wood",
+  "tags": ["insect"],
+  "role": "lurker",
+  "size": [1, 1],
+  "levels": [2, 6],
+  "stats": {"speed": 14},
+  "affinity": {"earth": 25, "water": 25, "fire": -25},
+  "abilities": [
+    {"id": "petal_strike", "shape": "single", "side": "player", "power": 1.3, "leap": true, "crit": 20},
+    {"id": "bloom_guise", "shape": "self", "side": "self", "power": 0, "kind": "support", "statuses": [{"id": "hidden", "chance": 100, "ticks": 100}], "cooldown": 3}
+  ],
+  "gambits": [
+    {"if": "turn==1", "do": "bloom_guise"},
+    {"do": "petal_strike", "target": "empty_cell"}
+  ],
+  "bestiary": {
+    "lore": "It looks like a flower until the flower has arms.",
+    "weakness": "Fire. Strike it when it lands."
+  }
+}

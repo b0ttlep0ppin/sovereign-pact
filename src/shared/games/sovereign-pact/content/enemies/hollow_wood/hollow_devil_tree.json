@@ -1,0 +1,26 @@
+{
+  "id": "hollow_devil_tree",
+  "name": "Devil Tree",
+  "pool": "hollow_wood",
+  "tags": ["plant"],
+  "role": "elite",
+  "size": [1, 1],
+  "levels": [2, 6],
+  "stats": {"hp": 1.3, "speed": 9},
+  "affinity": {"earth": 25, "water": 25, "fire": -50},
+  "immune": ["fear", "charm"],
+  "abilities": [
+    {"id": "root_spears", "shape": "column:F", "side": "player", "power": 1.1, "statuses": [{"id": "rooted", "chance": 40, "ticks": 200}], "cooldown": 2},
+    {"id": "grasping_bough", "shape": "single", "side": "player", "power": 1.4, "drain": 25},
+    {"id": "deep_roots", "shape": "self", "side": "self", "power": 0, "kind": "support", "statuses": [{"id": "regen", "chance": 100, "ticks": 400, "value": 8}], "cooldown": 4}
+  ],
+  "gambits": [
+    {"if": "self.hp<0.5", "do": "deep_roots"},
+    {"if": "turn%2==1", "do": "root_spears"},
+    {"do": "grasping_bough", "target": "lowest_durability"}
+  ],
+  "bestiary": {
+    "lore": "Its face is in the bark. It was someone's once.",
+    "weakness": "Fire, twice over. It roots the whole Front."
+  }
+}

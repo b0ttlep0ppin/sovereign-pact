@@ -1,0 +1,24 @@
+{
+  "id": "hollow_insect_swarm",
+  "name": "Insect Swarm",
+  "pool": "hollow_wood",
+  "tags": ["insect", "flyer"],
+  "role": "swarm",
+  "size": [1, 1],
+  "levels": [3, 7],
+  "stats": {"speed": 12},
+  "affinity": {"earth": 25, "water": 25, "fire": -25},
+  "immune": ["fear", "charm"],
+  "abilities": [
+    {"id": "chitter", "shape": "single", "side": "player", "power": 0.9, "statuses": [{"id": "blind", "chance": 20, "ticks": 200}]},
+    {"id": "overrun", "shape": "band:3", "side": "player", "power": 0.6, "cooldown": 1}
+  ],
+  "gambits": [
+    {"if": "swarm>=5", "do": "overrun"},
+    {"do": "chitter", "target": "column_weighted"}
+  ],
+  "bestiary": {
+    "lore": "Not one thing. A great many small things that agree.",
+    "weakness": "Fire and anything that hits a row."
+  }
+}

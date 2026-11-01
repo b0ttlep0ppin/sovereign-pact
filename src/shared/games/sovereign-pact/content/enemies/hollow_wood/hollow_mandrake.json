@@ -1,0 +1,24 @@
+{
+  "id": "hollow_mandrake",
+  "name": "Mandrake",
+  "pool": "hollow_wood",
+  "tags": ["plant"],
+  "role": "fodder",
+  "size": [1, 1],
+  "levels": [3, 7],
+  "variants": ["stone"],
+  "stats": {"speed": 10},
+  "affinity": {"earth": 25, "water": 25, "fire": -25},
+  "abilities": [
+    {"id": "root_lash", "shape": "single", "side": "player", "power": 1.1, "locationBias": "legs"},
+    {"id": "shriek", "shape": "row", "side": "player", "power": 0.3, "sanity": 5, "cooldown": 3, "statuses": [{"id": "stun", "chance": 20, "ticks": 100}]}
+  ],
+  "gambits": [
+    {"if": "turn%3==2", "do": "shriek", "target": "densest_row"},
+    {"do": "root_lash", "target": "column_weighted"}
+  ],
+  "bestiary": {
+    "lore": "Pulled from the earth it screams. Left in it, it walks out on its own.",
+    "weakness": "Fire. Deaf Scions shrug off its shriek."
+  }
+}
