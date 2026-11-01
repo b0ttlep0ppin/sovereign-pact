@@ -25,7 +25,8 @@ jobs:
       - run: npm ci
       - name: Lint
         run: npm run lint
-      - name: Typecheck (the rules also as Vibe Pulse checks them: no DOM, no Node)
+      # The rules are also checked as Vibe Pulse checks them, with no DOM or Node types.
+      - name: Typecheck
         run: npm run typecheck
       # Includes the content schemas (tools/content.test.ts), the 64 KB save test and the hidden-info test.
       - name: Tests
