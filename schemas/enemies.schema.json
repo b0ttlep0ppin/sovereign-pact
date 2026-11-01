@@ -135,6 +135,17 @@
         "drain": { "type": "integer", "minimum": 1, "maximum": 100, "description": "Heals the user for this % of the damage dealt" },
         "leap": { "type": "boolean", "description": "A lurker's leap: reaches any Scion, then it stands Exposed (§14.3)" },
         "raise": { "type": "integer", "minimum": 1, "maximum": 100, "description": "Raises a fallen fodder or swarm ally at this % of its max HP" },
+        "devour": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["of", "healPct"],
+          "description": "Eats one (or all) of its living allies among these ids, healing this % of max HP for each",
+          "properties": {
+            "of": { "type": "array", "minItems": 1, "items": { "$ref": "defs.schema.json#/definitions/id" } },
+            "healPct": { "type": "integer", "minimum": 1, "maximum": 100 },
+            "all": { "type": "boolean" }
+          }
+        },
         "constructHpPct": { "type": "integer", "minimum": 1, "maximum": 100, "description": "Mends constructs among its targets by this % of their max HP" },
         "sanityPerAdd": { "type": "integer", "minimum": 1, "maximum": 5, "description": "Extra Sanity damage for each of the user's living adds" },
         "tpSteal": { "type": "integer", "minimum": 1, "maximum": 100, "description": "TP taken from each target hit and given to the user" },

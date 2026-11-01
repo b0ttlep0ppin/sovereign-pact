@@ -1,7 +1,7 @@
 // The Conjurer's summons (§12.2, §12.15): entities on the party's cells with their own CT, HP and
 // abilities, bound to the Conjurer up to a cap, leaving when their time runs out or the battle ends.
 import type { Rng } from "../../../rng.ts";
-import { SUMMON_BY_ID, type SummonDef } from "../content.ts";
+import { SUMMON_BY_ID, type Devour, type SummonDef } from "../content.ts";
 import { TUNING } from "../tuning.ts";
 import { hpCap, spellBase, strike } from "./damage.ts";
 import { isFree } from "./grid.ts";
@@ -144,6 +144,25 @@ export function sacrifice(b: Battle, u: Combatant, s: Combatant, hpPct: number):
     b.events.push({ t: "heal", unit: u.id, target: o.id, amount });
   }
   vanish(b, s);
+}
+
+/** Living allies of `u` a Devour can eat. */
+export const prey = (b: Battle, u: Combatant, d: Devour): Combatant[] =>
+  b.units.filter((o) => !o.dead && o.side === u.side && o.id !== u.id && o.enemy !== undefined && d.of.includes(o.enemy));
+
+/** Eats one living ally among `of` (or all of them) and heals `healPct`% of max HP for each (§14.7). */
+export function devour(b: Battle, u: Combatant, d: Devour): void {
+  const eaten = prey(b, u, d).slice(0, d.all ? undefined : 1);
+  for (const t of eaten) {
+    t.flags.push("devoured");
+    b.events.push({ t: "devour", unit: u.id, target: t.id });
+    kill(b, t);
+  }
+  const heal = Math.min(u.maxHp - u.hp, Math.round((u.maxHp * d.healPct * eaten.length) / 100));
+  if (heal > 0) {
+    u.hp += heal;
+    b.events.push({ t: "heal", unit: u.id, target: u.id, amount: heal });
+  }
 }
 
 /** Fallen fodder and swarm of `u`'s side whose cells are free again: what a raise can bring back (§14.5). */

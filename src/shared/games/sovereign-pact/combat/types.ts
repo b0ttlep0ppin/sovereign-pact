@@ -61,6 +61,8 @@ export interface AbilityDef {
   leap?: boolean;
   /** Raises a fallen fodder or swarm ally at this % of its max HP (the Dark Necromancer, §14.5). */
   raise?: number;
+  /** Eats living allies to heal (§14.7 Devour, Consume). */
+  devour?: import("../content.ts").Devour;
   /** A shape from §10.2: single, row, column[:F|M|B], band:n, lob, line:n, cross, burst:3x3, burst:5x5, checker:a|b, front_each_row, nearest:n, random:n, all, self, adjacent, ring. */
   shape: string;
   /** Whose side it lands on, from the user's point of view. */
@@ -331,6 +333,7 @@ export type BattleEvent =
   | { t: "summon"; unit: number; summon: string; ids: number[] }
   | { t: "vanish"; unit: number }
   | { t: "raise"; unit: number; target: number }
+  | { t: "devour"; unit: number; target: number }
   | { t: "part"; unit: number; part: string }
   | { t: "phase"; unit: number; phase: number }
   | { t: "say"; unit: number; line: "open" | "death" | number }

@@ -378,3 +378,52 @@ describe("Yamata no Orochi", () => {
     expect(body.lost).toContain("fire_breath");
   });
 });
+
+describe("the Siege Beast", () => {
+  const siege = () => {
+    const b = bossBattle(17, standardParty(17, 9), "siege_beast", 3);
+    const beast = b.units.find((u) => u.enemy === "siege_beast")!;
+    const recruits = () => b.units.filter((u) => u.enemy === "pit_demon_recruit" && !u.dead);
+    return { b, beast, recruits };
+  };
+
+  it("fills the grid's middle and brings two Recruits to the gate", () => {
+    const { beast, recruits } = siege();
+    expect([beast.col, beast.row]).toEqual([0, 2]);
+    expect(recruits()).toHaveLength(2);
+  });
+
+  it("devours a Recruit to heal 15% of its HP", () => {
+    const { b, beast, recruits } = siege();
+    beast.hp = Math.floor(beast.maxHp * 0.7);
+    const before = beast.hp;
+    const rng = createRng(1);
+    expect(decide(b, rng, beast).action).toMatchObject({ do: "ability", ability: "devour" });
+    resolve(b, rng, beast, abilityOf(beast, "devour")!, cellOf(beast));
+    expect(recruits()).toHaveLength(1);
+    expect(b.units.some((u) => u.flags.includes("devoured"))).toBe(true);
+    expect(beast.hp - before).toBe(Math.round(beast.maxHp * 0.15));
+  });
+
+  it("has nothing to devour once the Recruits are dead", () => {
+    const { b, beast, recruits } = siege();
+    beast.hp = Math.floor(beast.maxHp * 0.7);
+    for (const r of recruits()) kill(b, r);
+    expect(decide(b, createRng(1), beast).action).not.toMatchObject({ ability: "devour" });
+  });
+
+  it("calls a wave of three Recruits at two thirds and at one third", () => {
+    const { b, beast, recruits } = siege();
+    beast.hp = Math.floor(beast.maxHp * 0.6);
+    checkEnd(b);
+    expect(recruits()).toHaveLength(5);
+    beast.hp = Math.floor(beast.maxHp * 0.3);
+    checkEnd(b);
+    expect(beast.phase).toBe(2);
+    expect(recruits()).toHaveLength(8);
+  });
+
+  it("takes half again as much on the head", () => {
+    expect(siege().beast.weak).toEqual({ location: "head", mult: 1.5 });
+  });
+});
