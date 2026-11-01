@@ -18,7 +18,7 @@ const error = (s: SovState, player: string, m: SovMove): string => {
 };
 /** A campaign whose Commons holds plenty of everything. */
 const stocked = (H: number): SovState => {
-  const s = campaign(H, 6);
+  const s = calm(campaign(H, 6));
   s.commons.gold = 500;
   s.commons.stores = { timber: 500, stone: 500, iron: 500, grain: 500 };
   return s;

@@ -6,11 +6,30 @@ export const seats = (n: number): string[] => Array.from({ length: n }, (_, i) =
 
 /** A new campaign for `houses` seats from `seed`, under standard options unless given. */
 export function campaign(houses: number, seed = 1, options?: Record<string, string>): SovState {
-  return sovereignPact.setup(seats(houses), createRng(seed), undefined, options);
+  return found(sovereignPact.setup(seats(houses), createRng(seed), undefined, options));
 }
 
-/** Stills the Omens (tests of exact amounts): this Year's events, Crisis and event vote are cleared, and none come. */
+/** Every House swears the Random House it was dealt: the campaign at Year 1. */
+export function found(s: SovState): SovState {
+  let t = s;
+  for (const p of t.players) {
+    const r = sovereignPact.applyMove(t, p, sovereignPact.botMove!(t, p, undefined as never));
+    if (!r.ok) throw new Error(r.error);
+    t = r.state;
+  }
+  return t;
+}
+
+/**
+ * Stills the Omens (tests of exact amounts): this Year's events, Crisis and event vote are cleared, and
+ * none come. The Houses also lose their traits (and any starting debt), so amounts are the plain rules'.
+ */
 export function calm(s: SovState): SovState {
+  for (const h of s.houses) {
+    h.traits = [];
+    delete h.bane;
+    h.debt = 0;
+  }
   s.flags.push("calm");
   s.events = [];
   s.notes = s.houses.map(() => []);
