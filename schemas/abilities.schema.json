@@ -379,6 +379,32 @@
               }
             }
           }
+        },
+        "move": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "tag"
+          ],
+          "properties": {
+            "tag": {
+              "type": "string"
+            },
+            "finisher": {
+              "type": "string",
+              "pattern": "^([a-z]+(,[a-z]+)*|distinct:[0-9])$"
+            }
+          }
+        },
+        "tpOnHit": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "bigPct": {
+          "type": "number"
+        },
+        "split": {
+          "type": "boolean"
         }
       }
     },

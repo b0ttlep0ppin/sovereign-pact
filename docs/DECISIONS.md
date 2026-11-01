@@ -2,6 +2,11 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-01 (implementation, Milestone 2g: the Pugilist) — implementer
+- **A combo is one action**: a list of moves on one target, each paying its TP (+5 for every earlier use of the same move in the sequence), ended by a finisher or by the list. The whole costs 100 CT +10 per move past the third (§12.2). A lone move is a sequence of one, so a finisher can never open a turn; bots do not use finishers yet.
+- **Patterns**: a finisher's pattern must be the tags of the moves just before it (Flurry: jab, jab, jab); Hundred Fists needs five different moves before it. Hook and Palm Strike are tagged jab, Low and High Kick kick, Grapple and Throw grapple, Breath breath (§12.10).
+- **Readings**: Grapple Roots the target for 100 ticks (the "cannot counter" part waits); Throw deals its 80% but moving the target waits for forced movement; Hundred Fists' 300% is shared equally among everyone in the burst; Iron Fists sets bare-hand power to level × 2 when that is higher; Counterpunch adds its 25% only bare-handed. Flow (the innate) and Second Breath wait for a later pass.
+
 ## 2026-11-01 (implementation, Milestone 2f: the Minstrel) — implementer
 - **A song is a status on each hearer** that carries the song's mods, and it ends for everyone when the Minstrel is Silenced, Deaf, Down or dead, or replaces that layer (§12.2). Songs start at 35 CT; Perfect Pitch (the Minstrel's innate) makes it 25. Hearers are every ally (or, for Harmonies and Plague Chant, every enemy) on the field who is not Deaf when it begins.
 - **Readings**: Lullaby's Sleep is a 20% chance on each enemy as it begins; Dirge Fears undead as it begins (chance 100 before resist); Ballad of Embers is a Fire edge of 10%; Cleansing Air removes one physical ailment per ally each 100 ticks; Plague Chant re-Poisons enemies each 100 ticks. Carrying Voice, Crescendo, Finale and Encore's fourth layer wait for a later pass.

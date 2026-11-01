@@ -176,6 +176,7 @@ export function strike(b: Battle, rng: Rng, u: Combatant, t: Combatant, ab: Abil
   if (power !== ab.power) ab = { ...ab, power };
   let dmg = baseDamage(u, ab);
   for (const tag of t.tags) dmg *= ab.vs?.[tag] ?? 1;
+  if (ab.bigPct && t.size[0] * t.size[1] > 1) dmg *= pct(ab.bigPct);
   const executing = !!ab.execute && t.hp < (t.maxHp * ab.execute.below) / 100;
   if (executing) dmg *= pct(ab.execute!.pct ?? 0);
   // Guard: a shield block halves the hit before the multipliers (§10.6 step 6).
@@ -235,6 +236,7 @@ export function strike(b: Battle, rng: Rng, u: Combatant, t: Combatant, ab: Abil
   if (weaponHit && damage > 0) afterWeaponHit(b, rng, u, t, damage);
   for (const id of ab.dispel ?? []) if (!t.dead) removeStatus(b, t, id);
   if (t.dead && ab.refundTp) u.tp = Math.min(C.tp.max, u.tp + ab.refundTp);
+  if (ab.tpOnHit) u.tp = Math.min(C.tp.max, u.tp + ab.tpOnHit);
   if (physical && damage > 0 && isMelee(u, ab)) afterMeleeHit(b, rng, u, t, damage, opts);
   return { hit: true, damage, loc, crit };
 }

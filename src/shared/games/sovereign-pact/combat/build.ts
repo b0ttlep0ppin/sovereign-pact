@@ -59,6 +59,10 @@ const pctMod = (n: number, mods: Record<string, number>, key: string) => Math.ma
 export function scionCombatant(p: Person, opts: ScionOpts): Combatant {
   const o: ScionOpts = opts.gear ? { ...opts, weapon: opts.weapon ?? opts.gear.weapon, armor: opts.armor ?? opts.gear } : opts;
   const mods = carriedMods(p);
+  let weapon = o.weapon ?? UNARMED;
+  // Iron Fists and Counterpunch: a Pugilist's bare hands (§12.10).
+  const bare = weapon.kind === "unarmed";
+  if (bare && mods.ironFists) weapon = { ...weapon, power: Math.max(weapon.power, mods.ironFists * p.level) };
   for (const [k, v] of Object.entries(o.gear?.mods ?? {})) mods[k] = (mods[k] ?? 0) + v;
   if (o.gear?.spellPct) mods.spellPct = (mods.spellPct ?? 0) + o.gear.spellPct;
   const s = (k: Parameters<typeof jobStat>[1]) => pctMod(jobStat(p, k) + (mods[`${k}Flat`] ?? 0), mods, `${k}Pct`);
@@ -101,7 +105,7 @@ export function scionCombatant(p: Person, opts: ScionOpts): Combatant {
     evasion: Math.max(0, Math.floor(F.evasion.base + F.evasion.guile * guile + (o.armor?.evasion ?? 0))),
     accuracy: Math.floor(F.accuracy.guile * guile),
     defense: o.armor?.defense ?? 0,
-    weapon: o.weapon ?? UNARMED,
+    weapon,
     offhand: o.gear?.offhand,
     dur,
     maxDur: { ...dur },
@@ -114,7 +118,7 @@ export function scionCombatant(p: Person, opts: ScionOpts): Combatant {
     immune: [],
     sanityTouch: 0,
     guard: (o.armor?.guard ?? 0) + (mods.guard ?? 0),
-    counter: mods.counter ?? 0,
+    counter: (mods.counter ?? 0) + (bare ? (mods.unarmedCounter ?? 0) : 0),
     steps: 0,
     abilities: o.abilities ?? battleActives(p),
     gambits: o.gambits ?? [],
