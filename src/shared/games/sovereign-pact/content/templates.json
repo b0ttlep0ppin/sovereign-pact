@@ -1,0 +1,12 @@
+{
+  "templates": [
+    { "id": "patrol", "name": "Patrol", "weight": 20, "levels": [1, 4], "four": { "fodder": 3 }, "eight": { "fodder": 5, "bruiser": 1 } },
+    { "id": "warband", "name": "Warband", "weight": 25, "levels": [1, 10], "four": { "fodder": 2, "bruiser": 1, "lurker": 1 }, "eight": { "fodder": 4, "bruiser": 2, "lurker": 1, "support": 1 } },
+    { "id": "battery", "name": "Battery", "weight": 15, "levels": [1, 10], "four": { "fodder": 2, "artillery": 1 }, "eight": { "fodder": 3, "bruiser": 1, "artillery": 2 } },
+    { "id": "coven", "name": "Coven", "weight": 15, "levels": [1, 10], "four": { "fodder": 1, "caster": 1, "horror": 1 }, "eight": { "fodder": 2, "bruiser": 1, "caster": 2, "horror": 1, "support": 1 } },
+    { "id": "swarm", "name": "Swarm", "weight": 10, "levels": [1, 10], "four": { "swarm": [4, 6], "bruiser": 1 }, "eight": { "swarm": [8, 10], "bruiser": 1, "support": 1 } },
+    { "id": "stalkers", "name": "Stalkers", "weight": 5, "levels": [3, 10], "ambushMult": 2, "four": { "lurker": 2, "horror": 1 }, "eight": { "lurker": 3, "horror": 1, "fodder": 2 } },
+    { "id": "behemoth", "name": "Behemoth", "weight": 5, "levels": [3, 10], "four": { "colossus": 1, "swarm": 2 }, "eight": { "colossus": 1, "elite": 1, "swarm": 4 } },
+    { "id": "elite_patrol", "name": "Elite patrol", "weight": 5, "levels": [2, 10], "betterDrops": true, "four": { "elite": 1, "fodder": 2, "artillery": 1 }, "eight": { "elite": 1, "bruiser": 1, "fodder": 3, "artillery": 1, "lurker": 1 } }
+  ]
+}

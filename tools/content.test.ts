@@ -10,6 +10,7 @@ import { fileURLToPath } from "node:url";
 import { Ajv, type ValidateFunction } from "ajv";
 import { describe, expect, it } from "vitest";
 import { ABILITY_SETS, ENEMIES, JOBS } from "../src/shared/games/sovereign-pact/content.ts";
+import { ENEMY_INDEX, renderEnemyIndex } from "./gen-content.ts";
 
 const root = fileURLToPath(new URL("..", import.meta.url));
 const CONTENT = join(root, "src/shared/games/sovereign-pact/content");
@@ -79,7 +80,8 @@ describe("content", () => {
       const data = JSON.parse(readFileSync(join(CONTENT, file), "utf8")) as { id: string; pool: string };
       expect(`${data.pool}/${data.id}.json`, file).toBe(`${pool}/${name}`);
     }
-    // content.ts imports each file by name; a new file must be added there too.
+    // content.ts imports every file through the generated index: `npm run gen:content` after adding one.
+    expect(readFileSync(ENEMY_INDEX, "utf8"), "content/enemies/index.gen.ts is stale: npm run gen:content").toBe(renderEnemyIndex());
     const files = contentFiles.filter((f) => f.startsWith("enemies/")).map((f) => f.split("/").at(-1)!.replace(/\.json$/, ""));
     expect(ENEMIES.map((e) => e.id).sort()).toEqual(files.sort());
   });

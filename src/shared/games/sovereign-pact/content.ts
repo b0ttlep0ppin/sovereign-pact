@@ -1,5 +1,6 @@
 // The content catalog: everything under content/ as typed data. Rules read content only through here,
 // by id, so Josh can edit the JSON (validated by schemas/ in CI) without touching rules (CLAUDE.md).
+import enemyFiles from "./content/enemies/index.gen.ts";
 import abjurerSet from "./content/abilities/abjurer.json" with { type: "json" };
 import conjurerSet from "./content/abilities/conjurer.json" with { type: "json" };
 import altererSet from "./content/abilities/alterer.json" with { type: "json" };
@@ -16,19 +17,16 @@ import swordSaintSet from "./content/abilities/sword_saint.json" with { type: "j
 import vagabondSet from "./content/abilities/vagabond.json" with { type: "json" };
 import formsJson from "./content/forms.json" with { type: "json" };
 import summonsJson from "./content/summons.json" with { type: "json" };
-import banshee from "./content/enemies/barrows/barrow_banshee.json" with { type: "json" };
-import cursedArcher from "./content/enemies/barrows/barrow_cursed_archer.json" with { type: "json" };
-import ghost from "./content/enemies/barrows/barrow_ghost.json" with { type: "json" };
-import hollowSoldier from "./content/enemies/barrows/barrow_hollow_soldier.json" with { type: "json" };
-import skeleton from "./content/enemies/barrows/barrow_skeleton.json" with { type: "json" };
 import heraldryJson from "./content/heraldry.json" with { type: "json" };
 import injuriesJson from "./content/injuries.json" with { type: "json" };
 import itemsJson from "./content/items.json" with { type: "json" };
 import jobsJson from "./content/jobs.json" with { type: "json" };
 import namesJson from "./content/names.json" with { type: "json" };
+import poolsJson from "./content/pools.json" with { type: "json" };
 import propertiesJson from "./content/properties.json" with { type: "json" };
 import seatsJson from "./content/seats.json" with { type: "json" };
 import tarotJson from "./content/tarot.json" with { type: "json" };
+import templatesJson from "./content/templates.json" with { type: "json" };
 import type { AbilityDef, GambitRule } from "./combat/types.ts";
 import type { Element, JobId, Location } from "./state.ts";
 
@@ -153,9 +151,49 @@ export interface EnemyDef {
   bestiary?: { lore: string; weakness: string };
 }
 
-/** Every enemy file. A new file is added here once (one import per file keeps the rules free of bundler globs). */
-export const ENEMIES = [skeleton, hollowSoldier, ghost, cursedArcher, banshee] as unknown as readonly EnemyDef[];
+/** Every enemy file, through the generated index (`npm run gen:content`; one import per file keeps the rules free of bundler globs). */
+export const ENEMIES = enemyFiles as unknown as readonly EnemyDef[];
 export const ENEMY_BY_ID: ReadonlyMap<string, EnemyDef> = new Map(ENEMIES.map((e) => [e.id, e]));
+
+export type CardType = "resource" | "hunt" | "delve" | "rescue" | "pilgrimage";
+
+/** A region of the otherworld (§14.5): content/pools.json. Its roster is every enemy filed under it. */
+export interface PoolDef {
+  id: string;
+  name: string;
+  levels: [number, number];
+  cards: CardType[];
+  resist: Element[];
+  weak: Element[];
+  /** Chance an Encounter here carries a hazard (§14.8). */
+  hazardPct: number;
+}
+
+export const POOLS = poolsJson.pools as unknown as readonly PoolDef[];
+export const POOL_BY_ID: ReadonlyMap<string, PoolDef> = new Map(POOLS.map((p) => [p.id, p]));
+
+/** The enemies of a pool, by role, that appear at expedition level `level` (§14.4: entries whose `levels` span L). */
+export const rosterOf = (pool: string, role: EnemyRole, level: number): EnemyDef[] =>
+  ENEMIES.filter((e) => e.pool === pool && e.role === role && e.levels[0] <= level && level <= e.levels[1]);
+
+export type TemplateRole = Exclude<EnemyRole, "boss">;
+/** A role's count: exact, or a [min, max] range drawn when the group is made. */
+export type RoleCounts = Partial<Record<TemplateRole, number | [number, number]>>;
+
+/** An encounter group template (§14.4): content/templates.json. */
+export interface TemplateDef {
+  id: string;
+  name: string;
+  weight: number;
+  levels: [number, number];
+  ambushMult?: number;
+  betterDrops?: boolean;
+  four: RoleCounts;
+  eight: RoleCounts;
+}
+
+export const TEMPLATES = templatesJson.templates as unknown as readonly TemplateDef[];
+export const TEMPLATE_BY_ID: ReadonlyMap<string, TemplateDef> = new Map(TEMPLATES.map((t) => [t.id, t]));
 
 /** A passive as content: rules text plus simple combat `mods` and statuses on self at battle `start`. */
 export interface PassiveDef {

@@ -1,0 +1,42 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Encounter group templates: role counts for a 4- and an 8-party (SPEC §14.4)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["templates"],
+  "properties": {
+    "templates": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "name", "weight", "levels", "four", "eight"],
+        "properties": {
+          "id": { "$ref": "defs.schema.json#/definitions/id" },
+          "name": { "type": "string", "minLength": 1 },
+          "weight": { "type": "integer", "minimum": 0 },
+          "levels": { "$ref": "enemies.schema.json#/properties/levels" },
+          "ambushMult": { "type": "number", "minimum": 0, "description": "Multiplies the Ambush odds" },
+          "betterDrops": { "type": "boolean" },
+          "four": { "$ref": "#/definitions/counts" },
+          "eight": { "$ref": "#/definitions/counts" }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "count": {
+      "oneOf": [
+        { "type": "integer", "minimum": 1, "maximum": 10 },
+        { "type": "array", "items": { "type": "integer", "minimum": 1, "maximum": 10 }, "minItems": 2, "maxItems": 2 }
+      ]
+    },
+    "counts": {
+      "type": "object",
+      "additionalProperties": false,
+      "minProperties": 1,
+      "patternProperties": { "^(fodder|swarm|bruiser|caster|support|lurker|artillery|horror|elite|colossus)$": { "$ref": "#/definitions/count" } }
+    }
+  }
+}

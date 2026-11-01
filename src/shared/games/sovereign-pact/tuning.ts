@@ -200,6 +200,29 @@ export const TUNING = {
     },
   },
 
+  /**
+   * §14.4 encounters, first pass: the base Ambush and Surprise odds (events, traits and the Stalkers
+   * template move them), and the starting CT each side takes. Lurkers in an Ambush get a free first turn.
+   */
+  encounters: {
+    ambushPct: 10,
+    surprisePct: 10,
+    ct: { ambushed: 0, ambusher: 50, lurkerAmbush: 100 },
+    /** A pool short of a role at a level fills it from the next role here (until every pool's roster is full). */
+    stand: {
+      swarm: ["fodder"],
+      support: ["caster", "fodder"],
+      horror: ["caster", "lurker", "fodder"],
+      artillery: ["caster", "fodder"],
+      caster: ["artillery", "fodder"],
+      lurker: ["fodder"],
+      elite: ["bruiser", "fodder"],
+      colossus: ["elite", "bruiser"],
+      bruiser: ["fodder"],
+      fodder: ["bruiser", "swarm"],
+    } as Record<string, readonly string[]>,
+  },
+
   /** §6.3 recruit generation. */
   recruits: {
     /** Base stats roll in this range before House modifiers. */
