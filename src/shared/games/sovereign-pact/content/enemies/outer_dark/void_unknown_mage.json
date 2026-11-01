@@ -1,0 +1,24 @@
+{
+  "id": "void_unknown_mage",
+  "name": "Unknown Mage",
+  "pool": "outer_dark",
+  "tags": ["unknown"],
+  "role": "caster",
+  "size": [1, 1],
+  "levels": [6, 10],
+  "stats": {"sanityTouch": 2, "speed": 10},
+  "affinity": {"fire": 25, "water": 25, "wind": 25, "earth": 25, "dark": 50, "holy": -50},
+  "immune": ["charm", "sleep"],
+  "abilities": [
+    {"id": "void_bolt", "shape": "single", "side": "player", "power": 1.1, "kind": "magic", "sanity": 3, "element": "dark", "reach": "ranged"},
+    {"id": "entropy", "shape": "burst:3x3", "side": "player", "power": 0.9, "kind": "magic", "charge": 80, "telegraph": true, "cooldown": 3, "sanity": 4, "element": "dark"}
+  ],
+  "gambits": [
+    {"if": "turn%3==1", "do": "entropy", "target": "densest_cluster"},
+    {"do": "void_bolt", "target": "lowest_hp"}
+  ],
+  "bestiary": {
+    "lore": "It casts spells nobody taught it, in a grammar no one can follow.",
+    "weakness": "Holy. Interrupt the entropy."
+  }
+}

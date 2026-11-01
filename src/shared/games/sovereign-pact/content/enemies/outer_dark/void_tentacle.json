@@ -1,0 +1,24 @@
+{
+  "id": "void_tentacle",
+  "name": "Tentacle",
+  "pool": "outer_dark",
+  "tags": ["unknown", "reach"],
+  "role": "swarm",
+  "size": [1, 1],
+  "levels": [6, 9],
+  "stats": {"sanityTouch": 2, "speed": 11},
+  "affinity": {"fire": 25, "water": 25, "wind": 25, "earth": 25, "dark": 50, "holy": -50},
+  "immune": ["charm", "fear", "sleep"],
+  "abilities": [
+    {"id": "grasp", "shape": "single", "side": "player", "power": 0.8, "statuses": [{"id": "rooted", "chance": 25, "ticks": 200}]},
+    {"id": "overrun", "shape": "band:3", "side": "player", "power": 0.6, "cooldown": 1}
+  ],
+  "gambits": [
+    {"if": "swarm>=5", "do": "overrun"},
+    {"do": "grasp", "target": "column_weighted"}
+  ],
+  "bestiary": {
+    "lore": "Up through the ground, out of a body too big to see.",
+    "weakness": "Holy. They reach two columns deep."
+  }
+}

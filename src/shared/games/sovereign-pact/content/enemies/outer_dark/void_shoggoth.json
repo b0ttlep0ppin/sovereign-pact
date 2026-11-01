@@ -1,0 +1,26 @@
+{
+  "id": "void_shoggoth",
+  "name": "Shoggoth",
+  "pool": "outer_dark",
+  "tags": ["unknown", "slime", "giant"],
+  "role": "colossus",
+  "size": [3, 3],
+  "levels": [6, 10],
+  "stats": {"sanityTouch": 2, "speed": 8},
+  "affinity": {"fire": -25, "water": 25, "wind": 25, "earth": 25, "dark": 50, "holy": -50},
+  "immune": ["charm", "fear", "poison", "sleep", "stun"],
+  "abilities": [
+    {"id": "engulf", "shape": "band:3", "side": "player", "power": 1.1, "cooldown": 2, "sanity": 4},
+    {"id": "pseudopod", "shape": "single", "side": "player", "power": 1.3, "hits": 2},
+    {"id": "tekeli_li", "shape": "all", "side": "player", "power": 0.2, "kind": "magic", "sanity": 7, "cooldown": 4}
+  ],
+  "gambits": [
+    {"if": "turn%4==1", "do": "tekeli_li"},
+    {"if": "turn%2==0", "do": "engulf"},
+    {"do": "pseudopod", "target": "column_weighted"}
+  ],
+  "bestiary": {
+    "lore": "A mass of eyes and mouths and black jelly, piping a word in a voice that is not its own.",
+    "weakness": "Holy and fire."
+  }
+}

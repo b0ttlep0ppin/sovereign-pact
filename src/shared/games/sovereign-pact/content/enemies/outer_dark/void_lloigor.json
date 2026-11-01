@@ -1,0 +1,24 @@
+{
+  "id": "void_lloigor",
+  "name": "Lloigor",
+  "pool": "outer_dark",
+  "tags": ["unknown", "spirit"],
+  "role": "caster",
+  "size": [1, 1],
+  "levels": [8, 10],
+  "stats": {"sanityTouch": 2, "speed": 9},
+  "affinity": {"fire": 25, "water": 25, "wind": 25, "earth": 25, "dark": 50, "holy": -50},
+  "immune": ["bleed", "charm", "poison", "sleep"],
+  "abilities": [
+    {"id": "crushing_will", "shape": "row", "side": "player", "power": 1.0, "kind": "magic", "sanity": 5, "cooldown": 2, "element": "dark"},
+    {"id": "dragging_gravity", "shape": "all", "side": "player", "power": 0.4, "kind": "magic", "readiness": 30, "charge": 100, "telegraph": true, "cooldown": 4, "element": "earth"}
+  ],
+  "gambits": [
+    {"if": "turn%4==1", "do": "dragging_gravity"},
+    {"do": "crushing_will", "target": "densest_row"}
+  ],
+  "bestiary": {
+    "lore": "A will without a body, older than the stars, pressing down.",
+    "weakness": "Holy. Its gravity takes Readiness from everyone."
+  }
+}

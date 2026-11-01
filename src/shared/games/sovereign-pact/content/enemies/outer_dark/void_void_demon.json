@@ -1,0 +1,26 @@
+{
+  "id": "void_void_demon",
+  "name": "Void Demon",
+  "pool": "outer_dark",
+  "tags": ["unknown", "demon"],
+  "role": "elite",
+  "size": [1, 1],
+  "levels": [6, 10],
+  "stats": {"sanityTouch": 2, "speed": 12},
+  "affinity": {"fire": 25, "water": 25, "wind": 25, "earth": 25, "dark": 50, "holy": -50},
+  "immune": ["charm", "fear", "sleep"],
+  "abilities": [
+    {"id": "void_claw", "shape": "single", "side": "player", "power": 1.4, "sanity": 3},
+    {"id": "null_field", "shape": "burst:3x3", "side": "player", "power": 0.8, "kind": "magic", "cooldown": 2, "statuses": [{"id": "silence", "chance": 40, "ticks": 200}], "element": "dark"},
+    {"id": "phase_out", "shape": "self", "side": "self", "power": 0, "kind": "support", "statuses": [{"id": "hidden", "chance": 100, "ticks": 100}], "cooldown": 4}
+  ],
+  "gambits": [
+    {"if": "self.hp<0.5", "do": "phase_out"},
+    {"if": "turn%3==1", "do": "null_field", "target": "densest_cluster"},
+    {"do": "void_claw", "target": "lowest_durability"}
+  ],
+  "bestiary": {
+    "lore": "A demon of the Pit that went too far into the rift and came back as something else.",
+    "weakness": "Holy."
+  }
+}

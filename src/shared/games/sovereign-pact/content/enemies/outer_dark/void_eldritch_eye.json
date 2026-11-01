@@ -1,0 +1,24 @@
+{
+  "id": "void_eldritch_eye",
+  "name": "Eldritch Eye",
+  "pool": "outer_dark",
+  "tags": ["unknown", "flyer"],
+  "role": "horror",
+  "size": [1, 1],
+  "levels": [6, 9],
+  "stats": {"sanityTouch": 3, "speed": 11},
+  "affinity": {"fire": 25, "water": 25, "wind": 25, "earth": 25, "dark": 50, "holy": -50},
+  "immune": ["charm", "fear", "sleep"],
+  "abilities": [
+    {"id": "beholding", "shape": "row", "side": "player", "power": 0.4, "kind": "magic", "sanity": 7, "cooldown": 2, "statuses": [{"id": "madness", "chance": 20, "ticks": 300}], "element": "dark"},
+    {"id": "blink", "shape": "single", "side": "player", "power": 0.5, "kind": "magic", "sanity": 5, "reach": "ranged"}
+  ],
+  "gambits": [
+    {"if": "turn%2==1", "do": "beholding", "target": "densest_row"},
+    {"do": "blink", "target": "lowest_sanity"}
+  ],
+  "bestiary": {
+    "lore": "It opens in the air, looks, and the looking hurts.",
+    "weakness": "Holy. Blind Scions are safe from it."
+  }
+}

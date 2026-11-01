@@ -1,0 +1,24 @@
+{
+  "id": "void_unknown_agent",
+  "name": "Unknown Agent",
+  "pool": "outer_dark",
+  "tags": ["unknown", "humanoid"],
+  "role": "lurker",
+  "size": [1, 1],
+  "levels": [6, 10],
+  "stats": {"sanityTouch": 2, "speed": 15},
+  "affinity": {"fire": 25, "water": 25, "wind": 25, "earth": 25, "dark": 50, "holy": -50},
+  "immune": ["charm", "sleep"],
+  "abilities": [
+    {"id": "silent_knife", "shape": "single", "side": "player", "power": 1.4, "leap": true, "crit": 20},
+    {"id": "fade", "shape": "self", "side": "self", "power": 0, "kind": "support", "statuses": [{"id": "hidden", "chance": 100, "ticks": 100}], "cooldown": 3}
+  ],
+  "gambits": [
+    {"if": "self.hp<0.5", "do": "fade"},
+    {"do": "silent_knife", "target": "empty_cell"}
+  ],
+  "bestiary": {
+    "lore": "It wore a face from the settlement once. You would not know which.",
+    "weakness": "Holy. Catch it when it lands."
+  }
+}

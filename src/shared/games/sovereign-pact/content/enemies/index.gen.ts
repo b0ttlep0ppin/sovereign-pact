@@ -207,6 +207,31 @@ import hollow_termite_queen from "./hollow_wood/hollow_termite_queen.json" with 
 import hollow_treant from "./hollow_wood/hollow_treant.json" with { type: "json" };
 import hollow_tsuchigumo from "./hollow_wood/hollow_tsuchigumo.json" with { type: "json" };
 import hollow_vine_golem from "./hollow_wood/hollow_vine_golem.json" with { type: "json" };
+import void_devil_face from "./outer_dark/void_devil_face.json" with { type: "json" };
+import void_eldritch_eye from "./outer_dark/void_eldritch_eye.json" with { type: "json" };
+import void_lloigor from "./outer_dark/void_lloigor.json" with { type: "json" };
+import void_meteoros from "./outer_dark/void_meteoros.json" with { type: "json" };
+import void_mi_go from "./outer_dark/void_mi_go.json" with { type: "json" };
+import void_observer from "./outer_dark/void_observer.json" with { type: "json" };
+import void_shoggoth from "./outer_dark/void_shoggoth.json" with { type: "json" };
+import void_tentacle from "./outer_dark/void_tentacle.json" with { type: "json" };
+import void_unknown_agent from "./outer_dark/void_unknown_agent.json" with { type: "json" };
+import void_unknown_army from "./outer_dark/void_unknown_army.json" with { type: "json" };
+import void_unknown_beast from "./outer_dark/void_unknown_beast.json" with { type: "json" };
+import void_unknown_colony from "./outer_dark/void_unknown_colony.json" with { type: "json" };
+import void_unknown_core from "./outer_dark/void_unknown_core.json" with { type: "json" };
+import void_unknown_fighter from "./outer_dark/void_unknown_fighter.json" with { type: "json" };
+import void_unknown_grappler from "./outer_dark/void_unknown_grappler.json" with { type: "json" };
+import void_unknown_mage from "./outer_dark/void_unknown_mage.json" with { type: "json" };
+import void_unknown_princess from "./outer_dark/void_unknown_princess.json" with { type: "json" };
+import void_unknown_satan from "./outer_dark/void_unknown_satan.json" with { type: "json" };
+import void_unknown_seed from "./outer_dark/void_unknown_seed.json" with { type: "json" };
+import void_unknown_titan from "./outer_dark/void_unknown_titan.json" with { type: "json" };
+import void_unknown_valkyrie from "./outer_dark/void_unknown_valkyrie.json" with { type: "json" };
+import void_void_demon from "./outer_dark/void_void_demon.json" with { type: "json" };
+import void_void_rift_varga from "./outer_dark/void_void_rift_varga.json" with { type: "json" };
+import void_void_slime from "./outer_dark/void_void_slime.json" with { type: "json" };
+import void_watchers_hand from "./outer_dark/void_watchers_hand.json" with { type: "json" };
 import pit_bat from "./pit/pit_bat.json" with { type: "json" };
 import pit_dark_beast from "./pit/pit_dark_beast.json" with { type: "json" };
 import pit_dark_dragon from "./pit/pit_dark_dragon.json" with { type: "json" };
@@ -466,6 +491,31 @@ export default [
   hollow_treant,
   hollow_tsuchigumo,
   hollow_vine_golem,
+  void_devil_face,
+  void_eldritch_eye,
+  void_lloigor,
+  void_meteoros,
+  void_mi_go,
+  void_observer,
+  void_shoggoth,
+  void_tentacle,
+  void_unknown_agent,
+  void_unknown_army,
+  void_unknown_beast,
+  void_unknown_colony,
+  void_unknown_core,
+  void_unknown_fighter,
+  void_unknown_grappler,
+  void_unknown_mage,
+  void_unknown_princess,
+  void_unknown_satan,
+  void_unknown_seed,
+  void_unknown_titan,
+  void_unknown_valkyrie,
+  void_void_demon,
+  void_void_rift_varga,
+  void_void_slime,
+  void_watchers_hand,
   pit_bat,
   pit_dark_beast,
   pit_dark_dragon,

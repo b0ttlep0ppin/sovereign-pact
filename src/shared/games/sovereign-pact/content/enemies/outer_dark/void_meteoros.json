@@ -1,0 +1,24 @@
+{
+  "id": "void_meteoros",
+  "name": "Meteoros",
+  "pool": "outer_dark",
+  "tags": ["unknown", "elemental"],
+  "role": "artillery",
+  "size": [1, 1],
+  "levels": [8, 10],
+  "stats": {"sanityTouch": 2, "speed": 7},
+  "affinity": {"fire": 25, "water": 25, "wind": 25, "earth": 25, "dark": 50, "holy": -50},
+  "immune": ["bleed", "charm", "fear", "poison", "sleep"],
+  "abilities": [
+    {"id": "starfall", "shape": "burst:5x5", "side": "player", "power": 1.2, "kind": "magic", "element": "fire", "charge": 150, "telegraph": true, "cooldown": 3},
+    {"id": "ember_shard", "shape": "single", "side": "player", "power": 0.9, "reach": "ranged", "element": "fire"}
+  ],
+  "gambits": [
+    {"if": "turn%3==1", "do": "starfall", "target": "densest_cluster"},
+    {"do": "ember_shard", "target": "back_random"}
+  ],
+  "bestiary": {
+    "lore": "A stone that fell out of the rift and kept falling, at you.",
+    "weakness": "Holy, and kill it or scatter before the starfall."
+  }
+}
