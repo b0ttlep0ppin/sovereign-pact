@@ -1,0 +1,38 @@
+{
+  "palette": [
+    { "id": "crimson", "name": "Crimson", "hex": "#9b1c24" },
+    { "id": "oxblood", "name": "Oxblood", "hex": "#5e1218" },
+    { "id": "rust", "name": "Rust", "hex": "#a4471f" },
+    { "id": "amber", "name": "Amber", "hex": "#c98a1b" },
+    { "id": "ochre", "name": "Ochre", "hex": "#a88a3a" },
+    { "id": "moss", "name": "Moss", "hex": "#5b6b2e" },
+    { "id": "forest", "name": "Forest", "hex": "#24502f" },
+    { "id": "verdigris", "name": "Verdigris", "hex": "#3d8a78" },
+    { "id": "teal", "name": "Deep Teal", "hex": "#1d5a63" },
+    { "id": "sea", "name": "Sea Grey", "hex": "#4b6b7a" },
+    { "id": "azure", "name": "Azure", "hex": "#2a5aa8" },
+    { "id": "midnight", "name": "Midnight", "hex": "#1d2a5a" },
+    { "id": "indigo", "name": "Indigo", "hex": "#3b2a7a" },
+    { "id": "violet", "name": "Violet", "hex": "#6a3a8f" },
+    { "id": "plum", "name": "Plum", "hex": "#5a2448" },
+    { "id": "rose", "name": "Ashen Rose", "hex": "#a05a6a" },
+    { "id": "bone", "name": "Bone", "hex": "#d8cfb4" },
+    { "id": "ash", "name": "Ash", "hex": "#8a8780" },
+    { "id": "slate", "name": "Slate", "hex": "#4a4f57" },
+    { "id": "iron", "name": "Iron", "hex": "#2f3338" },
+    { "id": "umber", "name": "Umber", "hex": "#5a3e2a" },
+    { "id": "gold", "name": "Gold", "hex": "#d4a72c" },
+    { "id": "silver", "name": "Silver", "hex": "#b8bcc4" },
+    { "id": "sable", "name": "Sable", "hex": "#16151a" }
+  ],
+  "shields": ["heater", "round", "kite", "banner", "lozenge", "skull_plate"],
+  "divisions": ["plain", "per_pale", "per_fess", "per_bend", "per_bend_sinister", "quarterly", "per_saltire", "chevron", "pall", "bordure", "chief", "checky"],
+  "metals": ["sable", "bone", "crimson", "gold", "silver"],
+  "charges": [
+    "wolf", "raven", "stag_skull", "serpent", "moth", "spider", "eye", "open_hand", "severed_hand", "rose",
+    "thorned_crown", "crown", "tower", "gate", "key", "bell", "chalice", "candle", "sun", "eclipse",
+    "crescent", "star", "comet", "sword", "crossed_swords", "axe", "spear", "hammer", "lantern", "book",
+    "quill", "hourglass", "mask", "antlers", "horned_skull", "tree", "dead_tree", "wave", "flame", "mountain",
+    "anchor", "chain", "heart", "dagger_through_heart"
+  ]
+}

@@ -2,6 +2,14 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-01 (implementation, Milestone 0) — implementer
+Readings and defaults taken while building; each is a knob in `tuning.ts` or easy to move.
+- **Repo layout follows Hardpoint Contract**, not HANDOFF §5's sketch: the rules live in `src/shared/games/sovereign-pact/`, the client in `src/client/games/sovereign-pact/`, and a copy of Vibe Pulse's game interface in `src/shared/` (`game.ts`, `rng.ts`…). The game imports `../../rng.ts` exactly as it will inside Vibe Pulse, so `npm run sync:game` can copy the two folders unchanged (`games-synced.json`). Content therefore sits in `src/shared/games/sovereign-pact/content/` (it ships with the rules); `schemas/` and `tools/` stay at the top level.
+- **Saves pack people compactly.** A crowded Year-20, 4-House checkpoint (12 veterans and a full recruit pool per House) measured 114 KB as plain objects. People are now saved as fixed-order arrays with a dictionary of their strings (`codec.ts`), still by content id: 43 KB, which leaves about 20 KB for items, the bestiary and expedition records. `Person.mastered` lists mastered Jobs so their abilities aren't listed one by one. The save-size test fails above 75% of 64 KB so later milestones see the margin shrink.
+- **Checkpoint** is the Settlement Phase's first state; once anyone moves, the last one is what's kept (Vibe Pulse keeps the latest non-null).
+- **Unset numbers, implementation defaults (first pass):** Accord and Unrest start at 60; Doom at 0. Upkeep per Year: a Scion 4 Gold and 1 Grain, a recruit 1 Grain, the Retired half (rounded up). Income per House is scaled by ×2 / ×1.4 / ×1.1 / ×1 for 1–4 Houses (§4.3 "similar kingdom total"). Each House starts with one Year's income. The Short campaign's mandatory Years are 3, 5, 8 and 10.
+- **What another House can't see:** its Gold, debt, Stores and recruit pool (§6.9 lists them among the secrets a Ward leaks), its Ambition and exact score. A recruit's Sanity and MP hide with its stats below Insight 1, since they follow from them. Pact marks show to nobody, their own House included (§14.7a).
+
 ## 2026-11-01 (batch 12 answers) — Josh
 - Art direction, LPC compositing, effects language, battle HUD, accessibility toggles, SFX mapping and music assignment: **accepted to build and judge on screen** ("let's see what it looks like"; music "can see how it goes"). → SPEC §15–16
 - Town Map: hard to imagine from text; **prototype it early** and show it. → §15.6
@@ -106,6 +114,8 @@ Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md
 ## Open questions
 
 Batches 1–12 (answered 2026-10-31 / 2026-11-01): Q1–Q84 closed, see above. The design is handed off; see HANDOFF.md.
+
+- **Q85 (asked 2026-11-01, Milestone 0): how is a House's Standing tier worked out?** §3.4 names the four tiers (Waning / Steady / Rising / Ascendant) but not the rule, and it decides how much the other Houses can read. Built as the default, PROPOSED: a House's Ascendancy divided by the kingdom's mean, Waning below 0.75, Steady 0.75–1, Rising 1–1.25, Ascendant 1.25 and up; Steady when solo or before anyone scores. Alternatives: tiers by rank (the leader is always Ascendant, which tells everyone who leads), or fixed Ascendancy thresholds that rise with the Year (tiers say how well a House does, not how it compares).
 
 Implementation items (not design questions):
 - LPC sprite runtime: the folder holds one exported male base; runtime recruit generation needs the generator's full layer set exported with its per-layer `CREDITS.csv`.
