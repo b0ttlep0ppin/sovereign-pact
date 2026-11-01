@@ -1,0 +1,24 @@
+{
+  "id": "barrow_soul",
+  "name": "Soul",
+  "pool": "barrows",
+  "tags": ["spirit", "undead", "flyer"],
+  "role": "swarm",
+  "size": [1, 1],
+  "levels": [4, 8],
+  "stats": {"speed": 12, "sanityTouch": 2},
+  "affinity": {"holy": -75, "dark": 75},
+  "immune": ["poison", "bleed", "sleep"],
+  "abilities": [
+    {"id": "soul_brush", "shape": "single", "side": "player", "power": 0.8, "kind": "magic", "element": "dark", "sanity": 3},
+    {"id": "overrun", "shape": "band:3", "side": "player", "power": 0.6, "cooldown": 1, "sanity": 3}
+  ],
+  "gambits": [
+    {"if": "swarm>=5", "do": "overrun"},
+    {"do": "soul_brush", "target": "lowest_sanity"}
+  ],
+  "bestiary": {
+    "lore": "A little light that remembers being someone. It wants the rest back.",
+    "weakness": "Holy. Its touch is cold to the mind, not the body."
+  }
+}

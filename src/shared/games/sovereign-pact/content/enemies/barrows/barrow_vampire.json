@@ -1,0 +1,25 @@
+{
+  "id": "barrow_vampire",
+  "name": "Vampire",
+  "pool": "barrows",
+  "tags": ["undead", "humanoid"],
+  "role": "elite",
+  "size": [1, 1],
+  "levels": [4, 8],
+  "stats": {"speed": 12},
+  "affinity": {"holy": -75, "fire": -25, "dark": 75},
+  "immune": ["poison", "fear", "sleep", "charm"],
+  "abilities": [
+    {"id": "blood_kiss", "shape": "single", "side": "player", "power": 1.2, "drain": 50},
+    {"id": "beguile", "shape": "single", "side": "player", "power": 0, "kind": "magic", "reach": "ranged", "cooldown": 4, "statuses": [{"id": "charm", "chance": 40, "ticks": 200}]}
+  ],
+  "gambits": [
+    {"if": "foe.charging", "do": "blood_kiss", "target": "charging"},
+    {"if": "turn%4==1", "do": "beguile", "target": "back_random"},
+    {"do": "blood_kiss", "target": "lowest_hp"}
+  ],
+  "bestiary": {
+    "lore": "Old court nobility. It still expects you to kneel.",
+    "weakness": "Holy and fire. It heals on every bite: burst it down."
+  }
+}

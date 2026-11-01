@@ -4,9 +4,10 @@ import type { Rng } from "../../../rng.ts";
 import { TUNING } from "../tuning.ts";
 import { abilityOf, cannotUse, type Action } from "./battle.ts";
 import { canShift } from "./forms.ts";
-import { hasRoom } from "./summons.ts";
+import { fallen, hasRoom } from "./summons.ts";
 import { hasStatus, isFree, other, pickWeighted, standing } from "./grid.ts";
 import { allegiance, bestCell, cellOf, crossDistance, isSingle, singleTargets, targetSide } from "./targets.ts";
+import type { Location } from "../state.ts";
 import type { AbilityDef, Battle, Combatant, GambitRule } from "./types.ts";
 
 export interface Plan {
@@ -32,9 +33,17 @@ export function holds(b: Battle, u: Combatant, cond: string | undefined): boolea
   const c = cond.replace(/\s+/g, "");
   let m = /^turn%(\d+)==(\d+)$/.exec(c);
   if (m) return u.turns % Number(m[1]) === Number(m[2]);
-  m = /^(turn|adds|foes|allies)(<=|>=|<|>|==)(\d+)$/.exec(c);
+  m = /^(turn|adds|foes|allies|swarm|fallen)(<=|>=|<|>|==)(\d+)$/.exec(c);
   if (m) {
-    const n = { turn: u.turns, adds: allies(b, u).length, allies: allies(b, u).length, foes: foes(b, u).length }[m[1] as "turn"];
+    const n = {
+      turn: u.turns,
+      adds: allies(b, u).length,
+      allies: allies(b, u).length,
+      foes: foes(b, u).length,
+      // Living swarm on its side, itself included (the overrun, §14.3), and fallen kin a raise could lift.
+      swarm: standing(b, allegiance(u)).filter((x) => x.role === "swarm").length,
+      fallen: fallen(b, u).length,
+    }[m[1] as "turn"];
     return OPS[m[2]!]!(n, Number(m[3]));
   }
   m = /^(?:(self|ally|foe|enemy)\.)?(hp|sanity|mp|tp)(<=|>=|<|>)([\d.]+)$/.exec(c);
@@ -78,6 +87,14 @@ export function choose(rng: Rng, u: Combatant, candidates: Combatant[], rule: st
       return candidates.find((x) => !!x.charge);
     case "ally_down":
       return candidates.find((x) => x.down);
+    case "lowest_durability":
+      // A bruiser goes for the weakest location it can reach (§14.3).
+      return by((x) => Math.min(1, ...Object.entries(x.dur ?? {}).map(([k, v]) => v / (x.maxDur?.[k as Location] || 1))));
+    case "densest_row":
+    case "densest_cluster":
+      // The one with the most of its side around it (rows for densest_row, the 3×3 for a cluster).
+      return by((x) => -candidates.filter((o) => (rule === "densest_row" ? o.row === x.row : Math.abs(o.row - x.row) <= 1 && Math.abs(o.col - x.col) <= 1)).length);
+    case "empty_cell":
     case "back_random": {
       const back = Math.max(...candidates.map((x) => x.col));
       return rng.pick(candidates.filter((x) => x.col === back));
@@ -98,6 +115,7 @@ const defaultTarget = (u: Combatant, ab: AbilityDef) => (ab.side === "ally" ? "a
 export function aim(b: Battle, rng: Rng, u: Combatant, ab: AbilityDef, rule = defaultTarget(u, ab)): Action | undefined {
   if (cannotUse(u, ab)) return undefined;
   if (ab.summon && !hasRoom(b, u, ab.summon)) return undefined;
+  if (ab.raise) return fallen(b, u).length ? { do: "ability", ability: ab.id, target: cellOf(u) } : undefined;
   // Bots take a Form when they have none and never Revert on their own.
   if ((ab.form && (u.form || !canShift(b, u, ab.form))) || ab.revert) return undefined;
   if (ab.shape === "self" || ab.side === "self") return { do: "ability", ability: ab.id, target: cellOf(u) };

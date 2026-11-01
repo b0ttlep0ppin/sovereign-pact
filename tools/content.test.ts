@@ -9,7 +9,7 @@ import { join, relative, sep } from "node:path";
 import { fileURLToPath } from "node:url";
 import { Ajv, type ValidateFunction } from "ajv";
 import { describe, expect, it } from "vitest";
-import { ABILITY_SETS, ENEMIES, JOBS } from "../src/shared/games/sovereign-pact/content.ts";
+import { ABILITY_SETS, ENEMIES, JOBS, POOL_BY_ID, rosterOf, TEMPLATES, type TemplateRole } from "../src/shared/games/sovereign-pact/content.ts";
 import { ENEMY_INDEX, renderEnemyIndex } from "./gen-content.ts";
 
 const root = fileURLToPath(new URL("..", import.meta.url));
@@ -90,5 +90,27 @@ describe("content", () => {
     const files = contentFiles.filter((f) => f.startsWith("abilities/")).map((f) => f.split("/").at(-1)!.replace(/\.json$/, ""));
     expect(ABILITY_SETS.map((a) => a.job).sort()).toEqual(files.sort());
     for (const set of ABILITY_SETS) expect(JOBS.map((j) => j.id), set.job).toContain(set.job);
+  });
+
+  // HANDOFF §6's roster lints, switched on for each pool as its roster is completed (Milestone 3).
+  const COMPLETE = ["barrows"];
+  const BACK_LINE = (e: (typeof ENEMIES)[number]) => ["lurker", "artillery", "horror"].includes(e.role) || e.tags.includes("reach") || e.tags.includes("flyer");
+
+  it.each(COMPLETE)("fills every template at every level of %s from its own roster", (id) => {
+    const pool = POOL_BY_ID.get(id)!;
+    for (let level = pool.levels[0]; level <= pool.levels[1]; level++) {
+      for (const t of TEMPLATES.filter((x) => x.levels[0] <= level && level <= x.levels[1])) {
+        for (const role of Object.keys({ ...t.four, ...t.eight }) as TemplateRole[]) {
+          expect(rosterOf(id, role, level).length, `${id} L${level} ${t.id}: no ${role}`).toBeGreaterThan(0);
+        }
+      }
+    }
+  });
+
+  it.each(COMPLETE)("keeps a third of %s's roster a back-line threat, 15–25 enemies", (id) => {
+    const roster = ENEMIES.filter((e) => e.pool === id && e.role !== "boss");
+    expect(roster.length).toBeGreaterThanOrEqual(15);
+    expect(roster.length).toBeLessThanOrEqual(25);
+    expect(roster.filter(BACK_LINE).length * 3).toBeGreaterThanOrEqual(roster.length);
   });
 });

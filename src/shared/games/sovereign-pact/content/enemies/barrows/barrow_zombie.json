@@ -1,0 +1,22 @@
+{
+  "id": "barrow_zombie",
+  "name": "Zombie",
+  "pool": "barrows",
+  "tags": ["undead", "humanoid"],
+  "role": "fodder",
+  "size": [1, 1],
+  "levels": [2, 7],
+  "stats": {"speed": 8},
+  "affinity": {"holy": -50, "fire": -50, "dark": 50},
+  "immune": ["poison", "fear", "sleep"],
+  "abilities": [
+    {"id": "rotten_bite", "shape": "single", "side": "player", "power": 1.0, "statuses": [{"id": "disease", "chance": 15, "ticks": 0}]}
+  ],
+  "gambits": [
+    {"do": "rotten_bite", "target": "column_weighted"}
+  ],
+  "bestiary": {
+    "lore": "It walks toward the warmest thing it can smell, which is you.",
+    "weakness": "Fire and Holy. Slow: it is always the last to act."
+  }
+}

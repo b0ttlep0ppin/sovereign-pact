@@ -1,0 +1,27 @@
+{
+  "id": "barrow_fallen_kingdom_knight",
+  "name": "Fallen Kingdom Knight",
+  "pool": "barrows",
+  "tags": ["undead", "humanoid", "armored"],
+  "role": "elite",
+  "size": [1, 1],
+  "levels": [5, 8],
+  "stats": {"speed": 11},
+  "affinity": {"holy": -50, "dark": 50},
+  "immune": ["poison", "fear", "sleep", "charm"],
+  "weak": {"location": "head", "mult": 1.25},
+  "abilities": [
+    {"id": "oath_strike", "shape": "single", "side": "player", "power": 1.4, "locationBias": "body"},
+    {"id": "royal_sweep", "shape": "row", "side": "player", "power": 1.1, "charge": 80, "telegraph": true, "cooldown": 3}
+  ],
+  "gambits": [
+    {"if": "foe.charging", "do": "oath_strike", "target": "charging"},
+    {"if": "turn%3==2", "do": "royal_sweep", "target": "densest_row"},
+    {"if": "enemy.marked", "do": "oath_strike", "target": "marked"},
+    {"do": "oath_strike", "target": "lowest_durability"}
+  ],
+  "bestiary": {
+    "lore": "Sworn to the Cursed King. The oath outlived the man and the kingdom.",
+    "weakness": "Holy. Its sweep names a row."
+  }
+}

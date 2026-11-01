@@ -1,0 +1,26 @@
+{
+  "id": "barrow_dragon_zombie",
+  "name": "Dragon Zombie",
+  "pool": "barrows",
+  "tags": ["undead", "dragon"],
+  "role": "colossus",
+  "size": [3, 3],
+  "levels": [3, 8],
+  "stats": {"speed": 7},
+  "affinity": {"holy": -75, "fire": -50, "dark": 75},
+  "immune": ["poison", "fear", "sleep", "charm", "stun"],
+  "abilities": [
+    {"id": "rot_breath", "shape": "band:3", "side": "player", "power": 1.1, "kind": "magic", "element": "dark", "charge": 120, "telegraph": true, "cooldown": 3, "statuses": [{"id": "disease", "chance": 40, "ticks": 0}]},
+    {"id": "tail_sweep", "shape": "column:F", "side": "player", "power": 1.0, "cooldown": 1},
+    {"id": "bone_claw", "shape": "single", "side": "player", "power": 1.2}
+  ],
+  "gambits": [
+    {"if": "turn%3==1", "do": "rot_breath"},
+    {"if": "turn%2==0", "do": "tail_sweep"},
+    {"do": "bone_claw", "target": "column_weighted"}
+  ],
+  "bestiary": {
+    "lore": "A dragon buried with its rider. Neither stayed down.",
+    "weakness": "Holy and fire. The breath gives warning; the tail sweeps the Front."
+  }
+}

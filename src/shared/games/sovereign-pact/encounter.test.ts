@@ -61,9 +61,10 @@ describe("filling and placing a group", () => {
 
   it("stands another role in where the pool has none at the level", () => {
     expect(rosterFor("barrows", "fodder", 3).every((e) => e.role === "fodder")).toBe(true);
-    const caster = rosterFor("barrows", "caster", 3);
-    expect(caster.length).toBeGreaterThan(0);
-    expect(caster.every((e) => e.role !== "caster")).toBe(true);
+    // The Barrows' only colossus wakes at L3; at L2 an elite stands in.
+    const colossus = rosterFor("barrows", "colossus", 2);
+    expect(colossus.length).toBeGreaterThan(0);
+    expect(colossus.every((e) => e.role === "elite")).toBe(true);
   });
 
   it("puts fodder and bruisers on E1 and artillery on E3, centered on the middle rows, never overlapping", () => {

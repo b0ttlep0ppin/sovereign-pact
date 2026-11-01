@@ -27,11 +27,12 @@ export function singleTargets(b: Battle, u: Combatant, ab: AbilityDef): Combatan
   if (ab.side === "self") return [u];
   if (ab.side === "ally") return b.units.filter((t) => !t.dead && t.side === side && (ab.kind !== "heal" || !t.down));
   const reach = reachOf(u, ab);
-  if (reach === "ranged" || side === u.side) return standing(b, side).filter((t) => !hasStatus(t, "hidden"));
+  if (reach === "ranged" || ab.leap || side === u.side) return standing(b, side).filter((t) => !hasStatus(t, "hidden"));
+  // A lurker that leapt in stands among the Scions: every Scion's melee reaches it (§14.3).
+  const exposed = standing(b, side).filter((t) => hasStatus(t, "exposed"));
   if (u.side === "party") {
-    if (u.col === 2 && reach !== "reach") return [];
-    const found = meleeTargets(b, u, reach);
-    return u.col === 1 && reach === "melee" ? found.filter((t) => t.col <= 1) : found;
+    const found = u.col === 2 && reach !== "reach" ? [] : meleeTargets(b, u, reach);
+    return [...new Set([...(u.col === 1 && reach === "melee" ? found.filter((t) => t.col <= 1) : found), ...exposed])];
   }
   return meleeTargets(b, u, reach);
 }
