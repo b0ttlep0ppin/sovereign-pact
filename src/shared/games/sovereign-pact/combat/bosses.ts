@@ -51,6 +51,7 @@ export function bossBattle(seed: number, party: Combatant[], id: string, level: 
   if (def.parts?.length) boss.mods.noMove = 1;
   for (const u of party) u.ct = B.ct;
   const b = newBattle(seed, [...party, boss, ...partsOf(boss, def)]);
+  for (const s of def.start ?? []) addStatus(b, boss, s.id, s.ticks);
   for (const adds of def.adds ?? []) for (const u of spawnAdds(b, boss, adds)) u.ct = B.ct;
   b.events.push({ t: "say", unit: boss.id, line: "open" });
   return b;
@@ -95,6 +96,7 @@ function enterPhase(b: Battle, u: Combatant, def: BossDef, i: number): void {
       partMods(u, part, -1);
       u.lost = (u.lost ?? []).filter((a) => !part.disables?.includes(a));
     }
+  for (const id of p.clear ?? []) removeStatus(b, u, id);
   for (const s of p.statuses ?? []) addStatus(b, u, s.id, s.ticks);
   if (p.weak) u.weak = p.weak;
   if (p.affinity) u.affinity = { ...p.affinity };

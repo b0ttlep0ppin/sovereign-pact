@@ -4,8 +4,11 @@ import { COLS, ROWS, type Battle, type Cell, type Combatant, type Side } from ".
 
 export const other = (side: Side): Side => (side === "party" ? "enemy" : "party");
 
-/** Out of a foe's sight: Hidden (single targets) or Submerged (anything). */
-export const unseen = (t: Combatant): boolean => hasStatus(t, "hidden") || hasStatus(t, "submerged");
+/** Beyond every blow, area or not: Submerged (Scylla) or Guarded by its Parts (Orochi's body). */
+export const untouchable = (t: Combatant): boolean => hasStatus(t, "submerged") || hasStatus(t, "guarded");
+
+/** Out of a foe's sight: Hidden (single targets) or untouchable (anything). */
+export const unseen = (t: Combatant): boolean => hasStatus(t, "hidden") || untouchable(t);
 
 /** Every cell a combatant stands on. */
 export function cellsOf(u: Combatant): Cell[] {

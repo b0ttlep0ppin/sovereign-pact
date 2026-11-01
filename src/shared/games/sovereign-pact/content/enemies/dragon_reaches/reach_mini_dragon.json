@@ -1,0 +1,24 @@
+{
+  "id": "reach_mini_dragon",
+  "name": "Mini Dragon",
+  "pool": "dragon_reaches",
+  "tags": ["dragon", "flyer"],
+  "role": "artillery",
+  "size": [1, 1],
+  "levels": [5, 9],
+  "variants": ["drowned", "storm"],
+  "stats": {"hp": 0.8, "speed": 12},
+  "affinity": {"fire": 50, "water": -50},
+  "abilities": [
+    {"id": "breath", "shape": "column:B", "side": "player", "power": 0.9, "kind": "magic", "charge": 60, "telegraph": true, "cooldown": 2, "element": "fire"},
+    {"id": "spark", "shape": "single", "side": "player", "power": 0.9, "kind": "magic", "element": "fire", "reach": "ranged"}
+  ],
+  "gambits": [
+    {"if": "turn%2==1", "do": "breath"},
+    {"do": "spark", "target": "back_random"}
+  ],
+  "bestiary": {
+    "lore": "Small, and very sure it is not.",
+    "weakness": "Water. Its breath sweeps the Back."
+  }
+}

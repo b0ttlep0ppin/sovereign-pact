@@ -1,0 +1,23 @@
+{
+  "id": "reach_cockatrice",
+  "name": "Cockatrice",
+  "pool": "dragon_reaches",
+  "tags": ["beast"],
+  "role": "lurker",
+  "size": [1, 1],
+  "levels": [5, 9],
+  "stats": {"speed": 13},
+  "immune": ["stop"],
+  "abilities": [
+    {"id": "petrifying_spit", "shape": "lob", "side": "player", "power": 0.4, "reach": "ranged", "statuses": [{"id": "stop", "chance": 25, "ticks": 200}]},
+    {"id": "beak", "shape": "single", "side": "player", "power": 1.1, "leap": true}
+  ],
+  "gambits": [
+    {"if": "turn%3==1", "do": "petrifying_spit", "target": "lob"},
+    {"do": "beak", "target": "empty_cell"}
+  ],
+  "bestiary": {
+    "lore": "Half rooster, half serpent. What it spits at you sets like stone.",
+    "weakness": "Anything. Its spit turns a Scion to stone for a while."
+  }
+}

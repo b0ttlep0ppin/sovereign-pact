@@ -1,0 +1,26 @@
+{
+  "id": "reach_dragon_warrior",
+  "name": "Dragon Warrior",
+  "pool": "dragon_reaches",
+  "tags": ["dragonkin", "humanoid", "armored"],
+  "role": "elite",
+  "size": [1, 1],
+  "levels": [5, 10],
+  "stats": {"speed": 11},
+  "affinity": {"fire": 50, "water": -25},
+  "immune": ["fear"],
+  "abilities": [
+    {"id": "wyrm_cleave", "shape": "single", "side": "player", "power": 1.5, "crit": 15},
+    {"id": "war_breath", "shape": "row", "side": "player", "power": 1.0, "kind": "magic", "cooldown": 2, "element": "fire"},
+    {"id": "scale_up", "shape": "self", "side": "self", "power": 0, "kind": "support", "statuses": [{"id": "protect", "chance": 100, "ticks": 300}], "cooldown": 4}
+  ],
+  "gambits": [
+    {"if": "self.hp<0.6", "do": "scale_up"},
+    {"if": "turn%2==1", "do": "war_breath", "target": "densest_row"},
+    {"do": "wyrm_cleave", "target": "lowest_durability"}
+  ],
+  "bestiary": {
+    "lore": "Half dragon, half knight, sworn to the eldest dragon of the Reaches.",
+    "weakness": "Water."
+  }
+}

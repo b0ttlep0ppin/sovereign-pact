@@ -206,6 +206,8 @@ export interface BossPhase {
   statuses?: { id: string; ticks: number }[];
   /** A weak point it shows from this phase on (aimed hits on the location do × mult). */
   weak?: { location: Location; mult: number };
+  /** Statuses it loses on entering the phase (Orochi's body stops being Guarded). */
+  clear?: string[];
   /** Its elemental leanings from this phase on, replacing the old ones (Divine Beast Fusion's cycle). */
   affinity?: Partial<Record<Element, number>>;
   /** One living add of `from` becomes `into` where it stood (the Village Evil God's Flesh Mass). */
@@ -222,6 +224,8 @@ export interface BossDef extends EnemyDef {
   phases: BossPhase[];
   say: { open: string; death: string };
   bestiary: { lore: string; weakness: string; pattern: string };
+  /** Statuses it starts the fight with (0 ticks: until removed). */
+  start?: { id: string; ticks: number }[];
 }
 
 /** Every boss file, through the generated index. */

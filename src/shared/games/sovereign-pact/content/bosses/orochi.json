@@ -1,0 +1,60 @@
+{
+  "id": "orochi",
+  "name": "Yamata no Orochi",
+  "pool": "dragon_reaches",
+  "tags": ["dragon", "monster", "divine"],
+  "role": "boss",
+  "size": [3, 8],
+  "at": "E1",
+  "start": [{"id": "guarded", "ticks": 0}],
+  "levels": [7, 8],
+  "stats": {"speed": 9, "hp": 10},
+  "affinity": {"holy": -50, "dark": 25},
+  "immune": ["fear", "stun", "sleep", "charm"],
+  "abilities": [
+    {"id": "fire_breath", "shape": "row", "side": "player", "power": 0.9, "kind": "magic", "statuses": [{"id": "burn", "chance": 30, "ticks": 300}], "element": "fire"},
+    {"id": "water_breath", "shape": "row", "side": "player", "power": 0.9, "kind": "magic", "statuses": [{"id": "slow", "chance": 30, "ticks": 200}], "element": "water"},
+    {"id": "wind_breath", "shape": "row", "side": "player", "power": 0.9, "kind": "magic", "element": "wind"},
+    {"id": "earth_breath", "shape": "row", "side": "player", "power": 0.9, "kind": "magic", "element": "earth"},
+    {"id": "light_breath", "shape": "row", "side": "player", "power": 0.9, "kind": "magic", "element": "holy"},
+    {"id": "dark_breath", "shape": "row", "side": "player", "power": 0.9, "kind": "magic", "element": "dark"},
+    {"id": "ember_breath", "shape": "row", "side": "player", "power": 0.9, "kind": "magic", "statuses": [{"id": "burn", "chance": 30, "ticks": 300}], "element": "fire"},
+    {"id": "venom_breath", "shape": "row", "side": "player", "power": 0.9, "kind": "magic", "statuses": [{"id": "poison", "chance": 40, "ticks": 300}], "element": "dark"},
+    {"id": "tail_lash", "shape": "column:F", "side": "player", "power": 1.0},
+    {"id": "eight_fold_fury", "shape": "all", "side": "player", "power": 0.9, "charge": 100, "telegraph": true, "cooldown": 3}
+  ],
+  "gambits": [
+    {"if": "turn%4==0", "do": "water_breath", "target": "densest_row"},
+    {"if": "turn%4==1", "do": "wind_breath", "target": "densest_row"},
+    {"if": "turn%4==2", "do": "earth_breath", "target": "densest_row"},
+    {"if": "turn%4==3", "do": "fire_breath", "target": "densest_row"},
+    {"do": "light_breath", "target": "densest_row"},
+    {"do": "dark_breath", "target": "densest_row"},
+    {"do": "ember_breath", "target": "densest_row"},
+    {"do": "venom_breath", "target": "densest_row"},
+    {"do": "tail_lash"}
+  ],
+  "parts": [
+    {"id": "orochi_fire_head", "name": "Fire Head", "cells": [[0, 0]], "hp": 0.06, "disables": ["fire_breath"], "affinity": {"fire": 100, "water": -100}, "mods": {"damagePct": 10}},
+    {"id": "orochi_water_head", "name": "Water Head", "cells": [[0, 1]], "hp": 0.06, "disables": ["water_breath"], "affinity": {"water": 100, "fire": -100}, "mods": {"damagePct": 10}},
+    {"id": "orochi_wind_head", "name": "Wind Head", "cells": [[0, 2]], "hp": 0.06, "disables": ["wind_breath"], "affinity": {"wind": 100, "earth": -100}, "mods": {"damagePct": 10}},
+    {"id": "orochi_earth_head", "name": "Earth Head", "cells": [[0, 3]], "hp": 0.06, "disables": ["earth_breath"], "affinity": {"earth": 100, "wind": -100}, "mods": {"damagePct": 10}},
+    {"id": "orochi_light_head", "name": "Light Head", "cells": [[0, 4]], "hp": 0.06, "disables": ["light_breath"], "affinity": {"holy": 100, "dark": -100}, "mods": {"damagePct": 10}},
+    {"id": "orochi_dark_head", "name": "Dark Head", "cells": [[0, 5]], "hp": 0.06, "disables": ["dark_breath"], "affinity": {"dark": 100, "holy": -100}, "mods": {"damagePct": 10}},
+    {"id": "orochi_ember_head", "name": "Ember Head", "cells": [[0, 6]], "hp": 0.06, "disables": ["ember_breath"], "affinity": {"fire": 100, "water": -100}, "mods": {"damagePct": 10}},
+    {"id": "orochi_venom_head", "name": "Venom Head", "cells": [[0, 7]], "hp": 0.06, "disables": ["venom_breath"], "affinity": {"dark": 100, "holy": -100}, "mods": {"damagePct": 10}}
+  ],
+  "phases": [
+    {"at": "parts<=4", "name": "The Body Rises", "speed": 11, "clear": ["guarded"], "say": "YOU HAVE TAKEN HALF MY HEADS. YOU WILL NOT TAKE THE REST.", "gambits": [{"if": "turn%3==0", "do": "eight_fold_fury"}, {"if": "turn%4==0", "do": "water_breath", "target": "densest_row"}, {"if": "turn%4==1", "do": "wind_breath", "target": "densest_row"}, {"if": "turn%4==2", "do": "earth_breath", "target": "densest_row"}, {"if": "turn%4==3", "do": "fire_breath", "target": "densest_row"}, {"do": "light_breath", "target": "densest_row"}, {"do": "dark_breath", "target": "densest_row"}, {"do": "ember_breath", "target": "densest_row"}, {"do": "venom_breath", "target": "densest_row"}, {"do": "tail_lash"}]},
+    {"at": "parts<=1", "name": "Last Head", "speed": 13, "say": "ONE HEAD IS ENOUGH TO EAT YOU.", "gambits": [{"if": "turn%2==0", "do": "eight_fold_fury"}, {"if": "turn%4==0", "do": "water_breath", "target": "densest_row"}, {"if": "turn%4==1", "do": "wind_breath", "target": "densest_row"}, {"if": "turn%4==2", "do": "earth_breath", "target": "densest_row"}, {"if": "turn%4==3", "do": "fire_breath", "target": "densest_row"}, {"do": "light_breath", "target": "densest_row"}, {"do": "dark_breath", "target": "densest_row"}, {"do": "ember_breath", "target": "densest_row"}, {"do": "venom_breath", "target": "densest_row"}, {"do": "tail_lash"}]}
+  ],
+  "say": {
+    "open": "EIGHT VALLEYS. EIGHT HILLS. EIGHT HEADS. AND YOU ARE ONLY FOUR.",
+    "death": "the valleys... will be... quiet..."
+  },
+  "bestiary": {
+    "lore": "The eight-headed serpent of the high valleys, as long as eight hills, worshipped by the dragon cults as a god.",
+    "weakness": "Each head is a Part that breathes its own element and is weak to the opposite one. The body cannot be touched until four heads are down; then Holy.",
+    "pattern": "Its heads breathe down rows in turn; each head that falls makes the rest angrier (+10% damage each). With four heads down the body rises: it can be struck, it is faster, and every third turn all eight-fold fury falls on everyone. With one head left it is fury every other turn."
+  }
+}

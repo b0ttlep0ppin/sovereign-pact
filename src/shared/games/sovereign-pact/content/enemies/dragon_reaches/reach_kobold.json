@@ -1,0 +1,23 @@
+{
+  "id": "reach_kobold",
+  "name": "Kobold",
+  "pool": "dragon_reaches",
+  "tags": ["humanoid", "dragonkin"],
+  "role": "fodder",
+  "size": [1, 1],
+  "levels": [5, 9],
+  "variants": ["ashen", "stone"],
+  "stats": {"speed": 11},
+  "abilities": [
+    {"id": "spear_jab", "shape": "single", "side": "player", "power": 1.0},
+    {"id": "sling", "shape": "single", "side": "player", "power": 0.8, "reach": "ranged"}
+  ],
+  "gambits": [
+    {"if": "turn%2==0", "do": "sling", "target": "back_random"},
+    {"do": "spear_jab", "target": "column_weighted"}
+  ],
+  "bestiary": {
+    "lore": "Small dragon-blooded folk who serve whatever dragon is nearest.",
+    "weakness": "Anything. They fight harder near their dragon."
+  }
+}

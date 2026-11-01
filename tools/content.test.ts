@@ -138,9 +138,9 @@ describe("content", () => {
   });
 
   // HANDOFF §6's roster lints, switched on for each pool as its roster is completed (Milestone 3).
-  const COMPLETE = ["barrows", "beast_lands", "hollow_wood", "drowned_marches", "deep_cold", "pit", "forge_ruins", "faceless_city", "apostate_court", "shrine_of_six"];
+  const COMPLETE = ["barrows", "beast_lands", "hollow_wood", "drowned_marches", "deep_cold", "pit", "forge_ruins", "faceless_city", "apostate_court", "shrine_of_six", "dragon_reaches"];
   // Roles §14.5 gives a pool none of: its Encounters fill them from the stand-in chain (tuning.encounters.stand).
-  const SPARSE: Record<string, readonly TemplateRole[]> = { deep_cold: ["swarm", "support"], apostate_court: ["swarm"], shrine_of_six: ["swarm"] };
+  const SPARSE: Record<string, readonly TemplateRole[]> = { deep_cold: ["swarm", "support"], apostate_court: ["swarm"], shrine_of_six: ["swarm"], dragon_reaches: ["support", "horror"] };
   const BACK_LINE = (e: (typeof ENEMIES)[number]) => ["lurker", "artillery", "horror"].includes(e.role) || e.tags.includes("reach") || e.tags.includes("flyer");
 
   it.each(COMPLETE)("fills every template at every level of %s from its own roster", (id) => {

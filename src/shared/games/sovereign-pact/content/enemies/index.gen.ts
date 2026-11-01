@@ -90,6 +90,22 @@ import cold_winter_fairy from "./deep_cold/cold_winter_fairy.json" with { type: 
 import cold_woolly_mammoth from "./deep_cold/cold_woolly_mammoth.json" with { type: "json" };
 import cold_yeti from "./deep_cold/cold_yeti.json" with { type: "json" };
 import cold_yuki_onna from "./deep_cold/cold_yuki_onna.json" with { type: "json" };
+import reach_basilisk from "./dragon_reaches/reach_basilisk.json" with { type: "json" };
+import reach_catoblepas from "./dragon_reaches/reach_catoblepas.json" with { type: "json" };
+import reach_cockatrice from "./dragon_reaches/reach_cockatrice.json" with { type: "json" };
+import reach_cyclops from "./dragon_reaches/reach_cyclops.json" with { type: "json" };
+import reach_dark_elf from "./dragon_reaches/reach_dark_elf.json" with { type: "json" };
+import reach_dark_wyrm from "./dragon_reaches/reach_dark_wyrm.json" with { type: "json" };
+import reach_dragon from "./dragon_reaches/reach_dragon.json" with { type: "json" };
+import reach_dragon_slime from "./dragon_reaches/reach_dragon_slime.json" with { type: "json" };
+import reach_dragon_spear_soldier from "./dragon_reaches/reach_dragon_spear_soldier.json" with { type: "json" };
+import reach_dragon_warrior from "./dragon_reaches/reach_dragon_warrior.json" with { type: "json" };
+import reach_drake from "./dragon_reaches/reach_drake.json" with { type: "json" };
+import reach_kobold from "./dragon_reaches/reach_kobold.json" with { type: "json" };
+import reach_lizardman from "./dragon_reaches/reach_lizardman.json" with { type: "json" };
+import reach_lizardman_warrior from "./dragon_reaches/reach_lizardman_warrior.json" with { type: "json" };
+import reach_mini_dragon from "./dragon_reaches/reach_mini_dragon.json" with { type: "json" };
+import reach_wyvern from "./dragon_reaches/reach_wyvern.json" with { type: "json" };
 import marsh_aqua_cancer from "./drowned_marches/marsh_aqua_cancer.json" with { type: "json" };
 import marsh_clione from "./drowned_marches/marsh_clione.json" with { type: "json" };
 import marsh_crocodile from "./drowned_marches/marsh_crocodile.json" with { type: "json" };
@@ -333,6 +349,22 @@ export default [
   cold_woolly_mammoth,
   cold_yeti,
   cold_yuki_onna,
+  reach_basilisk,
+  reach_catoblepas,
+  reach_cockatrice,
+  reach_cyclops,
+  reach_dark_elf,
+  reach_dark_wyrm,
+  reach_dragon,
+  reach_dragon_slime,
+  reach_dragon_spear_soldier,
+  reach_dragon_warrior,
+  reach_drake,
+  reach_kobold,
+  reach_lizardman,
+  reach_lizardman_warrior,
+  reach_mini_dragon,
+  reach_wyvern,
   marsh_aqua_cancer,
   marsh_clione,
   marsh_crocodile,

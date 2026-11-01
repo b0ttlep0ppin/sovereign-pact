@@ -1,0 +1,23 @@
+{
+  "id": "reach_lizardman_warrior",
+  "name": "Lizardman Warrior",
+  "pool": "dragon_reaches",
+  "tags": ["humanoid", "dragonkin", "armored"],
+  "role": "bruiser",
+  "size": [1, 1],
+  "levels": [5, 10],
+  "stats": {"speed": 9},
+  "affinity": {"water": -25},
+  "abilities": [
+    {"id": "great_axe", "shape": "single", "side": "player", "power": 1.4, "locationBias": "body"},
+    {"id": "war_hiss", "shape": "self", "side": "self", "power": 0, "kind": "support", "statuses": [{"id": "might_up", "chance": 100, "ticks": 300, "value": 20}], "cooldown": 4}
+  ],
+  "gambits": [
+    {"if": "turn==1", "do": "war_hiss"},
+    {"do": "great_axe", "target": "lowest_durability"}
+  ],
+  "bestiary": {
+    "lore": "The lizard-folk's champion, scarred from a dragon's own claws.",
+    "weakness": "Water and cold."
+  }
+}

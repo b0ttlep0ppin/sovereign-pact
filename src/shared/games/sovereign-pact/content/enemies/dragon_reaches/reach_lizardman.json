@@ -1,0 +1,24 @@
+{
+  "id": "reach_lizardman",
+  "name": "Lizardman",
+  "pool": "dragon_reaches",
+  "tags": ["humanoid", "dragonkin"],
+  "role": "fodder",
+  "size": [1, 1],
+  "levels": [5, 10],
+  "variants": ["drowned", "stone"],
+  "stats": {"speed": 10},
+  "affinity": {"water": -25},
+  "abilities": [
+    {"id": "scimitar", "shape": "single", "side": "player", "power": 1.1},
+    {"id": "tail_trip", "shape": "single", "side": "player", "power": 0.6, "locationBias": "legs", "statuses": [{"id": "knockdown", "chance": 25, "ticks": 0}]}
+  ],
+  "gambits": [
+    {"if": "turn%3==1", "do": "tail_trip", "target": "nearest"},
+    {"do": "scimitar", "target": "column_weighted"}
+  ],
+  "bestiary": {
+    "lore": "A crag-dweller in scale armor grown, not made.",
+    "weakness": "Water and cold."
+  }
+}
