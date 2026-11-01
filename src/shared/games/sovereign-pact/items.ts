@@ -1,7 +1,8 @@
 // Items (§13): making them, what a worn set adds up to in battle, weight and carry, who may wear what,
-// and the Crude starting kit a new Scion gets. Bases are content (content/items.json); numbers are in
-// tuning.items. Properties (§13.4) come next and add to the same totals.
-import { ITEM_BASE_BY_ID, type ArmorClass, type ItemBase } from "./content.ts";
+// the Crude starting kit a new Scion gets, and rolled properties (§13.4). Bases and properties are
+// content (content/items.json, content/properties.json); numbers are in tuning.items.
+import type { Rng } from "../../rng.ts";
+import { ITEM_BASE_BY_ID, PROPERTIES, PROPERTY_BY_ID, type ArmorClass, type ItemBase, type PropertyDef, type PropertyOn } from "./content.ts";
 import { jobStat } from "./formulas.ts";
 import { jobOf, mayWear, mayWield } from "./progression.ts";
 import { type GearSlot, type Item, type ItemTier, type Location, type Person, type SovState } from "./state.ts";
@@ -62,15 +63,22 @@ export interface GearTotals {
   /** Spell damage and max MP bonuses from a staff or focus, in %. */
   spellPct: number;
   mpPct: number;
+  /** Battle mods from properties, summed (content/properties.json `mods` × value). */
+  mods: Record<string, number>;
 }
 
 /** What a Scion's worn gear adds up to (§13.1–13.3), carry overload included. */
 export function gearTotals(s: Pick<SovState, "items">, p: Person): GearTotals {
-  const t: GearTotals = { weapon: UNARMED, defense: 0, durabilityPct: {}, evasion: 0, guard: 0, weight: 0, spellPct: 0, mpPct: 0 };
+  const t: GearTotals = { weapon: UNARMED, defense: 0, durabilityPct: {}, evasion: 0, guard: 0, weight: 0, spellPct: 0, mpPct: 0, mods: {} };
+  let element: string | undefined;
   for (const [slot, id] of Object.entries(p.gear) as [GearSlot, number][]) {
     const item = itemById(s, id);
     if (!item) continue;
     const b = baseOf(item);
+    for (const [key, v] of propMods(item)) {
+      if (key.startsWith("element.")) element = key.slice(8);
+      else t.mods[key] = (t.mods[key] ?? 0) + v;
+    }
     if (slot === "main" && b.power !== undefined) t.weapon = weaponOf(item);
     if (b.type === "shield") t.guard += b.guard ?? 0;
     if (b.armor && b.slot !== "main" && b.slot !== "off" && b.slot !== "acc") {
@@ -83,6 +91,13 @@ export function gearTotals(s: Pick<SovState, "items">, p: Person): GearTotals {
     else if (b.power !== undefined) t.weight += T.weaponWeight[(b.hands ?? 1) - 1]!;
     t.spellPct += b.spellPct ?? 0;
     t.mpPct += b.mpPct ?? 0;
+  }
+  if (element && t.weapon !== UNARMED) t.weapon = { ...t.weapon, element: element as Weapon["element"] };
+  // Quickening counts once per Scion (§13.4); Guarding needs a shield.
+  if (t.mods.speed) t.mods.speed = Math.min(T.maxSpeedFromGear, t.mods.speed);
+  if (t.mods.shieldGuard) {
+    if (t.guard > 0) t.guard += t.mods.shieldGuard;
+    delete t.mods.shieldGuard;
   }
   t.defense = Math.round(t.defense);
   t.evasion -= Math.max(0, t.weight - carry(p));
@@ -138,3 +153,50 @@ export function equipStarter(s: SovState, p: Person): void {
   }
 }
 
+
+/** What a property may roll on for this item: its kind, and for armor its location. */
+export function propertyKinds(item: Pick<Item, "base">): PropertyOn[] {
+  const b = baseOf(item);
+  if (b.type === "shield") return ["shield"];
+  if (b.slot === "acc") return ["accessory"];
+  if (b.armor && b.slot !== "main" && b.slot !== "off") return ["armor", b.slot as Location];
+  return ["weapon"];
+}
+
+/** An item's properties as battle mods, `@` resolved to the piece's location. */
+export function propMods(item: Item): [string, number][] {
+  const loc = baseOf(item).slot;
+  return (item.props ?? []).flatMap(([id, v]) =>
+    Object.entries(PROPERTY_BY_ID.get(id)?.mods ?? {}).map(([k, per]): [string, number] => [k.replace("@", loc), per * v]),
+  );
+}
+
+/** Properties per tier: Fine 1, Masterwork 2, Relic 2–3 (§13.4). */
+const propCount = (rng: Rng, tier: ItemTier) => (tier < 3 ? 0 : tier === 3 ? 1 : tier === 4 ? 2 : 2 + rng.int(2));
+
+export interface RollOpts {
+  /** % chance of one extra negative property (found gear, §13.4). */
+  negativeChance?: number;
+  /** Adds a curse (§13.5) and marks the item cursed. */
+  cursed?: boolean;
+}
+
+/** Rolls `item`'s properties for its tier: weighted, no two of a group, values in their range. */
+export function rollProps(rng: Rng, item: Item, opts: RollOpts = {}): Item {
+  const kinds = propertyKinds(item);
+  const fits = (x: PropertyDef) => x.on.some((k) => kinds.includes(k)) && (x.minTier ?? 0) <= item.tier;
+  const props: [string, number][] = [];
+  const draw = (pool: readonly PropertyDef[]) => {
+    const open = pool.filter((x) => fits(x) && !props.some(([id]) => id === x.id || (x.group && PROPERTY_BY_ID.get(id)?.group === x.group)));
+    let roll = rng.int(open.reduce((n, x) => n + (x.weight ?? 10), 0));
+    const pick = open.find((x) => (roll -= x.weight ?? 10) < 0);
+    if (pick) props.push([pick.id, pick.roll ? pick.roll[0] + rng.int(pick.roll[1] - pick.roll[0] + 1) : 1]);
+  };
+  const good = PROPERTIES.filter((x) => !x.negative && !x.curse);
+  for (let n = propCount(rng, item.tier); n > 0; n--) draw(good);
+  if (opts.negativeChance && rng.int(100) < opts.negativeChance) draw(PROPERTIES.filter((x) => x.negative));
+  if (opts.cursed) draw(PROPERTIES.filter((x) => x.curse));
+  item.props = props.length ? props : undefined;
+  if (opts.cursed) item.cursed = true;
+  return item;
+}

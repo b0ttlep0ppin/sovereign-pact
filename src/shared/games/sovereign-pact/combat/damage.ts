@@ -1,11 +1,11 @@
 // The damage pipeline (§10.6): hit roll, location, crit, base damage, multipliers, apply, on-hit,
 // injury check. Healing runs the same path without a hit roll. Every number is in tuning.ts.
 import type { Rng } from "../../../rng.ts";
-import { LOCATIONS, type Element, type Location } from "../state.ts";
+import { ELEMENTS, LOCATIONS, type Element, type Location } from "../state.ts";
 import { TUNING } from "../tuning.ts";
 import { hasStatus } from "./grid.ts";
 import { down, injure, kill, steel, steelSanity } from "./injury.ts";
-import { removeStatus, statusValue, tryStatus } from "./status.ts";
+import { meta, removeStatus, statusValue, tryStatus } from "./status.ts";
 import type { AbilityDef, Battle, Combatant } from "./types.ts";
 
 const C = TUNING.combat;
@@ -50,7 +50,7 @@ export function rollLocation(rng: Rng, ab: AbilityDef): Location {
 /** Column modifier for the attacker's position (§10.3), in %. */
 export function columnMod(u: Combatant, ab: AbilityDef): number {
   if (u.side !== "party" || kindOf(ab) === "heal") return 0;
-  if (isMelee(u, ab) && reachOf(u, ab) === "melee") return u.col === 0 ? C.frontMelee : u.col === 1 ? C.middleMelee : 0;
+  if (isMelee(u, ab) && reachOf(u, ab) === "melee") return u.col === 0 ? C.frontMelee : u.col === 1 ? (u.mods.reaching ? 0 : C.middleMelee) : 0;
   if (u.weapon.kind === "bow" && kindOf(ab) === "physical" && u.col === 0) return C.bowFromFront;
   return 0;
 }
@@ -65,8 +65,33 @@ export function baseDamage(u: Combatant, ab: AbilityDef): number {
   const kind = kindOf(ab);
   if (kind === "magic") return power * (1 + u.acuity / C.acuityDivisor) * (1 + (u.mods.spellPct ?? 0) / 100);
   if (kind === "heal") return power * (1 + u.sagacity / C.sagacityDivisor);
-  return power * (1 + u.might / C.mightDivisor);
+  // Spellbound weapons swing with Acuity when it is higher (§13.4).
+  const might = u.mods.spellbound && ab.base === undefined ? Math.max(u.might, u.acuity) : u.might;
+  return power * (1 + might / C.mightDivisor);
 }
+
+/** A plain weapon hit (the attack, a counter, weapon skills): weapon properties apply (§13.4). */
+const isWeaponHit = (ab: AbilityDef) => kindOf(ab) === "physical" && ab.base === undefined;
+
+/** The location a Headsman's, Hamstringer, Mauler or Breaker weapon favors. */
+const biasOf = (u: Combatant): Location | undefined => LOCATIONS.find((l) => u.mods[`bias.${l}`]);
+
+/** The element of an edge property, if the weapon has one. */
+const edgeOf = (u: Combatant): Element | undefined => ELEMENTS.find((e) => u.mods[`edge.${e}`]);
+
+/** Weapon properties that multiply damage against this target (§13.4), in %. */
+function propertyBonus(b: Battle, u: Combatant, t: Combatant): number {
+  let bonus = 0;
+  for (const tag of t.tags) bonus += u.mods[`bane.${tag}`] ?? 0;
+  if (t.size[0] * t.size[1] > 1) bonus += u.mods.giantPct ?? 0;
+  if (t.hp < t.maxHp * C.props.executeBelow) bonus += u.mods.executePct ?? 0;
+  if (u.mods.oathPct && b.units.some((o) => o.id !== u.id && o.side === u.side && o.house === u.house && !o.dead && !o.down))
+    bonus += u.mods.oathPct;
+  if (u.mods.hungry && !u.flags.includes("hungry_lost")) bonus += Math.min(C.props.hungryMax, u.kills * u.mods.hungry);
+  return bonus;
+}
+
+const COUNTER: AbilityDef = { id: "counter", name: "Counter", shape: "single", side: "foe", power: 1 };
 
 export interface HitResult {
   hit: boolean;
@@ -78,22 +103,33 @@ export interface HitResult {
 /** Context from the action: whether the ability was telegraphed (an injury step against). */
 export interface StrikeOpts {
   telegraphed?: boolean;
+  /** A counter-attack, which cannot itself be countered. */
+  counter?: boolean;
 }
 
 /** One hit of `ab` from `u` on `t`, through the whole pipeline. */
 export function strike(b: Battle, rng: Rng, u: Combatant, t: Combatant, ab: AbilityDef, opts: StrikeOpts = {}): HitResult {
   if (t.dead) return { hit: false, damage: 0 };
   if (kindOf(ab) === "heal") return { hit: true, damage: -heal(b, u, t, ab) };
-  if (rng.int(100) >= hitChance(u, t, ab)) {
+  const weaponHit = isWeaponHit(ab);
+  let missed = rng.int(100) >= hitChance(u, t, ab);
+  // Lucky: one miss a battle is rolled again.
+  if (missed && weaponHit && u.mods.lucky && !u.flags.includes("lucky_used")) {
+    u.flags.push("lucky_used");
+    missed = rng.int(100) >= hitChance(u, t, ab);
+  }
+  if (missed) {
     b.events.push({ t: "miss", unit: u.id, target: t.id });
     return { hit: false, damage: 0 };
   }
   const physical = kindOf(ab) === "physical";
+  const bias = weaponHit && !ab.aim && !ab.locationBias ? biasOf(u) : undefined;
+  if (bias) ab = { ...ab, locationBias: bias };
   const loc = t.dur || ab.aim || ab.locationBias ? rollLocation(rng, ab) : undefined;
 
   // Crit: base + weapon + ability, Head +10 (§10.6 step 3). A primed crit (Sanity "next_crit") always lands.
   const primed = u.flags.indexOf("next_crit");
-  let crit = rng.int(100) < C.crit.base + u.weapon.crit + (ab.crit ?? 0) + (loc === "head" ? C.crit.headBonus : 0);
+  let crit = rng.int(100) < C.crit.base + u.weapon.crit + (ab.crit ?? 0) + (u.mods.crit ?? 0) + (loc === "head" ? C.crit.headBonus : 0);
   if (primed >= 0) {
     crit = true;
     u.flags.splice(primed, 1);
@@ -118,10 +154,23 @@ export function strike(b: Battle, rng: Rng, u: Combatant, t: Combatant, ab: Abil
   if (u.lastStand) dmg *= pct(C.lastStand.damage);
   if (physical) dmg *= pct(u.mods.physicalDamagePct ?? 0);
   dmg *= pct(t.mods.damageTakenPct ?? 0);
+  if (weaponHit) {
+    dmg *= pct(propertyBonus(b, u, t));
+    if (u.mods.charged && !u.flags.includes("charged_used")) {
+      u.flags.push("charged_used");
+      dmg *= C.props.chargedMult;
+    }
+  }
+  // Bulwark: an adjacent ally's armor takes some of a physical blow.
+  if (physical) {
+    const wall = b.units.filter((o) => o.side === t.side && o.id !== t.id && !o.dead && !o.down && Math.abs(o.col - t.col) + Math.abs(o.row - t.row) === 1);
+    const bulwark = Math.max(0, ...wall.map((o) => o.mods.bulwark ?? 0));
+    if (bulwark) dmg *= pct(-bulwark);
+  }
   const weak = !!t.weak && loc === t.weak.location && !!(ab.aim || ab.locationBias);
-  if (weak) dmg *= t.weak!.mult;
+  if (weak) dmg *= t.weak!.mult * (bias === t.weak!.location ? C.props.biasWeakMult : 1);
   if (crit) {
-    dmg *= C.crit.mult;
+    dmg *= C.crit.mult + (u.mods.critMult ?? 0) / 100;
     if (hasStatus(t, "frozen")) {
       dmg *= pct(C.frozenShatter);
       removeStatus(b, t, "frozen");
@@ -129,13 +178,46 @@ export function strike(b: Battle, rng: Rng, u: Combatant, t: Combatant, ab: Abil
   }
   if (physical) dmg -= t.defense * (1 - (u.weapon.armorPierce ?? 0) / 100);
   const immune = !!element && affinityMult(t, element) <= 0;
-  const damage = ab.power === 0 || immune ? 0 : Math.max(1, Math.round(dmg));
+  let damage = ab.power === 0 || immune ? 0 : Math.max(1, Math.round(dmg));
+  // An edge adds part of the hit again as its element, through the target's affinity (§13.4).
+  const edge = weaponHit && damage > 0 ? edgeOf(u) : undefined;
+  if (edge) damage += Math.max(0, Math.round(((damage * u.mods[`edge.${edge}`]!) / 100) * affinityMult(t, edge)));
 
   b.events.push({ t: "hit", unit: u.id, target: t.id, damage, loc, crit: crit || undefined, weak: weak || undefined, element: element ?? undefined });
   applyHit(b, rng, u, t, ab, damage, loc, opts);
   // An axe's crit bleeds, a mace's stuns (§13.2): the target's resist still applies.
   if (crit && physical && u.weapon.critStatus && !t.dead) tryStatus(b, rng, t, u.weapon.critStatus, 100, 0);
+  if (weaponHit && damage > 0) afterWeaponHit(b, rng, u, t, damage);
+  if (physical && damage > 0 && isMelee(u, ab)) afterMeleeHit(b, rng, u, t, damage, opts);
   return { hit: true, damage, loc, crit };
+}
+
+/** Draining, Mana-thirst, Siphoning and on-hit ailments (§13.4). */
+function afterWeaponHit(b: Battle, rng: Rng, u: Combatant, t: Combatant, damage: number): void {
+  if (u.mods.drainPct && !u.down) u.hp = Math.min(u.maxHp, u.hp + Math.round((damage * u.mods.drainPct) / 100));
+  if (u.mods.mpPerHit) u.mp = Math.min(u.maxMp, u.mp + u.mods.mpPerHit);
+  if (t.dead) return;
+  if (u.mods.siphon) {
+    const buff = t.statuses.find((x) => meta(x.id).kind === "buff");
+    if (buff) removeStatus(b, t, buff.id);
+  }
+  for (const [k, chance] of Object.entries(u.mods)) if (k.startsWith("onHit.") && !t.dead) tryStatus(b, rng, t, k.slice(6), chance, 0);
+}
+
+/** Thorned armor and Riposting weapons answer a melee hit (§13.4). */
+function afterMeleeHit(b: Battle, rng: Rng, u: Combatant, t: Combatant, damage: number, opts: StrikeOpts): void {
+  if (t.mods.thornsPct && !u.dead) {
+    const back = Math.round((damage * t.mods.thornsPct) / 100);
+    if (back > 0) {
+      u.hp = Math.max(u.side === "enemy" ? 0 : 1, u.hp - back);
+      b.events.push({ t: "hit", unit: t.id, target: u.id, damage: back });
+      if (u.hp <= 0) {
+        kill(b, u);
+        t.kills++;
+      }
+    }
+  }
+  if (!opts.counter && t.counter && !t.dead && !t.down && !u.dead && rng.int(100) < t.counter) strike(b, rng, t, u, COUNTER, { counter: true });
 }
 
 function applyHit(b: Battle, rng: Rng, u: Combatant, t: Combatant, ab: AbilityDef, damage: number, loc: Location | undefined, opts: StrikeOpts): void {
@@ -152,16 +234,22 @@ function applyHit(b: Battle, rng: Rng, u: Combatant, t: Combatant, ab: AbilityDe
     else t.statuses.find((s) => s.id === "shield")!.value = shield - soak;
   }
   t.hp = Math.max(0, t.hp - left);
+  // Second Wind: once a battle, a blow that would Down a Scion leaves them at 1 HP.
+  if (t.hp <= 0 && !wasDown && t.side === "party" && t.mods.secondWind && !t.flags.includes("second_wind")) {
+    t.flags.push("second_wind");
+    t.hp = 1;
+  }
   if (loc && t.dur) t.dur[loc] = Math.max(0, t.dur[loc] - left);
   if (left > 0 && hasStatus(t, "sleep")) removeStatus(b, t, "sleep");
 
   // Readiness damage (§10.4): bosses take half.
-  if (ab.readiness) t.ct = Math.max(0, t.ct - Math.round(ab.readiness * (t.boss ? C.bossReadiness : 1)));
+  const readiness = (ab.readiness ?? 0) + (isWeaponHit(ab) ? (u.mods.readiness ?? 0) : 0);
+  if (readiness) t.ct = Math.max(0, t.ct - Math.round(readiness * (t.boss ? C.bossReadiness : 1)));
 
   // On-hit: TP both ways, Sanity, statuses (§10.6 step 7).
-  gainTp(u, kindOf(ab) === "physical" ? (u.weapon.tpGain ?? 0) : 0);
+  gainTp(u, kindOf(ab) === "physical" ? (u.weapon.tpGain ?? 0) : 0, isWeaponHit(ab) ? (u.mods.tpGainPct ?? 0) : 0);
   if (!t.dead) gainTp(t);
-  const sanity = (ab.sanity ?? 0) + (ab.power > 0 ? u.sanityTouch : 0);
+  const sanity = Math.round(((ab.sanity ?? 0) + (ab.power > 0 ? u.sanityTouch : 0)) * pct(t.mods.sanityTakenPct ?? 0));
   const sanityBefore = t.sanity;
   if (sanity > 0 && t.maxSanity > 0) {
     t.sanity = Math.max(0, t.sanity - sanity);
@@ -205,9 +293,10 @@ function applyHit(b: Battle, rng: Rng, u: Combatant, t: Combatant, ab: AbilityDe
 }
 
 /** TP per event: 10 + ⌊(Acuity + Guile)/20⌋ (§7.3). */
-export function gainTp(u: Combatant, extra = 0): void {
+export function gainTp(u: Combatant, extra = 0, morePct = 0): void {
   if (u.dead || u.down) return;
-  u.tp = Math.min(C.tp.max, u.tp + C.tp.gainBase + Math.floor((u.acuity + u.guile) / C.tp.gainPer) + extra);
+  const gain = (C.tp.gainBase + Math.floor((u.acuity + u.guile) / C.tp.gainPer) + extra) * pct(morePct);
+  u.tp = Math.min(C.tp.max, u.tp + Math.round(gain));
 }
 
 /** Healing: no hit roll, Sagacity-scaled; Disease halves it; the Down are raised only by revival (§10.6, §10.8). */

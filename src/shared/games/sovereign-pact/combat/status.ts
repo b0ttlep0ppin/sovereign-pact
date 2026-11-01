@@ -68,7 +68,8 @@ export const isMental = (id: string): boolean => meta(id).kind === "mental";
 export function resistOf(u: Combatant, id: string): number {
   const kind = meta(id).kind;
   if (kind === "buff" || kind === "debuff") return 0;
-  return kind === "mental" ? u.resist.mental : u.resist.physical;
+  // Resistant: <ailment> armor adds to that one ailment (§13.4).
+  return (kind === "mental" ? u.resist.mental : u.resist.physical) + (u.mods[`resist.${id}`] ?? 0);
 }
 
 export function isImmune(u: Combatant, id: string): boolean {

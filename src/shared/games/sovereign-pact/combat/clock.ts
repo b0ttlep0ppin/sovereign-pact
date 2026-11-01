@@ -82,7 +82,7 @@ export const chargeTicks = (u: Combatant, base: number): number =>
 /** Move cost in CT for `cells` cells: 20 each, −1 per 5 Guile, at least 10 (§7.3). */
 export function moveCost(u: Combatant, cells: number): number {
   const m = C.move;
-  const per = Math.max(m.min, m.perCell - Math.floor(u.guile / m.guilePer));
+  const per = Math.max(m.min, m.perCell - Math.floor(u.guile / m.guilePer) + (u.mods.moveCostPerCell ?? 0));
   return Math.round(per * cells * (1 + (u.mods.moveCostPct ?? 0) / 100));
 }
 

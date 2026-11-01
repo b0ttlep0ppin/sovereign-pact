@@ -74,6 +74,8 @@ export const TUNING = {
     move: { perCell: 20, guilePer: 5, min: 10, maxCells: 2 },
     hitClamp: [5, 95] as const,
     crit: { base: 5, mult: 1.5, headBonus: 10 },
+    /** Item property numbers (§13.4): Executioner's below 25% HP, Hungry's cap, Charged's first hit, a biased weapon on a weak point, Multi-hit's second strike. */
+    props: { executeBelow: 0.25, hungryMax: 25, chargedMult: 2, biasWeakMult: 1.25, multiHitPower: 0.6 },
     /** Unaimed hits: Body 40 / Arms 25 / Legs 20 / Head 15 (§7.4). An enemy's locationBias takes this share. */
     locations: { body: 40, arms: 25, legs: 20, head: 15 },
     locationBias: 60,
@@ -144,6 +146,8 @@ export const TUNING = {
 
   /** §13: item scaling. Weapon power = index/100 × the enemy power block at the item level; armor defense likewise from the defense block. */
   items: {
+    /** Speed a Scion's gear may add: Quickening counts once (§13.4). */
+    maxSpeedFromGear: 1,
     /** Crude −10%, Common, Fine +10%, Masterwork +20%, Relic +30% (§13.4). */
     tierMult: [0.9, 1, 1.1, 1.2, 1.3],
     /** Defense of a full set by class, × (1 + L + 0.08L²), shared out by slot. */
