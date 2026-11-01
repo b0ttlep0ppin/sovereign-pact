@@ -202,6 +202,8 @@ export interface BossPhase {
 /** A scripted boss (§10.10, §14.6): content/bosses/<id>.json, an enemy plus its phases. */
 export interface BossDef extends EnemyDef {
   role: "boss";
+  /** The column it starts in (E1 if not given). */
+  at?: "E1" | "E2" | "E3";
   adds?: BossAdds[];
   phases: BossPhase[];
   say: { open: string; death: string };

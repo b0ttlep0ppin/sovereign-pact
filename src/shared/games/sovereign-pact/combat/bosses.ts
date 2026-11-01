@@ -45,7 +45,8 @@ export function bossBattle(seed: number, party: Combatant[], id: string, level: 
   const def = BOSS_BY_ID.get(id);
   if (!def) throw new Error(`unknown boss ${id}`);
   const row = Math.floor((ROWS - def.size[1]) / 2);
-  const boss = enemyCombatant(def, { id: 101, level, col: 0, row, ct: B.ct });
+  const col = Math.min(COLS - def.size[0], def.at ? Number(def.at.slice(1)) - 1 : 0);
+  const boss = enemyCombatant(def, { id: 101, level, col, row, ct: B.ct });
   boss.phase = 0;
   if (def.parts?.length) boss.mods.noMove = 1;
   for (const u of party) u.ct = B.ct;

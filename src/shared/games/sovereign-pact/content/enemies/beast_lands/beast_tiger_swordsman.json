@@ -1,0 +1,26 @@
+{
+  "id": "beast_tiger_swordsman",
+  "name": "Tiger Swordsman",
+  "pool": "beast_lands",
+  "tags": ["beastfolk"],
+  "role": "elite",
+  "size": [1, 1],
+  "levels": [3, 6],
+  "stats": {"speed": 13},
+  "affinity": {"wind": 25, "earth": -25},
+  "immune": ["charm"],
+  "abilities": [
+    {"id": "tiger_draw", "shape": "single", "side": "player", "power": 1.5, "crit": 25},
+    {"id": "whirlwind", "shape": "adjacent", "side": "player", "power": 1.0, "cooldown": 2},
+    {"id": "stance", "shape": "self", "side": "self", "power": 0, "kind": "support", "statuses": [{"id": "counter_up", "chance": 100, "ticks": 300, "value": 40}], "cooldown": 4}
+  ],
+  "gambits": [
+    {"if": "foe.charging", "do": "tiger_draw", "target": "charging"},
+    {"if": "turn%4==0", "do": "stance"},
+    {"do": "tiger_draw", "target": "lowest_hp"}
+  ],
+  "bestiary": {
+    "lore": "A beast-folk duelist who fights for hire and never for free.",
+    "weakness": "Earth. Its stance counters melee: hit it from range."
+  }
+}

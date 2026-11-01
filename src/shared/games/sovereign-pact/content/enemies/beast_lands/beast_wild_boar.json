@@ -1,0 +1,24 @@
+{
+  "id": "beast_wild_boar",
+  "name": "Wild Boar",
+  "pool": "beast_lands",
+  "tags": ["beast"],
+  "role": "fodder",
+  "size": [1, 1],
+  "levels": [2, 5],
+  "variants": ["stone"],
+  "stats": {"speed": 10},
+  "affinity": {"fire": -25},
+  "abilities": [
+    {"id": "tusk_gore", "shape": "single", "side": "player", "power": 1.1, "locationBias": "legs"},
+    {"id": "charge", "shape": "line:1", "side": "player", "power": 1.2, "cooldown": 3, "statuses": [{"id": "knockdown", "chance": 25, "ticks": 0}]}
+  ],
+  "gambits": [
+    {"if": "turn%3==1", "do": "charge"},
+    {"do": "tusk_gore", "target": "column_weighted"}
+  ],
+  "bestiary": {
+    "lore": "It does not stop for anything smaller than a tree.",
+    "weakness": "Fire. Its charge runs straight down its row: step aside."
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "id": "beast_killer_bee",
+  "name": "Killer Bee",
+  "pool": "beast_lands",
+  "tags": ["insect", "flyer"],
+  "role": "swarm",
+  "size": [1, 1],
+  "levels": [2, 6],
+  "stats": {"speed": 13},
+  "affinity": {"fire": -25},
+  "immune": ["fear"],
+  "abilities": [
+    {"id": "sting", "shape": "single", "side": "player", "power": 0.9, "statuses": [{"id": "poison", "chance": 30, "ticks": 300}]},
+    {"id": "overrun", "shape": "band:3", "side": "player", "power": 0.6, "cooldown": 1}
+  ],
+  "gambits": [
+    {"if": "swarm>=5", "do": "overrun"},
+    {"do": "sting", "target": "column_weighted"}
+  ],
+  "bestiary": {
+    "lore": "Each one dies stinging. There are always more.",
+    "weakness": "Fire. Smoke drives them off; break the hive."
+  }
+}

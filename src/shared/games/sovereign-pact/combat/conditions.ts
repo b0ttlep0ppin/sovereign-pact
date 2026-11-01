@@ -1,5 +1,5 @@
 // Gambit and boss-phase conditions (§6.11, §10.11, §14.6): the `if` of a gambit rule and the `at` of a
-// boss phase, read from the battle as it stands. Several joined by `&&` must all hold; `!` negates one.
+// boss phase, read from the battle as it stands. Joined by `&&` all must hold, by `||` any (`&&` binds tighter); `!` negates one.
 import { fallen } from "./summons.ts";
 import { hasStatus, other, standing } from "./grid.ts";
 import { allegiance } from "./targets.ts";
@@ -19,7 +19,9 @@ const OPS: Record<string, (a: number, b: number) => boolean> = {
 /** Whether a gambit's condition holds for `u` now. Unknown conditions are false. */
 export function holds(b: Battle, u: Combatant, cond: string | undefined): boolean {
   if (!cond || cond === "always") return true;
-  const all = cond.replace(/\s+/g, "").split("&&");
+  const any = cond.replace(/\s+/g, "").split("||");
+  if (any.length > 1) return any.some((c) => holds(b, u, c));
+  const all = any[0]!.split("&&");
   if (all.length > 1) return all.every((c) => holds(b, u, c));
   if (all[0]!.startsWith("!")) return !holds(b, u, all[0]!.slice(1));
   const c = all[0]!;

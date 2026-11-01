@@ -1,0 +1,23 @@
+{
+  "id": "beast_crow_shaman",
+  "name": "Crow Shaman",
+  "pool": "beast_lands",
+  "tags": ["humanoid", "beastfolk", "flyer"],
+  "role": "caster",
+  "size": [1, 1],
+  "levels": [3, 6],
+  "stats": {"speed": 11},
+  "affinity": {"wind": 25, "earth": -25},
+  "abilities": [
+    {"id": "crow_curse", "shape": "single", "side": "player", "power": 0.9, "kind": "magic", "sanity": 4, "statuses": [{"id": "hex", "chance": 40, "ticks": 300}], "element": "dark", "reach": "ranged"},
+    {"id": "black_wings", "shape": "row", "side": "player", "power": 1.1, "kind": "magic", "charge": 80, "telegraph": true, "cooldown": 3, "element": "wind"}
+  ],
+  "gambits": [
+    {"if": "turn%3==2", "do": "black_wings", "target": "densest_row"},
+    {"do": "crow_curse", "target": "lowest_sanity"}
+  ],
+  "bestiary": {
+    "lore": "The beast-folk's wise woman, and the crows are her eyes.",
+    "weakness": "Wind-weak? No: Earth. It flies, so the Back must reach it."
+  }
+}

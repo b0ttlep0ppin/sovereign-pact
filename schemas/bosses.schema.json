@@ -12,6 +12,7 @@
     "tags": { "$ref": "enemies.schema.json#/properties/tags" },
     "role": { "const": "boss" },
     "size": { "$ref": "enemies.schema.json#/properties/size" },
+    "at": { "enum": ["E1", "E2", "E3"], "description": "The column it starts in (E1 if not given)" },
     "levels": { "$ref": "enemies.schema.json#/properties/levels" },
     "stats": { "$ref": "enemies.schema.json#/properties/stats" },
     "affinity": { "$ref": "enemies.schema.json#/properties/affinity" },

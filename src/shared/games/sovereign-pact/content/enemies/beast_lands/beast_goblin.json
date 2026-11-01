@@ -1,0 +1,24 @@
+{
+  "id": "beast_goblin",
+  "name": "Goblin",
+  "pool": "beast_lands",
+  "tags": ["humanoid", "goblin"],
+  "role": "fodder",
+  "size": [1, 1],
+  "levels": [1, 4],
+  "variants": ["ashen", "stone"],
+  "stats": {"speed": 11},
+  "affinity": {"fire": -25},
+  "abilities": [
+    {"id": "rusty_shiv", "shape": "single", "side": "player", "power": 1.0},
+    {"id": "dirty_trick", "shape": "single", "side": "player", "power": 0.6, "cooldown": 3, "statuses": [{"id": "blind", "chance": 30, "ticks": 200}]}
+  ],
+  "gambits": [
+    {"if": "turn%3==1", "do": "dirty_trick", "target": "nearest"},
+    {"do": "rusty_shiv", "target": "column_weighted"}
+  ],
+  "bestiary": {
+    "lore": "Small, quick and never alone. They count on that.",
+    "weakness": "Fire. Alone, a goblin runs."
+  }
+}

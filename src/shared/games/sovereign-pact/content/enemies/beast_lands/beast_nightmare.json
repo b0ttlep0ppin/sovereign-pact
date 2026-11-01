@@ -1,0 +1,24 @@
+{
+  "id": "beast_nightmare",
+  "name": "Nightmare",
+  "pool": "beast_lands",
+  "tags": ["spirit", "beast"],
+  "role": "horror",
+  "size": [1, 1],
+  "levels": [1, 6],
+  "stats": {"speed": 12, "sanityTouch": 3},
+  "affinity": {"holy": -50, "dark": 50},
+  "immune": ["poison", "sleep"],
+  "abilities": [
+    {"id": "dread_gallop", "shape": "row", "side": "player", "power": 0.4, "kind": "magic", "sanity": 7, "cooldown": 2, "statuses": [{"id": "fear", "chance": 30, "ticks": 200}], "element": "dark"},
+    {"id": "bad_dream", "shape": "single", "side": "player", "power": 0.5, "kind": "magic", "sanity": 6, "statuses": [{"id": "sleep", "chance": 25, "ticks": 200}], "element": "dark", "reach": "ranged"}
+  ],
+  "gambits": [
+    {"if": "turn%3==1", "do": "dread_gallop", "target": "densest_row"},
+    {"do": "bad_dream", "target": "lowest_sanity"}
+  ],
+  "bestiary": {
+    "lore": "A black mare made of the night before. It rides you while you sleep.",
+    "weakness": "Holy. Keep the Back's Sanity up."
+  }
+}

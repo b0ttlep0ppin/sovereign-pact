@@ -2,6 +2,12 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-01 (implementation, Milestone 3g: the Beast Lands and the Goblin Lord) — implementer
+- **The Beast Lands roster** (`content/enemies/beast_lands/`, 23 enemies, L1–6): goblins, giant rats, wild boars and bugbears as fodder; bats and killer bees as flying swarms; orcs, ogres and trolls as bruisers; evil and crow shamans as casters; goblin shamans and the fox white mage as supports; the weasel ninja, the redcap and the werewolf as lurkers; the beehive (a spawner) and the charging rhino as artillery; the nightmare as the horror; the orc king and the tiger swordsman as elites; the mammoth (2×2, its tusks a Part that disables Tusk Sweep) and the behemoth (3×3) as colossi. Every template fills at L1–6 and a third of the roster threatens the back line (the content test now lints the Beast Lands too).
+- **The Goblin Lord** (`content/bosses/goblin_lord.json`, L1–2), the first boss most Houses meet: he stands on E3 behind four goblins on E1, piles on the Front every third turn and lobs crossbow bolts otherwise; **Cornered** (Speed 16, war drum, a crown chop) once his goblins are down to one *or* he is at half health; **Flight** at 30% unless rooted. Reading taken: a cowardly lord should be beatable by a fresh party and should teach that roots stop a flight.
+- **Boss conditions now take `||`** (looser than `&&`), and a boss file may set its starting column (`at`: E1–E3).
+- **Simulator:** the baseline party beats the Goblin Lord about 95–97% at L1–3 (17 turns, ~60% HP lost). Beast Lands Encounters are easier than the Barrows: 95–100% at L1–3; at L6 the warband (74%) and the elite patrol (48%) bite. Not tuned yet.
+
 ## 2026-11-01 (implementation, Milestone 3f: hazards) — implementer
 - **The battle hazards of §14.8 are content** (`content/hazards.json`): Explosive Barrel, Poison Gas Crate, Alarm Bell and Rotating Saw stand on the enemy grid as combatants that take no turns, take no statuses and do not hold the field; Rockfall and Bear Trap lie on the party's grid (`Battle.field`). The Mimic, Iron Maiden and Cage, Hidden Trapdoor and cursed objects belong to Cache and event nodes (Milestone 6); the Demon Wall to boss arenas; Binding Chains to a lurker's ability.
 - **Odds:** a drawn Encounter carries a hazard at its pool's `hazardPct` (3a), one at most, chosen by weight among those not yet met this expedition (`hazards` in the encounter spec; the expedition passes what it has seen, Milestone 6).
