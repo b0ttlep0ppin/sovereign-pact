@@ -1,9 +1,10 @@
 // Deals between Houses (§8.9) [DECIDED: instant]: one House offers, the other accepts or declines, and
 // an accepted deal executes at once. Nothing about the future is a game object. A deal is private to
 // its two Houses unless made public, which counts for Renown; every deal honored counts for Intrigue.
-// Wards, Mentor loans and facility use join the deal table with Milestone 5.
+// Wards join the deal table (§6.9); Mentor loans and facility use follow.
 import type { DealSide, House, SovState } from "./state.ts";
 import { TUNING } from "./tuning.ts";
+import { cannotGiveWard, giveWard } from "./wards.ts";
 import { log } from "./year.ts";
 
 const D = TUNING.deals;
@@ -14,24 +15,29 @@ const stashed = (s: SovState, house: number): Set<number> => {
 };
 
 /** Why `house` cannot hand over `side` now, or null. */
-function cannotGive(s: SovState, house: number, side: DealSide): string | null {
+function cannotGive(s: SovState, house: number, to: number, side: DealSide): string | null {
   const h = s.houses[house]!;
   const whole = (n: unknown) => Number.isInteger(n) && (n as number) >= 0;
   if (side.gold !== undefined && (!whole(side.gold) || h.gold < side.gold)) return `House ${h.name} cannot pay that Gold.`;
   for (const [k, n] of Object.entries(side.stores ?? {})) if (!whole(n) || (h.stores[k] ?? 0) < (n ?? 0)) return `House ${h.name} does not hold that much ${k}.`;
   const mine = stashed(s, house);
   if (new Set(side.items ?? []).size !== (side.items ?? []).length || (side.items ?? []).some((id) => !mine.has(id))) return `House ${h.name} does not have those items in its stash.`;
+  if (new Set(side.wards ?? []).size !== (side.wards ?? []).length) return "Name each Ward once.";
+  for (const id of side.wards ?? []) {
+    const why = cannotGiveWard(s, house, to, id);
+    if (why) return why;
+  }
   return null;
 }
 
-const empty = (side: DealSide) => !side.gold && !Object.values(side.stores ?? {}).some(Boolean) && !(side.items ?? []).length;
+const empty = (side: DealSide) => !side.gold && !Object.values(side.stores ?? {}).some(Boolean) && !(side.items ?? []).length && !(side.wards ?? []).length;
 
 export function cannotOffer(s: SovState, from: number, to: number, give: DealSide, get: DealSide): string | null {
   if (s.houses.length < 2) return "There is no other House to deal with.";
   if (!Number.isInteger(to) || to < 0 || to >= s.houses.length || to === from) return "Choose another House.";
   if (empty(give) && empty(get)) return "A deal must move something.";
   if (s.deals.filter((d) => d.from === from).length >= D.maxOpen) return "You have too many offers on the table.";
-  return cannotGive(s, from, give);
+  return cannotGive(s, from, to, give);
 }
 
 export function offer(s: SovState, from: number, to: number, give: DealSide, get: DealSide, open: boolean): void {
@@ -53,13 +59,14 @@ function hand(s: SovState, from: number, to: number, side: DealSide): void {
   if (side.gold) move("gold", side.gold);
   for (const [k, n] of Object.entries(side.stores ?? {})) if (n) move(k, n);
   for (const id of side.items ?? []) s.items.find((i) => i.id === id)!.house = to;
+  for (const id of side.wards ?? []) giveWard(s, from, to, id);
 }
 
 /** Why `house` cannot accept deal `id`, or null: it must be offered to it, and both sides must still be able to pay. */
 export function cannotAccept(s: SovState, house: number, id: number): string | null {
   const d = s.deals.find((x) => x.id === id);
   if (!d || d.to !== house) return "There is no such offer to you.";
-  return cannotGive(s, d.from, d.give) ?? cannotGive(s, d.to, d.get);
+  return cannotGive(s, d.from, d.to, d.give) ?? cannotGive(s, d.to, d.from, d.get);
 }
 
 export function accept(s: SovState, id: number): void {
@@ -73,7 +80,7 @@ export function accept(s: SovState, id: number): void {
   }
   if (d.open) log(s, `House ${s.houses[d.from]!.name} and House ${s.houses[d.to]!.name} strike a public deal.`);
   // Offers that can no longer be paid fall away.
-  s.deals = s.deals.filter((x) => !cannotGive(s, x.from, x.give));
+  s.deals = s.deals.filter((x) => !cannotGive(s, x.from, x.to, x.give));
 }
 
 /** Declined by its House, or withdrawn by its maker. */

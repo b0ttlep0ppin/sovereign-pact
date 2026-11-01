@@ -9,6 +9,7 @@ import type { House, SovState } from "./state.ts";
 import { built, completeProjects } from "./commons.ts";
 import { completeWorks, produce, upkeepDue } from "./town.ts";
 import { byPct, econ } from "./houses.ts";
+import { wardYear } from "./wards.ts";
 import { settleVote } from "./votes.ts";
 import { resolveCrisis } from "./crisis.ts";
 import { closeEvents, drawOmens } from "./omens.ts";
@@ -130,6 +131,7 @@ export function reckoning(s: SovState): void {
   completeProjects(s);
   // Injuries tick down, everyone recovers and grows by assignment, and MP refills (§8.3, §8.10).
   yearOfAssignments(s);
+  wardYear(s);
   for (const p of s.people) p.mp = caps(s, p).mp;
   s.doom = Math.min(100, s.doom + TUNING.tracks.doomPerYear);
   arrivals(s);

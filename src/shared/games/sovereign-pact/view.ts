@@ -75,6 +75,8 @@ export interface PrivateHouse {
  * recruits show only to their own House, and only as far as its Insight reaches (§6.4).
  */
 export interface PersonView {
+  /** A Ward's Loyalty, for its host with Insight 3 only (§6.9). */
+  loyalty?: number;
   id: number;
   status: PersonStatus;
   house: number;
@@ -174,6 +176,8 @@ function personView(p: Person, viewer: number | null, insight: number): PersonVi
     v.sanity = p.sanity;
     v.mp = p.mp;
   }
+  // A host with Insight 3 reads its Wards' Loyalty (§6.9); no one else does.
+  if (own && insight >= 3 && p.loyalty !== undefined) v.loyalty = p.loyalty;
   if (p.status !== "recruit") {
     v.base = p.base;
     v.tarot = p.tarot;
