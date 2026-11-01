@@ -2,6 +2,12 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-01 (implementation, Milestone 4d: votes on the Commons) — implementer
+- **Votes** (`votes.ts`): a House proposes spending the Commons' stock on a shared project (`propose`), and every House votes (`vote`). The most votes win. A tie costs Accord −3 (softened by the Court of Peers) and goes to the highest-Renown House among those who voted for a tied option, seat order breaking a Renown tie [DECIDED tie rule; the among-voters part is the reading].
+- **Readings:** votes are cast in the open (the view shows each House's choice); one vote is open at a time; each House may propose once a Year (implementation default, so a refused proposal is not repeated every move); an open vote settles when all have voted or when the Year is sealed, those who did not vote abstaining; nobody voting means no. A sealed House may still vote. Solo, a proposal is the House's own decision.
+- **Renown:** +1 for each House on the winning side (§3.4 "votes won"), first pass.
+- **The bot** proposes the first project on its list the Commons can help, and votes yes on its list's projects. In a bot campaign the tithe now raises 2–3 shared projects over 20 Years before expeditions bring materials. Save version 6.
+
 ## 2026-11-01 (implementation, Milestone 4c: shared projects) — implementer
 - **Shared projects are content** (`content/projects.json`, schema): §8.5's twelve plus §8.6's six shops, which need the Great Market first. Each level is priced as a House building of a tier (Walls: tiers 1, 2, 3) × 1.3 (`tuning.commons.costMult`, §8.5 PROPOSED).
 - **Pledges** (`pledge` move) are public and final: they take only what the project still needs, by resource, and a project's level stands at the Reckoning of the Year it is fully paid. Renown: 1 point per 10 units pledged (Gold and materials alike), first pass.

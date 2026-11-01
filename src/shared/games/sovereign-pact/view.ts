@@ -100,6 +100,8 @@ export interface SovView {
   accord: number;
   doom: number;
   commons: SovState["commons"];
+  /** The open vote, cast in the open (§8.1). */
+  vote: SovState["vote"] | null;
   /** Hidden entries show only their Year. */
   timeline: { year: number; id: string }[];
   houses: PublicHouse[];
@@ -186,6 +188,7 @@ export function view(s: SovState, playerId: PlayerId): SovView {
     accord: s.accord,
     doom: s.doom,
     commons: s.commons,
+    vote: s.vote ?? null,
     timeline: s.timeline.map((t) => ({ year: t.year, id: t.hidden ? "?" : t.id })),
     houses: s.houses.map((h, i) => publicHouse(s, h, i)),
     mine:

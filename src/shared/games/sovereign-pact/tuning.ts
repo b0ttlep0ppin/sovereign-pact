@@ -124,6 +124,8 @@ export const TUNING = {
     doomPerYear: 2,
     /** Every vote's tie costs this much Accord [DECIDED]. */
     tieCost: 3,
+    /** Renown for each House on a vote's winning side (§3.4 "votes won"), first pass. */
+    voteWonRenown: 1,
   },
 
   /** §7.3 derived pools [DECIDED as first pass]: pool = base + Σ coefficient × stat (+ per level). */

@@ -8,6 +8,7 @@ import { maxMp } from "./formulas.ts";
 import type { House, SovState } from "./state.ts";
 import { built, completeProjects } from "./commons.ts";
 import { completeWorks, produce } from "./town.ts";
+import { settleVote } from "./votes.ts";
 import { forHouses, TUNING } from "./tuning.ts";
 
 /** A deep copy, so a rule never changes the state it was given (plain JSON, so this is exact). */
@@ -40,11 +41,14 @@ export function openYear(s: SovState): void {
   // Omens draws settlement and House events here (Milestone 4).
   s.phase = "settlement";
   s.phaseMoves = 0;
+  s.proposers = [];
   for (const h of s.houses) h.sealed = false;
 }
 
 /** Everyone sealed: the Expedition Phase, the Reckoning, and the next Year (or the end). */
 export function closeSettlement(s: SovState): void {
+  // An open vote is settled with the votes cast; the rest abstain.
+  settleVote(s);
   s.phase = "expedition";
   // The Rift Gate, the party and the chain go here (Milestone 6).
   log(s, "No expedition departs: the Rift Gate is not yet built.");
