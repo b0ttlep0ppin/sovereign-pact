@@ -4,6 +4,7 @@
 import { built } from "./commons.ts";
 import { BUILDING_BY_ID, INJURY_TABLE_BY_ID } from "./content.ts";
 import { caps } from "./combat/build.ts";
+import { econ, houseEffects } from "./houses.ts";
 import { gainJp, gainXpUpTo } from "./progression.ts";
 import type { Assignment, AssignmentKind, JobId, Person, SovState } from "./state.ts";
 import { TUNING } from "./tuning.ts";
@@ -122,11 +123,13 @@ export function yearOfAssignments(s: SovState): void {
     const pct =
       (to === "rest" ? A.restSanityPct : A.idleSanityPct) +
       (lvl(s, p.host, "chapel") ? A.chapelBuildingSanityPct : 0) +
-      (built(s, "cathedral") ? TUNING.commons.cathedralSanityPct : 0);
+      (built(s, "cathedral") ? TUNING.commons.cathedralSanityPct : 0) +
+      // Fond of Wine: a House's blood recovers faster in town (§5.7).
+      econ(s.houses[p.house]!, "townSanityPct");
     p.sanity = to === "chapel" ? max : Math.min(max, p.sanity + Math.ceil((max * pct) / 100));
     if (to === "train") p = train(s, p, a!, top[p.host]!);
-    if (to === "study") p = gainJp(p, A.studyJp);
-    if (built(s, "university") && p.status === "scion") p = gainJp(p, TUNING.commons.universityJp);
+    if (to === "study") p = jpFor(s, p, A.studyJp);
+    if (built(s, "university") && p.status === "scion") p = jpFor(s, p, TUNING.commons.universityJp);
     s.people[i] = p;
   }
 }
@@ -137,8 +140,14 @@ function train(s: SovState, p: Person, a: Assignment, top: number): Person {
   const jpBoost = 1 + (lvl(s, p.host, "training_ground") >= 2 ? A.tg2JpPct / 100 : 0);
   if (mentor && a.job) {
     const q = gainXpUpTo(p, (A.expeditionXpRef * A.mentorXpPct) / 100, Math.min(A.trainCap + 1, mentor.level));
-    return gainJp(q, A.mentorJp * jpBoost, a.job);
+    return jpFor(s, q, A.mentorJp * jpBoost, a.job);
   }
   const q = gainXpUpTo(p, (A.expeditionXpRef * A.aloneXpPct) / 100, Math.min(A.trainCap, top - A.aloneBelow) + 1);
-  return gainJp(q, A.aloneJp * jpBoost);
+  return jpFor(s, q, A.aloneJp * jpBoost);
+}
+
+/** JP into `job` at the rate the Scion's blood gives it (Martial Lineage: Soldier +15%…, §5.7). */
+export function jpFor(s: Pick<SovState, "houses">, p: Person, jp: number, job: JobId | null = p.job): Person {
+  const pct = job ? (houseEffects(s.houses[p.house]!).jobXp[job] ?? 0) : 0;
+  return gainJp(p, (jp * (100 + pct)) / 100, job);
 }

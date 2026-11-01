@@ -7,7 +7,8 @@ import { yearOfAssignments } from "./assign.ts";
 import { caps } from "./combat/build.ts";
 import type { House, SovState } from "./state.ts";
 import { built, completeProjects } from "./commons.ts";
-import { completeWorks, produce } from "./town.ts";
+import { completeWorks, produce, upkeepDue } from "./town.ts";
+import { byPct, econ } from "./houses.ts";
 import { settleVote } from "./votes.ts";
 import { resolveCrisis } from "./crisis.ts";
 import { closeEvents, drawOmens } from "./omens.ts";
@@ -74,20 +75,7 @@ export function closeSettlement(s: SovState): void {
 }
 
 function payUpkeep(s: SovState, house: number, h: House): void {
-  const u = TUNING.economy.upkeep;
-  let gold = 0;
-  let grain = 0;
-  for (const p of s.people) {
-    if (p.host !== house || p.status === "lost") continue;
-    if (p.status === "scion") {
-      gold += u.scionGold;
-      grain += u.scionGrain;
-    } else if (p.status === "retired") {
-      gold += Math.ceil(u.scionGold / 2);
-      grain += Math.ceil(u.scionGrain / 2);
-    } else grain += u.recruitGrain;
-  }
-  if (built(s, "granary")) grain = Math.round((grain * (100 - TUNING.commons.granaryUpkeepPct)) / 100);
+  const { gold, grain } = upkeepDue(s, house);
   // §8.1: Grain runs out first (the Scions go Hungry), then Gold becomes Debt.
   const stock = h.stores.grain ?? 0;
   h.stores.grain = Math.max(0, stock - grain);
@@ -98,6 +86,19 @@ function payUpkeep(s: SovState, house: number, h: House): void {
   }
 }
 
+/**
+ * §8.10 step 1, debts and interest: a debt grows by its House's interest (Debt-Ridden), then the Year's
+ * Gold pays down what it can. Light-Fingered Servants take a share of every store.
+ */
+function settleDebts(h: House): void {
+  if (h.debt > 0) h.debt += Math.ceil((h.debt * econ(h, "debtInterestPct")) / 100);
+  const paid = Math.min(h.gold, h.debt);
+  h.gold -= paid;
+  h.debt -= paid;
+  const loss = econ(h, "storesLossPct");
+  if (loss) for (const [k, n] of Object.entries(h.stores)) h.stores[k as keyof typeof h.stores] = (n ?? 0) - Math.ceil(((n ?? 0) * loss) / 100);
+}
+
 /** §8.10, the parts that exist so far: income and tithe, upkeep, buildings, recovery, the tracks, arrivals. */
 export function reckoning(s: SovState): void {
   s.phase = "reckoning";
@@ -105,7 +106,8 @@ export function reckoning(s: SovState): void {
   const scale = forHouses(TUNING.economy.incomeScale, H);
   produce(s);
   s.houses.forEach((h, i) => {
-    const gold = Math.round(TUNING.economy.income.gold * scale);
+    // Deep Coffers and Poor Lands move the House's Gold income (§5.7).
+    const gold = byPct(Math.round(TUNING.economy.income.gold * scale), econ(h, "incomePct"));
     const grain = Math.round(TUNING.economy.income.grain * scale);
     const titheGold = Math.round(gold * TUNING.economy.tithe);
     const titheGrain = Math.round(grain * TUNING.economy.tithe);
@@ -119,6 +121,7 @@ export function reckoning(s: SovState): void {
       h.gold += TUNING.commons.marketGold - titheMarket;
     }
     payUpkeep(s, i, h);
+    settleDebts(h);
   });
   completeWorks(s);
   completeProjects(s);
@@ -146,10 +149,17 @@ function arrivals(s: SovState): void {
     s.houses.forEach((_, i) => {
       const boosts = (built(s, "beacon") ? 1 : 0) + ((s.houses[i]!.buildings.hall_of_petitions ?? 0) >= 1 ? 1 : 0);
       const chance = forHouses(TUNING.houses.arrivalChance, s.houses.length) * (1 + (boosts * TUNING.commons.arrivalBoostPct) / 100);
-      if (rng.int(100) >= chance) return;
-      const pool = s.people.filter((p) => p.host === i && p.status === "recruit").length;
-      if (pool >= TUNING.houses.recruitPoolCap) return;
-      s.people.push(rollRecruit(rng, s.nextId++, i, s.houses[i]));
+      // Barren: arrivals only every other Year; Many-Branched Tree: a second chance every other Year (§5.7).
+      const h = s.houses[i]!;
+      const every = econ(h, "arrivalEvery");
+      const extra = econ(h, "extraArrivalEvery");
+      const tries = (every && s.year % every ? 0 : 1) + (extra && !(s.year % extra) ? 1 : 0);
+      for (let n = 0; n < tries; n++) {
+        if (rng.int(100) >= chance) continue;
+        const pool = s.people.filter((p) => p.host === i && p.status === "recruit").length;
+        if (pool >= TUNING.houses.recruitPoolCap + econ(h, "pool")) return;
+        s.people.push(rollRecruit(rng, s.nextId++, i, h));
+      }
     });
   });
 }

@@ -8,7 +8,12 @@ import { hitChance, strike } from "./combat/damage.ts";
 import { atLevel } from "./combat/fixtures.ts";
 import { ABILITY_SETS, HOUSE_TRAITS, JOB_BY_ID } from "./content.ts";
 import { promote, rollRecruit } from "./generate.ts";
-import { houseEffects, opposite } from "./houses.ts";
+import { jpFor } from "./assign.ts";
+import { byPct, houseEffects, opposite } from "./houses.ts";
+import { sovereignPact, type SovState } from "./index.ts";
+import { listPrice, priceFor } from "./market.ts";
+import { categories } from "./score.ts";
+import { buildCost, upkeepDue } from "./town.ts";
 import { BASE_JOBS, ELEMENTS, SCORE_CATEGORIES, type House } from "./state.ts";
 import { calm, campaign } from "./testing.ts";
 import { TUNING } from "./tuning.ts";
@@ -131,5 +136,85 @@ describe("House traits in recruits and in town", () => {
     const { mp } = caps(s, p);
     const u = scionCombatant(p, { id: 1, col: 0, row: 3, house: s.houses[0]! });
     expect(mp).toBeGreaterThanOrEqual(u.maxMp);
+  });
+});
+
+describe("House traits in the economy (§5.7)", () => {
+  const solo = (traits: string[]) => {
+    const s = calm(campaign(1, 3));
+    s.houses[0]!.traits = traits;
+    return s;
+  };
+  const seal = (s: SovState) => {
+    const r = sovereignPact.applyMove(s, "p1", { type: "seal" });
+    if (!r.ok) throw new Error(r.error);
+    return r.state;
+  };
+  const income = (traits: string[]) => {
+    const s = solo(traits);
+    s.people = s.people.filter((p) => p.status === "recruit").slice(0, 0);
+    const before = s.houses[0]!.gold;
+    return seal(s).houses[0]!.gold - before;
+  };
+
+  it("moves Gold income and upkeep by the House's %", () => {
+    const plain = income([]);
+    expect(income(["deep_coffers"])).toBeGreaterThan(plain);
+    expect(income(["poor_lands"])).toBeLessThan(plain);
+    const s = solo([]);
+    const base = upkeepDue(s, 0).gold;
+    s.houses[0]!.traits = ["gluttonous"];
+    expect(upkeepDue(s, 0).gold).toBe(byPct(base, 10));
+  });
+
+  it("charges Debt-Ridden interest, pays debts down from Gold, and lets Light-Fingered Servants steal", () => {
+    let s = solo(["debt_ridden", "light_fingered_servants"]);
+    s.people = [];
+    Object.assign(s.houses[0]!, { gold: 0, debt: 100, stores: { stone: 100 } });
+    s = seal(s);
+    const paid = income([]);
+    expect(s.houses[0]!.debt).toBe(110 - paid);
+    expect(s.houses[0]!.gold).toBe(0);
+    expect(s.houses[0]!.stores.stone).toBe(95);
+  });
+
+  it("brings Barren recruits every other Year, Many-Branched Tree an extra chance, Bad Blood a smaller pool", () => {
+    const arrived = (traits: string[], year: number, keep = 0) => {
+      const s = solo(traits);
+      s.year = year;
+      const recruits = s.people.filter((p) => p.status === "recruit");
+      s.people = s.people.filter((p) => p.status !== "recruit").concat(recruits.slice(0, keep));
+      return seal(s).people.filter((p) => p.status === "recruit").length - keep;
+    };
+    expect([arrived([], 1), arrived(["barren"], 1), arrived(["barren"], 2)]).toEqual([1, 0, 1]);
+    expect([arrived(["many_branched_tree"], 1), arrived(["many_branched_tree"], 2)]).toEqual([1, 2]);
+    const cap = TUNING.houses.recruitPoolCap;
+    expect([arrived([], 1, cap - 1), arrived(["bad_blood"], 1, cap - 1)]).toEqual([1, 0]);
+  });
+
+  it("discounts Patrons of the Guilds in the shops and Scholarly on the Scriptorium", () => {
+    const s = solo(["patrons_of_the_guilds", "scholarly"]);
+    const item = { id: s.nextId++, base: "sword", tier: 2 as const, ilvl: 1, house: -1 };
+    s.market = [{ item, shop: "weaponsmith", price: listPrice(item), auction: false, bids: [null] }];
+    expect(priceFor(s, 0, s.market[0]!)).toBe(byPct(listPrice(item), -10));
+    expect(buildCost("scriptorium", 1, s.houses[0]!)!.gold).toBe(byPct(buildCost("scriptorium", 1)!.gold!, -20));
+    expect(buildCost("farm", 1, s.houses[0]!)).toEqual(buildCost("farm", 1));
+  });
+
+  it("moves a score category, the JP a Job earns, and Sanity in town", () => {
+    const s = solo([]);
+    const lineage = categories(s, 0).lineage;
+    s.houses[0]!.traits = ["old_blood_of_kings", "martial_lineage", "fond_of_wine"];
+    expect(categories(s, 0).lineage).toBe(Math.floor(lineage * 1.1));
+    const p = { ...s.people.find((x) => x.status === "scion")!, job: "soldier" as const, jp: {} };
+    expect(jpFor(s, p, 100).jp.soldier).toBe(115);
+    expect(jpFor(s, { ...p, job: "magus" }, 100).jp.magus).toBe(100);
+    const rested = (traits: string[]) => {
+      const t = solo(traits);
+      const id = t.people.find((x) => x.status === "scion")!.id;
+      t.people.find((x) => x.id === id)!.sanity = 0;
+      return seal(t).people.find((x) => x.id === id)!.sanity;
+    };
+    expect(rested(["fond_of_wine"])).toBeGreaterThan(rested([]));
   });
 });

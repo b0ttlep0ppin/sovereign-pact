@@ -26,6 +26,12 @@ const add = <K extends string>(into: Partial<Record<K, number>>, from: Partial<R
   for (const [k, v] of Object.entries(from ?? {}) as [K, number][]) into[k] = (into[k] ?? 0) + v;
 };
 
+/** One economy knob of a House's traits (0 when none names it). */
+export const econ = (h: Pick<House, "traits" | "element" | "bane">, key: string): number => houseEffects(h).economy[key] ?? 0;
+
+/** `n` raised or lowered by `pct` %, rounded. */
+export const byPct = (n: number, pct: number): number => Math.round((n * (100 + pct)) / 100);
+
 export function houseEffects(h: Pick<House, "traits" | "element" | "bane">): HouseEffects {
   const fx: HouseEffects = { mods: {}, growth: {}, jobXp: {}, economy: {}, score: {}, innate: {}, tags: [], look: [] };
   const E = TUNING.houses.element;

@@ -2,6 +2,23 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-01 (implementation, Milestone 5b: House traits in the economy) — implementer
+- **What the economy reads now** (`econ`, `byPct` in `houses.ts`):
+  - Income % moves the House's Gold income only (Deep Coffers +20, Poor Lands −20). Grain income stays as it is, so a poor House is not also starved.
+  - Upkeep % moves the Gold upkeep (Thrifty, Gluttonous, Wyrm-Blooded's Treasury upkeep). The bot's upkeep reserve uses the same `upkeepDue`.
+  - Debt-Ridden starts with 60 Gold of Debt and pays 10% interest on Debt each Year.
+  - Light-Fingered Servants take 5% (rounded up) of every store each Reckoning.
+  - Barren rolls for arrivals only in even Years. Many-Branched Tree gets a second roll in even Years. The recruit pool cap moves by `pool` (Old Blood of Kings +1, Bad Blood −1).
+  - Haunted Halls raises the House-event chance by 25 points.
+  - Patrons of the Guilds pays 10% less at the shops' list price; sealed bids are unchanged.
+  - Scholarly pays 20% less for the Scriptorium.
+  - Fond of Wine adds 10 points to Sanity recovery in town.
+  - Score % moves a category's total, earned and held alike (Old Blood's Lineage, Silver Tongues' Intrigue, Craven Legacy's Valor).
+  - Job XP % moves the JP a Scion earns in that Job from training, study and the University ("Job XP" read as JP, since XP is not per Job).
+  - Effects on a person (Sanity, JP) follow their birth House. Effects on the treasury follow the House itself.
+- **Debts are repaid** (§8.10 step 1, "debts and interest"): after upkeep, the Year's Gold pays down whatever Debt it can, including Debt from unpaid upkeep. Reading: the spec has Debt but no way to clear it, and a House should not carry a debt it could pay.
+- **Still waiting:** crafting costs (Forge-Born) until crafting exists; the earlier shop tier, Debt-Ridden's default and the Creditors Call event, Superstitious' reversed Tarot, and innate Fleet, with promotion and individual traits. Save version stays 10.
+
 ## 2026-11-01 (implementation, Q89: private House events) — implementer
 - **A House event is its House's own** (Josh, Q89: private, with a hint). Only that House sees it among the pending events, and its title and outcome go to the House's own notes (`state.notes`, the viewer's `mine.notes`), not the public log. Everyone else reads "House X has troubles at home." in the log, and on the timeline a House event to come shows its Year and House with "?" for the event. Spectators see only the hints. Readings: what the event does that is public anyway (a damaged building on the Town Map, Accord, Doom) stays visible; a Watchtower or the Observatory does not reveal another House's events, since privacy is a different thing from a hidden entry. Notes, like the log, are not saved; save version stays 10.
 

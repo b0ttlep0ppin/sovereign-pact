@@ -6,6 +6,7 @@
 import { ITEM_BASES, type ItemBase } from "./content.ts";
 import { built, loseAccord } from "./commons.ts";
 import { year20 } from "./crisis.ts";
+import { byPct, econ } from "./houses.ts";
 import { baseOf, rollProps } from "./items.ts";
 import type { Item, ItemTier, Lot, SovState } from "./state.ts";
 import { TUNING } from "./tuning.ts";
@@ -53,17 +54,20 @@ export function restock(s: SovState): void {
 
 const lotOf = (s: SovState, id: number) => s.market.find((l) => l.item.id === id);
 
+/** A shop's list price to `house`: Patrons of the Guilds pay 10% less (§5.7). Sealed bids are what they are. */
+export const priceFor = (s: SovState, house: number, lot: Lot): number => byPct(lot.price, econ(s.houses[house]!, "shopPct"));
+
 export function cannotBuy(s: SovState, house: number, id: number): string | null {
   const lot = lotOf(s, id);
   if (!lot || lot.shop === null) return "That is not for sale in the shops.";
   if (lot.auction) return "That goes to sealed bids.";
-  if (s.houses[house]!.gold < lot.price) return "You cannot afford it.";
+  if (s.houses[house]!.gold < priceFor(s, house, lot)) return "You cannot afford it.";
   return null;
 }
 
 export function buy(s: SovState, house: number, id: number): void {
   const lot = lotOf(s, id)!;
-  s.houses[house]!.gold -= lot.price;
+  s.houses[house]!.gold -= priceFor(s, house, lot);
   s.market = s.market.filter((l) => l !== lot);
   s.items.push({ ...lot.item, house });
 }
