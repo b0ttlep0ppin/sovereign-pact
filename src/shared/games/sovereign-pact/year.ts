@@ -10,6 +10,7 @@ import { built, completeProjects } from "./commons.ts";
 import { completeWorks, produce, upkeepDue } from "./town.ts";
 import { byPct, econ } from "./houses.ts";
 import { wardYear } from "./wards.ts";
+import { fallen } from "./lifecycle.ts";
 import { settleVote } from "./votes.ts";
 import { resolveCrisis } from "./crisis.ts";
 import { closeEvents, drawOmens } from "./omens.ts";
@@ -73,6 +74,8 @@ export function closeSettlement(s: SovState): void {
   s.deals = [];
   resolveCrisis(s);
   s.phase = "expedition";
+  // §1.4, §6.13: with every House Fallen, a mandatory expedition has no one to send.
+  if (mandatoryYears(s).includes(s.year) && s.houses.every((_, i) => fallen(s, i))) return end(s, false, `No House had anyone left to send in Year ${s.year}.`);
   // The Rift Gate, the party and the chain go here (Milestone 6).
   log(s, "No expedition departs: the Rift Gate is not yet built.");
   reckoning(s);

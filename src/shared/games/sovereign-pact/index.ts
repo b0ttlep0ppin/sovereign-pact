@@ -18,6 +18,7 @@ import { cannotPropose, cannotVote, castVote, propose } from "./votes.ts";
 import { botDeal, botAssign, botPromote, botBuild, botChoice, botCrisis, botPledge, botPropose, botVote } from "./bot.ts";
 import { build, cannotBuild, unbuild } from "./town.ts";
 import { cannotPromote, promoteRecruit } from "./promotion.ts";
+import { cannotReinstate, cannotRetire, reinstate, retire } from "./lifecycle.ts";
 import { TUNING } from "./tuning.ts";
 import { view, type SovView } from "./view.ts";
 import { clone, closeSettlement } from "./year.ts";
@@ -145,6 +146,16 @@ export function applyMove(state: SovState, playerId: PlayerId, move: SovMove): M
       h.sealed = true;
       s.phaseMoves += 1;
       if (s.houses.every((x) => x.sealed)) closeSettlement(s);
+      return { ok: true, state: s };
+    }
+    case "retire":
+    case "reinstate": {
+      if (s.phase !== "settlement") return fail("That is done in the Settlement Phase.");
+      if (h.sealed) return fail("Unseal the Year first.");
+      const why = move.type === "retire" ? cannotRetire(s, house, move.person) : cannotReinstate(s, house, move.person);
+      if (why) return fail(why);
+      (move.type === "retire" ? retire : reinstate)(s, move.person);
+      s.phaseMoves += 1;
       return { ok: true, state: s };
     }
     case "promote": {

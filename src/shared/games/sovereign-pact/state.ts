@@ -373,6 +373,9 @@ export type SovMove =
   | { type: "random_house"; step?: FoundingStep }
   | { type: "swear"; ambition: 0 | 1 }
   | { type: "seal" }
+  /** Retire a Scion, or bring a Retired one back (§6.12). */
+  | { type: "retire"; person: number }
+  | { type: "reinstate"; person: number }
   /** Promote a recruit to Scion in a base Job (§6.5). */
   | { type: "promote"; person: number; job: JobId }
   | { type: "unseal" }
