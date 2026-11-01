@@ -8,7 +8,7 @@
   "size": [3, 3],
   "at": "E1",
   "levels": [6, 6],
-  "stats": {"speed": 10, "hp": 7, "sanityTouch": 2},
+  "stats": {"speed": 10, "hp": 5, "atk": 1.3, "sanityTouch": 2},
   "affinity": {"holy": -50, "dark": 50, "fire": 25},
   "immune": ["fear", "poison"],
   "abilities": [

@@ -33,7 +33,7 @@ describe("a boss fight", () => {
   it("opens at CT 30 for everyone, with the boss's adds on their column and its opening line", () => {
     const { b, party, queen, brides } = vq();
     expect(queen.boss).toBe(true);
-    expect(queen.speed).toBe(15);
+    expect(queen.speed).toBe(BOSS_BY_ID.get("vampire_queen")!.stats!.speed);
     expect([queen, ...party, ...brides].every((u) => u.ct === 30)).toBe(true);
     expect(brides).toHaveLength(2);
     expect(brides.every((u) => u.col === 1 && u.tags.includes("add"))).toBe(true);

@@ -7,7 +7,7 @@
   "size": [1, 1],
   "at": "E2",
   "levels": [7, 8],
-  "stats": {"speed": 12, "hp": 8},
+  "stats": {"speed": 12, "hp": 5, "atk": 1.3},
   "affinity": {"water": -50, "holy": -25, "fire": 25, "dark": 25},
   "immune": ["fear", "charm"],
   "abilities": [
