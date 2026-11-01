@@ -98,7 +98,10 @@
       "innate": {
         "id": "meditation",
         "name": "Meditation",
-        "text": "MP +3 per 100 ticks."
+        "text": "MP +3 per 100 ticks.",
+        "mods": {
+          "mpPer100": 3
+        }
       },
       "mastery": {
         "id": "second_sight",

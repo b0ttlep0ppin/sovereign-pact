@@ -59,8 +59,8 @@ export interface AbilityDef {
   power: number;
   /** A spell's own power; weapon abilities and enemies use their weapon's. */
   base?: number;
-  /** "physical" uses Might (or the enemy's atk), "magic" Acuity and the target's Sagacity, "heal" Sagacity. */
-  kind?: "physical" | "magic" | "heal";
+  /** "physical" uses Might (or the enemy's atk), "magic" Acuity and the target's Sagacity, "heal" Sagacity; "support" never misses and deals nothing, only its effects. */
+  kind?: "physical" | "magic" | "heal" | "support";
   element?: Element | null;
   /** Melee abilities follow the reach rules (§10.3); ranged and magic reach any column. */
   reach?: Reach;
@@ -91,6 +91,32 @@ export interface AbilityDef {
   accuracy?: number;
   /** Extra crit chance in %. */
   crit?: number;
+  /** Weapon types (or "shield") the user must hold (Shield Bash, Pin, Volley). */
+  requires?: string[];
+  /** Hits per target rolled from `hits` to this. */
+  hitsMax?: number;
+  /** Damage multiplier against foes with a tag (Judgement vs undead). */
+  vs?: Record<string, number>;
+  /** Against a target below `below`% HP: damage +`pct`%, or (`kills`) the blow is fatal to all but bosses. */
+  execute?: { below: number; pct?: number; kills?: boolean };
+  /** Multiplier on power instead when an ally is Down (Oathbound Strike) or the target Marked (Backstab). */
+  powerIfAllyDown?: number;
+  powerIfMarked?: number;
+  /** TP back to the user when the blow kills. */
+  refundTp?: number;
+  /** Statuses removed from each target (Guard Break). */
+  dispel?: string[];
+  /** Restores on each target: % of max HP, % of Durability at one random, the lowest, or every location. */
+  restore?: { hpPct?: number; durPct?: number; loc?: "random" | "lowest" | "all" };
+  /** Ailments cured on each target: status ids, or "physical" / "mental" for every one of that kind. */
+  cure?: string[];
+  /** Sanity restored, % of max, and TP given, to each target. */
+  sanityPct?: number;
+  tpGrant?: number;
+  /** Raises a Down target at this % of HP. */
+  revive?: number;
+  /** On the user after it resolves. */
+  self?: { tp?: number; statuses?: { id: string; ticks: number; value?: number }[] };
 }
 
 export interface Charge {
@@ -147,6 +173,8 @@ export interface Combatant {
   defense: number;
   /** Physical damage power before Might: a Scion's weapon, an enemy's level block × atk. */
   weapon: Weapon;
+  /** What the off hand holds ("shield", a weapon type), for abilities that need it. */
+  offhand?: string;
   /** Enemies: damage = power × (1 + 2L/25) instead of Might (§14.2). */
   enemyScale?: number;
   /** Locations' Durability (Scions only; enemies have no hit locations, §14.1). */

@@ -1,5 +1,10 @@
 // The content catalog: everything under content/ as typed data. Rules read content only through here,
 // by id, so Josh can edit the JSON (validated by schemas/ in CI) without touching rules (CLAUDE.md).
+import knightSet from "./content/abilities/knight.json" with { type: "json" };
+import magusSet from "./content/abilities/magus.json" with { type: "json" };
+import soldierSet from "./content/abilities/soldier.json" with { type: "json" };
+import soothsayerSet from "./content/abilities/soothsayer.json" with { type: "json" };
+import vagabondSet from "./content/abilities/vagabond.json" with { type: "json" };
 import banshee from "./content/enemies/barrows/barrow_banshee.json" with { type: "json" };
 import cursedArcher from "./content/enemies/barrows/barrow_cursed_archer.json" with { type: "json" };
 import ghost from "./content/enemies/barrows/barrow_ghost.json" with { type: "json" };
@@ -13,6 +18,7 @@ import namesJson from "./content/names.json" with { type: "json" };
 import propertiesJson from "./content/properties.json" with { type: "json" };
 import seatsJson from "./content/seats.json" with { type: "json" };
 import tarotJson from "./content/tarot.json" with { type: "json" };
+import type { AbilityDef } from "./combat/types.ts";
 import type { Element, JobId, Location } from "./state.ts";
 
 export interface TarotCard {
@@ -233,3 +239,35 @@ const byId = <T extends { id: string }>(items: readonly T[]): ReadonlyMap<string
 export const TAROT_BY_ID = byId(TAROT);
 export const SEAT_BY_ID = byId(SEATS);
 export const SWATCH_BY_ID = byId(HERALDRY.palette);
+
+/** A Job's active, as content: the battle ability plus its name, JP price and text (§12.4–12.17). */
+export interface ActiveDef extends AbilityDef {
+  name: string;
+  jp: number;
+  text: string;
+  /** Learnable, but not in battle until its system exists. */
+  later?: boolean;
+}
+
+/** A Job's purchasable passive: budget points and JP (§12.1). */
+export interface JobPassiveDef extends PassiveDef {
+  points: 1 | 2 | 3;
+  jp: number;
+  later?: boolean;
+}
+
+export interface AbilitySet {
+  job: JobId;
+  actives: ActiveDef[];
+  passives: JobPassiveDef[];
+}
+
+/** Every Job's ability file (content/abilities/<job>.json), imported by name like the enemies. */
+export const ABILITY_SETS = [soldierSet, knightSet, magusSet, soothsayerSet, vagabondSet] as unknown as readonly AbilitySet[];
+export const ABILITY_SET_BY_JOB: ReadonlyMap<JobId, AbilitySet> = new Map(ABILITY_SETS.map((a) => [a.job, a]));
+export const ACTIVE_BY_ID: ReadonlyMap<string, ActiveDef & { job: JobId }> = new Map(
+  ABILITY_SETS.flatMap((set) => set.actives.map((a) => [a.id, { ...a, job: set.job }] as const)),
+);
+export const JOB_PASSIVE_BY_ID: ReadonlyMap<string, JobPassiveDef & { job: JobId }> = new Map(
+  ABILITY_SETS.flatMap((set) => set.passives.map((a) => [a.id, { ...a, job: set.job }] as const)),
+);

@@ -87,7 +87,7 @@ export interface Person {
   /** Primary Job; recruits have none. */
   job: JobId | null;
   secondary?: JobId;
-  /** JP banked per Job. */
+  /** JP earned per Job; buying abilities does not lower it (what is left: progression.ts `jpLeft`). */
   jp: Partial<Record<JobId, number>>;
   /** Jobs with every ability bought (§12.1); their abilities are not listed again in `learned`. */
   mastered: JobId[];

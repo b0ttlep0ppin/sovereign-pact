@@ -1,7 +1,7 @@
 // Growing a Scion (§6.6, §7.2, §12.1): XP into levels through the growth accumulator, JP per Job,
 // Job prerequisites, the passive budget, and the stats a Job's multipliers make. Pure: every function
 // returns a new Person.
-import { JOB_BY_ID, type JobDef } from "./content.ts";
+import { ABILITY_SET_BY_JOB, ACTIVE_BY_ID, JOB_BY_ID, JOB_PASSIVE_BY_ID, type ActiveDef, type JobDef } from "./content.ts";
 import { jobStat, maxMp } from "./formulas.ts";
 import { STATS, type JobId, type Person, type Six, type Stat } from "./state.ts";
 import { TUNING } from "./tuning.ts";
@@ -94,4 +94,68 @@ const ARMOR_ORDER = ["light", "medium", "heavy"] as const;
 export function mayWear(p: Person, cls: (typeof ARMOR_ORDER)[number]): boolean {
   const job = jobOf(p);
   return !!job && ARMOR_ORDER.indexOf(cls) <= ARMOR_ORDER.indexOf(job.armor);
+}
+
+/** The Job an active or passive belongs to. */
+const jobOfAbility = (id: string): JobId | undefined => ACTIVE_BY_ID.get(id)?.job ?? JOB_PASSIVE_BY_ID.get(id)?.job;
+const priceOf = (id: string): number => ACTIVE_BY_ID.get(id)?.jp ?? JOB_PASSIVE_BY_ID.get(id)?.jp ?? 0;
+
+/** Whether the Scion has bought an active or passive (a mastered Job counts as all bought). */
+export function knows(p: Person, id: string): boolean {
+  const job = jobOfAbility(id);
+  return p.learned.includes(id) || (!!job && p.mastered.includes(job));
+}
+
+/** JP not yet spent in a Job: earned less the prices of what was bought there (§12.1). */
+export function jpLeft(p: Person, job: JobId): number {
+  if (p.mastered.includes(job)) return 0;
+  return (p.jp[job] ?? 0) - p.learned.filter((id) => jobOfAbility(id) === job).reduce((n, id) => n + priceOf(id), 0);
+}
+
+/** Buys an active or passive of the primary Job with its JP; buying the last one masters the Job. */
+export function learn(p: Person, id: string): Person {
+  const job = jobOfAbility(id);
+  if (!job || job !== p.job) throw new Error(`${id} is not in ${p.name}'s Job`);
+  if (knows(p, id)) throw new Error(`${p.name} already knows ${id}`);
+  if (jpLeft(p, job) < priceOf(id)) throw new Error(`not enough JP for ${id}`);
+  const learned = [...p.learned, id];
+  const set = ABILITY_SET_BY_JOB.get(job)!;
+  const all = [...set.actives, ...set.passives].every((a) => learned.includes(a.id));
+  if (!all) return { ...p, learned };
+  // Mastered: the Job's abilities stop being listed one by one, and the JP left over stays earned.
+  return { ...p, mastered: [...p.mastered, job], learned: learned.filter((x) => jobOfAbility(x) !== job) };
+}
+
+/** Budget points the equipped passives use. */
+export const passivePoints = (p: Pick<Person, "passives">): number => p.passives.reduce((n, id) => n + (JOB_PASSIVE_BY_ID.get(id)?.points ?? 0), 0);
+
+/** Equips a bought passive, within the budget (§12.1). */
+export function equipPassive(p: Person, id: string, extra = 0): Person {
+  const def = JOB_PASSIVE_BY_ID.get(id);
+  if (!def || !knows(p, id)) throw new Error(`${p.name} has not bought ${id}`);
+  if (p.passives.includes(id)) return p;
+  if (passivePoints(p) + def.points > passiveBudget(p, extra)) throw new Error(`no room for ${id} in the passive budget`);
+  return { ...p, passives: [...p.passives, id] };
+}
+
+export const unequipPassive = (p: Person, id: string): Person => ({ ...p, passives: p.passives.filter((x) => x !== id) });
+
+/** The secondary set: any other Job with at least one active bought (§12.1). */
+export function setSecondary(p: Person, job: JobId | undefined): Person {
+  if (job === undefined) return { ...p, secondary: undefined };
+  if (job === p.job) throw new Error("the secondary set must be another Job");
+  const actives = ABILITY_SET_BY_JOB.get(job)?.actives ?? [];
+  if (!actives.some((a) => knows(p, a.id))) throw new Error(`${p.name} knows no ${job} actives`);
+  return { ...p, secondary: job };
+}
+
+/** Actives a Scion brings to battle: bought ones of the primary Job and the secondary set, minus those whose system is not built yet. */
+export function battleActives(p: Person): ActiveDef[] {
+  const jobs = [p.job, p.secondary].filter((j): j is JobId => !!j);
+  return jobs.flatMap((j) => (ABILITY_SET_BY_JOB.get(j)?.actives ?? []).filter((a) => !a.later && knows(p, a.id)));
+}
+
+/** Battle mods of the equipped passives. */
+export function passiveMods(p: Person): Record<string, number>[] {
+  return p.passives.flatMap((id) => (JOB_PASSIVE_BY_ID.get(id)?.mods ? [JOB_PASSIVE_BY_ID.get(id)!.mods!] : []));
 }

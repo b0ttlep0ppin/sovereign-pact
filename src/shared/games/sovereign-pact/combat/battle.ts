@@ -6,7 +6,7 @@ import { chargeTicks, moveCost, nextActor, step } from "./clock.ts";
 import { strike } from "./damage.ts";
 import { hasStatus, isFree, standing } from "./grid.ts";
 import { kill } from "./injury.ts";
-import { meta, removeStatus } from "./status.ts";
+import { addStatus, meta, removeStatus } from "./status.ts";
 import { cellOf, isSingle, resolveTargets, singleTargets } from "./targets.ts";
 import type { AbilityDef, Battle, Cell, Combatant } from "./types.ts";
 
@@ -38,6 +38,7 @@ export function cannotUse(u: Combatant, ab: AbilityDef): string | null {
   }
   if (ab.id === "attack" && hasStatus(u, "disarmed")) return "disarmed";
   if ((u.cooldowns[ab.id] ?? 0) > 0) return "cooldown";
+  if (ab.requires && !ab.requires.some((w) => (w === "shield" ? u.offhand === "shield" : u.weapon.kind === w))) return `needs ${ab.requires.join(" or ")}`;
   if (mpCost(u, ab) > u.mp) return "mp";
   if ((ab.tp ?? 0) > u.tp) return "tp";
   return null;
@@ -162,8 +163,9 @@ function resolveCharge(b: Battle, rng: Rng, u: Combatant): void {
 export function resolve(b: Battle, rng: Rng, u: Combatant, ab: AbilityDef, at: Cell, homingOn?: number): void {
   const targets = resolveTargets(b, rng, u, ab, at, homingOn);
   b.events.push({ t: "use", unit: u.id, ability: ab.id, target: homingOn !== undefined && targets[0] ? cellOf(targets[0]) : at });
+  const hits = (ab.hits ?? 1) + (ab.hitsMax ? rng.int(ab.hitsMax - (ab.hits ?? 1) + 1) : 0);
   for (const t of targets) {
-    for (let i = 0; i < (ab.hits ?? 1) && !t.dead && !u.dead; i++) {
+    for (let i = 0; i < hits && !t.dead && !u.dead; i++) {
       const hit = strike(b, rng, u, t, ab, { telegraphed: !!ab.telegraph });
       // Multi-hit weapons sometimes strike again, weaker (§13.4).
       if (ab.id === "attack" && hit.hit && u.mods.multiHit && !t.dead && !u.dead && rng.int(100) < u.mods.multiHit)
@@ -171,6 +173,8 @@ export function resolve(b: Battle, rng: Rng, u: Combatant, ab: AbilityDef, at: C
     }
   }
   if (hasStatus(u, "hidden")) removeStatus(b, u, "hidden");
+  if (ab.self?.tp) u.tp = Math.min(C.tp.max, u.tp + ab.self.tp);
+  for (const x of ab.self?.statuses ?? []) addStatus(b, u, x.id, x.ticks, x.value === undefined ? undefined : { value: x.value });
   checkEnd(b);
 }
 

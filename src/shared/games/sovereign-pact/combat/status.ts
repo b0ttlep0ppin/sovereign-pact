@@ -58,6 +58,11 @@ export const STATUSES: Record<string, StatusMeta> = {
   enrage: { kind: "buff", ticks: 300 },
   marked: { kind: "debuff", ticks: 200 },
   rooted: { kind: "physical", ticks: 200 },
+  // From Job abilities (§12.4–12.11): their value is the %.
+  counter_up: { kind: "buff", ticks: 500 },
+  thorns: { kind: "buff", ticks: 200 },
+  envenom: { kind: "buff", ticks: 300 },
+  hex: { kind: "debuff", ticks: 300 },
 };
 
 export const meta = (id: string): StatusMeta => STATUSES[id] ?? { kind: "debuff", ticks: 0 };

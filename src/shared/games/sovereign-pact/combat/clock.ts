@@ -26,6 +26,8 @@ export function step(b: Battle, rng: Rng): Combatant[] {
       if (u.charge.ticks <= 0) ready.push(u);
     }
     if (pulse) pulseOf(b, rng, u);
+    // Meditation, Wellspring, Mana Font: MP per 100 ticks.
+    if (b.tick % C.regenEvery === 0 && u.mods.mpPer100) u.mp = Math.min(u.maxMp, u.mp + u.mods.mpPer100);
     if (!u.dead) tickStatuses(b, u);
   }
   return ready;
