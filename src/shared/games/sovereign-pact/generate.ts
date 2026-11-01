@@ -106,6 +106,9 @@ export function rollRecruit(rng: Rng, id: number, house: number, blood?: Pick<Ho
     gear: {},
     hist: {},
   };
+  // Superstitious: a share of the line's cards are dealt Reversed (§6.8).
+  const reversed = blood ? (houseEffects(blood).economy.reversedPct ?? 0) : 0;
+  if (reversed && rng.int(100) < reversed) person.reversed = true;
   person.sanity = maxSanity(person);
   person.mp = maxMp(person);
   return person;

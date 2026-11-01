@@ -168,6 +168,8 @@ export interface House {
   chronicle: ChronicleEntry[];
   /** Pressed Seal the Year (§8.2). */
   sealed: boolean;
+  /** Recruits promoted this Year (§6.5). */
+  promotions?: number;
 }
 
 /** A queued thing on the 20-Year strip (§8.7). Hidden entries show as "?" until revealed. */
@@ -367,6 +369,8 @@ export type SovMove =
   | { type: "random_house"; step?: FoundingStep }
   | { type: "swear"; ambition: 0 | 1 }
   | { type: "seal" }
+  /** Promote a recruit to Scion in a base Job (§6.5). */
+  | { type: "promote"; person: number; job: JobId }
   | { type: "unseal" }
   /** Start a House building, or its next level, paying now (§8.3). */
   | { type: "build"; building: string }

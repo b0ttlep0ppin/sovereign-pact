@@ -8,7 +8,8 @@ import { BUILDING_BY_ID, TOWN_EVENT_BY_ID } from "./content.ts";
 import { cautious } from "./omens.ts";
 import { caps } from "./combat/build.ts";
 import { cannotAccept } from "./deals.ts";
-import type { Assignment, Deal, SovMove, SovState } from "./state.ts";
+import { type BASE_JOBS, type Assignment, type Deal, type Person, type SovMove, type SovState } from "./state.ts";
+import { bestJob, cannotPromote } from "./promotion.ts";
 import { buildCost, cannotBuild, levelOf, upkeepDue } from "./town.ts";
 import { forHouses, TUNING } from "./tuning.ts";
 
@@ -115,6 +116,21 @@ export function assignPlan(s: SovState, house: number): Map<number, Assignment |
 }
 
 const sameAs = (a: Assignment | undefined, b: Assignment | undefined) => JSON.stringify(a ?? null) === JSON.stringify(b ?? null);
+
+/**
+ * The recruit the bot promotes, or null: while it has fewer Scions than its target and can pay for the
+ * ceremony and two Years of upkeep, its recruit with the best stats and growths, in the Job they suit.
+ */
+export function botPromote(s: SovState, house: number): { person: number; job: (typeof BASE_JOBS)[number] } | null {
+  const scions = s.people.filter((p) => p.host === house && p.status === "scion").length;
+  if (scions >= forHouses(TUNING.promotion.botScions, s.houses.length)) return null;
+  if (s.houses[house]!.gold - TUNING.promotion.gold < 2 * upkeepGold(s, house) + TUNING.economy.upkeep.scionGold) return null;
+  const worth = (p: Person) => p.base.reduce((a, b) => a + b, 0) + p.growth.reduce((a, b) => a + b, 0) / 20;
+  const best = s.people.filter((p) => p.host === house && p.status === "recruit").sort((a, b) => worth(b) - worth(a))[0];
+  if (!best) return null;
+  const job = bestJob(best.base);
+  return cannotPromote(s, house, best.id, job) ? null : { person: best.id, job };
+}
 
 /** The next assignment the bot changes for `house`, or null when its plan is in place. */
 export function botAssign(s: SovState, house: number): AssignMove | null {
