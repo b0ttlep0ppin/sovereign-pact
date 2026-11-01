@@ -1,0 +1,62 @@
+{
+  "id": "barrow_banshee",
+  "name": "Banshee",
+  "pool": "barrows",
+  "tags": ["undead", "spirit", "flyer"],
+  "role": "lurker",
+  "size": [1, 1],
+  "levels": [3, 8],
+  "stats": {
+    "speed": 11,
+    "sanityTouch": 4
+  },
+  "affinity": {
+    "holy": -75,
+    "dark": 75
+  },
+  "immune": ["poison", "bleed"],
+  "abilities": [
+    {
+      "id": "wail",
+      "shape": "column:B",
+      "side": "player",
+      "power": 0.5,
+      "kind": "magic",
+      "element": "dark",
+      "sanity": 6,
+      "charge": 100,
+      "telegraph": true,
+      "cooldown": 2,
+      "statuses": [
+        {
+          "id": "fear",
+          "chance": 30,
+          "ticks": 200
+        }
+      ]
+    },
+    {
+      "id": "grave_whisper",
+      "shape": "single",
+      "side": "player",
+      "power": 0.4,
+      "kind": "magic",
+      "element": "dark",
+      "reach": "ranged",
+      "sanity": 6
+    }
+  ],
+  "gambits": [
+    {
+      "do": "wail"
+    },
+    {
+      "do": "grave_whisper",
+      "target": "lowest_sanity"
+    }
+  ],
+  "bestiary": {
+    "lore": "She mourns whoever is next. She is rarely wrong.",
+    "weakness": "Holy. Deaf Scions do not hear the wail's fear."
+  }
+}

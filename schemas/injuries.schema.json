@@ -1,0 +1,78 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Injury and Sanity tables: a d20 plus steps, read top down (SPEC §11)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["tables"],
+  "properties": {
+    "tables": {
+      "type": "array",
+      "minItems": 5,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "results"],
+        "properties": {
+          "id": { "enum": ["head", "body", "arms", "legs", "sanity"] },
+          "results": { "type": "array", "minItems": 2, "items": { "$ref": "#/definitions/result" } }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "mods": {
+      "type": "object",
+      "description": "Modifiers while the result lasts: flat points (accuracy, evasion, speed, mentalResist…), percentages (…Pct) or 1 for a rule (noMove, mute…)",
+      "additionalProperties": { "type": "number" }
+    },
+    "result": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "max", "band", "name", "text"],
+      "properties": {
+        "id": { "$ref": "defs.schema.json#/definitions/id" },
+        "max": { "type": "integer", "description": "The highest final roll that lands here; the last result takes everything above (99)." },
+        "band": { "enum": ["devastating", "moderate", "mild", "shrug"] },
+        "name": { "type": "string", "minLength": 1 },
+        "text": { "type": "string", "minLength": 1 },
+        "death": { "const": true },
+        "mortal": { "const": true, "description": "Last Stand, then death when the battle ends (§11.4)" },
+        "catatonic": { "const": true, "description": "Down for the rest of the battle, not revivable" },
+        "trauma": { "const": true, "description": "Queues a trauma incident (§11.8)" },
+        "boon": { "const": true },
+        "scar": { "const": true },
+        "disfiguring": { "const": true },
+        "fear": { "const": true },
+        "statuses": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["id", "ticks"],
+            "properties": { "id": { "$ref": "defs.schema.json#/definitions/id" }, "ticks": { "type": "integer", "minimum": 0, "description": "0: until the battle ends or the status's own rule ends it" } }
+          }
+        },
+        "tp": { "type": "integer" },
+        "tpSet": { "type": "integer" },
+        "hpPct": { "type": "integer" },
+        "sanity": { "type": "integer" },
+        "sanityTo": { "type": "integer", "minimum": 0, "maximum": 100 },
+        "durabilityTo": { "type": "integer", "minimum": 0, "maximum": 100 },
+        "dent": { "enum": ["head", "body", "arms", "legs"] },
+        "flags": { "type": "array", "items": { "$ref": "defs.schema.json#/definitions/id" } },
+        "stat": { "type": "object", "additionalProperties": { "type": "integer" } },
+        "battle": { "$ref": "#/definitions/mods" },
+        "expedition": { "$ref": "#/definitions/mods" },
+        "lasting": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["years", "mods"],
+          "properties": {
+            "years": { "type": "integer", "minimum": -1, "description": "-1 permanent; 0 until the expedition ends or a cure" },
+            "mods": { "$ref": "#/definitions/mods" }
+          }
+        }
+      }
+    }
+  }
+}

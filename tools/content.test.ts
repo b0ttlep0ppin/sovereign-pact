@@ -2,13 +2,14 @@
 // Content validation (CLAUDE.md, HANDOFF §7): every JSON file under the game's content/ folder must
 // match its schema under schemas/. A top-level file content/<name>.json uses schemas/<name>.schema.json;
 // a file in a folder, content/<folder>/…/<id>.json (events, enemies/<pool>, bosses…), uses
-// schemas/<folder>.schema.json. Ids are unique within their list and across a folder.
+// schemas/<folder>.schema.json. Defined ids (an id with a name or text) are unique within a file and across a folder.
 // Run alone with `npm run content`.
 import { readdirSync, readFileSync, statSync } from "node:fs";
 import { join, relative, sep } from "node:path";
 import { fileURLToPath } from "node:url";
 import { Ajv, type ValidateFunction } from "ajv";
 import { describe, expect, it } from "vitest";
+import { ENEMIES } from "../src/shared/games/sovereign-pact/content.ts";
 
 const root = fileURLToPath(new URL("..", import.meta.url));
 const CONTENT = join(root, "src/shared/games/sovereign-pact/content");
@@ -30,9 +31,13 @@ for (const f of schemaFiles) ajv.addSchema(JSON.parse(readFileSync(join(SCHEMAS,
 /** The schema a content file answers to. */
 const schemaFor = (file: string): string => `${file.includes("/") ? file.split("/")[0] : file.replace(/\.json$/, "")}.schema.json`;
 
-/** Every `id` in arrays of objects, wherever they sit in the file. */
+/** A thing the file defines, rather than a reference to one ({ id, ticks }): it has an id and a name or text. */
+const defines = (v: unknown): v is { id: string } =>
+  typeof v === "object" && v !== null && "id" in v && typeof v.id === "string" && ("name" in v || "text" in v);
+
+/** Every defined `id` in arrays of objects, wherever they sit in the file. */
 function ids(value: unknown): string[] {
-  if (Array.isArray(value)) return value.flatMap((v) => (typeof v === "object" && v && "id" in v && typeof v.id === "string" ? [v.id, ...ids(v)] : ids(v)));
+  if (Array.isArray(value)) return value.flatMap((v) => (defines(v) ? [v.id, ...ids(v)] : ids(v)));
   if (typeof value === "object" && value !== null) return Object.values(value).flatMap(ids);
   return [];
 }
@@ -62,8 +67,20 @@ describe("content", () => {
     const folders = new Map<string, string[]>();
     for (const file of contentFiles.filter((f) => f.includes("/"))) {
       const folder = file.split("/")[0]!;
-      folders.set(folder, [...(folders.get(folder) ?? []), ...ids(JSON.parse(readFileSync(join(CONTENT, file), "utf8")))]);
+      const data: unknown = JSON.parse(readFileSync(join(CONTENT, file), "utf8"));
+      folders.set(folder, [...(folders.get(folder) ?? []), ...(defines(data) ? [data.id] : []), ...ids(data)]);
     }
     for (const [folder, all] of folders) expect(all.filter((id, i) => all.indexOf(id) !== i), folder).toEqual([]);
+  });
+
+  it("files enemies by pool and id", () => {
+    for (const file of contentFiles.filter((f) => f.startsWith("enemies/"))) {
+      const [, pool, name] = file.split("/");
+      const data = JSON.parse(readFileSync(join(CONTENT, file), "utf8")) as { id: string; pool: string };
+      expect(`${data.pool}/${data.id}.json`, file).toBe(`${pool}/${name}`);
+    }
+    // content.ts imports each file by name; a new file must be added there too.
+    const files = contentFiles.filter((f) => f.startsWith("enemies/")).map((f) => f.split("/").at(-1)!.replace(/\.json$/, ""));
+    expect(ENEMIES.map((e) => e.id).sort()).toEqual(files.sort());
   });
 });

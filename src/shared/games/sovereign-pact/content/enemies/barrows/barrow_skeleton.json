@@ -1,0 +1,36 @@
+{
+  "id": "barrow_skeleton",
+  "name": "Skeleton",
+  "pool": "barrows",
+  "tags": ["undead", "humanoid"],
+  "role": "fodder",
+  "size": [1, 1],
+  "levels": [2, 5],
+  "stats": {
+    "speed": 10,
+    "sanityTouch": 0
+  },
+  "affinity": {
+    "holy": -50,
+    "dark": 50
+  },
+  "immune": ["poison", "bleed", "fear", "sleep"],
+  "abilities": [
+    {
+      "id": "bone_slash",
+      "shape": "single",
+      "side": "player",
+      "power": 1.0
+    }
+  ],
+  "gambits": [
+    {
+      "do": "bone_slash",
+      "target": "column_weighted"
+    }
+  ],
+  "bestiary": {
+    "lore": "It still holds its sword the way it was taught.",
+    "weakness": "Holy. Blunt blows to the Head."
+  }
+}

@@ -1,0 +1,135 @@
+// Statuses (§10.8): what kind each is (for resist checks and cures), what it does to the clock and to
+// a turn, and applying and ending them. Damage-over-time pulses run in clock.ts.
+import type { Rng } from "../../../rng.ts";
+import { TUNING } from "../tuning.ts";
+import { hasStatus } from "./grid.ts";
+import type { Battle, Combatant, StatusInst, StatusKind } from "./types.ts";
+
+export interface StatusMeta {
+  kind: StatusKind;
+  /** CT does not grow while it lasts. */
+  freezes?: boolean;
+  /** The combatant cannot act on its turn. */
+  blocks?: boolean;
+  /** Ends a charge in progress when applied (§10.5). Silence only ends spells. */
+  cancelsCharge?: boolean | "spells";
+  /** Bosses ignore it (§10.10); their adds do not. */
+  bossImmune?: boolean;
+  /** Ends when the combatant is hit. */
+  wakesOnHit?: boolean;
+  /** Used up on the combatant's next turn. */
+  oneTurn?: boolean;
+  /** Default duration in ticks when none is given (0: battle). */
+  ticks: number;
+}
+
+export const STATUSES: Record<string, StatusMeta> = {
+  poison: { kind: "physical", ticks: 300 },
+  bleed: { kind: "physical", ticks: 0 },
+  stun: { kind: "physical", ticks: 100, freezes: true, blocks: true, cancelsCharge: true },
+  knockdown: { kind: "physical", ticks: 0, oneTurn: true, cancelsCharge: true },
+  slow: { kind: "physical", ticks: 300 },
+  haste: { kind: "buff", ticks: 300 },
+  stop: { kind: "physical", ticks: 150, freezes: true, blocks: true, bossImmune: true },
+  blind: { kind: "physical", ticks: 300 },
+  burn: { kind: "physical", ticks: 300 },
+  frozen: { kind: "physical", ticks: 200 },
+  disease: { kind: "physical", ticks: 0 },
+  disarmed: { kind: "physical", ticks: 0 },
+  berserk: { kind: "mental", ticks: 300 },
+  confusion: { kind: "mental", ticks: 200 },
+  sleep: { kind: "mental", ticks: 300, freezes: true, blocks: true, cancelsCharge: true, wakesOnHit: true, bossImmune: true },
+  charm: { kind: "mental", ticks: 200, bossImmune: true },
+  fear: { kind: "mental", ticks: 300 },
+  silence: { kind: "mental", ticks: 200, cancelsCharge: "spells" },
+  deaf: { kind: "mental", ticks: 0 },
+  madness: { kind: "mental", ticks: 0 },
+  skip_turn: { kind: "mental", ticks: 0, oneTurn: true },
+  protect: { kind: "buff", ticks: 300 },
+  shell: { kind: "buff", ticks: 300 },
+  regen: { kind: "buff", ticks: 300 },
+  mp_regen: { kind: "buff", ticks: 300 },
+  tp_regen: { kind: "buff", ticks: 300 },
+  reflect: { kind: "buff", ticks: 0 },
+  guard_up: { kind: "buff", ticks: 300 },
+  provoke: { kind: "buff", ticks: 300 },
+  hidden: { kind: "buff", ticks: 100 },
+  shield: { kind: "buff", ticks: 0 },
+  enrage: { kind: "buff", ticks: 300 },
+  marked: { kind: "debuff", ticks: 200 },
+  rooted: { kind: "physical", ticks: 200 },
+};
+
+export const meta = (id: string): StatusMeta => STATUSES[id] ?? { kind: "debuff", ticks: 0 };
+
+export const isMental = (id: string): boolean => meta(id).kind === "mental";
+
+/** Resist % against an ailment: physical from Resilience, mental from Acuity (§7.3, §10.6 step 7). */
+export function resistOf(u: Combatant, id: string): number {
+  const kind = meta(id).kind;
+  if (kind === "buff" || kind === "debuff") return 0;
+  return kind === "mental" ? u.resist.mental : u.resist.physical;
+}
+
+export function isImmune(u: Combatant, id: string): boolean {
+  if (u.immune.includes(id)) return true;
+  if (u.boss && meta(id).bossImmune) return true;
+  if (u.lastStand && id === "fear") return true;
+  return false;
+}
+
+/** Puts a status on, replacing a weaker copy. Returns whether it took hold. Pushes the event. */
+export function addStatus(b: Battle, u: Combatant, id: string, ticks?: number, extra?: Partial<StatusInst>): boolean {
+  if (u.dead || isImmune(u, id)) return false;
+  const m = meta(id);
+  const inst: StatusInst = { id, ticks: ticks ?? m.ticks, ...extra };
+  const i = u.statuses.findIndex((s) => s.id === id);
+  if (i >= 0) {
+    const old = u.statuses[i]!;
+    // Battle-long beats timed; a longer time beats a shorter; values add for Shields.
+    const ticksLeft = old.ticks === 0 || inst.ticks === 0 ? 0 : Math.max(old.ticks, inst.ticks);
+    u.statuses[i] = { ...old, ...inst, ticks: ticksLeft, value: id === "shield" ? (old.value ?? 0) + (inst.value ?? 0) : inst.value ?? old.value };
+  } else u.statuses.push(inst);
+  b.events.push({ t: "status", target: u.id, status: id, on: true });
+  if (id === "stun") u.ct = 0;
+  if (u.charge && (m.cancelsCharge === true || (m.cancelsCharge === "spells" && u.charge.ability.kind === "magic"))) {
+    b.events.push({ t: "cancel", unit: u.id, ability: u.charge.ability.id });
+    delete u.charge;
+  }
+  return true;
+}
+
+/** An ability's chance to inflict, then the target's resist (§10.6 step 7). */
+export function tryStatus(b: Battle, rng: Rng, u: Combatant, id: string, chance: number, ticks: number, value?: number): boolean {
+  if (rng.int(100) >= chance) return false;
+  if (rng.int(100) < resistOf(u, id)) return false;
+  return addStatus(b, u, id, ticks, value === undefined ? undefined : { value });
+}
+
+export function removeStatus(b: Battle, u: Combatant, id: string): void {
+  if (!hasStatus(u, id)) return;
+  u.statuses = u.statuses.filter((s) => s.id !== id);
+  b.events.push({ t: "status", target: u.id, status: id, on: false });
+}
+
+export const statusValue = (u: Combatant, id: string): number | undefined => u.statuses.find((s) => s.id === id)?.value;
+
+/** Speed after Haste and Slow (§10.4) and lasting mods; at least 1. */
+export function speedOf(u: Combatant): number {
+  let s = u.speed + (u.mods.speed ?? 0);
+  if (hasStatus(u, "haste")) s += 2;
+  if (hasStatus(u, "slow")) s -= 2;
+  return Math.max(1, s);
+}
+
+export const frozenClock = (u: Combatant): boolean => u.statuses.some((s) => meta(s.id).freezes);
+
+/** Counts statuses down one clock step; ends the ones that ran out. */
+export function tickStatuses(b: Battle, u: Combatant): void {
+  const step = TUNING.combat.ticksPerStep;
+  for (const s of [...u.statuses]) {
+    if (s.ticks === 0) continue;
+    s.ticks -= step;
+    if (s.ticks <= 0) removeStatus(b, u, s.id);
+  }
+}

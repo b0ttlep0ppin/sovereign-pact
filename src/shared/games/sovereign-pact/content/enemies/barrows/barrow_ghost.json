@@ -1,0 +1,45 @@
+{
+  "id": "barrow_ghost",
+  "name": "Ghost",
+  "pool": "barrows",
+  "tags": ["undead", "spirit", "flyer"],
+  "role": "lurker",
+  "size": [1, 1],
+  "levels": [2, 7],
+  "stats": {
+    "speed": 13,
+    "sanityTouch": 3
+  },
+  "affinity": {
+    "holy": -75,
+    "dark": 75
+  },
+  "immune": ["poison", "bleed", "stun", "knockdown"],
+  "abilities": [
+    {
+      "id": "chill_touch",
+      "shape": "single",
+      "side": "player",
+      "power": 0.9,
+      "kind": "magic",
+      "element": "dark",
+      "statuses": [
+        {
+          "id": "slow",
+          "chance": 25,
+          "ticks": 200
+        }
+      ]
+    }
+  ],
+  "gambits": [
+    {
+      "do": "chill_touch",
+      "target": "back_random"
+    }
+  ],
+  "bestiary": {
+    "lore": "It drifts past the shields to whoever is standing furthest from the light.",
+    "weakness": "Holy. Spells pass through the shields it does."
+  }
+}
