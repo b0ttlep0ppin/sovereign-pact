@@ -1,7 +1,7 @@
 // Making new Houses and new people (§5, §6.3). House creation's screens (Milestone 5) replace the
 // random House; recruit generation grows House trait modifiers and individual traits then.
 import type { Rng } from "../../rng.ts";
-import { HERALDRY, NAMES, SEATS, TAROT } from "./content.ts";
+import { HERALDRY, NAMES, SEATS, TAROT, TRAIT_BY_ID, TRAITS } from "./content.ts";
 import { maxMp, maxSanity } from "./formulas.ts";
 import { houseEffects } from "./houses.ts";
 import {
@@ -17,6 +17,31 @@ import {
   type Six,
 } from "./state.ts";
 import { forHouses, TUNING } from "./tuning.ts";
+
+/**
+ * A recruit's individual traits (§6.3, §6.7): first the innate ones the House's blood gives by chance
+ * (Fleet of Foot: 30% Fleet), then 1–3 in all from the table by weight, a trait of the House's element
+ * more often, one per group (never Fleet and Sluggish).
+ */
+export function rollTraits(rng: Rng, blood?: Pick<House, "traits" | "element" | "bane">): string[] {
+  const fx = blood ? houseEffects(blood) : undefined;
+  const T = TUNING.recruits.traits;
+  const out: string[] = [];
+  const fits = (id: string) => {
+    const def = TRAIT_BY_ID.get(id);
+    return !!def && !out.includes(id) && !(def.group && out.some((o) => TRAIT_BY_ID.get(o)?.group === def.group));
+  };
+  for (const [id, chance] of Object.entries(fx?.innate ?? {})) if (rng.int(100) < chance && fits(id)) out.push(id);
+  let roll = rng.int(100);
+  const count = 1 + T.count.findIndex((w) => (roll -= w) < 0);
+  while (out.length < count) {
+    const pool = TRAITS.filter((t) => t.weight > 0 && fits(t.id));
+    const weight = (t: (typeof pool)[number]) => t.weight * (blood?.element && t.element === blood.element ? T.alignedWeight : 1);
+    let r = rng.int(pool.reduce((n, t) => n + weight(t), 0));
+    out.push(pool.find((t) => (r -= weight(t)) < 0)!.id);
+  }
+  return out;
+}
 
 /** An integer in [lo, hi], both included. */
 export const between = (rng: Rng, lo: number, hi: number): number => lo + rng.int(hi - lo + 1);
@@ -73,7 +98,7 @@ export function rollRecruit(rng: Rng, id: number, house: number, blood?: Pick<Ho
     mastered: [],
     learned: [],
     passives: [],
-    traits: [],
+    traits: rollTraits(rng, blood),
     tarot: rng.pick(TAROT).id,
     injuries: [],
     sanity: 0,

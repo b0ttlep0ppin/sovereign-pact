@@ -24,6 +24,7 @@ import summonsJson from "./content/summons.json" with { type: "json" };
 import hazardsJson from "./content/hazards.json" with { type: "json" };
 import heraldryJson from "./content/heraldry.json" with { type: "json" };
 import houseTraitsJson from "./content/house_traits.json" with { type: "json" };
+import traitsJson from "./content/traits.json" with { type: "json" };
 import injuriesJson from "./content/injuries.json" with { type: "json" };
 import itemsJson from "./content/items.json" with { type: "json" };
 import jobsJson from "./content/jobs.json" with { type: "json" };
@@ -629,3 +630,21 @@ export interface HouseTraitDef {
 }
 export const HOUSE_TRAITS = houseTraitsJson.traits as readonly HouseTraitDef[];
 export const HOUSE_TRAIT_BY_ID = byId(HOUSE_TRAITS);
+
+/** An individual trait (§6.7): one person's own, rolled at generation (weight > 0) or gained later. */
+export interface TraitDef {
+  id: string;
+  name: string;
+  flavor: string;
+  crunch: string;
+  /** Battle mods the person carries. */
+  mods?: Record<string, number>;
+  tags?: string[];
+  weight: number;
+  /** At most one of a group per person. */
+  group?: string;
+  /** Rolled more often for a House aligned with it. */
+  element?: Element;
+}
+export const TRAITS = traitsJson.traits as readonly TraitDef[];
+export const TRAIT_BY_ID = byId(TRAITS);

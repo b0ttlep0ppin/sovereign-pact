@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { botAssign } from "./bot.ts";
-import { maxSanity } from "./formulas.ts";
+import { caps } from "./combat/build.ts";
 import { sovereignPact, type SovMove, type SovState } from "./index.ts";
 import type { Person } from "./state.ts";
 import { calm, campaign, playOut } from "./testing.ts";
@@ -31,12 +31,12 @@ describe("Year assignments (§8.3)", () => {
     for (const p of [a!, b!]) p.sanity = 0;
     s = move(s, "p1", { type: "assign", person: a!.id, to: "rest" });
     s = seal(s);
-    expect(person(s, a!.id).sanity).toBe(Math.ceil((maxSanity(a!) * A.restSanityPct) / 100));
-    expect(person(s, b!.id).sanity).toBe(Math.ceil((maxSanity(b!) * A.idleSanityPct) / 100));
+    expect(person(s, a!.id).sanity).toBe(Math.ceil((caps(s, a!).sanity * A.restSanityPct) / 100));
+    expect(person(s, b!.id).sanity).toBe(Math.ceil((caps(s, b!).sanity * A.idleSanityPct) / 100));
     s.houses[0]!.buildings.chapel = 1;
     person(s, b!.id).sanity = 0;
     s = seal(s);
-    expect(person(s, b!.id).sanity).toBe(Math.ceil((maxSanity(b!) * (A.idleSanityPct + A.chapelBuildingSanityPct)) / 100));
+    expect(person(s, b!.id).sanity).toBe(Math.ceil((caps(s, b!).sanity * (A.idleSanityPct + A.chapelBuildingSanityPct)) / 100));
   });
 
   it("keeps an assignment from Year to Year until changed", () => {
@@ -68,7 +68,7 @@ describe("Year assignments (§8.3)", () => {
     a.sanity = 1;
     a.injuries = [{ id: "sanity_night_terrors", years: 3 }];
     s = seal(move(s, "p1", { type: "assign", person: a.id, to: "chapel" }));
-    expect(person(s, a.id).sanity).toBe(maxSanity(a));
+    expect(person(s, a.id).sanity).toBe(caps(s, a).sanity);
     expect(person(s, a.id).injuries).toEqual([]);
   });
 
