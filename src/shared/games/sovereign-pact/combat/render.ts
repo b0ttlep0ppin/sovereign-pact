@@ -96,6 +96,8 @@ export function describeEvent(b: Battle, e: BattleEvent): string {
       return `${n(e.unit)} enters phase ${e.phase + 1}: ${bossLine(b, e.unit, "name", e.phase)}`;
     case "say":
       return `${n(e.unit)}: "${bossLine(b, e.unit, "say", e.line)}"`;
+    case "hazard":
+      return e.what === "set" ? `${e.hazard.replace(/_/g, " ")}: it will fall` : `${e.hazard.replace(/_/g, " ")} triggers`;
     case "flee":
       return `${n(e.unit)} flees`;
     case "part":

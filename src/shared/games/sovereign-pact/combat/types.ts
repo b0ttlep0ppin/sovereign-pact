@@ -279,6 +279,8 @@ export interface Combatant {
   disables?: string[];
   /** Abilities lost to destroyed Parts. */
   lost?: string[];
+  /** A hazard standing on the enemy grid (§14.8): its id. It takes no turns. */
+  hazard?: string;
   /** The variant it appears as (§14.10), for its tint. */
   variant?: string;
   /** A scripted boss: how many of its phases it has entered (§14.6). */
@@ -325,6 +327,7 @@ export type BattleEvent =
   | { t: "phase"; unit: number; phase: number }
   | { t: "say"; unit: number; line: "open" | "death" | number }
   | { t: "flee"; unit: number }
+  | { t: "hazard"; hazard: string; what: "set" | "trigger"; col?: number; row?: number }
   | { t: "shift"; unit: number; form: string | null }
   | { t: "dead"; target: number }
   | { t: "wait" | "defend"; unit: number }
@@ -346,4 +349,18 @@ export interface Battle {
   outcome?: BattleOutcome;
   /** Battle-start effects have run (Familiar). */
   begun?: boolean;
+  /** The pool and level the fight was drawn from: Reinforcements come from them (§14.4). */
+  pool?: string;
+  /** Hazards lying on the party's grid (§14.8). A hidden one's place is never shown to the players. */
+  field?: FieldHazard[];
+}
+
+/** A hazard on the party's grid: where it lies, and when its timer runs out. */
+export interface FieldHazard {
+  id: string;
+  col: number;
+  row: number;
+  /** The tick it falls on, for timed ones. */
+  at?: number;
+  hidden?: boolean;
 }

@@ -4,6 +4,7 @@ import type { Rng } from "../../../rng.ts";
 import { TUNING } from "../tuning.ts";
 import { hpCap } from "./damage.ts";
 import { revert } from "./forms.ts";
+import { hazardStep } from "./hazards.ts";
 import { vanish } from "./summons.ts";
 import { hasStatus } from "./grid.ts";
 import { down, injure, kill, steel } from "./injury.ts";
@@ -40,6 +41,7 @@ export function step(b: Battle, rng: Rng): Combatant[] {
     if (b.tick % C.regenEvery === 0) per100(b, u);
     if (!u.dead) tickStatuses(b, u);
   }
+  hazardStep(b, rng);
   return ready;
 }
 
@@ -100,7 +102,7 @@ function pulseOf(b: Battle, rng: Rng, u: Combatant): void {
  */
 export function nextActor(b: Battle, rng: Rng): Combatant | undefined {
   // Parts take no turns of their own (§14.1).
-  const ready = ticking(b).filter((u) => u.ct >= C.turnAt && !u.charge && u.partOf === undefined);
+  const ready = ticking(b).filter((u) => u.ct >= C.turnAt && !u.charge && u.partOf === undefined && u.hazard === undefined);
   if (!ready.length) return undefined;
   const top = Math.max(...ready.map((u) => u.ct));
   const atTop = ready.filter((u) => u.ct === top);

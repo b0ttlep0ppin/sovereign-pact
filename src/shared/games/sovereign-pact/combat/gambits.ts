@@ -1,6 +1,7 @@
 // Gambits (§6.11, §10.11, §14.1): an ordered list of if / do / target rules, the first that applies
 // fires. Enemies, Sorties and bot seats all decide this way. Mental statuses override the list (§10.8).
 import type { Rng } from "../../../rng.ts";
+import { HAZARD_BY_ID } from "../content.ts";
 import { TUNING } from "../tuning.ts";
 import { abilityOf, cannotUse, type Action } from "./battle.ts";
 import { canShift } from "./forms.ts";
@@ -88,6 +89,8 @@ export function aim(b: Battle, rng: Rng, u: Combatant, ab: AbilityDef, rule = de
     if (ab.kind === "heal") pool = pool.filter((x) => x.hp < x.maxHp);
     // Sacrifice takes one of the user's summons; Banish only something summoned or added.
     if (ab.sacrifice) pool = pool.filter((x) => x.owner === u.id);
+    // Bots leave a bait hazard alone (an alarm bell, §14.8).
+    pool = pool.filter((x) => !x.hazard || !HAZARD_BY_ID.get(x.hazard)?.bait);
     if (ab.banish) pool = pool.filter((x) => !x.boss && (x.owner !== undefined || x.tags.includes("add")));
     const t = choose(rng, u, pool, rule);
     return t ? { do: "ability", ability: ab.id, target: cellOf(t) } : undefined;
