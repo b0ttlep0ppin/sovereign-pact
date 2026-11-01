@@ -3,6 +3,7 @@
 // materials, then the buildings that keep Scions alive and growing.
 import { cannotAssign, slots, type AssignMove } from "./assign.ts";
 import { cannotPledge, projectCost, stillNeeded } from "./commons.ts";
+import { cannotPropose } from "./votes.ts";
 import { BUILDING_BY_ID } from "./content.ts";
 import { maxSanity } from "./formulas.ts";
 import type { Assignment, SovState } from "./state.ts";
@@ -160,4 +161,16 @@ export function botPledge(s: SovState, house: number): { project: string; give: 
     }
   }
   return Object.keys(give).length && !cannotPledge(s, house, project, give) ? { project, give } : null;
+}
+
+/** The bot proposes spending the Commons on the first project of its plan the Commons can help (once a Year). */
+export function botPropose(s: SovState, house: number): string | null {
+  if (s.vote || s.proposers.includes(house)) return null;
+  return PROJECT_PLAN.find((id) => !cannotPropose(s, id)) ?? null;
+}
+
+/** The bot votes for spending the Commons on any project of its plan, against the rest. */
+export function botVote(s: SovState, _house: number): number {
+  const v = s.vote!;
+  return v.kind === "spend" && PROJECT_PLAN.includes(v.subject) ? v.options.indexOf("yes") : v.options.indexOf("no");
 }

@@ -11,7 +11,8 @@ import { placements } from "./score.ts";
 import { BASE_JOBS, type CampaignOptions, type House, type SovMove, type SovState } from "./state.ts";
 import { assign, cannotAssign } from "./assign.ts";
 import { cannotPledge, pledge } from "./commons.ts";
-import { botAssign, botBuild, botPledge } from "./bot.ts";
+import { cannotPropose, cannotVote, castVote, propose } from "./votes.ts";
+import { botAssign, botBuild, botPledge, botPropose, botVote } from "./bot.ts";
 import { build, cannotBuild, unbuild } from "./town.ts";
 import { forHouses, TUNING } from "./tuning.ts";
 import { view, type SovView } from "./view.ts";
@@ -76,6 +77,7 @@ export function newCampaign(players: readonly PlayerId[], rng: Rng, opts: Campai
     doom: TUNING.tracks.doomStart,
     timeline: [],
     assign: {},
+    proposers: [],
     flags: [],
     log: [],
   };
@@ -150,6 +152,25 @@ export function applyMove(state: SovState, playerId: PlayerId, move: SovMove): M
       s.phaseMoves += 1;
       return { ok: true, state: s };
     }
+    case "propose": {
+      if (s.phase !== "settlement") return fail("Proposals are made in the Settlement Phase.");
+      if (h.sealed) return fail("Unseal the Year first.");
+      if (s.proposers.includes(house)) return fail("You have made your proposal for this Year.");
+      const why = cannotPropose(s, move.project);
+      if (why) return fail(why);
+      s.proposers.push(house);
+      propose(s, house, move.project);
+      s.phaseMoves += 1;
+      return { ok: true, state: s };
+    }
+    case "vote": {
+      if (s.phase !== "settlement") return fail("There is nothing to vote on.");
+      const why = cannotVote(s, house, move.choice);
+      if (why) return fail(why);
+      castVote(s, house, move.choice);
+      s.phaseMoves += 1;
+      return { ok: true, state: s };
+    }
     case "assign": {
       if (s.phase !== "settlement") return fail("Assignments are made in the Settlement Phase.");
       if (h.sealed) return fail("Unseal the Year first.");
@@ -199,6 +220,7 @@ export function describeResult(s: SovState): string | null {
 /** The settlement bot is cautious (HANDOFF §3.4): it builds what it can afford by its plan, then seals. */
 export function botMove(s: SovState, playerId: PlayerId): SovMove {
   const house = houseOf(s, playerId);
+  if (house >= 0 && s.phase === "settlement" && s.vote && s.vote.by[house] === null) return { type: "vote", choice: botVote(s, house) };
   if (house >= 0 && s.phase === "settlement" && !s.houses[house]!.sealed) {
     const job = botAssign(s, house);
     if (job) return { type: "assign", ...job };
@@ -206,6 +228,8 @@ export function botMove(s: SovState, playerId: PlayerId): SovMove {
     if (next) return { type: "build", building: next };
     const gift = botPledge(s, house);
     if (gift) return { type: "pledge", ...gift };
+    const ask = botPropose(s, house);
+    if (ask) return { type: "propose", project: ask };
   }
   return { type: "seal" };
 }

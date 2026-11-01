@@ -203,6 +203,22 @@ export interface Commons {
   funds: Partial<Record<string, ProjectFund>>;
 }
 
+/**
+ * A vote of the Houses (§8.1, §8.8): open in the Settlement Phase, settled when every House has voted or
+ * when the Year is sealed (those who did not vote abstain). Votes are cast in the open.
+ */
+export interface Vote {
+  /** What it decides: "spend" (the Commons' stock on a project); events add their own kinds. */
+  kind: "spend";
+  /** The project (or event) it is about. */
+  subject: string;
+  /** Option ids, in order; "yes" and "no" for a spend. */
+  options: string[];
+  /** Each House's choice (index into options), or null while it has not voted. */
+  by: (number | null)[];
+  proposer: number;
+}
+
 export type Phase = "omens" | "settlement" | "expedition" | "reckoning" | "over";
 
 export interface CampaignOptions {
@@ -260,6 +276,10 @@ export interface SovState {
   /** At 100 the city is overwhelmed (§3.3). */
   doom: number;
   timeline: TimelineEntry[];
+  /** The vote now open, if any. */
+  vote?: Vote;
+  /** Houses that proposed a vote this Year: one proposal each a Year. */
+  proposers: number[];
   /** Year assignments by person id; kept from Year to Year until changed. Unassigned people idle. */
   assign: Record<number, Assignment>;
   /** Campaign-wide flags set by events, by id. */
@@ -279,5 +299,9 @@ export type SovMove =
   | { type: "unbuild"; building: string }
   /** Pledge Gold and materials to a shared project's next level; public and final (§8.5). */
   | { type: "pledge"; project: string; give: Partial<Record<string, number>> }
+  /** Propose spending the Commons' stock on a shared project (a vote of the Houses, §8.1). */
+  | { type: "propose"; project: string }
+  /** Vote on the open question: an index into its options. */
+  | { type: "vote"; choice: number }
   /** Set a person's Year assignment; "idle" clears it (§8.3). */
   | { type: "assign"; person: number; to: AssignmentKind | "idle"; at?: string; mentor?: number; job?: JobId };
