@@ -325,6 +325,12 @@ function afterMeleeHit(b: Battle, rng: Rng, u: Combatant, t: Combatant, damage: 
   // The Marsh Thing poisons whoever strikes it (§12.17).
   if (t.mods.poisonAttackers && !u.dead) tryStatus(b, rng, u, "poison", t.mods.poisonAttackers, 0);
   if (opts.counter || t.dead || t.down || u.dead) return;
+  // A Parry answers the next melee blow, then ends (§14.7).
+  if (hasStatus(t, "parry")) {
+    removeStatus(b, t, "parry");
+    strike(b, rng, t, u, COUNTER, { counter: true });
+    return;
+  }
   // Mirror Stance: every melee hit is answered while the TP lasts (§12.13).
   if (hasStatus(t, "mirror_stance") && t.tp >= J.mirrorTp) {
     t.tp -= J.mirrorTp;

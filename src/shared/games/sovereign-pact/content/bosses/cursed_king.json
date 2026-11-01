@@ -1,0 +1,39 @@
+{
+  "id": "cursed_king",
+  "name": "The Cursed King",
+  "pool": "barrows",
+  "tags": ["undead", "humanoid", "royal", "arc"],
+  "role": "boss",
+  "size": [1, 1],
+  "at": "E2",
+  "levels": [6, 6],
+  "stats": {"speed": 12, "hp": 4},
+  "affinity": {"holy": -50, "dark": 50},
+  "immune": ["fear", "poison"],
+  "abilities": [
+    {"id": "decree", "shape": "single", "side": "player", "power": 0, "reach": "ranged", "kind": "support", "cooldown": 3, "statuses": [{"id": "marked", "chance": 100, "ticks": 400}]},
+    {"id": "royal_parry", "shape": "self", "side": "self", "power": 0, "kind": "support", "cooldown": 3, "statuses": [{"id": "parry", "chance": 100, "ticks": 300}]},
+    {"id": "kingsblade", "shape": "single", "side": "player", "power": 1.4, "reach": "reach", "crit": 15}
+  ],
+  "gambits": [
+    {"if": "!foe.marked", "do": "decree", "target": "highest_might"},
+    {"if": "!self.parry", "do": "royal_parry"},
+    {"if": "foe.marked", "do": "kingsblade", "target": "marked"},
+    {"do": "kingsblade", "target": "column_weighted"}
+  ],
+  "adds": [
+    {"spawn": ["barrow_fallen_kingdom_knight"], "count": 2, "at": "E1"}
+  ],
+  "phases": [
+    {"at": "hp<=0.4", "name": "Second Form", "rise": "cursed_king_risen", "say": "Then see what I paid for.", "gambits": [{"do": "kingsblade", "target": "column_weighted"}]}
+  ],
+  "say": {
+    "open": "You come armed into my hall. Kneel, and I may let you keep your names.",
+    "death": "The crown... does not fall."
+  },
+  "bestiary": {
+    "lore": "The last King of the capital, who bargained with the Unknown for a throne that would never fall. It has not.",
+    "weakness": "Holy. Do not strike him in melee while he stands on guard; his Parry answers the next blow.",
+    "pattern": "Decrees one Scion, and every Knight in the hall turns on them; duels them himself with a reaching blade, and keeps a Parry ready for the next melee blow. Beaten down, he rises in his Second Form."
+  }
+}

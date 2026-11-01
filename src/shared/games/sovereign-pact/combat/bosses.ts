@@ -8,6 +8,7 @@ import { holds } from "./conditions.ts";
 import { partMods, partsOf } from "./enemyparts.ts";
 import { isFree } from "./grid.ts";
 import { kill } from "./injury.ts";
+import { end } from "./battle.ts";
 import { addStatus, meta, removeStatus } from "./status.ts";
 import { COLS, ROWS, type Battle, type Combatant } from "./types.ts";
 
@@ -63,7 +64,7 @@ export function bossPhases(b: Battle): void {
     const def = bossDef(u);
     if (!def || u.phase === undefined || u.partOf !== undefined) continue;
     if (u.dead) {
-      if (!u.flags.includes("said_death") && !u.flags.includes("fled")) {
+      if (!u.flags.includes("said_death") && !u.flags.includes("fled") && !u.flags.includes("risen")) {
         u.flags.push("said_death");
         b.events.push({ t: "say", unit: u.id, line: "death" });
       }
@@ -83,6 +84,13 @@ function enterPhase(b: Battle, u: Combatant, def: BossDef, i: number): void {
     kill(b, u);
     return;
   }
+  if (p.kneel) {
+    u.flags.push("knelt");
+    b.events.push({ t: "kneel", unit: u.id });
+    end(b, "victory");
+    return;
+  }
+  if (p.rise && rise(b, u, p.rise)) return;
   u.gambits = p.gambits;
   if (p.speed) u.speed = p.speed;
   // A new phase breaks off whatever the boss was charging.
@@ -102,6 +110,27 @@ function enterPhase(b: Battle, u: Combatant, def: BossDef, i: number): void {
   if (p.affinity) u.affinity = { ...p.affinity };
   if (p.transform) transform(b, u, p.transform.from, p.transform.into);
   if (p.adds) spawnAdds(b, u, p.adds);
+}
+
+/** The boss leaves and `into` takes the field where it fits, its column first, middle rows first. False if there is no room. */
+function rise(b: Battle, boss: Combatant, into: string): boolean {
+  const def = BOSS_BY_ID.get(into)!;
+  const col = Math.min(COLS - def.size[0], def.at ? Number(def.at.slice(1)) - 1 : 0);
+  const cols = [col, ...Array.from({ length: COLS - def.size[0] + 1 }, (_, c) => c).filter((c) => c !== col)];
+  boss.dead = true; // its own cells do not block the new form
+  const spot = cols.flatMap((c) => MIDDLE_OUT.filter((r) => r + def.size[1] <= ROWS).map((r) => [c, r] as const)).find(([c, r]) => isFree(b, "enemy", c, r, def.size));
+  boss.dead = false;
+  if (!spot) return false;
+  boss.flags.push("risen");
+  kill(b, boss);
+  const u = enemyCombatant(def, { id: nextId(b), level: boss.level, col: spot[0], row: spot[1], ct: boss.ct });
+  u.phase = 0;
+  if (def.parts?.length) u.mods.noMove = 1;
+  b.units.push(u, ...partsOf(u, def));
+  for (const s of def.start ?? []) addStatus(b, u, s.id, s.ticks);
+  b.events.push({ t: "rise", unit: boss.id, into: u.id });
+  b.events.push({ t: "say", unit: u.id, line: "open" });
+  return true;
 }
 
 /** One living `from` add turns into `into` on its own column; nothing happens if there is none or no room. */

@@ -104,6 +104,10 @@ export function describeEvent(b: Battle, e: BattleEvent): string {
       return `${n(e.unit)}'s ${e.part.replace(/_/g, " ")} is destroyed`;
     case "raise":
       return `${n(e.unit)} raises ${n(e.target)} from the dead`;
+    case "rise":
+      return `${n(e.unit)} rises as ${n(e.into)}`;
+    case "kneel":
+      return `${n(e.unit)} kneels: the fight is over`;
     case "devour":
       return `${n(e.unit)} devours ${n(e.target)}`;
     case "vanish":

@@ -219,6 +219,10 @@ export interface BossPhase {
   clear?: string[];
   /** Its elemental leanings from this phase on, replacing the old ones (Divine Beast Fusion's cycle). */
   affinity?: Partial<Record<Element, number>>;
+  /** It rises as another boss (the Cursed King's Second Form): this one leaves, that one takes the field at full HP. */
+  rise?: string;
+  /** It kneels and the fight ends, won, with the boss alive (the Cursed King's Abdication). */
+  kneel?: boolean;
   /** One living add of `from` becomes `into` where it stood (the Village Evil God's Flesh Mass). */
   transform?: { from: string; into: string };
   say: string;
