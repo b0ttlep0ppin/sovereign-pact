@@ -82,6 +82,8 @@ export function scionCombatant(p: Person, opts: ScionOpts): Combatant {
   for (const el of ELEMENTS) if (mods[`ward.${el}`]) affinity[el] = (affinity[el] ?? 0) + mods[`ward.${el}`]!;
   const statuses = freePassives(p).flatMap((x) => (x.start ?? []).map((id) => ({ id, ticks: meta(id).ticks })));
   if (mods.markedStart) statuses.push({ id: "marked", ticks: meta("marked").ticks });
+  // Thick Skin and the like: `start.<status>` passives (§12.14).
+  for (const k of Object.keys(mods)) if (k.startsWith("start.") && !statuses.some((s) => s.id === k.slice(6))) statuses.push({ id: k.slice(6), ticks: meta(k.slice(6)).ticks });
   return {
     id: o.id,
     side: "party",

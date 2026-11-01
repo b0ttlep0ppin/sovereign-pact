@@ -74,6 +74,10 @@ export const STATUSES: Record<string, StatusMeta> = {
   frenzy: { kind: "buff", ticks: 500 },
   unstoppable: { kind: "buff", ticks: 300 },
   mirror_stance: { kind: "buff", ticks: 0, endsOnTurn: true },
+  // The Abjurer's wards (§12.14): a Brand's element rides in its mods; a Null Zone stops casting.
+  enchant: { kind: "buff", ticks: 300 },
+  anchored: { kind: "buff", ticks: 300 },
+  null_zone: { kind: "debuff", ticks: 200, cancelsCharge: "spells" },
 };
 
 // Songs are statuses on their hearers: buffs on allies, debuffs on enemies (§12.2).

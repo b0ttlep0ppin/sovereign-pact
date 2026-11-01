@@ -450,6 +450,17 @@
         "breaksCharge": {
           "type": "boolean",
           "description": "Cancels the target's charge in progress, bosses' too"
+        },
+        "shieldPct": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 100,
+          "description": "A Shield of this % of each target's max HP"
+        },
+        "dispelBuffs": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Buffs removed from each target (99: all)"
         }
       }
     },

@@ -50,7 +50,7 @@ export const hpCost = (u: Combatant, ab: AbilityDef): number => (ab.hpCost ? Mat
 export function cannotUse(u: Combatant, ab: AbilityDef): string | null {
   if (ab.id !== "attack" && hasStatus(u, "berserk")) return "berserk";
   if (ab.kind === "magic" || ab.kind === "heal") {
-    if (hasStatus(u, "silence") || u.mods.mute) return "silenced";
+    if (hasStatus(u, "silence") || hasStatus(u, "null_zone") || u.mods.mute) return "silenced";
   }
   if (ab.id === "attack" && hasStatus(u, "disarmed")) return "disarmed";
   if ((u.cooldowns[ab.id] ?? 0) > 0) return "cooldown";
@@ -218,6 +218,7 @@ function resolveCharge(b: Battle, rng: Rng, u: Combatant): void {
 export function resolve(b: Battle, rng: Rng, u: Combatant, ab: AbilityDef, at: Cell, homingOn?: number, doubleDown = 0): void {
   if (ab.song) return playSong(b, rng, u, ab);
   let targets = resolveTargets(b, rng, u, ab, at, homingOn);
+  if (counterspelled(b, rng, u, ab, targets)) return;
   if (ab.dice) {
     const total = abilityDice(b, rng, u, targets[0], ab.dice.doubleDown ? doubleDown : 0);
     if (total === null) {
@@ -251,6 +252,18 @@ export function resolve(b: Battle, rng: Rng, u: Combatant, ab: AbilityDef, at: C
   for (const x of ab.self?.statuses ?? []) addStatus(b, u, x.id, x.ticks, extraOf(x.value, x.mods));
   for (const [k, v] of Object.entries(ab.self?.mods ?? {})) u.mods[k] = (u.mods[k] ?? 0) + v;
   checkEnd(b);
+}
+
+/** Counterspell (§12.14): a hostile spell on someone beside an Abjurer may be dispelled before it lands. */
+function counterspelled(b: Battle, rng: Rng, u: Combatant, ab: AbilityDef, targets: Combatant[]): boolean {
+  if (ab.kind !== "magic") return false;
+  const near = (o: Combatant, t: Combatant) => o.id !== t.id && Math.abs(o.col - t.col) + Math.abs(o.row - t.row) === 1;
+  const warders = b.units.filter((o) => o.side !== u.side && o.mods.counterspell && !o.dead && !o.down && targets.some((t) => t.side === o.side && near(o, t)));
+  const warder = warders.find((o) => rng.int(100) < o.mods.counterspell!);
+  if (!warder) return false;
+  b.events.push({ t: "counterspell", unit: warder.id, target: u.id });
+  b.events.push({ t: "cancel", unit: u.id, ability: ab.id });
+  return true;
 }
 
 /** Victory when every enemy is gone; defeat when every Scion is Down or dead (§10.12). */

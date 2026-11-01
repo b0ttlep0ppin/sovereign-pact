@@ -322,7 +322,10 @@
       "mastery": {
         "id": "aegis",
         "name": "Aegis",
-        "text": "Shields you cast absorb +25%."
+        "text": "Shields you cast absorb +25%.",
+        "mods": {
+          "shieldCastPct": 25
+        }
       }
     },
     {

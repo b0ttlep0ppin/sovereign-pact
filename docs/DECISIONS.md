@@ -2,6 +2,10 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-01 (implementation, Milestone 2i: the Abjurer) — implementer
+- **The Abjurer's full drafted set** (§12.14): fifteen actives (the six Brands counted singly) and four passives, plus Warded and Aegis (+25% on Shields cast).
+- **Readings**: Barrier and Bulwark add to any Shield already up (Shields stack, §10.8); Dispel removes every buff and Purge the most recent one, songs included; Reflect turns back hostile spells only (heals and support are not reflected, and a reflected spell cannot bounce again); a Brand replaces the weapon's element on every physical hit and a new Brand replaces the old; Null Zone is its own status (no resist roll, unlike Silence) that blocks spells and ends a spell being charged; Silence is 85% before the target's mental resist; Counterspell rolls once per Abjurer beside any target of a hostile spell, and on a success the whole spell is cancelled; Thick Skin is a `start.shell` mod, so any passive can now start a battle with a status. Ward-Sense is a display rule and waits for the battle screen.
+
 ## 2026-11-01 (implementation, Milestone 2h: the Ravager and the Sword Saint) — implementer
 - **Both advanced melee Jobs have their full drafted sets** (§12.12–12.13): ten actives and four passives each, with JP prices, plus Ironhide, Deathless, Focus and Iaijutsu. Taking the Job already needs its prerequisite JP (Soldier 400; Soldier 400 + Knight 400).
 - **Effects as statuses with mods**: Steal Strength (Might ±10% as `mightPct`), Frenzy (attacks −30 CT, accuracy −15, no Defend), Unstoppable (immune to Knockdown, Stun, Fear; +1 step on every injury roll). Any status can now carry mods, and `immune.<status>` mods block a status (Thick Blood is `immune.bleed`).

@@ -1,0 +1,26 @@
+{
+  "job": "abjurer",
+  "actives": [
+    {"id": "barrier", "name": "Barrier", "jp": 100, "text": "A Shield of 30% of the ally's max HP.", "shape": "single", "side": "ally", "power": 0, "kind": "support", "mp": 20, "shieldPct": 30},
+    {"id": "bulwark_ward", "name": "Bulwark", "jp": 250, "text": "A Shield of 15% of max HP on every ally in the burst.", "shape": "burst:3x3", "side": "ally", "power": 0, "kind": "support", "mp": 45, "charge": 100, "shieldPct": 15},
+    {"id": "dispel", "name": "Dispel", "jp": 100, "text": "Remove every buff from an enemy.", "shape": "single", "side": "foe", "power": 0, "kind": "support", "mp": 15, "reach": "ranged", "dispelBuffs": 99},
+    {"id": "purge", "name": "Purge", "jp": 250, "text": "Remove one buff from every enemy.", "shape": "all", "side": "foe", "power": 0, "kind": "support", "mp": 40, "charge": 100, "dispelBuffs": 1},
+    {"id": "reflect", "name": "Reflect", "jp": 200, "text": "For 300 ticks, enemy spells aimed at the ally strike their caster instead.", "shape": "single", "side": "ally", "power": 0, "kind": "support", "mp": 30, "statuses": [{"id": "reflect", "chance": 100, "ticks": 300}]},
+    {"id": "flame_brand", "name": "Flame Brand", "jp": 100, "text": "An ally's weapon strikes as Fire for 300 ticks.", "shape": "single", "side": "ally", "power": 0, "kind": "support", "mp": 15, "statuses": [{"id": "enchant", "chance": 100, "ticks": 300, "mods": {"enchant.fire": 1}}]},
+    {"id": "frost_brand", "name": "Frost Brand", "jp": 100, "text": "An ally's weapon strikes as Water for 300 ticks.", "shape": "single", "side": "ally", "power": 0, "kind": "support", "mp": 15, "statuses": [{"id": "enchant", "chance": 100, "ticks": 300, "mods": {"enchant.water": 1}}]},
+    {"id": "storm_brand", "name": "Storm Brand", "jp": 100, "text": "An ally's weapon strikes as Wind for 300 ticks.", "shape": "single", "side": "ally", "power": 0, "kind": "support", "mp": 15, "statuses": [{"id": "enchant", "chance": 100, "ticks": 300, "mods": {"enchant.wind": 1}}]},
+    {"id": "stone_brand", "name": "Stone Brand", "jp": 100, "text": "An ally's weapon strikes as Earth for 300 ticks.", "shape": "single", "side": "ally", "power": 0, "kind": "support", "mp": 15, "statuses": [{"id": "enchant", "chance": 100, "ticks": 300, "mods": {"enchant.earth": 1}}]},
+    {"id": "dawn_brand", "name": "Dawn Brand", "jp": 150, "text": "An ally's weapon strikes as Holy for 300 ticks.", "shape": "single", "side": "ally", "power": 0, "kind": "support", "mp": 15, "statuses": [{"id": "enchant", "chance": 100, "ticks": 300, "mods": {"enchant.holy": 1}}]},
+    {"id": "dusk_brand", "name": "Dusk Brand", "jp": 150, "text": "An ally's weapon strikes as Dark for 300 ticks.", "shape": "single", "side": "ally", "power": 0, "kind": "support", "mp": 15, "statuses": [{"id": "enchant", "chance": 100, "ticks": 300, "mods": {"enchant.dark": 1}}]},
+    {"id": "thorn_ward", "name": "Thorn Ward", "jp": 150, "text": "Melee attackers take 30% of their damage back for 300 ticks.", "shape": "single", "side": "ally", "power": 0, "kind": "support", "mp": 25, "statuses": [{"id": "thorns", "chance": 100, "ticks": 300, "value": 30}]},
+    {"id": "silence_ward", "name": "Silence", "jp": 150, "text": "Silence for 200 ticks; cancels a spell being charged.", "shape": "single", "side": "foe", "power": 0, "kind": "support", "mp": 20, "reach": "ranged", "statuses": [{"id": "silence", "chance": 85, "ticks": 200}]},
+    {"id": "anchor", "name": "Anchor", "jp": 150, "text": "Immune to Readiness damage, Knockdown and Charm for 300 ticks.", "shape": "single", "side": "ally", "power": 0, "kind": "support", "mp": 20, "statuses": [{"id": "anchored", "chance": 100, "ticks": 300, "mods": {"immune.knockdown": 1, "immune.charm": 1, "readinessImmune": 1}}]},
+    {"id": "null_zone", "name": "Null Zone", "jp": 300, "text": "Enemies in the band cannot cast for 200 ticks.", "shape": "band:3", "side": "foe", "power": 0, "kind": "support", "mp": 60, "charge": 200, "telegraph": true, "statuses": [{"id": "null_zone", "chance": 100, "ticks": 200}]}
+  ],
+  "passives": [
+    {"id": "lasting_wards", "name": "Lasting Wards", "points": 2, "jp": 200, "text": "Buffs you cast last +100 ticks.", "mods": {"buffTicks": 100}},
+    {"id": "counterspell", "name": "Counterspell", "points": 3, "jp": 300, "text": "When an adjacent ally is targeted by a spell, a 25% chance to Dispel it.", "mods": {"counterspell": 25}},
+    {"id": "thick_skin", "name": "Thick Skin", "points": 1, "jp": 100, "text": "Shell on self at battle start.", "mods": {"start.shell": 1}},
+    {"id": "ward_sense", "name": "Ward-Sense", "points": 1, "jp": 100, "text": "Enemy buffs are shown with their remaining ticks.", "later": true}
+  ]
+}
