@@ -63,7 +63,7 @@ export function baseDamage(u: Combatant, ab: AbilityDef): number {
   const power = (ab.base ?? u.weapon.power) * ab.power;
   if (u.enemyScale !== undefined) return power * u.enemyScale;
   const kind = kindOf(ab);
-  if (kind === "magic") return power * (1 + u.acuity / C.acuityDivisor);
+  if (kind === "magic") return power * (1 + u.acuity / C.acuityDivisor) * (1 + (u.mods.spellPct ?? 0) / 100);
   if (kind === "heal") return power * (1 + u.sagacity / C.sagacityDivisor);
   return power * (1 + u.might / C.mightDivisor);
 }
@@ -127,12 +127,14 @@ export function strike(b: Battle, rng: Rng, u: Combatant, t: Combatant, ab: Abil
       removeStatus(b, t, "frozen");
     }
   }
-  if (physical) dmg -= t.defense;
+  if (physical) dmg -= t.defense * (1 - (u.weapon.armorPierce ?? 0) / 100);
   const immune = !!element && affinityMult(t, element) <= 0;
   const damage = ab.power === 0 || immune ? 0 : Math.max(1, Math.round(dmg));
 
   b.events.push({ t: "hit", unit: u.id, target: t.id, damage, loc, crit: crit || undefined, weak: weak || undefined, element: element ?? undefined });
   applyHit(b, rng, u, t, ab, damage, loc, opts);
+  // An axe's crit bleeds, a mace's stuns (§13.2): the target's resist still applies.
+  if (crit && physical && u.weapon.critStatus && !t.dead) tryStatus(b, rng, t, u.weapon.critStatus, 100, 0);
   return { hit: true, damage, loc, crit };
 }
 
@@ -157,7 +159,7 @@ function applyHit(b: Battle, rng: Rng, u: Combatant, t: Combatant, ab: AbilityDe
   if (ab.readiness) t.ct = Math.max(0, t.ct - Math.round(ab.readiness * (t.boss ? C.bossReadiness : 1)));
 
   // On-hit: TP both ways, Sanity, statuses (§10.6 step 7).
-  gainTp(u);
+  gainTp(u, kindOf(ab) === "physical" ? (u.weapon.tpGain ?? 0) : 0);
   if (!t.dead) gainTp(t);
   const sanity = (ab.sanity ?? 0) + (ab.power > 0 ? u.sanityTouch : 0);
   const sanityBefore = t.sanity;

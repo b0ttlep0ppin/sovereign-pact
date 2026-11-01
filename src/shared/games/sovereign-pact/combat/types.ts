@@ -35,6 +35,16 @@ export interface Weapon {
   reach: Reach;
   hands: 1 | 2;
   element?: Element;
+  /** A status every crit tries to inflict (axes Bleed, maces Stun, §13.2). */
+  critStatus?: string;
+  /** % of the target's armor it ignores (maces 25). */
+  armorPierce?: number;
+  /** Extra TP per hit (knives). */
+  tpGain?: number;
+  /** CT of a basic attack (crossbows 120). */
+  attackCost?: number;
+  /** Locations its aimed shots favor. */
+  aims?: Location[];
 }
 
 /** What an ability does when it lands; Scion Jobs (Milestone 2) and enemies (Milestone 3) share it. */

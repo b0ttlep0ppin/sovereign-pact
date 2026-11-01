@@ -181,6 +181,29 @@ export interface CampaignOptions {
   length: "full" | "short";
 }
 
+export type ItemTier = 1 | 2 | 3 | 4 | 5;
+
+/**
+ * One item in the world (§13): a base from content/items.json at a tier and an item level, owned by
+ * a House. Scions wear items by id (`Person.gear`); an item not worn sits in its House's stash.
+ */
+export interface Item {
+  id: number;
+  base: string;
+  /** Crude 1, Common 2, Fine 3, Masterwork 4, Relic 5 (§13.4). */
+  tier: ItemTier;
+  /** The expedition level it was made for (1–10): scales its power and defense like the enemy block (§14.2). */
+  ilvl: number;
+  house: number;
+  /** Properties by content id with their rolled value (Milestone 2, §13.4). */
+  props?: [string, number][];
+  /** Quality lost to "dented" results until a Forge repairs it (§13.3). */
+  dented?: number;
+  cursed?: true;
+  /** A named item's content id (§13.4). */
+  named?: string;
+}
+
 export interface SovState {
   /** State version, for saves. */
   v: 1;
@@ -196,6 +219,9 @@ export interface SovState {
   houses: House[];
   /** Every living recruit, Scion, Retired and Lost person, all Houses together (Wards move between them). */
   people: Person[];
+  /** Every item, worn or stashed, all Houses together. */
+  items: Item[];
+  /** Ids for people and items alike. */
   nextId: number;
   /** The settlement's shared stockpile, fed by the tithe, spent by vote (§8.1). */
   commons: { gold: number; stores: Stores };

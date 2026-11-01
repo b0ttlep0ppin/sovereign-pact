@@ -24,6 +24,10 @@ function checkSeat(s: SovState, seat: number, v: SovView): void {
   for (const h of v.houses) for (const k of PRIVATE_HOUSE_KEYS) expect(h).not.toHaveProperty(k);
   expect(v.mine?.ambition).toEqual(s.houses[seat]!.ambition);
   const mineIds = new Set(s.people.filter((p) => p.host === seat).map((p) => p.id));
+  // Items: what a shown person wears, and this House's own stash; never another House's stash.
+  const shownGear = new Set(v.people.flatMap((p) => Object.values(p.gear ?? {})));
+  const wornByAnyone = new Set(s.people.flatMap((p) => Object.values(p.gear)));
+  for (const it of v.items) expect(shownGear.has(it.id) || (it.house === seat && !wornByAnyone.has(it.id)), `item ${it.id}`).toBe(true);
   for (const p of v.people) {
     const real = s.people.find((x) => x.id === p.id)!;
     expect(p).not.toHaveProperty("loyalty");

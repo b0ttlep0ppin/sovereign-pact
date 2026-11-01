@@ -3,7 +3,25 @@
 // recruit's unrevealed potential, Ward Loyalty, and Pact marks (which no House ever sees, §14.7a).
 import type { PlayerId } from "../../game.ts";
 import { ascendancy, categories, standing } from "./score.ts";
-import type { Ambition, ChronicleEntry, Emblem, Element, House, Injury, JobId, Person, PersonStatus, Phase, Score, Six, SovState, StandingTier, Stores } from "./state.ts";
+import type {
+  Ambition,
+  ChronicleEntry,
+  Element,
+  Emblem,
+  GearSlot,
+  House,
+  Injury,
+  Item,
+  JobId,
+  Person,
+  PersonStatus,
+  Phase,
+  Score,
+  Six,
+  SovState,
+  StandingTier,
+  Stores,
+} from "./state.ts";
 import { campaignYears, mandatoryYears, trackName } from "./year.ts";
 
 /** Another House as everyone sees it. */
@@ -61,6 +79,8 @@ export interface PersonView {
   growth?: Six;
   /** Face-up once promoted (§6.5); Insight 3 for recruits. */
   tarot?: string;
+  /** Worn items by slot (ids into `SovView.items`); Scions and the Retired only. */
+  gear?: Partial<Record<GearSlot, number>>;
 }
 
 export interface SovView {
@@ -80,6 +100,8 @@ export interface SovView {
   houses: PublicHouse[];
   mine: PrivateHouse | null;
   people: PersonView[];
+  /** Items the viewer may see: everything a visible person wears, and their own House's stash. */
+  items: Item[];
   log: string[];
   outcome: SovState["outcome"] | null;
 }
@@ -126,6 +148,7 @@ function personView(p: Person, viewer: number | null, insight: number): PersonVi
   if (p.status !== "recruit") {
     v.base = p.base;
     v.tarot = p.tarot;
+    v.gear = p.gear;
     if (own) v.growth = p.growth;
     return v;
   }
@@ -143,6 +166,9 @@ export function view(s: SovState, playerId: PlayerId): SovView {
   const me = seat >= 0 && seat < s.houses.length ? seat : null;
   const own = me === null ? null : s.houses[me]!;
   const insight = own?.buildings.scriptorium ?? 0;
+  const people = s.people.flatMap((p) => personView(p, me, insight) ?? []);
+  const worn = new Set(people.flatMap((p) => Object.values(p.gear ?? {})));
+  const wornByAnyone = new Set(s.people.flatMap((p) => Object.values(p.gear)));
   return {
     me,
     year: s.year,
@@ -168,7 +194,8 @@ export function view(s: SovState, playerId: PlayerId): SovView {
             stores: own.stores,
             insight,
           },
-    people: s.people.flatMap((p) => personView(p, me, insight) ?? []),
+    people,
+    items: s.items.filter((i) => worn.has(i.id) || (me !== null && i.house === me && !wornByAnyone.has(i.id))),
     log: s.log,
     outcome: s.outcome ?? null,
   };

@@ -4,7 +4,9 @@ import { describe, expect, it } from "vitest";
 import { createRng } from "../../rng.ts";
 import { SAVE_MAX_BYTES } from "../../saves.ts";
 import { sovereignPact, type SovState } from "./index.ts";
-import { packPeople, unpackPeople } from "./codec.ts";
+import { packItems, packPeople, unpackItems, unpackPeople } from "./codec.ts";
+import { ITEM_BASES } from "./content.ts";
+import { GEAR_SLOTS } from "./state.ts";
 import type { SovSave } from "./save.ts";
 import { campaign, playOut, seats } from "./testing.ts";
 import { TUNING } from "./tuning.ts";
@@ -27,6 +29,13 @@ describe("the packed people", () => {
     s.people[0] = { ...s.people[0]!, secondary: "knight", reversed: true, aff: { fire: 20 }, loyalty: 40, gear: { main: 3, acc2: 9 }, hist: { kills: 4, sorties: 1 } };
     s.people[1] = { ...s.people[1]!, injuries: [{ id: "body_broken_ribs", years: 2 }], jp: { magus: 120, soldier: 2500 }, mastered: ["soldier"] };
     expect(unpackPeople(JSON.parse(JSON.stringify(packPeople(s.people))))).toEqual(s.people);
+  });
+
+  it("and the packed items unpack to the items", () => {
+    const s = campaign(2);
+    s.items.push({ id: 900, base: "axe", tier: 4, ilvl: 6, house: 1, props: [["keen", 10], ["bleeding", 25]], dented: 1, cursed: true, named: "widows_kiss" });
+    expect(s.items.length).toBeGreaterThan(1);
+    expect(unpackItems(JSON.parse(JSON.stringify(packItems(s.items))))).toEqual(s.items);
   });
 });
 
@@ -111,6 +120,14 @@ describe("save size (HANDOFF §7: a 20-Year, 4-House campaign stays under 64 KB)
     const traits = pool("trait", 60);
     const layers = pool("lpc_layer", 90);
     const some = (from: string[], n: number) => rng.shuffle(from).slice(0, n);
+    // Items as the late game holds them: Fine to Relic, each with 1–3 rolled properties (§13.4).
+    const props = pool("prop", 70);
+    const bases = ITEM_BASES.map((b) => b.id);
+    const item = (house: number) => {
+      const tier = (3 + rng.int(3)) as 3 | 4 | 5;
+      s.items.push({ id: s.nextId, base: rng.pick(bases), tier, ilvl: 8, house, props: some(props, tier - 2).map((id) => [id, 5 + rng.int(30)]) });
+      return s.nextId++;
+    };
     for (let h = 0; h < 4; h++) {
       for (let n = 0; n < 12; n++) {
         const veteran = { ...s.people.find((p) => p.status === "scion")! };
@@ -130,7 +147,7 @@ describe("save size (HANDOFF §7: a 20-Year, 4-House campaign stays under 64 KB)
           traits: [...some(traits, 3), "veteran_of_the_rift"],
           look: some(layers, 10),
           injuries: [{ id: "head_lost_eye", years: -1 }, { id: "legs_torn_knee", years: 2 }],
-          gear: { main: 101, off: 102, head: 103, body: 104, arms: 105, legs: 106, acc1: 107, acc2: 108 },
+          gear: Object.fromEntries(GEAR_SLOTS.map((slot) => [slot, item(h)])),
           hist: { kills: 312, expeditions: 14, healing: 4200, targeted: 640, led: 4, devastating: 2, sorties: 6, bosses: 5 },
           aff: { fire: 20, water: -20 },
           loyalty: n === 0 ? 63 : undefined,
@@ -140,6 +157,7 @@ describe("save size (HANDOFF §7: a 20-Year, 4-House campaign stays under 64 KB)
       while (s.people.filter((p) => p.host === h && p.status === "recruit").length < TUNING.houses.recruitPoolCap) {
         s.people.push({ ...s.people.find((p) => p.status === "recruit")!, id: s.nextId++, host: h, house: h, traits: some(traits, 3), look: some(layers, 8) });
       }
+      for (let n = 0; n < 16; n++) item(h);
       const house = s.houses[h]!;
       house.traits = some(traits, 6);
       house.buildings = Object.fromEntries(pool("building", 13).map((b) => [b, 3]));
