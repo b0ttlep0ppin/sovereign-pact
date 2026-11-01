@@ -1,0 +1,24 @@
+{
+  "id": "city_face_swarm",
+  "name": "Face Swarm",
+  "pool": "faceless_city",
+  "tags": ["faceless", "spirit", "flyer"],
+  "role": "swarm",
+  "size": [1, 1],
+  "levels": [3, 9],
+  "stats": {"sanityTouch": 1, "speed": 13},
+  "affinity": {"dark": 25, "holy": -25},
+  "immune": ["fear", "charm", "poison"],
+  "abilities": [
+    {"id": "whisper_bite", "shape": "single", "side": "player", "power": 0.8, "sanity": 2},
+    {"id": "overrun", "shape": "band:3", "side": "player", "power": 0.6, "cooldown": 1}
+  ],
+  "gambits": [
+    {"if": "swarm>=5", "do": "overrun"},
+    {"do": "whisper_bite", "target": "lowest_sanity"}
+  ],
+  "bestiary": {
+    "lore": "The faces that were taken, drifting, looking for someone to wear.",
+    "weakness": "Holy and anything that hits a row."
+  }
+}

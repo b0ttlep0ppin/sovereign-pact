@@ -1,0 +1,23 @@
+{
+  "id": "city_limbstalker",
+  "name": "Limbstalker",
+  "pool": "faceless_city",
+  "tags": ["flesh", "cursed"],
+  "role": "lurker",
+  "size": [1, 1],
+  "levels": [3, 7],
+  "stats": {"sanityTouch": 1, "speed": 13},
+  "affinity": {"dark": 25, "holy": -25},
+  "abilities": [
+    {"id": "long_reach", "shape": "single", "side": "player", "power": 1.2, "leap": true, "locationBias": "legs"},
+    {"id": "click_click", "shape": "single", "side": "player", "power": 0.3, "kind": "magic", "sanity": 5, "reach": "ranged"}
+  ],
+  "gambits": [
+    {"if": "turn%2==1", "do": "long_reach", "target": "empty_cell"},
+    {"do": "click_click", "target": "lowest_sanity"}
+  ],
+  "bestiary": {
+    "lore": "Too many joints in its arms, and all of them bend toward you.",
+    "weakness": "Holy. It leaps at the Back."
+  }
+}

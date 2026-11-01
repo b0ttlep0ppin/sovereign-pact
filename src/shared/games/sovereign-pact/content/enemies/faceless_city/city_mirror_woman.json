@@ -1,0 +1,24 @@
+{
+  "id": "city_mirror_woman",
+  "name": "Mirror Woman",
+  "pool": "faceless_city",
+  "tags": ["spirit", "cursed"],
+  "role": "horror",
+  "size": [1, 1],
+  "levels": [4, 8],
+  "stats": {"sanityTouch": 3, "speed": 11},
+  "affinity": {"dark": 25, "holy": -25},
+  "immune": ["poison", "sleep"],
+  "abilities": [
+    {"id": "reflection", "shape": "single", "side": "player", "power": 0.5, "kind": "magic", "sanity": 7, "statuses": [{"id": "confusion", "chance": 30, "ticks": 200}], "element": "dark", "reach": "ranged"},
+    {"id": "mirror_skin", "shape": "self", "side": "self", "power": 0, "kind": "support", "statuses": [{"id": "reflect", "chance": 100, "ticks": 300}], "cooldown": 4}
+  ],
+  "gambits": [
+    {"if": "turn%4==1", "do": "mirror_skin"},
+    {"do": "reflection", "target": "lowest_sanity"}
+  ],
+  "bestiary": {
+    "lore": "She lives in every mirror in the district. Do not look.",
+    "weakness": "Physical blows: her skin turns spells back."
+  }
+}

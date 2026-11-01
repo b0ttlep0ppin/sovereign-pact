@@ -1,0 +1,26 @@
+{
+  "id": "city_plague_doctor",
+  "name": "Plague Doctor",
+  "pool": "faceless_city",
+  "tags": ["humanoid"],
+  "role": "support",
+  "size": [1, 1],
+  "levels": [4, 9],
+  "stats": {"sanityTouch": 1, "speed": 10},
+  "affinity": {"dark": 25, "holy": -25},
+  "immune": ["poison", "disease"],
+  "abilities": [
+    {"id": "miasma", "shape": "burst:3x3", "side": "player", "power": 0.4, "kind": "magic", "charge": 60, "telegraph": true, "cooldown": 3, "statuses": [{"id": "poison", "chance": 60, "ticks": 300}]},
+    {"id": "tonic", "shape": "single", "side": "ally", "power": 1.3, "kind": "heal"},
+    {"id": "cane", "shape": "single", "side": "player", "power": 0.7}
+  ],
+  "gambits": [
+    {"if": "ally.hp<0.5", "do": "tonic", "target": "ally_lowest_hp"},
+    {"if": "turn%3==1", "do": "miasma", "target": "densest_cluster"},
+    {"do": "cane", "target": "nearest"}
+  ],
+  "bestiary": {
+    "lore": "He walks the sick streets with his beak full of herbs, and cures only the faithful.",
+    "weakness": "Holy and fire. Scatter before the miasma."
+  }
+}

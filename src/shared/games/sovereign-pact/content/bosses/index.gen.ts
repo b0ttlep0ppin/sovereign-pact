@@ -5,6 +5,7 @@ import scylla from "./scylla.json" with { type: "json" };
 import stone_colossus from "./stone_colossus.json" with { type: "json" };
 import tree_king from "./tree_king.json" with { type: "json" };
 import vampire_queen from "./vampire_queen.json" with { type: "json" };
+import village_evil_god from "./village_evil_god.json" with { type: "json" };
 
 export default [
   dark_general,
@@ -13,4 +14,5 @@ export default [
   stone_colossus,
   tree_king,
   vampire_queen,
+  village_evil_god,
 ];

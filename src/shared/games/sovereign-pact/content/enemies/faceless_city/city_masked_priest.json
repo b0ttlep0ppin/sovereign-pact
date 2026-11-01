@@ -1,0 +1,23 @@
+{
+  "id": "city_masked_priest",
+  "name": "Masked Priest",
+  "pool": "faceless_city",
+  "tags": ["humanoid", "cultist"],
+  "role": "caster",
+  "size": [1, 1],
+  "levels": [3, 7],
+  "stats": {"sanityTouch": 1, "speed": 10},
+  "affinity": {"dark": 25, "holy": -25},
+  "abilities": [
+    {"id": "litany", "shape": "row", "side": "player", "power": 0.5, "kind": "magic", "sanity": 5, "cooldown": 2, "element": "dark"},
+    {"id": "black_flame", "shape": "single", "side": "player", "power": 1.0, "kind": "magic", "element": "dark", "reach": "ranged"}
+  ],
+  "gambits": [
+    {"if": "turn%3==1", "do": "litany", "target": "densest_row"},
+    {"do": "black_flame", "target": "lowest_hp"}
+  ],
+  "bestiary": {
+    "lore": "He preaches to an empty church. Something in the pews is listening.",
+    "weakness": "Holy. Silence him."
+  }
+}

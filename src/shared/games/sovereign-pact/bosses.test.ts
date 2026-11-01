@@ -307,3 +307,34 @@ describe("the Stone Colossus", () => {
     expect(holds(b, colossus, "lost.left_slam && !lost.right_slam")).toBe(true);
   });
 });
+
+describe("the Village Evil God", () => {
+  const veg = () => {
+    const b = bossBattle(13, standardParty(13, 18), "village_evil_god", 6);
+    const god = b.units.find((u) => u.enemy === "village_evil_god")!;
+    const villagers = () => b.units.filter((u) => u.enemy === "city_fanatical_villager" && !u.dead);
+    return { b, god, villagers };
+  };
+  const sanityLost = (villagersAlive: number) => {
+    const { b, god, villagers } = veg();
+    for (const v of villagers().slice(villagersAlive)) kill(b, v);
+    const t = b.units.find((u) => u.side === "party" && u.col === 2)!;
+    const before = t.sanity;
+    resolve(b, createRng(1), god, { ...abilityOf(god, "gaze")!, accuracy: 999 }, cellOf(t));
+    return before - t.sanity;
+  };
+
+  it("hits Sanity harder for each villager still standing", () => {
+    expect(sanityLost(4) - sanityLost(0)).toBe(4);
+  });
+
+  it("turns a villager into a Flesh Mass at 30%", () => {
+    const { b, god, villagers } = veg();
+    god.hp = Math.floor(god.maxHp * 0.25);
+    checkEnd(b);
+    expect(god.phase).toBe(2);
+    expect(b.units.some((u) => u.flags.includes("transformed"))).toBe(true);
+    expect(b.units.filter((u) => u.enemy === "city_flesh_mass" && !u.dead)).toHaveLength(1);
+    expect(villagers()).toHaveLength(5);
+  });
+});

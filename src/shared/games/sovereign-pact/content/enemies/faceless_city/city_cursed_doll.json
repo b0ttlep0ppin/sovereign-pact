@@ -1,0 +1,24 @@
+{
+  "id": "city_cursed_doll",
+  "name": "Cursed Doll",
+  "pool": "faceless_city",
+  "tags": ["construct", "cursed"],
+  "role": "horror",
+  "size": [1, 1],
+  "levels": [3, 7],
+  "stats": {"sanityTouch": 3, "hp": 0.8, "speed": 12},
+  "affinity": {"dark": 25, "holy": -25, "fire": -25},
+  "immune": ["poison", "fear", "sleep"],
+  "abilities": [
+    {"id": "play_with_me", "shape": "single", "side": "player", "power": 0.3, "kind": "magic", "sanity": 7, "statuses": [{"id": "charm", "chance": 25, "ticks": 200}], "reach": "ranged"},
+    {"id": "tiny_knife", "shape": "single", "side": "player", "power": 0.8, "crit": 20}
+  ],
+  "gambits": [
+    {"if": "turn%2==1", "do": "play_with_me", "target": "lowest_sanity"},
+    {"do": "tiny_knife", "target": "nearest"}
+  ],
+  "bestiary": {
+    "lore": "It was on the bed when you came in. It was not on the bed a moment ago.",
+    "weakness": "Holy and fire."
+  }
+}

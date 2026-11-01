@@ -1,0 +1,24 @@
+{
+  "id": "city_meat_golem",
+  "name": "Meat Golem",
+  "pool": "faceless_city",
+  "tags": ["construct", "flesh"],
+  "role": "bruiser",
+  "size": [1, 1],
+  "levels": [6, 9],
+  "stats": {"sanityTouch": 1, "hp": 2.2, "speed": 7},
+  "affinity": {"dark": 25, "holy": -25, "fire": -25},
+  "immune": ["poison", "fear", "sleep", "charm"],
+  "abilities": [
+    {"id": "slab_fist", "shape": "single", "side": "player", "power": 1.4},
+    {"id": "putrid_burst", "shape": "adjacent", "side": "player", "power": 0.6, "kind": "magic", "sanity": 4, "cooldown": 3, "statuses": [{"id": "disease", "chance": 40, "ticks": 0}]}
+  ],
+  "gambits": [
+    {"if": "turn%3==2", "do": "putrid_burst"},
+    {"do": "slab_fist", "target": "lowest_durability"}
+  ],
+  "bestiary": {
+    "lore": "Stitched together out of what the Butcher did not sell.",
+    "weakness": "Holy and fire. Its burst sickens whoever is near."
+  }
+}

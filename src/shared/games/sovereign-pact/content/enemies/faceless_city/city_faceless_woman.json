@@ -1,0 +1,23 @@
+{
+  "id": "city_faceless_woman",
+  "name": "Faceless Woman",
+  "pool": "faceless_city",
+  "tags": ["humanoid", "faceless"],
+  "role": "fodder",
+  "size": [1, 1],
+  "levels": [3, 7],
+  "stats": {"sanityTouch": 1, "speed": 10},
+  "affinity": {"dark": 25, "holy": -25},
+  "abilities": [
+    {"id": "needle", "shape": "single", "side": "player", "power": 0.9, "statuses": [{"id": "bleed", "chance": 20, "ticks": 0}]},
+    {"id": "lullaby", "shape": "single", "side": "player", "power": 0.2, "kind": "magic", "sanity": 4, "cooldown": 3, "statuses": [{"id": "sleep", "chance": 25, "ticks": 200}], "reach": "ranged"}
+  ],
+  "gambits": [
+    {"if": "turn%3==1", "do": "lullaby", "target": "highest_might"},
+    {"do": "needle", "target": "column_weighted"}
+  ],
+  "bestiary": {
+    "lore": "She is sewing something in her doorway. It is a face. It might be yours.",
+    "weakness": "Holy. Her lullaby sleeps the strongest."
+  }
+}

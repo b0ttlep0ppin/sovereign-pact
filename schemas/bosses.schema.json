@@ -61,6 +61,7 @@
         "dispel": { "type": "boolean", "description": "Strips every buff from the party as it begins" },
         "regrow": { "type": "boolean", "description": "Destroyed Parts come back whole" },
         "flee": { "type": "boolean", "description": "It leaves the field: the fight is won, the boss is not killed" },
+        "transform": { "type": "object", "additionalProperties": false, "required": ["from", "into"], "properties": { "from": { "$ref": "defs.schema.json#/definitions/id" }, "into": { "$ref": "defs.schema.json#/definitions/id" } }, "description": "One living add of `from` becomes `into` where it stood" },
         "weak": { "type": "object", "additionalProperties": false, "required": ["location", "mult"], "properties": { "location": { "enum": ["head", "body", "arms", "legs"] }, "mult": { "type": "number", "minimum": 1 } }, "description": "A weak point it shows from this phase on" },
         "statuses": { "type": "array", "items": { "type": "object", "additionalProperties": false, "required": ["id", "ticks"], "properties": { "id": { "$ref": "defs.schema.json#/definitions/id" }, "ticks": { "type": "integer", "minimum": 0 } } } },
         "say": { "type": "string", "minLength": 1 }
