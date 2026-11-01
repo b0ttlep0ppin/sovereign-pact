@@ -238,6 +238,24 @@ export interface PendingEvent {
   choices: (number | null)[];
 }
 
+/** One side of a deal: Gold, materials and stashed items (by id). */
+export interface DealSide {
+  gold?: number;
+  stores?: Partial<Record<string, number>>;
+  items?: number[];
+}
+
+/** A deal offered by one House to another (§8.9): instant when accepted, gone at the seal. */
+export interface Deal {
+  id: number;
+  from: number;
+  to: number;
+  give: DealSide;
+  get: DealSide;
+  /** A public deal is logged for all and counts for Renown; a private one only the two Houses see. */
+  open: boolean;
+}
+
 export type Phase = "omens" | "settlement" | "expedition" | "reckoning" | "over";
 
 export interface CampaignOptions {
@@ -295,6 +313,8 @@ export interface SovState {
   /** At 100 the city is overwhelmed (§3.3). */
   doom: number;
   timeline: TimelineEntry[];
+  /** Deals on the table this Year. */
+  deals: Deal[];
   /** Town events drawn in the Omens and waiting on choices. */
   events: PendingEvent[];
   /** This Year's Crisis, open through the Settlement Phase. */
@@ -324,6 +344,11 @@ export type SovMove =
   | { type: "pledge"; project: string; give: Partial<Record<string, number>> }
   /** Pledge to this Year's Crisis, privately (§3.5). */
   | { type: "crisis_pledge"; give: Partial<Record<string, number>> }
+  /** Offer a deal to another House; `open` makes it public (§8.9). */
+  | { type: "offer"; to: number; give: DealSide; get: DealSide; open?: boolean }
+  /** Accept or decline a deal offered to you, or withdraw your own. */
+  | { type: "accept"; deal: number }
+  | { type: "decline"; deal: number }
   /** Choose an option of a town event this House decides (`key` as in the view). */
   | { type: "choose"; event: string; option: number }
   /** Give in to the Crisis's private temptation. */

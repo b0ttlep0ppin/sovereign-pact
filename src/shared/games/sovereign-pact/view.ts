@@ -2,12 +2,14 @@
 // Ascendancy and its categories, the Ambition, another House's Treasury, Stores and recruit pool, a
 // recruit's unrevealed potential, Ward Loyalty, and Pact marks (which no House ever sees, §14.7a).
 import type { PlayerId } from "../../game.ts";
+import { dealsFor } from "./deals.ts";
 import { eventsFor } from "./omens.ts";
 import { ascendancy, categories, standing } from "./score.ts";
 import type {
   Ambition,
   Assignment,
   ChronicleEntry,
+  Deal,
   Element,
   Emblem,
   GearSlot,
@@ -106,6 +108,8 @@ export interface SovView {
   commons: SovState["commons"];
   /** This Year's Crisis: its Need is public, every pledge private (§3.5). */
   crisis: { id: string; need: Partial<Record<string, number>> } | null;
+  /** Deals the viewer may see: its own, those offered to it, and public ones. */
+  deals: Deal[];
   /** Town events waiting on choices; a secret one shows others' choices only as made (-1) or not. */
   events: PendingEvent[];
   /** The open vote, cast in the open (§8.1). */
@@ -198,6 +202,7 @@ export function view(s: SovState, playerId: PlayerId): SovView {
     commons: s.commons,
     vote: s.vote ?? null,
     events: eventsFor(s, me),
+    deals: dealsFor(s, me),
     crisis: s.crisis ? { id: s.crisis.id, need: s.crisis.need } : null,
     timeline: s.timeline.map((t) => ({ year: t.year, id: t.hidden ? "?" : t.id })),
     houses: s.houses.map((h, i) => publicHouse(s, h, i)),

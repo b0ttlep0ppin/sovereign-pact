@@ -7,7 +7,8 @@ import { cannotPropose } from "./votes.ts";
 import { BUILDING_BY_ID, TOWN_EVENT_BY_ID } from "./content.ts";
 import { cautious } from "./omens.ts";
 import { maxSanity } from "./formulas.ts";
-import type { Assignment, SovState } from "./state.ts";
+import { cannotAccept } from "./deals.ts";
+import type { Assignment, Deal, SovMove, SovState } from "./state.ts";
 import { buildCost, cannotBuild, levelOf } from "./town.ts";
 import { forHouses, TUNING } from "./tuning.ts";
 
@@ -202,4 +203,14 @@ export function botCrisis(s: SovState, house: number): Partial<Record<string, nu
     if (n > 0) give[k] = n;
   }
   return Object.keys(give).length ? give : null;
+}
+
+/**
+ * The bot answers a deal offered to it (cautiously): it accepts when it can pay and gets at least what
+ * it gives, counting every unit of Gold or material and an item as 20, and declines otherwise.
+ */
+export function botDeal(s: SovState, house: number, d: Deal): SovMove {
+  const worth = (x: Deal["give"]) => (x.gold ?? 0) + Object.values(x.stores ?? {}).reduce<number>((a, n) => a + (n ?? 0), 0) + 20 * (x.items?.length ?? 0);
+  const ok = worth(d.give) >= worth(d.get) && !cannotAccept(s, house, d.id);
+  return ok ? { type: "accept", deal: d.id } : { type: "decline", deal: d.id };
 }
