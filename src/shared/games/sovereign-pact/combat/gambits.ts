@@ -12,7 +12,7 @@ export { holds };
 import { hasStatus, isFree, other, pickWeighted, standing } from "./grid.ts";
 import { allegiance, bestCell, cellOf, crossDistance, isSingle, singleTargets, targetSide } from "./targets.ts";
 import type { Location } from "../state.ts";
-import type { AbilityDef, Battle, Combatant, GambitRule } from "./types.ts";
+import { COLS, type AbilityDef, type Battle, type Combatant, type GambitRule } from "./types.ts";
 
 export interface Plan {
   /** Cell to move to before acting. */
@@ -159,6 +159,12 @@ export function decide(b: Battle, rng: Rng, u: Combatant): Plan {
   for (const g of u.gambits.length ? u.gambits : defaultGambits(u)) {
     if (!holds(b, u, g.if)) continue;
     if (g.do === "wait" || g.do === "defend") return { action: { do: g.do } };
+    if (g.do === "retreat") {
+      // A captain falls back to E3 in its row and Defends (§14.5, the Apostate Court); nothing if it is there or cannot move.
+      const back = COLS - u.size[0];
+      if (u.col < back && !u.mods.noMove && !hasStatus(u, "rooted") && isFree(b, u.side, back, u.row, u.size, u.id)) return { move: [back, u.row], action: { do: "defend" } };
+      continue;
+    }
     const ab = abilityOf(u, g.do);
     if (!ab) continue;
     const plan = aimOrApproach(b, rng, u, ab, g.target);

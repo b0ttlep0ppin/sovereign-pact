@@ -1,0 +1,24 @@
+{
+  "id": "court_medusa_assassin",
+  "name": "Medusa Assassin",
+  "pool": "apostate_court",
+  "tags": ["monster", "cursed"],
+  "role": "lurker",
+  "size": [1, 1],
+  "levels": [6, 9],
+  "stats": {"speed": 14},
+  "affinity": {"holy": -25},
+  "immune": ["stop", "charm"],
+  "abilities": [
+    {"id": "snake_hair", "shape": "single", "side": "player", "power": 1.1, "leap": true, "statuses": [{"id": "poison", "chance": 40, "ticks": 300}]},
+    {"id": "petrifying_gaze", "shape": "single", "side": "player", "power": 0.2, "kind": "magic", "cooldown": 3, "statuses": [{"id": "stop", "chance": 35, "ticks": 300}], "reach": "ranged"}
+  ],
+  "gambits": [
+    {"if": "turn%3==1", "do": "petrifying_gaze", "target": "highest_might"},
+    {"do": "snake_hair", "target": "empty_cell"}
+  ],
+  "bestiary": {
+    "lore": "The court's assassin, who never needs a second look.",
+    "weakness": "Holy. Her gaze turns the strongest Scion to stone for a while."
+  }
+}

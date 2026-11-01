@@ -1,0 +1,24 @@
+{
+  "id": "court_red_dread_guard",
+  "name": "Red Dread Guard",
+  "pool": "apostate_court",
+  "tags": ["humanoid", "armored", "reach"],
+  "role": "bruiser",
+  "size": [1, 1],
+  "levels": [6, 9],
+  "stats": {"hp": 1.7, "def": 1.6, "speed": 9},
+  "abilities": [
+    {"id": "halberd_sweep", "shape": "single", "side": "player", "power": 1.0, "hits": 1},
+    {"id": "phalanx", "shape": "all", "side": "ally", "power": 0, "kind": "support", "cooldown": 4, "statuses": [{"id": "guard_up", "chance": 100, "ticks": 300, "value": 25}]},
+    {"id": "hook", "shape": "single", "side": "player", "power": 0.8, "pull": 1}
+  ],
+  "gambits": [
+    {"if": "turn%4==1", "do": "phalanx"},
+    {"if": "turn%3==2", "do": "hook", "target": "back_random"},
+    {"do": "halberd_sweep", "target": "column_weighted"}
+  ],
+  "bestiary": {
+    "lore": "The palace's red guard, who never broke formation, even when the palace did.",
+    "weakness": "Break their phalanx: kill them while it is down."
+  }
+}

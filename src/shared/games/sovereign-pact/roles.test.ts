@@ -131,3 +131,17 @@ describe("the Forge Ruins' tricks", () => {
     expect(b.events.some((e) => e.t === "flee" && e.unit === thief.id)).toBe(true);
   });
 });
+
+describe("the Apostate Court's captains", () => {
+  it("fall back to E3 in their row when hurt, and Defend there", () => {
+    const party = standardParty(5, 15);
+    const captain = enemyCombatant("court_guard_captain", { id: 10, level: 5, col: 0, row: 3 });
+    const b = newBattle(5, [...party, captain]);
+    expect(decide(b, createRng(1), captain).move).toBeUndefined();
+    captain.hp = Math.floor(captain.maxHp * 0.4);
+    expect(decide(b, createRng(1), captain)).toEqual({ move: [2, 3], action: { do: "defend" } });
+    // Already at the back: the rule passes to the next one.
+    captain.col = 2;
+    expect(decide(b, createRng(1), captain).move).toBeUndefined();
+  });
+});

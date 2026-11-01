@@ -1,0 +1,22 @@
+{
+  "id": "court_crossbowman",
+  "name": "Crossbowman",
+  "pool": "apostate_court",
+  "tags": ["humanoid"],
+  "role": "artillery",
+  "size": [1, 1],
+  "levels": [2, 9],
+  "stats": {"speed": 10},
+  "abilities": [
+    {"id": "aimed_bolt", "shape": "single", "side": "player", "power": 1.2, "reach": "ranged", "crit": 15, "locationBias": "head"},
+    {"id": "volley", "shape": "column:B", "side": "player", "power": 0.8, "reach": "ranged", "charge": 60, "telegraph": true, "cooldown": 2}
+  ],
+  "gambits": [
+    {"if": "turn%3==1", "do": "volley"},
+    {"do": "aimed_bolt", "target": "back_random"}
+  ],
+  "bestiary": {
+    "lore": "He shoots from behind the line and never misses twice.",
+    "weakness": "Anything that reaches the Back."
+  }
+}

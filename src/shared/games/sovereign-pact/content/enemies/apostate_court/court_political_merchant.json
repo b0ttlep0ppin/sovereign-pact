@@ -1,0 +1,24 @@
+{
+  "id": "court_political_merchant",
+  "name": "Political Merchant",
+  "pool": "apostate_court",
+  "tags": ["humanoid"],
+  "role": "support",
+  "size": [1, 1],
+  "levels": [3, 9],
+  "stats": {"hp": 0.8, "speed": 12},
+  "abilities": [
+    {"id": "bribe", "shape": "single", "side": "player", "power": 0, "reach": "ranged", "kind": "support", "cooldown": 3, "statuses": [{"id": "skip_turn", "chance": 60, "ticks": 100}]},
+    {"id": "hired_help", "shape": "single", "side": "ally", "power": 0, "kind": "support", "statuses": [{"id": "haste", "chance": 100, "ticks": 200}], "cooldown": 3},
+    {"id": "pocket_pistol", "shape": "single", "side": "player", "power": 0.8, "reach": "ranged"}
+  ],
+  "gambits": [
+    {"if": "turn%3==1", "do": "bribe", "target": "highest_might"},
+    {"if": "turn%3==2", "do": "hired_help", "target": "ally_lowest_hp"},
+    {"do": "pocket_pistol", "target": "back_random"}
+  ],
+  "bestiary": {
+    "lore": "He has bought the bargain's favor and can sell a little of it to you. Your sword-arm, for instance.",
+    "weakness": "Kill him: his bribes cost the strongest Scion a turn."
+  }
+}

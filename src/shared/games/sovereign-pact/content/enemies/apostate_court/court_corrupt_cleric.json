@@ -1,0 +1,25 @@
+{
+  "id": "court_corrupt_cleric",
+  "name": "Corrupt Cleric",
+  "pool": "apostate_court",
+  "tags": ["humanoid"],
+  "role": "support",
+  "size": [1, 1],
+  "levels": [2, 8],
+  "stats": {"speed": 9},
+  "affinity": {"holy": 25},
+  "abilities": [
+    {"id": "tithe_heal", "shape": "single", "side": "ally", "power": 1.4, "kind": "heal"},
+    {"id": "blessing", "shape": "single", "side": "ally", "power": 0, "kind": "support", "statuses": [{"id": "protect", "chance": 100, "ticks": 300}], "cooldown": 3},
+    {"id": "mace", "shape": "single", "side": "player", "power": 0.8}
+  ],
+  "gambits": [
+    {"if": "ally.hp<0.5", "do": "tithe_heal", "target": "ally_lowest_hp"},
+    {"if": "turn%3==1", "do": "blessing", "target": "ally_lowest_hp"},
+    {"do": "mace", "target": "nearest"}
+  ],
+  "bestiary": {
+    "lore": "He heals anyone who pays, and the bargain pays well.",
+    "weakness": "Kill him first."
+  }
+}

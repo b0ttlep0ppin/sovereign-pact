@@ -1,0 +1,22 @@
+{
+  "id": "court_whip_commander",
+  "name": "Whip Commander",
+  "pool": "apostate_court",
+  "tags": ["humanoid", "reach"],
+  "role": "artillery",
+  "size": [1, 1],
+  "levels": [4, 9],
+  "stats": {"speed": 10},
+  "abilities": [
+    {"id": "lash", "shape": "single", "side": "player", "power": 1.0, "statuses": [{"id": "disarmed", "chance": 25, "ticks": 200}]},
+    {"id": "drive_them", "shape": "all", "side": "ally", "power": 0, "kind": "support", "cooldown": 4, "statuses": [{"id": "haste", "chance": 100, "ticks": 200}]}
+  ],
+  "gambits": [
+    {"if": "turn%4==1", "do": "drive_them"},
+    {"do": "lash", "target": "column_weighted"}
+  ],
+  "bestiary": {
+    "lore": "He drives the levy forward with a whip that reaches over their heads.",
+    "weakness": "Kill him and the levy slows."
+  }
+}

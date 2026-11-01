@@ -1,0 +1,27 @@
+{
+  "id": "court_guard_captain",
+  "name": "Guard Captain",
+  "pool": "apostate_court",
+  "tags": ["humanoid", "armored", "captain"],
+  "role": "elite",
+  "size": [1, 1],
+  "levels": [2, 8],
+  "stats": {"speed": 11},
+  "immune": ["fear"],
+  "abilities": [
+    {"id": "captains_blade", "shape": "single", "side": "player", "power": 1.4},
+    {"id": "mark_target", "shape": "single", "side": "player", "power": 0, "reach": "ranged", "kind": "support", "cooldown": 3, "statuses": [{"id": "marked", "chance": 100, "ticks": 300}]},
+    {"id": "rally", "shape": "all", "side": "ally", "power": 0, "kind": "support", "cooldown": 4, "statuses": [{"id": "might_up", "chance": 100, "ticks": 300, "value": 20}]}
+  ],
+  "gambits": [
+    {"if": "self.hp<0.5", "do": "retreat"},
+    {"if": "!foe.marked", "do": "mark_target", "target": "highest_might"},
+    {"if": "turn%4==2", "do": "rally"},
+    {"if": "foe.marked", "do": "captains_blade", "target": "marked"},
+    {"do": "captains_blade", "target": "lowest_hp"}
+  ],
+  "bestiary": {
+    "lore": "The captain gives orders from the front, and from the back when the front gets dangerous.",
+    "weakness": "Kill him before he falls back to E3: from there he keeps giving orders."
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "id": "court_dark_knight",
+  "name": "Dark Knight",
+  "pool": "apostate_court",
+  "tags": ["humanoid", "armored"],
+  "role": "bruiser",
+  "size": [1, 1],
+  "levels": [3, 9],
+  "stats": {"speed": 9},
+  "affinity": {"dark": 50, "holy": -50},
+  "immune": ["fear"],
+  "abilities": [
+    {"id": "dark_blade", "shape": "single", "side": "player", "power": 1.3, "element": "dark"},
+    {"id": "soul_eater", "shape": "single", "side": "player", "power": 1.6, "cooldown": 3, "drain": 30}
+  ],
+  "gambits": [
+    {"if": "self.hp<0.6", "do": "soul_eater", "target": "lowest_hp"},
+    {"do": "dark_blade", "target": "lowest_durability"}
+  ],
+  "bestiary": {
+    "lore": "A knight of the old order who traded his oath for strength.",
+    "weakness": "Holy. It drinks from the weak when hurt."
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "id": "court_bandit_thug",
+  "name": "Bandit Thug",
+  "pool": "apostate_court",
+  "tags": ["humanoid", "bandit"],
+  "role": "fodder",
+  "size": [1, 1],
+  "levels": [2, 5],
+  "stats": {"speed": 9},
+  "abilities": [
+    {"id": "cudgel", "shape": "single", "side": "player", "power": 1.0, "statuses": [{"id": "stun", "chance": 10, "ticks": 100}]},
+    {"id": "gang_up", "shape": "single", "side": "player", "power": 1.2}
+  ],
+  "gambits": [
+    {"if": "foe.marked", "do": "gang_up", "target": "marked"},
+    {"do": "cudgel", "target": "column_weighted"}
+  ],
+  "bestiary": {
+    "lore": "Hired muscle from the roads outside the walls.",
+    "weakness": "Anything. They gang up on whoever their boss Marks."
+  }
+}
