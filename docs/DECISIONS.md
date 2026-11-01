@@ -2,6 +2,13 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-01 (implementation, Milestone 4h: shops and auctions) — implementer
+- **Shops** (`market.ts`): the Armorer (armor and shields), Weaponsmith (weapons and thrown) and Curio Dealer (accessories, plus one magic item a Year of Fine or better) stock lots each Year once built, seeded, replacing last Year's. Stock tier 1 when built; expedition finds raise it to 2 and 3 (Milestone 6, `commons.shopTiers`). The Apothecary, Beastmonger and Fence wait for consumables, summon upgrades and loot.
+- **First-pass numbers** (`tuning.shops`): 3/4/5 lots by stock tier; quality odds by tier (tier 1: 70% Common, 30% Fine; tier 2: 30/55/15 with Masterwork; tier 3: 50% Fine, 40% Masterwork, 10% Relic); item level ⌈Year ÷ 2⌉ of a 20-Year campaign; list price 10/20/45/100/220 by tier × (1 + 0.2 per item level above 1).
+- **Auctions** [DECIDED]: Masterwork, Relic and Quickening / Multi-hit / Massive-crits goods take sealed bids (`bid`, at least the list price, replaceable); at the seal one bidder pays the list price, several pay the highest bid, a tie costs Accord −3 and goes to the higher Renown. A bid the House can no longer cover at the seal is void. Bids are private; the winner and price are public in the log.
+- **A House's own lot** (`auction`, a stashed item and a reserve): it leaves the stash until the seal; the highest bid at or above the reserve buys it and pays the seller (even a lone bidder pays the bid); unsold, it comes home. The Commons' auctions of items won by vote, and the Watchtower L3's look at the second bidder, come when items can fall to the Commons and a private log exists.
+- **The bot** neither buys nor bids yet; it will once it can judge gear (Milestone 5/6 outfitting). Save version 10.
+
 ## 2026-11-01 (implementation, Milestone 4g: deals) — implementer
 - **Deals** (`deals.ts`) [DECIDED: instant]: a House offers (`offer`: what it gives and what it asks, Gold, materials and stashed items), the other accepts or declines, the maker may withdraw (`decline` either way). An accepted deal executes at once; both sides are checked again at acceptance, and offers that can no longer be paid fall away. Offers lapse at the seal. Wards, Mentor loans and facility use join with Milestone 5.
 - **Readings:** only stashed (unworn) items can be traded; a House may have 6 offers out at once (implementation default). Private deals are seen only by the two Houses; a public deal is logged and seen by all.

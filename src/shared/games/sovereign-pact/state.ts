@@ -201,6 +201,8 @@ export interface Commons {
   built: Partial<Record<string, number>>;
   /** Shared projects being paid for, by id. */
   funds: Partial<Record<string, ProjectFund>>;
+  /** Shop stock tiers above 1, raised by expedition finds (§8.6). */
+  shopTiers?: Partial<Record<string, number>>;
 }
 
 /**
@@ -254,6 +256,23 @@ export interface Deal {
   get: DealSide;
   /** A public deal is logged for all and counts for Renown; a private one only the two Houses see. */
   open: boolean;
+}
+
+/**
+ * An item for sale this Year (§8.6, §13.4a): from a shop at its list price, or put up by a House. Fine
+ * goods sell first come; Masterwork, Relic and rare-property goods, and every House's lot, go to sealed bids.
+ */
+export interface Lot {
+  item: Item;
+  /** The shop's id, or null for a House's own lot. */
+  shop: string | null;
+  /** The House selling its own item. */
+  seller?: number;
+  /** List price, or a House's reserve. */
+  price: number;
+  auction: boolean;
+  /** Each House's sealed bid in Gold, or null. Private until the result. */
+  bids: (number | null)[];
 }
 
 export type Phase = "omens" | "settlement" | "expedition" | "reckoning" | "over";
@@ -313,6 +332,8 @@ export interface SovState {
   /** At 100 the city is overwhelmed (§3.3). */
   doom: number;
   timeline: TimelineEntry[];
+  /** What the shops and Houses offer this Year. */
+  market: Lot[];
   /** Deals on the table this Year. */
   deals: Deal[];
   /** Town events drawn in the Omens and waiting on choices. */
@@ -344,6 +365,11 @@ export type SovMove =
   | { type: "pledge"; project: string; give: Partial<Record<string, number>> }
   /** Pledge to this Year's Crisis, privately (§3.5). */
   | { type: "crisis_pledge"; give: Partial<Record<string, number>> }
+  /** Buy a shop item at its list price (first come), or bid sealed on a lot at auction (§13.4a). */
+  | { type: "buy"; item: number }
+  | { type: "bid"; item: number; gold: number }
+  /** Put a stashed item up for sealed bids, with a reserve. */
+  | { type: "auction"; item: number; reserve: number }
   /** Offer a deal to another House; `open` makes it public (§8.9). */
   | { type: "offer"; to: number; give: DealSide; get: DealSide; open?: boolean }
   /** Accept or decline a deal offered to you, or withdraw your own. */
