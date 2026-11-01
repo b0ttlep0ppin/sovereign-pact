@@ -2,6 +2,13 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-01 (implementation, Milestone 3u: the End Ruler, Year 20) — implementer
+- **The End Ruler** (`content/bosses/end_ruler.json`, L10, Outer Dark, tagged `arc`), the final boss. **Reading taken: 2×8 (E2–E3), like the Mother**, so its Unknown Satan and Princess have the front column to fight from.
+- **The Throne:** it starts Guarded (nothing can target or reach it) and only Decrees (Mark, Sanity 4, a chance of Fear) or waits. **Reading taken:** it stands when both its champions have fallen (`adds==0`), not at an HP mark, since it cannot be hurt while it sits.
+- **The Ruler:** Speed 12; a dread pulse to `all` (Readiness 40, Sanity 4), a `band:3` of dark ruin, a `column:B` strike, and a reaching hand on the Marked. **The Pact** at 25%: `burst:5x5` from the Aspects every other turn.
+- **Left for later:** "every Divine Beast or Idol Relic in the party removes one of its immunities" waits for those Relics (loot, Milestone 6); its immunity list is written in the order they would come off. The Dark Bargains resolving at *The Pact* belong to the campaign layer.
+- **Simulator:** L10 baseline party 0%: the Satan and Princess (L10 elites) end it in about four turns. This and the other late fights are the next step, the tuning pass.
+
 ## 2026-11-01 (implementation, Milestone 3t: the Unknown Mother, Year 15) — implementer
 - **The Unknown Mother** (`content/bosses/unknown_mother.json`, L8, Outer Dark, tagged `arc`). **Reading taken: she is 2×8 (E2–E3), not 3×8.** The spec has her brood three Seeds at E1, and a 3×8 body leaves no cell for them; so the front column is her brood's. The Unknown Core is a Part on her front middle cells (Fire ×1.5 and Holy); breaking it stops Brood and Lullaby, and it **regrows once** at half HP (the `regrow` phase). Two Unknown Colonies open the fight; three more wake at a fifth.
 - **New enemy abilities:** `call` (Brood: calls adds onto its grid like a phase does; bots only use it when there is room) and `sanityResists` (Lullaby: each Scion resists its statuses on d100 under their Sanity %, so a calm Scion stays awake and a frayed one sleeps). Consume is `devour` with `all`: every Seed, 10% each. Rupture is `checker:a` then `checker:b` on her consecutive turns.

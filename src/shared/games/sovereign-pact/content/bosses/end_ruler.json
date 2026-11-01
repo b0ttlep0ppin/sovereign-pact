@@ -1,0 +1,45 @@
+{
+  "id": "end_ruler",
+  "name": "The End Ruler",
+  "pool": "outer_dark",
+  "tags": ["unknown", "royal", "giant", "arc"],
+  "role": "boss",
+  "size": [2, 8],
+  "at": "E2",
+  "levels": [10, 10],
+  "stats": {"speed": 10, "hp": 12, "sanityTouch": 3},
+  "affinity": {"holy": -50, "fire": 25, "water": 25, "wind": 25, "earth": 25, "dark": 75},
+  "immune": ["fear", "stun", "silence", "blind", "poison", "slow"],
+  "start": [{"id": "guarded", "ticks": 0}],
+  "abilities": [
+    {"id": "sovereign_decree", "shape": "single", "side": "player", "power": 0, "reach": "ranged", "kind": "support", "cooldown": 2, "sanity": 4, "statuses": [{"id": "marked", "chance": 100, "ticks": 400}, {"id": "fear", "chance": 40, "ticks": 200}]},
+    {"id": "sovereign_hand", "shape": "single", "side": "player", "power": 1.3, "reach": "reach", "locationBias": "head"},
+    {"id": "ruin_band", "shape": "band:3", "side": "player", "power": 1.1, "kind": "magic", "element": "dark", "charge": 60, "telegraph": true, "cooldown": 2},
+    {"id": "last_rank", "shape": "column:B", "side": "player", "power": 1.2, "kind": "magic", "element": "dark", "cooldown": 2},
+    {"id": "dread_pulse", "shape": "all", "side": "player", "power": 0.3, "kind": "magic", "element": "dark", "readiness": 40, "sanity": 4, "cooldown": 3},
+    {"id": "aspect_fall", "shape": "burst:5x5", "side": "player", "power": 1.0, "kind": "magic", "element": "dark", "charge": 50, "telegraph": true, "sanity": 3}
+  ],
+  "gambits": [
+    {"if": "!foe.marked", "do": "sovereign_decree", "target": "highest_might"},
+    {"do": "wait"}
+  ],
+  "adds": [
+    {"spawn": ["void_unknown_satan"], "count": 1, "at": "E1"},
+    {"spawn": ["void_unknown_princess"], "count": 1, "at": "E1"}
+  ],
+  "phases": [
+    {"at": "adds==0", "name": "The Ruler", "clear": ["guarded"], "speed": 12, "say": "It stands, and the throne behind it was never a chair.",
+      "gambits": [{"if": "turn%3==1", "do": "dread_pulse"}, {"if": "turn%3==2", "do": "ruin_band", "target": "densest_cluster"}, {"if": "turn%3==0", "do": "last_rank"}, {"if": "foe.marked", "do": "sovereign_hand", "target": "marked"}, {"do": "sovereign_hand", "target": "column_weighted"}]},
+    {"at": "hp<=0.25", "name": "The Pact", "say": "Behind it the Aspects lean close, and the bargains you struck come due.",
+      "gambits": [{"if": "turn%2==0", "do": "aspect_fall", "target": "densest_cluster"}, {"if": "turn%4==1", "do": "dread_pulse"}, {"if": "!foe.marked", "do": "sovereign_decree", "target": "highest_might"}, {"do": "ruin_band", "target": "densest_cluster"}]}
+  ],
+  "say": {
+    "open": "At the source of the rift something sits on a throne the old King paid for. It does not stand for you. Not yet.",
+    "death": "The rift closes like an eye. Whatever was promised here is yours to keep."
+  },
+  "bestiary": {
+    "lore": "The thing beyond the rift that the old King bargained with: the Unknown made a sovereign.",
+    "weakness": "Holy. Every Divine Beast or Idol Relic the party carries strips one of its immunities.",
+    "pattern": "On its throne it cannot be touched: it only Decrees, Marking and frightening a Scion, while the Unknown Satan and Princess fight for it. When both fall it stands: a dread pulse that costs every Scion Readiness and Sanity, a ruinous band three rows wide, a strike down the party's back column. At a quarter the Aspects loom and drop a five-by-five blow every other turn."
+  }
+}
