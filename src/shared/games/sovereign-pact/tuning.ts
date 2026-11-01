@@ -212,6 +212,8 @@ export const TUNING = {
     ambushPct: 10,
     surprisePct: 10,
     ct: { ambushed: 0, ambusher: 50, lurkerAmbush: 100 },
+    /** §14.10, first pass: the chance an enemy wears one of its variants, and Unknown-touched from Year 10. */
+    variants: { pct: 20, unknownPct: 30 },
     /** A pool short of a role at a level fills it from the next role here (until every pool's roster is full). */
     stand: {
       swarm: ["fodder"],

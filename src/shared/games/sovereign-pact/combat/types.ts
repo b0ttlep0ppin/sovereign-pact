@@ -279,6 +279,8 @@ export interface Combatant {
   disables?: string[];
   /** Abilities lost to destroyed Parts. */
   lost?: string[];
+  /** The variant it appears as (§14.10), for its tint. */
+  variant?: string;
   /** A scripted boss: how many of its phases it has entered (§14.6). */
   phase?: number;
   /** A Tinkerer's Components: held, and offered this turn (§12.2). */

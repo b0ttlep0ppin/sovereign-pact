@@ -2,13 +2,15 @@
 // pool's roster (entries whose `levels` span L), places the group on the enemy grid, and may open with
 // an Ambush or a Surprise. All seeded.
 import { createRng, type Rng } from "../../../rng.ts";
-import { ENEMIES, POOL_BY_ID, rosterOf, TEMPLATE_BY_ID, TEMPLATES, type EnemyDef, type TemplateDef, type TemplateRole } from "../content.ts";
+import { ENEMIES, POOL_BY_ID, rosterOf, TEMPLATE_BY_ID, TEMPLATES, VARIANT_BY_ID, type EnemyDef, type TemplateDef, type TemplateRole } from "../content.ts";
 import { TUNING } from "../tuning.ts";
 import { enemyCombatant, newBattle } from "./build.ts";
 import { partsOf } from "./enemyparts.ts";
+import { variantsFor, withVariant } from "./variants.ts";
 import { COLS, ROWS, type Battle, type Combatant } from "./types.ts";
 
 const E = TUNING.encounters;
+const V = TUNING.encounters.variants;
 
 export type Modifier = "ambush" | "surprise";
 
@@ -22,6 +24,8 @@ export interface EncounterSpec {
   template?: string;
   /** Forces the opening; `null` forbids one. Otherwise it is rolled. */
   modifier?: Modifier | null;
+  /** The campaign Year: Unknown-touched variants from Year 10 (§14.10). */
+  year?: number;
   /** Shifts on the base odds, in points (traits, buildings, the Lantern). */
   ambushPct?: number;
   surprisePct?: number;
@@ -98,8 +102,13 @@ const COLUMNS: Record<string, number[]> = {
 /** Big enemies first (colossi centered), then the front line, then the back. */
 const order = (e: EnemyDef) => -e.size[0] * e.size[1] * 10 + (COLUMNS[e.role]?.[0] ?? 0);
 
+/** An enemy to place, optionally as a variant (§14.10). */
+export type Placing = EnemyDef | { def: EnemyDef; variant?: string };
+
 /** Places the group on the enemy grid, each on the free cells nearest the middle rows of its preferred column. */
-export function place(defs: readonly EnemyDef[], level: number, firstId = 101): Combatant[] {
+export function place(group: readonly Placing[], level: number, firstId = 101): Combatant[] {
+  const defs = group.map((g) => ("def" in g ? g.def : g));
+  const variants = group.map((g) => ("def" in g ? g.variant : undefined));
   const taken = Array.from({ length: COLS }, () => Array<boolean>(ROWS).fill(false));
   const fits = (c: number, r: number, [w, h]: readonly number[]) => {
     if (c + w! > COLS || r + h! > ROWS) return false;
@@ -115,11 +124,28 @@ export function place(defs: readonly EnemyDef[], level: number, firstId = 101): 
     if (!spot) continue;
     const [col, row] = spot;
     for (let a = 0; a < w; a++) for (let b = 0; b < h; b++) taken[col + a]![row + b] = true;
-    const body = enemyCombatant(d, { id: firstId + i, level, col, row });
-    out.push(body, ...partsOf(body, d));
+    const v = variants[i];
+    const def = v ? withVariant(d, v) : d;
+    const body = enemyCombatant(def, { id: firstId + i, level: level + (v ? (VARIANT_BY_ID.get(v)!.level ?? 0) : 0), col, row });
+    if (v) body.variant = v;
+    out.push(body, ...partsOf(body, def));
     if (d.parts?.length) body.mods.noMove = 1;
   }
   return out.sort((x, y) => x.id - y.id);
+}
+
+/**
+ * Each enemy's variant, if any (§14.10): from Year 10 Unknown-touched at its own odds, otherwise the
+ * variant odds among those it can wear.
+ */
+export function rollVariants(rng: Rng, defs: readonly EnemyDef[], year = 1): Placing[] {
+  return defs.map((def) => {
+    const can = variantsFor(def, year);
+    const unknown = can.find((v) => v.family === "unknown");
+    if (unknown && rng.int(100) < V.unknownPct) return { def, variant: unknown.id };
+    const rest = can.filter((v) => v.family !== "unknown");
+    return rest.length && rng.int(100) < V.pct ? { def, variant: rng.pick(rest).id } : def;
+  });
 }
 
 /** Rolls the opening: Ambush (the template can multiply its odds), Surprise, or neither. */
@@ -149,7 +175,7 @@ export function encounter(rng: Rng, spec: EncounterSpec): Encounter {
   if (!POOL_BY_ID.has(spec.pool)) throw new Error(`unknown pool ${spec.pool}`);
   const t = spec.template ? TEMPLATE_BY_ID.get(spec.template) : drawTemplate(rng, spec.level);
   if (!t) throw new Error(`unknown template ${String(spec.template)}`);
-  const enemies = place(fill(rng, spec.pool, spec.level, rolesFor(rng, t, spec.party)), spec.level, spec.firstId);
+  const enemies = place(rollVariants(rng, fill(rng, spec.pool, spec.level, rolesFor(rng, t, spec.party)), spec.year), spec.level, spec.firstId);
   const modifier = spec.modifier === null ? undefined : (spec.modifier ?? rollModifier(rng, t, spec));
   applyModifier(enemies, modifier);
   return { template: t.id, modifier, enemies };

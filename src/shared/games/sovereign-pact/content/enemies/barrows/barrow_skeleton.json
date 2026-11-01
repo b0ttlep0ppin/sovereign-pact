@@ -6,6 +6,7 @@
   "role": "fodder",
   "size": [1, 1],
   "levels": [2, 5],
+  "variants": ["ashen", "stone"],
   "stats": {
     "speed": 10,
     "sanityTouch": 0

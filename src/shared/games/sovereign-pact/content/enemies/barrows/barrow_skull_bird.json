@@ -6,6 +6,7 @@
   "role": "swarm",
   "size": [1, 1],
   "levels": [2, 6],
+  "variants": ["storm"],
   "stats": {"speed": 13},
   "affinity": {"holy": -50, "dark": 50},
   "immune": ["poison", "sleep"],
