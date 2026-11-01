@@ -221,6 +221,13 @@ export const TUNING = {
   /** §3.4 Standing tiers: a House's Ascendancy over the kingdom's mean. PROPOSED, see DECISIONS Q85. */
   standing: { steady: 0.75, rising: 1.0, ascendant: 1.25 },
 
+  /**
+   * Simulator parties (combat/roster.ts): JP a Scion has earned by each level (~2 expeditions a level at
+   * ~100 a battle and ~300 an expedition, §12.1), the least an advanced Job starts with, and the item
+   * tier by Scion level (Common, Fine from 6, Masterwork from 15).
+   */
+  sim: { jpPerLevel: 300, jpFloor: 100, tiers: [[1, 2], [6, 3], [15, 4]] as readonly (readonly [number, number])[] },
+
   /** The public log kept in state for the host to show; older lines are dropped. */
   logLines: 40,
 } as const;

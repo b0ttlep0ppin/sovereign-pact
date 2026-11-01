@@ -56,7 +56,8 @@ export function simulate(b: Battle, maxTurns = 2_000, strict = false): BattleSum
   const start = new Map(b.units.map((u) => [u.id, u.hp]));
   for (let i = 0; i < maxTurns && autoTurn(b, strict); i++);
   if (!b.outcome) b.outcome = "retreat";
-  const party = b.units.filter((u) => u.side === "party");
+  // Scions only: summons come and go and are not counted.
+  const party = b.units.filter((u) => u.side === "party" && u.owner === undefined);
   const max = party.reduce((s, u) => s + u.maxHp, 0);
   const lost = party.reduce((s, u) => s + Math.max(0, start.get(u.id)! - (u.dead ? 0 : u.hp)), 0);
   const bands: Record<string, number> = {};

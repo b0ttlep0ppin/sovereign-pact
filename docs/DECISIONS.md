@@ -2,6 +2,32 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-01 (implementation, Milestone 2n: real parties and the balance re-run) — implementer
+- **The simulator fights with real Scions** (`combat/roster.ts`): rolled recruits promoted into the Job (advanced Jobs through their prerequisites, with the first prerequisite as the secondary set), levelled through the growth accumulator, `tuning.sim.jpPerLevel` (300) JP per level spent on the Job's actives then passives in content order, passives equipped to the budget, and real items from `items.json` at the level's tier (Common, Fine from Scion level 6, Masterwork from 15) and item level L. Each Job has a sim loadout and column (`LOADOUTS`, a first guess). `npm run sim -- --jobs a,b,c,d` fights with one; `npm run sim -- --sweep` puts each Job in place of the baseline member of its column (Soldier, Knight, Vagabond, Soothsayer) at each level. The stand-in party stays the default so earlier numbers compare.
+- **Balance re-run** (Barrows warband, 100 battles each, win % / party HP lost):
+
+| Party | L1 (Scion 3) | L3 (9) | L6 (18) | L10 (30) |
+|---|---|---|---|---|
+| Baseline | 99% / 36% | 98% / 46% | 75% / 63% | 51% / 79% |
+| Magus | 100% / 30% | 100% / 32% | 98% / 38% | 82% / 58% |
+| Soothsayer | 100% / 42% | 100% / 34% | 99% / 34% | 92% / 48% |
+| Pugilist | 95% / 58% | 64% / 75% | 36% / 86% | 15% / 93% |
+| Minstrel | 100% / 37% | 99% / 47% | 85% / 62% | 56% / 75% |
+| Gambler | 100% / 39% | 100% / 41% | 86% / 56% | 51% / 78% |
+| Ravager | 100% / 38% | 100% / 38% | 99% / 38% | 81% / 60% |
+| Sword Saint | 99% / 33% | 100% / 28% | 100% / 30% | 99% / 36% |
+| Abjurer | 100% / 36% | 100% / 36% | 90% / 42% | 55% / 71% |
+| Conjurer | 100% / 24% | 100% / 25% | 100% / 24% | 98% / 33% |
+| Tinkerer | 100% / 30% | 99% / 35% | 99% / 41% | 86% / 57% |
+| Alterer | 90% / 63% | 98% / 45% | 82% / 57% | 49% / 77% |
+
+- **What it shows** (nothing retuned yet; Milestone 3 rebuilds enemy scaling and rosters):
+  1. Real parties fall behind as levels climb (the baseline wins 99% at L1 but 51% at L10, losing four-fifths of its HP), where the stand-in party with placeholder gear did not; the gap is armor and weapon power from items against the enemy blocks, and injury rolls climbing with Durability that does not grow with level (Q87).
+  2. A second healer (Soothsayer in the Back) or a Conjurer's summons carry the party at every level: sustain and soaking hits are worth more than damage right now.
+  3. The Sword Saint is far ahead (99% at L10, 3 turns a fight): Thousand Cuts' 150% to a 3×3 burst with a greatsword clears a warband. It and the Ravager's two-handed power are the first knobs to look at.
+  4. The Pugilist and the Alterer fall off in the Front in light armor; the Pugilist is understated because the bots do not chain combos or play finishers yet, and the Alterer's Form abilities are placeholders.
+  5. The Gambler fights from the Back with a crossbow in the sim; in the Front with two knives it lost most fights past L3, which says light-armored dual wielders need protecting.
+
 ## 2026-11-01 (implementation, Milestone 2m: dual wield) — implementer
 - **Who may dual wield**: the spec says "a Scion whose Job allows dual wield" but the Job table has no such column, so the reading is that any Job may pair two one-hand weapons it is allowed to wield (a Soldier a sword and an axe, a Vagabond two knives; a Magus can hold a knife but not a sword in the off hand). Two-handers still clear the off hand.
 - **In battle**: the off hand strikes after every basic Attack (not after abilities), with its own weapon's power, accuracy, crit, reach and on-crit status, at 50% power (80% with Dual Wield Mastery, now live). Properties of every worn item already add up into the Scion's mods, so both weapons' properties apply to both hands. Ambidextrous and Clumsy will be `offHandPct` mods when individual traits arrive (Milestone 5); Twinned still waits.
