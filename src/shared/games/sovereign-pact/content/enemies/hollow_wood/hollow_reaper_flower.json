@@ -1,0 +1,23 @@
+{
+  "id": "hollow_reaper_flower",
+  "name": "Reaper Flower",
+  "pool": "hollow_wood",
+  "tags": ["plant"],
+  "role": "artillery",
+  "size": [1, 1],
+  "levels": [3, 7],
+  "stats": {"speed": 9},
+  "affinity": {"earth": 25, "water": 25, "fire": -25},
+  "abilities": [
+    {"id": "pollen_storm", "shape": "column:B", "side": "player", "power": 0.9, "kind": "magic", "element": "earth", "charge": 80, "telegraph": true, "cooldown": 2, "statuses": [{"id": "sleep", "chance": 25, "ticks": 200}]},
+    {"id": "thorn_shot", "shape": "single", "side": "player", "power": 0.9, "reach": "ranged"}
+  ],
+  "gambits": [
+    {"if": "turn%2==1", "do": "pollen_storm"},
+    {"do": "thorn_shot", "target": "back_random"}
+  ],
+  "bestiary": {
+    "lore": "A field of them, swaying, every one facing the same way.",
+    "weakness": "Fire. Its pollen falls on the Back column."
+  }
+}

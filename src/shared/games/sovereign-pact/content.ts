@@ -173,6 +173,8 @@ export interface PartDef {
   affinity?: Partial<Record<Element, number>>;
   immune?: string[];
   weak?: { location: Location; mult: number };
+  /** Battle mods the body takes while this Part is destroyed (`damagePct: -25` is a quarter less damage). */
+  mods?: Record<string, number>;
 }
 
 /** Every enemy file, through the generated index (`npm run gen:content`; one import per file keeps the rules free of bundler globs). */

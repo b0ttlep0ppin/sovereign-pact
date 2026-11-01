@@ -94,7 +94,8 @@
           "disables": { "type": "array", "items": { "$ref": "defs.schema.json#/definitions/id" }, "description": "Abilities lost when it is destroyed" },
           "affinity": { "$ref": "#/properties/affinity" },
           "immune": { "$ref": "#/properties/immune" },
-          "weak": { "$ref": "#/properties/weak" }
+          "weak": { "$ref": "#/properties/weak" },
+          "mods": { "type": "object", "additionalProperties": { "type": "number" }, "description": "Battle mods the body takes while it is destroyed (damagePct: -25)" }
         }
       }
     },

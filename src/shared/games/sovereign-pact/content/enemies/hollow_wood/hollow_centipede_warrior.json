@@ -1,0 +1,24 @@
+{
+  "id": "hollow_centipede_warrior",
+  "name": "Centipede Warrior",
+  "pool": "hollow_wood",
+  "tags": ["insect", "beastfolk"],
+  "role": "bruiser",
+  "size": [1, 1],
+  "levels": [3, 7],
+  "variants": ["stone"],
+  "stats": {"speed": 10},
+  "affinity": {"earth": 25, "water": 25, "fire": -25},
+  "abilities": [
+    {"id": "hundred_cuts", "shape": "single", "side": "player", "power": 0.5, "hits": 4},
+    {"id": "venom_jaw", "shape": "single", "side": "player", "power": 1.1, "statuses": [{"id": "poison", "chance": 40, "ticks": 300}]}
+  ],
+  "gambits": [
+    {"if": "turn%2==0", "do": "venom_jaw", "target": "lowest_hp"},
+    {"do": "hundred_cuts", "target": "column_weighted"}
+  ],
+  "bestiary": {
+    "lore": "Insect-folk, armored end to end, armed at every joint.",
+    "weakness": "Fire. Many light blows: Protect blunts every one."
+  }
+}

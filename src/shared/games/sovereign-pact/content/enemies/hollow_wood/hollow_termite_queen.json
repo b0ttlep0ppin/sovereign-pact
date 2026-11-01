@@ -1,0 +1,26 @@
+{
+  "id": "hollow_termite_queen",
+  "name": "Termite Queen",
+  "pool": "hollow_wood",
+  "tags": ["insect"],
+  "role": "elite",
+  "size": [1, 1],
+  "levels": [4, 7],
+  "stats": {"hp": 1.6, "speed": 6},
+  "affinity": {"earth": 25, "water": 25, "fire": -25},
+  "immune": ["fear", "charm"],
+  "abilities": [
+    {"id": "royal_jelly", "shape": "single", "side": "ally", "power": 1.6, "kind": "heal"},
+    {"id": "swarm_call", "shape": "all", "side": "ally", "power": 0, "kind": "support", "statuses": [{"id": "haste", "chance": 100, "ticks": 200}], "cooldown": 3},
+    {"id": "acid_spit", "shape": "row", "side": "player", "power": 1.0, "kind": "magic", "element": "earth", "statuses": [{"id": "poison", "chance": 30, "ticks": 300}]}
+  ],
+  "gambits": [
+    {"if": "ally.hp<0.5", "do": "royal_jelly", "target": "ally_lowest_hp"},
+    {"if": "turn%3==1", "do": "swarm_call"},
+    {"do": "acid_spit", "target": "densest_row"}
+  ],
+  "bestiary": {
+    "lore": "Swollen, slow, and the whole mound moves for her.",
+    "weakness": "Fire. Cut her guard down and she cannot run."
+  }
+}

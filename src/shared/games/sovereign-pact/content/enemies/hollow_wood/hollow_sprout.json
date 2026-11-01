@@ -1,0 +1,22 @@
+{
+  "id": "hollow_sprout",
+  "name": "Sprout",
+  "pool": "hollow_wood",
+  "tags": ["plant"],
+  "role": "fodder",
+  "addOnly": true,
+  "size": [1, 1],
+  "levels": [1, 10],
+  "stats": {"hp": 0.4, "speed": 10},
+  "affinity": {"earth": 25, "water": 25, "fire": -25},
+  "abilities": [
+    {"id": "twig_jab", "shape": "single", "side": "player", "power": 0.8}
+  ],
+  "gambits": [
+    {"do": "twig_jab", "target": "column_weighted"}
+  ],
+  "bestiary": {
+    "lore": "A seed of the Tree King, sent up through the floor of the wood.",
+    "weakness": "Fire. Each one is weak; the King sends more."
+  }
+}

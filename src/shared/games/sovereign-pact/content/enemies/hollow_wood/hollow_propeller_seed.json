@@ -1,0 +1,21 @@
+{
+  "id": "hollow_propeller_seed",
+  "name": "Propeller Seed",
+  "pool": "hollow_wood",
+  "tags": ["plant", "flyer"],
+  "role": "artillery",
+  "size": [1, 1],
+  "levels": [1, 4],
+  "stats": {"hp": 0.7, "speed": 10},
+  "affinity": {"earth": 25, "water": 25, "fire": -25},
+  "abilities": [
+    {"id": "seed_drop", "shape": "lob", "side": "player", "power": 0.9, "reach": "ranged"}
+  ],
+  "gambits": [
+    {"do": "seed_drop", "target": "lob"}
+  ],
+  "bestiary": {
+    "lore": "A seed the size of a shield, spinning down from the canopy.",
+    "weakness": "Fire. It drifts at the Back."
+  }
+}

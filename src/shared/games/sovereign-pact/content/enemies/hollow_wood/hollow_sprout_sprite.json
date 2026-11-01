@@ -1,0 +1,23 @@
+{
+  "id": "hollow_sprout_sprite",
+  "name": "Sprout Sprite",
+  "pool": "hollow_wood",
+  "tags": ["plant", "fey"],
+  "role": "fodder",
+  "size": [1, 1],
+  "levels": [1, 4],
+  "stats": {"hp": 0.8, "speed": 11},
+  "affinity": {"earth": 25, "water": 25, "fire": -25},
+  "abilities": [
+    {"id": "thorn_poke", "shape": "single", "side": "player", "power": 0.9},
+    {"id": "sap_share", "shape": "single", "side": "ally", "power": 1.0, "kind": "heal", "cooldown": 3}
+  ],
+  "gambits": [
+    {"if": "ally.hp<0.5", "do": "sap_share", "target": "ally_lowest_hp"},
+    {"do": "thorn_poke", "target": "column_weighted"}
+  ],
+  "bestiary": {
+    "lore": "A seedling that learned to walk. The old trees send them ahead.",
+    "weakness": "Fire. Weak alone; they mend each other."
+  }
+}

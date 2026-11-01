@@ -1,7 +1,7 @@
 // Parts (§14.1): sub-entities of a big enemy that sit on some of its cells with their own HP and can be
 // struck on their own. A Part takes no turns; damage to it also reaches the body (a share, tuning);
 // destroying it removes the abilities it powers for the rest of the fight and staggers the body.
-import type { EnemyDef, PartDef } from "../content.ts";
+import { ENEMY_BY_ID, type EnemyDef, type PartDef } from "../content.ts";
 import { TUNING } from "../tuning.ts";
 import type { Battle, Combatant } from "./types.ts";
 
@@ -74,5 +74,15 @@ export function partBroken(b: Battle, part: Combatant): void {
   if (!body) return;
   body.lost = [...new Set([...(body.lost ?? []), ...(part.disables ?? [])])];
   body.ct = Math.max(0, body.ct - P.stagger);
+  partMods(body, part, 1);
   b.events.push({ t: "part", unit: body.id, part: part.part! });
+}
+
+/** Adds (`sign` 1) or takes back (−1) the battle mods a destroyed Part costs its body. */
+export function partMods(body: Combatant, part: Combatant, sign: 1 | -1): void {
+  const def = ENEMY_BY_ID.get(body.enemy ?? "")?.parts?.find((p) => p.id === part.part);
+  for (const [k, v] of Object.entries(def?.mods ?? {})) {
+    body.mods[k] = (body.mods[k] ?? 0) + sign * v;
+    if (!body.mods[k]) delete body.mods[k];
+  }
 }

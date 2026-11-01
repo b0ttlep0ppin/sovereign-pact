@@ -1,0 +1,23 @@
+{
+  "id": "hollow_bomber_cactus",
+  "name": "Bomber Cactus",
+  "pool": "hollow_wood",
+  "tags": ["plant"],
+  "role": "artillery",
+  "size": [1, 1],
+  "levels": [4, 7],
+  "stats": {"speed": 8},
+  "affinity": {"earth": 25, "water": 25, "fire": -25},
+  "abilities": [
+    {"id": "needle_burst", "shape": "burst:3x3", "side": "player", "power": 1.1, "charge": 100, "telegraph": true, "cooldown": 3},
+    {"id": "needle", "shape": "single", "side": "player", "power": 0.9, "reach": "ranged"}
+  ],
+  "gambits": [
+    {"if": "turn%3==1", "do": "needle_burst", "target": "densest_cluster"},
+    {"do": "needle", "target": "back_random"}
+  ],
+  "bestiary": {
+    "lore": "It swells, and shivers, and everyone nearby wishes they had not stayed.",
+    "weakness": "Water? No: fire. Scatter before it bursts."
+  }
+}

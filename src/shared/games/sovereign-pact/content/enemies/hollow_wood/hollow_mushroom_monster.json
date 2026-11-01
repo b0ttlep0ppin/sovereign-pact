@@ -1,0 +1,25 @@
+{
+  "id": "hollow_mushroom_monster",
+  "name": "Mushroom Monster",
+  "pool": "hollow_wood",
+  "tags": ["plant", "fungus"],
+  "role": "fodder",
+  "size": [1, 1],
+  "levels": [1, 5],
+  "variants": ["drowned", "stone"],
+  "stats": {"speed": 9},
+  "affinity": {"earth": 25, "water": 25, "fire": -25},
+  "immune": ["poison"],
+  "abilities": [
+    {"id": "cap_bash", "shape": "single", "side": "player", "power": 1.0},
+    {"id": "spore_puff", "shape": "adjacent", "side": "player", "power": 0.5, "cooldown": 3, "statuses": [{"id": "poison", "chance": 30, "ticks": 300}]}
+  ],
+  "gambits": [
+    {"if": "turn%3==1", "do": "spore_puff"},
+    {"do": "cap_bash", "target": "column_weighted"}
+  ],
+  "bestiary": {
+    "lore": "It grew on something that died here. It would like to grow on you.",
+    "weakness": "Fire. Its spores poison whoever stands next to it."
+  }
+}

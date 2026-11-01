@@ -10,7 +10,9 @@ import { fileURLToPath } from "node:url";
 import { Ajv, type ValidateFunction } from "ajv";
 import { describe, expect, it } from "vitest";
 import { ABILITY_SETS, BOSSES, ENEMIES, ENEMY_BY_ID, JOBS, POOL_BY_ID, rosterOf, TEMPLATES, VARIANT_BY_ID, type TemplateRole } from "../src/shared/games/sovereign-pact/content.ts";
+import { knownCondition } from "../src/shared/games/sovereign-pact/combat/conditions.ts";
 import { partBox } from "../src/shared/games/sovereign-pact/combat/enemyparts.ts";
+import { TARGET_RULES } from "../src/shared/games/sovereign-pact/combat/gambits.ts";
 import { INDEXED, renderIndex } from "./gen-content.ts";
 
 const root = fileURLToPath(new URL("..", import.meta.url));
@@ -122,8 +124,19 @@ describe("content", () => {
     for (const e of ENEMIES) for (const v of e.variants ?? []) expect(VARIANT_BY_ID.get(v)?.family, `${e.id}: ${v}`).toBe("elemental");
   });
 
+  it("gives enemies and bosses only conditions and targets the gambit engine knows (unknown ones fail silently)", () => {
+    for (const e of [...ENEMIES, ...BOSSES]) {
+      const phases = "phases" in e ? (e as (typeof BOSSES)[number]).phases : [];
+      for (const g of [...e.gambits, ...phases.flatMap((p) => p.gambits)]) {
+        if (g.if) expect(knownCondition(g.if), `${e.id}: if ${g.if}`).toBe(true);
+        if (g.target) expect(TARGET_RULES, `${e.id}: target ${g.target}`).toContain(g.target);
+      }
+      for (const p of phases) expect(knownCondition(p.at), `${e.id}: phase at ${p.at}`).toBe(true);
+    }
+  });
+
   // HANDOFF §6's roster lints, switched on for each pool as its roster is completed (Milestone 3).
-  const COMPLETE = ["barrows", "beast_lands"];
+  const COMPLETE = ["barrows", "beast_lands", "hollow_wood"];
   const BACK_LINE = (e: (typeof ENEMIES)[number]) => ["lurker", "artillery", "horror"].includes(e.role) || e.tags.includes("reach") || e.tags.includes("flyer");
 
   it.each(COMPLETE)("fills every template at every level of %s from its own roster", (id) => {

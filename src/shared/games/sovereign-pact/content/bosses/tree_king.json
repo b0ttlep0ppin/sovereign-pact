@@ -1,0 +1,44 @@
+{
+  "id": "tree_king",
+  "name": "The Ancient Tree King",
+  "pool": "hollow_wood",
+  "tags": ["plant", "giant"],
+  "role": "boss",
+  "size": [3, 4],
+  "at": "E1",
+  "levels": [2, 3],
+  "stats": {"speed": 7, "hp": 8},
+  "affinity": {"fire": -100, "earth": 50, "water": 50},
+  "immune": ["fear", "poison"],
+  "abilities": [
+    {"id": "roots", "shape": "column:F", "side": "player", "power": 0.8, "statuses": [{"id": "rooted", "chance": 60, "ticks": 200}], "cooldown": 2},
+    {"id": "canopy_fall", "shape": "band:3", "side": "player", "power": 1.4, "charge": 200, "telegraph": true, "cooldown": 3},
+    {"id": "bough_sweep", "shape": "single", "side": "player", "power": 1.2},
+    {"id": "sap_drink", "shape": "single", "side": "player", "power": 1.0, "drain": 40}
+  ],
+  "gambits": [
+    {"if": "turn%3==2", "do": "canopy_fall", "target": "densest_row"},
+    {"if": "turn%3==0", "do": "roots"},
+    {"do": "bough_sweep", "target": "column_weighted"}
+  ],
+  "parts": [
+    {"id": "upper_limb", "name": "Upper Limb", "cells": [[0, 0], [1, 0]], "hp": 0.12, "mods": {"damagePct": -25}},
+    {"id": "lower_limb", "name": "Lower Limb", "cells": [[0, 3], [1, 3]], "hp": 0.12, "mods": {"damagePct": -25}}
+  ],
+  "adds": [
+    {"spawn": ["hollow_sprout"], "count": 2, "at": "E3"}
+  ],
+  "phases": [
+    {"at": "hp<=0.66", "name": "Seedfall", "adds": {"spawn": ["hollow_sprout"], "count": 2, "at": "E3"}, "say": "Grow. Grow and take them.", "gambits": [{"if": "turn%3==2", "do": "canopy_fall", "target": "densest_row"}, {"if": "turn%3==0", "do": "roots"}, {"do": "sap_drink", "target": "lowest_hp"}]},
+    {"at": "hp<=0.33", "name": "Old Growth", "speed": 9, "regrow": true, "statuses": [{"id": "regen", "ticks": 400}], "adds": {"spawn": ["hollow_sprout"], "count": 2, "at": "E3"}, "say": "I was old when your kings were seeds.", "gambits": [{"if": "turn%2==0", "do": "canopy_fall", "target": "densest_row"}, {"if": "turn%3==1", "do": "roots"}, {"do": "sap_drink", "target": "lowest_hp"}]}
+  ],
+  "say": {
+    "open": "Little fires. Little axes. Come closer.",
+    "death": "The wood... remembers..."
+  },
+  "bestiary": {
+    "lore": "The oldest thing in the Hollow Wood, and the wood is its body. The Sprouts are its seed.",
+    "weakness": "Fire, twice over. Break a limb and its blows lose a quarter of their weight; both, and half.",
+    "pattern": "Roots the Front every third turn and brings the canopy down on three rows with two turns' warning. At two thirds it calls Sprouts and drinks sap; at a third its limbs grow back, it regenerates and the canopy falls every other turn."
+  }
+}

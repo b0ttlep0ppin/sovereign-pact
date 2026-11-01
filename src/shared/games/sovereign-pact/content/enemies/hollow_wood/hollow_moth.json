@@ -1,0 +1,23 @@
+{
+  "id": "hollow_moth",
+  "name": "Moth",
+  "pool": "hollow_wood",
+  "tags": ["insect", "flyer"],
+  "role": "swarm",
+  "size": [1, 1],
+  "levels": [1, 5],
+  "stats": {"speed": 13},
+  "affinity": {"earth": 25, "water": 25, "fire": -25},
+  "abilities": [
+    {"id": "dust_wing", "shape": "single", "side": "player", "power": 0.8, "statuses": [{"id": "sleep", "chance": 20, "ticks": 200}]},
+    {"id": "overrun", "shape": "band:3", "side": "player", "power": 0.6, "cooldown": 1}
+  ],
+  "gambits": [
+    {"if": "swarm>=5", "do": "overrun"},
+    {"do": "dust_wing", "target": "back_random"}
+  ],
+  "bestiary": {
+    "lore": "Drawn to the lantern, then to the one holding it.",
+    "weakness": "Fire. Their dust puts the Back to sleep."
+  }
+}

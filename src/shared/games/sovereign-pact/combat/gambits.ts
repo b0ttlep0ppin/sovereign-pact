@@ -23,6 +23,9 @@ export interface Plan {
 const frac = (u: Combatant) => (u.maxHp ? u.hp / u.maxHp : 1);
 const foes = (b: Battle, u: Combatant) => standing(b, other(allegiance(u)));
 
+/** Every gambit target rule `choose` knows (anything else falls back to the column rule). */
+export const TARGET_RULES = ["column_weighted", "lob", "nearest", "lowest_hp", "ally_lowest_hp", "lowest_sanity", "marked", "rooted", "charging", "ally_down", "highest_might", "lowest_durability", "densest_row", "densest_cluster", "part", "empty_cell", "back_random", "self", "random"];
+
 /** Picks one of `candidates` by a gambit target rule (§14.1). */
 export function choose(rng: Rng, u: Combatant, candidates: Combatant[], rule: string): Combatant | undefined {
   if (!candidates.length) return undefined;
@@ -41,6 +44,9 @@ export function choose(rng: Rng, u: Combatant, candidates: Combatant[], rule: st
       return by((x) => x.sanity);
     case "marked":
       return candidates.find((x) => hasStatus(x, "marked"));
+    case "rooted":
+      // Whoever cannot step away (a vine golem's crush, a spider's bite).
+      return candidates.find((x) => hasStatus(x, "rooted")) ?? pickWeighted(rng, candidates);
     case "charging":
       return candidates.find((x) => !!x.charge);
     case "ally_down":

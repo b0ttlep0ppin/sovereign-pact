@@ -10,6 +10,8 @@ import { kill } from "./combat/injury.ts";
 import { realParty, BASELINE } from "./combat/roster.ts";
 import { simulate } from "./combat/sim.ts";
 import { addStatus } from "./combat/status.ts";
+import { affinityMult } from "./combat/damage.ts";
+import { knownCondition } from "./combat/conditions.ts";
 import { BOSS_BY_ID, ENEMY_BY_ID, type BossDef } from "./content.ts";
 
 const vq = () => {
@@ -165,5 +167,47 @@ describe("the Goblin Lord", () => {
     expect(lord.dead).toBe(true);
     expect(b.events.some((e) => e.t === "flee")).toBe(true);
     expect(b.outcome).toBe("victory");
+  });
+});
+
+describe("the Ancient Tree King", () => {
+  const tk = () => {
+    const b = bossBattle(5, standardParty(5, 6), "tree_king", 2);
+    const king = b.units.find((u) => u.enemy === "tree_king" && u.partOf === undefined)!;
+    const limbs = b.units.filter((u) => u.partOf === king.id);
+    return { b, king, limbs };
+  };
+
+  it("fills the enemy grid's width, two limbs on its front corners, two Sprouts beside it, and burns twice over", () => {
+    const { b, king, limbs } = tk();
+    expect([king.col, king.size[0], king.size[1]]).toEqual([0, 3, 4]);
+    expect(limbs.map((l) => [l.part, l.row - king.row])).toEqual([["upper_limb", 0], ["lower_limb", 3]]);
+    expect(b.units.filter((u) => u.enemy === "hollow_sprout")).toHaveLength(2);
+    expect(affinityMult(king, "fire")).toBe(2);
+  });
+
+  it("loses a quarter of its damage for each limb destroyed, and regrows them (and the damage) at a third", () => {
+    const { b, king, limbs } = tk();
+    kill(b, limbs[0]!);
+    expect(king.mods.damagePct).toBe(-25);
+    kill(b, limbs[1]!);
+    expect(king.mods.damagePct).toBe(-50);
+    king.hp = Math.floor(king.maxHp * 0.3);
+    checkEnd(b);
+    expect(king.phase).toBe(2);
+    expect(limbs.every((l) => !l.dead)).toBe(true);
+    expect(king.mods.damagePct).toBeUndefined();
+    expect(b.units.filter((u) => u.enemy === "hollow_sprout").length).toBe(6);
+  });
+});
+
+describe("conditions the content may use", () => {
+  it("are recognized, and anything else is caught by the content lint", () => {
+    expect(knownCondition("adds<2 || hp<=0.5")).toBe(true);
+    expect(knownCondition("hp<=0.3 && !self.rooted")).toBe(true);
+    expect(knownCondition("foe.rooted")).toBe(true);
+    expect(knownCondition("turn % 3 == 0")).toBe(true);
+    expect(knownCondition("hp<half")).toBe(false);
+    expect(knownCondition("turn%3==1 && whenever")).toBe(false);
   });
 });

@@ -1,0 +1,22 @@
+{
+  "id": "hollow_kamaitachi",
+  "name": "Kamaitachi",
+  "pool": "hollow_wood",
+  "tags": ["beast", "spirit", "flyer"],
+  "role": "lurker",
+  "size": [1, 1],
+  "levels": [4, 7],
+  "stats": {"speed": 15},
+  "affinity": {"earth": -50, "water": 25, "fire": -25, "wind": 50},
+  "abilities": [
+    {"id": "sickle_wind", "shape": "single", "side": "player", "power": 0.7, "leap": true, "hits": 3, "element": "wind", "statuses": [{"id": "bleed", "chance": 30, "ticks": 0}]}
+  ],
+  "gambits": [
+    {"if": "turn%2==0", "do": "sickle_wind", "target": "empty_cell"},
+    {"do": "sickle_wind", "target": "lowest_hp"}
+  ],
+  "bestiary": {
+    "lore": "A weasel on the wind, with sickles for claws. The cuts come before the gust.",
+    "weakness": "Earth. It flies and leaps: the Front must turn."
+  }
+}
