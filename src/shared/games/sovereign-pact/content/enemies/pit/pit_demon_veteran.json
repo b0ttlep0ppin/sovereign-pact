@@ -1,0 +1,26 @@
+{
+  "id": "pit_demon_veteran",
+  "name": "Demon Veteran",
+  "pool": "pit",
+  "tags": ["demon", "humanoid", "armored"],
+  "role": "bruiser",
+  "size": [1, 1],
+  "levels": [6, 10],
+  "stats": {"hp": 1.8, "speed": 9},
+  "affinity": {"fire": 25, "dark": 25, "holy": -25, "water": -25},
+  "immune": ["fear"],
+  "abilities": [
+    {"id": "veteran_cleave", "shape": "single", "side": "player", "power": 1.4, "hits": 1, "crit": 15},
+    {"id": "war_line", "shape": "column:F", "side": "player", "power": 1.0, "cooldown": 2},
+    {"id": "old_scars", "shape": "self", "side": "self", "power": 0, "kind": "support", "statuses": [{"id": "protect", "chance": 100, "ticks": 300}], "cooldown": 4}
+  ],
+  "gambits": [
+    {"if": "self.hp<0.6", "do": "old_scars"},
+    {"if": "turn%2==0", "do": "war_line"},
+    {"do": "veteran_cleave", "target": "lowest_durability"}
+  ],
+  "bestiary": {
+    "lore": "It has fought on every front of the otherworld, and lost on none.",
+    "weakness": "Holy and Water. Its line cut sweeps the Front."
+  }
+}

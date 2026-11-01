@@ -212,6 +212,8 @@ export function act(b: Battle, rng: Rng, u: Combatant, action: Action): void {
     cost += u.mods.nextActionCt;
     delete u.mods.nextActionCt;
   }
+  // Quickened (the Dark General's Infernal Order): every action costs half, so it acts twice as often.
+  if (hasStatus(u, "quickened")) cost = Math.round(cost / 2);
   u.ct = Math.max(0, u.ct - cost);
   b.acted = true;
   b.actor = null;

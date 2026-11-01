@@ -2,7 +2,7 @@
 // when their conditions hold, with new gambits and Speed, a dispel, regrown Parts, adds, flight, and lines.
 import { describe, expect, it } from "vitest";
 import { createRng } from "../../rng.ts";
-import { abilityOf, checkEnd, resolve } from "./combat/battle.ts";
+import { abilityOf, act, advance, checkEnd, resolve } from "./combat/battle.ts";
 import { cellOf, resolveTargets, singleTargets } from "./combat/targets.ts";
 import { bossBattle, bossDef } from "./combat/bosses.ts";
 import { decide, holds } from "./combat/gambits.ts";
@@ -244,5 +244,37 @@ describe("Scylla", () => {
     expect(singleTargets(b, scion, shot)).not.toContain(scylla);
     const blast = { id: "test_blast", shape: "burst:3x3", side: "foe", power: 1 } as const;
     expect(resolveTargets(b, createRng(1), scion, blast, cellOf(scylla))).not.toContain(scylla);
+  });
+});
+
+describe("the Dark General", () => {
+  const dg = () => {
+    const b = bossBattle(9, standardParty(9, 21), "dark_general", 7);
+    const general = b.units.find((u) => u.enemy === "dark_general")!;
+    const elite = b.units.find((u) => u.enemy === "pit_elite_demon")!;
+    const gunner = b.units.find((u) => u.enemy === "pit_demon_gunner")!;
+    return { b, general, elite, gunner };
+  };
+
+  it("stands in formation: his Elite in front of him on E1, his Gunner behind on E3", () => {
+    const { general, elite, gunner } = dg();
+    expect([elite.col, general.col, gunner.col]).toEqual([0, 1, 2]);
+    expect(elite.row).toBe(general.row);
+    expect(gunner.row).toBe(general.row);
+  });
+
+  it("gives the Infernal Order at half: Quickened allies pay half the CT for an action", () => {
+    const { b, general, gunner } = dg();
+    general.hp = Math.floor(general.maxHp * 0.5);
+    checkEnd(b);
+    expect(general.phase).toBe(1);
+    expect(general.gambits[0]!.do).toBe("infernal_order");
+    addStatus(b, gunner, "quickened", 300);
+    const rng = createRng(4);
+    for (const x of b.units) x.ct = x === gunner ? 100 : 0;
+    expect(advance(b, rng)).toBe(gunner);
+    const before = gunner.ct;
+    act(b, rng, gunner, decide(b, rng, gunner).action);
+    expect(before - gunner.ct).toBe(50);
   });
 });

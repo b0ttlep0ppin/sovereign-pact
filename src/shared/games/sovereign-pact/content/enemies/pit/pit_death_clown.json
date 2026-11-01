@@ -1,0 +1,24 @@
+{
+  "id": "pit_death_clown",
+  "name": "Death Clown",
+  "pool": "pit",
+  "tags": ["demon", "cursed"],
+  "role": "lurker",
+  "size": [1, 1],
+  "levels": [7, 10],
+  "stats": {"speed": 14, "sanityTouch": 2},
+  "affinity": {"fire": 25, "dark": 25, "holy": -25, "water": -25},
+  "immune": ["fear", "confusion"],
+  "abilities": [
+    {"id": "juggled_knives", "shape": "single", "side": "player", "power": 0.6, "leap": true, "hits": 3},
+    {"id": "laughter", "shape": "row", "side": "player", "power": 0.3, "kind": "magic", "sanity": 6, "cooldown": 3, "statuses": [{"id": "confusion", "chance": 30, "ticks": 200}]}
+  ],
+  "gambits": [
+    {"if": "turn%3==2", "do": "laughter", "target": "densest_row"},
+    {"do": "juggled_knives", "target": "empty_cell"}
+  ],
+  "bestiary": {
+    "lore": "It performs for the army between battles. The army does not laugh either.",
+    "weakness": "Holy. Its laughter confuses a row."
+  }
+}

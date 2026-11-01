@@ -1,0 +1,24 @@
+{
+  "id": "pit_succubus",
+  "name": "Succubus",
+  "pool": "pit",
+  "tags": ["demon", "fey"],
+  "role": "lurker",
+  "size": [1, 1],
+  "levels": [5, 10],
+  "stats": {"speed": 13},
+  "affinity": {"fire": 25, "dark": 25, "holy": -25, "water": -25},
+  "immune": ["charm"],
+  "abilities": [
+    {"id": "enthrall", "shape": "single", "side": "player", "power": 0.3, "kind": "magic", "sanity": 4, "cooldown": 3, "statuses": [{"id": "charm", "chance": 50, "ticks": 200}], "reach": "ranged"},
+    {"id": "draining_kiss", "shape": "single", "side": "player", "power": 1.2, "leap": true, "drain": 40}
+  ],
+  "gambits": [
+    {"if": "turn%3==1", "do": "enthrall", "target": "highest_might"},
+    {"do": "draining_kiss", "target": "lowest_hp"}
+  ],
+  "bestiary": {
+    "lore": "She asks for nothing at first.",
+    "weakness": "Holy. She Charms the strongest Scion against the others."
+  }
+}

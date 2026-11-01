@@ -1,0 +1,26 @@
+{
+  "id": "pit_elite_demon",
+  "name": "Elite Demon",
+  "pool": "pit",
+  "tags": ["demon", "humanoid", "armored"],
+  "role": "elite",
+  "size": [1, 1],
+  "levels": [4, 10],
+  "stats": {"speed": 11},
+  "affinity": {"fire": 25, "dark": 25, "holy": -25, "water": -25},
+  "immune": ["fear"],
+  "abilities": [
+    {"id": "execution_blade", "shape": "single", "side": "player", "power": 1.2, "crit": 10},
+    {"id": "guard_stance", "shape": "self", "side": "self", "power": 0, "kind": "support", "cooldown": 3, "statuses": [{"id": "guard_up", "chance": 100, "ticks": 300, "value": 40}, {"id": "provoke", "chance": 100, "ticks": 300}]},
+    {"id": "sweeping_cut", "shape": "column:F", "side": "player", "power": 1.0, "cooldown": 2}
+  ],
+  "gambits": [
+    {"if": "turn%2==1", "do": "guard_stance"},
+    {"if": "turn%4==2", "do": "sweeping_cut"},
+    {"do": "execution_blade", "target": "lowest_durability"}
+  ],
+  "bestiary": {
+    "lore": "The demon army's officer corps: it guards, and it executes.",
+    "weakness": "Holy and Water. It draws the party's blows to itself."
+  }
+}

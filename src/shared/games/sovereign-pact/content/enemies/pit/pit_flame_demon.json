@@ -1,0 +1,24 @@
+{
+  "id": "pit_flame_demon",
+  "name": "Flame Demon",
+  "pool": "pit",
+  "tags": ["demon", "elemental"],
+  "role": "caster",
+  "size": [1, 1],
+  "levels": [6, 10],
+  "stats": {"speed": 11},
+  "affinity": {"fire": 100, "dark": 25, "holy": -25, "water": -75},
+  "immune": ["burn"],
+  "abilities": [
+    {"id": "inferno", "shape": "band:3", "side": "player", "power": 1.1, "kind": "magic", "charge": 100, "telegraph": true, "cooldown": 3, "statuses": [{"id": "burn", "chance": 40, "ticks": 300}], "element": "fire"},
+    {"id": "fire_lash", "shape": "single", "side": "player", "power": 1.2, "kind": "magic", "statuses": [{"id": "burn", "chance": 30, "ticks": 300}], "element": "fire", "reach": "ranged"}
+  ],
+  "gambits": [
+    {"if": "turn%3==1", "do": "inferno", "target": "densest_row"},
+    {"do": "fire_lash", "target": "lowest_hp"}
+  ],
+  "bestiary": {
+    "lore": "A demon made of the fire it calls.",
+    "weakness": "Water, twice over. Interrupt the inferno."
+  }
+}

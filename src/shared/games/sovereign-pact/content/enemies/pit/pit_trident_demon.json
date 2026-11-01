@@ -1,0 +1,23 @@
+{
+  "id": "pit_trident_demon",
+  "name": "Trident Demon",
+  "pool": "pit",
+  "tags": ["demon"],
+  "role": "artillery",
+  "size": [1, 1],
+  "levels": [5, 10],
+  "stats": {"speed": 10},
+  "affinity": {"fire": 25, "dark": 25, "holy": -25, "water": -25},
+  "abilities": [
+    {"id": "trident_cast", "shape": "line:3", "side": "player", "power": 1.1, "reach": "ranged", "cooldown": 2},
+    {"id": "barb_throw", "shape": "single", "side": "player", "power": 0.9, "reach": "ranged"}
+  ],
+  "gambits": [
+    {"if": "turn%2==1", "do": "trident_cast"},
+    {"do": "barb_throw", "target": "back_random"}
+  ],
+  "bestiary": {
+    "lore": "It throws its trident clean through a row of Scions.",
+    "weakness": "Holy and Water. Its throw runs down its row."
+  }
+}
