@@ -279,6 +279,8 @@ export interface Combatant {
   disables?: string[];
   /** Abilities lost to destroyed Parts. */
   lost?: string[];
+  /** A scripted boss: how many of its phases it has entered (§14.6). */
+  phase?: number;
   /** A Tinkerer's Components: held, and offered this turn (§12.2). */
   parts?: string[];
   offer?: string[];
@@ -318,6 +320,9 @@ export type BattleEvent =
   | { t: "vanish"; unit: number }
   | { t: "raise"; unit: number; target: number }
   | { t: "part"; unit: number; part: string }
+  | { t: "phase"; unit: number; phase: number }
+  | { t: "say"; unit: number; line: "open" | "death" | number }
+  | { t: "flee"; unit: number }
   | { t: "shift"; unit: number; form: string | null }
   | { t: "dead"; target: number }
   | { t: "wait" | "defend"; unit: number }

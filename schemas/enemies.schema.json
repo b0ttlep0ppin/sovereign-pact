@@ -34,6 +34,7 @@
       "minItems": 2,
       "maxItems": 2
     },
+    "addOnly": { "type": "boolean", "description": "Only a boss brings it: never drawn for an Encounter" },
     "levels": {
       "type": "array",
       "description": "The expedition levels it appears at, inclusive",

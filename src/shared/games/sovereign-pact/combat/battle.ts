@@ -2,6 +2,7 @@
 // charging and resolving, and the end. Plain functions over a mutable `Battle`; callers clone first.
 import type { Rng } from "../../../rng.ts";
 import { TUNING } from "../tuning.ts";
+import { bossPhases } from "./bosses.ts";
 import { chargeTicks, moveCost, nextActor, step } from "./clock.ts";
 import { cannotCombo, comboCt, comboTp } from "./combos.ts";
 import { abilityDice, castLots, rolledAbility } from "./dice.ts";
@@ -321,6 +322,7 @@ function counterspelled(b: Battle, rng: Rng, u: Combatant, ab: AbilityDef, targe
 /** Victory when every enemy is gone; defeat when every Scion is Down or dead (§10.12). */
 export function checkEnd(b: Battle): void {
   if (b.outcome) return;
+  bossPhases(b);
   if (!standing(b, "enemy").some((u) => u.partOf === undefined)) end(b, "victory");
   // Summons cannot hold the field alone (§10.12: defeat when every Scion is Down or dead).
   else if (!standing(b, "party").some((u) => u.owner === undefined)) end(b, "defeat");

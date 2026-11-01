@@ -200,6 +200,8 @@ export const TUNING = {
     },
     /** §14.1 Parts, first pass: the share of a blow on a Part the body also takes, and the stagger when one breaks. */
     parts: { bodySharePct: 50, stagger: 50 },
+    /** §14.6: everyone starts a boss fight at CT 30. */
+    bosses: { ct: 30 },
   },
 
   /**

@@ -9,9 +9,9 @@ import { join, relative, sep } from "node:path";
 import { fileURLToPath } from "node:url";
 import { Ajv, type ValidateFunction } from "ajv";
 import { describe, expect, it } from "vitest";
-import { ABILITY_SETS, ENEMIES, JOBS, POOL_BY_ID, rosterOf, TEMPLATES, type TemplateRole } from "../src/shared/games/sovereign-pact/content.ts";
+import { ABILITY_SETS, BOSSES, ENEMIES, ENEMY_BY_ID, JOBS, POOL_BY_ID, rosterOf, TEMPLATES, type TemplateRole } from "../src/shared/games/sovereign-pact/content.ts";
 import { partBox } from "../src/shared/games/sovereign-pact/combat/enemyparts.ts";
-import { ENEMY_INDEX, renderEnemyIndex } from "./gen-content.ts";
+import { INDEXED, renderIndex } from "./gen-content.ts";
 
 const root = fileURLToPath(new URL("..", import.meta.url));
 const CONTENT = join(root, "src/shared/games/sovereign-pact/content");
@@ -82,7 +82,7 @@ describe("content", () => {
       expect(`${data.pool}/${data.id}.json`, file).toBe(`${pool}/${name}`);
     }
     // content.ts imports every file through the generated index: `npm run gen:content` after adding one.
-    expect(readFileSync(ENEMY_INDEX, "utf8"), "content/enemies/index.gen.ts is stale: npm run gen:content").toBe(renderEnemyIndex());
+    for (const { folder, dir, index } of INDEXED) expect(readFileSync(index, "utf8"), `content/${folder}/index.gen.ts is stale: npm run gen:content`).toBe(renderIndex(folder, dir));
     const files = contentFiles.filter((f) => f.startsWith("enemies/")).map((f) => f.split("/").at(-1)!.replace(/\.json$/, ""));
     expect(ENEMIES.map((e) => e.id).sort()).toEqual(files.sort());
   });
@@ -103,6 +103,21 @@ describe("content", () => {
     }
   });
 
+  it("gives every boss gambits and adds that exist, a weakness and a pattern (§10.10)", () => {
+    for (const boss of BOSSES) {
+      const abilities = boss.abilities.map((a) => a.id);
+      for (const g of [...boss.gambits, ...boss.phases.flatMap((p) => p.gambits)]) if (!["wait", "defend"].includes(g.do)) expect(abilities, `${boss.id}: ${g.do}`).toContain(g.do);
+      for (const a of [...(boss.adds ?? []), ...boss.phases.flatMap((p) => (p.adds ? [p.adds] : []))]) for (const id of a.spawn) expect(ENEMY_BY_ID.has(id), `${boss.id}: add ${id}`).toBe(true);
+      expect(POOL_BY_ID.has(boss.pool), boss.id).toBe(true);
+      expect(boss.bestiary.weakness.length && boss.bestiary.pattern.length, boss.id).toBeTruthy();
+    }
+  });
+
+  it("files bosses as bosses/<id>.json", () => {
+    const files = contentFiles.filter((f) => f.startsWith("bosses/")).map((f) => f.split("/").at(-1)!.replace(/\.json$/, ""));
+    expect(BOSSES.map((e) => e.id).sort()).toEqual(files.sort());
+  });
+
   // HANDOFF §6's roster lints, switched on for each pool as its roster is completed (Milestone 3).
   const COMPLETE = ["barrows"];
   const BACK_LINE = (e: (typeof ENEMIES)[number]) => ["lurker", "artillery", "horror"].includes(e.role) || e.tags.includes("reach") || e.tags.includes("flyer");
@@ -119,7 +134,7 @@ describe("content", () => {
   });
 
   it.each(COMPLETE)("keeps a third of %s's roster a back-line threat, 15–25 enemies", (id) => {
-    const roster = ENEMIES.filter((e) => e.pool === id && e.role !== "boss");
+    const roster = ENEMIES.filter((e) => e.pool === id && e.role !== "boss" && !e.addOnly);
     expect(roster.length).toBeGreaterThanOrEqual(15);
     expect(roster.length).toBeLessThanOrEqual(25);
     expect(roster.filter(BACK_LINE).length * 3).toBeGreaterThanOrEqual(roster.length);

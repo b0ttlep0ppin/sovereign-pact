@@ -1,0 +1,68 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "One scripted boss: content/bosses/<id>.json, an enemy plus phases (SPEC §10.10, §14.6)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "name", "pool", "tags", "role", "size", "levels", "abilities", "gambits", "phases", "say", "bestiary"],
+  "properties": {
+    "id": { "$ref": "defs.schema.json#/definitions/id" },
+    "name": { "type": "string", "minLength": 1, "maxLength": 40 },
+    "sprite": { "$ref": "enemies.schema.json#/properties/sprite" },
+    "pool": { "$ref": "defs.schema.json#/definitions/id" },
+    "tags": { "$ref": "enemies.schema.json#/properties/tags" },
+    "role": { "const": "boss" },
+    "size": { "$ref": "enemies.schema.json#/properties/size" },
+    "levels": { "$ref": "enemies.schema.json#/properties/levels" },
+    "stats": { "$ref": "enemies.schema.json#/properties/stats" },
+    "affinity": { "$ref": "enemies.schema.json#/properties/affinity" },
+    "immune": { "$ref": "enemies.schema.json#/properties/immune" },
+    "weak": { "$ref": "enemies.schema.json#/properties/weak" },
+    "abilities": { "$ref": "enemies.schema.json#/properties/abilities" },
+    "gambits": { "$ref": "enemies.schema.json#/properties/gambits", "description": "The opening phase's gambits" },
+    "parts": { "$ref": "enemies.schema.json#/properties/parts" },
+    "adds": { "type": "array", "items": { "$ref": "#/definitions/adds" }, "description": "Who stands with it from the start" },
+    "phases": { "type": "array", "minItems": 1, "maxItems": 3, "items": { "$ref": "#/definitions/phase" }, "description": "After the opening: two to three phases in all (§10.10)" },
+    "say": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["open", "death"],
+      "properties": { "open": { "type": "string", "minLength": 1 }, "death": { "type": "string", "minLength": 1 } }
+    },
+    "drops": { "type": "object" },
+    "bestiary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["lore", "weakness", "pattern"],
+      "properties": { "lore": { "type": "string" }, "weakness": { "type": "string" }, "pattern": { "type": "string", "description": "Shown after the first encounter (§10.10)" } }
+    }
+  },
+  "definitions": {
+    "adds": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["spawn", "at"],
+      "properties": {
+        "spawn": { "type": "array", "minItems": 1, "items": { "$ref": "defs.schema.json#/definitions/id" }, "description": "Enemy ids, drawn in turn" },
+        "count": { "type": "integer", "minimum": 1, "maximum": 8 },
+        "at": { "enum": ["E1", "E2", "E3"] }
+      }
+    },
+    "phase": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["at", "name", "gambits", "say"],
+      "properties": {
+        "at": { "type": "string", "description": "A condition, as gambits write them: hp<=0.6, parts<2, turn>=8, adds<1, joined by &&" },
+        "name": { "type": "string", "minLength": 1 },
+        "speed": { "type": "number", "minimum": 1, "maximum": 30 },
+        "gambits": { "$ref": "enemies.schema.json#/properties/gambits" },
+        "adds": { "$ref": "#/definitions/adds" },
+        "dispel": { "type": "boolean", "description": "Strips every buff from the party as it begins" },
+        "regrow": { "type": "boolean", "description": "Destroyed Parts come back whole" },
+        "flee": { "type": "boolean", "description": "It leaves the field: the fight is won, the boss is not killed" },
+        "statuses": { "type": "array", "items": { "type": "object", "additionalProperties": false, "required": ["id", "ticks"], "properties": { "id": { "$ref": "defs.schema.json#/definitions/id" }, "ticks": { "type": "integer", "minimum": 0 } } } },
+        "say": { "type": "string", "minLength": 1 }
+      }
+    }
+  }
+}

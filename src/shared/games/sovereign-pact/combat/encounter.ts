@@ -64,7 +64,7 @@ export function rosterFor(pool: string, role: TemplateRole, level: number): Enem
     if (found.length) return found;
   }
   // Last resort while a pool's roster is thin: anything of the pool at the level but the big ones.
-  return ENEMIES.filter((e) => e.pool === pool && e.levels[0] <= level && level <= e.levels[1] && !["boss", "colossus", "elite"].includes(e.role));
+  return ENEMIES.filter((e) => e.pool === pool && !e.addOnly && e.levels[0] <= level && level <= e.levels[1] && !["boss", "colossus", "elite"].includes(e.role));
 }
 
 /** Enemies for each role: different entries where the roster allows, before any repeats. */
@@ -156,7 +156,7 @@ export function encounter(rng: Rng, spec: EncounterSpec): Encounter {
 }
 
 /** Every enemy id a pool can field at a level, for lints and the simulator. */
-export const poolAt = (pool: string, level: number): string[] => ENEMIES.filter((e) => e.pool === pool && e.levels[0] <= level && level <= e.levels[1]).map((e) => e.id);
+export const poolAt = (pool: string, level: number): string[] => ENEMIES.filter((e) => e.pool === pool && !e.addOnly && e.levels[0] <= level && level <= e.levels[1]).map((e) => e.id);
 
 /** A battle against an Encounter: the party and the group, the opening's CT applied to both sides. */
 export function encounterBattle(seed: number, party: Combatant[], spec: Omit<EncounterSpec, "party">): { battle: Battle; encounter: Encounter } {
