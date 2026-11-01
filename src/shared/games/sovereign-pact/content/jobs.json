@@ -1,0 +1,409 @@
+{
+  "jobs": [
+    {
+      "id": "soldier",
+      "name": "Soldier",
+      "set": "Warfare",
+      "advanced": false,
+      "mult": {
+        "might": 1.15,
+        "hp": 1.1
+      },
+      "weapons": ["sword", "axe", "mace", "spear", "knife", "knuckles", "staff", "bow"],
+      "armor": "heavy",
+      "shields": true,
+      "innate": {
+        "id": "stalwart",
+        "name": "Stalwart",
+        "text": "Body Durability +10%.",
+        "mods": {
+          "bodyDurabilityPct": 10
+        }
+      },
+      "mastery": {
+        "id": "warfare_veteran",
+        "name": "Warfare Veteran",
+        "text": "TP at battle start +10.",
+        "mods": {
+          "tpStart": 10
+        }
+      }
+    },
+    {
+      "id": "knight",
+      "name": "Knight",
+      "set": "Chivalry",
+      "advanced": false,
+      "mult": {
+        "resilience": 1.15,
+        "hp": 1.1
+      },
+      "weapons": ["sword", "mace", "spear"],
+      "armor": "heavy",
+      "shields": true,
+      "innate": {
+        "id": "bulwark",
+        "name": "Bulwark",
+        "text": "Guard chance +10%.",
+        "mods": {
+          "guard": 10
+        }
+      },
+      "mastery": {
+        "id": "oath",
+        "name": "Oath",
+        "text": "Protect on self at battle start.",
+        "start": ["protect"]
+      }
+    },
+    {
+      "id": "magus",
+      "name": "Magus",
+      "set": "Sorcery",
+      "advanced": false,
+      "mult": {
+        "acuity": 1.2,
+        "mp": 1.2,
+        "hp": 0.9
+      },
+      "weapons": ["staff", "knife"],
+      "armor": "light",
+      "shields": false,
+      "innate": {
+        "id": "attunement",
+        "name": "Attunement",
+        "text": "Spell MP −10%.",
+        "mods": {
+          "spellMpPct": -10
+        }
+      },
+      "mastery": {
+        "id": "overflow",
+        "name": "Overflow",
+        "text": "10% of spell damage returns as MP."
+      }
+    },
+    {
+      "id": "soothsayer",
+      "name": "Soothsayer",
+      "set": "Animism",
+      "advanced": false,
+      "mult": {
+        "sagacity": 1.2,
+        "mp": 1.15
+      },
+      "weapons": ["staff", "mace"],
+      "armor": "medium",
+      "shields": false,
+      "innate": {
+        "id": "meditation",
+        "name": "Meditation",
+        "text": "MP +3 per 100 ticks."
+      },
+      "mastery": {
+        "id": "second_sight",
+        "name": "Second Sight",
+        "text": "Injury rolls of adjacent allies +1 step."
+      }
+    },
+    {
+      "id": "vagabond",
+      "name": "Vagabond",
+      "set": "Larceny",
+      "advanced": false,
+      "mult": {
+        "guile": 1.2
+      },
+      "speed": 1,
+      "weapons": ["knife", "bow", "sword:1h"],
+      "armor": "light",
+      "shields": false,
+      "innate": {
+        "id": "quick_hands",
+        "name": "Quick Hands",
+        "text": "Items cost 60 CT."
+      },
+      "mastery": {
+        "id": "shadowstep",
+        "name": "Shadowstep",
+        "text": "The first Move each battle is free."
+      }
+    },
+    {
+      "id": "pugilist",
+      "name": "Pugilist",
+      "set": "Martial Arts",
+      "advanced": false,
+      "mult": {
+        "might": 1.1,
+        "guile": 1.1
+      },
+      "speed": 1,
+      "weapons": ["unarmed", "knuckles", "staff"],
+      "armor": "light",
+      "shields": false,
+      "innate": {
+        "id": "flow",
+        "name": "Flow",
+        "text": "TP +10 per hit instead of the shared gain."
+      },
+      "mastery": {
+        "id": "iron_body",
+        "name": "Iron Body",
+        "text": "Arms and Legs Durability +15%.",
+        "mods": {
+          "armsDurabilityPct": 15,
+          "legsDurabilityPct": 15
+        }
+      }
+    },
+    {
+      "id": "minstrel",
+      "name": "Minstrel",
+      "set": "Symphony",
+      "advanced": false,
+      "mult": {
+        "sagacity": 1.1,
+        "guile": 1.1
+      },
+      "weapons": ["instrument", "knife"],
+      "armor": "light",
+      "shields": false,
+      "innate": {
+        "id": "perfect_pitch",
+        "name": "Perfect Pitch",
+        "text": "Songs cost 25 CT."
+      },
+      "mastery": {
+        "id": "encore",
+        "name": "Encore",
+        "text": "A fourth song layer."
+      }
+    },
+    {
+      "id": "gambler",
+      "name": "Gambler",
+      "set": "Cast Lots",
+      "advanced": false,
+      "mult": {
+        "guile": 1.15,
+        "acuity": 1.05
+      },
+      "weapons": ["knife", "thrown", "crossbow"],
+      "armor": "medium",
+      "shields": false,
+      "innate": {
+        "id": "cast_lots",
+        "name": "Cast Lots",
+        "text": "2d6 at the start of every turn, with an effect per total."
+      },
+      "mastery": {
+        "id": "house_edge",
+        "name": "House Edge",
+        "text": "Double Down fizzles only at −5 or lower."
+      }
+    },
+    {
+      "id": "ravager",
+      "name": "Ravager",
+      "set": "Bloodlust",
+      "advanced": true,
+      "requires": [
+        {
+          "job": "soldier",
+          "jp": 400
+        }
+      ],
+      "mult": {
+        "might": 1.3,
+        "hp": 1.15,
+        "resilience": 0.9
+      },
+      "weapons": ["sword:2h", "axe:2h", "mace:2h"],
+      "armor": "medium",
+      "shields": false,
+      "innate": {
+        "id": "ironhide",
+        "name": "Ironhide",
+        "text": "Body and Arms injury rolls +1 step.",
+        "mods": {
+          "bodySteps": 1,
+          "armsSteps": 1
+        }
+      },
+      "mastery": {
+        "id": "deathless",
+        "name": "Deathless",
+        "text": "Once per battle, a Death result becomes a Mortal wound."
+      }
+    },
+    {
+      "id": "sword_saint",
+      "name": "Sword Saint",
+      "set": "Swordplay",
+      "advanced": true,
+      "requires": [
+        {
+          "job": "soldier",
+          "jp": 400
+        },
+        {
+          "job": "knight",
+          "jp": 400
+        }
+      ],
+      "mult": {
+        "might": 1.2,
+        "guile": 1.1
+      },
+      "weapons": ["sword"],
+      "armor": "medium",
+      "shields": false,
+      "innate": {
+        "id": "focus",
+        "name": "Focus",
+        "text": "TP +5 per 100 ticks."
+      },
+      "mastery": {
+        "id": "iaijutsu",
+        "name": "Iaijutsu",
+        "text": "The first sword technique each battle costs no TP."
+      }
+    },
+    {
+      "id": "abjurer",
+      "name": "Abjurer",
+      "set": "Warding",
+      "advanced": true,
+      "requires": [
+        {
+          "job": "soothsayer",
+          "jp": 400
+        },
+        {
+          "job": "magus",
+          "jp": 200
+        }
+      ],
+      "mult": {
+        "sagacity": 1.15,
+        "acuity": 1.1
+      },
+      "weapons": ["staff", "mace"],
+      "armor": "medium",
+      "shields": true,
+      "innate": {
+        "id": "warded",
+        "name": "Warded",
+        "text": "Shell on self at battle start.",
+        "start": ["shell"]
+      },
+      "mastery": {
+        "id": "aegis",
+        "name": "Aegis",
+        "text": "Shields you cast absorb +25%."
+      }
+    },
+    {
+      "id": "conjurer",
+      "name": "Conjurer",
+      "set": "Summoning",
+      "advanced": true,
+      "requires": [
+        {
+          "job": "magus",
+          "jp": 400
+        },
+        {
+          "job": "soothsayer",
+          "jp": 200
+        }
+      ],
+      "mult": {
+        "acuity": 1.15,
+        "sagacity": 1.15,
+        "hp": 0.9
+      },
+      "weapons": ["staff"],
+      "armor": "light",
+      "shields": false,
+      "innate": {
+        "id": "binding",
+        "name": "Binding",
+        "text": "Up to 2 summons at once."
+      },
+      "mastery": {
+        "id": "legion",
+        "name": "Legion",
+        "text": "Binding cap +1."
+      }
+    },
+    {
+      "id": "tinkerer",
+      "name": "Tinkerer",
+      "set": "Innovation",
+      "advanced": true,
+      "requires": [
+        {
+          "job": "vagabond",
+          "jp": 400
+        },
+        {
+          "job": "gambler",
+          "jp": 200
+        }
+      ],
+      "mult": {
+        "guile": 1.1,
+        "acuity": 1.1
+      },
+      "weapons": ["crossbow", "mace"],
+      "armor": "medium",
+      "shields": false,
+      "innate": {
+        "id": "scavenge",
+        "name": "Scavenge",
+        "text": "Offered 3 Components each turn; keep one."
+      },
+      "mastery": {
+        "id": "tinkers_eye",
+        "name": "Tinker's Eye",
+        "text": "4 Components offered."
+      }
+    },
+    {
+      "id": "alterer",
+      "name": "Alterer",
+      "set": "Flesh Shaping",
+      "advanced": true,
+      "requires": [
+        {
+          "job": "soothsayer",
+          "jp": 400
+        },
+        {
+          "job": "vagabond",
+          "jp": 400
+        }
+      ],
+      "unlockedBy": ["bloodline", "event"],
+      "mult": {
+        "resilience": 1.1,
+        "might": 1.1
+      },
+      "weapons": ["knife", "knuckles"],
+      "armor": "light",
+      "shields": false,
+      "innate": {
+        "id": "shapeshift",
+        "name": "Shapeshift",
+        "text": "Shift into Forms."
+      },
+      "mastery": {
+        "id": "chimera",
+        "name": "Chimera",
+        "text": "Keep one Form passive while human."
+      }
+    }
+  ]
+}

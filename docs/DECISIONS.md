@@ -2,6 +2,11 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-01 (implementation, Milestone 2) — implementer
+- **XP is flat: 100 per level**, cap 30. First pass: 15 XP a battle won and 60 for finishing an expedition (about 1.3 levels a Year, so a Scion on most expeditions reaches the mid-20s by Year 20, §7.2); JP per §12.1. All in `tuning.progression`.
+- **Job multipliers apply to the stats everything else reads**: MP, Sanity, HP, Durability, Evasion and resists come from the multiplied stats, then the Job's HP or MP multiplier (§7.3 "× Job HP mult").
+- **Jobs are content** (`content/jobs.json`): multipliers, Speed bonus, permitted weapon types (with `:1h`/`:2h`), heaviest armor class, shields, prerequisites, and the innate and mastery passives. Passives with a plain number (Stalwart, Bulwark, Iron Body, Warfare Veteran, Attunement, Ironhide) carry `mods`; Oath and Warded put Protect or Shell on at battle start. The rest are rules that arrive with their sub-systems.
+
 ## 2026-11-01 (Q86 answered) — Josh
 - **Lightning is part of Wind.** There are six elements (Holy, Dark, Fire, Water, Earth, Wind). Lightning creatures, spells and the pools' "weak Lightning" use Wind. → SPEC §7.3, §14.5 (read "Lightning" as Wind)
 

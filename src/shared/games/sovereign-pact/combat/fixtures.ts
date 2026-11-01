@@ -4,7 +4,8 @@
 import { createRng } from "../../../rng.ts";
 import { maxMp, maxSanity } from "../formulas.ts";
 import { promote, rollRecruit } from "../generate.ts";
-import type { Person, Six } from "../state.ts";
+import { levelUp } from "../progression.ts";
+import type { BASE_JOBS, Person } from "../state.ts";
 import { enemyCombatant, newBattle, scionCombatant, type Armor } from "./build.ts";
 import type { AbilityDef, Battle, Combatant, Weapon } from "./types.ts";
 
@@ -51,31 +52,31 @@ export function armorSet(cls: "light" | "medium" | "heavy", level: number): Armo
   };
 }
 
-/** A Person raised to `level` by average growth (levelling itself is Milestone 2). */
+/** A Person levelled to `level` through the real growth accumulator (§7.2), MP and Sanity full. */
 export function atLevel(p: Person, level: number): Person {
-  const base = p.base.map((v, i) => (i === 5 ? v : v + Math.floor((p.growth[i]! * (level - 1)) / 100))) as Six;
-  const q = { ...p, level, base };
+  let q = p;
+  while (q.level < level) q = levelUp(q);
   return { ...q, mp: maxMp(q), sanity: maxSanity(q) };
 }
 
-/** Four Scions: a sword in Front, a spear in Middle, a bow and a caster-healer at the Back. */
+/** Four Scions: a Soldier with a sword in Front, a Knight with a spear in Middle, a Vagabond's bow and a Soothsayer at the Back. */
 export function standardParty(seed: number, level: number, firstId = 1): Combatant[] {
   const rng = createRng(seed);
-  const p = (i: number) => atLevel(promote(rollRecruit(rng, firstId + i, 0), "soldier"), level);
+  const p = (i: number, job: (typeof BASE_JOBS)[number]) => atLevel(promote(rollRecruit(rng, firstId + i, 0), job), level);
   const w = weapons(level);
   const sp = spells(level);
   return [
-    scionCombatant(p(0), { id: firstId, col: 0, row: 3, weapon: w.sword, armor: armorSet("heavy", level) }),
-    scionCombatant(p(1), { id: firstId + 1, col: 1, row: 4, weapon: w.spear, armor: armorSet("medium", level) }),
-    scionCombatant(p(2), { id: firstId + 2, col: 2, row: 2, weapon: w.bow, armor: armorSet("light", level) }),
-    scionCombatant(p(3), {
+    scionCombatant(p(0, "soldier"), { id: firstId, col: 0, row: 3, weapon: w.sword, armor: armorSet("heavy", level) }),
+    scionCombatant(p(1, "knight"), { id: firstId + 1, col: 1, row: 4, weapon: w.spear, armor: armorSet("heavy", level) }),
+    scionCombatant(p(2, "vagabond"), { id: firstId + 2, col: 2, row: 2, weapon: w.bow, armor: armorSet("light", level) }),
+    scionCombatant(p(3, "soothsayer"), {
       id: firstId + 3,
       col: 2,
       row: 5,
       weapon: w.staff,
-      armor: armorSet("light", level),
-      abilities: [sp.cure, sp.fire],
-      gambits: [{ if: "ally.hp<0.5", do: "cure", target: "ally_lowest_hp" }, { do: "fire", target: "lowest_hp" }],
+      armor: armorSet("medium", level),
+      abilities: [sp.cure, sp.holy],
+      gambits: [{ if: "ally.hp<0.5", do: "cure", target: "ally_lowest_hp" }, { do: "holy", target: "lowest_hp" }],
     }),
   ];
 }

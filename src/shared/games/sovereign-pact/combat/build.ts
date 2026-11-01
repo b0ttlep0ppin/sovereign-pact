@@ -1,8 +1,10 @@
-// Making combatants: a Scion from a Person with the §7.3 formulas, an enemy from its content at an
-// expedition level with the §14.2 block, and a battle from both sides. Milestone 2 adds Job
-// multipliers, gear and passives; the hooks for them are the `weapon` and `abilities` arguments.
+// Making combatants: a Scion from a Person with the §7.3 formulas in their Job (§12.3), an enemy from
+// its content at an expedition level with the §14.2 block, and a battle from both sides. Gear arrives
+// as the `weapon` and `armor` arguments until items exist.
 import { ENEMY_BY_ID, INJURY_BY_ID, type EnemyAbility, type EnemyDef } from "../content.ts";
-import { maxMp, maxSanity, stat } from "../formulas.ts";
+import { jobStat, maxHp, maxMp, maxSanity } from "../formulas.ts";
+import { freePassives } from "../progression.ts";
+import { meta } from "./status.ts";
 import { LOCATIONS, type Location, type Person } from "../state.ts";
 import { TUNING } from "../tuning.ts";
 import type { AbilityDef, Battle, Combatant, GambitRule, Weapon } from "./types.ts";
@@ -34,23 +36,28 @@ export interface Armor {
   guard?: number;
 }
 
-/** Lasting injury mods the Person carries into battle (§11: maxHpPct, mightPct, speed…). */
-function lastingMods(p: Person): Record<string, number> {
+/** Mods the Person carries into battle: lasting injuries (§11: maxHpPct, mightPct, speed…) and free passives (§12.1). */
+function carriedMods(p: Person): Record<string, number> {
   const mods: Record<string, number> = {};
+  const add = (m: Record<string, number> | undefined) => {
+    for (const [k, v] of Object.entries(m ?? {})) mods[k] = (mods[k] ?? 0) + v;
+  };
   for (const inj of p.injuries) {
     const res = INJURY_BY_ID.get(inj.id);
-    for (const [k, v] of Object.entries({ ...res?.lasting?.mods, ...res?.stat })) mods[k] = (mods[k] ?? 0) + v;
+    add(res?.lasting?.mods);
+    add(res?.stat);
   }
+  for (const passive of freePassives(p)) add(passive.mods);
   return mods;
 }
 
 const pctMod = (n: number, mods: Record<string, number>, key: string) => Math.max(1, Math.floor(n * (1 + (mods[key] ?? 0) / 100)));
 
 export function scionCombatant(p: Person, o: ScionOpts): Combatant {
-  const mods = lastingMods(p);
-  const s = (k: Parameters<typeof stat>[1]) => pctMod(stat(p, k), mods, `${k}Pct`);
+  const mods = carriedMods(p);
+  const s = (k: Parameters<typeof jobStat>[1]) => pctMod(jobStat(p, k), mods, `${k}Pct`);
   const might = s("might"), resilience = s("resilience"), guile = s("guile"), acuity = s("acuity"), sagacity = s("sagacity");
-  const hp = pctMod(F.maxHp.base + F.maxHp.might * might + F.maxHp.resilience * resilience + F.maxHp.level * p.level, mods, "maxHpPct");
+  const hp = pctMod(maxHp(p), mods, "maxHpPct");
   const dur = {} as Record<Location, number>;
   const stats = { might, resilience, guile, acuity, sagacity };
   for (const loc of LOCATIONS) {
@@ -71,12 +78,12 @@ export function scionCombatant(p: Person, o: ScionOpts): Combatant {
     size: [1, 1],
     level: p.level,
     ...stats,
-    speed: stat(p, "speed"),
+    speed: jobStat(p, "speed"),
     maxHp: hp,
     hp,
     maxMp: mp,
     mp: Math.min(mp, p.mp),
-    tp: 0,
+    tp: Math.min(C.tp.max, mods.tpStart ?? 0),
     maxSanity: sanity,
     sanity: Math.min(sanity, p.sanity),
     evasion: Math.max(0, Math.floor(F.evasion.base + F.evasion.guile * guile + (o.armor?.evasion ?? 0))),
@@ -90,14 +97,14 @@ export function scionCombatant(p: Person, o: ScionOpts): Combatant {
     resist: { physical: Math.floor(F.resist.physical * resilience), mental: Math.floor(F.resist.mental * acuity) + (mods.mentalResist ?? 0) },
     immune: [],
     sanityTouch: 0,
-    guard: o.armor?.guard ?? 0,
+    guard: (o.armor?.guard ?? 0) + (mods.guard ?? 0),
     counter: 0,
     steps: 0,
     abilities: o.abilities ?? [],
     gambits: o.gambits ?? [],
     cooldowns: {},
     ct: o.ct ?? 0,
-    statuses: [],
+    statuses: freePassives(p).flatMap((x) => (x.start ?? []).map((id) => ({ id, ticks: meta(id).ticks }))),
     down: false,
     dead: false,
     mods,
