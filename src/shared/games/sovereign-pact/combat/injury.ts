@@ -4,6 +4,7 @@ import type { Rng } from "../../../rng.ts";
 import { INJURY_TABLE_BY_ID, type InjuryResult, type InjuryTableId } from "../content.ts";
 import type { Location } from "../state.ts";
 import { TUNING } from "../tuning.ts";
+import { partBroken } from "./enemyparts.ts";
 import { addStatus, endSongs, removeStatus } from "./status.ts";
 import type { Battle, Combatant } from "./types.ts";
 
@@ -117,6 +118,9 @@ export function kill(b: Battle, u: Combatant): void {
     if (owner?.mods.bound) owner.mods.bound--;
   }
   b.events.push({ t: "dead", target: u.id });
+  // A Part's loss reaches its body; a body's death takes its Parts with it (§14.1).
+  if (u.partOf !== undefined) partBroken(b, u);
+  for (const p of b.units) if (p.partOf === u.id && !p.dead) kill(b, p);
 }
 
 /** After a location roll: 2 × Resilience % (capped) to refill to 25%, else the location stays Broken (§7.4). */

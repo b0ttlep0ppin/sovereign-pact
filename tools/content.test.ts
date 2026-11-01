@@ -10,6 +10,7 @@ import { fileURLToPath } from "node:url";
 import { Ajv, type ValidateFunction } from "ajv";
 import { describe, expect, it } from "vitest";
 import { ABILITY_SETS, ENEMIES, JOBS, POOL_BY_ID, rosterOf, TEMPLATES, type TemplateRole } from "../src/shared/games/sovereign-pact/content.ts";
+import { partBox } from "../src/shared/games/sovereign-pact/combat/enemyparts.ts";
 import { ENEMY_INDEX, renderEnemyIndex } from "./gen-content.ts";
 
 const root = fileURLToPath(new URL("..", import.meta.url));
@@ -90,6 +91,16 @@ describe("content", () => {
     const files = contentFiles.filter((f) => f.startsWith("abilities/")).map((f) => f.split("/").at(-1)!.replace(/\.json$/, ""));
     expect(ABILITY_SETS.map((a) => a.job).sort()).toEqual(files.sort());
     for (const set of ABILITY_SETS) expect(JOBS.map((j) => j.id), set.job).toContain(set.job);
+  });
+
+  it("keeps every Part on its enemy's cells, a rectangle, disabling abilities it has", () => {
+    for (const e of ENEMIES) {
+      for (const p of e.parts ?? []) {
+        for (const [c, r] of p.cells) expect(c < e.size[0] && r < e.size[1], `${e.id}.${p.id} off its cells`).toBe(true);
+        expect(() => partBox(p), `${e.id}.${p.id}`).not.toThrow();
+        for (const a of p.disables ?? []) expect(e.abilities.map((x) => x.id), `${e.id}.${p.id}`).toContain(a);
+      }
+    }
   });
 
   // HANDOFF §6's roster lints, switched on for each pool as its roster is completed (Milestone 3).

@@ -72,6 +72,30 @@
     },
     "abilities": { "type": "array", "minItems": 1, "items": { "$ref": "#/definitions/ability" } },
     "gambits": { "type": "array", "minItems": 1, "items": { "$ref": "#/definitions/gambit" } },
+    "parts": {
+      "type": "array",
+      "description": "Parts (§14.1): sub-entities on some of its cells, struck on their own",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "name", "cells", "hp"],
+        "properties": {
+          "id": { "$ref": "defs.schema.json#/definitions/id" },
+          "name": { "type": "string", "minLength": 1 },
+          "cells": {
+            "type": "array",
+            "minItems": 1,
+            "description": "[column, row] relative to the enemy's top-left; together a rectangle",
+            "items": { "type": "array", "items": { "type": "integer", "minimum": 0, "maximum": 7 }, "minItems": 2, "maxItems": 2 }
+          },
+          "hp": { "type": "number", "exclusiveMinimum": 0, "maximum": 1, "description": "Share of the enemy's max HP" },
+          "disables": { "type": "array", "items": { "$ref": "defs.schema.json#/definitions/id" }, "description": "Abilities lost when it is destroyed" },
+          "affinity": { "$ref": "#/properties/affinity" },
+          "immune": { "$ref": "#/properties/immune" },
+          "weak": { "$ref": "#/properties/weak" }
+        }
+      }
+    },
     "drops": { "type": "object", "description": "Loot rules, used from Milestone 6" },
     "bestiary": {
       "type": "object",

@@ -5,6 +5,7 @@ import { createRng, type Rng } from "../../../rng.ts";
 import { ENEMIES, POOL_BY_ID, rosterOf, TEMPLATE_BY_ID, TEMPLATES, type EnemyDef, type TemplateDef, type TemplateRole } from "../content.ts";
 import { TUNING } from "../tuning.ts";
 import { enemyCombatant, newBattle } from "./build.ts";
+import { partsOf } from "./enemyparts.ts";
 import { COLS, ROWS, type Battle, type Combatant } from "./types.ts";
 
 const E = TUNING.encounters;
@@ -114,7 +115,9 @@ export function place(defs: readonly EnemyDef[], level: number, firstId = 101): 
     if (!spot) continue;
     const [col, row] = spot;
     for (let a = 0; a < w; a++) for (let b = 0; b < h; b++) taken[col + a]![row + b] = true;
-    out.push(enemyCombatant(d, { id: firstId + i, level, col, row }));
+    const body = enemyCombatant(d, { id: firstId + i, level, col, row });
+    out.push(body, ...partsOf(body, d));
+    if (d.parts?.length) body.mods.noMove = 1;
   }
   return out.sort((x, y) => x.id - y.id);
 }

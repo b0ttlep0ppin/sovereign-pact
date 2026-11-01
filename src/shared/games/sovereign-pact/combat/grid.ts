@@ -22,7 +22,11 @@ export const inGrid = (cell: Cell): boolean => cell.col >= 0 && cell.col < COLS 
 export const present = (b: Battle): Combatant[] => b.units.filter((u) => !u.dead);
 export const standing = (b: Battle, side?: Side): Combatant[] => b.units.filter((u) => !u.dead && !u.down && (!side || u.side === side));
 
-export const unitAt = (b: Battle, cell: Cell): Combatant | undefined => present(b).find((u) => covers(u, cell));
+/** Who stands on a cell: a Part over the body it sits on (§14.1). */
+export function unitAt(b: Battle, cell: Cell): Combatant | undefined {
+  const here = present(b).filter((u) => covers(u, cell));
+  return here.find((u) => u.partOf !== undefined) ?? here[0];
+}
 
 export function isFree(b: Battle, side: Side, col: number, row: number, size: [number, number] = [1, 1], ignore?: number): boolean {
   for (let c = 0; c < size[0]; c++) {
@@ -56,9 +60,14 @@ export function meleeTargets(b: Battle, u: Combatant, reach: "melee" | "reach" =
     const inRow = present(b)
       .filter((f) => f.side !== u.side && rowsOf(f).includes(row))
       .sort((x, y) => x.col - y.col);
-    // A Down Scion still blocks the row it lies in; only the standing can be struck.
-    const take = reach === "reach" ? 2 : 1;
-    inRow.slice(0, take).forEach((f) => foes.includes(f) && out.add(f));
+    // A Down Scion still blocks the row it lies in; only the standing can be struck. A body and its
+    // Parts in the same column are one front: any of them can be struck.
+    const group = (f: Combatant) => f.partOf ?? f.id;
+    const fronts = [...new Set(inRow.map(group))].slice(0, reach === "reach" ? 2 : 1);
+    for (const g of fronts) {
+      const members = inRow.filter((f) => group(f) === g);
+      members.filter((f) => f.col === members[0]!.col).forEach((f) => foes.includes(f) && out.add(f));
+    }
   }
   return [...out];
 }
