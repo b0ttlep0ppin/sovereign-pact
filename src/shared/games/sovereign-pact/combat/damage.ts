@@ -30,7 +30,7 @@ export function hitChance(u: Combatant, t: Combatant, ab: AbilityDef): number {
     let evasion = t.evasion + (t.mods.evasion ?? 0) + (t.mods["turn.evasion"] ?? 0);
     if (hasStatus(t, "knockdown")) evasion += C.knockdownEvasion;
     if (hasStatus(t, "frozen")) evasion += C.frozenEvasion;
-    const drill = reachOf(u, ab) !== "ranged" ? (u.mods.meleeAccuracy ?? 0) : 0;
+    const drill = reachOf(u, ab) !== "ranged" ? (u.mods.meleeAccuracy ?? 0) : (u.mods.rangedAccuracy ?? 0);
     chance = u.weapon.acc + u.accuracy + (u.mods.accuracy ?? 0) + (u.mods["turn.accuracy"] ?? 0) + drill + (ab.accuracy ?? 0) - Math.max(0, evasion);
     if (hasStatus(u, "blind")) chance += C.blind;
   }
@@ -295,9 +295,10 @@ export function offHandStrike(b: Battle, rng: Rng, u: Combatant, t: Combatant, a
   }
 }
 
-/** Draining, Mana-thirst, Siphoning and on-hit ailments (§13.4). */
+/** Draining, Mana-thirst, Siphoning and on-hit ailments (§13.4); Sanguine blood drains on melee blows (§5.7). */
 function afterWeaponHit(b: Battle, rng: Rng, u: Combatant, t: Combatant, damage: number): void {
-  if (u.mods.drainPct && !u.down) u.hp = Math.min(hpCap(u), u.hp + Math.round((damage * u.mods.drainPct) / 100));
+  const drain = (u.mods.drainPct ?? 0) + (u.weapon.reach !== "ranged" ? (u.mods.meleeDrainPct ?? 0) : 0);
+  if (drain && !u.down) u.hp = Math.min(hpCap(u), u.hp + Math.round((damage * drain) / 100));
   if (u.mods.mpPerHit) u.mp = Math.min(u.maxMp, u.mp + u.mods.mpPerHit);
   if (t.dead) return;
   if (u.mods.siphon) {

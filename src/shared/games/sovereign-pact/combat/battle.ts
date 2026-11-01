@@ -42,9 +42,13 @@ export function abilityOf(u: Combatant, id: string): AbilityDef | undefined {
   return id === "attack" ? ATTACK : u.abilities.find((a) => a.id === id);
 }
 
-/** MP an ability costs `u`: spells with the Scion's spell-MP mods (Attunement −10%, §12.3); a summon after Pact of Blood is free. */
-export const mpCost = (u: Combatant, ab: AbilityDef): number =>
-  ab.summon && u.flags.includes("free_summon") ? 0 : ab.mp ? Math.max(1, Math.round(ab.mp * (1 + (ab.kind === "magic" || ab.kind === "heal" ? (u.mods.spellMpPct ?? 0) : 0) / 100))) : 0;
+/** MP an ability costs `u`: spells with the Scion's spell-MP mods (Attunement −10%, §12.3; its House's element −10%, §5.6); a summon after Pact of Blood is free. */
+export function mpCost(u: Combatant, ab: AbilityDef): number {
+  if (!ab.mp || (ab.summon && u.flags.includes("free_summon"))) return 0;
+  const spell = ab.kind === "magic" || ab.kind === "heal";
+  const pct = spell ? (u.mods.spellMpPct ?? 0) + (ab.element ? (u.mods[`spellMp.${ab.element}`] ?? 0) : 0) : 0;
+  return Math.max(1, Math.round(ab.mp * (1 + pct / 100)));
+}
 
 /** TP an ability costs `u`: none for the first sword technique of a battle under Iaijutsu (§12.3). */
 export const tpCost = (u: Combatant, ab: AbilityDef): number =>
@@ -153,14 +157,15 @@ export function act(b: Battle, rng: Rng, u: Combatant, action: Action): void {
   keepParts(u, action.keep);
   let cost: number;
   if (action.do === "wait") {
-    cost = C.cost.wait;
+    cost = C.cost.wait + (u.mods.restCt ?? 0);
     b.events.push({ t: "wait", unit: u.id });
   } else if (action.do === "defend" && u.mods.noDefend) {
     // A curse that forbids Defending (§13.5): the turn is a Wait.
-    cost = C.cost.wait;
+    cost = C.cost.wait + (u.mods.restCt ?? 0);
     b.events.push({ t: "wait", unit: u.id });
   } else if (action.do === "defend") {
-    cost = u.mods.defendCost ?? C.cost.defend;
+    // Iron Discipline (§5.7) and the like: `restCt` shifts Wait and Defend alike.
+    cost = (u.mods.defendCost ?? C.cost.defend) + (u.mods.restCt ?? 0);
     u.defending = true;
     b.events.push({ t: "defend", unit: u.id });
   } else if (action.do === "combo") {

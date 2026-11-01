@@ -9,7 +9,7 @@ import { equip, gearTotals, mint } from "../items.ts";
 import { changeJob, equipPassive, gainJp, jpLeft, knows, learn, passiveBudget, passivePoints, setSecondary } from "../progression.ts";
 import type { BASE_JOBS, ItemTier, JobId, Person, SovState } from "../state.ts";
 import { TUNING } from "../tuning.ts";
-import { scionCombatant } from "./build.ts";
+import { scionCombatant, type ScionOpts } from "./build.ts";
 import { encounterBattle, type EncounterSpec } from "./encounter.ts";
 import { atLevel } from "./fixtures.ts";
 import type { Battle, Combatant } from "./types.ts";
@@ -85,7 +85,8 @@ export function outfit(p: Person, level: number): SovState {
 }
 
 /** A party of the given Jobs at Scion level `level`, laid out by each Job's column. */
-export function realParty(seed: number, level: number, jobs: readonly JobId[], firstId = 1): Combatant[] {
+/** `house`: the Scions' birth House, whose traits and element ride with them (§5.3). */
+export function realParty(seed: number, level: number, jobs: readonly JobId[], firstId = 1, house?: ScionOpts["house"]): Combatant[] {
   const rng = createRng(seed);
   const rows: Record<number, number> = { 0: 2, 1: 3, 2: 2 };
   return jobs.map((job, i) => {
@@ -94,7 +95,7 @@ export function realParty(seed: number, level: number, jobs: readonly JobId[], f
     const col = LOADOUTS[job].col;
     const row = rows[col]!;
     rows[col] = row + 2;
-    return scionCombatant(p, { id: firstId + i, col, row: row % 8, gear: gearTotals(s, p) });
+    return scionCombatant(p, { id: firstId + i, col, row: row % 8, gear: gearTotals(s, p), ...(house ? { house } : {}) });
   });
 }
 

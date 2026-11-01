@@ -90,12 +90,12 @@ export function newCampaign(players: readonly PlayerId[], rng: Rng, opts: Campai
   };
   houses.forEach((_, i) => {
     for (let n = 0; n < forHouses(TUNING.houses.startScions, H); n++) {
-      const scion = promote(rollRecruit(rng, state.nextId++, i), rng.pick(BASE_JOBS));
+      const scion = promote(rollRecruit(rng, state.nextId++, i, houses[i]), rng.pick(BASE_JOBS));
       state.people.push(scion);
       equipStarter(state, scion);
     }
     for (let n = 0; n < forHouses(TUNING.houses.startRecruits, H); n++) {
-      state.people.push(rollRecruit(rng, state.nextId++, i));
+      state.people.push(rollRecruit(rng, state.nextId++, i, houses[i]));
     }
   });
   const years = TUNING.campaign.years[opts.length];

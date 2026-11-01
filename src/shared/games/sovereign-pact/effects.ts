@@ -3,7 +3,7 @@
 // without a subject House, an effect with no `to` falls on one random House.
 import { loseAccord } from "./commons.ts";
 import type { TownEffect } from "./content.ts";
-import { maxSanity } from "./formulas.ts";
+import { caps } from "./combat/build.ts";
 import { rollRecruit } from "./generate.ts";
 import type { ScoreCategory, SovState } from "./state.ts";
 import { log, withRng } from "./year.ts";
@@ -66,12 +66,13 @@ function touch(s: SovState, e: TownEffect, i: number): void {
   }
   for (let n = 0; n < (e.recruit_gain ?? 0); n++) {
     const id = s.nextId++;
-    s.people.push(withRng(s, (rng) => rollRecruit(rng, id, i)));
+    s.people.push(withRng(s, (rng) => rollRecruit(rng, id, i, s.houses[i])));
   }
   if (e.sanity) {
     for (const p of s.people) {
       if (p.host !== i || (p.status !== "scion" && p.status !== "retired")) continue;
-      p.sanity = Math.max(0, Math.min(maxSanity(p), p.sanity + Math.round((maxSanity(p) * e.sanity) / 100)));
+      const max = caps(s, p).sanity;
+      p.sanity = Math.max(0, Math.min(max, p.sanity + Math.round((max * e.sanity) / 100)));
     }
   }
 }

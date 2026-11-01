@@ -4,7 +4,7 @@
 import { createRng, type Rng } from "../../rng.ts";
 import { rollRecruit } from "./generate.ts";
 import { yearOfAssignments } from "./assign.ts";
-import { maxMp } from "./formulas.ts";
+import { caps } from "./combat/build.ts";
 import type { House, SovState } from "./state.ts";
 import { built, completeProjects } from "./commons.ts";
 import { completeWorks, produce } from "./town.ts";
@@ -117,7 +117,7 @@ export function reckoning(s: SovState): void {
   completeProjects(s);
   // Injuries tick down, everyone recovers and grows by assignment, and MP refills (§8.3, §8.10).
   yearOfAssignments(s);
-  for (const p of s.people) p.mp = maxMp(p);
+  for (const p of s.people) p.mp = caps(s, p).mp;
   s.doom = Math.min(100, s.doom + TUNING.tracks.doomPerYear);
   arrivals(s);
   if (s.doom >= 100) return end(s, false, `The city was overwhelmed in Year ${s.year}.`);
@@ -142,7 +142,7 @@ function arrivals(s: SovState): void {
       if (rng.int(100) >= chance) return;
       const pool = s.people.filter((p) => p.host === i && p.status === "recruit").length;
       if (pool >= TUNING.houses.recruitPoolCap) return;
-      s.people.push(rollRecruit(rng, s.nextId++, i));
+      s.people.push(rollRecruit(rng, s.nextId++, i, s.houses[i]));
     });
   });
 }
