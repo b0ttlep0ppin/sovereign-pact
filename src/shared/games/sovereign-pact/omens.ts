@@ -7,6 +7,7 @@ import type { Rng } from "../../rng.ts";
 import { TOWN_EVENT_BY_ID, TOWN_EVENTS, type TownEventDef, type TownOption } from "./content.ts";
 import { eligible, openCrisis } from "./crisis.ts";
 import { applyEffects } from "./effects.ts";
+import { econ } from "./houses.ts";
 import { dueEvents } from "./timeline.ts";
 import type { PendingEvent, SovState } from "./state.ts";
 import { TUNING } from "./tuning.ts";
@@ -30,7 +31,9 @@ export function drawOmens(s: SovState): void {
   s.houses.forEach((_, i) => {
     const owed = queued.find((q) => q.ev.scope === "house" && q.house === i);
     if (owed) return void openEvent(s, owed.ev, i);
-    const ev = withRng(s, (rng) => (rng.int(100) < TUNING.omens.houseEventPct ? draw(rng, TOWN_EVENTS.filter((e) => e.scope === "house" && eligible(s, e, i))) : undefined));
+    // Haunted Halls and the like draw House events more often (§5.7).
+    const pct = TUNING.omens.houseEventPct + econ(s.houses[i]!, "houseEventPct");
+    const ev = withRng(s, (rng) => (rng.int(100) < pct ? draw(rng, TOWN_EVENTS.filter((e) => e.scope === "house" && eligible(s, e, i))) : undefined));
     if (ev) openEvent(s, ev, i);
   });
 }

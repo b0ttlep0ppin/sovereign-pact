@@ -5,6 +5,7 @@ import type { GameDefinition, GameResult, MoveResult, PlayerId } from "../../gam
 import type { Rng } from "../../rng.ts";
 import type { TableOption, TableOptions } from "../../table-options.ts";
 import { promote, randomHouse, rollRecruit } from "./generate.ts";
+import { econ } from "./houses.ts";
 import { equipStarter } from "./items.ts";
 import { checkpoint, describeSave, restore, type SovSave } from "./save.ts";
 import { placements } from "./score.ts";
@@ -89,7 +90,9 @@ export function newCampaign(players: readonly PlayerId[], rng: Rng, opts: Campai
     log: [],
     notes: houses.map(() => []),
   };
-  houses.forEach((_, i) => {
+  houses.forEach((h, i) => {
+    // Debt-Ridden: the creditors followed them through the rift (§5.7).
+    h.debt += econ(h, "startDebt");
     for (let n = 0; n < forHouses(TUNING.houses.startScions, H); n++) {
       const scion = promote(rollRecruit(rng, state.nextId++, i, houses[i]), rng.pick(BASE_JOBS));
       state.people.push(scion);

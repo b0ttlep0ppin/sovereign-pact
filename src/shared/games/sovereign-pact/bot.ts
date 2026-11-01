@@ -9,7 +9,7 @@ import { cautious } from "./omens.ts";
 import { caps } from "./combat/build.ts";
 import { cannotAccept } from "./deals.ts";
 import type { Assignment, Deal, SovMove, SovState } from "./state.ts";
-import { buildCost, cannotBuild, levelOf } from "./town.ts";
+import { buildCost, cannotBuild, levelOf, upkeepDue } from "./town.ts";
 import { forHouses, TUNING } from "./tuning.ts";
 
 /** Building and level, in the order the bot wants them. */
@@ -48,15 +48,9 @@ const PLAN: readonly (readonly [string, number])[] = [
 ];
 
 /** Gold a House pays in upkeep a Year (§6.2), the bot's reserve. */
-export function upkeepGold(s: SovState, house: number): number {
-  const u = TUNING.economy.upkeep;
-  return s.people.reduce((sum, p) => sum + (p.host !== house ? 0 : p.status === "scion" ? u.scionGold : p.status === "retired" ? Math.ceil(u.scionGold / 2) : 0), 0);
-}
+export const upkeepGold = (s: SovState, house: number): number => upkeepDue(s, house).gold;
 
-const grainNeed = (s: SovState, house: number): number => {
-  const u = TUNING.economy.upkeep;
-  return s.people.reduce((sum, p) => sum + (p.host !== house || p.status === "lost" ? 0 : p.status === "scion" ? u.scionGrain : p.status === "retired" ? Math.ceil(u.scionGrain / 2) : u.recruitGrain), 0);
-};
+const grainNeed = (s: SovState, house: number): number => upkeepDue(s, house).grain;
 
 /** The building the bot starts next for `house`, or null. */
 export function botBuild(s: SovState, house: number): string | null {
@@ -70,7 +64,7 @@ export function botBuild(s: SovState, house: number): string | null {
   for (const [id, level] of wants) {
     if (levelOf(h, id) + 1 !== level) continue;
     if (cannotBuild(s, house, id)) continue;
-    if (h.gold - (buildCost(id, level)!.gold ?? 0) < reserve) continue;
+    if (h.gold - (buildCost(id, level, h)!.gold ?? 0) < reserve) continue;
     return id;
   }
   return null;

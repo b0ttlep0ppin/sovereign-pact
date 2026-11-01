@@ -2,6 +2,7 @@
 // Standing tier other Houses see. Lineage, Treasury, Holdings and Relics are counted from what a House
 // holds now; Valor, Lore, Renown and Intrigue are earned as they happen, into `house.score`.
 import { RARE_MATERIALS } from "./content.ts";
+import { houseEffects } from "./houses.ts";
 import { SCORE_CATEGORIES, type Score, type ScoreCategory, type SovState, type StandingTier } from "./state.ts";
 import { TUNING } from "./tuning.ts";
 
@@ -30,7 +31,9 @@ export function categories(state: SovState, house: number): Score {
     holdings: Object.values(h.buildings).reduce<number>((sum, level) => sum + (level ?? 0) * TUNING.town.holdingsPerLevel, 0),
     relics: owned.reduce((sum, i) => sum + (i.tier === 5 ? T.relic : 0) + (i.named ? T.named : 0), 0),
   };
-  return Object.fromEntries(SCORE_CATEGORIES.map((c) => [c, h.score[c] + (held[c] ?? 0)])) as Score;
+  // Old Blood of Kings, Silver Tongues, Craven Legacy: a House's traits move a category by % (§5.7).
+  const pct = houseEffects(h).score;
+  return Object.fromEntries(SCORE_CATEGORIES.map((c) => [c, Math.floor(((h.score[c] + (held[c] ?? 0)) * (100 + (pct[c] ?? 0))) / 100)])) as Score;
 }
 
 /** The multiplier a House's Ambition puts on a category. */
