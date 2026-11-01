@@ -1,0 +1,22 @@
+{
+  "id": "court_bandit",
+  "name": "Bandit",
+  "pool": "apostate_court",
+  "tags": ["humanoid", "bandit"],
+  "role": "fodder",
+  "size": [1, 1],
+  "levels": [2, 6],
+  "stats": {"speed": 11},
+  "abilities": [
+    {"id": "short_sword", "shape": "single", "side": "player", "power": 1.0},
+    {"id": "throwing_knife", "shape": "single", "side": "player", "power": 0.8, "reach": "ranged"}
+  ],
+  "gambits": [
+    {"if": "turn%2==0", "do": "throwing_knife", "target": "back_random"},
+    {"do": "short_sword", "target": "column_weighted"}
+  ],
+  "bestiary": {
+    "lore": "Deserters and debtors, armed and hungry.",
+    "weakness": "Anything. They throw at the Back."
+  }
+}

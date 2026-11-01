@@ -109,7 +109,7 @@ describe("content", () => {
   it("gives every boss gambits and adds that exist, a weakness and a pattern (§10.10)", () => {
     for (const boss of BOSSES) {
       const abilities = boss.abilities.map((a) => a.id);
-      for (const g of [...boss.gambits, ...boss.phases.flatMap((p) => p.gambits)]) if (!["wait", "defend"].includes(g.do)) expect(abilities, `${boss.id}: ${g.do}`).toContain(g.do);
+      for (const g of [...boss.gambits, ...boss.phases.flatMap((p) => p.gambits)]) if (!["wait", "defend", "retreat"].includes(g.do)) expect(abilities, `${boss.id}: ${g.do}`).toContain(g.do);
       for (const a of [...(boss.adds ?? []), ...boss.phases.flatMap((p) => (p.adds ? [p.adds] : []))]) for (const id of a.spawn) expect(ENEMY_BY_ID.has(id), `${boss.id}: add ${id}`).toBe(true);
       expect(POOL_BY_ID.has(boss.pool), boss.id).toBe(true);
       expect(boss.bestiary.weakness.length && boss.bestiary.pattern.length, boss.id).toBeTruthy();
@@ -131,15 +131,16 @@ describe("content", () => {
       for (const g of [...e.gambits, ...phases.flatMap((p) => p.gambits)]) {
         if (g.if) expect(knownCondition(g.if), `${e.id}: if ${g.if}`).toBe(true);
         if (g.target) expect(TARGET_RULES, `${e.id}: target ${g.target}`).toContain(g.target);
+        if (!["wait", "defend", "retreat"].includes(g.do)) expect(e.abilities.map((a) => a.id), `${e.id}: do ${g.do}`).toContain(g.do);
       }
       for (const p of phases) expect(knownCondition(p.at), `${e.id}: phase at ${p.at}`).toBe(true);
     }
   });
 
   // HANDOFF §6's roster lints, switched on for each pool as its roster is completed (Milestone 3).
-  const COMPLETE = ["barrows", "beast_lands", "hollow_wood", "drowned_marches", "deep_cold", "pit", "forge_ruins", "faceless_city"];
+  const COMPLETE = ["barrows", "beast_lands", "hollow_wood", "drowned_marches", "deep_cold", "pit", "forge_ruins", "faceless_city", "apostate_court"];
   // Roles §14.5 gives a pool none of: its Encounters fill them from the stand-in chain (tuning.encounters.stand).
-  const SPARSE: Record<string, readonly TemplateRole[]> = { deep_cold: ["swarm", "support"] };
+  const SPARSE: Record<string, readonly TemplateRole[]> = { deep_cold: ["swarm", "support"], apostate_court: ["swarm"] };
   const BACK_LINE = (e: (typeof ENEMIES)[number]) => ["lurker", "artillery", "horror"].includes(e.role) || e.tags.includes("reach") || e.tags.includes("flyer");
 
   it.each(COMPLETE)("fills every template at every level of %s from its own roster", (id) => {

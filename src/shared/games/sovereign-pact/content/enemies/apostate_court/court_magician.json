@@ -1,0 +1,23 @@
+{
+  "id": "court_magician",
+  "name": "Magician",
+  "pool": "apostate_court",
+  "tags": ["humanoid"],
+  "role": "caster",
+  "size": [1, 1],
+  "levels": [2, 6],
+  "stats": {"hp": 0.8, "speed": 10},
+  "affinity": {"fire": 25},
+  "abilities": [
+    {"id": "fire_bolt", "shape": "single", "side": "player", "power": 1.0, "kind": "magic", "element": "fire", "reach": "ranged"},
+    {"id": "sleep_cloud", "shape": "burst:3x3", "side": "player", "power": 0.1, "kind": "magic", "charge": 60, "telegraph": true, "cooldown": 3, "statuses": [{"id": "sleep", "chance": 35, "ticks": 200}]}
+  ],
+  "gambits": [
+    {"if": "turn%3==1", "do": "sleep_cloud", "target": "densest_cluster"},
+    {"do": "fire_bolt", "target": "lowest_hp"}
+  ],
+  "bestiary": {
+    "lore": "A court magician without a court.",
+    "weakness": "Anything that reaches it. Interrupt the sleep cloud."
+  }
+}

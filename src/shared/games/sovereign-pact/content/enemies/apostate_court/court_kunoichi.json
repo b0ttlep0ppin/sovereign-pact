@@ -1,0 +1,24 @@
+{
+  "id": "court_kunoichi",
+  "name": "Kunoichi",
+  "pool": "apostate_court",
+  "tags": ["humanoid"],
+  "role": "lurker",
+  "size": [1, 1],
+  "levels": [3, 9],
+  "stats": {"speed": 15},
+  "abilities": [
+    {"id": "kunai_flurry", "shape": "single", "side": "player", "power": 0.5, "leap": true, "hits": 3},
+    {"id": "smoke_veil", "shape": "self", "side": "self", "power": 0, "kind": "support", "statuses": [{"id": "hidden", "chance": 100, "ticks": 100}], "cooldown": 3},
+    {"id": "poison_needle", "shape": "single", "side": "player", "power": 0.6, "reach": "ranged", "statuses": [{"id": "poison", "chance": 50, "ticks": 300}]}
+  ],
+  "gambits": [
+    {"if": "turn%3==0", "do": "smoke_veil"},
+    {"if": "turn%3==1", "do": "kunai_flurry", "target": "empty_cell"},
+    {"do": "poison_needle", "target": "lowest_hp"}
+  ],
+  "bestiary": {
+    "lore": "A sellsword from far away, who works for whoever pays the bargain's coin.",
+    "weakness": "Anything that finds her."
+  }
+}

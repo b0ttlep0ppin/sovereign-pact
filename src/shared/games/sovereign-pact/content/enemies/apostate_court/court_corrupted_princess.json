@@ -1,0 +1,24 @@
+{
+  "id": "court_corrupted_princess",
+  "name": "Corrupted Princess",
+  "pool": "apostate_court",
+  "tags": ["humanoid", "royal", "cursed"],
+  "role": "horror",
+  "size": [1, 1],
+  "levels": [4, 9],
+  "stats": {"speed": 11, "sanityTouch": 3},
+  "affinity": {"dark": 50, "holy": -50},
+  "immune": ["charm", "fear"],
+  "abilities": [
+    {"id": "royal_command", "shape": "single", "side": "player", "power": 0.3, "kind": "magic", "sanity": 6, "cooldown": 3, "statuses": [{"id": "charm", "chance": 40, "ticks": 200}], "reach": "ranged"},
+    {"id": "wilted_rose", "shape": "row", "side": "player", "power": 0.4, "kind": "magic", "sanity": 6, "cooldown": 2, "element": "dark"}
+  ],
+  "gambits": [
+    {"if": "turn%3==1", "do": "royal_command", "target": "highest_might"},
+    {"do": "wilted_rose", "target": "densest_row"}
+  ],
+  "bestiary": {
+    "lore": "The King's daughter, who kept her crown and lost the rest.",
+    "weakness": "Holy. She Charms the strongest Scion."
+  }
+}

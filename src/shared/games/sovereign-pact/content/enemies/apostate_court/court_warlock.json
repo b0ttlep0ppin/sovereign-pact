@@ -1,0 +1,23 @@
+{
+  "id": "court_warlock",
+  "name": "Warlock",
+  "pool": "apostate_court",
+  "tags": ["humanoid", "cursed"],
+  "role": "caster",
+  "size": [1, 1],
+  "levels": [4, 9],
+  "stats": {"speed": 10},
+  "affinity": {"dark": 50, "holy": -25},
+  "abilities": [
+    {"id": "doom_bolt", "shape": "single", "side": "player", "power": 1.2, "kind": "magic", "element": "dark", "reach": "ranged"},
+    {"id": "pact_curse", "shape": "row", "side": "player", "power": 0.5, "kind": "magic", "sanity": 4, "cooldown": 2, "statuses": [{"id": "hex", "chance": 50, "ticks": 300}], "element": "dark"}
+  ],
+  "gambits": [
+    {"if": "turn%2==1", "do": "pact_curse", "target": "densest_row"},
+    {"do": "doom_bolt", "target": "lowest_hp"}
+  ],
+  "bestiary": {
+    "lore": "He made a smaller bargain than the King's. He is still paying.",
+    "weakness": "Holy."
+  }
+}

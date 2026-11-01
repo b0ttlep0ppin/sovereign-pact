@@ -1,0 +1,26 @@
+{
+  "id": "court_fanatic_knight",
+  "name": "Fanatic Knight",
+  "pool": "apostate_court",
+  "tags": ["humanoid", "armored", "cultist"],
+  "role": "elite",
+  "size": [1, 1],
+  "levels": [5, 9],
+  "stats": {"speed": 10},
+  "affinity": {"fire": 50, "water": -25},
+  "immune": ["fear", "charm"],
+  "abilities": [
+    {"id": "zealot_blade", "shape": "single", "side": "player", "power": 1.5, "element": "fire"},
+    {"id": "crusade", "shape": "column:F", "side": "player", "power": 1.1, "kind": "magic", "element": "fire", "charge": 60, "telegraph": true, "cooldown": 2},
+    {"id": "faith_shield", "shape": "self", "side": "self", "power": 0, "kind": "support", "statuses": [{"id": "protect", "chance": 100, "ticks": 300}, {"id": "shell", "chance": 100, "ticks": 300}], "cooldown": 4}
+  ],
+  "gambits": [
+    {"if": "self.hp<0.6", "do": "faith_shield"},
+    {"if": "turn%3==1", "do": "crusade"},
+    {"do": "zealot_blade", "target": "lowest_durability"}
+  ],
+  "bestiary": {
+    "lore": "A paladin who kept faith with the King after the King changed gods.",
+    "weakness": "Water. Interrupt the crusade."
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "id": "court_elemental_sorcerer",
+  "name": "Elemental Sorcerer",
+  "pool": "apostate_court",
+  "tags": ["humanoid"],
+  "role": "caster",
+  "size": [1, 1],
+  "levels": [3, 9],
+  "stats": {"speed": 11},
+  "affinity": {"fire": 25, "water": 25, "wind": 25},
+  "abilities": [
+    {"id": "flame_wave", "shape": "row", "side": "player", "power": 1.0, "kind": "magic", "cooldown": 2, "element": "fire"},
+    {"id": "frost_lance", "shape": "single", "side": "player", "power": 1.1, "kind": "magic", "statuses": [{"id": "frozen", "chance": 15, "ticks": 200}], "element": "water", "reach": "ranged"},
+    {"id": "gale", "shape": "column:B", "side": "player", "power": 0.9, "kind": "magic", "charge": 60, "telegraph": true, "cooldown": 3, "element": "wind"}
+  ],
+  "gambits": [
+    {"if": "turn%3==2", "do": "gale"},
+    {"if": "turn%3==1", "do": "flame_wave", "target": "densest_row"},
+    {"do": "frost_lance", "target": "lowest_hp"}
+  ],
+  "bestiary": {
+    "lore": "A noble's son, trained in every element, loyal to none of them.",
+    "weakness": "Silence. It has an answer for every element."
+  }
+}

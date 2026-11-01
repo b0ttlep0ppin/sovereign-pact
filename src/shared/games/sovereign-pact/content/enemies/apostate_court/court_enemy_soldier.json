@@ -1,0 +1,23 @@
+{
+  "id": "court_enemy_soldier",
+  "name": "Enemy Soldier",
+  "pool": "apostate_court",
+  "tags": ["humanoid", "reach"],
+  "role": "fodder",
+  "size": [1, 1],
+  "levels": [3, 9],
+  "variants": ["ashen", "drowned", "storm", "stone"],
+  "stats": {"speed": 9},
+  "abilities": [
+    {"id": "pike_thrust", "shape": "single", "side": "player", "power": 1.0},
+    {"id": "brace", "shape": "self", "side": "self", "power": 0, "kind": "support", "cooldown": 3, "statuses": [{"id": "guard_up", "chance": 100, "ticks": 200, "value": 20}]}
+  ],
+  "gambits": [
+    {"if": "turn%3==1", "do": "brace"},
+    {"do": "pike_thrust", "target": "column_weighted"}
+  ],
+  "bestiary": {
+    "lore": "The old King's levy, still in his colors, sworn now to the thing he bargained with.",
+    "weakness": "Anything. Its pike reaches two columns deep."
+  }
+}

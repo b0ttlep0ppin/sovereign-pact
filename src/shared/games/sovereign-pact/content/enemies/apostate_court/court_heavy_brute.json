@@ -1,0 +1,22 @@
+{
+  "id": "court_heavy_brute",
+  "name": "Heavy Brute",
+  "pool": "apostate_court",
+  "tags": ["humanoid"],
+  "role": "bruiser",
+  "size": [1, 1],
+  "levels": [2, 6],
+  "stats": {"hp": 1.8, "speed": 8},
+  "abilities": [
+    {"id": "haymaker", "shape": "single", "side": "player", "power": 1.4, "locationBias": "head", "statuses": [{"id": "stun", "chance": 15, "ticks": 100}]},
+    {"id": "shrug", "shape": "self", "side": "self", "power": 0, "kind": "support", "statuses": [{"id": "protect", "chance": 100, "ticks": 200}], "cooldown": 4}
+  ],
+  "gambits": [
+    {"if": "self.hp<0.5", "do": "shrug"},
+    {"do": "haymaker", "target": "lowest_durability"}
+  ],
+  "bestiary": {
+    "lore": "Paid by the day, and worth it.",
+    "weakness": "Magic: it shrugs off blades when hurt."
+  }
+}

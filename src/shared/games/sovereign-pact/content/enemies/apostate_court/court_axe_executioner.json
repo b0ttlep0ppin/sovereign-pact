@@ -1,0 +1,24 @@
+{
+  "id": "court_axe_executioner",
+  "name": "Axe Executioner",
+  "pool": "apostate_court",
+  "tags": ["humanoid"],
+  "role": "bruiser",
+  "size": [1, 1],
+  "levels": [4, 9],
+  "stats": {"hp": 1.6, "speed": 8},
+  "immune": ["fear"],
+  "abilities": [
+    {"id": "headsman", "shape": "single", "side": "player", "power": 1.5, "locationBias": "head", "crit": 20},
+    {"id": "wide_chop", "shape": "column:F", "side": "player", "power": 1.0, "cooldown": 2}
+  ],
+  "gambits": [
+    {"if": "foe.hp<0.4", "do": "headsman", "target": "lowest_hp"},
+    {"if": "turn%2==0", "do": "wide_chop"},
+    {"do": "headsman", "target": "column_weighted"}
+  ],
+  "bestiary": {
+    "lore": "The court's executioner, out of work since the court fell, and keeping in practice.",
+    "weakness": "Anything. It finishes the wounded."
+  }
+}

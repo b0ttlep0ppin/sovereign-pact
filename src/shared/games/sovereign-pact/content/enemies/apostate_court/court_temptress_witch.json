@@ -1,0 +1,24 @@
+{
+  "id": "court_temptress_witch",
+  "name": "Temptress Witch",
+  "pool": "apostate_court",
+  "tags": ["humanoid", "cursed"],
+  "role": "horror",
+  "size": [1, 1],
+  "levels": [2, 8],
+  "stats": {"speed": 11, "sanityTouch": 2},
+  "affinity": {"holy": -25},
+  "immune": ["charm"],
+  "abilities": [
+    {"id": "allure", "shape": "single", "side": "player", "power": 0.2, "kind": "magic", "sanity": 5, "statuses": [{"id": "charm", "chance": 30, "ticks": 200}], "reach": "ranged"},
+    {"id": "heartbreak", "shape": "single", "side": "player", "power": 0.6, "kind": "magic", "sanity": 6, "element": "dark", "reach": "ranged"}
+  ],
+  "gambits": [
+    {"if": "turn%3==1", "do": "allure", "target": "highest_might"},
+    {"do": "heartbreak", "target": "lowest_sanity"}
+  ],
+  "bestiary": {
+    "lore": "She promises what the bargain promised. It sounds better from her.",
+    "weakness": "Holy. Sanity-proof Scions laugh at her."
+  }
+}
