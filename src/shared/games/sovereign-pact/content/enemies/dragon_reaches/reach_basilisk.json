@@ -1,0 +1,23 @@
+{
+  "id": "reach_basilisk",
+  "name": "Basilisk",
+  "pool": "dragon_reaches",
+  "tags": ["dragon", "beast"],
+  "role": "lurker",
+  "size": [1, 1],
+  "levels": [6, 10],
+  "stats": {"speed": 12},
+  "immune": ["stop", "poison"],
+  "abilities": [
+    {"id": "stone_gaze", "shape": "row", "side": "player", "power": 0.3, "kind": "magic", "charge": 60, "telegraph": true, "cooldown": 3, "statuses": [{"id": "stop", "chance": 20, "ticks": 200}]},
+    {"id": "venom_fang", "shape": "single", "side": "player", "power": 1.3, "leap": true, "statuses": [{"id": "poison", "chance": 50, "ticks": 300}]}
+  ],
+  "gambits": [
+    {"if": "turn%3==1", "do": "stone_gaze", "target": "densest_row"},
+    {"do": "venom_fang", "target": "empty_cell"}
+  ],
+  "bestiary": {
+    "lore": "The king of serpents. Its gaze takes a whole row.",
+    "weakness": "Interrupt the gaze, or step out of its row."
+  }
+}

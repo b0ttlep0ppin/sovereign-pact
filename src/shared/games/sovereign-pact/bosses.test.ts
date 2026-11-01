@@ -353,3 +353,28 @@ describe("Divine Beast Fusion", () => {
     expect(form()).toEqual([1, 1, 1, 1, 0, 2]);
   });
 });
+
+describe("Yamata no Orochi", () => {
+  it("fills the grid with eight heads, each weak to its opposite; the body cannot be touched until four heads fall", () => {
+    const b = bossBattle(17, standardParty(17, 21), "orochi", 7);
+    const body = b.units.find((u) => u.enemy === "orochi" && u.partOf === undefined)!;
+    const heads = b.units.filter((u) => u.partOf === body.id);
+    expect(heads).toHaveLength(8);
+    expect(heads.map((h) => h.row)).toEqual([0, 1, 2, 3, 4, 5, 6, 7]);
+    const fire = heads.find((h) => h.part === "orochi_fire_head")!;
+    expect([affinityMult(fire, "fire"), affinityMult(fire, "water")]).toEqual([0, 2]);
+    const scion = b.units.find((u) => u.side === "party")!;
+    const shot = { id: "test_shot", shape: "single", side: "foe", power: 1, reach: "ranged" } as const;
+    expect(singleTargets(b, scion, shot)).not.toContain(body);
+    for (const h of heads.slice(0, 3)) kill(b, h);
+    checkEnd(b);
+    expect(singleTargets(b, scion, shot)).not.toContain(body);
+    // Each fallen head makes the rest angrier.
+    expect(body.mods.damagePct).toBe(30);
+    kill(b, heads[3]!);
+    checkEnd(b);
+    expect(body.phase).toBe(1);
+    expect(singleTargets(b, scion, shot)).toContain(body);
+    expect(body.lost).toContain("fire_breath");
+  });
+});

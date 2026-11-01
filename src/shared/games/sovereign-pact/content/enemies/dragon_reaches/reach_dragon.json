@@ -1,0 +1,26 @@
+{
+  "id": "reach_dragon",
+  "name": "Dragon",
+  "pool": "dragon_reaches",
+  "tags": ["dragon", "flyer"],
+  "role": "colossus",
+  "size": [3, 3],
+  "levels": [5, 10],
+  "stats": {"speed": 9},
+  "affinity": {"fire": 75, "water": -50},
+  "immune": ["fear", "stun", "sleep", "charm"],
+  "abilities": [
+    {"id": "dragon_fire", "shape": "band:3", "side": "player", "power": 1.2, "kind": "magic", "charge": 100, "telegraph": true, "cooldown": 3, "statuses": [{"id": "burn", "chance": 40, "ticks": 300}], "element": "fire"},
+    {"id": "tail_sweep", "shape": "column:F", "side": "player", "power": 1.1, "cooldown": 2},
+    {"id": "rend", "shape": "single", "side": "player", "power": 1.4}
+  ],
+  "gambits": [
+    {"if": "turn%3==1", "do": "dragon_fire", "target": "densest_row"},
+    {"if": "turn%2==0", "do": "tail_sweep"},
+    {"do": "rend", "target": "lowest_durability"}
+  ],
+  "bestiary": {
+    "lore": "The thing every story in the Reaches is about.",
+    "weakness": "Water. Its fire gives warning: scatter."
+  }
+}

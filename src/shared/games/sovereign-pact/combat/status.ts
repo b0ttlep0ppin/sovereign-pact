@@ -69,6 +69,8 @@ export const STATUSES: Record<string, StatusMeta> = {
   rooted: { kind: "physical", ticks: 200 },
   /** Under the water (§14.6 Scylla): nothing can target or reach it, area or not, until it surfaces. */
   submerged: { kind: "buff", ticks: 200, fixed: true },
+  /** Shielded by its own Parts (§14.6 Orochi's body): untouchable like Submerged, until a phase clears it. */
+  guarded: { kind: "buff", ticks: 0, fixed: true },
   // From Job abilities (§12.4–12.11): their value is the %.
   counter_up: { kind: "buff", ticks: 500 },
   thorns: { kind: "buff", ticks: 200 },

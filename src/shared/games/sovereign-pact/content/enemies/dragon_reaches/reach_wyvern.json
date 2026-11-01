@@ -1,0 +1,23 @@
+{
+  "id": "reach_wyvern",
+  "name": "Wyvern",
+  "pool": "dragon_reaches",
+  "tags": ["dragon", "flyer"],
+  "role": "lurker",
+  "size": [1, 1],
+  "levels": [5, 10],
+  "stats": {"speed": 14},
+  "affinity": {"wind": 50, "earth": -50},
+  "abilities": [
+    {"id": "stinger_dive", "shape": "single", "side": "player", "power": 1.3, "leap": true, "statuses": [{"id": "poison", "chance": 50, "ticks": 300}]},
+    {"id": "claw", "shape": "single", "side": "player", "power": 1.0}
+  ],
+  "gambits": [
+    {"if": "turn%2==1", "do": "stinger_dive", "target": "empty_cell"},
+    {"do": "claw", "target": "lowest_hp"}
+  ],
+  "bestiary": {
+    "lore": "Two legs, two wings, and a poisoned tail that comes down out of the sun.",
+    "weakness": "Earth and arrows. It flies and dives at the Back."
+  }
+}

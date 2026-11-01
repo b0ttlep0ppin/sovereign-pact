@@ -1,7 +1,7 @@
 // Who an ability can be aimed at and whom it hits when it lands (§10.2–10.3).
 import type { Rng } from "../../../rng.ts";
 import { reachOf } from "./damage.ts";
-import { cellsOf, frontEachRow, hasStatus, lineTargets, meleeTargets, other, shapeCells, standing, unitsIn, unseen } from "./grid.ts";
+import { cellsOf, frontEachRow, hasStatus, lineTargets, meleeTargets, other, shapeCells, standing, unitsIn, unseen, untouchable } from "./grid.ts";
 import type { AbilityDef, Battle, Cell, Combatant, Side } from "./types.ts";
 
 /** The side `u` fights for: a Charmed combatant fights for the other one (§10.8). */
@@ -51,14 +51,14 @@ export function resolveTargets(b: Battle, rng: Rng, u: Combatant, ab: AbilityDef
     case "lob": {
       const followed = homingOn !== undefined ? b.units.find((t) => t.id === homingOn && !t.dead) : undefined;
       if (followed) return [followed];
-      const there = unitsIn(b, [at]).filter((t) => t.side === side && (!hasStatus(t, "submerged") || ab.side !== "foe"));
+      const there = unitsIn(b, [at]).filter((t) => t.side === side && (!untouchable(t) || ab.side !== "foe"));
       // A single strike on a Down Scion only lands if it was aimed at them while Down (finish, AoE); otherwise it misses the cell.
       return there.filter((t) => !t.down || ab.side !== "foe");
     }
     case "line":
-      return lineTargets(b, u, n, u.row).filter((t) => t.side === side && (!hasStatus(t, "submerged") || ab.side !== "foe"));
+      return lineTargets(b, u, n, u.row).filter((t) => t.side === side && (!untouchable(t) || ab.side !== "foe"));
     case "front_each_row":
-      return frontEachRow(b, side).filter((t) => !t.dead && (!hasStatus(t, "submerged") || ab.side !== "foe"));
+      return frontEachRow(b, side).filter((t) => !t.dead && (!untouchable(t) || ab.side !== "foe"));
     case "nearest":
       return foes()
         .sort((x, y) => crossDistance(u, x) - crossDistance(u, y) || x.id - y.id)
@@ -69,7 +69,7 @@ export function resolveTargets(b: Battle, rng: Rng, u: Combatant, ab: AbilityDef
     }
     default: {
       const cells = shapeCells(ab.shape, at, u).map((c) => ({ ...c, side: name === "self" || name === "adjacent" || name === "ring" ? u.side : side }));
-      return unitsIn(b, cells).filter((t) => (t.side === side && (!hasStatus(t, "submerged") || ab.side !== "foe")) || name === "self");
+      return unitsIn(b, cells).filter((t) => (t.side === side && (!untouchable(t) || ab.side !== "foe")) || name === "self");
     }
   }
 }

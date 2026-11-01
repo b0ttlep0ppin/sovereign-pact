@@ -1,0 +1,23 @@
+{
+  "id": "reach_dark_elf",
+  "name": "Dark Elf",
+  "pool": "dragon_reaches",
+  "tags": ["humanoid", "cultist"],
+  "role": "caster",
+  "size": [1, 1],
+  "levels": [5, 10],
+  "stats": {"speed": 11},
+  "affinity": {"dark": 50, "holy": -50},
+  "abilities": [
+    {"id": "dragon_hex", "shape": "single", "side": "player", "power": 0.9, "kind": "magic", "statuses": [{"id": "hex", "chance": 25, "ticks": 300}], "element": "dark", "reach": "ranged"},
+    {"id": "call_the_wyrm", "shape": "band:3", "side": "player", "power": 0.8, "kind": "magic", "charge": 80, "telegraph": true, "cooldown": 3, "element": "fire"}
+  ],
+  "gambits": [
+    {"if": "turn%3==1", "do": "call_the_wyrm", "target": "densest_row"},
+    {"do": "dragon_hex", "target": "lowest_hp"}
+  ],
+  "bestiary": {
+    "lore": "A dragon cultist, who speaks the old tongue the dragons answer to.",
+    "weakness": "Holy. Interrupt the call."
+  }
+}

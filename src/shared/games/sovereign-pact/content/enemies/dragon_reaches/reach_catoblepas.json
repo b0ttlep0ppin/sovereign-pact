@@ -1,0 +1,23 @@
+{
+  "id": "reach_catoblepas",
+  "name": "Catoblepas",
+  "pool": "dragon_reaches",
+  "tags": ["beast", "cursed"],
+  "role": "artillery",
+  "size": [1, 1],
+  "levels": [6, 10],
+  "stats": {"hp": 1.3, "speed": 7},
+  "affinity": {"dark": 50, "holy": -50},
+  "abilities": [
+    {"id": "death_gaze", "shape": "line:3", "side": "player", "power": 1.2, "kind": "magic", "charge": 80, "telegraph": true, "cooldown": 2, "sanity": 4, "element": "dark"},
+    {"id": "heavy_head", "shape": "single", "side": "player", "power": 1.0}
+  ],
+  "gambits": [
+    {"if": "turn%2==1", "do": "death_gaze"},
+    {"do": "heavy_head", "target": "nearest"}
+  ],
+  "bestiary": {
+    "lore": "Its head is too heavy to lift. That is a mercy: its gaze kills.",
+    "weakness": "Holy. Its gaze runs down its row."
+  }
+}

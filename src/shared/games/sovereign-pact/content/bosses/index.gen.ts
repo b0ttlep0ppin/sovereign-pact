@@ -2,6 +2,7 @@
 import dark_general from "./dark_general.json" with { type: "json" };
 import divine_beast_fusion from "./divine_beast_fusion.json" with { type: "json" };
 import goblin_lord from "./goblin_lord.json" with { type: "json" };
+import orochi from "./orochi.json" with { type: "json" };
 import scylla from "./scylla.json" with { type: "json" };
 import stone_colossus from "./stone_colossus.json" with { type: "json" };
 import tree_king from "./tree_king.json" with { type: "json" };
@@ -12,6 +13,7 @@ export default [
   dark_general,
   divine_beast_fusion,
   goblin_lord,
+  orochi,
   scylla,
   stone_colossus,
   tree_king,

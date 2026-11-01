@@ -1,0 +1,23 @@
+{
+  "id": "reach_cyclops",
+  "name": "Cyclops",
+  "pool": "dragon_reaches",
+  "tags": ["giant"],
+  "role": "elite",
+  "size": [1, 1],
+  "levels": [6, 10],
+  "stats": {"hp": 3.0, "speed": 8},
+  "weak": {"location": "head", "mult": 1.5},
+  "abilities": [
+    {"id": "club_smash", "shape": "single", "side": "player", "power": 1.6, "locationBias": "head", "statuses": [{"id": "stun", "chance": 25, "ticks": 100}]},
+    {"id": "boulder_toss", "shape": "burst:3x3", "side": "player", "power": 1.1, "reach": "ranged", "charge": 80, "telegraph": true, "cooldown": 3}
+  ],
+  "gambits": [
+    {"if": "turn%3==1", "do": "boulder_toss", "target": "densest_cluster"},
+    {"do": "club_smash", "target": "lowest_durability"}
+  ],
+  "bestiary": {
+    "lore": "It herds the wyverns. It is not afraid of them.",
+    "weakness": "Its one eye: aim for the head."
+  }
+}

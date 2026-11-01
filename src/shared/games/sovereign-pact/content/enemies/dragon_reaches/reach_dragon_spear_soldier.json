@@ -1,0 +1,22 @@
+{
+  "id": "reach_dragon_spear_soldier",
+  "name": "Dragon Spear Soldier",
+  "pool": "dragon_reaches",
+  "tags": ["humanoid", "reach"],
+  "role": "bruiser",
+  "size": [1, 1],
+  "levels": [6, 10],
+  "stats": {"speed": 11},
+  "abilities": [
+    {"id": "dragon_lance", "shape": "single", "side": "player", "power": 1.2, "crit": 15},
+    {"id": "leap_thrust", "shape": "single", "side": "player", "power": 1.5, "leap": true, "cooldown": 3}
+  ],
+  "gambits": [
+    {"if": "turn%3==1", "do": "leap_thrust", "target": "back_random"},
+    {"do": "dragon_lance", "target": "column_weighted"}
+  ],
+  "bestiary": {
+    "lore": "A dragon cult's soldier, trained to leap like the thing it worships.",
+    "weakness": "Anything. Its lance reaches two columns deep."
+  }
+}

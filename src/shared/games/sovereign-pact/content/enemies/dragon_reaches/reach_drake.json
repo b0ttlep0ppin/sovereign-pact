@@ -1,0 +1,24 @@
+{
+  "id": "reach_drake",
+  "name": "Drake",
+  "pool": "dragon_reaches",
+  "tags": ["dragon", "beast"],
+  "role": "bruiser",
+  "size": [1, 1],
+  "levels": [5, 9],
+  "variants": ["ashen", "storm"],
+  "stats": {"hp": 1.7, "speed": 9},
+  "affinity": {"fire": 50, "water": -50},
+  "abilities": [
+    {"id": "drake_bite", "shape": "single", "side": "player", "power": 1.3},
+    {"id": "ember_breath", "shape": "row", "side": "player", "power": 0.8, "kind": "magic", "cooldown": 2, "element": "fire"}
+  ],
+  "gambits": [
+    {"if": "turn%2==1", "do": "ember_breath", "target": "densest_row"},
+    {"do": "drake_bite", "target": "lowest_durability"}
+  ],
+  "bestiary": {
+    "lore": "A wingless dragon, all teeth and temper.",
+    "weakness": "Water."
+  }
+}

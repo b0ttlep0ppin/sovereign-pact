@@ -1,0 +1,23 @@
+{
+  "id": "reach_dragon_slime",
+  "name": "Dragon Slime",
+  "pool": "dragon_reaches",
+  "tags": ["slime", "dragonkin"],
+  "role": "swarm",
+  "size": [1, 1],
+  "levels": [5, 10],
+  "stats": {"speed": 11},
+  "immune": ["poison", "fear"],
+  "abilities": [
+    {"id": "acid_lick", "shape": "single", "side": "player", "power": 0.9, "statuses": [{"id": "poison", "chance": 25, "ticks": 300}]},
+    {"id": "overrun", "shape": "band:3", "side": "player", "power": 0.6, "cooldown": 1}
+  ],
+  "gambits": [
+    {"if": "swarm>=5", "do": "overrun"},
+    {"do": "acid_lick", "target": "column_weighted"}
+  ],
+  "bestiary": {
+    "lore": "Slime that fed on a dragon's leavings and grew little horns.",
+    "weakness": "Anything that hits a row."
+  }
+}
