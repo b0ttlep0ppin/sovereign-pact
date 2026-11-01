@@ -2,6 +2,12 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-01 (implementation, Milestone 2h: the Ravager and the Sword Saint) — implementer
+- **Both advanced melee Jobs have their full drafted sets** (§12.12–12.13): ten actives and four passives each, with JP prices, plus Ironhide, Deathless, Focus and Iaijutsu. Taking the Job already needs its prerequisite JP (Soldier 400; Soldier 400 + Knight 400).
+- **Effects as statuses with mods**: Steal Strength (Might ±10% as `mightPct`), Frenzy (attacks −30 CT, accuracy −15, no Defend), Unstoppable (immune to Knockdown, Stun, Fear; +1 step on every injury roll). Any status can now carry mods, and `immune.<status>` mods block a status (Thick Blood is `immune.bleed`).
+- **Readings**: Whirl hits the enemy's whole front column ("every enemy in reach"); Reckless Swing's Evasion −20 lasts until the Ravager's next turn; Blood Price costs 15% of max HP and cannot be used at or below that; Hold Together caps all healing (spells, restores, Regen, drains) at 50% of max HP for the rest of the battle; Draw Cut's "+crit" is +50% crit chance on the user's first turn; Executioner always crits a Marked target; Zenith Strike cancels any charge, bosses' included, before its Stun; Mirror Stance counters every melee hit (ranged and spells are not countered) while the Sword Saint has 20 TP, ending at their next turn; Sheathe's "20 CT sooner" is 20 CT off its own 60; Still Water's +20% goes to the next ability that deals damage; Iaijutsu frees the first TP-costing ability used with a sword; Breath of Steel (+100 ticks) applies to every timed buff the Scion casts with MP, the same mod Lasting Wards will use.
+- **New knobs** in `tuning.combat.jobs`: Hold Together's cap, Iron Will's 30% threshold, Mirror Stance's 20 TP, One Cut's ×2, Still Water's 20%.
+
 ## 2026-11-01 (implementation, Milestone 2g: the Pugilist) — implementer
 - **A combo is one action**: a list of moves on one target, each paying its TP (+5 for every earlier use of the same move in the sequence), ended by a finisher or by the list. The whole costs 100 CT +10 per move past the third (§12.2). A lone move is a sequence of one, so a finisher can never open a turn; bots do not use finishers yet.
 - **Patterns**: a finisher's pattern must be the tags of the moves just before it (Flurry: jab, jab, jab); Hundred Fists needs five different moves before it. Hook and Palm Strike are tagged jab, Low and High Kick kick, Grapple and Throw grapple, Breath breath (§12.10).

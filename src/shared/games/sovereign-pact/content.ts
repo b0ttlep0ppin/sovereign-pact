@@ -5,8 +5,10 @@ import knightSet from "./content/abilities/knight.json" with { type: "json" };
 import minstrelSet from "./content/abilities/minstrel.json" with { type: "json" };
 import magusSet from "./content/abilities/magus.json" with { type: "json" };
 import pugilistSet from "./content/abilities/pugilist.json" with { type: "json" };
+import ravagerSet from "./content/abilities/ravager.json" with { type: "json" };
 import soldierSet from "./content/abilities/soldier.json" with { type: "json" };
 import soothsayerSet from "./content/abilities/soothsayer.json" with { type: "json" };
+import swordSaintSet from "./content/abilities/sword_saint.json" with { type: "json" };
 import vagabondSet from "./content/abilities/vagabond.json" with { type: "json" };
 import banshee from "./content/enemies/barrows/barrow_banshee.json" with { type: "json" };
 import cursedArcher from "./content/enemies/barrows/barrow_cursed_archer.json" with { type: "json" };
@@ -266,7 +268,7 @@ export interface AbilitySet {
 }
 
 /** Every Job's ability file (content/abilities/<job>.json), imported by name like the enemies. */
-export const ABILITY_SETS = [soldierSet, knightSet, magusSet, soothsayerSet, vagabondSet, gamblerSet, minstrelSet, pugilistSet] as unknown as readonly AbilitySet[];
+export const ABILITY_SETS = [soldierSet, knightSet, magusSet, soothsayerSet, vagabondSet, gamblerSet, minstrelSet, pugilistSet, ravagerSet, swordSaintSet] as unknown as readonly AbilitySet[];
 export const ABILITY_SET_BY_JOB: ReadonlyMap<JobId, AbilitySet> = new Map(ABILITY_SETS.map((a) => [a.job, a]));
 export const ACTIVE_BY_ID: ReadonlyMap<string, ActiveDef & { job: JobId }> = new Map(
   ABILITY_SETS.flatMap((set) => set.actives.map((a) => [a.id, { ...a, job: set.job }] as const)),

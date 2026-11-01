@@ -246,7 +246,10 @@
       "mastery": {
         "id": "deathless",
         "name": "Deathless",
-        "text": "Once per battle, a Death result becomes a Mortal wound."
+        "text": "Once per battle, a Death result becomes a Mortal wound.",
+        "mods": {
+          "deathless": 1
+        }
       }
     },
     {
@@ -274,12 +277,18 @@
       "innate": {
         "id": "focus",
         "name": "Focus",
-        "text": "TP +5 per 100 ticks."
+        "text": "TP +5 per 100 ticks.",
+        "mods": {
+          "tpPer100": 5
+        }
       },
       "mastery": {
         "id": "iaijutsu",
         "name": "Iaijutsu",
-        "text": "The first sword technique each battle costs no TP."
+        "text": "The first sword technique each battle costs no TP.",
+        "mods": {
+          "iaijutsu": 1
+        }
       }
     },
     {
