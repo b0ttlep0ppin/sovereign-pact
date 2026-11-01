@@ -2,6 +2,13 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-01 (implementation, Milestone 3s: the Cursed King, Year 10) — implementer
+- **The Cursed King** (`content/bosses/cursed_king.json`, L6, Barrows, tagged `arc`): Form 1 is a 1×1 duelist at E2 with two Fallen Kingdom Knights. Decree Marks the strongest Scion (the Knights and Hollow Soldiers already hunt a Marked Scion); **Royal Parry** puts on a new status, `parry`, that answers the next melee blow with a counter and then ends; Kingsblade reaches two columns.
+- **His Second Form** (`cursed_king_risen.json`, 3×3, `addOnly`): a new phase field, **`rise`**, takes the first form off the field (no death line) and brings the named boss on at full HP where it fits, middle rows first. The Crown is a Part on the top middle cell: Holy −100 (twice the damage), and breaking it puts out Crown Fire (`band:4`, dark, telegraphed) and takes 15% off his damage. He calls two Hollow Soldiers at 75% and two more at 50%.
+- **Abdication**: a new phase field, **`kneel`**, ends the fight as won with the boss alive and flagged `knelt`. The crown's Dark Bargain (§14.7a) comes with the campaign layer and reads that flag.
+- **Reading taken:** Form 1 rises at 40% of its own HP, not at 0, so the duel is the shorter half.
+- **Simulator** (baseline party): L6 wins 0%. The two elite Knights alone take the party down before the first form breaks (with one Knight: 10%, and the Second Form and its Court work as written). Like the other late fights this waits for the tuning pass; the spec's two Knights stay.
+
 ## 2026-11-01 (implementation, Milestone 3r: the Siege Beast, Year 5) — implementer
 - **The Siege Beast** (`content/bosses/siege_beast.json`, L3, 3×4 across all three enemy columns, filed under the Pit, tagged `arc`): the first boss of the mandatory arc (§14.7). Gore (`single`, reach), Trample (`band:3`, telegraphed, may Knock Down), Howl (`all`, Sanity 6, telegraphed), and **Devour**, a new enemy ability that eats a living ally among listed ids and heals a % of max HP for each (`devour: {of, healPct, all?}`; the Unknown Mother's Consume will use `all`). Weakness Holy (−50) and Head ×1.5.
 - **Reading taken: "Demon Recruits in two Reinforcement waves"** is two Recruits at the start and three more at each of two phases (two thirds and one third HP); the last wave also speeds it up and lets it devour at any HP. The Recruits are the Pit's own (`pit_demon_recruit`), at the boss's level.

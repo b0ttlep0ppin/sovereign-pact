@@ -334,6 +334,8 @@ export type BattleEvent =
   | { t: "vanish"; unit: number }
   | { t: "raise"; unit: number; target: number }
   | { t: "devour"; unit: number; target: number }
+  | { t: "rise"; unit: number; into: number }
+  | { t: "kneel"; unit: number }
   | { t: "part"; unit: number; part: string }
   | { t: "phase"; unit: number; phase: number }
   | { t: "say"; unit: number; line: "open" | "death" | number }

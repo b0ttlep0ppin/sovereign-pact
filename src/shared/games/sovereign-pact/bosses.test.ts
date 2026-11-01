@@ -427,3 +427,60 @@ describe("the Siege Beast", () => {
     expect(siege().beast.weak).toEqual({ location: "head", mult: 1.5 });
   });
 });
+
+describe("the Cursed King", () => {
+  const court = () => {
+    const b = bossBattle(19, standardParty(19, 18), "cursed_king", 6);
+    const king = b.units.find((u) => u.enemy === "cursed_king")!;
+    return { b, king };
+  };
+  const risen = (b: ReturnType<typeof court>["b"]) => b.units.find((u) => u.enemy === "cursed_king_risen" && !u.dead);
+
+  it("answers the next melee blow with a Parry, once", () => {
+    const { b, king } = court();
+    const rng = createRng(1);
+    resolve(b, rng, king, abilityOf(king, "royal_parry")!, cellOf(king));
+    // Clear the Knights so the King stands in reach.
+    for (const k of b.units.filter((u) => u.enemy === "barrow_fallen_kingdom_knight")) kill(b, k);
+    const scion = b.units.find((u) => u.side === "party" && u.col === 0)!;
+    const blow = { id: "test_blow", shape: "single", side: "foe" as const, power: 1, reach: "ranged" as const, accuracy: 999 };
+    const counters = () => b.events.filter((e) => (e.t === "hit" || e.t === "miss") && e.unit === king.id && e.target === scion.id).length;
+    // A ranged blow does not spring it.
+    resolve(b, rng, scion, blow, cellOf(king));
+    expect(counters()).toBe(0);
+    resolve(b, rng, scion, { ...blow, reach: "melee" }, cellOf(king));
+    expect(counters()).toBe(1);
+    expect(king.statuses.some((s) => s.id === "parry")).toBe(false);
+  });
+
+  it("rises as his Second Form at 40%, with the Crown as a Part", () => {
+    const { b, king } = court();
+    king.hp = Math.floor(king.maxHp * 0.35);
+    checkEnd(b);
+    expect(king.dead && king.flags.includes("risen")).toBe(true);
+    const form = risen(b)!;
+    expect(form.size).toEqual([3, 3]);
+    expect(form.hp).toBe(form.maxHp);
+    expect(b.units.some((u) => u.partOf === form.id && u.name.endsWith("The Crown"))).toBe(true);
+    expect(b.outcome).toBeUndefined();
+    // His first form says no death line: he did not die.
+    expect(b.events.some((e) => e.t === "say" && e.unit === king.id && e.line === "death")).toBe(false);
+  });
+
+  it("calls his Court twice, then kneels at 25% and the fight is won with him alive", () => {
+    const { b, king } = court();
+    king.hp = Math.floor(king.maxHp * 0.35);
+    checkEnd(b);
+    const form = risen(b)!;
+    const soldiers = () => b.units.filter((u) => u.enemy === "barrow_hollow_soldier" && !u.dead).length;
+    form.hp = Math.floor(form.maxHp * 0.6);
+    checkEnd(b);
+    expect(soldiers()).toBe(2);
+    form.hp = Math.floor(form.maxHp * 0.2);
+    checkEnd(b);
+    expect(soldiers()).toBe(4);
+    expect(b.outcome).toBe("victory");
+    expect(form.dead).toBe(false);
+    expect(form.flags).toContain("knelt");
+  });
+});

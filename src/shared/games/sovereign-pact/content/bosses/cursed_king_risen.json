@@ -1,0 +1,44 @@
+{
+  "id": "cursed_king_risen",
+  "name": "The Cursed King, Second Form",
+  "pool": "barrows",
+  "tags": ["undead", "royal", "unknown", "giant", "arc"],
+  "role": "boss",
+  "addOnly": true,
+  "size": [3, 3],
+  "at": "E1",
+  "levels": [6, 6],
+  "stats": {"speed": 10, "hp": 7, "sanityTouch": 2},
+  "affinity": {"holy": -50, "dark": 50, "fire": 25},
+  "immune": ["fear", "poison"],
+  "abilities": [
+    {"id": "crushing_hand", "shape": "single", "side": "player", "power": 1.3, "reach": "reach", "locationBias": "body"},
+    {"id": "crown_fire", "shape": "band:4", "side": "player", "power": 1.0, "kind": "magic", "element": "dark", "charge": 60, "telegraph": true, "cooldown": 2, "statuses": [{"id": "burn", "chance": 30, "ticks": 300}]},
+    {"id": "decree", "shape": "single", "side": "player", "power": 0, "reach": "ranged", "kind": "support", "cooldown": 3, "statuses": [{"id": "marked", "chance": 100, "ticks": 400}]}
+  ],
+  "gambits": [
+    {"if": "!foe.marked", "do": "decree", "target": "highest_might"},
+    {"if": "turn%3==1", "do": "crown_fire", "target": "densest_cluster"},
+    {"if": "foe.marked", "do": "crushing_hand", "target": "marked"},
+    {"do": "crushing_hand", "target": "column_weighted"}
+  ],
+  "parts": [
+    {"id": "the_crown", "name": "The Crown", "cells": [[1, 0]], "hp": 0.3, "disables": ["crown_fire"], "affinity": {"holy": -100, "dark": 50}, "mods": {"damagePct": -15}}
+  ],
+  "phases": [
+    {"at": "hp<=0.75", "name": "Summon the Court", "say": "To me, my Court!", "adds": {"spawn": ["barrow_hollow_soldier"], "count": 2, "at": "E1"},
+      "gambits": [{"if": "!foe.marked", "do": "decree", "target": "highest_might"}, {"if": "turn%3==1", "do": "crown_fire", "target": "densest_cluster"}, {"if": "foe.marked", "do": "crushing_hand", "target": "marked"}, {"do": "crushing_hand", "target": "column_weighted"}]},
+    {"at": "hp<=0.5", "name": "The Court Again", "say": "Every oath I ever took, stand up!", "adds": {"spawn": ["barrow_hollow_soldier"], "count": 2, "at": "E1"},
+      "gambits": [{"if": "!foe.marked", "do": "decree", "target": "highest_might"}, {"if": "turn%2==1", "do": "crown_fire", "target": "densest_cluster"}, {"if": "foe.marked", "do": "crushing_hand", "target": "marked"}, {"do": "crushing_hand", "target": "column_weighted"}]},
+    {"at": "hp<=0.25", "name": "Abdication", "kneel": true, "say": "Enough. Take it. Take it, and see what it asks of you.", "gambits": [{"do": "crushing_hand", "target": "column_weighted"}]}
+  ],
+  "say": {
+    "open": "The King swells into the thing he bargained for, and the crown burns on its brow.",
+    "death": "The pact... is yours now."
+  },
+  "bestiary": {
+    "lore": "The pact made flesh: what the King became for his unfalling throne.",
+    "weakness": "Holy, and the Crown above all: it takes Holy twice over. Break it and the Crown Fire goes out.",
+    "pattern": "Decrees a Scion for his Court to hunt, crushes two columns deep, and burns four rows at a time with Crown Fire. At three quarters and at half he calls two Hollow Soldiers each time. At a quarter he kneels: the fight is won, and the crown is offered."
+  }
+}
