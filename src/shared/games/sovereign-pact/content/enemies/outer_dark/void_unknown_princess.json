@@ -6,7 +6,7 @@
   "role": "elite",
   "size": [1, 1],
   "levels": [7, 10],
-  "stats": {"sanityTouch": 2, "speed": 12},
+  "stats": {"sanityTouch": 2, "speed": 12, "hp": 2.0, "atk": 1.0},
   "affinity": {"fire": 25, "water": 25, "wind": 25, "earth": 25, "dark": 50, "holy": -50},
   "immune": ["charm", "fear", "sleep"],
   "abilities": [

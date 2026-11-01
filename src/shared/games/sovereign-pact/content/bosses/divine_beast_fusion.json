@@ -7,7 +7,7 @@
   "size": [3, 3],
   "at": "E1",
   "levels": [10, 10],
-  "stats": {"speed": 11, "hp": 10},
+  "stats": {"speed": 11, "hp": 7, "atk": 1.2},
   "affinity": {"fire": 100, "water": -100},
   "immune": ["fear", "stun", "sleep", "charm"],
   "abilities": [

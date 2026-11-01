@@ -2,6 +2,20 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-01 (implementation, Milestone 3w: tuning pass 2, the bosses) — implementer
+- **Targets taken:** mandatory-arc bosses about 60–85% for the baseline party at their level (do-or-die, but a well-built party should usually live); Hunt bosses about 50–70% (optional, and real parties with advanced Jobs and better gear do better); the final boss below half for the baseline, well above for a stronger party.
+- **Boss stats changed** (hp and atk are multipliers on the level block, replacing the boss role's 15 and 1.6):
+  - Vampire Queen: Speed 15 → 13, hp 6, atk 1.2; Beguile's Charm 60% → 40%.
+  - Dark General: hp 8 → 5, atk 1.3.
+  - Cursed King: Form 1 hp 4 → 3, atk 1.2; Second Form hp 7 → 5, atk 1.3.
+  - Divine Beast Fusion: hp 10 → 7, atk 1.2.
+  - End Ruler: hp 12 → 6, atk 1.2.
+  - Its champions, the Outer Dark's Unknown Satan and Unknown Princess, take hp 2.0 and atk 1.0 of their own, everywhere they appear, since they were the main thing killing the party. They keep the strongest kits and the Sanity touch.
+- **After** (60 fights at each boss's first level, baseline party; win / HP lost / injury rolls):
+  - Arc bosses: Siege Beast 100% / 35% / 1.5; Cursed King 83% / 62% / 13.5; Unknown Mother 77% / 44% / 15.6; End Ruler 45% / 80% / 15.8. A Ravager, Knight, Conjurer and Soothsayer party beats the End Ruler 88% of the time.
+  - Hunts: Goblin Lord 100%, Tree King 100%, Stone Colossus 100%, Village Evil God 97%, Scylla 67%, Fusion 67%, Vampire Queen 52%, Orochi 50%, Dark General 47%.
+- **Left for play:** boss fights still cost the party 10–20 injury rolls, far above encounters. Long fights against fast bosses wear Durability down; the early Hunts are easy at their first level. The bot party also plays the Queen badly (the Knight answers every telegraph with En Garde), so part of her number is the bots, not her.
+
 ## 2026-11-01 (implementation, Milestone 3v: tuning pass 1, the enemy curve) — implementer
 - **Why:** with every pool and boss in, the baseline party (Soldier, Knight, Vagabond, Soothsayer at level 3L) fell off with level. Averaged over every pool at each level (40 fights a template): Warbands went from 100% and 35% HP lost at L1 to 38% and 84% at L10; Elite patrols from 96% (L2) to 8%; injury rolls from 0.2 to 10–15 a fight. Enemy damage grew about 8× from L1 to L10 while Scion HP grew about 4× and Durability barely at all.
 - **Knobs turned (`tuning.ts`):**
