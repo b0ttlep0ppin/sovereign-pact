@@ -1,7 +1,7 @@
 // Making combatants: a Scion from a Person with the §7.3 formulas in their Job (§12.3), an enemy from
 // its content at an expedition level with the §14.2 block, and a battle from both sides. Gear arrives
 // as the `weapon` and `armor` arguments until items exist.
-import { ENEMY_BY_ID, INJURY_BY_ID, type EnemyAbility, type EnemyDef } from "../content.ts";
+import { ENEMY_BY_ID, fromEnemySide, INJURY_BY_ID, type EnemyAbility, type EnemyDef } from "../content.ts";
 import { jobStat, maxHp, maxMp, maxSanity } from "../formulas.ts";
 import { UNARMED, type GearTotals } from "../items.ts";
 import { battleActives, freePassives, passiveMods } from "../progression.ts";
@@ -144,9 +144,7 @@ const block = (k: keyof typeof TUNING.enemies, level: number) => {
 };
 
 /** The enemy's own sides map onto the user's point of view: "player" is its foe. */
-export function enemyAbility(a: EnemyAbility): AbilityDef {
-  return { ...a, side: a.side === "player" ? "foe" : a.side };
-}
+export const enemyAbility: (a: EnemyAbility) => AbilityDef = fromEnemySide;
 
 export interface EnemyOpts {
   id: number;

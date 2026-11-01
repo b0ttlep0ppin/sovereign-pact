@@ -1,0 +1,21 @@
+{
+  "summons": [
+    {"id": "carrion_crows", "name": "Carrion Crow", "text": "Fodder: weak pecks, and they draw single-target fire.", "place": "any", "count": 2, "size": [1, 1], "ticks": 0, "hp": 20, "atk": 1, "speed": 2, "evasion": 15, "tags": ["beast", "flying"], "start": ["provoke"],
+      "abilities": [{"id": "peck", "shape": "single", "side": "player", "power": 0.4, "reach": "ranged"}]},
+    {"id": "bone_hound", "name": "Bone Hound", "text": "Bruiser: bites that bleed.", "place": "front", "count": 1, "size": [1, 1], "ticks": 300, "hp": 60, "atk": 1, "speed": 1, "tags": ["undead", "beast"], "immune": ["poison"],
+      "abilities": [{"id": "bleeding_bite", "shape": "single", "side": "player", "power": 0.9, "statuses": [{"id": "bleed", "chance": 40, "ticks": 0}]}]},
+    {"id": "marsh_lantern", "name": "Marsh Lantern", "text": "Support: Sanity +5% to adjacent allies every 100 ticks.", "place": "back", "count": 1, "size": [1, 1], "ticks": 0, "hp": 40, "atk": 0.5, "speed": 0, "tags": ["spirit"], "mods": {"sanityAura": 5},
+      "abilities": [{"id": "wisp_light", "shape": "single", "side": "player", "power": 0.5, "kind": "magic", "element": "holy"}]},
+    {"id": "ember_imp", "name": "Ember Imp", "text": "Caster: Ember every turn; bursts into flame when it dies.", "place": "any", "count": 1, "size": [1, 1], "ticks": 0, "hp": 40, "atk": 1, "speed": 0, "tags": ["demon"], "affinity": {"fire": 100},
+      "abilities": [{"id": "imp_ember", "shape": "single", "side": "player", "power": 0.8, "kind": "magic", "element": "fire"}],
+      "onDeath": {"id": "imp_burst", "shape": "burst:3x3", "side": "player", "power": 1, "kind": "magic", "element": "fire"}},
+    {"id": "stone_sentinel", "name": "Stone Sentinel", "text": "Tank: two cells tall, Provokes and Guards.", "place": "front", "count": 1, "size": [1, 2], "ticks": 0, "hp": 150, "atk": 0.6, "speed": -2, "defense": 2, "guard": 30, "tags": ["construct"], "start": ["provoke"], "immune": ["poison", "bleed", "fear", "charm", "sleep"],
+      "abilities": [{"id": "stone_fist", "shape": "single", "side": "player", "power": 1}]},
+    {"id": "drowned_choir", "name": "Drowned Choir", "text": "Its dirge costs every enemy 10% accuracy; its voices wear at the mind.", "place": "back", "count": 1, "size": [1, 1], "ticks": 0, "hp": 70, "atk": 0.6, "speed": 0, "tags": ["spirit", "undead"], "aura": {"accuracy": -10},
+      "abilities": [{"id": "drowned_hymn", "shape": "single", "side": "player", "power": 0.5, "kind": "magic", "element": "water", "sanity": 8}]},
+    {"id": "wyrmling", "name": "Wyrmling", "text": "Heavy: Fire breath down a line of three.", "place": "any", "count": 1, "size": [1, 2], "ticks": 0, "hp": 120, "atk": 1, "speed": 0, "tags": ["dragon"], "affinity": {"fire": 50},
+      "abilities": [{"id": "wyrm_breath", "shape": "line:3", "side": "player", "power": 1.8, "kind": "magic", "element": "fire", "cooldown": 1}]},
+    {"id": "hollow_host", "name": "The Hollow Host", "text": "Finisher: strikes every enemy each turn for 300 ticks, then leaves.", "place": "any", "count": 1, "size": [1, 3], "ticks": 300, "hp": 200, "atk": 1, "speed": 2, "ct": 100, "tags": ["spirit"],
+      "abilities": [{"id": "host_descends", "shape": "all", "side": "player", "power": 1.5, "kind": "magic", "element": "dark"}]}
+  ]
+}

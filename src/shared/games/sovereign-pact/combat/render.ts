@@ -82,6 +82,10 @@ export function describeEvent(b: Battle, e: BattleEvent): string {
       return `${n(e.unit)}'s Reflect turns the spell back on ${n(e.target)}`;
     case "counterspell":
       return `${n(e.unit)} counters ${n(e.target)}'s spell`;
+    case "summon":
+      return `${n(e.unit)} calls ${e.ids.map(n).join(" and ")}`;
+    case "vanish":
+      return `${n(e.unit)} leaves the field`;
     case "wait":
       return `${n(e.unit)} waits`;
     case "defend":

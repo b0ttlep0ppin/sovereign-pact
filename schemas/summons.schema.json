@@ -1,0 +1,172 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "The Conjurer's summons (SPEC §12.2, §12.15): entities on player cells with their own CT, HP and abilities",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "summons"
+  ],
+  "properties": {
+    "summons": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/definitions/summon"
+      }
+    }
+  },
+  "definitions": {
+    "summon": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "name",
+        "text",
+        "place",
+        "count",
+        "size",
+        "ticks",
+        "hp",
+        "atk",
+        "speed",
+        "tags",
+        "abilities"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "defs.schema.json#/definitions/id"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "text": {
+          "type": "string",
+          "minLength": 1
+        },
+        "place": {
+          "enum": [
+            "front",
+            "back",
+            "any"
+          ],
+          "description": "The column it appears in; any: the Conjurer's"
+        },
+        "count": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 3
+        },
+        "size": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 3
+          },
+          "minItems": 2,
+          "maxItems": 2
+        },
+        "ticks": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "How long it stays; 0: the battle"
+        },
+        "hp": {
+          "type": "number",
+          "minimum": 1,
+          "description": "% of the Conjurer's max HP"
+        },
+        "atk": {
+          "type": "number",
+          "minimum": 0,
+          "description": "× the spell power block at the Conjurer's level"
+        },
+        "speed": {
+          "type": "integer",
+          "minimum": -5,
+          "maximum": 5,
+          "description": "Added to the Conjurer's Speed"
+        },
+        "ct": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "CT it appears with"
+        },
+        "evasion": {
+          "type": "number"
+        },
+        "defense": {
+          "type": "number",
+          "minimum": 0,
+          "description": "× the Conjurer's defense"
+        },
+        "guard": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "$ref": "defs.schema.json#/definitions/id"
+          }
+        },
+        "start": {
+          "type": "array",
+          "items": {
+            "$ref": "defs.schema.json#/definitions/id"
+          }
+        },
+        "immune": {
+          "type": "array",
+          "items": {
+            "$ref": "defs.schema.json#/definitions/id"
+          }
+        },
+        "affinity": {
+          "type": "object",
+          "propertyNames": {
+            "enum": [
+              "holy",
+              "dark",
+              "fire",
+              "water",
+              "earth",
+              "wind"
+            ]
+          },
+          "additionalProperties": {
+            "type": "number"
+          }
+        },
+        "mods": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "number"
+          }
+        },
+        "aura": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "number"
+          },
+          "description": "Mods on every enemy while it stands"
+        },
+        "abilities": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "enemies.schema.json#/definitions/ability"
+          },
+          "description": "Enemy-shaped abilities: side \"player\" is the summon's foe"
+        },
+        "onDeath": {
+          "$ref": "enemies.schema.json#/definitions/ability"
+        }
+      }
+    }
+  }
+}

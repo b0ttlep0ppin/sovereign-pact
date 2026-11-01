@@ -1,0 +1,23 @@
+{
+  "job": "conjurer",
+  "actives": [
+    {"id": "call_crows", "name": "Carrion Crows", "jp": 50, "text": "Two crows: weak pecks, and they draw single-target fire.", "shape": "self", "side": "self", "power": 0, "kind": "support", "mp": 20, "charge": 100, "summon": "carrion_crows"},
+    {"id": "call_hound", "name": "Bone Hound", "jp": 100, "text": "A bleeding bruiser in the Front for 300 ticks.", "shape": "self", "side": "self", "power": 0, "kind": "support", "mp": 35, "charge": 150, "summon": "bone_hound"},
+    {"id": "call_lantern", "name": "Marsh Lantern", "jp": 100, "text": "A Back-line light: Sanity +5% to adjacent allies every 100 ticks.", "shape": "self", "side": "self", "power": 0, "kind": "support", "mp": 30, "charge": 100, "summon": "marsh_lantern"},
+    {"id": "call_imp", "name": "Ember Imp", "jp": 150, "text": "Casts Ember each turn; bursts into flame when it dies.", "shape": "self", "side": "self", "power": 0, "kind": "support", "mp": 40, "charge": 150, "summon": "ember_imp"},
+    {"id": "call_sentinel", "name": "Stone Sentinel", "jp": 200, "text": "A two-cell tank in the Front that Provokes and Guards.", "shape": "self", "side": "self", "power": 0, "kind": "support", "mp": 60, "charge": 250, "summon": "stone_sentinel"},
+    {"id": "call_choir", "name": "Drowned Choir", "jp": 250, "text": "Every enemy −10% accuracy while it sings; Sanity attacks.", "shape": "self", "side": "self", "power": 0, "kind": "support", "mp": 70, "charge": 300, "summon": "drowned_choir"},
+    {"id": "call_wyrmling", "name": "Wyrmling", "jp": 300, "text": "A two-cell dragonet with a 180% Fire breath down a line.", "shape": "self", "side": "self", "power": 0, "kind": "support", "mp": 120, "charge": 400, "summon": "wyrmling"},
+    {"id": "call_host", "name": "The Hollow Host", "jp": 400, "text": "Three cells of the dead strike every enemy each turn for 300 ticks, then leave.", "shape": "self", "side": "self", "power": 0, "kind": "support", "mp": 150, "charge": 500, "telegraph": true, "summon": "hollow_host"},
+    {"id": "sacrifice", "name": "Sacrifice", "jp": 100, "text": "Dismiss one of your summons: allies around it heal 20% of max HP.", "shape": "single", "side": "ally", "power": 0, "kind": "support", "sacrifice": 20},
+    {"id": "swarm", "name": "Swarm", "jp": 200, "text": "Poison and Blind chance on every enemy.", "shape": "all", "side": "foe", "power": 0, "kind": "support", "mp": 50, "charge": 200, "statuses": [{"id": "poison", "chance": 50, "ticks": 0}, {"id": "blind", "chance": 40, "ticks": 0}]},
+    {"id": "pact_of_blood", "name": "Pact of Blood", "jp": 150, "text": "Pay 20% of your HP: the next summon costs no MP.", "shape": "self", "side": "self", "power": 0, "kind": "support", "hpCost": 20, "flag": "free_summon"},
+    {"id": "banish", "name": "Banish", "jp": 200, "text": "Remove an enemy summon or add outright.", "shape": "single", "side": "foe", "power": 0, "kind": "support", "mp": 30, "charge": 100, "reach": "ranged", "banish": true}
+  ],
+  "passives": [
+    {"id": "lingering", "name": "Lingering", "points": 2, "jp": 200, "text": "Timed summons last +200 ticks.", "mods": {"summonTicks": 200}},
+    {"id": "bloodbound", "name": "Bloodbound", "points": 2, "jp": 200, "text": "Your summons heal you 10% of the damage they deal.", "mods": {"bloodbound": 10}},
+    {"id": "quick_rites", "name": "Quick Rites", "points": 3, "jp": 300, "text": "Summon charge times −30%.", "mods": {"summonChargePct": -30}},
+    {"id": "familiar", "name": "Familiar", "points": 1, "jp": 100, "text": "The battle starts with one Carrion Crow, free.", "mods": {"familiar": 1}}
+  ]
+}

@@ -3,6 +3,7 @@
 import type { Rng } from "../../../rng.ts";
 import { TUNING } from "../tuning.ts";
 import { hpCap } from "./damage.ts";
+import { vanish } from "./summons.ts";
 import { hasStatus } from "./grid.ts";
 import { down, injure, kill, steel } from "./injury.ts";
 import { addStatus, frozenClock, meta, removeStatus, speedOf, statusValue, tickStatuses } from "./status.ts";
@@ -19,6 +20,11 @@ export function step(b: Battle, rng: Rng): Combatant[] {
   const pulse = b.tick % C.pulse === 0;
   const ready: Combatant[] = [];
   for (const u of ticking(b)) {
+    // A timed summon leaves when its time is up (§12.15).
+    if (u.expires !== undefined && b.tick >= u.expires) {
+      vanish(b, u);
+      continue;
+    }
     if (!frozenClock(u)) u.ct += speedOf(u);
     if (u.charge) {
       // A charger holds at 100 until the ability resolves (§10.5).
@@ -39,6 +45,11 @@ const pctOf = (n: number, p: number) => Math.max(1, Math.round((n * p) / 100));
 /** Every 100 ticks: Meditation, Wellspring, Mana Font; Cleansing Air and Plague Chant. */
 function per100(b: Battle, u: Combatant): void {
   if (u.mods.mpPer100) u.mp = Math.min(u.maxMp, u.mp + u.mods.mpPer100);
+  // The Marsh Lantern: Sanity to the allies beside it.
+  if (u.mods.sanityAura)
+    for (const o of b.units)
+      if (o.side === u.side && o.id !== u.id && !o.dead && o.maxSanity && Math.abs(o.col - u.col) + Math.abs(o.row - u.row) === 1)
+        o.sanity = Math.min(o.maxSanity, o.sanity + pctOf(o.maxSanity, u.mods.sanityAura));
   // Focus (Sword Saint, §12.3).
   if (u.mods.tpPer100 && !u.down) u.tp = Math.min(C.tp.max, u.tp + u.mods.tpPer100);
   if (u.mods.cleansePer100) {
