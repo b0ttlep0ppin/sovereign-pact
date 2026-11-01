@@ -1,0 +1,24 @@
+{
+  "id": "cold_wind_walker",
+  "name": "Wind-Walker",
+  "pool": "deep_cold",
+  "tags": ["ice", "spirit", "flyer"],
+  "role": "horror",
+  "size": [1, 1],
+  "levels": [3, 8],
+  "stats": {"speed": 12, "sanityTouch": 4},
+  "affinity": {"water": 25, "fire": -25, "wind": 50, "earth": -25, "holy": -50},
+  "immune": ["poison", "sleep", "charm", "frozen"],
+  "abilities": [
+    {"id": "sky_snatch", "shape": "single", "side": "player", "power": 0.6, "kind": "magic", "sanity": 7, "statuses": [{"id": "fear", "chance": 40, "ticks": 200}], "element": "wind", "reach": "ranged"},
+    {"id": "howling_gale", "shape": "band:3", "side": "player", "power": 0.3, "kind": "magic", "sanity": 6, "cooldown": 2, "element": "wind"}
+  ],
+  "gambits": [
+    {"if": "turn%3==1", "do": "howling_gale", "target": "densest_row"},
+    {"do": "sky_snatch", "target": "lowest_sanity"}
+  ],
+  "bestiary": {
+    "lore": "Kin of the one that walks on the wind. It leaves footprints in the sky.",
+    "weakness": "Holy and Earth. Keep the Back's Sanity up."
+  }
+}

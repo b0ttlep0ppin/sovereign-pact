@@ -1,0 +1,24 @@
+{
+  "id": "cold_glacial_beast",
+  "name": "Glacial Beast",
+  "pool": "deep_cold",
+  "tags": ["ice", "beast", "giant"],
+  "role": "bruiser",
+  "size": [2, 2],
+  "levels": [4, 8],
+  "stats": {"hp": 3.0, "speed": 7},
+  "affinity": {"water": 25, "fire": -25},
+  "immune": ["fear", "stun", "frozen"],
+  "abilities": [
+    {"id": "glacier_charge", "shape": "line:2", "side": "player", "power": 1.3, "charge": 60, "telegraph": true, "cooldown": 2},
+    {"id": "ice_horn", "shape": "single", "side": "player", "power": 1.3, "statuses": [{"id": "frozen", "chance": 20, "ticks": 200}]}
+  ],
+  "gambits": [
+    {"if": "turn%3==1", "do": "glacier_charge"},
+    {"do": "ice_horn", "target": "lowest_durability"}
+  ],
+  "bestiary": {
+    "lore": "A beast with a glacier growing on its back.",
+    "weakness": "Fire. Its charge runs down two rows' worth of its line."
+  }
+}

@@ -11,6 +11,7 @@ import { Ajv, type ValidateFunction } from "ajv";
 import { describe, expect, it } from "vitest";
 import { ABILITY_SETS, BOSSES, ENEMIES, ENEMY_BY_ID, JOBS, POOL_BY_ID, rosterOf, TEMPLATES, VARIANT_BY_ID, type TemplateRole } from "../src/shared/games/sovereign-pact/content.ts";
 import { knownCondition } from "../src/shared/games/sovereign-pact/combat/conditions.ts";
+import { rosterFor } from "../src/shared/games/sovereign-pact/combat/encounter.ts";
 import { partBox } from "../src/shared/games/sovereign-pact/combat/enemyparts.ts";
 import { TARGET_RULES } from "../src/shared/games/sovereign-pact/combat/gambits.ts";
 import { INDEXED, renderIndex } from "./gen-content.ts";
@@ -136,7 +137,9 @@ describe("content", () => {
   });
 
   // HANDOFF §6's roster lints, switched on for each pool as its roster is completed (Milestone 3).
-  const COMPLETE = ["barrows", "beast_lands", "hollow_wood", "drowned_marches"];
+  const COMPLETE = ["barrows", "beast_lands", "hollow_wood", "drowned_marches", "deep_cold"];
+  // Roles §14.5 gives a pool none of: its Encounters fill them from the stand-in chain (tuning.encounters.stand).
+  const SPARSE: Record<string, readonly TemplateRole[]> = { deep_cold: ["swarm", "support"] };
   const BACK_LINE = (e: (typeof ENEMIES)[number]) => ["lurker", "artillery", "horror"].includes(e.role) || e.tags.includes("reach") || e.tags.includes("flyer");
 
   it.each(COMPLETE)("fills every template at every level of %s from its own roster", (id) => {
@@ -144,7 +147,8 @@ describe("content", () => {
     for (let level = pool.levels[0]; level <= pool.levels[1]; level++) {
       for (const t of TEMPLATES.filter((x) => x.levels[0] <= level && level <= x.levels[1])) {
         for (const role of Object.keys({ ...t.four, ...t.eight }) as TemplateRole[]) {
-          expect(rosterOf(id, role, level).length, `${id} L${level} ${t.id}: no ${role}`).toBeGreaterThan(0);
+          const roster = SPARSE[id]?.includes(role) ? rosterFor(id, role, level) : rosterOf(id, role, level);
+          expect(roster.length, `${id} L${level} ${t.id}: no ${role}`).toBeGreaterThan(0);
         }
       }
     }

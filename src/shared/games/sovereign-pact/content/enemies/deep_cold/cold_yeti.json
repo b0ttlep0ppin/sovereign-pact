@@ -1,0 +1,24 @@
+{
+  "id": "cold_yeti",
+  "name": "Yeti",
+  "pool": "deep_cold",
+  "tags": ["ice", "beast", "giant"],
+  "role": "bruiser",
+  "size": [1, 1],
+  "levels": [3, 7],
+  "stats": {"hp": 1.7, "speed": 9},
+  "affinity": {"water": 25, "fire": -25},
+  "immune": ["frozen"],
+  "abilities": [
+    {"id": "avalanche_fist", "shape": "single", "side": "player", "power": 1.3, "locationBias": "head"},
+    {"id": "roar", "shape": "row", "side": "player", "power": 0.2, "sanity": 3, "cooldown": 3, "statuses": [{"id": "fear", "chance": 30, "ticks": 200}]}
+  ],
+  "gambits": [
+    {"if": "turn%3==1", "do": "roar", "target": "densest_row"},
+    {"do": "avalanche_fist", "target": "lowest_durability"}
+  ],
+  "bestiary": {
+    "lore": "Tracks the size of a door, and then nothing for miles.",
+    "weakness": "Fire. Its roar scatters the nerve of a row."
+  }
+}

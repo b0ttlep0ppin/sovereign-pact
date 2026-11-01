@@ -2,6 +2,13 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-01 (implementation, Milestone 3j: the Deep Cold) — implementer
+- **The Deep Cold roster** (`content/enemies/deep_cold/`, ids `cold_*`, 17 enemies, L3–8, resisting Water and weak to Fire): everything §14.5 lists. Ice is Water (§7.4 has six elements), so every Deep Cold enemy is immune to Frozen and many of their blows Freeze. The Ice Lizard is the artillery (its spit is a `lob`); the Wendigo is the lurker (it hunts a shaken Scion first, then the weakest); the wind-walkers of Ithaqua are the horror (Wind-Walker). The Woolly Mammoth (2×2, tusks a Part) and the Ice Dragon (3×3, L6–8) are the colossi.
+- **Reading taken: the Deep Cold is sparse.** §14.5 names no swarm and no support there, so a Swarm or a support slot in its Encounters fills from the stand-in chain (fodder; casters), and the content lint allows exactly those two roles for this pool (`SPARSE` in `tools/content.test.ts`). I did not invent creatures to fill them.
+- **No scripted boss yet:** the §14.6 first-pass table has none for the Deep Cold. The Ice Dragon, the Ice Queen, Ithaqua and the Glacial Beast come with the Hunt bosses (two phases each, §14.9) after the scripted ones.
+- **Part ids are unique across all content**, so the Woolly Mammoth's tusks are `frost_tusks`.
+- **Simulator:** Deep Cold Encounters are 88–100% at L3; at L8 they are the hardest yet: Behemoth 13% (the Ice Dragon), Elite patrol 45%, Stalkers 51%.
+
 ## 2026-11-01 (implementation, Milestone 3i: the Drowned Marches and Scylla) — implementer
 - **The Drowned Marches roster** (`content/enemies/drowned_marches/`, ids `marsh_*`, 25 enemies, L2–7, resisting Water and weak to Wind, which holds Lightning since Q86). Trimmed to the budget: Water Lizard, Earth Frog, Bunyip and the Abyss Kragen (3×8) wait for later. The Octopus and the Giant Squid (2×2) carry `reach`, two columns deep. The Kraken (3×4, its tentacles a Part that powers the coils) and the Hydra (2×3, a water head and a venom head as Parts) are the colossi.
 - **Pulling Scions forward:** enemy abilities can `pull` (1–2 columns toward the Front, the Grapple Line rule turned around). The Kelpie drags a Back Scion to the Front; the Giant Frog's tongue pulls one column.

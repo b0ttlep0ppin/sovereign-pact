@@ -48,6 +48,23 @@ import beast_troll from "./beast_lands/beast_troll.json" with { type: "json" };
 import beast_weasel_ninja from "./beast_lands/beast_weasel_ninja.json" with { type: "json" };
 import beast_werewolf from "./beast_lands/beast_werewolf.json" with { type: "json" };
 import beast_wild_boar from "./beast_lands/beast_wild_boar.json" with { type: "json" };
+import cold_armor_narwhal from "./deep_cold/cold_armor_narwhal.json" with { type: "json" };
+import cold_black_knight from "./deep_cold/cold_black_knight.json" with { type: "json" };
+import cold_frost_slime from "./deep_cold/cold_frost_slime.json" with { type: "json" };
+import cold_glacial_beast from "./deep_cold/cold_glacial_beast.json" with { type: "json" };
+import cold_ice_armor from "./deep_cold/cold_ice_armor.json" with { type: "json" };
+import cold_ice_demon from "./deep_cold/cold_ice_demon.json" with { type: "json" };
+import cold_ice_dragon from "./deep_cold/cold_ice_dragon.json" with { type: "json" };
+import cold_ice_lizard from "./deep_cold/cold_ice_lizard.json" with { type: "json" };
+import cold_ice_shell from "./deep_cold/cold_ice_shell.json" with { type: "json" };
+import cold_polar_bear from "./deep_cold/cold_polar_bear.json" with { type: "json" };
+import cold_snowman from "./deep_cold/cold_snowman.json" with { type: "json" };
+import cold_wendigo from "./deep_cold/cold_wendigo.json" with { type: "json" };
+import cold_wind_walker from "./deep_cold/cold_wind_walker.json" with { type: "json" };
+import cold_winter_fairy from "./deep_cold/cold_winter_fairy.json" with { type: "json" };
+import cold_woolly_mammoth from "./deep_cold/cold_woolly_mammoth.json" with { type: "json" };
+import cold_yeti from "./deep_cold/cold_yeti.json" with { type: "json" };
+import cold_yuki_onna from "./deep_cold/cold_yuki_onna.json" with { type: "json" };
 import marsh_aqua_cancer from "./drowned_marches/marsh_aqua_cancer.json" with { type: "json" };
 import marsh_clione from "./drowned_marches/marsh_clione.json" with { type: "json" };
 import marsh_crocodile from "./drowned_marches/marsh_crocodile.json" with { type: "json" };
@@ -150,6 +167,23 @@ export default [
   beast_weasel_ninja,
   beast_werewolf,
   beast_wild_boar,
+  cold_armor_narwhal,
+  cold_black_knight,
+  cold_frost_slime,
+  cold_glacial_beast,
+  cold_ice_armor,
+  cold_ice_demon,
+  cold_ice_dragon,
+  cold_ice_lizard,
+  cold_ice_shell,
+  cold_polar_bear,
+  cold_snowman,
+  cold_wendigo,
+  cold_wind_walker,
+  cold_winter_fairy,
+  cold_woolly_mammoth,
+  cold_yeti,
+  cold_yuki_onna,
   marsh_aqua_cancer,
   marsh_clione,
   marsh_crocodile,

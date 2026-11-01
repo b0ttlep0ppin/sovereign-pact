@@ -1,0 +1,24 @@
+{
+  "id": "cold_snowman",
+  "name": "Snowman",
+  "pool": "deep_cold",
+  "tags": ["ice", "construct", "cursed"],
+  "role": "fodder",
+  "size": [1, 1],
+  "levels": [4, 8],
+  "stats": {"speed": 9},
+  "affinity": {"water": 25, "fire": -50, "dark": 25},
+  "immune": ["poison", "sleep", "fear", "frozen"],
+  "abilities": [
+    {"id": "snowball", "shape": "lob", "side": "player", "power": 0.9, "reach": "ranged", "statuses": [{"id": "blind", "chance": 20, "ticks": 200}]},
+    {"id": "cold_hug", "shape": "single", "side": "player", "power": 1.1, "statuses": [{"id": "frozen", "chance": 20, "ticks": 200}]}
+  ],
+  "gambits": [
+    {"if": "turn%2==1", "do": "snowball", "target": "lob"},
+    {"do": "cold_hug", "target": "column_weighted"}
+  ],
+  "bestiary": {
+    "lore": "Children built it in the last village before the peaks. The children are gone.",
+    "weakness": "Fire. It throws from the Back as well as it hugs."
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "id": "cold_ice_lizard",
+  "name": "Ice Lizard",
+  "pool": "deep_cold",
+  "tags": ["ice", "beast"],
+  "role": "artillery",
+  "size": [1, 1],
+  "levels": [3, 8],
+  "stats": {"speed": 10},
+  "affinity": {"water": 25, "fire": -25},
+  "immune": ["frozen"],
+  "abilities": [
+    {"id": "ice_spit", "shape": "lob", "side": "player", "power": 1.0, "reach": "ranged", "element": "water", "statuses": [{"id": "frozen", "chance": 20, "ticks": 200}]},
+    {"id": "tail_whip", "shape": "single", "side": "player", "power": 0.8}
+  ],
+  "gambits": [
+    {"do": "ice_spit", "target": "lob"},
+    {"do": "tail_whip", "target": "nearest"}
+  ],
+  "bestiary": {
+    "lore": "It spits a ball of slush that freezes where it lands.",
+    "weakness": "Fire. It lobs at the Back."
+  }
+}

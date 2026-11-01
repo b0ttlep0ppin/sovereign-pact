@@ -1,0 +1,27 @@
+{
+  "id": "cold_black_knight",
+  "name": "Black Knight",
+  "pool": "deep_cold",
+  "tags": ["ice", "humanoid", "armored"],
+  "role": "elite",
+  "size": [1, 1],
+  "levels": [5, 8],
+  "stats": {"speed": 11},
+  "affinity": {"water": 25, "fire": -25, "holy": -25},
+  "immune": ["fear", "charm", "frozen"],
+  "abilities": [
+    {"id": "black_blade", "shape": "single", "side": "player", "power": 1.6, "locationBias": "body"},
+    {"id": "frost_cleave", "shape": "column:F", "side": "player", "power": 1.1, "kind": "magic", "element": "water", "cooldown": 2, "statuses": [{"id": "frozen", "chance": 20, "ticks": 200}]},
+    {"id": "oath_of_winter", "shape": "self", "side": "self", "power": 0, "kind": "support", "statuses": [{"id": "might_up", "chance": 100, "ticks": 300, "value": 30}], "cooldown": 4}
+  ],
+  "gambits": [
+    {"if": "foe.charging", "do": "black_blade", "target": "charging"},
+    {"if": "turn%2==1", "do": "frost_cleave"},
+    {"if": "self.hp<0.5", "do": "oath_of_winter"},
+    {"do": "black_blade", "target": "lowest_durability"}
+  ],
+  "bestiary": {
+    "lore": "The Ice Queen's knight, who rides out when she wants something brought back.",
+    "weakness": "Fire and Holy. It punishes anyone charging a spell."
+  }
+}
