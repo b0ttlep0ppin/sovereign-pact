@@ -255,7 +255,7 @@ export function strike(b: Battle, rng: Rng, u: Combatant, t: Combatant, ab: Abil
   b.events.push({ t: "hit", unit: u.id, target: t.id, damage, loc, crit: crit || undefined, weak: weak || undefined, element: element ?? undefined });
   applyHit(b, rng, u, t, ab, damage, loc, opts);
   // An axe's crit bleeds, a mace's stuns (§13.2): the target's resist still applies.
-  if (crit && physical && u.weapon.critStatus && !t.dead) tryStatus(b, rng, t, u.weapon.critStatus, 100, 0);
+  if (crit && physical && u.weapon.critStatus && !t.dead) tryStatus(b, rng, t, u.weapon.critStatus, 100);
   if (weaponHit && damage > 0) afterWeaponHit(b, rng, u, t, damage);
   for (const id of ab.dispel ?? []) if (!t.dead) removeStatus(b, t, id);
   // Bloodbound: a summon's blows heal its Conjurer (§12.15).
@@ -304,8 +304,8 @@ function afterWeaponHit(b: Battle, rng: Rng, u: Combatant, t: Combatant, damage:
     const buff = t.statuses.find((x) => meta(x.id).kind === "buff" && !meta(x.id).fixed);
     if (buff) removeStatus(b, t, buff.id);
   }
-  for (const [k, chance] of Object.entries(u.mods)) if (k.startsWith("onHit.") && !t.dead) tryStatus(b, rng, t, k.slice(6), chance, 0);
-  if (hasStatus(u, "envenom") && !t.dead) tryStatus(b, rng, t, "poison", 100, 0);
+  for (const [k, chance] of Object.entries(u.mods)) if (k.startsWith("onHit.") && !t.dead) tryStatus(b, rng, t, k.slice(6), chance);
+  if (hasStatus(u, "envenom") && !t.dead) tryStatus(b, rng, t, "poison", 100);
 }
 
 /** Thorned armor and Riposting weapons answer a melee hit (§13.4). */
@@ -323,7 +323,7 @@ function afterMeleeHit(b: Battle, rng: Rng, u: Combatant, t: Combatant, damage: 
     }
   }
   // The Marsh Thing poisons whoever strikes it (§12.17).
-  if (t.mods.poisonAttackers && !u.dead) tryStatus(b, rng, u, "poison", t.mods.poisonAttackers, 0);
+  if (t.mods.poisonAttackers && !u.dead) tryStatus(b, rng, u, "poison", t.mods.poisonAttackers);
   if (opts.counter || t.dead || t.down || u.dead) return;
   // A Parry answers the next melee blow, then ends (§14.7).
   if (hasStatus(t, "parry")) {
@@ -391,7 +391,7 @@ function applyHit(b: Battle, rng: Rng, u: Combatant, t: Combatant, ab: AbilityDe
     t.sanity = Math.max(0, t.sanity - sanity);
     b.events.push({ t: "sanity", target: t.id, amount: sanity });
   }
-  for (const s of ab.statuses ?? []) if (t.hp > 0) tryStatus(b, rng, t, s.id, s.chance, s.ticks, s.value, s.mods);
+  for (const s of ab.statuses ?? []) if (t.hp > 0 && !sanityHolds(rng, t, ab)) tryStatus(b, rng, t, s.id, s.chance, s.ticks, s.value, s.mods);
 
   // The injury check (§10.6 step 8). Enemies have no locations: 0 HP is death (§10.9).
   if (t.side === "enemy") {
@@ -459,6 +459,12 @@ export function revive(b: Battle, t: Combatant, hpPct: number = C.reviveHp): voi
   b.events.push({ t: "heal", unit: t.id, target: t.id, amount: t.hp });
 }
 
+/** A Sanity check against an ability that allows one (the Mother's Lullaby): d100 under the target's Sanity %. */
+function sanityHolds(rng: Rng, t: Combatant, ab: AbilityDef): boolean {
+  if (!ab.sanityResists || !t.maxSanity) return false;
+  return rng.int(100) < Math.round((t.sanity / t.maxSanity) * 100);
+}
+
 /** What a support ability (or a heal) does besides HP: statuses, restores, cures, Sanity, TP, revival (§12.4–12.11). */
 function supportEffects(b: Battle, rng: Rng, u: Combatant, t: Combatant, ab: AbilityDef): void {
   if (t.dead) return;
@@ -489,6 +495,6 @@ function supportEffects(b: Battle, rng: Rng, u: Combatant, t: Combatant, ab: Abi
     // Breath of Steel and Lasting Wards: timed buffs cast with MP last longer.
     const longer = ab.mp && x.ticks > 0 && meta(x.id).kind === "buff" ? (u.mods.buffTicks ?? 0) : 0;
     if (t.side === u.side) addStatus(b, t, x.id, x.ticks + longer, extraOf(x.value, x.mods));
-    else tryStatus(b, rng, t, x.id, x.chance, x.ticks, x.value, x.mods);
+    else if (!sanityHolds(rng, t, ab)) tryStatus(b, rng, t, x.id, x.chance, x.ticks, x.value, x.mods);
   }
 }

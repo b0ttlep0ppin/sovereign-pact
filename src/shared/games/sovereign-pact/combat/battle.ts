@@ -2,7 +2,7 @@
 // charging and resolving, and the end. Plain functions over a mutable `Battle`; callers clone first.
 import type { Rng } from "../../../rng.ts";
 import { TUNING } from "../tuning.ts";
-import { bossPhases } from "./bosses.ts";
+import { bossPhases, spawnAdds } from "./bosses.ts";
 import { fights, hazardStruck, springTrap } from "./hazards.ts";
 import { chargeTicks, moveCost, nextActor, step } from "./clock.ts";
 import { cannotCombo, comboCt, comboTp } from "./combos.ts";
@@ -251,10 +251,11 @@ function resolveCharge(b: Battle, rng: Rng, u: Combatant): void {
 /** An ability lands: every target, every hit (§10.6). */
 export function resolve(b: Battle, rng: Rng, u: Combatant, ab: AbilityDef, at: Cell, homingOn?: number, doubleDown = 0): void {
   if (ab.song) return playSong(b, rng, u, ab);
-  if (ab.summon || ab.form || ab.revert || ab.raise || ab.devour) {
+  if (ab.summon || ab.form || ab.revert || ab.raise || ab.devour || ab.call) {
     b.events.push({ t: "use", unit: u.id, ability: ab.id, target: at });
     if (ab.raise) raise(b, u, ab.raise);
     else if (ab.devour) devour(b, u, ab.devour);
+    else if (ab.call) spawnAdds(b, u, ab.call);
     else if (ab.summon) summon(b, u, ab.summon, at);
     else if (ab.form) shift(b, u, ab.form);
     else revert(b, u);

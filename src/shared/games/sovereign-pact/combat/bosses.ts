@@ -23,6 +23,12 @@ const nextId = (b: Battle) => Math.max(100, ...b.units.filter((u) => u.partOf ==
 /** Rows from the middle out, for placing adds. */
 const MIDDLE_OUT = Array.from({ length: ROWS }, (_, r) => r).sort((x, y) => Math.abs(x + 0.5 - ROWS / 2) - Math.abs(y + 0.5 - ROWS / 2) || x - y);
 
+/** Whether at least one of `adds` would find room on the enemy grid. */
+export function roomFor(b: Battle, adds: BossAdds): boolean {
+  const def = ENEMY_BY_ID.get(adds.spawn[0]!)!;
+  return Array.from({ length: COLS }, (_, c) => c).some((c) => MIDDLE_OUT.some((r) => isFree(b, "enemy", c, r, def.size)));
+}
+
 /** Puts a boss's adds on the enemy grid: their column first, then the others, middle rows first. Those with no room do not come. */
 export function spawnAdds(b: Battle, boss: Combatant, adds: BossAdds): Combatant[] {
   const col = Number(adds.at.slice(1)) - 1;

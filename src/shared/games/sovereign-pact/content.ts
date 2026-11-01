@@ -130,6 +130,10 @@ export interface EnemyAbility {
   raise?: number;
   /** Eats living allies of these ids to heal (the Siege Beast's Devour, the Unknown Mother's Consume). */
   devour?: Devour;
+  /** Calls adds onto its grid (the Unknown Mother's Brood): placed like a boss phase's. */
+  call?: BossAdds;
+  /** Each target resists its statuses on a Sanity check: d100 under its Sanity % (the Mother's Lullaby). */
+  sanityResists?: boolean;
   drain?: number;
   pull?: number;
   tpSteal?: number;

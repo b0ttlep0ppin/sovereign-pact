@@ -1,0 +1,50 @@
+{
+  "id": "unknown_mother",
+  "name": "The Unknown Mother",
+  "pool": "outer_dark",
+  "tags": ["unknown", "giant", "arc"],
+  "role": "boss",
+  "size": [2, 8],
+  "at": "E2",
+  "levels": [8, 8],
+  "stats": {"speed": 9, "hp": 10, "sanityTouch": 3},
+  "affinity": {"holy": -50, "fire": 25, "water": 25, "wind": 25, "earth": 25, "dark": 50},
+  "immune": ["fear", "charm", "sleep"],
+  "abilities": [
+    {"id": "lash", "shape": "single", "side": "player", "power": 1.1, "reach": "reach", "locationBias": "body"},
+    {"id": "brood", "shape": "self", "side": "self", "power": 0, "kind": "support", "cooldown": 3, "call": {"spawn": ["void_unknown_seed"], "count": 3, "at": "E1"}},
+    {"id": "lullaby", "shape": "all", "side": "player", "power": 0, "kind": "support", "charge": 120, "telegraph": true, "cooldown": 4, "sanityResists": true, "statuses": [{"id": "sleep", "chance": 100, "ticks": 300}]},
+    {"id": "consume", "shape": "self", "side": "self", "power": 0, "kind": "support", "cooldown": 3, "devour": {"of": ["void_unknown_seed"], "healPct": 10, "all": true}},
+    {"id": "rupture_a", "shape": "checker:a", "side": "player", "power": 1.0, "kind": "magic", "element": "dark", "sanity": 3},
+    {"id": "rupture_b", "shape": "checker:b", "side": "player", "power": 1.0, "kind": "magic", "element": "dark", "sanity": 3}
+  ],
+  "gambits": [
+    {"if": "turn%4==1", "do": "rupture_b"},
+    {"if": "adds<=1", "do": "brood"},
+    {"if": "hp<0.7 && adds>=3", "do": "consume"},
+    {"if": "turn%5==3", "do": "lullaby"},
+    {"if": "turn%4==0", "do": "rupture_a"},
+    {"do": "lash", "target": "column_weighted"}
+  ],
+  "parts": [
+    {"id": "unknown_core", "name": "The Unknown Core", "cells": [[0, 3], [0, 4]], "hp": 0.3, "disables": ["brood", "lullaby"], "affinity": {"fire": -50, "holy": -50, "dark": 50}}
+  ],
+  "adds": [
+    {"spawn": ["void_unknown_colony"], "count": 2, "at": "E1"}
+  ],
+  "phases": [
+    {"at": "hp<=0.5", "name": "The Core Regrows", "regrow": true, "speed": 11, "say": "The Core knits itself shut, and the Nest sings louder.",
+      "gambits": [{"if": "turn%4==1", "do": "rupture_b"}, {"if": "adds<=2", "do": "brood"}, {"if": "hp<0.5 && adds>=3", "do": "consume"}, {"if": "turn%4==3", "do": "lullaby"}, {"if": "turn%4==0", "do": "rupture_a"}, {"do": "lash", "target": "column_weighted"}]},
+    {"at": "hp<=0.2", "name": "The Last Brood", "say": "Every Seed in the Nest wakes at once.", "adds": {"spawn": ["void_unknown_colony"], "count": 3, "at": "E1"},
+      "gambits": [{"if": "turn%2==1", "do": "rupture_b"}, {"if": "adds>=3", "do": "consume"}, {"if": "adds<=2", "do": "brood"}, {"if": "turn%2==0", "do": "rupture_a"}, {"do": "lash", "target": "column_weighted"}]}
+  ],
+  "say": {
+    "open": "The Nest breathes. Something vast at the back of it turns toward the light you carry.",
+    "death": "The Seeds go still, all of them, everywhere."
+  },
+  "bestiary": {
+    "lore": "The near side of the rift, where the Unknown breed the Seeds that have crept into every pool since Year 10.",
+    "weakness": "Fire on the Core, and Holy. Break the Core and she can neither brood nor sing; it regrows once, at half.",
+    "pattern": "Broods three Seeds in front of her whenever her guard thins and eats them all when wounded, a tenth of her life for each. Her Lullaby is telegraphed long: any Scion who fails a Sanity check sleeps. Every fourth turn she ruptures one checker of the party's grid, then the other. At half the Core regrows; at a fifth the whole Nest wakes."
+  }
+}

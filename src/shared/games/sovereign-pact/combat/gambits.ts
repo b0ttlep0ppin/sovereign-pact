@@ -4,6 +4,7 @@ import type { Rng } from "../../../rng.ts";
 import { HAZARD_BY_ID } from "../content.ts";
 import { TUNING } from "../tuning.ts";
 import { abilityOf, cannotUse, type Action } from "./battle.ts";
+import { roomFor } from "./bosses.ts";
 import { canShift } from "./forms.ts";
 import { holds } from "./conditions.ts";
 import { fallen, hasRoom, prey } from "./summons.ts";
@@ -87,6 +88,7 @@ export function aim(b: Battle, rng: Rng, u: Combatant, ab: AbilityDef, rule = de
   if (cannotUse(u, ab)) return undefined;
   if (ab.summon && !hasRoom(b, u, ab.summon)) return undefined;
   if (ab.raise) return fallen(b, u).length ? { do: "ability", ability: ab.id, target: cellOf(u) } : undefined;
+  if (ab.call) return roomFor(b, ab.call) ? { do: "ability", ability: ab.id, target: cellOf(u) } : undefined;
   if (ab.devour) return prey(b, u, ab.devour).length ? { do: "ability", ability: ab.id, target: cellOf(u) } : undefined;
   // Bots take a Form when they have none and never Revert on their own.
   if ((ab.form && (u.form || !canShift(b, u, ab.form))) || ab.revert) return undefined;
