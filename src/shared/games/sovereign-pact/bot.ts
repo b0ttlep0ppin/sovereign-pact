@@ -2,6 +2,7 @@
 // upkeep, and it builds along a fixed plan: food first if the House cannot feed itself, then
 // materials, then the buildings that keep Scions alive and growing.
 import { cannotAssign, slots, type AssignMove } from "./assign.ts";
+import { cannotPledge, projectCost, stillNeeded } from "./commons.ts";
 import { BUILDING_BY_ID } from "./content.ts";
 import { maxSanity } from "./formulas.ts";
 import type { Assignment, SovState } from "./state.ts";
@@ -128,4 +129,35 @@ export function botAssign(s: SovState, house: number): AssignMove | null {
   // Every change waits on a slot someone else holds: free one (never loop on someone already idle).
   const held = diffs.find(([id]) => s.assign[id]);
   return held ? { person: held[0], to: "idle" } : null;
+}
+
+/** Shared projects in the order the bot funds them (§8.5). */
+const PROJECT_PLAN = ["granary", "great_market", "walls", "cathedral", "court_of_peers", "beacon", "aqueduct", "apothecary", "armorer", "weaponsmith", "university", "rift_observatory", "arena", "bastion_of_the_gate"];
+
+/** What the bot keeps back for its own buildings before pledging. */
+const KEEP: Partial<Record<string, number>> = { timber: 20, stone: 30, iron: 20, essence: 10 };
+
+/**
+ * The bot's pledge, or null: to the first project in its plan still open, up to twice its fair share (the cost over
+ * the Houses) at most, from what it has beyond two Years of upkeep and its building stock.
+ */
+export function botPledge(s: SovState, house: number): { project: string; give: Partial<Record<string, number>> } | null {
+  const h = s.houses[house]!;
+  const project = PROJECT_PLAN.find((id) => projectCost(s, id));
+  if (!project) return null;
+  const cost = projectCost(s, project)!;
+  const share = Object.values(cost).reduce<number>((a, n) => a + (n ?? 0), 0) / s.houses.length;
+  // Up to twice its fair share, since rivals may hold back what it cannot give in kind.
+  let room = Math.ceil(2 * share) - (s.commons.funds[project]?.by[house] ?? 0);
+  if (room <= 0) return null;
+  const give: Partial<Record<string, number>> = {};
+  for (const [k, need] of Object.entries(stillNeeded(s, project))) {
+    const spare = k === "gold" ? h.gold - 2 * upkeepGold(s, house) : (h.stores[k] ?? 0) - (k === "grain" ? 2 * grainNeed(s, house) : (KEEP[k] ?? 0));
+    const n = Math.min(spare, need ?? 0, room);
+    if (n > 0) {
+      give[k] = n;
+      room -= n;
+    }
+  }
+  return Object.keys(give).length && !cannotPledge(s, house, project, give) ? { project, give } : null;
 }

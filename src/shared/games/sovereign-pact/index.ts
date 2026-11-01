@@ -10,7 +10,8 @@ import { checkpoint, describeSave, restore, type SovSave } from "./save.ts";
 import { placements } from "./score.ts";
 import { BASE_JOBS, type CampaignOptions, type House, type SovMove, type SovState } from "./state.ts";
 import { assign, cannotAssign } from "./assign.ts";
-import { botAssign, botBuild } from "./bot.ts";
+import { cannotPledge, pledge } from "./commons.ts";
+import { botAssign, botBuild, botPledge } from "./bot.ts";
 import { build, cannotBuild, unbuild } from "./town.ts";
 import { forHouses, TUNING } from "./tuning.ts";
 import { view, type SovView } from "./view.ts";
@@ -70,7 +71,7 @@ export function newCampaign(players: readonly PlayerId[], rng: Rng, opts: Campai
     people: [],
     items: [],
     nextId: 1,
-    commons: { gold: 0, stores: {} },
+    commons: { gold: 0, stores: {}, built: {}, funds: {} },
     accord: TUNING.tracks.accordStart,
     doom: TUNING.tracks.doomStart,
     timeline: [],
@@ -140,6 +141,15 @@ export function applyMove(state: SovState, playerId: PlayerId, move: SovMove): M
       s.phaseMoves += 1;
       return { ok: true, state: s };
     }
+    case "pledge": {
+      if (s.phase !== "settlement") return fail("Pledges are made in the Settlement Phase.");
+      if (h.sealed) return fail("Unseal the Year first.");
+      const why = cannotPledge(s, house, move.project, move.give ?? {});
+      if (why) return fail(why);
+      pledge(s, house, move.project, move.give);
+      s.phaseMoves += 1;
+      return { ok: true, state: s };
+    }
     case "assign": {
       if (s.phase !== "settlement") return fail("Assignments are made in the Settlement Phase.");
       if (h.sealed) return fail("Unseal the Year first.");
@@ -194,6 +204,8 @@ export function botMove(s: SovState, playerId: PlayerId): SovMove {
     if (job) return { type: "assign", ...job };
     const next = botBuild(s, house);
     if (next) return { type: "build", building: next };
+    const gift = botPledge(s, house);
+    if (gift) return { type: "pledge", ...gift };
   }
   return { type: "seal" };
 }

@@ -187,6 +187,22 @@ export interface Assignment {
   job?: JobId;
 }
 
+/** A shared project's next level, paid for so far: by resource, and each House's share (public, §8.5). */
+export interface ProjectFund {
+  paid: Partial<Record<string, number>>;
+  /** Units pledged by each House (index), for Renown. */
+  by: number[];
+}
+
+export interface Commons {
+  gold: number;
+  stores: Stores;
+  /** Shared project id → level standing. */
+  built: Partial<Record<string, number>>;
+  /** Shared projects being paid for, by id. */
+  funds: Partial<Record<string, ProjectFund>>;
+}
+
 export type Phase = "omens" | "settlement" | "expedition" | "reckoning" | "over";
 
 export interface CampaignOptions {
@@ -237,8 +253,8 @@ export interface SovState {
   items: Item[];
   /** Ids for people and items alike. */
   nextId: number;
-  /** The settlement's shared stockpile, fed by the tithe, spent by vote (§8.1). */
-  commons: { gold: number; stores: Stores };
+  /** The settlement's shared stockpile, fed by the tithe, spent by vote (§8.1), and its shared projects (§8.5). */
+  commons: Commons;
   /** Accord with 2+ Houses; Unrest with one (same scale, §3.3). At 0 the campaign is lost. */
   accord: number;
   /** At 100 the city is overwhelmed (§3.3). */
@@ -261,5 +277,7 @@ export type SovMove =
   | { type: "build"; building: string }
   /** Take back a build started this Year, for a full refund. */
   | { type: "unbuild"; building: string }
+  /** Pledge Gold and materials to a shared project's next level; public and final (§8.5). */
+  | { type: "pledge"; project: string; give: Partial<Record<string, number>> }
   /** Set a person's Year assignment; "idle" clears it (§8.3). */
   | { type: "assign"; person: number; to: AssignmentKind | "idle"; at?: string; mentor?: number; job?: JobId };

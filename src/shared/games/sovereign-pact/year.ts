@@ -6,6 +6,7 @@ import { rollRecruit } from "./generate.ts";
 import { yearOfAssignments } from "./assign.ts";
 import { maxMp } from "./formulas.ts";
 import type { House, SovState } from "./state.ts";
+import { built, completeProjects } from "./commons.ts";
 import { completeWorks, produce } from "./town.ts";
 import { forHouses, TUNING } from "./tuning.ts";
 
@@ -64,6 +65,7 @@ function payUpkeep(s: SovState, house: number, h: House): void {
       grain += Math.ceil(u.scionGrain / 2);
     } else grain += u.recruitGrain;
   }
+  if (built(s, "granary")) grain = Math.round((grain * (100 - TUNING.commons.granaryUpkeepPct)) / 100);
   // §8.1: Grain runs out first (the Scions go Hungry), then Gold becomes Debt.
   const stock = h.stores.grain ?? 0;
   h.stores.grain = Math.max(0, stock - grain);
@@ -89,9 +91,15 @@ export function reckoning(s: SovState): void {
     s.commons.stores.grain = (s.commons.stores.grain ?? 0) + titheGrain;
     h.gold += gold - titheGold;
     h.stores.grain = (h.stores.grain ?? 0) + grain - titheGrain;
+    if (built(s, "great_market")) {
+      const titheMarket = Math.round(TUNING.commons.marketGold * TUNING.economy.tithe);
+      s.commons.gold += titheMarket;
+      h.gold += TUNING.commons.marketGold - titheMarket;
+    }
     payUpkeep(s, i, h);
   });
   completeWorks(s);
+  completeProjects(s);
   // Injuries tick down, everyone recovers and grows by assignment, and MP refills (§8.3, §8.10).
   yearOfAssignments(s);
   for (const p of s.people) p.mp = maxMp(p);
@@ -109,7 +117,9 @@ function arrivals(s: SovState): void {
   withRng(s, (rng) => {
     // Not logged: a House's recruit pool is its own business (§6.9 counts it among the secrets a Ward can leak).
     s.houses.forEach((_, i) => {
-      if (rng.int(100) >= forHouses(TUNING.houses.arrivalChance, s.houses.length)) return;
+      const boosts = (built(s, "beacon") ? 1 : 0) + ((s.houses[i]!.buildings.hall_of_petitions ?? 0) >= 1 ? 1 : 0);
+      const chance = forHouses(TUNING.houses.arrivalChance, s.houses.length) * (1 + (boosts * TUNING.commons.arrivalBoostPct) / 100);
+      if (rng.int(100) >= chance) return;
       const pool = s.people.filter((p) => p.host === i && p.status === "recruit").length;
       if (pool >= TUNING.houses.recruitPoolCap) return;
       s.people.push(rollRecruit(rng, s.nextId++, i));
