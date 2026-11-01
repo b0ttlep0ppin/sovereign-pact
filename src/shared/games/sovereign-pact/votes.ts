@@ -2,7 +2,8 @@
 // are decided by one. The most votes win; a tie costs Accord −3 and goes to the highest-Renown House
 // among those who voted for a tied option [DECIDED]. With one House there is no vote: it decides.
 import { built, loseAccord, spendCommons, stillNeeded } from "./commons.ts";
-import { PROJECT_BY_ID } from "./content.ts";
+import { PROJECT_BY_ID, TOWN_EVENT_BY_ID } from "./content.ts";
+import { cautious, settleEventVote } from "./omens.ts";
 import type { SovState, Vote } from "./state.ts";
 import { TUNING } from "./tuning.ts";
 import { log } from "./year.ts";
@@ -61,12 +62,14 @@ export function settleVote(s: SovState): void {
   const vote = s.vote;
   if (!vote) return;
   delete s.vote;
-  const { choice, tie } = tally(s, vote);
+  const nobody = vote.by.every((c) => c === null);
+  const { choice, tie } = vote.kind === "event" && nobody ? { choice: cautious(TOWN_EVENT_BY_ID.get(vote.subject)!), tie: false } : tally(s, vote);
   if (tie) {
     loseAccord(s, TUNING.tracks.tieCost);
     log(s, "The Houses are split; the tie is broken, and trust frays.");
   }
   if (s.houses.length > 1) vote.by.forEach((c, h) => c === choice && (s.houses[h]!.score.renown += TUNING.tracks.voteWonRenown));
+  if (vote.kind === "event") settleEventVote(s, vote.subject, choice);
   if (vote.kind === "spend") {
     const name = PROJECT_BY_ID.get(vote.subject)!.name;
     if (vote.options[choice] === "yes") log(s, `The Commons gives ${spendCommons(s, vote.subject)} to the ${name}.`);

@@ -4,6 +4,7 @@
 import { loseAccord } from "./commons.ts";
 import type { TownEffect } from "./content.ts";
 import { maxSanity } from "./formulas.ts";
+import { rollRecruit } from "./generate.ts";
 import type { ScoreCategory, SovState } from "./state.ts";
 import { log, withRng } from "./year.ts";
 
@@ -31,7 +32,7 @@ export function applyEffects(s: SovState, effects: readonly TownEffect[], subjec
         else s.commons.stores[k] = Math.max(0, (s.commons.stores[k] ?? 0) + (n ?? 0));
       }
     }
-    const hit = e.resources || e.ruin || e.recruits_lost || e.sanity || e.score ? targets(s, e, subject) : [];
+    const hit = e.resources || e.ruin || e.recruits_lost || e.sanity || e.score || e.recruit_gain ? targets(s, e, subject) : [];
     for (const i of hit) touch(s, e, i);
   }
 }
@@ -57,6 +58,10 @@ function touch(s: SovState, e: TownEffect, i: number): void {
     const gone = withRng(s, (rng) => rng.pick(pool));
     s.people = s.people.filter((p) => p !== gone);
     delete s.assign[gone.id];
+  }
+  for (let n = 0; n < (e.recruit_gain ?? 0); n++) {
+    const id = s.nextId++;
+    s.people.push(withRng(s, (rng) => rollRecruit(rng, id, i)));
   }
   if (e.sanity) {
     for (const p of s.people) {

@@ -2,7 +2,7 @@
 // Need pledged (each resource counting up to its own Need), moved by a hidden swing of about ±20 and by
 // every temptation taken; it falls in a band from Triumph to Calamity. Only the total is ever shown, and
 // a Crisis can fail even when everyone gave fully, so a failure proves nothing.
-import { TOWN_EVENT_BY_ID, TOWN_EVENTS, type TownEventDef } from "./content.ts";
+import { TOWN_EVENT_BY_ID, type TownEventDef } from "./content.ts";
 import { applyEffects } from "./effects.ts";
 import type { SovState } from "./state.ts";
 import { forHouses, TUNING } from "./tuning.ts";
@@ -18,34 +18,27 @@ export function yearBand(s: SovState): keyof typeof C.needScale {
   return y <= 6 ? "early" : y <= 13 ? "mid" : "late";
 }
 
-/** Whether an event's `requires` predicates hold. */
-export function eligible(s: SovState, ev: TownEventDef): boolean {
+/** Whether an event may be drawn this Year: its Years, and its `requires` (a building is the House's own for a House event). */
+export function eligible(s: SovState, ev: TownEventDef, house?: number): boolean {
   const y = year20(s);
   if (y < ev.years[0] || y > ev.years[1]) return false;
   return (ev.requires ?? []).every((r) => {
     const not = r.startsWith("!");
     const [kind, id] = r.replace(/^!/, "").split(":") as [string, string];
-    const yes = kind === "flag" ? s.flags.includes(id) : kind === "built" ? !!s.commons.built[id] : s.houses.some((h) => h.buildings[id]);
+    const yes =
+      kind === "flag" ? s.flags.includes(id) : kind === "built" ? !!s.commons.built[id] : house !== undefined ? !!s.houses[house]!.buildings[id] : s.houses.some((h) => h.buildings[id]);
     return yes !== not;
   });
 }
 
-/** Draws this Year's Crisis, or none (§8.8: about 40% of settlement events). */
-export function drawCrisis(s: SovState): void {
-  withRng(s, (rng) => {
-    if (rng.int(100) >= C.pct) return;
-    const pool = TOWN_EVENTS.filter((e) => e.crisis && eligible(s, e));
-    const total = pool.reduce((n, e) => n + e.weight, 0);
-    if (!total) return;
-    let roll = rng.int(total);
-    const ev = pool.find((e) => (roll -= e.weight) < 0)!;
-    // The kingdom's income, against four Houses', sizes the Need (§4.3).
-    const H = s.houses.length;
-    const scale = C.needScale[yearBand(s)] * ((H * forHouses(TUNING.economy.incomeScale, H)) / 4);
-    const need = Object.fromEntries(Object.entries(ev.crisis!.need).map(([k, n]) => [k, Math.round((n ?? 0) * scale)]));
-    s.crisis = { id: ev.id, need, pledges: s.houses.map(() => ({})), tempted: s.houses.map(() => false) };
-    log(s, `Crisis: ${ev.title}. The city needs ${describe(need)}.`);
-  });
+/** Opens a drawn Crisis, its Need scaled to the Year band and the kingdom's size. */
+export function openCrisis(s: SovState, ev: TownEventDef): void {
+  // The kingdom's income, against four Houses', sizes the Need (§4.3).
+  const H = s.houses.length;
+  const scale = C.needScale[yearBand(s)] * ((H * forHouses(TUNING.economy.incomeScale, H)) / 4);
+  const need = Object.fromEntries(Object.entries(ev.crisis!.need).map(([k, n]) => [k, Math.round((n ?? 0) * scale)]));
+  s.crisis = { id: ev.id, need, pledges: s.houses.map(() => ({})), tempted: s.houses.map(() => false) };
+  log(s, `Crisis: ${ev.title}. The city needs ${describe(need)}.`);
 }
 
 const describe = (r: Partial<Record<string, number>>) => Object.entries(r).map(([k, n]) => `${n} ${k[0]!.toUpperCase()}${k.slice(1)}`).join(" and ");

@@ -1,0 +1,57 @@
+{
+  "id": "portrait_gallery",
+  "scope": "house",
+  "weight": 2,
+  "years": [
+    2,
+    20
+  ],
+  "title": "Portrait Gallery",
+  "text": "The painter sets up in the long gallery, and one of the House refuses to sit.",
+  "rule": "house",
+  "options": [
+    {
+      "id": "insist",
+      "label": "Insist.",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "The portrait shows something the sitter did not mean to show.",
+          "effects": [
+            {
+              "score": {
+                "lore": 2
+              }
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "The painter leaves in the night. The portrait's eyes are scratched out.",
+          "effects": [
+            {
+              "sanity": -10
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "let_be",
+      "label": "Let it be.",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The painter paints the hound instead.",
+          "effects": []
+        }
+      ]
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { sovereignPact, type SovState } from "./index.ts";
-import { campaign, playOut, seats } from "./testing.ts";
+import { calm, campaign, playOut, seats } from "./testing.ts";
 import { TUNING } from "./tuning.ts";
 
 const g = sovereignPact;
@@ -76,7 +76,7 @@ describe("the Settlement Phase", () => {
   });
 
   it("pays income into the Treasury and the tithe into the Commons", () => {
-    let s = campaign(4);
+    let s = calm(campaign(4));
     const gold = s.houses.map((h) => h.gold);
     for (const p of seats(4)) s = move(s, p, { type: "seal" });
     expect(s.commons.gold).toBe(4 * Math.round(TUNING.economy.income.gold * TUNING.economy.tithe));

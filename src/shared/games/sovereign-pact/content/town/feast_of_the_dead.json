@@ -1,0 +1,60 @@
+{
+  "id": "feast_of_the_dead",
+  "scope": "house",
+  "weight": 2,
+  "years": [
+    3,
+    20
+  ],
+  "requires": [
+    "building:crypt"
+  ],
+  "title": "Feast of the Dead",
+  "text": "The Crypt's doors stand open at midnight and the table inside is laid.",
+  "rule": "house",
+  "options": [
+    {
+      "id": "sit",
+      "label": "Sit with the dead.",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "The dead are good company and have much to tell.",
+          "effects": [
+            {
+              "score": {
+                "lore": 4
+              }
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "The dead are poor company.",
+          "effects": [
+            {
+              "sanity": -15
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "seal",
+      "label": "Seal the doors.",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The knocking stops by dawn.",
+          "effects": []
+        }
+      ]
+    }
+  ]
+}

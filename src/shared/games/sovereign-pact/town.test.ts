@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import { BUILDINGS } from "./content.ts";
 import { sovereignPact, type SovMove, type SovState } from "./index.ts";
 import { ascendancy, categories } from "./score.ts";
-import { campaign, playOut } from "./testing.ts";
+import { calm, campaign, playOut } from "./testing.ts";
 import { buildCost } from "./town.ts";
 import { TUNING } from "./tuning.ts";
 import { view } from "./view.ts";
@@ -30,7 +30,7 @@ describe("House buildings (§8.3–8.4)", () => {
   });
 
   it("pays at once and stands at the Reckoning, one build a Year", () => {
-    let s = campaign(2, 3);
+    let s = calm(campaign(2, 3));
     const h0 = s.houses[0]!;
     const before = { gold: h0.gold, timber: h0.stores.timber! };
     s = move(s, "p1", { type: "build", building: "farm" });
@@ -47,14 +47,14 @@ describe("House buildings (§8.3–8.4)", () => {
   });
 
   it("refunds a build taken back the same Year", () => {
-    const s = campaign(2, 3);
+    const s = calm(campaign(2, 3));
     const t = move(move(s, "p1", { type: "build", building: "farm" }), "p1", { type: "unbuild", building: "farm" });
     expect(t.houses[0]).toEqual(s.houses[0]);
     expect(error(t, "p1", { type: "unbuild", building: "farm" })).toMatch(/not going up/);
   });
 
   it("refuses what a House cannot pay for, an unknown building, and building while sealed", () => {
-    let s = campaign(2, 3);
+    let s = calm(campaign(2, 3));
     s.houses[0]!.stores.timber = 0;
     expect(error(s, "p1", { type: "build", building: "farm" })).toMatch(/pay/);
     expect(error(s, "p1", { type: "build", building: "palace" })).toMatch(/no such/);
@@ -63,13 +63,13 @@ describe("House buildings (§8.3–8.4)", () => {
   });
 
   it("stops at level 3", () => {
-    const s = campaign(1, 3);
+    const s = calm(campaign(1, 3));
     s.houses[0]!.buildings.farm = 3;
     expect(error(s, "p1", { type: "build", building: "farm" })).toMatch(/highest/);
   });
 
   it("runs producers from the Year after they stand, the Commons taking its tithe", () => {
-    let s = campaign(2, 3);
+    let s = calm(campaign(2, 3));
     s.houses[0]!.buildings.quarry = 2;
     const stone = s.houses[0]!.stores.stone ?? 0;
     s = sealAll(s);
@@ -80,7 +80,7 @@ describe("House buildings (§8.3–8.4)", () => {
   });
 
   it("gives Essence from a Shrine and interest from a Vault at L2", () => {
-    let s = campaign(1, 3);
+    let s = calm(campaign(1, 3));
     s.houses[0]!.buildings = { shrine: 1, vault: 2 };
     s.houses[0]!.gold = 1000;
     s = sealAll(s);
@@ -90,7 +90,7 @@ describe("House buildings (§8.3–8.4)", () => {
   });
 
   it("counts building levels as Holdings, and the Vault raises Treasury", () => {
-    const s = campaign(1, 3);
+    const s = calm(campaign(1, 3));
     s.houses[0]!.buildings = { farm: 2, chapel: 1 };
     expect(categories(s, 0).holdings).toBe(3 * TUNING.town.holdingsPerLevel);
     s.houses[0]!.gold = 1000;
@@ -101,7 +101,7 @@ describe("House buildings (§8.3–8.4)", () => {
   });
 
   it("shows every House's works on the Town Map", () => {
-    const s = move(campaign(2, 3), "p1", { type: "build", building: "farm" });
+    const s = move(calm(campaign(2, 3)), "p1", { type: "build", building: "farm" });
     expect(view(s, "p2").houses[0]!.works).toEqual(["farm"]);
   });
 });

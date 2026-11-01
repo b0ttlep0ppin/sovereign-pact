@@ -115,10 +115,11 @@ export const TUNING = {
     courtUnrest: 10,
   },
 
+  /** §8.8 town events [DECIDED cadence]: one settlement event a Year; each House's own event at this % chance. */
+  omens: { houseEventPct: 50 },
+
   /** §3.5 Crises [DECIDED resolution, numbers to tune]. */
   crises: {
-    /** % chance this Year's settlement event is a Crisis, until the other town events exist (§8.8: about 40%). */
-    pct: 40,
     /** The hidden swing, ± this many points. */
     swing: 20,
     /** Result thresholds: Triumph, Holds, Falters; under the last, Calamity. */

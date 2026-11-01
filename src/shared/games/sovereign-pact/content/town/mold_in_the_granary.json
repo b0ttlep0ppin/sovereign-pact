@@ -1,0 +1,90 @@
+{
+  "id": "mold_in_the_granary",
+  "scope": "settlement",
+  "weight": 2,
+  "years": [
+    1,
+    20
+  ],
+  "title": "The Mold in the Granary",
+  "text": "Black mold in the poorest House's granary, spreading by the day.",
+  "rule": "least_grain",
+  "options": [
+    {
+      "id": "burn",
+      "label": "Burn the stock.",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The mold is gone, and so is the grain.",
+          "effects": [
+            {
+              "resources": {
+                "grain": -15
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "scrape",
+      "label": "Scrape what can be saved.",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "Most of it is saved.",
+          "effects": [
+            {
+              "resources": {
+                "grain": -5
+              }
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "The mold comes back, worse.",
+          "effects": [
+            {
+              "resources": {
+                "grain": -20
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ignore",
+      "label": "Ignore it.",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 40,
+          "text": "It dies off in the cold.",
+          "effects": []
+        },
+        {
+          "w": 60,
+          "text": "It spreads to the next Year's harvest.",
+          "effects": [
+            {
+              "resources": {
+                "grain": -25
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

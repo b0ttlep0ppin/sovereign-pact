@@ -3,7 +3,7 @@ import { slots } from "./assign.ts";
 import { loseAccord, projectCost, stillNeeded } from "./commons.ts";
 import { PROJECTS } from "./content.ts";
 import { sovereignPact, type SovMove, type SovState } from "./index.ts";
-import { campaign } from "./testing.ts";
+import { calm, campaign } from "./testing.ts";
 import { TUNING } from "./tuning.ts";
 import { view } from "./view.ts";
 
@@ -30,7 +30,7 @@ const rich = (H: number): SovState => {
 
 describe("shared projects (§8.5)", () => {
   it("prices each level at 1.3× a House building of its tier", () => {
-    const s = campaign(2, 4);
+    const s = calm(campaign(2, 4));
     for (const p of PROJECTS.filter((x) => !x.requires)) {
       const base = TUNING.town.costs[p.cost][p.tiers[0]! - 1]!;
       expect(projectCost(s, p.id), p.id).toEqual(Object.fromEntries(Object.entries(base).map(([k, n]) => [k, Math.round(n! * C.costMult)])));
@@ -73,7 +73,7 @@ describe("shared projects (§8.5)", () => {
   });
 
   it("refuses pledges a House cannot cover, and unknown projects", () => {
-    const s = campaign(2, 4);
+    const s = calm(campaign(2, 4));
     s.houses[0]!.gold = 3;
     expect(error(s, "p1", { type: "pledge", project: "granary", give: { gold: 10 } })).toMatch(/do not have/);
     expect(error(s, "p1", { type: "pledge", project: "colosseum", give: { gold: 1 } })).toMatch(/no such/);
@@ -82,7 +82,7 @@ describe("shared projects (§8.5)", () => {
 
 describe("what shared projects do", () => {
   it("Great Market: Gold for every House; Granary: less Grain upkeep", () => {
-    const s = campaign(2, 4);
+    const s = calm(campaign(2, 4));
     const a = sealAll(s);
     s.commons.built = { great_market: 1, granary: 1 };
     const b = sealAll(s);
@@ -92,7 +92,7 @@ describe("what shared projects do", () => {
   });
 
   it("Cathedral: Chapel slots for every House; Aqueduct: an Infirmary level; University: unlimited Study", () => {
-    const s = campaign(2, 4);
+    const s = calm(campaign(2, 4));
     s.houses[0]!.buildings.scriptorium = 1;
     expect([slots(s, 1, "chapel"), slots(s, 1, "infirmary"), slots(s, 0, "study")]).toEqual([0, 0, 1]);
     s.commons.built = { cathedral: 1, aqueduct: 1, university: 1 };
@@ -100,7 +100,7 @@ describe("what shared projects do", () => {
   });
 
   it("Court of Peers softens Accord losses", () => {
-    const s = campaign(2, 4);
+    const s = calm(campaign(2, 4));
     s.accord = 50;
     loseAccord(s, 20);
     expect(s.accord).toBe(30);

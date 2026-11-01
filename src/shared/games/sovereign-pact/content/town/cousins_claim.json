@@ -1,0 +1,81 @@
+{
+  "id": "cousins_claim",
+  "scope": "house",
+  "weight": 3,
+  "years": [
+    1,
+    20
+  ],
+  "title": "The Cousin's Claim",
+  "text": "A cousin from a branch long thought dead arrives with papers and a claim on the House's name.",
+  "rule": "house",
+  "options": [
+    {
+      "id": "pay",
+      "label": "Pay them off (25 Gold).",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "They leave with a purse and a smile.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -25
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "duel",
+      "label": "Settle it by duel.",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "Honor is satisfied and the claim is torn up.",
+          "effects": [
+            {
+              "score": {
+                "valor": 2
+              }
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "Honor is satisfied, at the cost of a scar and a bad Year.",
+          "effects": [
+            {
+              "sanity": -10
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "recognize",
+      "label": "Recognize the claim.",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The cousin joins the household, bad blood and all.",
+          "effects": [
+            {
+              "recruit_gain": 1
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

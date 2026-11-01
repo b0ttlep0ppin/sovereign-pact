@@ -3,7 +3,7 @@ import { botAssign } from "./bot.ts";
 import { maxSanity } from "./formulas.ts";
 import { sovereignPact, type SovMove, type SovState } from "./index.ts";
 import type { Person } from "./state.ts";
-import { campaign, playOut } from "./testing.ts";
+import { calm, campaign, playOut } from "./testing.ts";
 import { TUNING } from "./tuning.ts";
 
 const g = sovereignPact;
@@ -26,7 +26,7 @@ const person = (s: SovState, id: number): Person => s.people.find((p) => p.id ==
 
 describe("Year assignments (§8.3)", () => {
   it("rests for +25% Sanity, idles for +10%, and the Chapel building adds its own", () => {
-    let s = campaign(1, 5);
+    let s = calm(campaign(1, 5));
     const [a, b] = scions(s);
     for (const p of [a!, b!]) p.sanity = 0;
     s = move(s, "p1", { type: "assign", person: a!.id, to: "rest" });
@@ -40,7 +40,7 @@ describe("Year assignments (§8.3)", () => {
   });
 
   it("keeps an assignment from Year to Year until changed", () => {
-    let s = campaign(1, 5);
+    let s = calm(campaign(1, 5));
     const a = scions(s)[0]!;
     s = seal(move(s, "p1", { type: "assign", person: a.id, to: "guard" }));
     expect(s.assign[a.id]).toEqual({ to: "guard" });
@@ -49,7 +49,7 @@ describe("Year assignments (§8.3)", () => {
   });
 
   it("opens slots by building level", () => {
-    let s = campaign(1, 5);
+    let s = calm(campaign(1, 5));
     const [a, b, c] = scions(s);
     expect(error(s, "p1", { type: "assign", person: a!.id, to: "chapel" })).toMatch(/no free slot/);
     s.houses[0]!.buildings.chapel = 1;
@@ -62,7 +62,7 @@ describe("Year assignments (§8.3)", () => {
   });
 
   it("restores Sanity fully and cures a Moderate sanity result in the Chapel", () => {
-    let s = campaign(1, 5);
+    let s = calm(campaign(1, 5));
     s.houses[0]!.buildings.chapel = 1;
     const a = scions(s)[0]!;
     a.sanity = 1;
@@ -73,7 +73,7 @@ describe("Year assignments (§8.3)", () => {
   });
 
   it("heals the longest Moderate injury a Year faster in the Infirmary", () => {
-    let s = campaign(1, 5);
+    let s = calm(campaign(1, 5));
     s.houses[0]!.buildings.infirmary = 1;
     const a = scions(s)[0]!;
     a.injuries = [
@@ -90,7 +90,7 @@ describe("Year assignments (§8.3)", () => {
   });
 
   it("adds a worker's output to a producer", () => {
-    let s = campaign(1, 5);
+    let s = calm(campaign(1, 5));
     s.houses[0]!.buildings.quarry = 1;
     const r = s.people.find((p) => p.host === 0 && p.status === "recruit")!;
     const stone = s.houses[0]!.stores.stone!;
@@ -101,7 +101,7 @@ describe("Year assignments (§8.3)", () => {
   });
 
   it("refuses a Mentor who is not teaching, a Job they have not mastered, and a third student", () => {
-    let s = campaign(1, 5);
+    let s = calm(campaign(1, 5));
     s.houses[0]!.buildings.training_ground = 1;
     const [mentor, a, b, c] = scions(s);
     Object.assign(mentor!, { status: "retired", level: 8, mastered: ["soldier"] });
@@ -123,7 +123,7 @@ describe("Year assignments (§8.3)", () => {
   });
 
   it("caps training XP one level below the Mentor (§6.6)", () => {
-    let s = campaign(1, 5);
+    let s = calm(campaign(1, 5));
     s.houses[0]!.buildings.training_ground = 1;
     const [mentor, a] = scions(s);
     Object.assign(mentor!, { status: "retired", level: 2, mastered: ["soldier"] });
@@ -148,7 +148,7 @@ describe("the settlement bot assigns", () => {
   });
 
   it("settles on its plan: once applied, it has nothing more to change", () => {
-    let s = campaign(1, 9);
+    let s = calm(campaign(1, 9));
     s.houses[0]!.buildings = { training_ground: 1, infirmary: 1, quarry: 1 };
     for (let i = 0; i < 50; i++) {
       const m = botAssign(s, 0);

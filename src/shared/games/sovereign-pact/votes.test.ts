@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { sovereignPact, type SovMove, type SovState } from "./index.ts";
-import { campaign, playOut } from "./testing.ts";
+import { calm, campaign, playOut } from "./testing.ts";
 import { TUNING } from "./tuning.ts";
 import { view } from "./view.ts";
 
@@ -81,13 +81,13 @@ describe("votes on the Commons (§8.1)", () => {
   });
 
   it("refuses a proposal the Commons cannot help", () => {
-    const s = campaign(2, 6);
+    const s = calm(campaign(2, 6));
     expect(error(s, "p1", { type: "propose", project: "granary" })).toMatch(/holds nothing/);
     expect(error(s, "p1", { type: "vote", choice: 0 })).toMatch(/nothing to vote on/);
   });
 
   it("is played by the bots over a whole campaign, raising shared projects", () => {
-    const end = playOut(campaign(4, 11));
+    const end = playOut(calm(campaign(4, 11)));
     expect(Object.keys(end.commons.built).length).toBeGreaterThanOrEqual(2);
   });
 });

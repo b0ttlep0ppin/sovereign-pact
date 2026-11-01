@@ -1,0 +1,85 @@
+{
+  "id": "the_eclipse",
+  "scope": "settlement",
+  "weight": 2,
+  "years": [
+    3,
+    20
+  ],
+  "title": "The Eclipse",
+  "text": "The sun goes out at noon and does not come back for an hour. The dogs will not stop howling.",
+  "rule": "each_house",
+  "options": [
+    {
+      "id": "pray",
+      "label": "Gather the household in prayer.",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The House waits it out on its knees.",
+          "effects": [
+            {
+              "sanity": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hide",
+      "label": "Shutter the windows and wait.",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 80,
+          "text": "Nothing happens. Nothing you can name.",
+          "effects": []
+        },
+        {
+          "w": 20,
+          "text": "Something scratches at the shutters until the light returns.",
+          "effects": [
+            {
+              "sanity": -10
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "go_out",
+      "label": "Go out under it.",
+      "tags": [
+        "bold",
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "You see the city as the rift sees it, and understand it a little.",
+          "effects": [
+            {
+              "score": {
+                "lore": 4
+              }
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "You see the city as the rift sees it. Some of you do not sleep for weeks.",
+          "effects": [
+            {
+              "sanity": -20
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

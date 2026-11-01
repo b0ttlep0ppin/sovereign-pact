@@ -11,9 +11,10 @@ import { placements } from "./score.ts";
 import { BASE_JOBS, type CampaignOptions, type House, type SovMove, type SovState } from "./state.ts";
 import { assign, cannotAssign } from "./assign.ts";
 import { cannotPledge, pledge } from "./commons.ts";
+import { cannotChoose, choose } from "./omens.ts";
 import { cannotCrisisPledge, cannotTempt, crisisPledge, tempt } from "./crisis.ts";
 import { cannotPropose, cannotVote, castVote, propose } from "./votes.ts";
-import { botAssign, botBuild, botCrisis, botPledge, botPropose, botVote } from "./bot.ts";
+import { botAssign, botBuild, botChoice, botCrisis, botPledge, botPropose, botVote } from "./bot.ts";
 import { build, cannotBuild, unbuild } from "./town.ts";
 import { forHouses, TUNING } from "./tuning.ts";
 import { view, type SovView } from "./view.ts";
@@ -79,6 +80,7 @@ export function newCampaign(players: readonly PlayerId[], rng: Rng, opts: Campai
     timeline: [],
     assign: {},
     proposers: [],
+    events: [],
     flags: [],
     log: [],
   };
@@ -162,6 +164,14 @@ export function applyMove(state: SovState, playerId: PlayerId, move: SovMove): M
       s.phaseMoves += 1;
       return { ok: true, state: s };
     }
+    case "choose": {
+      if (s.phase !== "settlement") return fail("There is nothing to choose now.");
+      const why = cannotChoose(s, house, move.event, move.option);
+      if (why) return fail(why);
+      choose(s, house, move.event, move.option);
+      s.phaseMoves += 1;
+      return { ok: true, state: s };
+    }
     case "tempt": {
       if (s.phase !== "settlement") return fail("Nothing tempts you now.");
       if (h.sealed) return fail("Unseal the Year first.");
@@ -239,7 +249,9 @@ export function describeResult(s: SovState): string | null {
 /** The settlement bot is cautious (HANDOFF §3.4): it builds what it can afford by its plan, then seals. */
 export function botMove(s: SovState, playerId: PlayerId): SovMove {
   const house = houseOf(s, playerId);
-  if (house >= 0 && s.phase === "settlement" && s.vote && s.vote.by[house] === null) return { type: "vote", choice: botVote(s) };
+  if (house >= 0 && s.phase === "settlement" && s.vote && s.vote.by[house] === null) return { type: "vote", choice: botVote(s, house) };
+  const pick = house >= 0 && s.phase === "settlement" ? s.events.find((e) => e.deciders.includes(house) && e.choices[house] === null) : undefined;
+  if (pick) return { type: "choose", event: pick.key, option: botChoice(s, house, pick.id) };
   if (house >= 0 && s.phase === "settlement" && !s.houses[house]!.sealed) {
     const help = botCrisis(s, house);
     if (help) return { type: "crisis_pledge", give: help };

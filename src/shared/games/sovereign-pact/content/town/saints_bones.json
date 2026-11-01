@@ -1,0 +1,80 @@
+{
+  "id": "saints_bones",
+  "scope": "settlement",
+  "weight": 2,
+  "years": [
+    3,
+    20
+  ],
+  "title": "A Saint's Bones",
+  "text": "Diggers in the old crypts have found a saint's bones in a lead box, still smelling of myrrh.",
+  "rule": "vote",
+  "options": [
+    {
+      "id": "enshrine",
+      "label": "Enshrine them for the city.",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Pilgrims come, and the city sleeps easier.",
+          "effects": [
+            {
+              "sanity": 10,
+              "to": "all"
+            },
+            {
+              "accord": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sell",
+      "label": "Sell them to the church across the river.",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The Commons grows richer.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 60
+              },
+              "to": "commons"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "give",
+      "label": "Give them to one House to keep.",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "One House's chapel holds them, and the others mutter.",
+          "effects": [
+            {
+              "score": {
+                "relics": 5
+              }
+            },
+            {
+              "accord": -3
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

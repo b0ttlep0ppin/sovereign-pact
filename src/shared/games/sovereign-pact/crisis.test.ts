@@ -3,7 +3,7 @@ import { applyEffects } from "./effects.ts";
 import { bandOf, crisisScore, resolveCrisis, year20, yearBand } from "./crisis.ts";
 import { TOWN_EVENT_BY_ID, TOWN_EVENTS } from "./content.ts";
 import { sovereignPact, type SovMove, type SovState } from "./index.ts";
-import { campaign } from "./testing.ts";
+import { calm, campaign } from "./testing.ts";
 import { TUNING } from "./tuning.ts";
 import { view } from "./view.ts";
 
@@ -21,7 +21,7 @@ const error = (s: SovState, player: string, m: SovMove): string => {
 };
 /** Two rich Houses facing the Hungry Winter's Need of 40 Grain. */
 function winter(): SovState {
-  const s = campaign(2, 8);
+  const s = calm(campaign(2, 8));
   for (const h of s.houses) Object.assign(h, { gold: 500, stores: { grain: 200, timber: 100, stone: 100, iron: 100 } });
   s.crisis = { id: "hungry_winter", need: { grain: 40 }, pledges: [{}, {}], tempted: [false, false] };
   return s;
@@ -94,7 +94,7 @@ describe("Crises (§3.5)", () => {
     for (let seed = 1; seed <= 100; seed++) if (campaign(4, seed).crisis) crises++;
     expect(crises).toBeGreaterThan(25);
     expect(crises).toBeLessThan(55);
-    const s = campaign(4, 1, { length: "short" });
+    const s = calm(campaign(4, 1, { length: "short" }));
     s.year = 4;
     expect([year20(s), yearBand(s)]).toEqual([8, "mid"]);
   });
@@ -106,7 +106,7 @@ describe("Crises (§3.5)", () => {
 
 describe("town effects", () => {
   it("move the tracks, ruin buildings, lose recruits and shake Sanity", () => {
-    const s = campaign(2, 8);
+    const s = calm(campaign(2, 8));
     s.houses[0]!.buildings = { farm: 1 };
     const recruits = s.people.filter((p) => p.host === 0 && p.status === "recruit").length;
     applyEffects(s, [{ doom: 7 }, { accord: 5 }, { ruin: 1 }, { recruits_lost: 1 }, { sanity: -100 }, { resources: { gold: -9999 } }], 0);

@@ -1,0 +1,92 @@
+{
+  "id": "rebellious_commons",
+  "scope": "settlement",
+  "weight": 2,
+  "years": [
+    5,
+    20
+  ],
+  "title": "The Rebellious Commons",
+  "text": "The guilds have shut the gates and will not open them until the Houses hear their grievances.",
+  "rule": "vote",
+  "options": [
+    {
+      "id": "hang",
+      "label": "Hang the ringleaders.",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The gates open. The people do not look the Houses in the eye.",
+          "effects": [
+            {
+              "accord": -10
+            },
+            {
+              "timeline": {
+                "event": "rebellious_commons",
+                "years": 4
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hear",
+      "label": "Hear them out.",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "The grievances are fair, and the Houses answer them.",
+          "effects": [
+            {
+              "accord": 5
+            },
+            {
+              "resources": {
+                "gold": -15
+              },
+              "to": "all"
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "The hearing becomes a riot.",
+          "effects": [
+            {
+              "accord": -5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pay",
+      "label": "Pay them off.",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Coin opens gates.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -20
+              },
+              "to": "all"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
