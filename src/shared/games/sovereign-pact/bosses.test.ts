@@ -128,3 +128,42 @@ describe("a boss fight", () => {
     expect(b.events.some((e) => e.t === "say")).toBe(true);
   });
 });
+
+describe("the Goblin Lord", () => {
+  const gl = () => {
+    const b = bossBattle(3, standardParty(3, 6), "goblin_lord", 1);
+    const lord = b.units.find((u) => u.enemy === "goblin_lord")!;
+    const goblins = b.units.filter((u) => u.enemy === "beast_goblin");
+    return { b, lord, goblins };
+  };
+
+  it("hangs back on E3 behind four goblins on E1", () => {
+    const { lord, goblins } = gl();
+    expect(lord.col).toBe(2);
+    expect(goblins).toHaveLength(4);
+    expect(goblins.every((u) => u.col === 0 && u.tags.includes("add"))).toBe(true);
+  });
+
+  it("is Cornered once its goblins are down to one, or at half health (either condition)", () => {
+    const { b, lord, goblins } = gl();
+    expect(holds(b, lord, "adds<2 || hp<=0.5")).toBe(false);
+    for (const x of goblins.slice(0, 3)) kill(b, x);
+    checkEnd(b);
+    expect(lord.phase).toBe(1);
+    expect(lord.speed).toBe(16);
+    const fresh = gl();
+    fresh.lord.hp = Math.floor(fresh.lord.maxHp * 0.5);
+    checkEnd(fresh.b);
+    expect(fresh.lord.phase).toBe(1);
+  });
+
+  it("runs at 30% unless rooted, and the fight is won when his goblins are gone", () => {
+    const { b, lord, goblins } = gl();
+    for (const x of goblins) kill(b, x);
+    lord.hp = Math.floor(lord.maxHp * 0.25);
+    checkEnd(b);
+    expect(lord.dead).toBe(true);
+    expect(b.events.some((e) => e.t === "flee")).toBe(true);
+    expect(b.outcome).toBe("victory");
+  });
+});

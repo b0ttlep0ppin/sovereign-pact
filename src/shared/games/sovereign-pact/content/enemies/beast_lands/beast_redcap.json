@@ -1,0 +1,23 @@
+{
+  "id": "beast_redcap",
+  "name": "Redcap",
+  "pool": "beast_lands",
+  "tags": ["fey"],
+  "role": "lurker",
+  "size": [1, 1],
+  "levels": [2, 6],
+  "stats": {"speed": 13},
+  "affinity": {"holy": -25, "fire": -25},
+  "abilities": [
+    {"id": "pike_dive", "shape": "single", "side": "player", "power": 1.3, "leap": true, "statuses": [{"id": "bleed", "chance": 40, "ticks": 0}]},
+    {"id": "iron_boots", "shape": "single", "side": "player", "power": 0.9, "statuses": [{"id": "slow", "chance": 30, "ticks": 200}]}
+  ],
+  "gambits": [
+    {"if": "turn%2==1", "do": "pike_dive", "target": "empty_cell"},
+    {"do": "iron_boots", "target": "nearest"}
+  ],
+  "bestiary": {
+    "lore": "It dyes its cap in what it kills. The cap is never dry.",
+    "weakness": "Holy, and anything that keeps it from the Back."
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "id": "beast_beehive",
+  "name": "Beehive",
+  "pool": "beast_lands",
+  "tags": ["insect", "construct"],
+  "role": "artillery",
+  "size": [1, 1],
+  "levels": [1, 5],
+  "stats": {"speed": 7},
+  "affinity": {"fire": -50},
+  "immune": ["fear", "sleep", "charm"],
+  "abilities": [
+    {"id": "sting_volley", "shape": "lob", "side": "player", "power": 0.8, "reach": "ranged", "statuses": [{"id": "poison", "chance": 30, "ticks": 300}]},
+    {"id": "swarm_out", "shape": "column:B", "side": "player", "power": 0.9, "charge": 80, "telegraph": true, "cooldown": 3}
+  ],
+  "gambits": [
+    {"if": "turn%3==1", "do": "swarm_out"},
+    {"do": "sting_volley", "target": "lob"}
+  ],
+  "bestiary": {
+    "lore": "Hung from a dead oak and humming. The humming is the warning.",
+    "weakness": "Fire. It cannot move: reach it and it falls."
+  }
+}

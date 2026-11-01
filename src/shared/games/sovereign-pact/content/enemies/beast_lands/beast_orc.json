@@ -1,0 +1,25 @@
+{
+  "id": "beast_orc",
+  "name": "Orc",
+  "pool": "beast_lands",
+  "tags": ["humanoid", "orc"],
+  "role": "bruiser",
+  "size": [1, 1],
+  "levels": [1, 5],
+  "variants": ["ashen", "stone"],
+  "stats": {"speed": 9},
+  "affinity": {"fire": -25},
+  "abilities": [
+    {"id": "cleaver", "shape": "single", "side": "player", "power": 1.2, "locationBias": "body"},
+    {"id": "war_cry", "shape": "self", "side": "self", "power": 0, "kind": "support", "statuses": [{"id": "might_up", "chance": 100, "ticks": 300, "value": 20}], "cooldown": 4}
+  ],
+  "gambits": [
+    {"if": "enemy.marked", "do": "cleaver", "target": "marked"},
+    {"if": "turn==1", "do": "war_cry"},
+    {"do": "cleaver", "target": "lowest_durability"}
+  ],
+  "bestiary": {
+    "lore": "Raiders from the far camps, painted for war every day.",
+    "weakness": "Fire. It hits hardest after its war cry: interrupt or outlast it."
+  }
+}

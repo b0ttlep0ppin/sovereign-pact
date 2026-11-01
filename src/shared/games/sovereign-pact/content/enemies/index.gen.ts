@@ -25,6 +25,29 @@ import barrow_skull_bird from "./barrows/barrow_skull_bird.json" with { type: "j
 import barrow_soul from "./barrows/barrow_soul.json" with { type: "json" };
 import barrow_vampire from "./barrows/barrow_vampire.json" with { type: "json" };
 import barrow_zombie from "./barrows/barrow_zombie.json" with { type: "json" };
+import beast_bat from "./beast_lands/beast_bat.json" with { type: "json" };
+import beast_beehive from "./beast_lands/beast_beehive.json" with { type: "json" };
+import beast_behemoth from "./beast_lands/beast_behemoth.json" with { type: "json" };
+import beast_bugbear from "./beast_lands/beast_bugbear.json" with { type: "json" };
+import beast_crow_shaman from "./beast_lands/beast_crow_shaman.json" with { type: "json" };
+import beast_evil_shaman from "./beast_lands/beast_evil_shaman.json" with { type: "json" };
+import beast_fox_white_mage from "./beast_lands/beast_fox_white_mage.json" with { type: "json" };
+import beast_giant_rat from "./beast_lands/beast_giant_rat.json" with { type: "json" };
+import beast_goblin from "./beast_lands/beast_goblin.json" with { type: "json" };
+import beast_goblin_shaman from "./beast_lands/beast_goblin_shaman.json" with { type: "json" };
+import beast_killer_bee from "./beast_lands/beast_killer_bee.json" with { type: "json" };
+import beast_mammoth from "./beast_lands/beast_mammoth.json" with { type: "json" };
+import beast_nightmare from "./beast_lands/beast_nightmare.json" with { type: "json" };
+import beast_ogre from "./beast_lands/beast_ogre.json" with { type: "json" };
+import beast_orc from "./beast_lands/beast_orc.json" with { type: "json" };
+import beast_orc_king from "./beast_lands/beast_orc_king.json" with { type: "json" };
+import beast_redcap from "./beast_lands/beast_redcap.json" with { type: "json" };
+import beast_rhino from "./beast_lands/beast_rhino.json" with { type: "json" };
+import beast_tiger_swordsman from "./beast_lands/beast_tiger_swordsman.json" with { type: "json" };
+import beast_troll from "./beast_lands/beast_troll.json" with { type: "json" };
+import beast_weasel_ninja from "./beast_lands/beast_weasel_ninja.json" with { type: "json" };
+import beast_werewolf from "./beast_lands/beast_werewolf.json" with { type: "json" };
+import beast_wild_boar from "./beast_lands/beast_wild_boar.json" with { type: "json" };
 
 export default [
   barrow_banshee,
@@ -53,4 +76,27 @@ export default [
   barrow_soul,
   barrow_vampire,
   barrow_zombie,
+  beast_bat,
+  beast_beehive,
+  beast_behemoth,
+  beast_bugbear,
+  beast_crow_shaman,
+  beast_evil_shaman,
+  beast_fox_white_mage,
+  beast_giant_rat,
+  beast_goblin,
+  beast_goblin_shaman,
+  beast_killer_bee,
+  beast_mammoth,
+  beast_nightmare,
+  beast_ogre,
+  beast_orc,
+  beast_orc_king,
+  beast_redcap,
+  beast_rhino,
+  beast_tiger_swordsman,
+  beast_troll,
+  beast_weasel_ninja,
+  beast_werewolf,
+  beast_wild_boar,
 ];

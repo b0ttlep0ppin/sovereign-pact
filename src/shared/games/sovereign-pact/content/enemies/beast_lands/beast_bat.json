@@ -1,0 +1,24 @@
+{
+  "id": "beast_bat",
+  "name": "Bat",
+  "pool": "beast_lands",
+  "tags": ["beast", "flyer"],
+  "role": "swarm",
+  "size": [1, 1],
+  "levels": [1, 5],
+  "variants": ["storm"],
+  "stats": {"speed": 13},
+  "affinity": {"fire": -25},
+  "abilities": [
+    {"id": "bite", "shape": "single", "side": "player", "power": 1.0, "drain": 20},
+    {"id": "overrun", "shape": "band:3", "side": "player", "power": 0.6, "cooldown": 1}
+  ],
+  "gambits": [
+    {"if": "swarm>=5", "do": "overrun"},
+    {"do": "bite", "target": "back_random"}
+  ],
+  "bestiary": {
+    "lore": "A cloud of them leaves every cave at dusk.",
+    "weakness": "Anything that hits a row. They fly: only the Front's melee reaches them."
+  }
+}

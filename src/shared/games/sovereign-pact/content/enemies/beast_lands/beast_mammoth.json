@@ -1,0 +1,29 @@
+{
+  "id": "beast_mammoth",
+  "name": "Mammoth",
+  "pool": "beast_lands",
+  "tags": ["beast"],
+  "role": "colossus",
+  "size": [2, 2],
+  "levels": [3, 6],
+  "stats": {"hp": 5, "speed": 7},
+  "affinity": {"fire": -50, "water": 25},
+  "immune": ["fear", "stun"],
+  "abilities": [
+    {"id": "trample", "shape": "band:2", "side": "player", "power": 1.2, "charge": 60, "telegraph": true, "cooldown": 2},
+    {"id": "tusk_sweep", "shape": "column:F", "side": "player", "power": 1.0},
+    {"id": "trunk_slam", "shape": "single", "side": "player", "power": 1.1}
+  ],
+  "gambits": [
+    {"if": "turn%3==1", "do": "trample"},
+    {"if": "turn%2==0", "do": "tusk_sweep"},
+    {"do": "trunk_slam", "target": "column_weighted"}
+  ],
+  "parts": [
+    {"id": "tusks", "name": "Tusks", "cells": [[0, 0], [0, 1]], "hp": 0.25, "disables": ["tusk_sweep"]}
+  ],
+  "bestiary": {
+    "lore": "The old herds still walk the plain. This one walks alone.",
+    "weakness": "Fire. Its tusks are a Part: break them and it only tramples."
+  }
+}

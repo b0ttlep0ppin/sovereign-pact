@@ -1,0 +1,27 @@
+{
+  "id": "beast_orc_king",
+  "name": "Orc King",
+  "pool": "beast_lands",
+  "tags": ["humanoid", "orc"],
+  "role": "elite",
+  "size": [1, 1],
+  "levels": [2, 5],
+  "stats": {"speed": 11},
+  "affinity": {"fire": -25},
+  "immune": ["fear"],
+  "abilities": [
+    {"id": "kings_cleave", "shape": "single", "side": "player", "power": 1.4, "locationBias": "body"},
+    {"id": "blood_oath", "shape": "self", "side": "self", "power": 0, "kind": "support", "statuses": [{"id": "might_up", "chance": 100, "ticks": 300, "value": 30}], "cooldown": 4},
+    {"id": "rallying_roar", "shape": "all", "side": "ally", "power": 0, "kind": "support", "cooldown": 4, "statuses": [{"id": "haste", "chance": 100, "ticks": 200}]}
+  ],
+  "gambits": [
+    {"if": "foe.charging", "do": "kings_cleave", "target": "charging"},
+    {"if": "turn%4==1", "do": "rallying_roar"},
+    {"if": "self.hp<0.5", "do": "blood_oath"},
+    {"do": "kings_cleave", "target": "lowest_durability"}
+  ],
+  "bestiary": {
+    "lore": "He won the crown by killing the last king with it.",
+    "weakness": "Fire. Kill him and the warband falters."
+  }
+}

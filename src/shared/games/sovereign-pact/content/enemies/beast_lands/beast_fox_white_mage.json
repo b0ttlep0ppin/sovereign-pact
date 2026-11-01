@@ -1,0 +1,25 @@
+{
+  "id": "beast_fox_white_mage",
+  "name": "Fox White Mage",
+  "pool": "beast_lands",
+  "tags": ["beastfolk"],
+  "role": "support",
+  "size": [1, 1],
+  "levels": [2, 6],
+  "stats": {"speed": 12},
+  "affinity": {"fire": 25, "water": -25},
+  "abilities": [
+    {"id": "fox_fire_balm", "shape": "single", "side": "ally", "power": 1.6, "kind": "heal", "element": "holy"},
+    {"id": "veil", "shape": "single", "side": "ally", "power": 0, "kind": "support", "statuses": [{"id": "protect", "chance": 100, "ticks": 300}], "cooldown": 3},
+    {"id": "foxfire", "shape": "single", "side": "player", "power": 0.8, "kind": "magic", "element": "fire", "reach": "ranged"}
+  ],
+  "gambits": [
+    {"if": "ally.hp<0.6", "do": "fox_fire_balm", "target": "ally_lowest_hp"},
+    {"if": "turn%3==0", "do": "veil", "target": "ally_lowest_hp"},
+    {"do": "foxfire", "target": "lowest_hp"}
+  ],
+  "bestiary": {
+    "lore": "A beast-folk healer. Some say she treats Scions too, for a price.",
+    "weakness": "Silence her. Water douses the foxfire."
+  }
+}

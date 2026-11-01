@@ -1,0 +1,25 @@
+{
+  "id": "beast_goblin_shaman",
+  "name": "Goblin Shaman",
+  "pool": "beast_lands",
+  "tags": ["humanoid", "goblin"],
+  "role": "support",
+  "size": [1, 1],
+  "levels": [1, 4],
+  "stats": {"speed": 11},
+  "affinity": {"fire": -25},
+  "abilities": [
+    {"id": "mend_hide", "shape": "single", "side": "ally", "power": 1.4, "kind": "heal"},
+    {"id": "mad_dance", "shape": "single", "side": "ally", "power": 0, "kind": "support", "statuses": [{"id": "haste", "chance": 100, "ticks": 200}], "cooldown": 3},
+    {"id": "stick_poke", "shape": "single", "side": "player", "power": 0.6}
+  ],
+  "gambits": [
+    {"if": "ally.hp<0.5", "do": "mend_hide", "target": "ally_lowest_hp"},
+    {"if": "turn%3==1", "do": "mad_dance"},
+    {"do": "stick_poke", "target": "nearest"}
+  ],
+  "bestiary": {
+    "lore": "Paints the others and sends them back in.",
+    "weakness": "Kill it first: everything else gets up again."
+  }
+}

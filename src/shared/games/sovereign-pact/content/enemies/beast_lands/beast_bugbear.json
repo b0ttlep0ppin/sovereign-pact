@@ -1,0 +1,23 @@
+{
+  "id": "beast_bugbear",
+  "name": "Bugbear",
+  "pool": "beast_lands",
+  "tags": ["humanoid", "goblin"],
+  "role": "fodder",
+  "size": [1, 1],
+  "levels": [3, 6],
+  "stats": {"hp": 0.9, "speed": 9},
+  "affinity": {"fire": -25},
+  "abilities": [
+    {"id": "club", "shape": "single", "side": "player", "power": 1.2, "statuses": [{"id": "stun", "chance": 10, "ticks": 100}]},
+    {"id": "ambush_grab", "shape": "single", "side": "player", "power": 0.8, "cooldown": 3, "statuses": [{"id": "rooted", "chance": 40, "ticks": 200}]}
+  ],
+  "gambits": [
+    {"if": "turn==1", "do": "ambush_grab", "target": "back_random"},
+    {"do": "club", "target": "column_weighted"}
+  ],
+  "bestiary": {
+    "lore": "A goblin's big cousin, and the reason goblins are brave.",
+    "weakness": "Fire. Slow to wake: hit it first."
+  }
+}

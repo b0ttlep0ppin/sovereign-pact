@@ -1,0 +1,23 @@
+{
+  "id": "beast_ogre",
+  "name": "Ogre",
+  "pool": "beast_lands",
+  "tags": ["giant"],
+  "role": "bruiser",
+  "size": [1, 1],
+  "levels": [3, 6],
+  "stats": {"hp": 1.8, "speed": 8},
+  "affinity": {"fire": -25},
+  "abilities": [
+    {"id": "smash", "shape": "single", "side": "player", "power": 1.4, "locationBias": "head", "statuses": [{"id": "stun", "chance": 15, "ticks": 100}]},
+    {"id": "stomp", "shape": "column:F", "side": "player", "power": 0.9, "charge": 60, "telegraph": true, "cooldown": 3}
+  ],
+  "gambits": [
+    {"if": "turn%3==2", "do": "stomp"},
+    {"do": "smash", "target": "lowest_durability"}
+  ],
+  "bestiary": {
+    "lore": "It is not cruel. It is simply hungry, and you are small.",
+    "weakness": "Fire. Slow; its stomp shakes the whole Front."
+  }
+}
