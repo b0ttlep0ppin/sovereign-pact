@@ -135,6 +135,7 @@
         "drain": { "type": "integer", "minimum": 1, "maximum": 100, "description": "Heals the user for this % of the damage dealt" },
         "leap": { "type": "boolean", "description": "A lurker's leap: reaches any Scion, then it stands Exposed (§14.3)" },
         "raise": { "type": "integer", "minimum": 1, "maximum": 100, "description": "Raises a fallen fodder or swarm ally at this % of its max HP" },
+        "pull": { "type": "integer", "minimum": 1, "maximum": 2, "description": "Drags each target this many columns toward its Front (a Kelpie's drag, §14.5)" },
         "cooldown": { "type": "integer", "minimum": 0 },
         "sanity": { "type": "number", "minimum": 0 },
         "readiness": { "type": "number", "minimum": 0 },

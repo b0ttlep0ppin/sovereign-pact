@@ -1,0 +1,23 @@
+{
+  "id": "marsh_frog",
+  "name": "Giant Frog",
+  "pool": "drowned_marches",
+  "tags": ["aquatic", "beast"],
+  "role": "fodder",
+  "size": [1, 1],
+  "levels": [2, 6],
+  "stats": {"speed": 10},
+  "affinity": {"water": 25, "wind": -25},
+  "abilities": [
+    {"id": "tongue_lash", "shape": "single", "side": "player", "power": 0.9, "reach": "ranged", "pull": 1},
+    {"id": "belly_slam", "shape": "single", "side": "player", "power": 1.1}
+  ],
+  "gambits": [
+    {"if": "turn%2==1", "do": "tongue_lash", "target": "back_random"},
+    {"do": "belly_slam", "target": "column_weighted"}
+  ],
+  "bestiary": {
+    "lore": "Its tongue reaches further than its legs. That is the trouble.",
+    "weakness": "Wind. It pulls Scions forward a column."
+  }
+}

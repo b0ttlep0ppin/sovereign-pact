@@ -65,6 +65,8 @@ export const STATUSES: Record<string, StatusMeta> = {
   /** A lurker that leapt into the formation (§14.3): any Scion's melee reaches it until its next turn. */
   exposed: { kind: "debuff", ticks: 0, endsOnTurn: true },
   rooted: { kind: "physical", ticks: 200 },
+  /** Under the water (§14.6 Scylla): nothing can target or reach it, area or not, until it surfaces. */
+  submerged: { kind: "buff", ticks: 200, fixed: true },
   // From Job abilities (§12.4–12.11): their value is the %.
   counter_up: { kind: "buff", ticks: 500 },
   thorns: { kind: "buff", ticks: 200 },

@@ -1,7 +1,7 @@
 // Who an ability can be aimed at and whom it hits when it lands (§10.2–10.3).
 import type { Rng } from "../../../rng.ts";
 import { reachOf } from "./damage.ts";
-import { cellsOf, frontEachRow, hasStatus, lineTargets, meleeTargets, other, shapeCells, standing, unitsIn } from "./grid.ts";
+import { cellsOf, frontEachRow, hasStatus, lineTargets, meleeTargets, other, shapeCells, standing, unitsIn, unseen } from "./grid.ts";
 import type { AbilityDef, Battle, Cell, Combatant, Side } from "./types.ts";
 
 /** The side `u` fights for: a Charmed combatant fights for the other one (§10.8). */
@@ -27,7 +27,7 @@ export function singleTargets(b: Battle, u: Combatant, ab: AbilityDef): Combatan
   if (ab.side === "self") return [u];
   if (ab.side === "ally") return b.units.filter((t) => !t.dead && t.side === side && !t.hazard && (ab.kind !== "heal" || !t.down));
   const reach = reachOf(u, ab);
-  if (reach === "ranged" || ab.leap || side === u.side) return standing(b, side).filter((t) => !hasStatus(t, "hidden"));
+  if (reach === "ranged" || ab.leap || side === u.side) return standing(b, side).filter((t) => !unseen(t));
   // A lurker that leapt in stands among the Scions: every Scion's melee reaches it (§14.3).
   const exposed = standing(b, side).filter((t) => hasStatus(t, "exposed"));
   if (u.side === "party") {
@@ -45,20 +45,20 @@ export function resolveTargets(b: Battle, rng: Rng, u: Combatant, ab: AbilityDef
   const side = targetSide(u, ab);
   const [name, arg] = ab.shape.split(":") as [string, string | undefined];
   const n = Number(arg ?? 1);
-  const foes = () => standing(b, side).filter((t) => !hasStatus(t, "hidden") || ab.side !== "foe");
+  const foes = () => standing(b, side).filter((t) => !unseen(t) || ab.side !== "foe");
   switch (name) {
     case "single":
     case "lob": {
       const followed = homingOn !== undefined ? b.units.find((t) => t.id === homingOn && !t.dead) : undefined;
       if (followed) return [followed];
-      const there = unitsIn(b, [at]).filter((t) => t.side === side);
+      const there = unitsIn(b, [at]).filter((t) => t.side === side && (!hasStatus(t, "submerged") || ab.side !== "foe"));
       // A single strike on a Down Scion only lands if it was aimed at them while Down (finish, AoE); otherwise it misses the cell.
       return there.filter((t) => !t.down || ab.side !== "foe");
     }
     case "line":
-      return lineTargets(b, u, n, u.row).filter((t) => t.side === side);
+      return lineTargets(b, u, n, u.row).filter((t) => t.side === side && (!hasStatus(t, "submerged") || ab.side !== "foe"));
     case "front_each_row":
-      return frontEachRow(b, side).filter((t) => !t.dead);
+      return frontEachRow(b, side).filter((t) => !t.dead && (!hasStatus(t, "submerged") || ab.side !== "foe"));
     case "nearest":
       return foes()
         .sort((x, y) => crossDistance(u, x) - crossDistance(u, y) || x.id - y.id)
@@ -69,7 +69,7 @@ export function resolveTargets(b: Battle, rng: Rng, u: Combatant, ab: AbilityDef
     }
     default: {
       const cells = shapeCells(ab.shape, at, u).map((c) => ({ ...c, side: name === "self" || name === "adjacent" || name === "ring" ? u.side : side }));
-      return unitsIn(b, cells).filter((t) => t.side === side || name === "self");
+      return unitsIn(b, cells).filter((t) => (t.side === side && (!hasStatus(t, "submerged") || ab.side !== "foe")) || name === "self");
     }
   }
 }

@@ -1,0 +1,23 @@
+{
+  "id": "marsh_kelpie",
+  "name": "Kelpie",
+  "pool": "drowned_marches",
+  "tags": ["aquatic", "beast", "fey"],
+  "role": "lurker",
+  "size": [1, 1],
+  "levels": [2, 7],
+  "stats": {"speed": 13},
+  "affinity": {"water": 25, "wind": -25, "holy": -25},
+  "abilities": [
+    {"id": "drag_under", "shape": "single", "side": "player", "power": 0.6, "reach": "ranged", "pull": 2, "statuses": [{"id": "slow", "chance": 40, "ticks": 200}]},
+    {"id": "bite", "shape": "single", "side": "player", "power": 0.9}
+  ],
+  "gambits": [
+    {"if": "turn%2==1", "do": "drag_under", "target": "back_random"},
+    {"do": "bite", "target": "column_weighted"}
+  ],
+  "bestiary": {
+    "lore": "A water-horse that offers a ride across the marsh. The ride goes down.",
+    "weakness": "Wind. It drags a Back Scion to the Front."
+  }
+}

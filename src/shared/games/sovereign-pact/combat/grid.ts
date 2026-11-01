@@ -4,6 +4,9 @@ import { COLS, ROWS, type Battle, type Cell, type Combatant, type Side } from ".
 
 export const other = (side: Side): Side => (side === "party" ? "enemy" : "party");
 
+/** Out of a foe's sight: Hidden (single targets) or Submerged (anything). */
+export const unseen = (t: Combatant): boolean => hasStatus(t, "hidden") || hasStatus(t, "submerged");
+
 /** Every cell a combatant stands on. */
 export function cellsOf(u: Combatant): Cell[] {
   const out: Cell[] = [];
@@ -53,7 +56,7 @@ export function distance(a: Combatant, b: Combatant): number {
  * Down Scions are not single-targetable (§10.9) and Hidden ones not at all.
  */
 export function meleeTargets(b: Battle, u: Combatant, reach: "melee" | "reach" = "melee"): Combatant[] {
-  const foes = standing(b, other(u.side)).filter((f) => !hasStatus(f, "hidden"));
+  const foes = standing(b, other(u.side)).filter((f) => !unseen(f));
   if (u.tags.includes("flyer")) return foes.filter((f) => rowsOf(f).some((r) => rowsOf(u).includes(r)));
   const out = new Set<Combatant>();
   for (const row of rowsOf(u)) {

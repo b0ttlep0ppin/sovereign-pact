@@ -1,0 +1,26 @@
+{
+  "id": "marsh_melusine",
+  "name": "Melusine",
+  "pool": "drowned_marches",
+  "tags": ["aquatic", "fey", "dragon"],
+  "role": "elite",
+  "size": [1, 1],
+  "levels": [3, 7],
+  "stats": {"speed": 12},
+  "affinity": {"water": 25, "wind": -25},
+  "immune": ["charm"],
+  "abilities": [
+    {"id": "serpent_coil", "shape": "single", "side": "player", "power": 1.3, "kind": "magic", "statuses": [{"id": "rooted", "chance": 50, "ticks": 200}], "element": "water", "reach": "ranged"},
+    {"id": "tail_lash", "shape": "column:F", "side": "player", "power": 1.1, "cooldown": 2},
+    {"id": "spring_water", "shape": "single", "side": "ally", "power": 1.5, "kind": "heal"}
+  ],
+  "gambits": [
+    {"if": "ally.hp<0.4", "do": "spring_water", "target": "ally_lowest_hp"},
+    {"if": "turn%2==0", "do": "tail_lash"},
+    {"do": "serpent_coil", "target": "lowest_hp"}
+  ],
+  "bestiary": {
+    "lore": "Half a woman, half a serpent, and the lady of a drowned castle.",
+    "weakness": "Wind. Her tail sweeps the Front."
+  }
+}

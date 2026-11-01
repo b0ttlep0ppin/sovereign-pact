@@ -1,0 +1,23 @@
+{
+  "id": "marsh_siren",
+  "name": "Siren",
+  "pool": "drowned_marches",
+  "tags": ["aquatic", "fey"],
+  "role": "caster",
+  "size": [1, 1],
+  "levels": [2, 7],
+  "stats": {"speed": 11},
+  "affinity": {"water": 50, "wind": -25},
+  "abilities": [
+    {"id": "siren_song", "shape": "row", "side": "player", "power": 0.2, "kind": "magic", "sanity": 4, "charge": 60, "telegraph": true, "cooldown": 3, "statuses": [{"id": "charm", "chance": 35, "ticks": 200}]},
+    {"id": "water_lance", "shape": "single", "side": "player", "power": 1.0, "kind": "magic", "element": "water", "reach": "ranged"}
+  ],
+  "gambits": [
+    {"if": "turn%3==1", "do": "siren_song", "target": "densest_row"},
+    {"do": "water_lance", "target": "lowest_hp"}
+  ],
+  "bestiary": {
+    "lore": "Her song carries over the water at dusk. The boats turn toward it.",
+    "weakness": "Wind. Deaf Scions cannot be sung to; interrupt the song."
+  }
+}

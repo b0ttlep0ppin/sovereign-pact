@@ -1,0 +1,24 @@
+{
+  "id": "marsh_drowned_villager",
+  "name": "Drowned Villager",
+  "pool": "drowned_marches",
+  "tags": ["aquatic", "undead"],
+  "role": "horror",
+  "size": [1, 1],
+  "levels": [3, 7],
+  "stats": {"speed": 8, "sanityTouch": 3},
+  "affinity": {"water": 25, "wind": -25, "holy": -50, "fire": -25, "dark": 50},
+  "immune": ["poison", "fear", "sleep"],
+  "abilities": [
+    {"id": "cold_embrace", "shape": "single", "side": "player", "power": 0.8, "sanity": 5, "statuses": [{"id": "slow", "chance": 30, "ticks": 200}]},
+    {"id": "waterlogged_wail", "shape": "band:3", "side": "player", "power": 0.3, "kind": "magic", "sanity": 6, "cooldown": 3, "element": "water"}
+  ],
+  "gambits": [
+    {"if": "turn%3==2", "do": "waterlogged_wail", "target": "densest_row"},
+    {"do": "cold_embrace", "target": "lowest_sanity"}
+  ],
+  "bestiary": {
+    "lore": "Someone from the old village under the lake. They know your name.",
+    "weakness": "Holy and fire. They came up for company."
+  }
+}

@@ -2,7 +2,8 @@
 // when their conditions hold, with new gambits and Speed, a dispel, regrown Parts, adds, flight, and lines.
 import { describe, expect, it } from "vitest";
 import { createRng } from "../../rng.ts";
-import { checkEnd } from "./combat/battle.ts";
+import { abilityOf, checkEnd, resolve } from "./combat/battle.ts";
+import { cellOf, resolveTargets, singleTargets } from "./combat/targets.ts";
 import { bossBattle, bossDef } from "./combat/bosses.ts";
 import { decide, holds } from "./combat/gambits.ts";
 import { standardParty } from "./combat/fixtures.ts";
@@ -209,5 +210,39 @@ describe("conditions the content may use", () => {
     expect(knownCondition("turn % 3 == 0")).toBe(true);
     expect(knownCondition("hp<half")).toBe(false);
     expect(knownCondition("turn%3==1 && whenever")).toBe(false);
+  });
+});
+
+describe("Scylla", () => {
+  const sc = () => {
+    const b = bossBattle(7, standardParty(7, 12), "scylla", 4);
+    const scylla = b.units.find((u) => u.enemy === "scylla")!;
+    const kelpies = b.units.filter((u) => u.enemy === "marsh_kelpie");
+    return { b, scylla, kelpies };
+  };
+
+  it("comes with two Kelpies beside her on E1, and a Kelpie's drag pulls a Back Scion to the Front", () => {
+    const { b, kelpies } = sc();
+    expect(kelpies).toHaveLength(2);
+    expect(kelpies.every((k) => k.col === 0)).toBe(true);
+    const back = b.units.find((u) => u.side === "party" && u.col === 2)!;
+    const drag = { ...abilityOf(kelpies[0]!, "drag_under")!, accuracy: 999 };
+    for (const u of b.units.filter((x) => x.side === "party" && x.row === back.row && x !== back)) u.row = (u.row + 3) % 8;
+    resolve(b, createRng(1), kelpies[0]!, drag, cellOf(back));
+    expect(back.col).toBe(0);
+  });
+
+  it("dives at half health: nothing can pick her or catch her in an area until she surfaces, and a Kelpie joins her", () => {
+    const { b, scylla, kelpies } = sc();
+    scylla.hp = Math.floor(scylla.maxHp * 0.5);
+    checkEnd(b);
+    expect(scylla.phase).toBe(1);
+    expect(scylla.statuses.some((s) => s.id === "submerged")).toBe(true);
+    expect(b.units.filter((u) => u.enemy === "marsh_kelpie" && !u.dead).length).toBe(kelpies.length + 1);
+    const scion = b.units.find((u) => u.side === "party")!;
+    const shot = { id: "test_shot", shape: "single", side: "foe", power: 1, reach: "ranged" } as const;
+    expect(singleTargets(b, scion, shot)).not.toContain(scylla);
+    const blast = { id: "test_blast", shape: "burst:3x3", side: "foe", power: 1 } as const;
+    expect(resolveTargets(b, createRng(1), scion, blast, cellOf(scylla))).not.toContain(scylla);
   });
 });

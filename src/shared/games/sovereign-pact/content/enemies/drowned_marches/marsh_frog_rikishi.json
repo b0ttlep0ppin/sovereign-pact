@@ -1,0 +1,25 @@
+{
+  "id": "marsh_frog_rikishi",
+  "name": "Frog Rikishi",
+  "pool": "drowned_marches",
+  "tags": ["aquatic", "beastfolk"],
+  "role": "bruiser",
+  "size": [1, 1],
+  "levels": [2, 7],
+  "stats": {"hp": 1.8, "speed": 8},
+  "affinity": {"water": 25, "wind": -25},
+  "abilities": [
+    {"id": "slap_barrage", "shape": "single", "side": "player", "power": 0.5, "hits": 3},
+    {"id": "sumo_shove", "shape": "single", "side": "player", "power": 1.2, "statuses": [{"id": "knockdown", "chance": 30, "ticks": 0}], "cooldown": 2},
+    {"id": "stomp_ritual", "shape": "self", "side": "self", "power": 0, "kind": "support", "statuses": [{"id": "guard_up", "chance": 100, "ticks": 300, "value": 25}], "cooldown": 4}
+  ],
+  "gambits": [
+    {"if": "turn==1", "do": "stomp_ritual"},
+    {"if": "turn%2==0", "do": "sumo_shove", "target": "lowest_durability"},
+    {"do": "slap_barrage", "target": "column_weighted"}
+  ],
+  "bestiary": {
+    "lore": "A champion of the frog-folk's bouts, who has never left the ring.",
+    "weakness": "Wind. Its slaps are light: Protect blunts them."
+  }
+}

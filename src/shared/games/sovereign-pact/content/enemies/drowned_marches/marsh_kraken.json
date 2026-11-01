@@ -1,0 +1,29 @@
+{
+  "id": "marsh_kraken",
+  "name": "Kraken",
+  "pool": "drowned_marches",
+  "tags": ["aquatic", "beast", "giant", "reach"],
+  "role": "colossus",
+  "size": [3, 4],
+  "levels": [4, 7],
+  "stats": {"speed": 7},
+  "affinity": {"water": 25, "wind": -25},
+  "immune": ["fear", "stun", "sleep"],
+  "abilities": [
+    {"id": "crushing_coils", "shape": "column:F", "side": "player", "power": 1.2, "cooldown": 2, "statuses": [{"id": "rooted", "chance": 40, "ticks": 200}]},
+    {"id": "tidal_slam", "shape": "band:4", "side": "player", "power": 1.2, "charge": 100, "telegraph": true, "cooldown": 3},
+    {"id": "beak_tear", "shape": "single", "side": "player", "power": 1.4}
+  ],
+  "gambits": [
+    {"if": "turn%3==1", "do": "tidal_slam"},
+    {"if": "turn%2==0", "do": "crushing_coils"},
+    {"do": "beak_tear", "target": "lowest_durability"}
+  ],
+  "parts": [
+    {"id": "tentacles", "name": "Tentacles", "cells": [[0, 0], [0, 1], [0, 2], [0, 3]], "hp": 0.2, "disables": ["crushing_coils"]}
+  ],
+  "bestiary": {
+    "lore": "The lake's own nightmare. The boats never go out past the reeds.",
+    "weakness": "Wind. Cut a tentacle and it cannot coil."
+  }
+}

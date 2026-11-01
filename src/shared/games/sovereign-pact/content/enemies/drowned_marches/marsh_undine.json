@@ -1,0 +1,24 @@
+{
+  "id": "marsh_undine",
+  "name": "Undine",
+  "pool": "drowned_marches",
+  "tags": ["aquatic", "spirit", "elemental"],
+  "role": "caster",
+  "size": [1, 1],
+  "levels": [2, 6],
+  "stats": {"speed": 11},
+  "affinity": {"water": 75, "wind": -25, "earth": -25},
+  "immune": ["poison", "bleed"],
+  "abilities": [
+    {"id": "tide_surge", "shape": "row", "side": "player", "power": 0.9, "kind": "magic", "element": "water"},
+    {"id": "drown", "shape": "single", "side": "player", "power": 1.2, "kind": "magic", "charge": 60, "cooldown": 2, "element": "water", "reach": "ranged"}
+  ],
+  "gambits": [
+    {"if": "turn%2==0", "do": "drown", "target": "lowest_hp"},
+    {"do": "tide_surge", "target": "densest_row"}
+  ],
+  "bestiary": {
+    "lore": "A spirit of the flood, wearing the water like a gown.",
+    "weakness": "Wind and Earth. Physical blows pass through her."
+  }
+}

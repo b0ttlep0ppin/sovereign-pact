@@ -1,0 +1,25 @@
+{
+  "id": "marsh_shark",
+  "name": "Shark",
+  "pool": "drowned_marches",
+  "tags": ["aquatic", "beast"],
+  "role": "elite",
+  "size": [1, 1],
+  "levels": [4, 7],
+  "stats": {"speed": 14},
+  "affinity": {"water": 25, "wind": -25},
+  "immune": ["fear"],
+  "abilities": [
+    {"id": "blood_frenzy", "shape": "single", "side": "player", "power": 1.6, "drain": 20, "crit": 20},
+    {"id": "fin_rush", "shape": "line:2", "side": "player", "power": 1.2, "cooldown": 2}
+  ],
+  "gambits": [
+    {"if": "foe.hp<0.5", "do": "blood_frenzy", "target": "lowest_hp"},
+    {"if": "turn%3==1", "do": "fin_rush"},
+    {"do": "blood_frenzy", "target": "column_weighted"}
+  ],
+  "bestiary": {
+    "lore": "It smells blood across the whole lake.",
+    "weakness": "Wind. It goes for the wounded."
+  }
+}

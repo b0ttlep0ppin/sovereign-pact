@@ -136,7 +136,7 @@ describe("content", () => {
   });
 
   // HANDOFF §6's roster lints, switched on for each pool as its roster is completed (Milestone 3).
-  const COMPLETE = ["barrows", "beast_lands", "hollow_wood"];
+  const COMPLETE = ["barrows", "beast_lands", "hollow_wood", "drowned_marches"];
   const BACK_LINE = (e: (typeof ENEMIES)[number]) => ["lurker", "artillery", "horror"].includes(e.role) || e.tags.includes("reach") || e.tags.includes("flyer");
 
   it.each(COMPLETE)("fills every template at every level of %s from its own roster", (id) => {
