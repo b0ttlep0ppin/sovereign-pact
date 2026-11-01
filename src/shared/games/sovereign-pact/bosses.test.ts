@@ -484,3 +484,73 @@ describe("the Cursed King", () => {
     expect(form.flags).toContain("knelt");
   });
 });
+
+describe("on-hit statuses", () => {
+  it("last their own default time, not the whole battle (a stunned boss wakes)", () => {
+    const b = bossBattle(21, standardParty(21, 9), "siege_beast", 3);
+    const beast = b.units.find((u) => u.enemy === "siege_beast")!;
+    const scion = b.units.find((u) => u.side === "party" && u.col === 0)!;
+    scion.mods["onHit.stun"] = 100;
+    beast.resist.physical = 0;
+    resolve(b, createRng(3), scion, { id: "test_blow", shape: "single", side: "foe", power: 1, reach: "ranged", accuracy: 999 }, cellOf(beast));
+    expect(beast.statuses.find((s) => s.id === "stun")?.ticks).toBe(100);
+  });
+});
+
+describe("the Unknown Mother", () => {
+  const nest = () => {
+    const b = bossBattle(23, standardParty(23, 24), "unknown_mother", 8);
+    const mother = b.units.find((u) => u.enemy === "unknown_mother")!;
+    const core = b.units.find((u) => u.partOf === mother.id)!;
+    const seeds = () => b.units.filter((u) => u.enemy === "void_unknown_seed" && !u.dead);
+    return { b, mother, core, seeds };
+  };
+
+  it("leaves the front column to her brood, with two Colonies at the start", () => {
+    const { b, mother } = nest();
+    expect([mother.col, mother.size]).toEqual([1, [2, 8]]);
+    expect(b.units.filter((u) => u.enemy === "void_unknown_colony" && !u.dead)).toHaveLength(2);
+  });
+
+  it("broods three Seeds, then consumes them all for 10% each", () => {
+    const { b, mother, seeds } = nest();
+    const rng = createRng(1);
+    resolve(b, rng, mother, abilityOf(mother, "brood")!, cellOf(mother));
+    expect(seeds()).toHaveLength(3);
+    mother.hp = Math.floor(mother.maxHp * 0.5);
+    const before = mother.hp;
+    resolve(b, rng, mother, abilityOf(mother, "consume")!, cellOf(mother));
+    expect(seeds()).toHaveLength(0);
+    expect(mother.hp - before).toBe(Math.round(mother.maxHp * 0.3));
+  });
+
+  it("cannot brood or sing while the Core is broken, and regrows it once at half", () => {
+    const { b, mother, core } = nest();
+    core.hp = 1;
+    resolve(b, createRng(1), b.units.find((u) => u.side === "party")!, { id: "test_blow", shape: "single", side: "foe", power: 5, reach: "ranged", accuracy: 999 }, cellOf(core));
+    expect(core.dead).toBe(true);
+    expect(mother.lost).toEqual(expect.arrayContaining(["brood", "lullaby"]));
+    mother.hp = Math.floor(mother.maxHp * 0.45);
+    checkEnd(b);
+    expect(core.dead).toBe(false);
+    expect(mother.lost ?? []).not.toContain("brood");
+  });
+
+  it("puts to sleep only the Scions who fail a Sanity check", () => {
+    const sleepers = (sanityFrac: number) => {
+      let n = 0;
+      for (let seed = 1; seed <= 40; seed++) {
+        const { b, mother } = nest();
+        const party = b.units.filter((u) => u.side === "party");
+        for (const p of party) Object.assign(p, { sanity: Math.round(p.maxSanity * sanityFrac), resist: { ...p.resist, mental: 0 } });
+        resolve(b, createRng(seed), mother, abilityOf(mother, "lullaby")!, cellOf(party[0]!));
+        n += party.filter((p) => p.statuses.some((s) => s.id === "sleep")).length;
+      }
+      return n / 160;
+    };
+    expect(sleepers(1)).toBe(0);
+    expect(sleepers(0)).toBe(1);
+    expect(sleepers(0.5)).toBeGreaterThan(0.3);
+    expect(sleepers(0.5)).toBeLessThan(0.7);
+  });
+});

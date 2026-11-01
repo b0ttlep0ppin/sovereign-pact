@@ -63,6 +63,10 @@ export interface AbilityDef {
   raise?: number;
   /** Eats living allies to heal (§14.7 Devour, Consume). */
   devour?: import("../content.ts").Devour;
+  /** Calls adds onto its grid (§14.7 Brood). */
+  call?: import("../content.ts").BossAdds;
+  /** Each target resists its statuses on a Sanity check (§14.7 Lullaby). */
+  sanityResists?: boolean;
   /** A shape from §10.2: single, row, column[:F|M|B], band:n, lob, line:n, cross, burst:3x3, burst:5x5, checker:a|b, front_each_row, nearest:n, random:n, all, self, adjacent, ring. */
   shape: string;
   /** Whose side it lands on, from the user's point of view. */

@@ -9,6 +9,7 @@ import scylla from "./scylla.json" with { type: "json" };
 import siege_beast from "./siege_beast.json" with { type: "json" };
 import stone_colossus from "./stone_colossus.json" with { type: "json" };
 import tree_king from "./tree_king.json" with { type: "json" };
+import unknown_mother from "./unknown_mother.json" with { type: "json" };
 import vampire_queen from "./vampire_queen.json" with { type: "json" };
 import village_evil_god from "./village_evil_god.json" with { type: "json" };
 
@@ -23,6 +24,7 @@ export default [
   siege_beast,
   stone_colossus,
   tree_king,
+  unknown_mother,
   vampire_queen,
   village_evil_god,
 ];

@@ -146,8 +146,8 @@ export function addStatus(b: Battle, u: Combatant, id: string, ticks?: number, e
   return true;
 }
 
-/** An ability's chance to inflict, then the target's resist (§10.6 step 7). */
-export function tryStatus(b: Battle, rng: Rng, u: Combatant, id: string, chance: number, ticks: number, value?: number, mods?: Record<string, number>): boolean {
+/** An ability's chance to inflict, then the target's resist (§10.6 step 7). No `ticks`: the status's own default; 0: the whole battle. */
+export function tryStatus(b: Battle, rng: Rng, u: Combatant, id: string, chance: number, ticks?: number, value?: number, mods?: Record<string, number>): boolean {
   if (rng.int(100) >= chance) return false;
   if (rng.int(100) < resistOf(u, id)) return false;
   return addStatus(b, u, id, ticks, extraOf(value, mods));
