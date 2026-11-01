@@ -2,6 +2,7 @@
 // playtests can move them without touching the rules (CLAUDE.md; HANDOFF §2, §9). Each entry names the
 // spec section it comes from. Values the spec leaves unset are implementation defaults, logged in
 // docs/DECISIONS.md; change them freely.
+import type { Material } from "./state.ts";
 
 /** Indexed by House count H − 1 (H = 1…4). */
 type ByHouses = readonly [number, number, number, number];
@@ -33,6 +34,34 @@ export const TUNING = {
     tithe: 0.1,
     /** §6.2: upkeep per Year. Retired pay half (rounded up). Implementation default. */
     upkeep: { scionGold: 4, scionGrain: 1, recruitGrain: 1 },
+  },
+
+  /** §8.3–8.4, first pass: building costs, limits and what buildings give. */
+  town: {
+    /**
+     * Cost by class and level (L1, L2, L3). §8.4's example is the standard row; producers are cheap and
+     * the Vault, Shrine and Crypt expensive. Implementation defaults beside it.
+     */
+    costs: {
+      cheap: [{ timber: 10, gold: 10 }, { timber: 20, stone: 10, gold: 25 }, { stone: 25, iron: 10, gold: 50 }],
+      standard: [{ timber: 20, gold: 20 }, { timber: 30, stone: 20, gold: 40 }, { stone: 40, iron: 20, gold: 80 }],
+      expensive: [{ timber: 30, stone: 10, gold: 40 }, { timber: 40, stone: 30, gold: 80 }, { stone: 60, iron: 30, essence: 10, gold: 150 }],
+    } as Record<"cheap" | "standard" | "expensive", readonly Partial<Record<"gold" | Material, number>>[]>,
+    /** Builds or upgrades a House may start in a Year (§8.3; Masons' Guild 2, when traits exist). */
+    buildsPerYear: 1,
+    /** Producer output per Year by level (§8.4). */
+    produce: [8, 16, 24],
+    /** The Mine at L3 yields a random rare material every this many Years. */
+    mineRareEvery: 3,
+    /** Shrine Essence per Year from L1. */
+    shrineEssence: 2,
+    /** Vault: Treasury score % by level; Gold interest % a Year from L2. */
+    vaultTreasuryPct: [10, 20, 30],
+    vaultInterestPct: 5,
+    /** Holdings points per building level (§3.4, first pass). */
+    holdingsPerLevel: 3,
+    /** Implementation default: materials each House starts with, scaled like income, so Year 1 can build. */
+    startStores: { timber: 30, stone: 10 },
   },
 
   /** §3.3. */

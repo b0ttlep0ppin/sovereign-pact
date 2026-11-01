@@ -1,0 +1,111 @@
+{
+  "buildings": [
+    {
+      "id": "training_ground",
+      "name": "Training Ground",
+      "cost": "standard",
+      "levels": ["1 Mentor seat (2 students).", "2 Mentor seats; students +50% JP.", "3 Mentor seats; trained recruits promote at level 5."]
+    },
+    {
+      "id": "scriptorium",
+      "name": "Scriptorium",
+      "cost": "standard",
+      "levels": ["Insight 1.", "Insight 2.", "Insight 3; once a Year, peek one expedition event."]
+    },
+    {
+      "id": "infirmary",
+      "name": "Infirmary",
+      "cost": "standard",
+      "levels": ["Moderate injuries heal 1 Year sooner.", "2 Scions treated per Year; disease immunity in town.", "A Devastating injury may be downgraded once per campaign."]
+    },
+    {
+      "id": "chapel",
+      "name": "Chapel",
+      "cost": "standard",
+      "levels": ["Sanity +25% per Year in town; a 2nd promotion slot.", "Mental ailment resist +10% for House Scions.", "Resurrection and redemption events become possible."]
+    },
+    {
+      "id": "forge",
+      "name": "Forge",
+      "cost": "standard",
+      "levels": ["Craft tier 1 weapons and armor; repair.", "Tier 2; reforge (reroll one gear property).", "Tier 3; rare-material recipes."]
+    },
+    {
+      "id": "workshop",
+      "name": "Workshop",
+      "cost": "standard",
+      "levels": ["Consumables; Tinkerers start with +1 Component.", "Thrown weapons, traps, prosthetics.", "Constructs can be pre-built for battle."]
+    },
+    {
+      "id": "hall_of_petitions",
+      "name": "Hall of Petitions",
+      "cost": "standard",
+      "levels": ["Recruit arrival +25%.", "Choose between 2 arriving recruits.", "Recruits arrive with Insight 1 revealed."]
+    },
+    {
+      "id": "vault",
+      "name": "Vault",
+      "cost": "expensive",
+      "levels": ["Treasury score +10%; immune to theft events.", "Treasury score +20%; 5% interest a Year on Gold.", "Treasury score +30%; Relics score +10%."]
+    },
+    {
+      "id": "shrine",
+      "name": "Shrine",
+      "cost": "expensive",
+      "levels": ["Essence +2 per Year; affinity +5% for House Scions.", "Element spells −10% MP.", "Once per expedition, one Scion is immune to the House's element for a battle."]
+    },
+    {
+      "id": "crypt",
+      "name": "Crypt",
+      "cost": "expensive",
+      "levels": ["A Chronicle; Sanity loss from a Scion's death −50%.", "Haunting events can be bargained with.", "The dead can be asked one question per Year."]
+    },
+    {
+      "id": "farm",
+      "name": "Farm",
+      "cost": "cheap",
+      "produces": "grain",
+      "levels": ["+8 Grain per Year.", "+16 Grain per Year.", "+24 Grain per Year."]
+    },
+    {
+      "id": "lumber_camp",
+      "name": "Lumber Camp",
+      "cost": "cheap",
+      "produces": "timber",
+      "levels": ["+8 Timber per Year.", "+16 Timber per Year.", "+24 Timber per Year."]
+    },
+    {
+      "id": "quarry",
+      "name": "Quarry",
+      "cost": "cheap",
+      "produces": "stone",
+      "levels": ["+8 Stone per Year.", "+16 Stone per Year.", "+24 Stone per Year."]
+    },
+    {
+      "id": "mine",
+      "name": "Mine",
+      "cost": "cheap",
+      "produces": "iron",
+      "levels": ["+8 Iron per Year.", "+16 Iron per Year.", "+24 Iron per Year; one random rare material every 3 Years."]
+    },
+    {
+      "id": "kennels",
+      "name": "Kennels",
+      "cost": "standard",
+      "levels": ["Beast companions in Sorties.", "Conjurer beast summons +15% HP.", "Alterer beast forms last longer."]
+    },
+    {
+      "id": "watchtower",
+      "name": "Watchtower",
+      "cost": "standard",
+      "levels": ["Preview next Year's settlement event category.", "Ambush events on expeditions: your Scions act first.", "Preview the exact event."]
+    }
+  ],
+  "rareMaterials": [
+    { "id": "wyrmbone", "name": "Wyrmbone" },
+    { "id": "moonsilver", "name": "Moonsilver" },
+    { "id": "voidglass", "name": "Voidglass" },
+    { "id": "saints_ash", "name": "Saint's Ash" },
+    { "id": "hollow_ivory", "name": "Hollow Ivory" }
+  ]
+}

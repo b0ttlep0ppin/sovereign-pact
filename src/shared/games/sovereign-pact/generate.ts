@@ -113,8 +113,12 @@ export function randomHouse(rng: Rng, takenNames: readonly string[], takenColors
     // Implementation default: each House starts with one Year's income in hand.
     gold: Math.round(TUNING.economy.income.gold * scale),
     debt: 0,
-    stores: { grain: Math.round(TUNING.economy.income.grain * scale) },
+    stores: {
+      grain: Math.round(TUNING.economy.income.grain * scale),
+      ...Object.fromEntries(Object.entries(TUNING.town.startStores).map(([m, n]) => [m, Math.round(n * scale)])),
+    },
     buildings: {},
+    works: [],
     chronicle: [],
     sealed: false,
   };
