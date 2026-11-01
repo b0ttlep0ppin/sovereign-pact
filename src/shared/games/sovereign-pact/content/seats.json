@@ -1,0 +1,12 @@
+{
+  "seats": [
+    { "id": "keep", "name": "Keep", "flavor": "Grey stone, narrow windows, no surrender." },
+    { "id": "chateau", "name": "Chateau", "flavor": "Gilded halls built on older, darker cellars." },
+    { "id": "manor", "name": "Manor", "flavor": "Ivy, hounds and a long table." },
+    { "id": "abbey", "name": "Abbey", "flavor": "Bells at every hour, and something under the crypt." },
+    { "id": "spire", "name": "Spire", "flavor": "A tower that hums when the stars align." },
+    { "id": "catacomb_hall", "name": "Catacomb Hall", "flavor": "The house above is modest. The house below is not." },
+    { "id": "longhall", "name": "Longhall", "flavor": "Smoke, mead, oaths sworn on old iron." },
+    { "id": "harbor_house", "name": "Harbor House", "flavor": "Salt-stained, half on the water." }
+  ]
+}

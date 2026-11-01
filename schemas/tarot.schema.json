@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Tarot: the 22 Major Arcana dealt one per Scion (SPEC §6.8)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["cards"],
+  "properties": {
+    "cards": {
+      "type": "array",
+      "minItems": 22,
+      "maxItems": 22,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "number", "name", "crunch"],
+        "properties": {
+          "id": { "$ref": "defs.schema.json#/definitions/id" },
+          "number": { "type": "integer", "minimum": 0, "maximum": 21 },
+          "name": { "type": "string", "minLength": 1 },
+          "crunch": { "type": "string", "minLength": 1, "description": "The exact bonus, shown in Crunch Mode" }
+        }
+      }
+    }
+  }
+}

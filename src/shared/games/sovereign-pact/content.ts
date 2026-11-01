@@ -1,0 +1,149 @@
+// The content catalog: everything under content/ as typed data. Rules read content only through here,
+// by id, so Josh can edit the JSON (validated by schemas/ in CI) without touching rules (CLAUDE.md).
+import banshee from "./content/enemies/barrows/barrow_banshee.json" with { type: "json" };
+import cursedArcher from "./content/enemies/barrows/barrow_cursed_archer.json" with { type: "json" };
+import ghost from "./content/enemies/barrows/barrow_ghost.json" with { type: "json" };
+import hollowSoldier from "./content/enemies/barrows/barrow_hollow_soldier.json" with { type: "json" };
+import skeleton from "./content/enemies/barrows/barrow_skeleton.json" with { type: "json" };
+import heraldryJson from "./content/heraldry.json" with { type: "json" };
+import injuriesJson from "./content/injuries.json" with { type: "json" };
+import namesJson from "./content/names.json" with { type: "json" };
+import seatsJson from "./content/seats.json" with { type: "json" };
+import tarotJson from "./content/tarot.json" with { type: "json" };
+import type { Element, Location } from "./state.ts";
+
+export interface TarotCard {
+  id: string;
+  number: number;
+  name: string;
+  crunch: string;
+}
+
+export interface SeatStyle {
+  id: string;
+  name: string;
+  flavor: string;
+}
+
+export interface Swatch {
+  id: string;
+  name: string;
+  hex: string;
+}
+
+export interface Heraldry {
+  palette: readonly Swatch[];
+  shields: readonly string[];
+  divisions: readonly string[];
+  metals: readonly string[];
+  charges: readonly string[];
+}
+
+export interface Names {
+  given: { f: readonly string[]; m: readonly string[] };
+  houses: readonly string[];
+  mottos: readonly string[];
+}
+
+export type InjuryBand = "devastating" | "moderate" | "mild" | "shrug";
+export type InjuryTableId = "head" | "body" | "arms" | "legs" | "sanity";
+
+/** One row of an injury or Sanity table (§11); content/injuries.json, schemas/injuries.schema.json. */
+export interface InjuryResult {
+  id: string;
+  /** The highest final roll that lands here. */
+  max: number;
+  band: InjuryBand;
+  name: string;
+  text: string;
+  death?: true;
+  mortal?: true;
+  catatonic?: true;
+  trauma?: true;
+  boon?: true;
+  scar?: true;
+  disfiguring?: true;
+  fear?: true;
+  statuses?: { id: string; ticks: number }[];
+  tp?: number;
+  tpSet?: number;
+  hpPct?: number;
+  sanity?: number;
+  sanityTo?: number;
+  durabilityTo?: number;
+  dent?: string;
+  flags?: string[];
+  stat?: Record<string, number>;
+  battle?: Record<string, number>;
+  expedition?: Record<string, number>;
+  lasting?: { years: number; mods: Record<string, number> };
+}
+
+export interface InjuryTable {
+  id: InjuryTableId;
+  results: readonly InjuryResult[];
+}
+
+export const INJURY_TABLES = injuriesJson.tables as readonly InjuryTable[];
+export const INJURY_TABLE_BY_ID = new Map(INJURY_TABLES.map((t) => [t.id, t]));
+export const INJURY_BY_ID: ReadonlyMap<string, InjuryResult> = new Map(INJURY_TABLES.flatMap((t) => t.results.map((r) => [r.id, r] as const)));
+
+export type EnemyRole = "fodder" | "swarm" | "bruiser" | "caster" | "support" | "lurker" | "artillery" | "horror" | "elite" | "colossus" | "boss";
+
+/** An enemy ability as content writes it: `side` is "player" (the Scions' grid), "ally" or "self" (§14.1). */
+export interface EnemyAbility {
+  id: string;
+  shape: string;
+  side: "player" | "ally" | "self";
+  power: number;
+  base?: number;
+  kind?: "physical" | "magic" | "heal";
+  element?: Element | null;
+  reach?: "melee" | "reach" | "ranged";
+  locationBias?: Location;
+  cost?: number;
+  charge?: number;
+  telegraph?: boolean;
+  homing?: boolean;
+  cooldown?: number;
+  sanity?: number;
+  readiness?: number;
+  hits?: number;
+  accuracy?: number;
+  crit?: number;
+  statuses?: { id: string; chance: number; ticks: number; value?: number }[];
+}
+
+/** One enemy (§14.1): content/enemies/<pool>/<id>.json, schemas/enemies.schema.json. */
+export interface EnemyDef {
+  id: string;
+  name: string;
+  pool: string;
+  tags: string[];
+  role: EnemyRole;
+  size: [number, number];
+  levels: [number, number];
+  /** Multipliers on the level's block, replacing the role's; `speed` is absolute (§14.2). */
+  stats?: { hp?: number; atk?: number; def?: number; acc?: number; eva?: number; speed?: number; sanityTouch?: number };
+  affinity?: Partial<Record<Element, number>>;
+  immune?: string[];
+  weak?: { location: Location; mult: number };
+  abilities: EnemyAbility[];
+  gambits: { if?: string; do: string; target?: string }[];
+  bestiary?: { lore: string; weakness: string };
+}
+
+/** Every enemy file. A new file is added here once (one import per file keeps the rules free of bundler globs). */
+export const ENEMIES = [skeleton, hollowSoldier, ghost, cursedArcher, banshee] as unknown as readonly EnemyDef[];
+export const ENEMY_BY_ID: ReadonlyMap<string, EnemyDef> = new Map(ENEMIES.map((e) => [e.id, e]));
+
+export const TAROT: readonly TarotCard[] = tarotJson.cards;
+export const SEATS: readonly SeatStyle[] = seatsJson.seats;
+export const HERALDRY: Heraldry = heraldryJson;
+export const NAMES: Names = namesJson;
+
+const byId = <T extends { id: string }>(items: readonly T[]): ReadonlyMap<string, T> => new Map(items.map((item) => [item.id, item]));
+
+export const TAROT_BY_ID = byId(TAROT);
+export const SEAT_BY_ID = byId(SEATS);
+export const SWATCH_BY_ID = byId(HERALDRY.palette);

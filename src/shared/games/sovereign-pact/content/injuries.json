@@ -1,0 +1,94 @@
+{
+  "tables": [
+    {
+      "id": "head",
+      "results": [
+        { "id": "head_skull_crushed", "max": 1, "band": "devastating", "name": "Skull crushed", "text": "Death.", "death": true },
+        { "id": "head_blinded", "max": 2, "band": "devastating", "name": "Blinded", "text": "Permanent Blind: Accuracy -30%, cannot target beyond adjacent cells without a passive. Cure only by event.", "lasting": { "years": -1, "mods": { "accuracy": -30 } } },
+        { "id": "head_concussion", "max": 3, "band": "moderate", "name": "Concussion", "text": "Acuity -25%, charge times +50%, mental resist -20%. 3 Years.", "lasting": { "years": 3, "mods": { "acuityPct": -25, "chargePct": 50, "mentalResist": -20 } } },
+        { "id": "head_shattered_jaw", "max": 4, "band": "moderate", "name": "Shattered jaw", "text": "Mute: no Minstrel songs, no Soothing Voice, no spoken event options. 2 Years.", "lasting": { "years": 2, "mods": { "mute": 1 } } },
+        { "id": "head_lost_eye", "max": 5, "band": "moderate", "name": "Lost eye", "text": "Accuracy -10% and Head Durability -10%, permanent, but not Retire-worthy.", "scar": true, "lasting": { "years": -1, "mods": { "accuracy": -10, "headDurabilityPct": -10 } } },
+        { "id": "head_cracked_skull", "max": 7, "band": "moderate", "name": "Cracked skull", "text": "Head Durability -50%, mental resist -20%. 2 Years.", "lasting": { "years": 2, "mods": { "headDurabilityPct": -50, "mentalResist": -20 } } },
+        { "id": "head_dazed", "max": 9, "band": "mild", "name": "Dazed", "text": "Stun now; Confusion 100 ticks.", "statuses": [{ "id": "stun", "ticks": 100 }, { "id": "confusion", "ticks": 100 }] },
+        { "id": "head_scalp_torn", "max": 11, "band": "mild", "name": "Scalp torn", "text": "Bleed (Head) and Blind 100 ticks.", "statuses": [{ "id": "bleed", "ticks": 0 }, { "id": "blind", "ticks": 100 }] },
+        { "id": "head_ears_ringing", "max": 13, "band": "mild", "name": "Ears ringing", "text": "Deaf this battle.", "statuses": [{ "id": "deaf", "ticks": 0 }] },
+        { "id": "head_knocked_senseless", "max": 15, "band": "mild", "name": "Knocked senseless", "text": "Knockdown.", "statuses": [{ "id": "knockdown", "ticks": 0 }] },
+        { "id": "head_scar", "max": 17, "band": "shrug", "name": "A scar to remember", "text": "Sanity -5.", "scar": true, "sanity": -5 },
+        { "id": "head_nothing", "max": 19, "band": "shrug", "name": "Nothing", "text": "The blow glances off." },
+        { "id": "head_clarity", "max": 99, "band": "shrug", "name": "Clarity", "text": "Head Durability refills to 50%; the next spell charges instantly.", "boon": true, "durabilityTo": 50, "flags": ["instant_charge"] }
+      ]
+    },
+    {
+      "id": "body",
+      "results": [
+        { "id": "body_run_through", "max": 1, "band": "devastating", "name": "Run through", "text": "Death.", "death": true },
+        { "id": "body_mortal_wound", "max": 2, "band": "devastating", "name": "Mortal wound", "text": "They know. They fight anyway. Last Stand until the battle ends, then death.", "mortal": true },
+        { "id": "body_punctured_lung", "max": 3, "band": "moderate", "name": "Punctured lung", "text": "Max HP -25%; cannot Sortie. 3 Years.", "lasting": { "years": 3, "mods": { "maxHpPct": -25, "noSortie": 1 } } },
+        { "id": "body_broken_ribs", "max": 4, "band": "moderate", "name": "Broken ribs", "text": "Body Durability -50%, Might -20%. 2 Years.", "lasting": { "years": 2, "mods": { "bodyDurabilityPct": -50, "mightPct": -20 } } },
+        { "id": "body_internal_bleeding", "max": 5, "band": "moderate", "name": "Internal bleeding", "text": "Bleed persists across the expedition; healing received -50% until an Infirmary or Soothsayer cure.", "statuses": [{ "id": "bleed", "ticks": 0 }], "lasting": { "years": 0, "mods": { "healingReceivedPct": -50, "persistentBleed": 1 } } },
+        { "id": "body_cracked_ribs", "max": 7, "band": "moderate", "name": "Cracked ribs", "text": "Body Durability -30%. 1 Year.", "lasting": { "years": 1, "mods": { "bodyDurabilityPct": -30 } } },
+        { "id": "body_winded", "max": 9, "band": "mild", "name": "Winded", "text": "TP set to 0; Stun.", "tpSet": 0, "statuses": [{ "id": "stun", "ticks": 100 }] },
+        { "id": "body_gashed", "max": 11, "band": "mild", "name": "Gashed", "text": "Bleed this battle.", "statuses": [{ "id": "bleed", "ticks": 0 }] },
+        { "id": "body_bruised_deep", "max": 13, "band": "mild", "name": "Bruised deep", "text": "Damage taken +10% and Defend costs 100 this battle.", "battle": { "damageTakenPct": 10, "defendCost": 100 } },
+        { "id": "body_staggered", "max": 15, "band": "mild", "name": "Staggered", "text": "Knockdown.", "statuses": [{ "id": "knockdown", "ticks": 0 }] },
+        { "id": "body_armor_dented", "max": 17, "band": "shrug", "name": "Armor dented", "text": "Body armor -1 quality until repaired.", "dent": "body" },
+        { "id": "body_nothing", "max": 19, "band": "shrug", "name": "Nothing", "text": "The armor holds." },
+        { "id": "body_second_wind", "max": 99, "band": "shrug", "name": "Second wind", "text": "HP +20%; TP +20.", "boon": true, "hpPct": 20, "tp": 20 }
+      ]
+    },
+    {
+      "id": "arms",
+      "results": [
+        { "id": "arms_severed", "max": 1, "band": "devastating", "name": "Arm severed", "text": "That hand's slot is gone: no two-handed weapons, no dual wield, no shield in that hand.", "disfiguring": true, "lasting": { "years": -1, "mods": { "lostHand": 1 } } },
+        { "id": "arms_hand_mangled", "max": 2, "band": "devastating", "name": "Hand mangled", "text": "Accuracy -15% permanent; cannot dual wield or play instruments.", "lasting": { "years": -1, "mods": { "accuracy": -15, "noDualWield": 1, "noInstruments": 1 } } },
+        { "id": "arms_broken_arm", "max": 3, "band": "moderate", "name": "Broken arm", "text": "That hand's slot unusable; spell charge +50%. 3 Years.", "lasting": { "years": 3, "mods": { "lostHand": 1, "chargePct": 50 } } },
+        { "id": "arms_torn_shoulder", "max": 4, "band": "moderate", "name": "Torn shoulder", "text": "Might -25%; two-handed weapons -20% damage. 2 Years.", "lasting": { "years": 2, "mods": { "mightPct": -25, "twoHandedPct": -20 } } },
+        { "id": "arms_crushed_fingers", "max": 5, "band": "moderate", "name": "Crushed fingers", "text": "No knives, bows, instruments or lockpick options. 2 Years.", "lasting": { "years": 2, "mods": { "noFineWeapons": 1, "noInstruments": 1 } } },
+        { "id": "arms_sprained", "max": 7, "band": "moderate", "name": "Sprained", "text": "Arms Durability -50% for 1 Year; Accuracy -10% this expedition.", "lasting": { "years": 1, "mods": { "armsDurabilityPct": -50 } }, "expedition": { "accuracy": -10 } },
+        { "id": "arms_disarmed", "max": 9, "band": "mild", "name": "Disarmed", "text": "Weapon dropped on the cell: a turn to pick it up (or fight unarmed); Stun.", "statuses": [{ "id": "stun", "ticks": 100 }, { "id": "disarmed", "ticks": 0 }] },
+        { "id": "arms_numb", "max": 11, "band": "mild", "name": "Numb arm", "text": "Physical damage -30% this battle.", "battle": { "physicalDamagePct": -30 } },
+        { "id": "arms_bleeding", "max": 13, "band": "mild", "name": "Bleeding arm", "text": "Bleed this battle.", "statuses": [{ "id": "bleed", "ticks": 0 }] },
+        { "id": "arms_jarred", "max": 15, "band": "mild", "name": "Jarred", "text": "TP -30.", "tp": -30 },
+        { "id": "arms_gauntlet_dented", "max": 17, "band": "shrug", "name": "Gauntlet dented", "text": "Arm armor -1 quality until repaired.", "dent": "arms" },
+        { "id": "arms_nothing", "max": 19, "band": "shrug", "name": "Nothing", "text": "The arm holds." },
+        { "id": "arms_adrenaline", "max": 99, "band": "shrug", "name": "Adrenaline", "text": "TP +30; next physical ability is a guaranteed crit.", "boon": true, "tp": 30, "flags": ["next_crit"] }
+      ]
+    },
+    {
+      "id": "legs",
+      "results": [
+        { "id": "legs_severed", "max": 1, "band": "devastating", "name": "Leg severed", "text": "Speed -3; cannot Move; Evasion -30%.", "disfiguring": true, "lasting": { "years": -1, "mods": { "speed": -3, "noMove": 1, "evasion": -30 } } },
+        { "id": "legs_pelvis_shattered", "max": 2, "band": "devastating", "name": "Pelvis shattered", "text": "Speed -2 permanent; movement CT x2.", "lasting": { "years": -1, "mods": { "speed": -2, "moveCostPct": 100 } } },
+        { "id": "legs_broken_leg", "max": 3, "band": "moderate", "name": "Broken leg", "text": "Speed -2; cannot Move. 3 Years.", "lasting": { "years": 3, "mods": { "speed": -2, "noMove": 1 } } },
+        { "id": "legs_torn_knee", "max": 4, "band": "moderate", "name": "Torn knee", "text": "Evasion -20%; Speed -1. 2 Years.", "lasting": { "years": 2, "mods": { "evasion": -20, "speed": -1 } } },
+        { "id": "legs_lamed", "max": 5, "band": "moderate", "name": "Lamed", "text": "Movement CT x2; cannot Sortie. 2 Years.", "lasting": { "years": 2, "mods": { "moveCostPct": 100, "noSortie": 1 } } },
+        { "id": "legs_sprained_ankle", "max": 7, "band": "moderate", "name": "Sprained ankle", "text": "Legs Durability -50% for 1 Year; Speed -1 this expedition.", "lasting": { "years": 1, "mods": { "legsDurabilityPct": -50 } }, "expedition": { "speed": -1 } },
+        { "id": "legs_swept", "max": 9, "band": "mild", "name": "Swept", "text": "Knockdown; Slow 200 ticks.", "statuses": [{ "id": "knockdown", "ticks": 0 }, { "id": "slow", "ticks": 200 }] },
+        { "id": "legs_hamstrung", "max": 11, "band": "mild", "name": "Hamstrung", "text": "Cannot Move this battle; Evasion -20%.", "battle": { "noMove": 1, "evasion": -20 } },
+        { "id": "legs_bleeding", "max": 13, "band": "mild", "name": "Bleeding leg", "text": "Bleed this battle.", "statuses": [{ "id": "bleed", "ticks": 0 }] },
+        { "id": "legs_tripped", "max": 15, "band": "mild", "name": "Tripped", "text": "Knockdown.", "statuses": [{ "id": "knockdown", "ticks": 0 }] },
+        { "id": "legs_boots_ruined", "max": 17, "band": "shrug", "name": "Boots ruined", "text": "Legs Durability -5 this expedition.", "expedition": { "legsDurability": -5 } },
+        { "id": "legs_nothing", "max": 19, "band": "shrug", "name": "Nothing", "text": "They keep their feet." },
+        { "id": "legs_surge", "max": 99, "band": "shrug", "name": "Surge", "text": "Haste 200 ticks; Legs Durability refills to 50%.", "boon": true, "statuses": [{ "id": "haste", "ticks": 200 }], "durabilityTo": 50 }
+      ]
+    },
+    {
+      "id": "sanity",
+      "results": [
+        { "id": "sanity_mind_shattered", "max": 1, "band": "devastating", "name": "Mind shattered", "text": "Permanent Madness: acts randomly in battle; a source of House events in town.", "trauma": true, "statuses": [{ "id": "madness", "ticks": 0 }], "lasting": { "years": -1, "mods": { "madness": 1 } } },
+        { "id": "sanity_thrall", "max": 2, "band": "devastating", "name": "Thrall of the Rift", "text": "At the start of every battle, 25% chance to be Charmed for 200 ticks; whispers leak one House secret a Year.", "lasting": { "years": -1, "mods": { "thrall": 1 } } },
+        { "id": "sanity_catatonic", "max": 3, "band": "moderate", "name": "Catatonic", "text": "Down for the rest of the battle (not revivable); Sanity recovery -50% for 3 Years; a trauma incident is queued.", "trauma": true, "catatonic": true, "lasting": { "years": 3, "mods": { "sanityRecoveryPct": -50 } } },
+        { "id": "sanity_obsession", "max": 4, "band": "moderate", "name": "Obsession", "text": "Must attack the enemy type that broke them first; Berserk against it; Sanity -10 when it appears. 2 Years.", "trauma": true, "lasting": { "years": 2, "mods": { "obsession": 1 } } },
+        { "id": "sanity_night_terrors", "max": 5, "band": "moderate", "name": "Night terrors", "text": "Nightmares until a Chapel L2 slot treats it; a trauma incident is queued.", "trauma": true, "lasting": { "years": -1, "mods": { "nightmares": 1 } } },
+        { "id": "sanity_panic", "max": 7, "band": "moderate", "name": "Panic", "text": "Fear 300 ticks; max Sanity -20% this expedition.", "statuses": [{ "id": "fear", "ticks": 300 }], "expedition": { "maxSanityPct": -20 } },
+        { "id": "sanity_hysteria", "max": 9, "band": "mild", "name": "Hysteria", "text": "Confusion 200 ticks.", "statuses": [{ "id": "confusion", "ticks": 200 }] },
+        { "id": "sanity_frozen", "max": 11, "band": "mild", "name": "Frozen", "text": "Stun 100 ticks; next action +25 CT.", "statuses": [{ "id": "stun", "ticks": 100 }], "battle": { "nextActionCt": 25 } },
+        { "id": "sanity_shaken", "max": 13, "band": "mild", "name": "Shaken", "text": "Accuracy and spell accuracy -15% this battle.", "battle": { "accuracy": -15 } },
+        { "id": "sanity_weeping", "max": 15, "band": "mild", "name": "Weeping", "text": "Skip the next turn.", "statuses": [{ "id": "skip_turn", "ticks": 0 }] },
+        { "id": "sanity_new_fear", "max": 17, "band": "shrug", "name": "A new fear", "text": "Gains a fear the events remember.", "fear": true },
+        { "id": "sanity_nothing", "max": 19, "band": "shrug", "name": "Nothing", "text": "They steady themselves." },
+        { "id": "sanity_clarity", "max": 99, "band": "shrug", "name": "Clarity", "text": "Sanity refills to 50%; Acuity +1 permanent.", "boon": true, "sanityTo": 50, "stat": { "acuity": 1 } }
+      ]
+    }
+  ]
+}

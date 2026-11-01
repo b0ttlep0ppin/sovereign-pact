@@ -1,0 +1,15 @@
+{
+  // The rules as Vibe Pulse checks them (its shared/tsconfig.json): plain ES2023, no DOM or Node types.
+  // A rule that reaches for `window`, `document`, `process` or `fs` fails here.
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "lib": ["ES2023"],
+    "types": [],
+    "jsx": "preserve",
+    // Vibe Pulse loads these files with Node's type stripping: only TypeScript that erases.
+    "erasableSyntaxOnly": true,
+    "paths": {}
+  },
+  "include": ["src/shared"],
+  "exclude": ["**/*.test.ts"]
+}

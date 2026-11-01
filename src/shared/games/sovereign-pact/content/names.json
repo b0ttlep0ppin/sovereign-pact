@@ -1,0 +1,27 @@
+{
+  "given": {
+    "f": [
+      "Adela", "Agnes", "Aldith", "Alys", "Amice", "Anselma", "Avelina", "Beatrix", "Berenice", "Brunhild",
+      "Cecily", "Clemence", "Constance", "Dervla", "Edith", "Elspeth", "Emeline", "Ermengarde", "Esclarmonde", "Euphemia",
+      "Gisela", "Godiva", "Gunhild", "Hawise", "Helewise", "Hildegard", "Isolde", "Ivetta", "Joan", "Juliana",
+      "Leofrun", "Lettice", "Mabel", "Maud", "Melisende", "Morwenna", "Odile", "Petronilla", "Rohese", "Sybil",
+      "Tiphaine", "Ursula", "Wynflaed", "Ysabel"
+    ],
+    "m": [
+      "Aldous", "Alaric", "Ambrose", "Anselm", "Baldric", "Bartholomew", "Benedict", "Bertrand", "Cuthbert", "Drogo",
+      "Eadric", "Edmund", "Engelram", "Everard", "Faramond", "Fulk", "Gervase", "Godric", "Guthrum", "Hamelin",
+      "Hereward", "Hugh", "Ingram", "Ivo", "Jocelin", "Lambert", "Leofric", "Mauger", "Odo", "Osric",
+      "Peregrine", "Ralf", "Reynard", "Roderick", "Sigeric", "Simeon", "Theobald", "Thurstan", "Ulric", "Waleran",
+      "Wystan", "Ywain"
+    ]
+  },
+  "houses": [
+    "Vane", "Ashgrave", "Morrow", "Blackwell", "Cindermoor", "Dunhollow", "Esk", "Fenwrath", "Greymantle", "Halloway",
+    "Ironside", "Kestrel", "Lachrymore", "Marrowind", "Nightingale", "Orrin", "Pellucid", "Quillon", "Ravensward", "Sallow",
+    "Thorne", "Umbral", "Varlow", "Wraithe"
+  ],
+  "mottos": [
+    "We endure.", "Nothing is forgotten.", "Blood before bread.", "The night keeps its debts.",
+    "Ask, and be answered.", "Stone remembers.", "First in, last out.", "Our dead are watching."
+  ]
+}

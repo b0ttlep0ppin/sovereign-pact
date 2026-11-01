@@ -1,0 +1,139 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "One enemy: content/enemies/<pool>/<id>.json (SPEC §14.1)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "name", "pool", "tags", "role", "size", "levels", "abilities", "gambits"],
+  "properties": {
+    "id": { "$ref": "defs.schema.json#/definitions/id" },
+    "name": { "type": "string", "minLength": 1, "maxLength": 40 },
+    "sprite": {
+      "type": "object",
+      "description": "Where the art comes from; resolved by the sprite manifest in Milestone 8",
+      "additionalProperties": false,
+      "required": ["pack", "series", "file"],
+      "properties": {
+        "pack": { "type": "integer", "minimum": 1 },
+        "series": { "type": "string" },
+        "file": { "type": "string" },
+        "scale": { "type": "number", "exclusiveMinimum": 0 },
+        "tint": { "type": ["string", "null"] },
+        "flip": { "type": "boolean" }
+      }
+    },
+    "pool": { "$ref": "defs.schema.json#/definitions/id" },
+    "tags": { "type": "array", "uniqueItems": true, "items": { "$ref": "defs.schema.json#/definitions/id" } },
+    "role": { "enum": ["fodder", "swarm", "bruiser", "caster", "support", "lurker", "artillery", "horror", "elite", "colossus", "boss"] },
+    "size": {
+      "type": "array",
+      "description": "Columns × rows on the enemy grid",
+      "items": [
+        { "type": "integer", "minimum": 1, "maximum": 3 },
+        { "type": "integer", "minimum": 1, "maximum": 8 }
+      ],
+      "minItems": 2,
+      "maxItems": 2
+    },
+    "levels": {
+      "type": "array",
+      "description": "The expedition levels it appears at, inclusive",
+      "items": [
+        { "type": "integer", "minimum": 1, "maximum": 10 },
+        { "type": "integer", "minimum": 1, "maximum": 10 }
+      ],
+      "minItems": 2,
+      "maxItems": 2
+    },
+    "stats": {
+      "type": "object",
+      "description": "Multipliers on the level's base block, replacing the role's; speed is absolute (§14.2)",
+      "additionalProperties": false,
+      "properties": {
+        "hp": { "type": "number", "exclusiveMinimum": 0 },
+        "atk": { "type": "number", "minimum": 0 },
+        "def": { "type": "number", "minimum": 0 },
+        "acc": { "type": "number", "exclusiveMinimum": 0 },
+        "eva": { "type": "number", "minimum": 0 },
+        "speed": { "type": "number", "minimum": 1, "maximum": 30 },
+        "sanityTouch": { "type": "number", "minimum": 0, "maximum": 20 }
+      }
+    },
+    "affinity": {
+      "type": "object",
+      "additionalProperties": false,
+      "patternProperties": { "^(holy|dark|fire|water|earth|wind)$": { "type": "number", "minimum": -100, "maximum": 100 } }
+    },
+    "immune": { "type": "array", "uniqueItems": true, "items": { "$ref": "defs.schema.json#/definitions/id" } },
+    "weak": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["location", "mult"],
+      "properties": { "location": { "$ref": "#/definitions/location" }, "mult": { "type": "number", "minimum": 1 } }
+    },
+    "abilities": { "type": "array", "minItems": 1, "items": { "$ref": "#/definitions/ability" } },
+    "gambits": { "type": "array", "minItems": 1, "items": { "$ref": "#/definitions/gambit" } },
+    "drops": { "type": "object", "description": "Loot rules, used from Milestone 6" },
+    "bestiary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["lore", "weakness"],
+      "properties": { "lore": { "type": "string" }, "weakness": { "type": "string" } }
+    }
+  },
+  "definitions": {
+    "location": { "enum": ["head", "body", "arms", "legs"] },
+    "ability": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "shape", "side", "power"],
+      "properties": {
+        "id": { "$ref": "defs.schema.json#/definitions/id" },
+        "shape": {
+          "type": "string",
+          "pattern": "^(single|row|column(:[FMB])?|band:[1-8]|lob|line:[1-3]|cross|burst:(3x3|5x5)|checker:[ab]|front_each_row|nearest:[1-9]|random:[1-9]|all|self|adjacent|ring)$"
+        },
+        "side": { "enum": ["player", "ally", "self"], "description": "The players' grid, its own side, or itself" },
+        "power": { "type": "number", "minimum": 0 },
+        "base": { "type": "number", "minimum": 0 },
+        "kind": { "enum": ["physical", "magic", "heal"] },
+        "element": { "enum": ["holy", "dark", "fire", "water", "earth", "wind", null] },
+        "reach": { "enum": ["melee", "reach", "ranged"] },
+        "locationBias": { "$ref": "#/definitions/location" },
+        "cost": { "type": "integer", "minimum": 10, "maximum": 200 },
+        "charge": { "type": "integer", "minimum": 0, "description": "Ticks before Acuity" },
+        "telegraph": { "type": "boolean" },
+        "homing": { "type": "boolean" },
+        "cooldown": { "type": "integer", "minimum": 0 },
+        "sanity": { "type": "number", "minimum": 0 },
+        "readiness": { "type": "number", "minimum": 0 },
+        "hits": { "type": "integer", "minimum": 1, "maximum": 10 },
+        "accuracy": { "type": "number" },
+        "crit": { "type": "number" },
+        "statuses": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["id", "chance", "ticks"],
+            "properties": {
+              "id": { "$ref": "defs.schema.json#/definitions/id" },
+              "chance": { "type": "number", "minimum": 0, "maximum": 100 },
+              "ticks": { "type": "integer", "minimum": 0 },
+              "value": { "type": "number" }
+            }
+          }
+        }
+      }
+    },
+    "gambit": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["do"],
+      "properties": {
+        "if": { "type": "string" },
+        "do": { "type": "string" },
+        "target": { "type": "string" }
+      }
+    }
+  }
+}

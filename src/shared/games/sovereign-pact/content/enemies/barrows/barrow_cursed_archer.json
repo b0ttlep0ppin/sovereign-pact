@@ -1,0 +1,58 @@
+{
+  "id": "barrow_cursed_archer",
+  "name": "Cursed Archer",
+  "pool": "barrows",
+  "tags": ["undead", "humanoid"],
+  "role": "artillery",
+  "size": [1, 1],
+  "levels": [2, 8],
+  "stats": {
+    "speed": 8,
+    "sanityTouch": 0
+  },
+  "affinity": {
+    "holy": -50,
+    "dark": 50
+  },
+  "immune": ["poison", "fear"],
+  "abilities": [
+    {
+      "id": "cursed_arrow",
+      "shape": "lob",
+      "side": "player",
+      "power": 1.0,
+      "reach": "ranged",
+      "statuses": [
+        {
+          "id": "bleed",
+          "chance": 20,
+          "ticks": 0
+        }
+      ]
+    },
+    {
+      "id": "arrow_rain",
+      "shape": "column:B",
+      "side": "player",
+      "power": 1.6,
+      "reach": "ranged",
+      "charge": 150,
+      "telegraph": true,
+      "cooldown": 4
+    }
+  ],
+  "gambits": [
+    {
+      "if": "turn % 4 == 2",
+      "do": "arrow_rain"
+    },
+    {
+      "do": "cursed_arrow",
+      "target": "lob"
+    }
+  ],
+  "bestiary": {
+    "lore": "The bowstring is a dead man's hair, and it never slackens.",
+    "weakness": "Reach it: it cannot run, and its volley needs time."
+  }
+}

@@ -1,0 +1,217 @@
+// The campaign's state: plain JSON, the single source of truth the reducer works over (SPEC §4.2).
+// Content is stored by id, never by text, so a 20-Year, 4-House checkpoint fits 64 KB (§4.4).
+// Hidden information (Ambition, exact score, pledges, Loyalty, unrevealed recruit potential, Pact
+// marks) lives here like everything else and is filtered out per seat by view.ts.
+import type { PlayerId } from "../../game.ts";
+
+export const ELEMENTS = ["holy", "dark", "fire", "water", "earth", "wind"] as const;
+/** Three opposed pairs: Holy/Dark, Fire/Water, Earth/Wind (§5.6). */
+export type Element = (typeof ELEMENTS)[number];
+
+/** The six core stats, in the order every {@link Six} uses (§7.1). */
+export const STATS = ["might", "resilience", "guile", "acuity", "sagacity", "speed"] as const;
+export type Stat = (typeof STATS)[number];
+/** One number per core stat, in {@link STATS} order. */
+export type Six = [number, number, number, number, number, number];
+
+export const LOCATIONS = ["head", "body", "arms", "legs"] as const;
+/** Hit locations; "hands" is Arms (§7.4). */
+export type Location = (typeof LOCATIONS)[number];
+
+export const MATERIALS = ["grain", "timber", "stone", "iron", "essence"] as const;
+export type Material = (typeof MATERIALS)[number];
+/** Materials by id: the five common ones plus rare materials (wyrmbone, moonsilver…) by content id (§8.1). */
+export type Stores = Partial<Record<string, number>>;
+
+export const SCORE_CATEGORIES = ["lineage", "valor", "treasury", "holdings", "lore", "renown", "intrigue", "relics"] as const;
+/** The eight Ascendancy categories (§3.4). */
+export type ScoreCategory = (typeof SCORE_CATEGORIES)[number];
+export type Score = Record<ScoreCategory, number>;
+
+/** Doubles one category and halves another; secret to its House (§3.4). */
+export interface Ambition {
+  double: ScoreCategory;
+  halve: ScoreCategory;
+}
+
+export type StandingTier = "waning" | "steady" | "rising" | "ascendant";
+
+export const BASE_JOBS = ["soldier", "knight", "magus", "soothsayer", "vagabond", "pugilist", "minstrel", "gambler"] as const;
+export const ADVANCED_JOBS = ["ravager", "sword_saint", "abjurer", "conjurer", "tinkerer", "alterer"] as const;
+export type JobId = (typeof BASE_JOBS)[number] | (typeof ADVANCED_JOBS)[number];
+
+export type PotentialTier = "common" | "promising" | "gifted" | "prodigy";
+
+/** Where a person stands in the lifecycle (§6.1). The dead leave `people` for their House's Chronicle. */
+export type PersonStatus = "recruit" | "scion" | "retired" | "lost";
+
+export const GEAR_SLOTS = ["main", "off", "head", "body", "arms", "legs", "acc1", "acc2"] as const;
+export type GearSlot = (typeof GEAR_SLOTS)[number];
+
+/** The counters event resolution rules read (§9.4: most kills, most expeditions, the healer…). */
+export const HIST_KEYS = ["kills", "expeditions", "led", "healing", "targeted", "bosses", "sorties", "devastating", "dead_comrades"] as const;
+export type HistKey = (typeof HIST_KEYS)[number];
+
+/** A lasting injury result (§11.2). `years` −1 is permanent. */
+export interface Injury {
+  /** The injury table result's content id, e.g. "head_lost_eye". */
+  id: string;
+  years: number;
+}
+
+/**
+ * A recruit, Scion or Retired Scion: one small record (§6.3). Rates are integers in hundredths so the
+ * rules stay exact and the save stays small.
+ */
+export interface Person {
+  id: number;
+  status: PersonStatus;
+  /** Birth House (index into `houses`). */
+  house: number;
+  /** Current House: differs from `house` for a Ward (§6.9). */
+  host: number;
+  name: string;
+  sex: "f" | "m";
+  /** Sprite layer ids (§5.8); filled by the sprite pipeline in Milestone 8. */
+  look: string[];
+  age: number;
+  base: Six;
+  /** Growth per level, in hundredths (§7.2: 40–160). */
+  growth: Six;
+  /** Fractional growth carried between levels, in hundredths. */
+  carry: Six;
+  /** Hidden until Insight reveals it (§6.4). */
+  potential: PotentialTier;
+  level: number;
+  xp: number;
+  /** Primary Job; recruits have none. */
+  job: JobId | null;
+  secondary?: JobId;
+  /** JP banked per Job. */
+  jp: Partial<Record<JobId, number>>;
+  /** Jobs with every ability bought (§12.1); their abilities are not listed again in `learned`. */
+  mastered: JobId[];
+  /** Abilities and passives bought in Jobs not yet mastered, by content id. */
+  learned: string[];
+  /** Passives equipped against the budget, by content id. */
+  passives: string[];
+  /** Individual trait ids (§6.7). */
+  traits: string[];
+  /** Major Arcana id (§6.8); hidden on recruits until promotion or Insight 3. */
+  tarot: string;
+  reversed?: true;
+  /** Element deltas granted by events, on top of House and traits. */
+  aff?: Partial<Record<Element, number>>;
+  injuries: Injury[];
+  /** Current Sanity and MP: both persist between battles (§7.1, §7.4). */
+  sanity: number;
+  mp: number;
+  /** Item instance ids, owned by the host House (§13.8). */
+  gear: Partial<Record<GearSlot, number>>;
+  /** Counters event rules read: kills, expeditions, heals, times targeted… (§9.4). */
+  hist: Partial<Record<HistKey, number>>;
+  /** Wards only: 0–100, hidden from both Houses (§6.9). */
+  loyalty?: number;
+}
+
+/** A dead Scion, kept in the House's Chronicle (§6.13). */
+export interface ChronicleEntry {
+  name: string;
+  year: number;
+  /** Cause of death, as a content id (an injury result, a boss…). */
+  cause: string;
+  level: number;
+}
+
+export interface Emblem {
+  shield: string;
+  division: string;
+  /** Field tinctures, as palette ids. */
+  tinctures: string[];
+  charge: string;
+  secondary?: string;
+}
+
+export interface House {
+  name: string;
+  motto: string;
+  /** Primary and secondary palette ids (§5.1). */
+  colors: [string, string];
+  emblem: Emblem;
+  /** The House's home on the Town Map; cosmetic (§5.5). */
+  seat: string;
+  /** Elemental affinity, or null for Unaligned (§5.6). */
+  element: Element | null;
+  /** House trait ids: Majors, Minors, Flaws, or a Bloodline (§5.7). */
+  traits: string[];
+  /** Music track id for the Settlement theme (§5.9). */
+  theme: string;
+  /** Hidden: only this House sees it. */
+  ambition: Ambition;
+  /** Hidden: the raw points per category, before the Ambition (§3.4). */
+  score: Score;
+  /** Hidden: Pact marks from Dark Bargains, revealed only at the final score (§14.7a). */
+  pactMarks: number;
+  gold: number;
+  /** Owed Gold (Debt-Ridden, unpaid upkeep). */
+  debt: number;
+  stores: Stores;
+  /** Building id → level 1–3 (§8.4). */
+  buildings: Partial<Record<string, number>>;
+  chronicle: ChronicleEntry[];
+  /** Pressed Seal the Year (§8.2). */
+  sealed: boolean;
+}
+
+/** A queued thing on the 20-Year strip (§8.7). Hidden entries show as "?" until revealed. */
+export interface TimelineEntry {
+  year: number;
+  /** Content id of the event or consequence. */
+  id: string;
+  /** House index it concerns, if any. */
+  house?: number;
+  hidden?: true;
+}
+
+export type Phase = "omens" | "settlement" | "expedition" | "reckoning" | "over";
+
+export interface CampaignOptions {
+  /** Flavor shows trait text only; Crunch shows exact numbers (§5.2). */
+  display: "flavor" | "crunch";
+  length: "full" | "short";
+}
+
+export interface SovState {
+  /** State version, for saves. */
+  v: 1;
+  /** The seeded RNG's state: applyMove has no Rng of its own, so it carries on from here. */
+  rng: number;
+  opts: CampaignOptions;
+  /** Seat order; House i belongs to players[i]. Never saved (saves hold no player ids). */
+  players: PlayerId[];
+  year: number;
+  phase: Phase;
+  /** Moves made since the current phase opened; the checkpoint is the phase's first state. */
+  phaseMoves: number;
+  houses: House[];
+  /** Every living recruit, Scion, Retired and Lost person, all Houses together (Wards move between them). */
+  people: Person[];
+  nextId: number;
+  /** The settlement's shared stockpile, fed by the tithe, spent by vote (§8.1). */
+  commons: { gold: number; stores: Stores };
+  /** Accord with 2+ Houses; Unrest with one (same scale, §3.3). At 0 the campaign is lost. */
+  accord: number;
+  /** At 100 the city is overwhelmed (§3.3). */
+  doom: number;
+  timeline: TimelineEntry[];
+  /** Campaign-wide flags set by events, by id. */
+  flags: string[];
+  /** Recent public happenings, newest last. Not saved. */
+  log: string[];
+  /** Set when the campaign ends. */
+  outcome?: { won: boolean; reason: string };
+}
+
+export type SovMove =
+  | { type: "seal" }
+  | { type: "unseal" };

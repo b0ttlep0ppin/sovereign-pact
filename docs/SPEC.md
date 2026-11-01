@@ -541,7 +541,7 @@ Event-granted, always with a `unique` trait that no generation can roll, often a
 | Movement CT cost | 20 per cell moved, −1 per 5 Guile, minimum 10 |
 | Charge time | Ability base × 100 / (100 + Acuity) |
 
-Elemental affinity is clamped to −100…+100 (+100 = immune). Opposed pairs: Holy/Dark, Fire/Water, Earth/Wind.
+Elemental affinity is clamped to −100…+100 (+100 = immune). Opposed pairs: Holy/Dark, Fire/Water, Earth/Wind. [DECIDED 2026-11-01] Lightning is Wind: wherever this spec says Lightning (pool weaknesses, storm creatures), read Wind.
 
 ### 7.4 Hits and locations [DECIDED]
 
