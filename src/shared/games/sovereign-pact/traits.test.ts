@@ -55,6 +55,6 @@ describe("rolling individual traits (§6.3)", () => {
     const plain = scionCombatant(scion, { id: 1, col: 0, row: 3 });
     const fleet = scionCombatant({ ...scion, traits: ["fleet", "thick_skull"] }, { id: 1, col: 0, row: 3 });
     expect(fleet.mods.speed).toBe(1);
-    expect(fleet.maxDur.head).toBeGreaterThan(plain.maxDur.head);
+    expect(fleet.maxDur!.head).toBeGreaterThan(plain.maxDur!.head);
   });
 });
