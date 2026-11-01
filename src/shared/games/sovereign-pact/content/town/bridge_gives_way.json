@@ -1,0 +1,17 @@
+{
+  "id": "bridge_gives_way",
+  "scope": "settlement",
+  "weight": 2,
+  "years": [1, 20],
+  "title": "The Bridge Gives Way",
+  "text": "The great bridge, older than any House, groans and drops a span into the river. Half the city's trade crossed it.",
+  "rule": "pledges",
+  "crisis": {
+    "need": { "timber": 30, "stone": 20 },
+    "temptation": { "label": "Run your own ferry while the bridge is down.", "text": "A tidy profit, as long as the bridge stays down a while.", "penalty": 15, "effects": [{ "resources": { "gold": 25 } }] },
+    "triumph": { "text": "The new span is finer than the old.", "effects": [{ "accord": 3 }] },
+    "holds": { "text": "Timber trestles carry the trade until better can be built.", "effects": [] },
+    "falters": { "text": "Trade dwindles for a season.", "effects": [{ "accord": -5 }, { "resources": { "gold": -10 }, "to": "all" }] },
+    "calamity": { "text": "The river is a wall. The markets starve.", "effects": [{ "accord": -10 }, { "resources": { "gold": -20 }, "to": "all" }] }
+  }
+}

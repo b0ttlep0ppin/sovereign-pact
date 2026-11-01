@@ -11,8 +11,9 @@ import { placements } from "./score.ts";
 import { BASE_JOBS, type CampaignOptions, type House, type SovMove, type SovState } from "./state.ts";
 import { assign, cannotAssign } from "./assign.ts";
 import { cannotPledge, pledge } from "./commons.ts";
+import { cannotCrisisPledge, cannotTempt, crisisPledge, tempt } from "./crisis.ts";
 import { cannotPropose, cannotVote, castVote, propose } from "./votes.ts";
-import { botAssign, botBuild, botPledge, botPropose, botVote } from "./bot.ts";
+import { botAssign, botBuild, botCrisis, botPledge, botPropose, botVote } from "./bot.ts";
 import { build, cannotBuild, unbuild } from "./town.ts";
 import { forHouses, TUNING } from "./tuning.ts";
 import { view, type SovView } from "./view.ts";
@@ -152,6 +153,24 @@ export function applyMove(state: SovState, playerId: PlayerId, move: SovMove): M
       s.phaseMoves += 1;
       return { ok: true, state: s };
     }
+    case "crisis_pledge": {
+      if (s.phase !== "settlement") return fail("Pledges are made in the Settlement Phase.");
+      if (h.sealed) return fail("Unseal the Year first.");
+      const why = cannotCrisisPledge(s, house, move.give ?? {});
+      if (why) return fail(why);
+      crisisPledge(s, house, move.give);
+      s.phaseMoves += 1;
+      return { ok: true, state: s };
+    }
+    case "tempt": {
+      if (s.phase !== "settlement") return fail("Nothing tempts you now.");
+      if (h.sealed) return fail("Unseal the Year first.");
+      const why = cannotTempt(s, house);
+      if (why) return fail(why);
+      tempt(s, house);
+      s.phaseMoves += 1;
+      return { ok: true, state: s };
+    }
     case "propose": {
       if (s.phase !== "settlement") return fail("Proposals are made in the Settlement Phase.");
       if (h.sealed) return fail("Unseal the Year first.");
@@ -222,6 +241,8 @@ export function botMove(s: SovState, playerId: PlayerId): SovMove {
   const house = houseOf(s, playerId);
   if (house >= 0 && s.phase === "settlement" && s.vote && s.vote.by[house] === null) return { type: "vote", choice: botVote(s) };
   if (house >= 0 && s.phase === "settlement" && !s.houses[house]!.sealed) {
+    const help = botCrisis(s, house);
+    if (help) return { type: "crisis_pledge", give: help };
     const job = botAssign(s, house);
     if (job) return { type: "assign", ...job };
     const next = botBuild(s, house);

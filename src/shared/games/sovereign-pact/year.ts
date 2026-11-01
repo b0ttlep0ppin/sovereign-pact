@@ -9,6 +9,7 @@ import type { House, SovState } from "./state.ts";
 import { built, completeProjects } from "./commons.ts";
 import { completeWorks, produce } from "./town.ts";
 import { settleVote } from "./votes.ts";
+import { drawCrisis, resolveCrisis } from "./crisis.ts";
 import { forHouses, TUNING } from "./tuning.ts";
 
 /** A deep copy, so a rule never changes the state it was given (plain JSON, so this is exact). */
@@ -38,7 +39,8 @@ export function openYear(s: SovState): void {
   log(s, `Year ${s.year} of ${campaignYears(s)}.`);
   const due = mandatoryYears(s).filter((y) => y > s.year && y - s.year <= 2);
   for (const y of due) log(s, `The timeline darkens: a mandatory expedition comes in Year ${y}.`);
-  // Omens draws settlement and House events here (Milestone 4).
+  // Omens: this Year's Crisis (the other settlement and House events come next).
+  drawCrisis(s);
   s.phase = "settlement";
   s.phaseMoves = 0;
   s.proposers = [];
@@ -49,6 +51,7 @@ export function openYear(s: SovState): void {
 export function closeSettlement(s: SovState): void {
   // An open vote is settled with the votes cast; the rest abstain.
   settleVote(s);
+  resolveCrisis(s);
   s.phase = "expedition";
   // The Rift Gate, the party and the chain go here (Milestone 6).
   log(s, "No expedition departs: the Rift Gate is not yet built.");

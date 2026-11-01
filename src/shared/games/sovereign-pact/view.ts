@@ -53,6 +53,8 @@ export interface PrivateHouse {
   stores: Stores;
   /** The Scriptorium's level: how much of a recruit shows (§6.4). */
   insight: number;
+  /** This House's own Crisis pledge, and whether it gave in to the temptation. */
+  crisis: { pledge: Partial<Record<string, number>>; tempted: boolean } | null;
   /** This House's Year assignments, by person id (§8.3). */
   assign: Record<number, Assignment>;
 }
@@ -100,6 +102,8 @@ export interface SovView {
   accord: number;
   doom: number;
   commons: SovState["commons"];
+  /** This Year's Crisis: its Need is public, every pledge private (§3.5). */
+  crisis: { id: string; need: Partial<Record<string, number>> } | null;
   /** The open vote, cast in the open (§8.1). */
   vote: SovState["vote"] | null;
   /** Hidden entries show only their Year. */
@@ -189,6 +193,7 @@ export function view(s: SovState, playerId: PlayerId): SovView {
     doom: s.doom,
     commons: s.commons,
     vote: s.vote ?? null,
+    crisis: s.crisis ? { id: s.crisis.id, need: s.crisis.need } : null,
     timeline: s.timeline.map((t) => ({ year: t.year, id: t.hidden ? "?" : t.id })),
     houses: s.houses.map((h, i) => publicHouse(s, h, i)),
     mine:
@@ -202,6 +207,7 @@ export function view(s: SovState, playerId: PlayerId): SovView {
             debt: own.debt,
             stores: own.stores,
             insight,
+            crisis: s.crisis ? { pledge: s.crisis.pledges[me]!, tempted: s.crisis.tempted[me]! } : null,
             assign: Object.fromEntries(s.people.filter((p) => p.host === me && s.assign[p.id]).map((p) => [p.id, s.assign[p.id]!])),
           },
     people,

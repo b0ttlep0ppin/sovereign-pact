@@ -86,12 +86,19 @@ describe("the Settlement Phase", () => {
 });
 
 describe("a whole campaign with bots", () => {
-  it.each([1, 2, 3, 4])("runs %i Houses to the end of Year 20 and names a Sovereign", (H) => {
+  it.each([1, 2, 3, 4])("runs %i Houses to an end: a Sovereign after Year 20, or a loss together", (H) => {
     const end = playOut(campaign(H, 7));
-    expect(end.year).toBe(20);
     const res = g.result(end)!;
     expect(res.kind).toBe("win");
     if (res.kind !== "win") return;
+    expect(g.activePlayers(end)).toEqual([]);
+    if (!end.outcome!.won) {
+      // Crises can break the settlement before Year 20 (§3.3).
+      expect(res.winners).toEqual([]);
+      expect(end.accord <= 0 || end.doom >= 100).toBe(true);
+      return;
+    }
+    expect(end.year).toBe(20);
     expect(res.winners).toEqual(seats(H));
     expect(Object.values(res.seats!).some((seat) => seat.placement === 1)).toBe(true);
     expect(g.describeResult!(end)).toMatch(/throne/);

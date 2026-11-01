@@ -1,0 +1,17 @@
+{
+  "id": "breach_in_the_wall",
+  "scope": "settlement",
+  "weight": 3,
+  "years": [3, 20],
+  "title": "The Breach in the Wall",
+  "text": "Something came up from the rift in the night and went back down again. It left a hole in the east wall wide enough for a cart.",
+  "rule": "pledges",
+  "crisis": {
+    "need": { "stone": 30, "iron": 15 },
+    "temptation": { "label": "Let the masons take your quarry's best stone home.", "text": "The foreman offers to look the other way on a few loads, for a share.", "penalty": 15, "effects": [{ "resources": { "stone": 15 } }] },
+    "triumph": { "text": "The breach is sealed stronger than before.", "effects": [{ "accord": 3 }, { "doom": -2 }] },
+    "holds": { "text": "Patched, and watched.", "effects": [] },
+    "falters": { "text": "The patch holds badly; things slip through on moonless nights.", "effects": [{ "accord": -5 }, { "doom": 5 }] },
+    "calamity": { "text": "The breach stands open. The next expedition must wait while the walls are manned.", "effects": [{ "accord": -10 }, { "doom": 10 }, { "flag": "expedition_delayed" }] }
+  }
+}
