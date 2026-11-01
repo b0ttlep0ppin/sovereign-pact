@@ -220,7 +220,7 @@ export function describeResult(s: SovState): string | null {
 /** The settlement bot is cautious (HANDOFF §3.4): it builds what it can afford by its plan, then seals. */
 export function botMove(s: SovState, playerId: PlayerId): SovMove {
   const house = houseOf(s, playerId);
-  if (house >= 0 && s.phase === "settlement" && s.vote && s.vote.by[house] === null) return { type: "vote", choice: botVote(s, house) };
+  if (house >= 0 && s.phase === "settlement" && s.vote && s.vote.by[house] === null) return { type: "vote", choice: botVote(s) };
   if (house >= 0 && s.phase === "settlement" && !s.houses[house]!.sealed) {
     const job = botAssign(s, house);
     if (job) return { type: "assign", ...job };

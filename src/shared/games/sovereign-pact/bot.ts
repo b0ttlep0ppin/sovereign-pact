@@ -170,7 +170,7 @@ export function botPropose(s: SovState, house: number): string | null {
 }
 
 /** The bot votes for spending the Commons on any project of its plan, against the rest. */
-export function botVote(s: SovState, _house: number): number {
+export function botVote(s: SovState): number {
   const v = s.vote!;
   return v.kind === "spend" && PROJECT_PLAN.includes(v.subject) ? v.options.indexOf("yes") : v.options.indexOf("no");
 }
