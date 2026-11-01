@@ -87,6 +87,7 @@ export function newCampaign(players: readonly PlayerId[], rng: Rng, opts: Campai
     market: [],
     flags: [],
     log: [],
+    notes: houses.map(() => []),
   };
   houses.forEach((_, i) => {
     for (let n = 0; n < forHouses(TUNING.houses.startScions, H); n++) {

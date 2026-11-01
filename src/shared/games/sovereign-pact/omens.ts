@@ -10,7 +10,7 @@ import { applyEffects } from "./effects.ts";
 import { dueEvents } from "./timeline.ts";
 import type { PendingEvent, SovState } from "./state.ts";
 import { TUNING } from "./tuning.ts";
-import { log, withRng } from "./year.ts";
+import { log, note, withRng } from "./year.ts";
 
 function draw(rng: Rng, pool: readonly TownEventDef[]): TownEventDef | undefined {
   let roll = rng.int(Math.max(1, pool.reduce((n, e) => n + e.weight, 0)));
@@ -61,7 +61,12 @@ export function openEvent(s: SovState, ev: TownEventDef, house?: number): void {
   const all = s.houses.map((_, i) => i);
   const pending = (deciders: number[]) =>
     s.events.push({ key: house === undefined ? ev.id : `${ev.id}@${house}`, id: ev.id, ...(house === undefined ? {} : { house }), deciders, choices: s.houses.map(() => null) });
-  log(s, house === undefined ? `Omen: ${ev.title}.` : `House ${s.houses[house]!.name}: ${ev.title}.`);
+  // A House event is the House's own (Q89): the others learn only that something stirs there.
+  if (house === undefined) log(s, `Omen: ${ev.title}.`);
+  else {
+    log(s, `House ${s.houses[house]!.name} has troubles at home.`);
+    note(s, house, `${ev.title}.`);
+  }
   if (house !== undefined || ev.rule === "house") return void pending([house ?? 0]);
   if (ev.rule === "each_house" || ev.rule === "secret") return void pending(all);
   const one = ev.rule === "vote" ? null : chooser(s, ev.rule);
@@ -90,21 +95,22 @@ export function choose(s: SovState, house: number, key: string, option: number):
   if (pe.deciders.every((d) => pe.choices[d] !== null)) settleEvent(s, pe);
 }
 
-/** Draws one outcome of an option and applies it. */
-export function outcome(s: SovState, ev: TownEventDef, opt: TownOption, subject: number | null): void {
+/** Draws one outcome of an option and applies it; a House event's outcome only its House reads. */
+export function outcome(s: SovState, ev: TownEventDef, opt: TownOption, subject: number | null, home?: number): void {
   const total = opt.outcomes.reduce((n, o) => n + o.w, 0);
   const out = withRng(s, (rng) => {
     let roll = rng.int(total);
     return opt.outcomes.find((o) => (roll -= o.w) < 0)!;
   });
-  log(s, `${ev.title}: ${subject === null ? "" : `House ${s.houses[subject]!.name} — `}${opt.label} ${out.text}`);
+  if (home !== undefined) note(s, home, `${ev.title}: ${opt.label} ${out.text}`);
+  else log(s, `${ev.title}: ${subject === null ? "" : `House ${s.houses[subject]!.name} — `}${opt.label} ${out.text}`);
   applyEffects(s, out.effects, subject);
 }
 
 function settleEvent(s: SovState, pe: PendingEvent): void {
   s.events = s.events.filter((e) => e !== pe);
   const ev = TOWN_EVENT_BY_ID.get(pe.id)!;
-  for (const d of pe.deciders) outcome(s, ev, ev.options![pe.choices[d]!]!, d);
+  for (const d of pe.deciders) outcome(s, ev, ev.options![pe.choices[d]!]!, d, pe.house);
   for (const t of ev.together ?? []) {
     const i = ev.options!.findIndex((o) => o.id === t.option);
     const picked = pe.deciders.filter((d) => pe.choices[d] === i).length;
@@ -130,9 +136,9 @@ export function closeEvents(s: SovState): void {
   }
 }
 
-/** What the viewer may see of pending events: secret choices only their own. */
+/** What the viewer may see of pending events: another House's own events not at all (Q89), secret choices only their own. */
 export function eventsFor(s: SovState, viewer: number | null): PendingEvent[] {
-  return s.events.map((pe) =>
-    TOWN_EVENT_BY_ID.get(pe.id)!.rule === "secret" ? { ...pe, choices: pe.choices.map((c, i) => (i === viewer ? c : c === null ? null : -1)) } : pe,
-  );
+  return s.events
+    .filter((pe) => pe.house === undefined || pe.house === viewer)
+    .map((pe) => (TOWN_EVENT_BY_ID.get(pe.id)!.rule === "secret" ? { ...pe, choices: pe.choices.map((c, i) => (i === viewer ? c : c === null ? null : -1)) } : pe));
 }

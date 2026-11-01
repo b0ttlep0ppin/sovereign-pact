@@ -352,6 +352,8 @@ export interface SovState {
   flags: string[];
   /** Recent public happenings, newest last. Not saved. */
   log: string[];
+  /** Hidden: each House's own recent happenings at home (its House events, Q89), newest last. Not saved. */
+  notes: string[][];
   /** Set when the campaign ends. */
   outcome?: { won: boolean; reason: string };
 }

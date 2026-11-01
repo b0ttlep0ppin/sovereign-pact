@@ -28,6 +28,13 @@ export function log(s: SovState, line: string): void {
   if (s.log.length > TUNING.logLines) s.log.splice(0, s.log.length - TUNING.logLines);
 }
 
+/** A line only House `house` reads (its House events, Q89). */
+export function note(s: SovState, house: number, line: string): void {
+  const notes = (s.notes[house] ??= []);
+  notes.push(line);
+  if (notes.length > TUNING.logLines) notes.splice(0, notes.length - TUNING.logLines);
+}
+
 /** Runs `fn` with the state's own RNG, then stores where the sequence got to. */
 export function withRng<T>(s: SovState, fn: (rng: Rng) => T): T {
   const rng = createRng(s.rng);

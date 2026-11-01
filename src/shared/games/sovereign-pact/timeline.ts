@@ -35,7 +35,11 @@ export const seesHidden = (s: SovState, viewer: number | null): boolean =>
 /** The strip as a House sees it: hidden entries show only their Year. */
 export const timelineFor = (s: SovState, viewer: number | null): { year: number; id: string; house?: number }[] => {
   const all = seesHidden(s, viewer);
-  return s.timeline.map((t) => ({ year: t.year, id: t.hidden && !all ? "?" : t.id, ...(t.house === undefined || (t.hidden && !all) ? {} : { house: t.house }) }));
+  return s.timeline.map((t) => {
+    // Another House's own event to come (Q89): its Year and House only, whatever the Watchtower sees.
+    if (t.house !== undefined && t.house !== viewer && TOWN_EVENT_BY_ID.get(t.id)?.scope === "house") return { year: t.year, id: "?", house: t.house };
+    return { year: t.year, id: t.hidden && !all ? "?" : t.id, ...(t.house === undefined || (t.hidden && !all) ? {} : { house: t.house }) };
+  });
 };
 
 /** How many Years ahead a mandatory expedition is foreshadowed (§3.2; the Observatory adds one, §8.5). */
