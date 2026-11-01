@@ -273,6 +273,21 @@ export function strike(b: Battle, rng: Rng, u: Combatant, t: Combatant, ab: Abil
   return { hit: true, damage, loc, crit };
 }
 
+/** The off hand's power % for `u`: 50, 80 with Dual Wield Mastery, plus lasting mods (Ambidextrous, Clumsy). */
+export const offHandPct = (u: Combatant): number =>
+  Math.max(0, (u.mods.dualWieldMastery ? C.dualWield.mastery : C.dualWield.offPower) + (u.mods.offHandPct ?? 0));
+
+/** The off-hand blow after a basic Attack (§13.2): the second weapon's own power, accuracy and crit. */
+export function offHandStrike(b: Battle, rng: Rng, u: Combatant, t: Combatant, ab: AbilityDef): HitResult {
+  const main = u.weapon;
+  u.weapon = u.offWeapon!;
+  try {
+    return strike(b, rng, u, t, { ...ab, id: "offhand", name: "Off hand", power: (ab.power * offHandPct(u)) / 100 });
+  } finally {
+    u.weapon = main;
+  }
+}
+
 /** Draining, Mana-thirst, Siphoning and on-hit ailments (§13.4). */
 function afterWeaponHit(b: Battle, rng: Rng, u: Combatant, t: Combatant, damage: number): void {
   if (u.mods.drainPct && !u.down) u.hp = Math.min(hpCap(u), u.hp + Math.round((damage * u.mods.drainPct) / 100));

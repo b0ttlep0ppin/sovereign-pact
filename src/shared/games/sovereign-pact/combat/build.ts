@@ -109,6 +109,7 @@ export function scionCombatant(p: Person, opts: ScionOpts): Combatant {
     defense: o.armor?.defense ?? 0,
     weapon,
     offhand: o.gear?.offhand,
+    offWeapon: o.gear?.offWeapon,
     dur,
     maxDur: { ...dur },
     broken: [],

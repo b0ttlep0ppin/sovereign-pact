@@ -2,6 +2,11 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-01 (implementation, Milestone 2m: dual wield) — implementer
+- **Who may dual wield**: the spec says "a Scion whose Job allows dual wield" but the Job table has no such column, so the reading is that any Job may pair two one-hand weapons it is allowed to wield (a Soldier a sword and an axe, a Vagabond two knives; a Magus can hold a knife but not a sword in the off hand). Two-handers still clear the off hand.
+- **In battle**: the off hand strikes after every basic Attack (not after abilities), with its own weapon's power, accuracy, crit, reach and on-crit status, at 50% power (80% with Dual Wield Mastery, now live). Properties of every worn item already add up into the Scion's mods, so both weapons' properties apply to both hands. Ambidextrous and Clumsy will be `offHandPct` mods when individual traits arrive (Milestone 5); Twinned still waits.
+- **New knob**: `tuning.combat.dualWield` (50 / 80).
+
 ## 2026-11-01 (implementation, Milestone 2l: the Alterer's Forms) — implementer
 - **Forms are content** (`content/forms.json`, schema `forms.schema.json`): the six drafted Forms with their duration, control, mods while shifted, statuses held for the Form's length, size and HP changes, what Graft lends, and the Revert price. The six Shifts, Revert, Graft and Molt and four passives are in `content/abilities/alterer.json`.
 - **Rules as built** (§12.2): a Shift replaces the Alterer's abilities with the Form's (the tools and other Shifts stay available), puts the Form's mods on a status that cannot be Dispelled or cured, and ends on Revert, on its own time (Long Shift +150 ticks), or when another Shift replaces it (paying the old Form's price). Revert restores abilities, size, max HP and Guard; Stable Flesh halves Revert prices (durations and amounts). A feral Form picks one of its abilities at the start of each turn and nothing else may be used, Attack included; Wild Blood's 50% lets the Alterer choose instead. Bots shift when they have no Form and never Revert on their own.
