@@ -1,0 +1,25 @@
+{
+  "id": "barrow_bride",
+  "name": "Bride",
+  "pool": "barrows",
+  "tags": ["undead", "humanoid"],
+  "role": "support",
+  "addOnly": true,
+  "size": [1, 1],
+  "levels": [4, 8],
+  "stats": {"hp": 1.2, "speed": 12},
+  "affinity": {"holy": -75, "fire": -25, "dark": 75},
+  "immune": ["poison", "sleep"],
+  "abilities": [
+    {"id": "bride_kiss", "shape": "single", "side": "player", "power": 1.0, "drain": 30},
+    {"id": "devotion", "shape": "single", "side": "ally", "power": 1.6, "kind": "heal", "element": "dark", "cooldown": 1}
+  ],
+  "gambits": [
+    {"if": "ally.hp<0.6", "do": "devotion", "target": "ally_lowest_hp"},
+    {"do": "bride_kiss", "target": "column_weighted"}
+  ],
+  "bestiary": {
+    "lore": "Wed to the Queen of the barrows, and kept.",
+    "weakness": "Holy. While a Bride stands the Queen can turn to mist."
+  }
+}

@@ -1,8 +1,16 @@
 // The text renderer (HANDOFF §4, Milestone 1): the two grids and a battle log as plain text, for the
 // simulator, tests and debugging before the battle screen exists.
-import { INJURY_BY_ID } from "../content.ts";
+import { BOSS_BY_ID, INJURY_BY_ID } from "../content.ts";
 import { covers } from "./grid.ts";
 import { COLS, ROWS, type Battle, type BattleEvent, type Combatant } from "./types.ts";
+
+/** A boss's phase name or line, from its content. */
+function bossLine(b: Battle, id: number, what: "name" | "say", line: "open" | "death" | number): string {
+  const def = BOSS_BY_ID.get(b.units.find((u) => u.id === id)?.enemy ?? "");
+  if (!def) return "";
+  if (typeof line === "string") return def.say[line];
+  return what === "name" ? def.phases[line - 1]!.name : def.phases[line - 1]!.say;
+}
 
 const tag = (u: Combatant) => `${u.side === "party" ? "P" : "E"}${u.id}`;
 
@@ -84,6 +92,12 @@ export function describeEvent(b: Battle, e: BattleEvent): string {
       return `${n(e.unit)} counters ${n(e.target)}'s spell`;
     case "summon":
       return `${n(e.unit)} calls ${e.ids.map(n).join(" and ")}`;
+    case "phase":
+      return `${n(e.unit)} enters phase ${e.phase + 1}: ${bossLine(b, e.unit, "name", e.phase)}`;
+    case "say":
+      return `${n(e.unit)}: "${bossLine(b, e.unit, "say", e.line)}"`;
+    case "flee":
+      return `${n(e.unit)} flees`;
     case "part":
       return `${n(e.unit)}'s ${e.part.replace(/_/g, " ")} is destroyed`;
     case "raise":

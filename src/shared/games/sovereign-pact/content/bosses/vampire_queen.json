@@ -1,0 +1,42 @@
+{
+  "id": "vampire_queen",
+  "name": "The Vampire Queen",
+  "pool": "barrows",
+  "tags": ["undead", "humanoid"],
+  "role": "boss",
+  "size": [1, 1],
+  "levels": [4, 5],
+  "stats": {"speed": 15},
+  "affinity": {"holy": -75, "fire": -50, "dark": 75},
+  "immune": ["poison", "fear", "bleed"],
+  "abilities": [
+    {"id": "queens_kiss", "shape": "single", "side": "player", "power": 1.3, "drain": 50},
+    {"id": "beguile", "shape": "single", "side": "player", "power": 0, "kind": "magic", "reach": "ranged", "cooldown": 3, "statuses": [{"id": "charm", "chance": 60, "ticks": 200}]},
+    {"id": "mist_form", "shape": "self", "side": "self", "power": 0, "kind": "support", "statuses": [{"id": "hidden", "chance": 100, "ticks": 100}]},
+    {"id": "crimson_waltz", "shape": "row", "side": "player", "power": 1.1, "drain": 30, "charge": 80, "telegraph": true, "cooldown": 2},
+    {"id": "blood_rain", "shape": "burst:3x3", "side": "player", "power": 1.2, "kind": "magic", "element": "dark", "drain": 25, "charge": 100, "telegraph": true, "cooldown": 2},
+    {"id": "last_dance", "shape": "single", "side": "player", "power": 1.0, "hits": 3, "drain": 40}
+  ],
+  "gambits": [
+    {"if": "turn%3==0", "do": "crimson_waltz", "target": "densest_row"},
+    {"if": "turn%4==1", "do": "beguile", "target": "highest_might"},
+    {"if": "adds>=1 && self.hp<0.8 && turn%2==0", "do": "mist_form"},
+    {"do": "queens_kiss", "target": "lowest_hp"}
+  ],
+  "adds": [
+    {"spawn": ["barrow_bride"], "count": 2, "at": "E2"}
+  ],
+  "phases": [
+    {"at": "hp<=0.6", "name": "The Thirst", "speed": 16, "dispel": true, "say": "You came all this way. Let me take something home for you.", "gambits": [{"if": "turn%3==0", "do": "blood_rain", "target": "densest_cluster"}, {"if": "turn%4==2", "do": "beguile", "target": "highest_might"}, {"if": "adds>=1 && turn%2==1", "do": "mist_form"}, {"do": "queens_kiss", "target": "lowest_hp"}]},
+    {"at": "hp<=0.25", "name": "The Last Dance", "speed": 17, "say": "Dance with me. Nobody leaves before the music ends.", "gambits": [{"if": "turn%3==0", "do": "blood_rain", "target": "densest_cluster"}, {"if": "turn%3==1", "do": "beguile", "target": "highest_might"}, {"do": "last_dance", "target": "lowest_hp"}]}
+  ],
+  "say": {
+    "open": "Kneel. I have kept the court waiting long enough.",
+    "death": "The music... has stopped..."
+  },
+  "bestiary": {
+    "lore": "The old court's last queen, who would not leave the ball when the kingdom fell into the dark.",
+    "weakness": "Holy and fire. Kill her Brides and she cannot turn to mist.",
+    "pattern": "Every third turn a telegraphed waltz across a row; she Charms the strongest Scion every few turns and heals on every bite. Below 60% she strips the party's buffs and rains blood on the densest cluster; below 25% she dances, three bites a turn."
+  }
+}

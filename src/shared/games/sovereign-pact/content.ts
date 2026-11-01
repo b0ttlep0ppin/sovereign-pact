@@ -1,5 +1,6 @@
 // The content catalog: everything under content/ as typed data. Rules read content only through here,
 // by id, so Josh can edit the JSON (validated by schemas/ in CI) without touching rules (CLAUDE.md).
+import bossFiles from "./content/bosses/index.gen.ts";
 import enemyFiles from "./content/enemies/index.gen.ts";
 import abjurerSet from "./content/abilities/abjurer.json" with { type: "json" };
 import conjurerSet from "./content/abilities/conjurer.json" with { type: "json" };
@@ -153,6 +154,8 @@ export interface EnemyDef {
   gambits: { if?: string; do: string; target?: string }[];
   /** Parts (§14.1): sub-entities on some of its cells. */
   parts?: PartDef[];
+  /** Only a boss brings it: never drawn for an Encounter. */
+  addOnly?: boolean;
   bestiary?: { lore: string; weakness: string };
 }
 
@@ -170,7 +173,42 @@ export interface PartDef {
 
 /** Every enemy file, through the generated index (`npm run gen:content`; one import per file keeps the rules free of bundler globs). */
 export const ENEMIES = enemyFiles as unknown as readonly EnemyDef[];
-export const ENEMY_BY_ID: ReadonlyMap<string, EnemyDef> = new Map(ENEMIES.map((e) => [e.id, e]));
+
+/** Adds a boss brings: its opening group or a phase's (§14.6). */
+export interface BossAdds {
+  spawn: string[];
+  count?: number;
+  at: "E1" | "E2" | "E3";
+}
+
+/** A boss phase (§14.6): entered once when `at` holds, with its own gambits, speed, adds and line. */
+export interface BossPhase {
+  at: string;
+  name: string;
+  speed?: number;
+  gambits: { if?: string; do: string; target?: string }[];
+  adds?: BossAdds;
+  dispel?: boolean;
+  regrow?: boolean;
+  flee?: boolean;
+  statuses?: { id: string; ticks: number }[];
+  say: string;
+}
+
+/** A scripted boss (§10.10, §14.6): content/bosses/<id>.json, an enemy plus its phases. */
+export interface BossDef extends EnemyDef {
+  role: "boss";
+  adds?: BossAdds[];
+  phases: BossPhase[];
+  say: { open: string; death: string };
+  bestiary: { lore: string; weakness: string; pattern: string };
+}
+
+/** Every boss file, through the generated index. */
+export const BOSSES = bossFiles as unknown as readonly BossDef[];
+export const BOSS_BY_ID: ReadonlyMap<string, BossDef> = new Map(BOSSES.map((e) => [e.id, e]));
+/** Enemies and bosses by id: anything that can stand on the enemy grid. */
+export const ENEMY_BY_ID: ReadonlyMap<string, EnemyDef> = new Map([...ENEMIES, ...BOSSES].map((e) => [e.id, e]));
 
 export type CardType = "resource" | "hunt" | "delve" | "rescue" | "pilgrimage";
 
@@ -191,7 +229,7 @@ export const POOL_BY_ID: ReadonlyMap<string, PoolDef> = new Map(POOLS.map((p) =>
 
 /** The enemies of a pool, by role, that appear at expedition level `level` (§14.4: entries whose `levels` span L). */
 export const rosterOf = (pool: string, role: EnemyRole, level: number): EnemyDef[] =>
-  ENEMIES.filter((e) => e.pool === pool && e.role === role && e.levels[0] <= level && level <= e.levels[1]);
+  ENEMIES.filter((e) => e.pool === pool && e.role === role && !e.addOnly && e.levels[0] <= level && level <= e.levels[1]);
 
 export type TemplateRole = Exclude<EnemyRole, "boss">;
 /** A role's count: exact, or a [min, max] range drawn when the group is made. */

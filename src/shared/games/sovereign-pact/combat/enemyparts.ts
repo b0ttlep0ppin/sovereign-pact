@@ -47,6 +47,7 @@ export function partsOf(owner: Combatant, def: EnemyDef): Combatant[] {
       speed: 0,
       ct: 0,
       boss: undefined,
+      phase: undefined,
       tags: [...owner.tags, "part"],
       affinity: { ...owner.affinity, ...p.affinity },
       immune: [...owner.immune, ...(p.immune ?? [])],
