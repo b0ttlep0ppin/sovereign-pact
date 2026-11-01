@@ -554,3 +554,39 @@ describe("the Unknown Mother", () => {
     expect(sleepers(0.5)).toBeLessThan(0.7);
   });
 });
+
+describe("the End Ruler", () => {
+  const source = () => {
+    const b = bossBattle(25, standardParty(25, 30), "end_ruler", 10);
+    const ruler = b.units.find((u) => u.enemy === "end_ruler")!;
+    const court = b.units.filter((u) => u.enemy === "void_unknown_satan" || u.enemy === "void_unknown_princess");
+    return { b, ruler, court };
+  };
+
+  it("sits on its throne, untouchable, and only Decrees while its Satan and Princess fight", () => {
+    const { b, ruler, court } = source();
+    expect(court).toHaveLength(2);
+    expect(ruler.statuses.some((s) => s.id === "guarded")).toBe(true);
+    const scion = b.units.find((u) => u.side === "party")!;
+    expect(singleTargets(b, scion, { id: "t", shape: "single", side: "foe", power: 1, reach: "ranged" }).some((t) => t.id === ruler.id)).toBe(false);
+    const rng = createRng(1);
+    expect(decide(b, rng, ruler).action).toMatchObject({ ability: "sovereign_decree" });
+    resolve(b, rng, ruler, abilityOf(ruler, "sovereign_decree")!, cellOf(b.units.find((u) => u.side === "party")!));
+    expect(decide(b, rng, ruler).action).toMatchObject({ do: "wait" });
+  });
+
+  it("stands when both have fallen, and the Aspects loom at a quarter", () => {
+    const { b, ruler, court } = source();
+    kill(b, court[0]!);
+    checkEnd(b);
+    expect(ruler.phase).toBe(0);
+    kill(b, court[1]!);
+    checkEnd(b);
+    expect(ruler.phase).toBe(1);
+    expect(ruler.statuses.some((s) => s.id === "guarded")).toBe(false);
+    ruler.hp = Math.floor(ruler.maxHp * 0.2);
+    checkEnd(b);
+    expect(ruler.phase).toBe(2);
+    expect(ruler.gambits.some((g) => g.do === "aspect_fall")).toBe(true);
+  });
+});

@@ -3,6 +3,7 @@ import cursed_king from "./cursed_king.json" with { type: "json" };
 import cursed_king_risen from "./cursed_king_risen.json" with { type: "json" };
 import dark_general from "./dark_general.json" with { type: "json" };
 import divine_beast_fusion from "./divine_beast_fusion.json" with { type: "json" };
+import end_ruler from "./end_ruler.json" with { type: "json" };
 import goblin_lord from "./goblin_lord.json" with { type: "json" };
 import orochi from "./orochi.json" with { type: "json" };
 import scylla from "./scylla.json" with { type: "json" };
@@ -18,6 +19,7 @@ export default [
   cursed_king_risen,
   dark_general,
   divine_beast_fusion,
+  end_ruler,
   goblin_lord,
   orochi,
   scylla,
