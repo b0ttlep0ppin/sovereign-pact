@@ -65,6 +65,8 @@ export interface GearTotals {
   mpPct: number;
   /** Battle mods from properties, summed (content/properties.json `mods` × value). */
   mods: Record<string, number>;
+  /** The off hand's item type ("shield", "thrown"…). */
+  offhand?: string;
 }
 
 /** What a Scion's worn gear adds up to (§13.1–13.3), carry overload included. */
@@ -80,6 +82,7 @@ export function gearTotals(s: Pick<SovState, "items">, p: Person): GearTotals {
       else t.mods[key] = (t.mods[key] ?? 0) + v;
     }
     if (slot === "main" && b.power !== undefined) t.weapon = weaponOf(item);
+    if (slot === "off") t.offhand = b.type;
     if (b.type === "shield") t.guard += b.guard ?? 0;
     if (b.armor && b.slot !== "main" && b.slot !== "off" && b.slot !== "acc") {
       const loc = b.slot as Location;

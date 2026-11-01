@@ -5,14 +5,14 @@ import { ELEMENTS, LOCATIONS, type Element, type Location } from "../state.ts";
 import { TUNING } from "../tuning.ts";
 import { hasStatus } from "./grid.ts";
 import { down, injure, kill, steel, steelSanity } from "./injury.ts";
-import { meta, removeStatus, statusValue, tryStatus } from "./status.ts";
+import { addStatus, meta, removeStatus, statusValue, tryStatus } from "./status.ts";
 import type { AbilityDef, Battle, Combatant } from "./types.ts";
 
 const C = TUNING.combat;
 const clamp = (n: number, lo: number, hi: number) => Math.max(lo, Math.min(hi, n));
 const pct = (n: number) => 1 + n / 100;
 
-export const kindOf = (ab: AbilityDef): "physical" | "magic" | "heal" => ab.kind ?? "physical";
+export const kindOf = (ab: AbilityDef): NonNullable<AbilityDef["kind"]> => ab.kind ?? "physical";
 
 /** Physical abilities use the weapon's reach unless they name one; spells reach anywhere (§10.3). */
 export const reachOf = (u: Combatant, ab: AbilityDef) => ab.reach ?? (kindOf(ab) === "physical" ? u.weapon.reach : "ranged");
@@ -28,7 +28,8 @@ export function hitChance(u: Combatant, t: Combatant, ab: AbilityDef): number {
     let evasion = t.evasion + (t.mods.evasion ?? 0);
     if (hasStatus(t, "knockdown")) evasion += C.knockdownEvasion;
     if (hasStatus(t, "frozen")) evasion += C.frozenEvasion;
-    chance = u.weapon.acc + u.accuracy + (u.mods.accuracy ?? 0) + (ab.accuracy ?? 0) - Math.max(0, evasion);
+    const drill = reachOf(u, ab) !== "ranged" ? (u.mods.meleeAccuracy ?? 0) : 0;
+    chance = u.weapon.acc + u.accuracy + (u.mods.accuracy ?? 0) + drill + (ab.accuracy ?? 0) - Math.max(0, evasion);
     if (hasStatus(u, "blind")) chance += C.blind;
   }
   if (t.charge) chance += C.chargingHitBonus;
@@ -49,7 +50,7 @@ export function rollLocation(rng: Rng, ab: AbilityDef): Location {
 
 /** Column modifier for the attacker's position (§10.3), in %. */
 export function columnMod(u: Combatant, ab: AbilityDef): number {
-  if (u.side !== "party" || kindOf(ab) === "heal") return 0;
+  if (u.side !== "party" || kindOf(ab) === "heal" || kindOf(ab) === "support") return 0;
   if (isMelee(u, ab) && reachOf(u, ab) === "melee") return u.col === 0 ? C.frontMelee : u.col === 1 ? (u.mods.reaching ? 0 : C.middleMelee) : 0;
   if (u.weapon.kind === "bow" && kindOf(ab) === "physical" && u.col === 0) return C.bowFromFront;
   return 0;
@@ -60,14 +61,30 @@ export const affinityMult = (t: Combatant, el: Element | null | undefined) => (e
 
 /** Damage before randomness-free multipliers: power × (1 + stat/25), or an enemy's level scale (§7.3, §14.2). */
 export function baseDamage(u: Combatant, ab: AbilityDef): number {
-  const power = (ab.base ?? u.weapon.power) * ab.power;
-  if (u.enemyScale !== undefined) return power * u.enemyScale;
   const kind = kindOf(ab);
+  // A Scion's spell with no power of its own scales with the caster's level, like a weapon with its item level.
+  const spell = u.enemyScale === undefined && (kind === "magic" || kind === "heal");
+  const power = (ab.base ?? (spell ? spellBase(u.level) : u.weapon.power)) * ab.power;
+  if (u.enemyScale !== undefined) return power * u.enemyScale;
   if (kind === "magic") return power * (1 + u.acuity / C.acuityDivisor) * (1 + (u.mods.spellPct ?? 0) / 100);
   if (kind === "heal") return power * (1 + u.sagacity / C.sagacityDivisor);
   // Spellbound weapons swing with Acuity when it is higher (§13.4).
   const might = u.mods.spellbound && ab.base === undefined ? Math.max(u.might, u.acuity) : u.might;
   return power * (1 + might / C.mightDivisor);
+}
+
+/** A spell's power at 1.0×: the power block at the expedition level a Scion of this level fights (L ≈ level / 3, §14.2). */
+export function spellBase(level: number): number {
+  const L = Math.max(1, level / C.spellLevelDivisor);
+  return 6 + 3 * L + 0.1 * L * L;
+}
+
+/** Ability power after its conditions: an ally Down, a Marked target. */
+function powerOf(b: Battle, u: Combatant, t: Combatant, ab: AbilityDef): number {
+  let power = ab.power;
+  if (ab.powerIfAllyDown && b.units.some((o) => o.side === u.side && o.down && !o.dead)) power = ab.powerIfAllyDown;
+  if (ab.powerIfMarked && hasStatus(t, "marked")) power = ab.powerIfMarked;
+  return power;
 }
 
 /** A plain weapon hit (the attack, a counter, weapon skills): weapon properties apply (§13.4). */
@@ -110,7 +127,11 @@ export interface StrikeOpts {
 /** One hit of `ab` from `u` on `t`, through the whole pipeline. */
 export function strike(b: Battle, rng: Rng, u: Combatant, t: Combatant, ab: AbilityDef, opts: StrikeOpts = {}): HitResult {
   if (t.dead) return { hit: false, damage: 0 };
-  if (kindOf(ab) === "heal") return { hit: true, damage: -heal(b, u, t, ab) };
+  if (kindOf(ab) === "heal" || kindOf(ab) === "support") {
+    const healed = kindOf(ab) === "heal" ? heal(b, u, t, ab) : 0;
+    supportEffects(b, rng, u, t, ab);
+    return { hit: true, damage: -healed };
+  }
   const weaponHit = isWeaponHit(ab);
   let missed = rng.int(100) >= hitChance(u, t, ab);
   // Lucky: one miss a battle is rolled again.
@@ -135,7 +156,12 @@ export function strike(b: Battle, rng: Rng, u: Combatant, t: Combatant, ab: Abil
     u.flags.splice(primed, 1);
   }
 
+  const power = powerOf(b, u, t, ab);
+  if (power !== ab.power) ab = { ...ab, power };
   let dmg = baseDamage(u, ab);
+  for (const tag of t.tags) dmg *= ab.vs?.[tag] ?? 1;
+  const executing = !!ab.execute && t.hp < (t.maxHp * ab.execute.below) / 100;
+  if (executing) dmg *= pct(ab.execute!.pct ?? 0);
   // Guard: a shield block halves the hit before the multipliers (§10.6 step 6).
   const guard = u.side !== t.side && physical ? t.guard + (hasStatus(t, "guard_up") ? C.guardUp : 0) : 0;
   if (guard > 0 && rng.int(100) < guard) dmg *= C.block / 100;
@@ -149,6 +175,7 @@ export function strike(b: Battle, rng: Rng, u: Combatant, t: Combatant, ab: Abil
   if (physical && t.defending) dmg *= pct(-C.defend);
   if (physical && t.charge) dmg *= pct(C.chargingDamageTaken);
   if (hasStatus(t, "marked")) dmg *= pct(C.marked);
+  dmg *= pct(statusValue(t, "hex") ?? 0);
   if (physical && hasStatus(u, "berserk")) dmg *= pct(C.berserk);
   if (hasStatus(u, "enrage")) dmg *= pct(C.enrage);
   if (u.lastStand) dmg *= pct(C.lastStand.damage);
@@ -179,6 +206,7 @@ export function strike(b: Battle, rng: Rng, u: Combatant, t: Combatant, ab: Abil
   if (physical) dmg -= t.defense * (1 - (u.weapon.armorPierce ?? 0) / 100);
   const immune = !!element && affinityMult(t, element) <= 0;
   let damage = ab.power === 0 || immune ? 0 : Math.max(1, Math.round(dmg));
+  if (executing && ab.execute!.kills && !t.boss) damage = Math.max(damage, t.hp + (statusValue(t, "shield") ?? 0));
   // An edge adds part of the hit again as its element, through the target's affinity (§13.4).
   const edge = weaponHit && damage > 0 ? edgeOf(u) : undefined;
   if (edge) damage += Math.max(0, Math.round(((damage * u.mods[`edge.${edge}`]!) / 100) * affinityMult(t, edge)));
@@ -188,6 +216,8 @@ export function strike(b: Battle, rng: Rng, u: Combatant, t: Combatant, ab: Abil
   // An axe's crit bleeds, a mace's stuns (§13.2): the target's resist still applies.
   if (crit && physical && u.weapon.critStatus && !t.dead) tryStatus(b, rng, t, u.weapon.critStatus, 100, 0);
   if (weaponHit && damage > 0) afterWeaponHit(b, rng, u, t, damage);
+  for (const id of ab.dispel ?? []) if (!t.dead) removeStatus(b, t, id);
+  if (t.dead && ab.refundTp) u.tp = Math.min(C.tp.max, u.tp + ab.refundTp);
   if (physical && damage > 0 && isMelee(u, ab)) afterMeleeHit(b, rng, u, t, damage, opts);
   return { hit: true, damage, loc, crit };
 }
@@ -202,12 +232,14 @@ function afterWeaponHit(b: Battle, rng: Rng, u: Combatant, t: Combatant, damage:
     if (buff) removeStatus(b, t, buff.id);
   }
   for (const [k, chance] of Object.entries(u.mods)) if (k.startsWith("onHit.") && !t.dead) tryStatus(b, rng, t, k.slice(6), chance, 0);
+  if (hasStatus(u, "envenom") && !t.dead) tryStatus(b, rng, t, "poison", 100, 0);
 }
 
 /** Thorned armor and Riposting weapons answer a melee hit (§13.4). */
 function afterMeleeHit(b: Battle, rng: Rng, u: Combatant, t: Combatant, damage: number, opts: StrikeOpts): void {
-  if (t.mods.thornsPct && !u.dead) {
-    const back = Math.round((damage * t.mods.thornsPct) / 100);
+  const thorns = (t.mods.thornsPct ?? 0) + (statusValue(t, "thorns") ?? 0);
+  if (thorns && !u.dead) {
+    const back = Math.round((damage * thorns) / 100);
     if (back > 0) {
       u.hp = Math.max(u.side === "enemy" ? 0 : 1, u.hp - back);
       b.events.push({ t: "hit", unit: t.id, target: u.id, damage: back });
@@ -217,7 +249,8 @@ function afterMeleeHit(b: Battle, rng: Rng, u: Combatant, t: Combatant, damage: 
       }
     }
   }
-  if (!opts.counter && t.counter && !t.dead && !t.down && !u.dead && rng.int(100) < t.counter) strike(b, rng, t, u, COUNTER, { counter: true });
+  const counter = t.counter + (statusValue(t, "counter_up") ?? 0);
+  if (!opts.counter && counter && !t.dead && !t.down && !u.dead && rng.int(100) < counter) strike(b, rng, t, u, COUNTER, { counter: true });
 }
 
 function applyHit(b: Battle, rng: Rng, u: Combatant, t: Combatant, ab: AbilityDef, damage: number, loc: Location | undefined, opts: StrikeOpts): void {
@@ -248,7 +281,7 @@ function applyHit(b: Battle, rng: Rng, u: Combatant, t: Combatant, ab: AbilityDe
 
   // On-hit: TP both ways, Sanity, statuses (§10.6 step 7).
   gainTp(u, kindOf(ab) === "physical" ? (u.weapon.tpGain ?? 0) : 0, isWeaponHit(ab) ? (u.mods.tpGainPct ?? 0) : 0);
-  if (!t.dead) gainTp(t);
+  if (!t.dead) gainTp(t, 0, t.mods.tpWhenHitPct ?? 0);
   const sanity = Math.round(((ab.sanity ?? 0) + (ab.power > 0 ? u.sanityTouch : 0)) * pct(t.mods.sanityTakenPct ?? 0));
   const sanityBefore = t.sanity;
   if (sanity > 0 && t.maxSanity > 0) {
@@ -302,7 +335,7 @@ export function gainTp(u: Combatant, extra = 0, morePct = 0): void {
 /** Healing: no hit roll, Sagacity-scaled; Disease halves it; the Down are raised only by revival (§10.6, §10.8). */
 export function heal(b: Battle, u: Combatant, t: Combatant, ab: AbilityDef): number {
   if (t.dead || t.down) return 0;
-  let amount = baseDamage(u, ab) * pct(t.mods.healingReceivedPct ?? 0);
+  let amount = baseDamage(u, ab) * pct(t.mods.healingReceivedPct ?? 0) * pct(u.mods.healingDealtPct ?? 0);
   if (hasStatus(t, "disease")) amount *= 0.5;
   const healed = Math.min(t.maxHp - t.hp, Math.round(amount));
   t.hp += healed;
@@ -317,4 +350,24 @@ export function revive(b: Battle, t: Combatant, hpPct: number = C.reviveHp): voi
   t.down = false;
   t.hp = Math.max(1, Math.round((t.maxHp * hpPct) / 100));
   b.events.push({ t: "heal", unit: t.id, target: t.id, amount: t.hp });
+}
+
+/** What a support ability (or a heal) does besides HP: statuses, restores, cures, Sanity, TP, revival (§12.4–12.11). */
+function supportEffects(b: Battle, rng: Rng, u: Combatant, t: Combatant, ab: AbilityDef): void {
+  if (t.dead) return;
+  if (ab.revive && t.down) revive(b, t, ab.revive);
+  if (t.down) return;
+  const r = ab.restore;
+  if (r?.hpPct) t.hp = Math.min(t.maxHp, t.hp + Math.round((t.maxHp * r.hpPct) / 100));
+  if (r?.durPct && t.dur && t.maxDur) {
+    const locs = r.loc === "all" ? LOCATIONS : r.loc === "lowest" ? [LOCATIONS.reduce((a, l) => (t.dur![l] / t.maxDur![l] < t.dur![a] / t.maxDur![a] ? l : a))] : [rng.pick(LOCATIONS)];
+    for (const l of locs) t.dur[l] = Math.min(t.maxDur[l], t.dur[l] + Math.round((t.maxDur[l] * r.durPct) / 100));
+  }
+  for (const c of ab.cure ?? []) for (const x of [...t.statuses]) if (x.id === c || meta(x.id).kind === c) removeStatus(b, t, x.id);
+  if (ab.sanityPct && t.maxSanity) t.sanity = Math.min(t.maxSanity, t.sanity + Math.round((t.maxSanity * ab.sanityPct) / 100));
+  if (ab.tpGrant) t.tp = Math.min(C.tp.max, t.tp + ab.tpGrant);
+  for (const x of ab.statuses ?? []) {
+    if (t.side === u.side) addStatus(b, t, x.id, x.ticks, x.value === undefined ? undefined : { value: x.value });
+    else tryStatus(b, rng, t, x.id, x.chance, x.ticks, x.value);
+  }
 }

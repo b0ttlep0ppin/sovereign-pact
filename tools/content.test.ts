@@ -9,7 +9,7 @@ import { join, relative, sep } from "node:path";
 import { fileURLToPath } from "node:url";
 import { Ajv, type ValidateFunction } from "ajv";
 import { describe, expect, it } from "vitest";
-import { ENEMIES } from "../src/shared/games/sovereign-pact/content.ts";
+import { ABILITY_SETS, ENEMIES, JOBS } from "../src/shared/games/sovereign-pact/content.ts";
 
 const root = fileURLToPath(new URL("..", import.meta.url));
 const CONTENT = join(root, "src/shared/games/sovereign-pact/content");
@@ -82,5 +82,11 @@ describe("content", () => {
     // content.ts imports each file by name; a new file must be added there too.
     const files = contentFiles.filter((f) => f.startsWith("enemies/")).map((f) => f.split("/").at(-1)!.replace(/\.json$/, ""));
     expect(ENEMIES.map((e) => e.id).sort()).toEqual(files.sort());
+  });
+
+  it("files each Job's abilities as abilities/<job>.json", () => {
+    const files = contentFiles.filter((f) => f.startsWith("abilities/")).map((f) => f.split("/").at(-1)!.replace(/\.json$/, ""));
+    expect(ABILITY_SETS.map((a) => a.job).sort()).toEqual(files.sort());
+    for (const set of ABILITY_SETS) expect(JOBS.map((j) => j.id), set.job).toContain(set.job);
   });
 });

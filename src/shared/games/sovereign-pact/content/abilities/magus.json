@@ -1,0 +1,25 @@
+{
+  "job": "magus",
+  "actives": [
+    {"id": "ember", "name": "Ember", "jp": 50, "text": "Fire 1.0×.", "shape": "single", "side": "foe", "power": 1.0, "kind": "magic", "element": "fire", "mp": 8, "charge": 0},
+    {"id": "firestorm", "name": "Firestorm", "jp": 200, "text": "Fire 1.6× to a burst, Burn.", "shape": "burst:3x3", "side": "foe", "power": 1.6, "kind": "magic", "element": "fire", "mp": 30, "charge": 150, "statuses": [{"id": "burn", "chance": 30, "ticks": 0}]},
+    {"id": "rain_of_cinders", "name": "Rain of Cinders", "jp": 300, "text": "Fire 2.0× over a third of the grid; telegraphed.", "shape": "band:3", "side": "foe", "power": 2.0, "kind": "magic", "element": "fire", "mp": 60, "charge": 300, "telegraph": true, "homing": false},
+    {"id": "frost_lance", "name": "Frost Lance", "jp": 100, "text": "Water 1.2× in a line, Slow.", "shape": "line:2", "side": "foe", "power": 1.2, "kind": "magic", "element": "water", "mp": 10, "charge": 50, "statuses": [{"id": "slow", "chance": 30, "ticks": 0}]},
+    {"id": "glacier", "name": "Glacier", "jp": 250, "text": "Water 1.6× down a column, Frozen chance.", "shape": "column", "side": "foe", "power": 1.6, "kind": "magic", "element": "water", "mp": 45, "charge": 250, "statuses": [{"id": "frozen", "chance": 25, "ticks": 0}], "homing": false},
+    {"id": "gale", "name": "Gale", "jp": 100, "text": "Wind 0.9× across a row, Readiness damage 20.", "shape": "row", "side": "foe", "power": 0.9, "kind": "magic", "element": "wind", "mp": 10, "charge": 50, "readiness": 20},
+    {"id": "tempest", "name": "Tempest", "jp": 300, "text": "Wind 1.3× to every enemy, Knockdown chance.", "shape": "all", "side": "foe", "power": 1.3, "kind": "magic", "element": "wind", "mp": 50, "charge": 300, "statuses": [{"id": "knockdown", "chance": 25, "ticks": 0}]},
+    {"id": "stoneburst", "name": "Stoneburst", "jp": 100, "text": "Earth 1.2× in a cross.", "shape": "cross", "side": "foe", "power": 1.2, "kind": "magic", "element": "earth", "mp": 12, "charge": 80},
+    {"id": "earthen_maw", "name": "Earthen Maw", "jp": 250, "text": "Earth 1.5× to a burst; targets cannot Move for 200 ticks.", "shape": "burst:3x3", "side": "foe", "power": 1.5, "kind": "magic", "element": "earth", "mp": 40, "charge": 200, "statuses": [{"id": "rooted", "chance": 100, "ticks": 200}], "homing": false},
+    {"id": "dusk_needle", "name": "Dusk Needle", "jp": 100, "text": "Dark 1.1×, Blind chance.", "shape": "single", "side": "foe", "power": 1.1, "kind": "magic", "element": "dark", "mp": 10, "charge": 0, "statuses": [{"id": "blind", "chance": 30, "ticks": 0}]},
+    {"id": "radiant_lance", "name": "Radiant Lance", "jp": 150, "text": "Holy 1.3×; ×2 against undead.", "shape": "single", "side": "foe", "power": 1.3, "kind": "magic", "element": "holy", "mp": 12, "charge": 50, "vs": {"undead": 2}},
+    {"id": "siphon", "name": "Siphon", "jp": 100, "text": "Convert 20% of max HP into MP (1 HP : 1.5 MP).", "shape": "self", "side": "self", "power": 0, "kind": "support", "later": true},
+    {"id": "mind_blight", "name": "Mind Blight", "jp": 150, "text": "Sanity damage; Confusion chance.", "shape": "single", "side": "foe", "power": 0, "kind": "magic", "element": null, "mp": 20, "charge": 100, "sanity": 15, "statuses": [{"id": "confusion", "chance": 40, "ticks": 0}]},
+    {"id": "nova", "name": "Nova", "jp": 400, "text": "An element of choice 2.5× to a 5×5 burst; the caster is Stunned after.", "shape": "burst:5x5", "side": "foe", "power": 2.5, "kind": "magic", "element": null, "mp": 80, "charge": 400, "tp": 50, "later": true}
+  ],
+  "passives": [
+    {"id": "elemental_mastery", "name": "Elemental Mastery", "points": 2, "jp": 200, "text": "Pick an element: its spells +15%, cost −10%.", "later": true},
+    {"id": "quickcast", "name": "Quickcast", "points": 3, "jp": 300, "text": "Charge times −25%.", "mods": {"chargePct": -25}},
+    {"id": "glass_cannon", "name": "Glass Cannon", "points": 1, "jp": 150, "text": "Spell damage +15%; Head Durability −20%.", "mods": {"spellPct": 15, "headDurabilityPct": -20}},
+    {"id": "mana_font", "name": "Mana Font", "points": 2, "jp": 200, "text": "MP +2 per 100 ticks.", "mods": {"mpPer100": 2}}
+  ]
+}

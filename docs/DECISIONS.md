@@ -2,6 +2,13 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-01 (implementation, Milestone 2d: Job abilities, first five) — implementer
+- **Ability sets are content**, one file per Job (`content/abilities/<job>.json`, schema `abilities.schema.json`): Soldier, Knight, Magus, Soothsayer and Vagabond, every drafted active and passive with a JP price. Gambler, Pugilist and Minstrel come with Cast Lots, combos and songs; the advanced Jobs after that.
+- **JP earned stay earned**: buying spends from what is left (earned − prices of what was bought in that Job), so buying never re-locks an advanced Job. Buying the last ability masters the Job.
+- **Prices** run 50 (the basic opener) to 300–400 (ultimates); passives 100–300. A whole set costs 2,600–3,450 JP (§12.1 says "about 2,500"); first pass, tune in play.
+- **A Scion's spell at 1.0×** has the power of the enemy power block at the caster's level ÷ 3 (a level-9 party fights level-3 enemies, §14.2), so spells keep pace like weapons do. `combat.spellLevelDivisor`.
+- **Readings where §12 gives no number or the system is not built**: Shield Bash Stuns 35% of the time and War Cry Fears 35% (before resist; "by Might" waits for tuning); Hold the Line uses Protect; Lance's first-target bonus is left out; Backstab doubles only against Marked targets for now; Coup de Grâce always crits and is fatal below 20% HP, bosses excepted; Spirit Lamp restores Sanity, its Fear immunity comes later. Abilities whose system does not exist yet (moves, swaps, stances, Steal, Interpose, the unbuilt passives) are learnable but marked `later` and stay out of battle.
+
 ## 2026-11-01 (implementation, Milestone 2c: item properties) — implementer
 - **Properties are content** (`content/properties.json`, 100 entries): every §13.4 weapon, armor and accessory property, one per element for edges and wards, one per ailment for Resistant, one per tag for Banes, plus negative and curse properties (§13.4, §13.5). Each names what it rolls on, its value range, a roll weight, an optional minimum tier and exclusive group, and battle `mods` per point of value. Fine items roll 1, Masterwork 2, Relics 2 or 3.
 - **Readings taken where §13.4 gives no number**: Hamstringer Slows on 25% of hits; Visored is Head Durability +20%; an edge adds its % of the finished hit (after armor), through the target's affinity; Quickening rolls only on Masterwork or better wherever it can appear and counts once per Scion; rare properties roll less often (Quickening 1, Multi-hit 3, Massive crits and Second Wind 4, the rest 10). "Hungry's loss clause without its gain" is left out: with no gain there is nothing to lose.

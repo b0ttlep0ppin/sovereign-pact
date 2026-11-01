@@ -4,7 +4,7 @@
 import { ENEMY_BY_ID, INJURY_BY_ID, type EnemyAbility, type EnemyDef } from "../content.ts";
 import { jobStat, maxHp, maxMp, maxSanity } from "../formulas.ts";
 import { UNARMED, type GearTotals } from "../items.ts";
-import { freePassives } from "../progression.ts";
+import { battleActives, freePassives, passiveMods } from "../progression.ts";
 import { ELEMENTS, LOCATIONS, type Location, type Person } from "../state.ts";
 import { TUNING } from "../tuning.ts";
 import { meta } from "./status.ts";
@@ -50,6 +50,7 @@ function carriedMods(p: Person): Record<string, number> {
     add(res?.stat);
   }
   for (const passive of freePassives(p)) add(passive.mods);
+  for (const m of passiveMods(p)) add(m);
   return mods;
 }
 
@@ -101,6 +102,7 @@ export function scionCombatant(p: Person, opts: ScionOpts): Combatant {
     accuracy: Math.floor(F.accuracy.guile * guile),
     defense: o.armor?.defense ?? 0,
     weapon: o.weapon ?? UNARMED,
+    offhand: o.gear?.offhand,
     dur,
     maxDur: { ...dur },
     broken: [],
@@ -114,7 +116,7 @@ export function scionCombatant(p: Person, opts: ScionOpts): Combatant {
     guard: (o.armor?.guard ?? 0) + (mods.guard ?? 0),
     counter: mods.counter ?? 0,
     steps: 0,
-    abilities: o.abilities ?? [],
+    abilities: o.abilities ?? battleActives(p),
     gambits: o.gambits ?? [],
     cooldowns: {},
     ct: o.ct ?? 0,

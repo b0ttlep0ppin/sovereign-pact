@@ -118,6 +118,10 @@ export const TUNING = {
     lastStand: { damage: 25, tp: 20 },
     /** Damage-over-time per 50 ticks, % of max HP (§10.8); Bleed also takes Durability. */
     pulse: 50,
+    /** Per-100-tick regeneration from passives (Meditation, Wellspring). */
+    regenEvery: 100,
+    /** A Scion's spell power at 1.0× is the power block at level ÷ this (party level 3L fights expedition level L, §14.2). */
+    spellLevelDivisor: 3,
     poison: 3,
     bleed: 2,
     bleedDurability: 2,
