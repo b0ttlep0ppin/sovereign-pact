@@ -206,6 +206,8 @@ export interface BossPhase {
   statuses?: { id: string; ticks: number }[];
   /** A weak point it shows from this phase on (aimed hits on the location do × mult). */
   weak?: { location: Location; mult: number };
+  /** Its elemental leanings from this phase on, replacing the old ones (Divine Beast Fusion's cycle). */
+  affinity?: Partial<Record<Element, number>>;
   /** One living add of `from` becomes `into` where it stood (the Village Evil God's Flesh Mass). */
   transform?: { from: string; into: string };
   say: string;

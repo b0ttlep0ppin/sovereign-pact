@@ -1,0 +1,26 @@
+{
+  "id": "shrine_earth_divine_beast",
+  "name": "Earth Divine Beast",
+  "pool": "shrine_of_six",
+  "tags": ["divine", "beast"],
+  "role": "colossus",
+  "size": [3, 3],
+  "levels": [4, 10],
+  "stats": {"hp": 4, "atk": 1.2, "speed": 9},
+  "affinity": {"earth": 100, "wind": -100},
+  "immune": ["fear", "stun", "sleep", "charm"],
+  "abilities": [
+    {"id": "landslide", "shape": "band:4", "side": "player", "power": 1.2, "kind": "magic", "element": "earth", "charge": 100, "telegraph": true, "cooldown": 3, "statuses": [{"id": "knockdown", "chance": 40, "ticks": 0}]},
+    {"id": "stone_horn", "shape": "column:F", "side": "player", "power": 1.2, "cooldown": 2},
+    {"id": "bedrock", "shape": "self", "side": "self", "power": 0, "kind": "support", "statuses": [{"id": "protect", "chance": 100, "ticks": 300}], "cooldown": 4}
+  ],
+  "gambits": [
+    {"if": "turn%3==1", "do": "landslide"},
+    {"if": "self.hp<0.6", "do": "bedrock"},
+    {"do": "stone_horn"}
+  ],
+  "bestiary": {
+    "lore": "The keeper of the Earth shrine, a mountain that walks.",
+    "weakness": "Wind, twice over."
+  }
+}

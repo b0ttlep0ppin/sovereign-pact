@@ -1,0 +1,24 @@
+{
+  "id": "shrine_element",
+  "name": "Element",
+  "pool": "shrine_of_six",
+  "tags": ["elemental", "spirit"],
+  "role": "fodder",
+  "size": [1, 1],
+  "levels": [4, 10],
+  "variants": ["ashen", "drowned", "storm", "stone"],
+  "stats": {"speed": 11},
+  "immune": ["poison", "bleed", "sleep"],
+  "abilities": [
+    {"id": "element_bolt", "shape": "single", "side": "player", "power": 1.0, "kind": "magic", "reach": "ranged"},
+    {"id": "touch", "shape": "single", "side": "player", "power": 0.9}
+  ],
+  "gambits": [
+    {"if": "turn%2==0", "do": "element_bolt", "target": "back_random"},
+    {"do": "touch", "target": "column_weighted"}
+  ],
+  "bestiary": {
+    "lore": "A spark of a shrine's element, given a will. It takes the shrine's color.",
+    "weakness": "The opposite of its shrine."
+  }
+}

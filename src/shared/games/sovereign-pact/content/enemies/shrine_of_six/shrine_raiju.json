@@ -1,0 +1,23 @@
+{
+  "id": "shrine_raiju",
+  "name": "Raiju",
+  "pool": "shrine_of_six",
+  "tags": ["beast", "spirit"],
+  "role": "lurker",
+  "size": [1, 1],
+  "levels": [5, 10],
+  "stats": {"speed": 15},
+  "affinity": {"wind": 75, "earth": -50},
+  "abilities": [
+    {"id": "thunder_pounce", "shape": "single", "side": "player", "power": 1.3, "leap": true, "element": "wind", "statuses": [{"id": "stun", "chance": 20, "ticks": 100}]},
+    {"id": "static_field", "shape": "adjacent", "side": "player", "power": 0.8, "kind": "magic", "element": "wind", "cooldown": 2}
+  ],
+  "gambits": [
+    {"if": "turn%2==0", "do": "thunder_pounce", "target": "empty_cell"},
+    {"do": "static_field"}
+  ],
+  "bestiary": {
+    "lore": "The thunder beast, which falls with the lightning and leaps from where it lands.",
+    "weakness": "Earth."
+  }
+}

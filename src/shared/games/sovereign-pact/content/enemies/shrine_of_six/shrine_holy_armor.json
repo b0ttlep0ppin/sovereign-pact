@@ -1,0 +1,26 @@
+{
+  "id": "shrine_holy_armor",
+  "name": "Holy Armor",
+  "pool": "shrine_of_six",
+  "tags": ["construct", "armored"],
+  "role": "elite",
+  "size": [1, 1],
+  "levels": [4, 9],
+  "stats": {"def": 1.6, "speed": 9},
+  "affinity": {"holy": 75, "dark": -50},
+  "immune": ["poison", "sleep", "fear", "charm", "bleed"],
+  "abilities": [
+    {"id": "blessed_blade", "shape": "single", "side": "player", "power": 1.4, "element": "holy"},
+    {"id": "consecrate", "shape": "column:F", "side": "player", "power": 1.0, "kind": "magic", "element": "holy", "cooldown": 2},
+    {"id": "aegis", "shape": "self", "side": "self", "power": 0, "kind": "support", "statuses": [{"id": "protect", "chance": 100, "ticks": 300}, {"id": "shell", "chance": 100, "ticks": 300}], "cooldown": 4}
+  ],
+  "gambits": [
+    {"if": "self.hp<0.6", "do": "aegis"},
+    {"if": "turn%2==1", "do": "consecrate"},
+    {"do": "blessed_blade", "target": "lowest_durability"}
+  ],
+  "bestiary": {
+    "lore": "The Light shrine's guardian armor, empty and still devout.",
+    "weakness": "Dark."
+  }
+}

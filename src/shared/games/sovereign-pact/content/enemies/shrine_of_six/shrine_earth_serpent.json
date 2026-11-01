@@ -1,0 +1,23 @@
+{
+  "id": "shrine_earth_serpent",
+  "name": "Earth Serpent",
+  "pool": "shrine_of_six",
+  "tags": ["elemental", "beast"],
+  "role": "bruiser",
+  "size": [1, 1],
+  "levels": [4, 9],
+  "stats": {"hp": 1.7, "speed": 9},
+  "affinity": {"earth": 50, "wind": -50},
+  "abilities": [
+    {"id": "coil_crush", "shape": "single", "side": "player", "power": 1.3, "statuses": [{"id": "rooted", "chance": 40, "ticks": 200}]},
+    {"id": "burrow_strike", "shape": "column:F", "side": "player", "power": 1.0, "kind": "magic", "element": "earth", "cooldown": 2}
+  ],
+  "gambits": [
+    {"if": "turn%2==1", "do": "burrow_strike"},
+    {"do": "coil_crush", "target": "lowest_durability"}
+  ],
+  "bestiary": {
+    "lore": "It swims through the Earth shrine's floor like water.",
+    "weakness": "Wind."
+  }
+}

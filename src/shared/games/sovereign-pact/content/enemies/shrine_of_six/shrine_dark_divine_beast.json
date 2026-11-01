@@ -1,0 +1,26 @@
+{
+  "id": "shrine_dark_divine_beast",
+  "name": "Dark Divine Beast",
+  "pool": "shrine_of_six",
+  "tags": ["divine", "beast"],
+  "role": "colossus",
+  "size": [3, 3],
+  "levels": [6, 10],
+  "stats": {"hp": 4, "atk": 1.2, "speed": 9},
+  "affinity": {"dark": 100, "holy": -100},
+  "immune": ["fear", "stun", "sleep", "charm"],
+  "abilities": [
+    {"id": "eclipse", "shape": "all", "side": "player", "power": 0.6, "kind": "magic", "sanity": 6, "charge": 120, "telegraph": true, "cooldown": 4, "element": "dark"},
+    {"id": "night_maw", "shape": "single", "side": "player", "power": 1.4, "kind": "magic", "sanity": 4, "drain": 30, "element": "dark", "reach": "ranged"},
+    {"id": "shadow_wave", "shape": "band:3", "side": "player", "power": 0.9, "kind": "magic", "cooldown": 2, "element": "dark"}
+  ],
+  "gambits": [
+    {"if": "turn%4==1", "do": "eclipse"},
+    {"if": "turn%2==0", "do": "shadow_wave", "target": "densest_row"},
+    {"do": "night_maw", "target": "lowest_sanity"}
+  ],
+  "bestiary": {
+    "lore": "The keeper of the Dark shrine. Its shadow is still walking around the shrine without it.",
+    "weakness": "Holy, twice over."
+  }
+}

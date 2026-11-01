@@ -1,0 +1,26 @@
+{
+  "id": "shrine_holy_divine_beast",
+  "name": "Light Divine Beast",
+  "pool": "shrine_of_six",
+  "tags": ["divine", "beast"],
+  "role": "colossus",
+  "size": [3, 3],
+  "levels": [6, 10],
+  "stats": {"hp": 4, "atk": 1.2, "speed": 9},
+  "affinity": {"holy": 100, "dark": -100},
+  "immune": ["fear", "stun", "sleep", "charm"],
+  "abilities": [
+    {"id": "judgment", "shape": "all", "side": "player", "power": 0.8, "kind": "magic", "charge": 120, "telegraph": true, "cooldown": 4, "element": "holy"},
+    {"id": "halo_ray", "shape": "line:3", "side": "player", "power": 1.2, "kind": "magic", "cooldown": 2, "element": "holy"},
+    {"id": "radiant_mend", "shape": "self", "side": "self", "power": 0, "kind": "support", "statuses": [{"id": "regen", "chance": 100, "ticks": 300, "value": 10}], "cooldown": 4}
+  ],
+  "gambits": [
+    {"if": "turn%4==1", "do": "judgment"},
+    {"if": "self.hp<0.6", "do": "radiant_mend"},
+    {"do": "halo_ray"}
+  ],
+  "bestiary": {
+    "lore": "The keeper of the Light shrine, too bright to look at for long.",
+    "weakness": "Dark, twice over."
+  }
+}

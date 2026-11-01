@@ -1,0 +1,25 @@
+{
+  "id": "shrine_ergo_angel",
+  "name": "Ergo Angel",
+  "pool": "shrine_of_six",
+  "tags": ["angel", "flyer"],
+  "role": "support",
+  "size": [1, 1],
+  "levels": [4, 10],
+  "stats": {"speed": 11},
+  "affinity": {"holy": 75, "dark": -50},
+  "abilities": [
+    {"id": "radiance", "shape": "single", "side": "ally", "power": 1.5, "kind": "heal", "element": "holy"},
+    {"id": "sanctuary", "shape": "single", "side": "ally", "power": 0, "kind": "support", "statuses": [{"id": "shell", "chance": 100, "ticks": 300}, {"id": "protect", "chance": 100, "ticks": 300}], "cooldown": 4},
+    {"id": "judgment_ray", "shape": "single", "side": "player", "power": 0.9, "kind": "magic", "element": "holy", "reach": "ranged"}
+  ],
+  "gambits": [
+    {"if": "ally.hp<0.5", "do": "radiance", "target": "ally_lowest_hp"},
+    {"if": "turn%4==1", "do": "sanctuary", "target": "ally_lowest_hp"},
+    {"do": "judgment_ray", "target": "lowest_hp"}
+  ],
+  "bestiary": {
+    "lore": "A servant of the Light shrine, who does not ask whose side it is on.",
+    "weakness": "Dark."
+  }
+}

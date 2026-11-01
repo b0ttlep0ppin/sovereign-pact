@@ -1,0 +1,24 @@
+{
+  "id": "shrine_flare_armor",
+  "name": "Flare Armor",
+  "pool": "shrine_of_six",
+  "tags": ["construct", "armored"],
+  "role": "elite",
+  "size": [1, 1],
+  "levels": [6, 10],
+  "stats": {"def": 1.6, "speed": 10},
+  "affinity": {"fire": 75, "water": -50},
+  "immune": ["poison", "sleep", "fear", "charm", "bleed", "burn"],
+  "abilities": [
+    {"id": "flare_blade", "shape": "single", "side": "player", "power": 1.5, "element": "fire", "statuses": [{"id": "burn", "chance": 30, "ticks": 300}]},
+    {"id": "solar_flare", "shape": "band:3", "side": "player", "power": 1.1, "kind": "magic", "element": "fire", "charge": 80, "telegraph": true, "cooldown": 3}
+  ],
+  "gambits": [
+    {"if": "turn%3==1", "do": "solar_flare", "target": "densest_row"},
+    {"do": "flare_blade", "target": "lowest_durability"}
+  ],
+  "bestiary": {
+    "lore": "The Fire shrine's guardian armor, burning inside where a knight would be.",
+    "weakness": "Water."
+  }
+}

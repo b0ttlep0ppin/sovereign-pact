@@ -1,0 +1,26 @@
+{
+  "id": "shrine_thunderbird",
+  "name": "Thunderbird",
+  "pool": "shrine_of_six",
+  "tags": ["beast", "flyer"],
+  "role": "elite",
+  "size": [1, 1],
+  "levels": [4, 10],
+  "stats": {"speed": 14},
+  "affinity": {"wind": 75, "earth": -50},
+  "immune": ["fear"],
+  "abilities": [
+    {"id": "thunder_dive", "shape": "line:3", "side": "player", "power": 1.3, "kind": "magic", "charge": 60, "telegraph": true, "cooldown": 2, "element": "wind"},
+    {"id": "storm_call", "shape": "random:3", "side": "player", "power": 0.9, "kind": "magic", "cooldown": 2, "element": "wind"},
+    {"id": "talon", "shape": "single", "side": "player", "power": 1.2}
+  ],
+  "gambits": [
+    {"if": "turn%3==1", "do": "thunder_dive"},
+    {"if": "turn%3==2", "do": "storm_call"},
+    {"do": "talon", "target": "back_random"}
+  ],
+  "bestiary": {
+    "lore": "Its wings are the thunder. Where it nests, the sky does not clear.",
+    "weakness": "Earth."
+  }
+}

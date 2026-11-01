@@ -1,0 +1,23 @@
+{
+  "id": "shrine_balloon",
+  "name": "Balloon",
+  "pool": "shrine_of_six",
+  "tags": ["elemental", "flyer"],
+  "role": "artillery",
+  "size": [1, 1],
+  "levels": [4, 8],
+  "stats": {"hp": 0.6, "speed": 8},
+  "affinity": {"fire": 50, "water": -50},
+  "abilities": [
+    {"id": "pop", "shape": "burst:3x3", "side": "player", "power": 1.3, "kind": "magic", "element": "fire", "charge": 100, "telegraph": true, "selfDestruct": true},
+    {"id": "ember", "shape": "single", "side": "player", "power": 0.8, "reach": "ranged", "element": "fire"}
+  ],
+  "gambits": [
+    {"if": "turn>=2", "do": "pop", "target": "densest_cluster"},
+    {"do": "ember", "target": "lob"}
+  ],
+  "bestiary": {
+    "lore": "Swollen with the Fire shrine's breath. It drifts closer. It swells.",
+    "weakness": "Water, or kill it before it pops."
+  }
+}
