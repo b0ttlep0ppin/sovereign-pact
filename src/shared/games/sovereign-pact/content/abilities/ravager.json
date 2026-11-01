@@ -1,0 +1,21 @@
+{
+  "job": "ravager",
+  "actives": [
+    {"id": "reckless_swing", "name": "Reckless Swing", "jp": 100, "text": "+60% damage; your Evasion −20% until your next turn.", "shape": "single", "side": "foe", "power": 1.6, "tp": 20, "self": {"mods": {"turn.evasion": -20}}},
+    {"id": "blood_price", "name": "Blood Price", "jp": 100, "text": "Attack at +40%, paid in 15% of your HP instead of TP.", "shape": "single", "side": "foe", "power": 1.4, "hpCost": 15},
+    {"id": "drink_deep", "name": "Drink Deep", "jp": 150, "text": "Drain half the damage as HP.", "shape": "single", "side": "foe", "power": 1, "tp": 25, "drain": 50},
+    {"id": "whirl", "name": "Whirl", "jp": 200, "text": "80% damage to every enemy in reach.", "shape": "column:F", "side": "foe", "power": 0.8, "tp": 35},
+    {"id": "rend", "name": "Rend", "jp": 100, "text": "Bleed and Marked.", "shape": "single", "side": "foe", "power": 1, "tp": 20, "statuses": [{"id": "bleed", "chance": 100, "ticks": 0}, {"id": "marked", "chance": 100, "ticks": 200}]},
+    {"id": "steal_strength", "name": "Steal Strength", "jp": 200, "text": "Might +10% to you and −10% to the target for 300 ticks.", "shape": "single", "side": "foe", "power": 1, "tp": 30, "statuses": [{"id": "might_down", "chance": 100, "ticks": 300, "mods": {"mightPct": -10}}], "self": {"statuses": [{"id": "might_up", "ticks": 300, "mods": {"mightPct": 10}}]}},
+    {"id": "frenzy", "name": "Frenzy", "jp": 250, "text": "500 ticks: attacks cost 70 CT, accuracy −15%, and you cannot Defend.", "shape": "self", "side": "self", "power": 0, "kind": "support", "tp": 40, "statuses": [{"id": "frenzy", "chance": 100, "ticks": 500, "mods": {"attackCt": -30, "accuracy": -15, "noDefend": 1}}]},
+    {"id": "unstoppable", "name": "Unstoppable", "jp": 200, "text": "Immune to Knockdown, Stun and Fear for 300 ticks; injury rolls +1 step.", "shape": "self", "side": "self", "power": 0, "kind": "support", "mp": 20, "statuses": [{"id": "unstoppable", "chance": 100, "ticks": 300, "mods": {"immune.knockdown": 1, "immune.stun": 1, "immune.fear": 1, "injurySteps": 1}}]},
+    {"id": "executioner", "name": "Executioner", "jp": 300, "text": "150% at the Head; always a crit against the Marked.", "shape": "single", "side": "foe", "power": 1.5, "tp": 45, "aim": "head", "critIfMarked": true},
+    {"id": "hold_together", "name": "Hold Together", "jp": 200, "text": "Restore 30% Durability on your most damaged location; your HP cannot be healed above 50% this battle.", "shape": "self", "side": "self", "power": 0, "kind": "support", "tp": 30, "cost": 60, "restore": {"durPct": 30, "loc": "lowest"}, "flag": "heal_cap_half"}
+  ],
+  "passives": [
+    {"id": "pain_is_fuel", "name": "Pain is Fuel", "points": 2, "jp": 200, "text": "TP +10 extra when hit.", "mods": {"tpWhenHit": 10}},
+    {"id": "iron_will", "name": "Iron Will", "points": 2, "jp": 200, "text": "Below 30% HP, injury rolls +2 steps.", "mods": {"lowHpSteps": 2}},
+    {"id": "two_handed_mastery", "name": "Two-Handed Mastery", "points": 2, "jp": 250, "text": "Two-handed weapon power +20%.", "mods": {"twoHandPct": 20}},
+    {"id": "thick_blood", "name": "Thick Blood", "points": 1, "jp": 100, "text": "Immune to Bleed.", "mods": {"immune.bleed": 1}}
+  ]
+}

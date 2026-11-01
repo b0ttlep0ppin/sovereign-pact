@@ -2,6 +2,7 @@
 // Durations, charges and damage-over-time count ticks, 10 to a step (DECISIONS 2026-11-01, M1).
 import type { Rng } from "../../../rng.ts";
 import { TUNING } from "../tuning.ts";
+import { hpCap } from "./damage.ts";
 import { hasStatus } from "./grid.ts";
 import { down, injure, kill, steel } from "./injury.ts";
 import { addStatus, frozenClock, meta, removeStatus, speedOf, statusValue, tickStatuses } from "./status.ts";
@@ -38,6 +39,8 @@ const pctOf = (n: number, p: number) => Math.max(1, Math.round((n * p) / 100));
 /** Every 100 ticks: Meditation, Wellspring, Mana Font; Cleansing Air and Plague Chant. */
 function per100(b: Battle, u: Combatant): void {
   if (u.mods.mpPer100) u.mp = Math.min(u.maxMp, u.mp + u.mods.mpPer100);
+  // Focus (Sword Saint, §12.3).
+  if (u.mods.tpPer100 && !u.down) u.tp = Math.min(C.tp.max, u.tp + u.mods.tpPer100);
   if (u.mods.cleansePer100) {
     const ail = u.statuses.find((s) => meta(s.id).kind === "physical");
     if (ail) removeStatus(b, u, ail.id);
@@ -55,11 +58,11 @@ function pulseOf(b: Battle, rng: Rng, u: Combatant): void {
     hurt += pctOf(u.maxHp, C.bleed);
     if (bleed.loc && u.dur) u.dur[bleed.loc] = Math.max(0, u.dur[bleed.loc] - C.bleedDurability);
   }
-  if (hasStatus(u, "regen")) u.hp = Math.min(u.maxHp, u.hp + pctOf(u.maxHp, C.regen));
+  if (hasStatus(u, "regen")) u.hp = Math.max(u.hp, Math.min(hpCap(u), u.hp + pctOf(u.maxHp, C.regen)));
   if (hasStatus(u, "mp_regen")) u.mp = Math.min(u.maxMp, u.mp + 2);
   if (hasStatus(u, "tp_regen")) u.tp = Math.min(C.tp.max, u.tp + 5);
   // Chorus songs (§12.11): Hearthsong, Fountain, Drumbeat.
-  if (u.mods.regenPct) u.hp = Math.min(u.maxHp, u.hp + pctOf(u.maxHp, u.mods.regenPct));
+  if (u.mods.regenPct) u.hp = Math.max(u.hp, Math.min(hpCap(u), u.hp + pctOf(u.maxHp, u.mods.regenPct)));
   if (u.mods.mpPerPulse) u.mp = Math.min(u.maxMp, u.mp + u.mods.mpPerPulse);
   if (u.mods.tpPerPulse) u.tp = Math.min(C.tp.max, u.tp + u.mods.tpPerPulse);
   if (!hurt) return;

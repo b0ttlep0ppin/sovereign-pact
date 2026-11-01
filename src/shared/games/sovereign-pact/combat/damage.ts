@@ -5,10 +5,11 @@ import { ELEMENTS, LOCATIONS, type Element, type Location } from "../state.ts";
 import { TUNING } from "../tuning.ts";
 import { hasStatus } from "./grid.ts";
 import { down, injure, kill, steel, steelSanity } from "./injury.ts";
-import { addStatus, meta, removeStatus, statusValue, tryStatus } from "./status.ts";
+import { addStatus, extraOf, meta, removeStatus, statusValue, tryStatus } from "./status.ts";
 import type { AbilityDef, Battle, Combatant } from "./types.ts";
 
 const C = TUNING.combat;
+const J = C.jobs;
 const clamp = (n: number, lo: number, hi: number) => Math.max(lo, Math.min(hi, n));
 const pct = (n: number) => 1 + n / 100;
 
@@ -64,12 +65,14 @@ export function baseDamage(u: Combatant, ab: AbilityDef): number {
   const kind = kindOf(ab);
   // A Scion's spell with no power of its own scales with the caster's level, like a weapon with its item level.
   const spell = u.enemyScale === undefined && (kind === "magic" || kind === "heal");
-  const power = (ab.base ?? (spell ? spellBase(u.level) : u.weapon.power)) * ab.power;
+  let power = (ab.base ?? (spell ? spellBase(u.level) : u.weapon.power)) * ab.power;
+  // Two-Handed Mastery (§12.12).
+  if (kind === "physical" && ab.base === undefined && u.weapon.hands === 2) power *= pct(u.mods.twoHandPct ?? 0);
   if (u.enemyScale !== undefined) return power * u.enemyScale;
   if (kind === "magic") return power * (1 + u.acuity / C.acuityDivisor) * (1 + (u.mods.spellPct ?? 0) / 100);
   if (kind === "heal") return power * (1 + u.sagacity / C.sagacityDivisor);
   // Spellbound weapons swing with Acuity when it is higher (§13.4).
-  const might = u.mods.spellbound && ab.base === undefined ? Math.max(u.might, u.acuity) : u.might;
+  const might = (u.mods.spellbound && ab.base === undefined ? Math.max(u.might, u.acuity) : u.might) * pct(u.mods.mightPct ?? 0);
   return power * (1 + might / C.mightDivisor);
 }
 
@@ -167,6 +170,9 @@ export function strike(b: Battle, rng: Rng, u: Combatant, t: Combatant, ab: Abil
   if (loaded) removeStatus(b, u, "loaded_dice");
   const streak = u.mods.luckyStreak ? (u.mods.lotsStreak ?? 0) * u.mods.luckyStreak : 0;
   let crit = rng.int(100) < C.crit.base + u.weapon.crit + (ab.crit ?? 0) + (u.mods.crit ?? 0) + loaded + streak + (loc === "head" ? C.crit.headBonus : 0);
+  // Draw Cut: crit up on the first turn. Executioner: always a crit on the Marked.
+  if (!crit && ab.critFirstTurn && u.turns <= 1) crit = rng.int(100) < ab.critFirstTurn;
+  if (ab.critIfMarked && hasStatus(t, "marked")) crit = true;
   if (primed >= 0) {
     crit = true;
     u.flags.splice(primed, 1);
@@ -216,6 +222,8 @@ export function strike(b: Battle, rng: Rng, u: Combatant, t: Combatant, ab: Abil
   if (weak) dmg *= t.weak!.mult * (bias === t.weak!.location ? C.props.biasWeakMult : 1);
   if (crit) {
     dmg *= C.crit.mult + (u.mods.critMult ?? 0) / 100;
+    // One Cut: a two-handed sword's crit lands twice as hard (§12.13).
+    if (u.mods.oneCut && u.weapon.kind === "sword" && u.weapon.hands === 2) dmg *= J.oneCutMult;
     if (hasStatus(t, "frozen")) {
       dmg *= pct(C.frozenShatter);
       removeStatus(b, t, "frozen");
@@ -235,6 +243,11 @@ export function strike(b: Battle, rng: Rng, u: Combatant, t: Combatant, ab: Abil
   if (crit && physical && u.weapon.critStatus && !t.dead) tryStatus(b, rng, t, u.weapon.critStatus, 100, 0);
   if (weaponHit && damage > 0) afterWeaponHit(b, rng, u, t, damage);
   for (const id of ab.dispel ?? []) if (!t.dead) removeStatus(b, t, id);
+  if (ab.drain && damage > 0 && !u.down && !u.dead) u.hp = Math.min(hpCap(u), u.hp + Math.round((damage * ab.drain) / 100));
+  if (ab.breaksCharge && t.charge && !t.dead) {
+    b.events.push({ t: "cancel", unit: t.id, ability: t.charge.ability.id });
+    delete t.charge;
+  }
   if (t.dead && ab.refundTp) u.tp = Math.min(C.tp.max, u.tp + ab.refundTp);
   if (ab.tpOnHit) u.tp = Math.min(C.tp.max, u.tp + ab.tpOnHit);
   if (physical && damage > 0 && isMelee(u, ab)) afterMeleeHit(b, rng, u, t, damage, opts);
@@ -243,7 +256,7 @@ export function strike(b: Battle, rng: Rng, u: Combatant, t: Combatant, ab: Abil
 
 /** Draining, Mana-thirst, Siphoning and on-hit ailments (§13.4). */
 function afterWeaponHit(b: Battle, rng: Rng, u: Combatant, t: Combatant, damage: number): void {
-  if (u.mods.drainPct && !u.down) u.hp = Math.min(u.maxHp, u.hp + Math.round((damage * u.mods.drainPct) / 100));
+  if (u.mods.drainPct && !u.down) u.hp = Math.min(hpCap(u), u.hp + Math.round((damage * u.mods.drainPct) / 100));
   if (u.mods.mpPerHit) u.mp = Math.min(u.maxMp, u.mp + u.mods.mpPerHit);
   if (t.dead) return;
   if (u.mods.siphon) {
@@ -268,8 +281,15 @@ function afterMeleeHit(b: Battle, rng: Rng, u: Combatant, t: Combatant, damage: 
       }
     }
   }
+  if (opts.counter || t.dead || t.down || u.dead) return;
+  // Mirror Stance: every melee hit is answered while the TP lasts (§12.13).
+  if (hasStatus(t, "mirror_stance") && t.tp >= J.mirrorTp) {
+    t.tp -= J.mirrorTp;
+    strike(b, rng, t, u, COUNTER, { counter: true });
+    return;
+  }
   const counter = t.counter + (statusValue(t, "counter_up") ?? 0);
-  if (!opts.counter && counter && !t.dead && !t.down && !u.dead && rng.int(100) < counter) strike(b, rng, t, u, COUNTER, { counter: true });
+  if (counter && rng.int(100) < counter) strike(b, rng, t, u, COUNTER, { counter: true });
 }
 
 function applyHit(b: Battle, rng: Rng, u: Combatant, t: Combatant, ab: AbilityDef, damage: number, loc: Location | undefined, opts: StrikeOpts): void {
@@ -299,15 +319,17 @@ function applyHit(b: Battle, rng: Rng, u: Combatant, t: Combatant, ab: AbilityDe
   if (readiness) t.ct = Math.max(0, t.ct - Math.round(readiness * (t.boss ? C.bossReadiness : 1)));
 
   // On-hit: TP both ways, Sanity, statuses (§10.6 step 7).
-  gainTp(u, kindOf(ab) === "physical" ? (u.weapon.tpGain ?? 0) : 0, isWeaponHit(ab) ? (u.mods.tpGainPct ?? 0) : 0);
-  if (!t.dead) gainTp(t, 0, t.mods.tpWhenHitPct ?? 0);
+  const physical = kindOf(ab) === "physical";
+  const sword = physical && u.weapon.kind === "sword" ? (u.mods.swordTpPct ?? 0) : 0;
+  gainTp(u, physical ? (u.weapon.tpGain ?? 0) : 0, (isWeaponHit(ab) ? (u.mods.tpGainPct ?? 0) : 0) + sword);
+  if (!t.dead) gainTp(t, t.mods.tpWhenHit ?? 0, t.mods.tpWhenHitPct ?? 0);
   const sanity = Math.round(((ab.sanity ?? 0) + (ab.power > 0 ? u.sanityTouch : 0)) * pct(t.mods.sanityTakenPct ?? 0));
   const sanityBefore = t.sanity;
   if (sanity > 0 && t.maxSanity > 0) {
     t.sanity = Math.max(0, t.sanity - sanity);
     b.events.push({ t: "sanity", target: t.id, amount: sanity });
   }
-  for (const s of ab.statuses ?? []) if (t.hp > 0) tryStatus(b, rng, t, s.id, s.chance, s.ticks, s.value);
+  for (const s of ab.statuses ?? []) if (t.hp > 0) tryStatus(b, rng, t, s.id, s.chance, s.ticks, s.value, s.mods);
 
   // The injury check (§10.6 step 8). Enemies have no locations: 0 HP is death (§10.9).
   if (t.side === "enemy") {
@@ -356,12 +378,15 @@ export function heal(b: Battle, u: Combatant, t: Combatant, ab: AbilityDef): num
   if (t.dead || t.down) return 0;
   let amount = baseDamage(u, ab) * pct(t.mods.healingReceivedPct ?? 0) * pct(u.mods.healingDealtPct ?? 0);
   if (hasStatus(t, "disease")) amount *= 0.5;
-  const healed = Math.min(t.maxHp - t.hp, Math.round(amount));
+  const healed = Math.max(0, Math.min(hpCap(t) - t.hp, Math.round(amount)));
   t.hp += healed;
   if (healed > 0 && t.statuses.some((s) => s.id === "bleed")) removeStatus(b, t, "bleed");
   b.events.push({ t: "heal", unit: u.id, target: t.id, amount: healed });
   return healed;
 }
+
+/** The most HP healing can bring `u` to: all of it, or half after Hold Together (§12.12). */
+export const hpCap = (u: Combatant): number => (u.flags.includes("heal_cap_half") ? Math.round((u.maxHp * J.healCapPct) / 100) : u.maxHp);
 
 /** Revival: back from Down at 20% HP, no roll (§10.9). */
 export function revive(b: Battle, t: Combatant, hpPct: number = C.reviveHp): void {
@@ -377,7 +402,7 @@ function supportEffects(b: Battle, rng: Rng, u: Combatant, t: Combatant, ab: Abi
   if (ab.revive && t.down) revive(b, t, ab.revive);
   if (t.down) return;
   const r = ab.restore;
-  if (r?.hpPct) t.hp = Math.min(t.maxHp, t.hp + Math.round((t.maxHp * r.hpPct) / 100));
+  if (r?.hpPct) t.hp = Math.max(t.hp, Math.min(hpCap(t), t.hp + Math.round((t.maxHp * r.hpPct) / 100)));
   if (r?.durPct && t.dur && t.maxDur) {
     const locs = r.loc === "all" ? LOCATIONS : r.loc === "lowest" ? [LOCATIONS.reduce((a, l) => (t.dur![l] / t.maxDur![l] < t.dur![a] / t.maxDur![a] ? l : a))] : [rng.pick(LOCATIONS)];
     for (const l of locs) t.dur[l] = Math.min(t.maxDur[l], t.dur[l] + Math.round((t.maxDur[l] * r.durPct) / 100));
@@ -387,7 +412,9 @@ function supportEffects(b: Battle, rng: Rng, u: Combatant, t: Combatant, ab: Abi
   if (ab.tpGrant) t.tp = Math.min(C.tp.max, t.tp + ab.tpGrant);
   if (ab.flag && !t.flags.includes(ab.flag)) t.flags.push(ab.flag);
   for (const x of ab.statuses ?? []) {
-    if (t.side === u.side) addStatus(b, t, x.id, x.ticks, x.value === undefined ? undefined : { value: x.value });
-    else tryStatus(b, rng, t, x.id, x.chance, x.ticks, x.value);
+    // Breath of Steel and Lasting Wards: timed buffs cast with MP last longer.
+    const longer = ab.mp && x.ticks > 0 && meta(x.id).kind === "buff" ? (u.mods.buffTicks ?? 0) : 0;
+    if (t.side === u.side) addStatus(b, t, x.id, x.ticks + longer, extraOf(x.value, x.mods));
+    else tryStatus(b, rng, t, x.id, x.chance, x.ticks, x.value, x.mods);
   }
 }

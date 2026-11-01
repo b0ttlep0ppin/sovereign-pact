@@ -1,0 +1,21 @@
+{
+  "job": "sword_saint",
+  "actives": [
+    {"id": "crescent_cut", "name": "Crescent Cut", "jp": 150, "text": "120% to the cross.", "shape": "cross", "side": "foe", "power": 1.2, "tp": 30, "requires": ["sword"]},
+    {"id": "thousand_cuts", "name": "Thousand Cuts", "jp": 300, "text": "150% to the burst; Bleed.", "shape": "burst:3x3", "side": "foe", "power": 1.5, "tp": 50, "requires": ["sword"], "statuses": [{"id": "bleed", "chance": 100, "ticks": 0}]},
+    {"id": "still_water", "name": "Still Water", "jp": 100, "text": "TP +25; your next technique +20%.", "shape": "self", "side": "self", "power": 0, "kind": "support", "mp": 20, "tpGrant": 25, "flag": "still_water"},
+    {"id": "draw_cut", "name": "Draw Cut", "jp": 100, "text": "140%; on your first turn of the battle, crit +50%.", "shape": "single", "side": "foe", "power": 1.4, "tp": 25, "requires": ["sword"], "critFirstTurn": 50},
+    {"id": "blade_ward", "name": "Blade Ward", "jp": 150, "text": "An ally's TP +20 and counter chance +20% for 300 ticks.", "shape": "single", "side": "ally", "power": 0, "kind": "support", "mp": 25, "tpGrant": 20, "statuses": [{"id": "counter_up", "chance": 100, "ticks": 300, "value": 20}]},
+    {"id": "severing_wind", "name": "Severing Wind", "jp": 250, "text": "130% to the whole column; Readiness damage 30.", "shape": "column", "side": "foe", "power": 1.3, "tp": 60, "requires": ["sword"], "reach": "ranged", "readiness": 30},
+    {"id": "iron_resolve", "name": "Iron Resolve", "jp": 150, "text": "Allies in your row gain TP Regen for 300 ticks.", "shape": "row", "side": "ally", "power": 0, "kind": "support", "mp": 30, "statuses": [{"id": "tp_regen", "chance": 100, "ticks": 300}]},
+    {"id": "zenith_strike", "name": "Zenith Strike", "jp": 400, "text": "300% at the Head; Stun; breaks a charge in progress, even a boss's.", "shape": "single", "side": "foe", "power": 3, "tp": 80, "requires": ["sword"], "aim": "head", "breaksCharge": true, "statuses": [{"id": "stun", "chance": 100, "ticks": 0}]},
+    {"id": "mirror_stance", "name": "Mirror Stance", "jp": 200, "text": "Until your next turn, every melee hit on you is countered, for 20 TP each.", "shape": "self", "side": "self", "power": 0, "kind": "support", "cost": 60, "statuses": [{"id": "mirror_stance", "chance": 100, "ticks": 0}]},
+    {"id": "sheathe", "name": "Sheathe", "jp": 100, "text": "TP +15 and Bleed cured; your next turn comes 20 CT sooner.", "shape": "self", "side": "self", "power": 0, "kind": "support", "tp": 10, "cost": 60, "tpGrant": 15, "cure": ["bleed"], "self": {"mods": {"nextActionCt": -20}}}
+  ],
+  "passives": [
+    {"id": "sword_focus", "name": "Sword Focus", "points": 2, "jp": 200, "text": "TP gain +25% with a sword.", "mods": {"swordTpPct": 25}},
+    {"id": "breath_of_steel", "name": "Breath of Steel", "points": 2, "jp": 200, "text": "Sword techniques' MP buffs last +100 ticks.", "mods": {"buffTicks": 100}},
+    {"id": "one_cut", "name": "One Cut", "points": 3, "jp": 300, "text": "Crits deal double damage with a two-handed sword.", "mods": {"oneCut": 1}},
+    {"id": "serene", "name": "Serene", "points": 1, "jp": 100, "text": "Sanity loss −25%.", "mods": {"sanityTakenPct": -25}}
+  ]
+}

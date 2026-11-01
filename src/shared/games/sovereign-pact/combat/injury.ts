@@ -17,7 +17,9 @@ export function resultFor(table: InjuryTableId, total: number): InjuryResult {
 export function baseSteps(u: Combatant, table: InjuryTableId): number {
   const per = TUNING.combat.injury.resiliencePerStep;
   const stat = table === "sanity" ? u.sagacity + u.resilience / 2 : u.resilience;
-  return Math.floor(stat / per) + u.steps + (u.mods[`${table}Steps`] ?? 0);
+  // Unstoppable: every roll; Iron Will: every roll while badly hurt (§12.12).
+  const hurt = u.hp < (u.maxHp * TUNING.combat.jobs.lowHpBelow) / 100 ? (u.mods.lowHpSteps ?? 0) : 0;
+  return Math.floor(stat / per) + u.steps + (u.mods[`${table}Steps`] ?? 0) + (u.mods.injurySteps ?? 0) + hurt;
 }
 
 export interface Roll {
@@ -49,8 +51,10 @@ export function injure(b: Battle, rng: Rng, u: Combatant, table: InjuryTableId, 
 
 function apply(b: Battle, u: Combatant, res: InjuryResult, table: InjuryTableId): void {
   if (res.death) {
-    kill(b, u);
-    return;
+    // Deathless (Ravager mastery): once a battle, Death becomes a Mortal wound.
+    if (!u.mods.deathless || u.flags.includes("deathless_used")) return kill(b, u);
+    u.flags.push("deathless_used");
+    res = { ...res, death: undefined, mortal: true };
   }
   if (res.mortal) {
     // They know. They fight anyway (§11.4): up again if they fell, immune to further rolls, dying at the end.

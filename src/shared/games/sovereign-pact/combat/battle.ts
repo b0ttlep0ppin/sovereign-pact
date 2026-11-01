@@ -9,7 +9,7 @@ import { playSong } from "./songs.ts";
 import { strike } from "./damage.ts";
 import { hasStatus, isFree, standing } from "./grid.ts";
 import { kill } from "./injury.ts";
-import { addStatus, meta, removeStatus } from "./status.ts";
+import { addStatus, extraOf, meta, removeStatus } from "./status.ts";
 import { cellOf, isSingle, resolveTargets, singleTargets } from "./targets.ts";
 import type { AbilityDef, Battle, Cell, Combatant } from "./types.ts";
 
@@ -39,6 +39,13 @@ export function abilityOf(u: Combatant, id: string): AbilityDef | undefined {
 export const mpCost = (u: Combatant, ab: AbilityDef): number =>
   ab.mp ? Math.max(1, Math.round(ab.mp * (1 + (ab.kind === "magic" || ab.kind === "heal" ? (u.mods.spellMpPct ?? 0) : 0) / 100))) : 0;
 
+/** TP an ability costs `u`: none for the first sword technique of a battle under Iaijutsu (§12.3). */
+export const tpCost = (u: Combatant, ab: AbilityDef): number =>
+  ab.tp && u.mods.iaijutsu && u.weapon.kind === "sword" && ab.id !== "attack" && !u.flags.includes("iaijutsu_used") ? 0 : (ab.tp ?? 0);
+
+/** HP an ability costs `u` (Blood Price): % of max HP. */
+export const hpCost = (u: Combatant, ab: AbilityDef): number => (ab.hpCost ? Math.max(1, Math.round((u.maxHp * ab.hpCost) / 100)) : 0);
+
 /** Why `u` cannot use `ab` now, or null if it can. */
 export function cannotUse(u: Combatant, ab: AbilityDef): string | null {
   if (ab.id !== "attack" && hasStatus(u, "berserk")) return "berserk";
@@ -51,7 +58,8 @@ export function cannotUse(u: Combatant, ab: AbilityDef): string | null {
   if (ab.move?.finisher) return "finisher";
   if (ab.requires && !ab.requires.some((w) => (w === "shield" ? u.offhand === "shield" : u.weapon.kind === w))) return `needs ${ab.requires.join(" or ")}`;
   if (mpCost(u, ab) > u.mp) return "mp";
-  if ((ab.tp ?? 0) > u.tp) return "tp";
+  if (tpCost(u, ab) > u.tp) return "tp";
+  if (ab.hpCost && hpCost(u, ab) >= u.hp) return "hp";
   return null;
 }
 
@@ -75,8 +83,9 @@ function beginTurn(b: Battle, rng: Rng, u: Combatant): boolean {
   b.events.push({ t: "turn", unit: u.id, tick: b.tick });
   u.turns++;
   u.defending = false;
-  // Cast Lots' "until next turn" effects end here.
+  // Cast Lots' and Reckless Swing's "until next turn" effects end here, and so does Mirror Stance.
   for (const k of Object.keys(u.mods)) if (k.startsWith("turn.")) delete u.mods[k];
+  for (const s of [...u.statuses]) if (meta(s.id).endsOnTurn) removeStatus(b, u, s.id);
   u.flags = u.flags.filter((f) => f !== "lots_twelve");
   for (const k of Object.keys(u.cooldowns)) if (u.cooldowns[k]! > 0) u.cooldowns[k]!--;
   if (u.lastStand) u.tp = Math.min(C.tp.max, u.tp + C.lastStand.tp);
@@ -150,9 +159,13 @@ export function act(b: Battle, rng: Rng, u: Combatant, action: Action): void {
       if (ab.homing !== false) homingOn = t.id;
     }
     u.mp -= mpCost(u, ab);
-    u.tp -= ab.tp ?? 0;
+    const tp = tpCost(u, ab);
+    if (ab.tp && !tp) u.flags.push("iaijutsu_used");
+    u.tp -= tp;
+    u.hp -= hpCost(u, ab);
     if (ab.cooldown) u.cooldowns[ab.id] = ab.cooldown + 1;
-    cost = ab.cost ?? (ab.song ? (u.mods.songCt ?? C.cost.song) : ab.id === "attack" ? (u.weapon.attackCost ?? C.cost.action) : C.cost.action);
+    // Frenzy: attacks cost less.
+    cost = ab.cost ?? (ab.song ? (u.mods.songCt ?? C.cost.song) : ab.id === "attack" ? (u.weapon.attackCost ?? C.cost.action) + (u.mods.attackCt ?? 0) : C.cost.action);
     const instant = u.flags.indexOf("instant_charge");
     if (ab.charge && instant < 0) {
       const ticks = chargeTicks(u, ab.charge);
@@ -216,6 +229,12 @@ export function resolve(b: Battle, rng: Rng, u: Combatant, ab: AbilityDef, at: C
     if (rolled.self) targets = [u];
   }
   b.events.push({ t: "use", unit: u.id, ability: ab.id, target: homingOn !== undefined && targets[0] ? cellOf(targets[0]) : at });
+  // Still Water: the next technique hits harder (§12.13).
+  const still = u.flags.indexOf("still_water");
+  if (still >= 0 && ab.power > 0 && ab.id !== "attack") {
+    u.flags.splice(still, 1);
+    ab = { ...ab, power: ab.power * (1 + C.jobs.stillWaterPct / 100) };
+  }
   const hits = (ab.hits ?? 1) + (ab.hitsMax ? rng.int(ab.hitsMax - (ab.hits ?? 1) + 1) : 0);
   // Hundred Fists: the power is shared among everyone it hits.
   if (ab.split && targets.length > 1) ab = { ...ab, power: ab.power / targets.length };
@@ -229,7 +248,8 @@ export function resolve(b: Battle, rng: Rng, u: Combatant, ab: AbilityDef, at: C
   }
   if (hasStatus(u, "hidden")) removeStatus(b, u, "hidden");
   if (ab.self?.tp) u.tp = Math.min(C.tp.max, u.tp + ab.self.tp);
-  for (const x of ab.self?.statuses ?? []) addStatus(b, u, x.id, x.ticks, x.value === undefined ? undefined : { value: x.value });
+  for (const x of ab.self?.statuses ?? []) addStatus(b, u, x.id, x.ticks, extraOf(x.value, x.mods));
+  for (const [k, v] of Object.entries(ab.self?.mods ?? {})) u.mods[k] = (u.mods[k] ?? 0) + v;
   checkEnd(b);
 }
 

@@ -20,6 +20,8 @@ export interface StatusMeta {
   wakesOnHit?: boolean;
   /** Used up on the combatant's next turn. */
   oneTurn?: boolean;
+  /** Ends when the combatant's next turn starts, without costing it (Mirror Stance). */
+  endsOnTurn?: boolean;
   /** Default duration in ticks when none is given (0: battle). */
   ticks: number;
 }
@@ -66,6 +68,12 @@ export const STATUSES: Record<string, StatusMeta> = {
   hex: { kind: "debuff", ticks: 300 },
   loaded_dice: { kind: "buff", ticks: 0 },
   loaded_card: { kind: "debuff", ticks: 0 },
+  // Statuses that carry their effect as mods (§12.12–12.13): Steal Strength, Frenzy, Unstoppable.
+  might_up: { kind: "buff", ticks: 300 },
+  might_down: { kind: "debuff", ticks: 300 },
+  frenzy: { kind: "buff", ticks: 500 },
+  unstoppable: { kind: "buff", ticks: 300 },
+  mirror_stance: { kind: "buff", ticks: 0, endsOnTurn: true },
 };
 
 // Songs are statuses on their hearers: buffs on allies, debuffs on enemies (§12.2).
@@ -85,7 +93,7 @@ export function resistOf(u: Combatant, id: string): number {
 }
 
 export function isImmune(u: Combatant, id: string): boolean {
-  if (u.immune.includes(id)) return true;
+  if (u.immune.includes(id) || u.mods[`immune.${id}`]) return true;
   if (u.boss && meta(id).bossImmune) return true;
   if (u.lastStand && id === "fear") return true;
   return false;
@@ -117,10 +125,16 @@ export function addStatus(b: Battle, u: Combatant, id: string, ticks?: number, e
 }
 
 /** An ability's chance to inflict, then the target's resist (§10.6 step 7). */
-export function tryStatus(b: Battle, rng: Rng, u: Combatant, id: string, chance: number, ticks: number, value?: number): boolean {
+export function tryStatus(b: Battle, rng: Rng, u: Combatant, id: string, chance: number, ticks: number, value?: number, mods?: Record<string, number>): boolean {
   if (rng.int(100) >= chance) return false;
   if (rng.int(100) < resistOf(u, id)) return false;
-  return addStatus(b, u, id, ticks, value === undefined ? undefined : { value });
+  return addStatus(b, u, id, ticks, extraOf(value, mods));
+}
+
+/** A status's value and mods, as `addStatus` takes them. */
+export function extraOf(value?: number, mods?: Record<string, number>): Partial<StatusInst> | undefined {
+  if (value === undefined && !mods) return undefined;
+  return { ...(value === undefined ? {} : { value }), ...(mods ? { mods } : {}) };
 }
 
 /** Adds (sign 1) or takes back (−1) a status's mods. */

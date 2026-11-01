@@ -168,6 +168,13 @@
               "tag": {
                 "type": "string",
                 "description": "Only on targets with this tag"
+              },
+              "mods": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "number"
+                },
+                "description": "Mods the status adds while it lasts"
               }
             }
           }
@@ -314,9 +321,22 @@
                   },
                   "value": {
                     "type": "number"
+                  },
+                  "mods": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "type": "number"
+                    }
                   }
                 }
               }
+            },
+            "mods": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "number"
+              },
+              "description": "Added to the user's mods (turn.* ones end at its next turn)"
             }
           }
         },
@@ -405,6 +425,31 @@
         },
         "split": {
           "type": "boolean"
+        },
+        "hpCost": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 90,
+          "description": "% of max HP paid instead of TP (Blood Price)"
+        },
+        "drain": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 100,
+          "description": "% of damage dealt returned as HP"
+        },
+        "critIfMarked": {
+          "type": "boolean"
+        },
+        "critFirstTurn": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 100,
+          "description": "Crit chance + on the user's first turn of the battle"
+        },
+        "breaksCharge": {
+          "type": "boolean",
+          "description": "Cancels the target's charge in progress, bosses' too"
         }
       }
     },

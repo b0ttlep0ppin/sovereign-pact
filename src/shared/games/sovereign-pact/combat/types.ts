@@ -89,7 +89,7 @@ export interface AbilityDef {
   /** Sanity damage per target hit. */
   sanity?: number;
   /** Statuses it may inflict: chance %, before the target's resist. */
-  statuses?: { id: string; chance: number; ticks: number; value?: number; tag?: string }[];
+  statuses?: { id: string; chance: number; ticks: number; value?: number; tag?: string; mods?: Record<string, number> }[];
   /** Readiness damage (CT taken from each target). */
   readiness?: number;
   /** Hits per target. */
@@ -135,8 +135,18 @@ export interface AbilityDef {
   split?: boolean;
   /** A Minstrel's song (§12.2): its layer and what every hearer gets while it plays. */
   song?: { layer: SongLayer; mods: Record<string, number> };
-  /** On the user after it resolves. */
-  self?: { tp?: number; statuses?: { id: string; ticks: number; value?: number }[] };
+  /** % of max HP paid instead of TP (Blood Price). */
+  hpCost?: number;
+  /** % of the damage dealt that returns to the user as HP (Drink Deep). */
+  drain?: number;
+  /** Always a crit against a Marked target (Executioner). */
+  critIfMarked?: boolean;
+  /** Crit chance + on the user's first turn of the battle (Draw Cut). */
+  critFirstTurn?: number;
+  /** Cancels the target's charge in progress, a boss's too (Zenith Strike). */
+  breaksCharge?: boolean;
+  /** On the user after it resolves: TP, statuses, and mods (`turn.*` ones end at its next turn). */
+  self?: { tp?: number; statuses?: { id: string; ticks: number; value?: number; mods?: Record<string, number> }[]; mods?: Record<string, number> };
 }
 
 export interface Charge {
