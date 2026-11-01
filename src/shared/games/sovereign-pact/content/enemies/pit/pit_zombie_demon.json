@@ -1,0 +1,24 @@
+{
+  "id": "pit_zombie_demon",
+  "name": "Zombie Demon",
+  "pool": "pit",
+  "tags": ["demon", "undead"],
+  "role": "horror",
+  "size": [1, 1],
+  "levels": [4, 8],
+  "stats": {"speed": 8, "sanityTouch": 2},
+  "affinity": {"fire": -25, "dark": 25, "holy": -25, "water": -25},
+  "immune": ["poison", "fear"],
+  "abilities": [
+    {"id": "rotting_grip", "shape": "single", "side": "player", "power": 0.9, "sanity": 5, "statuses": [{"id": "disease", "chance": 30, "ticks": 0}]},
+    {"id": "death_stench", "shape": "band:3", "side": "player", "power": 0.2, "kind": "magic", "sanity": 5, "cooldown": 3}
+  ],
+  "gambits": [
+    {"if": "turn%3==2", "do": "death_stench", "target": "densest_row"},
+    {"do": "rotting_grip", "target": "lowest_sanity"}
+  ],
+  "bestiary": {
+    "lore": "A demon that died and was not allowed to stop.",
+    "weakness": "Holy and fire. Its stench takes Sanity from three rows."
+  }
+}

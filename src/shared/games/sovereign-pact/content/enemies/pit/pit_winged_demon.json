@@ -1,0 +1,23 @@
+{
+  "id": "pit_winged_demon",
+  "name": "Winged Demon",
+  "pool": "pit",
+  "tags": ["demon", "flyer"],
+  "role": "lurker",
+  "size": [1, 1],
+  "levels": [4, 9],
+  "stats": {"speed": 14},
+  "affinity": {"fire": 25, "dark": 25, "holy": -25, "water": -25},
+  "abilities": [
+    {"id": "dive_talon", "shape": "single", "side": "player", "power": 1.3, "leap": true, "crit": 15},
+    {"id": "hell_spark", "shape": "single", "side": "player", "power": 0.8, "kind": "magic", "element": "fire", "reach": "ranged"}
+  ],
+  "gambits": [
+    {"if": "turn%2==1", "do": "dive_talon", "target": "empty_cell"},
+    {"do": "hell_spark", "target": "lowest_hp"}
+  ],
+  "bestiary": {
+    "lore": "It drops out of the smoke onto the Back.",
+    "weakness": "Holy and Water. It flies and leaps."
+  }
+}

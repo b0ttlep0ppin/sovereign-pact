@@ -1,0 +1,23 @@
+{
+  "id": "pit_demon_soldier",
+  "name": "Demon Soldier",
+  "pool": "pit",
+  "tags": ["demon", "humanoid", "armored"],
+  "role": "bruiser",
+  "size": [1, 1],
+  "levels": [4, 8],
+  "stats": {"speed": 9},
+  "affinity": {"fire": 25, "dark": 25, "holy": -25, "water": -25},
+  "abilities": [
+    {"id": "hellblade", "shape": "single", "side": "player", "power": 1.3, "locationBias": "body"},
+    {"id": "shield_bash", "shape": "single", "side": "player", "power": 0.8, "statuses": [{"id": "stun", "chance": 20, "ticks": 100}], "cooldown": 2}
+  ],
+  "gambits": [
+    {"if": "foe.charging", "do": "shield_bash", "target": "charging"},
+    {"do": "hellblade", "target": "lowest_durability"}
+  ],
+  "bestiary": {
+    "lore": "A rank-and-file soldier of the demon army, in iron it forged itself.",
+    "weakness": "Holy and Water. It bashes anyone charging a spell."
+  }
+}

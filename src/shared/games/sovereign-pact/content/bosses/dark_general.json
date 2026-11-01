@@ -1,0 +1,42 @@
+{
+  "id": "dark_general",
+  "name": "The Dark General",
+  "pool": "pit",
+  "tags": ["demon", "humanoid", "armored"],
+  "role": "boss",
+  "size": [1, 1],
+  "at": "E2",
+  "levels": [7, 8],
+  "stats": {"speed": 12, "hp": 8},
+  "affinity": {"water": -50, "holy": -25, "fire": 25, "dark": 25},
+  "immune": ["fear", "charm"],
+  "abilities": [
+    {"id": "mark_for_death", "shape": "single", "side": "player", "power": 0, "reach": "ranged", "kind": "support", "cooldown": 3, "statuses": [{"id": "marked", "chance": 100, "ticks": 300}]},
+    {"id": "duelists_thrust", "shape": "single", "side": "player", "power": 1.4, "reach": "reach", "crit": 20},
+    {"id": "war_banner", "shape": "all", "side": "ally", "power": 0, "kind": "support", "cooldown": 4, "statuses": [{"id": "might_up", "chance": 100, "ticks": 300, "value": 20}]},
+    {"id": "infernal_order", "shape": "all", "side": "ally", "power": 0, "kind": "support", "cooldown": 4, "statuses": [{"id": "quickened", "chance": 100, "ticks": 300}]},
+    {"id": "hellfire_volley", "shape": "burst:3x3", "side": "player", "power": 1.0, "kind": "magic", "charge": 60, "telegraph": true, "cooldown": 3, "element": "fire"}
+  ],
+  "gambits": [
+    {"if": "!foe.marked", "do": "mark_for_death", "target": "highest_might"},
+    {"if": "foe.marked", "do": "duelists_thrust", "target": "marked"},
+    {"if": "turn%4==2", "do": "war_banner"},
+    {"do": "duelists_thrust", "target": "column_weighted"}
+  ],
+  "adds": [
+    {"spawn": ["pit_elite_demon"], "count": 1, "at": "E1"},
+    {"spawn": ["pit_demon_gunner"], "count": 1, "at": "E3"}
+  ],
+  "phases": [
+    {"at": "hp<=0.5", "name": "Infernal Order", "speed": 14, "say": "Formation! Double time!", "gambits": [{"if": "!ally.quickened && adds>=1", "do": "infernal_order"}, {"if": "!foe.marked", "do": "mark_for_death", "target": "highest_might"}, {"if": "turn%3==0", "do": "hellfire_volley", "target": "densest_cluster"}, {"if": "foe.marked", "do": "duelists_thrust", "target": "marked"}, {"do": "duelists_thrust", "target": "column_weighted"}]}
+  ],
+  "say": {
+    "open": "Ranks! The Houses have sent us their best. Mark their captain.",
+    "death": "Hold... the line..."
+  },
+  "bestiary": {
+    "lore": "The demon army's field commander, who learned war from the kingdom it swallowed and improved on it.",
+    "weakness": "Water. His Elite guards him and his Gunner covers him: Charm the Elite to break the formation.",
+    "pattern": "Marks the strongest Scion and duels them, two columns deep; his Elite Demon draws the party's blows, his Gunner lobs from the Back, and every fourth turn his banner raises their Might. At half he gives the Infernal Order: while either stands they act twice as often, and he volleys hellfire on the densest cluster."
+  }
+}

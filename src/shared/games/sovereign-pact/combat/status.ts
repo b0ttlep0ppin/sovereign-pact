@@ -35,6 +35,8 @@ export const STATUSES: Record<string, StatusMeta> = {
   knockdown: { kind: "physical", ticks: 0, oneTurn: true, cancelsCharge: true },
   slow: { kind: "physical", ticks: 300 },
   haste: { kind: "buff", ticks: 300 },
+  /** Actions cost half their CT: it acts twice as often (§14.6 Infernal Order). */
+  quickened: { kind: "buff", ticks: 300 },
   stop: { kind: "physical", ticks: 150, freezes: true, blocks: true, bossImmune: true },
   blind: { kind: "physical", ticks: 300 },
   burn: { kind: "physical", ticks: 300 },

@@ -1,0 +1,23 @@
+{
+  "id": "pit_bat",
+  "name": "Pit Bat",
+  "pool": "pit",
+  "tags": ["demon", "beast", "flyer"],
+  "role": "swarm",
+  "size": [1, 1],
+  "levels": [4, 9],
+  "stats": {"speed": 13},
+  "affinity": {"fire": 25, "dark": 25, "holy": -25, "water": -25},
+  "abilities": [
+    {"id": "cinder_bite", "shape": "single", "side": "player", "power": 0.9, "statuses": [{"id": "burn", "chance": 15, "ticks": 300}]},
+    {"id": "overrun", "shape": "band:3", "side": "player", "power": 0.6, "cooldown": 1}
+  ],
+  "gambits": [
+    {"if": "swarm>=5", "do": "overrun"},
+    {"do": "cinder_bite", "target": "back_random"}
+  ],
+  "bestiary": {
+    "lore": "They roost over the lava and come out smoking.",
+    "weakness": "Water and anything that hits a row."
+  }
+}

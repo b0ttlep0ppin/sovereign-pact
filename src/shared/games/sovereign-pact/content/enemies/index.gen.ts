@@ -116,6 +116,31 @@ import hollow_termite_queen from "./hollow_wood/hollow_termite_queen.json" with 
 import hollow_treant from "./hollow_wood/hollow_treant.json" with { type: "json" };
 import hollow_tsuchigumo from "./hollow_wood/hollow_tsuchigumo.json" with { type: "json" };
 import hollow_vine_golem from "./hollow_wood/hollow_vine_golem.json" with { type: "json" };
+import pit_bat from "./pit/pit_bat.json" with { type: "json" };
+import pit_dark_beast from "./pit/pit_dark_beast.json" with { type: "json" };
+import pit_dark_dragon from "./pit/pit_dark_dragon.json" with { type: "json" };
+import pit_dark_mage from "./pit/pit_dark_mage.json" with { type: "json" };
+import pit_death_clown from "./pit/pit_death_clown.json" with { type: "json" };
+import pit_demon_chips from "./pit/pit_demon_chips.json" with { type: "json" };
+import pit_demon_gunner from "./pit/pit_demon_gunner.json" with { type: "json" };
+import pit_demon_hood from "./pit/pit_demon_hood.json" with { type: "json" };
+import pit_demon_princess from "./pit/pit_demon_princess.json" with { type: "json" };
+import pit_demon_recruit from "./pit/pit_demon_recruit.json" with { type: "json" };
+import pit_demon_soldier from "./pit/pit_demon_soldier.json" with { type: "json" };
+import pit_demon_veteran from "./pit/pit_demon_veteran.json" with { type: "json" };
+import pit_elite_demon from "./pit/pit_elite_demon.json" with { type: "json" };
+import pit_fist_king from "./pit/pit_fist_king.json" with { type: "json" };
+import pit_flame_demon from "./pit/pit_flame_demon.json" with { type: "json" };
+import pit_great_demon from "./pit/pit_great_demon.json" with { type: "json" };
+import pit_hellhound from "./pit/pit_hellhound.json" with { type: "json" };
+import pit_horror_demon from "./pit/pit_horror_demon.json" with { type: "json" };
+import pit_imp from "./pit/pit_imp.json" with { type: "json" };
+import pit_lower_demon from "./pit/pit_lower_demon.json" with { type: "json" };
+import pit_succubus from "./pit/pit_succubus.json" with { type: "json" };
+import pit_trident_demon from "./pit/pit_trident_demon.json" with { type: "json" };
+import pit_walking_brazier from "./pit/pit_walking_brazier.json" with { type: "json" };
+import pit_winged_demon from "./pit/pit_winged_demon.json" with { type: "json" };
+import pit_zombie_demon from "./pit/pit_zombie_demon.json" with { type: "json" };
 
 export default [
   barrow_banshee,
@@ -235,4 +260,29 @@ export default [
   hollow_treant,
   hollow_tsuchigumo,
   hollow_vine_golem,
+  pit_bat,
+  pit_dark_beast,
+  pit_dark_dragon,
+  pit_dark_mage,
+  pit_death_clown,
+  pit_demon_chips,
+  pit_demon_gunner,
+  pit_demon_hood,
+  pit_demon_princess,
+  pit_demon_recruit,
+  pit_demon_soldier,
+  pit_demon_veteran,
+  pit_elite_demon,
+  pit_fist_king,
+  pit_flame_demon,
+  pit_great_demon,
+  pit_hellhound,
+  pit_horror_demon,
+  pit_imp,
+  pit_lower_demon,
+  pit_succubus,
+  pit_trident_demon,
+  pit_walking_brazier,
+  pit_winged_demon,
+  pit_zombie_demon,
 ];

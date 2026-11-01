@@ -1,0 +1,23 @@
+{
+  "id": "pit_demon_gunner",
+  "name": "Demon Gunner",
+  "pool": "pit",
+  "tags": ["demon", "humanoid"],
+  "role": "artillery",
+  "size": [1, 1],
+  "levels": [4, 10],
+  "stats": {"speed": 9},
+  "affinity": {"fire": 25, "dark": 25, "holy": -25, "water": -25},
+  "abilities": [
+    {"id": "mortar", "shape": "lob", "side": "player", "power": 1.0, "reach": "ranged", "element": "fire"},
+    {"id": "grapeshot", "shape": "column:M", "side": "player", "power": 0.9, "reach": "ranged", "charge": 60, "telegraph": true, "cooldown": 2}
+  ],
+  "gambits": [
+    {"if": "turn%3==2", "do": "grapeshot"},
+    {"do": "mortar", "target": "lob"}
+  ],
+  "bestiary": {
+    "lore": "The demon army learned powder from the kingdom it swallowed.",
+    "weakness": "Water douses the powder. It lobs at the Back."
+  }
+}

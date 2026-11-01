@@ -1,0 +1,24 @@
+{
+  "id": "pit_fist_king",
+  "name": "Fist King",
+  "pool": "pit",
+  "tags": ["demon", "giant"],
+  "role": "elite",
+  "size": [1, 1],
+  "levels": [6, 10],
+  "stats": {"hp": 2.8, "speed": 11},
+  "affinity": {"fire": 25, "dark": 25, "holy": -25, "water": -25},
+  "immune": ["fear"],
+  "abilities": [
+    {"id": "thousand_fists", "shape": "single", "side": "player", "power": 0.4, "hits": 5},
+    {"id": "ground_pound", "shape": "band:3", "side": "player", "power": 1.1, "charge": 60, "telegraph": true, "cooldown": 3, "statuses": [{"id": "knockdown", "chance": 30, "ticks": 0}]}
+  ],
+  "gambits": [
+    {"if": "turn%3==1", "do": "ground_pound"},
+    {"do": "thousand_fists", "target": "lowest_durability"}
+  ],
+  "bestiary": {
+    "lore": "A champion of the Pit's fighting pits, crowned with its fists.",
+    "weakness": "Holy and Water. Many small blows: Protect blunts them."
+  }
+}

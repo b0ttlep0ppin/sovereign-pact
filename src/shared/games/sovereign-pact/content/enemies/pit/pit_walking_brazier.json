@@ -1,0 +1,24 @@
+{
+  "id": "pit_walking_brazier",
+  "name": "Walking Brazier",
+  "pool": "pit",
+  "tags": ["demon", "construct"],
+  "role": "artillery",
+  "size": [1, 1],
+  "levels": [4, 8],
+  "stats": {"speed": 7},
+  "affinity": {"fire": 100, "dark": 25, "holy": -25, "water": -50},
+  "immune": ["burn", "poison", "fear", "sleep"],
+  "abilities": [
+    {"id": "coal_spill", "shape": "band:3", "side": "player", "power": 0.8, "kind": "magic", "element": "fire", "charge": 60, "telegraph": true, "cooldown": 2, "statuses": [{"id": "burn", "chance": 50, "ticks": 300}]},
+    {"id": "cinder", "shape": "single", "side": "player", "power": 0.8, "reach": "ranged", "element": "fire"}
+  ],
+  "gambits": [
+    {"if": "turn%2==1", "do": "coal_spill", "target": "densest_row"},
+    {"do": "cinder", "target": "back_random"}
+  ],
+  "bestiary": {
+    "lore": "A brazier on iron legs, tipping its coals wherever it is pointed.",
+    "weakness": "Water. It sets three rows burning."
+  }
+}

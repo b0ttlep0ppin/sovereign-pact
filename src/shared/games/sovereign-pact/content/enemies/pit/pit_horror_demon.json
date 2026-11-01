@@ -1,0 +1,24 @@
+{
+  "id": "pit_horror_demon",
+  "name": "Horror Demon",
+  "pool": "pit",
+  "tags": ["demon"],
+  "role": "horror",
+  "size": [1, 1],
+  "levels": [5, 10],
+  "stats": {"speed": 10, "sanityTouch": 3},
+  "affinity": {"fire": 25, "dark": 50, "holy": -25, "water": -25},
+  "immune": ["fear", "sleep"],
+  "abilities": [
+    {"id": "unmaking_gaze", "shape": "row", "side": "player", "power": 0.4, "kind": "magic", "sanity": 8, "cooldown": 2, "statuses": [{"id": "fear", "chance": 40, "ticks": 200}], "element": "dark"},
+    {"id": "rending_maw", "shape": "single", "side": "player", "power": 0.9, "sanity": 4}
+  ],
+  "gambits": [
+    {"if": "turn%3==1", "do": "unmaking_gaze", "target": "densest_row"},
+    {"do": "rending_maw", "target": "lowest_sanity"}
+  ],
+  "bestiary": {
+    "lore": "Too many mouths, and all of them talking.",
+    "weakness": "Holy. Keep the Back's Sanity up."
+  }
+}

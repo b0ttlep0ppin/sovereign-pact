@@ -1,0 +1,23 @@
+{
+  "id": "pit_demon_recruit",
+  "name": "Demon Recruit",
+  "pool": "pit",
+  "tags": ["demon", "humanoid"],
+  "role": "fodder",
+  "size": [1, 1],
+  "levels": [4, 10],
+  "stats": {"speed": 9},
+  "affinity": {"fire": 25, "dark": 25, "holy": -25, "water": -25},
+  "abilities": [
+    {"id": "spear_thrust", "shape": "single", "side": "player", "power": 1.0, "locationBias": "body"},
+    {"id": "shield_wall", "shape": "self", "side": "self", "power": 0, "kind": "support", "cooldown": 3, "statuses": [{"id": "guard_up", "chance": 100, "ticks": 200, "value": 20}]}
+  ],
+  "gambits": [
+    {"if": "turn%3==1", "do": "shield_wall"},
+    {"do": "spear_thrust", "target": "column_weighted"}
+  ],
+  "bestiary": {
+    "lore": "Drilled in ranks and sent up in waves. The army of the Pit learns.",
+    "weakness": "Holy and Water. They fight in waves: thin them before the next."
+  }
+}

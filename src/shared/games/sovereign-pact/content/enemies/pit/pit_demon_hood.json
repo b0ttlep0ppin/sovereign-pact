@@ -1,0 +1,25 @@
+{
+  "id": "pit_demon_hood",
+  "name": "Demon Hood",
+  "pool": "pit",
+  "tags": ["demon", "humanoid"],
+  "role": "support",
+  "size": [1, 1],
+  "levels": [4, 10],
+  "stats": {"speed": 10},
+  "affinity": {"fire": 25, "dark": 25, "holy": -25, "water": -25},
+  "abilities": [
+    {"id": "dark_mending", "shape": "single", "side": "ally", "power": 1.4, "kind": "heal"},
+    {"id": "unholy_vigor", "shape": "single", "side": "ally", "power": 0, "kind": "support", "statuses": [{"id": "might_up", "chance": 100, "ticks": 300, "value": 20}], "cooldown": 3},
+    {"id": "curse_word", "shape": "single", "side": "player", "power": 0.6, "kind": "magic", "statuses": [{"id": "hex", "chance": 40, "ticks": 300}], "element": "dark", "reach": "ranged"}
+  ],
+  "gambits": [
+    {"if": "ally.hp<0.5", "do": "dark_mending", "target": "ally_lowest_hp"},
+    {"if": "turn%3==1", "do": "unholy_vigor", "target": "ally_lowest_hp"},
+    {"do": "curse_word", "target": "lowest_hp"}
+  ],
+  "bestiary": {
+    "lore": "A hooded priest of the Pit, who keeps the army on its feet.",
+    "weakness": "Holy. Silence it."
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "id": "pit_demon_princess",
+  "name": "Demon Princess",
+  "pool": "pit",
+  "tags": ["demon", "royal"],
+  "role": "elite",
+  "size": [1, 1],
+  "levels": [8, 10],
+  "stats": {"speed": 12},
+  "affinity": {"fire": 25, "dark": 25, "holy": -25, "water": -25},
+  "immune": ["charm", "fear"],
+  "abilities": [
+    {"id": "royal_flame", "shape": "burst:3x3", "side": "player", "power": 1.2, "kind": "magic", "charge": 80, "telegraph": true, "cooldown": 3, "element": "fire"},
+    {"id": "command", "shape": "single", "side": "player", "power": 0.2, "kind": "magic", "sanity": 4, "cooldown": 3, "statuses": [{"id": "charm", "chance": 40, "ticks": 200}], "reach": "ranged"},
+    {"id": "courtly_grace", "shape": "all", "side": "ally", "power": 0, "kind": "support", "statuses": [{"id": "haste", "chance": 100, "ticks": 200}], "cooldown": 4}
+  ],
+  "gambits": [
+    {"if": "turn%4==1", "do": "courtly_grace"},
+    {"if": "turn%3==2", "do": "command", "target": "highest_might"},
+    {"do": "royal_flame", "target": "densest_cluster"}
+  ],
+  "bestiary": {
+    "lore": "A daughter of the Pit's throne, out to make a name for herself.",
+    "weakness": "Holy and Water. She Charms the strongest Scion."
+  }
+}

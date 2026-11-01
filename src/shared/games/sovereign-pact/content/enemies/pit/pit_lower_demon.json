@@ -1,0 +1,24 @@
+{
+  "id": "pit_lower_demon",
+  "name": "Lower Demon",
+  "pool": "pit",
+  "tags": ["demon"],
+  "role": "fodder",
+  "size": [1, 1],
+  "levels": [5, 10],
+  "variants": ["ashen"],
+  "stats": {"speed": 10},
+  "affinity": {"fire": 25, "dark": 25, "holy": -25, "water": -25},
+  "abilities": [
+    {"id": "claw_rake", "shape": "single", "side": "player", "power": 1.1, "statuses": [{"id": "bleed", "chance": 20, "ticks": 0}]},
+    {"id": "blood_rage", "shape": "self", "side": "self", "power": 0, "kind": "support", "statuses": [{"id": "might_up", "chance": 100, "ticks": 200, "value": 20}], "cooldown": 4}
+  ],
+  "gambits": [
+    {"if": "self.hp<0.5", "do": "blood_rage"},
+    {"do": "claw_rake", "target": "column_weighted"}
+  ],
+  "bestiary": {
+    "lore": "The Pit's common stock. There are always more of them.",
+    "weakness": "Holy and Water."
+  }
+}

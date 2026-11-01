@@ -1,0 +1,29 @@
+{
+  "id": "pit_great_demon",
+  "name": "Great Demon",
+  "pool": "pit",
+  "tags": ["demon", "giant"],
+  "role": "colossus",
+  "size": [2, 3],
+  "levels": [6, 10],
+  "stats": {"speed": 8},
+  "affinity": {"fire": 25, "dark": 25, "holy": -25, "water": -25},
+  "immune": ["fear", "stun", "sleep"],
+  "abilities": [
+    {"id": "hell_cleaver", "shape": "column:F", "side": "player", "power": 1.3, "cooldown": 2},
+    {"id": "brimstone", "shape": "band:4", "side": "player", "power": 1.1, "kind": "magic", "charge": 100, "telegraph": true, "cooldown": 3, "statuses": [{"id": "burn", "chance": 40, "ticks": 300}], "element": "fire"},
+    {"id": "horn_gore", "shape": "single", "side": "player", "power": 1.4}
+  ],
+  "gambits": [
+    {"if": "turn%3==1", "do": "brimstone"},
+    {"if": "turn%2==0", "do": "hell_cleaver"},
+    {"do": "horn_gore", "target": "lowest_durability"}
+  ],
+  "parts": [
+    {"id": "great_horns", "name": "Horns", "cells": [[0, 0], [1, 0]], "hp": 0.2, "disables": ["horn_gore"]}
+  ],
+  "bestiary": {
+    "lore": "The kind of demon the others kneel to.",
+    "weakness": "Holy and Water. Its horns are a Part: break them and it cannot gore."
+  }
+}
