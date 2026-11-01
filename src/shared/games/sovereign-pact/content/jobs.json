@@ -390,12 +390,18 @@
       "innate": {
         "id": "scavenge",
         "name": "Scavenge",
-        "text": "Offered 3 Components each turn; keep one."
+        "text": "Offered 3 Components each turn; keep one.",
+        "mods": {
+          "scavenge": 3
+        }
       },
       "mastery": {
         "id": "tinkers_eye",
         "name": "Tinker's Eye",
-        "text": "4 Components offered."
+        "text": "4 Components offered.",
+        "mods": {
+          "scavenge": 1
+        }
       }
     },
     {

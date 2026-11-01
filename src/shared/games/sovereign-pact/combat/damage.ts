@@ -115,6 +115,7 @@ function propertyBonus(b: Battle, u: Combatant, t: Combatant): number {
 }
 
 const COUNTER: AbilityDef = { id: "counter", name: "Counter", shape: "single", side: "foe", power: 1 };
+const TURRET_SHOT: AbilityDef = { id: "turret_shot", name: "Turret", shape: "single", side: "foe", power: 0.5, reach: "ranged" };
 
 export interface HitResult {
   hit: boolean;
@@ -130,6 +131,8 @@ export interface StrikeOpts {
   counter?: boolean;
   /** A spell turned back by Reflect, which cannot be turned again. */
   reflected?: boolean;
+  /** A Turret's follow-up, which sets off no other. */
+  followUp?: boolean;
 }
 
 /** One hit of `ab` from `u` on `t`, through the whole pipeline. */
@@ -264,6 +267,9 @@ export function strike(b: Battle, rng: Rng, u: Combatant, t: Combatant, ab: Abil
   if (t.dead && ab.refundTp) u.tp = Math.min(C.tp.max, u.tp + ab.refundTp);
   if (ab.tpOnHit) u.tp = Math.min(C.tp.max, u.tp + ab.tpOnHit);
   if (physical && damage > 0 && isMelee(u, ab)) afterMeleeHit(b, rng, u, t, damage, opts);
+  // Turrets follow an ally's physical hit on a Marked target (§12.16).
+  if (physical && !opts.counter && !opts.followUp && !t.dead && hasStatus(t, "marked"))
+    for (const o of b.units) if (o.summon === "turret" && o.side === u.side && !o.dead && !t.dead) strike(b, rng, o, t, TURRET_SHOT, { followUp: true, counter: true });
   return { hit: true, damage, loc, crit };
 }
 
@@ -424,8 +430,16 @@ function supportEffects(b: Battle, rng: Rng, u: Combatant, t: Combatant, ab: Abi
   if (ab.sanityPct && t.maxSanity) t.sanity = Math.min(t.maxSanity, t.sanity + Math.round((t.maxSanity * ab.sanityPct) / 100));
   if (ab.tpGrant) t.tp = Math.min(C.tp.max, t.tp + ab.tpGrant);
   if (ab.flag && !t.flags.includes(ab.flag)) t.flags.push(ab.flag);
-  // Barrier and Bulwark (§12.14), stronger from an Aegis caster.
-  if (ab.shieldPct) addStatus(b, t, "shield", 0, { value: Math.round(((t.maxHp * ab.shieldPct) / 100) * pct(u.mods.shieldCastPct ?? 0)) });
+  // Barrier and Bulwark (§12.14), stronger from an Aegis caster; the Shield Drone only tops up.
+  if (ab.shieldPct) {
+    const size = Math.round(((t.maxHp * ab.shieldPct) / 100) * pct(u.mods.shieldCastPct ?? 0));
+    const add = ab.shieldRefill ? size - (statusValue(t, "shield") ?? 0) : size;
+    if (add > 0) addStatus(b, t, "shield", 0, { value: add });
+  }
+  // Overclock, Repair, Flashbang (§12.16).
+  if (ab.ctGrant) t.ct += ab.ctGrant;
+  if (ab.constructHpPct && t.tags.includes("construct")) t.hp = Math.min(t.maxHp, t.hp + Math.round((t.maxHp * ab.constructHpPct) / 100));
+  if (ab.readiness && t.side !== u.side && !t.mods.readinessImmune) t.ct = Math.max(0, t.ct - Math.round(ab.readiness * (t.boss ? C.bossReadiness : 1)));
   if (ab.dispelBuffs) for (const x of t.statuses.filter((s) => meta(s.id).kind === "buff").reverse().slice(0, ab.dispelBuffs)) removeStatus(b, t, x.id);
   for (const x of ab.statuses ?? []) {
     // Breath of Steel and Lasting Wards: timed buffs cast with MP last longer.
