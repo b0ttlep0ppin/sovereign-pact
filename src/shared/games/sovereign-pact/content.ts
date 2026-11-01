@@ -18,6 +18,7 @@ import swordSaintSet from "./content/abilities/sword_saint.json" with { type: "j
 import vagabondSet from "./content/abilities/vagabond.json" with { type: "json" };
 import formsJson from "./content/forms.json" with { type: "json" };
 import summonsJson from "./content/summons.json" with { type: "json" };
+import hazardsJson from "./content/hazards.json" with { type: "json" };
 import heraldryJson from "./content/heraldry.json" with { type: "json" };
 import injuriesJson from "./content/injuries.json" with { type: "json" };
 import itemsJson from "./content/items.json" with { type: "json" };
@@ -231,6 +232,27 @@ export interface VariantDef {
 
 export const VARIANTS = variantsJson.variants as unknown as readonly VariantDef[];
 export const VARIANT_BY_ID: ReadonlyMap<string, VariantDef> = new Map(VARIANTS.map((v) => [v.id, v]));
+
+/** A battle hazard (§14.8): content/hazards.json. */
+export interface HazardDef {
+  id: string;
+  name: string;
+  side: "enemy" | "party";
+  cols?: number[];
+  hp?: number;
+  weight: number;
+  pools?: string[];
+  bait?: boolean;
+  hidden?: boolean;
+  telegraph?: boolean;
+  trigger: { kind: "destroyed" | "every" | "struck_or_timer" | "front_row" | "timer" | "enter"; ticks?: number };
+  effect?: EnemyAbility;
+  reinforce?: number;
+  lore: string;
+}
+
+export const HAZARDS = hazardsJson.hazards as unknown as readonly HazardDef[];
+export const HAZARD_BY_ID: ReadonlyMap<string, HazardDef> = new Map(HAZARDS.map((h) => [h.id, h]));
 
 export type CardType = "resource" | "hunt" | "delve" | "rescue" | "pilgrimage";
 

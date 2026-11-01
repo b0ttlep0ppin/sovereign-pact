@@ -3,6 +3,7 @@
 import type { Rng } from "../../../rng.ts";
 import { TUNING } from "../tuning.ts";
 import { bossPhases } from "./bosses.ts";
+import { fights, hazardStruck, springTrap } from "./hazards.ts";
 import { chargeTicks, moveCost, nextActor, step } from "./clock.ts";
 import { cannotCombo, comboCt, comboTp } from "./combos.ts";
 import { abilityDice, castLots, rolledAbility } from "./dice.ts";
@@ -148,6 +149,7 @@ export function move(b: Battle, u: Combatant, col: number, row: number): void {
 /** The actor's action; ends the turn. */
 export function act(b: Battle, rng: Rng, u: Combatant, action: Action): void {
   if (b.actor !== u.id || b.acted) throw new Error("not this combatant's action");
+  if (b.moved) springTrap(b, rng, u);
   keepParts(u, action.keep);
   let cost: number;
   if (action.do === "wait") {
@@ -298,6 +300,7 @@ export function resolve(b: Battle, rng: Rng, u: Combatant, ab: AbilityDef, at: C
     if (ab.sacrifice) sacrifice(b, u, t, ab.sacrifice);
     if (ab.banish && !t.dead && !t.boss && (t.owner !== undefined || t.tags.includes("add"))) kill(b, t);
     if (t.dead) deathThroes(b, rng, t);
+    hazardStruck(b, rng, t);
   }
   if (hasStatus(u, "hidden")) removeStatus(b, u, "hidden");
   if (ab.leap && !u.dead) addStatus(b, u, "exposed");
@@ -323,7 +326,7 @@ function counterspelled(b: Battle, rng: Rng, u: Combatant, ab: AbilityDef, targe
 export function checkEnd(b: Battle): void {
   if (b.outcome) return;
   bossPhases(b);
-  if (!standing(b, "enemy").some((u) => u.partOf === undefined)) end(b, "victory");
+  if (!standing(b, "enemy").some(fights)) end(b, "victory");
   // Summons cannot hold the field alone (§10.12: defeat when every Scion is Down or dead).
   else if (!standing(b, "party").some((u) => u.owner === undefined)) end(b, "defeat");
 }

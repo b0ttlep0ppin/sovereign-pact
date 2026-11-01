@@ -25,7 +25,7 @@ export const crossDistance = (a: Combatant, b: Combatant) =>
 export function singleTargets(b: Battle, u: Combatant, ab: AbilityDef): Combatant[] {
   const side = targetSide(u, ab);
   if (ab.side === "self") return [u];
-  if (ab.side === "ally") return b.units.filter((t) => !t.dead && t.side === side && (ab.kind !== "heal" || !t.down));
+  if (ab.side === "ally") return b.units.filter((t) => !t.dead && t.side === side && !t.hazard && (ab.kind !== "heal" || !t.down));
   const reach = reachOf(u, ab);
   if (reach === "ranged" || ab.leap || side === u.side) return standing(b, side).filter((t) => !hasStatus(t, "hidden"));
   // A lurker that leapt in stands among the Scions: every Scion's melee reaches it (§14.3).

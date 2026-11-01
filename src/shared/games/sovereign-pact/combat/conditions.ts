@@ -6,7 +6,7 @@ import { allegiance } from "./targets.ts";
 import type { Battle, Combatant } from "./types.ts";
 
 const frac = (u: Combatant) => (u.maxHp ? u.hp / u.maxHp : 1);
-const allies = (b: Battle, u: Combatant) => standing(b, allegiance(u)).filter((x) => x.id !== u.id && x.partOf === undefined);
+const allies = (b: Battle, u: Combatant) => standing(b, allegiance(u)).filter((x) => x.id !== u.id && x.partOf === undefined && x.hazard === undefined);
 const foes = (b: Battle, u: Combatant) => standing(b, other(allegiance(u)));
 const OPS: Record<string, (a: number, b: number) => boolean> = {
   "<": (a, b) => a < b,

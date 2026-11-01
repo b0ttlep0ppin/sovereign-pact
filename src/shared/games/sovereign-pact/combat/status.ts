@@ -107,7 +107,7 @@ export function resistOf(u: Combatant, id: string): number {
 }
 
 export function isImmune(u: Combatant, id: string): boolean {
-  if (u.immune.includes(id) || u.mods[`immune.${id}`]) return true;
+  if (u.hazard || u.immune.includes(id) || u.mods[`immune.${id}`]) return true;
   if (u.boss && meta(id).bossImmune) return true;
   if (u.lastStand && id === "fear") return true;
   return false;

@@ -2,10 +2,11 @@
 // pool's roster (entries whose `levels` span L), places the group on the enemy grid, and may open with
 // an Ambush or a Surprise. All seeded.
 import { createRng, type Rng } from "../../../rng.ts";
-import { ENEMIES, POOL_BY_ID, rosterOf, TEMPLATE_BY_ID, TEMPLATES, VARIANT_BY_ID, type EnemyDef, type TemplateDef, type TemplateRole } from "../content.ts";
+import { ENEMIES, POOL_BY_ID, rosterOf, TEMPLATE_BY_ID, TEMPLATES, VARIANT_BY_ID, HAZARD_BY_ID, type EnemyDef, type TemplateDef, type TemplateRole } from "../content.ts";
 import { TUNING } from "../tuning.ts";
 import { enemyCombatant, newBattle } from "./build.ts";
 import { partsOf } from "./enemyparts.ts";
+import { placeHazard, rollHazard } from "./hazards.ts";
 import { variantsFor, withVariant } from "./variants.ts";
 import { COLS, ROWS, type Battle, type Combatant } from "./types.ts";
 
@@ -24,6 +25,8 @@ export interface EncounterSpec {
   template?: string;
   /** Forces the opening; `null` forbids one. Otherwise it is rolled. */
   modifier?: Modifier | null;
+  /** Hazards already met this expedition (never two of a kind, §14.8); `false` forbids one. */
+  hazards?: readonly string[] | false;
   /** The campaign Year: Unknown-touched variants from Year 10 (§14.10). */
   year?: number;
   /** Shifts on the base odds, in points (traits, buildings, the Lantern). */
@@ -35,6 +38,7 @@ export interface EncounterSpec {
 export interface Encounter {
   template: string;
   modifier?: Modifier;
+  hazard?: string;
   enemies: Combatant[];
 }
 
@@ -178,7 +182,8 @@ export function encounter(rng: Rng, spec: EncounterSpec): Encounter {
   const enemies = place(rollVariants(rng, fill(rng, spec.pool, spec.level, rolesFor(rng, t, spec.party)), spec.year), spec.level, spec.firstId);
   const modifier = spec.modifier === null ? undefined : (spec.modifier ?? rollModifier(rng, t, spec));
   applyModifier(enemies, modifier);
-  return { template: t.id, modifier, enemies };
+  const hazard = spec.hazards === false ? undefined : rollHazard(rng, spec.pool, spec.hazards)?.id;
+  return { template: t.id, modifier, hazard, enemies };
 }
 
 /** Every enemy id a pool can field at a level, for lints and the simulator. */
@@ -190,5 +195,7 @@ export function encounterBattle(seed: number, party: Combatant[], spec: Omit<Enc
   const found = encounter(rng, { ...spec, party: party.length, firstId: spec.firstId ?? 101 });
   const units = [...party, ...found.enemies];
   applyModifier(units, found.modifier);
-  return { battle: newBattle(seed, units), encounter: found };
+  const battle = { ...newBattle(seed, units), pool: spec.pool };
+  if (found.hazard) placeHazard(battle, rng, HAZARD_BY_ID.get(found.hazard)!, spec.level);
+  return { battle, encounter: found };
 }
