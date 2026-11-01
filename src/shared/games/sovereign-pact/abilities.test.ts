@@ -7,6 +7,7 @@ import { enemyCombatant, newBattle, scionCombatant } from "./combat/build.ts";
 import { spellBase } from "./combat/damage.ts";
 import { standardParty } from "./combat/fixtures.ts";
 import { addStatus } from "./combat/status.ts";
+import { shift } from "./combat/forms.ts";
 import { cellOf, singleTargets } from "./combat/targets.ts";
 import type { AbilityDef, Combatant } from "./combat/types.ts";
 import { ABILITY_SETS, ABILITY_SET_BY_JOB } from "./content.ts";
@@ -84,6 +85,7 @@ describe("abilities in battle", () => {
     if (weapon) u.weapon = { ...u.weapon, kind: weapon };
     if (ab.requires?.includes("shield")) u.offhand = "shield";
     u.parts = [...(ab.parts ?? [])];
+    if (ab.revert || ab.graft) shift(b, u, "werewolf");
     // Finishers are only played at the end of a combo (combos.test.ts).
     expect(cannotUse(u, ab)).toBe(ab.move?.finisher ? "finisher" : null);
     const { cell, on } = target(b, u, ab);

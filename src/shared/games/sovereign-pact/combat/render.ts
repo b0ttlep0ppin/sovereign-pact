@@ -86,6 +86,8 @@ export function describeEvent(b: Battle, e: BattleEvent): string {
       return `${n(e.unit)} calls ${e.ids.map(n).join(" and ")}`;
     case "vanish":
       return `${n(e.unit)} leaves the field`;
+    case "shift":
+      return e.form ? `${n(e.unit)} shifts into ${e.form}` : `${n(e.unit)} reverts`;
     case "wait":
       return `${n(e.unit)} waits`;
     case "defend":

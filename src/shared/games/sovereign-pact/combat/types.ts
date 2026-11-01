@@ -159,6 +159,10 @@ export interface AbilityDef {
   constructHpPct?: number;
   /** Tops a Shield up to its size instead of adding to it (the Shield Drone). */
   shieldRefill?: boolean;
+  /** Shifts into a Form from forms.json, ends the Form, or gives an ally its passive (§12.17). */
+  form?: string;
+  revert?: boolean;
+  graft?: boolean;
   /** Calls a summon from summons.json (§12.15). */
   summon?: string;
   /** Dismisses one of the user's summons; allies around it heal this % of max HP (Sacrifice). */
@@ -259,6 +263,10 @@ export interface Combatant {
   ct: number;
   statuses: StatusInst[];
   charge?: Charge;
+  /** An Alterer's Form: what it replaced, and the tick it ends at (§12.2). */
+  form?: { id: string; ends: number; abilities: AbilityDef[]; size: [number, number]; maxHp: number; guard: number };
+  /** A feral Form's pick for this turn: the only ability the Alterer may use. */
+  feral?: string;
   /** A Tinkerer's Components: held, and offered this turn (§12.2). */
   parts?: string[];
   offer?: string[];
@@ -296,6 +304,7 @@ export type BattleEvent =
   | { t: "reflect" | "counterspell"; unit: number; target: number }
   | { t: "summon"; unit: number; summon: string; ids: number[] }
   | { t: "vanish"; unit: number }
+  | { t: "shift"; unit: number; form: string | null }
   | { t: "dead"; target: number }
   | { t: "wait" | "defend"; unit: number }
   | { t: "end"; outcome: BattleOutcome };

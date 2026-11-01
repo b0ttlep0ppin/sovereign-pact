@@ -3,6 +3,7 @@
 import type { Rng } from "../../../rng.ts";
 import { TUNING } from "../tuning.ts";
 import { hpCap } from "./damage.ts";
+import { revert } from "./forms.ts";
 import { vanish } from "./summons.ts";
 import { hasStatus } from "./grid.ts";
 import { down, injure, kill, steel } from "./injury.ts";
@@ -25,6 +26,8 @@ export function step(b: Battle, rng: Rng): Combatant[] {
       vanish(b, u);
       continue;
     }
+    // A Form ends when its time is up (§12.17).
+    if (u.form && b.tick >= u.form.ends) revert(b, u);
     if (!frozenClock(u)) u.ct += speedOf(u);
     if (u.charge) {
       // A charger holds at 100 until the ability resolves (§10.5).

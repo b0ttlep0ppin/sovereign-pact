@@ -75,7 +75,7 @@ export const TUNING = {
     /** Ravager and Sword Saint (§12.12–12.13): Hold Together's HP cap %, Iron Will's HP % threshold, Mirror Stance's TP per counter, One Cut's crit multiplier, Still Water's power %. */
     /** Conjurer summons (§12.2): two bound at once (+1 with Legion), and their accuracy. */
     summons: { cap: 2, accuracy: 90 },
-    jobs: { healCapPct: 50, lowHpBelow: 30, mirrorTp: 20, oneCutMult: 2, stillWaterPct: 20 },
+    jobs: { healCapPct: 50, lowHpBelow: 30, mirrorTp: 20, oneCutMult: 2, stillWaterPct: 20, graftTicks: 200 },
     /** §7.3: 20 CT a cell, −1 per 5 Guile, at least 10; up to 2 cells a turn (§10.4). */
     move: { perCell: 20, guilePer: 5, min: 10, maxCells: 2 },
     hitClamp: [5, 95] as const,

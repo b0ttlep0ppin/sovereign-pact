@@ -513,6 +513,18 @@
           "minimum": 1,
           "maximum": 100,
           "description": "HP restored to a construct target, % of its max"
+        },
+        "form": {
+          "$ref": "defs.schema.json#/definitions/id",
+          "description": "Shifts into a Form from forms.json (§12.17)"
+        },
+        "revert": {
+          "type": "boolean",
+          "description": "Ends the user's Form"
+        },
+        "graft": {
+          "type": "boolean",
+          "description": "Gives the target the user's Form passive"
         }
       }
     },

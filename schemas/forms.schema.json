@@ -1,0 +1,161 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "The Alterer's Forms (SPEC §12.2, §12.17): what a Shift replaces, for how long, and what Revert costs",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "forms"
+  ],
+  "properties": {
+    "forms": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/definitions/form"
+      }
+    }
+  },
+  "definitions": {
+    "mods": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "number"
+      }
+    },
+    "form": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "name",
+        "text",
+        "control",
+        "ticks",
+        "mods",
+        "abilities"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "defs.schema.json#/definitions/id"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "text": {
+          "type": "string",
+          "minLength": 1
+        },
+        "control": {
+          "enum": [
+            "controlled",
+            "feral"
+          ],
+          "description": "Feral: the Form picks the ability each turn"
+        },
+        "ticks": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "size": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2
+          },
+          "minItems": 2,
+          "maxItems": 2
+        },
+        "hpMult": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "guard": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "mods": {
+          "$ref": "#/definitions/mods",
+          "description": "While shifted"
+        },
+        "start": {
+          "type": "array",
+          "items": {
+            "$ref": "defs.schema.json#/definitions/id"
+          },
+          "description": "Statuses for as long as the Form lasts"
+        },
+        "graft": {
+          "$ref": "#/definitions/mods",
+          "description": "What Graft gives an ally"
+        },
+        "abilities": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "enemies.schema.json#/definitions/ability"
+          },
+          "description": "Enemy-shaped: side \"player\" is the foe"
+        },
+        "revert": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "statuses": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "id",
+                  "ticks"
+                ],
+                "properties": {
+                  "id": {
+                    "$ref": "defs.schema.json#/definitions/id"
+                  },
+                  "ticks": {
+                    "type": "integer",
+                    "minimum": 1
+                  },
+                  "mods": {
+                    "$ref": "#/definitions/mods"
+                  }
+                }
+              }
+            },
+            "sanityPct": {
+              "type": "number",
+              "maximum": 0
+            },
+            "durability": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "loc",
+                "pct"
+              ],
+              "properties": {
+                "loc": {
+                  "enum": [
+                    "head",
+                    "body",
+                    "arms",
+                    "legs"
+                  ]
+                },
+                "pct": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 100
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

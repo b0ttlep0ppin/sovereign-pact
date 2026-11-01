@@ -1,0 +1,20 @@
+{
+  "job": "alterer",
+  "actives": [
+    {"id": "shift_werewolf", "name": "Werewolf", "jp": 150, "text": "500 ticks: claws that bleed and heal, Might ×1.3, attacks for 70 CT, no Defending. After: Exhausted (Speed −2) 300 ticks.", "shape": "self", "side": "self", "power": 0, "kind": "support", "mp": 30, "form": "werewolf"},
+    {"id": "shift_ember", "name": "Ember Elemental", "jp": 150, "text": "400 ticks: every attack is Fire; Burn immune.", "shape": "self", "side": "self", "power": 0, "kind": "support", "mp": 25, "form": "ember_elemental"},
+    {"id": "shift_marsh", "name": "Marsh Thing", "jp": 150, "text": "400 ticks: Poison immune, melee attackers Poisoned, Regen; one cell a move. After: Slow 200.", "shape": "self", "side": "self", "power": 0, "kind": "support", "mp": 25, "form": "marsh_thing"},
+    {"id": "shift_colossus", "name": "Stone Colossus", "jp": 250, "text": "400 ticks, two cells: Provoke, Guard 50%, no Readiness damage, no healing. After: Body Durability −30%.", "shape": "self", "side": "self", "power": 0, "kind": "support", "mp": 40, "form": "stone_colossus"},
+    {"id": "shift_shrike", "name": "Shrike", "jp": 150, "text": "300 ticks: reach anywhere, Speed +3, lobbed strikes; HP ×0.7.", "shape": "self", "side": "self", "power": 0, "kind": "support", "mp": 20, "form": "shrike"},
+    {"id": "shift_rift", "name": "Rift Spawn", "jp": 350, "text": "300 ticks, feral: Nova, Swarm or Tempest each turn, the Form's choice. After: Sanity −20%.", "shape": "self", "side": "self", "power": 0, "kind": "support", "mp": 50, "form": "rift_spawn"},
+    {"id": "revert", "name": "Revert", "jp": 50, "text": "End the Form early.", "shape": "self", "side": "self", "power": 0, "kind": "support", "cost": 60, "revert": true},
+    {"id": "graft", "name": "Graft", "jp": 150, "text": "Give an ally your Form's passive for 200 ticks.", "shape": "single", "side": "ally", "power": 0, "kind": "support", "mp": 20, "graft": true},
+    {"id": "molt", "name": "Molt", "jp": 150, "text": "Cure every physical ailment and restore 20% Durability everywhere; Sanity −5%.", "shape": "self", "side": "self", "power": 0, "kind": "support", "mp": 30, "cure": ["physical"], "restore": {"durPct": 20, "loc": "all"}, "sanityPct": -5}
+  ],
+  "passives": [
+    {"id": "stable_flesh", "name": "Stable Flesh", "points": 2, "jp": 200, "text": "Revert debuffs halved.", "mods": {"stableFlesh": 1}},
+    {"id": "long_shift", "name": "Long Shift", "points": 2, "jp": 200, "text": "Forms +150 ticks.", "mods": {"formTicks": 150}},
+    {"id": "hybrid", "name": "Hybrid", "points": 3, "jp": 300, "text": "Keep one Form aura for 100 ticks after Revert.", "later": true},
+    {"id": "wild_blood", "name": "Wild Blood", "points": 1, "jp": 100, "text": "Feral Forms: a 50% chance each turn to choose the ability yourself.", "mods": {"wildBlood": 50}}
+  ]
+}

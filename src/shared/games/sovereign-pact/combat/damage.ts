@@ -279,7 +279,7 @@ function afterWeaponHit(b: Battle, rng: Rng, u: Combatant, t: Combatant, damage:
   if (u.mods.mpPerHit) u.mp = Math.min(u.maxMp, u.mp + u.mods.mpPerHit);
   if (t.dead) return;
   if (u.mods.siphon) {
-    const buff = t.statuses.find((x) => meta(x.id).kind === "buff");
+    const buff = t.statuses.find((x) => meta(x.id).kind === "buff" && !meta(x.id).fixed);
     if (buff) removeStatus(b, t, buff.id);
   }
   for (const [k, chance] of Object.entries(u.mods)) if (k.startsWith("onHit.") && !t.dead) tryStatus(b, rng, t, k.slice(6), chance, 0);
@@ -300,6 +300,8 @@ function afterMeleeHit(b: Battle, rng: Rng, u: Combatant, t: Combatant, damage: 
       }
     }
   }
+  // The Marsh Thing poisons whoever strikes it (§12.17).
+  if (t.mods.poisonAttackers && !u.dead) tryStatus(b, rng, u, "poison", t.mods.poisonAttackers, 0);
   if (opts.counter || t.dead || t.down || u.dead) return;
   // Mirror Stance: every melee hit is answered while the TP lasts (§12.13).
   if (hasStatus(t, "mirror_stance") && t.tp >= J.mirrorTp) {
@@ -405,7 +407,8 @@ export function heal(b: Battle, u: Combatant, t: Combatant, ab: AbilityDef): num
 }
 
 /** The most HP healing can bring `u` to: all of it, or half after Hold Together (§12.12). */
-export const hpCap = (u: Combatant): number => (u.flags.includes("heal_cap_half") ? Math.round((u.maxHp * J.healCapPct) / 100) : u.maxHp);
+export const hpCap = (u: Combatant): number =>
+  u.mods.noHeal ? u.hp : u.flags.includes("heal_cap_half") ? Math.round((u.maxHp * J.healCapPct) / 100) : u.maxHp;
 
 /** Revival: back from Down at 20% HP, no roll (§10.9). */
 export function revive(b: Battle, t: Combatant, hpPct: number = C.reviveHp): void {
@@ -426,7 +429,7 @@ function supportEffects(b: Battle, rng: Rng, u: Combatant, t: Combatant, ab: Abi
     const locs = r.loc === "all" ? LOCATIONS : r.loc === "lowest" ? [LOCATIONS.reduce((a, l) => (t.dur![l] / t.maxDur![l] < t.dur![a] / t.maxDur![a] ? l : a))] : [rng.pick(LOCATIONS)];
     for (const l of locs) t.dur[l] = Math.min(t.maxDur[l], t.dur[l] + Math.round((t.maxDur[l] * r.durPct) / 100));
   }
-  for (const c of ab.cure ?? []) for (const x of [...t.statuses]) if (x.id === c || meta(x.id).kind === c) removeStatus(b, t, x.id);
+  for (const c of ab.cure ?? []) for (const x of [...t.statuses]) if ((x.id === c || meta(x.id).kind === c) && !meta(x.id).fixed) removeStatus(b, t, x.id);
   if (ab.sanityPct && t.maxSanity) t.sanity = Math.min(t.maxSanity, t.sanity + Math.round((t.maxSanity * ab.sanityPct) / 100));
   if (ab.tpGrant) t.tp = Math.min(C.tp.max, t.tp + ab.tpGrant);
   if (ab.flag && !t.flags.includes(ab.flag)) t.flags.push(ab.flag);
@@ -440,7 +443,7 @@ function supportEffects(b: Battle, rng: Rng, u: Combatant, t: Combatant, ab: Abi
   if (ab.ctGrant) t.ct += ab.ctGrant;
   if (ab.constructHpPct && t.tags.includes("construct")) t.hp = Math.min(t.maxHp, t.hp + Math.round((t.maxHp * ab.constructHpPct) / 100));
   if (ab.readiness && t.side !== u.side && !t.mods.readinessImmune) t.ct = Math.max(0, t.ct - Math.round(ab.readiness * (t.boss ? C.bossReadiness : 1)));
-  if (ab.dispelBuffs) for (const x of t.statuses.filter((s) => meta(s.id).kind === "buff").reverse().slice(0, ab.dispelBuffs)) removeStatus(b, t, x.id);
+  if (ab.dispelBuffs) for (const x of t.statuses.filter((s) => meta(s.id).kind === "buff" && !meta(s.id).fixed).reverse().slice(0, ab.dispelBuffs)) removeStatus(b, t, x.id);
   for (const x of ab.statuses ?? []) {
     // Breath of Steel and Lasting Wards: timed buffs cast with MP last longer.
     const longer = ab.mp && x.ticks > 0 && meta(x.id).kind === "buff" ? (u.mods.buffTicks ?? 0) : 0;
