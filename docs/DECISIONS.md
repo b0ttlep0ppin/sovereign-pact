@@ -2,6 +2,12 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-01 (implementation, Milestone 4c: shared projects) — implementer
+- **Shared projects are content** (`content/projects.json`, schema): §8.5's twelve plus §8.6's six shops, which need the Great Market first. Each level is priced as a House building of a tier (Walls: tiers 1, 2, 3) × 1.3 (`tuning.commons.costMult`, §8.5 PROPOSED).
+- **Pledges** (`pledge` move) are public and final: they take only what the project still needs, by resource, and a project's level stands at the Reckoning of the Year it is fully paid. Renown: 1 point per 10 units pledged (Gold and materials alike), first pass.
+- **Effects in now:** Great Market +10 Gold per House per Year (tithed like income); Granary Grain upkeep −20%; Cathedral Sanity +25% in town and +2 Chapel slots for every House (reading: a House without a Chapel worships in the Cathedral); Aqueduct raises every House's Infirmary a level; Beacon and Hall of Petitions L1 each raise the arrival chance by 25%; University: unlimited Study and 100 JP a Year for every Scion in town; Court of Peers cuts Accord losses by 25% and, solo, raises the track by 10 when it stands (reading: §8.5's "Unrest −10" means ten points less unrest). Walls, the Observatory, Arena, Bastion and Mausoleum wait for the systems they touch (Devastation, expeditions, Sorties, Lore).
+- **The bot** pledges what it has beyond two Years of upkeep and a stock for its own buildings, to the first open project on its list, up to twice its fair share. Without expeditions Timber is scarce, so bot projects are slow until the tithe can be spent by vote (next step). Save version 5.
+
 ## 2026-11-01 (implementation, Milestone 4b: Year assignments) — implementer
 - **Assignments** (§8.3): Rest, Chapel, Infirmary, Train, Teach, Study, Work and Guard, with §8.3's slots (`tuning.assignments`). Expedition, Sortie and Special arrive with Milestone 6 and the events. An assignment **carries over from Year to Year** until changed (reading: the screen keeps the cards where they were).
 - **Who may take what:** recruits may Rest, Train or Work; Scions and the Retired anything; only the Retired or a Scion who has mastered a Job may Teach. A Mentor teaches 2 students a mastered Job; a Mentor who stops teaching leaves the students training alone.

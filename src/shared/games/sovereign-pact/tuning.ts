@@ -95,6 +95,26 @@ export const TUNING = {
     work: 4,
   },
 
+  /** §8.5 shared projects, first pass. */
+  commons: {
+    /** A project costs about 1.3× a House building of the same tier (§8.5 PROPOSED). */
+    costMult: 1.3,
+    /** Renown per this many units (Gold or materials) pledged. */
+    renownPer: 10,
+    /** Great Market: Gold per House per Year. Granary: Grain upkeep −%. Cathedral: Sanity +% in town, Chapel slots +. */
+    marketGold: 10,
+    granaryUpkeepPct: 20,
+    cathedralSanityPct: 25,
+    cathedralChapelSlots: 2,
+    /** University: JP per Year for every Scion in town, in their current Job. */
+    universityJp: 100,
+    /** Beacon and Hall of Petitions L1: recruit arrival +25% each. */
+    arrivalBoostPct: 25,
+    /** Court of Peers: Accord losses −25%; solo, the track +10 when it stands. */
+    courtAccordPct: 25,
+    courtUnrest: 10,
+  },
+
   /** §3.3. */
   tracks: {
     /** Starting Accord (H ≥ 2) or Unrest (H = 1). Implementation default. */

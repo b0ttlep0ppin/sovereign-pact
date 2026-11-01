@@ -1,6 +1,7 @@
 // Year assignments (§8.3): every person in town is given one thing to do with the Year, by slots the
 // House's buildings open. They take effect at the Reckoning (§8.10 steps 3–4) and carry over to the
 // next Year until changed; a slot that no longer exists (a ruined building) leaves its person idle.
+import { built } from "./commons.ts";
 import { BUILDING_BY_ID, INJURY_TABLE_BY_ID } from "./content.ts";
 import { maxSanity } from "./formulas.ts";
 import { gainJp, gainXpUpTo } from "./progression.ts";
@@ -26,15 +27,16 @@ export function slots(s: SovState, house: number, to: AssignmentKind, where?: st
     case "rest":
       return Infinity;
     case "chapel":
-      return at(A.chapelSlots, lvl(s, house, "chapel"));
+      return at(A.chapelSlots, lvl(s, house, "chapel")) + (built(s, "cathedral") ? TUNING.commons.cathedralChapelSlots : 0);
     case "infirmary":
-      return at(A.infirmarySlots, lvl(s, house, "infirmary"));
+      // The Aqueduct raises every House's Infirmary a level (§8.5).
+      return at(A.infirmarySlots, Math.min(3, lvl(s, house, "infirmary") + (built(s, "aqueduct") ? 1 : 0)));
     case "teach":
       return at(A.mentorSeats, lvl(s, house, "training_ground"));
     case "train":
       return at(A.mentorSeats, lvl(s, house, "training_ground")) * A.studentsPerSeat;
     case "study":
-      return lvl(s, house, "scriptorium") ? A.studySlots : 0;
+      return built(s, "university") ? Infinity : lvl(s, house, "scriptorium") ? A.studySlots : 0;
     case "guard":
       return A.guardSlots;
     case "work":
@@ -117,10 +119,14 @@ export function yearOfAssignments(s: SovState): void {
     if (to === "chapel") injuries = injuries.filter((x) => !(SANITY_RESULTS.has(x.id) && x.years > 0));
     p = { ...p, injuries: injuries.filter((x) => x.years !== 0) };
     const max = maxSanity(p);
-    const pct = (to === "rest" ? A.restSanityPct : A.idleSanityPct) + (lvl(s, p.host, "chapel") ? A.chapelBuildingSanityPct : 0);
+    const pct =
+      (to === "rest" ? A.restSanityPct : A.idleSanityPct) +
+      (lvl(s, p.host, "chapel") ? A.chapelBuildingSanityPct : 0) +
+      (built(s, "cathedral") ? TUNING.commons.cathedralSanityPct : 0);
     p.sanity = to === "chapel" ? max : Math.min(max, p.sanity + Math.ceil((max * pct) / 100));
     if (to === "train") p = train(s, p, a!, top[p.host]!);
     if (to === "study") p = gainJp(p, A.studyJp);
+    if (built(s, "university") && p.status === "scion") p = gainJp(p, TUNING.commons.universityJp);
     s.people[i] = p;
   }
 }

@@ -1,0 +1,22 @@
+{
+  "projects": [
+    { "id": "walls", "name": "Walls", "cost": "standard", "tiers": [1, 2, 3], "text": "Devastation ruins one fewer building per level; Doom from a failed mandatory expedition −5 per level." },
+    { "id": "granary", "name": "Granary", "cost": "standard", "tiers": [1], "text": "Famine Crises halved; Grain upkeep −20% for all." },
+    { "id": "great_market", "name": "Great Market", "cost": "standard", "tiers": [2], "text": "Unlocks the shops; +10 Gold per House per Year." },
+    { "id": "cathedral", "name": "Cathedral", "cost": "expensive", "tiers": [2], "text": "All Scions Sanity +25% per Year in town; Chapel slots +2 for every House; Holy +10% for all; resurrection events for all Houses." },
+    { "id": "rift_observatory", "name": "Rift Observatory", "cost": "expensive", "tiers": [2], "text": "Shows the expedition's event pool and boss type before departure; mandatory expeditions foreshadowed 1 Year earlier." },
+    { "id": "arena", "name": "Arena", "cost": "standard", "tiers": [2], "text": "Sorties yield +50%; Sortie injuries capped at Mild." },
+    { "id": "aqueduct", "name": "Aqueduct", "cost": "standard", "tiers": [2], "text": "Disease events removed; Infirmary effects +1 level for all." },
+    { "id": "beacon", "name": "Beacon", "cost": "standard", "tiers": [1], "text": "Recruit arrival +25% for all; unique-Scion events more likely." },
+    { "id": "court_of_peers", "name": "Court of Peers", "cost": "standard", "tiers": [2], "text": "Accord losses −25%; Unrest −10 (solo)." },
+    { "id": "university", "name": "University", "cost": "expensive", "tiers": [3], "text": "Every Scion in town gains JP each Year in their current Job; Study is unlimited." },
+    { "id": "bastion_of_the_gate", "name": "Bastion of the Gate", "cost": "expensive", "tiers": [3], "text": "The Year 20 expedition starts with a shield on every Scion and one free retreat." },
+    { "id": "mausoleum_of_the_pact", "name": "Mausoleum of the Pact", "cost": "expensive", "tiers": [2], "text": "A Relic found by any House counts for all Houses' Lore at 25%." },
+    { "id": "armorer", "name": "Armorer", "cost": "standard", "tiers": [1], "requires": "great_market", "text": "A shop: armor and shields." },
+    { "id": "weaponsmith", "name": "Weaponsmith", "cost": "standard", "tiers": [1], "requires": "great_market", "text": "A shop: weapons." },
+    { "id": "apothecary", "name": "Apothecary", "cost": "standard", "tiers": [1], "requires": "great_market", "text": "A shop: consumables and cures." },
+    { "id": "curio_dealer", "name": "Curio Dealer", "cost": "standard", "tiers": [1], "requires": "great_market", "text": "A shop: accessories, Tarot-linked trinkets, one random magic item per Year." },
+    { "id": "beastmonger", "name": "Beastmonger", "cost": "standard", "tiers": [1], "requires": "great_market", "text": "A shop: summon upgrades and pets." },
+    { "id": "fence", "name": "Fence", "cost": "standard", "tiers": [1], "requires": "great_market", "text": "A shop: buys loot; sells stolen goods at a discount." }
+  ]
+}

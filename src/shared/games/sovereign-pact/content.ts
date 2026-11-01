@@ -18,6 +18,7 @@ import swordSaintSet from "./content/abilities/sword_saint.json" with { type: "j
 import vagabondSet from "./content/abilities/vagabond.json" with { type: "json" };
 import buildingsJson from "./content/buildings.json" with { type: "json" };
 import formsJson from "./content/forms.json" with { type: "json" };
+import projectsJson from "./content/projects.json" with { type: "json" };
 import summonsJson from "./content/summons.json" with { type: "json" };
 import hazardsJson from "./content/hazards.json" with { type: "json" };
 import heraldryJson from "./content/heraldry.json" with { type: "json" };
@@ -435,6 +436,17 @@ export interface BuildingDef {
 }
 export const BUILDINGS = buildingsJson.buildings as readonly BuildingDef[];
 export const BUILDING_BY_ID = byId(BUILDINGS);
+/** A shared project (§8.5) or shop (§8.6): its levels each priced as a House building tier. */
+export interface ProjectDef {
+  id: string;
+  name: string;
+  cost: BuildingDef["cost"];
+  tiers: (1 | 2 | 3)[];
+  requires?: string;
+  text: string;
+}
+export const PROJECTS = projectsJson.projects as readonly ProjectDef[];
+export const PROJECT_BY_ID = byId(PROJECTS);
 /** Rare materials (§8.1): kept in Stores by id beside the five common ones. */
 export const RARE_MATERIALS: readonly { id: string; name: string }[] = buildingsJson.rareMaterials;
 export const SEAT_BY_ID = byId(SEATS);
