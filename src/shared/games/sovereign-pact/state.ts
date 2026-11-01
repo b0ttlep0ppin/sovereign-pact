@@ -219,6 +219,14 @@ export interface Vote {
   proposer: number;
 }
 
+/** This Year's Crisis (§3.5): its Need, and each House's private pledge and whether it gave in to the temptation. */
+export interface Crisis {
+  id: string;
+  need: Partial<Record<string, number>>;
+  pledges: Partial<Record<string, number>>[];
+  tempted: boolean[];
+}
+
 export type Phase = "omens" | "settlement" | "expedition" | "reckoning" | "over";
 
 export interface CampaignOptions {
@@ -276,6 +284,8 @@ export interface SovState {
   /** At 100 the city is overwhelmed (§3.3). */
   doom: number;
   timeline: TimelineEntry[];
+  /** This Year's Crisis, open through the Settlement Phase. */
+  crisis?: Crisis;
   /** The vote now open, if any. */
   vote?: Vote;
   /** Houses that proposed a vote this Year: one proposal each a Year. */
@@ -299,6 +309,10 @@ export type SovMove =
   | { type: "unbuild"; building: string }
   /** Pledge Gold and materials to a shared project's next level; public and final (§8.5). */
   | { type: "pledge"; project: string; give: Partial<Record<string, number>> }
+  /** Pledge to this Year's Crisis, privately (§3.5). */
+  | { type: "crisis_pledge"; give: Partial<Record<string, number>> }
+  /** Give in to the Crisis's private temptation. */
+  | { type: "tempt" }
   /** Propose spending the Commons' stock on a shared project (a vote of the Houses, §8.1). */
   | { type: "propose"; project: string }
   /** Vote on the open question: an index into its options. */

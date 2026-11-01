@@ -1,0 +1,16 @@
+{
+  "id": "fire_in_the_lower_town",
+  "scope": "settlement",
+  "weight": 2,
+  "years": [1, 20],
+  "title": "Fire in the Lower Town",
+  "text": "A chandler's shop went up at midnight and the wind did the rest. Three streets are ash, and their people sleep in the Commons.",
+  "rule": "pledges",
+  "crisis": {
+    "need": { "timber": 25, "grain": 15 },
+    "triumph": { "text": "The streets rise again within the Year, and the people bless the Houses.", "effects": [{ "accord": 4 }] },
+    "holds": { "text": "Shelters, soup, and slow rebuilding.", "effects": [] },
+    "falters": { "text": "The burned-out families drift away to other cities.", "effects": [{ "accord": -5 }] },
+    "calamity": { "text": "The fire spreads again in the Year's end gales, and reaches a House.", "effects": [{ "accord": -10 }, { "ruin": 1 }] }
+  }
+}

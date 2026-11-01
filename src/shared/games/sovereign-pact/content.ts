@@ -2,6 +2,7 @@
 // by id, so Josh can edit the JSON (validated by schemas/ in CI) without touching rules (CLAUDE.md).
 import bossFiles from "./content/bosses/index.gen.ts";
 import enemyFiles from "./content/enemies/index.gen.ts";
+import townFiles from "./content/town/index.gen.ts";
 import abjurerSet from "./content/abilities/abjurer.json" with { type: "json" };
 import conjurerSet from "./content/abilities/conjurer.json" with { type: "json" };
 import altererSet from "./content/abilities/alterer.json" with { type: "json" };
@@ -447,6 +448,48 @@ export interface ProjectDef {
 }
 export const PROJECTS = projectsJson.projects as readonly ProjectDef[];
 export const PROJECT_BY_ID = byId(PROJECTS);
+/** One effect of a town event (§9.4's catalogue, the parts that touch the town). */
+export interface TownEffect {
+  /** The subject House (default), each House, one random House, or the Commons (resources only). */
+  to?: "house" | "all" | "random" | "commons";
+  accord?: number;
+  doom?: number;
+  resources?: Partial<Record<string, number>>;
+  ruin?: number;
+  recruits_lost?: number;
+  sanity?: number;
+  score?: Partial<Record<string, number>>;
+  flag?: string;
+  timeline?: { event: string; years: number };
+}
+export interface TownBand {
+  text: string;
+  effects: TownEffect[];
+}
+/** A Crisis (§3.5): a Need met by private pledges, four outcome bands, and perhaps a private temptation. */
+export interface CrisisDef {
+  need: Partial<Record<string, number>>;
+  temptation?: { label: string; text: string; penalty: number; effects: TownEffect[] };
+  triumph: TownBand;
+  holds: TownBand;
+  falters: TownBand;
+  calamity: TownBand;
+}
+/** A town event drawn in the Omens (§8.8). */
+export interface TownEventDef {
+  id: string;
+  scope: "settlement" | "house";
+  weight: number;
+  years: [number, number];
+  requires?: string[];
+  title: string;
+  text: string;
+  rule: string;
+  crisis?: CrisisDef;
+}
+export const TOWN_EVENTS = townFiles as unknown as readonly TownEventDef[];
+export const TOWN_EVENT_BY_ID: ReadonlyMap<string, TownEventDef> = new Map(TOWN_EVENTS.map((e) => [e.id, e]));
+
 /** Rare materials (§8.1): kept in Stores by id beside the five common ones. */
 export const RARE_MATERIALS: readonly { id: string; name: string }[] = buildingsJson.rareMaterials;
 export const SEAT_BY_ID = byId(SEATS);

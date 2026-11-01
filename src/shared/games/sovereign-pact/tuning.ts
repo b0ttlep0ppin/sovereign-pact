@@ -115,6 +115,20 @@ export const TUNING = {
     courtUnrest: 10,
   },
 
+  /** §3.5 Crises [DECIDED resolution, numbers to tune]. */
+  crises: {
+    /** % chance this Year's settlement event is a Crisis, until the other town events exist (§8.8: about 40%). */
+    pct: 40,
+    /** The hidden swing, ± this many points. */
+    swing: 20,
+    /** Result thresholds: Triumph, Holds, Falters; under the last, Calamity. */
+    bands: { triumph: 100, holds: 75, falters: 50 },
+    /** The Need grows with the campaign: × by Year band of a 20-Year campaign (early to 6, mid to 13, late). */
+    needScale: { early: 1, mid: 1.5, late: 2 },
+    /** Renown per this many units pledged. */
+    renownPer: 10,
+  },
+
   /** §3.3. */
   tracks: {
     /** Starting Accord (H ≥ 2) or Unrest (H = 1). Implementation default. */

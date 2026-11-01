@@ -10,7 +10,7 @@ const root = fileURLToPath(new URL("..", import.meta.url));
 const CONTENT = join(root, "src/shared/games/sovereign-pact/content");
 
 /** The folders indexed, each with its index file. */
-export const INDEXED = ["enemies", "bosses"].map((folder) => ({ folder, dir: join(CONTENT, folder), index: join(CONTENT, folder, "index.gen.ts") }));
+export const INDEXED = ["enemies", "bosses", "town"].map((folder) => ({ folder, dir: join(CONTENT, folder), index: join(CONTENT, folder, "index.gen.ts") }));
 
 const walk = (dir: string): string[] =>
   readdirSync(dir)

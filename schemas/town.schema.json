@@ -1,0 +1,69 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "A town event, drawn in the Omens step: settlement-wide or for one House; a Crisis is one decided by pledges (SPEC §3.5, §8.8)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "scope", "weight", "years", "title", "text", "rule"],
+  "properties": {
+    "id": { "$ref": "defs.schema.json#/definitions/id" },
+    "scope": { "enum": ["settlement", "house"] },
+    "weight": { "type": "integer", "minimum": 1 },
+    "years": { "type": "array", "minItems": 2, "maxItems": 2, "items": { "type": "integer", "minimum": 1, "maximum": 20 }, "description": "The Years of a 20-Year campaign it may be drawn in; a Short campaign doubles its Year to look up." },
+    "requires": { "type": "array", "items": { "type": "string", "pattern": "^!?(flag|built|building):[a-z][a-z0-9_]*$" } },
+    "title": { "type": "string", "minLength": 1 },
+    "text": { "type": "string", "minLength": 1 },
+    "rule": { "type": "string", "pattern": "^(pledges|vote|most_gold|least_gold|most_scions|random_house|led_last|each_house|secret|house|tarot:[a-z_]+|house:trait:[a-z_]+)$" },
+    "crisis": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["need", "triumph", "holds", "falters", "calamity"],
+      "properties": {
+        "need": { "$ref": "#/definitions/resources" },
+        "temptation": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["label", "text", "penalty", "effects"],
+          "properties": {
+            "label": { "type": "string", "minLength": 1 },
+            "text": { "type": "string", "minLength": 1 },
+            "penalty": { "type": "integer", "minimum": 1, "maximum": 50, "description": "Points the Crisis result loses when a House gives in to it." },
+            "effects": { "$ref": "#/definitions/effects" }
+          }
+        },
+        "triumph": { "$ref": "#/definitions/band" },
+        "holds": { "$ref": "#/definitions/band" },
+        "falters": { "$ref": "#/definitions/band" },
+        "calamity": { "$ref": "#/definitions/band" }
+      }
+    }
+  },
+  "definitions": {
+    "resources": { "type": "object", "minProperties": 1, "additionalProperties": { "type": "integer" }, "propertyNames": { "$ref": "defs.schema.json#/definitions/id" } },
+    "band": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["text", "effects"],
+      "properties": { "text": { "type": "string", "minLength": 1 }, "effects": { "$ref": "#/definitions/effects" } }
+    },
+    "effects": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "minProperties": 1,
+        "properties": {
+          "to": { "enum": ["house", "all", "random", "commons"], "description": "Whom it touches: the subject House (default), each House, one random House, or the Commons (resources only)." },
+          "accord": { "type": "integer" },
+          "doom": { "type": "integer" },
+          "resources": { "$ref": "#/definitions/resources" },
+          "ruin": { "type": "integer", "minimum": 1, "description": "Building levels lost, each in a random House (or the target's)." },
+          "recruits_lost": { "type": "integer", "minimum": 1 },
+          "sanity": { "type": "integer", "description": "% of max Sanity, to every Scion and Retired of the target." },
+          "score": { "type": "object", "additionalProperties": { "type": "integer" } },
+          "flag": { "$ref": "defs.schema.json#/definitions/id" },
+          "timeline": { "type": "object", "additionalProperties": false, "required": ["event", "years"], "properties": { "event": { "$ref": "defs.schema.json#/definitions/id" }, "years": { "type": "integer", "minimum": 1 } } }
+        }
+      }
+    }
+  }
+}

@@ -4,7 +4,7 @@ import { App } from "./App";
 
 /** Lets the bots move a few times: each move schedules the next after the render. */
 const letBotsMove = () => {
-  for (let i = 0; i < 6; i++) act(() => vi.advanceTimersByTime(400));
+  for (let i = 0; i < 60; i++) act(() => vi.advanceTimersByTime(400));
 };
 
 describe("the standalone host", () => {

@@ -7,8 +7,8 @@ import { campaignYears, clone, trackName } from "./year.ts";
 
 // 2: people and items packed as varint strings (Milestone 2b). 3: Houses' works (Milestone 4a).
 // 4: Year assignments (Milestone 4b). 5: the Commons' shared projects (Milestone 4c).
-// 6: votes and proposers (Milestone 4d).
-export const SAVE_VERSION = 6;
+// 6: votes and proposers (Milestone 4d). 7: Crises (Milestone 4e).
+export const SAVE_VERSION = 7;
 export const GAME_ID = "sovereign-pact";
 
 /** The campaign without who sat where or the public log, its people and items packed (codec.ts). */

@@ -1,0 +1,17 @@
+{
+  "id": "raiders_at_the_ford",
+  "scope": "settlement",
+  "weight": 2,
+  "years": [2, 20],
+  "title": "Raiders at the Ford",
+  "text": "Deserters from some dead lord's army have taken the ford and tax every cart that crosses. The militia needs arms and pay.",
+  "rule": "pledges",
+  "crisis": {
+    "need": { "iron": 15, "gold": 40 },
+    "temptation": { "label": "Pay the raiders' captain for safe passage of your own carts.", "text": "Cheaper than a war, and no one need know.", "penalty": 20, "effects": [{ "resources": { "gold": 20 } }] },
+    "triumph": { "text": "The ford is cleared and the deserters hang from the old bridge.", "effects": [{ "accord": 3 }] },
+    "holds": { "text": "The raiders melt away into the hills.", "effects": [] },
+    "falters": { "text": "The raiders burn a mill before they go.", "effects": [{ "accord": -5 }, { "resources": { "grain": -10 }, "to": "all" }] },
+    "calamity": { "text": "The raiders sack the outer farms and ride off rich.", "effects": [{ "accord": -10 }, { "ruin": 1 }, { "resources": { "grain": -15 }, "to": "all" }] }
+  }
+}

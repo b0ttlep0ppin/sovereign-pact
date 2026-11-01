@@ -1,0 +1,70 @@
+{
+  "id": "fever_wards",
+  "scope": "settlement",
+  "weight": 2,
+  "years": [
+    4,
+    20
+  ],
+  "title": "The Fever Wards",
+  "text": "A grey fever runs through the tanners' quarter. The physicians want coin for herbs and bread for the sick.",
+  "rule": "pledges",
+  "crisis": {
+    "need": {
+      "grain": 20,
+      "gold": 30
+    },
+    "temptation": {
+      "label": "Sell the physicians' herbs to the highest bidder.",
+      "text": "Your steward knows a buyer upriver who pays in silver.",
+      "penalty": 15,
+      "effects": [
+        {
+          "resources": {
+            "gold": 20
+          }
+        }
+      ]
+    },
+    "triumph": {
+      "text": "The fever breaks within the month.",
+      "effects": [
+        {
+          "accord": 3
+        }
+      ]
+    },
+    "holds": {
+      "text": "The quarter is quarantined and the fever starves.",
+      "effects": []
+    },
+    "falters": {
+      "text": "The fever reaches the Houses' halls.",
+      "effects": [
+        {
+          "accord": -5
+        },
+        {
+          "sanity": -10,
+          "to": "all"
+        }
+      ]
+    },
+    "calamity": {
+      "text": "The dead are burned in the squares for a season.",
+      "effects": [
+        {
+          "accord": -12
+        },
+        {
+          "sanity": -20,
+          "to": "all"
+        },
+        {
+          "recruits_lost": 1,
+          "to": "random"
+        }
+      ]
+    }
+  }
+}

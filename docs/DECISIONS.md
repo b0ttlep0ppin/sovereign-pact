@@ -2,6 +2,15 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-01 (implementation, Milestone 4e: Crises) — implementer
+- **Town events are content** (`content/town/<id>.json`, `schemas/town.schema.json`, indexed by `npm run gen:content`), in one format for settlement and House events: scope, weight, Years (of a 20-Year campaign; Short doubles the Year), `requires` predicates, a resolution `rule`, and for a Crisis its Need, optional temptation and four bands. Effects so far: Accord, Doom, resources (a House, each, a random one, or the Commons), ruined building levels, lost recruits, Sanity %, score, flags and timeline entries.
+- **Six Crises:** the Hungry Winter and the Breach in the Wall from §8.8, plus the Fever Wards, Raiders at the Ford, the Bridge Gives Way and Fire in the Lower Town. Their Needs use only what Houses can make before expeditions (no Essence).
+- **Resolution** [DECIDED, numbers first pass]: result = pledged ÷ Need, each resource counting up to its own Need, ± a hidden swing of 20 points, less each temptation's penalty (15–20 points per House that gave in); Triumph ≥100, Holds 75–99, Falters 50–74, Calamity <50. A full pledge therefore always Holds at least; a Triumph needs luck or over-giving. Pledges are spent whatever the result.
+- **The Need scales** with the Year band (×1 to Year 6, ×1.5 to 13, ×2 after) and with the kingdom's income against four Houses' (§4.3), so a solo House faces about half the Need.
+- **Hidden information:** each House sees only its own pledge and whether it gave in; everyone sees the Need, and afterwards the totals and the band in the log. The swing is never shown. Renown is granted by each House's pledge (1 per 10 units), privately.
+- **Until the other town events exist**, a Crisis is drawn 40% of Years (§8.8's share), as `tuning.crises.pct`.
+- **The bot** pledges its fair share of each resource (Need ÷ Houses) while keeping a Year's upkeep, and never gives in to a temptation. Bot campaigns can now be lost to Crises (one seed in six with two Houses breaks Accord by Year 12). Save version 7.
+
 ## 2026-11-01 (implementation, Milestone 4d: votes on the Commons) — implementer
 - **Votes** (`votes.ts`): a House proposes spending the Commons' stock on a shared project (`propose`), and every House votes (`vote`). The most votes win. A tie costs Accord −3 (softened by the Court of Peers) and goes to the highest-Renown House among those who voted for a tied option, seat order breaking a Renown tie [DECIDED tie rule; the among-voters part is the reading].
 - **Readings:** votes are cast in the open (the view shows each House's choice); one vote is open at a time; each House may propose once a Year (implementation default, so a refused proposal is not repeated every move); an open vote settles when all have voted or when the Year is sealed, those who did not vote abstaining; nobody voting means no. A sealed House may still vote. Solo, a proposal is the House's own decision.
