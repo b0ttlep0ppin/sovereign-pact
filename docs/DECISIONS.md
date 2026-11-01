@@ -2,6 +2,21 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-01 (implementation, Milestone 5g: the Retired and Fallen Houses) — implementer
+- **Retire and reinstate** (`lifecycle.ts`, §6.12):
+  - `retire` and `reinstate` are free Settlement moves on the House's own people.
+  - A Retired Scion's worn gear goes back to the stash, and they pay half upkeep.
+  - Reinstating brings a Retired Scion back to Scion, with their injuries.
+  - Teaching (Retired or a master as Mentor) was already in Milestone 4's assignments.
+  - Forced retirement from a Devastating injury comes with campaign injuries (Milestone 6).
+- **Fallen Houses** (§6.13):
+  - A House is Fallen with no Scion, recruit or Retired hosted, shown on its public record (`fallen`).
+  - Its Lineage is 0, since there is no one to count. It keeps voting, pledging, dealing and building, and a Ward or a recruit event can rebuild it.
+  - If every House is Fallen when a mandatory expedition's Year closes, the campaign is lost.
+- **Waiting:**
+  - Mentor loans in deals and the two-Year trained recruit promoted at level 3 with a Mentor's passive (§6.12, PROPOSED).
+  - The Chronicle of the dead and its Lineage. These come with expedition deaths in Milestone 6.
+
 ## 2026-11-01 (implementation, Milestone 5f: Wards and Loyalty) — implementer
 - **Wards in deals** (`wards.ts`, §6.9): a deal side may list `wards`, Scions of the giving House.
   - On acceptance the Scion moves to the host. Their worn gear stays in the giver's stash, except a cursed piece, which goes with them and becomes the host's (per batch 10: the host outfits Wards, cursed items travel with the Ward).

@@ -5,6 +5,7 @@ import type { PlayerId } from "../../game.ts";
 import { dealsFor } from "./deals.ts";
 import { marketFor } from "./market.ts";
 import { eventsFor } from "./omens.ts";
+import { fallen } from "./lifecycle.ts";
 import { timelineFor } from "./timeline.ts";
 import { ascendancy, categories, standing } from "./score.ts";
 import type {
@@ -47,6 +48,8 @@ export interface PublicHouse {
   works: string[];
   chronicle: ChronicleEntry[];
   standing: StandingTier;
+  /** No Scions, recruits or Retired left (§6.13): its district goes dark. */
+  fallen: boolean;
   sealed: boolean;
 }
 
@@ -150,6 +153,7 @@ function publicHouse(s: SovState, h: House, index: number): PublicHouse {
     works: h.works,
     chronicle: h.chronicle,
     standing: standing(s, index),
+    fallen: fallen(s, index),
     sealed: h.sealed,
   };
 }
