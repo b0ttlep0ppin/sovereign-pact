@@ -79,9 +79,11 @@ interface Props {
   onClose: () => void;
   /** Battles waiting after this one. */
   waiting?: number;
+  /** Show every turn's lines so far, to read instead of watch (§15.8). */
+  fullLog?: boolean;
 }
 
-export default function BattleScreen({ replay, view, onClose, waiting = 0 }: Props) {
+export default function BattleScreen({ replay, view, onClose, waiting = 0, fullLog = false }: Props) {
   const states = useMemo(() => framesOf(replay), [replay]);
   const units = useMemo(() => new Map(replay.units.map((u) => [u.id, u])), [replay]);
   const [at, setAt] = useState(0);
@@ -96,6 +98,9 @@ export default function BattleScreen({ replay, view, onClose, waiting = 0 }: Pro
   const injury = ev.find((e) => e.t === "injury");
   const charges = ev.filter((e) => e.t === "charge" && e.telegraph);
   const root = useRef<HTMLDivElement>(null);
+  const log = useRef<HTMLOListElement>(null);
+  // The full log (§15.8): every turn so far, to read instead of watch; else this turn's lines.
+  const lines = (fullLog ? replay.frames.slice(0, at).flatMap((f, i) => f.ev.map((e) => [i + 1, e] as const)) : ev.map((e) => [at, e] as const)).filter(([, e]) => e.t !== "turn");
 
   useEffect(() => {
     if (!playing || at >= last) return;
@@ -103,6 +108,9 @@ export default function BattleScreen({ replay, view, onClose, waiting = 0 }: Pro
     return () => clearTimeout(t);
   }, [playing, at, last, speed, injury]);
   useEffect(() => root.current?.focus(), []);
+  useEffect(() => {
+    if (fullLog && log.current) log.current.scrollTop = log.current.scrollHeight;
+  }, [fullLog, at]);
 
   const color = (u: ReplayUnit) => (u.house !== undefined ? HERALDRY_COLORS.get(view.houses[u.house]?.colors[0] ?? "") : undefined);
   const shown = (u: ReplayUnit) => {
@@ -227,12 +235,13 @@ export default function BattleScreen({ replay, view, onClose, waiting = 0 }: Pro
         </button>
         <input type="range" min={0} max={last} value={at} aria-label="Turn" onChange={(e) => step(Number(e.target.value) - at)} />
       </div>
-      <ol className="sp-battle__log" aria-label="Battle log">
-        {ev
-          .filter((e) => e.t !== "turn")
-          .map((e, i) => (
-            <li key={`${at}:${i}`}>{replayLine(replay, e).replace(/\b(uses|begins) ([a-z_:]+)/, (_, v: string, id: string) => `${v} ${abilityName(id)}`)}</li>
-          ))}
+      <ol className={`sp-battle__log${fullLog ? " is-full" : ""}`} aria-label="Battle log" ref={log}>
+        {lines.map(([turn, e], i) => (
+          <li key={`${turn}:${i}`}>
+            {fullLog ? <small>{turn}. </small> : null}
+            {replayLine(replay, e).replace(/\b(uses|begins) ([a-z_:]+)/, (_, v: string, id: string) => `${v} ${abilityName(id)}`)}
+          </li>
+        ))}
       </ol>
     </div>
   );
