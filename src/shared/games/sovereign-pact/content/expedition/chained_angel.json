@@ -1,0 +1,106 @@
+{
+  "id": "chained_angel",
+  "pools": [
+    "pilgrimage",
+    "shrine_of_six"
+  ],
+  "weight": 1,
+  "band": [
+    7,
+    10
+  ],
+  "title": "The Chained Angel",
+  "text": "Something with burned wings is chained to the shrine's altar with iron links as thick as a wrist. It is still alive. It asks for nothing.",
+  "options": [
+    {
+      "id": "free",
+      "label": "The most devout frees it.",
+      "rule": "scion:trait:devout|scion:trait:pious_hands|vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "The chains break. It follows you home, and no one knows what it will become.",
+          "effects": [
+            {
+              "house_improvement": "recruit"
+            },
+            {
+              "doom": 5
+            },
+            {
+              "score": {
+                "renown": 3
+              }
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "The chains break, and it is gone in a burst of light. Something else, very far off, has noticed.",
+          "effects": [
+            {
+              "doom": 5
+            },
+            {
+              "to": "party",
+              "sanity": 10
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kill",
+      "label": "End it.",
+      "rule": "vote",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It does not fight. What is left of it is ash, and the ash is holy.",
+          "effects": [
+            {
+              "resources": {
+                "saints_ash": 1
+              }
+            },
+            {
+              "score": {
+                "valor": 2
+              }
+            },
+            {
+              "to": "party",
+              "sanity": -15
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "leave",
+      "label": "Leave it chained.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It watches you go. It does not ask then either.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -5
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

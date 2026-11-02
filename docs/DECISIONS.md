@@ -2,6 +2,21 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 7l: the rest of §9.7's events) — implementer
+- **Built** (content only, plus the `mend` effect). The 13 events in §9.7's table that were not yet in the game: the Trial of the Veteran, A Perfectly Preserved Library, Wolves at the Fire, the Rot That Thinks, the Hermit of the Gate, Footprints Leading Back, the Spider Queen's Court, the Chained Angel, the Prisoner Who Knows Your Name, the Burning Man, the Grinning Surgeon, the Count of the Dead and the Last Stair. That makes 54 expedition events.
+- **New effect** `mend`: the subject's oldest lasting Moderate injury heals. It is used by the Grinning Surgeon.
+- **Readings** (where the table names something the rules cannot do yet; each uses the nearest existing effect):
+  - The Veteran's duel is a 55/45 roll: a blessing, Valor and XP, or a Body injury roll.
+  - The wolves "joining the boss fight on your side" becomes Haste for the next battle.
+  - The Hermit "revealing the boss's pattern" becomes Shell for the next battle; his lie becomes Slow.
+  - Footprints Leading Back finds a lost campsite's gear (a Fine item) or a doppelganger ambush. It does not find Lost Scions, who come home only by Rescue cards (§9.9).
+  - The Chained Angel's "unique fallen-angel Scion" is a recruit for the House.
+  - The Count of the Dead's "dead Scion walks again" is a recruit, until a Grave-Touched return exists.
+  - The Spider Queen's "offer a Ward" became tribute in Gold, since no rule yet names a Ward as the subject.
+  - The Rot's "Alterer form unlocked" is a Sagacity growth.
+  - "Most Holy affinity" is read as a Devout or Pious Hands Scion, falling back to the party's vote.
+  - "Water affinity" is read as a Tidebound Scion, falling back to the highest Resilience.
+
 ## 2026-11-02 (implementation, Milestone 7k: The Gate's Reflection) — implementer
 - **Built** (§9.7, §14.7, §14.7a; `withReflection` in `arc.ts`, `offerReflection` in `bargains.ts`, event `content/expedition/gates_reflection.json`, three `reflection` bargains). The final Year's chain ends with a `reflection` place just before the End Ruler. Arriving there:
   - Each House in the party is privately offered one of the Year 20 bargains: the Crowned Reflection (Renown and Lineage), the Glass Champion (a stat +3 on the House's best Scion), or the Rival's Reflection (a bane on a rival's Renown and Valor). Every one carries a Pact mark (the SPEC's [PROPOSED] "always carries one").

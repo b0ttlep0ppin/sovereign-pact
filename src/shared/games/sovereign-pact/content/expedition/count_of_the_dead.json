@@ -1,0 +1,73 @@
+{
+  "id": "count_of_the_dead",
+  "pools": [
+    "barrows"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    10
+  ],
+  "title": "The Count of the Dead",
+  "text": "A grey clerk with a ledger stands at the barrow's mouth, counting the dead who pass. He asks for your fallen, so they can be written down properly.",
+  "options": [
+    {
+      "id": "name",
+      "label": "Name your fallen.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "Every name is written. Something in the barrow is satisfied, and so are you.",
+          "effects": [
+            {
+              "score": {
+                "valor": 3
+              }
+            },
+            {
+              "to": "party",
+              "sanity": 10
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "One of the names you give him answers from inside the barrow, and walks out to join you.",
+          "effects": [
+            {
+              "house_improvement": "recruit"
+            },
+            {
+              "to": "party",
+              "sanity": -10
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "refuse",
+      "label": "Refuse.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "He writes something down anyway.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -5
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

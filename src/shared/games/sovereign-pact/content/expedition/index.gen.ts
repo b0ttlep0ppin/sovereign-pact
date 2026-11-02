@@ -6,15 +6,21 @@ import banquet_of_the_hollow_host from "./banquet_of_the_hollow_host.json" with 
 import beggar_at_the_ford from "./beggar_at_the_ford.json" with { type: "json" };
 import bone_market from "./bone_market.json" with { type: "json" };
 import bread_on_the_water from "./bread_on_the_water.json" with { type: "json" };
+import burning_man from "./burning_man.json" with { type: "json" };
+import chained_angel from "./chained_angel.json" with { type: "json" };
 import child_in_the_well from "./child_in_the_well.json" with { type: "json" };
 import choir_missing_a_voice from "./choir_missing_a_voice.json" with { type: "json" };
 import collapsed_chapel from "./collapsed_chapel.json" with { type: "json" };
+import count_of_the_dead from "./count_of_the_dead.json" with { type: "json" };
 import door_with_your_emblem from "./door_with_your_emblem.json" with { type: "json" };
 import egg_that_hums from "./egg_that_hums.json" with { type: "json" };
 import feast_of_crows from "./feast_of_crows.json" with { type: "json" };
 import field_of_flowers from "./field_of_flowers.json" with { type: "json" };
+import footprints_leading_back from "./footprints_leading_back.json" with { type: "json" };
 import gates_reflection from "./gates_reflection.json" with { type: "json" };
+import grinning_surgeon from "./grinning_surgeon.json" with { type: "json" };
 import hanging_garden from "./hanging_garden.json" with { type: "json" };
+import hermit_of_the_gate from "./hermit_of_the_gate.json" with { type: "json" };
 import hidden_trapdoor from "./hidden_trapdoor.json" with { type: "json" };
 import hoard_in_the_hollow from "./hoard_in_the_hollow.json" with { type: "json" };
 import hollow_ivory from "./hollow_ivory.json" with { type: "json" };
@@ -24,22 +30,29 @@ import idol_thunderer_offer from "./idol_thunderer_offer.json" with { type: "jso
 import idol_weigher_offer from "./idol_weigher_offer.json" with { type: "json" };
 import informers_offer from "./informers_offer.json" with { type: "json" };
 import lantern_keeper from "./lantern_keeper.json" with { type: "json" };
+import last_stair from "./last_stair.json" with { type: "json" };
 import lost_caravan from "./lost_caravan.json" with { type: "json" };
 import mirror_pool from "./mirror_pool.json" with { type: "json" };
 import narrow_crack from "./narrow_crack.json" with { type: "json" };
 import offer_of_wings from "./offer_of_wings.json" with { type: "json" };
 import old_soldiers_grave from "./old_soldiers_grave.json" with { type: "json" };
+import perfectly_preserved_library from "./perfectly_preserved_library.json" with { type: "json" };
+import prisoner_who_knows_your_name from "./prisoner_who_knows_your_name.json" with { type: "json" };
 import rift_scar from "./rift_scar.json" with { type: "json" };
 import roadside_shrine from "./roadside_shrine.json" with { type: "json" };
+import rot_that_thinks from "./rot_that_thinks.json" with { type: "json" };
 import saints_tongue from "./saints_tongue.json" with { type: "json" };
 import sinking_mother from "./sinking_mother.json" with { type: "json" };
+import spider_queens_court from "./spider_queens_court.json" with { type: "json" };
 import still_warm_camp from "./still_warm_camp.json" with { type: "json" };
 import the_lullaby from "./the_lullaby.json" with { type: "json" };
 import the_toll from "./the_toll.json" with { type: "json" };
 import tithe_men from "./tithe_men.json" with { type: "json" };
+import trial_of_the_veteran from "./trial_of_the_veteran.json" with { type: "json" };
 import twins from "./twins.json" with { type: "json" };
 import unmaking_spring from "./unmaking_spring.json" with { type: "json" };
 import weeping_statue from "./weeping_statue.json" with { type: "json" };
+import wolves_at_the_fire from "./wolves_at_the_fire.json" with { type: "json" };
 
 export default [
   altar_of_hands,
@@ -49,15 +62,21 @@ export default [
   beggar_at_the_ford,
   bone_market,
   bread_on_the_water,
+  burning_man,
+  chained_angel,
   child_in_the_well,
   choir_missing_a_voice,
   collapsed_chapel,
+  count_of_the_dead,
   door_with_your_emblem,
   egg_that_hums,
   feast_of_crows,
   field_of_flowers,
+  footprints_leading_back,
   gates_reflection,
+  grinning_surgeon,
   hanging_garden,
+  hermit_of_the_gate,
   hidden_trapdoor,
   hoard_in_the_hollow,
   hollow_ivory,
@@ -67,20 +86,27 @@ export default [
   idol_weigher_offer,
   informers_offer,
   lantern_keeper,
+  last_stair,
   lost_caravan,
   mirror_pool,
   narrow_crack,
   offer_of_wings,
   old_soldiers_grave,
+  perfectly_preserved_library,
+  prisoner_who_knows_your_name,
   rift_scar,
   roadside_shrine,
+  rot_that_thinks,
   saints_tongue,
   sinking_mother,
+  spider_queens_court,
   still_warm_camp,
   the_lullaby,
   the_toll,
   tithe_men,
+  trial_of_the_veteran,
   twins,
   unmaking_spring,
   weeping_statue,
+  wolves_at_the_fire,
 ];

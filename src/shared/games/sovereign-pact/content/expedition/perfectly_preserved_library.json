@@ -1,0 +1,118 @@
+{
+  "id": "perfectly_preserved_library",
+  "pools": [
+    "delve"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    10
+  ],
+  "title": "A Perfectly Preserved Library",
+  "text": "Shelves to the ceiling, every book dry and whole, a reading lamp still burning. Nothing down here should be this well kept.",
+  "options": [
+    {
+      "id": "read",
+      "label": "The sharpest mind reads.",
+      "rule": "scion:highest:acuity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "Hours pass like minutes. They come up with pages of notes and a headache that will last a week.",
+          "effects": [
+            {
+              "score": {
+                "lore": 3
+              }
+            },
+            {
+              "xp": 100
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "Some of what they read keeps reading them back.",
+          "effects": [
+            {
+              "score": {
+                "lore": 2
+              }
+            },
+            {
+              "sanity": -20
+            }
+          ]
+        },
+        {
+          "w": 20,
+          "text": "They read a recipe for something, and now they are always hungry for it.",
+          "effects": [
+            {
+              "score": {
+                "lore": 2
+              }
+            },
+            {
+              "trait": "+cursed_hunger"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "burn",
+      "label": "Burn it.",
+      "rule": "leader",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The books burn slowly, and something in the stacks screams once.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 5
+            },
+            {
+              "score": {
+                "lore": -1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "carry",
+      "label": "Carry a book out.",
+      "rule": "scion:most_open_slots",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Only the lightest-laden can carry it. The book is heavier than it looks, and worth it.",
+          "effects": [
+            {
+              "score": {
+                "lore": 2
+              }
+            },
+            {
+              "resources": {
+                "essence": 2
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "id": "last_stair",
+  "pools": [
+    "mandatory"
+  ],
+  "weight": 3,
+  "band": [
+    1,
+    10
+  ],
+  "title": "The Last Stair",
+  "text": "One stair left, narrow and dark, and at the top the thing you came to kill. Whoever goes first will meet its first blow alone.",
+  "options": [
+    {
+      "id": "first",
+      "label": "The hardiest goes first.",
+      "rule": "scion:highest:resilience",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "They take the first blow on their shield and their body, and the rest come up behind them whole.",
+          "effects": [
+            {
+              "durability": -25,
+              "loc": "body"
+            },
+            {
+              "to": "party",
+              "status": "protect"
+            },
+            {
+              "score": {
+                "valor": 3
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "together",
+      "label": "Go up together.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Shoulder to shoulder, no one first, no one last.",
+          "effects": []
+        }
+      ]
+    }
+  ]
+}

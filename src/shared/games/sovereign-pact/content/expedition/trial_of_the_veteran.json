@@ -1,0 +1,57 @@
+{
+  "id": "trial_of_the_veteran",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    10
+  ],
+  "title": "The Trial of the Veteran",
+  "text": "A hooded thing stands in the road with a sword across its knees. It wants the one among you who has seen the most, and it will not take anyone else.",
+  "options": [
+    {
+      "id": "face",
+      "label": "The most travelled faces it alone.",
+      "rule": "scion:most_expeditions",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 55,
+          "text": "Steel on steel, a long time, and then the hooded thing steps aside and bows.",
+          "effects": [
+            {
+              "xp": 150
+            },
+            {
+              "score": {
+                "valor": 3
+              }
+            },
+            {
+              "blessing": {
+                "trait": "stout_hearted",
+                "years": 2
+              }
+            }
+          ]
+        },
+        {
+          "w": 45,
+          "text": "It is better than anyone they have fought. It lets them live, and they will carry the lesson.",
+          "effects": [
+            {
+              "injury": "body"
+            },
+            {
+              "xp": 100
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -11,7 +11,7 @@ import { SHOPS, stockTier } from "./market.ts";
 import { found } from "./loot.ts";
 import { isWard } from "./wards.ts";
 import { roll } from "./combat/injury.ts";
-import { BUILDING_BY_ID, HOUSE_TRAIT_BY_ID, INJURY_TABLE_BY_ID, TAROT, TAROT_BY_ID, TRAIT_BY_ID, TRAITS, TRIP_EVENT_BY_ID, TRIP_EVENTS, type InjuryTableId, type TripEffect, type TripEventDef, type TripOption } from "./content.ts";
+import { BUILDING_BY_ID, HOUSE_TRAIT_BY_ID, INJURY_BY_ID, INJURY_TABLE_BY_ID, TAROT, TAROT_BY_ID, TRAIT_BY_ID, TRAITS, TRIP_EVENT_BY_ID, TRIP_EVENTS, type InjuryTableId, type TripEffect, type TripEventDef, type TripOption } from "./content.ts";
 import { battle, die, home, lose, marching, person, succeed } from "./journey.ts";
 import { gainJp, gainXp, jobStats } from "./progression.ts";
 import { ascendancy } from "./score.ts";
@@ -241,6 +241,8 @@ function apply(s: SovState, fx: TripEffect, ids: number[], house: number | null)
       if (r.death || r.mortal) die(s, p, r.id);
       else if (r.lasting) p.injuries.push({ id: r.id, years: r.lasting.years });
     }
+    const healed = fx.mend ? p.injuries.findIndex((x) => INJURY_BY_ID.get(x.id)?.band === "moderate") : -1;
+    if (healed >= 0) log(s, `${p.name}'s ${INJURY_BY_ID.get(p.injuries.splice(healed, 1)[0]!.id)!.name.toLowerCase()} is mended.`);
   }
   const houses = house === null ? present(s) : [house];
   for (const [k, n] of Object.entries(fx.resources ?? {})) {

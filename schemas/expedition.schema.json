@@ -122,6 +122,7 @@
         "curse": { "const": true, "description": "A random Curse the subject lacks." },
         "tarot": { "const": true, "description": "The Tarot redrawn." },
         "status": { "$ref": "defs.schema.json#/definitions/id", "description": "An ailment for the subject's next battle." },
+        "mend": { "const": true, "description": "The subject's oldest lasting Moderate injury is healed (the Grinning Surgeon)." },
         "foresee": { "const": true, "description": "The subject's House is told its Ascendancy as a number (§9.7, The Gate's Reflection)." },
         "blessing": { "type": "object", "additionalProperties": false, "required": ["trait", "years"], "properties": { "trait": { "$ref": "defs.schema.json#/definitions/id" }, "years": { "type": "integer", "minimum": 0, "maximum": 5 } }, "description": "A trait held for a time: it fades at the Reckoning after `years` more Years." },
         "house_improvement": { "enum": ["recruit", "building", "shop"], "description": "A recruit or a building's next level for the subject's House (a random House present when the party chose), or a Commons shop's next tier." },

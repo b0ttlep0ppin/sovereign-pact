@@ -1,0 +1,75 @@
+{
+  "id": "burning_man",
+  "pools": [
+    "general",
+    "forge_ruins"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    8
+  ],
+  "title": "The Burning Man",
+  "text": "A man walks toward you along the road, on fire from head to foot, quite calm. He asks if anyone has water.",
+  "options": [
+    {
+      "id": "help",
+      "label": "The one the tides favor helps him.",
+      "rule": "scion:trait:tidebound|scion:highest:resilience",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "The flames go out. He thanks them, and promises he will remember the favor.",
+          "effects": [
+            {
+              "score": {
+                "renown": 2
+              }
+            },
+            {
+              "growth": {
+                "resilience": 10
+              }
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "The flames do not go out; they spread.",
+          "effects": [
+            {
+              "durability": -30,
+              "loc": "body"
+            },
+            {
+              "status": "burn"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pass",
+      "label": "Pass by.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "He keeps walking, and the grass behind him burns for an hour.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -5
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

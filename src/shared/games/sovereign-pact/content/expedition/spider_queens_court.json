@@ -1,0 +1,88 @@
+{
+  "id": "spider_queens_court",
+  "pools": [
+    "delve",
+    "faceless_city"
+  ],
+  "weight": 2,
+  "band": [
+    6,
+    10
+  ],
+  "title": "The Spider Queen's Court",
+  "text": "A hall of silk where courtiers with too many legs bow and part. On a throne of webbing, a queen waits for you to show her the courtesy she is owed.",
+  "options": [
+    {
+      "id": "bow",
+      "label": "The Leader bows.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "She is gracious. She sends you away with a gift of her court's essence and a taste in the mouth you will not lose for days.",
+          "effects": [
+            {
+              "resources": {
+                "essence": 5
+              }
+            },
+            {
+              "to": "party",
+              "sanity": -10
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fight",
+      "label": "Fight.",
+      "rule": "vote",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The courtiers stop bowing.",
+          "effects": [
+            {
+              "encounter": {
+                "level": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tribute",
+      "label": "The richest House pays tribute.",
+      "rule": "house:highest_standing",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Gold for safe passage. She is pleased, and remembers your House's name.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -150
+              }
+            },
+            {
+              "score": {
+                "intrigue": 2
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
