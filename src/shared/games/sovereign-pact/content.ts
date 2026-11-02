@@ -62,6 +62,14 @@ export interface SeatStyle {
   id: string;
   name: string;
   flavor: string;
+  /** One advantage and one drawback, in plain words (DECISIONS 8ah). */
+  pro: string;
+  con: string;
+  /** What the House starts with when the Pact is sworn. */
+  start?: { buildings?: Record<string, number>; recruits?: number };
+  /** Battle mods and economy knobs, read like a House trait's. */
+  mods?: Record<string, number>;
+  economy?: Record<string, number>;
 }
 
 export interface Swatch {
@@ -459,7 +467,7 @@ export const PROPERTIES = propertiesJson.properties as unknown as readonly Prope
 export const PROPERTY_BY_ID: ReadonlyMap<string, PropertyDef> = new Map(PROPERTIES.map((x) => [x.id, x]));
 
 export const TAROT = tarotJson.cards as readonly TarotCard[];
-export const SEATS: readonly SeatStyle[] = seatsJson.seats;
+export const SEATS = seatsJson.seats as unknown as readonly SeatStyle[];
 export const HERALDRY: Heraldry = heraldryJson;
 export const NAMES: Names = namesJson;
 

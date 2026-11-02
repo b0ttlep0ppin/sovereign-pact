@@ -2,6 +2,17 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (Milestone 8ah): Seats get an advantage and a drawback — Josh
+
+- Josh: "make a silhouette and building locations and other pros cons to each type of household, be it keep spire etc." This replaces the batch 1 decision that Seats are purely cosmetic (SPEC §5.5 updated).
+- Each Seat now has one advantage and one drawback, as content in `seats.json`: a head-start building or recruit, `economy` knobs and battle `mods`, read the same way as a House trait's.
+  - The advantages come from the old "former perk idea" column.
+  - The drawbacks are first pass, my proposal, listed in SPEC §5.5.
+  - One new knob: `retiredUpkeepPct` (Catacomb Hall).
+- The House designer's Seat step shows each Seat's silhouette, advantage and drawback.
+- `calm()` in the test helpers now also seats every House on a Seat with no effect ("plain") and clears the head-start buildings, so tests that count Gold and stores exactly are unchanged.
+- Next: each Seat's own layout of building plots on the Town Map (Josh: "different configurations for buildings locations").
+
 ## 2026-11-02 (implementation, Milestone 8ag): the formation
 
 - Josh: "let us deploy our units in formation where they start battles." SPEC §10.12 step 1 ("placed on the grid from a saved formation, editable in town") is now built.

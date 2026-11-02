@@ -2,7 +2,7 @@
 // one record each system reads. Battle mods ride with every person born to the House, wherever they
 // are hosted; growth shapes each recruit as it is rolled. Economy, score and Job XP knobs are read by
 // the systems that own them; tags wait on events and later systems.
-import { HOUSE_TRAIT_BY_ID } from "./content.ts";
+import { HOUSE_TRAIT_BY_ID, SEAT_BY_ID } from "./content.ts";
 import { ELEMENTS, STATS, type Element, type House, type JobId, type ScoreCategory, type Stat } from "./state.ts";
 import { TUNING } from "./tuning.ts";
 
@@ -26,13 +26,16 @@ const add = <K extends string>(into: Partial<Record<K, number>>, from: Partial<R
   for (const [k, v] of Object.entries(from ?? {}) as [K, number][]) into[k] = (into[k] ?? 0) + v;
 };
 
-/** One economy knob of a House's traits (0 when none names it). */
-export const econ = (h: Pick<House, "traits" | "element" | "bane">, key: string): number => houseEffects(h).economy[key] ?? 0;
+/** What houseEffects reads of a House: its traits, element and bane, and its Seat when it has one. */
+type Blood = Pick<House, "traits" | "element" | "bane"> & { seat?: string };
+
+/** One economy knob of a House's traits and Seat (0 when none names it). */
+export const econ = (h: Blood, key: string): number => houseEffects(h).economy[key] ?? 0;
 
 /** `n` raised or lowered by `pct` %, rounded. */
 export const byPct = (n: number, pct: number): number => Math.round((n * (100 + pct)) / 100);
 
-export function houseEffects(h: Pick<House, "traits" | "element" | "bane">): HouseEffects {
+export function houseEffects(h: Blood): HouseEffects {
   const fx: HouseEffects = { mods: {}, growth: {}, jobXp: {}, economy: {}, score: {}, innate: {}, tags: [], look: [] };
   const E = TUNING.houses.element;
   if (h.element) {
@@ -52,6 +55,12 @@ export function houseEffects(h: Pick<House, "traits" | "element" | "bane">): Hou
     fx.tags.push(...(t.tags ?? []));
     fx.look.push(...(t.look ?? []));
     if (t.choice === "element" && h.bane) add(fx.mods, { [`ward.${h.bane}`]: -E.bane });
+  }
+  // The Seat's advantage and drawback (DECISIONS 8ah).
+  const seat = h.seat ? SEAT_BY_ID.get(h.seat) : undefined;
+  if (seat) {
+    add(fx.mods, seat.mods);
+    add(fx.economy, seat.economy);
   }
   return fx;
 }

@@ -301,3 +301,9 @@
 .sp-formation__cell small { position: absolute; bottom: 1px; left: 0; right: 0; font-size: 0.65rem; color: var(--text); text-shadow: 0 1px 2px #000; text-align: center; overflow: hidden; white-space: nowrap; }
 .sp-formation__cell .sp-scion { margin-top: -10px; }
 .sp-stage__pair { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 16px; align-items: start; }
+
+/* Seats in the House designer (DECISIONS 8ah): the silhouette, the flavor, the advantage and the drawback. */
+.sp-seat-pick { display: grid !important; grid-template-columns: auto 1fr auto; gap: 12px; align-items: center; }
+.sp-seat-pick > span { display: grid; gap: 2px; }
+.sp-seat-pick__pro { color: #8fc48a; font-size: 0.85rem; }
+.sp-seat-pick__con { color: #d48a7a; font-size: 0.85rem; }
