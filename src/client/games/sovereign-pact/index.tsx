@@ -341,10 +341,16 @@ function Muster({ view, sendMove }: { view: SovView; sendMove: (m: SovMove) => v
         <p>
           {name(e.leader)} leads. The party has passed {e.at} of {e.length} places{e.chain.length ? `: ${e.chain.join(", ")}` : ""}.
         </p>
+        {e.split && !e.split.united ? (
+          <p>
+            The expedition walks as two parties. {name(e.split.leaders[1 - e.split.turn]!)}'s party{" "}
+            {{ walking: "waits its turn", rallied: "waits at the meeting place", retreated: "has turned back", wiped: "is gone" }[e.split.state[1 - e.split.turn]!]}.
+          </p>
+        ) : null}
         {leads ? (
           <div className="sp-actions">
             <button type="button" className="sp-button" onClick={() => sendMove({ type: "press_on" })}>
-              {e.at === e.length - 1 ? "Face the boss" : "Press on"}
+              {e.at === e.length - 1 ? (e.split && !e.split.united ? "Go to the meeting place" : "Face the boss") : "Press on"}
             </button>
             {e.at < e.length - 1 ? (
               <button type="button" className="sp-button sp-button--quiet" onClick={() => sendMove({ type: "retreat" })}>

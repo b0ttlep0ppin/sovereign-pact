@@ -15,7 +15,7 @@ import { BUILDING_BY_ID, HOUSE_TRAIT_BY_ID, INJURY_TABLE_BY_ID, TAROT, TAROT_BY_
 import { battle, die, home, lose, marching, person, succeed } from "./journey.ts";
 import { gainJp, gainXp, jobStats } from "./progression.ts";
 import { ascendancy } from "./score.ts";
-import { GEAR_SLOTS, LOCATIONS, STATS, type HistKey, type Person, type ScoreCategory, type SovState } from "./state.ts";
+import { GEAR_SLOTS, LOCATIONS, STATS, type HistKey, type NodeKind, type Person, type ScoreCategory, type SovState } from "./state.ts";
 import { TUNING } from "./tuning.ts";
 import { log, withRng } from "./year.ts";
 import { change, unchange } from "./change.ts";
@@ -210,6 +210,7 @@ function after(s: SovState): void {
 }
 
 const pctOf = (max: number, pct: number) => Math.round((max * pct) / 100);
+const gateAhead = (chain: NodeKind[], at: number): number | undefined => (chain.indexOf("gate", at) >= 0 ? chain.indexOf("gate", at) : undefined);
 
 /** One effect on `ids` (Scions) and `house` (the subject's House; null: the Commons, or every House present). */
 function apply(s: SovState, fx: TripEffect, ids: number[], house: number | null): void {
@@ -262,11 +263,14 @@ function apply(s: SovState, fx: TripEffect, ids: number[], house: number | null)
   if (fx.house_improvement) improve(s, fx.house_improvement, house ?? withRng(s, (rng) => rng.pick(present(s))));
   if (fx.timeline) s.timeline.push({ year: s.year + fx.timeline.years, id: fx.timeline.id, ...(house === null ? {} : { house }) });
   // Passed by, never the boss.
-  if (fx.skip) e.at = Math.min(e.chain.length - 1, e.at + fx.skip);
+  // Never past a Gate: it waits on the other party (§9.3).
+  if (fx.skip) e.at = Math.min(gateAhead(e.chain, e.at) ?? e.chain.length - 1, e.at + fx.skip);
   // A Fork (§9.3): the way ahead changes, some places dropped, others put next; never the boss.
+  // A 2×4 party's way keeps its Gate, and ends at the meeting place instead.
   if (fx.fork) {
-    const rest = e.chain.slice(e.at, -1).slice(fx.fork.drop ?? 0);
-    e.chain = [...e.chain.slice(0, e.at), ...(fx.fork.add ?? []), ...rest, "boss"];
+    let drop = fx.fork.drop ?? 0;
+    const rest = e.chain.slice(e.at, -1).filter((k) => k === "gate" || drop-- <= 0);
+    e.chain = [...e.chain.slice(0, e.at), ...(fx.fork.add ?? []), ...rest, e.chain.at(-1)!];
   }
   if (fx.encounter) battle(s, false, fx.encounter);
   else if (fx.retreat) home(s, "retreated");

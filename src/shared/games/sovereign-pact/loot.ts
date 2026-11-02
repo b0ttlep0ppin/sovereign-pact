@@ -119,7 +119,9 @@ function shares(s: SovState, houses: number): Share[] {
 /** The party is home with its haul: it becomes a pool of shares the Houses still in the party draft. Alone, a House takes it all. */
 export function shareOut(s: SovState): void {
   const e = s.expedition!;
-  const houses = present(s);
+  // A 2×4 party that turned back still drafts what the expedition brings home (§9.3).
+  const back = (e.split?.home ?? []).flatMap((id) => s.people.filter((p) => p.id === id).map((p) => p.host));
+  const houses = [...new Set([...present(s), ...back])].sort((a, b) => a - b);
   if (!e.haul || !houses.length) return;
   const pool = shares(s, houses.length);
   delete e.haul;

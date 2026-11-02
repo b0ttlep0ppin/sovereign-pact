@@ -266,6 +266,8 @@ export function view(s: SovState, playerId: PlayerId): SovView {
  */
 function expeditionView(e: Expedition, me: number | null): Expedition & { length: number } {
   const v = { ...e, chain: e.chain.slice(0, e.at), length: e.chain.length };
+  // A 2×4 card's other party's way shows only as far as it has walked.
+  if (e.split) v.split = { ...e.split, chains: e.split.chains.map((c, i) => c.slice(0, e.split!.at[i])) as typeof e.split.chains };
   // A secret event's picks stay hidden until all are in (§9.4): another House's shows only as chosen (-2).
   if (e.event && secretEvent(e.event.id)) v.event = { ...e.event, votes: e.event.votes.map((x, h) => (x === null || x === -1 || h === me ? x : -2)) };
   const blind = (i: Item): Item => {

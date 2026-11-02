@@ -287,9 +287,30 @@ export interface Expedition {
   draft?: number[];
   /** How it ended: the boss beaten, turned back, wiped, nobody came, or it never left. */
   result?: "won" | "retreated" | "wiped" | "unanswered" | "stayed";
+  /** A 2×4 card's two parties (§9.3, split.ts); `chain`, `at` and `leader` above are the walking party's. */
+  split?: Split;
 }
 
-export type NodeKind = "encounter" | "event" | "camp" | "cache" | "boss";
+/** Where one of a 2×4 card's parties is: on its way, at the meeting place, or gone home. */
+export type PartyState = "walking" | "rallied" | "retreated" | "wiped";
+
+/** A 2×4 expedition's parties: each its own chain, Leader and place on it; one walks at a time. */
+export interface Split {
+  teams: [number[], number[]];
+  leaders: [number, number];
+  /** The parties' chains; the walking party's is kept up to date in `Expedition.chain` until control passes. */
+  chains: [NodeKind[], NodeKind[]];
+  at: [number, number];
+  turn: 0 | 1;
+  state: [PartyState, PartyState];
+  /** Scions of a party that turned back: home already, and drafting the haul when it comes. */
+  home: number[];
+  /** Both parties met (or what is left of them) for the boss. */
+  united?: true;
+}
+
+/** `gate` and `rally` are a 2×4 card's: a Gate waits on the other party; the rally is where they meet for the boss. */
+export type NodeKind = "encounter" | "event" | "camp" | "cache" | "boss" | "gate" | "rally";
 
 /**
  * A vote of the Houses (§8.1, §8.8): open in the Settlement Phase, settled when every House has voted or

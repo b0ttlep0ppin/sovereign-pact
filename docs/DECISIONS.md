@@ -2,6 +2,15 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 6n: 2×4 expeditions) — implementer
+- **Two parties** (§9.3, `split.ts`): at departure a 2×4 card's eight are dealt into two parties of four by House, so a House with two or more Scions is in both. The voted Leader's party walks first and the Leader is the expedition's. Reading: the other party's Leader is its most travelled Scion, with no second vote, to keep the phase short.
+- **The ways**: each party rolls its own chain of N nodes (§9.3's N), with a **Gate** halfway and the **meeting place** at the end. The boss comes after, fought by everyone left.
+- **The Gates** (reading of "the lever on the far side"): the first party's Gate opens once the second party reaches its own Gate; the second's opens once the first is through. A party at a sealed Gate waits, and control passes, so the parties alternate A, B, A, B. A party at the meeting place waits for the other. A Gate never waits on a party that is gone or already at the meeting place.
+- **One party at a time**: the walking party is the one events, battles, Camps and Caches happen to. Reading: a leader-targeted event picks the walking party's Leader, since the first-named may be on the other way.
+- **Turning back or falling** ends only that party. The fallen follow §9.9 (half Lost); the ones who turned back go home and still draft the haul if the expedition brings it home. The other party goes on alone. With both gone, the expedition ends as turned back if either party did, else wiped.
+- **Events**: a Fork never drops a Gate and a skip never passes one.
+- **Not built**: the full 3×8 grid for the united boss fight (the eight line up in their Job columns as an 8-card does).
+
 ## 2026-11-02 (Barrow Knight) — Josh
 - The Change first written as the Hollow Knight is the **Barrow Knight** (`barrow_knight`): "Hollow Knight" is another game's name. → GLOSSARY, SPEC §9.6–9.7
 
