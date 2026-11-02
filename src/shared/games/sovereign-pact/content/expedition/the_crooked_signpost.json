@@ -1,0 +1,89 @@
+{
+  "id": "the_crooked_signpost",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    10
+  ],
+  "title": "The Crooked Signpost",
+  "text": "A signpost at a fork, its arms pointing every way at once, all of them reading Home.",
+  "options": [
+    {
+      "id": "left",
+      "label": "The quickest scouts the left way.",
+      "rule": "scion:highest:speed",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "A shortcut, and a good one.",
+          "effects": [
+            {
+              "skip": 1
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "A shortcut to something hungry.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "ambush"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "right",
+      "label": "The party keeps right.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The long way, and an honest one.",
+          "effects": [
+            {
+              "to": "party",
+              "durability": -5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "burn",
+      "label": "Pull up the post and burn it.",
+      "rule": "leader",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The paths straighten out. Something on them is very cross.",
+          "effects": [
+            {
+              "fork": {
+                "add": [
+                  "encounter",
+                  "cache"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

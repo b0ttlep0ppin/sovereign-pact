@@ -1,0 +1,87 @@
+{
+  "id": "the_dreaming_tent",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    10
+  ],
+  "title": "The Dreaming Tent",
+  "text": "A silk tent pitched in the wilderness, empty, warm, and smelling of home. Anyone who sleeps in it dreams very clearly.",
+  "options": [
+    {
+      "id": "sleep",
+      "label": "The most troubled sleeps there.",
+      "rule": "scion:lowest:sanity",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "The dream is gentle and long, and they wake up a different person.",
+          "effects": [
+            {
+              "sanity": 30
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "The dream is very clear.",
+          "effects": [
+            {
+              "sanity": -10
+            },
+            {
+              "trait": "+nightmares"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "steal",
+      "label": "Take the silk.",
+      "rule": "leader",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It is very good silk.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 15
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "burn",
+      "label": "Burn it before anyone gets ideas.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It burns with the smell of somebody's kitchen.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -3
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

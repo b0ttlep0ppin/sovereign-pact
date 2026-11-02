@@ -2,6 +2,10 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 7q: fourteen more general events, with secret and each-Scion ones) — implementer
+- **Built** (content only). Fourteen general expedition events: the One Rope and the Poisoned Well (secret: each House picks alone, and how it goes turns on whether another House betrayed the rest, Q91), the Echoing Hall and the Steaming Pool (each Scion chooses for themself), and the Thirsting Banner, the Beggar King, the Crooked Signpost, the Stranded Merchant, the Quiet Battlefield, the Dreaming Tent, the Glass Garden, the Old Soldier, the Feast of Crows and the Fortune Teller. That makes 106 expedition events, 60 of them open to any card.
+- **Reading:** each uses only effects and subject rules the rules already have. The Beggar King asks the House lowest in Standing, and its cruel option falls to the highest, so a lead can cost Doom.
+
 ## 2026-11-02 (implementation, Milestone 7p: two more named items for each pool) — implementer
 - **Built** (content only). Twenty-four named items found in the otherworld, two for each pool, so every region now hides at least three: for example the Alpha's Mantle and the Long Spear of the Hunt (Beast Lands), the Brimstone Plate (Pit), the Unfinished Blade (Forge Ruins), the Scale of the Old Wyrm (Dragon Reaches) and the Starless Blade (Outer Dark). That makes 80 named items.
 - **Reading:** each has a property or two that make it worth carrying, and the strongest have a cost too: the Shroud of the Unquiet takes more Holy damage, the Brimstone Plate more Water, the Lantern That Remembers lowers max Sanity and the Starless Blade weakens its wielder's mind. Every value stays within its property's roll range.

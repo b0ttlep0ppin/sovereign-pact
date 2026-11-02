@@ -1,0 +1,68 @@
+{
+  "id": "the_steaming_pool",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    8
+  ],
+  "title": "The Steaming Pool",
+  "text": "A hot spring in the rocks, clear and steaming, in a cold place. Each Scion can take a moment in it, or keep watch.",
+  "options": [
+    {
+      "id": "bathe",
+      "label": "Bathe.",
+      "rule": "each_scion",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 75,
+          "text": "The heat goes into the bones and takes the aches out with it.",
+          "effects": [
+            {
+              "sanity": 10
+            },
+            {
+              "durability": 20
+            }
+          ]
+        },
+        {
+          "w": 25,
+          "text": "Something in the water was waiting for a warm body.",
+          "effects": [
+            {
+              "status": "poison"
+            },
+            {
+              "sanity": -5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "watch",
+      "label": "Keep watch.",
+      "rule": "each_scion",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Nothing comes. Someone has to watch anyway.",
+          "effects": [
+            {
+              "jp": 40
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

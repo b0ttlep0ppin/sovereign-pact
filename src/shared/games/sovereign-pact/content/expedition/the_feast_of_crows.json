@@ -1,0 +1,89 @@
+{
+  "id": "the_feast_of_crows",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    10
+  ],
+  "title": "The Feast of Crows",
+  "text": "A thousand crows on a dead thing the size of a house. They turn, all together, to look at you.",
+  "options": [
+    {
+      "id": "drive",
+      "label": "Drive them off and see what it was.",
+      "rule": "vote",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 55,
+          "text": "It was a beast that swallowed things, and some of them were valuable.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 15,
+                "essence": 2
+              }
+            }
+          ]
+        },
+        {
+          "w": 45,
+          "text": "They do not drive off.",
+          "effects": [
+            {
+              "encounter": {}
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "offer",
+      "label": "Leave them an offering of your own food.",
+      "rule": "leader",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The crows follow you for a day, and warn you of what is ahead.",
+          "effects": [
+            {
+              "to": "party",
+              "durability": -5
+            },
+            {
+              "skip": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "back",
+      "label": "Back away slowly.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A thousand crows watch you go.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -5
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

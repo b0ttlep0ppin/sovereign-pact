@@ -1,0 +1,65 @@
+{
+  "id": "the_echoing_hall",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    10
+  ],
+  "title": "The Echoing Hall",
+  "text": "A great hall where every word comes back changed. Each Scion who speaks hears something about themselves they did not know.",
+  "options": [
+    {
+      "id": "speak",
+      "label": "Speak your name into the hall.",
+      "rule": "each_scion",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 55,
+          "text": "The echo says your name the way someone who loved you said it.",
+          "effects": [
+            {
+              "sanity": 15
+            }
+          ]
+        },
+        {
+          "w": 45,
+          "text": "The echo says your name the way your enemies will.",
+          "effects": [
+            {
+              "sanity": -15
+            },
+            {
+              "xp": 60
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "silent",
+      "label": "Keep silent.",
+      "rule": "each_scion",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "You cross in silence, and hear everyone else.",
+          "effects": [
+            {
+              "xp": 30
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
