@@ -5,20 +5,20 @@
     {"id": "envenom", "name": "Envenom", "jp": 100, "text": "For 300 ticks your weapon hits Poison.", "shape": "self", "side": "self", "power": 0, "kind": "support", "tp": 15, "statuses": [{"id": "envenom", "chance": 100, "ticks": 300}]},
     {"id": "hamstring_cut", "name": "Hamstring Cut", "jp": 100, "text": "Legs-aimed, Bleed.", "shape": "single", "side": "foe", "power": 1, "tp": 20, "aim": "legs", "statuses": [{"id": "bleed", "chance": 100, "ticks": 0}]},
     {"id": "eye_gouge", "name": "Eye Gouge", "jp": 100, "text": "Head-aimed, Blind.", "shape": "single", "side": "foe", "power": 1, "tp": 20, "aim": "head", "statuses": [{"id": "blind", "chance": 100, "ticks": 0}]},
-    {"id": "steal", "name": "Steal", "jp": 150, "text": "Take an item or a buff from the target.", "shape": "single", "side": "foe", "power": 0, "kind": "support", "tp": 10, "later": true},
+    {"id": "steal", "name": "Steal", "jp": 150, "text": "Take an item or a buff from the target.", "shape": "single", "side": "foe", "power": 0, "kind": "support", "tp": 10, "steal": true},
     {"id": "smoke_bomb", "name": "Smoke Bomb", "jp": 150, "text": "Allies in the burst are Hidden for 100 ticks.", "shape": "burst:3x3", "side": "ally", "power": 0, "kind": "support", "mp": 20, "statuses": [{"id": "hidden", "chance": 100, "ticks": 100}]},
     {"id": "fan_of_knives", "name": "Fan of Knives", "jp": 200, "text": "60% damage to one parity of the enemy grid.", "shape": "checker:a", "side": "foe", "power": 0.6, "tp": 30, "reach": "ranged"},
-    {"id": "shadow_lunge", "name": "Shadow Lunge", "jp": 200, "text": "Move into the enemy's reach and strike at +20%.", "shape": "single", "side": "foe", "power": 1.2, "tp": 25, "later": true},
-    {"id": "dirty_trick", "name": "Dirty Trick", "jp": 100, "text": "Random: Stun, Blind, Disarm or Readiness damage 30.", "shape": "single", "side": "foe", "power": 0, "tp": 15, "later": true},
-    {"id": "vanish", "name": "Vanish", "jp": 150, "text": "Hidden until you act; the next Backstab +50%.", "shape": "self", "side": "self", "power": 0, "kind": "support", "mp": 30, "later": true},
-    {"id": "pickpocket_the_reaper", "name": "Pickpocket the Reaper", "jp": 250, "text": "Steal 20 CT from the target and give it to an ally.", "shape": "single", "side": "foe", "power": 0, "tp": 40, "later": true},
+    {"id": "shadow_lunge", "name": "Shadow Lunge", "jp": 200, "text": "Darts to the Front and strikes any foe at +20%, then stands Exposed among them until its next turn.", "shape": "single", "side": "foe", "power": 1.2, "tp": 25, "leap": true, "rush": 3},
+    {"id": "dirty_trick", "name": "Dirty Trick", "jp": 100, "text": "Random: Stun, Blind, Disarm or Readiness damage 30.", "shape": "single", "side": "foe", "power": 0, "tp": 15, "kind": "support", "pick": [{"statuses": [{"id": "stun", "chance": 100, "ticks": 100}]}, {"statuses": [{"id": "blind", "chance": 100, "ticks": 300}]}, {"statuses": [{"id": "disarmed", "chance": 100, "ticks": 200}]}, {"readiness": 30}]},
+    {"id": "vanish", "name": "Vanish", "jp": 150, "text": "Hidden until you act; the next Backstab +50%.", "shape": "self", "side": "self", "power": 0, "kind": "support", "mp": 30, "statuses": [{"id": "hidden", "chance": 100, "ticks": 0, "value": 1}], "flag": "vanish"},
+    {"id": "pickpocket_the_reaper", "name": "Pickpocket the Reaper", "jp": 250, "text": "Steal 20 CT from the target (a boss gives half) and give it to the most hurt ally.", "shape": "single", "side": "foe", "power": 0, "tp": 40, "kind": "support", "ctToAlly": 20},
     {"id": "coup_de_grace", "name": "Coup de Grâce", "jp": 300, "text": "Always crits; fatal to a target below 20% HP (bosses take the crit).", "shape": "single", "side": "foe", "power": 1, "tp": 35, "crit": 100, "execute": {"below": 20, "kills": true}}
   ],
   "passives": [
     {"id": "dual_wield_mastery", "name": "Dual Wield Mastery", "points": 2, "jp": 200, "text": "Off-hand hits at 80% instead of 50%.", "mods": {"dualWieldMastery": 1}},
-    {"id": "knife_flurry", "name": "Knife Flurry", "points": 2, "jp": 200, "text": "A Guile/4 % chance of an extra hit with knives.", "later": true},
+    {"id": "knife_flurry", "name": "Knife Flurry", "points": 2, "jp": 200, "text": "A Guile/4 % chance of an extra hit with knives.", "mods": {"knifeFlurry": 1}},
     {"id": "cutthroat", "name": "Cutthroat", "points": 2, "jp": 200, "text": "Crit damage ×1.75 instead of ×1.5.", "mods": {"critMult": 25}},
     {"id": "light_step", "name": "Light Step", "points": 1, "jp": 100, "text": "Movement CT −5 per cell.", "mods": {"moveCostPerCell": -5}},
-    {"id": "sixth_sense", "name": "Sixth Sense", "points": 2, "jp": 200, "text": "Cannot be surprised; traps in events revealed.", "later": true}
+    {"id": "sixth_sense", "name": "Sixth Sense", "points": 2, "jp": 200, "text": "The party cannot be ambushed, and sees hidden traps on its grid.", "mods": {"sixthSense": 1}}
   ]
 }

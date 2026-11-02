@@ -16,7 +16,8 @@ import { offHandStrike, strike } from "./damage.ts";
 import { hasStatus, isFree, standing } from "./grid.ts";
 import { kill } from "./injury.ts";
 import { cannotUseItem, itemAbility, spendItem } from "./items.ts";
-import { addStatus, extraOf, meta, removeStatus } from "./status.ts";
+import { addStatus, extraOf, meta, removeStatus, statusValue } from "./status.ts";
+import { CONSUMABLES } from "../content.ts";
 import { cellOf, isSingle, resolveTargets, rushCol, singleTargets } from "./targets.ts";
 import type { AbilityDef, Battle, Cell, Combatant } from "./types.ts";
 
@@ -121,7 +122,8 @@ function beginTurn(b: Battle, rng: Rng, u: Combatant): boolean {
   if (u.mods.sanityPerTurn) u.sanity = Math.min(u.maxSanity, u.sanity + u.mods.sanityPerTurn);
   if (u.mods.durPctPerTurn && u.dur && u.maxDur) for (const l of LOCATIONS) u.dur[l] = Math.min(u.maxDur[l], u.dur[l] + Math.round((u.maxDur[l] * u.mods.durPctPerTurn) / 100));
   if (hasStatus(u, "fear") && (u.mods.sanityTakenPct ?? 0) > -100) u.sanity = Math.max(0, u.sanity - 5);
-  if (hasStatus(u, "hidden") && u.turns > 1) removeStatus(b, u, "hidden");
+  // An opening's Hiding ends at the next turn; Vanish's (value 1) only when the Vagabond acts.
+  if (hasStatus(u, "hidden") && u.turns > 1 && statusValue(u, "hidden") !== 1) removeStatus(b, u, "hidden");
   // Valor (§12.4): each physical ailment may end early, a Resilience % chance apiece.
   if (u.mods.valor) for (const s of [...u.statuses]) if (meta(s.id).kind === "physical" && !meta(s.id).fixed && rng.int(100) < u.resilience) removeStatus(b, u, s.id);
   const lost = u.statuses.find((s) => meta(s.id).oneTurn || meta(s.id).blocks);
@@ -326,7 +328,15 @@ export function resolve(b: Battle, rng: Rng, u: Combatant, ab: AbilityDef, at: C
     ab = rolled.ab;
     if (rolled.self) targets = [u];
   }
+  // Dirty Trick: one trick of several.
+  if (ab.pick?.length) ab = { ...ab, ...rng.pick(ab.pick) };
   b.events.push({ t: "use", unit: u.id, ability: ab.id, target: homingOn !== undefined && targets[0] ? cellOf(targets[0]) : at });
+  // Vanish: the Backstab from hiding lands half again as hard (§12.6).
+  const vanished = u.flags.indexOf("vanish");
+  if (vanished >= 0 && ab.id === "backstab") {
+    u.flags.splice(vanished, 1);
+    ab = { ...ab, power: ab.power * (1 + C.vagabond.vanishPct / 100), powerIfMarked: ab.powerIfMarked && ab.powerIfMarked * (1 + C.vagabond.vanishPct / 100) };
+  }
   // Still Water: the next technique hits harder (§12.13).
   const still = u.flags.indexOf("still_water");
   if (still >= 0 && ab.power > 0 && ab.id !== "attack") {
@@ -342,6 +352,8 @@ export function resolve(b: Battle, rng: Rng, u: Combatant, ab: AbilityDef, at: C
       // Multi-hit weapons sometimes strike again, weaker (§13.4).
       if (ab.id === "attack" && hit.hit && u.mods.multiHit && !t.dead && !u.dead && rng.int(100) < u.mods.multiHit)
         strike(b, rng, u, t, { ...ab, power: ab.power * C.props.multiHitPower });
+      // Knife Flurry (§12.6): a Guile/4 % chance of another stab.
+      if (ab.id === "attack" && hit.hit && u.mods.knifeFlurry && u.weapon.kind === "knife" && !t.dead && !u.dead && rng.int(100) < Math.floor(u.guile / C.vagabond.flurryDiv)) strike(b, rng, u, t, ab);
       // Dual wield: the off hand follows the Attack (§13.2).
       if (ab.id === "attack" && u.offWeapon && !t.dead && !u.dead) offHandStrike(b, rng, u, t, ab);
     }
@@ -353,6 +365,8 @@ export function resolve(b: Battle, rng: Rng, u: Combatant, ab: AbilityDef, at: C
       b.events.push({ t: "move", unit: t.id, col: t.col, row: t.row });
     }
     if (ab.graft) graft(b, u, t, C.jobs.graftTicks);
+    if (ab.steal && !t.dead) steal(b, rng, u, t);
+    if (ab.ctToAlly && !t.dead) reap(b, u, t, ab.ctToAlly);
     // Rescue (§12.4): the Knight and the ally trade places.
     if (ab.swap && t.id !== u.id && !t.dead && !u.dead) {
       [u.col, t.col] = [t.col, u.col];
@@ -365,7 +379,8 @@ export function resolve(b: Battle, rng: Rng, u: Combatant, ab: AbilityDef, at: C
     if (t.dead) deathThroes(b, rng, t);
     hazardStruck(b, rng, t);
   }
-  if (hasStatus(u, "hidden")) removeStatus(b, u, "hidden");
+  // Acting ends Hiding, unless the act was hiding (Vanish).
+  if (hasStatus(u, "hidden") && !ab.statuses?.some((x) => x.id === "hidden")) removeStatus(b, u, "hidden");
   if (ab.leap && !u.dead) addStatus(b, u, "exposed");
   if (ab.self?.tp) u.tp = Math.min(C.tp.max, u.tp + ab.self.tp);
   for (const x of ab.self?.statuses ?? []) addStatus(b, u, x.id, x.ticks, extraOf(x.value, x.mods));
@@ -378,6 +393,34 @@ export function resolve(b: Battle, rng: Rng, u: Combatant, ab: AbilityDef, at: C
     kill(b, u);
   }
   checkEnd(b);
+}
+
+/** Steal (§12.6): the target's newest buff moves to the thief; with none, a Guile % chance (once a foe) to lift a consumable. */
+function steal(b: Battle, rng: Rng, u: Combatant, t: Combatant): void {
+  const buff = [...t.statuses].reverse().find((x) => meta(x.id).kind === "buff" && !meta(x.id).fixed && x.id !== "shield");
+  if (buff) {
+    removeStatus(b, t, buff.id);
+    addStatus(b, u, buff.id, buff.ticks, extraOf(buff.value, buff.mods));
+    return;
+  }
+  if (t.flags.includes("robbed") || u.side !== "party" || rng.int(100) >= u.guile) return;
+  t.flags.push("robbed");
+  const id = rng.pick(LOOT);
+  (b.satchel ??= []).push(id);
+  (b.stolen ??= []).push(id);
+  b.events.push({ t: "pocket", unit: u.id, target: t.id, item: id });
+}
+
+/** What a Steal can lift: the cheap battle consumables a shop sells from the start. */
+const LOOT = CONSUMABLES.filter((c) => c.use === "battle" && c.sold.some((x) => x.level === 1)).map((c) => c.id);
+
+/** Pickpocket the Reaper (§12.6): CT from the target, bosses half, to the most hurt ally standing. */
+function reap(b: Battle, u: Combatant, t: Combatant, n: number): void {
+  if (t.mods.readinessImmune) return;
+  const took = Math.min(t.ct, Math.round(n * (t.boss ? C.bossReadiness : 1)));
+  t.ct -= took;
+  const to = standing(b, u.side).filter((x) => x.id !== u.id).sort((x, y) => x.hp / x.maxHp - y.hp / y.maxHp || x.id - y.id)[0] ?? u;
+  to.ct += took;
 }
 
 /** Counterspell (§12.14): a hostile spell on someone beside an Abjurer may be dispelled before it lands. */

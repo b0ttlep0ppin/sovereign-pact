@@ -361,6 +361,8 @@ export const TUNING = {
     knight: { presenceDiv: 5, shieldbearerDiv: 4, bodyguardPct: 30 },
     /** The Soldier's passives (§12.5): Grizzled's step per 20 Might on the body's injury tables. */
     soldier: { grizzledPer: 20 },
+    /** The Vagabond (§12.6): Vanish's Backstab +50%, Knife Flurry's chance Guile/4 %. */
+    vagabond: { vanishPct: 50, flurryDiv: 4 },
     /** §7.3: 20 CT a cell, −1 per 5 Guile, at least 10; up to 2 cells a turn (§10.4). */
     move: { perCell: 20, guilePer: 5, min: 10, maxCells: 2 },
     hitClamp: [5, 95] as const,
