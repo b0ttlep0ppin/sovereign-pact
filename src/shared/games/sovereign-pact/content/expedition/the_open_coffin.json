@@ -1,0 +1,89 @@
+{
+  "id": "the_open_coffin",
+  "pools": [
+    "barrows"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    8
+  ],
+  "title": "The Open Coffin",
+  "text": "An open coffin lies in the barrow's mouth, and a voice inside says it is the first who lies in it that will have its treasure.",
+  "options": [
+    {
+      "id": "weak",
+      "label": "The frailest lies in it, since it will be quickest.",
+      "rule": "scion:lowest:resilience|scion:random",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "The lid shuts, and opens. They come out with a dead king's ring.",
+          "effects": [
+            {
+              "item": {
+                "tier": 3
+              }
+            },
+            {
+              "sanity": -15
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "The lid shuts, and stays shut a while.",
+          "effects": [
+            {
+              "injury": "sanity"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "prise",
+      "label": "Prise out the lining.",
+      "rule": "scion:highest:guile",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Gold sewn into the silk.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 20
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "close",
+      "label": "Close the lid and nail it.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Something knocks from inside as you leave.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -5
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

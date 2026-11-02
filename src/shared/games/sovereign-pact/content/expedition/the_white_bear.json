@@ -1,0 +1,87 @@
+{
+  "id": "the_white_bear",
+  "pools": [
+    "deep_cold"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    8
+  ],
+  "title": "The White Bear",
+  "text": "A great white bear sits in the snow, watching. It has not eaten in a long time, and it knows who is weakest.",
+  "options": [
+    {
+      "id": "weak",
+      "label": "The weakest walks in the middle.",
+      "rule": "scion:lowest:resilience|scion:lowest:might",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The bear follows, but it does not attack the circle.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "feed",
+      "label": "Feed it.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It eats, and walks away.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -10
+              }
+            },
+            {
+              "score": {
+                "renown": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hunt",
+      "label": "Hunt it.",
+      "rule": "leader",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It has been waiting for that.",
+          "effects": [
+            {
+              "encounter": {
+                "level": 1
+              }
+            },
+            {
+              "resources": {
+                "wyrmbone": 1
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

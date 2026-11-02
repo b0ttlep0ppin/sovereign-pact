@@ -1,0 +1,93 @@
+{
+  "id": "the_sinking_road",
+  "pools": [
+    "drowned_marches"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    7
+  ],
+  "title": "The Sinking Road",
+  "text": "The causeway is going under, slowly. You have to cross before it does.",
+  "options": [
+    {
+      "id": "run",
+      "label": "Run for it.",
+      "rule": "vote",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "Everyone across, muddy to the knees.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -3
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "The slowest are caught.",
+          "effects": [
+            {
+              "to": "party",
+              "durability": -15,
+              "loc": "legs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "slow",
+      "label": "The slowest goes first while there is still road.",
+      "rule": "scion:lowest:speed|scion:random",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "They make it. The last one through swims.",
+          "effects": [
+            {
+              "to": "party",
+              "status": "slow"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wait",
+      "label": "Camp and wait for the tide.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A long cold night.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -5
+            },
+            {
+              "fork": {
+                "add": [
+                  "camp"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

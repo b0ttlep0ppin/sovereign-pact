@@ -1,0 +1,88 @@
+{
+  "id": "the_bellows_breath",
+  "pools": [
+    "forge_ruins"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    9
+  ],
+  "title": "The Bellows' Breath",
+  "text": "The forge's great bellows still breathe, blowing blasts of hot air through the tunnels. The frailest will feel it most.",
+  "options": [
+    {
+      "id": "weak",
+      "label": "Shelter the frailest behind a shield.",
+      "rule": "scion:lowest:resilience|scion:random",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "They come through. The shield does not.",
+          "effects": [
+            {
+              "durability": -30,
+              "loc": "arms"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "stop",
+      "label": "Stop the bellows.",
+      "rule": "scion:highest:might",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "The forge falls quiet.",
+          "effects": [
+            {
+              "score": {
+                "valor": 1
+              }
+            },
+            {
+              "skip": 1
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "The forge's keeper notices.",
+          "effects": [
+            {
+              "encounter": {}
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "time",
+      "label": "Time the blasts.",
+      "rule": "scion:highest:acuity|vote",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Between breaths, across.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 3
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

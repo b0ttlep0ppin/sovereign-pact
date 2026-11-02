@@ -1,0 +1,80 @@
+{
+  "id": "the_lost_ones_camp",
+  "pools": [
+    "rescue"
+  ],
+  "weight": 3,
+  "band": [
+    1,
+    10
+  ],
+  "title": "The Lost One's Camp",
+  "text": "A cold camp: a bedroll, a fire long out, a journal in a Scion's hand.",
+  "options": [
+    {
+      "id": "read",
+      "label": "Read the journal.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Their last days, and where they went.",
+          "effects": [
+            {
+              "skip": 1
+            },
+            {
+              "to": "party",
+              "sanity": -3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "track",
+      "label": "Track them from here.",
+      "rule": "scion:highest:acuity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Fresh enough.",
+          "effects": [
+            {
+              "skip": 1
+            },
+            {
+              "xp": 30
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rest",
+      "label": "Rest here, as they did.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The fire takes, and the night is quiet.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 8
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
