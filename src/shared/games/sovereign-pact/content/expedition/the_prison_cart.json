@@ -1,0 +1,96 @@
+{
+  "id": "the_prison_cart",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    10
+  ],
+  "title": "The Prison Cart",
+  "text": "A cart of caged prisoners, its guards dead around it. The prisoners beg to be freed. One of them is laughing.",
+  "options": [
+    {
+      "id": "free",
+      "label": "Free them all.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "They scatter, thanking you. The laughing one stays and offers to serve.",
+          "effects": [
+            {
+              "house_improvement": "recruit"
+            },
+            {
+              "score": {
+                "renown": 1
+              }
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "The laughing one was the reason for the cage.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "ambush"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "question",
+      "label": "Question them first.",
+      "rule": "scion:highest:acuity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "You free the ones who deserve it.",
+          "effects": [
+            {
+              "score": {
+                "renown": 1
+              }
+            },
+            {
+              "score": {
+                "intrigue": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "leave",
+      "label": "Leave them caged.",
+      "rule": "leader",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Their shouting follows you a long way.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -10
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

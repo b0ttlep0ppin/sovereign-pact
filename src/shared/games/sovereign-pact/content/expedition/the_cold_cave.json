@@ -1,0 +1,97 @@
+{
+  "id": "the_cold_cave",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    10
+  ],
+  "title": "The Cold Cave",
+  "text": "A cave mouth breathing frost, in a place far too warm for it. Inside, things frozen in the ice: a sword, a man, a door.",
+  "options": [
+    {
+      "id": "sword",
+      "label": "Cut out the sword.",
+      "rule": "scion:highest:might",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It takes all day. It is a fine sword.",
+          "effects": [
+            {
+              "item": {
+                "tier": 3
+              }
+            },
+            {
+              "to": "party",
+              "durability": -10
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "man",
+      "label": "Thaw the man.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "He thaws, and thanks you, and tells you where he was going.",
+          "effects": [
+            {
+              "skip": 1
+            },
+            {
+              "score": {
+                "lore": 1
+              }
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "He thaws hungry.",
+          "effects": [
+            {
+              "encounter": {}
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "door",
+      "label": "Open the door.",
+      "rule": "leader",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It goes somewhere colder.",
+          "effects": [
+            {
+              "fork": {
+                "add": [
+                  "cache",
+                  "encounter"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

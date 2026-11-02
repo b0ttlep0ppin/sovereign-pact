@@ -1,0 +1,94 @@
+{
+  "id": "the_oathstone",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    10
+  ],
+  "title": "The Oathstone",
+  "text": "A standing stone where knights swore oaths, still carved with their names. One name has been scratched out and something written over it.",
+  "options": [
+    {
+      "id": "swear",
+      "label": "The bravest swears an oath on it.",
+      "rule": "scion:trait:brave|scion:highest:might",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The stone takes the oath. So does the one who swore it.",
+          "effects": [
+            {
+              "growth": {
+                "all": 5
+              }
+            },
+            {
+              "score": {
+                "valor": 2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "read",
+      "label": "The sharpest reads what was written over the name.",
+      "rule": "scion:highest:acuity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A curse on an oathbreaker, and the name of a House you know.",
+          "effects": [
+            {
+              "score": {
+                "intrigue": 2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "break",
+      "label": "Break the stone.",
+      "rule": "leader",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "Every oath ever sworn on it is released.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 5
+            },
+            {
+              "doom": -1
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "Every oath ever sworn on it is broken, and the oathbreakers wake.",
+          "effects": [
+            {
+              "encounter": {}
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

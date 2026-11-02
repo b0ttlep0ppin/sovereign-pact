@@ -2,6 +2,10 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 7z: sixteen more general events) — implementer
+- **Built** (content only). Sixteen general expedition events: the Fallen Messenger, the Oathstone, the Chess Player, the Fallen Star, the Prison Cart, the Bridge of Light, the Sunken Road, the Lantern Procession, the Crown in the Mud, the Cold Cave, the Puppet Show, the Honest Merchant, the Black Dog, the Clear Spring, the Bandits' Toll and the Glass House. That makes 208 expedition events, 134 of them open to any card.
+- **Reading:** each uses only effects and subject rules the rules already have.
+
 ## 2026-11-02 (implementation, Milestone 7y: sixteen general events, and one title per scene) — implementer
 - **Built** (content only). Sixteen general expedition events: the Hollow Hill, the Ship on the Hill, the Sick Village, the Doppelganger, the Dancing Bear, the Storm, the Sleeping Knight, the Ogre's Kitchen, the Hedge Maze, the Widow's Lantern, the Stone Circle, the Thief in Camp, the World's Root, the Lost Patrol, the Well-Keeper and the Idle Golem. That makes 192 expedition events, 118 of them open to any card.
 - **Test.** `npm run content` now fails when two expedition events share a title (ignoring case and a leading "The"), after 7x found three near-copies by hand; it caught a fourth in this batch (a Bone Market beside §9.7's), which became the Dancing Bear.

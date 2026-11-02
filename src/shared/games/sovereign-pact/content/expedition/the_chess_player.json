@@ -1,0 +1,91 @@
+{
+  "id": "the_chess_player",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    10
+  ],
+  "title": "The Chess Player",
+  "text": "A figure in a hood sits at a stone table with a board set out. It wins, it says, and it takes one of you. You win, and it gives you the board.",
+  "options": [
+    {
+      "id": "play",
+      "label": "The wisest plays.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 45,
+          "text": "Checkmate. It bows, and the board is yours.",
+          "effects": [
+            {
+              "score": {
+                "relics": 1
+              }
+            },
+            {
+              "score": {
+                "renown": 1
+              }
+            }
+          ]
+        },
+        {
+          "w": 55,
+          "text": "Checkmate. It takes a little of them.",
+          "effects": [
+            {
+              "sanity": -20
+            },
+            {
+              "stat": {
+                "sagacity": -1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cheat",
+      "label": "The craftiest plays, and cheats.",
+      "rule": "scion:highest:guile",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It sees, and laughs, and sweeps the board clean, and lets you go.",
+          "effects": [
+            {
+              "score": {
+                "intrigue": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "refuse",
+      "label": "Refuse the game.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It shrugs and sets the pieces up again.",
+          "effects": []
+        }
+      ]
+    }
+  ]
+}

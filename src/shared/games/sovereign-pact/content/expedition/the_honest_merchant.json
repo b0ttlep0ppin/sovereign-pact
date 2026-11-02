@@ -1,0 +1,82 @@
+{
+  "id": "the_honest_merchant",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    10
+  ],
+  "title": "The Honest Merchant",
+  "text": "A merchant on the otherworld road with a sign that reads HONEST PRICES. She is, unsettlingly, entirely honest.",
+  "options": [
+    {
+      "id": "buy",
+      "label": "Buy something good.",
+      "rule": "leader",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A fair price for a fine thing.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -15
+              }
+            },
+            {
+              "item": {
+                "tier": 3
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sell",
+      "label": "Sell her what you have spare.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A fair price.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 12
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ask",
+      "label": "Ask her why she is honest out here.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "She tells you, and it is the best advice you have had in years.",
+          "effects": [
+            {
+              "to": "party",
+              "jp": 40
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

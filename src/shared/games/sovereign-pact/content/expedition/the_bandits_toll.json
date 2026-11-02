@@ -1,0 +1,92 @@
+{
+  "id": "the_bandits_toll",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    7
+  ],
+  "title": "The Bandits' Toll",
+  "text": "A rope across the road and three bandits behind it, very polite, very well armed. A toll, they say, for the road's upkeep.",
+  "options": [
+    {
+      "id": "pay",
+      "label": "Pay the toll.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "They lift the rope with a bow.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -12
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "talk",
+      "label": "The best talker talks them down.",
+      "rule": "scion:highest:guile",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "They end up paying you to leave.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 8
+              }
+            },
+            {
+              "score": {
+                "intrigue": 1
+              }
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "They are not persuaded.",
+          "effects": [
+            {
+              "encounter": {}
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fight",
+      "label": "Cut the rope.",
+      "rule": "vote",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Three bandits, and their friends in the trees.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "ambush"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,93 @@
+{
+  "id": "the_puppet_show",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    10
+  ],
+  "title": "The Puppet Show",
+  "text": "A puppet theatre on a cart, no puppeteer in sight, playing to an audience of crows. The puppets look like you.",
+  "options": [
+    {
+      "id": "watch",
+      "label": "Watch the end of the show.",
+      "rule": "vote",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "It ends happily. It is a comfort.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 10
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "It ends as such shows do.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -15
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "strings",
+      "label": "The sharpest looks for the strings.",
+      "rule": "scion:highest:acuity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "There are none, and then there are, and they lead somewhere.",
+          "effects": [
+            {
+              "fork": {
+                "add": [
+                  "cache"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "burn",
+      "label": "Burn the cart.",
+      "rule": "leader",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The puppets scream in your voices.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -5
+            },
+            {
+              "score": {
+                "valor": 1
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
