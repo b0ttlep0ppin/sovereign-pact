@@ -6,6 +6,7 @@ Source folder on Josh's PC: `C:\Users\josh\Desktop\decompilation\assets\`. Every
 - **1000-Monster Mega Pack** and **1000-Monster Mega Pack 2** by **Pixel Material Studio**.
 - License: commercial use OK; editing, recoloring, resizing OK; credit not required but appreciated; redistribution or resale of the assets themselves (or edited variants as standalone assets) NOT OK; no hate/harassment use.
 - Implication: ship sprites only inside the game build; do not expose a downloadable sprite sheet or asset pack.
+- Shipped (2026-11-02, Milestone 8s): 339 cut pictures in `public/sprites/sovereign-pact/enemies/`, one per enemy, boss, summon and hazard, listed with their source files in `src/shared/games/sovereign-pact/content/sprites/manifest.json` and cut by `tools/cut-monsters.py`. The packs themselves are never committed.
 
 ## Scion sprites — `universal spritesheet generator\`
 - **Universal LPC Spritesheet Character Generator** (Liberated Pixel Cup). https://github.com/liberatedpixelcup/Universal-LPC-Spritesheet-Character-Generator

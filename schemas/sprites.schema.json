@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Sprites: which pack picture each enemy, boss, summon and hazard is drawn with (SPEC §14.11, §17)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["sprites"],
+  "properties": {
+    "sprites": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "source", "flip"],
+        "properties": {
+          "id": { "$ref": "defs.schema.json#/definitions/id" },
+          "source": { "type": "string", "pattern": "^Mega Pack [12]/.+\\.png$" },
+          "flip": { "type": "boolean" }
+        }
+      }
+    }
+  }
+}

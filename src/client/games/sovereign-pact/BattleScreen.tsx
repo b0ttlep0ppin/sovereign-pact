@@ -6,6 +6,7 @@
 import { Content, FLAG, replayLine, type Replay, type ReplayUnit, type SovView, type Vitals } from "@vibepulse/shared/games/sovereign-pact";
 import { useEffect, useMemo, useRef, useState, type CSSProperties, type KeyboardEvent } from "react";
 import { HERALDRY_COLORS } from "./Emblem";
+import { spriteOf } from "./sprites";
 import "./BattleScreen.css";
 
 type Event = Replay["frames"][number]["ev"][number];
@@ -136,6 +137,7 @@ export default function BattleScreen({ replay, view, onClose, waiting = 0, fullL
     };
     const state = flags & FLAG.dead ? " is-dead" : flags & FLAG.down ? " is-down" : flags & FLAG.lastStand ? " is-last-stand" : "";
     const mine = pops.filter((p) => p.target === u.id);
+    const sprite = spriteOf(u);
     return (
       <div
         key={u.id}
@@ -143,7 +145,11 @@ export default function BattleScreen({ replay, view, onClose, waiting = 0, fullL
         style={style}
         title={`${u.name}: ${hp}/${u.maxHp} HP`}
       >
-        <span className="sp-unit__body">{u.hazard ? "⚠" : initials(u.name)}</span>
+        {sprite ? (
+          <img className={`sp-unit__sprite${sprite.flip ? " is-flipped" : ""}`} src={sprite.url} alt="" draggable={false} />
+        ) : (
+          <span className="sp-unit__body">{u.hazard ? "⚠" : initials(u.name)}</span>
+        )}
         <span className="sp-unit__hp" aria-hidden="true">
           <span style={{ width: `${pct(hp, u.maxHp)}%` }} />
         </span>
