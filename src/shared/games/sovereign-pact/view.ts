@@ -6,7 +6,7 @@ import type { Replay } from "./combat/replay.ts";
 import { dealsFor } from "./deals.ts";
 import { secretEvent } from "./events.ts";
 import { marketFor, priceFor } from "./market.ts";
-import { consumablePrice, forSale } from "./consumables.ts";
+import { cannotDrawTarot, cannotDrinkDraught, consumablePrice, forSale } from "./consumables.ts";
 import { eventsFor } from "./omens.ts";
 import { fallen } from "./lifecycle.ts";
 import { timelineFor } from "./timeline.ts";
@@ -40,6 +40,10 @@ import { BUILDINGS, PROJECTS } from "./content.ts";
 import { built, projectCost, stillNeeded } from "./commons.ts";
 import { buildCost, cannotBuild, levelOf } from "./town.ts";
 import { cannotPropose } from "./votes.ts";
+import { ceremonies } from "./promotion.ts";
+import { cureOf, mends } from "./cures.ts";
+import { stash } from "./items.ts";
+import { TUNING } from "./tuning.ts";
 import { campaignYears, mandatoryYears, trackName } from "./year.ts";
 
 /** Another House as everyone sees it. */
@@ -80,6 +84,13 @@ export interface PrivateHouse {
   builds: { id: string; level: number; cost: Partial<Record<string, number>> | null; why: string | null }[];
   /** The Commons' projects open now: the next level, what it still needs, and why this House cannot propose spending on it, if so (§8.5, §8.1). */
   projects: { id: string; level: number; need: Partial<Record<string, number>>; propose: string | null }[];
+  /** Promotions this Year (§6.5): what one costs, and how many ceremonies are left. */
+  promotion: { gold: number; left: number };
+  /** Cure items in the stash and whom each can mend, with the injuries it mends (§9.8). */
+  cures: { item: number; person: number; injuries: string[] }[];
+  /** Scions who may draw a new Tarot, or drink a Passive Draught, from what the House holds (§13.7). */
+  tarot: number[];
+  draught: number[];
   /** The Scriptorium's level: how much of a recruit shows (§6.4). */
   insight: number;
   /** This House's own Crisis pledge, and whether it gave in to the temptation. */
@@ -290,6 +301,14 @@ export function view(s: SovState, playerId: PlayerId): SovView {
               need: stillNeeded(s, x.id),
               propose: s.proposers.includes(me) ? "You have made your proposal for this Year." : cannotPropose(s, x.id),
             })),
+            promotion: { gold: TUNING.promotion.gold, left: Math.max(0, ceremonies(s, me) - (own.promotions ?? 0)) },
+            cures: stash(s, me).flatMap((it) =>
+              cureOf(it)
+                ? s.people.filter((p) => p.host === me && p.status !== "lost" && mends(it, p).length).map((p) => ({ item: it.id, person: p.id, injuries: mends(it, p) }))
+                : [],
+            ),
+            tarot: s.people.filter((p) => !cannotDrawTarot(s, me, p.id)).map((p) => p.id),
+            draught: s.people.filter((p) => !cannotDrinkDraught(s, me, p.id)).map((p) => p.id),
             insight,
             crisis: s.crisis ? { pledge: s.crisis.pledges[me]!, tempted: s.crisis.tempted[me]! } : null,
             notes: s.notes[me] ?? [],

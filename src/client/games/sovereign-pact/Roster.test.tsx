@@ -1,0 +1,56 @@
+import { fireEvent, render, screen, within } from "@testing-library/react";
+import { describe, expect, it, vi } from "vitest";
+import { Content, sovereignPact as g } from "@vibepulse/shared/games/sovereign-pact";
+import { calm, campaign } from "../../../shared/games/sovereign-pact/testing.ts";
+import { mintNamed } from "../../../shared/games/sovereign-pact/items.ts";
+import Roster from "./Roster";
+
+/** A calm settlement: House 0 with Gold, a Retired Scion, a Tarot Token, and a Surgeon's Kit for an injured Scion. */
+function town() {
+  const s = calm(campaign(2, 3));
+  const h = s.houses[0]!;
+  h.gold = 100;
+  h.consumables = { tarot_token: 1 };
+  const [scion, other] = s.people.filter((p) => p.host === 0 && p.status === "scion");
+  other!.status = "retired";
+  scion!.injuries = [{ id: "head_concussion", years: 1 }];
+  s.items.push(mintNamed(s, "surgeons_kit", 0, 5));
+  const recruit = s.people.find((p) => p.host === 0 && p.status === "recruit")!;
+  return { s, scion: scion!, retired: other!, recruit };
+}
+
+describe("your people", () => {
+  it("promotes a recruit into the base Job chosen", () => {
+    const { s, recruit } = town();
+    const sendMove = vi.fn();
+    render(<Roster view={g.view(s, "p1")} sendMove={sendMove} canAct />);
+    const card = screen.getByRole("listitem", { name: recruit.name });
+    fireEvent.change(within(card).getByLabelText(`Job for ${recruit.name}`), { target: { value: "knight" } });
+    fireEvent.click(within(card).getByRole("button", { name: /Promote/ }));
+    expect(sendMove).toHaveBeenCalledWith({ type: "promote", person: recruit.id, job: "knight" });
+  });
+
+  it("retires a Scion, brings back the Retired, mends an injury and draws a Tarot", () => {
+    const { s, scion, retired } = town();
+    const sendMove = vi.fn();
+    render(<Roster view={g.view(s, "p1")} sendMove={sendMove} canAct />);
+    const card = screen.getByRole("listitem", { name: scion.name });
+    expect(card.querySelector(".sp-person__injuries")!.textContent).toContain(Content.INJURY_BY_ID.get("head_concussion")!.name);
+    fireEvent.click(within(card).getByRole("button", { name: "Retire" }));
+    expect(sendMove).toHaveBeenCalledWith({ type: "retire", person: scion.id });
+    fireEvent.click(within(card).getByRole("button", { name: /^Mend .* with Surgeon/ }));
+    expect(sendMove).toHaveBeenCalledWith(expect.objectContaining({ type: "cure", person: scion.id, injury: "head_concussion" }));
+    fireEvent.click(within(card).getByRole("button", { name: "Draw a new Tarot" }));
+    expect(sendMove).toHaveBeenCalledWith({ type: "draw_tarot", person: scion.id });
+    fireEvent.click(within(screen.getByRole("listitem", { name: retired.name })).getByRole("button", { name: "Return to arms" }));
+    expect(sendMove).toHaveBeenCalledWith({ type: "reinstate", person: retired.id });
+  });
+
+  it("only shows the House's people, without moves once sealed", () => {
+    const { s, scion } = town();
+    render(<Roster view={g.view(s, "p1")} sendMove={() => {}} canAct={false} />);
+    expect(within(screen.getByRole("listitem", { name: scion.name })).queryByRole("button")).toBeNull();
+    const rival = s.people.find((p) => p.host === 1)!;
+    expect(screen.queryByRole("listitem", { name: rival.name })).toBeNull();
+  });
+});

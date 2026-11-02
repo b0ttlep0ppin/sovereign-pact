@@ -10,6 +10,7 @@ import Deals from "./Deals";
 import Decisions from "./Decisions";
 import Market from "./Market";
 import Readying from "./Readying";
+import Roster from "./Roster";
 import { HERALDRY_COLORS, Emblem } from "./Emblem";
 import RiftGate from "./RiftGate";
 import TownMap from "./TownMap";
@@ -114,7 +115,6 @@ function useBattles(battles: SovView["battles"]) {
 export default function SovereignPact({ view, isMyTurn, sendMove, lastError }: Props) {
   const battles = useBattles(view.battles);
   const mine = view.me === null ? null : view.houses[view.me]!;
-  const myPeople = view.people.filter((p) => p.host === view.me);
   const others = view.people.filter((p) => p.host !== view.me);
   return (
     <div className="sp">
@@ -213,16 +213,13 @@ export default function SovereignPact({ view, isMyTurn, sendMove, lastError }: P
       {view.phase === "settlement" ? <Deals view={view} sendMove={sendMove} canAct={!!mine && !mine.sealed} /> : null}
       {view.phase === "expedition" ? <ChainMap view={view} /> : null}
 
-      <section className="sp-panel" aria-label="People">
-        <h2>Your people</h2>
-        <PeopleTable people={myPeople} />
-        {others.length ? (
-          <>
-            <h2>Scions of the other Houses</h2>
-            <PeopleTable people={others} houses={view.houses} />
-          </>
-        ) : null}
-      </section>
+      <Roster view={view} sendMove={sendMove} canAct={view.phase === "settlement" && !!mine && !mine.sealed} />
+      {others.length ? (
+        <section className="sp-panel" aria-label="People">
+          <h2>{view.me === null ? "The Houses' Scions" : "Scions of the other Houses"}</h2>
+          <PeopleTable people={others} houses={view.houses} />
+        </section>
+      ) : null}
 
       {battles.seen.length ? (
         <section className="sp-panel" aria-label="Battles">
