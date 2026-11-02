@@ -7,6 +7,7 @@ import { TUNING } from "./tuning.ts";
 import { bossFor, home, rollChain } from "./journey.ts";
 import { log, mandatoryYears } from "./year.ts";
 import { divide } from "./split.ts";
+import { awaited } from "./fight.ts";
 
 export const seatsOf = (card: ExpeditionCard): number => (card.size === 4 ? 4 : 8);
 
@@ -174,6 +175,7 @@ export function waiting(s: SovState): number[] {
   const e = s.expedition;
   if (e?.draft?.length) return [e.draft[0]!];
   if (!e || e.result) return [];
+  if (e.fight) return e.fight.unit === undefined ? [] : [awaited(s)!];
   if (e.event) return e.event.votes.flatMap((v, i) => (v === null ? [i] : []));
   // The Gate's Reflection: the party waits on every House still answering its bargain.
   if (s.bargains.pending.length) return [...new Set(s.bargains.pending.map((b) => b.house))].sort((a, b) => a - b);

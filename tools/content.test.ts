@@ -94,6 +94,11 @@ describe("content", () => {
     expect(mixed.map((e) => e.id)).toEqual([]);
   });
 
+  it("starts no battle from an each_scion or secret option: their outcomes land one after another, and a battle waits on the Houses", () => {
+    const fights = TRIP_EVENTS.filter((e) => e.options.some((o) => (o.rule === "each_scion" || o.rule === "secret") && o.outcomes.some((x) => x.effects.some((fx) => fx.encounter))));
+    expect(fights.map((e) => e.id)).toEqual([]);
+  });
+
   it("files enemies by pool and id", () => {
     for (const file of contentFiles.filter((f) => f.startsWith("enemies/"))) {
       const [, pool, name] = file.split("/");

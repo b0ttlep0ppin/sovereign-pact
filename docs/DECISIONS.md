@@ -2,6 +2,17 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 8o): battles by hand
+
+- Expedition battles now wait on the Houses (§10.4, §15.8 "the battle is playable"): the clock runs through the enemies' turns by itself, and stops on each Scion's turn until the House the Scion fights for (a Ward's host) commands them: a move, then an action (an ability on a cell, an item, Wait or Defend). The battle rules check the command as they check a gambit's; one they refuse changes nothing.
+- A House can hand one turn, or the rest of the battle, to the Scion's gambits. A bot does that every turn, and so does a player who times out, so the gambit engine is the bot in real combat as §6.11 says. A table option, **Battles: Command / Gambits**, lets the gambits fight every battle without stopping; the simulator and the tests use it. Command is the default.
+- Readings:
+  - Fear, the Turned, Berserk, Confusion, Madness and a feral Form take the choice away (§10.8): those Scions act by themselves even in a commanded battle. Summons always follow their gambits.
+  - A battle an event starts carries the rest of the event's outcome with it: what comes after the battle in the outcome follows a victory (as it always did), and nothing else moves until the battle ends. A trapped Cache opens after its ambush is beaten. A loss the Bastion of the Gate turns into a fallback now also hands the command on if the Leader fell.
+  - No each-Scion or secret option starts a battle (a content check): their outcomes land one after another, and a battle in the middle would hold the rest.
+  - While a battle is under way, the expedition's other moves wait for it. The battle lives on the state turn by turn; its events move into its replay as each turn is played, so a long battle stays small (under 40 KB in the tests), and it never goes into a save (saves are taken at the start of a Settlement Phase).
+- This step gives the screen a plain battle panel (whose turn it is, and the two gambit buttons); the command bar on the battle screen comes next.
+
 ## 2026-11-02 (implementation, Milestone 8n): accessibility toggles
 
 - An Accessibility section under the timeline holds the five toggles of §15.8:

@@ -15,7 +15,7 @@ import { BUILDING_BY_ID, HOUSE_TRAIT_BY_ID, INJURY_BY_ID, INJURY_TABLE_BY_ID, TA
 import { battle, die, home, lose, marching, person, succeed } from "./journey.ts";
 import { gainJp, gainXp, jobStats, passiveBudget, passivePoints } from "./progression.ts";
 import { ascendancy } from "./score.ts";
-import { GEAR_SLOTS, LOCATIONS, STATS, type HistKey, type NodeKind, type Person, type ScoreCategory, type SovState } from "./state.ts";
+import { GEAR_SLOTS, LOCATIONS, STATS, type HistKey, type NodeKind, type Person, type ScoreCategory, type SovState, type Then } from "./state.ts";
 import { TUNING } from "./tuning.ts";
 import { log, note, withRng } from "./year.ts";
 import { change, unchange } from "./change.ts";
@@ -182,11 +182,10 @@ function revealSecret(s: SovState): void {
 
 /** The option is taken: its subject found, its outcome drawn, its effects applied in order. */
 export function resolve(s: SovState, option: TripOption): void {
-  land(s, option, subjects(s, option.rule));
-  after(s);
+  if (land(s, option, subjects(s, option.rule))) after(s);
 }
 
-function land(s: SovState, option: TripOption, { scions, house }: Subjects, others: string[] = []): void {
+function land(s: SovState, option: TripOption, { scions, house }: Subjects, others: string[] = []): boolean {
   // Outcomes that turn on the other Houses' secret picks; with none of them fitting, the plain ones.
   const fits = option.outcomes.filter((o) => !o.when || (o.when.any ? others.includes(o.when.any) : !others.includes(o.when.none!)));
   const pool = fits.length ? fits : option.outcomes.filter((o) => !o.when);
@@ -196,10 +195,25 @@ function land(s: SovState, option: TripOption, { scions, house }: Subjects, othe
   });
   const who = option.rule === "vote" ? "" : option.rule === "secret" ? `House ${s.houses[house!]!.name}: ` : `${scions.map((id) => person(s, id).name).join(" and ")}: `;
   log(s, `${option.label} ${who}${outcome.text}`);
-  for (const fx of outcome.effects) {
-    if (s.expedition!.result) return;
-    apply(s, fx, fx.to === "party" ? marching(s) : scions, option.rule === "vote" ? null : house);
+  return effects(s, outcome.effects, scions, option.rule === "vote" ? null : house);
+}
+
+/**
+ * Effects in order. One that starts a battle takes the rest with it, to follow a victory (journey.ts
+ * `concluded`); then this returns false, and the battle's end carries on instead.
+ */
+function effects(s: SovState, list: TripEffect[], scions: number[], house: number | null): boolean {
+  for (const [i, fx] of list.entries()) {
+    if (s.expedition!.result) return true;
+    apply(s, fx, fx.to === "party" ? marching(s) : scions, house, { effects: list.slice(i + 1), scions, house });
+    if (fx.encounter) return false;
   }
+  return true;
+}
+
+/** The rest of an outcome after the battle it started was won. */
+export function carryOn(s: SovState, then: Extract<Then, { effects: unknown }>): void {
+  if (effects(s, then.effects, then.scions, then.house)) after(s);
 }
 
 /** After an event: with no one left the party is gone; a dead Leader is replaced. */
@@ -213,7 +227,7 @@ const pctOf = (max: number, pct: number) => Math.round((max * pct) / 100);
 const gateAhead = (chain: NodeKind[], at: number): number | undefined => (chain.indexOf("gate", at) >= 0 ? chain.indexOf("gate", at) : undefined);
 
 /** One effect on `ids` (Scions) and `house` (the subject's House; null: the Commons, or every House present). */
-function apply(s: SovState, fx: TripEffect, ids: number[], house: number | null): void {
+function apply(s: SovState, fx: TripEffect, ids: number[], house: number | null, rest?: Then): void {
   const e = s.expedition!;
   for (const id of ids) {
     const at = s.people.findIndex((p) => p.id === id);
@@ -281,7 +295,7 @@ function apply(s: SovState, fx: TripEffect, ids: number[], house: number | null)
     const rest = e.chain.slice(e.at, -1).filter((k) => k === "gate" || drop-- <= 0);
     e.chain = [...e.chain.slice(0, e.at), ...(fx.fork.add ?? []), ...rest, e.chain.at(-1)!];
   }
-  if (fx.encounter) battle(s, false, fx.encounter);
+  if (fx.encounter) battle(s, false, fx.encounter, rest);
   else if (fx.retreat) home(s, "retreated");
   else if (fx.idol) {
     log(s, "The party kneels, and the Idol lets it go home.");

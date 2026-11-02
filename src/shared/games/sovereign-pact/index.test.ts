@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+import { createRng } from "../../rng.ts";
 import { sovereignPact, type SovState } from "./index.ts";
 import { ashore, calm, campaign, playOut, sealYear, seats } from "./testing.ts";
 import { TUNING } from "./tuning.ts";
@@ -33,7 +34,8 @@ describe("setup", () => {
 
   it("reads the table options", () => {
     const s = campaign(2, 1, { display: "flavor", length: "short" });
-    expect(s.opts).toEqual({ display: "flavor", length: "short" });
+    expect(s.opts).toEqual({ display: "flavor", length: "short", battles: "gambits" });
+    expect(sovereignPact.setup(seats(2), createRng(1), undefined, undefined).opts.battles).toBe("hand");
     expect(s.timeline.map((t) => t.year)).toEqual(TUNING.campaign.mandatoryYears.short);
   });
 

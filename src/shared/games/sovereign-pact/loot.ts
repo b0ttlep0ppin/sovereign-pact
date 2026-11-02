@@ -81,8 +81,13 @@ export function cache(s: SovState): void {
   if (chance(s, L.cache.trapPct)) {
     // Reading: until the Mimic has its enemy entry, a trapped Cache is an ambush a level above the card.
     log(s, "The cache is a trap: something inside was waiting.");
-    if (!battle(s, false, { modifier: "ambush", level: 1 })) return;
+    return battle(s, false, { modifier: "ambush", level: 1 }, { cache: true });
   }
+  openCache(s);
+}
+
+/** The Cache opened, once nothing inside waits any more. */
+export function openCache(s: SovState): void {
   log(s, "The party opens an old cache.");
   const [lo, hi] = L.cache.items as [number, number];
   const n = lo + withRng(s, (rng) => rng.int(hi - lo + 1));

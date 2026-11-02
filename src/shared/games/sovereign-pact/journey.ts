@@ -7,15 +7,16 @@ import { bossBattle } from "./combat/bosses.ts";
 import { scionCombatant } from "./combat/build.ts";
 import { encounterBattle } from "./combat/encounter.ts";
 import { LOADOUTS } from "./combat/roster.ts";
-import { recorded } from "./combat/replay.ts";
+import { begun, closed } from "./combat/replay.ts";
 import { meta } from "./combat/status.ts";
 import type { Battle, Combatant } from "./combat/types.ts";
-import { meet } from "./events.ts";
+import { carryOn, meet } from "./events.ts";
+import { play } from "./fight.ts";
 import { roster } from "./expedition.ts";
 import { gearTotals } from "./items.ts";
-import { bossLoot, cache, encounterLoot, shareOut } from "./loot.ts";
+import { bossLoot, cache, encounterLoot, openCache, shareOut } from "./loot.ts";
 import { gainJp, gainXp, xpAt } from "./progression.ts";
-import { LOCATIONS, type Expedition, type NodeKind, type Person, type SovState } from "./state.ts";
+import { LOCATIONS, type Expedition, type LiveFight, type NodeKind, type Person, type SovState, type Then } from "./state.ts";
 import { devastate } from "./timeline.ts";
 import { TUNING } from "./tuning.ts";
 import { creditWard } from "./wards.ts";
@@ -173,7 +174,7 @@ function camp(s: SovState): void {
 /** A battle at the next node: an Encounter from the card's pool, or the boss. */
 export type FightOpts = NonNullable<TripEffect["encounter"]> & { raid?: true; lair?: true; arcana?: true };
 
-function fight(s: SovState, boss: boolean, o: FightOpts): Battle {
+function fight(s: SovState, boss: boolean, o: FightOpts): LiveFight {
   const card = s.expedition!.card;
   const seed = withRng(s, (rng) => rng.int(2 ** 31));
   // An Arcana is fought as a boss at the card's level, without the boss's extra level (§14.9: elite-tier).
@@ -192,14 +193,24 @@ function fight(s: SovState, boss: boolean, o: FightOpts): Battle {
   // The party satchel goes into the fight; what is used there is gone (§13.7).
   if (s.expedition!.satchel?.length) b.satchel = s.expedition!.satchel.map((x) => x.id);
   const title = id ? (BOSS_BY_ID.get(id)?.name ?? "The boss") : o.raid ? "A raid" : o.lair ? "The quarry's lair" : "An Encounter";
-  (s.battles ??= []).push(recorded(b, title).replay);
-  return b;
+  return { b, title, boss, o, replay: begun(b, title), seen: b.events.length, turns: 0 };
 }
 
-/** A battle now: an Encounter (a node's, or an event's) or the boss. True if the party won; a loss sends it home wiped. */
-export function battle(s: SovState, boss: boolean, o: FightOpts = {}): boolean {
+/**
+ * A battle now: an Encounter (a node's, or an event's) or the boss. It is fought turn by turn
+ * (fight.ts) and may wait on the Houses' commands; `then` carries on after a victory.
+ */
+export function battle(s: SovState, boss: boolean, o: FightOpts = {}, then?: Then): void {
+  s.expedition!.fight = { ...fight(s, boss, o), ...(then ? { then } : {}) };
+  play(s);
+}
+
+/** The battle is over: its replay to the screen, its cost to the party, and what follows (§10.12, §9.9). */
+export function concluded(s: SovState): void {
   const e = s.expedition!;
-  const b = fight(s, boss, o);
+  const { b, boss, o, then, replay } = e.fight!;
+  delete e.fight;
+  (s.battles ??= []).push(closed(b, replay));
   settle(s, b, boss ? (e.card.boss ?? "boss") : `${e.card.pool}_encounter`);
   if (b.outcome === "victory") {
     log(s, boss ? "The party defeats the boss." : "The party wins a battle.");
@@ -208,24 +219,24 @@ export function battle(s: SovState, boss: boolean, o: FightOpts = {}): boolean {
       if (e.card.idol) idolSlain(s, [...new Set(marching(s).map((id) => person(s, id).host))]);
       if (e.card.arcana) arcanaWon(s, marching(s));
       bossLoot(s);
-      home(s, "won");
-    } else {
-      if (o.lair) slay(s, [...new Set(marching(s).map((id) => person(s, id).host))]);
-      if (o.arcana) arcanaWon(s, marching(s));
-      encounterLoot(s);
-      succeed(s);
+      return home(s, "won");
     }
-    return true;
+    if (o.lair) slay(s, [...new Set(marching(s).map((id) => person(s, id).host))]);
+    if (o.arcana) arcanaWon(s, marching(s));
+    encounterLoot(s);
+    succeed(s);
+    if (then && "cache" in then) openCache(s);
+    else if (then) carryOn(s, then);
+    return;
   }
   log(s, `The party falls before ${boss ? "the boss" : "an encounter"}.`);
   // The Bastion of the Gate (§8.4): once, the final assault falls back and regroups instead; the boss waits.
   if (marching(s).length && bastionFallBack(s)) {
     if (boss) e.at -= 1;
     camp(s);
-    return false;
+    return succeed(s);
   }
   home(s, "wiped");
-  return false;
 }
 
 /** The Leader's House presses on: the next node resolves. */
