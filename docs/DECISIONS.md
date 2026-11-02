@@ -2,6 +2,14 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 8av): blows land with weight; whose turn and what you aim at are plain
+
+- Josh: the sprites "stay paused on the last animation frame"; swings need "more oomph... maybe in the dead area in the middle"; Ember had "virtually no animation" though he wants "tons of animations, color distortions". A Scion now swings once and returns to the ready. Every blow is drawn as a strike (`BattleFx.tsx`): the attacker winds up and dashes into the gap (melee deep, ranged and spells a step), speed lines cross the gap, the target takes a slash, a bolt or an element-colored orb and burst, flashes white for a beat (the hit-stop), splits red and cyan and is knocked back; criticals and spells shake the field, criticals redden the screen's edges, and each spell washes the whole screen in its element (fire scorches, water chills, dark inverts, holy blinds). Numbers pop as the blow lands. Several actions in one turn land one after another. A turn lasts 1.3 s at 1× (was 0.9 s), longer when it holds several blows. All of it is off under reduced motion.
+- Josh: "unclear to me who's turn it is, who i'm targeting". Your turn is a banner ("Osric's turn. What do they do?"; "Osric: Frost Lance. Choose a target"); a gold marker bobs over whoever acts; while aiming, what cannot be chosen dims, what can is bracketed, the cursor's target turns red with its name and HP, and hovering moves the cursor. The command bar stays at the bottom of the screen. An area choice lights every cell it will cover from the cursor (Josh: "it should highlight where it will affect"); the turn's choices now carry the area's shape.
+- Josh: "need way more detail on this injury roll". The card says why it was rolled (whose legs gave way), the die, what was added and the total, the whole table worst to best with where the roll fell, and the result's name and effect. It stays four turns' length.
+- Josh: "700 jp for one mission" was absurd. JP per battle won 100 → 50 and per expedition 300 → 150 (SPEC §12.1).
+- Old Scar looked like "a little kawaii mouse": the wild boar's sprite pointed at the pack's hamster. It is now the pack's wild boar; no other enemy sprite was mismatched.
+
 ## 2026-11-02 (implementation, Milestone 8au): Crisis refunds, Year assignments explained, a prompt before sealing
 
 - Josh: "for crisis, if more than the max is pledged everyone should get a proportional refund". When the Houses pledge more of a resource than the Need, the excess goes back to each House in proportion to what it pledged (whole units: floors first, leftovers to the largest remainders, then the lower House). Renown for giving counts only what the city used. SPEC §3.5 step 2 notes it.

@@ -117,6 +117,12 @@ export function pickWeighted(rng: Rng, candidates: Combatant[], rule: keyof type
   return scored.at(-1)!.c;
 }
 
+/** The cells an aimed area shape covers at `at`, for showing it before it is cast (shapes around the user cover `at` only). */
+export const areaCells = (shape: string, at: Cell): Cell[] => {
+  const name = shape.split(":")[0];
+  return name === "self" || name === "adjacent" || name === "ring" ? [at] : shapeCells(shape, at, undefined as unknown as Combatant);
+};
+
 /** The cells a shape covers when aimed at `at` (§10.2). Shapes that pick their own targets return []. */
 export function shapeCells(shape: string, at: Cell, user: Combatant): Cell[] {
   const [name, arg] = shape.split(":") as [string, string | undefined];

@@ -5,9 +5,10 @@
 // pipeline exists (HANDOFF §8). Space plays and pauses, the arrows step, Escape closes.
 import { Content, FLAG, replayLine, type Cell, type Command, type Replay, type ReplayUnit, type SovView, type TurnView, type Vitals } from "@vibepulse/shared/games/sovereign-pact";
 import { useEffect, useMemo, useRef, useState, type CSSProperties, type KeyboardEvent } from "react";
+import BattleFx, { landsAt, ScreenFx, strikesOf } from "./BattleFx";
 import CommandBar, { type Aiming } from "./CommandBar";
 import { Emblem, HERALDRY_COLORS } from "./Emblem";
-import ScionSprite, { animFor, lunges, lookOf, type Anim } from "./ScionSprite";
+import ScionSprite, { animFor, lookOf, type Anim } from "./ScionSprite";
 import { spriteOf } from "./sprites";
 import { playSounds, soundsOf } from "./sfx";
 import "./BattleScreen.css";
@@ -17,8 +18,10 @@ type Event = Replay["frames"][number]["ev"][number];
 const COLS = 3;
 const ROWS = 8;
 const LOCS = ["Head", "Body", "Arms", "Legs"];
-/** Milliseconds a turn is shown at 1×. */
-const TURN_MS = 900;
+/** Milliseconds a turn is shown at 1×: the wind-up, the blow, and a beat to read it. */
+const TURN_MS = 1300;
+/** Milliseconds at 1× an attack's frames take before the Scion is back at the ready. */
+const ACT_MS = 700;
 export const SPEEDS = [1, 2, 4] as const;
 
 const words = (id: string) => id.replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
@@ -98,6 +101,7 @@ export interface Live {
   send: (c: Command) => void;
 }
 
+const NONE: Event[] = [];
 const same = (a: Cell, b: Cell) => a.side === b.side && a.col === b.col && a.row === b.row;
 
 export default function BattleScreen({ replay, view, onClose, waiting = 0, fullLog = false, sound = 0, live }: Props) {
@@ -108,7 +112,7 @@ export default function BattleScreen({ replay, view, onClose, waiting = 0, fullL
   const [speed, setSpeed] = useState<(typeof SPEEDS)[number]>(1);
   const last = replay.frames.length;
   const vit = states[at]!;
-  const ev = at > 0 ? replay.frames[at - 1]!.ev : [];
+  const ev = at > 0 ? replay.frames[at - 1]!.ev : NONE;
   // A turn waiting on this seat's command is the one on screen.
   const commanding = live?.turn && at >= last ? live.turn : null;
   const actor = commanding?.unit ?? actorOf(ev);
@@ -116,16 +120,28 @@ export default function BattleScreen({ replay, view, onClose, waiting = 0, fullL
   const pops = popsOf(ev, at, units);
   const injury = ev.find((e) => e.t === "injury");
   const charges = ev.filter((e) => e.t === "charge" && e.telegraph);
+  const strikes = useMemo(() => strikesOf(ev, units), [ev, units]);
+  // A number pops as the blow that made it lands; the turn lasts until the last blow has been read.
+  const landed = new Map<number, number>();
+  for (const s of strikes) if (!landed.has(s.to)) landed.set(s.to, landsAt(s));
+  const turnMs = Math.max(TURN_MS, ...strikes.map((s) => landsAt(s) + 900));
   const root = useRef<HTMLDivElement>(null);
+  const planes = useRef<HTMLDivElement>(null);
+  // A Scion swings once and is back at the ready, not frozen on the swing's last frame.
+  const [settled, setSettled] = useState(-1);
+  useEffect(() => {
+    const t = setTimeout(() => setSettled(at), ACT_MS / speed);
+    return () => clearTimeout(t);
+  }, [at, speed]);
   const log = useRef<HTMLOListElement>(null);
   // The full log (§15.8): every turn so far, to read instead of watch; else this turn's lines.
   const lines = (fullLog ? replay.frames.slice(0, at).flatMap((f, i) => f.ev.map((e) => [i + 1, e] as const)) : ev.map((e) => [at, e] as const)).filter(([, e]) => e.t !== "turn");
 
   useEffect(() => {
     if (!playing || at >= last) return;
-    const t = setTimeout(() => setAt((i) => Math.min(last, i + 1)), (TURN_MS * (injury ? 2 : 1)) / speed);
+    const t = setTimeout(() => setAt((i) => Math.min(last, i + 1)), (turnMs * (injury ? 4 : 1)) / speed);
     return () => clearTimeout(t);
-  }, [playing, at, last, speed, injury]);
+  }, [playing, at, last, speed, injury, turnMs]);
   // A command aimed at a cell; it is dropped once the battle moves on.
   const [aiming, setAiming] = useState<Aiming | null>(null);
   const [aimedAt, setAimedAt] = useState(last);
@@ -134,6 +150,9 @@ export default function BattleScreen({ replay, view, onClose, waiting = 0, fullL
     setAiming(null);
   }
   const aimable = (c: Cell) => (aiming ? aiming.cells.findIndex((x) => same(x, c)) : -1);
+  // An area choice lights everything it would cover from the cell under the cursor.
+  const splash = aiming?.covers ? aiming.covers(aiming.cells[aiming.cursor]!) : [];
+  const splashed = (c: Cell) => splash.some((x) => same(x, c));
   /** The cell a click on `u` aims at: the first of theirs the choice can go to. */
   const aimOn = (u: ReplayUnit): Cell | undefined => {
     const [, , , , , col, row] = vit.get(u.id)!;
@@ -188,7 +207,7 @@ export default function BattleScreen({ replay, view, onClose, waiting = 0, fullL
     // a spell charges, fallen when down, and otherwise at the ready.
     const who = u.person !== undefined ? view.people.find((p) => p.id === u.person) : undefined;
     const scion = who ? lookOf(who, view.houses[who.house]?.colors, view.items) : null;
-    const used = ev.find((e) => e.t === "use" && e.unit === u.id);
+    const used = settled === at ? undefined : ev.find((e) => e.t === "use" && e.unit === u.id);
     const scionAnim: Anim | null = !scion
       ? null
       : flags & (FLAG.dead | FLAG.down)
@@ -199,18 +218,21 @@ export default function BattleScreen({ replay, view, onClose, waiting = 0, fullL
             ? "chant"
             : "idle";
     const aimed = aimOn(u);
+    const cursor = !!aimed && !!aiming && (aiming.covers ? splash.some((c) => c.side === u.side && c.col >= vit.get(u.id)![5] && c.col < vit.get(u.id)![5] + u.size[0] && c.row >= vit.get(u.id)![6] && c.row < vit.get(u.id)![6] + u.size[1]) : same(aimed, aiming.cells[aiming.cursor]!));
     return (
       <div
         key={u.id}
+        data-unit={u.id}
         onClick={aimed ? () => fire(aimed) : undefined}
-        className={`sp-unit sp-unit--${u.side}${aimed ? " is-targetable" : ""}${aimed && aiming && same(aimed, aiming.cells[aiming.cursor]!) ? " is-cursor" : ""}${u.boss ? " is-boss" : ""}${u.hazard ? " is-hazard" : ""}${actor === u.id ? " is-acting" : ""}${flags & FLAG.charging ? " is-charging" : ""}${state}`}
+        onMouseEnter={aimed && aiming ? () => setAiming({ ...aiming, cursor: aiming.cells.findIndex((c) => same(c, aimed)) }) : undefined}
+        className={`sp-unit sp-unit--${u.side}${aimed ? " is-targetable" : ""}${cursor ? " is-cursor" : ""}${u.boss ? " is-boss" : ""}${u.hazard ? " is-hazard" : ""}${actor === u.id ? " is-acting" : ""}${flags & FLAG.charging ? " is-charging" : ""}${state}`}
         style={style}
         title={`${u.name}: ${hp}/${u.maxHp} HP`}
       >
         {scion ? (
           <ScionSprite
             key={`${scionAnim}-${used ? at : 0}`}
-            className={`sp-unit__scion${used && lunges(scionAnim!) ? " is-lunging" : ""}`}
+            className="sp-unit__scion"
             look={scion}
             anim={scionAnim!}
             size="fit"
@@ -221,6 +243,13 @@ export default function BattleScreen({ replay, view, onClose, waiting = 0, fullL
         ) : (
           <span className="sp-unit__body">{u.hazard ? "⚠" : initials(u.name)}</span>
         )}
+        {cursor ? (
+          // Whom the choice will strike, by name, with what they have left.
+          <span className="sp-unit__aim">
+            {u.name} <small>{hp}/{u.maxHp}</small>
+          </span>
+        ) : null}
+        {actor === u.id && !(flags & FLAG.dead) ? <span className="sp-unit__marker" aria-hidden="true" /> : null}
         <span className="sp-unit__hp" aria-hidden="true">
           <span style={{ width: `${pct(hp, u.maxHp)}%` }} />
         </span>
@@ -231,7 +260,7 @@ export default function BattleScreen({ replay, view, onClose, waiting = 0, fullL
           </span>
         ) : null}
         {mine.map((p, i) => (
-          <span key={p.key} className={`sp-pop sp-pop--${p.kind}`} style={{ ["--i" as string]: i }}>
+          <span key={p.key} className={`sp-pop sp-pop--${p.kind}`} style={{ ["--i" as string]: i, ["--impact" as string]: `${Math.round((landed.get(u.id) ?? 0) / speed)}ms` }}>
             {p.text}
             {p.tag ? <small>{p.tag}</small> : null}
           </span>
@@ -248,8 +277,16 @@ export default function BattleScreen({ replay, view, onClose, waiting = 0, fullL
         const col = s === "enemy" ? COLS - 1 - x : x;
         const marked = charges.some((c) => c.t === "charge" && c.target.side === s && c.target.col === col && c.target.row === row);
         const k = aimable({ side: s, col, row });
-        const cls = `sp-cell${marked ? " is-telegraphed" : ""}${k >= 0 ? " is-target" : ""}${k >= 0 && k === aiming?.cursor ? " is-cursor" : ""}`;
-        return <span key={i} className={cls} style={{ gridColumn: x + 1, gridRow: row + 1 }} onClick={k >= 0 ? () => fire({ side: s, col, row }) : undefined} />;
+        const cls = `sp-cell${marked ? " is-telegraphed" : ""}${k >= 0 ? " is-target" : ""}${k >= 0 && k === aiming?.cursor ? " is-cursor" : ""}${splashed({ side: s, col, row }) ? " is-splash" : ""}`;
+        return (
+          <span
+            key={i}
+            className={cls}
+            style={{ gridColumn: x + 1, gridRow: row + 1 }}
+            onClick={k >= 0 ? () => fire({ side: s, col, row }) : undefined}
+            onMouseEnter={k >= 0 && aiming && k !== aiming.cursor ? () => setAiming({ ...aiming, cursor: k }) : undefined}
+          />
+        );
       })}
       {side(s).map(token)}
     </div>
@@ -280,7 +317,8 @@ export default function BattleScreen({ replay, view, onClose, waiting = 0, fullL
   };
 
   return (
-    <div className="sp-battle" role="dialog" aria-modal="true" aria-label={`Battle: ${replay.title}`} tabIndex={-1} ref={root} onKeyDown={keys}>
+    <div className={`sp-battle${aiming ? " is-aiming" : ""}`} role="dialog" aria-modal="true" aria-label={`Battle: ${replay.title}`} tabIndex={-1} ref={root} onKeyDown={keys}>
+      <ScreenFx strikes={strikes} turn={at} speed={speed} />
       <header className="sp-battle__top">
         <strong>{replay.title}</strong>
         {replay.pool ? <span>{Content.POOL_BY_ID.get(replay.pool)?.name ?? words(replay.pool)}</span> : null}
@@ -291,15 +329,22 @@ export default function BattleScreen({ replay, view, onClose, waiting = 0, fullL
           {live ? "Hide the battle" : waiting ? `Next battle (${waiting} more)` : "Close"}
         </button>
       </header>
-      <p className="sp-battle__headline" aria-live="polite">
-        {commanding ? `${name(commanding.unit)}'s turn` : at === 0 ? "The battle is joined." : headline(replay, ev, name)}
+      <p className={`sp-battle__headline${commanding ? " is-yours" : ""}`} aria-live="polite">
+        {commanding
+          ? aiming
+            ? `${name(commanding.unit)}: ${aiming.label}. Choose a target`
+            : `${name(commanding.unit)}'s turn. What do they do?`
+          : at === 0
+            ? "The battle is joined."
+            : headline(replay, ev, name)}
       </p>
       <div className="sp-battle__field">
         <Panel title="Enemies" units={side("enemy").filter((u) => !u.hazard)} vit={vit} actor={actor} />
-        <div className="sp-battle__planes">
+        <div className="sp-battle__planes" ref={planes}>
           {grid("enemy")}
           <div className="sp-battle__gap" aria-hidden="true" />
           {grid("party")}
+          <BattleFx planes={planes} strikes={strikes} turn={at} speed={speed} />
           {injury && injury.t === "injury" ? <Injury e={injury} name={name(injury.target)} /> : null}
         </div>
         <Panel title="The party" units={side("party")} vit={vit} actor={actor} color={color} />
@@ -414,14 +459,34 @@ function Bar({ kind, value, max }: { kind: string; value: number; max: number })
 /** The injury roll's moment (§15.4): the d20, the total, and the result in its band's color. */
 function Injury({ e, name }: { e: Extract<Event, { t: "injury" }>; name: string }) {
   const res = Content.INJURY_BY_ID.get(e.result);
+  const table = Content.INJURY_TABLES.find((x) => x.id === e.table);
+  const where = e.table === "sanity" ? "mind" : e.table;
+  const bonus = e.total - e.roll;
   return (
     <div className={`sp-injury sp-injury--${res?.band ?? "mild"}`} role="status">
+      <small className="sp-injury__why">{e.table === "sanity" ? `${name}'s mind is breaking` : `${name}'s ${where} ${where === "legs" || where === "arms" ? "give" : "gives"} way`}: a roll for injury</small>
       <span className="sp-injury__die">{e.roll}</span>
-      <span>
-        {name}, {e.table === "sanity" ? "Sanity" : words(e.table)}: {e.total}
-        {e.rerolled !== undefined ? ` (rerolled a ${e.rerolled})` : ""}
+      <span className="sp-injury__sum">
+        d20 rolled {e.roll}
+        {e.rerolled !== undefined ? ` (the Dice of the Marches rerolled a ${e.rerolled})` : ""}
+        {bonus ? `, ${bonus > 0 ? "+" : ""}${bonus} from Resilience${e.table === "sanity" ? " and Sagacity" : ""}, traits and how they were struck` : ""} = <b>{e.total}</b>
       </span>
+      {table ? (
+        // The whole table, worst to best, with where this roll fell.
+        <ol className="sp-injury__ladder" aria-label={`${words(e.table)} injury table`}>
+          {table.results.map((r, i) => {
+            const from = i ? table.results[i - 1]!.max + 1 : 1;
+            return (
+              <li key={r.id} className={`sp-injury__rung sp-injury__rung--${r.band}${r.id === e.result ? " is-hit" : ""}`} title={`${r.max >= 99 ? `${from}+` : from === r.max ? from : `${from}–${r.max}`}: ${r.name}. ${r.text}`}>
+                <small>{r.max >= 99 ? `${from}+` : from === r.max ? from : `${from}–${r.max}`}</small>
+              </li>
+            );
+          })}
+        </ol>
+      ) : null}
       <strong>{res?.name ?? words(e.result)}</strong>
+      {res?.text ? <p className="sp-injury__text">{res.text}</p> : null}
+      {e.tooth ? <p className="sp-injury__text">The Saint's Tooth turned a mortal wound into this.</p> : null}
     </div>
   );
 }

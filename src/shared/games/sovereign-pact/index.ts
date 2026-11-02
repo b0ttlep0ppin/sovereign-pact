@@ -47,6 +47,7 @@ export { FLAG, replayLine, type Replay, type ReplayUnit, type Vitals } from "./c
 export type { Aim, Choice, ComboMove, ComboView, Command, FightView, TurnView } from "./fight.ts";
 export { fitsPattern } from "./combat/combos.ts";
 export type { Cell } from "./combat/types.ts";
+export { areaCells } from "./combat/grid.ts";
 export { deploy } from "./formation.ts";
 export { BEARDS, HEADWEAR, HAIR_COLORS, HAIR_LONG, HAIR_SHORT, HAIR_STYLES, styleOf } from "./style.ts";
 

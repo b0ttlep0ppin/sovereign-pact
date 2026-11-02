@@ -116,7 +116,8 @@ export function command(s: SovState, house: number, c: Command): string | null {
 }
 
 /** How a choice is aimed: at the Scion themself, at one of `targets`, or at any cell of `side` (an area). */
-export type Aim = { aim: "self" } | { aim: "unit"; targets: Cell[] } | { aim: "area"; side: Side };
+/** `shape`: an area choice's shape, so the screen can show what it will cover (`areaCells`). */
+export type Aim = { aim: "self" } | { aim: "unit"; targets: Cell[] } | { aim: "area"; side: Side; shape: string };
 
 /** One thing the Scion may do this turn, or could if not for `why`. */
 export interface Choice {
@@ -182,7 +183,7 @@ const NO_AIM = new Set(["self", "all", "line", "nearest", "random", "front_each_
 function aimOf(b: Battle, u: Combatant, ab: AbilityDef): Aim {
   if (ab.side === "self" || ab.summon || ab.form || ab.revert || ab.raise || ab.call || ab.devour || ab.song || NO_AIM.has(ab.shape.split(":")[0]!)) return { aim: "self" };
   if (isSingle(ab)) return { aim: "unit", targets: singleTargets(b, u, ab).map(cellOf) };
-  return { aim: "area", side: targetSide(u, ab) };
+  return { aim: "area", side: targetSide(u, ab), shape: ab.shape };
 }
 
 /** Why the ability has nothing to aim at, beyond `cannotUse`. */
