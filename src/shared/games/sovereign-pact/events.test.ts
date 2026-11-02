@@ -253,6 +253,40 @@ describe("the lasting effects (§9.4)", () => {
   });
 });
 
+describe("each Scion's own choice and Forks (§9.3, §9.4)", () => {
+  it("puts an each_scion event to every Scion: their House picks for each, and each meets their own outcome", () => {
+    let s = underway(2);
+    s.expedition!.chain = ["event", "boss"];
+    s.expedition!.seen = TRIP_EVENTS.filter((d) => d.id !== "mirror_pool").map((d) => d.id);
+    s = move(s, "p1", { type: "press_on" });
+    const ev = s.expedition!.event!;
+    expect(ev.id).toBe("mirror_pool");
+    const [a, b] = ofHouse(s, 0);
+    const [c, d] = ofHouse(s, 1);
+    expect(Object.keys(ev.picks!).map(Number).sort((x, y) => x - y)).toEqual([a, b, c, d].sort((x, y) => x! - y!));
+    expect(error(s, "p1", { type: "decide", option: 0, person: c })).toMatch(/your own Scions/);
+    s = move(s, "p1", { type: "decide", option: 1, person: a });
+    expect(error(s, "p1", { type: "decide", option: 1, person: a })).toMatch(/already chosen/);
+    expect(g.activePlayers(s)).toEqual(["p1", "p2"]);
+    s = move(s, "p1", { type: "decide", option: 1, person: b });
+    expect(g.activePlayers(s)).toEqual(["p2"]);
+    s = move(s, "p2", g.botMove!(s, "p2", undefined as never));
+    s = move(s, "p2", g.botMove!(s, "p2", undefined as never));
+    expect(s.expedition!.event).toBeUndefined();
+    expect(s.log.filter((l) => l.startsWith("Look away.")).length).toBe(4);
+  });
+
+  it("a Fork drops places ahead and puts others next, never the boss", () => {
+    const s = underway(1);
+    s.expedition!.chain = ["camp", "event", "encounter", "camp", "boss"];
+    s.expedition!.at = 2;
+    resolve(s, option("leader", { fork: { drop: 1, add: ["cache", "event"] } }));
+    expect(s.expedition!.chain).toEqual(["camp", "event", "cache", "event", "camp", "boss"]);
+    resolve(s, option("leader", { fork: { drop: 4 } }));
+    expect(s.expedition!.chain).toEqual(["camp", "event", "boss"]);
+  });
+});
+
 describe("the content and the bot", () => {
   it("names only real cards, traits, statuses and town events", () => {
     const houseTags = new Set(HOUSE_TRAITS.flatMap((t) => [t.id, ...(t.tags ?? [])]));

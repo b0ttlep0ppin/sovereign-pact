@@ -1,0 +1,68 @@
+{
+  "id": "rift_scar",
+  "pools": [
+    "general"
+  ],
+  "weight": 3,
+  "band": [
+    1,
+    10
+  ],
+  "title": "The Rift Scar",
+  "text": "The ground ahead is torn open in a seam of light that hums in your teeth. The way around is long.",
+  "options": [
+    {
+      "id": "cross",
+      "label": "Cross it.",
+      "rule": "leader",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "It hums through you and is gone. Nobody can say what it changed.",
+          "effects": [
+            {
+              "sanity": -10,
+              "to": "party"
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "It hums through you and leaves you sharper.",
+          "effects": [
+            {
+              "jp": 20,
+              "to": "party"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "around",
+      "label": "Go the long way around.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The long way has its own dangers.",
+          "effects": [
+            {
+              "fork": {
+                "add": [
+                  "encounter"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

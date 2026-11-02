@@ -10,17 +10,21 @@ import door_with_your_emblem from "./door_with_your_emblem.json" with { type: "j
 import feast_of_crows from "./feast_of_crows.json" with { type: "json" };
 import field_of_flowers from "./field_of_flowers.json" with { type: "json" };
 import hanging_garden from "./hanging_garden.json" with { type: "json" };
+import hidden_trapdoor from "./hidden_trapdoor.json" with { type: "json" };
 import hollow_ivory from "./hollow_ivory.json" with { type: "json" };
 import hunters_mark from "./hunters_mark.json" with { type: "json" };
 import lantern_keeper from "./lantern_keeper.json" with { type: "json" };
+import mirror_pool from "./mirror_pool.json" with { type: "json" };
 import narrow_crack from "./narrow_crack.json" with { type: "json" };
 import offer_of_wings from "./offer_of_wings.json" with { type: "json" };
 import old_soldiers_grave from "./old_soldiers_grave.json" with { type: "json" };
+import rift_scar from "./rift_scar.json" with { type: "json" };
 import saints_tongue from "./saints_tongue.json" with { type: "json" };
 import still_warm_camp from "./still_warm_camp.json" with { type: "json" };
 import the_lullaby from "./the_lullaby.json" with { type: "json" };
 import the_toll from "./the_toll.json" with { type: "json" };
 import tithe_men from "./tithe_men.json" with { type: "json" };
+import twins from "./twins.json" with { type: "json" };
 import weeping_statue from "./weeping_statue.json" with { type: "json" };
 
 export default [
@@ -35,16 +39,20 @@ export default [
   feast_of_crows,
   field_of_flowers,
   hanging_garden,
+  hidden_trapdoor,
   hollow_ivory,
   hunters_mark,
   lantern_keeper,
+  mirror_pool,
   narrow_crack,
   offer_of_wings,
   old_soldiers_grave,
+  rift_scar,
   saints_tongue,
   still_warm_camp,
   the_lullaby,
   the_toll,
   tithe_men,
+  twins,
   weeping_statue,
 ];

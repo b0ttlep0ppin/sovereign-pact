@@ -1,0 +1,42 @@
+{
+  "id": "hidden_trapdoor",
+  "pools": [
+    "delve",
+    "faceless_city",
+    "forge_ruins"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    10
+  ],
+  "title": "The Hidden Trapdoor",
+  "text": "The floor gives way under the one with the most weight on their back, and the rest of you go after them, down into a shorter, darker way.",
+  "options": [
+    {
+      "id": "fall",
+      "label": "Down you go.",
+      "rule": "scion:heaviest_gear",
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The fall is short and the way is shorter. Something lives down here.",
+          "effects": [
+            {
+              "durability": -20,
+              "loc": "legs"
+            },
+            {
+              "fork": {
+                "drop": 2,
+                "add": [
+                  "encounter"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
