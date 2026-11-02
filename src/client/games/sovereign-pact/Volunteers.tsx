@@ -6,7 +6,8 @@ import { useState } from "react";
 import { inkOf } from "./Emblem";
 import { JOB_ICONS } from "./icons";
 import { BONE, GILT, PixelArt } from "./PixelArt";
-import { BUST, STATS, TAROT_BY_ID, TraitLine } from "./Roster";
+import { BUST, TAROT_BY_ID, TraitLine } from "./Roster";
+import { AffinityRow, StatGrid } from "./Stats";
 import ScionSprite, { lookOf } from "./ScionSprite";
 
 type Muster = NonNullable<SovView["muster"]>;
@@ -93,17 +94,8 @@ function VolunteerCard({ v, crunch, picked, onPick }: { v: Volunteer; crunch: bo
           </button>
         ) : null}
       </header>
-      {v.base ? (
-        <dl className="sp-person__stats">
-          {STATS.map((s, i) => (
-            <div key={s} title={s}>
-              <dt>{s.slice(0, 3)}</dt>
-              <dd>{v.base![i]}</dd>
-              {v.growth ? <small className="sp-person__growth" title={`${s} growth per level`}>+{(v.growth[i]! / 100).toFixed(1)}</small> : null}
-            </div>
-          ))}
-        </dl>
-      ) : null}
+      {v.base ? <StatGrid base={v.base} stats={v.stats} from={v.statFrom} growth={v.growth} /> : null}
+      {v.aff ? <AffinityRow aff={v.aff} from={v.affFrom} /> : null}
       {v.potential ? (
         <p className="sp-person__meta">
           {v.potential[0]!.toUpperCase()}
@@ -111,7 +103,7 @@ function VolunteerCard({ v, crunch, picked, onPick }: { v: Volunteer; crunch: bo
         </p>
       ) : null}
       <ul className="sp-person__traits">
-        {v.tarot ? <TraitLine kind="Tarot" name={tarot?.name ?? words(v.tarot)} text={crunch ? tarot?.crunch : undefined} /> : null}
+        {v.tarot ? <TraitLine kind="Tarot" tarot={v.tarot} name={tarot?.name ?? words(v.tarot)} text={crunch ? tarot?.crunch : undefined} /> : null}
         {v.traits.map((id) => {
           const t = Content.TRAIT_BY_ID.get(id);
           return <TraitLine key={id} name={t?.name ?? words(id)} text={crunch ? t?.crunch : t?.flavor} />;
