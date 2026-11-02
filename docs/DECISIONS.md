@@ -2,6 +2,27 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 8ai): each Seat's district has its own layout
+
+- Josh: "Maybe different configurations for buildings locations." On the Town Map, each Seat's district is now a small grid of its own, with three kinds of cell:
+  - **The hall:** the Seat's silhouette and name, where resting Scions stand.
+  - **Building plots:** buildings fill them in content order. Empty plots show as faint foundations.
+  - **Scenery** that gives each Seat its shape:
+
+| Seat | Layout |
+|---|---|
+| Keep | A walled yard |
+| Chateau | Gardens |
+| Manor | Fields |
+| Abbey | Graves |
+| Spire | One tall tower above rocks |
+| Catacomb Hall | Its hall sunk at the bottom among graves |
+| Longhall | A wide hall and trees |
+| Harbor House | A quay above water |
+
+- A House that outgrows its plots gets plain rows added below.
+- The layouts are client data (`seatLayouts.ts`, one string per row), so the Oryx tiles can replace the drawn cells later without changing them.
+
 ## 2026-11-02 (Milestone 8ah): Seats get an advantage and a drawback — Josh
 
 - Josh: "make a silhouette and building locations and other pros cons to each type of household, be it keep spire etc." This replaces the batch 1 decision that Seats are purely cosmetic (SPEC §5.5 updated).
