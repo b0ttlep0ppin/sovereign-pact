@@ -2,6 +2,17 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 8e): the Settlement Phase's decisions
+
+- A Decisions panel gathers what the Settlement Phase asks of a House (§15.2, §15.7):
+  - **The open vote:** its question, its options, and each House's hand as its emblem, cast in the open. A House votes from it.
+  - **Town events:** each one the House decides, with its options. A House event is marked as seen only by its House. Once a House has chosen, it sees its choice and which Houses are still deciding.
+  - **The Crisis:** its Need (public), the House's own pledge so far (private), a pledge form for each thing it needs (Gold, materials) capped at what the House holds, and the temptation, where there is one.
+  - **Dark Bargains:** each whispered offer, with Accept (naming the rival House a bane falls on) or Refuse.
+- Readings:
+  - The panel also shows in the Expedition Phase, for a Bargain that comes then (the Gate's Reflection, Year 20). Votes, events and the Crisis belong to the Settlement Phase, so only Bargains appear there.
+  - Pledging and the temptation wait for an unsealed Year, as the rules do. Voting and choosing do not, as the rules allow them sealed.
+
 ## 2026-11-02 (implementation, Milestone 8d): the Rift Gate's cards and the expedition's chain
 
 - The Settlement Phase shows the Rift Gate's offer as cards (§9.1). Each card shows:
