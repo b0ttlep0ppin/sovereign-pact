@@ -39,7 +39,7 @@
     {
       "id": "sin",
       "label": "Each Scion leaves a sin.",
-      "rule": "each_scion",
+      "rule": "vote",
       "tags": [
         "kind"
       ],
@@ -49,6 +49,7 @@
           "text": "Lighter, every one.",
           "effects": [
             {
+              "to": "party",
               "sanity": 8
             }
           ]

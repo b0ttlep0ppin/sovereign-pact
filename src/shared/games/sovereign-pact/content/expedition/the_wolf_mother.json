@@ -1,0 +1,89 @@
+{
+  "id": "the_wolf_mother",
+  "pools": [
+    "beast_lands"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    6
+  ],
+  "title": "The Wolf Mother",
+  "text": "A she-wolf the size of a horse lies across the path with her cubs. She is not hungry. She is tired.",
+  "options": [
+    {
+      "id": "wait",
+      "label": "Wait for her to move.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "She moves at dusk, and lets you pass.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gentle",
+      "label": "The gentlest walks past her slowly.",
+      "rule": "scion:fewest_kills|scion:highest:sagacity",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "She watches them go by, and a cub follows a while.",
+          "effects": [
+            {
+              "blessing": {
+                "trait": "lucky",
+                "years": 1
+              }
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "She snaps, once, in warning.",
+          "effects": [
+            {
+              "durability": -30,
+              "loc": "arms"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "drive",
+      "label": "Drive her off.",
+      "rule": "leader",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "She will not be driven.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "surprise",
+                "level": 1
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

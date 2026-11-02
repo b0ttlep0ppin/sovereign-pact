@@ -1,0 +1,85 @@
+{
+  "id": "the_last_lamp",
+  "pools": [
+    "outer_dark"
+  ],
+  "weight": 2,
+  "band": [
+    6,
+    10
+  ],
+  "title": "The Last Lamp",
+  "text": "A lamp burns in the dark with no one to tend it. As long as it burns, the dark stays back.",
+  "options": [
+    {
+      "id": "carry",
+      "label": "Carry it.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The dark stays back as long as you have it.",
+          "effects": [
+            {
+              "to": "party",
+              "status": "protect"
+            },
+            {
+              "to": "party",
+              "sanity": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "feed",
+      "label": "Each Scion feeds it a memory.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It burns brighter.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -5
+            },
+            {
+              "to": "party",
+              "xp": 40
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "out",
+      "label": "Put it out.",
+      "rule": "leader",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The dark comes in.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "ambush",
+                "level": 1
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

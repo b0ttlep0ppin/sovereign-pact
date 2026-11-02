@@ -1,0 +1,82 @@
+{
+  "id": "the_prisoner_exchange",
+  "pools": [
+    "rescue"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    10
+  ],
+  "title": "The Prisoner Exchange",
+  "text": "A rival House found your Lost first and offers them back, for a favor to be named later.",
+  "options": [
+    {
+      "id": "accept",
+      "label": "Accept.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "They come home. The favor will be called.",
+          "effects": [
+            {
+              "skip": 2
+            },
+            {
+              "accord": -2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bargain",
+      "label": "The shrewdest bargains for gold instead.",
+      "rule": "scion:highest:guile",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Gold, not favors.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -20
+              }
+            },
+            {
+              "skip": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "refuse",
+      "label": "Refuse, and find them yourselves.",
+      "rule": "leader",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The long way.",
+          "effects": [
+            {
+              "score": {
+                "valor": 1
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

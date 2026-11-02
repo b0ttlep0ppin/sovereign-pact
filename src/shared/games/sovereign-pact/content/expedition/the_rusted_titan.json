@@ -1,0 +1,88 @@
+{
+  "id": "the_rusted_titan",
+  "pools": [
+    "forge_ruins"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    9
+  ],
+  "title": "The Rusted Titan",
+  "text": "A war machine the size of a tower lies on its side, rusted solid. Its heart still glows.",
+  "options": [
+    {
+      "id": "heart",
+      "label": "Pry out the heart.",
+      "rule": "scion:highest:might",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "It comes free, warm as a coal.",
+          "effects": [
+            {
+              "resources": {
+                "essence": 6,
+                "iron": 3
+              }
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "The titan's eye opens.",
+          "effects": [
+            {
+              "encounter": {
+                "level": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "study",
+      "label": "The cleverest studies its making.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Old forge-craft, for the House's smiths.",
+          "effects": [
+            {
+              "house_improvement": "shop"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "strip",
+      "label": "Strip the plates.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Iron, a lot of it.",
+          "effects": [
+            {
+              "resources": {
+                "iron": 6
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

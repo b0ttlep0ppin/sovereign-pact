@@ -1,0 +1,83 @@
+{
+  "id": "the_witch_hut",
+  "pools": [
+    "hollow_wood"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    7
+  ],
+  "title": "The Witch's Hut",
+  "text": "A hut on chicken legs scratches in the leaves. The witch inside offers a trade: a year of your life for a cure.",
+  "options": [
+    {
+      "id": "trade",
+      "label": "The most wounded trades.",
+      "rule": "scion:injured:any|scion:lowest:sanity",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The wound closes. They feel older.",
+          "effects": [
+            {
+              "mend": true
+            },
+            {
+              "stat": {
+                "speed": -1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "haggle",
+      "label": "The shrewdest haggles her down.",
+      "rule": "scion:highest:guile",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "A month instead of a year.",
+          "effects": [
+            {
+              "to": "party",
+              "status": "regen"
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "She is insulted.",
+          "effects": [
+            {
+              "curse": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "leave",
+      "label": "Leave her be.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The hut follows a while, then loses interest.",
+          "effects": []
+        }
+      ]
+    }
+  ]
+}
