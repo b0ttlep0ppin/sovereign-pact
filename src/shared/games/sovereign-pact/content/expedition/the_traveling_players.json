@@ -1,0 +1,90 @@
+{
+  "id": "the_traveling_players",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    10
+  ],
+  "title": "The Traveling Players",
+  "text": "A troupe of players on the otherworld road, putting on a play about your Houses. They have the details wrong. Mostly.",
+  "options": [
+    {
+      "id": "watch",
+      "label": "Watch the play.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It is a good play. You learn something about how others see you.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 10
+            },
+            {
+              "score": {
+                "intrigue": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "correct",
+      "label": "The best talker corrects them.",
+      "rule": "scion:highest:guile",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "They rewrite it on the spot. Word will spread, your way.",
+          "effects": [
+            {
+              "score": {
+                "renown": 2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pay",
+      "label": "Pay them to change the villain to a rival House.",
+      "rule": "house:highest_standing",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "They take the coin and the note gladly.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -10
+              }
+            },
+            {
+              "score": {
+                "intrigue": 2
+              }
+            },
+            {
+              "accord": -1
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

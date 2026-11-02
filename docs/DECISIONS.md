@@ -2,6 +2,10 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 7v: fourteen more general events) — implementer
+- **Built** (content only). Fourteen general expedition events: the Overturned Cart, the Struck Oak, the Singing Blade, the Honey Hall, the Ghost Caravan, the Blind Archer, the Glass Bridge, the Other Party, the Forgotten God, the Lame Horse, the Nest of Knives, the Last Dance, the Rust Moths and the Traveling Players. That makes 148 expedition events, 88 of them open to any card.
+- **Reading:** each uses only effects and subject rules the rules already have. In the Traveling Players the cruel option (paying to cast a rival House as the villain) falls to the House highest in Standing and costs Accord, as sabotage that is visible but deniable.
+
 ## 2026-11-02 (implementation, Milestone 7u: a third event for each pool) — implementer
 - **Built** (content only). Fourteen pool events, one more for each region and a fourth for the Pit and the Outer Dark, the two thinnest: the Pack Den, the Ring of Mushrooms, the Bog Light, the Grave Robbers, the Avalanche Bell, the Brimstone Spring, the Forge Spirit, the Mask Seller, the Procession, Six Pilgrims, the Wyrm Graveyard, the Unlit Stars, the Pit Brawl and the Door Out. That makes 134 expedition events.
 - **Reading:** the Pack Den brings home a recruit (`house_improvement: recruit`): a pup raised in the House stands for a new follower, as that effect already allows.

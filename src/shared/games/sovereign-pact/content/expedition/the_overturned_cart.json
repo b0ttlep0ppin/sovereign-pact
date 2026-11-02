@@ -1,0 +1,96 @@
+{
+  "id": "the_overturned_cart",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    7
+  ],
+  "title": "The Overturned Cart",
+  "text": "A cart on its side in a ditch, its mule long gone. Sacks of grain, a locked chest, and a smell of something that is not grain.",
+  "options": [
+    {
+      "id": "chest",
+      "label": "The craftiest picks the chest.",
+      "rule": "scion:highest:guile",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "Coin, and a letter that someone in town would pay to see.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 15
+              }
+            },
+            {
+              "score": {
+                "intrigue": 1
+              }
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "A needle in the lock, and something on the needle.",
+          "effects": [
+            {
+              "status": "poison"
+            },
+            {
+              "resources": {
+                "gold": 5
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "smell",
+      "label": "Find out what the smell is.",
+      "rule": "scion:highest:resilience",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Whatever ate the mule is still in the ditch.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "surprise"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "grain",
+      "label": "Take the grain and go.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Bread for a week.",
+          "effects": [
+            {
+              "to": "party",
+              "durability": 10
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

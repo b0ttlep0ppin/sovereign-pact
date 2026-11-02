@@ -1,0 +1,93 @@
+{
+  "id": "the_honey_hall",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    8
+  ],
+  "title": "The Honey Hall",
+  "text": "An old hall gone to the bees, honey dripping from the rafters. The bees are huge, slow, and very curious.",
+  "options": [
+    {
+      "id": "honey",
+      "label": "Gather honey.",
+      "rule": "leader",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "The bees allow it, this once.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 10
+            },
+            {
+              "resources": {
+                "gold": 8
+              }
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "The bees do not allow it.",
+          "effects": [
+            {
+              "to": "party",
+              "durability": -15
+            },
+            {
+              "status": "poison"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "smoke",
+      "label": "The cleverest smokes them out first.",
+      "rule": "scion:highest:acuity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Sleepy bees and a great deal of honey.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 12
+              }
+            },
+            {
+              "to": "party",
+              "sanity": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "leave",
+      "label": "Leave them to it.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "They follow you to the door, humming.",
+          "effects": []
+        }
+      ]
+    }
+  ]
+}

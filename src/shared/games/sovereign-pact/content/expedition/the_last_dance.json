@@ -1,0 +1,85 @@
+{
+  "id": "the_last_dance",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    10
+  ],
+  "title": "The Last Dance",
+  "text": "Music from a ruined ballroom, and ghosts dancing. One of them holds out a hand to the party's most troubled soul.",
+  "options": [
+    {
+      "id": "dance",
+      "label": "The most troubled takes the hand.",
+      "rule": "scion:lowest:sanity",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "One dance, slow, and they come out lighter.",
+          "effects": [
+            {
+              "sanity": 25
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "One dance, and then another, and another.",
+          "effects": [
+            {
+              "sanity": -10
+            },
+            {
+              "status": "sleep"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "everyone",
+      "label": "Everyone dances.",
+      "rule": "vote",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It is a very long night, and a good one.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 10
+            },
+            {
+              "to": "party",
+              "durability": -5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "leave",
+      "label": "Leave them to their ball.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The music follows you to the edge of the ruin.",
+          "effects": []
+        }
+      ]
+    }
+  ]
+}

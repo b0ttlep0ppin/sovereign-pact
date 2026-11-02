@@ -1,0 +1,91 @@
+{
+  "id": "the_forgotten_god",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    10
+  ],
+  "title": "The Forgotten God",
+  "text": "A little shrine to a god nobody remembers, overgrown. The god is very small now, and very pleased to see anyone.",
+  "options": [
+    {
+      "id": "worship",
+      "label": "Leave it an offering.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It does what it can, which is a little.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 10
+            },
+            {
+              "blessing": {
+                "trait": "lucky",
+                "years": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bargain",
+      "label": "The cleverest strikes a bargain with it.",
+      "rule": "scion:highest:guile",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It gives far more than it should for a promise of remembrance.",
+          "effects": [
+            {
+              "growth": {
+                "all": 5
+              }
+            },
+            {
+              "score": {
+                "lore": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "break",
+      "label": "Break the shrine.",
+      "rule": "leader",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A very small voice, cursing.",
+          "effects": [
+            {
+              "curse": true
+            },
+            {
+              "resources": {
+                "gold": 5
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

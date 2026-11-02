@@ -1,0 +1,82 @@
+{
+  "id": "the_rust_moths",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    10
+  ],
+  "title": "The Rust Moths",
+  "text": "A cloud of moths with wings the color of rust settles over the party. Where they land, iron turns orange.",
+  "options": [
+    {
+      "id": "run",
+      "label": "Run before they eat the gear.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Most of the gear makes it. Some of the armor does not.",
+          "effects": [
+            {
+              "to": "party",
+              "durability": -10,
+              "loc": "body"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "heaviest",
+      "label": "The most armored draws them off.",
+      "rule": "scion:heaviest_gear",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "They feast on that armor until it falls apart, and the rest of you go free.",
+          "effects": [
+            {
+              "durability": -40,
+              "loc": "body"
+            },
+            {
+              "score": {
+                "valor": 2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "smoke",
+      "label": "Smoke them out with a fire.",
+      "rule": "scion:highest:acuity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Sleepy moths, and their dust is worth something.",
+          "effects": [
+            {
+              "resources": {
+                "essence": 2
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
