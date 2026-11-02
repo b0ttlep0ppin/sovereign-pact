@@ -20,7 +20,22 @@ type Person = SovView["people"][number];
 type Assignment = NonNullable<SovView["mine"]>["assign"][number];
 
 /** A place a chit can be dropped. */
-export type Place = { kind: "rest" } | { kind: "guard" } | { kind: "sortie" } | { kind: "building"; id: string };
+export type Place = { kind: "idle" } | { kind: "rest" } | { kind: "guard" } | { kind: "sortie" } | { kind: "building"; id: string };
+
+/** What a Year at each place does (§8.3), shown on hover. */
+const PLACE_TEXT: Record<string, string> = {
+  idle: "Not assigned: they idle this Year and recover only 10% Sanity. Drag each one to a place.",
+  rest: "Rest: recover 25% Sanity; injuries heal at the usual pace. Room for everyone.",
+  guard: "Guard the walls: theft, hauntings and sabotage aimed at your House are weakened. 2 places.",
+  sortie: "Sortie through the Rift Gate: a short fight by gambits for XP and JP, and a chance of loot. They can be hurt. 4 places.",
+  chapel: "Chapel: Sanity fully restored and mental ailments cured. 2, 4 or 6 places by its level.",
+  infirmary: "Infirmary: one injury heals a Year sooner, and disease is cured. 1, 2 or 4 places by its level.",
+  scriptorium: "Study: JP in their current Job without a Mentor (slower than training).",
+  training_ground: "Train or teach: a Scion trains for JP and XP under a Mentor (XP up to the Mentor's level − 1); a Retired Scion here teaches.",
+  work: "Work: adds 4 to this building's output this Year.",
+};
+const placeText = (place: Place): string =>
+  place.kind === "building" ? (PLACE_TEXT[place.id] ?? (BUILDING_TASK[place.id] === "work" ? PLACE_TEXT.work! : "")) : PLACE_TEXT[place.kind]!;
 
 /** What each House building does with a person dropped on it; buildings with no assignment are not targets. */
 const BUILDING_TASK: Record<string, "chapel" | "infirmary" | "study" | "train" | "work"> = {
@@ -37,6 +52,7 @@ const BUILDING_TASK: Record<string, "chapel" | "infirmary" | "study" | "train" |
 /** Short marks for buildings and projects until their tiles exist. */
 /** The move that puts `p` at `place`, or null if it takes no one. */
 export function moveFor(view: SovView, p: Person, place: Place): SovMove | null {
+  if (place.kind === "idle") return { type: "assign", person: p.id, to: "idle" };
   if (place.kind === "rest") return { type: "assign", person: p.id, to: "rest" };
   if (place.kind === "guard") return { type: "assign", person: p.id, to: "guard" };
   if (place.kind === "sortie") {
@@ -53,7 +69,9 @@ export function moveFor(view: SovView, p: Person, place: Place): SovMove | null 
 
 /** Where a person's chit stands, from their assignment. */
 export function placeOf(a: Assignment | undefined): Place {
-  if (!a || a.to === "rest") return { kind: "rest" };
+  // Unassigned people idle (§8.3), apart from those resting: they wait in their own tray.
+  if (!a) return { kind: "idle" };
+  if (a.to === "rest") return { kind: "rest" };
   if (a.to === "guard") return { kind: "guard" };
   if (a.to === "sortie") return { kind: "sortie" };
   if (a.to === "work") return { kind: "building", id: a.at ?? "" };
@@ -94,6 +112,7 @@ export default function TownMap({ view, sendMove, canAssign }: Props) {
   const target = (key: string, place: Place, mineHere: boolean) => {
     const live = canAssign && mineHere;
     return {
+      title: placeText(place) || undefined,
       "data-target": live ? "yes" : undefined,
       "data-over": over === key && live ? "yes" : undefined,
       onDragOver: live ? (e: DragEvent) => (e.preventDefault(), setOver(key)) : undefined,
@@ -138,6 +157,13 @@ export default function TownMap({ view, sendMove, canAssign }: Props) {
           <span key={i} style={{ left: `${(i * 37) % 100}%`, opacity: 0.3 + view.doom / 200 }} />
         ))}
       </div>
+      {canAssign && at({ kind: "idle" }).length ? (
+        <section {...target("idle", { kind: "idle" }, true)} className="sp-map__idle" aria-label="Not yet assigned">
+          <strong>Not yet assigned</strong>
+          <small>They idle this Year (Sanity +10% only) unless you give them a place.</small>
+          <div className="sp-chits">{chits({ kind: "idle" })}</div>
+        </section>
+      ) : null}
       <div className="sp-map__ground">
         <section {...target("gate", { kind: "sortie" }, true)} className="sp-map__gate" aria-label="The Rift Gate">
           <span className="sp-map__gate-tear" aria-hidden="true" />

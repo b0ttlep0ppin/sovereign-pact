@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { applyEffects } from "./effects.ts";
-import { bandOf, crisisScore, resolveCrisis, year20, yearBand } from "./crisis.ts";
+import { bandOf, crisisScore, refundExcess, resolveCrisis, year20, yearBand } from "./crisis.ts";
 import { TOWN_EVENT_BY_ID, TOWN_EVENTS } from "./content.ts";
 import { sovereignPact, type SovMove, type SovState } from "./index.ts";
 import { calm, campaign } from "./testing.ts";
@@ -28,6 +28,23 @@ function winter(): SovState {
 }
 
 describe("Crises (§3.5)", () => {
+  it("gives back what is pledged beyond the Need, in proportion to what each House gave (Josh 2026-11-02)", () => {
+    const s = winter();
+    // 60 and 30 against a Need of 40: 50 too much, back 2:1, so 33 and 17, the odd one to the larger remainder.
+    s.crisis!.pledges = [{ grain: 60 }, { grain: 30 }];
+    s.houses[0]!.stores.grain = 140;
+    s.houses[1]!.stores.grain = 170;
+    refundExcess(s);
+    expect(s.houses.map((h) => h.stores.grain)).toEqual([173, 187]);
+    expect(s.crisis!.pledges).toEqual([{ grain: 27 }, { grain: 13 }]);
+    expect(crisisScore(s)).toBe(100);
+    // Short of the Need, nothing comes back.
+    const t = winter();
+    t.crisis!.pledges = [{ grain: 20 }, { grain: 10 }];
+    refundExcess(t);
+    expect(t.houses.map((h) => h.stores.grain)).toEqual([200, 200]);
+  });
+
   it("takes private pledges of what is needed, shown to no other House", () => {
     let s = winter();
     s = move(s, "p1", { type: "crisis_pledge", give: { grain: 15 } });

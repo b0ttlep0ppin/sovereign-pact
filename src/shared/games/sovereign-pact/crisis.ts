@@ -90,6 +90,39 @@ export function bandOf(score: number): "triumph" | "holds" | "falters" | "calami
   return score >= C.bands.triumph ? "triumph" : score >= C.bands.holds ? "holds" : score >= C.bands.falters ? "falters" : "calamity";
 }
 
+/**
+ * Josh 2026-11-02: what the Houses pledge beyond a resource's Need goes back to them in proportion to
+ * what each gave (whole units, the odd ones to the largest remainders, then the earlier House). The
+ * pledges then hold only what the city used, which is what earns Renown.
+ */
+export function refundExcess(s: SovState): void {
+  const c = s.crisis;
+  if (!c) return;
+  let refunded = false;
+  for (const [k, need] of Object.entries(c.need)) {
+    const total = c.pledges.reduce((a, p) => a + (p[k] ?? 0), 0);
+    const excess = total - (need ?? 0);
+    if (excess <= 0) continue;
+    const shares = c.pledges.map((p, i) => ({ i, exact: ((p[k] ?? 0) * excess) / total }));
+    const back = shares.map((x) => Math.floor(x.exact));
+    let left = excess - back.reduce((a, n) => a + n, 0);
+    for (const x of [...shares].sort((a, b) => b.exact - Math.floor(b.exact) - (a.exact - Math.floor(a.exact)) || a.i - b.i)) {
+      if (left <= 0) break;
+      back[x.i]!++;
+      left--;
+    }
+    back.forEach((n, i) => {
+      if (!n) return;
+      const h = s.houses[i]!;
+      if (k === "gold") h.gold += n;
+      else h.stores[k] = (h.stores[k] ?? 0) + n;
+      c.pledges[i]![k] = (c.pledges[i]![k] ?? 0) - n;
+      refunded = true;
+    });
+  }
+  if (refunded) log(s, "The Houses gave more than the city needed; what was left over goes back to each House in proportion to what it gave.");
+}
+
 /** At the Year's seal: the swing, the band and its effects, and Renown by what each House pledged. */
 export function resolveCrisis(s: SovState): void {
   const c = s.crisis;
@@ -99,6 +132,7 @@ export function resolveCrisis(s: SovState): void {
   const band = bandOf(crisisScore(s) + swing);
   const total = Object.keys(c.need).reduce<Record<string, number>>((t, k) => ({ ...t, [k]: c.pledges.reduce((a, p) => a + (p[k] ?? 0), 0) }), {});
   log(s, `${ev.title}: the Houses gave ${describe(total) || "nothing"} of ${describe(c.need)}. ${band[0]!.toUpperCase()}${band.slice(1)}. ${ev.crisis![band].text}`);
+  refundExcess(s);
   c.pledges.forEach((p, i) => {
     const units = Object.values(p).reduce<number>((a, n) => a + (n ?? 0), 0);
     s.houses[i]!.score.renown += Math.floor(units / C.renownPer);

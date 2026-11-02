@@ -45,6 +45,7 @@ describe("the Town Map (§15.6)", () => {
     expect(moveFor(view, p, { kind: "sortie" })).toMatchObject({ to: "sortie", at: expect.any(String) });
     expect(placeOf({ to: "work", at: "farm" })).toEqual({ kind: "building", id: "farm" });
     expect(placeOf({ to: "study" })).toEqual({ kind: "building", id: "scriptorium" });
-    expect(placeOf(undefined)).toEqual({ kind: "rest" });
+    expect(placeOf(undefined)).toEqual({ kind: "idle" });
+    expect(placeOf({ to: "rest" })).toEqual({ kind: "rest" });
   });
 });
