@@ -45,8 +45,7 @@ import { cannotPropose } from "./votes.ts";
 import { cannotOpen } from "./satchel.ts";
 import { ceremonies } from "./promotion.ts";
 import { cureOf, mends } from "./cures.ts";
-import { gearTotals, stash } from "./items.ts";
-import { scionCombatant } from "./combat/build.ts";
+import { stash } from "./items.ts";
 import { TUNING } from "./tuning.ts";
 import { campaignYears, mandatoryYears, trackName } from "./year.ts";
 
@@ -293,11 +292,9 @@ export function view(s: SovState, playerId: PlayerId): SovView {
     const v = personView(p, me, insight);
     if (v && me !== null && p.host === me && (p.status === "scion" || p.status === "retired")) v.kit = kitOf(s, me, p);
     // On the road, HP lost in battle stays lost until mended; everyone sees it, as they see Sanity and MP.
-    const hurt = s.expedition?.carry[p.id]?.hurt;
-    if (v && hurt) {
-      const max = scionCombatant(p, { id: 1, col: 0, row: 0, gear: gearTotals(s, p), house: s.houses[p.house] }).maxHp;
-      v.hp = [Math.max(1, max - hurt), max];
-    }
+    // The cap is the one the last battle or event measured, so the view need not build the Scion.
+    const c = s.expedition?.carry[p.id];
+    if (v && c?.hurt && c.hpMax) v.hp = [Math.max(1, c.hpMax - c.hurt), c.hpMax];
     return v ?? [];
   });
   const worn = new Set(people.flatMap((p) => Object.values(p.gear ?? {})));

@@ -150,7 +150,7 @@ function settle(s: SovState, b: Battle, cause: string): void {
     p.sanity = u.sanity;
     p.mp = u.mp;
     const hurt = Math.max(0, u.maxHp - Math.max(1, u.hp));
-    e.carry[p.id] = { dur: { ...u.dur! }, broken: [...u.broken], ...(Object.keys(mods).length ? { mods } : {}), ...(hurt ? { hurt } : {}) };
+    e.carry[p.id] = { dur: { ...u.dur! }, broken: [...u.broken], ...(Object.keys(mods).length ? { mods } : {}), ...(hurt ? { hurt, hpMax: u.maxHp } : {}) };
     if (u.catatonic && !e.out.includes(p.id)) e.out.push(p.id);
     if (won) p = gainJp(gainXp(p, xpAt(p, P.battleXp, e.card.level)), P.battleJp);
     s.people[s.people.findIndex((x) => x.id === p.id)] = p;

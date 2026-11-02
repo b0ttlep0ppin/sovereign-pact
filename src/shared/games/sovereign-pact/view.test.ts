@@ -65,7 +65,8 @@ describe("view", () => {
       s.players.forEach((p, seat) => checkSeat(s, seat, g.view(s, p)));
     });
     expect(states).toBeGreaterThan(20);
-  });
+    // Every state of a whole campaign, for every seat: a 4-House one runs near 30 s on CI.
+  }, 120_000);
 
   it("follows the Scriptorium's Insight for the House's own recruits (§6.4)", () => {
     const s = campaign(2);

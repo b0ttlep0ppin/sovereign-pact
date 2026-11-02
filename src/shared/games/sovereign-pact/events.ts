@@ -240,7 +240,7 @@ function apply(s: SovState, fx: TripEffect, ids: number[], house: number | null,
       const c = (e.carry[id] ??= { dur: {}, broken: [] });
       const max = full(s, id).maxHp;
       const hurt = Math.max(0, Math.min(max - 1, (c.hurt ?? 0) - pctOf(max, fx.hp)));
-      if (hurt) c.hurt = hurt;
+      if (hurt) Object.assign(c, { hurt, hpMax: max });
       else delete c.hurt;
     }
     if (fx.durability) {
