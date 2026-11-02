@@ -102,6 +102,8 @@ export interface PrivateHouse {
   notes: string[];
   /** Dark Bargains offered to this House and not yet answered, by content id (§14.7a). */
   bargains: string[];
+  /** The element that hates the House, if it took Elemental Bane (§5.7). */
+  bane: Element | null;
   /** At founding: the two Ambitions dealt, to keep one (§5.1 step 7). */
   dealt: [Ambition, Ambition] | null;
 }
@@ -318,6 +320,7 @@ export function view(s: SovState, playerId: PlayerId): SovView {
             notes: s.notes[me] ?? [],
             // Dark Bargains offered to this House alone (§14.7a).
             bargains: s.bargains.pending.filter((b) => b.house === me).map((b) => b.id),
+            bane: own.bane ?? null,
             dealt: own.dealt ?? null,
             assign: Object.fromEntries(s.people.filter((p) => p.host === me && s.assign[p.id]).map((p) => [p.id, s.assign[p.id]!])),
           },

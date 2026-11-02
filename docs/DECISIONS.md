@@ -2,6 +2,18 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 8m): founding a House step by step
+
+- Founding now shows a House designer (§5.1), with the House's emblem, name and motto at the top and five steps:
+  - **Name:** House name and motto.
+  - **Colors:** two swatches from the palette.
+  - **Emblem:** shield, division, charge, an optional second charge, and two field tinctures.
+  - **Seat:** one of the Seats, and an element or none.
+  - **Traits:** every House trait by kind, picked freely. "Keep these traits" is enabled only for a shape §5.7 allows, and asks for the element that hates the House when Elemental Bane is taken.
+- Each step has its dice (reroll that step), and Random House rerolls everything. Every change is one `design` move that the rules check as a whole House, so the House on screen is always valid.
+- The view gives the House its own `bane` so the traits step can show it.
+- The Settlement music theme stays on its rolled value until the music is in (it has no screen yet).
+
 ## 2026-11-02 (implementation, Milestone 8l): Wards in deals
 
 - The offer form now lists the House's own Scions to give as Wards, and the chosen House's Scions to ask for as Wards (§6.9), closing the gap noted under 8g.
