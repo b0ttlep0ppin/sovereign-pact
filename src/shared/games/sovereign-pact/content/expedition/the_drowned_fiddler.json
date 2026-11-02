@@ -1,0 +1,87 @@
+{
+  "id": "the_drowned_fiddler",
+  "pools": [
+    "drowned_marches"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    7
+  ],
+  "title": "The Drowned Fiddler",
+  "text": "A fiddler sits on a stump in the marsh, wet through, playing a jig. The reeds around him are dancing.",
+  "options": [
+    {
+      "id": "dance",
+      "label": "Dance with the reeds.",
+      "rule": "vote",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "A wild hour, and you feel years younger.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 10
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "You cannot stop.",
+          "effects": [
+            {
+              "to": "party",
+              "durability": -12
+            },
+            {
+              "to": "party",
+              "sanity": -5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "request",
+      "label": "The best talker asks for a sad song.",
+      "rule": "scion:highest:guile",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "He plays it, and the marsh weeps, and you pass in peace.",
+          "effects": [
+            {
+              "skip": 1
+            },
+            {
+              "to": "party",
+              "sanity": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "stop",
+      "label": "Stop your ears and go round.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The jig follows you for a mile.",
+          "effects": []
+        }
+      ]
+    }
+  ]
+}

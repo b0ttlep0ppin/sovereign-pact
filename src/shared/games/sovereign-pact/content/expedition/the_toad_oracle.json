@@ -1,0 +1,85 @@
+{
+  "id": "the_toad_oracle",
+  "pools": [
+    "drowned_marches"
+  ],
+  "weight": 1,
+  "band": [
+    3,
+    7
+  ],
+  "title": "The Toad Oracle",
+  "text": "A toad the size of a dog squats on a stone and croaks, very clearly, the name of a Scion.",
+  "options": [
+    {
+      "id": "listen",
+      "label": "The named Scion listens to it.",
+      "rule": "scion:random",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "It tells them their fortune. It is a good one.",
+          "effects": [
+            {
+              "blessing": {
+                "trait": "lucky",
+                "years": 2
+              }
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "It tells them their fortune.",
+          "effects": [
+            {
+              "sanity": -12
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "feed",
+      "label": "Feed it a fly.",
+      "rule": "vote",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It croaks the way out of the marsh.",
+          "effects": [
+            {
+              "foresee": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kick",
+      "label": "Kick it off its stone.",
+      "rule": "leader",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Every toad in the marsh hears.",
+          "effects": [
+            {
+              "to": "party",
+              "status": "poison"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

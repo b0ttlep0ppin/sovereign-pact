@@ -1,0 +1,85 @@
+{
+  "id": "the_night_garden",
+  "pools": [
+    "outer_dark"
+  ],
+  "weight": 2,
+  "band": [
+    6,
+    10
+  ],
+  "title": "The Night Garden",
+  "text": "A garden of pale flowers that bloom only in the dark. Their scent makes the Scions forget why they came.",
+  "options": [
+    {
+      "id": "pick",
+      "label": "Pick a flower each.",
+      "rule": "vote",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "Sweet forgetting, and rest.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 10
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "You forget the way.",
+          "effects": [
+            {
+              "fork": {
+                "drop": 1,
+                "add": [
+                  "event"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "breathe",
+      "label": "The toughest holds their breath and leads.",
+      "rule": "scion:highest:resilience",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Out, gasping, all of you.",
+          "effects": []
+        }
+      ]
+    },
+    {
+      "id": "study",
+      "label": "The wisest studies the flowers.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A drug for sleepless nights, worth its weight.",
+          "effects": [
+            {
+              "resources": {
+                "essence": 5
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

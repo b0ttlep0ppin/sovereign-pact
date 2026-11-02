@@ -2,6 +2,11 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 7as): sixteen region events toward 22 each
+
+- Sixteen events (512 in all): two each for the Beast Lands, the Hollow Wood, the Drowned Marches and the Barrows, one for each of the other eight regions. Four regions now have 22, the rest 21; the budget is 25.
+- Reading: the Dryad's Bargain is an each_scion event on both options; each Scion decides whether to give her a lock of hair.
+
 ## 2026-11-02 (implementation, Milestone 7ar): every region reaches 20 events
 
 - Sixteen events (496 in all): two each for the Drowned Marches, the Forge Ruins, the Faceless City and the Shrine of Six, one for each of the other eight regions. All twelve regions now have 20; the budget is 25.

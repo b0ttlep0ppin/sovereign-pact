@@ -1,0 +1,91 @@
+{
+  "id": "the_cairn_stones",
+  "pools": [
+    "barrows"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    8
+  ],
+  "title": "The Cairn Stones",
+  "text": "A cairn of stones over a grave, and a custom: each traveler adds a stone.",
+  "options": [
+    {
+      "id": "add",
+      "label": "Each of you adds a stone.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The cairn grows, and the barrows are quieter.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 4
+            },
+            {
+              "score": {
+                "renown": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "take",
+      "label": "Take a stone instead, for luck.",
+      "rule": "leader",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Bad luck.",
+          "effects": [
+            {
+              "curse": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dig",
+      "label": "The strongest digs under it.",
+      "rule": "scion:highest:might",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "A warrior's grave goods.",
+          "effects": [
+            {
+              "item": {
+                "tier": 2
+              }
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "The warrior.",
+          "effects": [
+            {
+              "encounter": {
+                "level": 1
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

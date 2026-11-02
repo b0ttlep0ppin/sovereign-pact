@@ -1,0 +1,82 @@
+{
+  "id": "the_bell_rope",
+  "pools": [
+    "shrine_of_six"
+  ],
+  "weight": 2,
+  "band": [
+    4,
+    10
+  ],
+  "title": "The Bell Rope",
+  "text": "A shrine's great bell hangs silent. A sign says: ring once for each prayer, but never more than six.",
+  "options": [
+    {
+      "id": "ring",
+      "label": "Ring it once for the party.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A clear note. The way ahead feels lighter.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 6
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "six",
+      "label": "The devout rings it six times.",
+      "rule": "scion:trait:devout|scion:highest:sagacity",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Six notes, and a blessing.",
+          "effects": [
+            {
+              "blessing": {
+                "trait": "stout_hearted",
+                "years": 2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "seven",
+      "label": "Ring it seven times.",
+      "rule": "leader",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The seventh note does not sound. Something hears it anyway.",
+          "effects": [
+            {
+              "encounter": {
+                "level": 1
+              }
+            },
+            {
+              "to": "party",
+              "sanity": -5
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

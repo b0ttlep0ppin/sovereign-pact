@@ -1,0 +1,63 @@
+{
+  "id": "the_dryads_bargain",
+  "pools": [
+    "hollow_wood"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    7
+  ],
+  "title": "The Dryad's Bargain",
+  "text": "A dryad steps out of an oak and offers safe passage through her wood, for a lock of each Scion's hair.",
+  "options": [
+    {
+      "id": "give",
+      "label": "Each Scion gives a lock.",
+      "rule": "each_scion",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 80,
+          "text": "She weaves it into her branches.",
+          "effects": [
+            {
+              "sanity": 4
+            }
+          ]
+        },
+        {
+          "w": 20,
+          "text": "She keeps a little more than hair.",
+          "effects": [
+            {
+              "sanity": -8
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "keep",
+      "label": "Each Scion keeps their hair, and walks on.",
+      "rule": "each_scion",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The wood is less kind.",
+          "effects": [
+            {
+              "durability": -8,
+              "loc": "legs"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

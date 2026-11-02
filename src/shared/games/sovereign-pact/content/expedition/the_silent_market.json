@@ -1,0 +1,90 @@
+{
+  "id": "the_silent_market",
+  "pools": [
+    "faceless_city"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    9
+  ],
+  "title": "The Silent Market",
+  "text": "A market where no one speaks. The faceless trade by pointing, and every stall sells faces.",
+  "options": [
+    {
+      "id": "browse",
+      "label": "Browse, and point.",
+      "rule": "vote",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "A mask that fits perfectly.",
+          "effects": [
+            {
+              "item": {
+                "tier": 2
+              }
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "You point at the wrong thing.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -15
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "speak",
+      "label": "The bravest breaks the silence.",
+      "rule": "scion:trait:brave|scion:highest:resilience",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Every head turns.",
+          "effects": [
+            {
+              "encounter": {}
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "watch",
+      "label": "The sharpest watches who buys what.",
+      "rule": "scion:highest:acuity",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "You learn whose faces they are.",
+          "effects": [
+            {
+              "score": {
+                "intrigue": 2
+              }
+            },
+            {
+              "sanity": -5
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

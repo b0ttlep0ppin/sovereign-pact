@@ -1,0 +1,84 @@
+{
+  "id": "the_woodwose",
+  "pools": [
+    "hollow_wood"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    7
+  ],
+  "title": "The Woodwose",
+  "text": "A wild man, shaggy as a bear, watches you from the bracken. He holds a club and a bundle of herbs.",
+  "options": [
+    {
+      "id": "trade",
+      "label": "Offer him bread for the herbs.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "He grunts, and gives you the herbs.",
+          "effects": [
+            {
+              "mend": true
+            },
+            {
+              "resources": {
+                "gold": -3
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "learn",
+      "label": "The wisest watches how he moves.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "He leads you by paths only he knows.",
+          "effects": [
+            {
+              "skip": 1
+            },
+            {
+              "score": {
+                "lore": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "chase",
+      "label": "Chase him off.",
+      "rule": "leader",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "He comes back with his kin.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "ambush"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

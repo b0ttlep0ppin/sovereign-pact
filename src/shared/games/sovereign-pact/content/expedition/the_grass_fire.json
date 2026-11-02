@@ -1,0 +1,85 @@
+{
+  "id": "the_grass_fire",
+  "pools": [
+    "beast_lands"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    6
+  ],
+  "title": "The Grass Fire",
+  "text": "Smoke on the horizon. The plains are burning, and the wind is bringing it this way.",
+  "options": [
+    {
+      "id": "run",
+      "label": "Run before it.",
+      "rule": "vote",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "Out ahead of it, gasping.",
+          "effects": [
+            {
+              "to": "party",
+              "durability": -8
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "It catches you at the edge.",
+          "effects": [
+            {
+              "to": "party",
+              "status": "burn"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "backburn",
+      "label": "The cleverest lights a backfire.",
+      "rule": "scion:highest:acuity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A burned patch to shelter in. The fire goes round.",
+          "effects": [
+            {
+              "score": {
+                "valor": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "river",
+      "label": "Make for the river.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Wet, and safe, and fleeing beasts all round you.",
+          "effects": [
+            {
+              "encounter": {}
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

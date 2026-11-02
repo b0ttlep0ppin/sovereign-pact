@@ -1,0 +1,103 @@
+{
+  "id": "the_bishops_ring",
+  "pools": [
+    "apostate_court"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    9
+  ],
+  "title": "The Bishop's Ring",
+  "text": "The court's bishop dropped his ring in the crowd. It glints at a Scion's feet.",
+  "options": [
+    {
+      "id": "return",
+      "label": "Return it to him.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "He thanks you, and the court treats you as guests.",
+          "effects": [
+            {
+              "skip": 1
+            },
+            {
+              "score": {
+                "renown": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "keep",
+      "label": "The shrewdest pockets it.",
+      "rule": "scion:highest:guile",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "A ring that opens doors.",
+          "effects": [
+            {
+              "item": {
+                "tier": 2
+              }
+            },
+            {
+              "score": {
+                "intrigue": 1
+              }
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "Seen.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "surprise"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "crush",
+      "label": "Crush it underfoot.",
+      "rule": "leader",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A small rebellion.",
+          "effects": [
+            {
+              "score": {
+                "valor": 1
+              }
+            },
+            {
+              "doom": -1
+            },
+            {
+              "encounter": {}
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
