@@ -2,6 +2,17 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 8x): the prologue, and people cards that read
+
+- **Prologue** (Josh: a splash explaining the kingdom swallowed by a rift, the monarch gone, the Great Houses left to rule together despite their own interests). It opens the standalone game: five lines rise one by one under a torn sky, and you can click to show all, Skip, or Enter the city.
+  - Readings: the kingdom still has no name (GLOSSARY ❓), so the text says "the capital" and "the city". The monarch is "the King", in keeping with §14.7's proposed fiction and the Year 10 Cursed King. No new names.
+- **People cards**:
+  - Stats are a row of small plaques, with Sanity in magenta and MP in blue.
+  - Potential and Loyalty sit on one line.
+  - The Tarot card and every trait get a line of their own: the name, then what it does in Crunch mode, or its flavor line in Flavor mode.
+- **Names**: a Scion's (or a Retired one's) name is written in their House's color and followed by the House name as surname: "Beatrix Ashgrave", and a Ward carries their own House's name. A recruit has not earned the name and shows only their own.
+  - Reading: the House name is the surname; the spec is silent on surnames. Where the primary color is too dark to read on the dark ground, the secondary is used.
+
 ## 2026-11-02 (implementation, Milestone 8w): a dark fantasy skin
 
 - Josh found the interface "very standard AI game". Following §15.1 (a dark base; a pixel display face for headings and numbers, a readable humanist face for body text):
