@@ -291,3 +291,47 @@
 .sp-injury__rung.is-hit { opacity: 1; outline: 2px solid #fff; outline-offset: 1px; transform: scale(1.15); color: #fff; font-weight: 700; }
 .sp-injury strong { font-size: 1.5rem; font-family: var(--display, serif); }
 .sp-injury__text { margin: 0; font-size: 0.9rem; color: #e8dcc4; max-width: 36ch; }
+/* The choices: one look for every action (Josh: red and brown read as arbitrary); an item's edge is green, a plain action's dim. */
+.sp-command .sp-command__choice { background: linear-gradient(#2e2018, #1c130e); border: 1px solid rgba(215, 180, 90, 0.5); color: #ecdcc0; }
+.sp-command .sp-command__choice:hover:not(:disabled), .sp-command .sp-command__choice:focus-visible { border-color: #e8c66a; color: #fff; box-shadow: 0 0 10px rgba(232, 198, 106, 0.35); }
+.sp-command .sp-command__choice.is-item { border-color: rgba(120, 190, 120, 0.55); }
+.sp-command .sp-command__choice.is-plain { border-color: rgba(255, 255, 255, 0.18); color: #c8bca8; }
+.sp-command .sp-command__choice:disabled { opacity: 0.4; }
+.sp-command__about { flex-basis: 100%; margin: 2px 0 0; min-height: 1.3em; font-size: 0.9rem; color: #cfc2a8; }
+.sp-command__about small { color: #9fb8d8; }
+.sp-command__about em { color: #e08a7a; font-style: normal; }
+
+/* The turn order (§10.4): who acts next, left to right. */
+.sp-order { display: flex; align-items: flex-end; justify-content: center; gap: 4px; margin: 0; padding: 0; list-style: none; }
+.sp-order__label { align-self: center; margin-right: 6px; color: var(--muted, #a89a80); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; }
+.sp-order__slot { position: relative; display: grid; justify-items: center; width: 52px; padding: 2px 0 1px; border: 1px solid rgba(255, 255, 255, 0.12); border-bottom-width: 3px; border-radius: 3px; background: rgba(10, 6, 10, 0.75); }
+.sp-order__slot--party { border-bottom-color: #4f9a5a; }
+.sp-order__slot--enemy { border-bottom-color: #a83a32; }
+.sp-order__slot.is-now { width: 62px; border-color: var(--gold, #d7b45a); box-shadow: 0 0 12px rgba(215, 180, 90, 0.4); }
+.sp-order__slot img { width: 28px; height: 28px; object-fit: contain; }
+.sp-order__slot small { max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 0.62rem; color: #d8ccb4; }
+.sp-order__slot i { position: absolute; top: 0; right: 2px; color: #b89cff; font-style: normal; font-size: 0.7rem; }
+.sp-battle__controls-label { color: var(--muted, #a89a80); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; }
+
+/* Before the fight: an omen. After it: victory or defeat. */
+.sp-intro, .sp-ending { position: fixed; inset: 0; z-index: 25; display: grid; place-items: center; padding: 16px; background: radial-gradient(ellipse at center, rgba(10, 4, 8, 0.7), rgba(0, 0, 0, 0.94)); animation: sp-fade-in 500ms ease-out; }
+.sp-intro__card, .sp-ending__card { display: grid; justify-items: center; gap: 10px; max-width: 560px; padding: 26px 34px; text-align: center; border: 1px solid rgba(215, 180, 90, 0.4); background: linear-gradient(#1a1014, #0c080a); box-shadow: 0 0 60px rgba(0, 0, 0, 0.9); }
+.sp-intro__where { color: #b8a080; text-transform: uppercase; letter-spacing: 0.18em; font-size: 0.8rem; }
+.sp-intro h2, .sp-ending h2 { margin: 0; font: 400 2.4rem/1 var(--display, serif); color: var(--gold, #d7b45a); text-shadow: 0 2px 0 #000, 0 0 18px rgba(215, 180, 90, 0.3); }
+.sp-intro__omen { margin: 4px 0; font-style: italic; font-size: 1.1rem; line-height: 1.5; color: #e2d4ba; animation: sp-fade-in 1.4s ease-out both; animation-delay: 300ms; }
+.sp-intro__foes { margin: 0; color: #c8786a; font-size: 0.9rem; }
+.sp-ending.is-won h2 { font-size: 3.4rem; animation: sp-victory 900ms cubic-bezier(.2, 1.4, .4, 1) both; }
+.sp-ending.is-won .sp-ending__card { border-color: rgba(232, 198, 106, 0.8); background: radial-gradient(ellipse at 50% 0%, rgba(232, 198, 106, 0.22), transparent 60%), linear-gradient(#1c1410, #0c080a); }
+.sp-ending.is-lost h2 { color: #c03a32; }
+.sp-ending.is-lost .sp-ending__card { border-color: rgba(160, 30, 30, 0.7); }
+.sp-ending__sub { margin: 0; color: #cfc2a8; }
+.sp-ending__party { display: grid; gap: 4px; width: 100%; margin: 4px 0; padding: 0; list-style: none; }
+.sp-ending__party li { display: flex; gap: 10px; align-items: baseline; padding: 4px 10px; background: rgba(255, 255, 255, 0.04); }
+.sp-ending__party li small { margin-left: auto; color: #b8ac94; }
+.sp-ending__party li em { color: #e08a7a; font-style: normal; font-size: 0.85rem; }
+.sp-ending__party li.is-dead strong { color: #c03a32; text-decoration: line-through; }
+.sp-ending__party li.is-down strong { color: #b8a080; }
+.sp-ending__buttons { display: flex; gap: 8px; }
+@keyframes sp-fade-in { from { opacity: 0; } }
+@keyframes sp-victory { from { opacity: 0; scale: 2.2; letter-spacing: 0.4em; filter: blur(6px); } }
+[data-motion="reduced"] .sp-intro, [data-motion="reduced"] .sp-ending, [data-motion="reduced"] .sp-ending h2, [data-motion="reduced"] .sp-intro__omen { animation: none; }

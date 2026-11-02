@@ -22,6 +22,8 @@ const LOCS = ["Head", "Body", "Arms", "Legs"];
 const TURN_MS = 1300;
 /** Milliseconds at 1× an attack's frames take before the Scion is back at the ready. */
 const ACT_MS = 700;
+/** Milliseconds the pause before a battle lasts unless dismissed. */
+const INTRO_MS = 5000;
 export const SPEEDS = [1, 2, 4] as const;
 
 const words = (id: string) => id.replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
@@ -92,6 +94,8 @@ interface Props {
   sound?: number;
   /** A battle being fought now (§10.4): its turn's choices for this seat, or whom it waits on. */
   live?: Live;
+  /** Open on the battle's last turn, for its ending (a battle just fought on screen). */
+  ending?: boolean;
 }
 
 export interface Live {
@@ -99,16 +103,25 @@ export interface Live {
   /** Whom the battle waits on, when not on this seat. */
   waiting: string | null;
   send: (c: Command) => void;
+  /** Who acts next (§10.4), from the battle as it stands. */
+  order?: { unit: number; charge?: boolean }[];
 }
 
 const NONE: Event[] = [];
 const same = (a: Cell, b: Cell) => a.side === b.side && a.col === b.col && a.row === b.row;
 
-export default function BattleScreen({ replay, view, onClose, waiting = 0, fullLog = false, sound = 0, live }: Props) {
+export default function BattleScreen({ replay, view, onClose, waiting = 0, fullLog = false, sound = 0, live, ending = false }: Props) {
   const states = useMemo(() => framesOf(replay), [replay]);
   const units = useMemo(() => new Map(replay.units.map((u) => [u.id, u])), [replay]);
-  const [at, setAt] = useState(0);
-  const [playing, setPlaying] = useState(true);
+  const [at, setAt] = useState(ending ? replay.frames.length : 0);
+  const [playing, setPlaying] = useState(!ending);
+  // A pause before the fight (Josh 2026-11-02): where it is, an omen, and what waits.
+  const [intro, setIntro] = useState(!ending && (!live || replay.frames.length <= 1));
+  useEffect(() => {
+    if (!intro) return;
+    const t = setTimeout(() => setIntro(false), INTRO_MS);
+    return () => clearTimeout(t);
+  }, [intro]);
   const [speed, setSpeed] = useState<(typeof SPEEDS)[number]>(1);
   const last = replay.frames.length;
   const vit = states[at]!;
@@ -119,6 +132,9 @@ export default function BattleScreen({ replay, view, onClose, waiting = 0, fullL
   const name = (id: number) => units.get(id)?.name ?? "someone";
   const pops = popsOf(ev, at, units);
   const injury = ev.find((e) => e.t === "injury");
+  const end = replay.frames.at(-1)?.ev.find((e) => e.t === "end");
+  // The turn order (§10.4): a battle being fought forecasts it; one being watched knows it.
+  const order = live && at >= last ? (live.order ?? []) : replay.frames.slice(at).flatMap((f) => f.ev.filter((e) => e.t === "turn").map((e) => ({ unit: e.unit, charge: false }))).slice(0, 8);
   const charges = ev.filter((e) => e.t === "charge" && e.telegraph);
   const strikes = useMemo(() => strikesOf(ev, units), [ev, units]);
   // A number pops as the blow that made it lands; the turn lasts until the last blow has been read.
@@ -138,10 +154,10 @@ export default function BattleScreen({ replay, view, onClose, waiting = 0, fullL
   const lines = (fullLog ? replay.frames.slice(0, at).flatMap((f, i) => f.ev.map((e) => [i + 1, e] as const)) : ev.map((e) => [at, e] as const)).filter(([, e]) => e.t !== "turn");
 
   useEffect(() => {
-    if (!playing || at >= last) return;
+    if (!playing || at >= last || intro) return;
     const t = setTimeout(() => setAt((i) => Math.min(last, i + 1)), (turnMs * (injury ? 4 : 1)) / speed);
     return () => clearTimeout(t);
-  }, [playing, at, last, speed, injury, turnMs]);
+  }, [playing, at, last, speed, injury, turnMs, intro]);
   // A command aimed at a cell; it is dropped once the battle moves on.
   const [aiming, setAiming] = useState<Aiming | null>(null);
   const [aimedAt, setAimedAt] = useState(last);
@@ -297,6 +313,14 @@ export default function BattleScreen({ replay, view, onClose, waiting = 0, fullL
     setAt((i) => Math.max(0, Math.min(last, i + by)));
   };
   const keys = (e: KeyboardEvent) => {
+    // Any key ends the pause before the fight; Space and Enter only that.
+    if (intro) {
+      setIntro(false);
+      if (e.key === " " || e.key === "Enter") {
+        e.preventDefault();
+        return;
+      }
+    }
     if (aiming) {
       const n = aiming.cells.length;
       if (e.key === "ArrowRight" || e.key === "ArrowDown") setAiming({ ...aiming, cursor: (aiming.cursor + 1) % n });
@@ -338,6 +362,25 @@ export default function BattleScreen({ replay, view, onClose, waiting = 0, fullL
             ? "The battle is joined."
             : headline(replay, ev, name)}
       </p>
+      {order.length ? (
+        <ol className="sp-order" aria-label="Turn order">
+          <li className="sp-order__label">Next</li>
+          {order.map((o, i) => {
+            const u = units.get(o.unit);
+            if (!u) return null;
+            const scionOf = u.person !== undefined ? view.people.find((p) => p.id === u.person) : undefined;
+            const look = scionOf ? lookOf(scionOf, view.houses[scionOf.house]?.colors, view.items) : null;
+            const sprite = spriteOf(u);
+            return (
+              <li key={i} className={`sp-order__slot sp-order__slot--${u.side}${i === 0 ? " is-now" : ""}`} title={`${u.name}${o.charge ? ": a spell lands" : ""}`}>
+                {look ? <ScionSprite look={look} size={28} /> : sprite ? <img src={sprite.url} alt="" draggable={false} /> : <span>{initials(u.name)}</span>}
+                {o.charge ? <i aria-hidden="true">✦</i> : null}
+                <small>{u.name.split(" ")[0]}</small>
+              </li>
+            );
+          })}
+        </ol>
+      ) : null}
       <div className="sp-battle__field">
         <Panel title="Enemies" units={side("enemy").filter((u) => !u.hazard)} vit={vit} actor={actor} />
         <div className="sp-battle__planes" ref={planes}>
@@ -349,29 +392,32 @@ export default function BattleScreen({ replay, view, onClose, waiting = 0, fullL
         </div>
         <Panel title="The party" units={side("party")} vit={vit} actor={actor} color={color} />
       </div>
-      <div className="sp-battle__controls">
-        <button type="button" className="sp-button sp-button--quiet" onClick={() => step(-1)} aria-label="Previous turn">
+      {intro ? <Intro replay={replay} onGo={() => setIntro(false)} /> : null}
+      {!live && at >= last && end ? <Ending replay={replay} vit={vit} end={end} onClose={onClose} again={() => { setAt(0); setPlaying(true); }} waiting={waiting} /> : null}
+      <div className="sp-battle__controls" title="Watch the battle back: step through its turns, play it again, or change how fast it plays.">
+        <span className="sp-battle__controls-label">{live ? "Watch back" : "Playback"}</span>
+        <button type="button" className="sp-button sp-button--quiet" onClick={() => step(-1)} aria-label="Previous turn" title="Back one turn">
           ◀
         </button>
-        <button type="button" className="sp-button" onClick={() => {
+        <button type="button" className="sp-button sp-button--quiet" title={at >= last ? "Play the whole battle again from the start" : playing ? "Pause the playback" : "Play on"} onClick={() => {
             if (at < last) return setPlaying((p) => !p);
             setAt(0);
             setPlaying(true);
           }}>
           {at >= last ? "Replay" : playing ? "Pause" : "Play"}
         </button>
-        <button type="button" className="sp-button sp-button--quiet" onClick={() => step(1)} aria-label="Next turn">
+        <button type="button" className="sp-button sp-button--quiet" onClick={() => step(1)} aria-label="Next turn" title="Forward one turn">
           ▶
         </button>
-        <span className="sp-battle__speeds" role="group" aria-label="Speed">
+        <span className="sp-battle__speeds" role="group" aria-label="Speed" title="How fast turns play">
           {SPEEDS.map((x) => (
             <button key={x} type="button" aria-pressed={speed === x} className={`sp-button sp-button--quiet${speed === x ? " is-on" : ""}`} onClick={() => setSpeed(x)}>
               {x}×
             </button>
           ))}
         </span>
-        <button type="button" className="sp-button sp-button--quiet" onClick={() => setAt(last)}>
-          Skip to the end
+        <button type="button" className="sp-button sp-button--quiet" onClick={() => setAt(last)} title={live ? "Jump to the turn being fought now" : "Jump to how the battle ended"}>
+          {live ? "Skip to now" : "Skip to the end"}
         </button>
         <input type="range" min={0} max={last} value={at} aria-label="Turn" onChange={(e) => step(Number(e.target.value) - at)} />
       </div>
@@ -498,3 +544,65 @@ const initials = (n: string) =>
     .slice(0, 2)
     .map((w) => w[0])
     .join("");
+
+/** The pause before a battle: the region, what waits, and an omen chosen by the battle's seed. */
+function Intro({ replay, onGo }: { replay: Replay; onGo: () => void }) {
+  const pool = replay.pool ? Content.POOL_BY_ID.get(replay.pool) : undefined;
+  const omens = pool?.omens ?? [];
+  const omen = omens.length ? omens[Math.abs(replay.seed) % omens.length] : undefined;
+  const foes = new Map<string, number>();
+  for (const u of replay.units) if (u.side === "enemy" && u.partOf === undefined && !u.hazard && !u.boss) foes.set(u.name, (foes.get(u.name) ?? 0) + 1);
+  const boss = replay.units.find((u) => u.boss);
+  return (
+    <section className="sp-intro" aria-label="Before the battle" onClick={onGo}>
+      <div className="sp-intro__card">
+        {pool ? <small className="sp-intro__where">{pool.name}</small> : null}
+        <h2>{boss ? boss.name : replay.title}</h2>
+        {omen ? <p className="sp-intro__omen">{omen}</p> : null}
+        <p className="sp-intro__foes">{[...foes].map(([n, k]) => (k > 1 ? `${n} ×${k}` : n)).join(" · ")}</p>
+        <button type="button" className="sp-button" autoFocus onClick={onGo}>
+          To arms
+        </button>
+      </div>
+    </section>
+  );
+}
+
+/** A battle's ending: victory or defeat, what fell, and how the party stands. */
+function Ending({ replay, vit, end, onClose, again, waiting }: { replay: Replay; vit: Map<number, Vitals>; end: Event; onClose: () => void; again: () => void; waiting: number }) {
+  if (end.t !== "end") return null;
+  const won = end.outcome === "victory";
+  const slain = replay.units.filter((u) => u.side === "enemy" && u.partOf === undefined && !u.hazard && (vit.get(u.id)?.[7] ?? 0) & FLAG.dead).length;
+  const injuries = new Map<number, string[]>();
+  for (const f of replay.frames) for (const e of f.ev) if (e.t === "injury") injuries.set(e.target, [...(injuries.get(e.target) ?? []), Content.INJURY_BY_ID.get(e.result)?.name ?? words(e.result)]);
+  const party = replay.units.filter((u) => u.side === "party" && u.person !== undefined && u.owner === undefined);
+  return (
+    <section className={`sp-ending ${won ? "is-won" : "is-lost"}`} aria-label={won ? "Victory" : "Defeat"}>
+      <div className="sp-ending__card">
+        <h2>{won ? "Victory" : end.outcome === "defeat" ? "The party falls" : "The party withdraws"}</h2>
+        <p className="sp-ending__sub">{won ? `${slain} ${slain === 1 ? "foe lies" : "foes lie"} dead. The Rift goes quiet, for now.` : "The dark closes over the field."}</p>
+        <ul className="sp-ending__party">
+          {party.map((u) => {
+            const v = vit.get(u.id);
+            const flags = v?.[7] ?? 0;
+            return (
+              <li key={u.id} className={flags & FLAG.dead ? "is-dead" : flags & FLAG.down ? "is-down" : undefined}>
+                <strong>{u.name}</strong>
+                <small>{flags & FLAG.dead ? "Dead" : flags & FLAG.down ? "Down" : `${v?.[1] ?? 0}/${u.maxHp} HP`}</small>
+                {injuries.get(u.id)?.length ? <em>{injuries.get(u.id)!.join(", ")}</em> : null}
+              </li>
+            );
+          })}
+        </ul>
+        <span className="sp-ending__buttons">
+          <button type="button" className="sp-button" autoFocus onClick={onClose}>
+            {waiting ? `Next battle (${waiting} more)` : "Continue"}
+          </button>
+          <button type="button" className="sp-button sp-button--quiet" onClick={again}>
+            Watch it again
+          </button>
+        </span>
+      </div>
+    </section>
+  );
+}

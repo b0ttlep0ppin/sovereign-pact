@@ -6,6 +6,7 @@ import { act, advance, ATTACK, cannotMove, cannotUse, move, mpCost, tpCost, unit
 import { CONSUMABLE_BY_ID } from "./content.ts";
 import { frame, unitOf, vitalsOf, type Replay, type Vitals } from "./combat/replay.ts";
 import { autoAct, withRng } from "./combat/sim.ts";
+import { forecast } from "./combat/clock.ts";
 import { hasStatus } from "./combat/grid.ts";
 import { cannotUseItem, itemAbility } from "./combat/items.ts";
 import { hasRoom } from "./combat/summons.ts";
@@ -176,6 +177,8 @@ export interface FightView {
   now: Vitals[];
   /** The turn's choices, for the House that commands it only. */
   turn: TurnView | null;
+  /** The turn forecast (§10.4): who acts next, a charged spell landing as its own entry. */
+  order: { unit: number; charge?: boolean }[];
 }
 
 const NO_AIM = new Set(["self", "all", "line", "nearest", "random", "front_each_row"]);
@@ -246,5 +249,6 @@ export function fightView(s: SovState, me: number | null): FightView | null {
     replay: { ...f.replay, units: f.b.units.map(unitOf) },
     now: f.b.units.map(vitalsOf),
     turn: u && me !== null && me === house ? turnView(f.b, u) : null,
+    order: [...(u ? [{ unit: u.id }] : []), ...forecast(f.b, 8)].slice(0, 8),
   };
 }
