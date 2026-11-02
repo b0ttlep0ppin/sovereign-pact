@@ -298,7 +298,22 @@ function Muster({ view, sendMove }: { view: SovView; sendMove: (m: SovMove) => v
         <p>
           <strong>{ev?.title}</strong> {ev?.text}
         </p>
-        {mine === null ? (
+        {mine === null && e.event.picks ? (
+          // Each Scion's House picks for them (§9.4 each_scion): the first of yours still to choose.
+          (() => {
+            const next = Object.entries(e.event.picks).find(([id, v]) => v === null && view.people.find((p) => p.id === +id)?.host === me)?.[0];
+            return (
+              <div className="sp-actions">
+                <span>For {name(+next!)}:</span>
+                {ev?.options.map((o, i) => (
+                  <button key={o.id} type="button" className="sp-button" onClick={() => sendMove({ type: "decide", option: i, person: +next! })}>
+                    {o.label}
+                  </button>
+                ))}
+              </div>
+            );
+          })()
+        ) : mine === null ? (
           <div className="sp-actions">
             {ev?.options.map((o, i) => (
               <button key={o.id} type="button" className="sp-button" onClick={() => sendMove({ type: "decide", option: i })}>

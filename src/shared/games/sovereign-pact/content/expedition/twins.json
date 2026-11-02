@@ -1,0 +1,86 @@
+{
+  "id": "twins",
+  "pools": [
+    "general"
+  ],
+  "weight": 3,
+  "band": [
+    2,
+    10
+  ],
+  "title": "The Twins",
+  "text": "Two children in matching grey wait where the path splits. One always lies and one always tells the truth, they say, together, and smile the same smile.",
+  "options": [
+    {
+      "id": "ask",
+      "label": "The cleverest asks the right question.",
+      "rule": "scion:highest:guile",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "The answer comes, and it is the true one. A short way, safe.",
+          "effects": [
+            {
+              "fork": {
+                "drop": 1
+              }
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "The answer comes, and leads past a buried cache.",
+          "effects": [
+            {
+              "fork": {
+                "add": [
+                  "cache"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pick",
+      "label": "Pick a path and walk it.",
+      "rule": "leader",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "It was the right path.",
+          "effects": [
+            {
+              "fork": {
+                "drop": 1
+              }
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "It was not. Something was waiting on it.",
+          "effects": [
+            {
+              "fork": {
+                "add": [
+                  "encounter"
+                ]
+              }
+            },
+            {
+              "sanity": -5
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

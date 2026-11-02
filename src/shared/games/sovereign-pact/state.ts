@@ -249,8 +249,8 @@ export interface Expedition {
   out: number[];
   /** Events met this expedition: none comes twice. */
   seen: string[];
-  /** The event waiting on the party (§9.4): each House's vote, −1 for a House with no one present. */
-  event?: { id: string; votes: (number | null)[] };
+  /** The event waiting on the party (§9.4): each House's vote, −1 for a House with no one present; for `each_scion`, each Scion's pick. */
+  event?: { id: string; votes: (number | null)[]; picks?: Record<number, number | null> };
   /** What the party carries home (§9.8, §9.10): found items, not yet anyone's, and materials. Lost on a wipe. */
   haul?: { items: Item[]; stores: Stores };
   /** The Houses' picks still to come in the loot draft, in snake order (§9.10). */
@@ -433,7 +433,7 @@ export type SovMove =
   /** The Leader's House: on to the next node, or home (§9.9). */
   | { type: "press_on" }
   /** A House's vote on the waiting event's option (§9.4). */
-  | { type: "decide"; option: number }
+  | { type: "decide"; option: number; person?: number }
   | { type: "retreat" }
   /** Your House's pick from the haul when the draft comes to it (§9.10). */
   | { type: "draft"; item: number }

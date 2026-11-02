@@ -37,7 +37,7 @@ import tarotJson from "./content/tarot.json" with { type: "json" };
 import variantsJson from "./content/variants.json" with { type: "json" };
 import templatesJson from "./content/templates.json" with { type: "json" };
 import type { AbilityDef, GambitRule } from "./combat/types.ts";
-import type { Element, JobId, Location, Material, ScoreCategory, Stat } from "./state.ts";
+import type { Element, JobId, Location, Material, NodeKind, ScoreCategory, Stat } from "./state.ts";
 
 export interface TarotCard {
   id: string;
@@ -539,6 +539,8 @@ export interface TripEffect {
   status?: string;
   /** A Ward's Loyalty, + or − (§6.9). */
   loyalty?: number;
+  /** A Fork (§9.3): the next `drop` places are passed by and `add` come next; never the boss. */
+  fork?: { drop?: number; add?: NodeKind[] };
   /** The subject is Lost in the otherworld (§9.9). */
   scion_lost?: true;
   /** A found item of this tier: to the subject's House, or into the haul for the draft when the party chose together. */

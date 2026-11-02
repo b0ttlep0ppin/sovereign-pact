@@ -1,0 +1,66 @@
+{
+  "id": "mirror_pool",
+  "pools": [
+    "general",
+    "drowned_marches"
+  ],
+  "weight": 3,
+  "band": [
+    1,
+    10
+  ],
+  "title": "The Mirror Pool",
+  "text": "Still water, black as a mirror, and in it each of you sees yourself the way your card would be if it were turned the other way up.",
+  "options": [
+    {
+      "id": "look",
+      "label": "Look.",
+      "rule": "each_scion",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "The reflection nods, and something it knows passes over.",
+          "effects": [
+            {
+              "stat": {
+                "acuity": 1
+              }
+            },
+            {
+              "stat": {
+                "sagacity": 1
+              }
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "The reflection smiles first.",
+          "effects": [
+            {
+              "sanity": -30
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "away",
+      "label": "Look away.",
+      "rule": "each_scion",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "You keep your eyes on the far bank until it is behind you.",
+          "effects": []
+        }
+      ]
+    }
+  ]
+}

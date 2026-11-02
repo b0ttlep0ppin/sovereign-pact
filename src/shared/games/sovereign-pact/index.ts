@@ -24,7 +24,7 @@ import { TUNING } from "./tuning.ts";
 import { view, type SovView } from "./view.ts";
 import { clone, closeExpedition, closeSettlement } from "./year.ts";
 import { botPress, cannotRetreat, home, pressOn } from "./journey.ts";
-import { botDecide, cannotDecide, decide } from "./events.ts";
+import { botDecide, botPicksFor, cannotDecide, decide } from "./events.ts";
 import { botDraft, cannotDraft, draftPick } from "./loot.ts";
 import { botField, botLeader, cannotField, cannotLead, field, voteLeader, waiting } from "./expedition.ts";
 
@@ -186,9 +186,9 @@ export function applyMove(state: SovState, playerId: PlayerId, move: SovMove): M
     }
     case "decide": {
       if (s.phase !== "expedition") return fail("No event waits on the party.");
-      const why = cannotDecide(s, house, move.option);
+      const why = cannotDecide(s, house, move.option, move.person);
       if (why) return fail(why);
-      decide(s, house, move.option);
+      decide(s, house, move.option, move.person);
       s.phaseMoves += 1;
       if (!waiting(s).length) closeExpedition(s);
       return { ok: true, state: s };
@@ -410,7 +410,7 @@ export function botMove(s: SovState, playerId: PlayerId): SovMove {
     return s.expedition?.draft?.length
       ? { type: "draft", item: botDraft(s, house) }
       : s.expedition?.event
-      ? { type: "decide", option: botDecide(s) }
+      ? { type: "decide", option: botDecide(s), ...(s.expedition.event.picks ? { person: botPicksFor(s, house) } : {}) }
       : s.expedition?.leader !== undefined
       ? { type: botPress(s) ? "press_on" : "retreat" }
       : s.expedition?.votes

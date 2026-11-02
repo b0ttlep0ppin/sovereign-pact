@@ -41,31 +41,52 @@ export function drawEvent(s: SovState): TripEventDef | undefined {
 /** The Houses with Scions still marching: they decide the party's events. */
 export const present = (s: SovState): number[] => [...new Set(marching(s).map((id) => person(s, id).host))].sort((a, b) => a - b);
 
-/** An Event node: the event is drawn and put to the party. */
+/** Whether every Scion's owner picks for them (§9.4 `each_scion`) instead of the party voting. */
+export const eachScion = (id: string): boolean => TRIP_EVENT_BY_ID.get(id)!.options.every((o) => o.rule === "each_scion");
+
+/** An Event node: the event is drawn and put to the party (or, for `each_scion`, to every Scion's House). */
 export function meet(s: SovState): void {
   const e = s.expedition!;
   const def = drawEvent(s);
   if (!def) return log(s, "The party passes through a quiet stretch.");
   e.seen.push(def.id);
   e.event = { id: def.id, votes: s.houses.map((_, i) => (present(s).includes(i) ? null : -1)) };
+  if (eachScion(def.id)) e.event.picks = Object.fromEntries(marching(s).map((id) => [id, null]));
   log(s, `${def.title}: ${def.text}`);
 }
 
-export function cannotDecide(s: SovState, house: number, option: unknown): string | null {
+export function cannotDecide(s: SovState, house: number, option: unknown, who?: unknown): string | null {
   const ev = s.expedition?.event;
   if (!ev) return "No event waits on the party.";
   if (ev.votes[house] !== null) return ev.votes[house] === -1 ? "Your House has no one in the party." : "Your House has already chosen.";
   const def = TRIP_EVENT_BY_ID.get(ev.id)!;
-  return Number.isInteger(option) && (option as number) >= 0 && (option as number) < def.options.length ? null : "That is not one of the choices.";
+  if (!(Number.isInteger(option) && (option as number) >= 0 && (option as number) < def.options.length)) return "That is not one of the choices.";
+  if (!ev.picks) return null;
+  const id = who as number;
+  if (!(id in ev.picks) || person(s, id).host !== house) return "Choose for one of your own Scions in the party.";
+  return ev.picks[id] === null ? null : "That Scion has already chosen.";
 }
 
-/** A House's vote; the last one resolves the event. */
-export function decide(s: SovState, house: number, option: number): void {
+/** A House's vote (or its pick for one of its Scions); the last one resolves the event. */
+export function decide(s: SovState, house: number, option: number, who?: number): void {
   const e = s.expedition!;
   const ev = e.event!;
+  const def = TRIP_EVENT_BY_ID.get(ev.id)!;
+  if (ev.picks) {
+    ev.picks[who!] = option;
+    if (Object.entries(ev.picks).every(([id, v]) => v !== null || person(s, +id).host !== house)) ev.votes[house] = option;
+    if (ev.votes.some((v) => v === null)) return;
+    // Resolved together: each Scion meets what their House chose for them.
+    const picks = Object.entries(ev.picks).map(([id, v]) => [+id, v!] as const);
+    delete e.event;
+    for (const [id, v] of picks) {
+      if (e.result) return;
+      if (marching(s).includes(id)) land(s, def.options[v]!, { scions: [id], house: person(s, id).host });
+    }
+    return after(s);
+  }
   ev.votes[house] = option;
   if (ev.votes.some((v) => v === null)) return;
-  const def = TRIP_EVENT_BY_ID.get(ev.id)!;
   const tally = def.options.map((_, i) => ev.votes.filter((v) => v === i).length);
   const top = Math.max(...tally);
   const tied = tally.flatMap((n, i) => (n === top ? [i] : []));
@@ -131,7 +152,11 @@ function subjectOf(s: SovState, rule: string): Subjects | null {
 
 /** The option is taken: its subject found, its outcome drawn, its effects applied in order. */
 export function resolve(s: SovState, option: TripOption): void {
-  const { scions, house } = subjects(s, option.rule);
+  land(s, option, subjects(s, option.rule));
+  after(s);
+}
+
+function land(s: SovState, option: TripOption, { scions, house }: Subjects): void {
   const outcome = withRng(s, (rng) => {
     let r = rng.int(option.outcomes.reduce((n, o) => n + o.w, 0));
     return option.outcomes.find((o) => (r -= o.w) < 0)!;
@@ -142,8 +167,11 @@ export function resolve(s: SovState, option: TripOption): void {
     if (s.expedition!.result) return;
     apply(s, fx, fx.to === "party" ? marching(s) : scions, option.rule === "vote" ? null : house);
   }
+}
+
+/** After an event: with no one left the party is gone; a dead Leader is replaced. */
+function after(s: SovState): void {
   if (s.expedition!.result) return;
-  // An event can kill: with no one left the party is gone; a dead Leader is replaced.
   if (!marching(s).length) return home(s, "wiped");
   succeed(s);
 }
@@ -201,6 +229,11 @@ function apply(s: SovState, fx: TripEffect, ids: number[], house: number | null)
   if (fx.timeline) s.timeline.push({ year: s.year + fx.timeline.years, id: fx.timeline.id, ...(house === null ? {} : { house }) });
   // Passed by, never the boss.
   if (fx.skip) e.at = Math.min(e.chain.length - 1, e.at + fx.skip);
+  // A Fork (§9.3): the way ahead changes, some places dropped, others put next; never the boss.
+  if (fx.fork) {
+    const rest = e.chain.slice(e.at, -1).slice(fx.fork.drop ?? 0);
+    e.chain = [...e.chain.slice(0, e.at), ...(fx.fork.add ?? []), ...rest, "boss"];
+  }
   if (fx.encounter) battle(s, false, fx.encounter);
   else if (fx.retreat) home(s, "retreated");
 }
@@ -242,6 +275,10 @@ function fullDurability(s: SovState, id: number): Record<(typeof LOCATIONS)[numb
   const p = person(s, id);
   return scionCombatant(p, { id: 1, col: 0, row: 0, gear: gearTotals(s, p), house: s.houses[p.house] }).maxDur!;
 }
+
+/** The bot's next pick in an `each_scion` event: its first Scion still to choose. */
+export const botPicksFor = (s: SovState, house: number): number | undefined =>
+  Object.entries(s.expedition!.event!.picks ?? {}).map(([id, v]) => [+id, v] as const).find(([id, v]) => v === null && person(s, id).host === house)?.[0];
 
 /** The bot's choice: a cautious option if there is one, else the first. */
 export function botDecide(s: SovState): number {
