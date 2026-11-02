@@ -2,6 +2,18 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, tuning pass 2: the first Years) — implementer
+- **Seen**: bot parties of level-1 Scions lost most L1 fights the simulator said they win. The simulator's party is level 3L with Fine gear and spent JP; the campaign's had Crude gear, no abilities, and a Vagabond or Gambler starting with a knife in the Back line, where it cannot reach and only Defends.
+- **Starting kit**: each Job names its `starter` weapon in `jobs.json` (a Vagabond's bow, a Gambler's crossbow, a Minstrel's instrument). New Scions, at founding or promotion, start with `progression.startJp` (150) JP in their Job, enough for a first ability or two. Reading: §6.5 is silent on starting JP.
+- **Softer first levels**: enemy HP and damage × `enemies.soften` (0.5, 0.6, 0.7, 0.8, 0.9 at L1–5, then 1), bosses included. Starting Scions are level 1 (§6.2), and the 3L reference (§14.2) would expect level 3 at L1. The §14.2 formulas are unchanged; this multiplier comes after them.
+- **Catch-up XP** (FFT-like): battle and expedition XP gain `progression.catchUpPct` (50%) for each level a Scion stands below 3L. Base XP raised to 25 a battle and 100 an expedition. Training's reference stays 135.
+- **The Rift Gate** always offers one card for 4 at the bottom of the Year's band (`gate.floorCard`).
+- **Bot judgment**:
+  - The bot picks the card nearest the level its Scions can take, ⌊(best Scions' average level + 2) ÷ 3⌋, with a card above that counting double. It goes after its own Lost only when that card is not above its level.
+  - The bot Leader turns back only when half the party is out or has two or more broken locations, or a Scion's Sanity is nearly gone.
+- **Items** handed out later (loot, shop lots, auctions) are filed in id order, as a save restores them.
+- **Result** in bot campaigns (8 two-House, 4 one-House, 4 four-House): about 40% of expeditions triumph (was 10%). The best Scions average level 6–7 by Year 5 (was 1). Campaigns still fall around Year 14–15: the mandatory Years 5 and 10 are a cliff, and bots don't train or send proper Sorties. One two-House campaign reached Year 20 with Scions near level 26. These come next.
+
 ## 2026-11-02 (implementation, tuning pass 1: readying Scions in town) — implementer
 - **Why**: in two-House bot campaigns every Scion was still level 1 in Year 15 and the city fell. Four causes: Houses had no move to spend JP or put on gear, so loot sat in the stash and JP piled up unspent; bots chased their own Lost on Rescue cards above their level; bots turned back after one battle; and bosses at the end of a chain beat parties already worn down. This PR fixes the first; the rest follow.
 - **Readying moves** (§12.1, §13.1, `outfit.ts`), Settlement Phase only and not once sealed (on an expedition Jobs, passives and gear are locked, §9.2): `learn` (an ability of the primary Job, paid in its JP), `take_job`, `secondary` (or none), `passive` on/off within the budget, `equip`, `unequip`. A House readies its own Scions and the Wards it hosts, Retired ones included.

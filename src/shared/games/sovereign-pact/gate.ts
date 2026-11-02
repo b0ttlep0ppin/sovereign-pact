@@ -30,11 +30,16 @@ export function offer(s: SovState): ExpeditionCard[] {
     // §9.9: the Lost are sought where they were left, on a Rescue card of its own beside the offer.
     const cards: ExpeditionCard[] = rescues(s);
     const fixed = cards.length;
-    for (const pool of rng.shuffle(POOLS.filter((p) => p.levels[0] <= hi && lo <= p.levels[1]))) {
+    // The first card is always for 4 at the band's floor (tuning pass: a House can always pick a card
+    // its Scions can take); a pool that reaches the floor is dealt first.
+    const pools = rng.shuffle(POOLS.filter((p) => p.levels[0] <= hi && lo <= p.levels[1]));
+    pools.sort((a, b) => +(b.levels[0] <= lo) - +(a.levels[0] <= lo));
+    for (const pool of pools) {
       if (cards.length - fixed >= count) break;
-      const level = Math.max(lo, pool.levels[0]) + rng.int(Math.min(hi, pool.levels[1]) - Math.max(lo, pool.levels[0]) + 1);
+      const floor = cards.length === fixed && G.floorCard;
+      const level = floor ? Math.max(lo, pool.levels[0]) : Math.max(lo, pool.levels[0]) + rng.int(Math.min(hi, pool.levels[1]) - Math.max(lo, pool.levels[0]) + 1);
       let roll = rng.int(100);
-      const size = G.sizes.find(([, w]) => (roll -= w) < 0)![0];
+      const size = floor ? 4 : G.sizes.find(([, w]) => (roll -= w) < 0)![0];
       cards.push({ type: rng.pick(pool.cards) as ExpeditionCard["type"], pool: pool.id, level, size });
     }
     return cards;
@@ -125,13 +130,28 @@ export function chosenCard(s: SovState): ExpeditionCard | undefined {
   return gate.cards[gate.votes[by]!];
 }
 
-/** The bot's card: the lowest level among those the Houses' Scions could fill, else the lowest (it is cautious). */
+/**
+ * The level the bot thinks its Scions can take: the best `seats` Scions' average level against the
+ * reference Scion level of 3 per expedition level (§14.2), rounded in the party's favor.
+ */
+export function fairLevel(s: SovState, seats: number): number {
+  const best = s.people.filter((p) => p.status === "scion").map((p) => p.level).sort((a, b) => b - a).slice(0, seats);
+  const avg = best.length ? best.reduce((n, l) => n + l, 0) / best.length : 1;
+  return Math.max(1, Math.floor((avg + TUNING.gate.botLevelSlack) / 3));
+}
+
+/**
+ * The bot's card (it is cautious): among the cards the Houses' Scions could fill, the one nearest the
+ * level they can take, a card above it counting double. It goes looking for its own Lost first, if that
+ * card is not above its level.
+ */
 export function botCard(s: SovState, house?: number): number {
-  // A bot goes looking for its own Lost first.
-  const own = s.gate!.cards.findIndex((c) => c.rescue?.some((id) => s.people.find((p) => p.id === id)?.house === house));
-  if (own >= 0) return own;
   const scions = s.people.filter((p) => p.status === "scion").length;
-  const cards = s.gate!.cards.map((c, i) => ({ c, i, fits: (c.size === 4 ? 4 : 8) <= scions }));
+  const seats = (c: ExpeditionCard) => (c.size === 4 ? 4 : 8);
+  const cards = s.gate!.cards.map((c, i) => ({ c, i, fits: seats(c) <= scions, fair: fairLevel(s, seats(c)) }));
+  const own = cards.find((x) => x.c.rescue?.some((id) => s.people.find((p) => p.id === id)?.house === house));
+  if (own && own.c.level <= own.fair) return own.i;
   const pool = cards.some((x) => x.fits) ? cards.filter((x) => x.fits) : cards;
-  return pool.reduce((best, x) => (x.c.level < best.c.level ? x : best)).i;
+  const miss = (x: (typeof pool)[number]) => (x.c.level > x.fair ? 2 * (x.c.level - x.fair) : x.fair - x.c.level);
+  return pool.reduce((best, x) => (miss(x) < miss(best) || (miss(x) === miss(best) && x.c.level < best.c.level) ? x : best)).i;
 }

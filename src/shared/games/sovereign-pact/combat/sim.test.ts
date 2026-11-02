@@ -14,16 +14,18 @@ describe("enemy scaling (§14.2)", () => {
   ])("matches the base block at L%i", (L, hp, power, acc, eva) => {
     // The Hollow Soldier's stats are the bruiser's; divide them back out.
     const e = enemyCombatant("barrow_hollow_soldier", { id: 1, level: L, col: 0, row: 0 });
-    expect(e.maxHp / 1.6).toBeCloseTo(hp, -1);
+    // The tuning pass's softening of the first levels comes on top of the block.
+    const soft = TUNING.enemies.soften[L - 1] ?? 1;
+    expect(e.maxHp / 1.6 / soft).toBeCloseTo(hp, -1);
     expect(e.weapon.power).toBeCloseTo(power, 0);
     expect(e.weapon.acc).toBe(acc);
     expect(e.evasion / 0.6).toBeCloseTo(eva, -1);
-    expect(e.enemyScale).toBeCloseTo(TUNING.enemies.roles.bruiser.atk * (1 + TUNING.combat.enemyLevelFactor * L));
+    expect(e.enemyScale).toBeCloseTo(TUNING.enemies.roles.bruiser.atk * (1 + TUNING.combat.enemyLevelFactor * L) * soft);
   });
 
   it("takes role multipliers when an enemy names no stats of its own", () => {
     const e = enemyCombatant("barrow_skeleton", { id: 1, level: 1, col: 0, row: 0 });
-    expect(e.maxHp).toBe(Math.round(52.5 * TUNING.enemies.roles.fodder.hp));
+    expect(e.maxHp).toBe(Math.round(52.5 * TUNING.enemies.roles.fodder.hp * TUNING.enemies.soften[0]!));
   });
 });
 

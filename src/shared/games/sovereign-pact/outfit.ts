@@ -127,7 +127,7 @@ export function botOutfit(s: SovState, house: number): OutfitMove | null {
       if (other) return { type: "secondary", person: p.id, job: other };
     }
   }
-  const spare = stash(s, house).sort((a, b) => worth(b) - worth(a));
+  const spare = stash(s, house).sort((a, b) => worth(b) - worth(a) || a.id - b.id);
   for (const it of spare) {
     for (const p of mine) {
       const slots = baseOf(it).slot === "acc" ? (["acc1", "acc2"] as const) : baseOf(it).slot === "main" && (baseOf(it).hands ?? 1) === 1 ? (["main", "off"] as const) : [baseOf(it).slot as GearSlot];

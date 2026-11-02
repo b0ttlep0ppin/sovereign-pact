@@ -7,6 +7,7 @@ import { HERALDRY, HOUSE_TRAIT_BY_ID, HOUSE_TRAITS, SEATS, type HouseTraitDef } 
 import { dealAmbition, promote, randomHouse, rollRecruit } from "./generate.ts";
 import { econ } from "./houses.ts";
 import { equipStarter } from "./items.ts";
+import { gainJp } from "./progression.ts";
 import { BASE_JOBS, ELEMENTS, type Ambition, type Element, type House, type SovMove, type SovState } from "./state.ts";
 import { forHouses, TUNING } from "./tuning.ts";
 import { openYear, withRng } from "./year.ts";
@@ -149,7 +150,9 @@ function begin(s: SovState): void {
       // Debt-Ridden: the creditors followed them through the rift (§5.7).
       h.debt += econ(h, "startDebt");
       for (let n = 0; n < forHouses(TUNING.houses.startScions, H); n++) {
-        const scion = promote(rollRecruit(rng, s.nextId++, i, h), rng.pick(BASE_JOBS));
+        const recruit = rollRecruit(rng, s.nextId++, i, h);
+        const job = rng.pick(BASE_JOBS);
+        const scion = gainJp(promote(recruit, job), TUNING.progression.startJp, job);
         s.people.push(scion);
         equipStarter(s, scion);
       }

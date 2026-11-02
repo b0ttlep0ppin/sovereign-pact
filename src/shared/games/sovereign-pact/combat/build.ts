@@ -186,7 +186,9 @@ export function enemyCombatant(def: EnemyDef | string, o: EnemyOpts): Combatant 
   const L = o.level;
   const role = TUNING.enemies.roles[e.role];
   const m = { hp: role.hp, atk: role.atk, def: role.def, eva: role.eva, acc: 1, ...e.stats };
-  const hp = Math.round(block("hp", L) * m.hp);
+  // The first expedition levels are softer (tuning pass): new Scions start at level 1, not 3L.
+  const soft = TUNING.enemies.soften[L - 1] ?? 1;
+  const hp = Math.round(block("hp", L) * m.hp * soft);
   const resist = C.enemyResist.base + C.enemyResist.perLevel * L;
   const melee = e.tags.includes("reach") ? "reach" : "melee";
   return {
@@ -218,7 +220,7 @@ export function enemyCombatant(def: EnemyDef | string, o: EnemyOpts): Combatant 
     accuracy: 0,
     defense: Math.round(block("defense", L) * m.def),
     weapon: { kind: "natural", power: block("power", L), acc: Math.round(block("accuracy", L) * m.acc), crit: 0, reach: melee, hands: 1 },
-    enemyScale: m.atk * (1 + C.enemyLevelFactor * L),
+    enemyScale: m.atk * (1 + C.enemyLevelFactor * L) * soft,
     broken: [],
     affinity: { ...e.affinity },
     resist: { physical: resist, mental: resist },
