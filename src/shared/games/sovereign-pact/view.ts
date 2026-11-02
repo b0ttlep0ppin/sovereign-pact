@@ -36,6 +36,10 @@ import type {
   Stores,
 } from "./state.ts";
 import { kitOf, type Kit } from "./outfit.ts";
+import { BUILDINGS, PROJECTS } from "./content.ts";
+import { built, projectCost, stillNeeded } from "./commons.ts";
+import { buildCost, cannotBuild, levelOf } from "./town.ts";
+import { cannotPropose } from "./votes.ts";
 import { campaignYears, mandatoryYears, trackName } from "./year.ts";
 
 /** Another House as everyone sees it. */
@@ -72,6 +76,10 @@ export interface PrivateHouse {
   consumables: Partial<Record<string, number>>;
   /** The consumables this House can buy now, at its price (§13.7). */
   shop: { id: string; price: number }[];
+  /** Each building it could raise: the next level, what it costs (null at the top), and why it cannot, if so (§8.2). */
+  builds: { id: string; level: number; cost: Partial<Record<string, number>> | null; why: string | null }[];
+  /** The Commons' projects open now: the next level, what it still needs, and why this House cannot propose spending on it, if so (§8.5, §8.1). */
+  projects: { id: string; level: number; need: Partial<Record<string, number>>; propose: string | null }[];
   /** The Scriptorium's level: how much of a recruit shows (§6.4). */
   insight: number;
   /** This House's own Crisis pledge, and whether it gave in to the temptation. */
@@ -272,6 +280,16 @@ export function view(s: SovState, playerId: PlayerId): SovView {
             stores: own.stores,
             consumables: own.consumables ?? {},
             shop: forSale(s, me).map((d) => ({ id: d.id, price: consumablePrice(s, me, d) })),
+            builds: BUILDINGS.map((b) => {
+              const level = levelOf(own, b.id) + 1;
+              return { id: b.id, level, cost: buildCost(b.id, level, own), why: own.works.includes(b.id) ? null : cannotBuild(s, me, b.id) };
+            }),
+            projects: PROJECTS.filter((x) => projectCost(s, x.id)).map((x) => ({
+              id: x.id,
+              level: built(s, x.id) + 1,
+              need: stillNeeded(s, x.id),
+              propose: s.proposers.includes(me) ? "You have made your proposal for this Year." : cannotPropose(s, x.id),
+            })),
             insight,
             crisis: s.crisis ? { pledge: s.crisis.pledges[me]!, tempted: s.crisis.tempted[me]! } : null,
             notes: s.notes[me] ?? [],

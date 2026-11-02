@@ -2,6 +2,14 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 8i): building
+
+- The Settlement Phase shows a Building panel (§8.2–8.5):
+  - **Your House:** every building with its current level, what the next level does, and a Build button at its price (with the reason when it cannot, such as the masons being busy or the House being short). This Year's work shows as rising, with Cancel for a full refund.
+  - **The Commons:** every project open now, what it does, what its next level still needs, a pledge form (public and final, Renown by share), and the House's one proposal a Year to spend the Commons' stock on it.
+- The view gives the House `mine.builds` (the next level, its price after the House's discounts, and why it cannot build) and `mine.projects` (what each open project still needs, and why the House cannot propose it). The rules work these out; the screen only shows them.
+- Every disabled button now looks disabled across the client.
+
 ## 2026-11-02 (implementation, Milestone 8h): readying Scions
 
 - The Settlement Phase shows a readying panel (§12.1, §13.1), one Scion at a time (tabs):
