@@ -1,0 +1,101 @@
+{
+  "id": "the_thief_in_camp",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    10
+  ],
+  "title": "The Thief in Camp",
+  "text": "Someone has been through the packs in the night. Small footprints lead off into the dark.",
+  "options": [
+    {
+      "id": "chase",
+      "label": "The quickest gives chase.",
+      "rule": "scion:highest:speed",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "A goblin, and a nest of stolen things.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 15
+              }
+            },
+            {
+              "item": {
+                "tier": 2
+              }
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "A goblin, and its friends.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "ambush"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "count",
+      "label": "Count what is missing and move on.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Food, mostly. And a little of everyone's coin.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -8
+              }
+            },
+            {
+              "to": "party",
+              "durability": -5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "trap",
+      "label": "The craftiest leaves bait for tomorrow night.",
+      "rule": "scion:highest:guile",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It comes back, and stays caught, and tells you what it knows.",
+          "effects": [
+            {
+              "skip": 1
+            },
+            {
+              "score": {
+                "intrigue": 1
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

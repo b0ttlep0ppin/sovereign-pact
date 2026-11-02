@@ -1,0 +1,96 @@
+{
+  "id": "the_doppelganger",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    10
+  ],
+  "title": "The Doppelganger",
+  "text": "At dawn there is one Scion too many in camp, and both of them swear they are the real one.",
+  "options": [
+    {
+      "id": "ask",
+      "label": "The sharpest asks questions only the real one could answer.",
+      "rule": "scion:highest:acuity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "The false one fumbles a childhood name, and runs.",
+          "effects": [
+            {
+              "score": {
+                "intrigue": 1
+              }
+            },
+            {
+              "xp": 60
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "Both answer perfectly.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "ambush"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "both",
+      "label": "Keep both until one gives itself away.",
+      "rule": "vote",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It gives itself away at the worst moment.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "ambush"
+              }
+            },
+            {
+              "to": "party",
+              "sanity": -5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "test",
+      "label": "Test them both with silver.",
+      "rule": "leader",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Silver burns one of them.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "surprise"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

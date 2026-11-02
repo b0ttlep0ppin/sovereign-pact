@@ -1,0 +1,96 @@
+{
+  "id": "the_hollow_hill",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    10
+  ],
+  "title": "The Hollow Hill",
+  "text": "A door in a green hill, and music and light and laughter inside. A small figure at the door bows you in. Time runs strangely under hills.",
+  "options": [
+    {
+      "id": "enter",
+      "label": "Go in for one night.",
+      "rule": "vote",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "One night, a feast, and you come out the next morning, well fed and only a little older.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 15
+            },
+            {
+              "to": "party",
+              "durability": 15
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "One night, and you come out a week later.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -10
+            },
+            {
+              "fork": {
+                "drop": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gift",
+      "label": "Leave a gift at the door and go on.",
+      "rule": "leader",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The small figure takes it gravely and gives one back.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -5
+              }
+            },
+            {
+              "blessing": {
+                "trait": "lucky",
+                "years": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "refuse",
+      "label": "Refuse politely.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The door closes. The music stops.",
+          "effects": []
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,84 @@
+{
+  "id": "the_ogres_kitchen",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    9
+  ],
+  "title": "The Ogre's Kitchen",
+  "text": "An ogre cooking a stew big enough to bathe in. It is friendly. It wants an ingredient, and it is eyeing the party.",
+  "options": [
+    {
+      "id": "cook",
+      "label": "The cleverest cooks for it instead.",
+      "rule": "scion:highest:acuity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It loves the stew, and pays in shiny things.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 15
+              }
+            },
+            {
+              "score": {
+                "intrigue": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "feed",
+      "label": "Give it your food.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It is grateful, in an ogre way.",
+          "effects": [
+            {
+              "to": "party",
+              "durability": -10
+            },
+            {
+              "to": "party",
+              "status": "protect"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fight",
+      "label": "Fight it before it decides.",
+      "rule": "vote",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It decides.",
+          "effects": [
+            {
+              "encounter": {}
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

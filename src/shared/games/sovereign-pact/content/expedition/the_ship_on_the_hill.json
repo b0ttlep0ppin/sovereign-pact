@@ -1,0 +1,96 @@
+{
+  "id": "the_ship_on_the_hill",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    10
+  ],
+  "title": "The Ship on the Hill",
+  "text": "A ship, a great one, lying keel-up on a hilltop a hundred miles from any sea. Its hold is sealed.",
+  "options": [
+    {
+      "id": "hold",
+      "label": "The strongest breaks open the hold.",
+      "rule": "scion:highest:might",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "Cargo from a port that no longer exists.",
+          "effects": [
+            {
+              "item": {
+                "tier": 3
+              }
+            },
+            {
+              "resources": {
+                "gold": 10
+              }
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "The crew is still aboard.",
+          "effects": [
+            {
+              "encounter": {}
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "log",
+      "label": "The wisest finds the ship's log.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It sailed from your world into this one. The last page is a warning.",
+          "effects": [
+            {
+              "score": {
+                "lore": 2
+              }
+            },
+            {
+              "to": "party",
+              "xp": 30
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "timber",
+      "label": "Strip it for timber.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Old oak, sea-hardened.",
+          "effects": [
+            {
+              "resources": {
+                "timber": 4
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

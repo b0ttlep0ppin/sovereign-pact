@@ -1,0 +1,92 @@
+{
+  "id": "the_worlds_root",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    10
+  ],
+  "title": "The World's Root",
+  "text": "A root of some impossible tree, as wide as a castle, curving out of the ground and back in. Sap like amber oozes from a wound in it.",
+  "options": [
+    {
+      "id": "sap",
+      "label": "Collect the sap.",
+      "rule": "leader",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Amber that never sets.",
+          "effects": [
+            {
+              "resources": {
+                "essence": 4
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "climb",
+      "label": "The strongest climbs into the wound.",
+      "rule": "scion:highest:might",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "Inside it is warm, and alive, and gives them something.",
+          "effects": [
+            {
+              "growth": {
+                "resilience": 10
+              }
+            },
+            {
+              "sanity": 10
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "Inside it is warm, and alive, and hungry.",
+          "effects": [
+            {
+              "injury": "body"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bind",
+      "label": "Bind the wound with what cloth you have.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The root shudders, and somewhere far off, a tree sighs.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 8
+            },
+            {
+              "doom": -1
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

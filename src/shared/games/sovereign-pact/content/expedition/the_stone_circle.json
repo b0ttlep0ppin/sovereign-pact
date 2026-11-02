@@ -1,0 +1,88 @@
+{
+  "id": "the_stone_circle",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    10
+  ],
+  "title": "The Stone Circle",
+  "text": "Nine standing stones, and in their middle the grass is dry in the rain. Old powers meet here at dusk.",
+  "options": [
+    {
+      "id": "wait",
+      "label": "Wait in the circle for dusk.",
+      "rule": "vote",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "The powers come, and are curious, and are kind.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 10
+            },
+            {
+              "growth": {
+                "all": 5
+              }
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "The powers come, and are not kind.",
+          "effects": [
+            {
+              "curse": true
+            },
+            {
+              "to": "party",
+              "sanity": -10
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ward",
+      "label": "The wisest wards the circle and sleeps safe.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A full night's sleep, the first in days.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 10
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "leave",
+      "label": "Leave before dusk.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Behind you, the stones begin to hum.",
+          "effects": []
+        }
+      ]
+    }
+  ]
+}

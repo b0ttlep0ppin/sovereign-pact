@@ -9,7 +9,7 @@ import { join, relative, sep } from "node:path";
 import { fileURLToPath } from "node:url";
 import { Ajv, type ValidateFunction } from "ajv";
 import { describe, expect, it } from "vitest";
-import { ABILITY_SETS, BOSSES, ENEMIES, ENEMY_BY_ID, JOBS, POOL_BY_ID, rosterOf, TEMPLATES, VARIANT_BY_ID, type TemplateRole } from "../src/shared/games/sovereign-pact/content.ts";
+import { ABILITY_SETS, BOSSES, ENEMIES, ENEMY_BY_ID, JOBS, POOL_BY_ID, rosterOf, TEMPLATES, TRIP_EVENTS, VARIANT_BY_ID, type TemplateRole } from "../src/shared/games/sovereign-pact/content.ts";
 import { knownCondition } from "../src/shared/games/sovereign-pact/combat/conditions.ts";
 import { rosterFor } from "../src/shared/games/sovereign-pact/combat/encounter.ts";
 import { partBox } from "../src/shared/games/sovereign-pact/combat/enemyparts.ts";
@@ -76,6 +76,12 @@ describe("content", () => {
       folders.set(folder, [...(folders.get(folder) ?? []), ...(defines(data) ? [data.id] : []), ...ids(data)]);
     }
     for (const [folder, all] of folders) expect(all.filter((id, i) => all.indexOf(id) !== i), folder).toEqual([]);
+  });
+
+  it("gives every expedition event a title of its own, so two scenes are never the same one", () => {
+    const key = (t: string) => t.toLowerCase().replace(/^the /, "");
+    const titles = TRIP_EVENTS.map((e) => key(e.title));
+    expect(TRIP_EVENTS.filter((e, i) => titles.indexOf(key(e.title)) !== i).map((e) => e.id)).toEqual([]);
   });
 
   it("files enemies by pool and id", () => {
