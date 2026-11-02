@@ -2,6 +2,21 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 8ag): the formation
+
+- Josh: "let us deploy our units in formation where they start battles." SPEC §10.12 step 1 ("placed on the grid from a saved formation, editable in town") is now built.
+- **Setting a place:** each Scion can be given a place on the party's 3×8 grid (Front, Middle, Back × 8 rows) by their own House, with the move `post`. The place is kept on the Scion between expeditions.
+  - Posting a Scion onto a cell one of your own already holds swaps the two.
+  - Posting with no cell clears the place, and the Scion stands by their Job again.
+  - A place can be set any time except during founding or mid-battle.
+- **When a battle opens:** each Scion stands at their place. If two Houses want the same cell, the Scion who comes first in the party gets it. A Scion with no place, or who loses the cell, stands in their Job's column in the first free row, as before.
+  - Bots never set places, so their battles and the campaign sim are unchanged.
+- **On screen:** the grid is drawn the way the battle shows it, with the foe to the left.
+  - In town it sits under Your people, showing your own Scions.
+  - On the expedition it sits beside the road, showing the whole party (your own Scions only, before you field them).
+  - Pick one of yours, then a cell.
+- Not built yet: SPEC's ambushed parties deploying at random.
+
 ## 2026-11-02 (implementation, Milestone 8af): one screen at a time
 
 - Josh: the expedition should be its own screen with no settlement panels. On desktop the long single page buried House creation and the map, so the client now shows one screen per part of the Year.

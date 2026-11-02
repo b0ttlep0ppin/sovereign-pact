@@ -92,6 +92,8 @@ export interface Person {
   xp: number;
   /** Primary Job; recruits have none. */
   job: JobId | null;
+  /** Where they stand when a battle opens (§10.12, formation.ts): Front/Middle/Back column and row. Unset: their Job's column. */
+  post?: [col: number, row: number];
   secondary?: JobId;
   /** JP earned per Job; buying abilities does not lower it (what is left: progression.ts `jpLeft`). */
   jp: Partial<Record<JobId, number>>;
@@ -551,6 +553,8 @@ export type SovMove =
   | { type: "retreat" }
   /** Your House's pick of a share of the haul when the draft comes to it (§9.10). */
   | { type: "draft"; share: number }
+  /** Place one of your Scions in the formation, or clear their place (col and row null) (§10.12). */
+  | { type: "post"; person: number; col: number | null; row: number | null }
   /** Retire a Scion, or bring a Retired one back (§6.12). */
   | { type: "retire"; person: number }
   | { type: "reinstate"; person: number }

@@ -11,6 +11,7 @@ import MusicPanel, { useMusic, useMusicSettings } from "./Music";
 import { battleTrack, sceneTrack } from "./music";
 import ChainMap from "./ChainMap";
 import Deals from "./Deals";
+import Formation from "./Formation";
 import Decisions from "./Decisions";
 import Market from "./Market";
 import HouseDesigner from "./HouseDesigner";
@@ -134,6 +135,10 @@ export default function SovereignPact({ view, isMyTurn, sendMove, lastError }: P
   const mine = view.me === null ? null : view.houses[view.me]!;
   const others = view.people.filter((p) => p.host !== view.me);
   const open = view.phase === "settlement" && !!mine && !mine.sealed;
+  const ownScions = view.people.filter((p) => p.host === view.me && p.status === "scion");
+  // The party's grid: everyone fielded so far, or your own Scions before you field them.
+  const fielded = (view.expedition?.party ?? []).flatMap((x) => x ?? []);
+  const partyPeople = fielded.length ? fielded.flatMap((id) => view.people.filter((p) => p.id === id)) : ownScions;
   // One screen at a time (DECISIONS 8af): founding the House, the town, the expedition, the end.
   const scene = view.phase === "founding" ? "founding" : view.phase === "expedition" ? "expedition" : "town";
   const settings = (
@@ -312,7 +317,10 @@ export default function SovereignPact({ view, isMyTurn, sendMove, lastError }: P
                 <Muster key={view.expedition.seats[view.me!]} view={view} sendMove={sendMove} openBattle={hidden ? () => setHidden(false) : undefined} />
               </section>
             ) : null}
-            <ChainMap view={view} sendMove={sendMove} />
+            <div className="sp-stage__pair">
+              <ChainMap view={view} sendMove={sendMove} />
+              {mine ? <Formation view={view} people={partyPeople} sendMove={sendMove} canAct={!fight} title="The party's formation" /> : null}
+            </div>
           </div>
           <aside className="sp-stage__side">
             {battleList}
@@ -326,7 +334,14 @@ export default function SovereignPact({ view, isMyTurn, sendMove, lastError }: P
             <Tabs
               tabs={[
                 ["gate", "The Rift Gate", view.phase === "settlement" || view.phase === "omens" ? <RiftGate view={view} sendMove={sendMove} canVote={open} /> : null],
-                ["people", "Your people", <Roster view={view} sendMove={sendMove} canAct={open} />],
+                [
+                  "people",
+                  "Your people",
+                  <>
+                    <Roster view={view} sendMove={sendMove} canAct={open} />
+                    {ownScions.length ? <Formation view={view} people={ownScions} sendMove={sendMove} canAct={!!mine && view.phase !== "over"} /> : null}
+                  </>,
+                ],
                 ["readying", "Readying", view.phase === "settlement" ? <Readying view={view} sendMove={sendMove} canAct={open} /> : null],
                 ["building", "Building", view.phase === "settlement" ? <Works view={view} sendMove={sendMove} canAct={open} /> : null],
                 ["market", "Market", view.phase === "settlement" ? <Market view={view} sendMove={sendMove} canAct={open} /> : null],

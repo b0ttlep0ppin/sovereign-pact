@@ -1,6 +1,7 @@
 // The Sovereign Pact as a Vibe Pulse GameDefinition (SPEC §4.2): pure functions over JSON state.
 // One seat is one Great House. Milestone 0 runs the Year loop with the Settlement Phase's seal; every
 // later milestone adds its decisions as moves here.
+import { cannotPost, post } from "./formation.ts";
 import type { GameDefinition, GameResult, MoveResult, PlayerId } from "../../game.ts";
 import type { Rng } from "../../rng.ts";
 import type { TableOption, TableOptions } from "../../table-options.ts";
@@ -44,6 +45,7 @@ export { itemName, TIER_NAMES } from "./loot.ts";
 export { FLAG, replayLine, type Replay, type ReplayUnit, type Vitals } from "./combat/replay.ts";
 export type { Aim, Choice, Command, FightView, TurnView } from "./fight.ts";
 export type { Cell } from "./combat/types.ts";
+export { deploy } from "./formation.ts";
 
 export const SOVEREIGN_PACT_OPTIONS: readonly TableOption[] = [
   {
@@ -184,6 +186,12 @@ export function applyMove(state: SovState, playerId: PlayerId, move: SovMove): M
       h.sealed = true;
       s.phaseMoves += 1;
       if (s.houses.every((x) => x.sealed)) closeSettlement(s);
+      return { ok: true, state: s };
+    }
+    case "post": {
+      const why = cannotPost(s, house, move);
+      if (why) return fail(why);
+      post(s, house, move);
       return { ok: true, state: s };
     }
     case "retire":
