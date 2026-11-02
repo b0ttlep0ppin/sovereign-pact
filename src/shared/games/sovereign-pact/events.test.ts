@@ -122,7 +122,7 @@ describe("the rules' subjects (§9.4)", () => {
 describe("the effects (§9.4)", () => {
   it("moves Sanity and Durability by % of max, Breaking a location at 0, and pays XP", () => {
     const s = underway(1);
-    const id = ofHouse(s, 0)[0]!;
+    const id = s.expedition!.leader!;
     const p = s.people.find((x) => x.id === id)!;
     p.sanity = 10;
     resolve(s, option("leader", { sanity: 1000 }, { durability: -100, loc: "legs" }, { xp: 30 }));
@@ -217,7 +217,7 @@ describe("the rest of the rules (§9.4)", () => {
 describe("the lasting effects (§9.4)", () => {
   it("changes stats and growths, gains and loses traits (one of a group at a time), curses, and redraws the Tarot", () => {
     const s = underway(1);
-    const id = ofHouse(s, 0)[0]!;
+    const id = s.expedition!.leader!;
     const p = () => s.people.find((x) => x.id === id)!;
     const [base, growth] = [[...p().base], [...p().growth]];
     p().traits = ["sluggish"];
@@ -339,7 +339,7 @@ describe("secret events (Q91, Josh 2026-11-02)", () => {
 describe("blessings and House improvements (§9.4)", () => {
   it("a blessing is a trait held for a time: it fades at a later Reckoning", () => {
     let s = underway(1);
-    const id = ofHouse(s, 0)[0]!;
+    const id = s.expedition!.leader!;
     const p = () => s.people.find((x) => x.id === id)!;
     p().traits = [];
     resolve(s, option("leader", { blessing: { trait: "lucky", years: 1 } }));

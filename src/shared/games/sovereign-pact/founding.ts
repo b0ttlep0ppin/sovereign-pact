@@ -1,16 +1,16 @@
 // House creation (§5.1): before Year 1 every seat founds its House. Each starts from a themed Random
 // House as its draft; the player changes any part of it (one screen per step in the client, each with
 // its dice), keeps one of two Ambitions dealt in secret, and swears the Pact. When every House has
-// sworn, the starting Scions and recruits are born with their House's blood and Year 1 opens.
+// sworn, its recruits are born with its blood, the Houses draft their first Scions from the city's
+// volunteers (muster.ts), and Year 1 opens.
 import type { Rng } from "../../rng.ts";
 import { HERALDRY, HOUSE_TRAIT_BY_ID, HOUSE_TRAITS, SEATS, type HouseTraitDef } from "./content.ts";
-import { dealAmbition, promote, randomHouse, rollRecruit } from "./generate.ts";
+import { dealAmbition, randomHouse, rollRecruit } from "./generate.ts";
 import { econ } from "./houses.ts";
-import { equipStarter } from "./items.ts";
-import { gainJp } from "./progression.ts";
-import { BASE_JOBS, ELEMENTS, type Ambition, type Element, type House, type SovMove, type SovState } from "./state.ts";
+import { openMuster } from "./muster.ts";
+import { ELEMENTS, type Ambition, type Element, type House, type SovMove, type SovState } from "./state.ts";
 import { forHouses, TUNING } from "./tuning.ts";
-import { openYear, withRng } from "./year.ts";
+import { withRng } from "./year.ts";
 
 /** The parts of a House its founder chooses (§5.1 steps 1–6 and 9). */
 export type HouseDesign = Partial<Pick<House, "name" | "motto" | "colors" | "emblem" | "seat" | "element" | "traits" | "bane" | "theme">>;
@@ -140,26 +140,18 @@ export function swear(s: SovState, house: number, ambition: 0 | 1): void {
   if (s.houses.every((x) => x.sealed)) begin(s);
 }
 
-/** Year 1: each House's starting Scions and recruits, its starting debt, the Omens. */
+/** Year 1's eve: each House's starting debt and its own-blooded recruits; then the opening draft (muster.ts). */
 function begin(s: SovState): void {
   const H = s.houses.length;
   withRng(s, (rng) => {
     s.houses.forEach((h, i) => {
       delete h.dealt;
-      h.sealed = false;
       // Debt-Ridden: the creditors followed them through the rift (§5.7).
       h.debt += econ(h, "startDebt");
-      for (let n = 0; n < forHouses(TUNING.houses.startScions, H); n++) {
-        const recruit = rollRecruit(rng, s.nextId++, i, h);
-        const job = rng.pick(BASE_JOBS);
-        const scion = gainJp(promote(recruit, job), TUNING.progression.startJp, job);
-        s.people.push(scion);
-        equipStarter(s, scion);
-      }
       for (let n = 0; n < forHouses(TUNING.houses.startRecruits, H); n++) s.people.push(rollRecruit(rng, s.nextId++, i, h));
     });
   });
-  openYear(s);
+  openMuster(s);
 }
 
 /** The bot swears its draft, rerolling its colors first if another House swore under them. */

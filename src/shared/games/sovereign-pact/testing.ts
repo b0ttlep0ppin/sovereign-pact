@@ -17,6 +17,13 @@ export function found(s: SovState): SovState {
     if (!r.ok) throw new Error(r.error);
     t = r.state;
   }
+  // The opening draft, each House's pick as its bot would make it.
+  while (t.muster) {
+    const p = sovereignPact.activePlayers(t)[0]!;
+    const r = sovereignPact.applyMove(t, p, sovereignPact.botMove!(t, p, undefined as never));
+    if (!r.ok) throw new Error(r.error);
+    t = r.state;
+  }
   return t;
 }
 

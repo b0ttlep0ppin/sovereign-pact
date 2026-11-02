@@ -231,3 +231,27 @@
 /* A Scion's name in their House's color, with the House name as surname; recruits have not earned it yet. */
 .sp-person__name { font-size: 1.05rem; text-shadow: 0 1px 0 #000, 0 0 6px rgba(0, 0, 0, 0.8); }
 .sp-person__surname { font-weight: 400; font-variant: small-caps; letter-spacing: 0.04em; }
+
+/* The muster: the volunteers, the pick order, and the Job a pick trains as. */
+.sp-muster__order { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 4px; counter-reset: pick; }
+.sp-muster__order li { counter-increment: pick; font-size: 0.8rem; font-variant: small-caps; padding: 2px 8px; border: 1px solid var(--line); border-left-width: 4px; border-radius: 2px; background: rgba(0, 0, 0, 0.35); color: var(--muted); }
+.sp-muster__order li::before { content: counter(pick) ". "; }
+.sp-muster__order li.is-done { opacity: 0.4; text-decoration: line-through; }
+.sp-muster__order li.is-now { color: var(--gold); background: color-mix(in srgb, var(--blood) 60%, transparent); box-shadow: 0 0 8px rgba(220, 181, 94, 0.35); }
+.sp-muster__turn { margin: 0; font-family: var(--display); font-size: 1.4rem; color: var(--gold); }
+.sp-muster__turn strong { font-weight: 400; }
+.sp-muster__pool { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+.sp-muster__pool .sp-person header { display: flex; align-items: baseline; gap: 6px; flex-wrap: wrap; }
+.sp-muster__pick { margin-left: auto; min-height: 30px; padding: 3px 12px; }
+.sp-muster__pool .sp-person.is-picked { border-color: var(--gold); box-shadow: 0 0 0 1px var(--gold-dim), 0 0 14px rgba(220, 181, 94, 0.25); }
+.sp-muster__pool .sp-person.is-picked .sp-muster__pick { background: linear-gradient(var(--blood-hi), var(--blood)); border-color: var(--gold); }
+.sp-muster__jobs { border: 1px solid var(--line); border-radius: 2px; padding: 10px 12px 12px; display: grid; gap: 10px; }
+.sp-muster__jobs legend { font-family: var(--display); font-size: 1.3rem; color: var(--gold); padding: 0 6px; }
+.sp-muster__job-row { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 6px; }
+.sp-jobpick { font: inherit; display: grid; justify-items: center; gap: 2px; padding: 8px 6px; cursor: pointer; color: var(--text); background: linear-gradient(#211a15, #120e0b); border: 1px solid var(--line-hi); border-radius: 2px; text-align: center; }
+.sp-jobpick small { font-size: 0.72rem; color: var(--muted); text-transform: capitalize; }
+.sp-jobpick:hover { border-color: var(--accent); }
+.sp-jobpick.is-picked { border-color: var(--gold); background: linear-gradient(var(--blood-hi), var(--blood)); }
+.sp-jobpick:focus-visible { outline: 2px solid var(--text); outline-offset: 2px; }
+.sp-person__growth { font-size: 0.68rem; color: #9fc58a; }
+.sp-muster__pool .sp-person__stats { grid-template-columns: repeat(6, 1fr); }

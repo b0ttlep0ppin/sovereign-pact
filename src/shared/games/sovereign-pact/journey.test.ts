@@ -39,6 +39,8 @@ function underway(c: ExpeditionCard, level = 1, seed = 5): SovState {
 describe("the chain (§9.3)", () => {
   it("has 4 + level/2 nodes, 2 more when mandatory, then the boss, in the decided mix", () => {
     const s = underway(card(1));
+    // An Arcana's node is its own rule (arcana.test.ts): one met already keeps it out of these counts.
+    s.expedition!.arcana ??= "fool";
     const counts: Record<string, number> = {};
     for (const [level, type, n] of [[1, "resource", 4], [5, "delve", 6], [10, "mandatory", 11]] as const) {
       s.expedition!.card = card(level, type);
