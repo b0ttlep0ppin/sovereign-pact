@@ -1,0 +1,86 @@
+{
+  "id": "the_net_mender",
+  "pools": [
+    "drowned_marches"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    7
+  ],
+  "title": "The Net Mender",
+  "text": "An old woman mends nets on a stilt-house over the marsh. Her nets catch more than fish.",
+  "options": [
+    {
+      "id": "tide",
+      "label": "The one with sea in them helps her haul.",
+      "rule": "scion:trait:tidebound|scion:highest:resilience",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The net comes up with a drowned knight's gear.",
+          "effects": [
+            {
+              "item": {
+                "tier": 2
+              }
+            },
+            {
+              "xp": 40
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "arm",
+      "label": "The one with the hurt arm lets her bind it in net-cord.",
+      "rule": "scion:injured:arms|scion:random",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Old marsh-craft. It holds.",
+          "effects": [
+            {
+              "mend": true
+            },
+            {
+              "resources": {
+                "gold": -5
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cut",
+      "label": "Cut her nets loose.",
+      "rule": "vote",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Whatever was in them swims free, and remembers you.",
+          "effects": [
+            {
+              "doom": 1
+            },
+            {
+              "to": "party",
+              "sanity": -5
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

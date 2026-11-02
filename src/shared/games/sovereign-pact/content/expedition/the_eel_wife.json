@@ -1,0 +1,93 @@
+{
+  "id": "the_eel_wife",
+  "pools": [
+    "drowned_marches"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    7
+  ],
+  "title": "The Eel Wife",
+  "text": "A woman with eels for hair rises from the black water and asks after someone the sea once claimed.",
+  "options": [
+    {
+      "id": "tide",
+      "label": "The one with the sea in them answers.",
+      "rule": "scion:trait:tidebound|scion:lowest:sanity",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "She knows their blood, and gives them a pearl the size of an eye.",
+          "effects": [
+            {
+              "resources": {
+                "essence": 6
+              }
+            },
+            {
+              "sanity": 10
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lie",
+      "label": "Lie to her.",
+      "rule": "scion:highest:guile",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "She believes it, and sinks away.",
+          "effects": [
+            {
+              "skip": 1
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "She does not.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "ambush"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "strike",
+      "label": "Strike first.",
+      "rule": "leader",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The water boils with eels.",
+          "effects": [
+            {
+              "encounter": {}
+            },
+            {
+              "score": {
+                "valor": 1
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

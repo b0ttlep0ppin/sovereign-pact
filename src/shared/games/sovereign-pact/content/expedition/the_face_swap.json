@@ -1,0 +1,92 @@
+{
+  "id": "the_face_swap",
+  "pools": [
+    "faceless_city"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    9
+  ],
+  "title": "The Face Trader",
+  "text": "A trader in the Faceless City deals in faces. She will pay well for one that has already been Changed.",
+  "options": [
+    {
+      "id": "changed",
+      "label": "One who was Changed bargains with her.",
+      "rule": "scion:changed|vote",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "She pays for a look at their face, and gives it back.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 25
+              }
+            },
+            {
+              "score": {
+                "intrigue": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sell",
+      "label": "Sell her a face.",
+      "rule": "scion:highest:guile",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "Someone else's face. She never notices.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 20
+              }
+            },
+            {
+              "doom": 1
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "She takes yours instead, for a while.",
+          "effects": [
+            {
+              "status": "confusion"
+            },
+            {
+              "sanity": -10
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "leave",
+      "label": "Keep your faces.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "She laughs behind her hand.",
+          "effects": []
+        }
+      ]
+    }
+  ]
+}

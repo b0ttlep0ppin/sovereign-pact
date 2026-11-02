@@ -1,0 +1,105 @@
+{
+  "id": "the_dragons_tithe",
+  "pools": [
+    "dragon_reaches"
+  ],
+  "weight": 2,
+  "band": [
+    5,
+    10
+  ],
+  "title": "The Dragon's Tithe",
+  "text": "A dragon's herald stops the road. One House must pay the tithe, and the dragon will choose which.",
+  "options": [
+    {
+      "id": "pay",
+      "label": "Let the dragon choose.",
+      "rule": "house:random",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It chooses, and the House pays in gold.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -20
+              }
+            },
+            {
+              "score": {
+                "renown": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "refuse",
+      "label": "Refuse the tithe.",
+      "rule": "vote",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The herald whistles.",
+          "effects": [
+            {
+              "encounter": {
+                "level": 1
+              }
+            },
+            {
+              "score": {
+                "valor": 2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "brave",
+      "label": "The bravest offers a challenge instead.",
+      "rule": "scion:trait:brave|scion:highest:might",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "The herald is amused, and lets you pass.",
+          "effects": [
+            {
+              "score": {
+                "valor": 2
+              }
+            },
+            {
+              "skip": 1
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "The herald is not amused.",
+          "effects": [
+            {
+              "durability": -40,
+              "loc": "body"
+            },
+            {
+              "to": "party",
+              "status": "burn"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

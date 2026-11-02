@@ -2,6 +2,11 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 7ab: one more event for every region, and every subject rule in use) — implementer
+- **Built** (content only). Sixteen region events: the Old Bull (Beast Lands), the Bark Mask (Hollow Wood), the Eel Wife and the Net Mender (Drowned Marches), the Veteran's Barrow (Barrows), the Frozen Lake (Deep Cold), the Dice Pit (Pit), the Cold Anvil (Forge Ruins), the Face Trader and the Shooting Gallery (Faceless City), the Mother Superior and the Court Cartomancer (Apostate Court), the Silent Cell and the Two Candles (Shrine of Six), the Dragon's Tithe (Dragon Reaches) and the Backward Man (Outer Dark). That makes 240 expedition events.
+- **Budget:** every subject rule is now used at least five times, as HANDOFF §6 asks; `npm run events` flags none. Each region now has 5 to 9 events against a goal of 25.
+- **Reading:** an option keyed to a trait, a Tarot card, a Change or a hurt arm always names a fallback rule, so a party without such a Scion still has the option.
+
 ## 2026-11-02 (implementation, Milestone 7aa: the general pool reaches 150) — implementer
 - **Built** (content only). Sixteen general expedition events: the Iron Maiden, the Archer's Wager, the Green Hand, the Widow's Tide, the Overgrown Throne, the Lamp on the Peak, the Old Soldiers, the Inn of the Changed, the Arrow Storm, the Shy Ghost, the Brave Man's Bridge, the Scrap Heap, the Dice of Houses, the Coward's Cave, the Altar of Scars and the Tide Bell. That makes 224 expedition events, 150 of them open to any card, which meets HANDOFF §6's general budget.
 - **Reading:** these lean on the subject rules `npm run events` flagged as rarely used (a trait, a Tarot card, a Change, an old wound, fewest kills or expeditions, the House the dice pick), each with a fallback rule for a party that has no such Scion. Fewest kills and fewest expeditions now reach five uses; the per-pool fill will raise the rest.

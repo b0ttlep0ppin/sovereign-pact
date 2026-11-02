@@ -1,0 +1,82 @@
+{
+  "id": "the_veterans_barrow",
+  "pools": [
+    "barrows"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    8
+  ],
+  "title": "The Veteran's Barrow",
+  "text": "A barrow where only those who once laid down their arms may enter. The door is carved with a broken sword.",
+  "options": [
+    {
+      "id": "retired",
+      "label": "Someone who once retired goes in.",
+      "rule": "scion:retired_once|scion:most_expeditions",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The dead soldiers salute them and give up their captain's blade.",
+          "effects": [
+            {
+              "item": {
+                "tier": 3
+              }
+            },
+            {
+              "score": {
+                "valor": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "force",
+      "label": "Force the door.",
+      "rule": "scion:highest:might",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The dead do not salute.",
+          "effects": [
+            {
+              "encounter": {
+                "level": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pray",
+      "label": "Say the soldiers' prayer and go.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A cold wind, and then peace.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 5
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

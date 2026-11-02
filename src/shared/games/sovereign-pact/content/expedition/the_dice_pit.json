@@ -1,0 +1,105 @@
+{
+  "id": "the_dice_pit",
+  "pools": [
+    "pit"
+  ],
+  "weight": 2,
+  "band": [
+    4,
+    10
+  ],
+  "title": "The Dice Pit",
+  "text": "Devils throw dice for the souls of whole Houses, and one of them has just rolled yours.",
+  "options": [
+    {
+      "id": "watch",
+      "label": "Let the throw land.",
+      "rule": "house:random",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "The House wins. The devils pay in coin they can't spend in hell.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 30
+              }
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "The House loses. Its Scions feel something leave them.",
+          "effects": [
+            {
+              "sanity": -15
+            },
+            {
+              "doom": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cheat",
+      "label": "Cheat the devils.",
+      "rule": "scion:highest:guile",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "Loaded dice beat loaded dice.",
+          "effects": [
+            {
+              "score": {
+                "intrigue": 2
+              }
+            },
+            {
+              "resources": {
+                "essence": 5
+              }
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "Devils know cheating.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "ambush"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "run",
+      "label": "Run before the dice stop.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "They do not chase. They will roll again.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -5
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
