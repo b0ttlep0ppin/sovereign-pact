@@ -1,0 +1,83 @@
+{
+  "id": "the_stone_door",
+  "pools": [
+    "delve"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    10
+  ],
+  "title": "The Stone Door",
+  "text": "A round stone door with a lock of sliding tiles, a puzzle older than the House.",
+  "options": [
+    {
+      "id": "solve",
+      "label": "The cleverest solves it.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "It rolls aside.",
+          "effects": [
+            {
+              "fork": {
+                "add": [
+                  "cache"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "Wrong. Darts.",
+          "effects": [
+            {
+              "status": "poison"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "force",
+      "label": "The strongest forces it.",
+      "rule": "scion:highest:might",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It cracks, and the noise travels.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "surprise"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "leave",
+      "label": "Leave it closed.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Some doors are best left.",
+          "effects": []
+        }
+      ]
+    }
+  ]
+}

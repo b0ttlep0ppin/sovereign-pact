@@ -1,0 +1,89 @@
+{
+  "id": "the_rival_miners",
+  "pools": [
+    "resource"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    10
+  ],
+  "title": "The Rival Miners",
+  "text": "Another House's miners are working the seam you came for.",
+  "options": [
+    {
+      "id": "share",
+      "label": "Share the seam.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Half each.",
+          "effects": [
+            {
+              "resources": {
+                "iron": 3
+              }
+            },
+            {
+              "accord": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "drive",
+      "label": "Drive them off.",
+      "rule": "leader",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "They go, and they will remember.",
+          "effects": [
+            {
+              "resources": {
+                "iron": 6
+              }
+            },
+            {
+              "accord": -2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "trick",
+      "label": "The shrewdest tricks them into leaving.",
+      "rule": "scion:highest:guile",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A rumor of a better seam.",
+          "effects": [
+            {
+              "resources": {
+                "iron": 5
+              }
+            },
+            {
+              "score": {
+                "intrigue": 1
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

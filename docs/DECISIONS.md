@@ -2,6 +2,10 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 7ai: card-type pools fill out) — implementer
+- **Built** (content only). Sixteen card-type events: the Bloody Boot, the Cage Cart, the Witness and the Wounded Hound (Rescue); the Peat Bog, the Rival Miners, the Amber Cliff and the Hidden Spring (Resource); the Shed Antler, the Hunters' Shrine, the Lair Mouth and the Wounded Hunter (Hunt); the Bat Roost and the Stone Door (Delve); the Shrine of Feet and the False Prophet (Pilgrimage). That makes 352 expedition events: Delve 21, Pilgrimage 18, Hunt 17, Resource 16, Rescue 15.
+- **Reading:** a few options here move Accord a point either way (sharing a seam with a rival House's miners, leaving a rival's wounded hunter behind), as other Houses' people are involved even though their Scions are not present.
+
 ## 2026-11-02 (implementation, Milestone 7ah: a sixth round for the regions, Pilgrimages and Delves) — implementer
 - **Built** (content only). Sixteen events: the Horned Rider, the Fox Wedding, the Frog Prince, the Mourners, the Mammoth Graveyard, the Lava Ferry, the Clockwork Bird, the Lamplighter, the Relic Forger, the Seventh Door, the Dragon Hatchling and the Inverted Tower (one for each region), the Footwashers and the Last Mile for Pilgrimages, and the Echo Chamber and the Ghost Light for Delves. That makes 336 expedition events; every region has 10 to 14.
 - **Reading:** the Lava Ferry, the Lamplighter and the Last Mile are whole `each_scion` events (every option is each Scion's own pick), as 7ag's test now requires.

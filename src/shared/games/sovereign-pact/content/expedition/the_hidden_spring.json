@@ -1,0 +1,82 @@
+{
+  "id": "the_hidden_spring",
+  "pools": [
+    "resource"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    10
+  ],
+  "title": "The Hidden Spring",
+  "text": "A spring in a fold of the hills, clean and cold, that would water a whole House's herds.",
+  "options": [
+    {
+      "id": "mark",
+      "label": "Mark it on the House's maps.",
+      "rule": "vote",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A place to come back to.",
+          "effects": [
+            {
+              "house_improvement": "building"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "drink",
+      "label": "Drink and rest.",
+      "rule": "leader",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Clean water, clean heads.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 8
+            },
+            {
+              "to": "party",
+              "mp": 10
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "poison",
+      "label": "Foul it, so no rival can use it.",
+      "rule": "scion:highest:guile",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Spiteful work.",
+          "effects": [
+            {
+              "score": {
+                "intrigue": 2
+              }
+            },
+            {
+              "doom": 1
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "id": "the_peat_bog",
+  "pools": [
+    "resource"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    10
+  ],
+  "title": "The Peat Bog",
+  "text": "A bog of good black peat, the kind that burns all winter.",
+  "options": [
+    {
+      "id": "cut",
+      "label": "Cut peat.",
+      "rule": "vote",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Heavy, wet work.",
+          "effects": [
+            {
+              "resources": {
+                "timber": 4
+              }
+            },
+            {
+              "to": "party",
+              "sanity": -3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bodies",
+      "label": "The sharpest eye finds what the bog keeps.",
+      "rule": "scion:highest:acuity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "An old sword in the peat.",
+          "effects": [
+            {
+              "item": {
+                "tier": 2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "leave",
+      "label": "Leave it.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Bogs swallow people.",
+          "effects": []
+        }
+      ]
+    }
+  ]
+}

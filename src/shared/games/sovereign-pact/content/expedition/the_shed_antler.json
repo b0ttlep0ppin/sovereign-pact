@@ -1,0 +1,76 @@
+{
+  "id": "the_shed_antler",
+  "pools": [
+    "hunt"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    10
+  ],
+  "title": "The Shed Antler",
+  "text": "An antler as long as a man, freshly shed. The quarry is near, and lighter.",
+  "options": [
+    {
+      "id": "take",
+      "label": "Take it.",
+      "rule": "vote",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Wyrmbone, or near enough.",
+          "effects": [
+            {
+              "resources": {
+                "wyrmbone": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bait",
+      "label": "Use it as bait.",
+      "rule": "scion:highest:guile",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The quarry comes back for it.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "surprise"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "track",
+      "label": "The sharpest eye follows the fresh trail.",
+      "rule": "scion:highest:acuity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Close now.",
+          "effects": [
+            {
+              "skip": 1
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

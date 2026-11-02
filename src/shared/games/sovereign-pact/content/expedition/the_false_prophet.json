@@ -1,0 +1,90 @@
+{
+  "id": "the_false_prophet",
+  "pools": [
+    "pilgrimage"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    10
+  ],
+  "title": "The False Prophet",
+  "text": "A prophet on the pilgrim road preaches that the Six are dead, and pilgrims are listening.",
+  "options": [
+    {
+      "id": "debate",
+      "label": "The wisest debates him.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "The pilgrims turn back to the road.",
+          "effects": [
+            {
+              "score": {
+                "renown": 2
+              }
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "He wins.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -10
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "listen",
+      "label": "Listen.",
+      "rule": "vote",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "He makes a terrible kind of sense.",
+          "effects": [
+            {
+              "score": {
+                "lore": 1
+              }
+            },
+            {
+              "to": "party",
+              "sanity": -8
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "silence",
+      "label": "Silence him.",
+      "rule": "leader",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The pilgrims scatter.",
+          "effects": [
+            {
+              "doom": 1
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
