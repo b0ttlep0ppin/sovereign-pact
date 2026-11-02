@@ -32,11 +32,17 @@ export function found(s: SovState): SovState {
  * none come. The Houses also lose their traits (and any starting debt), so amounts are the plain rules'.
  * The Rift Gate offers nothing, so no expedition departs.
  */
+/** A Seat id with no advantage or drawback: tests that count Gold, stores or slots exactly use it. */
+export const PLAIN_SEAT = "plain";
+
 export function calm(s: SovState): SovState {
   for (const h of s.houses) {
     h.traits = [];
     delete h.bane;
     h.debt = 0;
+    // No Seat's advantage or drawback either (DECISIONS 8ah): a Seat with no effects, and no head-start building.
+    h.seat = PLAIN_SEAT;
+    h.buildings = {};
   }
   s.flags.push("calm");
   s.events = [];

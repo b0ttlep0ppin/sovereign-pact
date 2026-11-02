@@ -182,7 +182,7 @@ export default function TownMap({ view, sendMove, canAssign }: Props) {
                 <strong>House {h.name}</strong>
               </header>
               <div {...target(`keep${h.index}`, { kind: "rest" }, own)} className="sp-map__keep">
-                <PixelArt className="sp-map__seat-art" rows={SEAT_ART[h.seat]} size={56} color={inkOf(h.colors) ?? BONE} />
+                <PixelArt className="sp-map__seat-art" rows={SEAT_ART[h.seat] ?? SEAT_ART.keep} size={56} color={inkOf(h.colors) ?? BONE} />
                 <span className="sp-bld__name">{Content.SEATS.find((x) => x.id === h.seat)?.name ?? h.seat.replace(/_/g, " ")}</span>
                 {own ? <div className="sp-chits">{chits({ kind: "rest" })}</div> : null}
               </div>

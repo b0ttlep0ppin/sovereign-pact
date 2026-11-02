@@ -40,8 +40,10 @@ export function upkeepDue(s: SovState, house: number): { gold: number; grain: nu
       gold += u.scionGold;
       grain += u.scionGrain;
     } else if (p.status === "retired") {
-      gold += Math.ceil(u.scionGold / 2);
-      grain += Math.ceil(u.scionGrain / 2);
+      // Catacomb Hall: the Retired keep below and cost nothing (DECISIONS 8ah).
+      const pct = 100 + econ(s.houses[house]!, "retiredUpkeepPct");
+      gold += Math.ceil((u.scionGold * pct) / 200);
+      grain += Math.ceil((u.scionGrain * pct) / 200);
     } else grain += u.recruitGrain;
   }
   if (built(s, "granary")) grain = Math.round((grain * (100 - TUNING.commons.granaryUpkeepPct)) / 100);

@@ -3,7 +3,9 @@
 // change is a `design` move the rules check as a whole, so the House on screen is always a valid one.
 import { Content, ELEMENTS, type SovMove, type SovView } from "@vibepulse/shared/games/sovereign-pact";
 import { useState } from "react";
-import { Emblem } from "./Emblem";
+import { Emblem, inkOf } from "./Emblem";
+import { SEAT_ART } from "./icons";
+import { BONE, PixelArt } from "./PixelArt";
 
 type Props = { view: SovView; sendMove: (m: SovMove) => void };
 type House = SovView["houses"][number];
@@ -150,10 +152,13 @@ function SeatStep({ h, design }: StepProps) {
     <>
       <ul className="sp-lots sp-abilities">
         {Content.SEATS.map((seat) => (
-          <li key={seat.id} className={seat.id === h.seat ? "is-known" : undefined}>
+          <li key={seat.id} className={`sp-seat-pick${seat.id === h.seat ? " is-known" : ""}`}>
+            <PixelArt rows={SEAT_ART[seat.id] ?? SEAT_ART.keep} size={40} color={inkOf(h.colors) ?? BONE} />
             <span>
               <strong>{seat.name}</strong>
               <span className="sp-ability__text">{seat.flavor}</span>
+              <span className="sp-seat-pick__pro">+ {seat.pro}</span>
+              <span className="sp-seat-pick__con">− {seat.con}</span>
             </span>
             <button type="button" className="sp-button sp-button--quiet" disabled={seat.id === h.seat} onClick={() => design({ seat: seat.id })}>
               {seat.id === h.seat ? "Your Seat" : "Choose"}

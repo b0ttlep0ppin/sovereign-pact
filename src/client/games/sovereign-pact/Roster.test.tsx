@@ -16,6 +16,8 @@ function town() {
   scion!.injuries = [{ id: "head_concussion", years: 1 }];
   s.items.push(mintNamed(s, "surgeons_kit", 0, 5));
   const recruit = s.people.find((p) => p.host === 0 && p.status === "recruit")!;
+  // Names nobody else carries, so each card is found by its own.
+  [scion!.name, other!.name, recruit.name] = ["Aldous Testament", "Berenice Testament", "Cedric Testament"];
   return { s, scion: scion!, retired: other!, recruit };
 }
 

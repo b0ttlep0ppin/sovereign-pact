@@ -180,20 +180,20 @@ A heraldry builder rendered from layers (SVG in UI, pre-baked pixel sizes for sp
 - **Charge** (≥40 icons, one main, optional small secondary in a corner): wolf, raven, stag skull, serpent, moth, spider, eye, open hand, severed hand, rose, thorned crown, crown, tower, gate, key, bell, chalice, candle, sun, eclipse, crescent, star, comet, sword, crossed swords, axe, spear, hammer, lantern, book, quill, hourglass, mask, antlers, horned skull, tree, dead tree, wave, flame, mountain, anchor, chain, heart, dagger-through-heart.
 - **Overlay in game:** a House-colored ring under each Scion's feet in battle; the Scion's tabard or cloak layer tinted the House primary color; the emblem stamped (8×8 px) on tabard chests where the LPC layer allows; full emblem on portraits, turn order, party roster, buildings, banners on the Town Map and the House's Standing card.
 
-### 5.5 Seat (the House's home) [DECIDED: purely cosmetic]
+### 5.5 Seat (the House's home) [DECIDED: an advantage and a drawback each (Josh, 2026-11-02); the numbers are PROPOSED]
 
-The Seat is the look of the House's home on the Town Map and in House screens, and the backdrop of House events. It has **no mechanical effect**; it exists so players feel cool customizing their House. Each Seat has a short flavor line and its own art. (The perk column below is kept only as an idea list for future building content, not for Seats.)
+The Seat is the look of the House's home on the Town Map and in House screens, and the backdrop of House events. Josh (2026-11-02) asked for "pros and cons to each type of household" (this replaces "purely cosmetic"). Each Seat has a short flavor line, its own silhouette and layout of building plots on the Town Map, **one advantage and one drawback**. The numbers are first pass, held as content in `content/seats.json`.
 
-| Seat | Flavor | Former perk idea (not used) |
-|---|---|---|
-| Keep | "Grey stone, narrow windows, no surrender." | Start with a Barracks (training) level 1 |
-| Chateau | "Gilded halls built on older, darker cellars." | +10% Treasury income |
-| Manor | "Ivy, hounds and a long table." | +1 starting recruit |
-| Abbey | "Bells at every hour, and something under the crypt." | Start with an Infirmary level 1 |
-| Spire | "A tower that hums when the stars align." | Start with a Scriptorium (insight) level 1 |
-| Catacomb Hall | "The house above is modest. The house below is not." | Retired Scions cost no upkeep |
-| Longhall | "Smoke, mead, oaths sworn on old iron." | Start with a Forge level 1 |
-| Harbor House | "Salt-stained, half on the water." | +1 trade action per Year |
+| Seat | Flavor | Advantage | Drawback |
+|---|---|---|---|
+| Keep | "Grey stone, narrow windows, no surrender." | Starts with a Training Ground | Everyone's max Sanity −5% |
+| Chateau | "Gilded halls built on older, darker cellars." | Gold income +10% | House events +12 points (troubles at home a quarter more often) |
+| Manor | "Ivy, hounds and a long table." | One more recruit at the start | Gold upkeep +10% |
+| Abbey | "Bells at every hour, and something under the crypt." | Starts with an Infirmary | Gold income −10% |
+| Spire | "A tower that hums when the stars align." | Starts with a Scriptorium | Everyone's max HP −5% |
+| Catacomb Hall | "The house above is modest. The house below is not." | The Retired cost no upkeep | House events +12 points |
+| Longhall | "Smoke, mead, oaths sworn on old iron." | Starts with a Forge | Gold upkeep +10% |
+| Harbor House | "Salt-stained, half on the water." | Shop prices −10% | 5% of the House's stores spoil each Year |
 
 ### 5.6 Elemental affinity [DECIDED numbers]
 

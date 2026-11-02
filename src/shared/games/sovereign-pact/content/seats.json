@@ -1,12 +1,44 @@
 {
   "seats": [
-    { "id": "keep", "name": "Keep", "flavor": "Grey stone, narrow windows, no surrender." },
-    { "id": "chateau", "name": "Chateau", "flavor": "Gilded halls built on older, darker cellars." },
-    { "id": "manor", "name": "Manor", "flavor": "Ivy, hounds and a long table." },
-    { "id": "abbey", "name": "Abbey", "flavor": "Bells at every hour, and something under the crypt." },
-    { "id": "spire", "name": "Spire", "flavor": "A tower that hums when the stars align." },
-    { "id": "catacomb_hall", "name": "Catacomb Hall", "flavor": "The house above is modest. The house below is not." },
-    { "id": "longhall", "name": "Longhall", "flavor": "Smoke, mead, oaths sworn on old iron." },
-    { "id": "harbor_house", "name": "Harbor House", "flavor": "Salt-stained, half on the water." }
+    {
+      "id": "keep", "name": "Keep", "flavor": "Grey stone, narrow windows, no surrender.",
+      "pro": "Starts with a Training Ground.", "con": "Grim halls: everyone's Sanity is 5% lower.",
+      "start": { "buildings": { "training_ground": 1 } }, "mods": { "maxSanityPct": -5 }
+    },
+    {
+      "id": "chateau", "name": "Chateau", "flavor": "Gilded halls built on older, darker cellars.",
+      "pro": "Gold income +10%.", "con": "The cellars stir: troubles at home a quarter more often.",
+      "economy": { "incomePct": 10, "houseEventPct": 12 }
+    },
+    {
+      "id": "manor", "name": "Manor", "flavor": "Ivy, hounds and a long table.",
+      "pro": "One more recruit at the start.", "con": "The long table: Gold upkeep +10%.",
+      "start": { "recruits": 1 }, "economy": { "upkeepPct": 10 }
+    },
+    {
+      "id": "abbey", "name": "Abbey", "flavor": "Bells at every hour, and something under the crypt.",
+      "pro": "Starts with an Infirmary.", "con": "Tithes to the altar: Gold income -10%.",
+      "start": { "buildings": { "infirmary": 1 } }, "economy": { "incomePct": -10 }
+    },
+    {
+      "id": "spire", "name": "Spire", "flavor": "A tower that hums when the stars align.",
+      "pro": "Starts with a Scriptorium.", "con": "Scholars, not soldiers: everyone's HP is 5% lower.",
+      "start": { "buildings": { "scriptorium": 1 } }, "mods": { "maxHpPct": -5 }
+    },
+    {
+      "id": "catacomb_hall", "name": "Catacomb Hall", "flavor": "The house above is modest. The house below is not.",
+      "pro": "The Retired cost no upkeep.", "con": "The house below is restless: troubles at home a quarter more often.",
+      "economy": { "retiredUpkeepPct": -100, "houseEventPct": 12 }
+    },
+    {
+      "id": "longhall", "name": "Longhall", "flavor": "Smoke, mead, oaths sworn on old iron.",
+      "pro": "Starts with a Forge.", "con": "Feasting: Gold upkeep +10%.",
+      "start": { "buildings": { "forge": 1 } }, "economy": { "upkeepPct": 10 }
+    },
+    {
+      "id": "harbor_house", "name": "Harbor House", "flavor": "Salt-stained, half on the water.",
+      "pro": "Shop prices -10%.", "con": "Damp stores: 5% of the House's stores spoil each Year.",
+      "economy": { "shopPct": -10, "storesLossPct": 5 }
+    }
   ]
 }

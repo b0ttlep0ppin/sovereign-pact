@@ -1,9 +1,12 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Seats: the look of a House's home, purely cosmetic (SPEC §5.5)",
+  "title": "Seats: the House's home, its look and one advantage and one drawback (SPEC §5.5, DECISIONS 8ah)",
   "type": "object",
   "additionalProperties": false,
   "required": ["seats"],
+  "definitions": {
+    "numbers": { "type": "object", "additionalProperties": { "type": "number" } }
+  },
   "properties": {
     "seats": {
       "type": "array",
@@ -11,11 +14,24 @@
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["id", "name", "flavor"],
+        "required": ["id", "name", "flavor", "pro", "con"],
         "properties": {
           "id": { "$ref": "defs.schema.json#/definitions/id" },
           "name": { "type": "string", "minLength": 1 },
-          "flavor": { "type": "string", "minLength": 1 }
+          "flavor": { "type": "string", "minLength": 1 },
+          "pro": { "type": "string", "minLength": 1, "description": "The advantage, in plain words" },
+          "con": { "type": "string", "minLength": 1, "description": "The drawback, in plain words" },
+          "start": {
+            "type": "object",
+            "additionalProperties": false,
+            "description": "What the House starts with when the Pact is sworn",
+            "properties": {
+              "buildings": { "$ref": "#/definitions/numbers", "description": "House building id -> level" },
+              "recruits": { "type": "integer", "minimum": 1 }
+            }
+          },
+          "mods": { "$ref": "#/definitions/numbers", "description": "Battle mods every person of the House carries (combat/build.ts keys)" },
+          "economy": { "$ref": "#/definitions/numbers", "description": "Town and economy knobs, as on House traits" }
         }
       }
     }

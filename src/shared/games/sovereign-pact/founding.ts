@@ -4,7 +4,7 @@
 // sworn, its recruits are born with its blood, the Houses draft their first Scions from the city's
 // volunteers (muster.ts), and Year 1 opens.
 import type { Rng } from "../../rng.ts";
-import { HERALDRY, HOUSE_TRAIT_BY_ID, HOUSE_TRAITS, SEATS, type HouseTraitDef } from "./content.ts";
+import { HERALDRY, HOUSE_TRAIT_BY_ID, HOUSE_TRAITS, SEAT_BY_ID, SEATS, type HouseTraitDef } from "./content.ts";
 import { dealAmbition, randomHouse, rollRecruit } from "./generate.ts";
 import { econ } from "./houses.ts";
 import { openMuster } from "./muster.ts";
@@ -150,7 +150,11 @@ function begin(s: SovState): void {
       delete h.dealt;
       // Debt-Ridden: the creditors followed them through the rift (§5.7).
       h.debt += econ(h, "startDebt");
-      for (let n = 0; n < forHouses(TUNING.houses.startRecruits, H); n++) s.people.push(rollRecruit(rng, s.nextId++, i, h));
+      // The Seat's head start (DECISIONS 8ah): a building, or another recruit.
+      const seat = SEAT_BY_ID.get(h.seat);
+      for (const [b, level] of Object.entries(seat?.start?.buildings ?? {})) h.buildings[b] = Math.max(h.buildings[b] ?? 0, level);
+      const recruits = forHouses(TUNING.houses.startRecruits, H) + (seat?.start?.recruits ?? 0);
+      for (let n = 0; n < recruits; n++) s.people.push(rollRecruit(rng, s.nextId++, i, h));
     });
   });
   openMuster(s);
