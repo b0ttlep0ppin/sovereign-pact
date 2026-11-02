@@ -2,6 +2,22 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 8d): the Rift Gate's cards and the expedition's chain
+
+- The Settlement Phase shows the Rift Gate's offer as cards (§9.1). Each card shows:
+  - its type, with a line on what it is for;
+  - its pool and level;
+  - its party size, and the Lost it would bring home if it is a Rescue;
+  - what waits at the end, where the card names it: a mandatory boss, a Hunt's quarry, a Pilgrimage's Idol, or an Arcana.
+- Each House's vote shows on the card it backs, as the House's emblem (votes are public, §15.7). An unsealed House votes or changes its vote from the card.
+- The Expedition Phase shows the chain (§9.3):
+  - The places passed show what they were. The next one is outlined. The rest stay face down, and the boss waits at the end.
+  - A 2×4 card shows each party's road.
+  - Below the chain: the party, with the Leader crowned and the out-of-the-fight dimmed; the satchel; and the haul so far.
+- Readings:
+  - A card drawn from a pool shows no boss. Its boss is known to the rules from departure, but §9.1 shows a boss type only with a Rift Observatory, and that preview is not built yet. Only the bosses the card itself names are shown.
+  - The node names and glyphs are placeholders until the Oryx icons are cut.
+
 ## 2026-11-02 (implementation, Milestone 8c): the battle screen, playing back
 
 - A battle now opens on its own screen as soon as it is fought (§15.5). The pieces:

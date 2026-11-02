@@ -5,7 +5,9 @@ import type { GameClientProps } from "@vibepulse/shared";
 import { Content, TIER_NAMES, type SovMove, type SovView } from "@vibepulse/shared/games/sovereign-pact";
 import { useState } from "react";
 import BattleScreen from "./BattleScreen";
+import ChainMap from "./ChainMap";
 import { HERALDRY_COLORS, Emblem } from "./Emblem";
+import RiftGate from "./RiftGate";
 import TownMap from "./TownMap";
 import "./SovereignPact.css";
 
@@ -198,6 +200,8 @@ export default function SovereignPact({ view, isMyTurn, sendMove, lastError }: P
       {view.phase === "settlement" || view.phase === "omens" || view.phase === "reckoning" ? (
         <TownMap view={view} sendMove={sendMove} canAssign={view.phase === "settlement" && !!mine && !mine.sealed} />
       ) : null}
+      {view.phase === "settlement" || view.phase === "omens" ? <RiftGate view={view} sendMove={sendMove} canVote={view.phase === "settlement" && !!mine && !mine.sealed} /> : null}
+      {view.phase === "expedition" ? <ChainMap view={view} /> : null}
 
       <section className="sp-panel" aria-label="People">
         <h2>Your people</h2>
