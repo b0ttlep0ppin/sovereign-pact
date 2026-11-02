@@ -30,6 +30,17 @@ describe("your people", () => {
     expect(sendMove).toHaveBeenCalledWith({ type: "promote", person: recruit.id, job: "knight" });
   });
 
+  it("tells what a recruit does with the Year and sets them to train or back to work (8ae)", () => {
+    const { s, recruit } = town();
+    delete s.assign[recruit.id];
+    const sendMove = vi.fn();
+    render(<Roster view={g.view(s, "p1")} sendMove={sendMove} canAct />);
+    const card = screen.getByRole("listitem", { name: recruit.name });
+    expect(within(card).getByText(/on their own|No free work/)).toBeTruthy();
+    fireEvent.click(within(card).getByRole("button", { name: "Train" }));
+    expect(sendMove).toHaveBeenCalledWith({ type: "assign", person: recruit.id, to: "train" });
+  });
+
   it("retires a Scion, brings back the Retired, mends an injury and draws a Tarot", () => {
     const { s, scion, retired } = town();
     const sendMove = vi.fn();

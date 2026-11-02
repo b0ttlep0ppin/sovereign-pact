@@ -1,6 +1,7 @@
 // What one seat may see (§4.2, §15.7). This is the only place hidden information is filtered: exact
 // Ascendancy and its categories, the Ambition, another House's Treasury, Stores and recruit pool, a
 // recruit's unrevealed potential, Ward Loyalty, and Pact marks (which no House ever sees, §14.7a).
+import { recruitsAtWork } from "./assign.ts";
 import type { PlayerId } from "../../game.ts";
 import type { Replay } from "./combat/replay.ts";
 import { dealsFor } from "./deals.ts";
@@ -99,6 +100,8 @@ export interface PrivateHouse {
   crisis: { pledge: Partial<Record<string, number>>; tempted: boolean } | null;
   /** This House's Year assignments, by person id (§8.3). */
   assign: Record<number, Assignment>;
+  /** Recruits with no assignment who will work a producer on their own this Year: person id -> building (DECISIONS 8ae). */
+  atWork: Record<number, string>;
   /** What happened at home: this House's own events and their outcomes (Q89), newest last. */
   notes: string[];
   /** Dark Bargains offered to this House and not yet answered, by content id (§14.7a). */
@@ -356,6 +359,7 @@ export function view(s: SovState, playerId: PlayerId): SovView {
             bane: own.bane ?? null,
             dealt: own.dealt ?? null,
             assign: Object.fromEntries(s.people.filter((p) => p.host === me && s.assign[p.id]).map((p) => [p.id, s.assign[p.id]!])),
+            atWork: Object.fromEntries(recruitsAtWork(s, me)),
           },
     people,
     items: s.items.filter((i) => worn.has(i.id) || (me !== null && i.house === me && !wornByAnyone.has(i.id))),

@@ -84,8 +84,10 @@ describe("House buildings (§8.3–8.4)", () => {
     let s = calm(campaign(2, 3));
     s.houses[0]!.buildings.quarry = 2;
     const stone = s.houses[0]!.stores.stone ?? 0;
+    // A recruit with nothing to do lends the Quarry a hand (8ae).
+    const hand = s.people.some((p) => p.host === 0 && p.status === "recruit" && !s.assign[p.id]) ? TUNING.assignments.work : 0;
     s = sealAll(s);
-    const made = TUNING.town.produce[1]!;
+    const made = TUNING.town.produce[1]! + hand;
     const tithe = Math.round(made * TUNING.economy.tithe);
     expect(s.houses[0]!.stores.stone).toBe(stone + made - tithe);
     expect(s.commons.stores.stone).toBe(tithe);

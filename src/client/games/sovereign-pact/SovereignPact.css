@@ -166,6 +166,10 @@
 .sp-person__stats .is-sanity dd { color: #e07ad0; }
 .sp-person__stats .is-mp dd { color: #7fa8e6; }
 .sp-person__meta { font-size: 0.85rem; color: var(--muted); }
+.sp-person__task { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.4rem; font-size: 0.85rem; color: var(--muted); }
+.sp-person__task-pick { display: inline-flex; gap: 0.25rem; }
+.sp-person__task-pick .sp-button { padding: 0.15rem 0.5rem; font-size: 0.8rem; }
+.sp-person__task-pick .sp-button[aria-pressed="true"] { color: var(--gold, #d7b45a); border-color: var(--gold, #d7b45a); }
 /* Traits and the Tarot card: the name on the left, what it does beside it. */
 .sp-person__traits { list-style: none; margin: 0; padding: 0; display: grid; gap: 3px; }
 .sp-person__traits li { display: grid; grid-template-columns: minmax(7.5em, max-content) 1fr; gap: 0 10px; align-items: baseline; padding: 2px 0; border-bottom: 1px solid rgba(59, 47, 36, 0.5); }

@@ -6,7 +6,7 @@ import { runSorties } from "./sortie.ts";
 import { changeUpkeep } from "./change.ts";
 import { createRng, type Rng } from "../../rng.ts";
 import { rollRecruit } from "./generate.ts";
-import { yearOfAssignments } from "./assign.ts";
+import { setRecruitsToWork, yearOfAssignments } from "./assign.ts";
 import { caps } from "./combat/build.ts";
 import type { House, SovState } from "./state.ts";
 import { built, completeProjects } from "./commons.ts";
@@ -136,6 +136,8 @@ export function reckoning(s: SovState): void {
   s.phase = "reckoning";
   const H = s.houses.length;
   const scale = forHouses(TUNING.economy.incomeScale, H);
+  // Recruits with nothing to do lend a hand at the producers for this Reckoning only (DECISIONS 8ae).
+  const pitchedIn = setRecruitsToWork(s);
   produce(s);
   s.houses.forEach((h, i) => {
     // Deep Coffers and Poor Lands move the House's Gold income (§5.7).
@@ -159,6 +161,7 @@ export function reckoning(s: SovState): void {
   completeProjects(s);
   // Injuries tick down, everyone recovers and grows by assignment, and MP refills (§8.3, §8.10).
   yearOfAssignments(s);
+  for (const id of pitchedIn) delete s.assign[id];
   fadeBlessings(s);
   changeUpkeep(s);
   wardYear(s);

@@ -80,7 +80,8 @@ interface Props {
 export default function TownMap({ view, sendMove, canAssign }: Props) {
   const [picked, setPicked] = useState<number | null>(null);
   const [over, setOver] = useState<string | null>(null);
-  const mine = view.people.filter((p) => p.host === view.me && p.status !== "lost");
+  // Recruits work on their own and are set from their cards (DECISIONS 8ae); the map is for Scions and the Retired.
+  const mine = view.people.filter((p) => p.host === view.me && p.status !== "lost" && p.status !== "recruit");
   const assign = view.mine?.assign ?? {};
   const at = (place: Place) => mine.filter((p) => samePlace(placeOf(assign[p.id]), place));
 
@@ -111,12 +112,12 @@ export default function TownMap({ view, sendMove, canAssign }: Props) {
       <button
         key={p.id}
         type="button"
-        className={`sp-chit${picked === p.id ? " is-picked" : ""}${p.status === "recruit" ? " is-recruit" : ""}`}
+        className={`sp-chit${picked === p.id ? " is-picked" : ""}`}
         style={{ borderColor: HERALDRY_COLORS.get(view.houses[p.house]!.colors[0]) }}
         draggable={canAssign}
         disabled={!canAssign}
         aria-pressed={picked === p.id}
-        title={p.status === "recruit" ? `${p.name}, a recruit` : `${p.name}, level ${p.level} ${(p.job ?? "").replace(/_/g, " ")}`}
+        title={p.status === "retired" ? `${p.name}, retired` : `${p.name}, level ${p.level} ${(p.job ?? "").replace(/_/g, " ")}`}
         onDragStart={(e) => e.dataTransfer.setData("text/plain", String(p.id))}
         onClick={(e) => {
           e.stopPropagation();
@@ -124,7 +125,7 @@ export default function TownMap({ view, sendMove, canAssign }: Props) {
         }}
       >
         <ScionSprite look={lookOf(p, view.houses[p.house]?.colors)} crop={HEAD} size={(32 * 64) / HEAD[2]} />
-        {p.status === "recruit" ? null : <PixelArt className="sp-chit__job" rows={JOB_ICONS[p.job ?? "recruit"]} size={13} />}
+        <PixelArt className="sp-chit__job" rows={JOB_ICONS[p.job ?? "recruit"]} size={13} />
         <span className="sp-chit__tag">{p.name.split(" ")[0]}</span>
       </button>
     ));
