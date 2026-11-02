@@ -2,6 +2,15 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 8r): music
+
+- The 18 tracks ship as Opus in Ogg at 48 kb/s, loudness-matched to −16 LUFS, cut to 3 minutes at most with a 4-second fade, about 1 MB each (`tools/encode-music.sh` from Josh's folder; the sources stay out of the repo). Each screen plays its track from §16.2, looping, crossfading over 1.5 s. A Music checkbox and volume slider sit over the Accessibility panel, kept in the browser; a Credits panel lists every asset author.
+- Readings:
+  - Until a House picks its Settlement theme at creation (§16.2), the seat picks it: House 1 the Celtic one, House 2 Night Market, and so on.
+  - Pools §16.2 does not name: Hollow Wood, Shrine of Six and Dragon Reaches play Anime Battle Music; Forge Ruins and Deep Cold, Crimson Horizon; Drowned Marches and the Faceless City, Dark Epic.
+  - An Arcana is fought to Samurai Spirit: Cursed Oni, like a Hunt's quarry; the expedition's result and the loot draft play The Lost City of Atlantis.
+  - Browsers start sound only after a click or key press, so the music begins with the first one.
+
 ## 2026-11-02 (implementation, Milestone 8p): the battle as the screen sees it
 
 - The view's `expedition.fight` now carries the replay so far (with any summons since the start), everyone's vitals now, and, for the House whose Scion's turn it is, the turn's choices: the cells the Scion can move to, every ability (Attack first) and every satchel item, each with its MP and TP cost, why it cannot be used now if it cannot, and how it is aimed.

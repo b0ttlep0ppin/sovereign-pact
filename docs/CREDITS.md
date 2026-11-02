@@ -37,6 +37,8 @@ Author handle taken from each file name. These are Pixabay uploads (same naming 
 | phatphrogstudio-samurai-spirit-cursed-oni-…-502868.mp3 | PhatPhrogStudio | Samurai Spirit: Cursed Oni |
 | welc0mei0-bgm006-dark-fantasy-lo-fi-retro-game-148338.mp3 | welc0me.i0 | BGM006 Dark Fantasy Lo-fi |
 
+Shipped (2026-11-02, Milestone 8r): all 18, encoded by `tools/encode-music.sh` into `public/music/sovereign-pact/<name>.ogg` (Opus 48 kb/s, −16 LUFS, cut to 3 minutes at most with a 4 s fade). The credit lines are in `src/client/games/sovereign-pact/credits.ts`, shown on the Credits panel.
+
 ## Sound effects — `BoomLibrary Commercial SFX\`
 - **BOOM Library** (commercial license; the folder zip is ~43 GB). Libraries present: Close Combat (Construction Kit, Designed), Creature Foley (Designed), Free Sounds – Death Whistle, Magic – Arcane Forces (Construction Kit, Designed), Magic (Construction Kit, Designed), Medieval Weapons (Construction Kit, Designed).
 - Josh's BOOM Library license covers cuts used inside a game (confirmed for Hardpoint Contract on Vibe Pulse #708). Ship processed cuts only, never the source packs. Credit line, as Hardpoint uses: "Sound effects cut from BOOM Library packs (boomlibrary.com: …), used under its license."

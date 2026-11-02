@@ -167,4 +167,8 @@
 .sp-access { margin: 0 0 12px; }
 .sp-access summary { cursor: pointer; color: var(--muted); }
 .sp-access__list { display: flex; flex-wrap: wrap; gap: 6px 18px; padding: 8px 0; }
+.sp-music { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; margin: 0 0 8px; color: var(--muted); }
+.sp-music input[type="range"] { width: 120px; }
+.sp-credits h3 { margin: 10px 0 4px; font-size: 0.95em; }
+.sp-credits ul { margin: 0; padding-left: 18px; font-size: 0.85em; color: var(--muted); }
 [data-motion="reduced"] * { scroll-behavior: auto !important; }
