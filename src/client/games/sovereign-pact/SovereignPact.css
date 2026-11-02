@@ -288,3 +288,16 @@
 .sp-tabs__tab[aria-selected="true"] { color: var(--gold); background: var(--panel-hi); border-color: var(--line-hi); box-shadow: inset 0 2px 0 var(--gold); }
 .sp-tabs__body { padding-top: 16px; display: grid; gap: 16px; }
 .sp--founding { max-width: 1280px; margin: 0 auto; }
+
+/* The formation (DECISIONS 8ag): the party's 3×8 grid, the foe to the left. */
+.sp-formation__grid { display: grid; grid-template-columns: repeat(3, 64px); gap: 4px; justify-content: start; }
+.sp-formation__col { text-align: center; font-variant: small-caps; color: var(--muted); font-size: 0.8rem; }
+.sp-formation__cell { position: relative; display: grid; place-items: center; height: 64px; padding: 0; background: #0e0b09; border: 1px solid var(--line); border-radius: 2px; color: var(--muted); cursor: pointer; box-shadow: inset 0 1px 3px #000; }
+.sp-formation__cell:disabled { cursor: default; }
+.sp-formation__cell.is-taken { border-width: 2px; background: linear-gradient(#1c1510, #0e0b09); }
+.sp-formation__cell:not(.is-mine).is-taken { opacity: 0.7; }
+.sp-formation__cell.is-picked { outline: 2px solid var(--gold); box-shadow: 0 0 10px rgba(220, 181, 94, 0.5); }
+.sp-formation__cell:not(:disabled):not(.is-taken):hover { border-color: var(--gold); }
+.sp-formation__cell small { position: absolute; bottom: 1px; left: 0; right: 0; font-size: 0.65rem; color: var(--text); text-shadow: 0 1px 2px #000; text-align: center; overflow: hidden; white-space: nowrap; }
+.sp-formation__cell .sp-scion { margin-top: -10px; }
+.sp-stage__pair { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 16px; align-items: start; }

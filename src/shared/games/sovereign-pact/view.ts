@@ -129,6 +129,8 @@ export interface PersonView {
   age: number;
   level: number;
   job: JobId | null;
+  /** Their place in the formation, if their House set one (§10.12). */
+  post?: [col: number, row: number];
   traits: string[];
   injuries: Injury[];
   /** Pools follow from the stats, so a recruit's show from Insight 1, like its stats. */
@@ -247,6 +249,7 @@ function personView(p: Person, viewer: number | null, insight: number): PersonVi
     injuries: p.injuries,
   };
   if (p.change) v.change = p.change.id;
+  if (p.post) v.post = p.post;
   if (p.status !== "recruit" || insight >= 1) {
     v.sanity = p.sanity;
     v.mp = p.mp;

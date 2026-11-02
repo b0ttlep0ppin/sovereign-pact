@@ -6,7 +6,7 @@ import { BOSS_BY_ID, BOSSES, INJURY_BY_ID, type TripEffect } from "./content.ts"
 import { bossBattle } from "./combat/bosses.ts";
 import { scionCombatant } from "./combat/build.ts";
 import { encounterBattle } from "./combat/encounter.ts";
-import { LOADOUTS } from "./combat/roster.ts";
+import { deploy } from "./formation.ts";
 import { begun, closed } from "./combat/replay.ts";
 import { meta } from "./combat/status.ts";
 import type { Battle, Combatant } from "./combat/types.ts";
@@ -72,18 +72,16 @@ export const walkers = (s: SovState): number[] => {
   return divided(e) ? e.split!.teams[e.split!.turn] : roster(s);
 };
 
-/** The party as combatants: each in their Job's column, carrying the Durability they came in with. */
+/** The party as combatants: each at their post, carrying the Durability they came in with. */
 const party = (s: SovState): Combatant[] => partyOf(s, marching(s), s.expedition!.carry);
 
-/** Scions as combatants (ids 1–8: enemies number from 101), each in their Job's column, with what they carry if anything. */
+/** Scions as combatants (ids 1–8: enemies number from 101), each at their post in the formation (formation.ts), with what they carry if anything. */
 export function partyOf(s: SovState, ids: number[], carried: Expedition["carry"] = {}): Combatant[] {
-  const rows: Record<number, number> = { 0: 0, 1: 0, 2: 0 };
+  const cells = deploy(ids.map((id) => person(s, id)));
   return ids.map((id, i) => {
     const p = person(s, id);
-    const col = LOADOUTS[p.job!]?.col ?? 1;
-    const row = rows[col]!;
-    rows[col] = row + 1;
-    const u = scionCombatant(p, { id: i + 1, col, row: row % 8, gear: gearTotals(s, p), house: s.houses[p.house] });
+    const [col, row] = cells[i]!;
+    const u = scionCombatant(p, { id: i + 1, col, row, gear: gearTotals(s, p), house: s.houses[p.house] });
     const c = carried[id];
     if (c && u.dur && u.maxDur) {
       for (const loc of LOCATIONS) u.dur[loc] = Math.min(u.maxDur[loc], c.dur[loc] ?? u.maxDur[loc]);
