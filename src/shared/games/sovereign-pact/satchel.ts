@@ -54,8 +54,11 @@ export function open(s: SovState, move: { id: string; person?: number }): void {
   const def = CONSUMABLE_BY_ID.get(move.id)!;
   const pctOf = (max: number, n: number) => Math.round((max * n) / 100);
   if (move.id === "pilgrims_bread") {
-    // HP is whole at every battle's start; the bread restores what the road wears down that a Camp does not: MP.
-    for (const id of marching(s)) person(s, id).mp = unit(s, id).maxMp;
+    // The whole party whole again: HP and MP, which the road wears down and a Camp only partly mends.
+    for (const id of marching(s)) {
+      person(s, id).mp = unit(s, id).maxMp;
+      if (e.carry[id]) delete e.carry[id].hurt;
+    }
     log(s, "The party breaks Pilgrim's Bread; every Scion's strength returns.");
   } else if (move.id === "widows_tea" || move.id === "smugglers_flask") {
     const p = person(s, move.person!);
@@ -91,17 +94,18 @@ export function botOpen(s: SovState, house: number): OpenMove | null {
   const try1 = (m: OpenMove): OpenMove | null => (cannotOpen(s, house, m) ? null : m);
   const ids = marching(s);
   if (atCamp(s)) {
-    // Each Scion's lowest share of MP, Sanity, or a location's Durability; the lowest Scion first.
-    const share = (id: number, of: "mp" | "sanity" | "dur"): number => {
+    // Each Scion's lowest share of HP, MP, Sanity, or a location's Durability; the lowest Scion first.
+    const share = (id: number, of: "hp" | "mp" | "sanity" | "dur"): number => {
       const u = unit(s, id);
       const p = person(s, id);
+      if (of === "hp") return u.hp / u.maxHp;
       if (of === "mp") return u.maxMp ? p.mp / u.maxMp : 1;
       if (of === "sanity") return u.maxSanity ? p.sanity / u.maxSanity : 1;
       return Math.min(1, ...LOCATIONS.map((l) => (u.maxDur?.[l] ? (u.dur?.[l] ?? 0) / u.maxDur[l] : 1)));
     };
-    const low = (of: "mp" | "sanity" | "dur") => [...ids].sort((a, b) => share(a, of) - share(b, of) || a - b).find((id) => share(id, of) < B.campBelow);
+    const low = (of: "hp" | "mp" | "sanity" | "dur") => [...ids].sort((a, b) => share(a, of) - share(b, of) || a - b).find((id) => share(id, of) < B.campBelow);
     const plans: (OpenMove | null)[] = [
-      low("mp") !== undefined ? { type: "use_item", id: "pilgrims_bread" } : null,
+      low("hp") !== undefined || low("mp") !== undefined ? { type: "use_item", id: "pilgrims_bread" } : null,
       low("sanity") !== undefined ? { type: "use_item", id: "widows_tea", person: low("sanity")! } : null,
       low("dur") !== undefined ? { type: "use_item", id: "smugglers_flask", person: low("dur")! } : null,
     ];

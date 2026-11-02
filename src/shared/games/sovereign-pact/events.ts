@@ -236,6 +236,13 @@ function apply(s: SovState, fx: TripEffect, ids: number[], house: number | null,
     const cap = caps(s, p);
     if (fx.sanity) p.sanity = Math.max(0, Math.min(cap.sanity, p.sanity + pctOf(cap.sanity, fx.sanity)));
     if (fx.mp) p.mp = Math.max(0, Math.min(cap.mp, p.mp + pctOf(cap.mp, fx.mp)));
+    if (fx.hp) {
+      const c = (e.carry[id] ??= { dur: {}, broken: [] });
+      const max = full(s, id).maxHp;
+      const hurt = Math.max(0, Math.min(max - 1, (c.hurt ?? 0) - pctOf(max, fx.hp)));
+      if (hurt) c.hurt = hurt;
+      else delete c.hurt;
+    }
     if (fx.durability) {
       const c = (e.carry[id] ??= { dur: {}, broken: [] });
       const max = fullDurability(s, id);
@@ -382,11 +389,14 @@ export function fadeBlessings(s: SovState): void {
   }
 }
 
-/** A Scion's full Durability by location, as a battle would build it. */
-function fullDurability(s: SovState, id: number): Record<(typeof LOCATIONS)[number], number> {
+/** A Scion as a battle would build them, whole. */
+function full(s: SovState, id: number) {
   const p = person(s, id);
-  return scionCombatant(p, { id: 1, col: 0, row: 0, gear: gearTotals(s, p), house: s.houses[p.house] }).maxDur!;
+  return scionCombatant(p, { id: 1, col: 0, row: 0, gear: gearTotals(s, p), house: s.houses[p.house] });
 }
+
+/** A Scion's full Durability by location, as a battle would build it. */
+const fullDurability = (s: SovState, id: number): Record<(typeof LOCATIONS)[number], number> => full(s, id).maxDur!;
 
 /** The bot's next pick in an `each_scion` event: its first Scion still to choose. */
 export const botPicksFor = (s: SovState, house: number): number | undefined =>

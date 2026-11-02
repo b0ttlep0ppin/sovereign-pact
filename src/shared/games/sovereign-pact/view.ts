@@ -45,7 +45,8 @@ import { cannotPropose } from "./votes.ts";
 import { cannotOpen } from "./satchel.ts";
 import { ceremonies } from "./promotion.ts";
 import { cureOf, mends } from "./cures.ts";
-import { stash } from "./items.ts";
+import { gearTotals, stash } from "./items.ts";
+import { scionCombatant } from "./combat/build.ts";
 import { TUNING } from "./tuning.ts";
 import { campaignYears, mandatoryYears, trackName } from "./year.ts";
 
@@ -136,6 +137,8 @@ export interface PersonView {
   /** Pools follow from the stats, so a recruit's show from Insight 1, like its stats. */
   sanity?: number;
   mp?: number;
+  /** On an expedition, once hurt: HP now and at full. */
+  hp?: [now: number, max: number];
   /** Insight 1+ for recruits. */
   base?: Six;
   potential?: Person["potential"];
@@ -289,6 +292,12 @@ export function view(s: SovState, playerId: PlayerId): SovView {
   const people = s.people.flatMap((p) => {
     const v = personView(p, me, insight);
     if (v && me !== null && p.host === me && (p.status === "scion" || p.status === "retired")) v.kit = kitOf(s, me, p);
+    // On the road, HP lost in battle stays lost until mended; everyone sees it, as they see Sanity and MP.
+    const hurt = s.expedition?.carry[p.id]?.hurt;
+    if (v && hurt) {
+      const max = scionCombatant(p, { id: 1, col: 0, row: 0, gear: gearTotals(s, p), house: s.houses[p.house] }).maxHp;
+      v.hp = [Math.max(1, max - hurt), max];
+    }
     return v ?? [];
   });
   const worn = new Set(people.flatMap((p) => Object.values(p.gear ?? {})));

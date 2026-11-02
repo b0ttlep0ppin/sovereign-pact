@@ -84,6 +84,7 @@
         "sanity": { "type": "integer", "description": "% of max Sanity, + or −." },
         "durability": { "type": "integer", "description": "% of max Durability on every location (or `loc`), + or −." },
         "loc": { "enum": ["head", "body", "arms", "legs"] },
+        "hp": { "type": "integer", "description": "% of max HP, + or −; carried to the next battle, never below 1." },
         "mp": { "type": "integer", "description": "% of max MP." },
         "xp": { "type": "integer", "minimum": 0 },
         "jp": { "type": "integer", "minimum": 0 },

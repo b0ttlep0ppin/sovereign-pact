@@ -83,6 +83,8 @@ export function partyOf(s: SovState, ids: number[], carried: Expedition["carry"]
     const [col, row] = cells[i]!;
     const u = scionCombatant(p, { id: i + 1, col, row, gear: gearTotals(s, p), house: s.houses[p.house] });
     const c = carried[id];
+    // HP lost in earlier battles stays lost until a Camp, a draught or the road home mends it (Josh 2026-11-02).
+    if (c?.hurt) u.hp = Math.max(1, u.maxHp - c.hurt);
     if (c && u.dur && u.maxDur) {
       for (const loc of LOCATIONS) u.dur[loc] = Math.min(u.maxDur[loc], c.dur[loc] ?? u.maxDur[loc]);
       u.broken = c.broken.filter((l) => u.dur![l] === 0);
@@ -124,7 +126,7 @@ export function lostClock(s: SovState): void {
   }
 }
 
-/** What a battle leaves on the people: Sanity, MP and Durability carry; injuries last; the dead die; victory pays. */
+/** What a battle leaves on the people: HP, Sanity, MP and Durability carry; injuries last; the dead die; victory pays. */
 function settle(s: SovState, b: Battle, cause: string): void {
   const e = s.expedition!;
   const won = b.outcome === "victory";
@@ -147,14 +149,15 @@ function settle(s: SovState, b: Battle, cause: string): void {
     }
     p.sanity = u.sanity;
     p.mp = u.mp;
-    e.carry[p.id] = { dur: { ...u.dur! }, broken: [...u.broken], ...(Object.keys(mods).length ? { mods } : {}) };
+    const hurt = Math.max(0, u.maxHp - Math.max(1, u.hp));
+    e.carry[p.id] = { dur: { ...u.dur! }, broken: [...u.broken], ...(Object.keys(mods).length ? { mods } : {}), ...(hurt ? { hurt } : {}) };
     if (u.catatonic && !e.out.includes(p.id)) e.out.push(p.id);
     if (won) p = gainJp(gainXp(p, xpAt(p, P.battleXp, e.card.level)), P.battleJp);
     s.people[s.people.findIndex((x) => x.id === p.id)] = p;
   }
 }
 
-/** A Camp (§9.3): the party rests, each location back by a share of its Durability, Sanity a little. */
+/** A Camp (§9.3): the party rests, HP and each location back by a share, Sanity a little. */
 function camp(s: SovState): void {
   const e = s.expedition!;
   for (const u of party(s)) {
@@ -163,6 +166,7 @@ function camp(s: SovState): void {
     if (c) {
       for (const loc of LOCATIONS) c.dur[loc] = Math.min(u.maxDur![loc], u.dur![loc] + Math.round((u.maxDur![loc] * J.camp.durabilityPct) / 100));
       c.broken = [];
+      if (c.hurt) c.hurt = Math.max(0, c.hurt - Math.round((u.maxHp * J.camp.hpPct) / 100)) || undefined;
     }
     p.sanity = Math.min(u.maxSanity, p.sanity + Math.round((u.maxSanity * J.camp.sanityPct) / 100));
   }
@@ -337,7 +341,7 @@ export function home(s: SovState, how: NonNullable<Expedition["result"]>): void 
 }
 
 /**
- * The bot Leader presses on until half the party is out or badly broken, or a Scion is near
+ * The bot Leader presses on until half the party is out, badly broken or low on HP, or a Scion is near
  * the end of their Sanity; it never turns back from a mandatory or forced expedition.
  */
 export function botPress(s: SovState): boolean {
@@ -346,6 +350,8 @@ export function botPress(s: SovState): boolean {
   const ids = marching(s);
   const all = walkers(s).length;
   if (ids.some((id) => person(s, id).sanity < J.botRetreatSanity)) return false;
-  const hurt = all - ids.length + ids.filter((id) => (e.carry[id]?.broken.length ?? 0) >= J.botRetreatBroken).length;
+  // Under a share of their HP counts as badly hurt.
+  const weak = new Set(party(s).filter((u) => u.hp * 100 < u.maxHp * J.botRetreatHp).map((u) => u.person));
+  const hurt = all - ids.length + ids.filter((id) => (e.carry[id]?.broken.length ?? 0) >= J.botRetreatBroken || weak.has(id)).length;
   return hurt * 100 < all * J.botRetreatHurtPct;
 }

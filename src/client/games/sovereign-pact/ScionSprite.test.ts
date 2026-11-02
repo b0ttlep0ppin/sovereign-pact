@@ -32,6 +32,17 @@ describe("Scion sprites", () => {
     expect(off).toContain("hair");
   });
 
+  it("ties a Pugilist's hood as a kerchief; the hood is the Vagabond's", () => {
+    const hats = (job: string, hat?: string) =>
+      piecesOf({ ...lookOf(person(2, { job }), undefined), ...(hat ? { kit: { weapon: "", armor: "", hat } } : {}) })
+        .filter((p) => p.layer.slot === "hat")
+        .map((p) => p.layer.id);
+    expect(hats("pugilist").join()).toMatch(/bandana/);
+    expect(hats("pugilist", "hood").join()).toMatch(/bandana/);
+    expect(hats("vagabond").join()).toMatch(/hood/);
+    expect(hats("magus", "hood").join()).toMatch(/hood/);
+  });
+
   it("wears the House's restyling over the look they were born with (§5.8)", () => {
     const styled = lookOf(person(7, { look: ["hair=wavy", "hair_color=ginger", "beard=none"] }), undefined);
     expect([styled.hair, styled.hairColor, styled.beard]).toEqual(["wavy", "ginger", undefined]);
