@@ -359,6 +359,8 @@ export const TUNING = {
     jobs: { healCapPct: 50, lowHpBelow: 30, mirrorTp: 20, oneCutMult: 2, stillWaterPct: 20, graftTicks: 200 },
     /** The Knight's passives (§12.4): Commanding Presence lends Sagacity/5 % accuracy, Shieldbearer adds Resilience/4 % guard, Bodyguard shifts 30% of single-target weight. */
     knight: { presenceDiv: 5, shieldbearerDiv: 4, bodyguardPct: 30 },
+    /** The Soldier's passives (§12.5): Grizzled's step per 20 Might on the body's injury tables. */
+    soldier: { grizzledPer: 20 },
     /** §7.3: 20 CT a cell, −1 per 5 Guile, at least 10; up to 2 cells a turn (§10.4). */
     move: { perCell: 20, guilePer: 5, min: 10, maxCells: 2 },
     hitClamp: [5, 95] as const,

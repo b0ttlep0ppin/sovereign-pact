@@ -80,7 +80,9 @@ export function baseDamage(u: Combatant, ab: AbilityDef): number {
   if (kind === "magic") return power * (1 + u.acuity / C.acuityDivisor) * (1 + (u.mods.spellPct ?? 0) / 100);
   if (kind === "heal") return power * (1 + u.sagacity / C.sagacityDivisor);
   // Spellbound weapons swing with Acuity when it is higher (§13.4).
-  const might = (u.mods.spellbound && ab.base === undefined ? Math.max(u.might, u.acuity) : u.might) * pct(u.mods.mightPct ?? 0);
+  // Skullsplitter (§12.5): Might counts half again with an axe.
+  const axe = u.weapon.kind === "axe" ? pct(u.mods.skullsplitter ?? 0) : 1;
+  const might = (u.mods.spellbound && ab.base === undefined ? Math.max(u.might, u.acuity) : u.might) * pct(u.mods.mightPct ?? 0) * axe;
   return power * (1 + might / C.mightDivisor);
 }
 

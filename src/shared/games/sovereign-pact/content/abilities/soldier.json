@@ -10,22 +10,22 @@
     {"id": "pin", "name": "Pin", "jp": 100, "text": "Spear or bow: the target cannot Move for 200 ticks.", "shape": "single", "side": "foe", "power": 1, "tp": 20, "requires": ["spear", "bow"], "statuses": [{"id": "rooted", "chance": 100, "ticks": 200}]},
     {"id": "hamstring", "name": "Hamstring", "jp": 100, "text": "Legs-aimed: 70% damage, Slow.", "shape": "single", "side": "foe", "power": 0.7, "tp": 20, "aim": "legs", "statuses": [{"id": "slow", "chance": 100, "ticks": 0}]},
     {"id": "skull_crack", "name": "Skull Crack", "jp": 150, "text": "Head-aimed: 70% damage, Confusion chance.", "shape": "single", "side": "foe", "power": 0.7, "tp": 25, "aim": "head", "statuses": [{"id": "confusion", "chance": 40, "ticks": 0}]},
-    {"id": "brace", "name": "Brace", "jp": 100, "text": "Defend plus Knockdown immunity until your next turn.", "shape": "self", "side": "self", "power": 0, "kind": "support", "tp": 10, "cost": 60, "later": true},
+    {"id": "brace", "name": "Brace", "jp": 100, "text": "Defend plus Knockdown immunity until your next turn.", "shape": "self", "side": "self", "power": 0, "kind": "support", "tp": 10, "cost": 60, "defend": true, "self": {"statuses": [{"id": "braced", "ticks": 0, "mods": {"immune.knockdown": 1}}]}},
     {"id": "rally", "name": "Rally", "jp": 100, "text": "TP +15 to allies in the burst.", "shape": "burst:3x3", "side": "ally", "power": 0, "kind": "support", "mp": 15, "tpGrant": 15},
     {"id": "hold_the_line", "name": "Hold the Line", "jp": 150, "text": "Allies in your row take less physical damage (Protect) for 300 ticks.", "shape": "row", "side": "ally", "power": 0, "kind": "support", "mp": 20, "statuses": [{"id": "protect", "chance": 100, "ticks": 300}]},
-    {"id": "charge", "name": "Charge!", "jp": 150, "text": "Move up to 3 cells toward the Front, then attack at +10%.", "shape": "single", "side": "foe", "power": 1.1, "tp": 20, "later": true},
+    {"id": "charge", "name": "Charge!", "jp": 150, "text": "Move up to 3 cells toward the Front, then attack at +10%.", "shape": "single", "side": "foe", "power": 1.1, "tp": 20, "rush": 3},
     {"id": "volley", "name": "Volley", "jp": 150, "text": "Bow: 60% damage to the burst.", "shape": "burst:3x3", "side": "foe", "power": 0.6, "tp": 25, "requires": ["bow"], "reach": "ranged"},
-    {"id": "throw_weapon", "name": "Throw Weapon", "jp": 100, "text": "Throw your weapon for 120% damage; it lands on the target cell.", "shape": "lob", "side": "foe", "power": 1.2, "tp": 15, "later": true},
+    {"id": "throw_weapon", "name": "Throw Weapon", "jp": 100, "text": "Hurl your weapon at any foe for 120% damage, melee reach or not.", "shape": "lob", "side": "foe", "power": 1.2, "tp": 15, "reach": "ranged"},
     {"id": "finisher", "name": "Finisher", "jp": 200, "text": "+50% damage against targets below 30% HP; refunds 20 TP on a kill.", "shape": "single", "side": "foe", "power": 1, "tp": 40, "execute": {"below": 30, "pct": 50}, "refundTp": 20},
     {"id": "guard_break", "name": "Guard Break", "jp": 150, "text": "Removes Protect and Guard Up; the target is Marked for 200 ticks.", "shape": "single", "side": "foe", "power": 1, "tp": 25, "dispel": ["protect", "guard_up"], "statuses": [{"id": "marked", "chance": 100, "ticks": 200}]},
     {"id": "war_cry", "name": "War Cry", "jp": 150, "text": "Fear chance on every enemy; TP +10 to self.", "shape": "all", "side": "foe", "power": 0, "kind": "support", "mp": 20, "statuses": [{"id": "fear", "chance": 35, "ticks": 0}], "self": {"tp": 10}},
     {"id": "second_wind", "name": "Second Wind", "jp": 100, "text": "Cure Bleed and Slow; HP +15%.", "shape": "self", "side": "self", "power": 0, "kind": "support", "tp": 30, "cost": 60, "cure": ["bleed", "slow"], "restore": {"hpPct": 15}},
-    {"id": "last_stand", "name": "Last Stand", "jp": 250, "text": "300 ticks: damage +30%, Defend free each turn, but HP cannot be healed.", "shape": "self", "side": "self", "power": 0, "kind": "support", "tp": 50, "later": true}
+    {"id": "last_stand", "name": "Last Stand", "jp": 250, "text": "300 ticks: damage +30%, Defend free each turn, but HP cannot be healed.", "shape": "self", "side": "self", "power": 0, "kind": "support", "tp": 50, "self": {"statuses": [{"id": "last_stand", "ticks": 300, "mods": {"damagePct": 30, "noHeal": 1}}]}}
   ],
   "passives": [
-    {"id": "skullsplitter", "name": "Skullsplitter", "points": 2, "jp": 200, "text": "Might's influence on physical damage +50% with an axe.", "later": true},
-    {"id": "grizzled", "name": "Grizzled", "points": 2, "jp": 200, "text": "Injury rolls for physical locations +1 step per 20 Might.", "later": true},
-    {"id": "veteran", "name": "Veteran", "points": 2, "jp": 150, "text": "A Guile % chance to shrug off a bad event outcome once per expedition.", "later": true},
+    {"id": "skullsplitter", "name": "Skullsplitter", "points": 2, "jp": 200, "text": "Might's influence on physical damage +50% with an axe.", "mods": {"skullsplitter": 50}},
+    {"id": "grizzled", "name": "Grizzled", "points": 2, "jp": 200, "text": "Injury rolls for physical locations +1 step per 20 Might.", "mods": {"grizzled": 1}},
+    {"id": "veteran", "name": "Veteran", "points": 2, "jp": 150, "text": "A Guile % chance to shrug off a bad event outcome once per expedition.", "mods": {"veteran": 1}},
     {"id": "weapon_drill", "name": "Weapon Drill", "points": 1, "jp": 100, "text": "Accuracy +5% with melee weapons.", "mods": {"meleeAccuracy": 5}},
     {"id": "battle_hardened", "name": "Battle Hardened", "points": 2, "jp": 200, "text": "TP gain +25% when hit.", "mods": {"tpWhenHitPct": 25}}
   ]

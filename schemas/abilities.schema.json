@@ -476,6 +476,16 @@
           "type": "boolean",
           "description": "Removes an enemy summon or add"
         },
+        "rush": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 3,
+          "description": "Runs up to this many cells toward the Front of the user's row first (Charge!)"
+        },
+        "defend": {
+          "type": "boolean",
+          "description": "The user also Defends (Brace)"
+        },
         "interpose": {
           "type": "boolean",
           "description": "Until the user's next turn, foes' hits on the target strike the user instead (Interpose)"

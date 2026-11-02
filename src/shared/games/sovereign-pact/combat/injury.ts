@@ -21,7 +21,9 @@ export function baseSteps(u: Combatant, table: InjuryTableId): number {
   const stat = table === "sanity" ? u.sagacity + u.resilience / 2 : u.resilience;
   // Unstoppable: every roll; Iron Will: every roll while badly hurt (§12.12).
   const hurt = u.hp < (u.maxHp * TUNING.combat.jobs.lowHpBelow) / 100 ? (u.mods.lowHpSteps ?? 0) : 0;
-  return Math.floor(stat / per) + u.steps + (u.mods[`${table}Steps`] ?? 0) + (u.mods.injurySteps ?? 0) + hurt;
+  // Grizzled (§12.5): a step per 20 Might on the body's tables.
+  const grizzled = table !== "sanity" && u.mods.grizzled ? Math.floor(u.might / TUNING.combat.soldier.grizzledPer) : 0;
+  return Math.floor(stat / per) + u.steps + (u.mods[`${table}Steps`] ?? 0) + (u.mods.injurySteps ?? 0) + hurt + grizzled;
 }
 
 export interface Roll {

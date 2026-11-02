@@ -95,7 +95,8 @@ export function aim(b: Battle, rng: Rng, u: Combatant, ab: AbilityDef, rule = de
   if ((ab.form && (u.form || !canShift(b, u, ab.form))) || ab.revert) return undefined;
   if (ab.shape === "self" || ab.side === "self") {
     // A stance or self-ward already up is not cast again.
-    if (ab.kind === "support" && ab.statuses?.length && ab.statuses.every((x) => hasStatus(u, x.id))) return undefined;
+    const wards = ab.statuses ?? ab.self?.statuses;
+    if (ab.kind === "support" && wards?.length && wards.every((x) => hasStatus(u, x.id))) return undefined;
     return { do: "ability", ability: ab.id, target: cellOf(u) };
   }
   if (isSingle(ab)) {
@@ -205,6 +206,8 @@ export function defaultGambits(u: Combatant): GambitRule[] {
   for (const ab of u.abilities) {
     // Heals, Interpose and Rescue wait for an ally in trouble.
     if (ab.kind === "heal" || ab.interpose || ab.swap) out.push({ if: "ally.hp<0.5", do: ab.id, target: "ally_lowest_hp" });
+    // Brace and Last Stand wait until the user is badly hurt.
+    else if (ab.defend || ab.self?.statuses?.some((x) => x.mods?.noHeal)) out.push({ if: "self.hp<0.5", do: ab.id });
     else out.push({ do: ab.id });
   }
   return out;

@@ -135,6 +135,19 @@ describe("the effects (§9.4)", () => {
     expect(s.expedition!.carry[id]!.broken).toEqual([]);
   });
 
+  it("lets a Veteran shrug off one harm an expedition, on a Guile roll", () => {
+    const s = underway(1);
+    const id = s.expedition!.leader!;
+    const p = s.people.find((x) => x.id === id)!;
+    Object.assign(p, { passives: ["veteran"], sanity: 50 });
+    p.base[STATS.indexOf("guile")] = 200;
+    resolve(s, option("leader", { sanity: -20 }));
+    expect(s.people.find((x) => x.id === id)!.sanity).toBe(50);
+    expect(s.log.at(-1)).toMatch(/shrugs it off/);
+    resolve(s, option("leader", { sanity: -20 }));
+    expect(s.people.find((x) => x.id === id)!.sanity).toBeLessThan(50);
+  });
+
   it("mends the injured subject's oldest lasting Moderate injury, never a Devastating one", () => {
     const s = underway(1);
     const id = ofHouse(s, 0)[1]!;

@@ -187,6 +187,10 @@ export interface AbilityDef {
   graft?: boolean;
   /** Calls a summon from summons.json (§12.15). */
   summon?: string;
+  /** Charge!: the user first runs up to this many cells toward the Front of its row, then strikes from there. */
+  rush?: number;
+  /** Brace: the user also Defends. */
+  defend?: boolean;
   /** Interpose: until the user's next turn, foes' hits on the target strike the user instead. */
   interpose?: boolean;
   /** Rescue: the user and the target (an ally in the user's row) swap places. */
