@@ -21,6 +21,7 @@ import { TUNING } from "./tuning.ts";
 import { creditWard } from "./wards.ts";
 import { lairOf, slay, tally, withLair } from "./hunt.ts";
 import { arcanaBoss, arcanaFor, arcanaWon, withArcana } from "./arcana.ts";
+import { idolEvent, idolSlain, withIdol } from "./idols.ts";
 import { ARC, arcDoom, arcResult, bastionFallBack, bastionShields, withRaid } from "./arc.ts";
 import { divided, gate, partyGone, rally } from "./split.ts";
 import { endCampaign, log, mandatoryYears, withRng } from "./year.ts";
@@ -39,6 +40,7 @@ export function rollChain(s: SovState): NodeKind[] {
     });
     let chain: NodeKind[] = [...nodes, "boss"];
     if (card.quarry) chain = withLair(rng, chain);
+    if (card.idol) chain = withIdol(s, chain);
     const tarot = arcanaFor(s, rng, roster(s).map((id) => person(s, id)));
     if (tarot) chain = withArcana(s, rng, chain, tarot);
     return withRaid(s, rng, chain);
@@ -50,7 +52,7 @@ export function bossFor(s: SovState): string | undefined {
   const card = s.expedition!.card;
   if (card.boss) return card.boss;
   const near = (b: (typeof BOSSES)[number]) => (card.level < b.levels[0] ? b.levels[0] - card.level : Math.max(0, card.level - b.levels[1]));
-  const fits = BOSSES.filter((b) => b.pool === card.pool && !b.tags.includes("arc") && !b.tags.includes("arcana") && !b.id.match(/_(risen|ascendant|final)$/) && near(b) <= J.bossReach);
+  const fits = BOSSES.filter((b) => b.pool === card.pool && !b.tags.includes("arc") && !b.tags.includes("arcana") && !b.tags.includes("idol") && !b.id.match(/_(risen|ascendant|final)$/) && near(b) <= J.bossReach);
   if (!fits.length) return undefined;
   const best = Math.min(...fits.map(near));
   return withRng(s, (rng) => rng.pick(fits.filter((b) => near(b) === best)).id);
@@ -189,6 +191,7 @@ export function battle(s: SovState, boss: boolean, o: FightOpts = {}): boolean {
     log(s, boss ? "The party defeats the boss." : "The party wins a battle.");
     for (const id of marching(s)) creditWard(s, person(s, id), "valor", boss ? J.valor.boss : J.valor.battle);
     if (boss) {
+      if (e.card.idol) idolSlain(s, [...new Set(marching(s).map((id) => person(s, id).host))]);
       bossLoot(s);
       home(s, "won");
     } else {
@@ -217,6 +220,7 @@ export function pressOn(s: SovState): void {
   e.at += 1;
   if (kind === "camp") return camp(s);
   if (kind === "event") return meet(s);
+  if (kind === "idol") return meet(s, idolEvent(s));
   if (kind === "cache") return cache(s);
   if (kind === "gate") return gate(s);
   if (kind === "rally") return rally(s);

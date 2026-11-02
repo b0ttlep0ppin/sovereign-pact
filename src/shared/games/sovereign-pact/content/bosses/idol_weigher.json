@@ -1,0 +1,33 @@
+{
+  "id": "idol_weigher",
+  "name": "The Weigher of Hearts",
+  "pool": "barrows",
+  "tags": ["divine", "beastfolk", "idol"],
+  "role": "boss",
+  "size": [1, 2],
+  "at": "E2",
+  "levels": [6, 10],
+  "stats": {"speed": 12, "hp": 6},
+  "affinity": {"dark": 50, "earth": 25, "holy": -25, "water": -25},
+  "immune": ["fear", "charm", "confusion"],
+  "abilities": [
+    {"id": "the_scales", "shape": "single", "side": "player", "power": 0.6, "kind": "magic", "element": "dark", "sanity": 10, "statuses": [{"id": "marked", "chance": 100, "ticks": 300}]},
+    {"id": "jackal_strike", "shape": "single", "side": "player", "power": 1.3, "leap": true},
+    {"id": "devourer", "shape": "single", "side": "player", "power": 2.0, "charge": 150, "telegraph": true, "cooldown": 3},
+    {"id": "sands_of_the_dead", "shape": "row", "side": "player", "power": 0.6, "statuses": [{"id": "blind", "chance": 35, "ticks": 200}]}
+  ],
+  "gambits": [
+    {"if": "!foe.marked", "do": "the_scales", "target": "lowest_sanity"},
+    {"if": "foe.marked && turn%3==0", "do": "devourer", "target": "marked"},
+    {"do": "jackal_strike", "target": "back_random"}
+  ],
+  "phases": [
+    {"at": "hp<=0.5", "name": "The Feather Falls", "speed": 14, "say": "Your hearts are heavy. All of them. I have weighed them.", "gambits": [{"if": "foe.marked && turn%2==0", "do": "devourer", "target": "marked"}, {"if": "turn%3==1", "do": "sands_of_the_dead", "target": "densest_row"}, {"do": "the_scales", "target": "lowest_sanity"}]}
+  ],
+  "say": {"open": "Step onto the scale. One of you, or all of you. It is all the same to me.", "death": "Lighter... than a feather..."},
+  "bestiary": {
+    "lore": "The jackal-headed judge of the dead, who weighs a heart against a feather and feeds the heavy ones to the thing beneath his scales.",
+    "weakness": "Holy and Water. Heal or shield whoever the Scales Mark before the Devourer lands.",
+    "pattern": "The Scales Mark the least sane; every third turn the Devourer charges at whoever is Marked; jackal strikes on the Back between. At half the Devourer comes every other turn and sand blinds a row."
+  }
+}

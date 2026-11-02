@@ -2,6 +2,21 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 7f: Idols, the first three) — implementer
+- **Built** (§14.9, `idols.ts`, content `content/idols.json`, numbers in `tuning.idol`). Three Idols, each with a two-phase boss tagged `idol`, an offer event (pool `idol`, never drawn by chance) and a Lore artifact Relic:
+  - the Thunderer (Shrine of Six)
+  - the Lord Below (Barrows)
+  - the Weigher of Hearts (Barrows)
+- **How an Idol is met**: a Pilgrimage card of level 6+ ends at one of its pool's unmet Idols 60% of the time. The Idol is the card's boss, so the Gate shows it, and its offer is the node just before it.
+- **Readings**:
+  - The offer has three answers:
+    - **Kneel**: pay the price (Sanity) for the blessing. The kneeling Houses lose Renown, and the expedition ends in triumph with the Idol unfought.
+    - **Refuse**: the Idol is the boss.
+    - **Take the gift and refuse the price**: the Leader's gamble, and a fight either way.
+  - Killing an Idol pays each House in the party 10 Valor and 6 Renown. Renown stands in for Piety until Q92 is answered.
+  - An Idol is met once a campaign. Bots kneel (the cautious option).
+- **Not yet**: the other three Idols (Q93).
+
 ## 2026-11-02 (implementation, Milestone 7e: Arcana nodes, the first six) — implementer
 - **Built** (§14.9, `arcana.ts`, content `content/arcana.json`, numbers in `tuning.arcana`):
   - Six of the 22 Arcana, each with its boss, the trait it grants and its Relic: the Fool, the Magician, Death, the Tower, the Moon and the Sun.
@@ -857,6 +872,8 @@ Batches 1–12 (answered 2026-10-31 / 2026-11-01): Q1–Q84 closed, see above. Q
 
 - **Q85 (asked 2026-11-01, Milestone 0): how is a House's Standing tier worked out?** §3.4 names the four tiers (Waning / Steady / Rising / Ascendant) but not the rule, and it decides how much the other Houses can read. Built as the default, PROPOSED: a House's Ascendancy divided by the kingdom's mean, Waning below 0.75, Steady 0.75–1, Rising 1–1.25, Ascendant 1.25 and up; Steady when solo or before anyone scores. Alternatives: tiers by rank (the leader is always Ascendant, which tells everyone who leads), or fixed Ascendancy thresholds that rise with the Year (tiers say how well a House does, not how it compares).
 - **Q89 (asked 2026-11-01, Milestone 4f): should a House event be private to its House?** §8.8 gives each House its own events (the Cousin's Claim, the Locked Wing…) but does not say whether rivals see them. Built as public (the Town Map's log shows them, and their choices) until Josh decides. Private would make them like the recruit pool: the House sees the event and its outcome, the others see nothing, or only "House X has troubles at home". **Answered 2026-11-01 by Josh: private, with a hint** (rivals see only that the House has troubles at home).
+- **Q92 (asked 2026-11-02, Milestone 7f): what is Piety?** §14.7a and §14.9 use it (Pious Houses lose Piety for a Dark Bargain; kneeling to an Idol loses Piety, killing one gains it), but nothing defines it. Recommended: fold it into Renown, so kneeling or a Pious House's bargain costs Renown and killing an Idol gains it. Alternatives: a hidden 0–100 Piety track per House that the Chapel and holy events read; or drop Piety. **Built meanwhile as the recommendation** (Renown, `tuning.idol.renown`).
+- **Q93 (asked 2026-11-02, Milestone 7f): which gods are Idols?** §14.9 names six pantheons, the Hindu, Persian and Chinese among them, and Idols are false gods the Houses may kill. Those pantheons, unlike the Greek, Sumerian and Egyptian, are worshipped today. Recommended: their Idols are the myths' own demons and usurpers (a rakshasa king, a div of Ahriman, a demon king of the western road), not their gods. The first three Idols built are a Greek, a Sumerian and an Egyptian god, given titles rather than names (the Thunderer, the Lord Below, the Weigher of Hearts).
 - **Q91 (asked 2026-11-02, Milestone 6g): how does a `secret` expedition event resolve?** §9.4: "each player picks secretly; revealed together", for betrayal-shaped events. The picks stay hidden until all are in. It does not say what the reveal does. Recommended: each House's pick happens to its own Scions, and an outcome may depend on what the others chose ("if anyone else took the bribe…"). Alternatives: each House's pick alone decides its result; or a hidden majority vote for the whole party. **Answered 2026-11-02 by Josh: each House's own pick happens to its own Scions, and others' picks matter** (an outcome may depend on what the other Houses chose).
 - **Q87 (asked 2026-11-01, Milestone 1): should Durability grow with level?** The simulator finds injury rolls in an ordinary fight climbing from 0.1 at L1 to about 6 at L10, because §7.3's Durability (10–15 + 1.5–2 × a stat) grows slowly while enemy damage grows about fivefold. A level term (+1 or +2 Durability per level on every location) brings L10 to about 2–3 rolls; heavier armor in Milestone 2 may do the rest. Built as specified (no level term) until Josh decides; `formulas.durabilityPerLevel` is the knob. **Answered 2026-11-01 by Josh: no level term (keep it as specified).** Pass 1 had set it to 2; Milestone 3x puts it back to 0 and lowers `combat.enemyLevelFactor` instead.
 

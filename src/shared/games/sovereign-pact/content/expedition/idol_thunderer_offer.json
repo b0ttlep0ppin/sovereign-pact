@@ -1,0 +1,97 @@
+{
+  "id": "idol_thunderer_offer",
+  "pools": [
+    "idol"
+  ],
+  "weight": 1,
+  "band": [
+    6,
+    10
+  ],
+  "title": "The Throne in the Clouds",
+  "text": "Above the sixth shrine a throne of storm sits empty but for the one on it. He offers strength to anyone who will call him king, and asks only that you kneel, and leave a little of yourselves behind.",
+  "options": [
+    {
+      "id": "kneel",
+      "label": "Kneel, and pay what it asks.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The thunder goes into your arms. Something of each of you stays kneeling there when you rise.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -15
+            },
+            {
+              "to": "party",
+              "stat": {
+                "might": 2
+              }
+            },
+            {
+              "to": "party",
+              "score": {
+                "renown": -6
+              }
+            },
+            {
+              "idol": "kneel"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "defy",
+      "label": "Refuse it.",
+      "rule": "vote",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It rises from its throne, and it is very much larger standing.",
+          "effects": []
+        }
+      ]
+    },
+    {
+      "id": "cheat",
+      "label": "Take the gift and refuse the price.",
+      "rule": "leader",
+      "tags": [
+        "clever",
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "The leader takes the lightning and does not kneel. The Thunderer laughs, and stands.",
+          "effects": [
+            {
+              "stat": {
+                "might": 3
+              }
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "He sees it coming. The lightning goes the other way.",
+          "effects": [
+            {
+              "durability": -40,
+              "loc": "body"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -245,6 +245,8 @@ export interface ExpeditionCard {
   boss?: string;
   /** A Rescue card's Lost Scions (§9.9): a won expedition brings them home. */
   rescue?: number[];
+  /** A Pilgrimage card's Idol (§14.9), by content id: its offer waits before the boss, which is the Idol. */
+  idol?: string;
   /** A Hunt card's named quarry (§14.9), by content id: fought in its Lair, one node of the chain. */
   quarry?: string;
 }
@@ -314,7 +316,7 @@ export interface Split {
 }
 
 /** `gate` and `rally` are a 2×4 card's: a Gate waits on the other party; the rally is where they meet for the boss. */
-export type NodeKind = "encounter" | "event" | "camp" | "cache" | "boss" | "gate" | "rally" | "raid" | "lair" | "arcana";
+export type NodeKind = "encounter" | "event" | "camp" | "cache" | "boss" | "gate" | "rally" | "raid" | "lair" | "arcana" | "idol";
 
 /**
  * A vote of the Houses (§8.1, §8.8): open in the Settlement Phase, settled when every House has voted or

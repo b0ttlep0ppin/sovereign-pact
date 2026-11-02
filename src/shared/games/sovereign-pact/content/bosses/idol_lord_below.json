@@ -1,0 +1,33 @@
+{
+  "id": "idol_lord_below",
+  "name": "The Lord Below",
+  "pool": "barrows",
+  "tags": ["divine", "undead", "idol"],
+  "role": "boss",
+  "size": [2, 2],
+  "at": "E2",
+  "levels": [6, 10],
+  "stats": {"speed": 10, "hp": 7, "sanityTouch": 2},
+  "affinity": {"dark": 75, "fire": 25, "holy": -50},
+  "immune": ["fear", "poison", "disease", "sleep"],
+  "abilities": [
+    {"id": "plague_of_the_seven", "shape": "row", "side": "player", "power": 0.7, "kind": "magic", "element": "dark", "statuses": [{"id": "disease", "chance": 40, "ticks": 400}, {"id": "poison", "chance": 30, "ticks": 300}]},
+    {"id": "gate_of_dust", "shape": "band:3", "side": "player", "power": 1.0, "kind": "magic", "element": "dark", "sanity": 6, "charge": 200, "telegraph": true, "cooldown": 3},
+    {"id": "mace_of_the_lion", "shape": "single", "side": "player", "power": 1.4},
+    {"id": "call_the_dead", "shape": "self", "side": "self", "power": 0, "kind": "support", "statuses": [{"id": "regen", "chance": 100, "ticks": 300}], "cooldown": 5}
+  ],
+  "gambits": [
+    {"if": "turn%3==0", "do": "gate_of_dust", "target": "densest_row"},
+    {"if": "turn%2==1", "do": "plague_of_the_seven", "target": "densest_row"},
+    {"do": "mace_of_the_lion", "target": "lowest_hp"}
+  ],
+  "phases": [
+    {"at": "hp<=0.5", "name": "The Seven Gates Open", "speed": 12, "say": "Every one of you will come down to me in the end. Why not now?", "gambits": [{"if": "hp<0.4 && turn%4==0", "do": "call_the_dead"}, {"if": "turn%2==0", "do": "gate_of_dust", "target": "densest_cluster"}, {"do": "plague_of_the_seven", "target": "densest_row"}]}
+  ],
+  "say": {"open": "You walk on my roof. Pay the toll, or come inside.", "death": "The gates... are closing... from the wrong side..."},
+  "bestiary": {
+    "lore": "A god of plague and the underworld, older than the kingdom, who found the Barrows to his liking and set up court among the dead.",
+    "weakness": "Holy, heavily. Cure disease quickly: it spreads through a row.",
+    "pattern": "The Gate of Dust on three rows every third turn, plague on a row every other, the mace on the weakest between. At half the gate comes every other turn and he heals himself when low."
+  }
+}

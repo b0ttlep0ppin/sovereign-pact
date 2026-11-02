@@ -51,9 +51,9 @@ export const eachScion = (id: string): boolean => TRIP_EVENT_BY_ID.get(id)!.opti
 export const secretEvent = (id: string): boolean => TRIP_EVENT_BY_ID.get(id)!.options.every((o) => o.rule === "secret");
 
 /** An Event node: the event is drawn and put to the party (or, for `each_scion`, to every Scion's House). */
-export function meet(s: SovState): void {
+export function meet(s: SovState, id?: string): void {
   const e = s.expedition!;
-  const def = drawEvent(s);
+  const def = id ? TRIP_EVENT_BY_ID.get(id) : drawEvent(s);
   if (!def) return log(s, "The party passes through a quiet stretch.");
   e.seen.push(def.id);
   e.event = { id: def.id, votes: s.houses.map((_, i) => (present(s).includes(i) ? null : -1)) };
@@ -274,6 +274,10 @@ function apply(s: SovState, fx: TripEffect, ids: number[], house: number | null)
   }
   if (fx.encounter) battle(s, false, fx.encounter);
   else if (fx.retreat) home(s, "retreated");
+  else if (fx.idol) {
+    log(s, "The party kneels, and the Idol lets it go home.");
+    home(s, "won");
+  }
 }
 
 /** The effects that change one person for good: stats, growths, traits, Curses, the Tarot, a Ward's Loyalty, being Lost. */

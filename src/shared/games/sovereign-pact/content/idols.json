@@ -1,0 +1,25 @@
+{
+  "idols": [
+    {
+      "id": "idol_thunderer",
+      "pool": "shrine_of_six",
+      "boss": "idol_thunderer",
+      "event": "idol_thunderer_offer",
+      "relic": "the_thunderers_bolt"
+    },
+    {
+      "id": "idol_lord_below",
+      "pool": "barrows",
+      "boss": "idol_lord_below",
+      "event": "idol_lord_below_offer",
+      "relic": "the_seventh_key"
+    },
+    {
+      "id": "idol_weigher",
+      "pool": "barrows",
+      "boss": "idol_weigher",
+      "event": "idol_weigher_offer",
+      "relic": "the_feather_of_truth"
+    }
+  ]
+}

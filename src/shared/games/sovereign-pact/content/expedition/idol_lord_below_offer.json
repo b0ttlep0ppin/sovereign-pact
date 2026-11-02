@@ -1,0 +1,99 @@
+{
+  "id": "idol_lord_below_offer",
+  "pools": [
+    "idol"
+  ],
+  "weight": 1,
+  "band": [
+    6,
+    10
+  ],
+  "title": "The Toll of the Seven Gates",
+  "text": "Seven gates stand open in the hillside, each lower than the last. At the seventh, a crowned god of plague sits among the dead and offers you health against every sickness the world holds, for a toll.",
+  "options": [
+    {
+      "id": "kneel",
+      "label": "Kneel, and pay what it asks.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The fevers of the world will pass you by. The god keeps a Year of each of you, folded up somewhere below.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -20
+            },
+            {
+              "to": "party",
+              "blessing": {
+                "trait": "strong_stomach",
+                "years": 5
+              }
+            },
+            {
+              "to": "party",
+              "score": {
+                "renown": -6
+              }
+            },
+            {
+              "idol": "kneel"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "defy",
+      "label": "Refuse it.",
+      "rule": "vote",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It rises from its throne, and it is very much larger standing.",
+          "effects": []
+        }
+      ]
+    },
+    {
+      "id": "cheat",
+      "label": "Take the gift and refuse the price.",
+      "rule": "leader",
+      "tags": [
+        "clever",
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "The leader takes the blessing and spits in the toll bowl. The god stands, smiling.",
+          "effects": [
+            {
+              "blessing": {
+                "trait": "strong_stomach",
+                "years": 5
+              }
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "The toll takes itself. The god stands anyway.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -15
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

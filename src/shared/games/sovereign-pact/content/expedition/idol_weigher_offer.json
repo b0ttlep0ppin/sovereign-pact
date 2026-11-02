@@ -1,0 +1,97 @@
+{
+  "id": "idol_weigher_offer",
+  "pools": [
+    "idol"
+  ],
+  "weight": 1,
+  "band": [
+    6,
+    10
+  ],
+  "title": "The Hall of the Scales",
+  "text": "A jackal-headed judge waits beside a golden scale and a feather. He will weigh each heart, he says, and give back the light ones lighter still. He does not say what he does with the heavy ones.",
+  "options": [
+    {
+      "id": "kneel",
+      "label": "Kneel, and pay what it asks.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Each of you steps onto the scale. You come down lighter, and a little emptier.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -10
+            },
+            {
+              "to": "party",
+              "growth": {
+                "guile": 10,
+                "acuity": 10
+              }
+            },
+            {
+              "to": "party",
+              "score": {
+                "renown": -6
+              }
+            },
+            {
+              "idol": "kneel"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "defy",
+      "label": "Refuse it.",
+      "rule": "vote",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It rises from its throne, and it is very much larger standing.",
+          "effects": []
+        }
+      ]
+    },
+    {
+      "id": "cheat",
+      "label": "Take the gift and refuse the price.",
+      "rule": "leader",
+      "tags": [
+        "clever",
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "The leader puts a thumb on the scale. The judge sees, and stands.",
+          "effects": [
+            {
+              "growth": {
+                "guile": 15
+              }
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "The thumb slips. The heart is weighed heavy, and the judge stands.",
+          "effects": [
+            {
+              "sanity": -25
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
