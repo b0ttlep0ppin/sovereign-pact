@@ -51,7 +51,7 @@ export const foreshadow = (s: SovState): number => 2 + (built(s, "rift_observato
  * A failed mandatory (or forced) expedition: building levels ruined across the settlement, a share of
  * every store lost, the next arrivals cancelled, the trust track and Doom. Walls soften all but the stores.
  */
-export function devastate(s: SovState, kind: "mandatory" | "forced"): void {
+export function devastate(s: SovState, kind: "mandatory" | "forced", doom: number = TUNING.devastation[kind].doom): void {
   const D = TUNING.devastation[kind];
   const walls = built(s, "walls");
   const [lo, hi] = D.ruin;
@@ -71,6 +71,6 @@ export function devastate(s: SovState, kind: "mandatory" | "forced"): void {
   }
   if (D.noArrivals && !s.flags.includes("no_arrivals")) s.flags.push("no_arrivals");
   loseAccord(s, D.accord);
-  s.doom = Math.min(100, s.doom + Math.max(0, D.doom - walls * TUNING.devastation.wallsDoom));
+  s.doom = Math.min(100, s.doom + Math.max(0, doom - walls * TUNING.devastation.wallsDoom));
   log(s, `${trackName(s)} and Doom move against the kingdom.`);
 }

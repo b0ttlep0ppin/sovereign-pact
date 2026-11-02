@@ -2,6 +2,20 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 7b: the mandatory arc's stakes) — implementer
+- **Built** (§14.7, `arc.ts`, numbers in `tuning.arc`):
+  - Year 5 won: the Bastion of the Gate can be built (`unlockedBy` on a project). Before then the Commons cannot fund it.
+  - Year 10 lost: every later expedition's chain gains one `raid` node before its boss, an Encounter drawn from the Apostate Court.
+  - Year 15 lost: the Devastation adds Doom 40 instead of 25 (Walls still soften it), and the Outer Dark's fodder and swarms join every other pool's fights, Sorties included. Year 15 won: Doom −20.
+- **Readings**:
+  - "Doom +40" replaces the Devastation's own Doom; it does not add to it.
+  - The Bastion's shield is on every Scion at the start of **each** battle of the final assault, 20% of their HP.
+  - Its "one free retreat" is read as: once, a lost battle of the final assault does not wipe the party. It falls back, makes camp, and goes on; a boss that beat it waits to be fought again. (The final assault cannot turn back, so a plain retreat would be no use.)
+- **Not yet**:
+  - The Year 15 win's cure items wait for cure items themselves (§11.2), which do not exist yet.
+  - The Crown's Dark Bargain waits for Milestone 7c.
+  - The Throne cosmetic waits for the screens.
+
 ## 2026-11-02 (implementation, Milestone 7a: named items) — implementer
 - **Content**: `content/named.json` (schema `schemas/named.schema.json`) holds 26 named items so far, toward the ≥120 of HANDOFF §6: the arc's three (the Gatebreaker's Horn from the Siege Beast, the Crown from the Cursed King, the Mother's Cord from the Unknown Mother), one for each of nine bosses, and at least one hidden in every pool. Each is a base with fixed properties (§13.4), Relic tier, at the level found or its own minimum.
 - **Readings**:

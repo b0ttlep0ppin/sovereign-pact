@@ -31,7 +31,7 @@ const rich = (H: number): SovState => {
 describe("shared projects (§8.5)", () => {
   it("prices each level at 1.3× a House building of its tier", () => {
     const s = calm(campaign(2, 4));
-    for (const p of PROJECTS.filter((x) => !x.requires)) {
+    for (const p of PROJECTS.filter((x) => !x.requires && !x.unlockedBy)) {
       const base = TUNING.town.costs[p.cost][p.tiers[0]! - 1]!;
       expect(projectCost(s, p.id), p.id).toEqual(Object.fromEntries(Object.entries(base).map(([k, n]) => [k, Math.round(n! * C.costMult)])));
     }

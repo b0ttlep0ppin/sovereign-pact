@@ -456,6 +456,8 @@ export interface ProjectDef {
   cost: BuildingDef["cost"];
   tiers: (1 | 2 | 3)[];
   requires?: string;
+  /** A campaign flag that must be set first (the Bastion of the Gate, arc.ts). */
+  unlockedBy?: string;
   text: string;
 }
 export const PROJECTS = projectsJson.projects as readonly ProjectDef[];
