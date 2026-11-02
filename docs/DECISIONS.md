@@ -2,6 +2,25 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 7az): the satchel between nodes
+
+- A new move, `use_item {id, person?}`, opens the party satchel between nodes.
+  - **Camp items** work only when the last node was a Camp:
+    - Pilgrim's Bread restores the whole party.
+    - Widow's Tea gives a Scion Sanity +20%, and Sleep for the next battle's first 100 ticks.
+    - The Smuggler's Flask makes every location whole for the next battle, for Sanity −5%.
+  - **The Lantern** lights the next node. If that node is an Encounter (or an event's, a raid or a lair), the party gets the Surprise, even against a quarry that would ambush.
+  - **The Signal Flare** works on a Rescue card: one of its Lost Scions joins the party at once.
+- Readings:
+  - The satchel belongs to the party. Out of battle, as in battle, any House with a Scion marching may use anything in it, whoever packed it.
+  - HP is whole at the start of every battle, so Pilgrim's Bread's "the whole party to full HP" would do nothing. It restores what the road wears down and a Camp does not: the whole party's MP, to full.
+  - "Joins the party at the next node" is read as joining now, between nodes, so the Scion fights at the next one.
+  - Bots:
+    - They pack one each of the road items they know how to use: Pilgrim's Bread, Widow's Tea, the Smuggler's Flask, the Lantern, and the Signal Flare (only on a Rescue card).
+    - At a Camp they use these for a Scion under half their MP, Sanity or a location's Durability.
+    - They light a Lantern before an Encounter, raid or lair, and fire the Flare whenever it can bring someone back.
+    - They now keep one Lantern at home.
+
 ## 2026-11-02 (implementation, Milestone 7ay): the hand-coded battle items, as data
 
 - Most of §13.7's "special" battle items are now plain battle data, using four small additions to abilities: a status may name a `tag` (only targets with it take the status), `ownHouse` (only the user's House's Scions take the effects), `bossReadiness`, and `cast` (a Job active cast at once).

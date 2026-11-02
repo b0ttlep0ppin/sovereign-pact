@@ -204,7 +204,7 @@ export function encounter(rng: Rng, spec: EncounterSpec): Encounter {
     lead.maxHp = lead.hp = Math.round((lead.maxHp * Q.hpPct) / 100);
     if (q!.ability === "enrage") lead.statuses.push({ id: "enrage", ticks: Q.enrageTicks });
   }
-  const modifier = spec.modifier === null ? undefined : q?.ability === "ambush" ? "ambush" : (spec.modifier ?? rollModifier(rng, t, spec));
+  const modifier = spec.modifier === null ? undefined : (spec.modifier ?? (q?.ability === "ambush" ? "ambush" : rollModifier(rng, t, spec)));
   applyModifier(enemies, modifier);
   const hazard = spec.hazards === false ? undefined : rollHazard(rng, spec.pool, spec.hazards)?.id;
   return { template: t.id, modifier, hazard, enemies };

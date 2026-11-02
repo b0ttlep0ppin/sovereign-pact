@@ -127,7 +127,7 @@ describe("the party satchel (§9.10)", () => {
     const s = mustered();
     expect(botPack(s, 0, 2)).toEqual({ tonic: 6 });
     s.houses[0]!.consumables = { tonic: 2, firebomb: 2, lantern: 1 };
-    expect(botPack(s, 0, 2)).toEqual({ tonic: 2, firebomb: 2 });
+    expect(botPack(s, 0, 2)).toEqual({ tonic: 2, lantern: 1, firebomb: 2 });
     expect(botPack(s, 1, 2)).toBe(undefined);
   });
 });

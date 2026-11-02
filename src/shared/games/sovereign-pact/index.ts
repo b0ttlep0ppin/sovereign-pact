@@ -22,6 +22,7 @@ import { botOutfit, cannotOutfit, outfit } from "./outfit.ts";
 import { bargain, botBargain, cannotBargain } from "./bargains.ts";
 import { botCure, cannotCure, cure } from "./cures.ts";
 import { botBuyConsumable, botPack, buyConsumable, cannotBuyConsumable, cannotPack, pack } from "./consumables.ts";
+import { botOpen, cannotOpen, open } from "./satchel.ts";
 import { cannotReinstate, cannotRetire, reinstate, retire } from "./lifecycle.ts";
 import { botCard, cannotPick, pick } from "./gate.ts";
 import { TUNING } from "./tuning.ts";
@@ -279,6 +280,13 @@ export function applyMove(state: SovState, playerId: PlayerId, move: SovMove): M
       s.phaseMoves += 1;
       return { ok: true, state: s };
     }
+    case "use_item": {
+      const why = cannotOpen(s, house, move);
+      if (why) return fail(why);
+      open(s, move);
+      s.phaseMoves += 1;
+      return { ok: true, state: s };
+    }
     case "buy_consumable": {
       if (s.phase !== "settlement") return fail("The shops open in the Settlement Phase.");
       if (h.sealed) return fail("Unseal the Year first.");
@@ -469,7 +477,7 @@ export function botMove(s: SovState, playerId: PlayerId): SovMove {
       : s.expedition?.event
       ? { type: "decide", option: botDecide(s), ...(s.expedition.event.picks ? { person: botPicksFor(s, house) } : {}) }
       : s.expedition?.leader !== undefined
-      ? { type: botPress(s) ? "press_on" : "retreat" }
+      ? (botOpen(s, house) ?? { type: botPress(s) ? "press_on" : "retreat" })
       : s.expedition?.votes
         ? { type: "lead", person: botLeader(s, house) }
         : botFieldMove(s, house));
