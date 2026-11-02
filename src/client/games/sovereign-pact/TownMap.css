@@ -29,7 +29,22 @@
 .sp-map__keep .sp-chits { grid-column: 1 / -1; }
 .sp-map__seat-art { filter: drop-shadow(0 2px 0 #000); }
 .sp-map__keep .sp-bld__name { font: 400 1.25rem/1 var(--display); color: var(--text); }
-.sp-map__blds { display: grid; grid-template-columns: repeat(auto-fill, minmax(78px, 1fr)); gap: 5px; }
+/* A Seat's district (DECISIONS 8ai): its hall, plots and scenery on a small grid of its own. */
+.sp-map__district { display: grid; grid-auto-rows: minmax(54px, auto); gap: 4px; }
+.sp-map__district .sp-map__keep { grid-template-columns: 1fr; justify-items: center; align-content: center; text-align: center; }
+.sp-map__district .sp-map__keep .sp-bld__name { font-size: 1.05rem; white-space: normal; }
+.sp-map__district .sp-bld { align-content: start; }
+.sp-plot { border: 1px dashed #4a4036; border-radius: 3px; background: repeating-linear-gradient(45deg, transparent 0 6px, rgb(74 64 54 / 0.18) 6px 8px); }
+.sp-deco { border-radius: 3px; }
+.sp-deco--wall { background: repeating-linear-gradient(0deg, #4a443d 0 10px, #36312c 10px 12px), #4a443d; background-blend-mode: multiply; box-shadow: inset 0 0 0 1px #2a2622; }
+.sp-deco--water { background: linear-gradient(180deg, #1d3a52, #12263a); background-size: 100% 100%; position: relative; overflow: hidden; }
+.sp-deco--water::after { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(170deg, transparent 0 9px, rgb(160 200 230 / 0.18) 9px 10px); animation: sp-tide 6s linear infinite; }
+@keyframes sp-tide { to { background-position: 40px 0; } }
+.sp-deco--trees { background: radial-gradient(circle at 30% 35%, #2f4a2a 0 9px, transparent 10px), radial-gradient(circle at 70% 60%, #27401f 0 11px, transparent 12px), #1a2216; }
+.sp-deco--fields { background: repeating-linear-gradient(90deg, #4a4222 0 5px, #3a341a 5px 9px); }
+.sp-deco--graves { background: radial-gradient(ellipse at 30% 70%, #55504a 0 4px, transparent 5px), radial-gradient(ellipse at 70% 45%, #55504a 0 4px, transparent 5px), #1c1a19; }
+.sp-deco--rocks { background: radial-gradient(circle at 35% 60%, #4b4744 0 7px, transparent 8px), radial-gradient(circle at 72% 35%, #3c3936 0 9px, transparent 10px), #211e1c; }
+@media (prefers-reduced-motion: reduce) { .sp-deco--water::after { animation: none; } }
 .sp-map__walls { grid-area: walls; background: repeating-linear-gradient(90deg, #39342f 0 30px, #2e2a26 30px 32px); border-top: 4px solid #4c463f; }
 .sp-map__hint { margin: 8px 2px 0; font-size: 0.85rem; color: var(--muted); }
 .sp-bld { position: relative; display: grid; gap: 3px; justify-items: start; padding: 5px; border-radius: 3px; background: #2a2420; border: 1px solid #40372f; font-size: 0.72rem; min-width: 0; }

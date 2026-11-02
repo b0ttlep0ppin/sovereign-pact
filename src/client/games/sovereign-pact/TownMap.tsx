@@ -6,12 +6,13 @@
 import { BUILDING_ICONS, JOB_ICONS, SEAT_ART } from "./icons";
 import { BONE, PixelArt } from "./PixelArt";
 import ScionSprite, { lookOf } from "./ScionSprite";
+import { DECO_NAMES, layoutFor } from "./seatLayouts";
 
 /** The head in a 64 px portrait frame: x, y, width, height. */
 const HEAD: [number, number, number, number] = [18, 13, 28, 28];
 import type { SovMove, SovView } from "@vibepulse/shared/games/sovereign-pact";
 import { Content } from "@vibepulse/shared/games/sovereign-pact";
-import { useState, type DragEvent } from "react";
+import { useState, type CSSProperties, type DragEvent, type ReactNode } from "react";
 import { Emblem, HERALDRY_COLORS, inkOf } from "./Emblem";
 import "./TownMap.css";
 
@@ -181,25 +182,29 @@ export default function TownMap({ view, sendMove, canAssign }: Props) {
                 <Emblem emblem={h.emblem} colors={h.colors} size={28} />
                 <strong>House {h.name}</strong>
               </header>
-              <div {...target(`keep${h.index}`, { kind: "rest" }, own)} className="sp-map__keep">
-                <PixelArt className="sp-map__seat-art" rows={SEAT_ART[h.seat] ?? SEAT_ART.keep} size={56} color={inkOf(h.colors) ?? BONE} />
-                <span className="sp-bld__name">{Content.SEATS.find((x) => x.id === h.seat)?.name ?? h.seat.replace(/_/g, " ")}</span>
-                {own ? <div className="sp-chits">{chits({ kind: "rest" })}</div> : null}
-              </div>
-              <div className="sp-map__blds">
-                {Content.BUILDINGS.filter((b) => (h.buildings[b.id] ?? 0) > 0).map((b) => {
+              <District
+                seat={h.seat}
+                built={Content.BUILDINGS.filter((b) => (h.buildings[b.id] ?? 0) > 0)}
+                hall={(style) => (
+                  <div {...target(`keep${h.index}`, { kind: "rest" }, own)} className="sp-map__keep" style={style}>
+                    <PixelArt className="sp-map__seat-art" rows={SEAT_ART[h.seat] ?? SEAT_ART.keep} size={56} color={inkOf(h.colors) ?? BONE} />
+                    <span className="sp-bld__name">{Content.SEATS.find((x) => x.id === h.seat)?.name ?? h.seat.replace(/_/g, " ")}</span>
+                    {own ? <div className="sp-chits">{chits({ kind: "rest" })}</div> : null}
+                  </div>
+                )}
+                plot={(b, style) => {
                   const place: Place = { kind: "building", id: b.id };
                   const takes = own && BUILDING_TASK[b.id] !== undefined;
                   return (
-                    <div key={b.id} {...target(`${h.index}:${b.id}`, place, takes)} className="sp-bld" title={`${b.name}, level ${h.buildings[b.id]}`}>
+                    <div key={b.id} {...target(`${h.index}:${b.id}`, place, takes)} className="sp-bld" style={style} title={`${b.name}, level ${h.buildings[b.id]}`}>
                       <PixelArt className="sp-bld__icon" rows={BUILDING_ICONS[b.id]} size={22} />
                       <span className="sp-bld__name">{b.name}</span>
                       <Pips level={h.buildings[b.id] ?? 0} />
                       {own ? <div className="sp-chits">{chits(place)}</div> : null}
                     </div>
                   );
-                })}
-              </div>
+                }}
+              />
             </section>
           );
         })}
@@ -210,6 +215,23 @@ export default function TownMap({ view, sendMove, canAssign }: Props) {
         </section>
       </div>
       {canAssign ? <p className="sp-map__hint">{picked === null ? "Drag a chit to a building, the Gate or the walls, or pick one and then its place." : "Now pick where they go."}</p> : null}
+    </div>
+  );
+}
+
+type Building = (typeof Content.BUILDINGS)[number];
+
+/** A Seat's district (DECISIONS 8ai): its hall, its buildings on their plots, empty plots, and scenery. */
+function District({ seat, built, hall, plot }: { seat: string; built: Building[]; hall: (style: CSSProperties) => ReactNode; plot: (b: Building, style: CSSProperties) => ReactNode }) {
+  const L = layoutFor(seat, built.length);
+  const at = ([c, r]: [number, number]): CSSProperties => ({ gridColumn: c, gridRow: r });
+  return (
+    <div className={`sp-map__district sp-map__district--${seat}`} style={{ gridTemplateColumns: `repeat(${L.cols}, minmax(0, 1fr))` }}>
+      {L.deco.map((d) => (
+        <span key={d.at.join()} className={`sp-deco sp-deco--${DECO_NAMES[d.kind]}`} style={at(d.at)} aria-hidden="true" />
+      ))}
+      {hall({ gridColumn: `${L.hall[0]} / span ${L.hall[2]}`, gridRow: `${L.hall[1]} / span ${L.hall[3]}` })}
+      {L.plots.map((cell, i) => (built[i] ? plot(built[i]!, at(cell)) : <span key={cell.join()} className="sp-plot" style={at(cell)} title="An empty plot" aria-hidden="true" />))}
     </div>
   );
 }
