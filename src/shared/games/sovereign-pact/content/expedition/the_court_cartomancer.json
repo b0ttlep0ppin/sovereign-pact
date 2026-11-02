@@ -1,0 +1,89 @@
+{
+  "id": "the_court_cartomancer",
+  "pools": [
+    "apostate_court"
+  ],
+  "weight": 1,
+  "band": [
+    2,
+    9
+  ],
+  "title": "The Court Cartomancer",
+  "text": "The Court's fortune-teller deals three cards face down and asks whoever was born under them to turn one.",
+  "options": [
+    {
+      "id": "empress",
+      "label": "The Empress's child turns a card.",
+      "rule": "scion:tarot:empress|scion:random",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "The Empress, upright. A good harvest for the House.",
+          "effects": [
+            {
+              "resources": {
+                "timber": 4,
+                "gold": 10
+              }
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "The Empress, reversed.",
+          "effects": [
+            {
+              "sanity": -10
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hermit",
+      "label": "The Hermit's child turns a card.",
+      "rule": "scion:tarot:hermit|scion:highest:sagacity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The Hermit, and a lamp shown on the road ahead.",
+          "effects": [
+            {
+              "foresee": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "burn",
+      "label": "Burn the deck.",
+      "rule": "vote",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The Court will hear of it.",
+          "effects": [
+            {
+              "score": {
+                "intrigue": -1
+              }
+            },
+            {
+              "doom": 1
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

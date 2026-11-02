@@ -1,0 +1,95 @@
+{
+  "id": "the_old_bull",
+  "pools": [
+    "beast_lands"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    6
+  ],
+  "title": "The Old Bull",
+  "text": "A huge old bull blocks the trail, scarred by every hunter who tried for it. It looks at the bravest of you as if it knows.",
+  "options": [
+    {
+      "id": "brave",
+      "label": "The bravest stands their ground.",
+      "rule": "scion:trait:brave|scion:highest:might",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "It snorts, and steps aside for them.",
+          "effects": [
+            {
+              "score": {
+                "valor": 2
+              }
+            },
+            {
+              "xp": 80
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "It charges anyway.",
+          "effects": [
+            {
+              "durability": -40,
+              "loc": "body"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hunt",
+      "label": "Bring it down.",
+      "rule": "vote",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It does not go down easily.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "surprise"
+              }
+            },
+            {
+              "resources": {
+                "gold": 15
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "around",
+      "label": "Go the long way.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A day lost to the brambles.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -3
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,89 @@
+{
+  "id": "the_two_candles",
+  "pools": [
+    "shrine_of_six"
+  ],
+  "weight": 1,
+  "band": [
+    4,
+    10
+  ],
+  "title": "The Two Candles",
+  "text": "Two candles burn before an empty niche, one for the world and one for the self. The Six ask which you would keep lit.",
+  "options": [
+    {
+      "id": "world",
+      "label": "The Empress's child tends the world's candle.",
+      "rule": "scion:tarot:empress|vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The niche fills with light and the party is warmed.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 10
+            },
+            {
+              "score": {
+                "renown": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "self",
+      "label": "The Hermit's child tends the self's candle.",
+      "rule": "scion:tarot:hermit|scion:lowest:sanity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "They stand very still, and are calm.",
+          "effects": [
+            {
+              "sanity": 30
+            },
+            {
+              "growth": {
+                "sagacity": 5
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "both",
+      "label": "Snuff them both.",
+      "rule": "leader",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The dark in the niche looks back.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -10
+            },
+            {
+              "resources": {
+                "essence": 5
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

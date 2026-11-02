@@ -1,0 +1,99 @@
+{
+  "id": "the_cold_anvil",
+  "pools": [
+    "forge_ruins"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    9
+  ],
+  "title": "The Cold Anvil",
+  "text": "An anvil that has not been struck in an age, and a smith's ghost who says it mends whatever arm strikes it.",
+  "options": [
+    {
+      "id": "arm",
+      "label": "The one with the hurt arm strikes it.",
+      "rule": "scion:injured:arms|scion:lowest:might",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 75,
+          "text": "The ring of it goes up the bone. The arm is whole.",
+          "effects": [
+            {
+              "mend": true
+            },
+            {
+              "xp": 40
+            }
+          ]
+        },
+        {
+          "w": 25,
+          "text": "The anvil rings, and the arm goes numb.",
+          "effects": [
+            {
+              "stat": {
+                "might": -1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "forge",
+      "label": "The strongest works the anvil.",
+      "rule": "scion:highest:might",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A blade the ghost is proud of.",
+          "effects": [
+            {
+              "item": {
+                "tier": 3
+              }
+            },
+            {
+              "resources": {
+                "iron": -3
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "take",
+      "label": "Take the anvil for the House.",
+      "rule": "vote",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Heavy, and the ghost follows it.",
+          "effects": [
+            {
+              "resources": {
+                "iron": 6
+              }
+            },
+            {
+              "to": "party",
+              "sanity": -5
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

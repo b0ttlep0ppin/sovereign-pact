@@ -1,0 +1,92 @@
+{
+  "id": "the_bark_mask",
+  "pools": [
+    "hollow_wood"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    7
+  ],
+  "title": "The Bark Mask",
+  "text": "A face grown into an oak's bark watches the party. It will let the most unseeing of you borrow its eyes.",
+  "options": [
+    {
+      "id": "blind",
+      "label": "The poorest eye wears it.",
+      "rule": "scion:lowest:acuity|scion:random",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "They see every root and snare in the wood.",
+          "effects": [
+            {
+              "growth": {
+                "acuity": 10
+              }
+            },
+            {
+              "skip": 1
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "They see what the wood sees, and it is hungry.",
+          "effects": [
+            {
+              "sanity": -15
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cut",
+      "label": "Cut it free and take it.",
+      "rule": "scion:highest:might",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The wood screams. The mask is fine work.",
+          "effects": [
+            {
+              "item": {
+                "tier": 2
+              }
+            },
+            {
+              "doom": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "leave",
+      "label": "Nod to it and pass.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The branches part a little.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 3
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

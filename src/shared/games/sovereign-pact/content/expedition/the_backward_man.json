@@ -1,0 +1,98 @@
+{
+  "id": "the_backward_man",
+  "pools": [
+    "outer_dark"
+  ],
+  "weight": 2,
+  "band": [
+    6,
+    10
+  ],
+  "title": "The Backward Man",
+  "text": "A man walks toward you backward, speaking your words just before you say them. He has come from where you are going.",
+  "options": [
+    {
+      "id": "ask",
+      "label": "The wisest asks what is ahead.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "He tells it, backward. It makes sense later.",
+          "effects": [
+            {
+              "foresee": true
+            },
+            {
+              "sanity": -10
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "He answers with your own scream.",
+          "effects": [
+            {
+              "sanity": -20
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "follow",
+      "label": "Walk backward with him.",
+      "rule": "vote",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The way behind is the way ahead.",
+          "effects": [
+            {
+              "fork": {
+                "drop": 1,
+                "add": [
+                  "camp"
+                ]
+              }
+            },
+            {
+              "to": "party",
+              "sanity": -5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "changed",
+      "label": "The Changed one meets his eyes.",
+      "rule": "scion:changed|leader",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "He sees they are already other, and steps aside.",
+          "effects": [
+            {
+              "skip": 1
+            },
+            {
+              "score": {
+                "lore": 1
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

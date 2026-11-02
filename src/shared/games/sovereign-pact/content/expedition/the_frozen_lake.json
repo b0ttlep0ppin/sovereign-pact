@@ -1,0 +1,96 @@
+{
+  "id": "the_frozen_lake",
+  "pools": [
+    "deep_cold"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    8
+  ],
+  "title": "The Frozen Lake",
+  "text": "The way crosses a frozen lake. Something under the ice follows whoever it has marked.",
+  "options": [
+    {
+      "id": "marked",
+      "label": "The one enemies always find goes first, to draw it.",
+      "rule": "scion:most_targeted|scion:highest:resilience",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 65,
+          "text": "It follows them, and the others cross safe behind.",
+          "effects": [
+            {
+              "xp": 80
+            },
+            {
+              "durability": -30,
+              "loc": "legs"
+            }
+          ]
+        },
+        {
+          "w": 35,
+          "text": "It breaks the ice beneath them.",
+          "effects": [
+            {
+              "injury": "legs"
+            },
+            {
+              "status": "frozen"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "spread",
+      "label": "Spread out and walk light.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Slow, careful, cold.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fish",
+      "label": "Cut a hole and bait it.",
+      "rule": "leader",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It bites.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "surprise"
+              }
+            },
+            {
+              "resources": {
+                "essence": 4
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

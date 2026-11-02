@@ -1,0 +1,86 @@
+{
+  "id": "the_silent_cell",
+  "pools": [
+    "shrine_of_six"
+  ],
+  "weight": 2,
+  "band": [
+    4,
+    10
+  ],
+  "title": "The Silent Cell",
+  "text": "A monk's cell at the Shrine, empty but for a candle. It waits for the one who wants to be alone.",
+  "options": [
+    {
+      "id": "hermit",
+      "label": "The Hermit's child sits in it.",
+      "rule": "scion:tarot:hermit|scion:highest:sagacity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A night in silence, and they hear the Six.",
+          "effects": [
+            {
+              "jp": 60
+            },
+            {
+              "sanity": 15
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "heal",
+      "label": "The healer lights the candle for the sick.",
+      "rule": "scion:trait:pious_hands|scion:most_healing",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Their hands warm.",
+          "effects": [
+            {
+              "to": "party",
+              "status": "regen"
+            },
+            {
+              "score": {
+                "renown": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "search",
+      "label": "Search it.",
+      "rule": "vote",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A hidden relic, and a curse on the hand that takes it.",
+          "effects": [
+            {
+              "item": {
+                "tier": 3
+              }
+            },
+            {
+              "curse": true
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

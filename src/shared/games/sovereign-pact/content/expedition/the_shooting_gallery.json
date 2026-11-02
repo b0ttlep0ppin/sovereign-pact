@@ -1,0 +1,102 @@
+{
+  "id": "the_shooting_gallery",
+  "pools": [
+    "faceless_city"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    9
+  ],
+  "title": "The Shooting Gallery",
+  "text": "Masked crossbowmen in a gallery shoot at anyone who walks the street below, for sport. The street is the only way.",
+  "options": [
+    {
+      "id": "target",
+      "label": "The one who draws every bolt runs the street first.",
+      "rule": "scion:most_targeted|scion:highest:speed",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "Every bolt goes after them, and misses.",
+          "effects": [
+            {
+              "score": {
+                "valor": 2
+              }
+            },
+            {
+              "xp": 60
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "Not every bolt misses.",
+          "effects": [
+            {
+              "durability": -40,
+              "loc": "body"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "blind",
+      "label": "The one with the poorest eye walks it slowly, unafraid.",
+      "rule": "scion:lowest:acuity|scion:random",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "The masks are so puzzled they forget to shoot.",
+          "effects": [
+            {
+              "score": {
+                "intrigue": 1
+              }
+            },
+            {
+              "skip": 1
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "They shoot.",
+          "effects": [
+            {
+              "injury": "arms"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "arm",
+      "label": "The one with a hurt arm stays behind with a shield.",
+      "rule": "scion:injured:arms|vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The rest cross under cover; the shield bearer catches up bruised.",
+          "effects": [
+            {
+              "durability": -20,
+              "loc": "arms"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
