@@ -7,6 +7,7 @@ import { Content, FLAG, replayLine, type Cell, type Command, type Replay, type R
 import { useEffect, useMemo, useRef, useState, type CSSProperties, type KeyboardEvent } from "react";
 import CommandBar, { type Aiming } from "./CommandBar";
 import { HERALDRY_COLORS } from "./Emblem";
+import ScionSprite, { attackOf, lookOf, type Anim } from "./ScionSprite";
 import { spriteOf } from "./sprites";
 import { playSounds, soundsOf } from "./sfx";
 import "./BattleScreen.css";
@@ -183,6 +184,10 @@ export default function BattleScreen({ replay, view, onClose, waiting = 0, fullL
     const state = flags & FLAG.dead ? " is-dead" : flags & FLAG.down ? " is-down" : flags & FLAG.lastStand ? " is-last-stand" : "";
     const mine = pops.filter((p) => p.target === u.id);
     const sprite = spriteOf(u);
+    // A Scion is drawn from their own pieces: idle, swinging on their turn, fallen when down.
+    const who = u.person !== undefined ? view.people.find((p) => p.id === u.person) : undefined;
+    const scion = who ? lookOf(who, view.houses[who.house]?.colors) : null;
+    const scionAnim: Anim | null = scion ? (flags & (FLAG.dead | FLAG.down) ? "hurt" : actor === u.id ? attackOf(scion) : "idle") : null;
     const aimed = aimOn(u);
     return (
       <div
@@ -192,7 +197,16 @@ export default function BattleScreen({ replay, view, onClose, waiting = 0, fullL
         style={style}
         title={`${u.name}: ${hp}/${u.maxHp} HP`}
       >
-        {sprite ? (
+        {scion ? (
+          <ScionSprite
+            key={`${scionAnim}-${actor === u.id ? at : 0}`}
+            className="sp-unit__scion"
+            look={scion}
+            anim={scionAnim!}
+            size="fit"
+            play={scionAnim === "idle" ? "loop" : "hold"}
+          />
+        ) : sprite ? (
           <img className={`sp-unit__sprite${sprite.flip ? " is-flipped" : ""}`} src={sprite.url} alt="" draggable={false} />
         ) : (
           <span className="sp-unit__body">{u.hazard ? "⚠" : initials(u.name)}</span>

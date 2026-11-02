@@ -42,12 +42,15 @@
 .sp-pips { display: flex; gap: 2px; }
 .sp-pips span { width: 10px; height: 4px; background: #4a4036; }
 .sp-pips span.is-on { background: var(--gold); }
-.sp-chits { display: flex; flex-wrap: wrap; gap: 10px 6px; padding-bottom: 6px; }
+.sp-chits { display: flex; flex-wrap: wrap; gap: 14px 10px; padding-bottom: 6px; }
 .sp-chits:empty { display: none; }
 /* A Scion's chit: what they carry, ringed in their House's color, their initials underneath. */
-.sp-chit { position: relative; display: inline-grid; place-items: center; width: 34px; height: 34px; padding: 0; border-radius: 50%; border: 3px solid; background: radial-gradient(circle at 50% 35%, #2b221b, #0d0a08); box-shadow: 0 2px 4px #000; cursor: grab; }
-.sp-chit__tag { position: absolute; bottom: -7px; left: 50%; transform: translateX(-50%); font: 700 0.6rem/1 var(--body); padding: 1px 3px; border-radius: 2px; background: #0d0a08; color: var(--text); border: 1px solid var(--line); pointer-events: none; }
-.sp-chit.is-recruit { border-style: dashed; }
+.sp-chit { position: relative; display: inline-grid; place-items: center; width: 38px; height: 38px; padding: 0; border-radius: 50%; border: 3px solid; overflow: visible; background: radial-gradient(circle at 50% 35%, #3a2e24, #0d0a08); box-shadow: 0 2px 4px #000; cursor: grab; }
+.sp-chit .sp-scion { border-radius: 50%; }
+.sp-chit__job { position: absolute; top: -5px; right: -6px; background: #0d0a08; border: 1px solid var(--line-hi); border-radius: 50%; padding: 2px; }
+.sp-chit__tag { position: absolute; bottom: -9px; left: 50%; transform: translateX(-50%); max-width: 60px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font: 700 0.62rem/1 var(--body); padding: 1px 3px; border-radius: 2px; background: #0d0a08; color: var(--text); border: 1px solid var(--line); pointer-events: none; }
+.sp-chit.is-recruit { border-style: dashed; border-color: var(--muted) !important; filter: saturate(0.6); }
+.sp-chit.is-recruit .sp-chit__tag { font-style: italic; color: var(--muted); }
 .sp-chit.is-picked { outline: 2px solid var(--gold); outline-offset: 1px; }
 .sp-chit:disabled { cursor: default; }
 .sp-chit:focus-visible { outline: 2px solid var(--text); outline-offset: 1px; }

@@ -6,7 +6,8 @@ import { useState } from "react";
 import { inkOf } from "./Emblem";
 import { JOB_ICONS } from "./icons";
 import { BONE, GILT, PixelArt } from "./PixelArt";
-import { STATS, TAROT_BY_ID, TraitLine } from "./Roster";
+import { BUST, STATS, TAROT_BY_ID, TraitLine } from "./Roster";
+import ScionSprite, { lookOf } from "./ScionSprite";
 
 type Muster = NonNullable<SovView["muster"]>;
 type Volunteer = Muster["pool"][number];
@@ -82,7 +83,8 @@ export default function Volunteers({ view, sendMove }: { view: SovView; sendMove
 function VolunteerCard({ v, crunch, picked, onPick }: { v: Volunteer; crunch: boolean; picked: boolean; onPick?: () => void }) {
   const tarot = v.tarot ? TAROT_BY_ID.get(v.tarot) : undefined;
   return (
-    <li className={`sp-person${picked ? " is-picked" : ""}${onPick ? " is-pickable" : ""}`} aria-label={v.name}>
+    <li className={`sp-person sp-person--portrait${picked ? " is-picked" : ""}${onPick ? " is-pickable" : ""}`} aria-label={v.name}>
+      <ScionSprite className="sp-person__portrait" look={lookOf({ ...v, job: null, status: "recruit" }, undefined)} crop={BUST} size={(64 * 64) / BUST[2]} />
       <header>
         <strong className="sp-person__name">{v.name}</strong> <small>{v.sex === "f" ? "she" : "he"}, age {v.age}</small>
         {onPick ? (

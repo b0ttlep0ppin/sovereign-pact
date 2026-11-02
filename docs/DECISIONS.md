@@ -2,6 +2,15 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 8ac): Scions drawn from LPC sprite pieces
+
+- Josh: "you assemble the sprites from the pieces." Every Scion, volunteer and recruit is now stacked at run time from LPC layers: body, head, hair, beard, clothes, armor, cape, hat, weapon and shield.
+  - The look comes from who they are. Skin, hair style, hair color and beard are hashed from the person's id. Their sex picks the body, and age 55 and over gives an elderly head and gray or white hair. Nothing is stored and no RNG is drawn, so the rules and saves don't change.
+  - Their Job picks the outfit and weapon (Knight plate, sword and shield; Magus wizard hat and staff; Vagabond hood and dagger; and so on). Advanced Jobs wear the nearest base Job's outfit for now. A recruit wears plain clothes.
+  - Cape, shield and hat take the House's first color, and the shirt takes its second.
+- They show up as a bust on every person and volunteer card, as a head with a Job badge on the Town Map's chits, and full size in battle. In battle they face the enemy, play their attack when they act, and fall when they're down.
+- Only layers whose every credit offers OGA-BY, CC-BY or CC0 ship, so nothing is share-alike. The generator itself is never committed (`tools/cut-scions.py` cuts from a checkout), and the Credits screen lists every author from the cut's own credit list.
+
 ## 2026-11-02 (implementation, Milestone 8ab): the emblem wears the House's colors
 
 - Josh: "When making a house the colors should be shared between the house and emblem."

@@ -1,0 +1,5 @@
+/* Scion sprites: one row of a Scion's assembled sheet, crisp pixels, its frames stepped through. */
+.sp-scion { display: inline-block; flex: none; background-repeat: no-repeat; image-rendering: pixelated; }
+@keyframes sp-scion { from { background-position: var(--sp-from) var(--sp-y); } to { background-position: var(--sp-to) var(--sp-y); } }
+@media (prefers-reduced-motion: reduce) { .sp-scion { animation: none !important; } }
+.sp-scion-fit { flex: 1; min-height: 0; width: 100%; display: flex; align-items: flex-end; justify-content: center; overflow: visible; pointer-events: none; }
