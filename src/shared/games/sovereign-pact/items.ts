@@ -2,7 +2,7 @@
 // the Crude starting kit a new Scion gets, and rolled properties (§13.4). Bases and properties are
 // content (content/items.json, content/properties.json); numbers are in tuning.items.
 import type { Rng } from "../../rng.ts";
-import { CHANGE_BY_ID, ITEM_BASE_BY_ID, PROPERTIES, PROPERTY_BY_ID, type ArmorClass, type ItemBase, type PropertyDef, type PropertyOn } from "./content.ts";
+import { CHANGE_BY_ID, ITEM_BASE_BY_ID, NAMED_BY_ID, PROPERTIES, PROPERTY_BY_ID, type ArmorClass, type ItemBase, type PropertyDef, type PropertyOn } from "./content.ts";
 import { jobStat } from "./formulas.ts";
 import { jobOf, mayWear, mayWield } from "./progression.ts";
 import { type GearSlot, type Item, type ItemTier, type Location, type Person, type SovState } from "./state.ts";
@@ -28,6 +28,20 @@ export function mint(s: SovState, base: string, house: number, tier: ItemTier = 
   s.items.push(item);
   return item;
 }
+
+/**
+ * A named item (§13.4) for `house` (-1: into a haul) at item level `ilvl`, its properties fixed. Each one
+ * exists once a campaign: making it flags it, whether or not it ever reaches a House.
+ */
+export function mintNamed(s: SovState, id: string, house: number, ilvl: number): Item {
+  const def = NAMED_BY_ID.get(id);
+  if (!def) throw new Error(`unknown named item ${id}`);
+  s.flags.push(`named_${id}`);
+  return { id: s.nextId++, base: def.base, tier: def.tier, ilvl: Math.max(ilvl, def.minLevel ?? 1), house, named: id, props: def.props.map(([p, v]) => [p, v] as [string, number]) };
+}
+
+/** Whether a named item has been made yet this campaign. */
+export const madeNamed = (s: Pick<SovState, "flags">, id: string): boolean => s.flags.includes(`named_${id}`);
 
 /** Hands an item made earlier (loot, a shop lot) to its House, keeping the items in id order as a save restores them. */
 export function stock(s: Pick<SovState, "items">, item: Item): void {

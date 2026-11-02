@@ -2,6 +2,14 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 7a: named items) — implementer
+- **Content**: `content/named.json` (schema `schemas/named.schema.json`) holds 26 named items so far, toward the ≥120 of HANDOFF §6: the arc's three (the Gatebreaker's Horn from the Siege Beast, the Crown from the Cursed King, the Mother's Cord from the Unknown Mother), one for each of nine bosses, and at least one hidden in every pool. Each is a base with fixed properties (§13.4), Relic tier, at the level found or its own minimum.
+- **Readings**:
+  - A named item exists once a campaign. It is marked made (flag `named_<id>`) when it is minted, so a haul lost on a wipe loses it for good.
+  - A boss drops its own named item the first time it falls (`bossLoot`), on top of the usual haul.
+  - A Fine-or-better find (Cache or haul) is one of the pool's unmade named items `loot.namedPct` (15%) of the time, once the expedition's level reaches the item's minimum.
+  - An artifact (an item with a `score` line) adds its points to that category for the House holding it, on top of what it scores as a Relic (§3.4).
+
 ## 2026-11-02 (implementation, tuning pass 3: the middle Years) — implementer
 - **Seen**: after pass 2, bot campaigns still fell at the mandatory Years 5 and 10. The best Scions stood near 2.5L there, not the 3L reference, and an 8-Scion mandatory party is half fresh promotions.
 - **Knobs**:

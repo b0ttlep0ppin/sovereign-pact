@@ -79,6 +79,8 @@ export const TUNING = {
     boss: { extraItems: 1, rolls: 3 },
     /** Found gear's chance of one bad property (§13.4). */
     negativePct: 20,
+    /** A Fine-or-better find's chance to be one of the pool's named items, while any is left to find. */
+    namedPct: 15,
     /** How the bot values a share: an item by tier (Crude…Relic); materials 1 each, Essence and rare ones more. */
     botWorth: { tier: [1, 3, 6, 12, 30], essence: 2, rare: 6 },
   },
