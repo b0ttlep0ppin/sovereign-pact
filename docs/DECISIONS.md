@@ -2,6 +2,25 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 8aj): sprites wear the Scion's gear
+
+- I'd told Josh "the weapon they actually have equipped shows in their hands." A Scion's sprite is now drawn from what they wear, laid over their Job's outfit:
+  - **Weapon:** from the main hand, or the off hand when that holds the only weapon. Mapping:
+    - sword: arming sword
+    - greatsword and greataxe: longsword
+    - axe, mace and maul: mace
+    - spear and staff: staff
+    - knife and throwing knives: dagger
+    - bow and crossbow: as themselves
+    - knuckles and instrument: bare hands
+  - **Shield:** buckler is round, heater shield is heater, tower shield is scutum.
+  - **Head:** hood is hood, coif is a mail coif (hides the hair), helm is a nasal helm. With nothing on the head, the Job's hat stays.
+  - **Body:** jerkin is leather, hauberk is chainmail, plate is plate. With nothing on the body, there's no armor.
+- Reading: the LPC set has no attribution-only axe or spear, so axes are drawn as maces and spears as staves until one is drawn for us. The attack animation follows the weapon drawn.
+- Metal pieces keep their own colors; cloth hats, capes and shields take the House colors as before.
+- Newly cut: longsword, mace, round and tower (scutum) shields, mail coif, nasal helm. The cutter now keeps the middle 128 px of 192 px "oversize" swings. Three more authors are credited.
+- Recruits and volunteers are still drawn in plain clothes.
+
 ## 2026-11-02 (implementation, Milestone 8ai): each Seat's district has its own layout
 
 - Josh: "Maybe different configurations for buildings locations." On the Town Map, each Seat's district is now a small grid of its own, with three kinds of cell:

@@ -55,7 +55,7 @@ export default function Formation({ view, people, sendMove, canAct, title = "For
               >
                 {p ? (
                   <>
-                    <ScionSprite look={lookOf(p, colors)} anim="idle" frame={0} size={44} />
+                    <ScionSprite look={lookOf(p, colors, view.items)} anim="idle" frame={0} size={44} />
                     <small>{p.name.split(" ")[0]}</small>
                   </>
                 ) : null}

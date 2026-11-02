@@ -187,7 +187,7 @@ export default function BattleScreen({ replay, view, onClose, waiting = 0, fullL
     // A Scion is drawn from their own pieces: casting, shooting or swinging what they use, chanting while
     // a spell charges, fallen when down, and otherwise at the ready.
     const who = u.person !== undefined ? view.people.find((p) => p.id === u.person) : undefined;
-    const scion = who ? lookOf(who, view.houses[who.house]?.colors) : null;
+    const scion = who ? lookOf(who, view.houses[who.house]?.colors, view.items) : null;
     const used = ev.find((e) => e.t === "use" && e.unit === u.id);
     const scionAnim: Anim | null = !scion
       ? null

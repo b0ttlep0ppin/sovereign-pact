@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { scionCredits } from "./credits";
 import LAYERS from "./scion-layers.json";
-import { animFor, attackOf, lookOf, lunges, piecesOf } from "./ScionSprite";
+import { animFor, attackOf, kitOf, lookOf, lunges, piecesOf } from "./ScionSprite";
 
 const person = (id: number, over: Partial<{ sex: "m" | "f"; age: number; job: string | null; status: "recruit" | "scion" }> = {}) =>
   ({ id, sex: "m" as const, age: 25, job: "knight", status: "scion", ...over }) as unknown as Parameters<typeof lookOf>[0];
@@ -55,5 +55,22 @@ describe("Scion sprites", () => {
     expect(animFor(vagabond, undefined)).toBe("shoot");
     expect(lunges("slash")).toBe(true);
     expect(lunges("spellcast")).toBe(false);
+  });
+
+  it("draws the gear a Scion wears over their Job's outfit (8aj)", () => {
+    const items = [
+      { id: 1, base: "greatsword" },
+      { id: 2, base: "tower_shield" },
+      { id: 3, base: "helm" },
+      { id: 4, base: "jerkin" },
+    ];
+    expect(kitOf({ main: 1, off: 2, head: 3, body: 4 }, items)).toEqual({ weapon: "longsword", shield: "scutum", hat: "nasal", armor: "leather" });
+    // A Magus who took up a bow and wears nothing on their body shoots, unarmored, in their wizard's hat.
+    const magus = lookOf({ ...person(9, { job: "magus" }), gear: { main: 5 } } as never, undefined, [{ id: 5, base: "bow" }]);
+    const option = (slot: string) => piecesOf(magus).find((p) => p.layer.slot === slot)?.layer.option;
+    expect(option("weapon")).toBe("bow");
+    expect(option("armor")).toBeUndefined();
+    expect(option("hat")).toBe("wizard");
+    expect(attackOf(magus)).toBe("shoot");
   });
 });

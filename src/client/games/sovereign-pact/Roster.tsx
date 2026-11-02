@@ -79,7 +79,7 @@ function Card({ p, view, sendMove, canAct }: Props & { p: Person }) {
   const promote = mine.promotion.left < 1 ? "There is no ceremony left this Year." : mine.gold < mine.promotion.gold ? `A promotion costs ${mine.promotion.gold} Gold.` : null;
   return (
     <li className="sp-person sp-person--portrait" aria-label={p.name}>
-      <ScionSprite className="sp-person__portrait" look={lookOf(p, view.houses[p.house]?.colors)} crop={BUST} size={(64 * 64) / BUST[2]} />
+      <ScionSprite className="sp-person__portrait" look={lookOf(p, view.houses[p.house]?.colors, view.items)} crop={BUST} size={(64 * 64) / BUST[2]} />
       <header>
         <strong className="sp-person__name" style={p.status === "recruit" ? undefined : { color: inkOf(view.houses[p.house]?.colors) }}>
           {p.name}
