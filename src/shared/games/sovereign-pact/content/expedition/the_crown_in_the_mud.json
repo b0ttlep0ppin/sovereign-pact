@@ -1,0 +1,100 @@
+{
+  "id": "the_crown_in_the_mud",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    10
+  ],
+  "title": "The Crown in the Mud",
+  "text": "A crown, gold and old, half buried in the mud of a field where some king's last battle was fought.",
+  "options": [
+    {
+      "id": "wear",
+      "label": "The leader tries it on.",
+      "rule": "leader",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "It fits. It feels right.",
+          "effects": [
+            {
+              "score": {
+                "renown": 2
+              }
+            },
+            {
+              "to": "party",
+              "sanity": -5
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "It fits. It whispers.",
+          "effects": [
+            {
+              "curse": true
+            },
+            {
+              "score": {
+                "renown": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sell",
+      "label": "Take it to sell.",
+      "rule": "leader",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Gold is gold.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 25
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bury",
+      "label": "Bury it properly with its king.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The field is quieter after.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 8
+            },
+            {
+              "score": {
+                "lore": 1
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

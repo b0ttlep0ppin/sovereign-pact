@@ -1,0 +1,84 @@
+{
+  "id": "the_clear_spring",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    4,
+    10
+  ],
+  "title": "The Clear Spring",
+  "text": "A spring in a white grove, and old bones all round it, of people who drank and stayed young, and stayed.",
+  "options": [
+    {
+      "id": "drink",
+      "label": "The oldest of you drinks.",
+      "rule": "scion:most_expeditions",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "Years fall off them. They feel it in every joint.",
+          "effects": [
+            {
+              "growth": {
+                "all": 10
+              }
+            },
+            {
+              "sanity": 10
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "They want to stay.",
+          "effects": [
+            {
+              "sanity": -25
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bottle",
+      "label": "Bottle some for home.",
+      "rule": "leader",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Clear water that never goes stale.",
+          "effects": [
+            {
+              "resources": {
+                "essence": 3
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "leave",
+      "label": "Leave the spring to its dead.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The bones watch you go, not unkindly.",
+          "effects": []
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,91 @@
+{
+  "id": "the_bridge_of_light",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    10
+  ],
+  "title": "The Bridge of Light",
+  "text": "A bridge of colored light arches over a gulf. It holds only the brave, the stories say.",
+  "options": [
+    {
+      "id": "cross",
+      "label": "Cross boldly, together.",
+      "rule": "vote",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 75,
+          "text": "It holds.",
+          "effects": [
+            {
+              "skip": 1
+            },
+            {
+              "to": "party",
+              "sanity": 5
+            }
+          ]
+        },
+        {
+          "w": 25,
+          "text": "It holds most of you.",
+          "effects": [
+            {
+              "injury": "legs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "first",
+      "label": "The bravest goes first and calls back.",
+      "rule": "scion:trait:brave|scion:highest:resilience",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It holds firm under them, and under everyone after.",
+          "effects": [
+            {
+              "skip": 1
+            },
+            {
+              "score": {
+                "valor": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "around",
+      "label": "Find another way.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A long, dull way.",
+          "effects": [
+            {
+              "to": "party",
+              "durability": -5
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

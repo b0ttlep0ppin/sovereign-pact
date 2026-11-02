@@ -1,0 +1,90 @@
+{
+  "id": "the_glass_house",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    10
+  ],
+  "title": "The Glass House",
+  "text": "A house made entirely of mirrors in a clearing, and in every mirror a different version of the party: richer, older, dead.",
+  "options": [
+    {
+      "id": "enter",
+      "label": "The leader goes inside.",
+      "rule": "leader",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "They see what they could become, and it is good.",
+          "effects": [
+            {
+              "growth": {
+                "all": 5
+              }
+            },
+            {
+              "sanity": 5
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "They see what they will become.",
+          "effects": [
+            {
+              "sanity": -25
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "break",
+      "label": "Break every mirror.",
+      "rule": "vote",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Seven years of bad luck, the old saying goes.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 5
+            },
+            {
+              "doom": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "look",
+      "label": "Look only at the outside.",
+      "rule": "scion:highest:acuity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "In the outer mirrors, the way ahead, reflected.",
+          "effects": [
+            {
+              "skip": 1
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

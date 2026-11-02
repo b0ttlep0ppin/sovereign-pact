@@ -1,0 +1,73 @@
+{
+  "id": "the_lantern_procession",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    10
+  ],
+  "title": "The Lantern Procession",
+  "text": "A procession of floating lanterns drifts by, each carrying the soul of someone recently dead. One flickers toward you.",
+  "options": [
+    {
+      "id": "follow",
+      "label": "Follow the one that flickers.",
+      "rule": "scion:lowest:sanity",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It is someone they knew, come to say goodbye.",
+          "effects": [
+            {
+              "sanity": 20
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "catch",
+      "label": "Catch one in a jar.",
+      "rule": "leader",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It is very bright, and very sad.",
+          "effects": [
+            {
+              "resources": {
+                "essence": 5
+              }
+            },
+            {
+              "doom": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bow",
+      "label": "Bow until they pass.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "They pass, and the night is darker after.",
+          "effects": []
+        }
+      ]
+    }
+  ]
+}

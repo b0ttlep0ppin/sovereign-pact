@@ -1,0 +1,93 @@
+{
+  "id": "the_fallen_messenger",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    4,
+    10
+  ],
+  "title": "The Fallen Messenger",
+  "text": "Something with wings lies broken in a crater, glowing faintly, trying to say a word it cannot finish.",
+  "options": [
+    {
+      "id": "heal",
+      "label": "The best healer tends it.",
+      "rule": "scion:most_healing",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It finishes the word, and the word is a blessing.",
+          "effects": [
+            {
+              "blessing": {
+                "trait": "stout_hearted",
+                "years": 3
+              }
+            },
+            {
+              "xp": 100
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "listen",
+      "label": "The wisest finishes the word for it.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A name, and a warning about the End Ruler.",
+          "effects": [
+            {
+              "score": {
+                "lore": 3
+              }
+            },
+            {
+              "sanity": -10
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "feathers",
+      "label": "Take its feathers.",
+      "rule": "leader",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Each one is worth a fortune. It watches you take them.",
+          "effects": [
+            {
+              "score": {
+                "relics": 1
+              }
+            },
+            {
+              "resources": {
+                "essence": 4
+              }
+            },
+            {
+              "doom": 2
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

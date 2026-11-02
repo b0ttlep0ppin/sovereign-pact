@@ -1,0 +1,101 @@
+{
+  "id": "the_fallen_star",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    10
+  ],
+  "title": "The Fallen Star",
+  "text": "A star came down in the night. It is still warm, and it is still singing.",
+  "options": [
+    {
+      "id": "dig",
+      "label": "Dig it out.",
+      "rule": "vote",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "A heart of star-metal.",
+          "effects": [
+            {
+              "resources": {
+                "iron": 3,
+                "essence": 4
+              }
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "Something else came down with it.",
+          "effects": [
+            {
+              "encounter": {
+                "level": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "listen",
+      "label": "Sit and listen to it sing.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It sings of the sky it fell from, until dawn.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 15
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "touch",
+      "label": "The boldest touches it.",
+      "rule": "scion:random",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "Starlight, in the blood.",
+          "effects": [
+            {
+              "growth": {
+                "all": 10
+              }
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "Starlight, too much of it.",
+          "effects": [
+            {
+              "status": "burn"
+            },
+            {
+              "sanity": -15
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
