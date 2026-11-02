@@ -2,6 +2,10 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 7r: twenty more named items) — implementer
+- **Built** (content only). Twenty named items found in the otherworld, most of them shared between two pools that border each other in theme (the Lantern Shield in the Outer Dark and the Barrows, Tidebreaker in the Drowned Marches and the Deep Cold), a few kept to one pool (Frostbrand, the Dragonhide Boots, the Marsh-Lord's Circlet). That makes 100 named items.
+- **Reading:** the Eye of the Deep pays for its sight with a weaker mind (brittle nerve); every value stays within its property's roll range.
+
 ## 2026-11-02 (implementation, Milestone 7q: fourteen more general events, with secret and each-Scion ones) — implementer
 - **Built** (content only). Fourteen general expedition events: the One Rope and the Poisoned Well (secret: each House picks alone, and how it goes turns on whether another House betrayed the rest, Q91), the Echoing Hall and the Steaming Pool (each Scion chooses for themself), and the Thirsting Banner, the Beggar King, the Crooked Signpost, the Stranded Merchant, the Quiet Battlefield, the Dreaming Tent, the Glass Garden, the Old Soldier, the Feast of Crows and the Fortune Teller. That makes 106 expedition events, 60 of them open to any card.
 - **Reading:** each uses only effects and subject rules the rules already have. The Beggar King asks the House lowest in Standing, and its cruel option falls to the highest, so a lead can cost Doom.

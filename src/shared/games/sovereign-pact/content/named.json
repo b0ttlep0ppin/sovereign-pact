@@ -613,6 +613,255 @@
       "pools": ["outer_dark"]
     },
     {
+      "id": "ravens_quill_bow",
+      "name": "Raven-Quill Bow",
+      "base": "bow",
+      "tier": 3,
+      "props": [
+        ["keen", 12],
+        ["headsmans", 1]
+      ],
+      "text": "Fletched with feathers from the birds that sit on barrow-stones. It never misses a face.",
+      "pools": ["barrows", "hollow_wood"]
+    },
+    {
+      "id": "marsh_lords_circlet",
+      "name": "Marsh-Lord's Circlet",
+      "base": "coif",
+      "tier": 4,
+      "props": [
+        ["resist_poison", 50],
+        ["warded_water", 25],
+        ["fortified", 20]
+      ],
+      "text": "A crown of green copper that kept a drowned lord's head above the water, for a while.",
+      "pools": ["drowned_marches"]
+    },
+    {
+      "id": "bone_lattice_hauberk",
+      "name": "Bone-Lattice Hauberk",
+      "base": "hauberk",
+      "tier": 3,
+      "props": [
+        ["resist_fear", 35],
+        ["gravewalker", 1]
+      ],
+      "text": "Ribs, many of them, wired together. They used to belong to someone braver.",
+      "pools": ["barrows", "pit"]
+    },
+    {
+      "id": "first_smiths_bracers",
+      "name": "First Smith's Bracers",
+      "base": "bracers",
+      "tier": 4,
+      "props": [
+        ["fortified", 25],
+        ["resist_stun", 35],
+        ["stalwart", 1]
+      ],
+      "text": "Heavy enough to stop a hammer. They were made to, more than once.",
+      "pools": ["forge_ruins", "deep_cold"]
+    },
+    {
+      "id": "lamplighters_staff",
+      "name": "Lamplighter's Staff",
+      "base": "staff",
+      "tier": 3,
+      "props": [
+        ["holy_edge", 25],
+        ["mana_thirst", 2]
+      ],
+      "text": "The city's lamps were lit with it every dusk. Some of them still come on when it passes.",
+      "pools": ["faceless_city", "outer_dark"]
+    },
+    {
+      "id": "sevenfold_buckler",
+      "name": "Sevenfold Buckler",
+      "base": "buckler",
+      "tier": 3,
+      "props": [
+        ["thorned", 15],
+        ["guarding", 1]
+      ],
+      "text": "Seven layers of hide, one blessed by each of the Six and one by something else.",
+      "pools": ["apostate_court", "shrine_of_six"]
+    },
+    {
+      "id": "cinder_greaves",
+      "name": "Cinder Greaves",
+      "base": "greaves",
+      "tier": 4,
+      "props": [
+        ["warded_fire", 30],
+        ["lightfoot", 1],
+        ["fortified", 20]
+      ],
+      "text": "Black iron that has walked through fire and come out lighter.",
+      "pools": ["pit", "dragon_reaches"]
+    },
+    {
+      "id": "tidebreaker_tower_shield",
+      "name": "Tidebreaker",
+      "base": "tower_shield",
+      "tier": 4,
+      "props": [
+        ["warded_water", 30],
+        ["bulwark", 1],
+        ["thorned", 15]
+      ],
+      "text": "It held back the sea once, for an afternoon. People still talk about it.",
+      "pools": ["drowned_marches", "deep_cold"]
+    },
+    {
+      "id": "the_merry_knife",
+      "name": "The Merry Knife",
+      "base": "knife",
+      "tier": 3,
+      "props": [
+        ["multi_hit", 20],
+        ["lucky", 1]
+      ],
+      "text": "It laughs, very quietly, every time it is drawn. It is lucky, and it knows it.",
+      "pools": ["faceless_city", "beast_lands"]
+    },
+    {
+      "id": "hearthstone_charm",
+      "name": "Hearthstone Charm",
+      "base": "charm",
+      "tier": 3,
+      "props": [
+        ["resolute", 1],
+        ["resist_fear", 30]
+      ],
+      "text": "A pebble from a hearth a long way from here. It stays warm, and so does whoever holds it.",
+      "pools": ["deep_cold", "hollow_wood"]
+    },
+    {
+      "id": "pilgrims_last_coin",
+      "name": "Pilgrim's Last Coin",
+      "base": "ring",
+      "tier": 3,
+      "props": [
+        ["holy_symbol", 1],
+        ["stat_sagacity", 2]
+      ],
+      "text": "Set in a ring by someone who never spent it. The Six seem to know it on sight.",
+      "pools": ["shrine_of_six", "apostate_court"]
+    },
+    {
+      "id": "gutter_kings_signet",
+      "name": "Gutter-King's Signet",
+      "base": "ring",
+      "tier": 4,
+      "props": [
+        ["thieves_token", 1],
+        ["stat_guile", 4],
+        ["renowned", 1]
+      ],
+      "text": "The king of the city's gutters wore it. Thieves still bow to it, out of habit.",
+      "pools": ["faceless_city", "pit"]
+    },
+    {
+      "id": "stormcallers_axe",
+      "name": "Stormcaller's Axe",
+      "base": "greataxe",
+      "tier": 4,
+      "props": [
+        ["wind_edge", 35],
+        ["staggering", 1],
+        ["keen", 10]
+      ],
+      "text": "It sings in the wind before the blow lands, and thunders after.",
+      "pools": ["dragon_reaches", "beast_lands"]
+    },
+    {
+      "id": "lantern_shield",
+      "name": "Lantern Shield",
+      "base": "heater_shield",
+      "tier": 3,
+      "props": [
+        ["warded_dark", 25],
+        ["guarding", 1]
+      ],
+      "text": "A shield with a lamp in its boss. In the dark between places, it is worth ten.",
+      "pools": ["outer_dark", "barrows"]
+    },
+    {
+      "id": "heartwood_maul",
+      "name": "Heartwood Maul",
+      "base": "maul",
+      "tier": 4,
+      "props": [
+        ["earth_edge", 35],
+        ["breaker", 1],
+        ["staggering", 1]
+      ],
+      "text": "The heart of a tree that would not fall, on a haft of iron that would not bend.",
+      "pools": ["hollow_wood", "forge_ruins"]
+    },
+    {
+      "id": "the_patient_spear",
+      "name": "The Patient Spear",
+      "base": "spear",
+      "tier": 3,
+      "props": [
+        ["riposting", 1],
+        ["reaching", 1]
+      ],
+      "text": "Its owners never struck first. They never needed to.",
+      "pools": ["apostate_court", "beast_lands"]
+    },
+    {
+      "id": "eye_of_the_deep",
+      "name": "Eye of the Deep",
+      "base": "amulet",
+      "tier": 4,
+      "props": [
+        ["stat_acuity", 4],
+        ["keen_eye", 1],
+        ["brittle_nerve", 1]
+      ],
+      "text": "A pale eye in silver, always open. It sees well, and it shows its wearer what it sees.",
+      "pools": ["drowned_marches", "outer_dark"]
+    },
+    {
+      "id": "frostbrand",
+      "name": "Frostbrand",
+      "base": "sword",
+      "tier": 4,
+      "props": [
+        ["water_edge", 35],
+        ["stunning", 15],
+        ["executioners", 1]
+      ],
+      "text": "A sword that froze in its sheath and never thawed. Wounds it makes do not bleed.",
+      "pools": ["deep_cold"]
+    },
+    {
+      "id": "ashen_hood",
+      "name": "Ashen Hood",
+      "base": "hood",
+      "tier": 3,
+      "props": [
+        ["quiet", 1],
+        ["resist_blind", 40]
+      ],
+      "text": "Gray as ash and quieter. Smoke does not sting the eyes beneath it.",
+      "pools": ["pit", "faceless_city"]
+    },
+    {
+      "id": "dragonhide_boots",
+      "name": "Dragonhide Boots",
+      "base": "boots",
+      "tier": 4,
+      "props": [
+        ["quickening", 1],
+        ["warded_fire", 25]
+      ],
+      "text": "Cut from the softest part of a wyrm's belly. They are very fast, and they remember fire.",
+      "pools": ["dragon_reaches"]
+    },
+    {
       "id": "the_fools_bell",
       "name": "The Fool's Bell",
       "base": "charm",
