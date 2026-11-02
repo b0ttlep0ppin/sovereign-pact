@@ -1,6 +1,6 @@
 // Expedition events (§9.4): met at an Event node, from the card's own pools half the time and the
 // general pool the rest. Every House in the party votes on the option; a tie costs Accord and goes to
-// the Leader's House. The option's rule names its subject, the Scion or House it happens to; its
+// the Leader's House (free: only settlement ties cost Accord). The option's rule names its subject, the Scion or House it happens to; its
 // outcome is drawn by weight and its effects land (§9.4's catalogue, the parts built so far).
 import { loseAccord } from "./commons.ts";
 import { caps, scionCombatant } from "./combat/build.ts";
@@ -68,8 +68,7 @@ export function decide(s: SovState, house: number, option: number): void {
   const tied = tally.flatMap((n, i) => (n === top ? [i] : []));
   let pick = tied[0]!;
   if (tied.length > 1) {
-    // §9.4: a tied vote costs Accord and goes to the Leader.
-    loseAccord(s, TUNING.tracks.tieCost);
+    // A tie goes to the Leader's House, at no cost: only settlement ties cost Accord (Josh, 2026-11-02).
     const lead = ev.votes[person(s, e.leader!).host]!;
     pick = tied.includes(lead) ? lead : pick;
   }

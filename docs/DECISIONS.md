@@ -3,7 +3,8 @@
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
 ## 2026-11-02 (Q90 answered) — Josh
-- **Who picks an expedition event's option: the party votes; the option's rule names who it happens to.** Every House with someone in the party votes. A tie costs Accord −3 and goes to the Leader's House. The rule (`leader`, `scion:most_expeditions`, `house:lowest_standing`…) chooses the subject: the Scion or House the effects fall on. `each_scion` and `secret` events keep their own way of choosing. → SPEC §9.4
+- **Who picks an expedition event's option: the party votes; the option's rule names who it happens to.** Every House with someone in the party votes. A tie goes to the Leader's House.
+- **Only settlement ties cost Accord; expedition ties do not** (Josh, same day). Reading: settlement ties are votes in the Settlement Phase (Commons votes, town events, the Rift Gate's card) and keep −3. Expedition Phase ties are free: event options go to the Leader's House, the Leader vote to the most travelled Scion. → SPEC §8.1, §9.2, §9.4 The rule (`leader`, `scion:most_expeditions`, `house:lowest_standing`…) chooses the subject: the Scion or House the effects fall on. `each_scion` and `secret` events keep their own way of choosing. → SPEC §9.4
 
 ## 2026-11-02 (implementation, Milestone 6d: expedition events) — implementer
 - **The engine** (`events.ts`, content under `content/expedition/`, `schemas/expedition.schema.json`):

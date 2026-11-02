@@ -112,7 +112,7 @@ describe("the Leader (§9.2)", () => {
     expect(sealYear(s).year).toBe(2);
   });
 
-  it("breaks a tie for the Scion with the most expeditions, at a cost in Accord", () => {
+  it("breaks a tie for the Scion with the most expeditions, at no cost in Accord", () => {
     let s = at(2, card(4));
     s = move(s, "p1", { type: "field", people: ids(s, 0, 2) });
     s = move(s, "p2", { type: "field", people: ids(s, 1, 2) });
@@ -122,7 +122,7 @@ describe("the Leader (§9.2)", () => {
     s = move(move(s, "p1", { type: "lead", person: a }), "p2", { type: "lead", person: b });
     expect(s.people.find((p) => p.id === b)!.hist.led).toBe(1);
     expect(s.people.find((p) => p.id === a)!.hist.led).toBeUndefined();
-    expect(s.accord).toBeLessThan(accord);
+    expect(s.accord).toBe(accord);
   });
 
   it("needs no vote with one House", () => {

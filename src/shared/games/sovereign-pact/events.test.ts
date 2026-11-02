@@ -7,7 +7,6 @@ import { sovereignPact, type SovMove, type SovState } from "./index.ts";
 import { levelUp } from "./progression.ts";
 import type { ExpeditionCard } from "./state.ts";
 import { calm, campaign } from "./testing.ts";
-import { TUNING } from "./tuning.ts";
 
 const g = sovereignPact;
 const move = (s: SovState, player: string, m: SovMove): SovState => {
@@ -65,7 +64,7 @@ describe("drawing an event (§9.3)", () => {
 });
 
 describe("the vote (Josh, 2026-11-02: the party votes; the rule names who it happens to)", () => {
-  it("takes the majority; a tie costs Accord and goes to the Leader's House", () => {
+  it("takes the majority; a tie goes to the Leader's House and costs no Accord", () => {
     let s = underway(3);
     s.expedition!.event = { id: "the_toll", votes: [null, null, null] };
     s = move(move(s, "p1", { type: "decide", option: 1 }), "p2", { type: "decide", option: 0 });
@@ -80,7 +79,7 @@ describe("the vote (Josh, 2026-11-02: the party votes; the rule names who it hap
     t.expedition!.event = { id: "field_of_flowers", votes: [null, null] };
     const a = t.accord;
     t = move(move(t, "p1", { type: "decide", option: 1 }), "p2", { type: "decide", option: 0 });
-    expect(t.accord).toBe(a - TUNING.tracks.tieCost);
+    expect(t.accord).toBe(a);
     expect(t.log.some((l) => l.startsWith("Don't trust it."))).toBe(true);
   });
 

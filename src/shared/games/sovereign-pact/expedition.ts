@@ -1,7 +1,6 @@
 // The Expedition Phase (§9.2): the chosen card's seats are shared out among the Houses, each House
 // fields its own Scions, the Houses vote a Leader, and the party departs. The chain itself (§9.3) is
 // Milestone 6c on; until then the party departs and the Year goes on to the Reckoning.
-import { loseAccord } from "./commons.ts";
 import { POOL_BY_ID } from "./content.ts";
 import type { ExpeditionCard, Person, SovState } from "./state.ts";
 import { TUNING } from "./tuning.ts";
@@ -127,15 +126,13 @@ export function cannotLead(s: SovState, house: number, person: unknown): string 
   return roster(s).includes(person as number) ? null : "Vote for a Scion in the party.";
 }
 
-/** House `house` votes for a Leader; the last vote names them (ties: Accord, then most expeditions). */
+/** House `house` votes for a Leader; the last vote names them. A tie goes to the most travelled, at no cost: only settlement ties cost Accord (Josh, 2026-11-02). */
 export function voteLeader(s: SovState, house: number, person: number): void {
   const e = s.expedition!;
   e.votes![house] = person;
   if (e.votes!.some((v) => v === null)) return;
   const tally = new Map<number, number>();
   for (const v of e.votes!) tally.set(v!, (tally.get(v!) ?? 0) + 1);
-  const top = Math.max(...tally.values());
-  if ([...tally.values()].filter((n) => n === top).length > 1) loseAccord(s, TUNING.tracks.tieCost);
   depart(s, choose(s, [...tally]));
 }
 
