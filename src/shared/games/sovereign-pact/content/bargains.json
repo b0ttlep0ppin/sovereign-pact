@@ -114,6 +114,37 @@
       "misfortune": "Old foundations crack all at once; the house groans like something remembering.",
       "promise": "The crown goes quiet, satisfied.",
       "mark": 75
+    },
+    {
+      "id": "the_crowned_reflection",
+      "title": "The Crowned Reflection",
+      "text": "In the Gate your reflection wears the Sovereign's crown. It offers to trade places with you, only for a little while, only for the fight ahead.",
+      "when": ["reflection"],
+      "price": { "sanity": -20 },
+      "boon": { "score": { "renown": 10, "lineage": 6 } },
+      "promise": "When you look again the crown is on your own head, and it fits as if it always had.",
+      "mark": 100
+    },
+    {
+      "id": "the_glass_champion",
+      "title": "The Glass Champion",
+      "text": "The glass shows your champion as they could be: taller, harder, unafraid. It can be so, it says, if you let it keep something of them.",
+      "when": ["reflection"],
+      "price": { "sanity": -15 },
+      "boon": { "stat": 3 },
+      "promise": "Your champion steps away from the glass a little more than they were.",
+      "mark": 100
+    },
+    {
+      "id": "the_rivals_reflection",
+      "title": "The Rival's Reflection",
+      "text": "In the glass a rival House's arms hang on the throne room wall. Say the word, the Gate whispers, and they will hang a little lower.",
+      "when": ["reflection"],
+      "price": { "sanity": -10 },
+      "bane": { "score": { "renown": -10, "valor": -6 } },
+      "misfortune": "Something in the Gate looked back at your Scions, and your House's name feels smaller for it.",
+      "promise": "The glass clouds over a rival's arms, and stays clouded.",
+      "mark": 100
     }
   ]
 }

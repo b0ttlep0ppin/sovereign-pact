@@ -17,7 +17,7 @@ import { gainJp, gainXp, jobStats } from "./progression.ts";
 import { ascendancy } from "./score.ts";
 import { GEAR_SLOTS, LOCATIONS, STATS, type HistKey, type NodeKind, type Person, type ScoreCategory, type SovState } from "./state.ts";
 import { TUNING } from "./tuning.ts";
-import { log, withRng } from "./year.ts";
+import { log, note, withRng } from "./year.ts";
 import { change, unchange } from "./change.ts";
 
 const flagged = (s: SovState, req: string): boolean => (req.startsWith("!") ? !s.flags.includes(req.slice(6)) : s.flags.includes(req.slice(5)));
@@ -252,6 +252,11 @@ function apply(s: SovState, fx: TripEffect, ids: number[], house: number | null)
     else s.houses[house]!.stores[k] = Math.max(0, (s.houses[house]!.stores[k] ?? 0) + n!);
   }
   for (const [k, n] of Object.entries(fx.score ?? {})) for (const h of houses) s.houses[h]!.score[k as ScoreCategory] += n!;
+  // The Gate's Reflection (§9.7): the House's own future as a number, its Ambition counted; only it sees.
+  for (const h of fx.foresee ? houses : []) {
+    const seen = `In the Gate you see your House's future: an Ascendancy of ${ascendancy(s, h)}.`;
+    if (!s.notes[h]!.includes(seen)) note(s, h, seen);
+  }
   if (fx.accord) {
     if (fx.accord < 0) loseAccord(s, -fx.accord);
     else s.accord = Math.min(100, s.accord + fx.accord);

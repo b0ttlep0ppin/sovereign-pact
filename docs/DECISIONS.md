@@ -2,6 +2,15 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 7k: The Gate's Reflection) — implementer
+- **Built** (§9.7, §14.7, §14.7a; `withReflection` in `arc.ts`, `offerReflection` in `bargains.ts`, event `content/expedition/gates_reflection.json`, three `reflection` bargains). The final Year's chain ends with a `reflection` place just before the End Ruler. Arriving there:
+  - Each House in the party is privately offered one of the Year 20 bargains: the Crowned Reflection (Renown and Lineage), the Glass Champion (a stat +3 on the House's best Scion), or the Rival's Reflection (a bane on a rival's Renown and Valor). Every one carries a Pact mark (the SPEC's [PROPOSED] "always carries one").
+  - Each Scion's House chooses for them (`each_scion`). If they look, the House is told its Ascendancy as a number, with the Ambition counted (the SPEC's "Ambition revealed as a number"), and the Scion starts the final fight with Protect, and usually Regen too; 30% of the time the look also costs 20 Sanity. If they look away, they gain 15 Sanity.
+- **Readings**:
+  - The bargain is answered during the expedition, and the party waits on every House in it (`waiting`) before the Leader can press on. Every House present is offered one, so waiting on a House shows nothing about what it chose.
+  - The SPEC has these bargains resolve during the End Ruler's last phase. Here a bargain is paid and settles as soon as it is accepted, which is still just before the final fight, so its stat or score lands before the boss. Resolving it inside the battle at 25% is left for the presentation pass, when a moment like that can be shown on screen.
+  - Bots refuse, as everywhere.
+
 ## 2026-11-02 (implementation, Milestone 7j: cure items) — implementer
 - **Built** (§11.2, §13.6, `cures.ts`; content: five named items with a `cure` in `content/named.json`). The Saint's Hand (a severed or mangled arm), the Clockwork Leg (a severed leg or shattered pelvis), the Seer's Eye (blindness or a lost eye; leaves the `hollow_eyes` look), Lethe Water (a shattered mind or the Thrall of the Rift) and the Surgeon's Kit (any one lasting Moderate result). The Nest won in Year 15 puts one of each into the haul, so the Houses draft them.
 - **Readings**:
