@@ -1,0 +1,100 @@
+{
+  "id": "the_kobold_envoy",
+  "pools": [
+    "dragon_reaches"
+  ],
+  "weight": 2,
+  "band": [
+    5,
+    10
+  ],
+  "title": "The Kobold Envoy",
+  "text": "A kobold in a too-big crown says he speaks for the dragon of these hills, and the dragon wants tribute.",
+  "options": [
+    {
+      "id": "pay",
+      "label": "Pay the tribute.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The kobold bows, and the hills are quiet for you.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -20
+              }
+            },
+            {
+              "skip": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bluff",
+      "label": "The shrewdest says the House already paid.",
+      "rule": "scion:highest:guile",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 55,
+          "text": "He checks his list, confused, and waves you on.",
+          "effects": [
+            {
+              "skip": 1
+            },
+            {
+              "score": {
+                "intrigue": 1
+              }
+            }
+          ]
+        },
+        {
+          "w": 45,
+          "text": "He checks with the dragon.",
+          "effects": [
+            {
+              "encounter": {
+                "level": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "seize",
+      "label": "Seize the kobold and his crown.",
+      "rule": "leader",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A gilt crown, and his kin swarming out of the rocks.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 15
+              }
+            },
+            {
+              "encounter": {
+                "modifier": "ambush"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

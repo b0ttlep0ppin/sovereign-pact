@@ -1,0 +1,96 @@
+{
+  "id": "the_buried_sled",
+  "pools": [
+    "deep_cold"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    8
+  ],
+  "title": "The Buried Sled",
+  "text": "A sled sticks out of a drift, its dogs long frozen in their traces. The load is still lashed down.",
+  "options": [
+    {
+      "id": "dig",
+      "label": "Dig out the load.",
+      "rule": "vote",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "Iron, and furs.",
+          "effects": [
+            {
+              "resources": {
+                "iron": 5
+              }
+            },
+            {
+              "to": "party",
+              "status": "shell"
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "The drift moves.",
+          "effects": [
+            {
+              "to": "party",
+              "durability": -12
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dogs",
+      "label": "The kindest buries the dogs first.",
+      "rule": "scion:most_healing|scion:highest:sagacity",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Under the last dog, the driver's purse.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 15
+              }
+            },
+            {
+              "sanity": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "track",
+      "label": "The best tracker reads where the driver went.",
+      "rule": "scion:highest:acuity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Toward the hills, and something followed.",
+          "effects": [
+            {
+              "foresee": true
+            },
+            {
+              "skip": 1
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

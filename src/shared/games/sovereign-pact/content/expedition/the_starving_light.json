@@ -1,0 +1,89 @@
+{
+  "id": "the_starving_light",
+  "pools": [
+    "outer_dark"
+  ],
+  "weight": 2,
+  "band": [
+    6,
+    10
+  ],
+  "title": "The Starving Light",
+  "text": "A light floats in the dark, small and pale. It drifts toward your lamps, and they dim as it nears.",
+  "options": [
+    {
+      "id": "feed",
+      "label": "Feed it a lamp.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It drinks the flame and grows bright, and lights your way.",
+          "effects": [
+            {
+              "skip": 1
+            },
+            {
+              "to": "party",
+              "sanity": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "trap",
+      "label": "The cleverest traps it in a jar.",
+      "rule": "scion:highest:acuity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "A jar of starlight.",
+          "effects": [
+            {
+              "resources": {
+                "essence": 6
+              }
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "It eats the jar, and keeps eating.",
+          "effects": [
+            {
+              "to": "party",
+              "mp": -15
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "douse",
+      "label": "Douse every light and let it pass.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Utter dark, until it goes.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -8
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

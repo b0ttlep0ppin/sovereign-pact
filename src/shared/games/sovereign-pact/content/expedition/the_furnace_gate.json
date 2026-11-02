@@ -1,0 +1,84 @@
+{
+  "id": "the_furnace_gate",
+  "pools": [
+    "pit"
+  ],
+  "weight": 2,
+  "band": [
+    5,
+    10
+  ],
+  "title": "The Furnace Gate",
+  "text": "A gate set in a wall of fire. It opens only for someone who will hold the latch while the others pass.",
+  "options": [
+    {
+      "id": "hold",
+      "label": "The toughest holds the latch.",
+      "rule": "scion:highest:resilience",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Burned to the elbow, and the party through.",
+          "effects": [
+            {
+              "durability": -30,
+              "loc": "arms"
+            },
+            {
+              "to": "party",
+              "xp": 40
+            },
+            {
+              "skip": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "each",
+      "label": "Each Scion takes a turn at the latch.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Everyone burned a little.",
+          "effects": [
+            {
+              "to": "party",
+              "status": "burn"
+            },
+            {
+              "skip": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "round",
+      "label": "Find another way.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Another way, through the devils' kennels.",
+          "effects": [
+            {
+              "encounter": {}
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

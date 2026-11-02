@@ -1,0 +1,87 @@
+{
+  "id": "the_ice_fisher",
+  "pools": [
+    "deep_cold"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    8
+  ],
+  "title": "The Ice Fisher",
+  "text": "An old woman sits by a hole in the ice with a line in the black water. She has not caught anything in years, she says, but today she might.",
+  "options": [
+    {
+      "id": "sit",
+      "label": "Sit and fish with her.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "She catches something with too many eyes, and gives it to you.",
+          "effects": [
+            {
+              "to": "party",
+              "mp": 10
+            },
+            {
+              "to": "party",
+              "sanity": 4
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "Something catches her line, and pulls.",
+          "effects": [
+            {
+              "encounter": {}
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ask",
+      "label": "The wisest asks what she is fishing for.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Her husband, she says. He fell through in the war.",
+          "effects": [
+            {
+              "score": {
+                "lore": 1
+              }
+            },
+            {
+              "sanity": -4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "move",
+      "label": "Move on before dark.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "She waves without looking up.",
+          "effects": []
+        }
+      ]
+    }
+  ]
+}

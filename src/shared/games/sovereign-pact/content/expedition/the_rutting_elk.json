@@ -1,0 +1,87 @@
+{
+  "id": "the_rutting_elk",
+  "pools": [
+    "beast_lands"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    6
+  ],
+  "title": "The Rutting Elk",
+  "text": "Two great elk lock antlers in the clearing, too lost in their fight to notice you.",
+  "options": [
+    {
+      "id": "wait",
+      "label": "Wait for them to finish.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The loser limps away. The winner bellows at you, and goes.",
+          "effects": []
+        }
+      ]
+    },
+    {
+      "id": "antler",
+      "label": "The quickest snatches a shed antler from between them.",
+      "rule": "scion:highest:speed",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 65,
+          "text": "A fine antler, and no harm done.",
+          "effects": [
+            {
+              "resources": {
+                "wyrmbone": 1,
+                "timber": 2
+              }
+            }
+          ]
+        },
+        {
+          "w": 35,
+          "text": "An elk turns.",
+          "effects": [
+            {
+              "durability": -25,
+              "loc": "body"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hunt",
+      "label": "Bring one down while they are busy.",
+      "rule": "leader",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Meat for the road, and the other elk charges.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "ambush"
+              }
+            },
+            {
+              "to": "party",
+              "sanity": 4
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,96 @@
+{
+  "id": "the_dragons_wake",
+  "pools": [
+    "dragon_reaches"
+  ],
+  "weight": 1,
+  "band": [
+    6,
+    10
+  ],
+  "title": "The Dragon's Wake",
+  "text": "A dragon has died, and its kind are holding a wake. They sing over it, a sound like mountains breaking.",
+  "options": [
+    {
+      "id": "mourn",
+      "label": "Mourn with them, at a distance.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A dragon notices you mourning, and nods.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 6
+            },
+            {
+              "score": {
+                "renown": 2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "scale",
+      "label": "The quietest takes a fallen scale.",
+      "rule": "scion:highest:guile|scion:highest:speed",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "A dragon's scale, unseen.",
+          "effects": [
+            {
+              "resources": {
+                "wyrmbone": 4
+              }
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "Seen.",
+          "effects": [
+            {
+              "encounter": {
+                "level": 2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "listen",
+      "label": "The wisest listens to the song.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The song is a history. It names the End Ruler.",
+          "effects": [
+            {
+              "score": {
+                "lore": 2
+              }
+            },
+            {
+              "foresee": true
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

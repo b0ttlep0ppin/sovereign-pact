@@ -1,0 +1,98 @@
+{
+  "id": "the_devils_clerk",
+  "pools": [
+    "pit"
+  ],
+  "weight": 2,
+  "band": [
+    4,
+    10
+  ],
+  "title": "The Devil's Clerk",
+  "text": "A small devil at a desk in the ash, stamping papers. He says your party is not on his list.",
+  "options": [
+    {
+      "id": "bribe",
+      "label": "Bribe him.",
+      "rule": "vote",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "You are on the list now, and the way ahead is shorter.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -20
+              }
+            },
+            {
+              "skip": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "forge",
+      "label": "The shrewdest forges the paper themselves.",
+      "rule": "scion:highest:guile",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "A perfect forgery.",
+          "effects": [
+            {
+              "skip": 2
+            },
+            {
+              "score": {
+                "intrigue": 2
+              }
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "He spots it and rings a bell.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "surprise"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "burn",
+      "label": "Burn his papers.",
+      "rule": "leader",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A thousand damned souls go free in the confusion, and you with them.",
+          "effects": [
+            {
+              "score": {
+                "renown": 2
+              }
+            },
+            {
+              "doom": 1
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,89 @@
+{
+  "id": "the_heretics_library",
+  "pools": [
+    "apostate_court"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    9
+  ],
+  "title": "The Heretic's Library",
+  "text": "A library of forbidden books, kept by a court that calls itself holy. The librarian is asleep.",
+  "options": [
+    {
+      "id": "read",
+      "label": "The wisest reads while he sleeps.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "Things the Pact does not want known.",
+          "effects": [
+            {
+              "score": {
+                "lore": 3
+              }
+            },
+            {
+              "sanity": -8
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "Something in the book reads back.",
+          "effects": [
+            {
+              "curse": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "steal",
+      "label": "Steal the oldest book.",
+      "rule": "vote",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It is worth a fortune, and they will come for it.",
+          "effects": [
+            {
+              "item": {
+                "tier": 2
+              }
+            },
+            {
+              "encounter": {
+                "modifier": "surprise"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "leave",
+      "label": "Let the librarian sleep.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "He smiles in his sleep.",
+          "effects": []
+        }
+      ]
+    }
+  ]
+}
