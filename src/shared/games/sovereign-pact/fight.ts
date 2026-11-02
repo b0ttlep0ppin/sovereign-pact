@@ -14,6 +14,7 @@ import { cellOf, isSingle, singleTargets, targetSide } from "./combat/targets.ts
 import { COLS, ROWS, type AbilityDef, type Battle, type Cell, type Combatant, type Side } from "./combat/types.ts";
 import { concluded } from "./journey.ts";
 import type { LiveFight, SovState } from "./state.ts";
+import { TUNING } from "./tuning.ts";
 
 /** A battle that has not ended after this many turns is a retreat (the simulator's limit). */
 const MAX_TURNS = 2_000;
@@ -134,6 +135,32 @@ export interface TurnView {
   moves: [col: number, row: number][];
   abilities: (Choice & Aim)[];
   items: (Choice & Aim & { left: number })[];
+  /** A Pugilist's moves to chain into a combo (§12.2), with the TP to spend and the foes the chain can strike. */
+  combo?: ComboView;
+}
+
+/** One move a combo may chain: its tag, its TP before repeats, and for a finisher the pattern it ends. */
+export interface ComboMove {
+  id: string;
+  name: string;
+  tp: number;
+  mp: number;
+  tag: string;
+  finisher?: string;
+  /** It lands on the foe the chain is aimed at (else on the Pugilist, like Breath). */
+  strike: boolean;
+  /** Why it cannot be chained at all (cooldown, silence…), or null. */
+  why: string | null;
+}
+
+export interface ComboView {
+  tp: number;
+  mp: number;
+  /** TP added for each earlier use of the same move in the chain. */
+  repeatTp: number;
+  moves: ComboMove[];
+  /** Where a chain with a strike in it may be aimed. */
+  targets: Cell[];
 }
 
 /** A battle under way, as every House sees it (§15.5): the replay so far, everyone's vitals now, and whose turn waits on which House. */
@@ -180,7 +207,27 @@ function turnView(b: Battle, u: Combatant): TurnView {
     const aim = aimOf(b, u, ab);
     return [{ id, name: CONSUMABLE_BY_ID.get(id)?.name ?? id, mp: 0, tp: 0, why: cannotUseItem(b, u, id) ?? stuck(b, u, ab, aim), left, ...aim }];
   });
-  return { unit: u.id, moved: !!b.moved, moves, abilities, items };
+  const chain = u.abilities.filter((a) => a.move);
+  const foe = chain.find((m) => m.side === "foe");
+  const combo: ComboView | undefined = chain.length
+    ? {
+        tp: u.tp,
+        mp: u.mp,
+        repeatTp: TUNING.combat.combo.repeatTp,
+        targets: foe ? singleTargets(b, u, foe).map(cellOf) : [],
+        moves: chain.map((m) => ({
+          id: m.id,
+          name: m.name ?? m.id.replace(/_/g, " "),
+          tp: m.tp ?? 0,
+          mp: m.mp ?? 0,
+          tag: m.move!.tag,
+          strike: m.side === "foe",
+          ...(m.move!.finisher ? { finisher: m.move!.finisher } : {}),
+          why: cannotUse({ ...u, tp: 999, mp: 999 }, { ...m, move: undefined }),
+        })),
+      }
+    : undefined;
+  return { unit: u.id, moved: !!b.moved, moves, abilities, items, ...(combo ? { combo } : {}) };
 }
 
 /** The battle for `me`'s screen, or null when none is under way. */

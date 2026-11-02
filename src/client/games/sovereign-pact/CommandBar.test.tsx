@@ -81,4 +81,38 @@ describe("commanding a turn (§15.5)", () => {
     expect(screen.getByText("Waiting on House Varn.")).toBeTruthy();
     expect(screen.getByRole("button", { name: "Hide the battle" })).toBeTruthy();
   });
+
+  it("builds a Pugilist's combo: moves chained with their TP, a finisher once its pattern is met, then the strike", () => {
+    const combo = (unit: number, foe: { side: "enemy"; col: number; row: number }): TurnView => ({
+      ...turnOf(unit, foe),
+      combo: {
+        tp: 60,
+        mp: 0,
+        repeatTp: 5,
+        targets: [foe],
+        moves: [
+          { id: "jab", name: "Jab", tp: 5, mp: 0, tag: "jab", strike: true, why: null },
+          { id: "low_kick", name: "Low Kick", tp: 10, mp: 0, tag: "kick", strike: true, why: null },
+          { id: "flurry", name: "Flurry", tp: 20, mp: 0, tag: "finisher", finisher: "jab,jab,jab", strike: true, why: null },
+        ],
+      },
+    });
+    const { send, foe } = setup(combo);
+    fireEvent.click(screen.getByRole("button", { name: /^Build a combo/ }));
+    const flurry = () => screen.getByRole("button", { name: /^Flurry/ }) as HTMLButtonElement;
+    const jab = () => screen.getByRole("button", { name: /^Jab/ });
+    expect(flurry().disabled).toBe(true);
+    fireEvent.click(jab());
+    // A repeat costs 5 TP more each time.
+    expect(jab().textContent).toMatch(/10 TP/);
+    fireEvent.click(jab());
+    fireEvent.click(jab());
+    expect(flurry().disabled).toBe(false);
+    fireEvent.click(flurry());
+    expect((screen.getByRole("button", { name: /^Low Kick/ }) as HTMLButtonElement).disabled).toBe(true);
+    expect(screen.getByRole("list", { name: "The chain" }).textContent).toBe("JabJabJabFlurry");
+    fireEvent.click(screen.getByRole("button", { name: /^Strike/ }));
+    fireEvent.keyDown(screen.getByRole("dialog"), { key: "Enter" });
+    expect(send).toHaveBeenCalledWith({ action: { do: "combo", moves: ["jab", "jab", "jab", "flurry"], target: foe } });
+  });
 });

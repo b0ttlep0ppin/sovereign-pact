@@ -323,6 +323,7 @@
 .sp-formation__cell:not(:disabled):not(.is-taken):hover { border-color: var(--gold); }
 .sp-formation__cell small { position: absolute; bottom: 1px; left: 0; right: 0; font-size: 0.65rem; color: var(--text); text-shadow: 0 1px 2px #000; text-align: center; overflow: hidden; white-space: nowrap; }
 .sp-formation__cell .sp-scion { margin-top: -10px; }
+.sp-formation__house { position: absolute; top: 2px; right: 2px; line-height: 0; filter: drop-shadow(0 1px 1px #000); }
 .sp-formation__hp { position: absolute; top: 2px; left: 2px; height: 4px; max-width: calc(100% - 4px); background: #5fbf5f; box-shadow: 0 0 0 1px #000; }
 .sp-formation__note { margin: 0 0 8px; color: var(--gold); font-size: 0.9rem; }
 

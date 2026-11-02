@@ -6,7 +6,7 @@ import type { AbilityDef, Combatant } from "./types.ts";
 const K = TUNING.combat.combo;
 
 /** Whether the tags before a finisher make its pattern: a tag list ending the sequence, or "distinct:n". */
-export function fitsPattern(pattern: string, before: AbilityDef[]): boolean {
+export function fitsPattern(pattern: string, before: readonly Pick<AbilityDef, "id" | "move">[]): boolean {
   const distinct = /^distinct:(\d+)$/.exec(pattern);
   if (distinct) return new Set(before.map((m) => m.id)).size >= Number(distinct[1]);
   const tags = pattern.split(",");

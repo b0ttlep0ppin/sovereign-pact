@@ -142,3 +142,14 @@
 @keyframes sp-lunge { 0% { translate: 0; } 35% { translate: -45% 0; } 100% { translate: 0; } }
 @keyframes sp-lunge-right { 0% { translate: 0; } 35% { translate: 45% 0; } 100% { translate: 0; } }
 @media (prefers-reduced-motion: reduce) { .sp-unit__scion.is-lunging, .sp-unit.is-charging .sp-unit__scion { animation: none; } }
+
+/* The combo builder (§12.2): the chain so far as numbered links. */
+.sp-combo { flex-direction: column; align-items: stretch; }
+.sp-combo__chain { display: flex; flex-wrap: wrap; gap: 4px; margin: 0; padding: 0; list-style: none; counter-reset: link; }
+.sp-combo__chain li { counter-increment: link; padding: 2px 8px; border: 1px solid var(--gold, #dcb55e); border-radius: 2px; background: rgba(0, 0, 0, 0.4); font-variant: small-caps; }
+.sp-combo__chain li::before { content: counter(link) ". "; opacity: 0.6; }
+.sp-combo__chain li.is-empty { border-style: dashed; opacity: 0.6; }
+.sp-combo__chain li.is-empty::before { content: none; }
+
+/* Whose Scion: the House's arms in miniature, top right of the token. */
+.sp-unit__house { position: absolute; top: 1px; right: 1px; line-height: 0; filter: drop-shadow(0 1px 1px #000); pointer-events: none; }

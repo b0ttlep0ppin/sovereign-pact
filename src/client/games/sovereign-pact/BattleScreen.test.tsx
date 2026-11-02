@@ -23,6 +23,16 @@ describe("the battle screen (§15.5)", () => {
     expect(screen.getByText(`Turn 0 of ${replay.frames.length}`)).toBeTruthy();
   });
 
+  it("marks each Scion with their House's arms in miniature", () => {
+    const { view, replay } = setup();
+    const owned = { ...replay, units: replay.units.map((u) => (u.side === "party" ? { ...u, house: 0 } : u)) };
+    render(<BattleScreen replay={owned} view={view} onClose={() => {}} />);
+    const party = owned.units.filter((u) => u.side === "party" && u.partOf === undefined).length;
+    expect(party).toBeGreaterThan(0);
+    expect(document.querySelectorAll(".sp-unit__house").length).toBe(party);
+    expect(screen.getAllByTitle(`House ${view.houses[0]!.name}`).length).toBe(party);
+  });
+
   it("plays turn by turn, steps by keyboard, and skips to the end", () => {
     vi.useFakeTimers();
     const { view, replay } = setup();

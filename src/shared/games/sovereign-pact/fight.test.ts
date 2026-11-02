@@ -1,7 +1,7 @@
 // Battles fought by hand (§10.4, §6.11): the battle waits on the Scion's House each turn, and the
 // gambit engine plays any turn a House hands it, a bot's and an absent player's alike.
 import { describe, expect, it } from "vitest";
-import { TRIP_EVENTS } from "./content.ts";
+import { ABILITY_SET_BY_JOB, TRIP_EVENTS } from "./content.ts";
 import { resolve } from "./events.ts";
 import { able, muster } from "./expedition.ts";
 import { awaited } from "./fight.ts";
@@ -77,6 +77,25 @@ describe("a battle by hand", () => {
     if (s.expedition?.fight) expect(s.expedition.fight.turns).toBeGreaterThan(turns);
     const shown = s.expedition!.fight?.replay ?? s.battles![0]!;
     expect(shown.frames.some((x) => x.ev.some((e) => e.t === "defend" && e.unit === u.id))).toBe(true);
+  });
+
+  it("offers a Pugilist's moves to chain, and plays the combo the House sends", () => {
+    let s = underway();
+    s.expedition!.chain = ["encounter", "boss"];
+    s = move(s, "p2", { type: "press_on" });
+    const f = s.expedition!.fight!;
+    const u = f.b.units.find((x) => x.id === f.unit)!;
+    const house = s.people.find((p) => p.id === u.person)!.host;
+    u.abilities = [...ABILITY_SET_BY_JOB.get("pugilist")!.actives];
+    u.tp = 60;
+    const combo = view(s, s.players[house]!).expedition!.fight!.turn!.combo!;
+    expect(combo.tp).toBe(60);
+    expect(combo.moves.find((m) => m.id === "flurry")).toMatchObject({ finisher: "jab,jab,jab", strike: true });
+    expect(combo.moves.find((m) => m.id === "jab")).toMatchObject({ tag: "jab", tp: 5 });
+    if (!combo.targets.length) return;
+    s = move(s, s.players[house]!, { type: "command", action: { do: "combo", moves: ["jab", "jab"], target: combo.targets[0]! } });
+    const shown = s.expedition!.fight?.replay ?? s.battles![0]!;
+    expect(shown.frames.some((x) => x.ev.filter((e) => e.t === "use" && e.unit === u.id && e.ability === "jab").length >= 1)).toBe(true);
   });
 
   it("shows every House the battle and whose turn it is; only the commander sees the choices", () => {

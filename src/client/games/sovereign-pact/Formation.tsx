@@ -3,7 +3,7 @@
 // of yours already there trades places. A Scion with no post stands in their Job's column.
 import { deploy, type SovMove, type SovView } from "@vibepulse/shared/games/sovereign-pact";
 import { useState } from "react";
-import { HERALDRY_COLORS } from "./Emblem";
+import { Emblem, HERALDRY_COLORS } from "./Emblem";
 import ScionSprite, { lookOf } from "./ScionSprite";
 
 type Person = SovView["people"][number];
@@ -58,6 +58,11 @@ export default function Formation({ view, people, sendMove, canAct, title = "For
                   <>
                     <ScionSprite look={lookOf(p, colors, view.items)} anim="idle" frame={0} size={44} />
                     <small>{p.name.split(" ")[0]}</small>
+                    {view.houses[p.house] ? (
+                      <span className="sp-formation__house" aria-hidden="true">
+                        <Emblem emblem={view.houses[p.house]!.emblem} colors={view.houses[p.house]!.colors} size={14} />
+                      </span>
+                    ) : null}
                     {p.hp ? <span className="sp-formation__hp" style={{ width: `${(100 * p.hp[0]) / p.hp[1]}%` }} aria-hidden="true" /> : null}
                   </>
                 ) : null}
