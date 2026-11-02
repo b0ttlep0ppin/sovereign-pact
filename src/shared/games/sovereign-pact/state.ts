@@ -4,6 +4,7 @@
 // marks) lives here like everything else and is filtered out per seat by view.ts.
 import type { PlayerId } from "../../game.ts";
 import type { FoundingStep, HouseDesign } from "./founding.ts";
+import type { Replay } from "./combat/replay.ts";
 
 export const ELEMENTS = ["holy", "dark", "fire", "water", "earth", "wind"] as const;
 /** Three opposed pairs: Holy/Dark, Fire/Water, Earth/Wind (§5.6). */
@@ -478,6 +479,8 @@ export interface SovState {
   flags: string[];
   /** Recent public happenings, newest last. Not saved. */
   log: string[];
+  /** The battles the last move fought, recorded for the battle screen (§15.5); the next move clears them. Not saved. */
+  battles?: Replay[];
   /** Hidden: each House's own recent happenings at home (its House events, Q89), newest last. Not saved. */
   notes: string[][];
   /** Set when the campaign ends. */

@@ -38,6 +38,7 @@ export type { SovView } from "./view.ts";
 export { restore, type SovSave } from "./save.ts";
 export * as Content from "./content.ts";
 export { TIER_NAMES } from "./loot.ts";
+export { FLAG, replayLine, type Replay, type ReplayUnit, type Vitals } from "./combat/replay.ts";
 
 export const SOVEREIGN_PACT_OPTIONS: readonly TableOption[] = [
   {
@@ -126,7 +127,8 @@ export function applyMove(state: SovState, playerId: PlayerId, move: SovMove): M
   const house = houseOf(state, playerId);
   if (house < 0) return fail("You have no House in this campaign.");
   if (state.phase === "over") return fail("The campaign is over.");
-  const s = clone(state);
+  // The last move's battle replays are the screen's to keep, not the state's (they are large).
+  const s = clone({ ...state, battles: undefined });
   const h = s.houses[house]!;
   if (s.phase === "founding" && !["design", "random_house", "swear", "unseal"].includes(move.type)) return fail("Found your House first.");
   switch (move.type) {

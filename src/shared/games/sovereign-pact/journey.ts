@@ -2,12 +2,12 @@
 // beyond the next. The Leader's House presses on or turns back. Battles are fought by gambits here
 // (playing them by hand comes later); Durability, Sanity and MP carry from node to node, injuries
 // last, the dead go to the Chronicle. What the party finds rides home in the haul (loot.ts).
-import { BOSSES, INJURY_BY_ID, type TripEffect } from "./content.ts";
+import { BOSS_BY_ID, BOSSES, INJURY_BY_ID, type TripEffect } from "./content.ts";
 import { bossBattle } from "./combat/bosses.ts";
 import { scionCombatant } from "./combat/build.ts";
 import { encounterBattle } from "./combat/encounter.ts";
 import { LOADOUTS } from "./combat/roster.ts";
-import { simulate } from "./combat/sim.ts";
+import { recorded } from "./combat/replay.ts";
 import { meta } from "./combat/status.ts";
 import type { Battle, Combatant } from "./combat/types.ts";
 import { meet } from "./events.ts";
@@ -191,7 +191,8 @@ function fight(s: SovState, boss: boolean, o: FightOpts): Battle {
       encounterBattle(seed, scions, { pool, level, year: s.year, spread: s.flags.includes(ARC.nestLost), quarry: o.lair ? lairOf(s) : undefined, ...(lit ? { modifier: "surprise" as const } : o.modifier ? { modifier: o.modifier } : {}), ...(o.template ? { template: o.template } : {}) }).battle;
   // The party satchel goes into the fight; what is used there is gone (§13.7).
   if (s.expedition!.satchel?.length) b.satchel = s.expedition!.satchel.map((x) => x.id);
-  simulate(b);
+  const title = id ? (BOSS_BY_ID.get(id)?.name ?? "The boss") : o.raid ? "A raid" : o.lair ? "The quarry's lair" : "An Encounter";
+  (s.battles ??= []).push(recorded(b, title).replay);
   return b;
 }
 
