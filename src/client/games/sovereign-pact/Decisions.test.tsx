@@ -45,7 +45,7 @@ describe("the Settlement Phase's decisions", () => {
     const sendMove = vi.fn();
     render(<Decisions view={view} sendMove={sendMove} canAct />);
     const card = screen.getByLabelText("The Crisis");
-    fireEvent.change(within(card).getByLabelText(/Gold/), { target: { value: "12" } });
+    fireEvent.change(within(card).getByLabelText("Gold"), { target: { value: "12" } });
     fireEvent.click(within(card).getByRole("button", { name: "Pledge" }));
     expect(sendMove).toHaveBeenCalledWith({ type: "crisis_pledge", give: { gold: 12 } });
     fireEvent.click(within(card).getByRole("button", { name: CRISIS.crisis!.temptation!.label }));

@@ -37,7 +37,7 @@ describe("building", () => {
     const sendMove = vi.fn();
     render(<Works view={g.view(s, "p1")} sendMove={sendMove} canAct />);
     const row = screen.getByText(GRANARY.name).closest("li")!;
-    fireEvent.change(within(row).getByLabelText(/Gold/), { target: { value: "5" } });
+    fireEvent.change(within(row).getByLabelText("Gold"), { target: { value: "5" } });
     fireEvent.click(within(row).getByRole("button", { name: "Pledge" }));
     expect(sendMove).toHaveBeenCalledWith({ type: "pledge", project: "granary", give: { gold: 5 } });
     fireEvent.click(within(row).getByRole("button", { name: "Propose the Commons pay" }));

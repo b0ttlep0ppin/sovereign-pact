@@ -185,3 +185,12 @@
 .sp-credits h3 { margin: 10px 0 4px; font-size: 0.95em; }
 .sp-credits ul { margin: 0; padding-left: 18px; font-size: 0.85em; color: var(--muted); }
 [data-motion="reduced"] * { scroll-behavior: auto !important; }
+/* An amount to give, pledge or bid: − slider + and the number, typed into only if you want. */
+.sp-amount-row { display: inline-flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.sp-amount { display: inline-flex; align-items: center; gap: 6px; }
+.sp-amount__step { width: 2em; height: 2em; padding: 0; font: inherit; font-weight: 700; line-height: 1; color: var(--gold); background: transparent; border: 1px solid var(--line); border-radius: 50%; cursor: pointer; }
+.sp-amount__step:hover:not(:disabled) { border-color: var(--accent); }
+.sp-amount__step:disabled { opacity: 0.35; cursor: default; }
+.sp-amount__slider { width: 9em; accent-color: var(--accent); }
+.sp-amount__value { font: inherit; font-weight: 700; color: var(--gold); text-align: center; background: transparent; border: none; border-bottom: 1px dashed var(--line); border-radius: 0; padding: 2px 0; min-width: 2.2ch; }
+.sp-amount__value:focus { outline: none; border-bottom: 1px solid var(--accent); }
