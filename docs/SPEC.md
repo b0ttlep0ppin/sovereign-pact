@@ -740,7 +740,7 @@ Resolved in the **Omens** step before the Settlement Phase opens:
 - Each Year the **Rift Gate** offers **2–3 expedition cards** (seeded), plus the mandatory one when due. [DECIDED] A **forced expedition** (§3.2) replaces the whole offer with its one card. A card shows: name, type, **level** (1–10), party size (4 or 8, or 2×4), its event-pool tags, its reward class, and, with a Rift Observatory, its boss type and pool preview.
 - Types: **Mandatory**, **Resource** (materials, shop unlocks, recipes), **Hunt** (a named monster; Valor and a trophy), **Rescue** (a lost party, a recruit, a Hostage), **Delve** (Relics, Lore, Essence; highest event density), **Pilgrimage** (blessings, Sanity, Holy/Dark pools).
 - Level: resource cards at the Year's band (Years 1–4: 1–3; 5–9: 3–5; 10–14: 5–7; 15–19: 7–9; 20: 10). Mandatory expeditions at levels 3 (Year 5), 6 (Year 10), 8 (Year 15), 10 (Year 20). Houses may pick a card above band for better rewards.
-- Houses **vote** on the card. [DECIDED for all votes] A tie costs Accord (−3) and is broken by the House with the highest Renown.
+- Houses **vote** on the card. [DECIDED for settlement votes; Expedition Phase ties cost nothing, 2026-11-02] A tie costs Accord (−3) and is broken by the House with the highest Renown.
 
 ### 9.2 Nomination, the Leader and departure
 
