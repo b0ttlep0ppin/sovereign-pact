@@ -1,0 +1,35 @@
+{
+  "id": "arcana_empress",
+  "name": "The Empress of Thorns",
+  "pool": "hollow_wood",
+  "tags": ["divine", "plant", "arcana"],
+  "role": "boss",
+  "size": [2, 2],
+  "at": "E2",
+  "levels": [1, 10],
+  "stats": {"speed": 9, "hp": 4},
+  "affinity": {"earth": 50, "water": 25, "fire": -50},
+  "immune": ["poison", "sleep"],
+  "abilities": [
+    {"id": "thorned_embrace", "shape": "single", "side": "player", "power": 1.0, "statuses": [{"id": "rooted", "chance": 50, "ticks": 200}, {"id": "bleed", "chance": 30, "ticks": 300}]},
+    {"id": "blossom_storm", "shape": "band:3", "side": "player", "power": 0.7, "kind": "magic", "element": "earth", "charge": 200, "telegraph": true, "cooldown": 3, "statuses": [{"id": "sleep", "chance": 30, "ticks": 200}]},
+    {"id": "fertile_ground", "shape": "self", "side": "self", "power": 0, "kind": "support", "statuses": [{"id": "regen", "chance": 100, "ticks": 400}], "cooldown": 4}
+  ],
+  "gambits": [
+    {"if": "turn%3==0", "do": "blossom_storm", "target": "densest_row"},
+    {"if": "hp<0.8 && turn%4==1", "do": "fertile_ground"},
+    {"do": "thorned_embrace", "target": "nearest"}
+  ],
+  "phases": [
+    {"at": "hp<=0.5", "name": "Full Bloom", "speed": 11, "say": "(Every thorn on her opens into a flower, and every flower has teeth.)", "gambits": [{"if": "turn%2==0", "do": "blossom_storm", "target": "densest_cluster"}, {"do": "thorned_embrace", "target": "lowest_hp"}]}
+  ],
+  "say": {
+    "open": "(The wood leans toward her, the way a field leans toward the sun.)",
+    "death": "(She wilts, and the wood sighs.)"
+  },
+  "bestiary": {
+    "lore": "The card of abundance, grown wild in the Hollow Wood: a mother of thorns who will not let anything leave her garden.",
+    "weakness": "Fire, heavily. Burn through her regrowth.",
+    "pattern": "Thorns root and bleed the nearest; a sleeping blossom storm on three rows every third turn; she regrows when hurt. In Full Bloom the storm comes every other turn."
+  }
+}

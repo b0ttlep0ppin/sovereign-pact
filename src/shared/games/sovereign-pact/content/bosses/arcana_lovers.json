@@ -1,0 +1,35 @@
+{
+  "id": "arcana_lovers",
+  "name": "The Twin Tempters",
+  "pool": "faceless_city",
+  "tags": ["demon", "horror", "arcana"],
+  "role": "boss",
+  "size": [2, 2],
+  "at": "E2",
+  "levels": [1, 10],
+  "stats": {"speed": 12, "hp": 4},
+  "affinity": {"dark": 25, "fire": 25, "holy": -50},
+  "immune": ["charm", "fear"],
+  "abilities": [
+    {"id": "sweet_whisper", "shape": "single", "side": "player", "power": 0.2, "kind": "magic", "sanity": 6, "statuses": [{"id": "charm", "chance": 45, "ticks": 200}]},
+    {"id": "heartbreak", "shape": "row", "side": "player", "power": 0.8, "kind": "magic", "element": "dark"},
+    {"id": "jealous_kiss", "shape": "single", "side": "player", "power": 1.2, "leap": true, "statuses": [{"id": "poison", "chance": 40, "ticks": 300}]}
+  ],
+  "gambits": [
+    {"if": "turn%3==0", "do": "sweet_whisper", "target": "highest_might"},
+    {"if": "turn%2==1", "do": "heartbreak", "target": "densest_row"},
+    {"do": "jealous_kiss", "target": "back_random"}
+  ],
+  "phases": [
+    {"at": "hp<=0.5", "name": "A Lovers' Quarrel", "speed": 14, "say": "(They turn on each other, and then, together, on you.)", "gambits": [{"if": "turn%2==0", "do": "sweet_whisper", "target": "highest_might"}, {"do": "heartbreak", "target": "densest_row"}]}
+  ],
+  "say": {
+    "open": "Stay. Stay with us. Why would you ever go home?",
+    "death": "Together... always..."
+  },
+  "bestiary": {
+    "lore": "The card of choice and union, made flesh twice over: a pair of tempters who will have one of you, whichever you choose.",
+    "weakness": "Holy, heavily. Guard the strongest from the whispers.",
+    "pattern": "Every third turn a whisper charms the strongest; heartbreak on a row and a leaping poisoned kiss on the Back between. At the quarrel, the whispers come every other turn."
+  }
+}

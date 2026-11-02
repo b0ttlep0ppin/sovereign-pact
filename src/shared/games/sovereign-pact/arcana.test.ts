@@ -59,11 +59,12 @@ describe("meeting one", () => {
       for (let seed = 1; seed <= 400; seed++) {
         const s = away();
         const party = walkers(s);
-        for (const p of party) p.tarot = "chariot";
-        if (bearer) party[0]!.tarot = "death";
+        // Everyone bears Death; without a bearer, Death is already met, so it counts for nothing.
+        for (const p of party) p.tarot = "death";
+        if (!bearer) s.flags.push("arcana_death");
         const got = arcanaFor(s, createRng(seed), party);
         if (got) hits++;
-        if (got && bearer) expect(["death", ...ARCANA.map((a) => a.tarot)]).toContain(got);
+        if (!bearer) expect(got).not.toBe("death");
       }
       return hits / 400;
     };

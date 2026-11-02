@@ -1,0 +1,35 @@
+{
+  "id": "arcana_high_priestess",
+  "name": "The Veiled Priestess",
+  "pool": "shrine_of_six",
+  "tags": ["divine", "caster", "arcana"],
+  "role": "boss",
+  "size": [1, 1],
+  "at": "E2",
+  "levels": [1, 10],
+  "stats": {"speed": 11, "hp": 3},
+  "affinity": {"water": 50, "holy": 25, "fire": -25},
+  "immune": ["silence", "charm"],
+  "abilities": [
+    {"id": "veil_of_secrets", "shape": "row", "side": "player", "power": 0.4, "kind": "magic", "statuses": [{"id": "silence", "chance": 40, "ticks": 200}, {"id": "blind", "chance": 25, "ticks": 200}]},
+    {"id": "moon_tide", "shape": "column:B", "side": "player", "power": 0.9, "kind": "magic", "element": "water"},
+    {"id": "hidden_knowledge", "shape": "self", "side": "self", "power": 0, "kind": "support", "statuses": [{"id": "shell", "chance": 100, "ticks": 300}, {"id": "regen", "chance": 100, "ticks": 300}], "cooldown": 5}
+  ],
+  "gambits": [
+    {"if": "turn%4==0", "do": "hidden_knowledge"},
+    {"if": "turn%2==1", "do": "veil_of_secrets", "target": "densest_row"},
+    {"do": "moon_tide", "target": "back_random"}
+  ],
+  "phases": [
+    {"at": "hp<=0.5", "name": "The Veil Lifts", "speed": 13, "say": "You wanted to know. Now you will.", "gambits": [{"if": "turn%2==0", "do": "veil_of_secrets", "target": "densest_row"}, {"do": "moon_tide", "target": "lowest_hp"}]}
+  ],
+  "say": {
+    "open": "(She sits between two pillars, and does not lift her veil.)",
+    "death": "(The veil falls, and there is nothing behind it but a door.)"
+  },
+  "bestiary": {
+    "lore": "The card of hidden things, and the priestess who keeps them: she silences what should not be said.",
+    "weakness": "Fire and Dark. Strike hard before she wards and heals herself.",
+    "pattern": "Silencing veils on a row every other turn, tides on the Back between, and every fourth turn she wards and heals. Unveiled at half, the veils come every other turn and the tides hunt the weakest."
+  }
+}

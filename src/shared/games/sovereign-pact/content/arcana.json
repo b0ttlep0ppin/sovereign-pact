@@ -35,6 +35,54 @@
       "boss": "arcana_sun",
       "trait": "sunlit",
       "relic": "the_sunbrand"
+    },
+    {
+      "tarot": "high_priestess",
+      "boss": "arcana_high_priestess",
+      "trait": "veiled_sight",
+      "relic": "the_veil_of_isis"
+    },
+    {
+      "tarot": "empress",
+      "boss": "arcana_empress",
+      "trait": "thornblood",
+      "relic": "the_thorn_crown"
+    },
+    {
+      "tarot": "emperor",
+      "boss": "arcana_emperor",
+      "trait": "imperial_bearing",
+      "relic": "the_iron_sceptre"
+    },
+    {
+      "tarot": "hierophant",
+      "boss": "arcana_hierophant",
+      "trait": "heretics_ear",
+      "relic": "the_calamity_bell"
+    },
+    {
+      "tarot": "lovers",
+      "boss": "arcana_lovers",
+      "trait": "heartwhole",
+      "relic": "the_twin_rings"
+    },
+    {
+      "tarot": "chariot",
+      "boss": "arcana_chariot",
+      "trait": "unstoppable",
+      "relic": "the_iron_wheel"
+    },
+    {
+      "tarot": "strength",
+      "boss": "arcana_strength",
+      "trait": "laborer",
+      "relic": "the_lions_hide"
+    },
+    {
+      "tarot": "hermit",
+      "boss": "arcana_hermit",
+      "trait": "lanternbearer",
+      "relic": "the_hermits_lantern"
     }
   ]
 }

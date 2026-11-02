@@ -1,0 +1,35 @@
+{
+  "id": "arcana_chariot",
+  "name": "The Siege Chariot",
+  "pool": "forge_ruins",
+  "tags": ["construct", "armored", "arcana"],
+  "role": "boss",
+  "size": [2, 2],
+  "at": "E2",
+  "levels": [1, 10],
+  "stats": {"speed": 13, "hp": 5},
+  "affinity": {"fire": 25, "earth": 25, "water": -50},
+  "immune": ["fear", "charm", "sleep", "poison", "bleed", "confusion"],
+  "abilities": [
+    {"id": "trample", "shape": "band:3", "side": "player", "power": 1.0, "statuses": [{"id": "knockdown", "chance": 40, "ticks": 0}]},
+    {"id": "scythed_wheels", "shape": "front_each_row", "side": "player", "power": 0.8, "statuses": [{"id": "bleed", "chance": 40, "ticks": 300}]},
+    {"id": "full_charge", "shape": "row", "side": "player", "power": 1.6, "charge": 200, "telegraph": true, "cooldown": 3}
+  ],
+  "gambits": [
+    {"if": "turn%3==0", "do": "full_charge", "target": "densest_row"},
+    {"if": "turn%2==1", "do": "trample", "target": "densest_row"},
+    {"do": "scythed_wheels"}
+  ],
+  "phases": [
+    {"at": "hp<=0.5", "name": "Runaway", "speed": 16, "say": "(Something inside it breaks, and it stops steering.)", "gambits": [{"if": "turn%2==0", "do": "full_charge", "target": "densest_row"}, {"do": "trample", "target": "densest_row"}]}
+  ],
+  "say": {
+    "open": "(The engine roars. It has been waiting for a road.)",
+    "death": "(The wheels spin on, slower, and stop.)"
+  },
+  "bestiary": {
+    "lore": "The card of will and victory: a war machine of the old forge that wants only to go forward, over whatever is there.",
+    "weakness": "Water rusts it. Spread out against the charge.",
+    "pattern": "Every third turn a full charge down the densest row; trampling three rows and scything every Front between. Runaway at half: the charge every other turn, and faster."
+  }
+}

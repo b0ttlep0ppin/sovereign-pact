@@ -60,6 +60,14 @@
     {"id": "death_touched", "name": "Death-Touched", "flavor": "They have looked through the door and come back.", "crunch": "Fear immune; Dark +10%.", "mods": {"immune.fear": 1, "ward.dark": 10}, "tags": ["arcana"], "weight": 0},
     {"id": "tower_struck", "name": "Tower-Struck", "flavor": "The tower fell on them, and they are still standing.", "crunch": "Max HP +10%; Knockdown resist +30%.", "mods": {"maxHpPct": 10, "resist.knockdown": 30}, "tags": ["arcana"], "weight": 0},
     {"id": "moon_sighted", "name": "Moon-Sighted", "flavor": "The false light has no hold on them.", "crunch": "Sleep and Confusion resist +30%.", "mods": {"resist.sleep": 30, "resist.confusion": 30}, "tags": ["arcana"], "weight": 0},
-    {"id": "sunlit", "name": "Sunlit", "flavor": "A little of that terrible gladness stays with them.", "crunch": "Holy +15%, Fire +10%.", "mods": {"ward.holy": 15, "ward.fire": 10}, "tags": ["arcana"], "weight": 0}
+    {"id": "sunlit", "name": "Sunlit", "flavor": "A little of that terrible gladness stays with them.", "crunch": "Holy +15%, Fire +10%.", "mods": {"ward.holy": 15, "ward.fire": 10}, "tags": ["arcana"], "weight": 0},
+    {"id": "veiled_sight", "name": "Veiled Sight", "flavor": "They have seen behind the veil, and kept quiet about it.", "crunch": "Silence and Blind resist +30%.", "mods": {"resist.silence": 30, "resist.blind": 30}, "tags": ["arcana"], "weight": 0},
+    {"id": "thornblood", "name": "Thornblood", "flavor": "The wood's mother let them go, and some of the wood came with them.", "crunch": "Healing received +15%; Poison resist +30%.", "mods": {"healingReceivedPct": 15, "resist.poison": 30}, "tags": ["arcana"], "weight": 0},
+    {"id": "imperial_bearing", "name": "Imperial Bearing", "flavor": "They stood before the Emperor and did not kneel.", "crunch": "Fear and Charm resist +25%.", "mods": {"resist.fear": 25, "resist.charm": 25}, "tags": ["arcana"], "weight": 0},
+    {"id": "heretics_ear", "name": "Heretic's Ear", "flavor": "They heard the last sermon to the end, and did not believe it.", "crunch": "Max Sanity +15%.", "mods": {"maxSanityPct": 15}, "tags": ["arcana"], "weight": 0},
+    {"id": "heartwhole", "name": "Heartwhole", "flavor": "The tempters asked, and they said no.", "crunch": "Charm immune.", "mods": {"immune.charm": 1}, "tags": ["arcana"], "weight": 0},
+    {"id": "unstoppable", "name": "Unstoppable", "flavor": "They stood in front of the Chariot, and it went around.", "crunch": "Knockdown resist +40%; Speed +1.", "mods": {"resist.knockdown": 40, "speed": 1}, "tags": ["arcana"], "weight": 0},
+    {"id": "laborer", "name": "Laborer", "flavor": "They finished the twelfth labor.", "crunch": "Max HP +10%; Crit chance +2%.", "mods": {"maxHpPct": 10, "crit": 2}, "tags": ["arcana"], "weight": 0},
+    {"id": "lanternbearer", "name": "Lanternbearer", "flavor": "They carried the monk's lantern down from the ice.", "crunch": "Accuracy +5%; Sleep resist +30%.", "mods": {"accuracy": 5, "resist.sleep": 30}, "tags": ["arcana"], "weight": 0}
   ]
 }
