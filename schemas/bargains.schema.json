@@ -35,7 +35,7 @@
           "id": { "$ref": "defs.schema.json#/definitions/id" },
           "title": { "type": "string", "minLength": 1, "maxLength": 40 },
           "text": { "type": "string", "minLength": 1, "maxLength": 300 },
-          "when": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "enum": ["omen", "crown"] }, "description": "Where it is offered: at Omens, or by the Crown after the Year 10 assault" },
+          "when": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "enum": ["omen", "crown", "reflection"] }, "description": "Where it is offered: at Omens, by the Crown after the Year 10 assault, or at The Gate's Reflection before the final boss" },
           "price": { "$ref": "#/definitions/effect" },
           "boon": { "$ref": "#/definitions/effect" },
           "bane": { "$ref": "#/definitions/effect" },

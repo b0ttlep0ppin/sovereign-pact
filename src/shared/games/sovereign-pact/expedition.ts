@@ -175,6 +175,8 @@ export function waiting(s: SovState): number[] {
   if (e?.draft?.length) return [e.draft[0]!];
   if (!e || e.result) return [];
   if (e.event) return e.event.votes.flatMap((v, i) => (v === null ? [i] : []));
+  // The Gate's Reflection: the party waits on every House still answering its bargain.
+  if (s.bargains.pending.length) return [...new Set(s.bargains.pending.map((b) => b.house))].sort((a, b) => a - b);
   if (e.leader !== undefined) return [s.people.find((p) => p.id === e.leader)!.host];
   if (e.votes) return e.votes.flatMap((v, i) => (v === null ? [i] : []));
   return e.party.flatMap((p, i) => (p === null ? [i] : []));

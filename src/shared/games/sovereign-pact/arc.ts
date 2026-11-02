@@ -31,6 +31,13 @@ export const arcStep = (s: SovState): number => mandatoryYears(s).indexOf(s.year
 /** The Doom a failed mandatory expedition's Devastation adds this Year, if the arc sets its own. */
 export const arcDoom = (s: SovState): number | undefined => (arcStep(s) === 2 ? A.nestFailDoom : undefined);
 
+/** The final Year's chain, with The Gate's Reflection as its last place before the boss (§14.7, §9.7). */
+export function withReflection(s: SovState, chain: NodeKind[]): NodeKind[] {
+  const card = s.expedition!.card;
+  if (card.type !== "mandatory" || s.year !== mandatoryYears(s).at(-1)) return chain;
+  return [...chain.slice(0, -1), "reflection", chain.at(-1)!];
+}
+
 /** A mandatory expedition came home: the arc's stakes for the rest of the campaign. */
 export function arcResult(s: SovState, won: boolean): void {
   const step = arcStep(s);

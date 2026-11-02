@@ -552,6 +552,8 @@ export interface TripEffect {
   tarot?: true;
   /** An ailment the subject starts the next battle with. */
   status?: string;
+  /** The subject's House is told its Ascendancy as a number (§9.7, The Gate's Reflection). */
+  foresee?: true;
   /** A trait held for a time: it fades at the Reckoning after `years` more Years (§9.4). */
   blessing?: { trait: string; years: number };
   /** A recruit, a building's next level (the subject's House, or a random House present), or a Commons shop's next tier. */
@@ -821,7 +823,7 @@ export interface BargainDef {
   id: string;
   title: string;
   text: string;
-  when: ("omen" | "crown")[];
+  when: ("omen" | "crown" | "reflection")[];
   price: BargainEffect;
   boon?: BargainEffect;
   bane?: BargainEffect;

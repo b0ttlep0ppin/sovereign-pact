@@ -23,7 +23,8 @@ import { lairOf, slay, tally, withLair } from "./hunt.ts";
 import { arcanaBoss, arcanaFor, arcanaWon, huntArcana, withArcana } from "./arcana.ts";
 import { idolEvent, idolSlain, withIdol } from "./idols.ts";
 import { coreSpoils } from "./cures.ts";
-import { ARC, arcDoom, arcResult, arcStep, bastionFallBack, bastionShields, withRaid } from "./arc.ts";
+import { offerReflection } from "./bargains.ts";
+import { ARC, arcDoom, arcResult, arcStep, withReflection, bastionFallBack, bastionShields, withRaid } from "./arc.ts";
 import { divided, gate, partyGone, rally } from "./split.ts";
 import { endCampaign, log, mandatoryYears, withRng } from "./year.ts";
 
@@ -45,7 +46,7 @@ export function rollChain(s: SovState): NodeKind[] {
     if (card.arcana) huntArcana(s);
     const tarot = arcanaFor(s, rng, roster(s).map((id) => person(s, id)));
     if (tarot) chain = withArcana(s, rng, chain, tarot);
-    return withRaid(s, rng, chain);
+    return withReflection(s, withRaid(s, rng, chain));
   });
 }
 
@@ -224,6 +225,11 @@ export function pressOn(s: SovState): void {
   if (kind === "camp") return camp(s);
   if (kind === "event") return meet(s);
   if (kind === "idol") return meet(s, idolEvent(s));
+  // The Gate's Reflection: each House in the party is offered the last bargain, then each Scion looks.
+  if (kind === "reflection") {
+    offerReflection(s, [...new Set(marching(s).map((id) => person(s, id).host))].sort((a, b) => a - b));
+    return meet(s, TUNING.arc.reflectionEvent);
+  }
   if (kind === "cache") return cache(s);
   if (kind === "gate") return gate(s);
   if (kind === "rally") return rally(s);

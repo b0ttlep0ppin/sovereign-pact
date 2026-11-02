@@ -18,7 +18,7 @@ export type BargainMove = Extract<SovMove, { type: "bargain" }>;
 const has = (s: SovState, house: number, traits: readonly string[]): boolean => s.houses[house]!.traits.some((t) => traits.includes(t));
 
 /** One offer for the House from those made `when`: banes only with a rival to name, never one it already holds. */
-function draw(s: SovState, rng: Rng, house: number, when: "omen" | "crown"): BargainDef | undefined {
+function draw(s: SovState, rng: Rng, house: number, when: BargainDef["when"][number]): BargainDef | undefined {
   const held = s.bargains.pending.filter((b) => b.house === house).map((b) => b.id);
   const pool = BARGAINS.filter((b) => b.when.includes(when) && !held.includes(b.id) && (!b.bane || s.houses.length > 1));
   return pool.length ? rng.pick(pool) : undefined;
@@ -48,6 +48,14 @@ export function offerCrown(s: SovState): void {
     const def = withRng(s, (rng) => draw(s, rng, i, "crown"));
     if (def) offer(s, i, def);
   });
+}
+
+/** The Gate's Reflection (Year 20, §9.7, §14.7a): before the final boss, each House in the party is made an offer. */
+export function offerReflection(s: SovState, houses: readonly number[]): void {
+  for (const i of houses) {
+    const def = withRng(s, (rng) => draw(s, rng, i, "reflection"));
+    if (def) offer(s, i, def);
+  }
 }
 
 /** Why House `house` cannot give this answer, or null. */

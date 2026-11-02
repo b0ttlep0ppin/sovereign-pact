@@ -13,6 +13,7 @@ import door_with_your_emblem from "./door_with_your_emblem.json" with { type: "j
 import egg_that_hums from "./egg_that_hums.json" with { type: "json" };
 import feast_of_crows from "./feast_of_crows.json" with { type: "json" };
 import field_of_flowers from "./field_of_flowers.json" with { type: "json" };
+import gates_reflection from "./gates_reflection.json" with { type: "json" };
 import hanging_garden from "./hanging_garden.json" with { type: "json" };
 import hidden_trapdoor from "./hidden_trapdoor.json" with { type: "json" };
 import hoard_in_the_hollow from "./hoard_in_the_hollow.json" with { type: "json" };
@@ -55,6 +56,7 @@ export default [
   egg_that_hums,
   feast_of_crows,
   field_of_flowers,
+  gates_reflection,
   hanging_garden,
   hidden_trapdoor,
   hoard_in_the_hollow,

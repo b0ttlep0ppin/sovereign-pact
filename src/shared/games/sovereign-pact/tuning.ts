@@ -548,8 +548,9 @@ export const TUNING = {
    * their HP, and the party may fall back from one lost battle. Year 10 lost: the Court's knights raid
    * every expedition after (one more Encounter, from `raidPool`). Year 15: lost, the Devastation's Doom
    * is `nestFailDoom` and Unknown fodder joins every pool's fights; won, Doom falls by `nestWinDoom`.
+   * The final Year's chain ends with `reflectionEvent` (The Gate's Reflection) just before the boss.
    */
-  arc: { bastionShieldPct: 20, raidPool: "apostate_court", nestFailDoom: 40, nestWinDoom: 20 },
+  arc: { bastionShieldPct: 20, raidPool: "apostate_court", nestFailDoom: 40, nestWinDoom: 20, reflectionEvent: "gates_reflection" },
 
   devastation: {
     mandatory: { ruin: [1, 3] as const, storesPct: 25, accord: 20, doom: 25, noArrivals: true },
