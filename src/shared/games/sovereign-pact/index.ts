@@ -29,6 +29,7 @@ import { TUNING } from "./tuning.ts";
 import { view, type SovView } from "./view.ts";
 import { clone, closeExpedition, closeSettlement } from "./year.ts";
 import { botPress, cannotRetreat, home, pressOn } from "./journey.ts";
+import { cannotCommand, command } from "./fight.ts";
 import { botDecide, botPicksFor, cannotDecide, decide } from "./events.ts";
 import { botDraft, cannotDraft, draftPick } from "./loot.ts";
 import { botField, botLeader, cannotField, cannotLead, field, voteLeader, waiting } from "./expedition.ts";
@@ -62,12 +63,23 @@ export const SOVEREIGN_PACT_OPTIONS: readonly TableOption[] = [
     ],
     standard: "full",
   },
+  {
+    id: "battles",
+    label: "Battles",
+    description: "Command each of your Scions' turns in expedition battles, or let their gambits fight every battle.",
+    choices: [
+      { value: "hand", label: "Command" },
+      { value: "gambits", label: "Gambits" },
+    ],
+    standard: "hand",
+  },
 ];
 
 function readOptions(options?: TableOptions): CampaignOptions {
   return {
     display: options?.display === "flavor" ? "flavor" : "crunch",
     length: options?.length === "short" ? "short" : "full",
+    battles: options?.battles === "gambits" ? "gambits" : "hand",
   };
 }
 
@@ -132,6 +144,7 @@ export function applyMove(state: SovState, playerId: PlayerId, move: SovMove): M
   const s = clone({ ...state, battles: undefined });
   const h = s.houses[house]!;
   if (s.phase === "founding" && !["design", "random_house", "swear", "unseal"].includes(move.type)) return fail("Found your House first.");
+  if (s.expedition?.fight && move.type !== "command") return fail("A battle is being fought.");
   switch (move.type) {
     case "design": {
       if (s.phase !== "founding") return fail("Your House is already founded.");
@@ -211,6 +224,15 @@ export function applyMove(state: SovState, playerId: PlayerId, move: SovMove): M
       const why = cannotDraft(s, house, move.share);
       if (why) return fail(why);
       draftPick(s, house, move.share);
+      s.phaseMoves += 1;
+      if (!waiting(s).length) closeExpedition(s);
+      return { ok: true, state: s };
+    }
+    case "command": {
+      if (s.phase !== "expedition") return fail("No battle is being fought.");
+      const c = { ...(move.move ? { move: move.move } : {}), ...(move.action ? { action: move.action } : {}), ...(move.auto ? { auto: move.auto } : {}) };
+      const why = cannotCommand(s, house, c) ?? command(s, house, c);
+      if (why) return fail(why);
       s.phaseMoves += 1;
       if (!waiting(s).length) closeExpedition(s);
       return { ok: true, state: s };
@@ -492,6 +514,8 @@ export function botMove(s: SovState, playerId: PlayerId): SovMove {
   const house = houseOf(s, playerId);
   // A bot founds the Random House it was dealt, keeping the first Ambition (§5.1).
   if (s.phase === "founding") return house >= 0 && !s.houses[house]!.sealed ? botFounding(s, house) : { type: "swear", ambition: 0 };
+  // In battle, the Scion's gambits: the same engine plays a bot's turn and an absent player's (§6.11).
+  if (s.phase === "expedition" && house >= 0 && s.expedition?.fight) return { type: "command", auto: "turn" };
   if (s.phase === "expedition" && house >= 0)
     return botBargain(s, house) ?? (s.expedition?.draft?.length
       ? { type: "draft", share: botDraft(s, house) }

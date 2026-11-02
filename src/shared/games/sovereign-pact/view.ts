@@ -5,6 +5,7 @@ import type { PlayerId } from "../../game.ts";
 import type { Replay } from "./combat/replay.ts";
 import { dealsFor } from "./deals.ts";
 import { secretEvent } from "./events.ts";
+import { awaited } from "./fight.ts";
 import { marketFor, priceFor } from "./market.ts";
 import { cannotDrawTarot, cannotDrinkDraught, consumablePrice, forSale } from "./consumables.ts";
 import { eventsFor } from "./omens.ts";
@@ -166,7 +167,7 @@ export interface SovView {
   /** The Rift Gate's cards this Year and the Houses' votes. */
   gate: SovState["gate"] | null;
   /** The Year's party: seats, who each House fielded, the Leader vote (all open); of the chain, only the nodes passed and its length. */
-  expedition: (Expedition & { length: number }) | null;
+  expedition: ExpeditionView | null;
   /** Town events waiting on choices; a secret one shows others' choices only as made (-1) or not. */
   events: PendingEvent[];
   /** The open vote, cast in the open (§8.1). */
@@ -277,7 +278,7 @@ export function view(s: SovState, playerId: PlayerId): SovView {
     // The Gate's cards and votes are open: the Houses argue over them in public (§9.1).
     gate: s.gate ?? null,
     // §9.3: the chain's shape is unknown until walked.
-    expedition: s.expedition ? expeditionView(s.expedition, me) : null,
+    expedition: s.expedition ? expeditionView(s, s.expedition, me) : null,
     opens: me === null ? [] : opensFor(s, me),
     deals: dealsFor(s, me),
     // A shop lot's price to the viewer (its discount, §5.7); sealed lots show their reserve.
@@ -349,8 +350,29 @@ function opensFor(s: SovState, me: number): SovView["opens"] {
   });
 }
 
-function expeditionView(e: Expedition, me: number | null): Expedition & { length: number } {
-  const v = { ...e, chain: e.chain.slice(0, e.at), length: e.chain.length };
+/** A battle under way, as every House sees it: what it is, and whose turn waits on which House. */
+export interface FightView {
+  title: string;
+  /** The Scion whose turn waits on a command, and the House that gives it. */
+  person: number | null;
+  house: number | null;
+  /** Houses whose Scions fight by gambits for the rest of it. */
+  auto: number[];
+}
+
+export type ExpeditionView = Omit<Expedition, "fight"> & { length: number; fight: FightView | null };
+
+function fightView(s: SovState): FightView | null {
+  const f = s.expedition?.fight;
+  if (!f) return null;
+  const u = f.unit === undefined ? undefined : f.b.units.find((x) => x.id === f.unit);
+  return { title: f.title, person: u?.person ?? null, house: awaited(s), auto: f.auto ?? [] };
+}
+
+function expeditionView(s: SovState, e: Expedition, me: number | null): ExpeditionView {
+  const rest: Omit<Expedition, "fight"> = { ...e };
+  delete (rest as Expedition).fight;
+  const v: ExpeditionView = { ...rest, chain: e.chain.slice(0, e.at), length: e.chain.length, fight: fightView(s) };
   // A 2×4 card's other party's way shows only as far as it has walked.
   if (e.split) v.split = { ...e.split, chains: e.split.chains.map((c, i) => c.slice(0, e.split!.at[i])) as typeof e.split.chains };
   // A secret event's picks stay hidden until all are in (§9.4): another House's shows only as chosen (-2).

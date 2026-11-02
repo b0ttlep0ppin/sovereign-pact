@@ -417,6 +417,27 @@ function Muster({ view, sendMove }: { view: SovView; sendMove: (m: SovMove) => v
       </div>
     );
   }
+  if (e.fight) {
+    const f = e.fight;
+    const yours = f.house === me;
+    return (
+      <div className="sp-muster" aria-label="The battle">
+        <p>
+          {f.title}. {f.person === null ? "The battle runs on." : `${name(f.person)}'s turn${yours ? ": what do they do?" : `, waiting on House ${view.houses[f.house!]?.name}.`}`}
+        </p>
+        {yours ? (
+          <div className="sp-actions">
+            <button type="button" className="sp-button" onClick={() => sendMove({ type: "command", auto: "turn" })}>
+              Follow their gambits this turn
+            </button>
+            <button type="button" className="sp-button sp-button--quiet" onClick={() => sendMove({ type: "command", auto: "battle" })}>
+              Let the gambits fight the rest
+            </button>
+          </div>
+        ) : null}
+      </div>
+    );
+  }
   if (e.leader !== undefined) {
     const leads = view.people.find((p) => p.id === e.leader)?.host === me;
     return (

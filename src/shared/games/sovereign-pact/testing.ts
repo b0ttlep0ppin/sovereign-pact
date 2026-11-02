@@ -4,9 +4,9 @@ import { sovereignPact, type SovState } from "./index.ts";
 
 export const seats = (n: number): string[] => Array.from({ length: n }, (_, i) => `p${i + 1}`);
 
-/** A new campaign for `houses` seats from `seed`, under standard options unless given. */
+/** A new campaign for `houses` seats from `seed`, under standard options unless given, its battles fought by gambits (fast) unless asked. */
 export function campaign(houses: number, seed = 1, options?: Record<string, string>): SovState {
-  return found(sovereignPact.setup(seats(houses), createRng(seed), undefined, options));
+  return found(sovereignPact.setup(seats(houses), createRng(seed), undefined, { battles: "gambits", ...options }));
 }
 
 /** Every House swears the Random House it was dealt: the campaign at Year 1. */

@@ -5,6 +5,9 @@
 import type { PlayerId } from "../../game.ts";
 import type { FoundingStep, HouseDesign } from "./founding.ts";
 import type { Replay } from "./combat/replay.ts";
+import type { Battle } from "./combat/types.ts";
+import type { TripEffect } from "./content.ts";
+import type { Command } from "./fight.ts";
 
 export const ELEMENTS = ["holy", "dark", "fire", "water", "earth", "wind"] as const;
 /** Three opposed pairs: Holy/Dark, Fire/Water, Earth/Wind (§5.6). */
@@ -304,6 +307,30 @@ export interface Expedition {
   satchel?: { id: string; house: number }[];
   /** The node a Lantern lights (§13.7): it cannot Ambush the party, and an Encounter there is a Surprise. */
   lit?: number;
+  /** The battle being fought, turn by turn (fight.ts). */
+  fight?: LiveFight;
+}
+
+/** What a battle's victory carries on with: a trapped Cache opened, or the rest of an event's outcome. */
+export type Then = { cache: true } | { effects: TripEffect[]; scions: number[]; house: number | null };
+
+/** A battle under way (§10.4): it runs by itself until a Scion's turn, then waits on the Scion's House. */
+export interface LiveFight {
+  b: Battle;
+  title: string;
+  boss: boolean;
+  /** How it was made (journey.ts FightOpts). */
+  o: NonNullable<TripEffect["encounter"]> & { raid?: true; lair?: true; arcana?: true };
+  then?: Then;
+  /** The replay so far, finished and handed to the battle screen at the end. */
+  replay: Replay;
+  /** Battle events from before the first turn; each turn's own move into the replay as it is played. */
+  seen: number;
+  turns: number;
+  /** The Scion whose turn it is, waiting on a command. */
+  unit?: number;
+  /** Houses whose Scions fight by gambits for the rest of this battle. */
+  auto?: number[];
 }
 
 /** Where one of a 2×4 card's parties is: on its way, at the meeting place, or gone home. */
@@ -406,6 +433,8 @@ export interface CampaignOptions {
   /** Flavor shows trait text only; Crunch shows exact numbers (§5.2). */
   display: "flavor" | "crunch";
   length: "full" | "short";
+  /** Expedition battles: each House commands its own Scions (the default), or gambits fight them all (the simulator's way). */
+  battles?: "hand" | "gambits";
 }
 
 export type ItemTier = 1 | 2 | 3 | 4 | 5;
@@ -510,6 +539,8 @@ export type SovMove =
   | { type: "lead"; person: number }
   /** The Leader's House: on to the next node, or home (§9.9). */
   | { type: "press_on" }
+  /** The Scion whose turn it is in battle (fight.ts): a move and an action, or their gambits for the turn or the battle. */
+  | ({ type: "command" } & Command)
   /** A House's vote on the waiting event's option (§9.4). */
   | { type: "decide"; option: number; person?: number }
   | { type: "retreat" }

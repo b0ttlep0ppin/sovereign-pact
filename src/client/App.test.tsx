@@ -15,8 +15,8 @@ const sendTheParty = () => {
   const lead = screen.queryAllByRole("button", { name: / leads$/ })[0];
   if (lead) fireEvent.click(lead);
   letBotsMove();
-  for (let i = 0; i < 40; i++) {
-    const on = screen.queryByRole("button", { name: /^(Press on|Face the boss)$/ }) ?? document.querySelector<HTMLButtonElement>('[aria-label="An event"] button, [aria-label="The draft"] button:not([disabled])');
+  for (let i = 0; i < 80; i++) {
+    const on = screen.queryByRole("button", { name: /^(Press on|Face the boss|Let the gambits fight the rest)$/ }) ?? document.querySelector<HTMLButtonElement>('[aria-label="An event"] button, [aria-label="The draft"] button:not([disabled])');
     if (!on) break;
     fireEvent.click(on);
     letBotsMove();

@@ -87,6 +87,47 @@ const unitOf = (u: Combatant): ReplayUnit => ({
   ...(u.maxDur ? { maxDur: LOCATIONS.map((l) => u.maxDur![l]) } : {}),
 });
 
+const memo = new WeakMap<Replay, Map<number, string>>();
+
+/** Each combatant's vitals as the replay last showed them, by id (worked out once per copy of the replay). */
+function shown(r: Replay): Map<number, string> {
+  let last = memo.get(r);
+  if (!last) {
+    last = new Map();
+    for (const v of [...r.start, ...r.frames.flatMap((f) => f.vit)]) last.set(v[0], JSON.stringify(v));
+    memo.set(r, last);
+  }
+  return last;
+}
+
+/** A replay begun, for a battle fought turn by turn (fight.ts): frames follow, and `closed` finishes it. */
+export function begun(b: Battle, title: string): Replay {
+  // The outcome is a placeholder until the end.
+  return { title, seed: b.rng, ...(b.pool ? { pool: b.pool } : {}), outcome: "retreat", units: b.units.map(unitOf), start: b.units.map(vitalsOf), frames: [] };
+}
+
+/** The turn just played as a frame of `r`: the events after `seen`, and the vitals that changed. Returns the new `seen`. */
+export function frame(b: Battle, r: Replay, seen: number): number {
+  if (b.events.length === seen) return seen;
+  const last = shown(r);
+  const vit: Vitals[] = [];
+  for (const u of b.units) {
+    const v = vitalsOf(u);
+    const key = JSON.stringify(v);
+    if (last.get(u.id) !== key) vit.push(v);
+    last.set(u.id, key);
+  }
+  r.frames.push({ ev: b.events.slice(seen), vit });
+  return b.events.length;
+}
+
+/** The replay's ending: everyone who fought (summons too) and how it went. */
+export function closed(b: Battle, r: Replay): Replay {
+  r.units = b.units.map(unitOf);
+  r.outcome = b.outcome!;
+  return r;
+}
+
 /** Plays `b` to its end by gambits, as `simulate` does, and records it. */
 export function recorded(b: Battle, title: string): { summary: BattleSummary; replay: Replay } {
   const last = new Map<number, string>();

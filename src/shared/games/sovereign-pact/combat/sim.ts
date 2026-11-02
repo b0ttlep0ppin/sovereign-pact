@@ -4,7 +4,7 @@ import { createRng, type Rng } from "../../../rng.ts";
 import { INJURY_BY_ID } from "../content.ts";
 import { act, advance, move } from "./battle.ts";
 import { decide } from "./gambits.ts";
-import type { Battle, BattleOutcome } from "./types.ts";
+import type { Battle, BattleOutcome, Combatant } from "./types.ts";
 
 /** Runs `fn` with the battle's own RNG and stores the RNG's state back. */
 export function withRng<T>(b: Battle, fn: (rng: Rng) => T): T {
@@ -19,22 +19,27 @@ export function autoTurn(b: Battle, strict = false): boolean {
   return withRng(b, (rng) => {
     const u = advance(b, rng);
     if (!u) return false;
-    const plan = decide(b, rng, u);
-    if (plan.move) {
-      try {
-        move(b, u, plan.move[0], plan.move[1]);
-      } catch (e) {
-        if (strict) throw e;
-      }
-    }
-    try {
-      act(b, rng, u, plan.action);
-    } catch (e) {
-      if (strict) throw e;
-      act(b, rng, u, { do: "defend" });
-    }
+    autoAct(b, rng, u, strict);
     return !b.outcome;
   });
+}
+
+/** `u`'s turn, by its gambits: the move it plans, then the action (a Defend if the rules refuse it). */
+export function autoAct(b: Battle, rng: Rng, u: Combatant, strict = false): void {
+  const plan = decide(b, rng, u);
+  if (plan.move) {
+    try {
+      move(b, u, plan.move[0], plan.move[1]);
+    } catch (e) {
+      if (strict) throw e;
+    }
+  }
+  try {
+    act(b, rng, u, plan.action);
+  } catch (e) {
+    if (strict) throw e;
+    act(b, rng, u, { do: "defend" });
+  }
 }
 
 export interface BattleSummary {
