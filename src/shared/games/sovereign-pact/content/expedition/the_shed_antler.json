@@ -34,7 +34,7 @@
     },
     {
       "id": "bait",
-      "label": "Use it as bait.",
+      "label": "The craftiest uses it as bait.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"

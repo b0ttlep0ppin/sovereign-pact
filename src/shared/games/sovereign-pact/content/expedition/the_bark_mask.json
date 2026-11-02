@@ -46,7 +46,7 @@
     },
     {
       "id": "cut",
-      "label": "Cut it free and take it.",
+      "label": "The strongest cuts it free and takes it.",
       "rule": "scion:highest:might",
       "tags": [
         "cruel"

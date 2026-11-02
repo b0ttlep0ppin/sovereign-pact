@@ -14,7 +14,7 @@
   "options": [
     {
       "id": "lay",
-      "label": "Lay a hand in the hollow.",
+      "label": "The weakest hand is laid in the hollow.",
       "rule": "scion:injured:arms|scion:lowest:might",
       "tags": [
         "reckless"

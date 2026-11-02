@@ -56,7 +56,7 @@
     },
     {
       "id": "kill",
-      "label": "Kill it for its pelt.",
+      "label": "The most blooded kills it for its pelt.",
       "rule": "scion:most_kills",
       "tags": [
         "cruel"

@@ -49,7 +49,7 @@
     },
     {
       "id": "learn",
-      "label": "The kindest learns the song from it.",
+      "label": "The wisest learns the song from it.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "kind"

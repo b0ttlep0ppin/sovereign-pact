@@ -58,7 +58,7 @@
     },
     {
       "id": "search",
-      "label": "Promise to look for him.",
+      "label": "The sharpest eye promises to look for him.",
       "rule": "scion:highest:acuity",
       "tags": [
         "bold"

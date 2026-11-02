@@ -33,7 +33,7 @@
     },
     {
       "id": "steal",
-      "label": "Steal the hand.",
+      "label": "The deftest hands steal it.",
       "rule": "scion:highest:guile",
       "tags": [
         "cruel"

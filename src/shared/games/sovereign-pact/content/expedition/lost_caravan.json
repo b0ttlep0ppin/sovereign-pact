@@ -45,7 +45,7 @@
     },
     {
       "id": "salvage",
-      "label": "Take what is on the wagons.",
+      "label": "The poorest House takes what is on the wagons.",
       "rule": "house:lowest_standing",
       "tags": [
         "cruel"

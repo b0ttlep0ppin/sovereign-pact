@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "search",
-      "label": "The bravest searches inside.",
+      "label": "The hardiest searches inside.",
       "rule": "scion:highest:resilience",
       "tags": [
         "bold"

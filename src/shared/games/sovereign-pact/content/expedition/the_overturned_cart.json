@@ -53,7 +53,7 @@
     },
     {
       "id": "smell",
-      "label": "Find out what the smell is.",
+      "label": "The hardiest finds out what the smell is.",
       "rule": "scion:highest:resilience",
       "tags": [
         "bold"

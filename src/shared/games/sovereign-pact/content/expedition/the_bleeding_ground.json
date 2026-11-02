@@ -68,7 +68,7 @@
     },
     {
       "id": "bury",
-      "label": "The kindest says the rites for it.",
+      "label": "The wisest says the rites for it.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "kind"

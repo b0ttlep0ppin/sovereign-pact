@@ -75,7 +75,7 @@
     },
     {
       "id": "sword",
-      "label": "Take his sword.",
+      "label": "The quietest hands lift his sword.",
       "rule": "scion:highest:guile",
       "tags": [
         "cruel"

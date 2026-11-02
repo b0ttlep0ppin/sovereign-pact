@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "weak",
-      "label": "The frailest lies in it, since it will be quickest.",
+      "label": "The frailest lies in it; the voice has been calling to them all along.",
       "rule": "scion:lowest:resilience|scion:random",
       "tags": [
         "reckless"

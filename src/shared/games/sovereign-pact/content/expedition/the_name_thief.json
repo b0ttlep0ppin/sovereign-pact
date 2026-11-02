@@ -62,7 +62,7 @@
     },
     {
       "id": "steal",
-      "label": "Steal theirs in return.",
+      "label": "The shrewdest steals theirs in return.",
       "rule": "scion:highest:guile",
       "tags": [
         "cruel"

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "crown",
-      "label": "The boldest crowns the goat.",
+      "label": "The shrewdest plays along and crowns the goat.",
       "rule": "scion:highest:guile",
       "tags": [
         "reckless"

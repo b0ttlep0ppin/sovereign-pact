@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "buy",
-      "label": "Buy the one that looks least fake.",
+      "label": "The sharpest eye picks the one that looks least fake.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -71,7 +71,7 @@
     },
     {
       "id": "partner",
-      "label": "Offer to sell for him, for a cut.",
+      "label": "The shrewdest offers to sell for him, for a cut.",
       "rule": "scion:highest:guile",
       "tags": [
         "cruel"

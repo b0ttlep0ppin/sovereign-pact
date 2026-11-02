@@ -37,7 +37,7 @@
     },
     {
       "id": "propose",
-      "label": "The boldest offers to be her groom.",
+      "label": "The most charming offers to be her groom.",
       "rule": "scion:highest:guile",
       "tags": [
         "reckless"

@@ -48,7 +48,7 @@
     },
     {
       "id": "question",
-      "label": "Question them first.",
+      "label": "The sharpest questions them first.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"

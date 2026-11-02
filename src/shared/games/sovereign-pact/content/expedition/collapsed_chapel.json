@@ -14,7 +14,7 @@
   "options": [
     {
       "id": "dig",
-      "label": "Dig for the light.",
+      "label": "The strongest digs for the light.",
       "rule": "scion:highest:might",
       "tags": [
         "bold"

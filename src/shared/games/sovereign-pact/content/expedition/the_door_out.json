@@ -49,7 +49,7 @@
     },
     {
       "id": "knock",
-      "label": "Knock and listen.",
+      "label": "The sharpest ear knocks and listens.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"

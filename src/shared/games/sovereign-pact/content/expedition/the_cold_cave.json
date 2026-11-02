@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "sword",
-      "label": "Cut out the sword.",
+      "label": "The strongest cuts out the sword.",
       "rule": "scion:highest:might",
       "tags": [
         "bold"
@@ -38,7 +38,7 @@
     },
     {
       "id": "man",
-      "label": "Thaw the man.",
+      "label": "The wisest thaws the man.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "kind"

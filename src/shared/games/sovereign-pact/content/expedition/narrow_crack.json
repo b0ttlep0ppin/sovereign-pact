@@ -11,11 +11,11 @@
     10
   ],
   "title": "The Narrow Crack",
-  "text": "The way on is a crack in the rock barely wide enough for a child. Someone has to try it first, and it should be the one carrying the most.",
+  "text": "The way on is a crack in the rock barely wide enough for a child. Squeeze through as you are, and whoever carries the most is the one who sticks.",
   "options": [
     {
       "id": "squeeze",
-      "label": "Send the heaviest through first.",
+      "label": "Squeeze through, gear and all.",
       "rule": "scion:heaviest_gear",
       "tags": [
         "bold"

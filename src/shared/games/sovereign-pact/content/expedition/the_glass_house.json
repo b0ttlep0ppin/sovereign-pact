@@ -69,7 +69,7 @@
     },
     {
       "id": "look",
-      "label": "Look only at the outside.",
+      "label": "The sharpest eye studies only the outer mirrors.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"

@@ -34,7 +34,7 @@
     },
     {
       "id": "pool",
-      "label": "Drink from the pool before they do.",
+      "label": "The hardiest drinks from the pool before they do.",
       "rule": "scion:highest:resilience",
       "tags": [
         "reckless"

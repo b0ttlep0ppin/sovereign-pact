@@ -39,7 +39,7 @@
     },
     {
       "id": "sell",
-      "label": "Sell her a face.",
+      "label": "The craftiest sells her someone else's face.",
       "rule": "scion:highest:guile",
       "tags": [
         "cruel"

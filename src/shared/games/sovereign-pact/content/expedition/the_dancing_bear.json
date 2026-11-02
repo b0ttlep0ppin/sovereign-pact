@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "free",
-      "label": "Break the chain.",
+      "label": "The strongest breaks the chain.",
       "rule": "scion:highest:might",
       "tags": [
         "kind"

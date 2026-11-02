@@ -37,7 +37,7 @@
     },
     {
       "id": "lie",
-      "label": "Lie to her.",
+      "label": "The best liar lies to her.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"

@@ -55,7 +55,7 @@
     },
     {
       "id": "watch",
-      "label": "The boldest watches.",
+      "label": "The stealthiest watches.",
       "rule": "scion:highest:guile",
       "tags": [
         "reckless"

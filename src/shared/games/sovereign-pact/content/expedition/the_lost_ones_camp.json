@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "read",
-      "label": "Read the journal.",
+      "label": "The wisest reads the journal.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "kind"
@@ -36,7 +36,7 @@
     },
     {
       "id": "track",
-      "label": "Track them from here.",
+      "label": "The best tracker follows them from here.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"

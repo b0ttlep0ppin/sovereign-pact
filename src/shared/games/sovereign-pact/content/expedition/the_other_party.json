@@ -63,7 +63,7 @@
     },
     {
       "id": "rob",
-      "label": "Take their supplies while they sleep.",
+      "label": "The quietest takes their supplies while they sleep.",
       "rule": "scion:highest:guile",
       "tags": [
         "cruel"

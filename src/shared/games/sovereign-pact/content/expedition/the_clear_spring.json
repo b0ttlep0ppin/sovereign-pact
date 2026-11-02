@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "drink",
-      "label": "The oldest of you drinks.",
+      "label": "The most weathered of you drinks.",
       "rule": "scion:most_expeditions",
       "tags": [
         "reckless"

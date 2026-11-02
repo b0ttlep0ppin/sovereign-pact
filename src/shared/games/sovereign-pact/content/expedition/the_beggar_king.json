@@ -80,7 +80,7 @@
     },
     {
       "id": "ask",
-      "label": "Ask him about his kingdom.",
+      "label": "The wisest asks him about his kingdom.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"

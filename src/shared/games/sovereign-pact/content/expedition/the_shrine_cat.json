@@ -37,7 +37,7 @@
     },
     {
       "id": "pet",
-      "label": "The luckiest pets it.",
+      "label": "Whoever it chooses pets it.",
       "rule": "scion:random",
       "tags": [
         "reckless"

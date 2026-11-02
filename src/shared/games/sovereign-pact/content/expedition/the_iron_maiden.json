@@ -50,7 +50,7 @@
     },
     {
       "id": "scarred",
-      "label": "Someone who has already bled in it knows the trick.",
+      "label": "The most battle-scarred knows the trick: wedge the lid with a scabbard.",
       "rule": "scion:injured:any|scion:highest:resilience",
       "tags": [
         "clever"

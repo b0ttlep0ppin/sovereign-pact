@@ -40,7 +40,7 @@
     },
     {
       "id": "all",
-      "label": "Say it belongs to all six.",
+      "label": "The wisest says it belongs to all six.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "kind"

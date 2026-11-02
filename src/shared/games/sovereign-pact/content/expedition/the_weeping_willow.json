@@ -9,11 +9,11 @@
     7
   ],
   "title": "The Weeping Willow",
-  "text": "A willow drips sap that smells of sleep. Its roots have wrapped a dozen sleepers, smiling.",
+  "text": "A willow drips sap that smells of sleep. Its roots have wrapped a dozen sleepers, smiling. The frailest of you is nodding already.",
   "options": [
     {
       "id": "weak",
-      "label": "The one with least to resist sits a moment, to learn its trick.",
+      "label": "The frailest is already nodding; they sit a moment and learn its trick.",
       "rule": "scion:lowest:resilience|scion:random",
       "tags": [
         "reckless"

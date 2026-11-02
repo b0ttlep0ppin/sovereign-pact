@@ -67,7 +67,7 @@
     {
       "id": "touch",
       "label": "The boldest touches it.",
-      "rule": "scion:random",
+      "rule": "scion:trait:brave|scion:random",
       "tags": [
         "reckless"
       ],

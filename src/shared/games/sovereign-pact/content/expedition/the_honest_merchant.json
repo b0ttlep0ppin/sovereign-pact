@@ -60,7 +60,7 @@
     },
     {
       "id": "ask",
-      "label": "Ask her why she is honest out here.",
+      "label": "The wisest asks her why she is honest out here.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "kind"

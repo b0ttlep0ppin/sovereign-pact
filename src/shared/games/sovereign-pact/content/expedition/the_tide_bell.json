@@ -46,7 +46,7 @@
     },
     {
       "id": "dive",
-      "label": "Dive for the bell.",
+      "label": "The hardiest dives for the bell.",
       "rule": "scion:highest:resilience",
       "tags": [
         "bold"

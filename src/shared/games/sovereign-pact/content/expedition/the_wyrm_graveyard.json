@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "mercy",
-      "label": "Give it a clean end.",
+      "label": "The most blooded gives it a clean end.",
       "rule": "scion:most_kills",
       "tags": [
         "kind"
@@ -61,7 +61,7 @@
     },
     {
       "id": "listen",
-      "label": "Listen to what it has to say.",
+      "label": "The wisest listens to what it has to say.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "bold"

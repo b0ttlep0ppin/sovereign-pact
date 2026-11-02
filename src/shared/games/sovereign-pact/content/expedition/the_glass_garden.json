@@ -43,7 +43,7 @@
     },
     {
       "id": "tend",
-      "label": "The gentlest sweeps a path.",
+      "label": "The wisest sweeps a path, as a guest should.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "kind"

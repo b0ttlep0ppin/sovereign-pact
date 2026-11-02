@@ -65,7 +65,7 @@
     },
     {
       "id": "free",
-      "label": "Cut a traveler out of the ice.",
+      "label": "The strongest cuts a traveler out of the ice.",
       "rule": "scion:highest:might",
       "tags": [
         "kind"

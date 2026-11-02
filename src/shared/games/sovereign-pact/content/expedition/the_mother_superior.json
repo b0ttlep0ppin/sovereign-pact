@@ -40,7 +40,7 @@
     },
     {
       "id": "question",
-      "label": "Question her.",
+      "label": "The wisest questions her.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"

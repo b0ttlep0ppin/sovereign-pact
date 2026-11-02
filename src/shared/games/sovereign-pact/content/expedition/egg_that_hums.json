@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "eat",
-      "label": "Crack it and drink.",
+      "label": "Your fiercest, the one it hums for, cracks it and drinks.",
       "rule": "scion:most_kills",
       "tags": [
         "reckless"

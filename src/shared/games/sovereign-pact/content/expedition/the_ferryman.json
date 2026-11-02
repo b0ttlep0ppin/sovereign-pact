@@ -58,7 +58,7 @@
     },
     {
       "id": "swim",
-      "label": "Swim.",
+      "label": "The hardiest swims a rope across.",
       "rule": "scion:highest:resilience",
       "tags": [
         "bold"

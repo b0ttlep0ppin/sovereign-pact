@@ -13,8 +13,8 @@
   "options": [
     {
       "id": "pay",
-      "label": "Pay them in Essence.",
-      "rule": "house:lowest_standing",
+      "label": "The richest House pays them in Essence.",
+      "rule": "house:highest_standing",
       "tags": [
         "cautious"
       ],
