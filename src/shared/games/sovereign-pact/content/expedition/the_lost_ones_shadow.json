@@ -1,0 +1,88 @@
+{
+  "id": "the_lost_ones_shadow",
+  "pools": [
+    "rescue"
+  ],
+  "weight": 1,
+  "band": [
+    4,
+    10
+  ],
+  "title": "The Lost One's Shadow",
+  "text": "A shadow walks the road with no one casting it. It is the shape of one of your Lost.",
+  "options": [
+    {
+      "id": "follow",
+      "label": "Follow it.",
+      "rule": "vote",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "To where it was lost.",
+          "effects": [
+            {
+              "skip": 2
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "To what took it.",
+          "effects": [
+            {
+              "encounter": {
+                "level": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "speak",
+      "label": "The wisest speaks to it.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It nods toward the hills.",
+          "effects": [
+            {
+              "skip": 1
+            },
+            {
+              "to": "party",
+              "sanity": -5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "flee",
+      "label": "It is an ill omen. Avoid it.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It waits by the road as you pass.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -8
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

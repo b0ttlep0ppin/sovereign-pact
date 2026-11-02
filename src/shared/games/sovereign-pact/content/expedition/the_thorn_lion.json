@@ -1,0 +1,85 @@
+{
+  "id": "the_thorn_lion",
+  "pools": [
+    "beast_lands"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    6
+  ],
+  "title": "The Thorn Lion",
+  "text": "A lion limps along the path with a thorn in its paw, growling at anyone who comes near.",
+  "options": [
+    {
+      "id": "help",
+      "label": "The bravest pulls the thorn.",
+      "rule": "scion:trait:brave|scion:highest:resilience",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "It purrs, and guards your camp that night.",
+          "effects": [
+            {
+              "to": "party",
+              "status": "protect"
+            },
+            {
+              "to": "party",
+              "sanity": 5
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "It does not purr.",
+          "effects": [
+            {
+              "durability": -30,
+              "loc": "arms"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "avoid",
+      "label": "Give it a wide berth.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A long way round.",
+          "effects": []
+        }
+      ]
+    },
+    {
+      "id": "kill",
+      "label": "Put it out of its misery.",
+      "rule": "leader",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It is not as weak as it looks.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "surprise"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

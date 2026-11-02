@@ -1,0 +1,85 @@
+{
+  "id": "the_mad_hermit",
+  "pools": [
+    "rescue"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    10
+  ],
+  "title": "The Mad Hermit",
+  "text": "A hermit in a cave says he is keeping one of your Lost safe, and will not give them back.",
+  "options": [
+    {
+      "id": "talk",
+      "label": "The kindest talks him round.",
+      "rule": "scion:most_healing|scion:highest:sagacity",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "He weeps, and lets them go, and asks you to visit.",
+          "effects": [
+            {
+              "skip": 2
+            },
+            {
+              "score": {
+                "renown": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "force",
+      "label": "Force your way in.",
+      "rule": "vote",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "He fights like a cornered animal.",
+          "effects": [
+            {
+              "encounter": {}
+            },
+            {
+              "skip": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "trade",
+      "label": "The shrewdest offers a trade.",
+      "rule": "scion:highest:guile",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A pot and a blanket for a Scion.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -5
+              }
+            },
+            {
+              "skip": 2
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

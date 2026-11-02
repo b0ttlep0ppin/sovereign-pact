@@ -2,6 +2,9 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 7an: every card-type pool reaches 25) — implementer
+- **Built** (content only). Sixteen events: the Trail of Coins, the Mad Hermit and the Lost One's Shadow (Rescue); the Fallen Watchtower, the Copper Creek, the Wild Horses and the Essence Moths (Resource); the Bone Pile, the Hunter's Moon and the Wounded Quarry (Hunt); and the Thorn Lion, the Hoarfrost Hermit, the Pit Gladiators, the Dragon Bard, the Echo Self and the Spirit Bear for the six thinnest regions. That makes 432 expedition events. Every card-type pool (Delve, Hunt, Pilgrimage, Rescue, Resource) and the general pool now meet HANDOFF §6; the twelve regions have 14 to 17 each and remain to fill.
+
 ## 2026-11-02 (implementation, Milestone 7am: Delve and Pilgrimage pools reach 25) — implementer
 - **Built** (content only). Sixteen card-type events: the Sealed Vault and the Lowest Level (Delve); the Beggar Saint, the Vigil, the Pilgrims' Feast, the Stigmata and the Chained Pilgrims (Pilgrimage); the Ghost of the Lost, the Broken Bridge and the Last Letter (Rescue); the Beaver Dam, the Star Iron and the Mushroom Cellar (Resource); the Shed Scales, the Poachers and the Calling Horn (Hunt). That makes 416 expedition events. Delve and Pilgrimage meet HANDOFF §6's 25; Rescue and Hunt have 22, Resource 21.
 

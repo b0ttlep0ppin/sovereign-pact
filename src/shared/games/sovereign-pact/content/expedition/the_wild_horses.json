@@ -1,0 +1,88 @@
+{
+  "id": "the_wild_horses",
+  "pools": [
+    "resource"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    10
+  ],
+  "title": "The Wild Horses",
+  "text": "A herd of wild horses on the plain, sleek and fast.",
+  "options": [
+    {
+      "id": "catch",
+      "label": "The fastest tries to catch one.",
+      "rule": "scion:highest:speed",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "A fine horse for the House stables.",
+          "effects": [
+            {
+              "house_improvement": "building"
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "A hoof to the ribs.",
+          "effects": [
+            {
+              "durability": -30,
+              "loc": "body"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "watch",
+      "label": "Watch them run.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A good thing to have seen.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 8
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lure",
+      "label": "The gentlest lures one with food.",
+      "rule": "scion:fewest_kills|scion:random",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It follows you a while, then home.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -5
+              }
+            },
+            {
+              "house_improvement": "building"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

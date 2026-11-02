@@ -1,0 +1,87 @@
+{
+  "id": "the_copper_creek",
+  "pools": [
+    "resource"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    10
+  ],
+  "title": "The Copper Creek",
+  "text": "A creek running green over copper stones. Easy pickings.",
+  "options": [
+    {
+      "id": "pan",
+      "label": "Pan the creek.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A good haul.",
+          "effects": [
+            {
+              "resources": {
+                "iron": 3,
+                "gold": 10
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dam",
+      "label": "The strongest dams it to dig the bed.",
+      "rule": "scion:highest:might",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A great haul, and the village below runs dry.",
+          "effects": [
+            {
+              "resources": {
+                "iron": 6
+              }
+            },
+            {
+              "score": {
+                "renown": -1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "trace",
+      "label": "Trace it to the source.",
+      "rule": "leader",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A guarded vein.",
+          "effects": [
+            {
+              "encounter": {}
+            },
+            {
+              "resources": {
+                "iron": 4
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

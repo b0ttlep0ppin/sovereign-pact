@@ -1,0 +1,82 @@
+{
+  "id": "the_trail_of_coins",
+  "pools": [
+    "rescue"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    10
+  ],
+  "title": "The Trail of Coins",
+  "text": "House coins dropped one by one along a path, a clever Scion's breadcrumbs.",
+  "options": [
+    {
+      "id": "follow",
+      "label": "Follow the coins.",
+      "rule": "vote",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "They lead on, and you pocket them as you go.",
+          "effects": [
+            {
+              "skip": 1
+            },
+            {
+              "resources": {
+                "gold": 5
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "read",
+      "label": "The sharpest eye notices the spacing.",
+      "rule": "scion:highest:acuity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Closer together here: they were running.",
+          "effects": [
+            {
+              "foresee": true
+            },
+            {
+              "skip": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wary",
+      "label": "Someone else may be following them too.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Someone is.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "surprise"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

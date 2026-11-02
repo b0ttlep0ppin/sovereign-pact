@@ -1,0 +1,78 @@
+{
+  "id": "the_essence_moth",
+  "pools": [
+    "resource"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    10
+  ],
+  "title": "The Essence Moths",
+  "text": "Moths that drink essence swarm a hidden pool. Their wings are dusted with it.",
+  "options": [
+    {
+      "id": "net",
+      "label": "Net them.",
+      "rule": "vote",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Wings full of essence.",
+          "effects": [
+            {
+              "resources": {
+                "essence": 5
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pool",
+      "label": "Drink from the pool before they do.",
+      "rule": "scion:highest:resilience",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Bright, burning, strong.",
+          "effects": [
+            {
+              "mp": 40
+            },
+            {
+              "sanity": -5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "leave",
+      "label": "Leave them their pool.",
+      "rule": "leader",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "They follow you a while, glowing.",
+          "effects": [
+            {
+              "to": "party",
+              "status": "protect"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
