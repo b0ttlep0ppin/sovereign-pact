@@ -1,0 +1,77 @@
+{
+  "id": "still_warm_camp",
+  "pools": [
+    "general",
+    "resource"
+  ],
+  "weight": 3,
+  "band": [
+    1,
+    8
+  ],
+  "title": "The Still-Warm Camp",
+  "text": "A camp, fire still smouldering, packs still full. Whoever left it left in a hurry and meant to come back.",
+  "options": [
+    {
+      "id": "take",
+      "label": "Take what they left.",
+      "rule": "vote",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "Timber, iron, a little gold. Nobody comes back for it.",
+          "effects": [
+            {
+              "resources": {
+                "timber": 6,
+                "iron": 4,
+                "gold": 10
+              }
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "They come back for it.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "surprise"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "leave",
+      "label": "Leave it be.",
+      "rule": "leader",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 80,
+          "text": "You move on.",
+          "effects": []
+        },
+        {
+          "w": 20,
+          "text": "Later, a cairn by the path: a gift from strangers.",
+          "effects": [
+            {
+              "resources": {
+                "stone": 4,
+                "essence": 2
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

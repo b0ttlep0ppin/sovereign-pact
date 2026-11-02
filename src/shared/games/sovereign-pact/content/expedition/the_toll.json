@@ -1,0 +1,62 @@
+{
+  "id": "the_toll",
+  "pools": [
+    "general"
+  ],
+  "weight": 3,
+  "band": [
+    1,
+    8
+  ],
+  "title": "The Toll",
+  "text": "A bridge of bone over nothing. A toll-keeper with too many fingers holds out a hand.",
+  "options": [
+    {
+      "id": "pay",
+      "label": "Pay in gold.",
+      "rule": "house:highest_standing",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The coins vanish into the hand. The bridge holds.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -15
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fight",
+      "label": "Fight your way across.",
+      "rule": "vote",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The keeper calls its kin.",
+          "effects": [
+            {
+              "encounter": {
+                "level": 1
+              }
+            },
+            {
+              "score": {
+                "valor": 2
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

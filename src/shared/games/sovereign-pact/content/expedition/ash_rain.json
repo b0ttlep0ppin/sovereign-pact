@@ -1,0 +1,61 @@
+{
+  "id": "ash_rain",
+  "pools": [
+    "general"
+  ],
+  "weight": 3,
+  "band": [
+    3,
+    10
+  ],
+  "title": "Ash Rain",
+  "text": "Grey flakes begin to fall, slow and fat. Where they land on skin they don't melt.",
+  "options": [
+    {
+      "id": "cover",
+      "label": "Cover your faces and wait it out.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It takes the whole night. Nobody sleeps.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -10
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "endure",
+      "label": "Walk through it.",
+      "rule": "leader",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "It is only ash, after all.",
+          "effects": []
+        },
+        {
+          "w": 50,
+          "text": "It gets into the eyes and the lungs and the joints of armour.",
+          "effects": [
+            {
+              "to": "party",
+              "durability": -50,
+              "loc": "head"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

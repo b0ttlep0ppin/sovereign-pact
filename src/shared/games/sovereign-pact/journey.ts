@@ -3,13 +3,14 @@
 // (playing them by hand comes later); Durability, Sanity and MP carry from node to node, injuries
 // last, the dead go to the Chronicle. Events and Caches are passed through until the event engine
 // and loot exist (Milestone 6d on).
-import { BOSSES, INJURY_BY_ID } from "./content.ts";
+import { BOSSES, INJURY_BY_ID, type TripEffect } from "./content.ts";
 import { bossBattle } from "./combat/bosses.ts";
 import { scionCombatant } from "./combat/build.ts";
 import { encounterBattle } from "./combat/encounter.ts";
 import { LOADOUTS } from "./combat/roster.ts";
 import { simulate } from "./combat/sim.ts";
 import type { Battle, Combatant } from "./combat/types.ts";
+import { meet } from "./events.ts";
 import { roster } from "./expedition.ts";
 import { gearTotals } from "./items.ts";
 import { gainJp, gainXp } from "./progression.ts";
@@ -46,7 +47,7 @@ export function bossFor(s: SovState): string | undefined {
   return withRng(s, (rng) => rng.pick(fits.filter((b) => near(b) === best)).id);
 }
 
-const person = (s: SovState, id: number): Person => s.people.find((p) => p.id === id)!;
+export const person = (s: SovState, id: number): Person => s.people.find((p) => p.id === id)!;
 /** Scions still with the party: not dead, not Lost, not out of the fight for good. */
 export const marching = (s: SovState): number[] => roster(s).filter((id) => s.people.some((p) => p.id === id && p.status === "scion") && !s.expedition!.out.includes(id));
 
@@ -71,7 +72,7 @@ function party(s: SovState): Combatant[] {
 }
 
 /** The Chronicle takes the dead (§6.13): they leave the House, their gear back in its stash. */
-function die(s: SovState, p: Person, cause: string): void {
+export function die(s: SovState, p: Person, cause: string): void {
   s.houses[p.house]!.chronicle.push({ name: p.name, year: s.year, cause, level: p.level });
   s.people = s.people.filter((x) => x.id !== p.id);
   delete s.assign[p.id];
@@ -121,16 +122,36 @@ function camp(s: SovState): void {
 }
 
 /** A battle at the next node: an Encounter from the card's pool, or the boss. */
-function fight(s: SovState, boss: boolean): Battle {
+export type FightOpts = NonNullable<TripEffect["encounter"]>;
+
+function fight(s: SovState, boss: boolean, o: FightOpts): Battle {
   const card = s.expedition!.card;
   const seed = withRng(s, (rng) => rng.int(2 ** 31));
-  const id = boss ? bossFor(s) : undefined;
+  const id = boss ? card.boss : undefined;
+  const level = Math.max(1, Math.min(10, card.level + (o.level ?? 0) + (boss ? 1 : 0)));
   const b = id
     ? bossBattle(seed, party(s), id, card.level)
     : // A pool with no boss near the level ends in a fight a level above the card's (reading, see DECISIONS).
-      encounterBattle(seed, party(s), { pool: card.pool, level: boss ? Math.min(10, card.level + 1) : card.level, year: s.year }).battle;
+      encounterBattle(seed, party(s), { pool: card.pool, level, year: s.year, ...(o.modifier ? { modifier: o.modifier } : {}), ...(o.template ? { template: o.template } : {}) }).battle;
   simulate(b);
   return b;
+}
+
+/** A battle now: an Encounter (a node's, or an event's) or the boss. True if the party won; a loss sends it home wiped. */
+export function battle(s: SovState, boss: boolean, o: FightOpts = {}): boolean {
+  const e = s.expedition!;
+  const b = fight(s, boss, o);
+  settle(s, b, boss ? (e.card.boss ?? "boss") : `${e.card.pool}_encounter`);
+  if (b.outcome === "victory") {
+    log(s, boss ? "The party defeats the boss." : "The party wins a battle.");
+    for (const id of marching(s)) creditWard(s, person(s, id), "valor", boss ? J.valor.boss : J.valor.battle);
+    if (boss) home(s, "won");
+    else succeed(s);
+    return true;
+  }
+  log(s, `The party falls before ${boss ? "the boss" : "an encounter"}.`);
+  home(s, "wiped");
+  return false;
 }
 
 /** The Leader's House presses on: the next node resolves. */
@@ -139,23 +160,13 @@ export function pressOn(s: SovState): void {
   const kind = e.chain[e.at]!;
   e.at += 1;
   if (kind === "camp") return camp(s);
-  if (kind === "event") return log(s, "The party passes something strange, and leaves it be.");
+  if (kind === "event") return meet(s);
   if (kind === "cache") return log(s, "The party finds an old cache, already picked clean.");
-  const b = fight(s, kind === "boss");
-  const where = kind === "boss" ? "the boss" : "an encounter";
-  settle(s, b, kind === "boss" ? (bossFor(s) ?? "boss") : `${e.card.pool}_encounter`);
-  if (b.outcome === "victory") {
-    log(s, kind === "boss" ? "The party defeats the boss." : "The party wins a battle.");
-    for (const id of marching(s)) creditWard(s, person(s, id), "valor", kind === "boss" ? J.valor.boss : J.valor.battle);
-    if (kind === "boss") return home(s, "won");
-    return succeed(s);
-  }
-  log(s, `The party falls before ${where}.`);
-  home(s, "wiped");
+  battle(s, kind === "boss");
 }
 
 /** A Leader who falls is replaced by the most travelled Scion still marching (§9.2's tie rule). */
-function succeed(s: SovState): void {
+export function succeed(s: SovState): void {
   const e = s.expedition!;
   const left = marching(s);
   if (!left.length || left.includes(e.leader!)) return;

@@ -1,0 +1,39 @@
+{
+  "id": "bread_on_the_water",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    10
+  ],
+  "title": "Bread on the Water",
+  "text": "A loaf, still warm, floats toward you down a black stream, wrapped in a clean cloth.",
+  "options": [
+    {
+      "id": "eat",
+      "label": "Share it out.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Someone wanted you to live.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 10
+            },
+            {
+              "to": "party",
+              "durability": 25
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

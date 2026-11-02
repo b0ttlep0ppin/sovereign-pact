@@ -1,0 +1,129 @@
+{
+  "id": "banquet_of_the_hollow_host",
+  "pools": [
+    "general",
+    "delve"
+  ],
+  "weight": 3,
+  "band": [
+    2,
+    8
+  ],
+  "requires": [
+    "!flag:banquet_seen"
+  ],
+  "title": "The Banquet",
+  "text": "A long table laid for exactly as many as you are. The candles are still warm. Nobody has touched the food.",
+  "options": [
+    {
+      "id": "eat",
+      "label": "Sit and eat.",
+      "rule": "vote",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "It is the best meal any of you have had since the rift opened. You sleep well, after.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 20
+            },
+            {
+              "to": "party",
+              "durability": 50
+            }
+          ]
+        },
+        {
+          "w": 35,
+          "text": "The meat moves on the plate. The hosts arrive late, and hungry.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -10
+            },
+            {
+              "encounter": {
+                "modifier": "ambush"
+              }
+            }
+          ]
+        },
+        {
+          "w": 15,
+          "text": "Under one plate, a ring that fits no finger twice.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 10
+            },
+            {
+              "resources": {
+                "essence": 6
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "one_tastes",
+      "label": "One of you tastes it first.",
+      "rule": "scion:most_expeditions",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "The veteran chews, waits, and nods. It is only food. The rest eat.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 10
+            },
+            {
+              "to": "party",
+              "durability": 25
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "The veteran goes grey and very still, and then laughs too long.",
+          "effects": [
+            {
+              "injury": "sanity"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "leave",
+      "label": "Leave it.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "You leave the chairs pushed in. Something sighs as the door closes.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -5
+            },
+            {
+              "flag": "banquet_seen"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

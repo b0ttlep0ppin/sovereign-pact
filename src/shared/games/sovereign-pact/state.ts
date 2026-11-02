@@ -247,6 +247,10 @@ export interface Expedition {
   carry: Record<number, { dur: Partial<Record<Location, number>>; broken: Location[]; mods?: Record<string, number> }>;
   /** Scions out of the fight for the rest of the expedition (Catatonic). */
   out: number[];
+  /** Events met this expedition: none comes twice. */
+  seen: string[];
+  /** The event waiting on the party (§9.4): each House's vote, −1 for a House with no one present. */
+  event?: { id: string; votes: (number | null)[] };
   /** How it ended: the boss beaten, turned back, wiped, nobody came, or it never left. */
   result?: "won" | "retreated" | "wiped" | "unanswered" | "stayed";
 }
@@ -424,6 +428,8 @@ export type SovMove =
   | { type: "lead"; person: number }
   /** The Leader's House: on to the next node, or home (§9.9). */
   | { type: "press_on" }
+  /** A House's vote on the waiting event's option (§9.4). */
+  | { type: "decide"; option: number }
   | { type: "retreat" }
   /** Retire a Scion, or bring a Retired one back (§6.12). */
   | { type: "retire"; person: number }

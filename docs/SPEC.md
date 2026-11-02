@@ -740,13 +740,13 @@ Resolved in the **Omens** step before the Settlement Phase opens:
 - Each Year the **Rift Gate** offers **2–3 expedition cards** (seeded), plus the mandatory one when due. [DECIDED] A **forced expedition** (§3.2) replaces the whole offer with its one card. A card shows: name, type, **level** (1–10), party size (4 or 8, or 2×4), its event-pool tags, its reward class, and, with a Rift Observatory, its boss type and pool preview.
 - Types: **Mandatory**, **Resource** (materials, shop unlocks, recipes), **Hunt** (a named monster; Valor and a trophy), **Rescue** (a lost party, a recruit, a Hostage), **Delve** (Relics, Lore, Essence; highest event density), **Pilgrimage** (blessings, Sanity, Holy/Dark pools).
 - Level: resource cards at the Year's band (Years 1–4: 1–3; 5–9: 3–5; 10–14: 5–7; 15–19: 7–9; 20: 10). Mandatory expeditions at levels 3 (Year 5), 6 (Year 10), 8 (Year 15), 10 (Year 20). Houses may pick a card above band for better rewards.
-- Houses **vote** on the card. [DECIDED for all votes] A tie costs Accord (−3) and is broken by the House with the highest Renown.
+- Houses **vote** on the card. [DECIDED for settlement votes; Expedition Phase ties cost nothing, 2026-11-02] A tie costs Accord (−3) and is broken by the House with the highest Renown.
 
 ### 9.2 Nomination, the Leader and departure
 
 - [DECIDED] **Each House fills its own seats with its own Scions.** Seats are divided equally among the Houses that want to field Scions (4 seats, 4 Houses: 1 each; 3 Houses: 2/1/1 with the extra seat going to the House with the fewest expeditions attended so far, then by rotation; 8 seats: double). A House may decline any of its seats, which pass to the others by the same order. Each House then picks which of its able Scions take its seats; nobody votes on another House's Scions. If the seats cannot be filled, the card cannot depart and the Houses choose another.
 - [DECIDED] Some events temporarily make one House **Regent** (a dictator or monarch for a Year or an expedition): the Regent allocates all seats, names the Leader and decides any `vote`-rule event alone. Regency is the only exception to self-nomination.
-- **Expedition Leader:** vote among the roster (each House one vote); ties cost Accord −3 and go to the Scion with the most expeditions. The Leader's House gains Renown; the Leader is the subject of leader-targeted events (good and bad) and of **Hubris**.
+- **Expedition Leader:** vote among the roster (each House one vote); ties go to the Scion with the most expeditions [DECIDED 2026-11-02: no Accord cost, only settlement ties cost Accord]. The Leader's House gains Renown; the Leader is the subject of leader-targeted events (good and bad) and of **Hubris**.
 - At departure, each Scion's Job, secondary set, passives and gear lock for the expedition.
 - Each 8-Scion expedition (and some 2×4 cards) uses the full 3×8 grid; 4-Scion cards use a 3×4 half grid (§10).
 
@@ -781,10 +781,11 @@ Resolved in the **Omens** step before the Settlement Phase opens:
 ```
 
 - **Rules** (`rule`) decide who picks the option, and often who the **subject** is (the Scion the effects apply to). The full catalogue, each tied to a kind of fiction:
+- [DECIDED, Q90, 2026-11-02] **The party votes on the option** (every House with someone in the party; a tie goes to the Leader's House at no cost: only settlement ties cost Accord); **the chosen option's rule names its subject**. `each_scion` and `secret` keep their own way of choosing.
 
 | Rule | Who decides / who is the subject | Fits fictions like |
 |---|---|---|
-| `vote` | All players present vote; ties cost Accord −3 and go to the Leader | Group deliberation |
+| `vote` | All players present vote; ties go to the Leader (no Accord cost) | Group deliberation |
 | `leader` | The Expedition Leader's player | Command decisions |
 | `scion:random` | A random Scion is the subject; their owner decides | Fate, traps, a voice picks one |
 | `scion:most_kills` / `fewest_kills` | Bloodiest / cleanest hands | Spirits of the slain; a pacifist shrine |

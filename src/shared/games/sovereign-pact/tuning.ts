@@ -59,6 +59,8 @@ export const TUNING = {
     bossReach: 2,
     valor: { battle: 1, boss: 5, retreat: 3 },
     lostPct: 50,
+    /** §9.3: an Event node draws from the card's own pools this often, else the general pool. */
+    ownEventPct: 50,
     /** The bot Leader turns back when a Scion's Sanity falls below this. */
     botRetreatSanity: 15,
   },
