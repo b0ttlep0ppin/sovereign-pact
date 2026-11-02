@@ -1,0 +1,54 @@
+/* The Town Map (§15.6), drawn in CSS until the Oryx tiles are cut: dark ground, saturated accents only for meaning. */
+.sp-map { position: relative; border: 1px solid var(--line); border-radius: 6px; padding: 56px 10px 10px; overflow: hidden; container-type: inline-size; }
+.sp-map__cracks { position: absolute; inset: 0 0 auto; height: 52px; pointer-events: none; }
+.sp-map__cracks span { position: absolute; top: 0; width: 2px; height: 46px; background: linear-gradient(#ffd9a0, transparent); transform: skewX(-18deg); filter: drop-shadow(0 0 3px #ff9a4a); }
+.sp-map__ground {
+  display: grid; gap: 8px; padding: 8px; border-radius: 4px;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr) minmax(0, 1fr);
+  grid-template-areas: "s0 gate s1" "s0 commons s1" "s2 commons s3" "walls walls walls";
+  /* Ground tiles: packed earth in a 24 px checker. */
+  background-color: #1e1a17;
+  background-image: linear-gradient(45deg, #231e1a 25%, transparent 25%, transparent 75%, #231e1a 75%), linear-gradient(45deg, #231e1a 25%, transparent 25%, transparent 75%, #231e1a 75%);
+  background-size: 24px 24px; background-position: 0 0, 12px 12px;
+}
+.sp-map__ground > section { min-width: 0; border-radius: 4px; padding: 8px; display: grid; gap: 6px; align-content: start; }
+.sp-map__ground strong { font-size: 0.8rem; letter-spacing: 0.06em; text-transform: uppercase; }
+.sp-map__gate { grid-area: gate; position: relative; text-align: center; justify-items: center; background: radial-gradient(ellipse at 50% 30%, #4a1f6e, #1a0f24 70%); border: 1px solid #6b3a94; }
+.sp-map__gate-tear { width: 70%; height: 18px; border-radius: 50%; background: linear-gradient(90deg, transparent, #b46cff, #f0d0ff, #b46cff, transparent); animation: sp-shimmer 3.6s ease-in-out infinite; }
+@keyframes sp-shimmer { 0%, 100% { opacity: 0.55; transform: scaleX(0.9); } 50% { opacity: 1; transform: scaleX(1.05); } }
+.sp-map__gate small { color: #c9a6e8; }
+.sp-map__commons { grid-area: commons; background: repeating-linear-gradient(0deg, #2a2622 0 22px, #26221e 22px 24px); border: 1px solid #3d362f; }
+.sp-map__lots { display: flex; flex-wrap: wrap; gap: 6px; }
+.sp-map__seat { border: 2px solid; background: rgb(20 18 16 / 0.85); }
+.sp-map__seat--0 { grid-area: s0; } .sp-map__seat--1 { grid-area: s1; } .sp-map__seat--2 { grid-area: s2; } .sp-map__seat--3 { grid-area: s3; }
+.sp-map__seat.is-fallen { filter: grayscale(0.8) brightness(0.7); }
+.sp-map__seat header { display: flex; align-items: center; gap: 6px; min-width: 0; }
+.sp-map__seat header strong { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.sp-map__banner { width: 8px; height: 26px; clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 80%, 0 100%); flex: none; }
+.sp-map__keep { display: grid; gap: 4px; padding: 6px; border-radius: 3px; background: #2b2520; border: 1px solid #4a4036; text-transform: capitalize; }
+.sp-map__blds { display: grid; grid-template-columns: repeat(auto-fill, minmax(78px, 1fr)); gap: 5px; }
+.sp-map__walls { grid-area: walls; background: repeating-linear-gradient(90deg, #39342f 0 30px, #2e2a26 30px 32px); border-top: 4px solid #4c463f; }
+.sp-map__hint { margin: 8px 2px 0; font-size: 0.85rem; color: var(--muted); }
+.sp-bld { position: relative; display: grid; gap: 2px; padding: 5px; border-radius: 3px; background: #2a2420; border: 1px solid #40372f; font-size: 0.72rem; min-width: 0; }
+.sp-bld--commons { background: #2e2a24; }
+.sp-bld--rising { border-style: dashed; color: var(--muted); }
+.sp-bld__glyph { font-size: 1.1rem; line-height: 1; color: var(--gold); }
+.sp-bld__name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+[data-target="yes"] { cursor: pointer; outline: 1px dashed transparent; outline-offset: -1px; }
+[data-target="yes"]:hover, [data-over="yes"] { outline-color: var(--accent); background-color: #3a3024; }
+.sp-pips { display: flex; gap: 2px; }
+.sp-pips span { width: 10px; height: 4px; background: #4a4036; }
+.sp-pips span.is-on { background: var(--gold); }
+.sp-chits { display: flex; flex-wrap: wrap; gap: 3px; }
+.sp-chits:empty { display: none; }
+.sp-chit { font: inherit; font-size: 0.68rem; font-weight: 700; width: 26px; height: 26px; border-radius: 50%; border: 2px solid #0008; color: #fff; text-shadow: 0 1px 0 #000; cursor: grab; padding: 0; }
+.sp-chit.is-recruit { border-style: dashed; }
+.sp-chit.is-picked { outline: 2px solid var(--gold); outline-offset: 1px; }
+.sp-chit:disabled { cursor: default; }
+.sp-chit:focus-visible { outline: 2px solid var(--text); outline-offset: 1px; }
+@container (max-width: 640px) {
+  .sp-map__ground { grid-template-columns: minmax(0, 1fr); grid-template-areas: "gate" "commons" "s0" "s1" "s2" "s3" "walls"; }
+}
+@media (prefers-reduced-motion: reduce) { .sp-map__gate-tear { animation: none; } }
+.sp-map__purse { font-size: 0.8rem; color: var(--muted); }
+.sp-map__marker { justify-self: start; font-size: 0.75rem; font-weight: 700; padding: 2px 8px; border-radius: 10px; background: var(--blood); color: var(--text); }
