@@ -4,6 +4,7 @@
 import { useId } from "react";
 import { Content } from "@vibepulse/shared/games/sovereign-pact";
 import { CHARGES } from "./charges";
+import { BONE, EdgeFilter, INK, PixelMarks } from "./PixelArt";
 
 export const HERALDRY_COLORS: ReadonlyMap<string, string> = new Map(Content.HERALDRY.palette.map((s) => [s.id, s.hex]));
 
@@ -31,29 +32,20 @@ const DIVISIONS: Record<string, string> = {
   checky: "M0 0 H16 V18 H0 Z M32 0 H48 V18 H32 Z M16 18 H32 V36 H16 Z M48 18 H64 V36 H48 Z M0 36 H16 V54 H0 Z M32 36 H48 V54 H32 Z M16 54 H32 V72 H16 Z M48 54 H64 V72 H48 Z",
 };
 
-const INK = "#0b0a0d";
-const BONE = "#ece0c4";
-const GILT = "#e3b04b";
-
+/** A House's color for text on the dark ground: its primary, or its secondary when the primary is too dark to read. */
+export function inkOf(colors: readonly string[] | undefined): string | undefined {
+  if (!colors) return undefined;
+  const hexes = colors.map((c) => HERALDRY_COLORS.get(c)).filter((h): h is string => !!h);
+  const light = (hex: string) => {
+    const n = parseInt(hex.slice(1), 16);
+    return 0.2126 * ((n >> 16) & 255) + 0.7152 * ((n >> 8) & 255) + 0.0722 * (n & 255);
+  };
+  return hexes.find((h) => light(h) >= 90) ?? (hexes.length ? "var(--text)" : undefined);
+}
 const lum = (hex: string) => {
   const n = parseInt(hex.slice(1), 16);
   return (0.2126 * ((n >> 16) & 255) + 0.7152 * ((n >> 8) & 255) + 0.0722 * (n & 255)) / 255;
 };
-
-/** The SVG path of one kind of pixel in a charge, row runs merged. */
-function pixels(rows: readonly string[], ch: string): string {
-  let d = "";
-  rows.forEach((row, y) => {
-    for (let x = 0; x < row.length; x++) {
-      if (row[x] !== ch) continue;
-      let w = 1;
-      while (row[x + w] === ch) w++;
-      d += `M${x} ${y}h${w}v1h${-w}z`;
-      x += w - 1;
-    }
-  });
-  return d;
-}
 
 /** A charge drawn at (x, y), `scale` units a pixel, in `color`, with its black edge. */
 function Charge({ id, x, y, scale, color, edge }: { id: string; x: number; y: number; scale: number; color: string; edge: string }) {
@@ -61,9 +53,7 @@ function Charge({ id, x, y, scale, color, edge }: { id: string; x: number; y: nu
   if (!rows) return null;
   return (
     <g transform={`translate(${x} ${y}) scale(${scale})`} filter={`url(#${edge})`} shapeRendering="crispEdges">
-      <path d={pixels(rows, "#")} fill={color} />
-      <path d={pixels(rows, "o")} fill={color === INK ? BONE : INK} />
-      <path d={pixels(rows, "+")} fill={color === BONE ? GILT : BONE} />
+      <PixelMarks rows={rows} color={color} />
     </g>
   );
 }
@@ -86,15 +76,7 @@ export function Emblem({ emblem, colors, size = 48 }: { emblem: { shield: string
         <clipPath id={clip}>
           <path d={outline} />
         </clipPath>
-        <filter id={edge} x="-20%" y="-20%" width="140%" height="140%">
-          <feMorphology in="SourceAlpha" operator="dilate" radius="0.6" result="grown" />
-          <feFlood floodColor={INK} />
-          <feComposite in2="grown" operator="in" />
-          <feMerge>
-            <feMergeNode />
-            <feMergeNode in="SourceGraphic" />
-          </feMerge>
-        </filter>
+        <EdgeFilter id={edge} />
       </defs>
       <g clipPath={`url(#${clip})`}>
         <rect width="64" height="72" fill={field} />

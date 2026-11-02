@@ -25,23 +25,28 @@
 .sp-map__seat header { display: flex; align-items: center; gap: 6px; min-width: 0; }
 .sp-map__seat header strong { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .sp-map__banner { width: 8px; height: 26px; clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 80%, 0 100%); flex: none; }
-.sp-map__keep { display: grid; gap: 4px; padding: 6px; border-radius: 3px; background: #2b2520; border: 1px solid #4a4036; text-transform: capitalize; }
+.sp-map__keep { display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 4px 10px; padding: 6px; border-radius: 2px; background: #241e19; border: 1px solid #4a4036; }
+.sp-map__keep .sp-chits { grid-column: 1 / -1; }
+.sp-map__seat-art { filter: drop-shadow(0 2px 0 #000); }
+.sp-map__keep .sp-bld__name { font: 400 1.25rem/1 var(--display); color: var(--text); }
 .sp-map__blds { display: grid; grid-template-columns: repeat(auto-fill, minmax(78px, 1fr)); gap: 5px; }
 .sp-map__walls { grid-area: walls; background: repeating-linear-gradient(90deg, #39342f 0 30px, #2e2a26 30px 32px); border-top: 4px solid #4c463f; }
 .sp-map__hint { margin: 8px 2px 0; font-size: 0.85rem; color: var(--muted); }
-.sp-bld { position: relative; display: grid; gap: 2px; padding: 5px; border-radius: 3px; background: #2a2420; border: 1px solid #40372f; font-size: 0.72rem; min-width: 0; }
+.sp-bld { position: relative; display: grid; gap: 3px; justify-items: start; padding: 5px; border-radius: 3px; background: #2a2420; border: 1px solid #40372f; font-size: 0.72rem; min-width: 0; }
 .sp-bld--commons { background: #2e2a24; }
 .sp-bld--rising { border-style: dashed; color: var(--muted); }
-.sp-bld__glyph { font-size: 1.1rem; line-height: 1; color: var(--gold); }
+.sp-bld__icon { display: block; }
 .sp-bld__name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 [data-target="yes"] { cursor: pointer; outline: 1px dashed transparent; outline-offset: -1px; }
 [data-target="yes"]:hover, [data-over="yes"] { outline-color: var(--accent); background-color: #3a3024; }
 .sp-pips { display: flex; gap: 2px; }
 .sp-pips span { width: 10px; height: 4px; background: #4a4036; }
 .sp-pips span.is-on { background: var(--gold); }
-.sp-chits { display: flex; flex-wrap: wrap; gap: 3px; }
+.sp-chits { display: flex; flex-wrap: wrap; gap: 10px 6px; padding-bottom: 6px; }
 .sp-chits:empty { display: none; }
-.sp-chit { font: inherit; font-size: 0.68rem; font-weight: 700; width: 26px; height: 26px; border-radius: 50%; border: 2px solid #0008; color: #fff; text-shadow: 0 1px 0 #000; cursor: grab; padding: 0; }
+/* A Scion's chit: what they carry, ringed in their House's color, their initials underneath. */
+.sp-chit { position: relative; display: inline-grid; place-items: center; width: 34px; height: 34px; padding: 0; border-radius: 50%; border: 3px solid; background: radial-gradient(circle at 50% 35%, #2b221b, #0d0a08); box-shadow: 0 2px 4px #000; cursor: grab; }
+.sp-chit__tag { position: absolute; bottom: -7px; left: 50%; transform: translateX(-50%); font: 700 0.6rem/1 var(--body); padding: 1px 3px; border-radius: 2px; background: #0d0a08; color: var(--text); border: 1px solid var(--line); pointer-events: none; }
 .sp-chit.is-recruit { border-style: dashed; }
 .sp-chit.is-picked { outline: 2px solid var(--gold); outline-offset: 1px; }
 .sp-chit:disabled { cursor: default; }
