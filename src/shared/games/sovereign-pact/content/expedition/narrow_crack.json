@@ -1,0 +1,78 @@
+{
+  "id": "narrow_crack",
+  "pools": [
+    "delve",
+    "deep_cold",
+    "forge_ruins"
+  ],
+  "weight": 3,
+  "band": [
+    1,
+    10
+  ],
+  "title": "The Narrow Crack",
+  "text": "The way on is a crack in the rock barely wide enough for a child. Someone has to try it first, and it should be the one carrying the most.",
+  "options": [
+    {
+      "id": "squeeze",
+      "label": "Send the heaviest through first.",
+      "rule": "scion:heaviest_gear",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "They scrape through, swearing, and the rest follow easily.",
+          "effects": [
+            {
+              "durability": -20,
+              "loc": "body"
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "They stick. Getting them out costs skin and an hour.",
+          "effects": [
+            {
+              "durability": -40,
+              "loc": "body"
+            },
+            {
+              "sanity": -10
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "around",
+      "label": "Look for another way.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "There is one. It is long.",
+          "effects": [
+            {
+              "sanity": -5
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "There is one, and something lives in it.",
+          "effects": [
+            {
+              "encounter": {}
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

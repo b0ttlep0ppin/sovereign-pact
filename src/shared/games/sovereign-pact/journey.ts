@@ -8,6 +8,7 @@ import { scionCombatant } from "./combat/build.ts";
 import { encounterBattle } from "./combat/encounter.ts";
 import { LOADOUTS } from "./combat/roster.ts";
 import { simulate } from "./combat/sim.ts";
+import { meta } from "./combat/status.ts";
 import type { Battle, Combatant } from "./combat/types.ts";
 import { meet } from "./events.ts";
 import { roster } from "./expedition.ts";
@@ -66,6 +67,8 @@ function party(s: SovState): Combatant[] {
       for (const loc of LOCATIONS) u.dur[loc] = Math.min(u.maxDur[loc], c.dur[loc] ?? u.maxDur[loc]);
       u.broken = c.broken.filter((l) => u.dur![l] === 0);
       for (const [k, v] of Object.entries(c.mods ?? {})) u.mods[k] = (u.mods[k] ?? 0) + v;
+      // An event's ailment, for this battle only.
+      for (const id of c.start ?? []) if (!u.statuses.some((x) => x.id === id)) u.statuses.push({ id, ticks: meta(id).ticks });
     }
     return u;
   });
@@ -77,6 +80,14 @@ export function die(s: SovState, p: Person, cause: string): void {
   s.people = s.people.filter((x) => x.id !== p.id);
   delete s.assign[p.id];
   log(s, `${p.name} of House ${s.houses[p.house]!.name} dies in the otherworld.`);
+}
+
+/** A Scion is Lost (§9.9): left behind in the otherworld, their gear with them, until a Rescue. */
+export function lose(s: SovState, p: Person): void {
+  p.status = "lost";
+  p.gear = {};
+  delete s.assign[p.id];
+  log(s, `${p.name} of House ${s.houses[p.host]!.name} is left behind in the otherworld.`);
 }
 
 /** What a battle leaves on the people: Sanity, MP and Durability carry; injuries last; the dead die; victory pays. */
@@ -212,12 +223,7 @@ export function home(s: SovState, how: NonNullable<Expedition["result"]>): void 
     withRng(s, (rng) => {
       for (const id of marching(s)) {
         const p = person(s, id);
-        if (rng.int(100) < J.lostPct) {
-          p.status = "lost";
-          p.gear = {};
-          delete s.assign[p.id];
-          log(s, `${p.name} of House ${s.houses[p.host]!.name} is left behind in the otherworld.`);
-        }
+        if (rng.int(100) < J.lostPct) lose(s, p);
       }
     });
   }

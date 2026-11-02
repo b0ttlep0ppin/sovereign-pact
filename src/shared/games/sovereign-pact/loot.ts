@@ -46,6 +46,14 @@ export function find(s: SovState, tier: ItemTier): Item {
   return item;
 }
 
+/** An event's find (§9.10): to `house`, or into the haul for the draft when it is null. */
+export function found(s: SovState, tier: ItemTier, house: number | null): void {
+  const item = find(s, tier);
+  if (house === null) return;
+  haul(s).items.pop();
+  give(s, item, house);
+}
+
 const chance = (s: SovState, pct: number) => withRng(s, (rng) => rng.int(100) < pct);
 
 /** A won Encounter: a roll on the drop table, and now and then an item. */

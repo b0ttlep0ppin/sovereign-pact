@@ -1,0 +1,68 @@
+{
+  "id": "saints_tongue",
+  "pools": [
+    "pilgrimage"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    9
+  ],
+  "title": "The Saint's Tongue",
+  "text": "In a reliquary of black glass: a tongue, pink and wet, that has not stopped praying in four hundred years.",
+  "options": [
+    {
+      "id": "kiss",
+      "label": "The most devout kisses the glass.",
+      "rule": "scion:trait:devout|scion:highest:sagacity",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 55,
+          "text": "Their hands are warm for days after, and wounds close under them.",
+          "effects": [
+            {
+              "trait": "+pious_hands"
+            },
+            {
+              "sanity": 15
+            }
+          ]
+        },
+        {
+          "w": 45,
+          "text": "The tongue stops, and so does theirs. They will find their voice again after a fight or two.",
+          "effects": [
+            {
+              "status": "silence"
+            },
+            {
+              "sanity": -10
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "leave",
+      "label": "Let it pray.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It prays for you as you go. You did not ask it to.",
+          "effects": [
+            {
+              "sanity": 5
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

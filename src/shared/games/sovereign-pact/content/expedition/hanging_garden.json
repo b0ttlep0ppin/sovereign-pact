@@ -1,0 +1,64 @@
+{
+  "id": "hanging_garden",
+  "pools": [
+    "pilgrimage",
+    "hollow_wood"
+  ],
+  "weight": 3,
+  "band": [
+    1,
+    7
+  ],
+  "title": "The Hanging Garden",
+  "text": "Fruit hangs from vines with no tree to hold them, heavy and gold, and the air smells of a summer none of you remember.",
+  "options": [
+    {
+      "id": "eat",
+      "label": "Eat the fruit.",
+      "rule": "scion:tarot:empress|vote",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "It tastes of every good year. Something in them grows.",
+          "effects": [
+            {
+              "sanity": 20
+            },
+            {
+              "growth": {
+                "all": 10
+              }
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "It tastes of sleep. They are still yawning when the next fight finds them.",
+          "effects": [
+            {
+              "status": "sleep"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pass",
+      "label": "Pass under it without touching.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The vines sway as you pass, disappointed.",
+          "effects": []
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "id": "offer_of_wings",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    5,
+    10
+  ],
+  "title": "An Offer of Wings",
+  "text": "A tall thing with too many feathers stands in the path and looks you over, all of you, like a buyer at a fair. It wants the lightest of you.",
+  "options": [
+    {
+      "id": "accept",
+      "label": "Let it choose.",
+      "rule": "scion:most_open_slots",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "It wraps the one it chose in its wings, and when it lets go they move like wind.",
+          "effects": [
+            {
+              "trait": "+fleet"
+            },
+            {
+              "sanity": -15
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "It takes something in trade and will not say what. They feel lighter, and emptier.",
+          "effects": [
+            {
+              "stat": {
+                "speed": 1
+              }
+            },
+            {
+              "stat": {
+                "sagacity": -1
+              }
+            },
+            {
+              "sanity": -20
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "refuse",
+      "label": "Tell it no.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "It shrugs, all its feathers at once, and is gone.",
+          "effects": []
+        },
+        {
+          "w": 30,
+          "text": "It does not like that answer.",
+          "effects": [
+            {
+              "encounter": {
+                "level": 1
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

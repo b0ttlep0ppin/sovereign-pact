@@ -1,11 +1,14 @@
 // Expedition events (§9.4): drawing them, the party's vote, the rules' subjects, and the effects.
 import { describe, expect, it } from "vitest";
-import { TRIP_EVENT_BY_ID, TRIP_EVENTS, type TripEffect, type TripOption } from "./content.ts";
+import { HOUSE_TRAITS, TAROT_BY_ID, TOWN_EVENT_BY_ID, TRAIT_BY_ID, TRAITS, TRIP_EVENT_BY_ID, TRIP_EVENTS, type TripEffect, type TripOption } from "./content.ts";
+import { STATUSES } from "./combat/status.ts";
+import { battle } from "./journey.ts";
 import { drawEvent, eligible, resolve, subjects } from "./events.ts";
 import { able, muster } from "./expedition.ts";
 import { sovereignPact, type SovMove, type SovState } from "./index.ts";
+import { mint } from "./items.ts";
 import { levelUp } from "./progression.ts";
-import type { ExpeditionCard } from "./state.ts";
+import { STATS, type ExpeditionCard } from "./state.ts";
 import { calm, campaign } from "./testing.ts";
 
 const g = sovereignPact;
@@ -167,7 +170,108 @@ describe("the effects (§9.4)", () => {
   });
 });
 
+describe("the rest of the rules (§9.4)", () => {
+  it("finds the laden, the unburdened, a card's bearer, a trait, the maimed and the once-retired; `|` falls back, then the party", () => {
+    const s = underway(2);
+    const party = [...ofHouse(s, 0), ...ofHouse(s, 1)];
+    const p = (i: number) => s.people.find((x) => x.id === party[i])!;
+    p(2).gear = {};
+    expect(subjects(s, "scion:most_open_slots").scions).toEqual([party[2]]);
+    p(1).gear.legs = mint(s, "sabatons", 0, 2).id;
+    expect(subjects(s, "scion:heaviest_gear").scions).toEqual([party[1]]);
+    for (const x of party) s.people.find((y) => y.id === x)!.tarot = "fool";
+    p(3).tarot = "empress";
+    expect(subjects(s, "scion:tarot:empress").scions).toEqual([party[3]]);
+    expect(subjects(s, "scion:tarot:hermit|leader").scions).toEqual([s.expedition!.leader]);
+    expect(subjects(s, "scion:tarot:hermit")).toEqual({ scions: party, house: null });
+    for (const x of party) s.people.find((y) => y.id === x)!.traits = [];
+    p(1).traits = ["devout"];
+    expect(subjects(s, "scion:trait:devout").scions).toEqual([party[1]]);
+    p(2).injuries = [{ id: "arms_broken_arm", years: 1 }];
+    expect(subjects(s, "scion:injured:any").scions).toEqual([party[2]]);
+    expect(subjects(s, "scion:injured:head|scion:retired_once").house).toBeNull();
+    p(0).hist.retired = 1;
+    expect(subjects(s, "scion:injured:head|scion:retired_once").scions).toEqual([party[0]]);
+    const tag = HOUSE_TRAITS.find((t) => t.tags?.length)!;
+    s.houses[1]!.traits = [tag.id];
+    s.houses[0]!.traits = [];
+    expect(subjects(s, `house:trait:${tag.tags![0]}`)).toEqual({ scions: ofHouse(s, 1), house: 1 });
+    expect([0, 1]).toContain(subjects(s, "house:random").house);
+  });
+});
+
+describe("the lasting effects (§9.4)", () => {
+  it("changes stats and growths, gains and loses traits (one of a group at a time), curses, and redraws the Tarot", () => {
+    const s = underway(1);
+    const id = ofHouse(s, 0)[0]!;
+    const p = () => s.people.find((x) => x.id === id)!;
+    const [base, growth] = [[...p().base], [...p().growth]];
+    p().traits = ["sluggish"];
+    p().tarot = "fool";
+    resolve(s, option("leader", { stat: { might: 2 } }, { growth: { all: 10, speed: 5 } }, { trait: "+fleet" }, { curse: true }, { tarot: true }));
+    expect(p().base[0]).toBe(base[0]! + 2);
+    expect(p().growth).toEqual(growth.map((g, i) => g + (STATS[i] === "speed" ? 5 : 10)));
+    expect(p().traits).toContain("fleet");
+    expect(p().traits).not.toContain("sluggish");
+    expect(p().traits.some((t) => TRAIT_BY_ID.get(t)!.tags?.includes("cursed"))).toBe(true);
+    expect(p().tarot).not.toBe("fool");
+    resolve(s, option("leader", { trait: "-fleet" }));
+    expect(p().traits).not.toContain("fleet");
+  });
+
+  it("an ailment waits for the next battle only; a Ward's Loyalty moves; a Scion can be Lost", () => {
+    const s = underway(2);
+    const [a, b] = ofHouse(s, 1);
+    for (const p of s.people) while (p.status === "scion" && p.level < 15) Object.assign(p, levelUp(p));
+    s.expedition!.leader = a!;
+    resolve(s, option("leader", { status: "poison" }));
+    expect(s.expedition!.carry[a!]!.start).toEqual(["poison"]);
+    s.expedition!.chain = ["encounter", "encounter", "boss"];
+    battle(s, false);
+    expect(s.expedition!.carry[a!]!.start).toBeUndefined();
+    const ward = s.people.find((p) => p.id === b)!;
+    ward.host = 0;
+    ward.loyalty = 50;
+    s.expedition!.leader = b!;
+    resolve(s, option("leader", { loyalty: -20 }));
+    expect(ward.loyalty).toBe(30);
+    resolve(s, option("leader", { scion_lost: true }));
+    expect(ward.status).toBe("lost");
+    expect(s.log.some((l) => l.includes("left behind"))).toBe(true);
+  });
+
+  it("an item goes to the subject's House, or to the draft when the party chose; a timeline entry is queued", () => {
+    const s = underway(2);
+    const owned = s.items.length;
+    resolve(s, option("house:highest_standing", { item: { tier: 3 } }, { timeline: { id: "locked_wing", years: 2 } }));
+    const house = s.items.at(-1)!.house;
+    expect(s.items.length).toBe(owned + 1);
+    expect(s.timeline.at(-1)).toEqual({ year: s.year + 2, id: "locked_wing", house });
+    resolve(s, option("vote", { item: { tier: 2 } }));
+    expect(s.items.length).toBe(owned + 1);
+    expect(s.expedition!.haul!.items.length).toBe(1);
+  });
+});
+
 describe("the content and the bot", () => {
+  it("names only real cards, traits, statuses and town events", () => {
+    const houseTags = new Set(HOUSE_TRAITS.flatMap((t) => [t.id, ...(t.tags ?? [])]));
+    const tags = new Set(TRAITS.flatMap((t) => [t.id, ...(t.tags ?? [])]));
+    for (const d of TRIP_EVENTS)
+      for (const o of d.options) {
+        for (const r of o.rule.split("|")) {
+          const [kind, a, b] = r.split(":");
+          if (a === "tarot") expect(TAROT_BY_ID.has(b!), `${d.id}: ${r}`).toBe(true);
+          if (a === "trait") expect((kind === "house" ? houseTags : tags).has(b!), `${d.id}: ${r}`).toBe(true);
+        }
+        for (const fx of o.outcomes.flatMap((x) => x.effects)) {
+          if (fx.trait) expect(TRAIT_BY_ID.has(fx.trait.slice(1)), `${d.id}: ${fx.trait}`).toBe(true);
+          if (fx.status) expect(STATUSES[fx.status], `${d.id}: ${fx.status}`).toBeDefined();
+          if (fx.timeline) expect(TOWN_EVENT_BY_ID.has(fx.timeline.id), `${d.id}: ${fx.timeline.id}`).toBe(true);
+        }
+      }
+  });
+
   it("tags every option of a choice for balancing (§9.5), and the bot takes the cautious one", () => {
     for (const d of TRIP_EVENTS) if (d.options.length > 1) for (const o of d.options) expect(o.tags?.length, `${d.id}.${o.id}`).toBeGreaterThan(0);
     const s = underway(1);

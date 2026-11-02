@@ -40,8 +40,8 @@
           "label": { "type": "string", "minLength": 1 },
           "rule": {
             "type": "string",
-            "pattern": "^(vote|leader|scion:random|scion:(most|fewest)_(expeditions|kills|healing|targeted)|scion:(highest|lowest):(might|resilience|guile|acuity|sagacity|speed|sanity)|house:(lowest|highest)_standing)$",
-            "description": "Who the option happens to (SPEC §9.4's rules): vote is the whole party, leader the Leader, scion:… one Scion, house:… one House present."
+            "pattern": "^(vote|leader|scion:random|scion:(most|fewest)_(expeditions|kills|healing|targeted)|scion:(highest|lowest):(might|resilience|guile|acuity|sagacity|speed|sanity)|scion:heaviest_gear|scion:most_open_slots|scion:tarot:[a-z_]+|scion:trait:[a-z_]+|scion:injured:(head|body|arms|legs|sanity|any)|scion:retired_once|house:(lowest|highest)_standing|house:random|house:trait:[a-z_]+)(\\|(vote|leader|scion:random|scion:(most|fewest)_(expeditions|kills|healing|targeted)|scion:(highest|lowest):(might|resilience|guile|acuity|sagacity|speed|sanity)|scion:heaviest_gear|scion:most_open_slots|scion:tarot:[a-z_]+|scion:trait:[a-z_]+|scion:injured:(head|body|arms|legs|sanity|any)|scion:retired_once|house:(lowest|highest)_standing|house:random|house:trait:[a-z_]+))*$",
+            "description": "Who the option happens to (SPEC §9.4's rules): vote is the whole party, leader the Leader, scion:… one Scion, house:… one House present. `a|b` falls back to b when nobody fits a; when nobody fits any, the whole party."
           },
           "tags": {
             "type": "array",
@@ -106,7 +106,17 @@
           "description": "A battle now, from the card's pool."
         },
         "skip": { "type": "integer", "minimum": 1, "maximum": 3, "description": "Nodes passed by, never the boss." },
-        "retreat": { "const": true, "description": "The expedition ends here, as a retreat." }
+        "retreat": { "const": true, "description": "The expedition ends here, as a retreat." },
+        "stat": { "type": "object", "propertyNames": { "enum": ["might", "resilience", "guile", "acuity", "sagacity", "speed"] }, "additionalProperties": { "type": "integer" }, "description": "Permanent base stat changes." },
+        "growth": { "type": "object", "propertyNames": { "enum": ["might", "resilience", "guile", "acuity", "sagacity", "speed", "all"] }, "additionalProperties": { "type": "integer" }, "description": "Growth changes in hundredths; all is every stat but Speed." },
+        "trait": { "type": "string", "pattern": "^[+-][a-z][a-z0-9_]*$", "description": "+id gains an individual trait (replacing one of its group), -id loses it." },
+        "curse": { "const": true, "description": "A random Curse the subject lacks." },
+        "tarot": { "const": true, "description": "The Tarot redrawn." },
+        "status": { "$ref": "defs.schema.json#/definitions/id", "description": "An ailment for the subject's next battle." },
+        "loyalty": { "type": "integer", "description": "A Ward's Loyalty, + or −." },
+        "scion_lost": { "const": true, "description": "The subject is Lost in the otherworld." },
+        "item": { "type": "object", "additionalProperties": false, "required": ["tier"], "properties": { "tier": { "enum": [2, 3, 4] } }, "description": "A found item: to the subject's House, or to the draft when the party chose together." },
+        "timeline": { "type": "object", "additionalProperties": false, "required": ["id", "years"], "properties": { "id": { "$ref": "defs.schema.json#/definitions/id" }, "years": { "type": "integer", "minimum": 1, "maximum": 10 } }, "description": "A town event queued on the timeline." }
       }
     }
   }

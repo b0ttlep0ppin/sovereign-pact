@@ -1,0 +1,43 @@
+{
+  "id": "the_lullaby",
+  "pools": [
+    "general"
+  ],
+  "weight": 3,
+  "band": [
+    1,
+    10
+  ],
+  "title": "The Lullaby",
+  "text": "Someone is singing just past the firelight, an old song your nurses knew. One of you is already nodding.",
+  "options": [
+    {
+      "id": "listen",
+      "label": "Who sleeps?",
+      "rule": "scion:lowest:acuity",
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "They sleep through the night and wake slow and heavy.",
+          "effects": [
+            {
+              "status": "sleep"
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "They dream of a different card turning over, and wake under a different star.",
+          "effects": [
+            {
+              "tarot": true
+            },
+            {
+              "sanity": 10
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

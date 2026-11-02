@@ -2,6 +2,19 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 6f: the rest of the event rules and lasting effects) — implementer
+- **Rules added** (`events.ts`):
+  - `scion:heaviest_gear` (gear weight), `scion:most_open_slots`, `scion:tarot:<card>`, `scion:trait:<tag>` (a trait id or tag), `scion:injured:<location|any>` and `scion:retired_once`.
+  - `house:trait:<tag>` and `house:random`.
+- Reading: a rule that may fit nobody can name a fallback, `a|b` ("scion:injured:arms|scion:lowest:might", the Altar of Hands' "else lowest Might"). When nothing fits, the whole party is the subject, as §9.4 says for `trait`. Ties go to the first fielded. `retired_once` reads a new history counter that retiring adds to.
+- **Effects added:**
+  - `stat` (permanent base) and `growth` (hundredths; `all` is every stat but Speed).
+  - `trait` (`+id` / `-id`; a gained trait replaces one of its group), `curse` (a random trait tagged cursed) and `tarot` (redrawn, and no longer reversed).
+  - `status` (an ailment on the subject at the start of the next battle only), `loyalty` (Wards only), `scion_lost` (as in a wipe).
+  - `item` (a found item of a tier: to the subject's House, into the draft when the party is the subject) and `timeline` (a town event queued N Years on, for the subject's House).
+- Still to come: `each_scion` and `secret` events, Forks, `blessing` (timed traits), `transform`, `house_improvement`.
+- 11 new events from §9.7's list and in its spirit (23 in all).
+
 ## 2026-11-02 (implementation, Milestone 6e: loot and the draft) — implementer
 - **The haul** (`loot.ts`): everything found on the way (Encounter drops, Caches, the boss) rides home with the party and is shared out when it comes home, won or turned back (§9.9: "returns with everything carried so far"). A wipe loses it. Event finds still land at once, by §9.10's subject rule.
 - **Drop tables** are per pool (`content/pools.json` `drops`, first pass): each material's % per roll and Essence's. A won Encounter rolls once and has a 10% chance of an item (Common, Fine at 20% + 5% × level). Common materials come 1 + level/3 at a time, Essence 1 + level/4, rare materials one.
