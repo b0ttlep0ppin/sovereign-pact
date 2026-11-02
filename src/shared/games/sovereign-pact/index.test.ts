@@ -95,9 +95,9 @@ describe("a whole campaign with bots", () => {
     if (res.kind !== "win") return;
     expect(g.activePlayers(end)).toEqual([]);
     if (!end.outcome!.won) {
-      // Crises can break the settlement before Year 20 (§3.3).
+      // Crises can break the settlement before Year 20, or the final expedition can fail (§3.3).
       expect(res.winners).toEqual([]);
-      expect(end.accord <= 0 || end.doom >= 100).toBe(true);
+      expect(end.accord <= 0 || end.doom >= 100 || end.year === 20).toBe(true);
       return;
     }
     expect(end.year).toBe(20);

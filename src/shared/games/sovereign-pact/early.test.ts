@@ -6,6 +6,7 @@ import { muster } from "./expedition.ts";
 import { band, botCard, offer } from "./gate.ts";
 import { baseOf, itemById } from "./items.ts";
 import { botPress } from "./journey.ts";
+import { assignPlan } from "./bot.ts";
 import { levelUp, mayWield, xpAt } from "./progression.ts";
 import { promoteRecruit } from "./promotion.ts";
 import type { ExpeditionCard, SovState } from "./state.ts";
@@ -88,5 +89,17 @@ describe("the bot Leader", () => {
     expect(botPress(s)).toBe(true);
     s.expedition!.out.push(b!);
     expect(botPress(s)).toBe(false);
+  });
+});
+
+describe("the bot's Sorties", () => {
+  it("go with two Scions or more; a lone Scion rests instead", () => {
+    const s = calm(campaign(2, 3));
+    const sortie = (house: number) => [...assignPlan(s, house).values()].filter((a) => a?.to === "sortie").length;
+    expect(sortie(0)).toBeGreaterThanOrEqual(TUNING.sortie.botMin);
+    const keep = s.people.find((p) => p.host === 0 && p.status === "scion")!;
+    s.people = s.people.filter((p) => p.host !== 0 || p.status !== "scion" || p === keep);
+    expect(sortie(0)).toBe(0);
+    expect(assignPlan(s, 0).get(keep.id)).toEqual({ to: "rest" });
   });
 });

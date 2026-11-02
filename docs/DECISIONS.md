@@ -2,6 +2,15 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, tuning pass 3: the middle Years) — implementer
+- **Seen**: after pass 2, bot campaigns still fell at the mandatory Years 5 and 10. The best Scions stood near 2.5L there, not the 3L reference, and an 8-Scion mandatory party is half fresh promotions.
+- **Knobs**:
+  - `enemies.soften` now runs through every level: 0.5, 0.55, 0.6, 0.65, 0.7, 0.7, 0.75, 0.75, 0.8, 0.8 at L1–10.
+  - Base XP is 40 a battle and 150 an expedition (catch-up stays +50% a level below 3L).
+  - Bots send no Sortie of fewer than two Scions (`sortie.botMin`); a lone Scion rests instead.
+- **Campaign simulator**: `npm run sim:campaign -- [--houses H] [--runs N] [--seed S] [--short] [--each]` plays whole bot campaigns. It reports how they ended, expeditions by result (mandatory ones apart), and the best four Scions' average level by Year.
+- **Result**, 27 bot campaigns from 1 to 4 Houses: 5 won (none before). About half of all expeditions triumph. The best Scions average about 9 at Year 5, 14–21 at Year 10 and 14–25 at Year 15, which is about §6.6's "20–30 by Year 20" for those who live. The usual loss now is the Year 20 assault on the rift, then Doom at Year 15 or Accord. Bots are cautious and never play battles by hand, so people should do better. Numbers to revisit when battles are playable.
+
 ## 2026-11-02 (implementation, tuning pass 2: the first Years) — implementer
 - **Seen**: bot parties of level-1 Scions lost most L1 fights the simulator said they win. The simulator's party is level 3L with Fine gear and spent JP; the campaign's had Crude gear, no abilities, and a Vagabond or Gambler starting with a knife in the Back line, where it cannot reach and only Defends.
 - **Starting kit**: each Job names its `starter` weapon in `jobs.json` (a Vagabond's bow, a Gambler's crossbow, a Minstrel's instrument). New Scions, at founding or promotion, start with `progression.startJp` (150) JP in their Job, enough for a first ability or two. Reading: §6.5 is silent on starting JP.

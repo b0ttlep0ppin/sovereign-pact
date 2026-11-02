@@ -116,6 +116,9 @@ export function assignPlan(s: SovState, house: number): Map<number, Assignment |
       plan.set(p.id, { to: "sortie", at: SORTIES[0]!.id });
     } else plan.set(p.id, p.status === "recruit" ? undefined : { to: "rest" });
   }
+  // A Sortie of one is driven back more often than not: a lone Scion rests instead (tuning pass).
+  const sortie = [...plan].filter(([, a]) => a?.to === "sortie");
+  if (sortie.length < TUNING.sortie.botMin) for (const [id] of sortie) plan.set(id, { to: "rest" });
   return plan;
 }
 
