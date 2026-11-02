@@ -1,0 +1,81 @@
+{
+  "id": "the_star_iron",
+  "pools": [
+    "resource"
+  ],
+  "weight": 1,
+  "band": [
+    3,
+    10
+  ],
+  "title": "The Star Iron",
+  "text": "A fallen star, still warm, in a crater of glass. Its iron is the best there is.",
+  "options": [
+    {
+      "id": "cut",
+      "label": "Cut it.",
+      "rule": "vote",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Star iron, heavy as sin.",
+          "effects": [
+            {
+              "resources": {
+                "iron": 8
+              }
+            },
+            {
+              "to": "party",
+              "durability": -10
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "study",
+      "label": "The wisest studies it first.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It is not iron. It is something else, and it is worth more.",
+          "effects": [
+            {
+              "resources": {
+                "essence": 6
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "leave",
+      "label": "Leave it. Stars should not be cut.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It hums as you go.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 3
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

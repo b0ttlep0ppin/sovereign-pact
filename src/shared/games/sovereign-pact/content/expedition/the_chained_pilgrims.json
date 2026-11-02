@@ -1,0 +1,74 @@
+{
+  "id": "the_chained_pilgrims",
+  "pools": [
+    "pilgrimage"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    10
+  ],
+  "title": "The Chained Pilgrims",
+  "text": "Pilgrims walk the road chained together as penance. One begs to be freed.",
+  "options": [
+    {
+      "id": "free",
+      "label": "Free the one.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The others curse you, and she weeps with thanks.",
+          "effects": [
+            {
+              "score": {
+                "renown": 1
+              }
+            },
+            {
+              "to": "party",
+              "sanity": -3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "respect",
+      "label": "Respect their penance.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "They walk on.",
+          "effects": []
+        }
+      ]
+    },
+    {
+      "id": "strong",
+      "label": "The strongest breaks all the chains.",
+      "rule": "scion:highest:might",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Freed, and furious.",
+          "effects": [
+            {
+              "encounter": {}
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

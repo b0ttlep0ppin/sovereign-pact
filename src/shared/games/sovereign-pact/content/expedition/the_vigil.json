@@ -1,0 +1,56 @@
+{
+  "id": "the_vigil",
+  "pools": [
+    "pilgrimage"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    10
+  ],
+  "title": "The Vigil",
+  "text": "Pilgrims keep an all-night vigil at a roadside altar and invite you to join.",
+  "options": [
+    {
+      "id": "join",
+      "label": "Each Scion keeps the vigil.",
+      "rule": "each_scion",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A long night, a clear morning.",
+          "effects": [
+            {
+              "sanity": 10
+            },
+            {
+              "status": "slow"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sleep",
+      "label": "Each Scion sleeps instead.",
+      "rule": "each_scion",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Rested.",
+          "effects": [
+            {
+              "sanity": 3
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "id": "the_calling_horn",
+  "pools": [
+    "hunt"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    10
+  ],
+  "title": "The Calling Horn",
+  "text": "An old hunter's horn, on a cairn. The hunters say it calls any beast that hears it.",
+  "options": [
+    {
+      "id": "blow",
+      "label": "Blow it.",
+      "rule": "leader",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Every beast for miles hears it.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "surprise",
+                "level": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "take",
+      "label": "Take it home.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "For another day.",
+          "effects": [
+            {
+              "item": {
+                "tier": 2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "quiet",
+      "label": "The quietest blows it softly.",
+      "rule": "scion:highest:guile",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Only the quarry hears.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "surprise"
+              }
+            },
+            {
+              "xp": 40
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

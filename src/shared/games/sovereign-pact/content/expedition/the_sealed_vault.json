@@ -1,0 +1,84 @@
+{
+  "id": "the_sealed_vault",
+  "pools": [
+    "delve"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    10
+  ],
+  "title": "The Sealed Vault",
+  "text": "A vault door with a House's crest, not yours, sealed in wax a century old.",
+  "options": [
+    {
+      "id": "break",
+      "label": "Break the seal.",
+      "rule": "vote",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "Old wealth.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 25
+              }
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "Old guardians.",
+          "effects": [
+            {
+              "encounter": {
+                "level": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "read",
+      "label": "The wisest reads the crest.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A House that fell. Its secrets are worth more than its gold.",
+          "effects": [
+            {
+              "score": {
+                "lore": 2,
+                "intrigue": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "leave",
+      "label": "Leave it sealed.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Some doors are best left.",
+          "effects": []
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,81 @@
+{
+  "id": "the_last_letter",
+  "pools": [
+    "rescue"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    10
+  ],
+  "title": "The Last Letter",
+  "text": "A letter, sealed, addressed to the House, on a body that is not one of yours. It was carried for a Lost Scion.",
+  "options": [
+    {
+      "id": "read",
+      "label": "Read it.",
+      "rule": "vote",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Where they are, and how long they can hold.",
+          "effects": [
+            {
+              "foresee": true
+            },
+            {
+              "skip": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "carry",
+      "label": "Carry it home unopened.",
+      "rule": "leader",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Honor kept.",
+          "effects": [
+            {
+              "score": {
+                "renown": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "courier",
+      "label": "The healer tends the courier's body for burial.",
+      "rule": "scion:most_healing|scion:random",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "In his pocket, a second letter.",
+          "effects": [
+            {
+              "skip": 1
+            },
+            {
+              "to": "party",
+              "sanity": 5
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

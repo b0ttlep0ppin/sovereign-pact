@@ -1,0 +1,79 @@
+{
+  "id": "the_ghost_of_the_lost",
+  "pools": [
+    "rescue"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    10
+  ],
+  "title": "The Ghost of the Lost",
+  "text": "A ghost in your House's colors walks the road. It is not one of your Lost. It was someone else's.",
+  "options": [
+    {
+      "id": "ask",
+      "label": "Ask it what it saw.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It points the way, and fades.",
+          "effects": [
+            {
+              "skip": 1
+            },
+            {
+              "to": "party",
+              "sanity": -3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bury",
+      "label": "Find its bones and bury them.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A long hour. It thanks you.",
+          "effects": [
+            {
+              "score": {
+                "renown": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "flee",
+      "label": "Run from it.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It follows a while.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -8
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

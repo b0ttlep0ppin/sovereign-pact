@@ -1,0 +1,86 @@
+{
+  "id": "the_pilgrims_feast",
+  "pools": [
+    "pilgrimage"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    10
+  ],
+  "title": "The Pilgrims' Feast",
+  "text": "A feast day at a shrine town. Pilgrims share food with anyone who has walked the road.",
+  "options": [
+    {
+      "id": "eat",
+      "label": "Eat with them.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Full, and among friends.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 10
+            },
+            {
+              "to": "party",
+              "mp": 10
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "trade",
+      "label": "Trade at the feast-day market.",
+      "rule": "leader",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Good prices.",
+          "effects": [
+            {
+              "item": {
+                "tier": 2
+              }
+            },
+            {
+              "resources": {
+                "gold": -10
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "preach",
+      "label": "The devout leads a prayer.",
+      "rule": "scion:trait:devout|scion:highest:sagacity",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The town remembers your House.",
+          "effects": [
+            {
+              "score": {
+                "renown": 2
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

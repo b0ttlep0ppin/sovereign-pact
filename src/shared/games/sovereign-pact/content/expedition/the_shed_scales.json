@@ -1,0 +1,81 @@
+{
+  "id": "the_shed_scales",
+  "pools": [
+    "hunt"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    10
+  ],
+  "title": "The Shed Scales",
+  "text": "Scales the quarry has shed, sharp as knives, scattered along its path.",
+  "options": [
+    {
+      "id": "gather",
+      "label": "Gather them.",
+      "rule": "vote",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Good for armor.",
+          "effects": [
+            {
+              "resources": {
+                "wyrmbone": 2
+              }
+            },
+            {
+              "to": "party",
+              "durability": -5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "follow",
+      "label": "Follow the trail of scales.",
+      "rule": "leader",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "To the quarry, molting and weak.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "surprise"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "study",
+      "label": "The wisest studies the scales.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Its weak point, under the left wing.",
+          "effects": [
+            {
+              "to": "party",
+              "status": "protect"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

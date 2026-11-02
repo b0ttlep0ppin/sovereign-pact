@@ -1,0 +1,80 @@
+{
+  "id": "the_broken_bridge",
+  "pools": [
+    "rescue"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    10
+  ],
+  "title": "The Broken Bridge",
+  "text": "The bridge the Lost crossed is down. They cut it behind them, to stop whatever was following.",
+  "options": [
+    {
+      "id": "rebuild",
+      "label": "Rebuild it.",
+      "rule": "vote",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Slow, and whatever they fled is still here.",
+          "effects": [
+            {
+              "encounter": {}
+            },
+            {
+              "skip": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "climb",
+      "label": "The quickest climbs down and across.",
+      "rule": "scion:highest:speed",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Across, and a rope for the rest.",
+          "effects": [
+            {
+              "skip": 1
+            },
+            {
+              "durability": -20,
+              "loc": "arms"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "around",
+      "label": "Find another crossing.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A day lost.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -5
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

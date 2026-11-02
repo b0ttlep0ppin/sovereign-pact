@@ -1,0 +1,84 @@
+{
+  "id": "the_lowest_level",
+  "pools": [
+    "delve"
+  ],
+  "weight": 1,
+  "band": [
+    5,
+    10
+  ],
+  "title": "The Lowest Level",
+  "text": "Stairs go down past where any map shows. The air is warm, and smells of rain.",
+  "options": [
+    {
+      "id": "down",
+      "label": "Go down.",
+      "rule": "vote",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "A garden underground, impossible and real.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 15
+            },
+            {
+              "to": "party",
+              "status": "regen"
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "What tends the garden.",
+          "effects": [
+            {
+              "encounter": {
+                "level": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "listen",
+      "label": "The keenest ear listens first.",
+      "rule": "scion:highest:acuity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Rain, and singing. Then nothing.",
+          "effects": [
+            {
+              "foresee": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "up",
+      "label": "Go back up.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Some places are not for you.",
+          "effects": []
+        }
+      ]
+    }
+  ]
+}

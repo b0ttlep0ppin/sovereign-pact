@@ -1,0 +1,93 @@
+{
+  "id": "the_mushroom_cellar",
+  "pools": [
+    "resource"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    10
+  ],
+  "title": "The Mushroom Cellar",
+  "text": "A cellar of glowing mushrooms, prized by healers and alchemists.",
+  "options": [
+    {
+      "id": "pick",
+      "label": "Pick them.",
+      "rule": "vote",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "Baskets of light.",
+          "effects": [
+            {
+              "resources": {
+                "essence": 4
+              }
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "Spores.",
+          "effects": [
+            {
+              "to": "party",
+              "status": "confusion"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "eat",
+      "label": "The toughest tries one.",
+      "rule": "scion:highest:resilience",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "Visions, and clarity.",
+          "effects": [
+            {
+              "foresee": true
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "Visions, and vomiting.",
+          "effects": [
+            {
+              "status": "poison"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "seed",
+      "label": "Take spores home to grow.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A crop for the House.",
+          "effects": [
+            {
+              "house_improvement": "building"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
