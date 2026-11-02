@@ -26,24 +26,34 @@ export function sideText(view: SovView, side: Side): string {
   return parts.join(", ") || "nothing";
 }
 
-const clean = (side: { gold: number; stores: Record<string, number>; items: number[] }): Side => {
+type Draft = { gold: number; stores: Record<string, number>; items: number[]; wards: number[] };
+const blank = (): Draft => ({ gold: 0, stores: {}, items: [], wards: [] });
+
+const clean = (side: Draft): Side => {
   const stores = Object.fromEntries(Object.entries(side.stores).filter(([, n]) => n > 0));
-  return { ...(side.gold > 0 ? { gold: side.gold } : {}), ...(Object.keys(stores).length ? { stores } : {}), ...(side.items.length ? { items: side.items } : {}) };
+  return {
+    ...(side.gold > 0 ? { gold: side.gold } : {}),
+    ...(Object.keys(stores).length ? { stores } : {}),
+    ...(side.items.length ? { items: side.items } : {}),
+    ...(side.wards.length ? { wards: side.wards } : {}),
+  };
 };
+const toggle = (list: number[], id: number, on: boolean) => (on ? [...list, id] : list.filter((x) => x !== id));
 
 export default function Deals({ view, sendMove, canAct }: Props) {
   const me = view.me;
   const mine = view.mine;
   const others = view.houses.filter((h) => h.index !== me);
   const [to, setTo] = useState(others[0]?.index ?? -1);
-  const [give, setGive] = useState({ gold: 0, stores: {} as Record<string, number>, items: [] as number[] });
-  const [get, setGet] = useState({ gold: 0, stores: {} as Record<string, number>, items: [] as number[] });
+  const [give, setGive] = useState(blank);
+  const [get, setGet] = useState(blank);
   const [open, setOpen] = useState(true);
   if (me === null || !mine || !others.length) return null;
   const name = (h: number) => `House ${view.houses[h]?.name}`;
   const worn = new Set(view.people.flatMap((p) => Object.values(p.gear ?? {})));
   const stash = view.items.filter((i) => i.house === me && !worn.has(i.id));
   const held = KEYS.filter((k) => (mine.stores[k] ?? 0) > 0);
+  const scions = (h: number) => view.people.filter((p) => p.host === h && p.status === "scion");
   const num = (v: string) => Math.max(0, Math.floor(Number(v) || 0));
   const ready = canAct && to >= 0 && (Object.keys(clean(give)).length > 0 || Object.keys(clean(get)).length > 0);
   return (
@@ -88,14 +98,20 @@ export default function Deals({ view, sendMove, canAct }: Props) {
             e.preventDefault();
             if (!ready) return;
             sendMove({ type: "offer", to, give: clean(give), get: clean(get), open });
-            setGive({ gold: 0, stores: {}, items: [] });
-            setGet({ gold: 0, stores: {}, items: [] });
+            setGive(blank());
+            setGet(blank());
           }}
         >
           <h3>Make an offer</h3>
           <label>
             To{" "}
-            <select value={to} onChange={(e) => setTo(Number(e.target.value))}>
+            <select
+              value={to}
+              onChange={(e) => {
+                setTo(Number(e.target.value));
+                setGet({ ...get, wards: [] });
+              }}
+            >
               {others.map((h) => (
                 <option key={h.index} value={h.index}>
                   House {h.name}
@@ -115,7 +131,12 @@ export default function Deals({ view, sendMove, canAct }: Props) {
             ))}
             {stash.map((i) => (
               <label key={i.id}>
-                <input type="checkbox" checked={give.items.includes(i.id)} onChange={(e) => setGive({ ...give, items: e.target.checked ? [...give.items, i.id] : give.items.filter((x) => x !== i.id) })} /> {itemName(i)}
+                <input type="checkbox" checked={give.items.includes(i.id)} onChange={(e) => setGive({ ...give, items: toggle(give.items, i.id, e.target.checked) })} /> {itemName(i)}
+              </label>
+            ))}
+            {scions(me).map((p) => (
+              <label key={p.id} title="As a Ward: they live and fight for the other House (§6.9)">
+                <input type="checkbox" checked={give.wards.includes(p.id)} onChange={(e) => setGive({ ...give, wards: toggle(give.wards, p.id, e.target.checked) })} /> {p.name} as a Ward
               </label>
             ))}
           </fieldset>
@@ -127,6 +148,11 @@ export default function Deals({ view, sendMove, canAct }: Props) {
             {KEYS.map((k) => (
               <label key={k}>
                 {word(k)} <input type="number" min={0} value={get.stores[k] ?? 0} onChange={(e) => setGet({ ...get, stores: { ...get.stores, [k]: num(e.target.value) } })} />
+              </label>
+            ))}
+            {scions(to).map((p) => (
+              <label key={p.id} title="As a Ward: they would live and fight for you (§6.9)">
+                <input type="checkbox" checked={get.wards.includes(p.id)} onChange={(e) => setGet({ ...get, wards: toggle(get.wards, p.id, e.target.checked) })} /> {p.name} as a Ward
               </label>
             ))}
           </fieldset>

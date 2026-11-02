@@ -43,4 +43,19 @@ describe("deals (§8.9)", () => {
     fireEvent.click(within(form).getByRole("button", { name: "Offer" }));
     expect(sendMove).toHaveBeenCalledWith({ type: "offer", to: 1, give: { stores: { timber: 6 } }, get: { gold: 15 }, open: true });
   });
+
+  it("offers a Scion as a Ward, or asks for one of theirs", () => {
+    const { s, view } = town();
+    const mine = s.people.find((p) => p.host === 0 && p.status === "scion")!;
+    const theirs = s.people.find((p) => p.host === 1 && p.status === "scion")!;
+    const sendMove = vi.fn();
+    render(<Deals view={view} sendMove={sendMove} canAct />);
+    const form = screen.getByRole("form", { name: "Make an offer" });
+    const [giveSet, getSet] = within(form).getAllByRole("group");
+    fireEvent.click(within(giveSet!).getByLabelText(`${mine.name} as a Ward`));
+    fireEvent.click(within(getSet!).getByLabelText(`${theirs.name} as a Ward`));
+    fireEvent.click(within(form).getByRole("button", { name: "Offer" }));
+    expect(sendMove).toHaveBeenCalledWith({ type: "offer", to: 1, give: { wards: [mine.id] }, get: { wards: [theirs.id] }, open: true });
+    expect(sideText(view, { wards: [mine.id] })).toBe(`${mine.name} as a Ward`);
+  });
 });
