@@ -6,6 +6,7 @@ import { BEARDS, Content, HAIR_COLORS, HAIR_STYLES, itemName, styleOf, type SovM
 import { useState } from "react";
 import { inkOf } from "./Emblem";
 import ScionSprite, { bornLook, lookOf } from "./ScionSprite";
+import { AffinityRow, STATS, StatGrid, TarotBadge } from "./Stats";
 
 /** Head and shoulders in a 64 px portrait frame: x, y, width, height. */
 export const BUST: [number, number, number, number] = [12, 4, 40, 44];
@@ -14,7 +15,7 @@ type Props = { view: SovView; sendMove: (m: SovMove) => void; canAct: boolean };
 type Person = SovView["people"][number];
 type JobId = NonNullable<Person["job"]>;
 
-export const STATS = ["Might", "Resilience", "Guile", "Acuity", "Sagacity", "Speed"];
+export { STATS };
 const GROUPS: { status: Person["status"]; title: string }[] = [
   { status: "scion", title: "Scions" },
   { status: "retired", title: "Retired" },
@@ -26,10 +27,11 @@ const words = (id: string) => id.replace(/_/g, " ");
 export const TAROT_BY_ID = new Map(Content.TAROT.map((t) => [t.id, t]));
 
 /** One trait or the Tarot card: its name, then what it does (Crunch) or how it reads (Flavor). */
-export function TraitLine({ kind, name, text }: { kind?: string; name: string; text?: string }) {
+export function TraitLine({ kind, name, text, tarot }: { kind?: string; name: string; text?: string; tarot?: string }) {
+  const card = tarot ? TAROT_BY_ID.get(tarot) : undefined;
   return (
     <li className={kind ? "is-tarot" : undefined}>
-      {kind ? <span className="sp-person__kind">{kind}</span> : null}
+      {tarot ? <TarotBadge id={tarot} number={card?.number} /> : kind ? <span className="sp-person__kind">{kind}</span> : null}
       <strong>{name}</strong>
       {text ? <span className="sp-ability__text">{text}</span> : null}
     </li>
@@ -96,27 +98,29 @@ function Card({ p, view, sendMove, canAct }: Props & { p: Person }) {
         {p.change ? <small> · {Content.CHANGE_BY_ID.get(p.change)?.name ?? words(p.change)}</small> : null}
       </header>
       {p.base ? (
-        <dl className="sp-person__stats">
-          {STATS.map((s, i) => (
-            <div key={s} title={s}>
-              <dt>{s.slice(0, 3)}</dt>
-              <dd>{p.base![i]}</dd>
-            </div>
-          ))}
-          {p.sanity !== undefined ? (
-            <div title="Sanity" className="is-sanity">
-              <dt>San</dt>
-              <dd>{p.sanity}</dd>
-            </div>
-          ) : null}
-          {p.mp !== undefined ? (
-            <div title="MP" className="is-mp">
-              <dt>MP</dt>
-              <dd>{p.mp}</dd>
-            </div>
-          ) : null}
-        </dl>
+        <StatGrid
+          base={p.base}
+          stats={p.stats}
+          from={p.statFrom}
+          extra={
+            <>
+              {p.sanity !== undefined ? (
+                <div title="Sanity: the mind's last line. At 0 they break; the Chapel and a Year's rest restore it." className="is-sanity">
+                  <dt>San</dt>
+                  <dd>{p.sanity}</dd>
+                </div>
+              ) : null}
+              {p.mp !== undefined ? (
+                <div title="MP: spent on spells and songs; it carries through an expedition and refills at home." className="is-mp">
+                  <dt>MP</dt>
+                  <dd>{p.mp}</dd>
+                </div>
+              ) : null}
+            </>
+          }
+        />
       ) : null}
+      {p.aff ? <AffinityRow aff={p.aff} from={p.affFrom} /> : null}
       {p.potential || p.loyalty !== undefined ? (
         <p className="sp-person__meta">
           {p.potential ? `${p.potential[0]!.toUpperCase()}${p.potential.slice(1)} potential` : ""}
@@ -127,7 +131,7 @@ function Card({ p, view, sendMove, canAct }: Props & { p: Person }) {
       {p.status === "recruit" ? <RecruitTask p={p} view={view} sendMove={sendMove} canAct={canAct} /> : null}
       {p.tarot || p.traits.length ? (
         <ul className="sp-person__traits">
-          {p.tarot ? <TraitLine kind="Tarot" name={TAROT_BY_ID.get(p.tarot)?.name ?? words(p.tarot)} text={crunch ? TAROT_BY_ID.get(p.tarot)?.crunch : undefined} /> : null}
+          {p.tarot ? <TraitLine kind="Tarot" tarot={p.tarot} name={TAROT_BY_ID.get(p.tarot)?.name ?? words(p.tarot)} text={crunch ? TAROT_BY_ID.get(p.tarot)?.crunch : undefined} /> : null}
           {p.traits.map((id) => {
             const t = Content.TRAIT_BY_ID.get(id);
             return <TraitLine key={id} name={t?.name ?? words(id)} text={crunch ? t?.crunch : t?.flavor} />;

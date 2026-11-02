@@ -202,6 +202,9 @@ export function lookOf(p: Pick<Person, "id" | "sex" | "age" | "job" | "status"> 
   };
 }
 
+/** Jobs who wear a vestment over mail: the casters and the Soothsayer's kin. */
+const VESTED = new Set(["magus", "soothsayer", "abjurer", "conjurer", "alterer", "minstrel"]);
+
 /** Salts for each slot's pick, so one Scion's helm does not decide their crest. */
 const SALT: Partial<Record<Slot, number>> = { hat: 11, crest: 12, shoulders: 14, belt: 15, neck: 16, face: 17, wrists: 18, tabard: 19, capetrim: 20, cape: 21 };
 
@@ -217,8 +220,10 @@ const outfitOf = (look: ScionLook): Partial<Record<Slot, string>> => {
   for (const [slot, piece] of Object.entries(look.kit ?? {}) as [Slot, string][]) {
     // A light hood on a Pugilist is tied as a kerchief (Josh 2026-11-02): the hood is the Vagabond's.
     if (slot === "hat" && piece === "hood" && look.job === "pugilist") out.hat = "kerchief";
-    // A Helm keeps the helmet the Job already wears; any other headwear replaces it.
+    // A Helm keeps the helmet the Job already wears, and a Hood the Job's own cloth hat (a Magus's
+    // wizard hat, a Gambler's tricorne); a Coif or Helm on a bare or cloth head is drawn as it is.
     else if (slot === "hat" && piece === "nasal" && out.hat && HELMS.has(out.hat)) continue;
+    else if (slot === "hat" && piece === "hood" && out.hat && !HELMS.has(out.hat)) continue;
     else if (piece) out[slot] = piece;
     // Bare-handed or unarmored: no weapon or armor; a helmless head keeps its Job's hat.
     else if (slot === "weapon" || slot === "armor") delete out[slot];
@@ -228,6 +233,8 @@ const outfitOf = (look: ScionLook): Partial<Record<Slot, string>> => {
       if (out.shoulders === "legion") delete out.shoulders;
     }
   }
+  // A caster in mail wears their House's vestment over it.
+  if (out.armor === "chainmail" && VESTED.has(look.job)) out.tabard = "tabard";
   if (look.bare) delete out.hat;
   // A crest sits on a helmet; with a hood or a bare head it stays home.
   if (!out.hat || !HELMS.has(out.hat)) delete out.crest;

@@ -46,6 +46,7 @@ import { cannotOpen } from "./satchel.ts";
 import { ceremonies } from "./promotion.ts";
 import { cureOf, mends } from "./cures.ts";
 import { stash } from "./items.ts";
+import { shownStats } from "./stats.ts";
 import { TUNING } from "./tuning.ts";
 import { campaignYears, mandatoryYears, trackName } from "./year.ts";
 
@@ -140,6 +141,15 @@ export interface PersonView {
   hp?: [now: number, max: number];
   /** Insight 1+ for recruits. */
   base?: Six;
+  /**
+   * The stats as a battle reads them (Job, traits, Tarot, House, injuries, gear; passives for the viewer's
+   * own), with the lines that explain each; shown wherever every trait and the Tarot are (stats.ts).
+   */
+  stats?: Six;
+  statFrom?: string[][];
+  /** Elemental affinity in ELEMENTS order, with what made it; beside `stats`. */
+  aff?: number[];
+  affFrom?: string[][];
   potential?: Person["potential"];
   /** Insight 2+ for recruits; always for the viewer's own Scions. */
   growth?: Six;
@@ -160,6 +170,11 @@ export interface VolunteerView {
   sex: Person["sex"];
   age: number;
   base?: Person["base"];
+  /** As on PersonView, once the Tarot shows (Insight 3). */
+  stats?: Person["base"];
+  statFrom?: string[][];
+  aff?: number[];
+  affFrom?: string[][];
   potential?: Person["potential"];
   growth?: Person["growth"];
   /** Only as many as the viewer's Insight shows: one below level 2. */
@@ -275,11 +290,15 @@ function personView(p: Person, viewer: number | null, insight: number): PersonVi
 }
 
 /** A volunteer as the viewer's Insight shows them (§6.4), the same as the House's own recruits (Q94). */
-function volunteerView(p: Person, insight: number): VolunteerView {
+function volunteerView(s: SovState, p: Person, insight: number): VolunteerView {
   const v: VolunteerView = { id: p.id, name: p.name, sex: p.sex, age: p.age, traits: insight >= 2 ? p.traits : p.traits.slice(0, 1) };
   if (insight >= 1) Object.assign(v, { base: p.base, potential: p.potential });
   if (insight >= 2) v.growth = p.growth;
-  if (insight >= 3) v.tarot = p.tarot;
+  if (insight >= 3) {
+    v.tarot = p.tarot;
+    const shown = shownStats(s, p, true);
+    Object.assign(v, { stats: shown.stats, statFrom: shown.from, aff: shown.aff, affFrom: shown.affFrom });
+  }
   return v;
 }
 
@@ -291,6 +310,11 @@ export function view(s: SovState, playerId: PlayerId): SovView {
   const people = s.people.flatMap((p) => {
     const v = personView(p, me, insight);
     if (v && me !== null && p.host === me && (p.status === "scion" || p.status === "retired")) v.kit = kitOf(s, me, p);
+    // Stats with every bonus applied, where the viewer sees every trait and the Tarot (a recruit at Insight 3).
+    if (v?.base && (p.status !== "recruit" || insight >= 3)) {
+      const shown = shownStats(s, p, me !== null && p.host === me);
+      Object.assign(v, { stats: shown.stats, statFrom: shown.from, aff: shown.aff, affFrom: shown.affFrom });
+    }
     // On the road, HP lost in battle stays lost until mended; everyone sees it, as they see Sanity and MP.
     // The cap is the one the last battle or event measured, so the view need not build the Scion.
     const c = s.expedition?.carry[p.id];
@@ -318,7 +342,7 @@ export function view(s: SovState, playerId: PlayerId): SovView {
     expedition: s.expedition ? expeditionView(s, s.expedition, me) : null,
     muster: s.muster
       ? {
-          pool: s.muster.pool.map((p) => volunteerView(p, Math.max(insight, TUNING.founding.musterInsight))),
+          pool: s.muster.pool.map((p) => volunteerView(s, p, Math.max(insight, TUNING.founding.musterInsight))),
           order: s.muster.order,
           at: s.muster.at,
         }

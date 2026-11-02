@@ -2,6 +2,14 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 8at): character cards show the stats a battle reads
+
+- Josh: "its appears the stats and traits aren't applied on the character card... she has 10 speed despite the fleet trait", and asked for an icon per stat, a description on hover, Tarot symbols and elemental affinities on the card. The card now shows each stat as a battle reads it: the rolled base in the primary Job, then every flat and percent bonus (birth House, traits, Change, Tarot, lasting injuries, the Job's innate passive, worn gear; and, for the viewer's own people, masteries and chosen passives). Hovering a stat says what it does and lists each bonus (`stats.ts`). Speed in battle already took Fleet; only the card was wrong.
+- Hidden information: rivals' Scions show their effective stats (their traits and Tarot are public), but never their chosen passives or masteries. A recruit's or volunteer's effective stats show only at Insight 3, where all its traits and its Tarot are visible.
+- Affinities: six element symbols with the number (+ takes less, − takes more), each listing born affinity and wards.
+- Fix found on the way: an injury's Might percent was applied twice in battle (when the unit was built and again where damage is dealt); it is now applied once, where damage is dealt.
+- Sprites: a Hood item no longer replaces a caster's own hat (the Magus and Vagabond looked alike). Casters in chain mail (a Hauberk on a Soothsayer) wear their House's vestment over it.
+
 ## 2026-11-02 (implementation, Milestone 8as): Scions dress with flair from their Job's wardrobe
 
 - Josh: "There's also a ton of helmets etc and other head wear other jobs can use" and "Use a lot of the sprite generator stuff when possible... Would like for sprites to have a little flair, even when respecting the house colors". `tools/cut-scions.py` now also cuts every attribution-only helmet in the LPC generator (20; the two horned helmets are share-alike only and stay out), plumes, crests, horns and wings, tabards, belts and sashes, pauldrons and mantles, plate arms, bracers, cuffs, gloves, neckwear and amulets, eyepatch, glasses and a mask, more hats (wizard hats with trim, caps with feathers, tricornes, a bicorne, headbands) and a tattered cape and a cape trim: 185 sheets, each credited in the manifest as before.

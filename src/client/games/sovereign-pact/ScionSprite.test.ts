@@ -32,15 +32,20 @@ describe("Scion sprites", () => {
     expect(off).toContain("hair");
   });
 
-  it("ties a Pugilist's hood as a kerchief; the hood is the Vagabond's", () => {
+  it("ties a Pugilist's hood as a kerchief; the hood is the Vagabond's (8at: a Hood keeps a Job's own hat)", () => {
     const hats = (job: string, hat?: string) =>
       piecesOf({ ...lookOf(person(2, { job }), undefined), ...(hat ? { kit: { weapon: "", armor: "", hat } } : {}) })
         .filter((p) => p.layer.slot === "hat")
         .map((p) => p.layer.id);
     expect(hats("pugilist").join()).toMatch(/kerchief|bandana|thick|tied/);
-    expect(hats("pugilist", "hood").join()).toMatch(/kerchief/);
+    expect(hats("pugilist", "hood").join()).not.toMatch(/hood/);
     expect(hats("vagabond").join()).toMatch(/hood/);
-    expect(hats("magus", "hood").join()).toMatch(/hood/);
+    // A Hood item keeps a Job's own cloth hat: the Magus stays in their wizard's hat.
+    expect(hats("magus", "hood").join()).toMatch(/wizard/);
+    expect(hats("recruit", "hood").join()).toMatch(/hood/);
+    // A Soothsayer in a Hauberk wears their House's vestment over the mail.
+    const slots = piecesOf({ ...lookOf(person(2, { job: "soothsayer" }), undefined), kit: { weapon: "staff", armor: "chainmail" } }).map((p) => p.layer.slot);
+    expect(slots).toEqual(expect.arrayContaining(["armor", "tabard"]));
   });
 
   it("gives each Scion their own pieces of their Job's outfit, in their House's colors (8aq)", () => {

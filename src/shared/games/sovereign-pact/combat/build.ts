@@ -91,7 +91,9 @@ export function scionCombatant(p: Person, opts: ScionOpts): Combatant {
   for (const [k, v] of Object.entries(o.gear?.mods ?? {})) mods[k] = (mods[k] ?? 0) + v;
   if (o.gear?.spellPct) mods.spellPct = (mods.spellPct ?? 0) + o.gear.spellPct;
   const s = (k: Parameters<typeof jobStat>[1]) => pctMod(jobStat(p, k) + (mods[`${k}Flat`] ?? 0), mods, `${k}Pct`);
-  const might = s("might"), resilience = s("resilience"), guile = s("guile"), acuity = s("acuity"), sagacity = s("sagacity");
+  // Might's percent (injuries, Forms, passives) is applied where damage is dealt, with the statuses' (damage.ts), not twice.
+  const might = Math.max(1, jobStat(p, "might") + (mods.mightFlat ?? 0));
+  const resilience = s("resilience"), guile = s("guile"), acuity = s("acuity"), sagacity = s("sagacity");
   const hp = pctMod(maxHp(p), mods, "maxHpPct");
   const dur = {} as Record<Location, number>;
   const stats = { might, resilience, guile, acuity, sagacity };
