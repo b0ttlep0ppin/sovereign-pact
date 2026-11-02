@@ -1,0 +1,78 @@
+{
+  "id": "the_abandoned_kennel",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    8
+  ],
+  "title": "The Abandoned Kennel",
+  "text": "Hounds in iron cages, half starved, left behind by some old lord's hunt. They whine at the sight of you.",
+  "options": [
+    {
+      "id": "free",
+      "label": "Let them out and feed them.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "They run with you a day, and fight like devils for you.",
+          "effects": [
+            {
+              "to": "party",
+              "status": "haste"
+            },
+            {
+              "to": "party",
+              "sanity": 8
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "one",
+      "label": "Take the best of them home.",
+      "rule": "leader",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A fine hound, and loyal already.",
+          "effects": [
+            {
+              "house_improvement": "recruit"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "leave",
+      "label": "Leave them caged.",
+      "rule": "leader",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The howling follows you a long way.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -12
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

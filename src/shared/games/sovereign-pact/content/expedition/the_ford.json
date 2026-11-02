@@ -1,0 +1,89 @@
+{
+  "id": "the_ford",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    8
+  ],
+  "title": "The Ford",
+  "text": "A river in flood, and an old ford half under water. The current is strong.",
+  "options": [
+    {
+      "id": "ford",
+      "label": "Ford it together, roped.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 80,
+          "text": "Wet, cold, across.",
+          "effects": [
+            {
+              "to": "party",
+              "durability": -5
+            }
+          ]
+        },
+        {
+          "w": 20,
+          "text": "Someone is swept off their feet.",
+          "effects": [
+            {
+              "injury": "legs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "swim",
+      "label": "The strongest swims a rope over.",
+      "rule": "scion:highest:might",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A good rope, and dry packs.",
+          "effects": [
+            {
+              "score": {
+                "valor": 1
+              }
+            },
+            {
+              "durability": -15,
+              "loc": "arms"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wait",
+      "label": "Wait for the flood to fall.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A day lost.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -5
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

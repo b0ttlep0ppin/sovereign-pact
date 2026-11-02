@@ -1,0 +1,88 @@
+{
+  "id": "the_two_doors",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    10
+  ],
+  "title": "The Two Doors",
+  "text": "Two doors in a hillside, one guarded by a knight who always lies and one by a knight who never does. The usual riddle. The knights look bored.",
+  "options": [
+    {
+      "id": "riddle",
+      "label": "The wisest asks the riddle's question.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The right door, a short way, and the knights clap politely.",
+          "effects": [
+            {
+              "skip": 1
+            },
+            {
+              "xp": 60
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fight",
+      "label": "Fight through the nearer knight.",
+      "rule": "vote",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "They are not bored any more.",
+          "effects": [
+            {
+              "encounter": {}
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "guess",
+      "label": "Pick a door at random.",
+      "rule": "leader",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "The right door.",
+          "effects": [
+            {
+              "skip": 1
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "The wrong door.",
+          "effects": [
+            {
+              "fork": {
+                "add": [
+                  "encounter"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,83 @@
+{
+  "id": "the_howling_pass",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    10
+  ],
+  "title": "The Howling Pass",
+  "text": "The wind in the pass howls names: old names, House names, and now and then one of yours.",
+  "options": [
+    {
+      "id": "shout",
+      "label": "Shout your names back into it.",
+      "rule": "vote",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The wind takes them and goes quiet, satisfied.",
+          "effects": [
+            {
+              "to": "party",
+              "xp": 30
+            },
+            {
+              "to": "party",
+              "sanity": -5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "listen",
+      "label": "The wisest listens for one name in particular.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A name from the founding of your Houses, and what became of it.",
+          "effects": [
+            {
+              "score": {
+                "lore": 2
+              }
+            },
+            {
+              "sanity": -10
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hurry",
+      "label": "Stop your ears and hurry through.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It howls at your backs all the way down.",
+          "effects": [
+            {
+              "to": "party",
+              "durability": -5
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

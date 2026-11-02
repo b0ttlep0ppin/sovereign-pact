@@ -1,0 +1,91 @@
+{
+  "id": "the_cursed_coin",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    10
+  ],
+  "title": "The Cursed Coin",
+  "text": "A gold coin lies on the road, face up, bright as the sun. Everyone knows the stories. Everyone wants it anyway.",
+  "options": [
+    {
+      "id": "take",
+      "label": "The leader pockets it.",
+      "rule": "leader",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "It is just a coin. A very nice one.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 20
+              }
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "It is not just a coin.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 20
+              }
+            },
+            {
+              "curse": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kick",
+      "label": "Kick it into the ditch.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It rolls back onto the road behind you.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bless",
+      "label": "The most devout blesses it first.",
+      "rule": "scion:trait:devout|scion:highest:sagacity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It goes dull, and stays gold.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 15
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,84 @@
+{
+  "id": "the_sellswords",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    10
+  ],
+  "title": "The Sellswords",
+  "text": "A band of sellswords on the otherworld road, between contracts. They would fight beside you for a fee, or rob you for free.",
+  "options": [
+    {
+      "id": "hire",
+      "label": "Hire them for the next fight.",
+      "rule": "leader",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "They earn every coin.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -20
+              }
+            },
+            {
+              "to": "party",
+              "status": "protect"
+            },
+            {
+              "to": "party",
+              "status": "haste"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bluff",
+      "label": "The best talker convinces them you are not worth robbing.",
+      "rule": "scion:highest:guile",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "They laugh, and pass by.",
+          "effects": [
+            {
+              "score": {
+                "intrigue": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fight",
+      "label": "Fight them first.",
+      "rule": "vote",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "They are as good as they say.",
+          "effects": [
+            {
+              "encounter": {}
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

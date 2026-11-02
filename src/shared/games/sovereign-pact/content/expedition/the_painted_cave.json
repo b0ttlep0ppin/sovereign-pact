@@ -1,0 +1,93 @@
+{
+  "id": "the_painted_cave",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    10
+  ],
+  "title": "The Painted Cave",
+  "text": "A cave whose walls are covered in paintings: hunts, battles, and, at the back, a painting of your own party, fresh.",
+  "options": [
+    {
+      "id": "study",
+      "label": "The wisest studies the last painting.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It shows what lies ahead. Mostly.",
+          "effects": [
+            {
+              "skip": 1
+            },
+            {
+              "score": {
+                "lore": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "add",
+      "label": "Paint something of your own.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It feels like a promise kept.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 10
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "deface",
+      "label": "Scratch out your own picture.",
+      "rule": "leader",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "Whatever was going to happen does not.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 5
+            },
+            {
+              "doom": -1
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "Something else happens instead.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "ambush"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

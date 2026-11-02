@@ -2,6 +2,10 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 7x: seventeen general events, three in place of near-copies) — implementer
+- **Built** (content only). Seventeen general expedition events: the Ruined Watchtower, the Cursed Coin, the Abandoned Kennel, the Ferryman, the Painted Cave, the Starving Wolf, the Scholar's Tower, the Two Doors, the Bleeding Ground, the Sellswords, the Hedge Witch, the Ford, the Golden Cage, the Stopped Sundial, the Salt Flats, the Collector and the Howling Pass.
+- **Fixed.** Three events from 7n and 7q (the Weeping Statue, the Mirror Pool, the Feast of Crows) shared their title and idea with §9.7's own Weeping Statue, Mirror Pool and Feast of Crows; they are removed, and the Salt Flats, the Collector and the Howling Pass take their places. That makes 176 expedition events, 102 of them open to any card.
+
 ## 2026-11-02 (implementation, Milestone 7w: events for the card types) — implementer
 - **Built** (content only). Fourteen events drawn by card type rather than region, since an Event node draws from the card's pools (its region or its type) half the time: Delves (the Collapsed Stair, the Bad Air, the Listening Chamber, the Miners' Ghosts, which is also a Resource event), Hunts (the Quarry's Trail, the Old Hunters' Camp, the Bait, the Rival Hunter), Pilgrimages (the Pilgrim Road, the Penitent's Steps, the Relic Seller), Resource runs (the Rich Seam, the Old Stand) and the first Rescue event (the Lost One's Mark). That makes 162 expedition events.
 - **Reading:** a Rescue card draws `rescue` events like any other type; they speak of following the Lost and never decide whether the Lost are found, which stays with the Rescue rules (§9.9).

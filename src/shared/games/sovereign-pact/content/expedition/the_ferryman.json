@@ -1,0 +1,97 @@
+{
+  "id": "the_ferryman",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    10
+  ],
+  "title": "The Ferryman",
+  "text": "A black river, and a ferryman with his hand out. He takes coin, or a memory. He does not take no.",
+  "options": [
+    {
+      "id": "coin",
+      "label": "Pay in coin, everyone.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It is a great deal of coin.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -20
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "label": "Pay in memories.",
+      "rule": "leader",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Everyone forgets something. Nobody can say what.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -10
+            },
+            {
+              "to": "party",
+              "xp": 40
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "swim",
+      "label": "Swim.",
+      "rule": "scion:highest:resilience",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 40,
+          "text": "They make it across and drag a rope for the rest.",
+          "effects": [
+            {
+              "score": {
+                "valor": 2
+              }
+            },
+            {
+              "durability": -20,
+              "loc": "body"
+            }
+          ]
+        },
+        {
+          "w": 60,
+          "text": "The river is not water.",
+          "effects": [
+            {
+              "sanity": -25
+            },
+            {
+              "injury": "body"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
