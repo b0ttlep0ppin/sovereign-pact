@@ -43,7 +43,7 @@ const OUTFIT: Record<string, Partial<Record<Slot, string>>> = {
   alterer: { shirt: "tshirt", hat: "hood", weapon: "staff" },
 };
 /** The attack a Job's weapon swings with. */
-const ATTACK: Record<string, Anim> = { sword: "slash", dagger: "slash", staff: "spellcast", bow: "shoot", crossbow: "shoot" };
+const ATTACK: Record<string, Anim> = { sword: "slash", longsword: "slash", mace: "slash", dagger: "slash", staff: "spellcast", bow: "shoot", crossbow: "shoot" };
 
 const SKINS = ["light", "amber", "olive", "taupe", "bronze", "brown", "black"];
 const HAIR_COLORS = ["blonde", "sandy", "light_brown", "chestnut", "dark_brown", "black", "raven", "ginger", "redhead", "strawberry", "ash"];
@@ -69,10 +69,54 @@ export interface ScionLook {
   elderly: boolean;
   job: string;
   colors: [string, string];
+  /** What they wear, when it is known: it replaces their Job's outfit piece by piece ("" is bare). */
+  kit?: Partial<Record<"weapon" | "shield" | "hat" | "armor", string>>;
 }
 
-/** How a Scion looks: read from who they are (their id, sex and age), their Job and their House's colors. */
-export function lookOf(p: Pick<Person, "id" | "sex" | "age" | "job" | "status">, colors: readonly string[] | undefined): ScionLook {
+/** The sprite piece each item base is drawn with (DECISIONS 8aj); the LPC set has no attribution-only axe or spear. */
+const KIT: Record<string, ["weapon" | "shield" | "hat" | "armor", string]> = {
+  sword: ["weapon", "sword"],
+  greatsword: ["weapon", "longsword"],
+  greataxe: ["weapon", "longsword"],
+  axe: ["weapon", "mace"],
+  mace: ["weapon", "mace"],
+  maul: ["weapon", "mace"],
+  spear: ["weapon", "staff"],
+  staff: ["weapon", "staff"],
+  knife: ["weapon", "dagger"],
+  throwing_knives: ["weapon", "dagger"],
+  knuckles: ["weapon", ""],
+  instrument: ["weapon", ""],
+  bow: ["weapon", "bow"],
+  crossbow: ["weapon", "crossbow"],
+  buckler: ["shield", "round"],
+  heater_shield: ["shield", "heater"],
+  tower_shield: ["shield", "scutum"],
+  hood: ["hat", "hood"],
+  coif: ["hat", "mail"],
+  helm: ["hat", "nasal"],
+  jerkin: ["armor", "leather"],
+  hauberk: ["armor", "chainmail"],
+  plate: ["armor", "plate"],
+};
+
+/** The sprite pieces a Scion's worn gear calls for: weapon and armor always (bare when none), a shield or helm when worn. */
+export function kitOf(gear: Person["gear"], items: readonly { id: number; base: string }[]): ScionLook["kit"] {
+  const kit: NonNullable<ScionLook["kit"]> = { weapon: "", armor: "" };
+  for (const slot of ["main", "off", "head", "body"] as const) {
+    const item = gear?.[slot] === undefined ? undefined : items.find((i) => i.id === gear[slot]);
+    const piece = item ? KIT[item.base] : undefined;
+    // The main hand's weapon wins over a second one in the off hand.
+    if (piece && !(piece[0] === "weapon" && kit.weapon)) kit[piece[0]] = piece[1];
+  }
+  return kit;
+}
+
+/**
+ * How a Scion looks: read from who they are (their id, sex and age), their Job and their House's colors,
+ * and, given the items the view holds, the gear they wear.
+ */
+export function lookOf(p: Pick<Person, "id" | "sex" | "age" | "job" | "status"> & { gear?: Person["gear"] }, colors: readonly string[] | undefined, items?: readonly { id: number; base: string }[]): ScionLook {
   const elderly = p.age >= 55;
   const long = p.sex === "f" ? hash(p.id, 3) % 5 !== 0 : hash(p.id, 3) % 6 === 0;
   return {
@@ -84,10 +128,22 @@ export function lookOf(p: Pick<Person, "id" | "sex" | "age" | "job" | "status">,
     elderly,
     job: p.status === "recruit" ? "recruit" : (p.job ?? "recruit"),
     colors: [HERALDRY_COLORS.get(colors?.[0] ?? "") ?? "#6b5a3a", HERALDRY_COLORS.get(colors?.[1] ?? "") ?? "#8a8a8a"],
+    ...(items && p.gear && p.status !== "recruit" ? { kit: kitOf(p.gear, items) } : {}),
   };
 }
 
-export const attackOf = (look: ScionLook): Anim => ATTACK[OUTFIT[look.job]?.weapon ?? ""] ?? "thrust";
+/** Their Job's outfit with what they wear laid over it. */
+const outfitOf = (look: ScionLook): Partial<Record<Slot, string>> => {
+  const out = { ...(OUTFIT[look.job] ?? OUTFIT.recruit!) };
+  for (const [slot, piece] of Object.entries(look.kit ?? {}) as [Slot, string][]) {
+    if (piece) out[slot] = piece;
+    // Bare-handed or unarmored: no weapon or armor; a helmless head keeps its Job's hat.
+    else if (slot === "weapon" || slot === "armor") delete out[slot];
+  }
+  return out;
+};
+
+export const attackOf = (look: ScionLook): Anim => ATTACK[outfitOf(look).weapon ?? ""] ?? "thrust";
 
 /** The ability the way the content describes it, as far as the animation cares. */
 export interface Action {
@@ -101,7 +157,7 @@ export interface Action {
  * An unknown action (an item, a plain move) is the weapon's own attack.
  */
 export function animFor(look: ScionLook, action: Action | undefined): Anim {
-  const weapon = OUTFIT[look.job]?.weapon;
+  const weapon = outfitOf(look).weapon;
   if (!action) return attackOf(look);
   if (action.kind === "magic" || action.kind === "heal" || action.kind === "support") return "spellcast";
   if (action.reach === "ranged") return weapon === "bow" || weapon === "crossbow" ? "shoot" : "thrust";
@@ -133,12 +189,12 @@ interface Piece {
 
 /** Every piece of a Scion's sprite, back to front. */
 export function piecesOf(look: ScionLook): Piece[] {
-  const outfit = OUTFIT[look.job] ?? OUTFIT.recruit!;
+  const outfit = outfitOf(look);
   const palettes = LAYERS.palettes as Record<string, { base: string; colors: Record<string, string[]> }>;
   const want: [Slot, string | undefined, string[] | undefined][] = [
     ["body", "body", palettes.body!.colors[look.skin]],
     ["head", `${look.sex === "f" ? "female" : "male"}${look.elderly ? "_elderly" : ""}`, palettes.body!.colors[look.skin]],
-    ["hair", outfit.hat === "hood" ? undefined : look.hair, palettes.hair!.colors[look.hairColor]],
+    ["hair", outfit.hat === "hood" || outfit.hat === "mail" ? undefined : look.hair, palettes.hair!.colors[look.hairColor]],
     ["beard", look.beard, palettes.hair!.colors[look.hairColor]],
     ["legs", "pants", palettes.cloth!.colors.charcoal],
     ["feet", "boots", palettes.cloth!.colors.leather],
@@ -153,7 +209,7 @@ export function piecesOf(look: ScionLook): Piece[] {
   for (const [slot, option, tones] of want) {
     if (!option) continue;
     for (const layer of LAYERS.layers.filter((l) => l.slot === slot && l.option === option && l.sex === look.sex)) {
-      out.push({ layer, ...(layer.material && tones ? { tones } : {}) });
+      out.push({ layer, ...(layer.material && layer.material !== "metal" && tones ? { tones } : {}) });
     }
   }
   return out.sort((a, b) => a.layer.z - b.layer.z);

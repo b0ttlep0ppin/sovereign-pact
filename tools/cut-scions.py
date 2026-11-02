@@ -60,15 +60,23 @@ PICK = {
         "cavalier": "headwear/hats/caps/hat_cap_cavalier_feather.json",
         "bandana": "headwear/coverings/bandana/hat_bandana.json",
         "tricorne": "headwear/hats/tricorne/hat_tricorne.json",
+        "mail": "headwear/helmets/helmets/hat_helmet_mail.json",
+        "nasal": "headwear/helmets/helmets/hat_helmet_nasal.json",
     },
     "weapon": {
         "sword": "weapons/sword/weapon_sword_arming.json",
+        "longsword": "weapons/sword/weapon_sword_longsword.json",
+        "mace": "weapons/blunt/weapon_blunt_mace.json",
         "dagger": "weapons/sword/weapon_sword_dagger.json",
         "staff": "weapons/magic/weapon_magic_simple.json",
         "bow": "weapons/ranged/bow/weapon_ranged_bow_normal.json",
         "crossbow": "weapons/ranged/weapon_ranged_crossbow.json",
     },
-    "shield": {"heater": "weapons/shields/heater/shield_heater_paint.json"},
+    "shield": {
+        "heater": "weapons/shields/heater/shield_heater_paint.json",
+        "round": "weapons/shields/shield_round.json",
+        "scutum": "weapons/shields/scutum/shield_scutum.json",
+    },
 }
 VARIANT = ["steel", "simple", "dagger", "crossbow", "normal", "mace"]
 BY = ("OGA-BY", "CC-BY 3", "CC-BY 4", "CC0")
@@ -101,7 +109,10 @@ def custom(base: Path) -> Path | None:
     for v in VARIANT:
         if (base / f"{v}.png").exists():
             return base / f"{v}.png"
-    return base.with_suffix(".png") if base.with_suffix(".png").exists() else None
+    if base.with_suffix(".png").exists():
+        return base.with_suffix(".png")
+    files = sorted(base.glob("*.png")) if base.is_dir() else []
+    return files[0] if files else None
 
 
 manifest = {"rows": [r[0] for r in ROWS], "frames": [r[2] for r in ROWS], "cell": CELL, "layers": [], "palettes": {}, "credits": []}
@@ -128,10 +139,12 @@ for slot, opts in PICK.items():
                 for r, (anim, row, frames) in enumerate(ROWS):
                     if "custom_animation" in layer:
                         # An oversized swing (128 px frames) for one animation only.
-                        if not layer["custom_animation"].startswith(anim + "_"):
+                        # Only this row's own swing: "slash_oversize" or "slash_128", not "slash_reverse_oversize".
+                        if layer["custom_animation"] not in (f"{anim}_oversize", f"{anim}_128"):
                             continue
                         src = custom(path.parent if path.name == "" else path)
-                        size = int(layer["custom_animation"].split("_")[-1])
+                        tail = layer["custom_animation"].split("_")[-1]
+                        size = 192 if tail == "oversize" else int(tail)
                     else:
                         src = find(path, anim)
                         size = 64
@@ -142,7 +155,11 @@ for slot, opts in PICK.items():
                     srow = min(row, rows_in - 1)
                     for f in range(min(frames, im.width // size)):
                         cut = im.crop((f * size, srow * size, (f + 1) * size, (srow + 1) * size))
-                        off = (CELL - size) // 2
+                        if size > CELL:
+                            # A 192 px swing keeps its middle 128 px: the cell the Scion stands in.
+                            m = (size - CELL) // 2
+                            cut = cut.crop((m, m, m + CELL, m + CELL))
+                        off = max(0, (CELL - size) // 2)
                         sheet.alpha_composite(cut, (f * CELL + off, r * CELL + off))
                     drawn = True
                 if not drawn:

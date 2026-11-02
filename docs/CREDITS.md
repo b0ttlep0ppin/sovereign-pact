@@ -10,9 +10,9 @@ Source folder on Josh's PC: `C:\Users\josh\Desktop\decompilation\assets\`. Every
 
 ## Scion sprites — `universal spritesheet generator\`
 - **Universal LPC Spritesheet Character Generator** (Liberated Pixel Cup). https://github.com/liberatedpixelcup/Universal-LPC-Spritesheet-Character-Generator
-- `tools/cut-scions.py` cuts the layers the game ships (body, heads, 12 hair styles, 2 beards, pants, boots, 3 shirts, 3 armors, a cape, 5 hats, 5 weapons, a shield) into `public/sprites/sovereign-pact/scions/`. It keeps only layers whose every credit offers OGA-BY, CC-BY or CC0, so nothing shipped is share-alike or GPL-only. The game recolors and stacks them at run time.
+- `tools/cut-scions.py` cuts the layers the game ships (body, heads, 12 hair styles, 2 beards, pants, boots, 3 shirts, 3 armors, a cape, 5 hats and 2 helmets, 7 weapons, 3 shields) into `public/sprites/sovereign-pact/scions/`. It keeps only layers whose every credit offers OGA-BY, CC-BY or CC0, so nothing shipped is share-alike or GPL-only. The game recolors and stacks them at run time.
 - Each layer's authors, licenses and source links are in `src/client/games/sovereign-pact/scion-layers.json` (`credits`), and the Credits screen lists them from there.
-- Authors of the shipped layers: Benjamin K. Smith (BenCreating), bluecarrot16, Dr. Jamgo, Durrani, Eliza Wyatt (ElizaWy), Evert, JaidynReiman, Joe White, Johannes Sjölund (wulax), Mandi Paugh, Manuel Riecke (MrBeast), Marcel van de Steeg (MadMarcel), Matthew Krohn (makrohn), Michael Whitlock (bigbeargames), MuffinElZangano, Napsio (Vitruvian Studio), Nila122, Page, Pierre Vigier (pvigier), Stephen Challener (Redshrike), thecilekli, TheraHedwig, Tracy.
+- Authors of the shipped layers: Benjamin K. Smith (BenCreating), bluecarrot16, DarkwallLKE, Dr. Jamgo, Durrani, Eliza Wyatt (ElizaWy), Evert, JaidynReiman, Joe White, Johannes Sjölund (wulax), Mandi Paugh, Manuel Riecke (MrBeast), Marcel van de Steeg (MadMarcel), Matthew Krohn (makrohn), Michael Whitlock (bigbeargames), MuffinElZangano, Napsio (Vitruvian Studio), Nila122, Page, Pierre Vigier (pvigier), Sander Frenken (castelonia), Stephen Challener (Redshrike), thecilekli, TheraHedwig, Tracy, Tuomo Untinen (reemax).
 - Licenses used: OGA-BY 3.0, CC-BY 3.0 and 4.0, CC0.
 
 ## Music — `The Soverign Pact music\`

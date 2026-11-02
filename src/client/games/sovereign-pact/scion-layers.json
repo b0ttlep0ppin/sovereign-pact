@@ -668,6 +668,42 @@
    "material": null
   },
   {
+   "id": "hat_mail_1_m",
+   "file": "hat_mail_1_m",
+   "slot": "hat",
+   "option": "mail",
+   "sex": "m",
+   "z": 125,
+   "material": "metal"
+  },
+  {
+   "id": "hat_mail_1_f",
+   "file": "hat_mail_1_m",
+   "slot": "hat",
+   "option": "mail",
+   "sex": "f",
+   "z": 125,
+   "material": "metal"
+  },
+  {
+   "id": "hat_nasal_1_m",
+   "file": "hat_nasal_1_m",
+   "slot": "hat",
+   "option": "nasal",
+   "sex": "m",
+   "z": 130,
+   "material": "metal"
+  },
+  {
+   "id": "hat_nasal_1_f",
+   "file": "hat_nasal_1_m",
+   "slot": "hat",
+   "option": "nasal",
+   "sex": "f",
+   "z": 130,
+   "material": "metal"
+  },
+  {
    "id": "weapon_sword_1_m",
    "file": "weapon_sword_1_m",
    "slot": "weapon",
@@ -735,6 +771,186 @@
    "file": "weapon_sword_4_m",
    "slot": "weapon",
    "option": "sword",
+   "sex": "f",
+   "z": 150,
+   "material": null
+  },
+  {
+   "id": "weapon_longsword_1_m",
+   "file": "weapon_longsword_1_m",
+   "slot": "weapon",
+   "option": "longsword",
+   "sex": "m",
+   "z": 140,
+   "material": null
+  },
+  {
+   "id": "weapon_longsword_1_f",
+   "file": "weapon_longsword_1_m",
+   "slot": "weapon",
+   "option": "longsword",
+   "sex": "f",
+   "z": 140,
+   "material": null
+  },
+  {
+   "id": "weapon_longsword_2_m",
+   "file": "weapon_longsword_2_m",
+   "slot": "weapon",
+   "option": "longsword",
+   "sex": "m",
+   "z": 9,
+   "material": null
+  },
+  {
+   "id": "weapon_longsword_2_f",
+   "file": "weapon_longsword_2_m",
+   "slot": "weapon",
+   "option": "longsword",
+   "sex": "f",
+   "z": 9,
+   "material": null
+  },
+  {
+   "id": "weapon_longsword_3_m",
+   "file": "weapon_longsword_3_m",
+   "slot": "weapon",
+   "option": "longsword",
+   "sex": "m",
+   "z": -1,
+   "material": null
+  },
+  {
+   "id": "weapon_longsword_3_f",
+   "file": "weapon_longsword_3_m",
+   "slot": "weapon",
+   "option": "longsword",
+   "sex": "f",
+   "z": -1,
+   "material": null
+  },
+  {
+   "id": "weapon_longsword_4_m",
+   "file": "weapon_longsword_4_m",
+   "slot": "weapon",
+   "option": "longsword",
+   "sex": "m",
+   "z": 150,
+   "material": null
+  },
+  {
+   "id": "weapon_longsword_4_f",
+   "file": "weapon_longsword_4_m",
+   "slot": "weapon",
+   "option": "longsword",
+   "sex": "f",
+   "z": 150,
+   "material": null
+  },
+  {
+   "id": "weapon_longsword_7_m",
+   "file": "weapon_longsword_7_m",
+   "slot": "weapon",
+   "option": "longsword",
+   "sex": "m",
+   "z": -1,
+   "material": null
+  },
+  {
+   "id": "weapon_longsword_7_f",
+   "file": "weapon_longsword_7_m",
+   "slot": "weapon",
+   "option": "longsword",
+   "sex": "f",
+   "z": -1,
+   "material": null
+  },
+  {
+   "id": "weapon_longsword_8_m",
+   "file": "weapon_longsword_8_m",
+   "slot": "weapon",
+   "option": "longsword",
+   "sex": "m",
+   "z": 150,
+   "material": null
+  },
+  {
+   "id": "weapon_longsword_8_f",
+   "file": "weapon_longsword_8_m",
+   "slot": "weapon",
+   "option": "longsword",
+   "sex": "f",
+   "z": 150,
+   "material": null
+  },
+  {
+   "id": "weapon_mace_1_m",
+   "file": "weapon_mace_1_m",
+   "slot": "weapon",
+   "option": "mace",
+   "sex": "m",
+   "z": 140,
+   "material": null
+  },
+  {
+   "id": "weapon_mace_1_f",
+   "file": "weapon_mace_1_m",
+   "slot": "weapon",
+   "option": "mace",
+   "sex": "f",
+   "z": 140,
+   "material": null
+  },
+  {
+   "id": "weapon_mace_2_m",
+   "file": "weapon_mace_2_m",
+   "slot": "weapon",
+   "option": "mace",
+   "sex": "m",
+   "z": 9,
+   "material": null
+  },
+  {
+   "id": "weapon_mace_2_f",
+   "file": "weapon_mace_2_m",
+   "slot": "weapon",
+   "option": "mace",
+   "sex": "f",
+   "z": 9,
+   "material": null
+  },
+  {
+   "id": "weapon_mace_3_m",
+   "file": "weapon_mace_3_m",
+   "slot": "weapon",
+   "option": "mace",
+   "sex": "m",
+   "z": 9,
+   "material": null
+  },
+  {
+   "id": "weapon_mace_3_f",
+   "file": "weapon_mace_3_m",
+   "slot": "weapon",
+   "option": "mace",
+   "sex": "f",
+   "z": 9,
+   "material": null
+  },
+  {
+   "id": "weapon_mace_4_m",
+   "file": "weapon_mace_4_m",
+   "slot": "weapon",
+   "option": "mace",
+   "sex": "m",
+   "z": 150,
+   "material": null
+  },
+  {
+   "id": "weapon_mace_4_f",
+   "file": "weapon_mace_4_m",
+   "slot": "weapon",
+   "option": "mace",
    "sex": "f",
    "z": 150,
    "material": null
@@ -918,6 +1134,60 @@
    "sex": "f",
    "z": 111,
    "material": "cloth"
+  },
+  {
+   "id": "shield_round_1_m",
+   "file": "shield_round_1_m",
+   "slot": "shield",
+   "option": "round",
+   "sex": "m",
+   "z": 110,
+   "material": null
+  },
+  {
+   "id": "shield_round_1_f",
+   "file": "shield_round_1_m",
+   "slot": "shield",
+   "option": "round",
+   "sex": "f",
+   "z": 110,
+   "material": null
+  },
+  {
+   "id": "shield_scutum_1_m",
+   "file": "shield_scutum_1_m",
+   "slot": "shield",
+   "option": "scutum",
+   "sex": "m",
+   "z": 2,
+   "material": null
+  },
+  {
+   "id": "shield_scutum_1_f",
+   "file": "shield_scutum_1_m",
+   "slot": "shield",
+   "option": "scutum",
+   "sex": "f",
+   "z": 2,
+   "material": null
+  },
+  {
+   "id": "shield_scutum_2_m",
+   "file": "shield_scutum_2_m",
+   "slot": "shield",
+   "option": "scutum",
+   "sex": "m",
+   "z": 110,
+   "material": null
+  },
+  {
+   "id": "shield_scutum_2_f",
+   "file": "shield_scutum_2_f",
+   "slot": "shield",
+   "option": "scutum",
+   "sex": "f",
+   "z": 110,
+   "material": null
   }
  ],
  "palettes": {
@@ -2216,6 +2486,36 @@
    ]
   },
   {
+   "file": "hat/helmet/mail",
+   "authors": [
+    "Napsio (Vitruvian Studio)",
+    "Johannes Sj\u00f6lund (wulax)",
+    "JaidynReiman"
+   ],
+   "licenses": [
+    "OGA-BY 3.0"
+   ],
+   "urls": [
+    "https://opengameart.org/content/lpc-medieval-fantasy-character-sprites",
+    "https://opengameart.org/content/lpc-expanded-hats-facial-helmets"
+   ]
+  },
+  {
+   "file": "hat/helmet/nasal",
+   "authors": [
+    "bluecarrot16"
+   ],
+   "licenses": [
+    "CC-BY 3.0",
+    "CC-BY 4.0",
+    "OGA-BY 3.0"
+   ],
+   "urls": [
+    "https://opengameart.org/content/lpc-helmets",
+    "https://opengameart.org/content/lpc-expanded-hats-facial-helmets"
+   ]
+  },
+  {
    "file": "weapon/sword/arming",
    "authors": [
     "ElizaWy; walk and down by JaidynReiman"
@@ -2226,6 +2526,34 @@
    "urls": [
     "https://github.com/ElizaWy/LPC/tree/main/Characters/Props/Sword%2001%20-%20Arming%20Sword",
     "https://opengameart.org/content/lpc-expanded-sit-run-jump-more"
+   ]
+  },
+  {
+   "file": "weapon/sword/longsword",
+   "authors": [
+    "Johannes Sj\u00f6lund (wulax)",
+    "bluecarrot16"
+   ],
+   "licenses": [
+    "OGA-BY 3.0"
+   ],
+   "urls": [
+    "https://opengameart.org/content/lpc-medieval-fantasy-character-sprites",
+    "https://opengameart.org/content/lpc-extended-weapon-animations"
+   ]
+  },
+  {
+   "file": "weapon/blunt/mace",
+   "authors": [
+    "Johannes Sj\u00f6lund (wulax)",
+    "bluecarrot16"
+   ],
+   "licenses": [
+    "OGA-BY 3.0"
+   ],
+   "urls": [
+    "https://opengameart.org/content/lpc-medieval-fantasy-character-sprites",
+    "https://opengameart.org/content/lpc-extended-weapon-animations"
    ]
   },
   {
@@ -2297,6 +2625,35 @@
    "urls": [
     "https://github.com/ElizaWy/LPC/tree/main/Characters/Props/Shield%2001%20-%20Heater%20Shield",
     "https://opengameart.org/content/lpc-expanded-sit-run-jump-more"
+   ]
+  },
+  {
+   "file": "shield/round",
+   "authors": [
+    "Johannes Sj\u00f6lund (wulax)",
+    "Michael Whitlock (bigbeargames)",
+    "DarkwallLKE",
+    "Tuomo Untinen (reemax)"
+   ],
+   "licenses": [
+    "OGA-BY 3.0"
+   ],
+   "urls": [
+    "https://opengameart.org/content/lpc-medieval-fantasy-character-sprites",
+    "https://opengameart.org/content/lpc-shields-pack"
+   ]
+  },
+  {
+   "file": "shield/scutum",
+   "authors": [
+    "bluecarrot16",
+    "Sander Frenken (castelonia)"
+   ],
+   "licenses": [
+    "OGA-BY 3.0"
+   ],
+   "urls": [
+    "https://opengameart.org/content/lpc-shields"
    ]
   }
  ]

@@ -125,7 +125,7 @@ export default function TownMap({ view, sendMove, canAssign }: Props) {
           setPicked(picked === p.id ? null : p.id);
         }}
       >
-        <ScionSprite look={lookOf(p, view.houses[p.house]?.colors)} crop={HEAD} size={(32 * 64) / HEAD[2]} />
+        <ScionSprite look={lookOf(p, view.houses[p.house]?.colors, view.items)} crop={HEAD} size={(32 * 64) / HEAD[2]} />
         <PixelArt className="sp-chit__job" rows={JOB_ICONS[p.job ?? "recruit"]} size={13} />
         <span className="sp-chit__tag">{p.name.split(" ")[0]}</span>
       </button>
