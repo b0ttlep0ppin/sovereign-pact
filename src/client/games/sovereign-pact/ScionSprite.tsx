@@ -9,7 +9,9 @@ import LAYERS from "./scion-layers.json";
 import "./ScionSprite.css";
 
 type Person = SovView["people"][number];
-type Slot = "body" | "head" | "hair" | "beard" | "legs" | "feet" | "shirt" | "armor" | "cape" | "hat" | "weapon" | "shield";
+type Slot =
+  | "body" | "head" | "hair" | "beard" | "legs" | "feet" | "shirt" | "armor" | "tabard" | "belt" | "shoulders" | "arms" | "wrists" | "gloves"
+  | "neck" | "face" | "cape" | "capetrim" | "hat" | "crest" | "weapon" | "shield";
 /**
  * A sheet row: idle facing down (the portrait), idle facing left (toward the enemy), four attacks, and the
  * fall. The chant is the spellcast's raised-hands frames, swayed back and forth while a spell charges.
@@ -24,23 +26,74 @@ const CELL = LAYERS.cell;
 const COLS = Math.max(...LAYERS.frames);
 export const FRAMES: Record<Anim, number> = { portrait: 1, idle: LAYERS.frames[1]!, slash: LAYERS.frames[2]!, thrust: LAYERS.frames[3]!, spellcast: LAYERS.frames[4]!, shoot: LAYERS.frames[5]!, hurt: LAYERS.frames[6]!, chant: 4 };
 
-/** What each Job wears and carries; the advanced Jobs dress like the base Job nearest them. */
-const OUTFIT: Record<string, Partial<Record<Slot, string>>> = {
-  recruit: { shirt: "tshirt" },
-  soldier: { armor: "chainmail", weapon: "sword", shield: "heater", cape: "solid" },
-  knight: { armor: "plate", weapon: "sword", shield: "heater", cape: "solid" },
-  magus: { shirt: "longsleeve", hat: "wizard", weapon: "staff", cape: "solid" },
-  soothsayer: { shirt: "longsleeve", hat: "hood", weapon: "staff" },
-  vagabond: { armor: "leather", hat: "hood", weapon: "bow" },
-  pugilist: { shirt: "sleeveless", hat: "bandana" },
-  minstrel: { shirt: "tshirt", hat: "cavalier", weapon: "dagger", cape: "solid" },
-  gambler: { shirt: "longsleeve", hat: "tricorne", weapon: "crossbow" },
-  ravager: { armor: "chainmail", weapon: "sword", cape: "solid" },
-  sword_saint: { shirt: "longsleeve", weapon: "sword", cape: "solid" },
-  abjurer: { shirt: "longsleeve", hat: "hood", weapon: "staff", cape: "solid" },
-  conjurer: { shirt: "longsleeve", hat: "wizard", weapon: "staff" },
-  tinkerer: { armor: "leather", weapon: "crossbow" },
-  alterer: { shirt: "tshirt", hat: "hood", weapon: "staff" },
+/** Every helmet: what a crest sits on, and what a Helm item keeps when the Job already wears one. */
+export const HELMS = new Set(["mail", "nasal", "armet", "armet_simple", "barbarian", "barbarian_nasal", "barbarian_viking", "barbuta", "bascinet", "close", "flattop", "greathelm", "kettle", "legion", "morion", "norman", "pointed", "spangenhelm", "spangenhelm_viking", "sugarloaf"]);
+
+/**
+ * What each Job wears and carries; the advanced Jobs dress like the base Job nearest them. Where a slot
+ * lists several pieces, each Scion is given one of them ("" is none), the same one every time: two
+ * Knights of one House share its colors but not their helms.
+ */
+const OUTFIT: Record<string, Partial<Record<Slot, string | readonly string[]>>> = {
+  recruit: { shirt: "tshirt", belt: ["", "leather"] },
+  soldier: {
+    armor: ["chainmail", "chainmail", "legion"],
+    tabard: ["tabard", "tabard", ""],
+    belt: "leather",
+    hat: ["kettle", "norman", "nasal", "spangenhelm", "morion", "mail", "barbarian_nasal", "legion", "pointed"],
+    wrists: ["", "bracers"],
+    weapon: "sword",
+    shield: "heater",
+    cape: "solid",
+  },
+  knight: {
+    armor: "plate",
+    arms: "plate",
+    gloves: "gloves",
+    shoulders: ["pauldrons", "legion", "pauldrons"],
+    hat: ["armet", "armet_simple", "bascinet", "close", "greathelm", "barbuta", "sugarloaf", "flattop"],
+    crest: ["plumage", "plumage_centurion", "", "wings", "plumage", "crest_centurion"],
+    weapon: "sword",
+    shield: "heater",
+    cape: "solid",
+    capetrim: ["trim", ""],
+  },
+  magus: { shirt: "longsleeve", hat: ["wizard", "wizard_trim", "wizard_moon"], belt: ["robe", "sash"], neck: ["amulet_star", "capeclip", ""], weapon: "staff", cape: "solid" },
+  soothsayer: {
+    shirt: "longsleeve",
+    hat: ["hood", "sack_hood", "hood"],
+    neck: ["amulet_cross", "charm_star", "necklace_beaded_small"],
+    wrists: ["lace", "cuffs"],
+    belt: "sash_narrow",
+    face: ["", "", "halfmoon"],
+    weapon: "staff",
+  },
+  vagabond: { armor: "leather", hat: "hood", belt: ["double", "leather"], wrists: "bracers", face: ["", "", "", "eyepatch"], cape: ["tattered", ""], weapon: "bow" },
+  pugilist: { shirt: "sleeveless", hat: ["kerchief", "bandana", "thick", "tied"], wrists: ["cuffs", "bracers"], belt: ["sash", "obi", "waistband"] },
+  minstrel: { shirt: "tshirt", hat: ["cavalier", "bonnie", "leather_cap"], neck: ["cravat", "jabot", "capetie"], belt: "sash", weapon: "dagger", cape: "solid" },
+  gambler: { shirt: "longsleeve", hat: ["tricorne", "tricorne_stitched", "tricorne_captain", "bicorne"], neck: ["jabot", "cravat", ""], shoulders: ["", "epaulets"], face: ["", "", "eyepatch"], belt: "leather", weapon: "crossbow" },
+  ravager: {
+    armor: "chainmail",
+    hat: ["barbarian", "barbarian_viking", "spangenhelm_viking", "barbarian_nasal"],
+    crest: ["horns_short", "horns_upward", "", ""],
+    shoulders: ["", "pauldrons"],
+    wrists: "bracers",
+    belt: "double",
+    weapon: "sword",
+    cape: "tattered",
+  },
+  sword_saint: { shirt: "longsleeve", hat: ["tied", "hairtie", "thick", ""], belt: "obi", shoulders: ["mantal", ""], wrists: "cuffs", weapon: "sword", cape: "solid" },
+  abjurer: { shirt: "longsleeve", hat: "hood", shoulders: "mantal", neck: ["amulet_cross", "capeclip"], belt: "robe", weapon: "staff", cape: "solid", capetrim: "trim" },
+  conjurer: { shirt: "longsleeve", hat: ["wizard_moon", "wizard_trim"], neck: ["necklace_beaded_small", "amulet_star"], belt: "sash", weapon: "staff" },
+  tinkerer: { armor: "leather", hat: ["leather_cap", ""], face: ["glasses", "glasses", ""], gloves: "gloves", belt: "double", weapon: "crossbow" },
+  alterer: { shirt: "tshirt", hat: ["sack_hood", "sack_hood", "thick_rune"], face: ["mask", ""], neck: "charm_star", belt: "waistband", weapon: "staff" },
+};
+/** The metal each Job's armor is worked in, one per Scion (the generator's metal palette). */
+const METALS: Record<string, readonly string[]> = {
+  soldier: ["steel", "iron"],
+  knight: ["steel", "silver", "steel"],
+  ravager: ["iron", "bronze", "iron"],
+  tinkerer: ["brass", "copper"],
 };
 /** The attack a Job's weapon swings with. */
 const ATTACK: Record<string, Anim> = { sword: "slash", longsword: "slash", mace: "slash", dagger: "slash", staff: "spellcast", bow: "shoot", crossbow: "shoot" };
@@ -60,6 +113,8 @@ function hash(n: number, salt: number): number {
 const pick = <T,>(xs: readonly T[], n: number, salt: number): T => xs[hash(n, salt) % xs.length]!;
 
 export interface ScionLook {
+  /** Who they are, for the pieces their Job lets each Scion choose among. */
+  seed: number;
   sex: "m" | "f";
   skin: string;
   hair: string;
@@ -133,6 +188,7 @@ export function lookOf(p: Pick<Person, "id" | "sex" | "age" | "job" | "status"> 
   const chosen = styleOf({ look: [...(p.look ?? [])] });
   const beard = chosen.beard === undefined ? born.beard : chosen.beard === "none" || p.sex !== "m" ? undefined : chosen.beard;
   return {
+    seed: p.id,
     sex: p.sex,
     skin: pick(SKINS, p.id, 1),
     hair: chosen.hair ?? born.hair,
@@ -146,16 +202,36 @@ export function lookOf(p: Pick<Person, "id" | "sex" | "age" | "job" | "status"> 
   };
 }
 
-/** Their Job's outfit with what they wear laid over it. */
+/** Salts for each slot's pick, so one Scion's helm does not decide their crest. */
+const SALT: Partial<Record<Slot, number>> = { hat: 11, crest: 12, shoulders: 14, belt: 15, neck: 16, face: 17, wrists: 18, tabard: 19, capetrim: 20, cape: 21 };
+
+/** Their Job's outfit, one piece per slot, with what they wear laid over it. */
 const outfitOf = (look: ScionLook): Partial<Record<Slot, string>> => {
-  const out = { ...(OUTFIT[look.job] ?? OUTFIT.recruit!) };
+  const job = OUTFIT[look.job] ?? OUTFIT.recruit!;
+  const out: Partial<Record<Slot, string>> = {};
+  for (const [slot, piece] of Object.entries(job) as [Slot, string | readonly string[]][]) {
+    const one = typeof piece === "string" ? piece : pick(piece, look.seed, SALT[slot] ?? 10);
+    if (one) out[slot] = one;
+  }
+  const jobArmor = out.armor;
   for (const [slot, piece] of Object.entries(look.kit ?? {}) as [Slot, string][]) {
     // A light hood on a Pugilist is tied as a kerchief (Josh 2026-11-02): the hood is the Vagabond's.
-    if (piece) out[slot] = slot === "hat" && piece === "hood" && look.job === "pugilist" ? "bandana" : piece;
+    if (slot === "hat" && piece === "hood" && look.job === "pugilist") out.hat = "kerchief";
+    // A Helm keeps the helmet the Job already wears; any other headwear replaces it.
+    else if (slot === "hat" && piece === "nasal" && out.hat && HELMS.has(out.hat)) continue;
+    else if (piece) out[slot] = piece;
     // Bare-handed or unarmored: no weapon or armor; a helmless head keeps its Job's hat.
     else if (slot === "weapon" || slot === "armor") delete out[slot];
+    // Out of their Job's armor, they are out of its plate arms and metal shoulders too.
+    if (slot === "armor" && piece !== jobArmor) {
+      delete out.arms;
+      if (out.shoulders === "legion") delete out.shoulders;
+    }
   }
   if (look.bare) delete out.hat;
+  // A crest sits on a helmet; with a hood or a bare head it stays home.
+  if (!out.hat || !HELMS.has(out.hat)) delete out.crest;
+  if (out.cape !== "solid") delete out.capetrim;
   return out;
 };
 
@@ -207,31 +283,51 @@ interface Piece {
 export function piecesOf(look: ScionLook): Piece[] {
   const outfit = outfitOf(look);
   const palettes = LAYERS.palettes as Record<string, { base: string; colors: Record<string, string[]> }>;
+  const cloth = palettes.cloth!.colors;
+  const [main, second] = [ramp(look.colors[0]), ramp(look.colors[1])];
+  const metal = palettes.metal?.colors[pick(METALS[look.job] ?? ["steel"], look.seed, 22)];
   const want: [Slot, string | undefined, string[] | undefined][] = [
     ["body", "body", palettes.body!.colors[look.skin]],
     ["head", `${look.sex === "f" ? "female" : "male"}${look.elderly ? "_elderly" : ""}`, palettes.body!.colors[look.skin]],
     ["hair", look.hair, palettes.hair!.colors[look.hairColor]],
     ["beard", look.beard, palettes.hair!.colors[look.hairColor]],
-    ["legs", "pants", palettes.cloth!.colors.charcoal],
-    ["feet", "boots", palettes.cloth!.colors.leather],
-    ["shirt", outfit.shirt, ramp(look.colors[1])],
-    ["armor", outfit.armor, undefined],
-    ["cape", outfit.cape, ramp(look.colors[0])],
-    ["hat", outfit.hat, ramp(look.colors[1])],
+    ["legs", "pants", cloth.charcoal],
+    ["feet", "boots", cloth.leather],
+    ["shirt", outfit.shirt, second],
+    ["armor", outfit.armor, metal],
+    ["tabard", outfit.tabard, main],
+    ["belt", outfit.belt, outfit.belt === "leather" || outfit.belt === "double" ? cloth.leather : main],
+    ["shoulders", outfit.shoulders, outfit.shoulders === "legion" ? metal : main],
+    ["arms", outfit.arms, metal],
+    ["wrists", outfit.wrists, outfit.wrists === "bracers" ? metal : second],
+    ["gloves", outfit.gloves, metal],
+    ["neck", outfit.neck, outfit.neck === "cravat" || outfit.neck === "jabot" ? cloth.white : outfit.neck?.startsWith("cape") ? main : metal],
+    ["face", outfit.face, undefined],
+    ["cape", outfit.cape, main],
+    ["capetrim", outfit.capetrim, second],
+    ["hat", outfit.hat, HELMS.has(outfit.hat ?? "") ? metal : second],
+    ["crest", outfit.crest, outfit.crest?.startsWith("plumage") ? main : metal],
     ["weapon", outfit.weapon, undefined],
-    ["shield", outfit.shield, ramp(look.colors[0])],
+    ["shield", outfit.shield, main],
   ];
   const out: Piece[] = [];
   for (const [slot, option, tones] of want) {
     if (!option) continue;
     for (const layer of LAYERS.layers.filter((l) => l.slot === slot && l.option === option && l.sex === look.sex)) {
-      out.push({ layer, ...(layer.material && layer.material !== "metal" && tones ? { tones } : {}) });
+      // A trim or a feather takes the House's other color.
+      const own = "tone" in layer && layer.tone === "accent" ? (tones === second ? main : second) : tones;
+      // Steel stays steel unless their Job's metal is another; a cloth piece always takes its colors.
+      const keep = layer.material === "metal" ? own !== undefined && own !== palettes.metal?.colors.steel : !!own;
+      if (layer.material && keep && own) out.push({ layer, tones: own });
+      else out.push({ layer });
     }
   }
   return out.sort((a, b) => a.layer.z - b.layer.z);
 }
 
 const BASE = `${import.meta.env.BASE_URL ?? "./"}sprites/sovereign-pact/scions/`;
+/** Sheets a host has already loaded, by file name (a page that can serve only so many files inlines them). */
+const INLINE = (globalThis as { __spScions?: Record<string, string> }).__spScions;
 const images = new Map<string, Promise<HTMLImageElement>>();
 function image(file: string): Promise<HTMLImageElement> {
   let p = images.get(file);
@@ -240,7 +336,7 @@ function image(file: string): Promise<HTMLImageElement> {
       const im = new Image();
       im.onload = () => resolve(im);
       im.onerror = reject;
-      im.src = `${BASE}${file}.webp`;
+      im.src = INLINE?.[file] ?? `${BASE}${file}.webp`;
     });
     images.set(file, p);
   }

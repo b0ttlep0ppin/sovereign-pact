@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { scionCredits } from "./credits";
 import LAYERS from "./scion-layers.json";
-import { animFor, attackOf, kitOf, lookOf, lunges, piecesOf, underHat, type Pixels } from "./ScionSprite";
+import { animFor, attackOf, HELMS, kitOf, lookOf, lunges, piecesOf, underHat, type Pixels } from "./ScionSprite";
 
 const person = (id: number, over: Partial<{ sex: "m" | "f"; age: number; job: string | null; status: "recruit" | "scion"; look: string[] }> = {}) =>
   ({ id, sex: "m" as const, age: 25, job: "knight", status: "scion", ...over }) as unknown as Parameters<typeof lookOf>[0];
@@ -37,10 +37,27 @@ describe("Scion sprites", () => {
       piecesOf({ ...lookOf(person(2, { job }), undefined), ...(hat ? { kit: { weapon: "", armor: "", hat } } : {}) })
         .filter((p) => p.layer.slot === "hat")
         .map((p) => p.layer.id);
-    expect(hats("pugilist").join()).toMatch(/bandana/);
-    expect(hats("pugilist", "hood").join()).toMatch(/bandana/);
+    expect(hats("pugilist").join()).toMatch(/kerchief|bandana|thick|tied/);
+    expect(hats("pugilist", "hood").join()).toMatch(/kerchief/);
     expect(hats("vagabond").join()).toMatch(/hood/);
     expect(hats("magus", "hood").join()).toMatch(/hood/);
+  });
+
+  it("gives each Scion their own pieces of their Job's outfit, in their House's colors (8aq)", () => {
+    const knights = Array.from({ length: 12 }, (_, i) => piecesOf(lookOf(person(100 + i), ["crimson", "amber"])));
+    const helms = new Set(knights.map((ps) => ps.find((p) => p.layer.slot === "hat")?.layer.option));
+    expect(helms.size).toBeGreaterThan(2);
+    for (const ps of knights) {
+      expect(HELMS.has(ps.find((p) => p.layer.slot === "hat")!.layer.option)).toBe(true);
+      // The cape is always in the House's first color.
+      expect(ps.find((p) => p.layer.slot === "cape")?.tones?.[4]).toBe("#9b1c24");
+    }
+    // A plume sits on a helmet; under a hood it stays home.
+    const plumed = Array.from({ length: 30 }, (_, i) => lookOf(person(200 + i), ["crimson", "amber"])).find((l) => piecesOf(l).some((p) => p.layer.slot === "crest"))!;
+    expect(piecesOf({ ...plumed, kit: { weapon: "sword", armor: "plate", hat: "hood" } }).some((p) => p.layer.slot === "crest")).toBe(false);
+    // A Helm item keeps the helmet the Knight already wears.
+    const own = piecesOf(plumed).find((p) => p.layer.slot === "hat")!.layer.option;
+    expect(piecesOf({ ...plumed, kit: { weapon: "sword", armor: "plate", hat: "nasal" } }).find((p) => p.layer.slot === "hat")!.layer.option).toBe(own);
   });
 
   it("wears the House's restyling over the look they were born with (§5.8)", () => {
@@ -113,7 +130,7 @@ describe("Scion sprites", () => {
     const option = (slot: string) => piecesOf(magus).find((p) => p.layer.slot === slot)?.layer.option;
     expect(option("weapon")).toBe("bow");
     expect(option("armor")).toBeUndefined();
-    expect(option("hat")).toBe("wizard");
+    expect(option("hat")).toMatch(/^wizard/);
     expect(attackOf(magus)).toBe("shoot");
   });
 });

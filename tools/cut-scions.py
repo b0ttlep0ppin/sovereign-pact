@@ -30,8 +30,12 @@ gen = Path(sys.argv[1])
 out = root / "public/sprites/sovereign-pact/scions"
 out.mkdir(parents=True, exist_ok=True)
 
-# slot -> option -> sheet definition (relative to sheet_definitions/), or several drawn together, and
-# the metal or color file to take where a layer comes in several.
+# Every helmet the generator offers under an attribution-only license (two horned ones are share-alike only).
+HELMS = ["mail", "nasal", "armet", "armet_simple", "barbarian", "barbarian_nasal", "barbarian_viking", "barbuta", "bascinet", "close", "flattop", "greathelm", "kettle", "legion", "morion", "norman", "pointed", "spangenhelm", "spangenhelm_viking", "sugarloaf"]
+# slot -> option -> sheet definition (relative to sheet_definitions/), or several drawn together. A part
+# given as {"def": ...} may name the color file to take ("variant") or ask for the House's other color
+# ("tone": "accent"). A layer that comes in the generator's cloth colors is cut in white and one in metals
+# in steel, so the client can recolor it from the palette; any other takes VARIANT's first match.
 PICK = {
     "body": {"body": "body/body.json"},
     "head": {
@@ -52,18 +56,56 @@ PICK = {
         "tshirt": "torso/shirts/shortsleeve/torso_clothes_tshirt.json",
         "sleeveless": "torso/shirts/sleeveless/torso_clothes_sleeveless2.json",
     },
-    "armor": {"chainmail": "torso/torso_chainmail.json", "plate": "torso/armour/torso_armour_plate.json", "leather": "torso/armour/torso_armour_leather.json"},
-    "cape": {"solid": "torso/cape/cape_solid.json"},
+    "armor": {
+        "chainmail": "torso/torso_chainmail.json",
+        "plate": "torso/armour/torso_armour_plate.json",
+        "leather": "torso/armour/torso_armour_leather.json",
+        "legion": "torso/armour/torso_armour_legion.json",
+    },
+    "tabard": {"tabard": "torso/jacket/torso_jacket_tabard.json"},
+    "belt": {
+        **{k: f"torso/waist/belt_{k}.json" for k in ["leather", "double", "sash", "sash_narrow", "robe", "waistband"]},
+        "obi": "torso/waist/obi/belt_obi.json",
+    },
+    "shoulders": {k: f"arms/shoulders/shoulders_{k}.json" for k in ["pauldrons", "legion", "mantal", "epaulets"]},
+    "arms": {"plate": "arms/arms_armour.json"},
+    "wrists": {"bracers": "arms/wrists/arms_bracers.json", "cuffs": "arms/wrists/wrists_cuffs.json", "lace": "arms/wrists/wrists_cuffs_lace.json"},
+    "gloves": {"gloves": "arms/arms_gloves.json"},
+    "neck": {
+        **{k: f"headwear/neck/neck_{k}.json" for k in ["capeclip", "capetie", "cravat", "jabot", "necklace_beaded_small"]},
+        "amulet_cross": {"def": "headwear/neck/charms/neck_amulet_cross.json", "variant": "brass_red"},
+        "amulet_star": {"def": "headwear/neck/charms/neck_amulet_star.json", "variant": "brass_blue"},
+        "charm_star": "headwear/neck/charms/neck_charm_star.json",
+    },
+    "face": {
+        "eyepatch": {"def": "headwear/accessories/eyepatch/facial_eyepatch_left.json", "variant": "black"},
+        "glasses": {"def": "headwear/accessories/glasses/facial_glasses.json", "variant": "black"},
+        "halfmoon": {"def": "headwear/accessories/glasses/facial_glasses_halfmoon.json", "variant": "black"},
+        "mask": {"def": "headwear/accessories/facial_mask_plain.json", "variant": "black"},
+    },
+    "cape": {"solid": "torso/cape/cape_solid.json", "tattered": "torso/cape/cape_tattered.json"},
+    # Drawn over a solid cape, in the House's second color.
+    "capetrim": {"trim": "torso/cape/cape_trim.json"},
     "hat": {
         "wizard": "headwear/hats/magic/hat_magic_celestial.json",
+        "wizard_trim": ["headwear/hats/magic/hat_magic_celestial.json", {"def": "headwear/hats/magic/hat_magic_celestial_trim.json", "tone": "accent"}],
+        "wizard_moon": ["headwear/hats/magic/hat_magic_celestial_moon.json", {"def": "headwear/hats/magic/hat_magic_celestial_moon_trim.json", "tone": "accent"}],
         "hood": "headwear/coverings/hoods/hat_hood_cloth.json",
+        "sack_hood": "headwear/coverings/hoods/hat_hood_sack_cloth.json",
         # The cap and its feather are two definitions; both are drawn.
         "cavalier": ["headwear/hats/caps/hat_cap_cavalier.json", "headwear/hats/caps/hat_cap_cavalier_feather.json"],
+        "bonnie": ["headwear/hats/caps/hat_cap_bonnie.json", {"def": "headwear/hats/caps/hat_cap_bonnie_feather.json", "tone": "accent"}],
+        "leather_cap": ["headwear/hats/caps/hat_cap_leather.json", {"def": "headwear/hats/caps/hat_cap_leather_feather.json", "tone": "accent"}],
         "bandana": "headwear/coverings/bandana/hat_bandana.json",
+        **{k: f"headwear/coverings/headbands/hat_headband_{k}.json" for k in ["kerchief", "thick", "tied", "hairtie", "thick_rune"]},
         "tricorne": "headwear/hats/tricorne/hat_tricorne.json",
-        "mail": "headwear/helmets/helmets/hat_helmet_mail.json",
-        "nasal": "headwear/helmets/helmets/hat_helmet_nasal.json",
+        "tricorne_stitched": ["headwear/hats/tricorne/hat_tricorne.json", {"def": "headwear/hats/tricorne/hat_tricorne_stitched.json", "tone": "accent"}],
+        "tricorne_captain": ["headwear/hats/tricorne/hat_tricorne_captain.json", {"def": "headwear/hats/tricorne/hat_tricorne_captain_trim.json", "variant": "brass"}],
+        "bicorne": "headwear/hats/athwart/hat_bicorne_athwart_captain.json",
+        **{k: f"headwear/helmets/helmets/hat_helmet_{k}.json" for k in HELMS},
     },
+    # On top of a helmet: plumes in the House's color, crests, horns and wings in metal.
+    "crest": {k: f"headwear/helmets/accessories/hat_accessory_{k}.json" for k in ["plumage", "plumage_centurion", "crest_centurion", "horns_short", "horns_upward", "wings"]},
     "weapon": {
         "sword": "weapons/sword/weapon_sword_arming.json",
         "longsword": "weapons/sword/weapon_sword_longsword.json",
@@ -90,13 +132,13 @@ CELL = 128
 COLS = max(n for _, _, n in ROWS)
 
 
-def find(base: Path, anim: str) -> Path | None:
+def find(base: Path, anim: str, prefer: str | None = None) -> Path | None:
     """The file a layer draws `anim` with: <anim>.png, or <anim>/<variant>.png."""
     for a in [anim, *FALLBACK[anim]]:
         if (base / f"{a}.png").exists():
             return base / f"{a}.png"
         if (base / a).is_dir():
-            for v in VARIANT:
+            for v in ([prefer] if prefer else []) + VARIANT:
                 if (base / a / f"{v}.png").exists():
                     return base / a / f"{v}.png"
             files = sorted((base / a).glob("*.png"))
@@ -105,9 +147,9 @@ def find(base: Path, anim: str) -> Path | None:
     return None
 
 
-def custom(base: Path) -> Path | None:
+def custom(base: Path, prefer: str | None = None) -> Path | None:
     """An oversized animation's single sheet: <dir>.png or <dir>/<variant>.png."""
-    for v in VARIANT:
+    for v in ([prefer] if prefer else []) + VARIANT:
         if (base / f"{v}.png").exists():
             return base / f"{v}.png"
     if base.with_suffix(".png").exists():
@@ -120,7 +162,9 @@ manifest = {"rows": [r[0] for r in ROWS], "frames": [r[2] for r in ROWS], "cell"
 seen_credits = set()
 for slot, opts in PICK.items():
     for oid, rels in opts.items():
-        for part, rel in enumerate([rels] if isinstance(rels, str) else rels):
+        for part, spec in enumerate(rels if isinstance(rels, list) else [rels]):
+            spec = spec if isinstance(spec, dict) else {"def": spec}
+            rel = spec["def"]
             d = json.loads((gen / "sheet_definitions" / rel).read_text())
             # Only the credits of the files we cut (a definition also credits its child or teen art).
             used = [layer[sex] for k, layer in d.items() if k.startswith("layer_") for sex in ("male", "female") if sex in layer]
@@ -130,6 +174,13 @@ for slot, opts in PICK.items():
                 continue
             recolor = d.get("recolors", {})
             material = recolor.get("material") or recolor.get("color_1", {}).get("material")
+            variants = d.get("variants") or []
+            prefer = spec.get("variant")
+            if not prefer and not material and "white" in variants:
+                prefer, material = "white", "cloth"
+            elif not prefer and not material and "steel" in variants:
+                prefer, material = "steel", "metal"
+            tone = {"tone": spec["tone"]} if "tone" in spec else {}
             for lk in sorted(k for k in d if k.startswith("layer_")):
                 layer = d[lk]
                 for sex in ("male", "female"):
@@ -144,11 +195,11 @@ for slot, opts in PICK.items():
                             # Only this row's own swing: "slash_oversize" or "slash_128", not "slash_reverse_oversize".
                             if layer["custom_animation"] not in (f"{anim}_oversize", f"{anim}_128"):
                                 continue
-                            src = custom(path.parent if path.name == "" else path)
+                            src = custom(path.parent if path.name == "" else path, prefer)
                             tail = layer["custom_animation"].split("_")[-1]
                             size = 192 if tail == "oversize" else int(tail)
                         else:
-                            src = find(path, anim)
+                            src = find(path, anim, prefer)
                             size = 64
                         if src is None:
                             continue
@@ -171,10 +222,10 @@ for slot, opts in PICK.items():
                     # Same art for both bodies: keep one file.
                     other = f"{slot}_{oid}_{tag}_m"
                     if sex == "female" and layer.get("female") == layer.get("male"):
-                        manifest["layers"].append({"id": lid, "file": other, "slot": slot, "option": oid, "sex": "f", "z": layer["zPos"], "material": material})
+                        manifest["layers"].append({"id": lid, "file": other, "slot": slot, "option": oid, "sex": "f", "z": layer["zPos"], "material": material, **tone})
                         continue
                     sheet.save(out / f"{lid}.webp", "WEBP", lossless=True, method=6)
-                    manifest["layers"].append({"id": lid, "file": lid, "slot": slot, "option": oid, "sex": sex[0], "z": layer["zPos"], "material": material})
+                    manifest["layers"].append({"id": lid, "file": lid, "slot": slot, "option": oid, "sex": sex[0], "z": layer["zPos"], "material": material, **tone})
             for c in d["credits"]:
                 key = c["file"]
                 if key in seen_credits:
@@ -182,7 +233,7 @@ for slot, opts in PICK.items():
                 seen_credits.add(key)
                 manifest["credits"].append({"file": key, "authors": c["authors"], "licenses": [l for l in c["licenses"] if l.startswith(BY)], "urls": c.get("urls", [])})
 
-for material in ["body", "hair", "cloth", "eye"]:
+for material in ["body", "hair", "cloth", "eye", "metal"]:
     meta = json.loads((gen / "palette_definitions" / material / f"meta_{material}.json").read_text())
     colors = json.loads((gen / "palette_definitions" / material / f"{material}_ulpc.json").read_text())
     manifest["palettes"][material] = {"base": meta["base"], "colors": colors}

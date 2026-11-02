@@ -2,6 +2,14 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 8as): Scions dress with flair from their Job's wardrobe
+
+- Josh: "There's also a ton of helmets etc and other head wear other jobs can use" and "Use a lot of the sprite generator stuff when possible... Would like for sprites to have a little flair, even when respecting the house colors". `tools/cut-scions.py` now also cuts every attribution-only helmet in the LPC generator (20; the two horned helmets are share-alike only and stay out), plumes, crests, horns and wings, tabards, belts and sashes, pauldrons and mantles, plate arms, bracers, cuffs, gloves, neckwear and amulets, eyepatch, glasses and a mask, more hats (wizard hats with trim, caps with feathers, tricornes, a bicorne, headbands) and a tattered cape and a cape trim: 185 sheets, each credited in the manifest as before.
+- Each Job lists a wardrobe; where a slot lists several pieces, each Scion is given one, by their id, the same every time. Two Knights of one House wear its colors but not the same helm.
+- Colors: cloth in the House's colors (cape, tabard, plumes, sashes in the first, shirts and hats in the second, trims and feathers in the other), leather belts in leather, armor in its Job's metal (Knights steel or silver, Ravagers iron or bronze, Tinkerers brass or copper).
+- A plume or horns sit only on a helmet; a Helm item keeps the helmet the Job already wears; out of their Job's armor a Scion also loses its plate arms and metal shoulders.
+- The browser build that hosts the game as a single page reads the sheets from one file (`window.__spScions`), since that host serves at most 511 files; the game itself loads each sheet as before.
+
 ## 2026-11-02 (implementation, Milestone 8ar): enemies hit harder; bots should nearly always lose
 
 - Josh: "the enemies are pathetically weak", "the game should be pretty hard or else there's no point", and "the game is probably almost impossible for bots who have no tactics, no character building and no strategy". With HP now carrying between an expedition's battles (8ao), `tuning.enemies.soften` rises from 50–80% of full strength at expedition levels 1–10 to 70%, 75%, 80%, 85%, 90% and 95% at levels 1–6, and full strength from level 7.
