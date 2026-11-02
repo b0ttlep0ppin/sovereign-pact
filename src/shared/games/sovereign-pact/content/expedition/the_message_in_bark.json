@@ -1,0 +1,76 @@
+{
+  "id": "the_message_in_bark",
+  "pools": [
+    "rescue"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    10
+  ],
+  "title": "The Message in the Bark",
+  "text": "Words cut into a tree in your House's tongue: 'Still alive. Going north. Hurry.'",
+  "options": [
+    {
+      "id": "north",
+      "label": "Go north, fast.",
+      "rule": "vote",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "North.",
+          "effects": [
+            {
+              "skip": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "read",
+      "label": "The wisest reads the cuts for how long ago.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Three days. And they were bleeding.",
+          "effects": [
+            {
+              "foresee": true
+            },
+            {
+              "skip": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "answer",
+      "label": "Cut an answer beneath.",
+      "rule": "leader",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "For them, if they come back.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 5
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "id": "the_heron_king",
+  "pools": [
+    "drowned_marches"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    7
+  ],
+  "title": "The Heron King",
+  "text": "A heron taller than a man stands in the shallows, wearing a crown of reeds. He asks for a fish.",
+  "options": [
+    {
+      "id": "fish",
+      "label": "The quickest hands catch him one.",
+      "rule": "scion:highest:speed",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "He bows, and shows you a dry path.",
+          "effects": [
+            {
+              "skip": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "refuse",
+      "label": "Refuse.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "He stalks off, and the marsh is less friendly.",
+          "effects": [
+            {
+              "to": "party",
+              "status": "slow"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "crown",
+      "label": "Take the crown.",
+      "rule": "leader",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Just reeds, and a curse.",
+          "effects": [
+            {
+              "curse": true
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

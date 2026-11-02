@@ -1,0 +1,86 @@
+{
+  "id": "the_lion_pride",
+  "pools": [
+    "beast_lands"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    6
+  ],
+  "title": "The Lion Pride",
+  "text": "A pride of lions lies in the long grass by the only water for a day's march.",
+  "options": [
+    {
+      "id": "wait",
+      "label": "Wait for them to drink and go.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A thirsty afternoon.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "drive",
+      "label": "Drive them off with fire.",
+      "rule": "leader",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "They go.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 5
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "They do not.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "surprise"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sneak",
+      "label": "The quietest fills the skins.",
+      "rule": "scion:highest:guile",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Unseen.",
+          "effects": [
+            {
+              "to": "party",
+              "mp": 15
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,81 @@
+{
+  "id": "the_choir_loft",
+  "pools": [
+    "shrine_of_six"
+  ],
+  "weight": 2,
+  "band": [
+    4,
+    10
+  ],
+  "title": "The Choir Loft",
+  "text": "The Shrine's choir loft is empty, but the hymns go on. They need a sixth voice.",
+  "options": [
+    {
+      "id": "sing",
+      "label": "The steadiest voice joins them.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The hymn completes.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 12
+            },
+            {
+              "jp": 30
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "listen",
+      "label": "Listen from below.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Beautiful and sad.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "silence",
+      "label": "Silence them.",
+      "rule": "leader",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The Shrine goes cold.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -10
+            },
+            {
+              "doom": 1
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

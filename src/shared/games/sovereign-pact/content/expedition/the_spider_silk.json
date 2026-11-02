@@ -1,0 +1,85 @@
+{
+  "id": "the_spider_silk",
+  "pools": [
+    "hollow_wood"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    7
+  ],
+  "title": "The Spider Silk",
+  "text": "Webs between the trees, thick as rope and strong as steel. The spiders are elsewhere, for now.",
+  "options": [
+    {
+      "id": "harvest",
+      "label": "Harvest silk.",
+      "rule": "vote",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "Bolts of it.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 20
+              }
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "They come back.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "ambush"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "burn",
+      "label": "Burn the webs.",
+      "rule": "leader",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The wood is clear, and the spiders are angry somewhere.",
+          "effects": [
+            {
+              "skip": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "study",
+      "label": "The wisest studies their making.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A weaver's trick.",
+          "effects": [
+            {
+              "house_improvement": "shop"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "id": "the_penitent_knight",
+  "pools": [
+    "apostate_court"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    9
+  ],
+  "title": "The Penitent Knight",
+  "text": "A knight of the Court walks barefoot in chains, doing penance. He asks to fight beside you to earn forgiveness.",
+  "options": [
+    {
+      "id": "accept",
+      "label": "Let him.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "He fights like a man with nothing to lose.",
+          "effects": [
+            {
+              "to": "party",
+              "status": "protect"
+            },
+            {
+              "score": {
+                "valor": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "judge",
+      "label": "The wisest asks what he did.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Something terrible. He tells you where the Court keeps its secrets.",
+          "effects": [
+            {
+              "score": {
+                "intrigue": 2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "refuse",
+      "label": "Refuse.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "He walks on, chains dragging.",
+          "effects": []
+        }
+      ]
+    }
+  ]
+}
