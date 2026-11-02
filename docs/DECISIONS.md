@@ -2,6 +2,16 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 7ba): carried items, and the Tarot Token
+
+- The **Saint's Tooth** and the **Dice of the Marches** work from the party satchel on a Scion's injury rolls, in battle and in expedition events (`carriedRoll` in `combat/injury.ts`). Each is spent when it works.
+- The **Tarot Token** is a new Settlement Phase move, `draw_tarot {person}`. One of the House's Scions draws a new Tarot, never the one they had, once in their life (a new history counter, `tarot_tokens`). The log names the Scion but not the card; only their House sees it.
+- Bots pack one Saint's Tooth and one Dice of the Marches when they hold them.
+- Readings:
+  - Saint's Tooth. "A Mortal wound becomes Devastating (severed)": the only Mortal wound is on the Body table, which has no severing. The wound becomes the Arms table's Severed instead (`tuning.consumables.uses.toothResult`): the saint takes an arm in place of a life. A cap on injuries never softens it.
+  - Dice of the Marches. "Reroll one injury roll, before seeing the table; whoever holds it decides." The rule decides for the holder: it rerolls a d20 of 5 or less (`diceRerollAt`), seen before the table is read, and keeps the second roll.
+- Left for 7bb: the Passive Draught, the Thief's Candle, the Bottled Chorus and the Component Pouch.
+
 ## 2026-11-02 (implementation, Milestone 7az): the satchel between nodes
 
 - A new move, `use_item {id, person?}`, opens the party satchel between nodes.

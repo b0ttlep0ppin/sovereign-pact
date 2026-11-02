@@ -10,7 +10,7 @@ import { gearTotals } from "./items.ts";
 import { SHOPS, stockTier } from "./market.ts";
 import { found } from "./loot.ts";
 import { isWard } from "./wards.ts";
-import { roll } from "./combat/injury.ts";
+import { carriedRoll } from "./combat/injury.ts";
 import { BUILDING_BY_ID, HOUSE_TRAIT_BY_ID, INJURY_BY_ID, INJURY_TABLE_BY_ID, TAROT, TAROT_BY_ID, TRAIT_BY_ID, TRAITS, TRIP_EVENT_BY_ID, TRIP_EVENTS, type InjuryTableId, type TripEffect, type TripEventDef, type TripOption } from "./content.ts";
 import { battle, die, home, lose, marching, person, succeed } from "./journey.ts";
 import { gainJp, gainXp, jobStats } from "./progression.ts";
@@ -236,7 +236,9 @@ function apply(s: SovState, fx: TripEffect, ids: number[], house: number | null)
     s.people[at] = p;
     person_(s, p, fx);
     if (fx.injury) {
-      const r = withRng(s, (rng) => roll(rng, fx.injury!, 0)).result;
+      const sat = s.expedition?.satchel;
+      const carried = sat ? { has: (id: string) => sat.some((x) => x.id === id), spend: (id: string) => void sat.splice(sat.findIndex((x) => x.id === id), 1) } : undefined;
+      const r = withRng(s, (rng) => carriedRoll(rng, fx.injury!, 0, carried)).result;
       log(s, `${p.name}: ${r.name}.`);
       if (r.death || r.mortal) die(s, p, r.id);
       else if (r.lasting) p.injuries.push({ id: r.id, years: r.lasting.years });

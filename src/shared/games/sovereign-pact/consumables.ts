@@ -2,14 +2,14 @@
 // Settlement Phase wherever they are sold: a Commons shop at its stock tier (the Apothecary, the Curio
 // Dealer, the Fence, the Great Market) or one of the House's own buildings at a level (the Workshop, the
 // Chapel, the Farm…). Houses pack them into the party satchel for an expedition (§9.10).
-import { CONSUMABLE_BY_ID, type ConsumableDef } from "./content.ts";
+import { CONSUMABLE_BY_ID, TAROT, type ConsumableDef } from "./content.ts";
 import { built } from "./commons.ts";
 import { seatsOf } from "./expedition.ts";
 import { BOT_OPENS } from "./satchel.ts";
 import { byPct, econ } from "./houses.ts";
 import type { House, SovMove, SovState } from "./state.ts";
 import { TUNING } from "./tuning.ts";
-import { log } from "./year.ts";
+import { log, withRng } from "./year.ts";
 
 const T = TUNING.consumables;
 
@@ -133,4 +133,23 @@ export function botPack(s: SovState, house: number, fielded: number): Partial<Re
     room -= n;
   }
   return Object.keys(out).length ? out : undefined;
+}
+
+/** Why `house` cannot spend a Tarot Token on `person` now (§13.7), or null. */
+export function cannotDrawTarot(s: SovState, house: number, person: unknown): string | null {
+  if (held(s.houses[house]!, "tarot_token") < 1) return "The House holds no Tarot Token.";
+  const p = s.people.find((x) => x.id === person);
+  if (!p || p.host !== house || p.status !== "scion") return "Name one of the House's Scions.";
+  if (p.hist.tarot_tokens) return "A Scion draws again only once.";
+  return null;
+}
+
+/** `person` draws a new Tarot, never the one they had; only their own House sees which (view.ts). */
+export function drawTarot(s: SovState, house: number, person: number): void {
+  const p = s.people.find((x) => x.id === person)!;
+  give(s.houses[house]!, "tarot_token", -1);
+  p.tarot = withRng(s, (rng) => rng.pick(TAROT.filter((t) => t.id !== p.tarot))).id;
+  delete p.reversed;
+  p.hist.tarot_tokens = 1;
+  log(s, `${p.name} of House ${s.houses[house]!.name} draws a new Tarot.`);
 }

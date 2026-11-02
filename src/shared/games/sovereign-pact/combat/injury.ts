@@ -1,10 +1,11 @@
 // Death's door (§11): a d20 plus steps on the location's table (or the Sanity table), the result's
 // effects in battle, and the Resilience check that may steel a Broken location (§7.4).
 import type { Rng } from "../../../rng.ts";
-import { INJURY_TABLE_BY_ID, type InjuryResult, type InjuryTableId } from "../content.ts";
+import { INJURY_BY_ID, INJURY_TABLE_BY_ID, type InjuryResult, type InjuryTableId } from "../content.ts";
 import type { Location } from "../state.ts";
 import { TUNING } from "../tuning.ts";
 import { partBroken } from "./enemyparts.ts";
+import { spendItem } from "./items.ts";
 import { addStatus, endSongs, removeStatus } from "./status.ts";
 import type { Battle, Combatant } from "./types.ts";
 
@@ -38,16 +39,41 @@ export function roll(rng: Rng, table: InjuryTableId, steps: number): Roll {
 
 const pct = (n: number, p: number) => Math.round((n * p) / 100);
 
+/** What the party satchel holds, and spending one from it, for the carried items that change a roll. */
+export interface Carried {
+  has: (id: string) => boolean;
+  spend: (id: string) => void;
+}
+
+/**
+ * A roll with what is carried (§13.7): the Dice of the Marches rerolls a low die, seen before the table
+ * is; the Saint's Tooth turns a Mortal wound into a severed arm. Each is spent when it works.
+ */
+export function carriedRoll(rng: Rng, table: InjuryTableId, steps: number, c?: Carried): Roll & { table: InjuryTableId; rerolled?: number; tooth?: true } {
+  let r: Roll & { table: InjuryTableId; rerolled?: number; tooth?: true } = { ...roll(rng, table, steps), table };
+  if (c?.has("dice_of_the_marches") && r.roll <= TUNING.consumables.uses.diceRerollAt) {
+    c.spend("dice_of_the_marches");
+    r = { ...roll(rng, table, steps), table, rerolled: r.roll };
+  }
+  if (r.result.mortal && c?.has("saints_tooth")) {
+    c.spend("saints_tooth");
+    r = { ...r, table: "arms", result: INJURY_BY_ID.get(TUNING.consumables.uses.toothResult)!, tooth: true };
+  }
+  return r;
+}
+
 /**
  * Rolls on `table` for `u` with extra `steps` (the trigger's: HP 0, Broken, telegraph…), applies the
  * result in battle, and records it on the combatant. Returns the result.
  */
 export function injure(b: Battle, rng: Rng, u: Combatant, table: InjuryTableId, steps: number): InjuryResult {
-  const r = roll(rng, table, baseSteps(u, table) + steps);
-  const result = capped(b, table, r.result, r.total);
-  b.events.push({ t: "injury", target: u.id, table, roll: r.roll, total: r.total, result: result.id });
+  // A Scion's rolls answer to what the satchel carries.
+  const c: Carried | undefined = u.side === "party" && u.person !== undefined && u.owner === undefined ? { has: (id) => !!b.satchel?.includes(id), spend: (id) => spendItem(b, id) } : undefined;
+  const r = carriedRoll(rng, table, baseSteps(u, table) + steps, c);
+  const result = r.tooth ? r.result : capped(b, table, r.result, r.total);
+  b.events.push({ t: "injury", target: u.id, table: r.table, roll: r.roll, total: r.total, result: result.id, ...(r.rerolled ? { rerolled: r.rerolled } : {}), ...(r.tooth ? { tooth: true as const } : {}) });
   u.injuries.push(result.id);
-  apply(b, u, result, table);
+  apply(b, u, result, r.table);
   return result;
 }
 

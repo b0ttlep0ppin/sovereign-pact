@@ -337,7 +337,7 @@ export type BattleEvent =
   | { t: "heal"; unit: number; target: number; amount: number }
   | { t: "sanity"; target: number; amount: number }
   | { t: "status"; target: number; status: string; on: boolean }
-  | { t: "injury"; target: number; table: string; roll: number; total: number; result: string }
+  | { t: "injury"; target: number; table: string; roll: number; total: number; result: string; rerolled?: number; tooth?: true }
   | { t: "steeled"; target: number; loc: Location | "sanity" }
   | { t: "down"; target: number }
   | { t: "lots" | "fizzle"; unit: number; total: number }
