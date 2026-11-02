@@ -2,6 +2,10 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 8v): amounts as sliders and steppers
+
+- From Josh's play: every number box (Commons pledges, Crisis pledges, bids and reserves, deals) is now one control: − and + buttons, a slider when there is a ceiling (what you hold, what is needed), and the number itself, which can be typed into but reads as a counter. Typing replaces the number (the stuck leading "0" is gone) and is clamped to the range. Gold amounts in bids, reserves and deals step by 5.
+
 ## 2026-11-02 (implementation, Milestone 8u): a clearer founding
 
 - From Josh's first play on the founding screen. The traits list never holds more of a kind than the set allows: a full kind with room for two greys out the rest, a kind with room for one swaps (radio buttons), a Bloodline makes room for itself by giving up the second Major Trait and the Major Flaw, and a Major Flaw gives the Bloodline up. Each kind shows "n of m", the step says what is still missing, and a whole set is kept at once (no separate Keep button).

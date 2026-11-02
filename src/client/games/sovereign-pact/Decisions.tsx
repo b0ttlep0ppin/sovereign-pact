@@ -4,6 +4,7 @@
 import { Content, type SovMove, type SovView } from "@vibepulse/shared/games/sovereign-pact";
 import { useState } from "react";
 import { Emblem } from "./Emblem";
+import Amount from "./Amount";
 
 type Props = { view: SovView; sendMove: (m: SovMove) => void; canAct: boolean };
 
@@ -121,11 +122,11 @@ function CrisisCard({ view, sendMove, canAct }: Props) {
       {canAct ? (
         <div className="sp-pledge">
           {keys.map((k) => (
-            <label key={k}>
-              {word(k)}{" "}
-              <input type="number" min={0} max={have(k)} value={give[k] ?? 0} onChange={(e) => setGive({ ...give, [k]: Math.max(0, Math.min(have(k), Math.floor(Number(e.target.value) || 0))) })} />
+            <span key={k} className="sp-amount-row">
+              <span>{word(k)}</span>
+              <Amount label={word(k)} max={have(k)} value={give[k] ?? 0} onChange={(n) => setGive({ ...give, [k]: n })} />
               <small> of {have(k)}</small>
-            </label>
+            </span>
           ))}
           <button
             type="button"

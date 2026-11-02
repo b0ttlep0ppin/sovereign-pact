@@ -3,6 +3,7 @@
 // consumables the House can buy, and its stash to put up for bids with a reserve.
 import { Content, itemName, type SovMove, type SovView } from "@vibepulse/shared/games/sovereign-pact";
 import { useState } from "react";
+import Amount from "./Amount";
 
 type Props = { view: SovView; sendMove: (m: SovMove) => void; canAct: boolean };
 type Item = SovView["items"][number];
@@ -72,7 +73,7 @@ export default function Market({ view, sendMove, canAct }: Props) {
                     <small>Your lot</small>
                   ) : canAct ? (
                     <span className="sp-bid">
-                      <input type="number" min={l.price} max={mine.gold} value={value} aria-label={`Bid on ${itemName(l.item)}`} onChange={(e) => setBids({ ...bids, [l.item.id]: Math.floor(Number(e.target.value) || 0) })} />
+                      <Amount label={`Bid on ${itemName(l.item)}`} min={l.price} max={Math.max(l.price, mine.gold)} step={5} value={value} onChange={(n) => setBids({ ...bids, [l.item.id]: n })} />
                       <button type="button" className="sp-button sp-button--quiet" disabled={value < l.price || value > mine.gold} onClick={() => sendMove({ type: "bid", item: l.item.id, gold: value })}>
                         {l.bids[me] !== null && l.bids[me] !== undefined ? `Change bid (${l.bids[me]})` : "Bid"}
                       </button>
@@ -115,7 +116,7 @@ export default function Market({ view, sendMove, canAct }: Props) {
               <li key={i.id}>
                 <ItemLine item={i} />
                 <span className="sp-bid">
-                  <input type="number" min={0} value={reserve[i.id] ?? 0} aria-label={`Reserve for ${itemName(i)}`} onChange={(e) => setReserve({ ...reserve, [i.id]: Math.max(0, Math.floor(Number(e.target.value) || 0)) })} />
+                  <Amount label={`Reserve for ${itemName(i)}`} step={5} value={reserve[i.id] ?? 0} onChange={(n) => setReserve({ ...reserve, [i.id]: n })} />
                   <button type="button" className="sp-button sp-button--quiet" onClick={() => sendMove({ type: "auction", item: i.id, reserve: reserve[i.id] ?? 0 })}>
                     Put up for bids
                   </button>

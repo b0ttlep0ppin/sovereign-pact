@@ -4,6 +4,7 @@
 // spend the Commons' stock on it.
 import { Content, type SovMove, type SovView } from "@vibepulse/shared/games/sovereign-pact";
 import { useState } from "react";
+import Amount from "./Amount";
 
 type Props = { view: SovView; sendMove: (m: SovMove) => void; canAct: boolean };
 type Mine = NonNullable<SovView["mine"]>;
@@ -82,10 +83,10 @@ function Project({ p, mine, sendMove, canAct }: { p: Mine["projects"][number]; m
       {canAct ? (
         <span className="sp-pledge">
           {keys.map((k) => (
-            <label key={k}>
-              {word(k)}{" "}
-              <input type="number" min={0} max={Math.min(have(k), p.need[k] ?? 0)} value={give[k] ?? 0} onChange={(e) => setGive({ ...give, [k]: Math.max(0, Math.min(have(k), p.need[k] ?? 0, Math.floor(Number(e.target.value) || 0))) })} />
-            </label>
+            <span key={k} className="sp-amount-row">
+              <span>{word(k)}</span>
+              <Amount label={word(k)} max={Math.min(have(k), p.need[k] ?? 0)} value={give[k] ?? 0} onChange={(n) => setGive({ ...give, [k]: n })} />
+            </span>
           ))}
           <button
             type="button"

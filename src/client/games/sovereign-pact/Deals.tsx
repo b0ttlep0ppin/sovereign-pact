@@ -3,6 +3,7 @@
 // form to put one of its own: to whom, what it gives, what it asks, and whether the deal is public.
 import { Content, itemName, MATERIALS, type SovMove, type SovView } from "@vibepulse/shared/games/sovereign-pact";
 import { useState } from "react";
+import Amount from "./Amount";
 
 type Props = { view: SovView; sendMove: (m: SovMove) => void; canAct: boolean };
 type Side = SovView["deals"][number]["give"];
@@ -54,7 +55,6 @@ export default function Deals({ view, sendMove, canAct }: Props) {
   const stash = view.items.filter((i) => i.house === me && !worn.has(i.id));
   const held = KEYS.filter((k) => (mine.stores[k] ?? 0) > 0);
   const scions = (h: number) => view.people.filter((p) => p.host === h && p.status === "scion");
-  const num = (v: string) => Math.max(0, Math.floor(Number(v) || 0));
   const ready = canAct && to >= 0 && (Object.keys(clean(give)).length > 0 || Object.keys(clean(get)).length > 0);
   return (
     <section className="sp-panel sp-deals" aria-label="Deals">
@@ -121,13 +121,13 @@ export default function Deals({ view, sendMove, canAct }: Props) {
           </label>
           <fieldset>
             <legend>You give</legend>
-            <label>
-              Gold <input type="number" min={0} max={mine.gold} value={give.gold} onChange={(e) => setGive({ ...give, gold: Math.min(mine.gold, num(e.target.value)) })} />
-            </label>
+            <span className="sp-amount-row">
+              <span>Gold</span> <Amount label="Gold" max={mine.gold} step={5} value={give.gold} onChange={(n) => setGive({ ...give, gold: n })} />
+            </span>
             {held.map((k) => (
-              <label key={k}>
-                {word(k)} <input type="number" min={0} max={mine.stores[k]} value={give.stores[k] ?? 0} onChange={(e) => setGive({ ...give, stores: { ...give.stores, [k]: Math.min(mine.stores[k] ?? 0, num(e.target.value)) } })} />
-              </label>
+              <span key={k} className="sp-amount-row">
+                <span>{word(k)}</span> <Amount label={word(k)} max={mine.stores[k] ?? 0} value={give.stores[k] ?? 0} onChange={(n) => setGive({ ...give, stores: { ...give.stores, [k]: n } })} />
+              </span>
             ))}
             {stash.map((i) => (
               <label key={i.id}>
@@ -142,13 +142,13 @@ export default function Deals({ view, sendMove, canAct }: Props) {
           </fieldset>
           <fieldset>
             <legend>You ask</legend>
-            <label>
-              Gold <input type="number" min={0} value={get.gold} onChange={(e) => setGet({ ...get, gold: num(e.target.value) })} />
-            </label>
+            <span className="sp-amount-row">
+              <span>Gold</span> <Amount label="Gold" step={5} value={get.gold} onChange={(n) => setGet({ ...get, gold: n })} />
+            </span>
             {KEYS.map((k) => (
-              <label key={k}>
-                {word(k)} <input type="number" min={0} value={get.stores[k] ?? 0} onChange={(e) => setGet({ ...get, stores: { ...get.stores, [k]: num(e.target.value) } })} />
-              </label>
+              <span key={k} className="sp-amount-row">
+                <span>{word(k)}</span> <Amount label={word(k)} value={get.stores[k] ?? 0} onChange={(n) => setGet({ ...get, stores: { ...get.stores, [k]: n } })} />
+              </span>
             ))}
             {scions(to).map((p) => (
               <label key={p.id} title="As a Ward: they would live and fight for you (§6.9)">
