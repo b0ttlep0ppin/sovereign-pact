@@ -2,6 +2,14 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 8w): a dark fantasy skin
+
+- Josh found the interface "very standard AI game". Following §15.1 (a dark base; a pixel display face for headings and numbers, a readable humanist face for body text):
+  - Headings, the title, the Year and battle titles are in **Jacquard 12**, a pixel blackletter. Body text is **Alegreya Sans**. Both come from Google Fonts (SIL Open Font License), with system fallbacks.
+  - Colors are soot, old bronze, parchment and dried blood. Panels are dark wood-and-iron with a faint inner rule and gilt corner brackets. The main button is a blood-red seal with a gilt edge; the quiet ones are iron. Tracks and the timeline are inset, and the current Year glows.
+  - The Town Map keeps its sky that darkens toward the rift.
+- Josh chose (decision card, 2026-11-02) that the opening recruit draft is a **shared draft, taking turns**: all Houses pick from one pool in snake order. It is built in its own step.
+
 ## 2026-11-02 (implementation, Milestone 8v): amounts as sliders and steppers
 
 - From Josh's play: every number box (Commons pledges, Crisis pledges, bids and reserves, deals) is now one control: − and + buttons, a slider when there is a ceiling (what you hold, what is needed), and the number itself, which can be typed into but reads as a counter. Typing replaces the number (the stuck leading "0" is gone) and is clamped to the range. Gold amounts in bids, reserves and deals step by 5.

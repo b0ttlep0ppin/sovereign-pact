@@ -1,29 +1,45 @@
 .sp { display: grid; gap: 16px; }
-.sp h2 { font-size: 0.95rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin: 0 0 8px; }
-.sp-panel { background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 12px 14px; min-width: 0; }
+.sp h2 { font: 400 1.6rem/1.1 var(--display); letter-spacing: 0.02em; color: var(--gold); margin: 0 0 12px; padding-bottom: 6px; text-shadow: 0 2px 0 #000; background: linear-gradient(90deg, var(--line-hi), transparent 80%) bottom left / 100% 1px no-repeat; }
+.sp h3 { font-variant: small-caps; letter-spacing: 0.05em; color: var(--text); }
+/* A panel: dark wood-and-iron, a faint inner rule, and gilt brackets at the corners. */
+.sp-panel {
+  position: relative; min-width: 0; padding: 16px 18px;
+  background: linear-gradient(var(--panel-hi), var(--panel) 40%);
+  border: 1px solid var(--line); border-radius: 2px;
+  box-shadow: inset 0 0 0 3px var(--panel), inset 0 0 0 4px rgba(184, 140, 62, 0.14), inset 0 0 40px rgba(0, 0, 0, 0.45), 0 6px 18px rgba(0, 0, 0, 0.55);
+}
+.sp-panel::after {
+  content: ""; position: absolute; inset: -1px; pointer-events: none;
+  --c: var(--accent);
+  background:
+    linear-gradient(var(--c), var(--c)) top left / 12px 2px no-repeat, linear-gradient(var(--c), var(--c)) top left / 2px 12px no-repeat,
+    linear-gradient(var(--c), var(--c)) top right / 12px 2px no-repeat, linear-gradient(var(--c), var(--c)) top right / 2px 12px no-repeat,
+    linear-gradient(var(--c), var(--c)) bottom left / 12px 2px no-repeat, linear-gradient(var(--c), var(--c)) bottom left / 2px 12px no-repeat,
+    linear-gradient(var(--c), var(--c)) bottom right / 12px 2px no-repeat, linear-gradient(var(--c), var(--c)) bottom right / 2px 12px no-repeat;
+}
 .sp-top { display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: center; }
 .sp-top__year { display: grid; }
-.sp-top__year strong { font-size: 1.4rem; }
+.sp-top__year strong { font: 400 2.2rem/1 var(--display); color: var(--gold); text-shadow: 0 2px 0 #000; }
 .sp-top__year small { color: var(--muted); font-weight: 400; font-size: 0.9rem; }
 .sp-top__year span, .sp-top__commons { color: var(--muted); font-size: 0.85rem; }
 .sp-track { display: flex; align-items: center; gap: 8px; min-width: 200px; }
 .sp-track__label { width: 4.5em; color: var(--muted); font-size: 0.85rem; }
-.sp-track__bar { position: relative; flex: 1; height: 8px; background: var(--line); border-radius: 4px; overflow: hidden; }
-.sp-track__fill { position: absolute; inset: 0 auto 0 0; background: var(--accent); }
-.sp-track__fill--danger { background: var(--danger); }
+.sp-track__bar { position: relative; flex: 1; height: 10px; background: #0a0807; border: 1px solid var(--line); border-radius: 1px; overflow: hidden; box-shadow: inset 0 1px 3px #000; }
+.sp-track__fill { position: absolute; inset: 0 auto 0 0; background: linear-gradient(#e7c46c, #8a6526); }
+.sp-track__fill--danger { background: linear-gradient(#d9573f, #6d1611); }
 .sp-track__value { width: 2em; text-align: right; font-variant-numeric: tabular-nums; }
 .sp-timeline { display: grid; grid-template-columns: repeat(auto-fit, minmax(30px, 1fr)); gap: 3px; list-style: none; margin: 0; padding: 0; }
-.sp-timeline__year { display: grid; place-items: center; min-height: 34px; background: var(--panel); border: 1px solid var(--line); border-radius: 3px; font-size: 0.75rem; color: var(--muted); }
+.sp-timeline__year { display: grid; place-items: center; min-height: 34px; background: #0e0b09; border: 1px solid var(--line); border-radius: 1px; font-size: 0.8rem; color: var(--muted); box-shadow: inset 0 1px 2px #000; }
 .sp-timeline__year.is-past { opacity: 0.45; }
-.sp-timeline__year.is-now { border-color: var(--accent); color: var(--text); font-weight: 700; }
-.sp-timeline__year.is-mandatory { background: var(--blood); color: var(--text); }
+.sp-timeline__year.is-now { border-color: var(--gold); color: var(--gold); font-weight: 700; box-shadow: 0 0 8px rgba(220, 181, 94, 0.45), inset 0 0 6px rgba(220, 181, 94, 0.2); }
+.sp-timeline__year.is-mandatory { background: linear-gradient(var(--blood-hi), var(--blood)); border-color: #2a0806; color: var(--text); }
 .sp-timeline__mark { font-size: 0.7rem; line-height: 1; }
-.sp-outcome { margin: 0; padding: 12px 14px; border-radius: 6px; background: var(--blood); font-weight: 600; }
+.sp-outcome { margin: 0; padding: 12px 14px; border-radius: 2px; border: 1px solid var(--blood-hi); background: linear-gradient(var(--blood-hi), var(--blood)); font: 400 1.5rem/1.2 var(--display); }
 .sp-outcome.is-won { background: var(--gold-dim); }
 .sp-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; }
 .sp-houses { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
-.sp-house { display: grid; grid-template-columns: auto 1fr auto; gap: 10px; align-items: center; padding: 8px; border-left: 4px solid; background: var(--bg); border-radius: 4px; }
-.sp-house.is-me { outline: 1px solid var(--accent); }
+.sp-house { display: grid; grid-template-columns: auto 1fr auto; gap: 10px; align-items: center; padding: 8px 10px; border-left: 4px solid; background: linear-gradient(90deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.15)); border-radius: 1px; }
+.sp-house.is-me { outline: 1px solid var(--accent); box-shadow: 0 0 10px rgba(184, 140, 62, 0.2); }
 .sp-house div { display: grid; gap: 2px; }
 .sp-house em { color: var(--muted); font-size: 0.85rem; }
 .sp-house__meta { font-size: 0.8rem; color: var(--muted); text-transform: capitalize; }
@@ -38,10 +54,13 @@
 .sp-stats dt { color: var(--muted); }
 .sp-stats dd { margin: 0; font-variant-numeric: tabular-nums; text-transform: capitalize; }
 .sp-actions { margin-top: 14px; }
-.sp-button { font: inherit; font-weight: 600; padding: 10px 18px; border-radius: 4px; border: 1px solid var(--accent); background: var(--accent); color: var(--bg); cursor: pointer; min-height: 44px; }
-.sp-button--quiet { background: transparent; color: var(--text); border-color: var(--line); }
+/* Buttons: the main one is a blood-red seal with a gilt edge; the quiet ones are iron. */
+.sp-button { font: inherit; font-weight: 700; font-variant: small-caps; letter-spacing: 0.05em; padding: 10px 18px; min-height: 44px; border-radius: 2px; border: 1px solid var(--accent); background: linear-gradient(var(--blood-hi), var(--blood)); color: #f1e3c2; cursor: pointer; text-shadow: 0 1px 0 #000; box-shadow: inset 0 1px 0 rgba(255, 210, 150, 0.18), 0 0 0 1px #000, 0 3px 8px rgba(0, 0, 0, 0.5); transition: filter 0.12s, border-color 0.12s; }
+.sp-button:hover:not(:disabled) { filter: brightness(1.18); border-color: var(--gold); }
+.sp-button:active:not(:disabled) { filter: brightness(0.9); }
+.sp-button--quiet { background: linear-gradient(#211a15, #15110e); color: var(--text); border-color: var(--line-hi); }
 .sp-button:focus-visible { outline: 2px solid var(--text); outline-offset: 2px; }
-.sp-button:disabled { opacity: 0.45; cursor: not-allowed; }
+.sp-button:disabled { opacity: 0.4; cursor: not-allowed; filter: grayscale(0.6); }
 .sp-error { color: var(--danger); }
 .sp-table-wrap { overflow-x: auto; }
 .sp-table { border-collapse: collapse; width: 100%; font-size: 0.82rem; font-variant-numeric: tabular-nums; }
@@ -100,7 +119,6 @@
 .sp-hands { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 12px; }
 .sp-hands li { display: flex; align-items: center; gap: 6px; }
 .sp-pledge { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
-.sp-pledge input { width: 5em; font: inherit; padding: 6px; background: var(--panel); color: var(--text); border: 1px solid var(--line); border-radius: 4px; }
 .sp-temptation { display: grid; gap: 6px; justify-items: start; }
 .sp-event .sp-actions { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 4px; }
 /* The market (§8.6, §13.4a, §13.7). */
@@ -112,14 +130,12 @@
 .sp-item small { color: var(--muted); }
 .sp-item__curse { color: var(--danger) !important; }
 .sp-bid { display: inline-flex; gap: 6px; align-items: center; }
-.sp-bid input { width: 5em; font: inherit; padding: 6px; background: var(--panel); color: var(--text); border: 1px solid var(--line); border-radius: 4px; }
 @media (max-width: 640px) { .sp-lots li { grid-template-columns: 1fr; } }
 /* Deals (§8.9). */
 .sp-offer { display: grid; gap: 8px; margin-top: 12px; justify-items: start; }
 .sp-offer h3 { margin: 0; font-size: 0.85rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
 .sp-offer fieldset { display: flex; flex-wrap: wrap; gap: 8px 14px; border: 1px solid var(--line); border-radius: 4px; padding: 8px 10px; margin: 0; }
 .sp-offer legend { color: var(--muted); font-size: 0.85rem; }
-.sp-offer input[type="number"] { width: 4.5em; font: inherit; padding: 4px 6px; background: var(--panel); color: var(--text); border: 1px solid var(--line); border-radius: 4px; }
 .sp-offer select { font: inherit; }
 
 /* Readying Scions (§12.1, §13.1). */
@@ -192,5 +208,10 @@
 .sp-amount__step:hover:not(:disabled) { border-color: var(--accent); }
 .sp-amount__step:disabled { opacity: 0.35; cursor: default; }
 .sp-amount__slider { width: 9em; accent-color: var(--accent); }
-.sp-amount__value { font: inherit; font-weight: 700; color: var(--gold); text-align: center; background: transparent; border: none; border-bottom: 1px dashed var(--line); border-radius: 0; padding: 2px 0; min-width: 2.2ch; }
-.sp-amount__value:focus { outline: none; border-bottom: 1px solid var(--accent); }
+.sp-amount .sp-amount__value { font: inherit; font-weight: 700; color: var(--gold); text-align: center; background: transparent; border: none; border-bottom: 1px dashed var(--line); border-radius: 0; padding: 2px 0; min-width: 2.2ch; box-shadow: none; }
+.sp-amount .sp-amount__value:focus { outline: none; border-bottom: 1px solid var(--accent); }
+/* Disclosure arrows in gilt. */
+.sp details > summary { list-style: none; cursor: pointer; }
+.sp details > summary::-webkit-details-marker { display: none; }
+.sp details > summary::before { content: "▸"; display: inline-block; width: 1em; color: var(--accent); transition: transform 0.15s; }
+.sp details[open] > summary::before { transform: rotate(90deg); }
