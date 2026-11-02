@@ -124,6 +124,7 @@ function Card({ p, view, sendMove, canAct }: Props & { p: Person }) {
           {p.loyalty !== undefined ? `Loyalty ${p.loyalty}` : ""}
         </p>
       ) : null}
+      {p.status === "recruit" ? <RecruitTask p={p} view={view} sendMove={sendMove} canAct={canAct} /> : null}
       {p.tarot || p.traits.length ? (
         <ul className="sp-person__traits">
           {p.tarot ? <TraitLine kind="Tarot" name={TAROT_BY_ID.get(p.tarot)?.name ?? words(p.tarot)} text={crunch ? TAROT_BY_ID.get(p.tarot)?.crunch : undefined} /> : null}
@@ -193,5 +194,39 @@ function Card({ p, view, sendMove, canAct }: Props & { p: Person }) {
         </div>
       ) : null}
     </li>
+  );
+}
+
+/**
+ * What a recruit does with the Year (DECISIONS 8ae). Left alone they work a producer that has a free hand;
+ * they can be set to train or rest instead. Recruits are not on the Town Map.
+ */
+function RecruitTask({ p, view, sendMove, canAct }: Props & { p: Person }) {
+  const mine = view.mine!;
+  const a = mine.assign[p.id];
+  const at = mine.atWork[p.id];
+  const place = (b: string) => Content.BUILDING_BY_ID.get(b)?.name ?? words(b);
+  const now = a?.to === "train" ? "Training" : a?.to === "rest" ? "Resting" : a?.to === "work" ? `Working the ${place(a.at ?? "")}` : at ? `Working the ${place(at)} on their own` : "No free work: resting";
+  const pick = (to: "idle" | "train" | "rest") => sendMove({ type: "assign", person: p.id, to });
+  const current = a?.to === "train" ? "train" : a?.to === "rest" ? "rest" : "idle";
+  return (
+    <div className="sp-person__task">
+      <span>{now}</span>
+      {canAct ? (
+        <span className="sp-person__task-pick" role="group" aria-label={`What ${p.name} does this Year`}>
+          {(
+            [
+              ["idle", "Work"],
+              ["train", "Train"],
+              ["rest", "Rest"],
+            ] as const
+          ).map(([to, label]) => (
+            <button key={to} type="button" className="sp-button sp-button--quiet" aria-pressed={current === to} onClick={() => current !== to && pick(to)}>
+              {label}
+            </button>
+          ))}
+        </span>
+      ) : null}
+    </div>
   );
 }

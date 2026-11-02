@@ -17,6 +17,14 @@ describe("the Town Map (§15.6)", () => {
     for (const name of ["The Commons", "The Rift Gate", "The walls"]) expect(screen.getByLabelText(name)).toBeTruthy();
   });
 
+  it("leaves recruits off the map: they work on their own (8ae)", () => {
+    const { view } = town();
+    render(<TownMap view={view} sendMove={() => {}} canAssign />);
+    const recruit = view.people.find((p) => p.host === view.me && p.status === "recruit" && view.people.filter((q) => q.name === p.name).length === 1);
+    if (recruit) expect(screen.queryAllByTitle(new RegExp(`^${recruit.name}`))).toHaveLength(0);
+    expect(document.querySelectorAll(".sp-chit").length).toBe(view.people.filter((p) => p.host === view.me && p.status !== "lost" && p.status !== "recruit").length);
+  });
+
   it("assigns a picked chit to the place picked next", () => {
     const { view } = town();
     const sendMove = vi.fn();

@@ -100,6 +100,35 @@ describe("Year assignments (§8.3)", () => {
     expect(error(s, "p1", { type: "assign", person: r.id, to: "chapel" })).toMatch(/recruit/);
   });
 
+  it("puts recruits nobody gave a task to work a free producer, for the Reckoning only (8ae)", () => {
+    let s = calm(campaign(1, 5));
+    for (const p of s.people) delete s.assign[p.id];
+    s.houses[0]!.buildings = { ...s.houses[0]!.buildings, quarry: 1 };
+    for (const b of Object.keys(s.houses[0]!.buildings)) if (b !== "quarry" && ["farm", "lumber_camp", "mine"].includes(b)) delete s.houses[0]!.buildings[b];
+    const recruits = s.people.filter((p) => p.host === 0 && p.status === "recruit");
+    expect(recruits.length).toBeGreaterThan(1);
+    const view = g.view(s, "p1");
+    // One free hand at the Quarry: the first recruit takes it, the rest have nothing to work.
+    expect(view.mine!.atWork).toEqual({ [recruits[0]!.id]: "quarry" });
+    const stone = s.houses[0]!.stores.stone!;
+    s = seal(s);
+    const made = TUNING.town.produce[0]! + A.work;
+    expect(s.houses[0]!.stores.stone).toBe(stone + made - Math.round(made * TUNING.economy.tithe));
+    // Nothing is left assigned: next Year they pitch in again, unless a Scion takes the slot.
+    expect(recruits.some((r) => s.assign[r.id])).toBe(false);
+  });
+
+  it("leaves a recruit set to train or rest where they were put", () => {
+    let s = calm(campaign(1, 5));
+    for (const p of s.people) delete s.assign[p.id];
+    s.houses[0]!.buildings = { ...s.houses[0]!.buildings, quarry: 1 };
+    const r = s.people.find((p) => p.host === 0 && p.status === "recruit")!;
+    s = move(s, "p1", { type: "assign", person: r.id, to: "rest" });
+    expect(g.view(s, "p1").mine!.atWork[r.id]).toBeUndefined();
+    s = seal(s);
+    expect(s.assign[r.id]).toEqual({ to: "rest" });
+  });
+
   it("refuses a Mentor who is not teaching, a Job they have not mastered, and a third student", () => {
     let s = calm(campaign(1, 5));
     s.houses[0]!.buildings.training_ground = 1;

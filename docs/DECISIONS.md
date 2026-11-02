@@ -2,6 +2,15 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 8ae): recruits work on their own, off the Town Map
+
+- Josh picked "Off the map, they work on their own" for where recruits should go.
+  - Recruits no longer appear as chits on the Town Map, which now shows only Scions and the Retired.
+  - A recruit nobody gave a task works any producer (Farm, Lumber Camp, Quarry, Mine) that has a free hand at the Reckoning. Producers are taken in the order the House built them, recruits in roster order. This lasts for that Reckoning only, so a Scion placed on a producer next Year still finds the slot free.
+  - When no producer has a free hand, the recruit rests at the idle rate, as before.
+- Each recruit's card says what they're doing ("Working the Quarry on their own", "No free work: resting"). Three buttons set them to Work (on their own), Train or Rest; Train and Rest stay until changed.
+- Bots already sent recruits to the producers, so nothing changes for them.
+
 ## 2026-11-02 (implementation, Milestone 8ad): Scions act out what they do in battle
 
 - A Scion's animation now follows the ability they use, not only their weapon.

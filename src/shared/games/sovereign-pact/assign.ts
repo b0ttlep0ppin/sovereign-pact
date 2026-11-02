@@ -105,6 +105,37 @@ export function assign(s: SovState, m: AssignMove): void {
 export const workers = (s: SovState, house: number, building: string): number =>
   Math.min(holders(s, house, "work", building).length, slots(s, house, "work", building));
 
+/**
+ * Recruits nobody gave a task work the House's producers on their own (DECISIONS 8ae): each free work
+ * slot, buildings in the order they were built, recruits in roster order. Person id -> building.
+ */
+export function recruitsAtWork(s: SovState, house: number): Map<number, string> {
+  const out = new Map<number, string>();
+  const h = s.houses[house]!;
+  const producers = Object.keys(h.buildings).filter((b) => BUILDING_BY_ID.get(b)?.produces && h.buildings[b]);
+  const free = new Map(producers.map((b) => [b, slots(s, house, "work", b) - holders(s, house, "work", b).length]));
+  for (const p of s.people) {
+    if (p.host !== house || p.status !== "recruit" || s.assign[p.id]) continue;
+    const b = producers.find((x) => free.get(x)! > 0);
+    if (!b) break;
+    free.set(b, free.get(b)! - 1);
+    out.set(p.id, b);
+  }
+  return out;
+}
+
+/** Sets every House's idle recruits to work for the Reckoning; returns them, to be stood down after it. */
+export function setRecruitsToWork(s: SovState): number[] {
+  const set: number[] = [];
+  s.houses.forEach((_, i) => {
+    for (const [id, at] of recruitsAtWork(s, i)) {
+      s.assign[id] = { to: "work", at };
+      set.push(id);
+    }
+  });
+  return set;
+}
+
 const SANITY_RESULTS = new Set(INJURY_TABLE_BY_ID.get("sanity")?.results.map((r) => r.id));
 
 /**

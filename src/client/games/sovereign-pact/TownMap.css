@@ -49,8 +49,6 @@
 .sp-chit .sp-scion { border-radius: 50%; }
 .sp-chit__job { position: absolute; top: -5px; right: -6px; background: #0d0a08; border: 1px solid var(--line-hi); border-radius: 50%; padding: 2px; }
 .sp-chit__tag { position: absolute; bottom: -9px; left: 50%; transform: translateX(-50%); max-width: 60px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font: 700 0.62rem/1 var(--body); padding: 1px 3px; border-radius: 2px; background: #0d0a08; color: var(--text); border: 1px solid var(--line); pointer-events: none; }
-.sp-chit.is-recruit { border-style: dashed; border-color: var(--muted) !important; filter: saturate(0.6); }
-.sp-chit.is-recruit .sp-chit__tag { font-style: italic; color: var(--muted); }
 .sp-chit.is-picked { outline: 2px solid var(--gold); outline-offset: 1px; }
 .sp-chit:disabled { cursor: default; }
 .sp-chit:focus-visible { outline: 2px solid var(--text); outline-offset: 1px; }
