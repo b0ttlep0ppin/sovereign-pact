@@ -1,0 +1,84 @@
+{
+  "id": "the_six_masks",
+  "pools": [
+    "shrine_of_six"
+  ],
+  "weight": 2,
+  "band": [
+    4,
+    10
+  ],
+  "title": "The Six Masks",
+  "text": "Six masks hang on the Shrine's wall, one for each god. Wearing one, the monks say, lets that god see through your eyes.",
+  "options": [
+    {
+      "id": "wise",
+      "label": "The wisest wears the mask of wisdom.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The god sees, and approves.",
+          "effects": [
+            {
+              "growth": {
+                "sagacity": 10
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "strong",
+      "label": "The strongest wears the mask of war.",
+      "rule": "scion:highest:might",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The god sees, and wants more.",
+          "effects": [
+            {
+              "growth": {
+                "might": 10
+              }
+            },
+            {
+              "sanity": -10
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "all",
+      "label": "Take the masks.",
+      "rule": "leader",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Blind, they are only wood. But the monks remember.",
+          "effects": [
+            {
+              "resources": {
+                "timber": 2
+              }
+            },
+            {
+              "curse": true
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

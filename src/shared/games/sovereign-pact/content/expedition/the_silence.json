@@ -1,0 +1,81 @@
+{
+  "id": "the_silence",
+  "pools": [
+    "outer_dark"
+  ],
+  "weight": 2,
+  "band": [
+    6,
+    10
+  ],
+  "title": "The Silence",
+  "text": "Sound stops. No footsteps, no breath, no heartbeat. The frailest feel it first.",
+  "options": [
+    {
+      "id": "weak",
+      "label": "Hold the frailest close.",
+      "rule": "scion:lowest:resilience|scion:lowest:sanity",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "They come through, shaking.",
+          "effects": [
+            {
+              "sanity": -10
+            },
+            {
+              "to": "party",
+              "sanity": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "shout",
+      "label": "Shout until something hears.",
+      "rule": "vote",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Something hears.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "surprise"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "listen",
+      "label": "Listen to the silence.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "In it, the shape of the way out.",
+          "effects": [
+            {
+              "foresee": true
+            },
+            {
+              "sanity": -5
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

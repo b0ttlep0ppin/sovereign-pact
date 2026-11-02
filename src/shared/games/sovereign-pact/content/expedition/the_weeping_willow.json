@@ -1,0 +1,98 @@
+{
+  "id": "the_weeping_willow",
+  "pools": [
+    "hollow_wood"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    7
+  ],
+  "title": "The Weeping Willow",
+  "text": "A willow drips sap that smells of sleep. Its roots have wrapped a dozen sleepers, smiling.",
+  "options": [
+    {
+      "id": "weak",
+      "label": "The one with least to resist sits a moment, to learn its trick.",
+      "rule": "scion:lowest:resilience|scion:random",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "They wake, and know how to sleep anywhere.",
+          "effects": [
+            {
+              "sanity": 20
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "The roots take hold.",
+          "effects": [
+            {
+              "status": "sleep"
+            },
+            {
+              "durability": -20,
+              "loc": "legs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cut",
+      "label": "Cut the sleepers free.",
+      "rule": "scion:highest:might",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Most wake. One gives you a ring.",
+          "effects": [
+            {
+              "item": {
+                "tier": 2
+              }
+            },
+            {
+              "score": {
+                "renown": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "burn",
+      "label": "Burn it.",
+      "rule": "vote",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The sleepers scream as they wake.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -8
+            },
+            {
+              "resources": {
+                "timber": 3
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

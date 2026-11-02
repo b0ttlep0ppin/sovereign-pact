@@ -1,0 +1,90 @@
+{
+  "id": "the_house_of_doors",
+  "pools": [
+    "faceless_city"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    9
+  ],
+  "title": "The House of Doors",
+  "text": "A house in the city has a hundred doors and no walls between them. Each opens onto a different street.",
+  "options": [
+    {
+      "id": "pick",
+      "label": "The sharpest eye picks the door.",
+      "rule": "scion:highest:acuity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "The right street.",
+          "effects": [
+            {
+              "skip": 1
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "The wrong street, and the wrong crowd.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "ambush"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "all",
+      "label": "Open them all.",
+      "rule": "vote",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Behind one, a merchant's vault.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 25
+              }
+            },
+            {
+              "to": "party",
+              "sanity": -8
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "slow",
+      "label": "The slowest keeps a door propped, so you can come back.",
+      "rule": "scion:lowest:speed|leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A way back, if you need it.",
+          "effects": [
+            {
+              "to": "party",
+              "status": "protect"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

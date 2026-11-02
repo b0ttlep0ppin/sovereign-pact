@@ -1,0 +1,83 @@
+{
+  "id": "the_dragons_shed",
+  "pools": [
+    "dragon_reaches"
+  ],
+  "weight": 2,
+  "band": [
+    5,
+    10
+  ],
+  "title": "The Dragon's Shed Skin",
+  "text": "A dragon has shed its skin in a valley: a husk as big as a hall, its scales loose and shining.",
+  "options": [
+    {
+      "id": "scales",
+      "label": "Gather scales.",
+      "rule": "vote",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Wyrmbone and scale, enough to armor a House.",
+          "effects": [
+            {
+              "resources": {
+                "wyrmbone": 3
+              }
+            },
+            {
+              "to": "party",
+              "durability": -10
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wear",
+      "label": "The toughest climbs inside and wears it a while.",
+      "rule": "scion:highest:resilience",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "They smell like dragon for a week. Things leave them alone.",
+          "effects": [
+            {
+              "status": "protect"
+            },
+            {
+              "skip": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "burn",
+      "label": "Burn it, so no rival has it.",
+      "rule": "leader",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It burns for a day.",
+          "effects": [
+            {
+              "score": {
+                "intrigue": 1
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

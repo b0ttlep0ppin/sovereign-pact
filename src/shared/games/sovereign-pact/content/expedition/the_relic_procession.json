@@ -1,0 +1,94 @@
+{
+  "id": "the_relic_procession",
+  "pools": [
+    "apostate_court"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    9
+  ],
+  "title": "The Relic Procession",
+  "text": "The Court parades a saint's hand through the streets. Everyone must kneel as it passes.",
+  "options": [
+    {
+      "id": "kneel",
+      "label": "Kneel.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The hand blesses you, after a fashion.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "steal",
+      "label": "Steal the hand.",
+      "rule": "scion:highest:guile",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "A true relic.",
+          "effects": [
+            {
+              "score": {
+                "relics": 1
+              }
+            },
+            {
+              "doom": 1
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "The procession turns.",
+          "effects": [
+            {
+              "encounter": {
+                "level": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "devout",
+      "label": "The devout asks to touch it.",
+      "rule": "scion:trait:devout|scion:highest:sagacity",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It is warm.",
+          "effects": [
+            {
+              "mend": true
+            },
+            {
+              "score": {
+                "lore": 1
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

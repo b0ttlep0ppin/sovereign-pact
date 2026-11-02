@@ -2,6 +2,10 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 7ae: a third round for the regions, and the ones who lag behind) — implementer
+- **Built** (content only). Sixteen events: the Crow Counsel, the Weeping Willow, the Sinking Road, the Open Coffin, the White Bear, the Brimstone Lift, the Bellows' Breath, the House of Doors, the Relic Procession, the Six Masks, the Dragon's Shed Skin and the Silence (one for each region), the Lost One's Camp and the Captor's Deal for Rescues, the Salt Pans for Resource cards and the Rival Party for Hunts. That makes 288 expedition events; every region has 7 to 11.
+- **Budget:** the lowest-Resilience and lowest-Speed rules 7ad added now have five uses each, so `npm run events` flags no rule.
+
 ## 2026-11-02 (implementation, Milestone 7ad: a second round for the regions, Pilgrimages and Delves) — implementer
 - **Built** (content only). Sixteen events: the Boar King, the Moth Lantern, the Floating Market, the Bone Choir, the Ice Bridge, the Chain Gang, the Slag Golem, the Masked Judge, the Heretic's Bonfire, the Sixth Bell, the Scorched Village and the Hole in the Sky (one for each region), plus the Pilgrims' Well and the Hermit's Cave for Pilgrimages and the Flooded Gallery and the Singing Vein for Delves. That makes 272 expedition events; every region now has 6 to 10.
 - **Reading:** two subject rules join the pool (the weakest Resilience and the lowest Speed, for a scene that falls on the one who lags behind); `npm run events` flags them until the next batches bring each to five uses.

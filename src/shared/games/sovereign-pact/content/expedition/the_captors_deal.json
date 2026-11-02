@@ -1,0 +1,97 @@
+{
+  "id": "the_captors_deal",
+  "pools": [
+    "rescue"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    10
+  ],
+  "title": "The Captor's Deal",
+  "text": "A bandit chief holds the Lost and offers a trade: one of yours for one of them.",
+  "options": [
+    {
+      "id": "trade",
+      "label": "Trade the toughest, who can escape later.",
+      "rule": "scion:highest:resilience",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "It works.",
+          "effects": [
+            {
+              "skip": 2
+            },
+            {
+              "durability": -30,
+              "loc": "body"
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "The chief is no fool.",
+          "effects": [
+            {
+              "encounter": {}
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fight",
+      "label": "Fight.",
+      "rule": "vote",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The bandits are many.",
+          "effects": [
+            {
+              "encounter": {
+                "level": 1
+              }
+            },
+            {
+              "score": {
+                "valor": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pay",
+      "label": "Pay gold instead.",
+      "rule": "house:highest_standing|leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Gold talks.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -25
+              }
+            },
+            {
+              "skip": 2
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

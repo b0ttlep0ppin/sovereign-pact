@@ -1,0 +1,96 @@
+{
+  "id": "the_crow_counsel",
+  "pools": [
+    "beast_lands"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    6
+  ],
+  "title": "The Crow Counsel",
+  "text": "A parliament of crows sits in judgment on a dead oak. They caw at whoever lags at the back of the line.",
+  "options": [
+    {
+      "id": "slow",
+      "label": "The slowest stands before them.",
+      "rule": "scion:lowest:speed|scion:random",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "They judge the laggard worthy, and show a shortcut.",
+          "effects": [
+            {
+              "skip": 1
+            },
+            {
+              "xp": 40
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "They judge the laggard food.",
+          "effects": [
+            {
+              "durability": -20,
+              "loc": "head"
+            },
+            {
+              "sanity": -5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "scatter",
+      "label": "Scatter them.",
+      "rule": "vote",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "They come back with friends.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "ambush"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "offer",
+      "label": "Offer them something shiny.",
+      "rule": "leader",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "They caw approval, and leave you alone.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -5
+              }
+            },
+            {
+              "to": "party",
+              "sanity": 3
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

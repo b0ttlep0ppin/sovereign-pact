@@ -1,0 +1,82 @@
+{
+  "id": "the_brimstone_lift",
+  "pools": [
+    "pit"
+  ],
+  "weight": 2,
+  "band": [
+    4,
+    10
+  ],
+  "title": "The Brimstone Lift",
+  "text": "A cage on a chain goes down into the Pit, worked by a winch imp. It holds four, and the slowest will have to wait.",
+  "options": [
+    {
+      "id": "ride",
+      "label": "Ride it down.",
+      "rule": "vote",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Fast, and hot.",
+          "effects": [
+            {
+              "skip": 1
+            },
+            {
+              "to": "party",
+              "status": "burn"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "slow",
+      "label": "The slowest takes the stairs alone.",
+      "rule": "scion:lowest:speed|scion:random",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "They arrive later, singed and annoyed.",
+          "effects": [
+            {
+              "durability": -20,
+              "loc": "legs"
+            },
+            {
+              "xp": 40
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "winch",
+      "label": "Throw the imp off its winch.",
+      "rule": "scion:highest:might|leader",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Its friends below heard it land.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "surprise"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

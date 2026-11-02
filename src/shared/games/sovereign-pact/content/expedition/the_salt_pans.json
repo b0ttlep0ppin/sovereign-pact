@@ -1,0 +1,94 @@
+{
+  "id": "the_salt_pans",
+  "pools": [
+    "resource"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    10
+  ],
+  "title": "The Salt Pans",
+  "text": "Shallow pans of salt shine white to the horizon. Salt is gold, inland.",
+  "options": [
+    {
+      "id": "rake",
+      "label": "Rake as much as you can carry.",
+      "rule": "vote",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Heavy work, heavy packs.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 20
+              }
+            },
+            {
+              "to": "party",
+              "durability": -10
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "slow",
+      "label": "The slowest stays to watch for the salt-keepers.",
+      "rule": "scion:lowest:speed|scion:random",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "They see them coming. You leave in time.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 10
+              }
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "They see them too late.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "ambush"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "trade",
+      "label": "Trade with the salt-keepers.",
+      "rule": "scion:highest:guile",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Salt for iron, fair.",
+          "effects": [
+            {
+              "resources": {
+                "iron": 3,
+                "gold": 10
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
