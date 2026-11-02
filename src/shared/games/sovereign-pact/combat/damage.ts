@@ -480,6 +480,7 @@ function supportEffects(b: Battle, rng: Rng, u: Combatant, t: Combatant, ab: Abi
   for (const c of ab.cure ?? []) for (const x of [...t.statuses]) if ((x.id === c || meta(x.id).kind === c) && !meta(x.id).fixed) removeStatus(b, t, x.id);
   if (ab.sanityPct && t.maxSanity) t.sanity = Math.min(t.maxSanity, t.sanity + Math.round((t.maxSanity * ab.sanityPct) / 100));
   if (ab.tpGrant) t.tp = Math.min(C.tp.max, t.tp + ab.tpGrant);
+  if (ab.mpPct && t.maxMp) t.mp = Math.min(t.maxMp, t.mp + Math.round((t.maxMp * ab.mpPct) / 100));
   if (ab.flag && !t.flags.includes(ab.flag)) t.flags.push(ab.flag);
   // Barrier and Bulwark (§12.14), stronger from an Aegis caster; the Shield Drone only tops up.
   if (ab.shieldPct) {

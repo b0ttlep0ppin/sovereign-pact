@@ -19,6 +19,6 @@
     {"id": "gentle_hands", "name": "Gentle Hands", "points": 2, "jp": 200, "text": "Healing dealt +15%.", "mods": {"healingDealtPct": 15}},
     {"id": "lifeline", "name": "Lifeline", "points": 3, "jp": 300, "text": "When an ally within 2 cells hits 0 HP, 25% chance they stay at 1 HP (once a battle).", "later": true},
     {"id": "calming_presence", "name": "Calming Presence", "points": 1, "jp": 100, "text": "Adjacent allies lose 20% less Sanity.", "later": true},
-    {"id": "herb_lore", "name": "Herb Lore", "points": 1, "jp": 100, "text": "Consumables you use heal +30%.", "later": true}
+    {"id": "herb_lore", "name": "Herb Lore", "points": 1, "jp": 100, "text": "Consumables you use heal +30%.", "mods": {"itemHealPct": 30}}
   ]
 }

@@ -26,6 +26,7 @@
         "shape": { "type": "string", "minLength": 1 },
         "side": { "enum": ["foe", "ally", "self"] },
         "power": { "type": "number", "minimum": 0 },
+        "reach": { "enum": ["melee", "reach", "ranged"] },
         "kind": { "enum": ["physical", "magic", "heal", "support"] },
         "element": { "enum": ["holy", "dark", "fire", "water", "earth", "wind"] },
         "restore": {

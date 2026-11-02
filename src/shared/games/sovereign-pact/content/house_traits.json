@@ -28,7 +28,7 @@
     {"id": "scholarly", "name": "Scholarly", "kind": "minor", "flavor": "The library has more doors than the house.", "crunch": "Insight buildings cost −20%.", "economy": {"insightCostPct": -20}},
     {"id": "pious", "name": "Pious", "kind": "minor", "flavor": "They pray before every meal and every killing.", "crunch": "Holy +10%; Sanity +5%.", "mods": {"ward.holy": 10, "maxSanityPct": 5}, "tags": ["faith"]},
     {"id": "thrifty", "name": "Thrifty", "kind": "minor", "flavor": "Waste is a sin, and so is generosity.", "crunch": "Upkeep −10%.", "economy": {"upkeepPct": -10}},
-    {"id": "herbalists", "name": "Herbalists", "kind": "minor", "flavor": "Every garden bed is medicinal. Mostly.", "crunch": "Consumable healing +20%.", "tags": ["herbalists"]},
+    {"id": "herbalists", "name": "Herbalists", "kind": "minor", "flavor": "Every garden bed is medicinal. Mostly.", "crunch": "Consumable healing +20%.", "mods": {"itemHealPct": 20}, "tags": ["herbalists"]},
     {"id": "duelists", "name": "Duelists", "kind": "minor", "flavor": "First blood settles most arguments.", "crunch": "Counter chance +5% with a one-handed weapon.", "tags": ["duelists"]},
     {"id": "iron_stomach", "name": "Iron Stomach", "kind": "minor", "flavor": "They have eaten worse.", "crunch": "Food and feast events never poison them; Poison resist +10%.", "mods": {"resist.poison": 10}, "tags": ["iron_stomach"]},
     {"id": "cold_blooded", "name": "Cold-Blooded", "kind": "minor", "flavor": "Calm when the roof is on fire.", "crunch": "Stun and Fear resist +15%.", "mods": {"resist.stun": 15, "resist.fear": 15}},

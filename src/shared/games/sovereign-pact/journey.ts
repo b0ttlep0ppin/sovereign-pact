@@ -126,6 +126,8 @@ export function lostClock(s: SovState): void {
 function settle(s: SovState, b: Battle, cause: string): void {
   const e = s.expedition!;
   const won = b.outcome === "victory";
+  // The first packed of a kind is the first used.
+  for (const id of b.used ?? []) e.satchel!.splice(e.satchel!.findIndex((x) => x.id === id), 1);
   tally(s, b, [...new Set(b.units.flatMap((u) => (u.side === "party" && u.person !== undefined && u.owner === undefined ? [person(s, u.person).host] : [])))]);
   for (const u of b.units) {
     if (u.side !== "party" || u.person === undefined || u.owner !== undefined) continue;
@@ -181,6 +183,8 @@ function fight(s: SovState, boss: boolean, o: FightOpts): Battle {
     ? bossBattle(seed, scions, id, card.level)
     : // A pool with no boss near the level ends in a fight a level above the card's (reading, see DECISIONS).
       encounterBattle(seed, scions, { pool, level, year: s.year, spread: s.flags.includes(ARC.nestLost), quarry: o.lair ? lairOf(s) : undefined, ...(o.modifier ? { modifier: o.modifier } : {}), ...(o.template ? { template: o.template } : {}) }).battle;
+  // The party satchel goes into the fight; what is used there is gone (§13.7).
+  if (s.expedition!.satchel?.length) b.satchel = s.expedition!.satchel.map((x) => x.id);
   simulate(b);
   return b;
 }

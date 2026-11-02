@@ -129,7 +129,10 @@
       "innate": {
         "id": "quick_hands",
         "name": "Quick Hands",
-        "text": "Items cost 60 CT."
+        "text": "Items cost 60 CT.",
+        "mods": {
+          "itemCt": 60
+        }
       },
       "mastery": {
         "id": "shadowstep",
