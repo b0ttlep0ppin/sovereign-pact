@@ -207,6 +207,26 @@
           }
         }
       }
+    },
+    "forces": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "pool"
+      ],
+      "properties": {
+        "pool": {
+          "$ref": "defs.schema.json#/definitions/id",
+          "description": "The enemy pool of the forced card."
+        },
+        "size": {
+          "enum": [
+            4,
+            8
+          ]
+        }
+      },
+      "description": "A forcing event (SPEC §3.2): it comes only from the timeline, foreshadowed a Year ahead, and the Rift Gate then offers only its card, a forced expedition at the Year's band."
     }
   },
   "definitions": {

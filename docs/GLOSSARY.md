@@ -66,7 +66,7 @@ Canonical terms. Code identifiers, UI text and the spec use these spellings. **S
 | Expedition card | One offered expedition: type, level, party size, pools, rewards. | ✅ |
 | Node | One step of an expedition chain: Encounter, Event, Camp, Cache, Fork, Gate, Boss. | ✅ |
 | Subject | The Scion an event's effects apply to, chosen by the resolution rule. | ❓ |
-| Change | A Scion's permanent transformation (Hollow Knight, Wyrmling…): the record that replaces their stats, traits and look. "Changed into a Hollow Knight." Form stays the Alterer's word. (Josh, 2026-11-02) | ✅ |
+| Change | A Scion's permanent transformation (Barrow Knight, Wyrmling…): the record that replaces their stats, traits and look. "Changed into a Barrow Knight." Form stays the Alterer's word. (Josh, 2026-11-02) | ✅ |
 | Regent | A House made temporary ruler by an event: allocates seats, names the Leader, decides votes alone. | ✅ (Josh: "dictator/monarch") |
 | Seat (expedition) | One place in the party; divided equally among Houses that field Scions. | ❓ |
 | Front / Middle / Back | The three player-grid columns, Front nearest the enemy. Unaimed enemy singles: 45/35/20. | ✅ |

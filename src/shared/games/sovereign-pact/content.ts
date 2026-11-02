@@ -506,6 +506,8 @@ export interface TownEventDef {
   options?: TownOption[];
   /** Secret choices: what follows when no House, or every House, picks `option`. */
   together?: { when: "none" | "all"; option: string; text: string; effects: TownEffect[] }[];
+  /** A forcing event (§3.2): it comes only from the timeline, and makes the Year's expedition its one card. */
+  forces?: { pool: string; size?: 4 | 8 };
 }
 export const TOWN_EVENTS = townFiles as unknown as readonly TownEventDef[];
 export const TOWN_EVENT_BY_ID: ReadonlyMap<string, TownEventDef> = new Map(TOWN_EVENTS.map((e) => [e.id, e]));

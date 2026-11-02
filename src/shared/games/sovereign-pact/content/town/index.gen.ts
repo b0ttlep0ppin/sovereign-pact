@@ -20,7 +20,10 @@ import rebellious_commons from "./rebellious_commons.json" with { type: "json" }
 import saints_bones from "./saints_bones.json" with { type: "json" };
 import stranger_at_the_gate from "./stranger_at_the_gate.json" with { type: "json" };
 import the_eclipse from "./the_eclipse.json" with { type: "json" };
+import the_raiders_nest from "./the_raiders_nest.json" with { type: "json" };
+import the_sick_well from "./the_sick_well.json" with { type: "json" };
 import the_suitor from "./the_suitor.json" with { type: "json" };
+import the_taken_child from "./the_taken_child.json" with { type: "json" };
 
 export default [
   breach_in_the_wall,
@@ -44,5 +47,8 @@ export default [
   saints_bones,
   stranger_at_the_gate,
   the_eclipse,
+  the_raiders_nest,
+  the_sick_well,
   the_suitor,
+  the_taken_child,
 ];

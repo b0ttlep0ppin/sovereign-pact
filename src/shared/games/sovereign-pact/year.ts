@@ -14,7 +14,7 @@ import { completeWorks, produce, upkeepDue } from "./town.ts";
 import { byPct, econ } from "./houses.ts";
 import { wardYear } from "./wards.ts";
 import { fallen } from "./lifecycle.ts";
-import { chosenCard, openGate } from "./gate.ts";
+import { chosenCard, openGate, scheduleForced } from "./gate.ts";
 import { muster, waiting } from "./expedition.ts";
 import { home, lostClock } from "./journey.ts";
 import { settleVote } from "./votes.ts";
@@ -62,6 +62,7 @@ export function openYear(s: SovState): void {
   drawOmens(s);
   restock(s);
   openGate(s);
+  scheduleForced(s);
   s.phase = "settlement";
   s.phaseMoves = 0;
   s.proposers = [];

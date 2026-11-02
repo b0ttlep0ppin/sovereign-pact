@@ -47,8 +47,8 @@ describe("a Change (§9.6)", () => {
     const kept = { name: p.name, tarot: p.tarot, level: p.level, jp: { ...p.jp }, house: p.house };
     const sword = mint(s, "sword", 0);
     p.gear = { main: sword.id };
-    change(s, p, "hollow_knight");
-    const def = CHANGE_BY_ID.get("hollow_knight")!;
+    change(s, p, "barrow_knight");
+    const def = CHANGE_BY_ID.get("barrow_knight")!;
     expect(p.base[0]).toBe(def.base.might + Math.floor((def.growth.might * 4) / 100));
     expect(p.growth).toEqual(STATS.map((k) => def.growth[k]));
     expect([p.traits, p.injuries, p.look]).toEqual([[], [], def.look]);
@@ -56,10 +56,10 @@ describe("a Change (§9.6)", () => {
     expect({ name: p.name, tarot: p.tarot, level: p.level, house: p.house }).toEqual({ name: kept.name, tarot: kept.tarot, level: kept.level, house: kept.house });
     for (const [job, jp] of Object.entries(kept.jp)) expect(p.jp[job as keyof typeof p.jp]).toBe(jp);
     expect(p.gear.main).toBe(sword.id);
-    expect(s.log.at(-1)).toMatch(/is Changed: a Hollow Knight/);
+    expect(s.log.at(-1)).toMatch(/is Changed: a Barrow Knight/);
     // Everyone sees the Change, never the old body.
     const seen = view(s, "p1").people.find((x) => x.id === p.id)!;
-    expect(seen.change).toBe("hollow_knight");
+    expect(seen.change).toBe("barrow_knight");
     expect(JSON.stringify(seen)).not.toContain("head_lost_eye");
   });
 
@@ -72,7 +72,7 @@ describe("a Change (§9.6)", () => {
     expect(p.gear.main).toBeUndefined();
     expect(cannotEquip(s, p, sword, "main")).toMatch(/Change/);
     const knight = first(s, 0) === p ? s.people.filter((x) => x.host === 0 && x.status === "scion")[1]! : first(s);
-    change(s, knight, "hollow_knight");
+    change(s, knight, "barrow_knight");
     expect(canTakeJob(knight, "knight")).toBe(true);
     expect(canTakeJob(knight, "magus")).toBe(false);
     const u = scionCombatant(knight, { id: 1, col: 0, row: 0 });
@@ -84,9 +84,9 @@ describe("a Change (§9.6)", () => {
   it("can bar the Chapel, and the bots know it", () => {
     let s = calm(campaign(1, 5));
     const p = first(s);
-    change(s, p, "hollow_knight");
+    change(s, p, "barrow_knight");
     p.sanity = 1;
-    expect(cannotAssign(s, 0, { person: p.id, to: "chapel" })).toMatch(/Hollow Knight cannot/);
+    expect(cannotAssign(s, 0, { person: p.id, to: "chapel" })).toMatch(/Barrow Knight cannot/);
     for (let i = 0; i < 12; i++) {
       const m = botAssign(s, 0);
       if (!m) break;
@@ -134,13 +134,13 @@ describe("a Change (§9.6)", () => {
 });
 
 describe("the events that Change a Scion", () => {
-  it("The Armor That Walks makes the gentlest a Hollow Knight", () => {
+  it("The Armor That Walks makes the gentlest a Barrow Knight", () => {
     const s = underway();
     const ids = s.expedition!.party[0]!;
     s.people.find((p) => p.id === ids[0])!.hist.kills = 5;
     resolve(s, only("armor_that_walks", "wear"));
     const changed = s.people.filter((p) => p.change);
-    expect(changed.map((p) => p.change!.id)).toEqual(["hollow_knight"]);
+    expect(changed.map((p) => p.change!.id)).toEqual(["barrow_knight"]);
     expect(changed[0]!.id).not.toBe(ids[0]);
   });
 

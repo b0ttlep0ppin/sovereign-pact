@@ -12,7 +12,7 @@ import { log } from "./year.ts";
 
 export const changeOf = (p: Pick<Person, "change">): ChangeDef | undefined => (p.change ? CHANGE_BY_ID.get(p.change.id) : undefined);
 
-/** Whether the Change keeps `p` from a Year assignment (a Hollow Knight from the Chapel). */
+/** Whether the Change keeps `p` from a Year assignment (a Barrow Knight from the Chapel). */
 export const barred = (p: Pick<Person, "change">, kind: AssignmentKind): boolean => !!changeOf(p)?.barred?.includes(kind);
 
 /** Whether the Change leaves `p` the use of a gear slot. */

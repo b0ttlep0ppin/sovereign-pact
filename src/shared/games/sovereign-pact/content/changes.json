@@ -1,11 +1,11 @@
 {
   "changes": [
-    {"id": "hollow_knight", "name": "Hollow Knight", "flavor": "The armor walks, and something wears it back.",
+    {"id": "barrow_knight", "name": "Barrow Knight", "flavor": "The armor walks, and something wears it back.",
       "crunch": "Dark +50%, Holy −50%; Poison immune; Body and Arms Durability +30%; healing received −50%; a Knight for good; the armor is their head, body, arms and legs; cannot enter the Chapel.",
       "base": {"might": 16, "resilience": 18, "guile": 6, "acuity": 7, "sagacity": 6, "speed": 9},
       "growth": {"might": 130, "resilience": 150, "guile": 50, "acuity": 50, "sagacity": 40, "speed": 0},
       "mods": {"ward.dark": 50, "ward.holy": -50, "immune.poison": 1, "bodyDurabilityPct": 30, "armsDurabilityPct": 30, "healingReceivedPct": -50},
-      "job": "knight", "slots": ["main", "off", "acc1", "acc2"], "barred": ["chapel"], "look": ["change_hollow_knight"]},
+      "job": "knight", "slots": ["main", "off", "acc1", "acc2"], "barred": ["chapel"], "look": ["change_barrow_knight"]},
     {"id": "marsh_thing", "name": "Marsh Thing", "flavor": "It drips. It remembers being someone.",
       "crunch": "Poison immune; whoever strikes it is Poisoned; starts every battle with Regen; moves one cell at a time; eats 1 Essence a Year.",
       "base": {"might": 12, "resilience": 15, "guile": 7, "acuity": 6, "sagacity": 12, "speed": 8},
