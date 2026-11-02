@@ -1,0 +1,82 @@
+{
+  "id": "the_hunters_tale",
+  "pools": [
+    "hunt"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    10
+  ],
+  "title": "The Hunter's Tale",
+  "text": "An old hunter at a waystation has hunted this very quarry, and lost. He will tell how, for a drink.",
+  "options": [
+    {
+      "id": "drink",
+      "label": "Buy him the drink.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Where it hides, and what it fears.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -5
+              }
+            },
+            {
+              "foresee": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "veteran",
+      "label": "The most seasoned trades stories with him.",
+      "rule": "scion:most_expeditions|scion:most_kills",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "He tells them the trick he never got to use.",
+          "effects": [
+            {
+              "xp": 80
+            },
+            {
+              "to": "party",
+              "status": "haste"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "scoff",
+      "label": "Scoff and go on.",
+      "rule": "leader",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "He calls after you the way he lost.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -3
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "id": "the_echoing_voice",
+  "pools": [
+    "rescue"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    10
+  ],
+  "title": "The Echoing Voice",
+  "text": "A voice from below calls a Scion's name, in the Lost one's voice. It is almost right.",
+  "options": [
+    {
+      "id": "answer",
+      "label": "The one with the steadiest mind answers it.",
+      "rule": "scion:highest:sagacity|scion:highest:resilience",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Not them. A mimic. But it knows where they are, and says so to keep you talking.",
+          "effects": [
+            {
+              "foresee": true
+            },
+            {
+              "sanity": -10
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "descend",
+      "label": "Climb down to it.",
+      "rule": "vote",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It is not them.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "ambush"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "seal",
+      "label": "Roll a stone over the hole.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It keeps calling. You keep walking.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -8
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

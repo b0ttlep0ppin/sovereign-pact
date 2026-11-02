@@ -1,0 +1,100 @@
+{
+  "id": "the_torn_banner",
+  "pools": [
+    "rescue"
+  ],
+  "weight": 3,
+  "band": [
+    1,
+    10
+  ],
+  "title": "The Torn Banner",
+  "text": "A strip of your House's banner hangs from a thornbush, bloodied. Tracks lead three ways.",
+  "options": [
+    {
+      "id": "track",
+      "label": "The sharpest eye reads the tracks.",
+      "rule": "scion:highest:acuity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Two sets are false. The third is limping, and close.",
+          "effects": [
+            {
+              "skip": 1
+            },
+            {
+              "xp": 40
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "split",
+      "label": "Split up and search all three.",
+      "rule": "vote",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "One path finds them; the others regroup.",
+          "effects": [
+            {
+              "skip": 1
+            },
+            {
+              "to": "party",
+              "sanity": -5
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "One path finds the thing that hurt them.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "ambush"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "call",
+      "label": "Call out the House's cry.",
+      "rule": "leader",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "A faint answer, ahead.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 8
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "Something else answers.",
+          "effects": [
+            {
+              "encounter": {}
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

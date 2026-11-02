@@ -1,0 +1,82 @@
+{
+  "id": "the_survivors_cache",
+  "pools": [
+    "rescue"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    10
+  ],
+  "title": "The Survivor's Cache",
+  "text": "A cache hidden the way your House teaches: food, a dagger, a note in your House's cipher.",
+  "options": [
+    {
+      "id": "read",
+      "label": "The cleverest reads the cipher.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The note says where they went to ground, and what to beware.",
+          "effects": [
+            {
+              "foresee": true
+            },
+            {
+              "skip": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "eat",
+      "label": "Eat, and leave something in return.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Strength for the road, and a gift for them if they come back this way.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 5
+            },
+            {
+              "resources": {
+                "gold": -5
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "take",
+      "label": "Take it all.",
+      "rule": "leader",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "They will not need it if you find them first.",
+          "effects": [
+            {
+              "to": "party",
+              "mp": 20
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

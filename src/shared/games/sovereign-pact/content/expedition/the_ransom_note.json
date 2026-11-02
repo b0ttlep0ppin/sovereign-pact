@@ -1,0 +1,100 @@
+{
+  "id": "the_ransom_note",
+  "pools": [
+    "rescue"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    10
+  ],
+  "title": "The Ransom Note",
+  "text": "Pinned to a tree: the Lost are held, and the price is gold, left at the hollow oak by nightfall.",
+  "options": [
+    {
+      "id": "pay",
+      "label": "Pay it.",
+      "rule": "house:lowest_standing|vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "The gold is taken, and a path is marked in chalk.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -20
+              }
+            },
+            {
+              "skip": 2
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "The gold is taken. Nothing else happens.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -20
+              }
+            },
+            {
+              "to": "party",
+              "sanity": -5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ambush",
+      "label": "Lie in wait at the oak.",
+      "rule": "scion:highest:guile",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The kidnappers come for their gold.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "surprise"
+              }
+            },
+            {
+              "score": {
+                "intrigue": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ignore",
+      "label": "Tear it down and keep looking.",
+      "rule": "leader",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Whoever wrote it is watching now.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -3
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

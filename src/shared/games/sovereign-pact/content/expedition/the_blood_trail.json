@@ -1,0 +1,97 @@
+{
+  "id": "the_blood_trail",
+  "pools": [
+    "hunt"
+  ],
+  "weight": 3,
+  "band": [
+    1,
+    10
+  ],
+  "title": "The Blood Trail",
+  "text": "Fresh blood on the leaves. The quarry is wounded, by something else.",
+  "options": [
+    {
+      "id": "follow",
+      "label": "Follow fast.",
+      "rule": "vote",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "You catch it while it is weak.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "surprise"
+              }
+            },
+            {
+              "score": {
+                "valor": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "other",
+      "label": "Find what wounded it first.",
+      "rule": "scion:highest:acuity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "A rival's arrow. You know who hunts your quarry now.",
+          "effects": [
+            {
+              "score": {
+                "intrigue": 1
+              }
+            },
+            {
+              "skip": 1
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "Something bigger.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "ambush",
+                "level": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wait",
+      "label": "Let it bleed.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It goes to ground, weaker.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -3
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
