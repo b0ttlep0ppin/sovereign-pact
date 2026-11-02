@@ -2,6 +2,7 @@
 // chosen from content/sorties.json. It is fought by gambits in 1–2 battles a level under the Year's
 // band, injuries no worse than Moderate, and pays about a quarter of an expedition: XP per battle won,
 // JP if they come through, and the pool's finds to the House. It resolves as the expedition comes home.
+import { ARC } from "./arc.ts";
 import { INJURY_BY_ID, POOL_BY_ID, SORTIE_BY_ID, type SortieDef } from "./content.ts";
 import { encounterBattle } from "./combat/encounter.ts";
 import { simulate } from "./combat/sim.ts";
@@ -43,7 +44,7 @@ function sortie(s: SovState, house: number, def: SortieDef, ids: number[]): void
     const left = ids.filter((id) => s.people.some((p) => p.id === id));
     if (!left.length) break;
     const seed = withRng(s, (rng) => rng.int(2 ** 31));
-    const b = encounterBattle(seed, partyOf(s, left), { pool: def.pool, level, year: s.year }).battle;
+    const b = encounterBattle(seed, partyOf(s, left), { pool: def.pool, level, year: s.year, spread: s.flags.includes(ARC.nestLost) }).battle;
     b.injuryCap = T.injuryCap;
     simulate(b);
     const victory = b.outcome === "victory";

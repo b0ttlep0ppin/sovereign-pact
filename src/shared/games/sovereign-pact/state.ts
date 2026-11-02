@@ -310,7 +310,7 @@ export interface Split {
 }
 
 /** `gate` and `rally` are a 2×4 card's: a Gate waits on the other party; the rally is where they meet for the boss. */
-export type NodeKind = "encounter" | "event" | "camp" | "cache" | "boss" | "gate" | "rally";
+export type NodeKind = "encounter" | "event" | "camp" | "cache" | "boss" | "gate" | "rally" | "raid";
 
 /**
  * A vote of the Houses (§8.1, §8.8): open in the Settlement Phase, settled when every House has voted or

@@ -16,7 +16,7 @@ export function projectCost(s: SovState, project: string): Partial<Record<string
   const def = PROJECT_BY_ID.get(project);
   if (!def) return null;
   const level = built(s, project);
-  if (level >= def.tiers.length || (def.requires && !built(s, def.requires))) return null;
+  if (level >= def.tiers.length || (def.requires && !built(s, def.requires)) || (def.unlockedBy && !s.flags.includes(def.unlockedBy))) return null;
   const base = TUNING.town.costs[def.cost][def.tiers[level]! - 1]!;
   return Object.fromEntries(Object.entries(base).map(([k, n]) => [k, Math.round((n ?? 0) * C.costMult)]));
 }

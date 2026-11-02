@@ -19,6 +19,7 @@ import { LOCATIONS, type Expedition, type NodeKind, type Person, type SovState }
 import { devastate } from "./timeline.ts";
 import { TUNING } from "./tuning.ts";
 import { creditWard } from "./wards.ts";
+import { ARC, arcDoom, arcResult, bastionFallBack, bastionShields, withRaid } from "./arc.ts";
 import { divided, gate, partyGone, rally } from "./split.ts";
 import { endCampaign, log, mandatoryYears, withRng } from "./year.ts";
 
@@ -34,7 +35,7 @@ export function rollChain(s: SovState): NodeKind[] {
       let roll = rng.int(100);
       return J.nodes.find(([, w]) => (roll -= w) < 0)![0];
     });
-    return [...nodes, "boss"];
+    return withRaid(s, [...nodes, "boss"]);
   });
 }
 
@@ -153,17 +154,20 @@ function camp(s: SovState): void {
 }
 
 /** A battle at the next node: an Encounter from the card's pool, or the boss. */
-export type FightOpts = NonNullable<TripEffect["encounter"]>;
+export type FightOpts = NonNullable<TripEffect["encounter"]> & { raid?: true };
 
 function fight(s: SovState, boss: boolean, o: FightOpts): Battle {
   const card = s.expedition!.card;
   const seed = withRng(s, (rng) => rng.int(2 ** 31));
   const id = boss ? card.boss : undefined;
   const level = Math.max(1, Math.min(10, card.level + (o.level ?? 0) + (boss ? 1 : 0)));
+  const scions = party(s);
+  bastionShields(s, scions);
+  const pool = o.raid ? TUNING.arc.raidPool : card.pool;
   const b = id
-    ? bossBattle(seed, party(s), id, card.level)
+    ? bossBattle(seed, scions, id, card.level)
     : // A pool with no boss near the level ends in a fight a level above the card's (reading, see DECISIONS).
-      encounterBattle(seed, party(s), { pool: card.pool, level, year: s.year, ...(o.modifier ? { modifier: o.modifier } : {}), ...(o.template ? { template: o.template } : {}) }).battle;
+      encounterBattle(seed, scions, { pool, level, year: s.year, spread: s.flags.includes(ARC.nestLost), ...(o.modifier ? { modifier: o.modifier } : {}), ...(o.template ? { template: o.template } : {}) }).battle;
   simulate(b);
   return b;
 }
@@ -186,6 +190,12 @@ export function battle(s: SovState, boss: boolean, o: FightOpts = {}): boolean {
     return true;
   }
   log(s, `The party falls before ${boss ? "the boss" : "an encounter"}.`);
+  // The Bastion of the Gate (§8.4): once, the final assault falls back and regroups instead; the boss waits.
+  if (marching(s).length && bastionFallBack(s)) {
+    if (boss) e.at -= 1;
+    camp(s);
+    return false;
+  }
   home(s, "wiped");
   return false;
 }
@@ -200,7 +210,8 @@ export function pressOn(s: SovState): void {
   if (kind === "cache") return cache(s);
   if (kind === "gate") return gate(s);
   if (kind === "rally") return rally(s);
-  battle(s, kind === "boss");
+  if (kind === "raid") log(s, "The Cursed King's knights ride against the party.");
+  battle(s, kind === "boss", kind === "raid" ? { raid: true } : {});
 }
 
 /** A Leader who falls is replaced by the most travelled Scion still marching (§9.2's tie rule). */
@@ -269,9 +280,10 @@ export function home(s: SovState, how: NonNullable<Expedition["result"]>): void 
     });
   }
   if (how === "unanswered") log(s, "No one answers the Rift Gate's call.");
+  if (mandatory) arcResult(s, how === "won");
   if (how !== "won" && mandatory) {
     if (s.year === mandatoryYears(s).at(-1)) return endCampaign(s, false, "The assault on the rift failed, and the otherworld takes the kingdom.");
-    devastate(s, "mandatory");
+    devastate(s, "mandatory", arcDoom(s));
   }
   // A forced expedition counts as the Year's mandatory one, with lesser stakes (§3.2).
   if (how !== "won" && e.card.type === "forced") devastate(s, "forced");

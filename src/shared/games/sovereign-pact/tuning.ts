@@ -496,6 +496,15 @@ export const TUNING = {
    * failed forced expedition ruins one and costs less (§3.2). Each level of Walls ruins one fewer and
    * takes 5 off the Doom.
    */
+  /**
+   * §14.7 the mandatory arc's stakes (first pass). Year 5 won: the Bastion of the Gate may be built, and
+   * then every Scion starts each battle of the final expedition behind a shield of `bastionShieldPct`% of
+   * their HP, and the party may fall back from one lost battle. Year 10 lost: the Court's knights raid
+   * every expedition after (one more Encounter, from `raidPool`). Year 15: lost, the Devastation's Doom
+   * is `nestFailDoom` and Unknown fodder joins every pool's fights; won, Doom falls by `nestWinDoom`.
+   */
+  arc: { bastionShieldPct: 20, raidPool: "apostate_court", nestFailDoom: 40, nestWinDoom: 20 },
+
   devastation: {
     mandatory: { ruin: [1, 3] as const, storesPct: 25, accord: 20, doom: 25, noArrivals: true },
     forced: { ruin: [1, 1] as const, storesPct: 0, accord: 10, doom: 10, noArrivals: false },

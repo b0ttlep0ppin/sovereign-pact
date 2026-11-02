@@ -29,6 +29,8 @@ export interface EncounterSpec {
   hazards?: readonly string[] | false;
   /** The campaign Year: Unknown-touched variants from Year 10 (§14.10). */
   year?: number;
+  /** The Nest stands (§14.7, Year 15 lost): the Outer Dark's fodder and swarms join every pool's. */
+  spread?: boolean;
   /** Shifts on the base odds, in points (traits, buildings, the Lantern). */
   ambushPct?: number;
   surprisePct?: number;
@@ -76,10 +78,12 @@ export function rosterFor(pool: string, role: TemplateRole, level: number): Enem
 }
 
 /** Enemies for each role: different entries where the roster allows, before any repeats. */
-export function fill(rng: Rng, pool: string, level: number, roles: readonly TemplateRole[]): EnemyDef[] {
+export function fill(rng: Rng, pool: string, level: number, roles: readonly TemplateRole[], spread = false): EnemyDef[] {
   const left = new Map<string, EnemyDef[]>();
+  const [lo, hi] = POOL_BY_ID.get(SPREAD_POOL)!.levels;
   return roles.map((role) => {
-    const roster = rosterFor(pool, role, level);
+    const own = rosterFor(pool, role, level);
+    const roster = spread && pool !== SPREAD_POOL && (role === "fodder" || role === "swarm") ? [...own, ...rosterOf(SPREAD_POOL, role, Math.max(lo, Math.min(hi, level)))] : own;
     if (!roster.length) throw new Error(`pool ${pool} has nothing for ${role} at level ${level}`);
     const key = roster.map((e) => e.id).join();
     if (!left.get(key)?.length) left.set(key, [...roster]);
@@ -87,6 +91,9 @@ export function fill(rng: Rng, pool: string, level: number, roles: readonly Temp
     return bag.splice(rng.int(bag.length), 1)[0]!;
   });
 }
+
+/** Where the Unknown breed (§14.7). */
+const SPREAD_POOL = "outer_dark";
 
 /** Columns each role prefers (§14.4): fodder and bruisers on E1, lurkers E1–E2, casters, supports and artillery on E3. */
 const COLUMNS: Record<string, number[]> = {
@@ -182,7 +189,7 @@ export function encounter(rng: Rng, spec: EncounterSpec): Encounter {
   // A pool fields its own enemies at the nearest level it has, scaled to the fight's (the Pit at Year 5).
   const [lo, hi] = POOL_BY_ID.get(spec.pool)!.levels;
   const from = Math.max(lo, Math.min(hi, spec.level));
-  const enemies = place(rollVariants(rng, fill(rng, spec.pool, from, rolesFor(rng, t, spec.party)), spec.year), spec.level, spec.firstId);
+  const enemies = place(rollVariants(rng, fill(rng, spec.pool, from, rolesFor(rng, t, spec.party), spec.spread), spec.year), spec.level, spec.firstId);
   const modifier = spec.modifier === null ? undefined : (spec.modifier ?? rollModifier(rng, t, spec));
   applyModifier(enemies, modifier);
   const hazard = spec.hazards === false ? undefined : rollHazard(rng, spec.pool, spec.hazards)?.id;
