@@ -4,6 +4,7 @@
 import type { GameClientProps } from "@vibepulse/shared";
 import { Content, TIER_NAMES, type SovMove, type SovView } from "@vibepulse/shared/games/sovereign-pact";
 import { useState } from "react";
+import BattleScreen from "./BattleScreen";
 import { HERALDRY_COLORS, Emblem } from "./Emblem";
 import TownMap from "./TownMap";
 import "./SovereignPact.css";
@@ -65,7 +66,46 @@ function Timeline({ view }: { view: SovView }) {
   );
 }
 
+type Seen = SovView["battles"][number];
+const WATCH_KEY = "sovereign-pact:watch-battles";
+const readWatch = (): boolean => {
+  try {
+    return globalThis.localStorage?.getItem(WATCH_KEY) !== "no";
+  } catch {
+    return true;
+  }
+};
+
+/**
+ * The battles this seat has been sent, kept by the screen (the state drops them a move later), and
+ * the queue to watch: new battles open on their own unless the viewer turned that off.
+ */
+function useBattles(battles: SovView["battles"]) {
+  const [last, setLast] = useState(battles);
+  const [seen, setSeen] = useState<Seen[]>(battles);
+  const [auto, setAuto] = useState(readWatch);
+  const [queue, setQueue] = useState<string[]>(() => (readWatch() ? battles.map((b) => b.key) : []));
+  if (battles !== last) {
+    setLast(battles);
+    const fresh = battles.filter((b) => !seen.some((x) => x.key === b.key));
+    if (fresh.length) {
+      setSeen([...seen, ...fresh].slice(-12));
+      if (auto) setQueue([...queue, ...fresh.map((b) => b.key)]);
+    }
+  }
+  const toggle = (on: boolean) => {
+    setAuto(on);
+    try {
+      globalThis.localStorage?.setItem(WATCH_KEY, on ? "yes" : "no");
+    } catch {
+      // Storage blocked: the choice lasts this visit.
+    }
+  };
+  return { seen, auto, toggle, watching: seen.find((b) => b.key === queue[0]), waiting: Math.max(0, queue.length - 1), watch: (key: string) => setQueue([key]), next: () => setQueue(queue.slice(1)) };
+}
+
 export default function SovereignPact({ view, isMyTurn, sendMove, lastError }: Props) {
+  const battles = useBattles(view.battles);
   const mine = view.me === null ? null : view.houses[view.me]!;
   const myPeople = view.people.filter((p) => p.host === view.me);
   const others = view.people.filter((p) => p.host !== view.me);
@@ -169,6 +209,28 @@ export default function SovereignPact({ view, isMyTurn, sendMove, lastError }: P
           </>
         ) : null}
       </section>
+
+      {battles.seen.length ? (
+        <section className="sp-panel" aria-label="Battles">
+          <h2>Battles</h2>
+          <label className="sp-check">
+            <input type="checkbox" checked={battles.auto} onChange={(e) => battles.toggle(e.target.checked)} /> Watch battles as they happen
+          </label>
+          <ul className="sp-battles">
+            {[...battles.seen].reverse().map((b) => (
+              <li key={b.key}>
+                <span>
+                  Year {b.key.split(":")[0]}: {b.title} <small>({b.outcome === "victory" ? "won" : b.outcome === "defeat" ? "lost" : "withdrew"}, {b.frames.length} turns)</small>
+                </span>
+                <button type="button" className="sp-button sp-button--quiet" onClick={() => battles.watch(b.key)}>
+                  Watch
+                </button>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
+      {battles.watching ? <BattleScreen key={battles.watching.key} replay={battles.watching} view={view} onClose={battles.next} waiting={battles.waiting} /> : null}
 
       <section className="sp-panel" aria-label="Chronicle of the Year">
         <h2>What happened</h2>
