@@ -1,0 +1,37 @@
+{
+  "id": "arcana_emperor",
+  "name": "The Iron Emperor",
+  "pool": "apostate_court",
+  "tags": ["humanoid", "armored", "royal", "arcana"],
+  "role": "boss",
+  "size": [1, 2],
+  "at": "E2",
+  "levels": [1, 10],
+  "stats": {"speed": 9, "hp": 5},
+  "affinity": {"earth": 25, "fire": 25, "wind": -25},
+  "immune": ["fear", "charm", "confusion"],
+  "abilities": [
+    {"id": "imperial_decree", "shape": "single", "side": "player", "power": 0.3, "statuses": [{"id": "marked", "chance": 100, "ticks": 300}, {"id": "fear", "chance": 30, "ticks": 200}]},
+    {"id": "sceptre_blow", "shape": "single", "side": "player", "power": 1.4},
+    {"id": "legion_march", "shape": "front_each_row", "side": "player", "power": 0.9, "charge": 150, "telegraph": true, "cooldown": 3},
+    {"id": "iron_will", "shape": "self", "side": "self", "power": 0, "kind": "support", "statuses": [{"id": "protect", "chance": 100, "ticks": 300}, {"id": "guard_up", "chance": 100, "ticks": 300}], "cooldown": 5}
+  ],
+  "gambits": [
+    {"if": "!foe.marked", "do": "imperial_decree", "target": "highest_might"},
+    {"if": "turn%3==0", "do": "legion_march"},
+    {"if": "foe.marked", "do": "sceptre_blow", "target": "marked"},
+    {"do": "sceptre_blow", "target": "nearest"}
+  ],
+  "phases": [
+    {"at": "hp<=0.5", "name": "The Throne Unyielding", "speed": 10, "say": "I have ruled through worse than you.", "gambits": [{"if": "turn%4==0", "do": "iron_will"}, {"if": "turn%2==1", "do": "legion_march"}, {"do": "sceptre_blow", "target": "marked"}]}
+  ],
+  "say": {
+    "open": "Kneel. That is not a request; it is the law.",
+    "death": "The law... outlives the king..."
+  },
+  "bestiary": {
+    "lore": "The card of order and rule, worn by an emperor of the old court who believed the law was whatever he said next.",
+    "weakness": "Wind. Break his guard while it is down.",
+    "pattern": "Decrees a Mark on the strongest and beats them with his sceptre; every third turn the legion marches on every Front. At half he guards himself every fourth turn and marches every other."
+  }
+}

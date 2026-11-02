@@ -1,0 +1,35 @@
+{
+  "id": "arcana_hierophant",
+  "name": "The Calamity Priest",
+  "pool": "faceless_city",
+  "tags": ["humanoid", "cultist", "caster", "arcana"],
+  "role": "boss",
+  "size": [1, 1],
+  "at": "E2",
+  "levels": [1, 10],
+  "stats": {"speed": 10, "hp": 3, "sanityTouch": 2},
+  "affinity": {"dark": 50, "holy": -25},
+  "immune": ["fear", "silence"],
+  "abilities": [
+    {"id": "sermon_of_ruin", "shape": "all", "side": "player", "power": 0.3, "kind": "magic", "sanity": 7, "charge": 200, "telegraph": true, "cooldown": 4},
+    {"id": "anathema", "shape": "single", "side": "player", "power": 0.9, "kind": "magic", "element": "dark", "statuses": [{"id": "hex", "chance": 50, "ticks": 300}]},
+    {"id": "tithe", "shape": "single", "side": "player", "power": 0.6, "kind": "magic", "statuses": [{"id": "disease", "chance": 40, "ticks": 400}]}
+  ],
+  "gambits": [
+    {"if": "turn%4==0", "do": "sermon_of_ruin"},
+    {"if": "turn%2==1", "do": "anathema", "target": "highest_might"},
+    {"do": "tithe", "target": "lowest_hp"}
+  ],
+  "phases": [
+    {"at": "hp<=0.5", "name": "The Last Rite", "speed": 12, "say": "Pray with me. Pray harder. It does not hear you.", "gambits": [{"if": "turn%3==0", "do": "sermon_of_ruin"}, {"do": "anathema", "target": "lowest_sanity"}]}
+  ],
+  "say": {
+    "open": "Welcome, children. The service has already begun.",
+    "death": "The bell... still rings..."
+  },
+  "bestiary": {
+    "lore": "The card of teaching and tradition, turned: a priest of the Faceless City who preaches ruin to a congregation without faces.",
+    "weakness": "Holy. Keep Sanity high through the sermons.",
+    "pattern": "A sermon on everyone's Sanity every fourth turn, hexes on the strongest, a sickening tithe on the weakest. At the Last Rite the sermon comes every third turn."
+  }
+}

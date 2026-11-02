@@ -1,0 +1,35 @@
+{
+  "id": "arcana_hermit",
+  "name": "The Floating Monk",
+  "pool": "deep_cold",
+  "tags": ["humanoid", "spirit", "flyer", "arcana"],
+  "role": "boss",
+  "size": [1, 1],
+  "at": "E2",
+  "levels": [1, 10],
+  "stats": {"speed": 12, "hp": 3},
+  "affinity": {"wind": 50, "holy": 25, "earth": -25},
+  "immune": ["fear", "charm", "confusion", "sleep"],
+  "abilities": [
+    {"id": "lantern_light", "shape": "column:B", "side": "player", "power": 0.8, "kind": "magic", "element": "holy", "statuses": [{"id": "blind", "chance": 30, "ticks": 200}]},
+    {"id": "stillness", "shape": "row", "side": "player", "power": 0.3, "kind": "magic", "statuses": [{"id": "slow", "chance": 50, "ticks": 300}, {"id": "stop", "chance": 15, "ticks": 100}]},
+    {"id": "withdrawal", "shape": "self", "side": "self", "power": 0, "kind": "support", "statuses": [{"id": "hidden", "chance": 100, "ticks": 150}, {"id": "regen", "chance": 100, "ticks": 300}], "cooldown": 4}
+  ],
+  "gambits": [
+    {"if": "turn%4==0", "do": "withdrawal"},
+    {"if": "turn%2==1", "do": "stillness", "target": "densest_row"},
+    {"do": "lantern_light", "target": "back_random"}
+  ],
+  "phases": [
+    {"at": "hp<=0.5", "name": "The Lantern Burns Bright", "speed": 14, "say": "(He opens his eyes for the first time.)", "gambits": [{"if": "turn%3==0", "do": "withdrawal"}, {"do": "lantern_light", "target": "lowest_hp"}]}
+  ],
+  "say": {
+    "open": "(A monk hangs in the air above the ice, a lantern in his hand. He does not look up.)",
+    "death": "(The lantern goes out, and he settles to the ice as if to sleep.)"
+  },
+  "bestiary": {
+    "lore": "The card of solitude and seeking: a monk who climbed above the Deep Cold to be alone, and does not want company.",
+    "weakness": "Earth brings him down. Strike while he is not hidden.",
+    "pattern": "Every fourth turn he withdraws (hidden, healing); stillness slows and Stops a row; his lantern blinds the Back. At half he withdraws every third turn and his light finds the weakest."
+  }
+}

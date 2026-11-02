@@ -2,6 +2,18 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 7g: eight more Arcana) — implementer
+- **Built** (§14.9, content only: `content/arcana.json`, eight `content/bosses/arcana_*.json`, eight traits, eight named Relics). Fourteen of the 22 Major Arcana now have a mini-boss:
+  - the High Priestess: the Veiled Priestess (Shrine of Six), silences and tides; trait Veiled Sight, Relic the Priestess's Veil
+  - the Empress: the Empress of Thorns (Hollow Wood), roots, bleeds and a sleeping blossom storm; Thornblood, the Thorn Crown
+  - the Emperor: the Iron Emperor (Apostate Court), marks the strongest and marches on every Front; Imperial Bearing, the Iron Sceptre
+  - the Hierophant: the Calamity Priest (Faceless City), Sanity sermons; Heretic's Ear, the Calamity Bell
+  - the Lovers: the Twin Tempters (Faceless City), charm the strongest; Heartwhole (Charm immune), the Twin Rings
+  - the Chariot: the Siege Chariot (Forge Ruins), charges down the densest row; Unstoppable, the Iron Wheel
+  - Strength: the Hero of Labors (Beast Lands), steels himself and shakes the ground; Laborer, the Lion's Hide
+  - the Hermit: the Floating Monk (Deep Cold), hides, heals and Stops a row; Lanternbearer, the Hermit's Lantern
+- **Reading**: each Arcana's trait is a small edge (a resist, a few % of a stat), the size of a common trait's, because it is earned once and kept for life. All eight bosses are won 100% by the simulator's party at levels 3, 6 and 8 (60 battles each), losing 6–38% of HP.
+
 ## 2026-11-02 (implementation, Milestone 7f: Idols, the first three) — implementer
 - **Built** (§14.9, `idols.ts`, content `content/idols.json`, numbers in `tuning.idol`). Three Idols, each with a two-phase boss tagged `idol`, an offer event (pool `idol`, never drawn by chance) and a Lore artifact Relic:
   - the Thunderer (Shrine of Six)

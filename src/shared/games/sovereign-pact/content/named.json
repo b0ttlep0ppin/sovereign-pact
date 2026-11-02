@@ -449,6 +449,112 @@
         "category": "lore",
         "points": 8
       }
+    },
+    {
+      "id": "the_veil_of_isis",
+      "name": "The Priestess's Veil",
+      "base": "hood",
+      "tier": 5,
+      "props": [
+        ["warded_water", 30],
+        ["resist_silence", 50]
+      ],
+      "text": "Whoever wears it hears what is not said.",
+      "boss": "arcana_high_priestess",
+      "minLevel": 1
+    },
+    {
+      "id": "the_thorn_crown",
+      "name": "The Thorn Crown",
+      "base": "coif",
+      "tier": 5,
+      "props": [
+        ["thorned", 20],
+        ["resist_poison", 50]
+      ],
+      "text": "It grows a little every night, and it does not hurt the one it chose.",
+      "boss": "arcana_empress",
+      "minLevel": 1
+    },
+    {
+      "id": "the_iron_sceptre",
+      "name": "The Iron Sceptre",
+      "base": "mace",
+      "tier": 5,
+      "props": [
+        ["staggering", 1],
+        ["mauler", 1],
+        ["keen", 12]
+      ],
+      "text": "Its weight is the weight of every law ever made with it.",
+      "boss": "arcana_emperor",
+      "minLevel": 1
+    },
+    {
+      "id": "the_calamity_bell",
+      "name": "The Calamity Bell",
+      "base": "instrument",
+      "tier": 5,
+      "props": [
+        ["dreadful", 25],
+        ["dark_edge", 30]
+      ],
+      "text": "It tolls the end of something every time it is rung.",
+      "boss": "arcana_hierophant",
+      "minLevel": 1
+    },
+    {
+      "id": "the_twin_rings",
+      "name": "The Twin Rings",
+      "base": "ring",
+      "tier": 5,
+      "props": [
+        ["stat_guile", 4],
+        ["resist_charm", 50]
+      ],
+      "text": "Two rings fused into one. Neither will let the other go.",
+      "boss": "arcana_lovers",
+      "minLevel": 1
+    },
+    {
+      "id": "the_iron_wheel",
+      "name": "The Iron Wheel",
+      "base": "tower_shield",
+      "tier": 5,
+      "props": [
+        ["guarding", 1],
+        ["thorned", 15]
+      ],
+      "text": "A wheel of the Chariot, beaten into a shield. It still wants to roll forward.",
+      "boss": "arcana_chariot",
+      "minLevel": 1
+    },
+    {
+      "id": "the_lions_hide",
+      "name": "The Lion's Hide",
+      "base": "jerkin",
+      "tier": 5,
+      "props": [
+        ["fortified", 25],
+        ["stalwart", 1]
+      ],
+      "text": "The pelt of a lion no blade could cut. Still none can.",
+      "boss": "arcana_strength",
+      "minLevel": 1
+    },
+    {
+      "id": "the_hermits_lantern",
+      "name": "The Hermit's Lantern",
+      "base": "charm",
+      "tier": 5,
+      "props": [
+        ["keen_eye", 1],
+        ["resist_sleep", 50],
+        ["stat_acuity", 3]
+      ],
+      "text": "Its light shows only what is true, and only a little way ahead.",
+      "boss": "arcana_hermit",
+      "minLevel": 1
     }
   ]
 }

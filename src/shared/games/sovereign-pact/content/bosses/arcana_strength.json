@@ -1,0 +1,36 @@
+{
+  "id": "arcana_strength",
+  "name": "The Hero of Labors",
+  "pool": "beast_lands",
+  "tags": ["humanoid", "giant", "arcana"],
+  "role": "boss",
+  "size": [1, 2],
+  "at": "E2",
+  "levels": [1, 10],
+  "stats": {"speed": 10, "hp": 5},
+  "affinity": {"earth": 25, "holy": 25, "dark": -25},
+  "immune": ["fear", "stun", "knockdown"],
+  "abilities": [
+    {"id": "club_of_olive", "shape": "single", "side": "player", "power": 1.5, "statuses": [{"id": "stun", "chance": 20, "ticks": 0}]},
+    {"id": "lions_roar", "shape": "all", "side": "player", "power": 0.2, "sanity": 5, "statuses": [{"id": "fear", "chance": 35, "ticks": 200}], "cooldown": 4},
+    {"id": "labor_of_ages", "shape": "self", "side": "self", "power": 0, "kind": "support", "statuses": [{"id": "might_up", "chance": 100, "ticks": 300, "value": 30}, {"id": "protect", "chance": 100, "ticks": 300}], "cooldown": 5},
+    {"id": "earthshaker", "shape": "band:4", "side": "player", "power": 0.9, "charge": 200, "telegraph": true, "cooldown": 3, "statuses": [{"id": "knockdown", "chance": 40, "ticks": 0}]}
+  ],
+  "gambits": [
+    {"if": "turn%4==0", "do": "labor_of_ages"},
+    {"if": "turn%3==1", "do": "earthshaker", "target": "densest_row"},
+    {"do": "club_of_olive", "target": "highest_might"}
+  ],
+  "phases": [
+    {"at": "hp<=0.5", "name": "The Twelfth Labor", "speed": 12, "say": "Eleven labors I finished. You are the twelfth.", "gambits": [{"if": "turn%3==0", "do": "lions_roar"}, {"if": "turn%2==1", "do": "earthshaker", "target": "densest_row"}, {"do": "club_of_olive", "target": "lowest_hp"}]}
+  ],
+  "say": {
+    "open": "Come, then. I have wrestled worse than you, and won.",
+    "death": "At last... a labor I could not finish..."
+  },
+  "bestiary": {
+    "lore": "The card of strength and patience, and the hero who had both: he came through the rift still looking for labors.",
+    "weakness": "Dark. Dispel his labor before he swings.",
+    "pattern": "Every fourth turn he steels himself (Might, Protect); an earthshaker on four rows every third, the club on the strongest between. At the twelfth labor he roars every third turn and hunts the weakest."
+  }
+}
