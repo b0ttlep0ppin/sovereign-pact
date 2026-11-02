@@ -1,0 +1,89 @@
+{
+  "id": "the_dragon_bone_bridge",
+  "pools": [
+    "dragon_reaches"
+  ],
+  "weight": 2,
+  "band": [
+    5,
+    10
+  ],
+  "title": "The Dragon-Bone Bridge",
+  "text": "A bridge made of a single dragon's spine spans a gorge. It creaks.",
+  "options": [
+    {
+      "id": "cross",
+      "label": "Cross.",
+      "rule": "vote",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 80,
+          "text": "Across.",
+          "effects": []
+        },
+        {
+          "w": 20,
+          "text": "A vertebra gives.",
+          "effects": [
+            {
+              "to": "party",
+              "durability": -20,
+              "loc": "legs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bone",
+      "label": "The strongest takes a rib on the way.",
+      "rule": "scion:highest:might",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Wyrmbone, and the bridge lurches.",
+          "effects": [
+            {
+              "resources": {
+                "wyrmbone": 3
+              }
+            },
+            {
+              "to": "party",
+              "sanity": -5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "around",
+      "label": "Go around.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A day's climb.",
+          "effects": [
+            {
+              "fork": {
+                "add": [
+                  "encounter"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

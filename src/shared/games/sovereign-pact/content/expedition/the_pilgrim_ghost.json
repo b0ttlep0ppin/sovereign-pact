@@ -1,0 +1,82 @@
+{
+  "id": "the_pilgrim_ghost",
+  "pools": [
+    "pilgrimage"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    10
+  ],
+  "title": "The Pilgrim Ghost",
+  "text": "The ghost of a pilgrim who died on the road walks beside you, asking how far it is to the shrine.",
+  "options": [
+    {
+      "id": "tell",
+      "label": "Tell the truth.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It weeps, and walks on.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lie",
+      "label": "Tell it not far.",
+      "rule": "leader",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It smiles, and fades, at peace.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 5
+            },
+            {
+              "score": {
+                "renown": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lead",
+      "label": "The devout leads it there.",
+      "rule": "scion:trait:devout|scion:highest:sagacity",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "At the shrine it blesses them.",
+          "effects": [
+            {
+              "blessing": {
+                "trait": "stout_hearted",
+                "years": 2
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

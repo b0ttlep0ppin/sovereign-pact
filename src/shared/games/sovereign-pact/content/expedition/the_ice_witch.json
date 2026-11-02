@@ -1,0 +1,72 @@
+{
+  "id": "the_ice_witch",
+  "pools": [
+    "deep_cold"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    8
+  ],
+  "title": "The Ice Witch",
+  "text": "A witch of the Deep Cold offers to freeze a wound so it will not bleed. Forever.",
+  "options": [
+    {
+      "id": "wound",
+      "label": "The most wounded accepts.",
+      "rule": "scion:injured:any|scion:lowest:resilience",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It stops hurting. It stops feeling.",
+          "effects": [
+            {
+              "mend": true
+            },
+            {
+              "sanity": -10
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "refuse",
+      "label": "Refuse.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "She shrugs and is gone in the snow.",
+          "effects": []
+        }
+      ]
+    },
+    {
+      "id": "trade",
+      "label": "The wisest trades her a secret instead.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "She gives a charm against cold.",
+          "effects": [
+            {
+              "to": "party",
+              "status": "protect"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

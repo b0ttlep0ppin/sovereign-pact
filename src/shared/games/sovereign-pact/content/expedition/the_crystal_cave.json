@@ -1,0 +1,73 @@
+{
+  "id": "the_crystal_cave",
+  "pools": [
+    "delve"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    10
+  ],
+  "title": "The Crystal Cave",
+  "text": "A cave of crystals that ring when touched, and amplify every sound a hundredfold.",
+  "options": [
+    {
+      "id": "quiet",
+      "label": "Walk on tiptoe.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Silent and slow.",
+          "effects": []
+        }
+      ]
+    },
+    {
+      "id": "mine",
+      "label": "Mine a crystal.",
+      "rule": "leader",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It shrieks.",
+          "effects": [
+            {
+              "resources": {
+                "essence": 4
+              }
+            },
+            {
+              "encounter": {}
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sing",
+      "label": "The steadiest voice sings to them.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "They sing back the way through.",
+          "effects": [
+            {
+              "skip": 1
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

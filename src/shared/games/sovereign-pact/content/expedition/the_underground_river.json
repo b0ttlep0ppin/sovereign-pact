@@ -1,0 +1,92 @@
+{
+  "id": "the_underground_river",
+  "pools": [
+    "delve"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    10
+  ],
+  "title": "The Underground River",
+  "text": "A black river runs through the caverns, fast and cold. A boat is tied at the bank.",
+  "options": [
+    {
+      "id": "boat",
+      "label": "Take the boat.",
+      "rule": "vote",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "Fast, far, and out.",
+          "effects": [
+            {
+              "skip": 2
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "Over a fall.",
+          "effects": [
+            {
+              "to": "party",
+              "durability": -20
+            },
+            {
+              "to": "party",
+              "sanity": -5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "swim",
+      "label": "The toughest swims ahead with a rope.",
+      "rule": "scion:highest:resilience",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A safe crossing.",
+          "effects": [
+            {
+              "skip": 1
+            },
+            {
+              "durability": -15,
+              "loc": "body"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "walk",
+      "label": "Walk the bank.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Something in the water follows.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "ambush"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

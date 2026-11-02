@@ -1,0 +1,94 @@
+{
+  "id": "the_burning_heretic",
+  "pools": [
+    "apostate_court"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    9
+  ],
+  "title": "The Burning Heretic",
+  "text": "A woman tied to a stake, the pyre unlit. The Court's priests ask a passing noble to light it, as is custom.",
+  "options": [
+    {
+      "id": "light",
+      "label": "Light it.",
+      "rule": "leader",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The Court approves.",
+          "effects": [
+            {
+              "score": {
+                "intrigue": 1
+              }
+            },
+            {
+              "doom": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "free",
+      "label": "Free her.",
+      "rule": "vote",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The priests call their guards.",
+          "effects": [
+            {
+              "encounter": {}
+            },
+            {
+              "score": {
+                "renown": 2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "argue",
+      "label": "The wisest argues for a trial.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "A delay, and she escapes in the night.",
+          "effects": [
+            {
+              "score": {
+                "lore": 1
+              }
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "The priests light it themselves.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -10
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

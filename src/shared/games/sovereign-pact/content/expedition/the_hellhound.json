@@ -1,0 +1,90 @@
+{
+  "id": "the_hellhound",
+  "pools": [
+    "pit"
+  ],
+  "weight": 2,
+  "band": [
+    4,
+    10
+  ],
+  "title": "The Hellhound",
+  "text": "A three-headed hound guards a bridge. Each head wants something different.",
+  "options": [
+    {
+      "id": "feed",
+      "label": "Feed all three heads.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It lets you pass, full.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -15
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sing",
+      "label": "The steadiest voice sings it to sleep.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "All three heads sleep.",
+          "effects": [
+            {
+              "skip": 1
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "Two heads sleep.",
+          "effects": [
+            {
+              "encounter": {}
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fight",
+      "label": "Fight it.",
+      "rule": "leader",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Three heads, three bites.",
+          "effects": [
+            {
+              "encounter": {
+                "level": 1
+              }
+            },
+            {
+              "score": {
+                "valor": 2
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

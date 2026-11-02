@@ -1,0 +1,87 @@
+{
+  "id": "the_kings_barrow",
+  "pools": [
+    "barrows"
+  ],
+  "weight": 2,
+  "band": [
+    4,
+    8
+  ],
+  "title": "The King's Barrow",
+  "text": "The greatest barrow of all, its door sealed with a king's seal. The seal is broken.",
+  "options": [
+    {
+      "id": "enter",
+      "label": "Go in.",
+      "rule": "vote",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Someone came before you, and woke what was inside.",
+          "effects": [
+            {
+              "encounter": {
+                "level": 1
+              }
+            },
+            {
+              "item": {
+                "tier": 3
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "track",
+      "label": "The sharpest eye follows the robbers' tracks.",
+      "rule": "scion:highest:acuity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "To their camp, and the king's crown.",
+          "effects": [
+            {
+              "encounter": {}
+            },
+            {
+              "score": {
+                "relics": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "seal",
+      "label": "Reseal it.",
+      "rule": "leader",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The king thanks you in a dream.",
+          "effects": [
+            {
+              "blessing": {
+                "trait": "stout_hearted",
+                "years": 2
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

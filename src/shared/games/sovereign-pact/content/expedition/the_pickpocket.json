@@ -1,0 +1,92 @@
+{
+  "id": "the_pickpocket",
+  "pools": [
+    "faceless_city"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    9
+  ],
+  "title": "The Pickpocket",
+  "text": "A child in a mask bumps into a Scion and is gone. So is their purse.",
+  "options": [
+    {
+      "id": "chase",
+      "label": "The fastest chases.",
+      "rule": "scion:highest:speed",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "Caught, and the purse back, and more.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 10
+              }
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "Lost in the crowd.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -15
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "let",
+      "label": "Let the child have it.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Gone.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -10
+              }
+            },
+            {
+              "score": {
+                "renown": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "watch",
+      "label": "The sharpest eye watches where it runs.",
+      "rule": "scion:highest:acuity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "To a thieves' den with a back door you can use.",
+          "effects": [
+            {
+              "skip": 1
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "id": "the_door_in_the_air",
+  "pools": [
+    "outer_dark"
+  ],
+  "weight": 2,
+  "band": [
+    6,
+    10
+  ],
+  "title": "The Door in the Air",
+  "text": "A door stands in empty space, frame and all. Through the keyhole, sunlight.",
+  "options": [
+    {
+      "id": "open",
+      "label": "Open it.",
+      "rule": "vote",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "Sunlight, warm and real, for a moment.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 20
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "Not sunlight.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "surprise",
+                "level": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "look",
+      "label": "The sharpest eye looks through the keyhole.",
+      "rule": "scion:highest:acuity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Home. And the way back to it.",
+          "effects": [
+            {
+              "foresee": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "leave",
+      "label": "Leave it shut.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Someone knocks as you go.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -5
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

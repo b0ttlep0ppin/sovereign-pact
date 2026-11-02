@@ -1,0 +1,91 @@
+{
+  "id": "the_relic_thieves",
+  "pools": [
+    "pilgrimage"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    10
+  ],
+  "title": "The Relic Thieves",
+  "text": "Thieves have robbed a pilgrims' caravan of its relic. The pilgrims beg for help.",
+  "options": [
+    {
+      "id": "chase",
+      "label": "Chase the thieves.",
+      "rule": "vote",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "They fight for it.",
+          "effects": [
+            {
+              "encounter": {}
+            },
+            {
+              "score": {
+                "renown": 2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "track",
+      "label": "The sharpest eye tracks them to their hideout.",
+      "rule": "scion:highest:acuity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Asleep. The relic, and their loot.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 15
+              }
+            },
+            {
+              "score": {
+                "renown": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "buy",
+      "label": "Buy the relic from the thieves for yourselves.",
+      "rule": "leader",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A relic is a relic.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -20
+              }
+            },
+            {
+              "score": {
+                "relics": 1
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "id": "the_snake_charmer",
+  "pools": [
+    "beast_lands"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    6
+  ],
+  "title": "The Snake Charmer",
+  "text": "An old woman sits among a hundred snakes, playing a pipe. She will teach the tune, for a price.",
+  "options": [
+    {
+      "id": "learn",
+      "label": "The quickest fingers learn it.",
+      "rule": "scion:highest:speed",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Snakes will not bite them now.",
+          "effects": [
+            {
+              "blessing": {
+                "trait": "strong_stomach",
+                "years": 3
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pay",
+      "label": "Pay her to clear the road.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The snakes part.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -10
+              }
+            },
+            {
+              "skip": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pipe",
+      "label": "Steal the pipe.",
+      "rule": "leader",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The music stops, and so does she. The snakes do not.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "ambush"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
