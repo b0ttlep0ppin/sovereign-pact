@@ -3,7 +3,7 @@
 // Houses still in the party draft, in a random order then snake order. A wipe loses the haul. Drop tables are per pool
 // (content/pools.json); numbers are in tuning.loot.
 import { ITEM_BASES, POOL_BY_ID, RARE_MATERIALS } from "./content.ts";
-import { baseOf, cannotEquip, rollProps } from "./items.ts";
+import { baseOf, cannotEquip, rollProps, stock } from "./items.ts";
 import { present } from "./events.ts";
 import { battle } from "./journey.ts";
 import type { GearSlot, Item, ItemTier, Share, SovState, Stores } from "./state.ts";
@@ -92,7 +92,7 @@ export function snake(s: SovState, houses: number[], picks: number): number[] {
 
 function give(s: SovState, item: Item, house: number): void {
   item.house = house;
-  s.items.push(item);
+  stock(s, item);
   log(s, `House ${s.houses[house]!.name} takes the ${itemName(item)}.`);
 }
 

@@ -358,6 +358,8 @@ export type ArmorClass = "light" | "medium" | "heavy";
 export interface JobDef {
   id: JobId;
   name: string;
+  /** The item base of a newly promoted Scion's weapon (§13.4). */
+  starter?: string;
   set: string;
   advanced: boolean;
   requires?: { job: JobId; jp: number }[];

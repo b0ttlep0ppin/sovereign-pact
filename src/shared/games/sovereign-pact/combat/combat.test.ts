@@ -73,16 +73,17 @@ describe("hits and damage (§10.6)", () => {
     const u = scion(1, 0, 3);
     expect(baseDamage(u, HIT)).toBeCloseTo(u.weapon.power * (1 + u.might / 25));
     const e = enemy(2, 0, 3, "barrow_skeleton", 5);
-    expect(baseDamage(e, HIT)).toBeCloseTo((6 + 15 + 2.5) * TUNING.enemies.roles.fodder.atk * (1 + TUNING.combat.enemyLevelFactor * 5));
+    expect(baseDamage(e, HIT)).toBeCloseTo((6 + 15 + 2.5) * TUNING.enemies.roles.fodder.atk * (1 + TUNING.combat.enemyLevelFactor * 5) * (TUNING.enemies.soften[4] ?? 1));
   });
 
   it("halves physical damage when Defending and zeroes it for +100 affinity", () => {
     const rolls = () => scripted(0, 0.99, 0.5); // hit, no crit, Body
     const u = scion(1, 0, 3);
     const a = scion(2, 0, 3, { side: "party" });
-    const plain = strike(battle(enemy(9, 0, 3), a), rolls(), enemy(9, 0, 3), a, HIT).damage;
+    const hard = () => enemy(9, 0, 3, "barrow_skeleton", 6);
+    const plain = strike(battle(hard(), a), rolls(), hard(), a, HIT).damage;
     const d = scion(3, 0, 3, { defending: true });
-    const defended = strike(battle(enemy(9, 0, 3), d), rolls(), enemy(9, 0, 3), d, HIT).damage;
+    const defended = strike(battle(hard(), d), rolls(), hard(), d, HIT).damage;
     expect(defended).toBeLessThan(plain);
     const t = enemy(4, 0, 3);
     t.affinity.fire = 100;

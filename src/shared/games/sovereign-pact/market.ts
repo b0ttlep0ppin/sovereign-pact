@@ -7,7 +7,7 @@ import { ITEM_BASES, type ItemBase } from "./content.ts";
 import { built, loseAccord } from "./commons.ts";
 import { year20 } from "./crisis.ts";
 import { byPct, econ } from "./houses.ts";
-import { baseOf, rollProps } from "./items.ts";
+import { baseOf, rollProps, stock } from "./items.ts";
 import type { Item, ItemTier, Lot, SovState } from "./state.ts";
 import { TUNING } from "./tuning.ts";
 import { log, withRng } from "./year.ts";
@@ -72,7 +72,7 @@ export function buy(s: SovState, house: number, id: number): void {
   const lot = lotOf(s, id)!;
   s.houses[house]!.gold -= priceFor(s, house, lot);
   s.market = s.market.filter((l) => l !== lot);
-  s.items.push({ ...lot.item, house });
+  stock(s, { ...lot.item, house });
 }
 
 export function cannotBid(s: SovState, house: number, id: number, gold: number): string | null {
@@ -111,7 +111,7 @@ export function settleAuctions(s: SovState): void {
     s.market = s.market.filter((l) => l !== lot);
     const name = baseOf(lot.item).name;
     if (!bidders.length) {
-      if (lot.seller !== undefined) s.items.push(lot.item);
+      if (lot.seller !== undefined) stock(s, lot.item);
       continue;
     }
     const top = Math.max(...bidders.map((h) => lot.bids[h]!));
@@ -122,7 +122,7 @@ export function settleAuctions(s: SovState): void {
     const pay = lot.seller === undefined && bidders.length === 1 ? lot.price : top;
     s.houses[winner]!.gold -= pay;
     if (lot.seller !== undefined) s.houses[lot.seller]!.gold += pay;
-    s.items.push({ ...lot.item, house: winner });
+    stock(s, { ...lot.item, house: winner });
     log(s, `House ${s.houses[winner]!.name} wins the ${name} for ${pay} Gold${tied.length > 1 ? ", the tie broken at a cost of trust" : ""}.`);
   }
 }

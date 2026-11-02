@@ -3,6 +3,7 @@
     {
       "id": "soldier",
       "name": "Soldier",
+      "starter": "sword",
       "set": "Warfare",
       "advanced": false,
       "mult": {
@@ -32,6 +33,7 @@
     {
       "id": "knight",
       "name": "Knight",
+      "starter": "spear",
       "set": "Chivalry",
       "advanced": false,
       "mult": {
@@ -59,6 +61,7 @@
     {
       "id": "magus",
       "name": "Magus",
+      "starter": "staff",
       "set": "Sorcery",
       "advanced": false,
       "mult": {
@@ -86,6 +89,7 @@
     {
       "id": "soothsayer",
       "name": "Soothsayer",
+      "starter": "staff",
       "set": "Animism",
       "advanced": false,
       "mult": {
@@ -112,6 +116,7 @@
     {
       "id": "vagabond",
       "name": "Vagabond",
+      "starter": "bow",
       "set": "Larceny",
       "advanced": false,
       "mult": {
@@ -135,6 +140,7 @@
     {
       "id": "pugilist",
       "name": "Pugilist",
+      "starter": "knuckles",
       "set": "Martial Arts",
       "advanced": false,
       "mult": {
@@ -163,6 +169,7 @@
     {
       "id": "minstrel",
       "name": "Minstrel",
+      "starter": "instrument",
       "set": "Symphony",
       "advanced": false,
       "mult": {
@@ -189,6 +196,7 @@
     {
       "id": "gambler",
       "name": "Gambler",
+      "starter": "crossbow",
       "set": "Cast Lots",
       "advanced": false,
       "mult": {
@@ -218,6 +226,7 @@
     {
       "id": "ravager",
       "name": "Ravager",
+      "starter": "greataxe",
       "set": "Bloodlust",
       "advanced": true,
       "requires": [
@@ -255,6 +264,7 @@
     {
       "id": "sword_saint",
       "name": "Sword Saint",
+      "starter": "greatsword",
       "set": "Swordplay",
       "advanced": true,
       "requires": [
@@ -294,6 +304,7 @@
     {
       "id": "abjurer",
       "name": "Abjurer",
+      "starter": "mace",
       "set": "Warding",
       "advanced": true,
       "requires": [
@@ -331,6 +342,7 @@
     {
       "id": "conjurer",
       "name": "Conjurer",
+      "starter": "staff",
       "set": "Summoning",
       "advanced": true,
       "requires": [
@@ -368,6 +380,7 @@
     {
       "id": "tinkerer",
       "name": "Tinkerer",
+      "starter": "crossbow",
       "set": "Innovation",
       "advanced": true,
       "requires": [
@@ -407,6 +420,7 @@
     {
       "id": "alterer",
       "name": "Alterer",
+      "starter": "knife",
       "set": "Flesh Shaping",
       "advanced": true,
       "requires": [

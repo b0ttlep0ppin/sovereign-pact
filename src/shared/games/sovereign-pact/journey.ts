@@ -14,7 +14,7 @@ import { meet } from "./events.ts";
 import { roster } from "./expedition.ts";
 import { gearTotals } from "./items.ts";
 import { bossLoot, cache, encounterLoot, shareOut } from "./loot.ts";
-import { gainJp, gainXp } from "./progression.ts";
+import { gainJp, gainXp, xpAt } from "./progression.ts";
 import { LOCATIONS, type Expedition, type NodeKind, type Person, type SovState } from "./state.ts";
 import { devastate } from "./timeline.ts";
 import { TUNING } from "./tuning.ts";
@@ -132,7 +132,7 @@ function settle(s: SovState, b: Battle, cause: string): void {
     p.mp = u.mp;
     e.carry[p.id] = { dur: { ...u.dur! }, broken: [...u.broken], ...(Object.keys(mods).length ? { mods } : {}) };
     if (u.catatonic && !e.out.includes(p.id)) e.out.push(p.id);
-    if (won) p = gainJp(gainXp(p, P.battleXp), P.battleJp);
+    if (won) p = gainJp(gainXp(p, xpAt(p, P.battleXp, e.card.level)), P.battleJp);
     s.people[s.people.findIndex((x) => x.id === p.id)] = p;
   }
 }
@@ -239,7 +239,7 @@ export function home(s: SovState, how: NonNullable<Expedition["result"]>): void 
   if (how === "won") {
     for (const id of marching(s)) {
       const i = s.people.findIndex((p) => p.id === id);
-      s.people[i] = gainJp(gainXp(s.people[i]!, P.expeditionXp), P.expeditionJp);
+      s.people[i] = gainJp(gainXp(s.people[i]!, xpAt(s.people[i]!, P.expeditionXp, e.card.level)), P.expeditionJp);
     }
     log(s, "The expedition returns in triumph.");
     // A Rescue card's Lost come home with the party (§9.9).
@@ -278,13 +278,15 @@ export function home(s: SovState, how: NonNullable<Expedition["result"]>): void 
 }
 
 /**
- * The bot Leader presses on while the party is whole; it turns back once it has lost a Scion or has
- * one Broken or near the end of their Sanity, and never from a mandatory expedition.
+ * The bot Leader presses on until half the party is out or badly broken, or a Scion is near
+ * the end of their Sanity; it never turns back from a mandatory or forced expedition.
  */
 export function botPress(s: SovState): boolean {
   const e = s.expedition!;
   if (e.card.type === "mandatory" || e.card.type === "forced" || cannotRetreat(s)) return true;
   const ids = marching(s);
-  if (ids.length < walkers(s).length) return false;
-  return ids.every((id) => !e.carry[id]?.broken.length && person(s, id).sanity >= J.botRetreatSanity);
+  const all = walkers(s).length;
+  if (ids.some((id) => person(s, id).sanity < J.botRetreatSanity)) return false;
+  const hurt = all - ids.length + ids.filter((id) => (e.carry[id]?.broken.length ?? 0) >= J.botRetreatBroken).length;
+  return hurt * 100 < all * J.botRetreatHurtPct;
 }

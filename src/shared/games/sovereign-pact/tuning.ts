@@ -48,6 +48,10 @@ export const TUNING = {
      * is queued, hidden, for next Year; at most `max` a campaign, never for a Year before `fromYear` or a mandatory Year.
      */
     forced: { pct: 10, max: 2, fromYear: 3 },
+    /** The bot reckons its Scions can take expedition level ⌊(average level + this) ÷ 3⌋ (gate.ts fairLevel). */
+    botLevelSlack: 2,
+    /** The first card of each offer is for 4, at the band's lowest level (tuning pass, 2026-11-02). */
+    floorCard: true,
   },
 
   /** §9.2: Renown the Leader's House gains (first pass). */
@@ -90,8 +94,10 @@ export const TUNING = {
     lostYears: 2,
     /** §9.3: an Event node draws from the card's own pools this often, else the general pool. */
     ownEventPct: 50,
-    /** The bot Leader turns back when a Scion's Sanity falls below this. */
+    /** The bot Leader turns back when a Scion's Sanity falls below this, or when this % of the party is out or has this many broken locations. */
     botRetreatSanity: 15,
+    botRetreatHurtPct: 50,
+    botRetreatBroken: 2,
   },
 
   /** §6.5 [PROPOSED numbers]: a promotion's Gold, ceremony slots a Year, and the Chapel's extra slot; the bot promotes while under its target of Scions. */
@@ -355,10 +361,14 @@ export const TUNING = {
     levelCap: 30,
     xpPerLevel: 100,
     /** XP and JP per battle won and per expedition finished (§6.6, §12.1: ~100 JP a battle, ~300 an expedition). */
-    battleXp: 15,
-    expeditionXp: 60,
+    battleXp: 25,
+    expeditionXp: 100,
     battleJp: 100,
     expeditionJp: 300,
+    /** Battle and expedition XP +this % per level a Scion stands below the reference 3L (progression.ts xpAt). */
+    catchUpPct: 50,
+    /** JP a new Scion starts with in their first Job, enough for a first ability or two (tuning pass, 2026-11-02). */
+    startJp: 150,
     sortieJp: 25,
     /** Passive budget: 5 at level 1, +1 every 6 levels (10 at 30). */
     passiveBase: 5,
@@ -406,6 +416,11 @@ export const TUNING = {
       colossus: { hp: 6, atk: 1.5, def: 1.5, eva: 0.3 },
       boss: { hp: 15, atk: 1.6, def: 1.5, eva: 0.8 },
     },
+    /**
+     * Tuning pass (2026-11-02): enemy HP and damage × this at expedition levels 1, 2, 3… (1 beyond the
+     * list). Starting Scions are level 1 with Crude gear, where the 3L reference expects level 3 at L1.
+     */
+    soften: [0.5, 0.6, 0.7, 0.8, 0.9] as readonly number[],
     /** §14.1 Parts, first pass: the share of a blow on a Part the body also takes, and the stagger when one breaks. */
     parts: { bodySharePct: 50, stagger: 50 },
     /** §14.6: everyone starts a boss fight at CT 30. */

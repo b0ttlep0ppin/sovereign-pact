@@ -3,6 +3,7 @@
 // level training gave them; the House outfits them with plain starting gear.
 import { equipStarter } from "./items.ts";
 import { promote } from "./generate.ts";
+import { gainJp } from "./progression.ts";
 import { BASE_JOBS, type SovState } from "./state.ts";
 import { TUNING } from "./tuning.ts";
 import { log } from "./year.ts";
@@ -24,7 +25,8 @@ export function cannotPromote(s: SovState, house: number, person: number, job: u
 export function promoteRecruit(s: SovState, house: number, person: number, job: (typeof BASE_JOBS)[number]): void {
   const h = s.houses[house]!;
   const i = s.people.findIndex((x) => x.id === person);
-  const scion = promote(s.people[i]!, job);
+  // A new Scion starts with a little JP in the Job, enough for a first ability (tuning pass).
+  const scion = gainJp(promote(s.people[i]!, job), TUNING.progression.startJp, job);
   s.people[i] = scion;
   h.gold -= T.gold;
   h.promotions = (h.promotions ?? 0) + 1;

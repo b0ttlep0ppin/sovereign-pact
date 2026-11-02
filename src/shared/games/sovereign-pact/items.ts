@@ -29,6 +29,13 @@ export function mint(s: SovState, base: string, house: number, tier: ItemTier = 
   return item;
 }
 
+/** Hands an item made earlier (loot, a shop lot) to its House, keeping the items in id order as a save restores them. */
+export function stock(s: Pick<SovState, "items">, item: Item): void {
+  const at = s.items.findIndex((x) => x.id > item.id);
+  if (at < 0) s.items.push(item);
+  else s.items.splice(at, 0, item);
+}
+
 export const itemById = (s: Pick<SovState, "items">, id: number | undefined): Item | undefined =>
   id === undefined ? undefined : s.items.find((i) => i.id === id);
 
@@ -148,12 +155,13 @@ export function stash(s: Pick<SovState, "items" | "people">, house: number): Ite
   return s.items.filter((i) => i.house === house && !worn.has(i.id));
 }
 
-/** The Crude kit of a newly promoted Scion (§13.4: "starting gear"): the Job's first weapon and armor of its class. */
+/** The Crude kit of a newly promoted Scion (§13.4: "starting gear"): the Job's starter weapon and armor of its class. */
 export function equipStarter(s: SovState, p: Person): void {
   const job = jobOf(p);
   if (!job) return;
+  // The Job's own starter (a Vagabond's bow, so the Back line can reach), else its first weapon type.
   const [type, hands] = job.weapons.find((w) => w !== "unarmed")?.split(":") ?? [];
-  const weapon = [...ITEM_BASE_BY_ID.values()].find((b) => b.slot === "main" && b.type === type && (!hands || `${b.hands}h` === hands));
+  const weapon = (job.starter ? ITEM_BASE_BY_ID.get(job.starter) : undefined) ?? [...ITEM_BASE_BY_ID.values()].find((b) => b.slot === "main" && b.type === type && (!hands || `${b.hands}h` === hands));
   if (weapon) equip(s, p, mint(s, weapon.id, p.host, 1), "main");
   const cls = job.armor === "heavy" ? "medium" : job.armor;
   for (const loc of ["body", "head"] as const satisfies readonly Location[]) {
