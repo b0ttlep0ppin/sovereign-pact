@@ -62,7 +62,8 @@ export const TUNING = {
    * many levels of the card; Valor per battle and boss won, lost per House on a retreat; §9.9's Lost 50%.
    */
   /** Sorties (§6.11, first pass): their battles a level under the Year's band, injuries no worse than Moderate. */
-  sortie: { levelBelow: 1, injuryCap: "moderate" as const },
+  /** `botMin`: the bot sends no Sortie of fewer Scions than this (tuning pass). */
+  sortie: { levelBelow: 1, injuryCap: "moderate" as const, botMin: 2 },
   /** Loot (§9.8, §9.10, first pass). Drop tables are per pool in content/pools.json. */
   loot: {
     /** Each hit on a drop table: a common material 1 + level/3, Essence 1 + level/4, a rare material 1. */
@@ -361,8 +362,8 @@ export const TUNING = {
     levelCap: 30,
     xpPerLevel: 100,
     /** XP and JP per battle won and per expedition finished (§6.6, §12.1: ~100 JP a battle, ~300 an expedition). */
-    battleXp: 25,
-    expeditionXp: 100,
+    battleXp: 40,
+    expeditionXp: 150,
     battleJp: 100,
     expeditionJp: 300,
     /** Battle and expedition XP +this % per level a Scion stands below the reference 3L (progression.ts xpAt). */
@@ -418,9 +419,10 @@ export const TUNING = {
     },
     /**
      * Tuning pass (2026-11-02): enemy HP and damage × this at expedition levels 1, 2, 3… (1 beyond the
-     * list). Starting Scions are level 1 with Crude gear, where the 3L reference expects level 3 at L1.
+     * list). Starting Scions are level 1 with Crude gear, where the 3L reference expects level 3 at L1,
+     * and bot campaigns put the best Scions near 2.5L, not 3L, at the mandatory Years.
      */
-    soften: [0.5, 0.6, 0.7, 0.8, 0.9] as readonly number[],
+    soften: [0.5, 0.55, 0.6, 0.65, 0.7, 0.7, 0.75, 0.75, 0.8, 0.8] as readonly number[],
     /** §14.1 Parts, first pass: the share of a blow on a Part the body also takes, and the stagger when one breaks. */
     parts: { bodySharePct: 50, stagger: 50 },
     /** §14.6: everyone starts a boss fight at CT 30. */
