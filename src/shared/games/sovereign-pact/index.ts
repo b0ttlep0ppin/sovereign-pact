@@ -195,9 +195,9 @@ export function applyMove(state: SovState, playerId: PlayerId, move: SovMove): M
     }
     case "draft": {
       if (s.phase !== "expedition") return fail("Nothing is being drafted.");
-      const why = cannotDraft(s, house, move.item);
+      const why = cannotDraft(s, house, move.share);
       if (why) return fail(why);
-      draftPick(s, house, move.item);
+      draftPick(s, house, move.share);
       s.phaseMoves += 1;
       if (!waiting(s).length) closeExpedition(s);
       return { ok: true, state: s };
@@ -408,7 +408,7 @@ export function botMove(s: SovState, playerId: PlayerId): SovMove {
   if (s.phase === "founding") return house >= 0 && !s.houses[house]!.sealed ? botFounding(s, house) : { type: "swear", ambition: 0 };
   if (s.phase === "expedition" && house >= 0)
     return s.expedition?.draft?.length
-      ? { type: "draft", item: botDraft(s, house) }
+      ? { type: "draft", share: botDraft(s, house) }
       : s.expedition?.event
       ? { type: "decide", option: botDecide(s), ...(s.expedition.event.picks ? { person: botPicksFor(s, house) } : {}) }
       : s.expedition?.leader !== undefined

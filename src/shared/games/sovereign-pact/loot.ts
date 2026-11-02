@@ -1,14 +1,12 @@
 // Loot (§9.8, §9.10): what battles, Caches and the boss leave. It goes into the haul the party
-// carries, and is shared out when the party comes home: materials and Essence split evenly between
-// the Houses still in the party (the remainder to the Commons), items drafted by those Houses,
-// lowest Standing first, in snake order. A wipe loses the haul. Drop tables are per pool
+// carries. At home it becomes one pool of shares (an item each, materials in bundles) that the
+// Houses still in the party draft, in a random order then snake order. A wipe loses the haul. Drop tables are per pool
 // (content/pools.json); numbers are in tuning.loot.
 import { ITEM_BASES, POOL_BY_ID, RARE_MATERIALS } from "./content.ts";
 import { baseOf, cannotEquip, rollProps } from "./items.ts";
 import { present } from "./events.ts";
 import { battle } from "./journey.ts";
-import { standing } from "./score.ts";
-import type { GearSlot, Item, ItemTier, SovState, StandingTier, Stores } from "./state.ts";
+import type { GearSlot, Item, ItemTier, Share, SovState, Stores } from "./state.ts";
 import { TUNING } from "./tuning.ts";
 import { log, withRng } from "./year.ts";
 
@@ -82,11 +80,9 @@ export function bossLoot(s: SovState): void {
   gather(s, L.boss.rolls);
 }
 
-const RANK: Record<StandingTier, number> = { waning: 0, steady: 1, rising: 2, ascendant: 3 };
-
-/** The draft order (§9.10): lowest Standing first, ties at random, snake order, one pick per item. */
+/** The draft order (Josh, 2026-11-02): the Houses in a random order, then snake order, one pick per share. */
 export function snake(s: SovState, houses: number[], picks: number): number[] {
-  const first = withRng(s, (rng) => rng.shuffle(houses)).sort((a, b) => RANK[standing(s, a)] - RANK[standing(s, b)]);
+  const first = withRng(s, (rng) => rng.shuffle(houses));
   return Array.from({ length: picks }, (_, i) => {
     const round = Math.floor(i / first.length);
     const at = i % first.length;
@@ -100,52 +96,71 @@ function give(s: SovState, item: Item, house: number): void {
   log(s, `House ${s.houses[house]!.name} takes the ${itemName(item)}.`);
 }
 
-/** The party is home with its haul: materials split, items given or put to the draft. */
-export function shareOut(s: SovState): void {
-  const e = s.expedition!;
-  const h = e.haul;
-  const houses = present(s);
-  if (!h || !houses.length) return;
-  for (const [k, n] of Object.entries(h.stores)) {
-    const each = Math.floor(n! / houses.length);
-    for (const i of houses) if (each) add(s.houses[i]!.stores, k, each);
-    if (n! - each * houses.length) add(s.commons.stores, k, n! - each * houses.length);
-  }
-  h.stores = {};
-  if (houses.length === 1) for (const item of h.items.splice(0)) give(s, item, houses[0]!);
-  if (!h.items.length) return void delete e.haul;
-  e.draft = snake(s, houses, h.items.length);
-  log(s, `The Houses draft the haul. House ${s.houses[e.draft[0]!]!.name} picks first.`);
+function claim(s: SovState, share: Share, house: number): void {
+  if (share.item) return give(s, share.item, house);
+  for (const [k, n] of Object.entries(share.stores!)) add(s.houses[house]!.stores, k, n!);
+  log(s, `House ${s.houses[house]!.name} takes ${list(share.stores!)}.`);
 }
 
-/** Why `house` cannot take `item` from the haul now, or null. */
-export function cannotDraft(s: SovState, house: number, item: unknown): string | null {
+/**
+ * The haul as shares (Josh, 2026-11-02): each item is one, and each material is split into as many
+ * bundles as there are Houses drafting (fewer when there is too little to go round).
+ */
+function shares(s: SovState, houses: number): Share[] {
+  const h = s.expedition!.haul!;
+  const out: Share[] = h.items.map((item) => ({ id: item.id, item }));
+  for (const [k, n] of Object.entries(h.stores)) {
+    const parts = Math.min(houses, n!);
+    for (let i = 0; i < parts; i++) out.push({ id: s.nextId++, stores: { [k]: Math.floor(n! / parts) + (i < n! % parts ? 1 : 0) } });
+  }
+  return out;
+}
+
+/** The party is home with its haul: it becomes a pool of shares the Houses still in the party draft. Alone, a House takes it all. */
+export function shareOut(s: SovState): void {
+  const e = s.expedition!;
+  const houses = present(s);
+  if (!e.haul || !houses.length) return;
+  const pool = shares(s, houses.length);
+  delete e.haul;
+  if (!pool.length) return;
+  if (houses.length === 1) return pool.forEach((sh) => claim(s, sh, houses[0]!));
+  e.pool = pool;
+  e.draft = snake(s, houses, pool.length);
+  log(s, `The Houses draft the haul, ${pool.length} shares. House ${s.houses[e.draft[0]!]!.name} picks first.`);
+}
+
+/** Why `house` cannot take share `id` now, or null. */
+export function cannotDraft(s: SovState, house: number, id: unknown): string | null {
   const e = s.expedition;
   if (!e?.draft?.length) return "Nothing is being drafted.";
   if (e.draft[0] !== house) return "It is not your House's pick.";
-  return e.haul!.items.some((i) => i.id === item) ? null : "That is not in the haul.";
+  return e.pool!.some((x) => x.id === id) ? null : "That is not in the haul.";
 }
 
 export function draftPick(s: SovState, house: number, id: number): void {
   const e = s.expedition!;
-  const h = e.haul!;
-  give(s, h.items.splice(h.items.findIndex((i) => i.id === id), 1)[0]!, house);
+  claim(s, e.pool!.splice(e.pool!.findIndex((x) => x.id === id), 1)[0]!, house);
   e.draft!.shift();
-  if (!h.items.length) {
+  if (!e.pool!.length) {
     delete e.draft;
-    delete e.haul;
+    delete e.pool;
   }
 }
 
+/** What a share is worth to the bot: items by tier, materials by amount (rare ones dear). */
+const worth = (sh: Share): number =>
+  sh.item ? L.botWorth.tier[sh.item.tier - 1]! : Object.entries(sh.stores!).reduce((n, [k, q]) => n + q! * (RARE.has(k) ? L.botWorth.rare : k === "essence" ? L.botWorth.essence : 1), 0);
+
 /**
- * The bot drafts blind like everyone (properties are hidden until identified, §13.4): the highest
- * tier, preferring something one of its Scions could wear.
+ * The bot drafts blind like everyone (properties are hidden until identified, §13.4): the share it
+ * values most, preferring an item one of its Scions could wear.
  */
 export function botDraft(s: SovState, house: number): number {
-  const items = s.expedition!.haul!.items;
-  const top = Math.max(...items.map((i) => i.tier));
-  const best = items.filter((i) => i.tier === top);
+  const pool = s.expedition!.pool!;
+  const top = Math.max(...pool.map(worth));
+  const best = pool.filter((x) => worth(x) === top);
   const slot = (i: Item): GearSlot => (baseOf(i).slot === "acc" ? "acc1" : (baseOf(i).slot as GearSlot));
-  const wearable = best.find((i) => s.people.some((p) => p.host === house && p.status === "scion" && !cannotEquip(s, p, { ...i, house }, slot(i))));
+  const wearable = best.find((x) => x.item && s.people.some((p) => p.host === house && p.status === "scion" && !cannotEquip(s, p, { ...x.item!, house }, slot(x.item!))));
   return (wearable ?? best[0]!).id;
 }

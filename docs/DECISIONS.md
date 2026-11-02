@@ -2,6 +2,10 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (treasure as a pool of shares) — Josh
+- **Treasure goes to one pool and Houses claim "shares" of it**: gear, a resource or an artifact, in a randomized House order. This replaces 6e's even split of materials (remainder to the Commons) and its lowest-Standing-first order. → SPEC §9.10, GLOSSARY "Draft"
+- Implementer's reading: each item is one share, and each material is split into one bundle per drafting House (fewer when there is too little). The order is random, then snakes back as before, so no House picks twice running at the turn. The bot takes the share it values most (`tuning.loot.botWorth`). Gear is still drafted blind.
+
 ## 2026-11-02 (implementation, Milestone 6h: blessings and House improvements) — implementer
 - **`blessing`**: a trait held for a time. The trait is added as any trait is, and `Person.blessed` counts the Reckonings it has left: `years: 1` lasts through the next Year and fades at its Reckoning. A trait already held is not blessed again. Gaining the same trait for good makes it stay.
 - **`house_improvement`**:
