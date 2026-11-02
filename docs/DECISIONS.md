@@ -2,6 +2,10 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 7ac: Rescue, Resource and Hunt cards get their own scenes) — implementer
+- **Built** (content only). Sixteen card-type events: six for Rescue cards (the Torn Banner, the Ransom Note, the Survivor's Cache, the Lost One's Trade, the Echoing Voice, the Healer's Hut), five for Resource cards (the Quarry Face, the Timber Giants, the Ore Beast, the Essence Well, the Abandoned Mill) and five for Hunts (the Blood Trail, the Baited Snare, the Quarry's Den, the Hunter's Tale, the False Quarry). That makes 256 expedition events; Rescue has 7, Resource 10 and Hunt 11 against a goal of 25.
+- **Reading:** a Rescue scene speaks of the Lost without naming them, since the rules do not yet pass the card's Lost Scions to an event; its options shorten the way to them (`skip`) or warn of what follows (`foresee`).
+
 ## 2026-11-02 (implementation, Milestone 7ab: one more event for every region, and every subject rule in use) — implementer
 - **Built** (content only). Sixteen region events: the Old Bull (Beast Lands), the Bark Mask (Hollow Wood), the Eel Wife and the Net Mender (Drowned Marches), the Veteran's Barrow (Barrows), the Frozen Lake (Deep Cold), the Dice Pit (Pit), the Cold Anvil (Forge Ruins), the Face Trader and the Shooting Gallery (Faceless City), the Mother Superior and the Court Cartomancer (Apostate Court), the Silent Cell and the Two Candles (Shrine of Six), the Dragon's Tithe (Dragon Reaches) and the Backward Man (Outer Dark). That makes 240 expedition events.
 - **Budget:** every subject rule is now used at least five times, as HANDOFF §6 asks; `npm run events` flags none. Each region now has 5 to 9 events against a goal of 25.

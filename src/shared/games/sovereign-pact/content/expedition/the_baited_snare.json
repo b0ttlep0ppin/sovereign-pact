@@ -1,0 +1,76 @@
+{
+  "id": "the_baited_snare",
+  "pools": [
+    "hunt"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    10
+  ],
+  "title": "The Baited Snare",
+  "text": "The quarry has been here, and left a trap of its own: bones arranged like a snare, around something shiny.",
+  "options": [
+    {
+      "id": "disarm",
+      "label": "The cleverest hands disarm it.",
+      "rule": "scion:highest:guile",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A trinket the quarry stole from its last hunter.",
+          "effects": [
+            {
+              "item": {
+                "tier": 2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "spring",
+      "label": "The one who draws danger springs it on purpose.",
+      "rule": "scion:most_targeted|scion:highest:resilience",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It snaps on them, and the quarry comes to look.",
+          "effects": [
+            {
+              "durability": -25,
+              "loc": "legs"
+            },
+            {
+              "encounter": {
+                "modifier": "surprise"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "around",
+      "label": "Go around.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The quarry knows you were careful. It is careful too.",
+          "effects": []
+        }
+      ]
+    }
+  ]
+}

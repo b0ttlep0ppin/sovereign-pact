@@ -1,0 +1,97 @@
+{
+  "id": "the_abandoned_mill",
+  "pools": [
+    "resource"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    10
+  ],
+  "title": "The Abandoned Mill",
+  "text": "A mill on a fast river, its wheel still turning, nobody home. The grain in the loft is dry.",
+  "options": [
+    {
+      "id": "strip",
+      "label": "Strip it for timber and iron.",
+      "rule": "vote",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A good haul from good work.",
+          "effects": [
+            {
+              "resources": {
+                "timber": 4,
+                "iron": 2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "search",
+      "label": "Search for the miller.",
+      "rule": "scion:highest:acuity",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "Hiding in the cellar. Grateful.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 15
+              }
+            },
+            {
+              "score": {
+                "renown": 1
+              }
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "In the wheel.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -8
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rest",
+      "label": "Rest here a night.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The wheel turns all night, like a heart.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 8
+            },
+            {
+              "to": "party",
+              "mp": 15
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

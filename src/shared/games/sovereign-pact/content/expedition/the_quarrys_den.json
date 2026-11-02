@@ -1,0 +1,89 @@
+{
+  "id": "the_quarrys_den",
+  "pools": [
+    "hunt"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    10
+  ],
+  "title": "The Quarry's Den",
+  "text": "The den, empty: bones, a nest, and something it was guarding, small and alive.",
+  "options": [
+    {
+      "id": "young",
+      "label": "Take the young.",
+      "rule": "leader",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The quarry will come for it, and soon.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "ambush",
+                "level": 1
+              }
+            },
+            {
+              "resources": {
+                "wyrmbone": 2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wait",
+      "label": "Wait for the parent here.",
+      "rule": "vote",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It comes home angry.",
+          "effects": [
+            {
+              "encounter": {}
+            },
+            {
+              "score": {
+                "valor": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "spare",
+      "label": "The gentlest leaves the young unharmed.",
+      "rule": "scion:fewest_kills|scion:highest:sagacity",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The quarry finds it unharmed, and is slower to fight.",
+          "effects": [
+            {
+              "to": "party",
+              "status": "protect"
+            },
+            {
+              "sanity": 5
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,99 @@
+{
+  "id": "the_essence_well",
+  "pools": [
+    "resource"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    10
+  ],
+  "title": "The Essence Well",
+  "text": "A well brims with something that is not water, cold and bright. Bottled, it is worth a fortune. Drunk, it is worth more.",
+  "options": [
+    {
+      "id": "bottle",
+      "label": "Bottle what you can.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Every flask you have.",
+          "effects": [
+            {
+              "resources": {
+                "essence": 7
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "drink",
+      "label": "The bravest drinks.",
+      "rule": "scion:trait:brave|scion:highest:resilience",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "They glow for a day.",
+          "effects": [
+            {
+              "growth": {
+                "all": 5
+              }
+            },
+            {
+              "to": "party",
+              "sanity": -3
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "It burns going down.",
+          "effects": [
+            {
+              "status": "burn"
+            },
+            {
+              "sanity": -15
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "guard",
+      "label": "Mark it for the House and post a sign.",
+      "rule": "leader",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A rival will find the sign.",
+          "effects": [
+            {
+              "resources": {
+                "essence": 3
+              }
+            },
+            {
+              "score": {
+                "intrigue": 1
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

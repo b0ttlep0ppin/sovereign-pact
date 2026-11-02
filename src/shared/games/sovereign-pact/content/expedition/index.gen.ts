@@ -46,6 +46,7 @@ import sinking_mother from "./sinking_mother.json" with { type: "json" };
 import spider_queens_court from "./spider_queens_court.json" with { type: "json" };
 import still_warm_camp from "./still_warm_camp.json" with { type: "json" };
 import the_abandoned_kennel from "./the_abandoned_kennel.json" with { type: "json" };
+import the_abandoned_mill from "./the_abandoned_mill.json" with { type: "json" };
 import the_altar_of_scars from "./the_altar_of_scars.json" with { type: "json" };
 import the_archers_wager from "./the_archers_wager.json" with { type: "json" };
 import the_arrow_storm from "./the_arrow_storm.json" with { type: "json" };
@@ -53,6 +54,7 @@ import the_avalanche_bell from "./the_avalanche_bell.json" with { type: "json" }
 import the_backward_man from "./the_backward_man.json" with { type: "json" };
 import the_bad_air from "./the_bad_air.json" with { type: "json" };
 import the_bait from "./the_bait.json" with { type: "json" };
+import the_baited_snare from "./the_baited_snare.json" with { type: "json" };
 import the_bandits_toll from "./the_bandits_toll.json" with { type: "json" };
 import the_bargain_pit from "./the_bargain_pit.json" with { type: "json" };
 import the_bark_mask from "./the_bark_mask.json" with { type: "json" };
@@ -62,6 +64,7 @@ import the_bellows_ghost from "./the_bellows_ghost.json" with { type: "json" };
 import the_black_dog from "./the_black_dog.json" with { type: "json" };
 import the_bleeding_ground from "./the_bleeding_ground.json" with { type: "json" };
 import the_blind_archer from "./the_blind_archer.json" with { type: "json" };
+import the_blood_trail from "./the_blood_trail.json" with { type: "json" };
 import the_bog_light from "./the_bog_light.json" with { type: "json" };
 import the_bone_dice from "./the_bone_dice.json" with { type: "json" };
 import the_brave_mans_bridge from "./the_brave_mans_bridge.json" with { type: "json" };
@@ -90,17 +93,20 @@ import the_dragons_tithe from "./the_dragons_tithe.json" with { type: "json" };
 import the_dreaming_tent from "./the_dreaming_tent.json" with { type: "json" };
 import the_drowned_chapel from "./the_drowned_chapel.json" with { type: "json" };
 import the_echoing_hall from "./the_echoing_hall.json" with { type: "json" };
+import the_echoing_voice from "./the_echoing_voice.json" with { type: "json" };
 import the_eel_wife from "./the_eel_wife.json" with { type: "json" };
 import the_empress_garden from "./the_empress_garden.json" with { type: "json" };
 import the_empty_court from "./the_empty_court.json" with { type: "json" };
 import the_empty_feast from "./the_empty_feast.json" with { type: "json" };
 import the_engine_heart from "./the_engine_heart.json" with { type: "json" };
+import the_essence_well from "./the_essence_well.json" with { type: "json" };
 import the_face_swap from "./the_face_swap.json" with { type: "json" };
 import the_faceless_census from "./the_faceless_census.json" with { type: "json" };
 import the_fallen_messenger from "./the_fallen_messenger.json" with { type: "json" };
 import the_fallen_scion from "./the_fallen_scion.json" with { type: "json" };
 import the_fallen_star from "./the_fallen_star.json" with { type: "json" };
 import the_falling_rocks from "./the_falling_rocks.json" with { type: "json" };
+import the_false_quarry from "./the_false_quarry.json" with { type: "json" };
 import the_ferryman from "./the_ferryman.json" with { type: "json" };
 import the_field_hospital from "./the_field_hospital.json" with { type: "json" };
 import the_ford from "./the_ford.json" with { type: "json" };
@@ -118,6 +124,7 @@ import the_grave_robbers from "./the_grave_robbers.json" with { type: "json" };
 import the_green_hand from "./the_green_hand.json" with { type: "json" };
 import the_greenhorns_chance from "./the_greenhorns_chance.json" with { type: "json" };
 import the_hanging_wood from "./the_hanging_wood.json" with { type: "json" };
+import the_healers_hut from "./the_healers_hut.json" with { type: "json" };
 import the_hedge_maze from "./the_hedge_maze.json" with { type: "json" };
 import the_hedge_witch from "./the_hedge_witch.json" with { type: "json" };
 import the_heretics_trial from "./the_heretics_trial.json" with { type: "json" };
@@ -126,6 +133,7 @@ import the_honest_merchant from "./the_honest_merchant.json" with { type: "json"
 import the_honey_hall from "./the_honey_hall.json" with { type: "json" };
 import the_howling_pass from "./the_howling_pass.json" with { type: "json" };
 import the_hungry_doorway from "./the_hungry_doorway.json" with { type: "json" };
+import the_hunters_tale from "./the_hunters_tale.json" with { type: "json" };
 import the_ice_choir from "./the_ice_choir.json" with { type: "json" };
 import the_idle_golem from "./the_idle_golem.json" with { type: "json" };
 import the_iron_maiden from "./the_iron_maiden.json" with { type: "json" };
@@ -137,6 +145,7 @@ import the_last_hoard from "./the_last_hoard.json" with { type: "json" };
 import the_listening_chamber from "./the_listening_chamber.json" with { type: "json" };
 import the_lost_child from "./the_lost_child.json" with { type: "json" };
 import the_lost_ones_mark from "./the_lost_ones_mark.json" with { type: "json" };
+import the_lost_ones_trade from "./the_lost_ones_trade.json" with { type: "json" };
 import the_lost_patrol from "./the_lost_patrol.json" with { type: "json" };
 import the_lots_drawn from "./the_lots_drawn.json" with { type: "json" };
 import the_lullaby from "./the_lullaby.json" with { type: "json" };
@@ -157,6 +166,7 @@ import the_old_soldiers from "./the_old_soldiers.json" with { type: "json" };
 import the_old_stand from "./the_old_stand.json" with { type: "json" };
 import the_one_rope from "./the_one_rope.json" with { type: "json" };
 import the_open_grave from "./the_open_grave.json" with { type: "json" };
+import the_ore_beast from "./the_ore_beast.json" with { type: "json" };
 import the_other_party from "./the_other_party.json" with { type: "json" };
 import the_overturned_cart from "./the_overturned_cart.json" with { type: "json" };
 import the_pack_den from "./the_pack_den.json" with { type: "json" };
@@ -170,8 +180,11 @@ import the_prison_cart from "./the_prison_cart.json" with { type: "json" };
 import the_procession from "./the_procession.json" with { type: "json" };
 import the_proving_stone from "./the_proving_stone.json" with { type: "json" };
 import the_puppet_show from "./the_puppet_show.json" with { type: "json" };
+import the_quarry_face from "./the_quarry_face.json" with { type: "json" };
+import the_quarrys_den from "./the_quarrys_den.json" with { type: "json" };
 import the_quarrys_trail from "./the_quarrys_trail.json" with { type: "json" };
 import the_quiet_battlefield from "./the_quiet_battlefield.json" with { type: "json" };
+import the_ransom_note from "./the_ransom_note.json" with { type: "json" };
 import the_red_rain from "./the_red_rain.json" with { type: "json" };
 import the_relic_seller from "./the_relic_seller.json" with { type: "json" };
 import the_rich_seam from "./the_rich_seam.json" with { type: "json" };
@@ -211,11 +224,14 @@ import the_stranded_merchant from "./the_stranded_merchant.json" with { type: "j
 import the_struck_oak from "./the_struck_oak.json" with { type: "json" };
 import the_sunken_bell from "./the_sunken_bell.json" with { type: "json" };
 import the_sunken_road from "./the_sunken_road.json" with { type: "json" };
+import the_survivors_cache from "./the_survivors_cache.json" with { type: "json" };
 import the_thief_in_camp from "./the_thief_in_camp.json" with { type: "json" };
 import the_thirsting_banner from "./the_thirsting_banner.json" with { type: "json" };
 import the_tide_bell from "./the_tide_bell.json" with { type: "json" };
+import the_timber_giants from "./the_timber_giants.json" with { type: "json" };
 import the_toll from "./the_toll.json" with { type: "json" };
 import the_toll_keeper from "./the_toll_keeper.json" with { type: "json" };
+import the_torn_banner from "./the_torn_banner.json" with { type: "json" };
 import the_traveling_players from "./the_traveling_players.json" with { type: "json" };
 import the_two_candles from "./the_two_candles.json" with { type: "json" };
 import the_two_doors from "./the_two_doors.json" with { type: "json" };
@@ -288,6 +304,7 @@ export default [
   spider_queens_court,
   still_warm_camp,
   the_abandoned_kennel,
+  the_abandoned_mill,
   the_altar_of_scars,
   the_archers_wager,
   the_arrow_storm,
@@ -295,6 +312,7 @@ export default [
   the_backward_man,
   the_bad_air,
   the_bait,
+  the_baited_snare,
   the_bandits_toll,
   the_bargain_pit,
   the_bark_mask,
@@ -304,6 +322,7 @@ export default [
   the_black_dog,
   the_bleeding_ground,
   the_blind_archer,
+  the_blood_trail,
   the_bog_light,
   the_bone_dice,
   the_brave_mans_bridge,
@@ -332,17 +351,20 @@ export default [
   the_dreaming_tent,
   the_drowned_chapel,
   the_echoing_hall,
+  the_echoing_voice,
   the_eel_wife,
   the_empress_garden,
   the_empty_court,
   the_empty_feast,
   the_engine_heart,
+  the_essence_well,
   the_face_swap,
   the_faceless_census,
   the_fallen_messenger,
   the_fallen_scion,
   the_fallen_star,
   the_falling_rocks,
+  the_false_quarry,
   the_ferryman,
   the_field_hospital,
   the_ford,
@@ -360,6 +382,7 @@ export default [
   the_green_hand,
   the_greenhorns_chance,
   the_hanging_wood,
+  the_healers_hut,
   the_hedge_maze,
   the_hedge_witch,
   the_heretics_trial,
@@ -368,6 +391,7 @@ export default [
   the_honey_hall,
   the_howling_pass,
   the_hungry_doorway,
+  the_hunters_tale,
   the_ice_choir,
   the_idle_golem,
   the_iron_maiden,
@@ -379,6 +403,7 @@ export default [
   the_listening_chamber,
   the_lost_child,
   the_lost_ones_mark,
+  the_lost_ones_trade,
   the_lost_patrol,
   the_lots_drawn,
   the_lullaby,
@@ -399,6 +424,7 @@ export default [
   the_old_stand,
   the_one_rope,
   the_open_grave,
+  the_ore_beast,
   the_other_party,
   the_overturned_cart,
   the_pack_den,
@@ -412,8 +438,11 @@ export default [
   the_procession,
   the_proving_stone,
   the_puppet_show,
+  the_quarry_face,
+  the_quarrys_den,
   the_quarrys_trail,
   the_quiet_battlefield,
+  the_ransom_note,
   the_red_rain,
   the_relic_seller,
   the_rich_seam,
@@ -453,11 +482,14 @@ export default [
   the_struck_oak,
   the_sunken_bell,
   the_sunken_road,
+  the_survivors_cache,
   the_thief_in_camp,
   the_thirsting_banner,
   the_tide_bell,
+  the_timber_giants,
   the_toll,
   the_toll_keeper,
+  the_torn_banner,
   the_traveling_players,
   the_two_candles,
   the_two_doors,

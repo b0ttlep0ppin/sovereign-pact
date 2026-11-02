@@ -1,0 +1,94 @@
+{
+  "id": "the_lost_ones_trade",
+  "pools": [
+    "rescue"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    10
+  ],
+  "title": "The Lost One's Trade",
+  "text": "A peddler wears a ring with your House's crest. He swears he bought it fair, from someone who needed bread.",
+  "options": [
+    {
+      "id": "buy",
+      "label": "Buy the ring back, and the story.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "He tells you where, and when. It was not long ago.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -10
+              }
+            },
+            {
+              "skip": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "threaten",
+      "label": "The strongest asks him again.",
+      "rule": "scion:highest:might",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "He tells it fast.",
+          "effects": [
+            {
+              "skip": 1
+            },
+            {
+              "doom": 1
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "He has friends.",
+          "effects": [
+            {
+              "encounter": {}
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "read",
+      "label": "The shrewdest reads his face.",
+      "rule": "scion:highest:guile",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "He is lying about the bread, not about the place.",
+          "effects": [
+            {
+              "skip": 1
+            },
+            {
+              "score": {
+                "intrigue": 1
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,89 @@
+{
+  "id": "the_healers_hut",
+  "pools": [
+    "rescue"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    10
+  ],
+  "title": "The Healer's Hut",
+  "text": "A hedge-healer nursed one of your Lost for a week before they slipped away in the night. She kept their bandages.",
+  "options": [
+    {
+      "id": "ask",
+      "label": "The best healer asks what wounds she tended.",
+      "rule": "scion:most_healing|scion:highest:sagacity",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "She tells, healer to healer, and gives you her salves for them.",
+          "effects": [
+            {
+              "to": "party",
+              "status": "regen"
+            },
+            {
+              "skip": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pay",
+      "label": "Pay her for her trouble.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "She blesses the House.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -10
+              }
+            },
+            {
+              "score": {
+                "renown": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "suspect",
+      "label": "Accuse her of selling them out.",
+      "rule": "leader",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "She did not. She tells you nothing now.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -5
+            },
+            {
+              "score": {
+                "renown": -1
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
