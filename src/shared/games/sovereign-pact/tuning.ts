@@ -221,6 +221,12 @@ export const TUNING = {
    * Lair with an ambush. Its trophy is in its content; the first kill of any enemy adds `lorePerEntry`
    * Lore to each House in the fight (a bestiary entry).
    */
+  /**
+   * §14.9 Arcana nodes, first pass: the chance a chain holds one, `bearerPct` when a Scion of a still-unmet
+   * Arcana is in the party (that Arcana), else `basePct` (any unmet one). Never on a mandatory or forced card.
+   */
+  arcana: { basePct: 6, bearerPct: 30 },
+
   hunt: { levelUp: 1, hpPct: 150, enrageTicks: 600, pack: ["fodder", "fodder"] as const, lorePerEntry: 1 },
 
   /**

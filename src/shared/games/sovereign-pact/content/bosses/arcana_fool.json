@@ -1,0 +1,31 @@
+{
+  "id": "arcana_fool",
+  "name": "The Fool's Clown",
+  "pool": "pit",
+  "tags": ["demon", "cursed", "arcana"],
+  "role": "boss",
+  "size": [1, 1],
+  "at": "E2",
+  "levels": [1, 10],
+  "stats": {"speed": 15, "hp": 3, "sanityTouch": 2},
+  "affinity": {"dark": 25, "holy": -25},
+  "immune": ["fear", "confusion"],
+  "abilities": [
+    {"id": "juggled_knives", "shape": "single", "side": "player", "power": 0.5, "leap": true, "hits": 3},
+    {"id": "pratfall", "shape": "row", "side": "player", "power": 0.4, "kind": "magic", "sanity": 5, "cooldown": 2, "statuses": [{"id": "confusion", "chance": 30, "ticks": 200}]},
+    {"id": "vanishing_act", "shape": "self", "side": "self", "power": 0, "kind": "support", "statuses": [{"id": "hidden", "chance": 100, "ticks": 150}], "cooldown": 4}
+  ],
+  "gambits": [
+    {"if": "turn%3==2", "do": "pratfall", "target": "densest_row"},
+    {"do": "juggled_knives", "target": "lowest_hp"}
+  ],
+  "phases": [
+    {"at": "hp<=0.5", "name": "The Last Laugh", "speed": 18, "say": "Oh, you're no fun at all. Let's play something else.", "gambits": [{"if": "turn%3==0", "do": "vanishing_act"}, {"if": "turn%2==1", "do": "pratfall", "target": "densest_row"}, {"do": "juggled_knives", "target": "lowest_sanity"}]}
+  ],
+  "say": {"open": "A new audience! Sit, sit. You'll be part of the act.", "death": "Every act... ends with a bow."},
+  "bestiary": {
+    "lore": "The card at the start of every road, and the thing that waits there for whoever steps off the edge.",
+    "weakness": "Holy. It is frail: it lives on not being hit.",
+    "pattern": "Knives at the weakest every turn and a confusing pratfall every third. At half health it speeds up, hides every third turn and goes after the least sane."
+  }
+}

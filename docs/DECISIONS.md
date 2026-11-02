@@ -2,6 +2,22 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 7e: Arcana nodes, the first six) — implementer
+- **Built** (§14.9, `arcana.ts`, content `content/arcana.json`, numbers in `tuning.arcana`):
+  - Six of the 22 Arcana, each with its boss, the trait it grants and its Relic: the Fool, the Magician, Death, the Tower, the Moon and the Sun.
+  - The Tower is the Stone Colossus, the forge's existing boss. Its Relic, the Tower Stone, also falls the first time it is beaten as the Forge Ruins boss.
+  - Five new two-phase bosses, tagged `arcana`, which never end a card as a pool's boss.
+  - Six new traits, weight 0 and so gained only from an Arcana kill.
+  - Six new named Relics; the named item count is now 32.
+- **Readings**:
+  - When the chain is rolled at departure, it holds an Arcana node 30% of the time if a Scion of a still-unmet Arcana is in the party (that Arcana). Otherwise the chance is 6%, for any unmet Arcana.
+  - An Arcana is met once a campaign, whether the party wins or not. It is never met on a mandatory or forced card.
+  - The node sits at a random place before the boss. It is fought as a boss at the card's level, without the +1 a card's boss gets ("elite-tier").
+  - On the kill, every bearer of that Tarot still marching gains the trait, and the Relic goes into the haul (lost on a wipe).
+  - The spec's "that Scion is the subject of the node's event" is read as the trait reward for now. A pre-fight event per Arcana can come with the event fill.
+- Chains now take their raid and Arcana rolls from the same random stream as the rest of the chain.
+- **Not yet**: the other 16 Arcana, and Hunt cards of their own for the Tower, Death and the World at level 8+.
+
 ## 2026-11-02 (implementation, Milestone 7d: Hunt quarries and the bestiary) — implementer
 - **Built** (§14.9, `hunt.ts`, content `content/quarries.json`, numbers in `tuning.hunt`):
   - Eighteen named quarries, three for each pool that deals Hunt cards.

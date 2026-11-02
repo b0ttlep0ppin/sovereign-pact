@@ -269,6 +269,8 @@ export interface Expedition {
   votes?: (number | null)[];
   /** The Leader's person id, once the party departs; a fallen Leader's successor after. */
   leader?: number;
+  /** The Arcana met on this chain (§14.9), by Tarot id: its node is a face-down card until reached. */
+  arcana?: string;
   /** The chain (§9.3), rolled at departure; only the nodes passed are shown. */
   chain: NodeKind[];
   /** The next node's index. */
@@ -312,7 +314,7 @@ export interface Split {
 }
 
 /** `gate` and `rally` are a 2×4 card's: a Gate waits on the other party; the rally is where they meet for the boss. */
-export type NodeKind = "encounter" | "event" | "camp" | "cache" | "boss" | "gate" | "rally" | "raid" | "lair";
+export type NodeKind = "encounter" | "event" | "camp" | "cache" | "boss" | "gate" | "rally" | "raid" | "lair" | "arcana";
 
 /**
  * A vote of the Houses (§8.1, §8.8): open in the Settlement Phase, settled when every House has voted or

@@ -8,7 +8,8 @@ import { built } from "./commons.ts";
 import type { Combatant } from "./combat/types.ts";
 import type { NodeKind, SovState } from "./state.ts";
 import { TUNING } from "./tuning.ts";
-import { log, mandatoryYears, withRng } from "./year.ts";
+import type { Rng } from "../../rng.ts";
+import { log, mandatoryYears } from "./year.ts";
 
 const A = TUNING.arc;
 
@@ -54,9 +55,9 @@ export function arcResult(s: SovState, won: boolean): void {
 }
 
 /** The chain with a raid of the Court's knights put in before the boss, once the Court has won (Year 10 lost). */
-export function withRaid(s: SovState, chain: NodeKind[]): NodeKind[] {
+export function withRaid(s: SovState, rng: Rng, chain: NodeKind[]): NodeKind[] {
   if (!s.flags.includes(ARC.courtRaids)) return chain;
-  const at = withRng(s, (rng) => rng.int(chain.length));
+  const at = rng.int(chain.length);
   return [...chain.slice(0, at), "raid", ...chain.slice(at)];
 }
 

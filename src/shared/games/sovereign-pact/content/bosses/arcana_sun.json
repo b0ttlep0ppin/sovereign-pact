@@ -1,0 +1,32 @@
+{
+  "id": "arcana_sun",
+  "name": "The Smiling Sun",
+  "pool": "shrine_of_six",
+  "tags": ["spirit", "elemental", "flyer", "arcana"],
+  "role": "boss",
+  "size": [2, 2],
+  "at": "E2",
+  "levels": [1, 10],
+  "stats": {"speed": 10, "hp": 4},
+  "affinity": {"fire": 75, "holy": 50, "water": -50, "dark": -25},
+  "immune": ["blind", "frozen", "burn"],
+  "abilities": [
+    {"id": "noon_glare", "shape": "row", "side": "player", "power": 0.6, "kind": "magic", "element": "holy", "statuses": [{"id": "blind", "chance": 40, "ticks": 200}]},
+    {"id": "solar_flare", "shape": "band:4", "side": "player", "power": 1.0, "kind": "magic", "element": "fire", "charge": 200, "telegraph": true, "cooldown": 3, "statuses": [{"id": "burn", "chance": 40, "ticks": 300}]},
+    {"id": "warmth", "shape": "self", "side": "self", "power": 0, "kind": "support", "statuses": [{"id": "regen", "chance": 100, "ticks": 300}], "cooldown": 5}
+  ],
+  "gambits": [
+    {"if": "turn%3==0", "do": "solar_flare", "target": "densest_row"},
+    {"if": "hp<0.7 && turn%2==1", "do": "warmth"},
+    {"do": "noon_glare", "target": "densest_row"}
+  ],
+  "phases": [
+    {"at": "hp<=0.5", "name": "High Noon", "speed": 13, "say": "(It burns white. There are no shadows left to stand in.)", "gambits": [{"if": "turn%2==0", "do": "solar_flare", "target": "densest_cluster"}, {"do": "noon_glare", "target": "densest_row"}]}
+  ],
+  "say": {"open": "(The heat arrives before the light does, and the light is laughing.)", "death": "(It sets, and for a moment everyone can see clearly.)"},
+  "bestiary": {
+    "lore": "The card of joy and clarity, and a sun that is very glad to see you, and will not stop being glad.",
+    "weakness": "Water, heavily. Interrupt the flare while it charges.",
+    "pattern": "Every third turn a four-row solar flare that burns; glare blinds a row between, and it warms itself back when hurt. At High Noon the flare comes every other turn."
+  }
+}

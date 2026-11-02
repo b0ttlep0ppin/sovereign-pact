@@ -53,7 +53,7 @@ function namedFor(s: SovState): string | undefined {
   return open.length ? withRng(s, (rng) => rng.pick(open).id) : undefined;
 }
 
-function carryNamed(s: SovState, id: string): Item {
+export function carryNamed(s: SovState, id: string): Item {
   const item = mintNamed(s, id, -1, s.expedition!.card.level);
   haul(s).items.push(item);
   log(s, `The party finds ${itemName(item)}.`);

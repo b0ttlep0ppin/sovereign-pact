@@ -1,0 +1,32 @@
+{
+  "id": "arcana_magician",
+  "name": "The Golden Archmage",
+  "pool": "apostate_court",
+  "tags": ["humanoid", "caster", "arcana"],
+  "role": "boss",
+  "size": [1, 1],
+  "at": "E3",
+  "levels": [1, 10],
+  "stats": {"speed": 11, "hp": 3},
+  "affinity": {"fire": 25, "water": 25, "earth": 25, "wind": 25},
+  "immune": ["silence"],
+  "abilities": [
+    {"id": "arcane_bolt", "shape": "single", "side": "player", "power": 1.0, "kind": "magic", "reach": "ranged"},
+    {"id": "elemental_storm", "shape": "band:3", "side": "player", "power": 0.9, "kind": "magic", "element": "fire", "charge": 200, "telegraph": true, "cooldown": 3},
+    {"id": "golden_ward", "shape": "self", "side": "self", "power": 0, "kind": "support", "statuses": [{"id": "shell", "chance": 100, "ticks": 300}, {"id": "protect", "chance": 100, "ticks": 300}], "cooldown": 5}
+  ],
+  "gambits": [
+    {"if": "turn%4==0", "do": "golden_ward"},
+    {"if": "turn%3==1", "do": "elemental_storm", "target": "densest_row"},
+    {"do": "arcane_bolt", "target": "lowest_hp"}
+  ],
+  "phases": [
+    {"at": "hp<=0.5", "name": "All Four Elements", "speed": 13, "say": "Enough tricks. Let me show you the real thing.", "gambits": [{"if": "turn%2==0", "do": "elemental_storm", "target": "densest_cluster"}, {"do": "arcane_bolt", "target": "back_random"}]}
+  ],
+  "say": {"open": "Every power has a price. I set the prices.", "death": "The trick... was that it was never... magic..."},
+  "bestiary": {
+    "lore": "The card of the one who has every tool on the table, and the mage of the old court who mastered them all and sold the rest.",
+    "weakness": "Holy and Dark: it wards only the four elements. Interrupt the storm while it charges.",
+    "pattern": "Wards itself every fourth turn, calls a three-row elemental storm every third, and bolts the weakest between. At half health the storm comes every other turn."
+  }
+}

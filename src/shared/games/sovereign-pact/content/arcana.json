@@ -1,0 +1,40 @@
+{
+  "arcana": [
+    {
+      "tarot": "fool",
+      "boss": "arcana_fool",
+      "trait": "fools_luck",
+      "relic": "the_fools_bell"
+    },
+    {
+      "tarot": "magician",
+      "boss": "arcana_magician",
+      "trait": "magicians_hand",
+      "relic": "the_golden_wand"
+    },
+    {
+      "tarot": "death",
+      "boss": "arcana_death",
+      "trait": "death_touched",
+      "relic": "the_reapers_sickle"
+    },
+    {
+      "tarot": "tower",
+      "boss": "stone_colossus",
+      "trait": "tower_struck",
+      "relic": "the_tower_stone"
+    },
+    {
+      "tarot": "moon",
+      "boss": "arcana_moon",
+      "trait": "moon_sighted",
+      "relic": "the_moonsilver_mirror"
+    },
+    {
+      "tarot": "sun",
+      "boss": "arcana_sun",
+      "trait": "sunlit",
+      "relic": "the_sunbrand"
+    }
+  ]
+}

@@ -62,11 +62,12 @@ describe("Year 5: the Tide at the Walls", () => {
 describe("Year 10: the Hollow Court", () => {
   it("lost, every later chain gains one raid before its boss", () => {
     const s = assault(10, { pool: "barrows", level: 6, boss: "cursed_king" });
-    expect(withRaid(s, ["event", "boss"])).toEqual(["event", "boss"]);
+    const rng = createRng(1);
+    expect(withRaid(s, rng, ["event", "boss"])).toEqual(["event", "boss"]);
     arcResult(s, false);
     expect(s.flags).toContain(ARC.courtRaids);
     for (let i = 0; i < 20; i++) {
-      const chain = withRaid(s, ["event", "encounter", "camp", "boss"]);
+      const chain = withRaid(s, rng, ["event", "encounter", "camp", "boss"]);
       expect(chain.filter((k) => k === "raid")).toHaveLength(1);
       expect(chain.at(-1)).toBe("boss");
     }

@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Arcana nodes (SPEC §14.9): each Major Arcana's mini-boss, the trait its bearer gains on the kill, and its Relic",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["arcana"],
+  "properties": {
+    "arcana": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["tarot", "boss", "trait", "relic"],
+        "properties": {
+          "tarot": { "$ref": "defs.schema.json#/definitions/id", "description": "A Major Arcana in tarot.json" },
+          "boss": { "$ref": "defs.schema.json#/definitions/id", "description": "A boss in bosses/" },
+          "trait": { "$ref": "defs.schema.json#/definitions/id", "description": "An individual trait the bearer gains on the kill" },
+          "relic": { "$ref": "defs.schema.json#/definitions/id", "description": "A named item it drops" }
+        }
+      }
+    }
+  }
+}

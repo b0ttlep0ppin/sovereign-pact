@@ -1,0 +1,32 @@
+{
+  "id": "arcana_death",
+  "name": "Thanatos",
+  "pool": "barrows",
+  "tags": ["undead", "spirit", "arcana"],
+  "role": "boss",
+  "size": [1, 2],
+  "at": "E2",
+  "levels": [1, 10],
+  "stats": {"speed": 10, "hp": 4, "sanityTouch": 3},
+  "affinity": {"dark": 50, "holy": -50},
+  "immune": ["fear", "poison", "bleed", "sleep", "charm"],
+  "abilities": [
+    {"id": "reaping", "shape": "row", "side": "player", "power": 0.9},
+    {"id": "the_last_breath", "shape": "single", "side": "player", "power": 1.6, "charge": 150, "telegraph": true, "cooldown": 3, "statuses": [{"id": "marked", "chance": 100, "ticks": 300}]},
+    {"id": "cold_hand", "shape": "single", "side": "player", "power": 0.7, "kind": "magic", "element": "dark", "sanity": 8, "statuses": [{"id": "slow", "chance": 40, "ticks": 200}]}
+  ],
+  "gambits": [
+    {"if": "turn%3==0", "do": "the_last_breath", "target": "lowest_hp"},
+    {"if": "turn%2==1", "do": "reaping", "target": "densest_row"},
+    {"do": "cold_hand", "target": "lowest_sanity"}
+  ],
+  "phases": [
+    {"at": "hp<=0.5", "name": "The Unmasking", "speed": 12, "say": "(The hood falls back. There is no face, only a door.)", "gambits": [{"if": "foe.marked", "do": "the_last_breath", "target": "marked"}, {"if": "turn%2==0", "do": "reaping", "target": "densest_row"}, {"do": "cold_hand", "target": "lowest_sanity"}]}
+  ],
+  "say": {"open": "(It does not speak. It only counts you.)", "death": "(It steps aside, as if letting you pass for now.)"},
+  "bestiary": {
+    "lore": "The thirteenth card, which is not an ending but a change. It walks the Barrows taking the count.",
+    "weakness": "Holy, heavily. Heal the one it Marks before the Last Breath lands.",
+    "pattern": "Every third turn it charges the Last Breath at the weakest and Marks them; it reaps a row and chills the least sane between. Unmasked at half, it goes for whoever is Marked."
+  }
+}
