@@ -87,7 +87,8 @@ describe("Caches and the boss", () => {
     const owned = s.items.length;
     s = move(s, "p1", { type: "press_on" });
     expect(s.log.some((l) => l.includes("defeats the boss"))).toBe(true);
-    const found = s.items.slice(owned);
+    // A boss's own named item falls on top (named.test.ts).
+    const found = s.items.slice(owned).filter((i) => !i.named);
     expect(found.length).toBe(1 + TUNING.loot.boss.extraItems);
     expect(found.every((i) => i.tier === 4 && i.house === 0)).toBe(true);
     expect(s.expedition).toBeUndefined();

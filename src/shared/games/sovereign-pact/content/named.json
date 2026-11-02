@@ -1,0 +1,318 @@
+{
+  "named": [
+    {
+      "id": "gatebreakers_horn",
+      "name": "Gatebreaker's Horn",
+      "base": "amulet",
+      "tier": 5,
+      "props": [
+        ["stat_might", 4],
+        ["resist_fear", 40],
+        ["mourning", 1]
+      ],
+      "text": "Hacked from the Siege Beast's skull. It still hums when the Rift Gate opens.",
+      "boss": "siege_beast",
+      "artifact": {
+        "category": "lore",
+        "points": 6
+      }
+    },
+    {
+      "id": "the_crown",
+      "name": "The Crown",
+      "base": "charm",
+      "tier": 5,
+      "props": [
+        ["noble_signet", 1],
+        ["tarot_amplifier", 1],
+        ["curse_whispers", 1]
+      ],
+      "text": "The old King's crown, taken from the drowned palace. Whoever wears it hears his bargain, still being made.",
+      "boss": "cursed_king_risen",
+      "artifact": {
+        "category": "lineage",
+        "points": 12
+      }
+    },
+    {
+      "id": "mothers_cord",
+      "name": "The Mother's Cord",
+      "base": "ring",
+      "tier": 5,
+      "props": [
+        ["resist_sleep", 50],
+        ["resolute", 1],
+        ["warded_dark", 25]
+      ],
+      "text": "A loop of something that was alive in the Nest. It tightens when the wearer starts to drift.",
+      "boss": "unknown_mother",
+      "artifact": {
+        "category": "lore",
+        "points": 8
+      }
+    },
+    {
+      "id": "goblin_lords_cleaver",
+      "name": "The Goblin Lord's Cleaver",
+      "base": "axe",
+      "tier": 3,
+      "props": [["executioners", 1]],
+      "text": "Notched, filthy, and much sharper than it looks. The Goblin Lord never cleaned it.",
+      "boss": "goblin_lord"
+    },
+    {
+      "id": "heartwood_staff",
+      "name": "Heartwood Staff",
+      "base": "staff",
+      "tier": 4,
+      "props": [
+        ["spellbound", 1],
+        ["earth_edge", 30]
+      ],
+      "text": "Cut from the Tree King's heart. Small green shoots come out of it in spring.",
+      "boss": "tree_king"
+    },
+    {
+      "id": "brides_veil",
+      "name": "The Bride's Veil",
+      "base": "hood",
+      "tier": 4,
+      "props": [
+        ["resist_charm", 50],
+        ["warded_dark", 20]
+      ],
+      "text": "Black lace from the Vampire Queen's court. It smells of cold churches.",
+      "boss": "vampire_queen"
+    },
+    {
+      "id": "scylla_fang",
+      "name": "Scylla's Fang",
+      "base": "spear",
+      "tier": 4,
+      "props": [
+        ["reaching", 1],
+        ["water_edge", 30]
+      ],
+      "text": "One tooth from the Marches' hunger, long as a forearm and still wet.",
+      "boss": "scylla"
+    },
+    {
+      "id": "colossus_plate",
+      "name": "Colossus Plate",
+      "base": "plate",
+      "tier": 4,
+      "props": [
+        ["fortified", 25],
+        ["stalwart", 1]
+      ],
+      "text": "A slab of the Stone Colossus, hammered into armor. It weighs less than it should.",
+      "boss": "stone_colossus"
+    },
+    {
+      "id": "generals_standard",
+      "name": "The Dark General's Standard",
+      "base": "tower_shield",
+      "tier": 4,
+      "props": [
+        ["bulwark", 1],
+        ["thorned", 15]
+      ],
+      "text": "A demon legion's banner, cut down and nailed to a shield. Its soldiers still salute it.",
+      "boss": "dark_general"
+    },
+    {
+      "id": "orochi_scale",
+      "name": "Orochi Scale",
+      "base": "heater_shield",
+      "tier": 5,
+      "props": [
+        ["warded_fire", 30],
+        ["warded_water", 30],
+        ["guarding", 1]
+      ],
+      "text": "One scale from an eight-headed god. Fire and flood both slide off it.",
+      "boss": "orochi"
+    },
+    {
+      "id": "village_gods_eye",
+      "name": "The Village God's Eye",
+      "base": "amulet",
+      "tier": 5,
+      "props": [
+        ["keen_eye", 1],
+        ["essence_sense", 1],
+        ["curse_marked", 1]
+      ],
+      "text": "It looks out of the amulet, and it looks at you. The faceless people worshipped it for this.",
+      "boss": "village_evil_god",
+      "artifact": {
+        "category": "lore",
+        "points": 4
+      }
+    },
+    {
+      "id": "overlords_brand",
+      "name": "The Overlord's Brand",
+      "base": "greatsword",
+      "tier": 5,
+      "props": [
+        ["demon_bane", 1],
+        ["hungry", 1],
+        ["massive_crits", 1]
+      ],
+      "text": "The Pit's ruler fought with it for an age. It wants to go back.",
+      "boss": "overlord"
+    },
+    {
+      "id": "barrow_wardens_lantern",
+      "name": "Barrow-Warden's Lantern",
+      "base": "charm",
+      "tier": 3,
+      "props": [["mourning", 1]],
+      "text": "A dead warden's lamp. The Barrows' dead mistake whoever carries it for one of their own.",
+      "pools": ["barrows"]
+    },
+    {
+      "id": "oathkeeper",
+      "name": "Oathkeeper",
+      "base": "sword",
+      "tier": 4,
+      "props": [
+        ["oathbound", 1],
+        ["holy_edge", 25]
+      ],
+      "text": "Every knight who carried it swore something on it. It remembers each oath.",
+      "pools": ["barrows", "apostate_court"]
+    },
+    {
+      "id": "hunters_longbow",
+      "name": "The Old Hunter's Longbow",
+      "base": "bow",
+      "tier": 3,
+      "props": [["beast_bane", 1]],
+      "text": "The Beast Lands' last hunter left it at a crossroads with a note: 'Finish it.'",
+      "pools": ["beast_lands"]
+    },
+    {
+      "id": "wolfskin_jerkin",
+      "name": "Wolfskin Jerkin",
+      "base": "jerkin",
+      "tier": 3,
+      "props": [["quiet", 1]],
+      "text": "Still smells of the pack. Animals give way to whoever wears it.",
+      "pools": ["beast_lands", "hollow_wood"]
+    },
+    {
+      "id": "thornbriar_whip_knife",
+      "name": "Thornbriar Knife",
+      "base": "knife",
+      "tier": 3,
+      "props": [["bleeding", 25]],
+      "text": "A knife of black thorn from the Hollow Wood. It never quite stops growing.",
+      "pools": ["hollow_wood"]
+    },
+    {
+      "id": "drowned_bell",
+      "name": "The Drowned Bell",
+      "base": "amulet",
+      "tier": 3,
+      "props": [["resist_sleep", 40]],
+      "text": "It rings under water. Hear it once and you never sleep through danger again.",
+      "pools": ["drowned_marches"]
+    },
+    {
+      "id": "frostbitten_greaves",
+      "name": "Frostbitten Greaves",
+      "base": "greaves",
+      "tier": 3,
+      "props": [["warded_water", 25]],
+      "text": "Rime grows on them even in summer. The Deep Cold left a little of itself inside.",
+      "pools": ["deep_cold"]
+    },
+    {
+      "id": "forge_ruin_hammer",
+      "name": "The Last Smith's Hammer",
+      "base": "maul",
+      "tier": 4,
+      "props": [
+        ["breaker", 1],
+        ["construct_bane", 1]
+      ],
+      "text": "The Forge Ruins' final smith built the constructs, then this to undo them.",
+      "pools": ["forge_ruins"]
+    },
+    {
+      "id": "faceless_mask",
+      "name": "A Mask with No Face",
+      "base": "helm",
+      "tier": 4,
+      "props": [
+        ["visored", 1],
+        ["quiet", 1],
+        ["unnerving", 1]
+      ],
+      "text": "Smooth porcelain. Put it on, and the faceless people stop seeing you as a stranger.",
+      "pools": ["faceless_city"]
+    },
+    {
+      "id": "heretics_censer",
+      "name": "The Heretic's Censer",
+      "base": "mace",
+      "tier": 4,
+      "props": [
+        ["dreadful", 20],
+        ["dark_edge", 25]
+      ],
+      "text": "The Apostate Court burned other gods' names in it. The smoke still curses.",
+      "pools": ["apostate_court"]
+    },
+    {
+      "id": "pilgrims_staff",
+      "name": "Pilgrim's Staff",
+      "base": "staff",
+      "tier": 3,
+      "props": [["blessed", 1]],
+      "text": "Worn smooth by a thousand walks to the six shrines.",
+      "pools": ["shrine_of_six"]
+    },
+    {
+      "id": "dragonbone_crossbow",
+      "name": "Dragonbone Crossbow",
+      "base": "crossbow",
+      "tier": 4,
+      "props": [
+        ["fire_edge", 35],
+        ["giantslayer", 1]
+      ],
+      "text": "Its string is a dragon's tendon. It throws bolts like a breath of flame.",
+      "pools": ["dragon_reaches"],
+      "minLevel": 5
+    },
+    {
+      "id": "voidglass_ring",
+      "name": "Voidglass Ring",
+      "base": "ring",
+      "tier": 4,
+      "props": [
+        ["stat_acuity", 4],
+        ["attuned", 3],
+        ["brittle_nerve", 1]
+      ],
+      "text": "A ring of black glass from the Outer Dark. Look into it too long and it looks back.",
+      "pools": ["outer_dark"],
+      "minLevel": 6
+    },
+    {
+      "id": "twin_fangs",
+      "name": "The Twin Fangs",
+      "base": "knife",
+      "tier": 4,
+      "props": [
+        ["twinned", 1],
+        ["venomed", 20]
+      ],
+      "text": "Two knives, always found together, never apart for long.",
+      "pools": ["pit", "faceless_city"]
+    }
+  ]
+}

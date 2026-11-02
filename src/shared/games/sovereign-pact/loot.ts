@@ -2,8 +2,8 @@
 // carries. At home it becomes one pool of shares (an item each, materials in bundles) that the
 // Houses still in the party draft, in a random order then snake order. A wipe loses the haul. Drop tables are per pool
 // (content/pools.json); numbers are in tuning.loot.
-import { ITEM_BASES, POOL_BY_ID, RARE_MATERIALS } from "./content.ts";
-import { baseOf, cannotEquip, rollProps, stock } from "./items.ts";
+import { ITEM_BASES, NAMED, NAMED_BY_ID, POOL_BY_ID, RARE_MATERIALS } from "./content.ts";
+import { baseOf, cannotEquip, madeNamed, mintNamed, rollProps, stock } from "./items.ts";
 import { present } from "./events.ts";
 import { battle } from "./journey.ts";
 import type { GearSlot, Item, ItemTier, Share, SovState, Stores } from "./state.ts";
@@ -15,7 +15,7 @@ const RARE = new Map(RARE_MATERIALS.map((m) => [m.id, m.name]));
 export const TIER_NAMES = ["Crude", "Common", "Fine", "Masterwork", "Relic"] as const;
 
 const materialName = (id: string) => RARE.get(id) ?? id[0]!.toUpperCase() + id.slice(1);
-export const itemName = (item: Item) => `${TIER_NAMES[item.tier - 1]} ${baseOf(item).name}`;
+export const itemName = (item: Item) => (item.named ? (NAMED_BY_ID.get(item.named)?.name ?? item.named) : `${TIER_NAMES[item.tier - 1]} ${baseOf(item).name}`);
 const haul = (s: SovState) => (s.expedition!.haul ??= { items: [], stores: {} });
 const add = (to: Stores, k: string, n: number) => (to[k] = (to[k] ?? 0) + n);
 const list = (st: Stores) => Object.entries(st).map(([k, n]) => `${n} ${materialName(k)}`).join(", ");
@@ -36,11 +36,27 @@ export function gather(s: SovState, times = 1): void {
   log(s, `The party gathers ${list(got)}.`);
 }
 
-/** A found item for the haul: any base, at the card's level, its properties rolled (and maybe a bad one). */
+/** A found item for the haul: any base, at the card's level, its properties rolled (and maybe a bad one). Fine or better is now and then a named item of the pool. */
 export function find(s: SovState, tier: ItemTier): Item {
+  const named = tier >= 3 && chance(s, L.namedPct) ? namedFor(s) : undefined;
+  if (named) return carryNamed(s, named);
   const item = withRng(s, (rng) => rollProps(rng, { id: s.nextId++, base: rng.pick(ITEM_BASES).id, tier, ilvl: s.expedition!.card.level, house: -1 }, { negativeChance: L.negativePct }));
   haul(s).items.push(item);
   log(s, `The party finds a ${itemName(item)}.`);
+  return item;
+}
+
+/** A pool's named item not yet made this campaign, at or below the card's level, or none. */
+function namedFor(s: SovState): string | undefined {
+  const { pool, level } = s.expedition!.card;
+  const open = NAMED.filter((n) => n.pools?.includes(pool) && (n.minLevel ?? 1) <= level && !madeNamed(s, n.id));
+  return open.length ? withRng(s, (rng) => rng.pick(open).id) : undefined;
+}
+
+function carryNamed(s: SovState, id: string): Item {
+  const item = mintNamed(s, id, -1, s.expedition!.card.level);
+  haul(s).items.push(item);
+  log(s, `The party finds ${itemName(item)}.`);
   return item;
 }
 
@@ -76,6 +92,9 @@ export function cache(s: SovState): void {
 
 /** A beaten boss: a Masterwork item per House present and one more, and three rolls on the table. */
 export function bossLoot(s: SovState): void {
+  // A boss's own named item falls with it, the first time (the Crown from the Cursed King, §14.7).
+  const boss = s.expedition!.card.boss;
+  for (const n of NAMED.filter((x) => boss && x.boss && (x.boss === boss || boss.startsWith(`${x.boss}_`) || x.boss.startsWith(`${boss}_`)) && !madeNamed(s, x.id))) carryNamed(s, n.id);
   for (let i = 0; i < present(s).length + L.boss.extraItems; i++) find(s, 4);
   gather(s, L.boss.rolls);
 }

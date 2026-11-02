@@ -20,6 +20,7 @@ import swordSaintSet from "./content/abilities/sword_saint.json" with { type: "j
 import vagabondSet from "./content/abilities/vagabond.json" with { type: "json" };
 import buildingsJson from "./content/buildings.json" with { type: "json" };
 import changesJson from "./content/changes.json" with { type: "json" };
+import namedJson from "./content/named.json" with { type: "json" };
 import formsJson from "./content/forms.json" with { type: "json" };
 import projectsJson from "./content/projects.json" with { type: "json" };
 import summonsJson from "./content/summons.json" with { type: "json" };
@@ -768,3 +769,21 @@ export interface ChangeDef {
 }
 export const CHANGES = changesJson.changes as unknown as readonly ChangeDef[];
 export const CHANGE_BY_ID = byId(CHANGES);
+
+/** A named item (§13.4): fixed properties on a base, one of each a campaign; an artifact also scores (§3.4). */
+export interface NamedDef {
+  id: string;
+  name: string;
+  base: string;
+  tier: 3 | 4 | 5;
+  props: [string, number][];
+  text: string;
+  /** The boss that drops it the first time it falls. */
+  boss?: string;
+  /** Pools whose Caches and boss hauls may hold it. */
+  pools?: string[];
+  minLevel?: number;
+  artifact?: { category: ScoreCategory; points: number };
+}
+export const NAMED = namedJson.named as unknown as readonly NamedDef[];
+export const NAMED_BY_ID = byId(NAMED);
