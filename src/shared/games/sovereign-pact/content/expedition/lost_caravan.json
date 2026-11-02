@@ -1,0 +1,76 @@
+{
+  "id": "lost_caravan",
+  "pools": [
+    "resource",
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    7
+  ],
+  "title": "The Lost Caravan",
+  "text": "A merchant's caravan, wheels sunk to the hubs in the grey ground, the drivers too frightened to move. They will pay well to be walked home.",
+  "options": [
+    {
+      "id": "escort",
+      "label": "Walk them home.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "They reach the settlement a week behind you, and tell everyone who saved them. Their stock is better for it.",
+          "effects": [
+            {
+              "house_improvement": "shop"
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "Something wants the caravan more than you do.",
+          "effects": [
+            {
+              "encounter": {}
+            },
+            {
+              "house_improvement": "shop"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "salvage",
+      "label": "Take what is on the wagons.",
+      "rule": "house:lowest_standing",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "They do not fight. They only watch.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 40
+              }
+            },
+            {
+              "score": {
+                "intrigue": 1
+              }
+            },
+            {
+              "accord": -2
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

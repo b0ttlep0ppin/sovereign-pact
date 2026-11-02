@@ -2,14 +2,16 @@
 // general pool the rest. Every House in the party votes on the option; a tie goes to the Leader's
 // House at no cost (only settlement ties cost Accord). The option's rule names its subject, the
 // Scion or House it happens to; its outcome is drawn by weight and its effects land (§9.4's
-// catalogue; blessings, transformation, Forks and House improvements come later).
+// catalogue; transformation and secret events come later).
 import { loseAccord } from "./commons.ts";
 import { caps, scionCombatant } from "./combat/build.ts";
+import { rollRecruit } from "./generate.ts";
 import { gearTotals } from "./items.ts";
+import { SHOPS, stockTier } from "./market.ts";
 import { found } from "./loot.ts";
 import { isWard } from "./wards.ts";
 import { roll } from "./combat/injury.ts";
-import { HOUSE_TRAIT_BY_ID, INJURY_TABLE_BY_ID, TAROT, TAROT_BY_ID, TRAIT_BY_ID, TRAITS, TRIP_EVENT_BY_ID, TRIP_EVENTS, type InjuryTableId, type TripEffect, type TripEventDef, type TripOption } from "./content.ts";
+import { BUILDING_BY_ID, HOUSE_TRAIT_BY_ID, INJURY_TABLE_BY_ID, TAROT, TAROT_BY_ID, TRAIT_BY_ID, TRAITS, TRIP_EVENT_BY_ID, TRIP_EVENTS, type InjuryTableId, type TripEffect, type TripEventDef, type TripOption } from "./content.ts";
 import { battle, die, home, lose, marching, person, succeed } from "./journey.ts";
 import { gainJp, gainXp, jobStats } from "./progression.ts";
 import { ascendancy } from "./score.ts";
@@ -226,6 +228,7 @@ function apply(s: SovState, fx: TripEffect, ids: number[], house: number | null)
   if (fx.flag && !s.flags.includes(fx.flag)) s.flags.push(fx.flag);
   // §9.10: an item goes to the subject's House; one the party chose together goes to the draft.
   if (fx.item) found(s, fx.item.tier, house);
+  if (fx.house_improvement) improve(s, fx.house_improvement, house ?? withRng(s, (rng) => rng.pick(present(s))));
   if (fx.timeline) s.timeline.push({ year: s.year + fx.timeline.years, id: fx.timeline.id, ...(house === null ? {} : { house }) });
   // Passed by, never the boss.
   if (fx.skip) e.at = Math.min(e.chain.length - 1, e.at + fx.skip);
@@ -256,6 +259,11 @@ function person_(s: SovState, p: Person, fx: TripEffect): void {
     log(s, `${p.name} now walks under ${TAROT_BY_ID.get(p.tarot)!.name}.`);
   }
   if (fx.status) (s.expedition!.carry[p.id] ??= { dur: {}, broken: [] }).start = [...(s.expedition!.carry[p.id]?.start ?? []), fx.status];
+  if (fx.blessing && !p.traits.includes(fx.blessing.trait)) {
+    p.traits.push(fx.blessing.trait);
+    (p.blessed ??= []).push({ id: fx.blessing.trait, years: fx.blessing.years });
+    log(s, `${p.name} is blessed: ${TRAIT_BY_ID.get(fx.blessing.trait)?.name}.`);
+  }
   if (fx.loyalty && isWard(p)) p.loyalty = Math.max(0, Math.min(100, (p.loyalty ?? 0) + fx.loyalty));
   if (fx.scion_lost && p.status === "scion") lose(s, p);
 }
@@ -267,7 +275,45 @@ function gainTrait(s: SovState, p: Person, id: string, gain: boolean): void {
   const had = p.traits.includes(id);
   p.traits = p.traits.filter((t) => t !== id && !(gain && def.group && TRAIT_BY_ID.get(t)?.group === def.group));
   if (gain) p.traits.push(id);
+  // Gained for good, a blessing of the same trait no longer fades; lost, it is gone with it.
+  p.blessed = p.blessed?.filter((b) => b.id !== id);
+  if (!p.blessed?.length) delete p.blessed;
   if (gain !== had) log(s, `${p.name} ${gain ? "is now" : "is no longer"} ${def.name}.`);
+}
+
+/** House improvements (§9.4): a recruit, a building's next level, or a Commons shop's next tier (for everyone). */
+function improve(s: SovState, kind: "recruit" | "building" | "shop", h: number): void {
+  const H = s.houses[h]!;
+  if (kind === "recruit") {
+    const id = s.nextId++;
+    s.people.push(withRng(s, (rng) => rollRecruit(rng, id, h, H)));
+    return log(s, `House ${H.name} gains a recruit.`);
+  }
+  if (kind === "building") {
+    const up = Object.keys(H.buildings).filter((b) => (H.buildings[b] ?? 0) > 0 && H.buildings[b]! < (BUILDING_BY_ID.get(b)?.levels.length ?? 0));
+    if (!up.length) return;
+    const b = withRng(s, (rng) => rng.pick(up));
+    H.buildings[b] = H.buildings[b]! + 1;
+    return log(s, `House ${H.name}'s ${BUILDING_BY_ID.get(b)!.name} rises to level ${H.buildings[b]}.`);
+  }
+  const shops = SHOPS.filter((x) => stockTier(s, x) > 0 && stockTier(s, x) < 3);
+  if (!shops.length) return;
+  const shop = withRng(s, (rng) => rng.pick(shops));
+  s.commons.shopTiers = { ...s.commons.shopTiers, [shop]: stockTier(s, shop) + 1 };
+  log(s, `The settlement's ${shop.replace(/_/g, " ")} now stocks tier ${stockTier(s, shop)}.`);
+}
+
+/** At each Reckoning a blessing has a Year less; one with none left fades (§9.4 `blessing`). */
+export function fadeBlessings(s: SovState): void {
+  for (const p of s.people) {
+    if (!p.blessed) continue;
+    for (const b of p.blessed.filter((x) => x.years <= 0)) {
+      p.traits = p.traits.filter((t) => t !== b.id);
+      log(s, `${p.name}'s blessing fades: no longer ${TRAIT_BY_ID.get(b.id)?.name}.`);
+    }
+    p.blessed = p.blessed.filter((x) => x.years > 0).map((x) => ({ ...x, years: x.years - 1 }));
+    if (!p.blessed.length) delete p.blessed;
+  }
 }
 
 /** A Scion's full Durability by location, as a battle would build it. */

@@ -537,6 +537,10 @@ export interface TripEffect {
   tarot?: true;
   /** An ailment the subject starts the next battle with. */
   status?: string;
+  /** A trait held for a time: it fades at the Reckoning after `years` more Years (§9.4). */
+  blessing?: { trait: string; years: number };
+  /** A recruit, a building's next level (the subject's House, or a random House present), or a Commons shop's next tier. */
+  house_improvement?: "recruit" | "building" | "shop";
   /** A Ward's Loyalty, + or − (§6.9). */
   loyalty?: number;
   /** A Fork (§9.3): the next `drop` places are passed by and `add` come next; never the boss. */

@@ -1,0 +1,96 @@
+{
+  "id": "child_in_the_well",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    8
+  ],
+  "title": "The Child in the Well",
+  "text": "A thin voice from a dry well, asking for its mother. The rope is still there, and it is very old.",
+  "options": [
+    {
+      "id": "pull",
+      "label": "The healer pulls it up.",
+      "rule": "scion:most_healing",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 55,
+          "text": "A real child, starved and silent, who will not let go of their hand. They take it home.",
+          "effects": [
+            {
+              "house_improvement": "recruit"
+            },
+            {
+              "sanity": 10
+            }
+          ]
+        },
+        {
+          "w": 45,
+          "text": "Something comes up the rope that is shaped like a child for as long as it is looked at.",
+          "effects": [
+            {
+              "curse": true
+            },
+            {
+              "encounter": {
+                "modifier": "ambush"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "leave",
+      "label": "Leave it.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The voice follows you for a mile, and then it stops asking for its mother and starts asking for you.",
+          "effects": [
+            {
+              "sanity": -10,
+              "to": "party"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "torch",
+      "label": "Drop a torch.",
+      "rule": "leader",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "There is no scream. There is no bottom, either.",
+          "effects": [
+            {
+              "sanity": -5,
+              "to": "party"
+            },
+            {
+              "score": {
+                "intrigue": 1
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

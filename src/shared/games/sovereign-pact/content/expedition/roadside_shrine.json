@@ -1,0 +1,75 @@
+{
+  "id": "roadside_shrine",
+  "pools": [
+    "pilgrimage",
+    "general"
+  ],
+  "weight": 3,
+  "band": [
+    1,
+    10
+  ],
+  "title": "The Roadside Shrine",
+  "text": "A little shrine to no saint you know, kept clean by no one you can see. There are fresh flowers on it.",
+  "options": [
+    {
+      "id": "pray",
+      "label": "Kneel together and pray.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "Nothing answers, but you all stand up lucky.",
+          "effects": [
+            {
+              "blessing": {
+                "trait": "lucky",
+                "years": 1
+              },
+              "to": "party"
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "Nothing answers.",
+          "effects": []
+        }
+      ]
+    },
+    {
+      "id": "take",
+      "label": "The bravest takes the flowers.",
+      "rule": "scion:trait:brave|scion:highest:might",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "They keep for a year without wilting, and so does the one who carries them.",
+          "effects": [
+            {
+              "blessing": {
+                "trait": "stout_hearted",
+                "years": 2
+              }
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "They wilt at once, and so does something in the one who took them.",
+          "effects": [
+            {
+              "sanity": -20
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

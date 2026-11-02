@@ -9,7 +9,8 @@ import { sovereignPact, type SovMove, type SovState } from "./index.ts";
 import { mint } from "./items.ts";
 import { levelUp } from "./progression.ts";
 import { STATS, type ExpeditionCard } from "./state.ts";
-import { calm, campaign } from "./testing.ts";
+import { stockTier } from "./market.ts";
+import { calm, campaign, sealYear } from "./testing.ts";
 
 const g = sovereignPact;
 const move = (s: SovState, player: string, m: SovMove): SovState => {
@@ -287,6 +288,39 @@ describe("each Scion's own choice and Forks (§9.3, §9.4)", () => {
   });
 });
 
+describe("blessings and House improvements (§9.4)", () => {
+  it("a blessing is a trait held for a time: it fades at a later Reckoning", () => {
+    let s = underway(1);
+    const id = ofHouse(s, 0)[0]!;
+    const p = () => s.people.find((x) => x.id === id)!;
+    p().traits = [];
+    resolve(s, option("leader", { blessing: { trait: "lucky", years: 1 } }));
+    expect(p().traits).toEqual(["lucky"]);
+    s.expedition!.chain = ["event", "boss"];
+    s = move(s, "p1", { type: "retreat" });
+    expect([s.year, p().traits]).toEqual([2, ["lucky"]]);
+    s = sealYear(s);
+    expect(s.year).toBe(3);
+    expect(p().traits).toEqual([]);
+    expect(p().blessed).toBeUndefined();
+    expect(s.log.some((l) => l.includes("blessing fades"))).toBe(true);
+  });
+
+  it("brings a recruit or a building's next level to the subject's House, or a better shop to everyone", () => {
+    const s = underway(2);
+    // Buildings count for Holdings, so both get one before the lower is found.
+    for (const h of s.houses) h.buildings = { forge: 1 };
+    const sub = subjects(s, "house:lowest_standing").house!;
+    const recruits = s.people.filter((p) => p.host === sub && p.status === "recruit").length;
+    resolve(s, option("house:lowest_standing", { house_improvement: "recruit" }, { house_improvement: "building" }));
+    expect(s.people.filter((p) => p.host === sub && p.status === "recruit").length).toBe(recruits + 1);
+    expect(s.houses[sub]!.buildings.forge).toBe(2);
+    s.commons.built.armorer = 1;
+    resolve(s, option("vote", { house_improvement: "shop" }));
+    expect(stockTier(s, "armorer")).toBe(2);
+  });
+});
+
 describe("the content and the bot", () => {
   it("names only real cards, traits, statuses and town events", () => {
     const houseTags = new Set(HOUSE_TRAITS.flatMap((t) => [t.id, ...(t.tags ?? [])]));
@@ -300,6 +334,7 @@ describe("the content and the bot", () => {
         }
         for (const fx of o.outcomes.flatMap((x) => x.effects)) {
           if (fx.trait) expect(TRAIT_BY_ID.has(fx.trait.slice(1)), `${d.id}: ${fx.trait}`).toBe(true);
+          if (fx.blessing) expect(TRAIT_BY_ID.has(fx.blessing.trait), `${d.id}: ${fx.blessing.trait}`).toBe(true);
           if (fx.status) expect(STATUSES[fx.status], `${d.id}: ${fx.status}`).toBeDefined();
           if (fx.timeline) expect(TOWN_EVENT_BY_ID.has(fx.timeline.id), `${d.id}: ${fx.timeline.id}`).toBe(true);
         }
