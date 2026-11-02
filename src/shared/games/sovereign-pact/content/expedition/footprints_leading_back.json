@@ -1,0 +1,70 @@
+{
+  "id": "footprints_leading_back",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    10
+  ],
+  "title": "Footprints Leading Back",
+  "text": "Fresh footprints in the dust, leading back toward the Gate. Your boots made them. None of you has walked this way before.",
+  "options": [
+    {
+      "id": "follow",
+      "label": "The least travelled follows them.",
+      "rule": "scion:fewest_expeditions",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 55,
+          "text": "They lead to a campsite left by someone of a House long before you, and what they could not carry home.",
+          "effects": [
+            {
+              "item": {
+                "tier": 3
+              }
+            },
+            {
+              "sanity": -10
+            }
+          ]
+        },
+        {
+          "w": 45,
+          "text": "They lead to someone wearing your face, who was hoping you would come.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "ambush"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ignore",
+      "label": "Leave them be.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "For the rest of the day everyone walks a little faster.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -5
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

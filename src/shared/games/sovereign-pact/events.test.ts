@@ -135,6 +135,18 @@ describe("the effects (§9.4)", () => {
     expect(s.expedition!.carry[id]!.broken).toEqual([]);
   });
 
+  it("mends the injured subject's oldest lasting Moderate injury, never a Devastating one", () => {
+    const s = underway(1);
+    const id = ofHouse(s, 0)[1]!;
+    s.people.find((x) => x.id === id)!.injuries = [
+      { id: "legs_severed", years: -1 },
+      { id: "body_cracked_ribs", years: 1 },
+      { id: "head_concussion", years: 3 },
+    ];
+    resolve(s, option("scion:injured:any", { mend: true }));
+    expect(s.people.find((x) => x.id === id)!.injuries.map((i) => i.id)).toEqual(["legs_severed", "head_concussion"]);
+  });
+
   it("sends a subject's finds to its House and the party's to the Commons (§9.10); score likewise", () => {
     const s = underway(2);
     const [g0, c0] = [s.houses[1]!.stores.essence ?? 0, s.commons.stores.essence ?? 0];

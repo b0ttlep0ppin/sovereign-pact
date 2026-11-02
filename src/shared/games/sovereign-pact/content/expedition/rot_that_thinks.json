@@ -1,0 +1,109 @@
+{
+  "id": "rot_that_thinks",
+  "pools": [
+    "delve",
+    "hollow_wood"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    10
+  ],
+  "title": "The Rot That Thinks",
+  "text": "A mound of fungus as tall as a man, pulsing slowly. When anyone speaks, it pulses in time with the words.",
+  "options": [
+    {
+      "id": "study",
+      "label": "The wisest studies it.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 45,
+          "text": "It is a mind, of a kind. They learn how it changes the things it grows in.",
+          "effects": [
+            {
+              "growth": {
+                "sagacity": 15
+              }
+            },
+            {
+              "score": {
+                "lore": 2
+              }
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "It learns them, too.",
+          "effects": [
+            {
+              "curse": true
+            }
+          ]
+        },
+        {
+          "w": 25,
+          "text": "It gives them something it grew: a curio of living wood.",
+          "effects": [
+            {
+              "item": {
+                "tier": 3
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "burn",
+      "label": "Burn it.",
+      "rule": "leader",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It does not scream, but every spore in the air tries to.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -5
+            },
+            {
+              "xp": 50
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bargain",
+      "label": "Bargain with it.",
+      "rule": "leader",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It wants a memory. It pays in Essence.",
+          "effects": [
+            {
+              "sanity": -15
+            },
+            {
+              "resources": {
+                "essence": 3
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

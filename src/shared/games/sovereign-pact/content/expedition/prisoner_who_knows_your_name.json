@@ -1,0 +1,91 @@
+{
+  "id": "prisoner_who_knows_your_name",
+  "pools": [
+    "general",
+    "apostate_court"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    10
+  ],
+  "title": "The Prisoner Who Knows Your Name",
+  "text": "A prisoner in a hanging cage calls one of your Houses by name, and says they know who has been talking to the rift.",
+  "options": [
+    {
+      "id": "listen",
+      "label": "Listen.",
+      "rule": "scion:random",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "It is true, or near enough: a name, a meeting, a letter. Worth knowing.",
+          "effects": [
+            {
+              "score": {
+                "intrigue": 3
+              }
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "It is a lie, told well, and it stays with them.",
+          "effects": [
+            {
+              "sanity": -15
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "free",
+      "label": "Free them.",
+      "rule": "leader",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 40,
+          "text": "They are grateful, and they have nowhere else to go.",
+          "effects": [
+            {
+              "house_improvement": "recruit"
+            }
+          ]
+        },
+        {
+          "w": 60,
+          "text": "The cage was bait.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "ambush"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "leave",
+      "label": "Walk on.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The prisoner laughs at your backs, and keeps calling the name.",
+          "effects": []
+        }
+      ]
+    }
+  ]
+}

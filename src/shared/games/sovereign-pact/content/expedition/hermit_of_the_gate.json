@@ -1,0 +1,69 @@
+{
+  "id": "hermit_of_the_gate",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    10
+  ],
+  "title": "The Hermit of the Gate",
+  "text": "An old man sits beside the path with a lantern, as though he has been waiting for this party in particular. He will answer one question.",
+  "options": [
+    {
+      "id": "ask",
+      "label": "Ask about what waits at the end.",
+      "rule": "scion:tarot:hermit|vote",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "He tells you how the master of this place fights, and you believe him.",
+          "effects": [
+            {
+              "to": "party",
+              "status": "shell"
+            },
+            {
+              "score": {
+                "lore": 2
+              }
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "He tells you something. It is not true.",
+          "effects": [
+            {
+              "to": "party",
+              "status": "slow"
+            },
+            {
+              "to": "party",
+              "sanity": -5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pass",
+      "label": "Thank him and go on.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "He nods as if that was the right answer, too.",
+          "effects": []
+        }
+      ]
+    }
+  ]
+}

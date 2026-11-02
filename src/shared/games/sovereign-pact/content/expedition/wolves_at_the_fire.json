@@ -1,0 +1,94 @@
+{
+  "id": "wolves_at_the_fire",
+  "pools": [
+    "general",
+    "beast_lands"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    7
+  ],
+  "title": "Wolves at the Fire",
+  "text": "Eyes in the dark, all the way round the camp, and closer each time the fire burns down.",
+  "options": [
+    {
+      "id": "fight",
+      "label": "Drive them off.",
+      "rule": "vote",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "They do not drive off.",
+          "effects": [
+            {
+              "encounter": {}
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "feed",
+      "label": "Throw them the food.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The pack eats and goes. So does the night's rest.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -5
+            },
+            {
+              "to": "party",
+              "durability": -10
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sing",
+      "label": "The wisest sings to them.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "The wolves lie down to listen, and in the morning they are still there, waiting to run with you.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 10
+            },
+            {
+              "to": "party",
+              "status": "haste"
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "The song is not to their taste.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "ambush"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

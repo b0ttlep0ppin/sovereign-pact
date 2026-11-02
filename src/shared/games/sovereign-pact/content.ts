@@ -552,6 +552,8 @@ export interface TripEffect {
   tarot?: true;
   /** An ailment the subject starts the next battle with. */
   status?: string;
+  /** The subject's oldest lasting Moderate injury is healed (the Grinning Surgeon, §9.7). */
+  mend?: true;
   /** The subject's House is told its Ascendancy as a number (§9.7, The Gate's Reflection). */
   foresee?: true;
   /** A trait held for a time: it fades at the Reckoning after `years` more Years (§9.4). */

@@ -1,0 +1,61 @@
+{
+  "id": "grinning_surgeon",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    10
+  ],
+  "title": "The Grinning Surgeon",
+  "text": "A man in a bloody apron has set up a table by the road, his tools laid out in a neat row. He smiles at every wound he sees. He offers to fix one.",
+  "options": [
+    {
+      "id": "work",
+      "label": "Let him work on the one who needs it.",
+      "rule": "scion:injured:any",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "His hands are quick and clean, and when he is done the old wound is gone.",
+          "effects": [
+            {
+              "mend": true
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "He fixes it, and while he is in there he leaves a little something of his own.",
+          "effects": [
+            {
+              "mend": true
+            },
+            {
+              "injury": "arms"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "decline",
+      "label": "Decline.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "He shrugs, and goes on smiling.",
+          "effects": []
+        }
+      ]
+    }
+  ]
+}
