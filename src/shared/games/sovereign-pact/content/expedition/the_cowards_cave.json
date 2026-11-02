@@ -1,0 +1,87 @@
+{
+  "id": "the_cowards_cave",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    9
+  ],
+  "title": "The Coward's Cave",
+  "text": "A cave full of people hiding from something. They beg the party to take their scraps and go, quietly.",
+  "options": [
+    {
+      "id": "small",
+      "label": "The meekest of you speaks to them.",
+      "rule": "scion:lowest:might|scion:fewest_kills",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "They tell the meek one what they are hiding from, and where it sleeps.",
+          "effects": [
+            {
+              "foresee": true
+            },
+            {
+              "sanity": -5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "take",
+      "label": "Take the scraps.",
+      "rule": "vote",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A little food, a little shame.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 10
+              }
+            },
+            {
+              "doom": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hunt",
+      "label": "Go and hunt what they fear.",
+      "rule": "leader",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It is awake.",
+          "effects": [
+            {
+              "encounter": {
+                "level": 1
+              }
+            },
+            {
+              "score": {
+                "valor": 2
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

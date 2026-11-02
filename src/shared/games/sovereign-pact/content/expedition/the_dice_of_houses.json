@@ -1,0 +1,82 @@
+{
+  "id": "the_dice_of_houses",
+  "pools": [
+    "general"
+  ],
+  "weight": 1,
+  "band": [
+    3,
+    10
+  ],
+  "title": "The Dice of Houses",
+  "text": "A giant's dice, each face a House's emblem, lie in a ring of standing stones. They want to be thrown.",
+  "options": [
+    {
+      "id": "throw",
+      "label": "Throw them.",
+      "rule": "house:random",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "The dice name a House, and gold rains on it.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 30
+              }
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "The dice name a House, and its Scions feel the stones' weight.",
+          "effects": [
+            {
+              "sanity": -15
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "weigh",
+      "label": "The wisest weighs them first.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Loaded. They read whose hand loaded them.",
+          "effects": [
+            {
+              "score": {
+                "intrigue": 2,
+                "lore": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "leave",
+      "label": "Leave them lie.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The stones hum, disappointed.",
+          "effects": []
+        }
+      ]
+    }
+  ]
+}

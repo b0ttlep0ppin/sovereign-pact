@@ -1,0 +1,113 @@
+{
+  "id": "the_archers_wager",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    9
+  ],
+  "title": "The Archer's Wager",
+  "text": "A one-eyed archer at a crossroads offers a contest: whoever misses the target the most may have lessons.",
+  "options": [
+    {
+      "id": "worst",
+      "label": "The one with the poorest eye takes the lessons.",
+      "rule": "scion:lowest:acuity|scion:random",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "By dusk they are hitting the post without looking.",
+          "effects": [
+            {
+              "growth": {
+                "acuity": 10
+              }
+            },
+            {
+              "xp": 80
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "best",
+      "label": "The sharpest eye takes the contest.",
+      "rule": "scion:highest:acuity",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "They win, and the archer pays in arrows of a better make.",
+          "effects": [
+            {
+              "item": {
+                "tier": 2
+              }
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "The old archer wins, and laughs.",
+          "effects": [
+            {
+              "sanity": -5
+            },
+            {
+              "score": {
+                "valor": -1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rob",
+      "label": "Take his quiver while he sleeps.",
+      "rule": "leader",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "He wakes in time to shoot.",
+          "effects": [
+            {
+              "durability": -30,
+              "loc": "arms"
+            },
+            {
+              "score": {
+                "intrigue": 1
+              }
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "A full quiver, and his curses behind you.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 15
+              }
+            },
+            {
+              "doom": 1
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

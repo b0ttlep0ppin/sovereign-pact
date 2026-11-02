@@ -1,0 +1,95 @@
+{
+  "id": "the_altar_of_scars",
+  "pools": [
+    "general"
+  ],
+  "weight": 1,
+  "band": [
+    4,
+    10
+  ],
+  "title": "The Altar of Scars",
+  "text": "An altar asks for a scar. The one who already carries the deepest is offered something back.",
+  "options": [
+    {
+      "id": "scar",
+      "label": "The one with an old wound lays it on the stone.",
+      "rule": "scion:injured:any|scion:retired_once",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "The wound closes, and leaves a mark of favor.",
+          "effects": [
+            {
+              "mend": true
+            },
+            {
+              "blessing": {
+                "trait": "stout_hearted",
+                "years": 2
+              }
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "The altar takes a little more.",
+          "effects": [
+            {
+              "sanity": -15
+            },
+            {
+              "xp": 80
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "green",
+      "label": "The unblooded gives it a first scar.",
+      "rule": "scion:fewest_expeditions|scion:fewest_kills",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A cut across the palm. They are not unblooded now.",
+          "effects": [
+            {
+              "durability": -20,
+              "loc": "arms"
+            },
+            {
+              "xp": 100
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pious",
+      "label": "Someone with healer's hands blesses the altar instead.",
+      "rule": "scion:trait:pious_hands|vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The altar is quiet, and the party's cuts close.",
+          "effects": [
+            {
+              "to": "party",
+              "status": "regen"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

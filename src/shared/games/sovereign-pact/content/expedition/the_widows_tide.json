@@ -1,0 +1,106 @@
+{
+  "id": "the_widows_tide",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    10
+  ],
+  "title": "The Widow's Tide",
+  "text": "The tide here goes out a mile and comes back all at once. Wreckage glints on the mudflat.",
+  "options": [
+    {
+      "id": "tide",
+      "label": "Someone the sea knows walks out for it.",
+      "rule": "scion:trait:tidebound|scion:highest:speed",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 75,
+          "text": "They are back before the water, arms full.",
+          "effects": [
+            {
+              "item": {
+                "tier": 3
+              }
+            }
+          ]
+        },
+        {
+          "w": 25,
+          "text": "The water is faster.",
+          "effects": [
+            {
+              "durability": -50,
+              "loc": "legs"
+            },
+            {
+              "sanity": -10
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "together",
+      "label": "Everyone goes, quick, and grabs what they can.",
+      "rule": "vote",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "Planks, rope, and a strongbox.",
+          "effects": [
+            {
+              "resources": {
+                "timber": 4,
+                "gold": 15
+              }
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "The tide comes in on the slowest.",
+          "effects": [
+            {
+              "to": "party",
+              "durability": -20,
+              "loc": "legs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wait",
+      "label": "Wait for the tide to bring it in.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It brings in a little, and the dead.",
+          "effects": [
+            {
+              "resources": {
+                "timber": 2
+              }
+            },
+            {
+              "sanity": -5
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

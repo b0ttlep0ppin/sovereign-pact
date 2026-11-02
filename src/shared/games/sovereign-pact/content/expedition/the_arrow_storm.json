@@ -1,0 +1,101 @@
+{
+  "id": "the_arrow_storm",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    10
+  ],
+  "title": "The Arrow Storm",
+  "text": "Arrows fall from an empty sky over a valley the road must cross.",
+  "options": [
+    {
+      "id": "target",
+      "label": "The one the arrows always find runs ahead to draw them.",
+      "rule": "scion:most_targeted|scion:highest:resilience",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "They draw every arrow and the rest cross clean.",
+          "effects": [
+            {
+              "durability": -40,
+              "loc": "body"
+            },
+            {
+              "score": {
+                "valor": 2
+              }
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "Too many arrows.",
+          "effects": [
+            {
+              "injury": "body"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "shield",
+      "label": "Walk under shields, slowly.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It takes all day, and dents every shield.",
+          "effects": [
+            {
+              "to": "party",
+              "durability": -15,
+              "loc": "arms"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "source",
+      "label": "Find who is shooting.",
+      "rule": "scion:highest:acuity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "A ghost archer company, still at war.",
+          "effects": [
+            {
+              "encounter": {}
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "No one. The arrows stop when you stop looking.",
+          "effects": [
+            {
+              "sanity": -10
+            },
+            {
+              "skip": 1
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

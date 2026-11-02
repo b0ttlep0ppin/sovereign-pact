@@ -1,0 +1,88 @@
+{
+  "id": "the_old_soldiers",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    10
+  ],
+  "title": "The Old Soldiers",
+  "text": "A camp of veterans who left the Gate behind long ago. They will share the fire with anyone who served.",
+  "options": [
+    {
+      "id": "veteran",
+      "label": "Someone who has retired once sits with them.",
+      "rule": "scion:retired_once|scion:most_expeditions",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "They trade stories past midnight.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 10
+            },
+            {
+              "xp": 60
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "green",
+      "label": "The greenest Scion asks to learn.",
+      "rule": "scion:fewest_expeditions|scion:random",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The veterans are hard teachers.",
+          "effects": [
+            {
+              "xp": 120
+            },
+            {
+              "sanity": -5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "recruit",
+      "label": "Ask one to come back to the House.",
+      "rule": "house:random",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 40,
+          "text": "One old soldier shoulders a pack.",
+          "effects": [
+            {
+              "house_improvement": "recruit"
+            }
+          ]
+        },
+        {
+          "w": 60,
+          "text": "They will not go back. They give you their old map instead.",
+          "effects": [
+            {
+              "skip": 1
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

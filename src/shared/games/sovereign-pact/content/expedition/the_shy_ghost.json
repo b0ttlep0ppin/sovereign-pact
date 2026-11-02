@@ -1,0 +1,83 @@
+{
+  "id": "the_shy_ghost",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    9
+  ],
+  "title": "The Shy Ghost",
+  "text": "A small ghost follows the party at a distance, hiding whenever anyone looks.",
+  "options": [
+    {
+      "id": "quiet",
+      "label": "The one who has hurt the fewest goes to it.",
+      "rule": "scion:fewest_kills|scion:random",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It comes close, and gives them something it was keeping.",
+          "effects": [
+            {
+              "item": {
+                "tier": 2
+              }
+            },
+            {
+              "sanity": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "chase",
+      "label": "Chase it down.",
+      "rule": "scion:highest:speed",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "It bursts into cold light.",
+          "effects": [
+            {
+              "to": "party",
+              "status": "slow"
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "It flees into a cave and shows you a way through.",
+          "effects": [
+            {
+              "skip": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ignore",
+      "label": "Let it follow.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It follows for a while and then is gone.",
+          "effects": []
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,100 @@
+{
+  "id": "the_tide_bell",
+  "pools": [
+    "general"
+  ],
+  "weight": 1,
+  "band": [
+    3,
+    10
+  ],
+  "title": "The Tide Bell",
+  "text": "A bell under the water rings when the tide turns. The sea people say it calls home anyone who hears it.",
+  "options": [
+    {
+      "id": "tide",
+      "label": "The one with sea in them answers it.",
+      "rule": "scion:trait:tidebound|scion:lowest:sanity",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "They come back with salt in their hair and calm in their eyes.",
+          "effects": [
+            {
+              "sanity": 25
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "They nearly do not come back.",
+          "effects": [
+            {
+              "sanity": -15
+            },
+            {
+              "growth": {
+                "resilience": 10
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dive",
+      "label": "Dive for the bell.",
+      "rule": "scion:highest:resilience",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "Old bronze, heavy with essence.",
+          "effects": [
+            {
+              "resources": {
+                "essence": 6
+              }
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "The sea people take it badly.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "surprise"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "plug",
+      "label": "Stop your ears and go.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It rings anyway, in your dreams.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -5
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

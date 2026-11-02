@@ -1,0 +1,94 @@
+{
+  "id": "the_scrap_heap",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    10
+  ],
+  "title": "The Scrap Heap",
+  "text": "A hill of broken arms and armor. A tinker on top says the one carrying least may take the most.",
+  "options": [
+    {
+      "id": "light",
+      "label": "The one with the most room in their pack goes up.",
+      "rule": "scion:most_open_slots|scion:random",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "They come down loaded.",
+          "effects": [
+            {
+              "item": {
+                "tier": 2
+              }
+            },
+            {
+              "resources": {
+                "iron": 3
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "heavy",
+      "label": "The most armored climbs it anyway.",
+      "rule": "scion:heaviest_gear|scion:highest:might",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "The heap slides.",
+          "effects": [
+            {
+              "durability": -40,
+              "loc": "legs"
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "They find the tinker's own good hammer.",
+          "effects": [
+            {
+              "item": {
+                "tier": 3
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "trade",
+      "label": "Trade the tinker for parts.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Fair weight for fair coin.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -10,
+                "iron": 5
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
