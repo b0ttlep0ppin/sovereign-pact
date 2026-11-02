@@ -2,6 +2,12 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 8ar): enemies hit harder; bots should nearly always lose
+
+- Josh: "the enemies are pathetically weak", "the game should be pretty hard or else there's no point", and "the game is probably almost impossible for bots who have no tactics, no character building and no strategy". With HP now carrying between an expedition's battles (8ao), `tuning.enemies.soften` rises from 50–80% of full strength at expedition levels 1–10 to 70%, 75%, 80%, 85%, 90% and 95% at levels 1–6, and full strength from level 7.
+- What the campaign sim shows (6 campaigns of 2 bot Houses): before, bots won about 1 in 6 with HP carrying and about 6 in 10 without; now 0 of 6, with 4 of 17 mandatory expeditions won, the city overwhelmed in Years 15–18. A tried 80–95% setting made bots lose every mandatory expedition but one, which leaves no room for a player's tactics to show; this middle setting is the first pass, a knob to turn after Josh plays it.
+- The Idol payout test now fights its Idol at half strength: it checks what a win pays, not how hard an Idol is.
+
 ## 2026-11-02 (implementation, Milestone 8aq): every expedition event's options make sense of who they fall on
 
 - Josh: "These sorts of events should be logical, or provide a reason. A narrow crack requiring someone carrying the most makes no sense." All 556 expedition events were read for whether each option's rule (who it happens to) follows from what the option says. 86 were fixed: the rule changed to the Scion the fiction points at (the sharpest eye spots the mark, the bravest grabs the crown), or the text now gives the reason (the narrow crack: squeeze through gear and all, and whoever carries the most is the one who sticks). Labels now name who steps up where it is not obvious ("The strongest lifts it").
