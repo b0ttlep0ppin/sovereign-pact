@@ -1,0 +1,94 @@
+{
+  "id": "the_dragon_cult",
+  "pools": [
+    "dragon_reaches"
+  ],
+  "weight": 2,
+  "band": [
+    5,
+    10
+  ],
+  "title": "The Dragon Cult",
+  "text": "Cultists in scale masks are preparing an offering for their dragon. The offering is a person, tied and gagged.",
+  "options": [
+    {
+      "id": "free",
+      "label": "Free the offering.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The cultists fight like fanatics.",
+          "effects": [
+            {
+              "encounter": {}
+            },
+            {
+              "score": {
+                "renown": 2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "join",
+      "label": "The shrewdest joins the rite, and swaps the offering.",
+      "rule": "scion:highest:guile",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "A sack of grain on the altar, and the cultists none the wiser.",
+          "effects": [
+            {
+              "score": {
+                "intrigue": 2
+              }
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "A cultist notices.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "surprise"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "watch",
+      "label": "Watch, and learn where the dragon comes.",
+      "rule": "leader",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "You learn. You do not forget what you watched.",
+          "effects": [
+            {
+              "foresee": true
+            },
+            {
+              "to": "party",
+              "sanity": -12
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

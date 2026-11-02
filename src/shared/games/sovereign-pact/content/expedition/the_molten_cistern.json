@@ -1,0 +1,93 @@
+{
+  "id": "the_molten_cistern",
+  "pools": [
+    "forge_ruins"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    9
+  ],
+  "title": "The Molten Cistern",
+  "text": "A cistern full of metal that never cooled. Ingots float on the top like ice.",
+  "options": [
+    {
+      "id": "fish",
+      "label": "Fish out ingots with a pole.",
+      "rule": "vote",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "A good haul.",
+          "effects": [
+            {
+              "resources": {
+                "iron": 6
+              }
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "The pole catches fire, then a sleeve.",
+          "effects": [
+            {
+              "to": "party",
+              "status": "burn"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "reach",
+      "label": "The quickest reaches for the best one.",
+      "rule": "scion:highest:speed",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "Star iron.",
+          "effects": [
+            {
+              "resources": {
+                "iron": 4,
+                "essence": 3
+              }
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "Burned.",
+          "effects": [
+            {
+              "durability": -25,
+              "loc": "arms"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "leave",
+      "label": "Leave it.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It bubbles at you.",
+          "effects": []
+        }
+      ]
+    }
+  ]
+}

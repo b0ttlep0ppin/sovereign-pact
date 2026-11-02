@@ -1,0 +1,83 @@
+{
+  "id": "the_rhino_wallow",
+  "pools": [
+    "beast_lands"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    6
+  ],
+  "title": "The Rhino Wallow",
+  "text": "A mud wallow, and a rhino asleep in it, snoring. The only path runs right past its horn.",
+  "options": [
+    {
+      "id": "tiptoe",
+      "label": "Tiptoe past.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 75,
+          "text": "It snores on.",
+          "effects": []
+        },
+        {
+          "w": 25,
+          "text": "It wakes, cross.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "surprise"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "quick",
+      "label": "The quickest leads, setting the pace.",
+      "rule": "scion:highest:speed",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Past before it stirs.",
+          "effects": [
+            {
+              "xp": 30
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mud",
+      "label": "Roll in the mud to hide your scent.",
+      "rule": "leader",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Filthy, and unseen by anything for a day.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -2
+            },
+            {
+              "skip": 1
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
