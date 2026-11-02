@@ -1,0 +1,100 @@
+{
+  "id": "the_frozen_waterfall",
+  "pools": [
+    "deep_cold"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    8
+  ],
+  "title": "The Frozen Waterfall",
+  "text": "A waterfall frozen in mid-fall. Behind the ice, the shape of a cave mouth.",
+  "options": [
+    {
+      "id": "climb",
+      "label": "Climb the ice.",
+      "rule": "vote",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "Up and over, a long way ahead.",
+          "effects": [
+            {
+              "skip": 1
+            },
+            {
+              "to": "party",
+              "durability": -6
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "The ice cracks.",
+          "effects": [
+            {
+              "to": "party",
+              "durability": -12,
+              "loc": "arms"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cave",
+      "label": "The strongest breaks into the cave.",
+      "rule": "scion:highest:might",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "A hermit's hoard, long frozen.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 15,
+                "iron": 3
+              }
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "A bear's den.",
+          "effects": [
+            {
+              "encounter": {}
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "round",
+      "label": "Find the path round.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Slow, and cold.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -3
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

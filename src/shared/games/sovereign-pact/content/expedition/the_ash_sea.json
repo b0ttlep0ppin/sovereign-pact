@@ -1,0 +1,100 @@
+{
+  "id": "the_ash_sea",
+  "pools": [
+    "pit"
+  ],
+  "weight": 2,
+  "band": [
+    5,
+    10
+  ],
+  "title": "The Ash Sea",
+  "text": "A sea of ash stretches ahead, with things moving under its grey surface. A devil offers a boat.",
+  "options": [
+    {
+      "id": "boat",
+      "label": "Take the devil's boat.",
+      "rule": "vote",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A fast crossing. The fare comes later.",
+          "effects": [
+            {
+              "skip": 2
+            },
+            {
+              "doom": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wade",
+      "label": "Wade across.",
+      "rule": "leader",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Something under the ash takes an interest.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "ambush"
+              }
+            },
+            {
+              "to": "party",
+              "status": "burn"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bargain",
+      "label": "The shrewdest haggles the fare.",
+      "rule": "scion:highest:guile",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "A fair price, paid in coin.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -15
+              }
+            },
+            {
+              "skip": 2
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "The devil haggles better.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -25
+              }
+            },
+            {
+              "skip": 1
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

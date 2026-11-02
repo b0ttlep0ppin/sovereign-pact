@@ -1,0 +1,87 @@
+{
+  "id": "the_smiths_ledger",
+  "pools": [
+    "forge_ruins"
+  ],
+  "weight": 2,
+  "band": [
+    4,
+    9
+  ],
+  "title": "The Smith's Ledger",
+  "text": "The forge master's ledger lies open on a bench: every blade made here, and who it was made for.",
+  "options": [
+    {
+      "id": "read",
+      "label": "The wisest reads it.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A blade made for your House, never collected. And where it is kept.",
+          "effects": [
+            {
+              "item": {
+                "tier": 2
+              }
+            },
+            {
+              "score": {
+                "lore": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "take",
+      "label": "Take the ledger to sell.",
+      "rule": "vote",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Collectors will pay, and so will the families named in it.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 15
+              }
+            },
+            {
+              "score": {
+                "intrigue": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "leave",
+      "label": "Leave it for whoever comes back.",
+      "rule": "leader",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "No one is coming back.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -2
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

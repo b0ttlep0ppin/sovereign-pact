@@ -1,0 +1,89 @@
+{
+  "id": "the_drifting_island",
+  "pools": [
+    "outer_dark"
+  ],
+  "weight": 2,
+  "band": [
+    6,
+    10
+  ],
+  "title": "The Drifting Island",
+  "text": "An island of earth and grass floats past in the dark, close enough to jump to.",
+  "options": [
+    {
+      "id": "jump",
+      "label": "Jump to it.",
+      "rule": "vote",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "It carries you a long way, and sets you down gently.",
+          "effects": [
+            {
+              "skip": 2
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "It carries you somewhere you did not mean to go.",
+          "effects": [
+            {
+              "fork": {
+                "drop": 1,
+                "add": [
+                  "encounter",
+                  "cache"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pick",
+      "label": "The quickest leaps over, grabs what grows there, and leaps back.",
+      "rule": "scion:highest:speed",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Fruit that glows, and tastes of home.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 8
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "watch",
+      "label": "Watch it go.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Something on it waves.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -3
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

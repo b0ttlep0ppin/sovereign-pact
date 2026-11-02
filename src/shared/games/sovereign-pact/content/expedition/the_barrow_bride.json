@@ -1,0 +1,89 @@
+{
+  "id": "the_barrow_bride",
+  "pools": [
+    "barrows"
+  ],
+  "weight": 1,
+  "band": [
+    3,
+    8
+  ],
+  "title": "The Barrow Bride",
+  "text": "A woman in a wedding dress, centuries out of fashion, waits at a barrow's door for a groom who never came.",
+  "options": [
+    {
+      "id": "comfort",
+      "label": "The kindest sits with her.",
+      "rule": "scion:most_healing|scion:highest:sagacity",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "She tells her story, and fades at dawn, at peace.",
+          "effects": [
+            {
+              "score": {
+                "renown": 1
+              }
+            },
+            {
+              "sanity": 6
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "propose",
+      "label": "The boldest offers to be her groom.",
+      "rule": "scion:highest:guile",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "She laughs, and gives them her ring.",
+          "effects": [
+            {
+              "item": {
+                "tier": 2
+              }
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "She takes them at their word.",
+          "effects": [
+            {
+              "curse": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pass",
+      "label": "Pass her by.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "She asks if you have seen him.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -4
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,96 @@
+{
+  "id": "the_root_cellar",
+  "pools": [
+    "hollow_wood"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    7
+  ],
+  "title": "The Root Cellar",
+  "text": "A trapdoor among the roots of a great tree opens on a cellar stocked with someone's winter stores.",
+  "options": [
+    {
+      "id": "take",
+      "label": "Take what you need.",
+      "rule": "vote",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "Good food, and a quiet night.",
+          "effects": [
+            {
+              "to": "party",
+              "durability": 8
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "Its owner comes home.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "surprise"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "leave",
+      "label": "Leave coin for what you take.",
+      "rule": "leader",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Honest food.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -5
+              }
+            },
+            {
+              "to": "party",
+              "durability": 8
+            },
+            {
+              "to": "party",
+              "sanity": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "search",
+      "label": "The sharpest searches deeper.",
+      "rule": "scion:highest:acuity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A false wall, and old coins behind it.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 12
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

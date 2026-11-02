@@ -1,0 +1,88 @@
+{
+  "id": "the_floating_coffin",
+  "pools": [
+    "drowned_marches"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    7
+  ],
+  "title": "The Floating Coffin",
+  "text": "A coffin drifts down the channel, lid nailed shut. Something inside is knocking politely.",
+  "options": [
+    {
+      "id": "open",
+      "label": "Open it.",
+      "rule": "vote",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "A drowned merchant, very grateful, who pays you in river pearls.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 20
+              }
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "Something else, much less grateful.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "surprise"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ask",
+      "label": "The wisest asks who is inside.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A name you know from the House's old debts.",
+          "effects": [
+            {
+              "score": {
+                "intrigue": 2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "push",
+      "label": "Push it on downstream.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The knocking fades.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -3
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

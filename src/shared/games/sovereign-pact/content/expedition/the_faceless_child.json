@@ -1,0 +1,78 @@
+{
+  "id": "the_faceless_child",
+  "pools": [
+    "faceless_city"
+  ],
+  "weight": 1,
+  "band": [
+    4,
+    9
+  ],
+  "title": "The Faceless Child",
+  "text": "A child with no face tugs at a Scion's sleeve and points at their face, wanting one.",
+  "options": [
+    {
+      "id": "draw",
+      "label": "The kindest draws a face on the child in charcoal.",
+      "rule": "scion:most_healing|scion:highest:sagacity",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The child smiles with the drawn mouth, and leads you out.",
+          "effects": [
+            {
+              "skip": 1
+            },
+            {
+              "sanity": 8
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "refuse",
+      "label": "Gently refuse.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The child follows you for a mile, then stops.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "shoo",
+      "label": "Shoo it away.",
+      "rule": "leader",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The street fills with faceless adults.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "surprise"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

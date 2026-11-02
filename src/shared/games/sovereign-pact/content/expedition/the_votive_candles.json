@@ -1,0 +1,94 @@
+{
+  "id": "the_votive_candles",
+  "pools": [
+    "shrine_of_six"
+  ],
+  "weight": 2,
+  "band": [
+    4,
+    10
+  ],
+  "title": "The Votive Candles",
+  "text": "Hundreds of votive candles burn before a shrine, one for each pilgrim's prayer. The priest asks for an offering.",
+  "options": [
+    {
+      "id": "light",
+      "label": "Light a candle for the party.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A small flame among hundreds.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -5
+              }
+            },
+            {
+              "to": "party",
+              "sanity": 6
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "each",
+      "label": "The newest Scion lights one for luck.",
+      "rule": "scion:fewest_expeditions",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 80,
+          "text": "A flame that burns bright.",
+          "effects": [
+            {
+              "sanity": 6
+            }
+          ]
+        },
+        {
+          "w": 20,
+          "text": "A flame that will not stay lit.",
+          "effects": [
+            {
+              "sanity": -6
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wax",
+      "label": "Gather the spent wax to sell.",
+      "rule": "leader",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Holy wax fetches a price.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 10
+              }
+            },
+            {
+              "score": {
+                "renown": -1
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
