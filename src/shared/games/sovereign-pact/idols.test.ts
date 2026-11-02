@@ -84,6 +84,9 @@ describe("the offer", () => {
 
   it("refused, the Idol is the boss; killed, it pays Valor and Renown and leaves its Relic", () => {
     // The fight goes one way or the other on its party and rolls: take the first of a few that the party wins.
+    // This is about what a win pays, not how hard the Idol is, so the Idol fights at half strength here.
+    const soften = TUNING.enemies.soften as number[];
+    const keep = soften.splice(0, soften.length, ...Array<number>(10).fill(0.5));
     const won = Array.from({ length: 20 }, (_, seed) => {
       const s = pilgrimage("idol_weigher", {}, 9 + (seed >> 1));
       for (const p of s.people) while (p.status === "scion" && p.level < 30) Object.assign(p, levelUp(p));
@@ -95,6 +98,7 @@ describe("the offer", () => {
       pressOn(s);
       return { s, before };
     }).find(({ s }) => s.log.some((l) => l.includes("defeats the boss")));
+    soften.splice(0, soften.length, ...keep);
     expect(won).toBeDefined();
     const { s, before } = won!;
     for (const [i, h] of s.houses.entries()) {

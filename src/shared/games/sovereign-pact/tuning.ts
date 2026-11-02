@@ -490,9 +490,11 @@ export const TUNING = {
     /**
      * Tuning pass (2026-11-02): enemy HP and damage × this at expedition levels 1, 2, 3… (1 beyond the
      * list). Starting Scions are level 1 with Crude gear, where the 3L reference expects level 3 at L1,
-     * and bot campaigns put the best Scions near 2.5L, not 3L, at the mandatory Years.
+     * and bot campaigns put the best Scions near 2.5L, not 3L, at the mandatory Years. Raised 2026-11-02
+     * (8ar), after HP began to carry between battles: Josh wants the game hard, so that bots with no
+     * tactics nearly always lose (6 bot campaigns: 0 won, 4 of 17 mandatory expeditions won).
      */
-    soften: [0.5, 0.55, 0.6, 0.65, 0.7, 0.7, 0.75, 0.75, 0.8, 0.8] as readonly number[],
+    soften: [0.7, 0.75, 0.8, 0.85, 0.9, 0.95] as readonly number[],
     /** §14.1 Parts, first pass: the share of a blow on a Part the body also takes, and the stagger when one breaks. */
     parts: { bodySharePct: 50, stagger: 50 },
     /** §14.6: everyone starts a boss fight at CT 30. */
