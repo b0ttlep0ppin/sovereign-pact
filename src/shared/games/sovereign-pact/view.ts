@@ -227,7 +227,7 @@ export function view(s: SovState, playerId: PlayerId): SovView {
     // The Gate's cards and votes are open: the Houses argue over them in public (§9.1).
     gate: s.gate ?? null,
     // §9.3: the chain's shape is unknown until walked.
-    expedition: s.expedition ? { ...s.expedition, chain: s.expedition.chain.slice(0, s.expedition.at), length: s.expedition.chain.length } : null,
+    expedition: s.expedition ? expeditionView(s.expedition) : null,
     deals: dealsFor(s, me),
     market: marketFor(s, me),
     crisis: s.crisis ? { id: s.crisis.id, need: s.crisis.need } : null,
@@ -254,4 +254,18 @@ export function view(s: SovState, playerId: PlayerId): SovView {
     log: s.log,
     outcome: s.outcome ?? null,
   };
+}
+
+/**
+ * The expedition as everyone sees it: only the nodes passed, the chain's length, and the haul drafted
+ * blind, its items' properties hidden until identified (§13.4: Identify comes with the Scriptorium).
+ */
+function expeditionView(e: Expedition): Expedition & { length: number } {
+  const v = { ...e, chain: e.chain.slice(0, e.at), length: e.chain.length };
+  if (e.haul) v.haul = { ...e.haul, items: e.haul.items.map((i) => {
+      const seen = { ...i };
+      delete seen.props;
+      return seen;
+    }) };
+  return v;
 }

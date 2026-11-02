@@ -2,7 +2,7 @@
 // same props Vibe Pulse's room gives a game). Milestone 0 is a plain read-out of the campaign so the
 // rules can be watched in play; the Town Map, battle screen and the rest replace it in Milestone 8.
 import type { GameClientProps } from "@vibepulse/shared";
-import { Content, type SovMove, type SovView } from "@vibepulse/shared/games/sovereign-pact";
+import { Content, TIER_NAMES, type SovMove, type SovView } from "@vibepulse/shared/games/sovereign-pact";
 import { useState } from "react";
 import { HERALDRY_COLORS, Emblem } from "./Emblem";
 import "./SovereignPact.css";
@@ -275,6 +275,21 @@ function Muster({ view, sendMove }: { view: SovView; sendMove: (m: SovMove) => v
   const able = view.people.filter((p) => p.host === me && p.status === "scion").sort((a, b) => b.level - a.level || a.id - b.id);
   const [chosen, setChosen] = useState<number[]>(() => able.slice(0, seats).map((p) => p.id));
   const name = (id: number) => view.people.find((p) => p.id === id)?.name ?? `#${id}`;
+  if (e.haul && e.draft?.length) {
+    const turn = e.draft[0]!;
+    return (
+      <div className="sp-muster" aria-label="The draft">
+        <p>The Houses draft the haul, blind. {turn === me ? "Your pick." : `House ${view.houses[turn]?.name} picks.`}</p>
+        <div className="sp-actions">
+          {e.haul.items.map((i) => (
+            <button key={i.id} type="button" className="sp-button" disabled={turn !== me} onClick={() => sendMove({ type: "draft", item: i.id })}>
+              {TIER_NAMES[i.tier - 1]} {Content.ITEM_BASE_BY_ID.get(i.base)?.name}
+            </button>
+          ))}
+        </div>
+      </div>
+    );
+  }
   if (e.event) {
     const ev = Content.TRIP_EVENT_BY_ID.get(e.event.id);
     const mine = e.event.votes[me];

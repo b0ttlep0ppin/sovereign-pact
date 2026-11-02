@@ -169,6 +169,7 @@ function depart(s: SovState, leader: number): void {
 /** The Houses that must still act in the Expedition Phase. */
 export function waiting(s: SovState): number[] {
   const e = s.expedition;
+  if (e?.draft?.length) return [e.draft[0]!];
   if (!e || e.result) return [];
   if (e.event) return e.event.votes.flatMap((v, i) => (v === null ? [i] : []));
   if (e.leader !== undefined) return [s.people.find((p) => p.id === e.leader)!.host];

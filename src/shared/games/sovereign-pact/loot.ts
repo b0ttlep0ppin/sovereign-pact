@@ -1,0 +1,143 @@
+// Loot (§9.8, §9.10): what battles, Caches and the boss leave. It goes into the haul the party
+// carries, and is shared out when the party comes home: materials and Essence split evenly between
+// the Houses still in the party (the remainder to the Commons), items drafted by those Houses,
+// lowest Standing first, in snake order. A wipe loses the haul. Drop tables are per pool
+// (content/pools.json); numbers are in tuning.loot.
+import { ITEM_BASES, POOL_BY_ID, RARE_MATERIALS } from "./content.ts";
+import { baseOf, cannotEquip, rollProps } from "./items.ts";
+import { present } from "./events.ts";
+import { battle } from "./journey.ts";
+import { standing } from "./score.ts";
+import type { GearSlot, Item, ItemTier, SovState, StandingTier, Stores } from "./state.ts";
+import { TUNING } from "./tuning.ts";
+import { log, withRng } from "./year.ts";
+
+const L = TUNING.loot;
+const RARE = new Map(RARE_MATERIALS.map((m) => [m.id, m.name]));
+export const TIER_NAMES = ["Crude", "Common", "Fine", "Masterwork", "Relic"] as const;
+
+const materialName = (id: string) => RARE.get(id) ?? id[0]!.toUpperCase() + id.slice(1);
+export const itemName = (item: Item) => `${TIER_NAMES[item.tier - 1]} ${baseOf(item).name}`;
+const haul = (s: SovState) => (s.expedition!.haul ??= { items: [], stores: {} });
+const add = (to: Stores, k: string, n: number) => (to[k] = (to[k] ?? 0) + n);
+const list = (st: Stores) => Object.entries(st).map(([k, n]) => `${n} ${materialName(k)}`).join(", ");
+
+/** Rolls on the card's pool's drop table `times` over, into the haul. */
+export function gather(s: SovState, times = 1): void {
+  const { pool, level } = s.expedition!.card;
+  const drops = POOL_BY_ID.get(pool)!.drops;
+  const got: Stores = {};
+  withRng(s, (rng) => {
+    for (let i = 0; i < times; i++) {
+      for (const [id, pct] of drops.materials) if (rng.int(100) < pct) add(got, id, RARE.has(id) ? 1 : 1 + Math.floor(level / L.qtyDiv.common));
+      if (rng.int(100) < drops.essencePct) add(got, "essence", 1 + Math.floor(level / L.qtyDiv.essence));
+    }
+  });
+  if (!Object.keys(got).length) return;
+  for (const [k, n] of Object.entries(got)) add(haul(s).stores, k, n!);
+  log(s, `The party gathers ${list(got)}.`);
+}
+
+/** A found item for the haul: any base, at the card's level, its properties rolled (and maybe a bad one). */
+export function find(s: SovState, tier: ItemTier): Item {
+  const item = withRng(s, (rng) => rollProps(rng, { id: s.nextId++, base: rng.pick(ITEM_BASES).id, tier, ilvl: s.expedition!.card.level, house: -1 }, { negativeChance: L.negativePct }));
+  haul(s).items.push(item);
+  log(s, `The party finds a ${itemName(item)}.`);
+  return item;
+}
+
+const chance = (s: SovState, pct: number) => withRng(s, (rng) => rng.int(100) < pct);
+
+/** A won Encounter: a roll on the drop table, and now and then an item. */
+export function encounterLoot(s: SovState): void {
+  gather(s);
+  if (chance(s, L.encounterGearPct)) find(s, chance(s, L.finePct + L.finePerLevel * s.expedition!.card.level) ? 3 : 2);
+}
+
+/** A Cache node (§9.3): 1–2 items and two rolls on the table; sometimes something waits inside first. */
+export function cache(s: SovState): void {
+  if (chance(s, L.cache.trapPct)) {
+    // Reading: until the Mimic has its enemy entry, a trapped Cache is an ambush a level above the card.
+    log(s, "The cache is a trap: something inside was waiting.");
+    if (!battle(s, false, { modifier: "ambush", level: 1 })) return;
+  }
+  log(s, "The party opens an old cache.");
+  const [lo, hi] = L.cache.items as [number, number];
+  const n = lo + withRng(s, (rng) => rng.int(hi - lo + 1));
+  for (let i = 0; i < n; i++) find(s, chance(s, L.cache.masterworkPerLevel * s.expedition!.card.level) ? 4 : 3);
+  gather(s, L.cache.rolls);
+}
+
+/** A beaten boss: a Masterwork item per House present and one more, and three rolls on the table. */
+export function bossLoot(s: SovState): void {
+  for (let i = 0; i < present(s).length + L.boss.extraItems; i++) find(s, 4);
+  gather(s, L.boss.rolls);
+}
+
+const RANK: Record<StandingTier, number> = { waning: 0, steady: 1, rising: 2, ascendant: 3 };
+
+/** The draft order (§9.10): lowest Standing first, ties at random, snake order, one pick per item. */
+export function snake(s: SovState, houses: number[], picks: number): number[] {
+  const first = withRng(s, (rng) => rng.shuffle(houses)).sort((a, b) => RANK[standing(s, a)] - RANK[standing(s, b)]);
+  return Array.from({ length: picks }, (_, i) => {
+    const round = Math.floor(i / first.length);
+    const at = i % first.length;
+    return first[round % 2 ? first.length - 1 - at : at]!;
+  });
+}
+
+function give(s: SovState, item: Item, house: number): void {
+  item.house = house;
+  s.items.push(item);
+  log(s, `House ${s.houses[house]!.name} takes the ${itemName(item)}.`);
+}
+
+/** The party is home with its haul: materials split, items given or put to the draft. */
+export function shareOut(s: SovState): void {
+  const e = s.expedition!;
+  const h = e.haul;
+  const houses = present(s);
+  if (!h || !houses.length) return;
+  for (const [k, n] of Object.entries(h.stores)) {
+    const each = Math.floor(n! / houses.length);
+    for (const i of houses) if (each) add(s.houses[i]!.stores, k, each);
+    if (n! - each * houses.length) add(s.commons.stores, k, n! - each * houses.length);
+  }
+  h.stores = {};
+  if (houses.length === 1) for (const item of h.items.splice(0)) give(s, item, houses[0]!);
+  if (!h.items.length) return void delete e.haul;
+  e.draft = snake(s, houses, h.items.length);
+  log(s, `The Houses draft the haul. House ${s.houses[e.draft[0]!]!.name} picks first.`);
+}
+
+/** Why `house` cannot take `item` from the haul now, or null. */
+export function cannotDraft(s: SovState, house: number, item: unknown): string | null {
+  const e = s.expedition;
+  if (!e?.draft?.length) return "Nothing is being drafted.";
+  if (e.draft[0] !== house) return "It is not your House's pick.";
+  return e.haul!.items.some((i) => i.id === item) ? null : "That is not in the haul.";
+}
+
+export function draftPick(s: SovState, house: number, id: number): void {
+  const e = s.expedition!;
+  const h = e.haul!;
+  give(s, h.items.splice(h.items.findIndex((i) => i.id === id), 1)[0]!, house);
+  e.draft!.shift();
+  if (!h.items.length) {
+    delete e.draft;
+    delete e.haul;
+  }
+}
+
+/**
+ * The bot drafts blind like everyone (properties are hidden until identified, §13.4): the highest
+ * tier, preferring something one of its Scions could wear.
+ */
+export function botDraft(s: SovState, house: number): number {
+  const items = s.expedition!.haul!.items;
+  const top = Math.max(...items.map((i) => i.tier));
+  const best = items.filter((i) => i.tier === top);
+  const slot = (i: Item): GearSlot => (baseOf(i).slot === "acc" ? "acc1" : (baseOf(i).slot as GearSlot));
+  const wearable = best.find((i) => s.people.some((p) => p.host === house && p.status === "scion" && !cannotEquip(s, p, { ...i, house }, slot(i))));
+  return (wearable ?? best[0]!).id;
+}
