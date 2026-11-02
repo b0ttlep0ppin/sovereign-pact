@@ -24,6 +24,7 @@ import { TUNING } from "./tuning.ts";
 import { view, type SovView } from "./view.ts";
 import { clone, closeExpedition, closeSettlement } from "./year.ts";
 import { botPress, cannotRetreat, home, pressOn } from "./journey.ts";
+import { botDecide, cannotDecide, decide } from "./events.ts";
 import { botField, botLeader, cannotField, cannotLead, field, voteLeader, waiting } from "./expedition.ts";
 
 export type { SovMove, SovState } from "./state.ts";
@@ -181,10 +182,20 @@ export function applyMove(state: SovState, playerId: PlayerId, move: SovMove): M
       if (!waiting(s).length) closeExpedition(s);
       return { ok: true, state: s };
     }
+    case "decide": {
+      if (s.phase !== "expedition") return fail("No event waits on the party.");
+      const why = cannotDecide(s, house, move.option);
+      if (why) return fail(why);
+      decide(s, house, move.option);
+      s.phaseMoves += 1;
+      if (!waiting(s).length) closeExpedition(s);
+      return { ok: true, state: s };
+    }
     case "press_on":
     case "retreat": {
       const e = s.expedition;
       if (s.phase !== "expedition" || e?.leader === undefined || e.result) return fail("No expedition is underway.");
+      if (e.event) return fail("The party must decide what to do first.");
       if (s.people.find((p) => p.id === e.leader)!.host !== house) return fail("The Leader's House decides the way.");
       if (move.type === "retreat") {
         const why = cannotRetreat(s);
@@ -385,7 +396,9 @@ export function botMove(s: SovState, playerId: PlayerId): SovMove {
   // A bot founds the Random House it was dealt, keeping the first Ambition (§5.1).
   if (s.phase === "founding") return house >= 0 && !s.houses[house]!.sealed ? botFounding(s, house) : { type: "swear", ambition: 0 };
   if (s.phase === "expedition" && house >= 0)
-    return s.expedition?.leader !== undefined
+    return s.expedition?.event
+      ? { type: "decide", option: botDecide(s) }
+      : s.expedition?.leader !== undefined
       ? { type: botPress(s) ? "press_on" : "retreat" }
       : s.expedition?.votes
         ? { type: "lead", person: botLeader(s, house) }

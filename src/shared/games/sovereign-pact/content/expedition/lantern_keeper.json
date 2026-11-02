@@ -1,0 +1,78 @@
+{
+  "id": "lantern_keeper",
+  "pools": [
+    "general"
+  ],
+  "weight": 3,
+  "band": [
+    1,
+    10
+  ],
+  "title": "The Lantern Keeper",
+  "text": "An old woman with a lantern stands where the path should fork. She will light your way, she says, for a memory. Not a large one.",
+  "options": [
+    {
+      "id": "trade",
+      "label": "Trade a memory for the light.",
+      "rule": "scion:lowest:sanity",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "Afterwards they cannot remember their mother's face. The path is short and lit.",
+          "effects": [
+            {
+              "sanity": -20
+            },
+            {
+              "skip": 1
+            },
+            {
+              "score": {
+                "lore": 2
+              }
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "She takes more than she said.",
+          "effects": [
+            {
+              "sanity": -40
+            },
+            {
+              "skip": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "refuse",
+      "label": "Find your own way.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "You find it, eventually.",
+          "effects": []
+        },
+        {
+          "w": 40,
+          "text": "You find it, and something else finds you.",
+          "effects": [
+            {
+              "encounter": {}
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

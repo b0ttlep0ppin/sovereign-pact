@@ -1,0 +1,67 @@
+{
+  "id": "tithe_men",
+  "pools": [
+    "general"
+  ],
+  "weight": 3,
+  "band": [
+    2,
+    9
+  ],
+  "title": "The Tithe-Men",
+  "text": "Men in grey with ledgers block the road. Everyone pays the tithe, they say. Everyone. Even here.",
+  "options": [
+    {
+      "id": "pay",
+      "label": "Pay them in Essence.",
+      "rule": "house:lowest_standing",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "They count it twice and step aside, and write your House's name in the ledger.",
+          "effects": [
+            {
+              "resources": {
+                "essence": -4
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "refuse",
+      "label": "Refuse.",
+      "rule": "vote",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "They were not only men.",
+          "effects": [
+            {
+              "encounter": {
+                "level": 0
+              }
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "They look at you a long time, then close the ledger and are gone.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -5
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

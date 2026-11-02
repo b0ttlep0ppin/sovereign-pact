@@ -2,6 +2,27 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (Q90 answered) — Josh
+- **Who picks an expedition event's option: the party votes; the option's rule names who it happens to.** Every House with someone in the party votes. A tie costs Accord −3 and goes to the Leader's House. The rule (`leader`, `scion:most_expeditions`, `house:lowest_standing`…) chooses the subject: the Scion or House the effects fall on. `each_scion` and `secret` events keep their own way of choosing. → SPEC §9.4
+
+## 2026-11-02 (implementation, Milestone 6d: expedition events) — implementer
+- **The engine** (`events.ts`, content under `content/expedition/`, `schemas/expedition.schema.json`):
+  - An Event node draws an event in its level band whose requirements hold, never one met already this expedition. Half the time it comes from the card's own pools (its pool id or its type), else from the general pool.
+  - The Houses present vote, per Q90. The outcome is drawn by weight.
+- **Rules built:** `vote` (the whole party), `leader`, `scion:random`, `scion:most|fewest_expeditions|kills|healing|targeted`, `scion:highest|lowest:<stat or sanity>`, `house:lowest|highest_standing` (by Ascendancy; that House's Scions in the party are the subject). Ties among Scions go to the first fielded. Still to come: `each_scion`, `secret`, `scion:heaviest_gear|most_open_slots|tarot|trait|injured|retired_once`, `house:trait`.
+- **Effects built:**
+  - Sanity, Durability and MP as % of max; Durability can be on one location, and 0 Breaks it.
+  - XP and JP.
+  - A forced injury roll: a lasting result stays; Death or a Mortal wound kills, since there is no battle end to wait for.
+  - Resources and score: to the subject's House, or to the Commons (resources) and every House present (score) when the whole party is the subject (§9.10).
+  - Accord, Doom, flags.
+  - `skip` (passes nodes, never the boss), `encounter` (a battle now, optionally Ambush/Surprise or levels up), `retreat`.
+  - Still to come: status, stat, growth, trait, tarot, blessing, curse, transform, item, house_improvement, loyalty, fork, timeline, scion_lost.
+- **Content:** 12 events, mostly from §9.7's table. Each option is tagged for balancing. A Leader killed by an event is replaced as in battle; a party killed to the last Scion is wiped.
+- **Bots** choose a `cautious` option where there is one, else the first.
+- **A Crisis's "the next expedition must wait"** (`expedition_delayed`, Milestone 4e) now keeps the Rift Gate shut for the Year, and the flag is spent.
+- **Tuning waits for events and loot.** 45% of nodes are events, and they will heal, pay XP and give gear. So the level-curve pass from 6c comes after loot (6e), not before.
+
 ## 2026-11-02 (implementation, Milestone 6c: the chain, walked) — implementer
 - **The chain** (`journey.ts`, §9.3): rolled at departure, N = 4 + level/2 nodes (+2 mandatory) by the decided weights, then the boss. The view shows only the nodes passed and the chain's length.
 - **Walking it:** the Leader's House presses on (`press_on`) or turns back (`retreat`, any node but the boss). A Leader who dies or is Lost is replaced by the most travelled Scion still marching. Reading: §9.9's "vote if the Leader is incapacitated" is left for when battles are played by hand.
@@ -628,7 +649,7 @@ Readings and defaults taken while building; each is a knob in `tuning.ts` or eas
 
 ## Open questions
 
-Batches 1–12 (answered 2026-10-31 / 2026-11-01): Q1–Q84 closed, see above. Q86 and Q88 answered 2026-11-01. The design is handed off; see HANDOFF.md.
+Batches 1–12 (answered 2026-10-31 / 2026-11-01): Q1–Q84 closed, see above. Q86 and Q88 answered 2026-11-01; Q90 (who picks an expedition event's option) answered 2026-11-02. The design is handed off; see HANDOFF.md.
 
 - **Q85 (asked 2026-11-01, Milestone 0): how is a House's Standing tier worked out?** §3.4 names the four tiers (Waning / Steady / Rising / Ascendant) but not the rule, and it decides how much the other Houses can read. Built as the default, PROPOSED: a House's Ascendancy divided by the kingdom's mean, Waning below 0.75, Steady 0.75–1, Rising 1–1.25, Ascendant 1.25 and up; Steady when solo or before anyone scores. Alternatives: tiers by rank (the leader is always Ascendant, which tells everyone who leads), or fixed Ascendancy thresholds that rise with the Year (tiers say how well a House does, not how it compares).
 - **Q89 (asked 2026-11-01, Milestone 4f): should a House event be private to its House?** §8.8 gives each House its own events (the Cousin's Claim, the Locked Wing…) but does not say whether rivals see them. Built as public (the Town Map's log shows them, and their choices) until Josh decides. Private would make them like the recruit pool: the House sees the event and its outcome, the others see nothing, or only "House X has troubles at home". **Answered 2026-11-01 by Josh: private, with a hint** (rivals see only that the House has troubles at home).

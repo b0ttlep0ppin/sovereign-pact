@@ -81,7 +81,7 @@ describe("walking it", () => {
     const leader = s.expedition!.party[1]![0]!;
     s = move(move(s, "p1", { type: "lead", person: leader }), "p2", { type: "lead", person: leader });
     expect(error(s, "p1", { type: "press_on" })).toMatch(/Leader's House/);
-    s.expedition!.chain = ["event", "boss"];
+    s.expedition!.chain = ["camp", "boss"];
     s = move(s, "p2", { type: "press_on" });
     expect(s.expedition!.at).toBe(1);
     expect(error(s, "p2", { type: "retreat" })).toMatch(/no turning back/);

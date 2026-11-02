@@ -3,6 +3,7 @@
 import bossFiles from "./content/bosses/index.gen.ts";
 import enemyFiles from "./content/enemies/index.gen.ts";
 import townFiles from "./content/town/index.gen.ts";
+import expeditionFiles from "./content/expedition/index.gen.ts";
 import abjurerSet from "./content/abilities/abjurer.json" with { type: "json" };
 import conjurerSet from "./content/abilities/conjurer.json" with { type: "json" };
 import altererSet from "./content/abilities/alterer.json" with { type: "json" };
@@ -504,6 +505,47 @@ export interface TownEventDef {
 }
 export const TOWN_EVENTS = townFiles as unknown as readonly TownEventDef[];
 export const TOWN_EVENT_BY_ID: ReadonlyMap<string, TownEventDef> = new Map(TOWN_EVENTS.map((e) => [e.id, e]));
+
+/** One effect of an expedition event (§9.4's catalogue): on the subject, or the whole party. */
+export interface TripEffect {
+  to?: "subject" | "party";
+  sanity?: number;
+  durability?: number;
+  loc?: "head" | "body" | "arms" | "legs";
+  mp?: number;
+  xp?: number;
+  jp?: number;
+  injury?: InjuryTableId;
+  resources?: Partial<Record<string, number>>;
+  score?: Partial<Record<string, number>>;
+  accord?: number;
+  doom?: number;
+  flag?: string;
+  encounter?: { template?: string; modifier?: "ambush" | "surprise"; level?: number };
+  skip?: number;
+  retreat?: true;
+}
+/** An option of an expedition event: the party votes for it; its rule names its subject (§9.4). */
+export interface TripOption {
+  id: string;
+  label: string;
+  rule: string;
+  tags?: string[];
+  outcomes: { w: number; text: string; effects: TripEffect[] }[];
+}
+/** An expedition event, met at an Event node (§9.4). */
+export interface TripEventDef {
+  id: string;
+  pools: string[];
+  weight: number;
+  band: [number, number];
+  requires?: string[];
+  title: string;
+  text: string;
+  options: TripOption[];
+}
+export const TRIP_EVENTS = expeditionFiles as unknown as readonly TripEventDef[];
+export const TRIP_EVENT_BY_ID: ReadonlyMap<string, TripEventDef> = new Map(TRIP_EVENTS.map((e) => [e.id, e]));
 
 /** Rare materials (§8.1): kept in Stores by id beside the five common ones. */
 export const RARE_MATERIALS: readonly { id: string; name: string }[] = buildingsJson.rareMaterials;

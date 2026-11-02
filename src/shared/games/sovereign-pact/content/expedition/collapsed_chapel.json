@@ -1,0 +1,96 @@
+{
+  "id": "collapsed_chapel",
+  "pools": [
+    "pilgrimage",
+    "general"
+  ],
+  "weight": 3,
+  "band": [
+    2,
+    9
+  ],
+  "title": "The Collapsed Chapel",
+  "text": "A chapel folded in on itself, as if a hand had closed around it. Light comes from somewhere under the stones.",
+  "options": [
+    {
+      "id": "dig",
+      "label": "Dig for the light.",
+      "rule": "scion:highest:might",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 55,
+          "text": "Under the altar stone, a reliquary of grey ash that is warm to hold.",
+          "effects": [
+            {
+              "resources": {
+                "saints_ash": 1
+              }
+            },
+            {
+              "score": {
+                "relics": 2
+              }
+            }
+          ]
+        },
+        {
+          "w": 45,
+          "text": "The roof finishes falling.",
+          "effects": [
+            {
+              "injury": "legs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pray",
+      "label": "Pray among the ruins.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "The light goes out, gently, as if satisfied.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 15
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "Nothing answers. That is worse.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -10
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pass",
+      "label": "Leave it to its god.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "You go around. The light follows you a while from under the ground.",
+          "effects": []
+        }
+      ]
+    }
+  ]
+}

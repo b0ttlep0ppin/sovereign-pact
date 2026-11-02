@@ -781,6 +781,7 @@ Resolved in the **Omens** step before the Settlement Phase opens:
 ```
 
 - **Rules** (`rule`) decide who picks the option, and often who the **subject** is (the Scion the effects apply to). The full catalogue, each tied to a kind of fiction:
+- [DECIDED, Q90, 2026-11-02] **The party votes on the option** (every House with someone in the party; a tie costs Accord −3 and goes to the Leader's House); **the chosen option's rule names its subject**. `each_scion` and `secret` keep their own way of choosing.
 
 | Rule | Who decides / who is the subject | Fits fictions like |
 |---|---|---|

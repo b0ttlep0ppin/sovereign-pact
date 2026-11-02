@@ -1,0 +1,60 @@
+{
+  "id": "hunters_mark",
+  "pools": [
+    "hunt"
+  ],
+  "weight": 3,
+  "band": [
+    1,
+    10
+  ],
+  "title": "The Hunters' Mark",
+  "text": "Fresh blood on the stones, a trail of it, leading somewhere the quarry thinks is safe.",
+  "options": [
+    {
+      "id": "follow",
+      "label": "Follow the blood.",
+      "rule": "scion:most_targeted",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "A shortcut, straight to its lair.",
+          "effects": [
+            {
+              "skip": 2
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "The blood was bait.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "ambush"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "careful",
+      "label": "Keep to the path.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Slower, and safer.",
+          "effects": []
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "id": "feast_of_crows",
+  "pools": [
+    "hunt",
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    10
+  ],
+  "title": "Feast of Crows",
+  "text": "A field of crows, all facing the same way, all silent, all eating something you cannot see.",
+  "options": [
+    {
+      "id": "scatter",
+      "label": "Scatter them.",
+      "rule": "vote",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "They rise like smoke, and the air feels lighter after.",
+          "effects": [
+            {
+              "doom": -2
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "They rise like smoke, and come down on you.",
+          "effects": [
+            {
+              "to": "party",
+              "durability": -25
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "read",
+      "label": "Read the omens in them.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "The pattern is a warning, and a useful one.",
+          "effects": [
+            {
+              "score": {
+                "lore": 3
+              }
+            },
+            {
+              "xp": 20
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "The pattern is your own face.",
+          "effects": [
+            {
+              "injury": "sanity"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

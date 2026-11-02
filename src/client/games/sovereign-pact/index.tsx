@@ -275,6 +275,28 @@ function Muster({ view, sendMove }: { view: SovView; sendMove: (m: SovMove) => v
   const able = view.people.filter((p) => p.host === me && p.status === "scion").sort((a, b) => b.level - a.level || a.id - b.id);
   const [chosen, setChosen] = useState<number[]>(() => able.slice(0, seats).map((p) => p.id));
   const name = (id: number) => view.people.find((p) => p.id === id)?.name ?? `#${id}`;
+  if (e.event) {
+    const ev = Content.TRIP_EVENT_BY_ID.get(e.event.id);
+    const mine = e.event.votes[me];
+    return (
+      <div className="sp-muster" aria-label="An event">
+        <p>
+          <strong>{ev?.title}</strong> {ev?.text}
+        </p>
+        {mine === null ? (
+          <div className="sp-actions">
+            {ev?.options.map((o, i) => (
+              <button key={o.id} type="button" className="sp-button" onClick={() => sendMove({ type: "decide", option: i })}>
+                {o.label}
+              </button>
+            ))}
+          </div>
+        ) : (
+          <p>{mine === -1 ? "Your House has no one in the party." : "You have chosen. Waiting for the other Houses."}</p>
+        )}
+      </div>
+    );
+  }
   if (e.leader !== undefined) {
     const leads = view.people.find((p) => p.id === e.leader)?.host === me;
     return (

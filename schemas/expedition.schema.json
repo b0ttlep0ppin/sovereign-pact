@@ -1,0 +1,113 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "An expedition event, met at an Event node (SPEC §9.4). The party votes on the option; the option's rule names its subject, the Scion or House its effects fall on.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "pools", "weight", "band", "title", "text", "options"],
+  "properties": {
+    "id": { "$ref": "defs.schema.json#/definitions/id" },
+    "pools": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "$ref": "defs.schema.json#/definitions/id" },
+      "description": "\"general\", a card type (delve, hunt, rescue, resource, pilgrimage, mandatory) or a pool id."
+    },
+    "weight": { "type": "integer", "minimum": 1 },
+    "band": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": { "type": "integer", "minimum": 1, "maximum": 10 },
+      "description": "Expedition levels where it may appear."
+    },
+    "requires": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^!?flag:[a-z][a-z0-9_]*$" }
+    },
+    "title": { "type": "string", "minLength": 1 },
+    "text": { "type": "string", "minLength": 1 },
+    "options": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 4,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "label", "rule", "outcomes"],
+        "properties": {
+          "id": { "$ref": "defs.schema.json#/definitions/id" },
+          "label": { "type": "string", "minLength": 1 },
+          "rule": {
+            "type": "string",
+            "pattern": "^(vote|leader|scion:random|scion:(most|fewest)_(expeditions|kills|healing|targeted)|scion:(highest|lowest):(might|resilience|guile|acuity|sagacity|speed|sanity)|house:(lowest|highest)_standing)$",
+            "description": "Who the option happens to (SPEC §9.4's rules): vote is the whole party, leader the Leader, scion:… one Scion, house:… one House present."
+          },
+          "tags": {
+            "type": "array",
+            "items": { "enum": ["bold", "cautious", "clever", "reckless", "cruel", "kind"] },
+            "description": "For balancing the pool by script (SPEC §9.5); the cautious bot prefers cautious options."
+          },
+          "outcomes": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["w", "text", "effects"],
+              "properties": {
+                "w": { "type": "integer", "minimum": 1 },
+                "text": { "type": "string", "minLength": 1 },
+                "effects": { "type": "array", "items": { "$ref": "#/definitions/effect" } }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "effect": {
+      "type": "object",
+      "additionalProperties": false,
+      "minProperties": 1,
+      "properties": {
+        "to": { "enum": ["subject", "party"], "description": "The subject (default) or every Scion in the party." },
+        "sanity": { "type": "integer", "description": "% of max Sanity, + or −." },
+        "durability": { "type": "integer", "description": "% of max Durability on every location (or `loc`), + or −." },
+        "loc": { "enum": ["head", "body", "arms", "legs"] },
+        "mp": { "type": "integer", "description": "% of max MP." },
+        "xp": { "type": "integer", "minimum": 0 },
+        "jp": { "type": "integer", "minimum": 0 },
+        "injury": { "enum": ["head", "body", "arms", "legs", "sanity"], "description": "A forced roll on that table, for each Scion touched." },
+        "resources": {
+          "type": "object",
+          "additionalProperties": false,
+          "patternProperties": { "^(gold|grain|timber|stone|iron|essence|wyrmbone|moonsilver|voidglass|saints_ash|hollow_ivory)$": { "type": "integer" } },
+          "description": "To the subject's House; to the Commons when the subject is the whole party (SPEC §9.10)."
+        },
+        "score": {
+          "type": "object",
+          "additionalProperties": false,
+          "patternProperties": { "^(lineage|valor|treasury|holdings|lore|renown|intrigue|relics)$": { "type": "integer" } },
+          "description": "To the subject's House; to every House present when the subject is the whole party."
+        },
+        "accord": { "type": "integer" },
+        "doom": { "type": "integer" },
+        "flag": { "$ref": "defs.schema.json#/definitions/id" },
+        "encounter": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "template": { "$ref": "defs.schema.json#/definitions/id" },
+            "modifier": { "enum": ["ambush", "surprise"] },
+            "level": { "type": "integer", "minimum": -2, "maximum": 3, "description": "Levels above the card's." }
+          },
+          "description": "A battle now, from the card's pool."
+        },
+        "skip": { "type": "integer", "minimum": 1, "maximum": 3, "description": "Nodes passed by, never the boss." },
+        "retreat": { "const": true, "description": "The expedition ends here, as a retreat." }
+      }
+    }
+  }
+}

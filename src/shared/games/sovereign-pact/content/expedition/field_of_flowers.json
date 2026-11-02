@@ -1,0 +1,60 @@
+{
+  "id": "field_of_flowers",
+  "pools": [
+    "general",
+    "pilgrimage"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    10
+  ],
+  "title": "The Field of Flowers",
+  "text": "White flowers to the horizon, under a sky that is for once only a sky. No birds. No wind. Nothing wrong at all.",
+  "options": [
+    {
+      "id": "rest",
+      "label": "Rest here.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "You sleep in the flowers and wake whole. There was no catch.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 100
+            },
+            {
+              "to": "party",
+              "durability": 100
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "press_on",
+      "label": "Don't trust it. Keep moving.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "You walk through quickly, eyes down. Afterwards, some of you wish you had stayed.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 5
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

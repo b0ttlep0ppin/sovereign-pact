@@ -43,6 +43,12 @@ export function offer(s: SovState): ExpeditionCard[] {
 export function openGate(s: SovState): void {
   // A test's still Year (testing.ts `calm`, `ashore`) sends no one.
   if (s.flags.includes("calm") || s.flags.includes("no_gate")) return void delete s.gate;
+  // A Crisis's calamity can hold the Year's expedition back while the walls are manned (§3.5).
+  if (s.flags.includes("expedition_delayed")) {
+    s.flags = s.flags.filter((f) => f !== "expedition_delayed");
+    log(s, "The walls are manned this Year; the Rift Gate stays shut.");
+    return void delete s.gate;
+  }
   s.gate = { cards: offer(s), votes: s.houses.map(() => null) };
 }
 

@@ -1,0 +1,70 @@
+{
+  "id": "hollow_ivory",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    5,
+    10
+  ],
+  "title": "Hollow Ivory",
+  "text": "A ribcage the size of a chapel, half sunk in the ground. The bone is hollow, and something in the hollows hums.",
+  "options": [
+    {
+      "id": "harvest",
+      "label": "Harvest the ivory.",
+      "rule": "scion:highest:guile",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 65,
+          "text": "It comes away clean, and hums in the pack all the way home.",
+          "effects": [
+            {
+              "resources": {
+                "hollow_ivory": 1
+              }
+            },
+            {
+              "sanity": -15
+            }
+          ]
+        },
+        {
+          "w": 35,
+          "text": "It comes away, and so does something that was sleeping in it.",
+          "effects": [
+            {
+              "resources": {
+                "hollow_ivory": 1
+              }
+            },
+            {
+              "encounter": {
+                "level": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "leave",
+      "label": "Let the dead keep it.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The humming stops as you leave, as if it had been listening.",
+          "effects": []
+        }
+      ]
+    }
+  ]
+}

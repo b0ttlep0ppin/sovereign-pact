@@ -5,7 +5,7 @@ import { loseAccord } from "./commons.ts";
 import { POOL_BY_ID } from "./content.ts";
 import type { ExpeditionCard, Person, SovState } from "./state.ts";
 import { TUNING } from "./tuning.ts";
-import { home, rollChain } from "./journey.ts";
+import { bossFor, home, rollChain } from "./journey.ts";
 import { log, mandatoryYears } from "./year.ts";
 
 const seatsOf = (card: ExpeditionCard): number => (card.size === 4 ? 4 : 8);
@@ -57,6 +57,7 @@ export function muster(s: SovState, card: ExpeditionCard): void {
     at: 0,
     carry: {},
     out: [],
+    seen: [],
   };
   log(s, `The Houses turn the Rift Gate toward ${POOL_BY_ID.get(card.pool)?.name ?? card.pool}, a level ${card.level} ${card.type} expedition for ${seatsOf(card)}.`);
 }
@@ -161,6 +162,9 @@ function depart(s: SovState, leader: number): void {
   });
   e.chain = rollChain(s);
   e.at = 0;
+  // The boss is fixed at departure (the Observatory will show it).
+  const boss = bossFor(s);
+  if (boss) e.card.boss = boss;
   const n = roster(s).length;
   log(s, `${lead.name} of House ${s.houses[lead.host]!.name} leads ${n} Scion${n === 1 ? "" : "s"} through the Rift Gate${mandatoryYears(s).includes(s.year) ? ", and the settlement holds its breath" : ""}.`);
 }
@@ -169,6 +173,7 @@ function depart(s: SovState, leader: number): void {
 export function waiting(s: SovState): number[] {
   const e = s.expedition;
   if (!e || e.result) return [];
+  if (e.event) return e.event.votes.flatMap((v, i) => (v === null ? [i] : []));
   if (e.leader !== undefined) return [s.people.find((p) => p.id === e.leader)!.host];
   if (e.votes) return e.votes.flatMap((v, i) => (v === null ? [i] : []));
   return e.party.flatMap((p, i) => (p === null ? [i] : []));
