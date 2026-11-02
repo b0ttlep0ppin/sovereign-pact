@@ -86,3 +86,19 @@
 .sp-expedition__party li.is-out { opacity: 0.5; }
 .sp-expedition__party small { color: var(--muted); }
 .sp-expedition__party p { margin: 0; }
+/* Decisions of the Settlement Phase (§15.2, §15.7). */
+.sp-decisions { display: grid; gap: 12px; }
+.sp-decisions h2 { margin-bottom: 0; }
+.sp-event { display: grid; gap: 6px; padding: 12px; border-radius: 6px; border: 1px solid var(--line); background: var(--bg); }
+.sp-event h3 { margin: 0; font-size: 1rem; }
+.sp-event p { margin: 0; }
+.sp-event.is-private, .sp-event--bargain { border-style: dashed; }
+.sp-event--crisis { border-color: var(--danger); }
+.sp-event--bargain { background: linear-gradient(160deg, #1e0f1c, var(--bg)); }
+.sp-event__status { color: var(--muted); font-size: 0.88rem; }
+.sp-hands { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 12px; }
+.sp-hands li { display: flex; align-items: center; gap: 6px; }
+.sp-pledge { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.sp-pledge input { width: 5em; font: inherit; padding: 6px; background: var(--panel); color: var(--text); border: 1px solid var(--line); border-radius: 4px; }
+.sp-temptation { display: grid; gap: 6px; justify-items: start; }
+.sp-event .sp-actions { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 4px; }

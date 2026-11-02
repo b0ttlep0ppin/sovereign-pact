@@ -6,6 +6,7 @@ import { Content, TIER_NAMES, type SovMove, type SovView } from "@vibepulse/shar
 import { useState } from "react";
 import BattleScreen from "./BattleScreen";
 import ChainMap from "./ChainMap";
+import Decisions from "./Decisions";
 import { HERALDRY_COLORS, Emblem } from "./Emblem";
 import RiftGate from "./RiftGate";
 import TownMap from "./TownMap";
@@ -200,6 +201,7 @@ export default function SovereignPact({ view, isMyTurn, sendMove, lastError }: P
       {view.phase === "settlement" || view.phase === "omens" || view.phase === "reckoning" ? (
         <TownMap view={view} sendMove={sendMove} canAssign={view.phase === "settlement" && !!mine && !mine.sealed} />
       ) : null}
+      {view.phase === "settlement" || view.phase === "expedition" ? <Decisions view={view} sendMove={sendMove} canAct={view.phase === "settlement" && !!mine && !mine.sealed} /> : null}
       {view.phase === "settlement" || view.phase === "omens" ? <RiftGate view={view} sendMove={sendMove} canVote={view.phase === "settlement" && !!mine && !mine.sealed} /> : null}
       {view.phase === "expedition" ? <ChainMap view={view} /> : null}
 
