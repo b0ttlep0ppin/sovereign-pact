@@ -520,5 +520,12 @@ export type SovMove =
   | { type: "propose"; project: string }
   /** Vote on the open question: an index into its options. */
   | { type: "vote"; choice: number }
+  /** Ready a Scion in town (§12.1, §13.1): buy an ability, change Job, set the secondary set, a passive, gear. */
+  | { type: "learn"; person: number; ability: string }
+  | { type: "take_job"; person: number; job: JobId }
+  | { type: "secondary"; person: number; job: JobId | null }
+  | { type: "passive"; person: number; ability: string; on: boolean }
+  | { type: "equip"; person: number; item: number; slot: GearSlot }
+  | { type: "unequip"; person: number; slot: GearSlot }
   /** Set a person's Year assignment; "idle" clears it (§8.3). */
   | { type: "assign"; person: number; to: AssignmentKind | "idle"; at?: string; mentor?: number; job?: JobId };
