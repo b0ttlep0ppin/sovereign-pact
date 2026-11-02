@@ -1,0 +1,93 @@
+{
+  "id": "the_bone_harp",
+  "pools": [
+    "barrows"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    8
+  ],
+  "title": "The Bone Harp",
+  "text": "A harp made of bone, strung with hair, stands in a barrow. It plays itself when the living come near.",
+  "options": [
+    {
+      "id": "listen",
+      "label": "Listen.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "A lament that eases the heart.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 10
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "A lament that wakes the dead.",
+          "effects": [
+            {
+              "encounter": {}
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "play",
+      "label": "The steadiest hand plays it.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A song of binding. The barrow sleeps.",
+          "effects": [
+            {
+              "skip": 1
+            },
+            {
+              "score": {
+                "lore": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "break",
+      "label": "Break it.",
+      "rule": "leader",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Someone screams.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -10
+            },
+            {
+              "resources": {
+                "wyrmbone": 1
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

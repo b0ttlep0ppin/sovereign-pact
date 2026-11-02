@@ -1,0 +1,89 @@
+{
+  "id": "the_wyvern_nest",
+  "pools": [
+    "dragon_reaches"
+  ],
+  "weight": 2,
+  "band": [
+    5,
+    10
+  ],
+  "title": "The Wyvern Nest",
+  "text": "A wyvern's nest on a crag, eggs warm, mother away.",
+  "options": [
+    {
+      "id": "eggs",
+      "label": "Take an egg.",
+      "rule": "scion:highest:speed",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "Away before she returns.",
+          "effects": [
+            {
+              "resources": {
+                "wyrmbone": 2,
+                "essence": 3
+              }
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "She returns.",
+          "effects": [
+            {
+              "encounter": {
+                "level": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wait",
+      "label": "Wait in ambush.",
+      "rule": "vote",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "She comes home.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "surprise"
+              }
+            },
+            {
+              "score": {
+                "valor": 2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "leave",
+      "label": "Leave the nest.",
+      "rule": "leader",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "She circles overhead as you go, and does not dive.",
+          "effects": []
+        }
+      ]
+    }
+  ]
+}

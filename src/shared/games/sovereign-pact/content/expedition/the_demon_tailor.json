@@ -1,0 +1,78 @@
+{
+  "id": "the_demon_tailor",
+  "pools": [
+    "pit"
+  ],
+  "weight": 2,
+  "band": [
+    4,
+    10
+  ],
+  "title": "The Demon Tailor",
+  "text": "A demon tailor in the Pit offers to mend your gear. His thread is made of screams.",
+  "options": [
+    {
+      "id": "mend",
+      "label": "Let him mend it.",
+      "rule": "vote",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Better than new, and it whispers.",
+          "effects": [
+            {
+              "to": "party",
+              "durability": 30
+            },
+            {
+              "to": "party",
+              "sanity": -8
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "haggle",
+      "label": "The shrewdest haggles.",
+      "rule": "scion:highest:guile",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A good price, paid in a small lie.",
+          "effects": [
+            {
+              "to": "party",
+              "durability": 20
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "refuse",
+      "label": "Refuse.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "He is offended, and tells his friends.",
+          "effects": [
+            {
+              "encounter": {}
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "id": "the_ruined_quarry",
+  "pools": [
+    "resource"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    10
+  ],
+  "title": "The Ruined Quarry",
+  "text": "An old quarry, flooded, with cut stone still stacked at the edge.",
+  "options": [
+    {
+      "id": "stack",
+      "label": "Take the stacked stone.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Already cut.",
+          "effects": [
+            {
+              "resources": {
+                "stone": 5
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dive",
+      "label": "The toughest dives for what sank.",
+      "rule": "scion:highest:resilience",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A drowned quarryman's tools and coin.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 15,
+                "iron": 2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "claim",
+      "label": "Claim it for the House.",
+      "rule": "leader",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A rival House has a claim too.",
+          "effects": [
+            {
+              "resources": {
+                "stone": 3
+              }
+            },
+            {
+              "accord": -1
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,91 @@
+{
+  "id": "the_frozen_army",
+  "pools": [
+    "deep_cold"
+  ],
+  "weight": 2,
+  "band": [
+    4,
+    8
+  ],
+  "title": "The Frozen Army",
+  "text": "An army stands frozen in ranks on a plain of ice, mid-march. Their banners are of a House long fallen.",
+  "options": [
+    {
+      "id": "walk",
+      "label": "Walk among them.",
+      "rule": "vote",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "They do not move.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -5
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "One does.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "surprise"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "loot",
+      "label": "The strongest pries loose a captain's sword.",
+      "rule": "scion:highest:might",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Fine steel, and the army turns its heads.",
+          "effects": [
+            {
+              "item": {
+                "tier": 3
+              }
+            },
+            {
+              "doom": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "salute",
+      "label": "Salute them and go around.",
+      "rule": "leader",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Their banners stir.",
+          "effects": [
+            {
+              "score": {
+                "renown": 1
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

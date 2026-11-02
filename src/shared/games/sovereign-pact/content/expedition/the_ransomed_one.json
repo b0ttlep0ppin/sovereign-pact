@@ -1,0 +1,77 @@
+{
+  "id": "the_ransomed_one",
+  "pools": [
+    "rescue"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    10
+  ],
+  "title": "The Ransomed One",
+  "text": "A Lost Scion's cloak, offered for sale in a roadside market, with a note pinned to it.",
+  "options": [
+    {
+      "id": "buy",
+      "label": "Buy it and read the note.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A map, in their hand.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -10
+              }
+            },
+            {
+              "skip": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "seller",
+      "label": "The shrewdest questions the seller.",
+      "rule": "scion:highest:guile",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "He found it near a cave. He points.",
+          "effects": [
+            {
+              "skip": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "take",
+      "label": "Take it.",
+      "rule": "leader",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The market turns on you.",
+          "effects": [
+            {
+              "encounter": {}
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

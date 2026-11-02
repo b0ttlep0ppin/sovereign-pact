@@ -1,0 +1,85 @@
+{
+  "id": "the_name_thief",
+  "pools": [
+    "faceless_city"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    9
+  ],
+  "title": "The Name Thief",
+  "text": "Someone in the city has stolen a Scion's name. They answer to it in the market, and people believe them.",
+  "options": [
+    {
+      "id": "confront",
+      "label": "The Scion with the strongest will confronts them.",
+      "rule": "scion:highest:sagacity|scion:highest:resilience",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "Their name is theirs again.",
+          "effects": [
+            {
+              "sanity": 10
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "The thief keeps it a while longer.",
+          "effects": [
+            {
+              "sanity": -15
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "buy",
+      "label": "Buy it back.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Names are cheap here.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -10
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "steal",
+      "label": "Steal theirs in return.",
+      "rule": "scion:highest:guile",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A useful name to have.",
+          "effects": [
+            {
+              "score": {
+                "intrigue": 2
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

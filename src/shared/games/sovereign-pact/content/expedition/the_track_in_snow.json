@@ -1,0 +1,80 @@
+{
+  "id": "the_track_in_snow",
+  "pools": [
+    "hunt"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    10
+  ],
+  "title": "The Track in the Snow",
+  "text": "The quarry's tracks, clear as print in fresh snow. Too clear.",
+  "options": [
+    {
+      "id": "follow",
+      "label": "Follow them.",
+      "rule": "vote",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Into its trap.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "ambush"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "read",
+      "label": "The sharpest eye reads them.",
+      "rule": "scion:highest:acuity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Walked backward. It is behind you.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "surprise"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wait",
+      "label": "Wait for it to come.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It does, in its own time.",
+          "effects": [
+            {
+              "encounter": {}
+            },
+            {
+              "to": "party",
+              "sanity": -3
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

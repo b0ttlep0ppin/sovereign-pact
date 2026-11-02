@@ -1,0 +1,85 @@
+{
+  "id": "the_mold_room",
+  "pools": [
+    "forge_ruins"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    9
+  ],
+  "title": "The Mold Room",
+  "text": "A room of casting molds, one still sealed. Something was poured and never broken out.",
+  "options": [
+    {
+      "id": "break",
+      "label": "The strongest breaks it open.",
+      "rule": "scion:highest:might",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "A blade, perfect.",
+          "effects": [
+            {
+              "item": {
+                "tier": 3
+              }
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "A golem, half-made.",
+          "effects": [
+            {
+              "encounter": {}
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "leave",
+      "label": "Leave it sealed.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Some things should stay in the mold.",
+          "effects": []
+        }
+      ]
+    },
+    {
+      "id": "sell",
+      "label": "Carry it out to sell.",
+      "rule": "leader",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Heavy, and worth it.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 20
+              }
+            },
+            {
+              "to": "party",
+              "durability": -10
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

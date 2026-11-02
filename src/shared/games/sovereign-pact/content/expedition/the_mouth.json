@@ -1,0 +1,96 @@
+{
+  "id": "the_mouth",
+  "pools": [
+    "outer_dark"
+  ],
+  "weight": 2,
+  "band": [
+    6,
+    10
+  ],
+  "title": "The Mouth",
+  "text": "The ground opens like a mouth, slowly, and breathes. The way goes past its lip.",
+  "options": [
+    {
+      "id": "run",
+      "label": "Run past.",
+      "rule": "vote",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "Past.",
+          "effects": []
+        },
+        {
+          "w": 30,
+          "text": "It snaps.",
+          "effects": [
+            {
+              "to": "party",
+              "durability": -20,
+              "loc": "legs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "feed",
+      "label": "Feed it something.",
+      "rule": "leader",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It closes, satisfied.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -15
+              }
+            },
+            {
+              "skip": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "look",
+      "label": "The wisest looks into it.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "Down there, the way out.",
+          "effects": [
+            {
+              "foresee": true
+            },
+            {
+              "skip": 1
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "Down there, nothing.",
+          "effects": [
+            {
+              "sanity": -20
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
