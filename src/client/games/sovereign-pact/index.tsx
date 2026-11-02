@@ -6,6 +6,9 @@ import { Content, TIER_NAMES, type SovMove, type SovView } from "@vibepulse/shar
 import { useState } from "react";
 import AccessPanel, { accessAttrs, useAccess } from "./Access";
 import BattleScreen from "./BattleScreen";
+import Credits from "./Credits";
+import MusicPanel, { useMusic, useMusicSettings } from "./Music";
+import { battleTrack, sceneTrack } from "./music";
 import ChainMap from "./ChainMap";
 import Deals from "./Deals";
 import Decisions from "./Decisions";
@@ -117,6 +120,9 @@ function useBattles(battles: SovView["battles"]) {
 export default function SovereignPact({ view, isMyTurn, sendMove, lastError }: Props) {
   const battles = useBattles(view.battles);
   const [access, setAccess] = useAccess();
+  const [music, setMusic] = useMusicSettings();
+  const track = battles.watching ? battleTrack(battles.watching) : sceneTrack(view);
+  useMusic(track, music);
   const mine = view.me === null ? null : view.houses[view.me]!;
   const others = view.people.filter((p) => p.host !== view.me);
   return (
@@ -135,7 +141,9 @@ export default function SovereignPact({ view, isMyTurn, sendMove, lastError }: P
         </div>
       </section>
       <Timeline view={view} />
+      <MusicPanel track={track} settings={music} set={setMusic} />
       <AccessPanel access={access} set={setAccess} />
+      <Credits />
 
       {view.outcome ? (
         <p className={`sp-outcome${view.outcome.won ? " is-won" : ""}`} role="status">
