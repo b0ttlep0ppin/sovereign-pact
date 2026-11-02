@@ -2,6 +2,11 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 8l): Wards in deals
+
+- The offer form now lists the House's own Scions to give as Wards, and the chosen House's Scions to ask for as Wards (§6.9), closing the gap noted under 8g.
+- Reading: the form lists every Scion, because whether a Ward may be passed on depends on its Loyalty (Sworn), which no House sees. The rules refuse a Ward that cannot go, with the reason, when the offer is made (giving) or accepted (asking).
+
 ## 2026-11-02 (implementation, Milestone 8k): the satchel on the road
 
 - The expedition panel lets a House with a Scion marching open the party's satchel between nodes (§13.7): a Use button for each kind it may open now (Pilgrim's Bread at a Camp, a Lantern, a Signal Flare on a Rescue card), and a Scion to name for those that go to one (Widow's Tea, a Smuggler's Flask).
