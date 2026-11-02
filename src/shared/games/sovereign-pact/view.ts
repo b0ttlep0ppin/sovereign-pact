@@ -146,9 +146,25 @@ export interface PersonView {
   kit?: Kit;
 }
 
+/** A volunteer in the opening draft, as much as the viewer's Insight shows (§6.4). */
+export interface VolunteerView {
+  id: number;
+  name: string;
+  sex: Person["sex"];
+  age: number;
+  base?: Person["base"];
+  potential?: Person["potential"];
+  growth?: Person["growth"];
+  /** Only as many as the viewer's Insight shows: one below level 2. */
+  traits: string[];
+  tarot?: string;
+}
+
 export interface SovView {
   /** The viewer's House, or null for a spectator. */
   me: number | null;
+  /** The opening recruit draft: the volunteers left, the pick order, and how many picks are made. */
+  muster: { pool: VolunteerView[]; order: number[]; at: number } | null;
   year: number;
   years: number;
   mandatoryYears: readonly number[];
@@ -250,6 +266,15 @@ function personView(p: Person, viewer: number | null, insight: number): PersonVi
   return v;
 }
 
+/** A volunteer as the viewer's Insight shows them (§6.4), the same as the House's own recruits (Q94). */
+function volunteerView(p: Person, insight: number): VolunteerView {
+  const v: VolunteerView = { id: p.id, name: p.name, sex: p.sex, age: p.age, traits: insight >= 2 ? p.traits : p.traits.slice(0, 1) };
+  if (insight >= 1) Object.assign(v, { base: p.base, potential: p.potential });
+  if (insight >= 2) v.growth = p.growth;
+  if (insight >= 3) v.tarot = p.tarot;
+  return v;
+}
+
 export function view(s: SovState, playerId: PlayerId): SovView {
   const seat = s.players.indexOf(playerId);
   const me = seat >= 0 && seat < s.houses.length ? seat : null;
@@ -279,6 +304,13 @@ export function view(s: SovState, playerId: PlayerId): SovView {
     gate: s.gate ?? null,
     // §9.3: the chain's shape is unknown until walked.
     expedition: s.expedition ? expeditionView(s, s.expedition, me) : null,
+    muster: s.muster
+      ? {
+          pool: s.muster.pool.map((p) => volunteerView(p, Math.max(insight, TUNING.founding.musterInsight))),
+          order: s.muster.order,
+          at: s.muster.at,
+        }
+      : null,
     opens: me === null ? [] : opensFor(s, me),
     deals: dealsFor(s, me),
     // A shop lot's price to the viewer (its discount, §5.7); sealed lots show their reserve.

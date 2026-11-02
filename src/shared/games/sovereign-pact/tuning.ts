@@ -107,7 +107,7 @@ export const TUNING = {
   promotion: { gold: 20, slots: 1, chapelSlots: 1, botScions: [8, 5, 4, 4] as ByHouses },
 
   /** §5.1 [PROPOSED]: how often a Random House takes a Bloodline. */
-  founding: { bloodlinePct: 25 },
+  founding: { bloodlinePct: 25, /** Volunteers in the opening draft beyond the picks, per House. */ musterExtra: 1, /** Q94 (Josh): the muster is a public showing, every volunteer read in full (Insight 3, §6.4) by every House. */ musterInsight: 3 },
 
   houses: {
     /** §5.6: an aligned House's people resist its element by this % and take it from the opposite; its spells cost this % less MP. Unaligned: + to every ailment resistance. Elemental Bane (§5.7): −% to the named element. */

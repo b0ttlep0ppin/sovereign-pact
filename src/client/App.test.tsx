@@ -7,6 +7,19 @@ const letBotsMove = () => {
   for (let i = 0; i < 60; i++) act(() => vi.advanceTimersByTime(400));
 };
 
+/** The muster: on each of our picks take the first volunteer as a Knight, letting the bots pick between. */
+const draft = () => {
+  for (let i = 0; i < 20 && screen.queryByRole("region", { name: "The muster" }); i++) {
+    const choose = screen.queryAllByRole("button", { name: /^Choose (?!a |their )/ })[0];
+    if (choose) {
+      fireEvent.click(choose);
+      fireEvent.click(screen.getByRole("button", { name: /^Knight/ }));
+      fireEvent.click(screen.getByRole("button", { name: /^Take / }));
+    }
+    letBotsMove();
+  }
+};
+
 /** The Expedition Phase: send the Scions picked by default, then vote for whoever is first. */
 const sendTheParty = () => {
   const send = screen.queryByRole("button", { name: /^Send \d/ });
@@ -34,6 +47,7 @@ describe("the standalone host", () => {
       fireEvent.click(screen.getAllByRole("radio", { name: /counts double/ })[0]!);
       fireEvent.click(screen.getByRole("button", { name: "Swear the Pact" }));
       letBotsMove();
+      draft();
       expect(screen.getByText("Year 1 of 20.")).toBeTruthy();
       fireEvent.click(screen.getByRole("button", { name: "Seal the Year" }));
       letBotsMove();
@@ -54,6 +68,7 @@ describe("the standalone host", () => {
       fireEvent.click(screen.getAllByRole("radio", { name: /counts double/ })[0]!);
       fireEvent.click(screen.getByRole("button", { name: "Swear the Pact" }));
       letBotsMove();
+      draft();
       fireEvent.click(screen.getByRole("button", { name: "Seal the Year" }));
       letBotsMove();
       sendTheParty();

@@ -4,6 +4,7 @@
 // marks) lives here like everything else and is filtered out per seat by view.ts.
 import type { PlayerId } from "../../game.ts";
 import type { FoundingStep, HouseDesign } from "./founding.ts";
+import type { Muster } from "./muster.ts";
 import type { Replay } from "./combat/replay.ts";
 import type { Battle } from "./combat/types.ts";
 import type { TripEffect } from "./content.ts";
@@ -500,6 +501,8 @@ export interface SovState {
   gate?: { cards: ExpeditionCard[]; votes: (number | null)[] };
   /** The Expedition Phase's party (§9.2). */
   expedition?: Expedition;
+  /** The opening recruit draft, between the last oath and Year 1. */
+  muster?: Muster;
   /** Houses that proposed a vote this Year: one proposal each a Year. */
   proposers: number[];
   /** Year assignments by person id; kept from Year to Year until changed. Unassigned people idle. */
@@ -531,6 +534,8 @@ export type SovMove =
   | { type: "design"; house: HouseDesign }
   | { type: "random_house"; step?: FoundingStep }
   | { type: "swear"; ambition: 0 | 1 }
+  /** The opening draft: take a volunteer, promoted into a base Job. */
+  | { type: "muster"; person: number; job: JobId }
   | { type: "seal" }
   /** Vote for one of the Rift Gate's cards (§9.1). */
   | { type: "pick_card"; card: number }

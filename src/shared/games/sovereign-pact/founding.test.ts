@@ -20,6 +20,15 @@ const error = (s: SovState, player: string, m: SovMove): string => {
   return r.error;
 };
 
+/** The opening draft, made by the bots. */
+const draftAll = (s: SovState): SovState => {
+  while (s.muster) {
+    const p = g.activePlayers(s)[0]!;
+    s = move(s, p, g.botMove!(s, p, undefined as never));
+  }
+  return s;
+};
+
 describe("founding the Houses (§5.1)", () => {
   it("starts every seat on a valid Random House draft, with no people until all have sworn", () => {
     const s = fresh(4);
@@ -82,6 +91,7 @@ describe("founding the Houses (§5.1)", () => {
     expect(g.passiveMoves!(s, "p1")).toEqual(["unseal"]);
     s = move(move(s, "p1", { type: "unseal" }), "p1", { type: "swear", ambition: 1 });
     s = move(s, "p2", { type: "swear", ambition: 0 });
+    s = draftAll(s);
     expect(s.phase).toBe("settlement");
     expect(s.houses[0]!.ambition).toEqual(dealt[1]);
     expect(s.houses.every((h) => h.dealt === undefined && !h.sealed)).toBe(true);

@@ -10,7 +10,7 @@ type Props = { view: SovView; sendMove: (m: SovMove) => void; canAct: boolean };
 type Person = SovView["people"][number];
 type JobId = NonNullable<Person["job"]>;
 
-const STATS = ["Might", "Resilience", "Guile", "Acuity", "Sagacity", "Speed"];
+export const STATS = ["Might", "Resilience", "Guile", "Acuity", "Sagacity", "Speed"];
 const GROUPS: { status: Person["status"]; title: string }[] = [
   { status: "scion", title: "Scions" },
   { status: "retired", title: "Retired" },
@@ -19,10 +19,10 @@ const GROUPS: { status: Person["status"]; title: string }[] = [
 ];
 const BASE = Content.JOBS.filter((j) => !j.advanced);
 const words = (id: string) => id.replace(/_/g, " ");
-const TAROT_BY_ID = new Map(Content.TAROT.map((t) => [t.id, t]));
+export const TAROT_BY_ID = new Map(Content.TAROT.map((t) => [t.id, t]));
 
 /** One trait or the Tarot card: its name, then what it does (Crunch) or how it reads (Flavor). */
-function TraitLine({ kind, name, text }: { kind?: string; name: string; text?: string }) {
+export function TraitLine({ kind, name, text }: { kind?: string; name: string; text?: string }) {
   return (
     <li className={kind ? "is-tarot" : undefined}>
       {kind ? <span className="sp-person__kind">{kind}</span> : null}
@@ -40,7 +40,7 @@ export default function Roster({ view, sendMove, canAct }: Props) {
   return (
     <section className="sp-panel sp-roster" aria-label="Your people">
       <h2>Your people</h2>
-      {own.length ? null : <p className="sp-event__status">{view.phase === "founding" ? "Your first Scions join once every House has sworn the Pact." : "Nobody is left."}</p>}
+      {own.length ? null : <p className="sp-event__status">{view.phase === "founding" ? (view.muster ? "Your first Scions are chosen in the muster above." : "Your first Scions are chosen once every House has sworn the Pact.") : "Nobody is left."}</p>}
       {GROUPS.map(({ status, title }) => {
         const group = own.filter((p) => p.status === status);
         if (!group.length) return null;

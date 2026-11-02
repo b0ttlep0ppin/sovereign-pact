@@ -5,6 +5,7 @@ import type { GameDefinition, GameResult, MoveResult, PlayerId } from "../../gam
 import type { Rng } from "../../rng.ts";
 import type { TableOption, TableOptions } from "../../table-options.ts";
 import { botFounding, cannotDesign, cannotSwear, design, draftHouse, reroll, swear } from "./founding.ts";
+import { botMuster, cannotMuster, muster, musterTurn, type BaseJob } from "./muster.ts";
 import { checkpoint, describeSave, restore, type SovSave } from "./save.ts";
 import { placements } from "./score.ts";
 import { BASE_JOBS, type CampaignOptions, type House, type SovMove, type SovState } from "./state.ts";
@@ -145,7 +146,7 @@ export function applyMove(state: SovState, playerId: PlayerId, move: SovMove): M
   // The last move's battle replays are the screen's to keep, not the state's (they are large).
   const s = clone({ ...state, battles: undefined });
   const h = s.houses[house]!;
-  if (s.phase === "founding" && !["design", "random_house", "swear", "unseal"].includes(move.type)) return fail("Found your House first.");
+  if (s.phase === "founding" && !["design", "random_house", "swear", "unseal", "muster"].includes(move.type)) return fail("Found your House first.");
   if (s.expedition?.fight && move.type !== "command") return fail("A battle is being fought.");
   switch (move.type) {
     case "design": {
@@ -169,6 +170,12 @@ export function applyMove(state: SovState, playerId: PlayerId, move: SovMove): M
       const why = cannotSwear(s, house, move.ambition);
       if (why) return fail(why);
       swear(s, house, move.ambition);
+      return { ok: true, state: s };
+    }
+    case "muster": {
+      const why = cannotMuster(s, house, move.person, move.job);
+      if (why) return fail(why);
+      muster(s, house, move.person, move.job as BaseJob);
       return { ok: true, state: s };
     }
     case "seal": {
@@ -463,6 +470,7 @@ export function applyMove(state: SovState, playerId: PlayerId, move: SovMove): M
     case "unseal": {
       if (s.phase === "founding") {
         // Taking back an oath before the last House swears.
+        if (s.muster) return fail("Every House has sworn; the draft is under way.");
         if (!h.sealed) return fail("You have not sworn the Pact.");
         h.sealed = false;
         return { ok: true, state: s };
@@ -480,6 +488,7 @@ export function applyMove(state: SovState, playerId: PlayerId, move: SovMove): M
 
 export function activePlayers(s: SovState): PlayerId[] {
   if (s.phase === "expedition") return waiting(s).map((i) => s.players[i]!);
+  if (s.muster) return [s.players[musterTurn(s)!]!];
   if (s.phase !== "settlement" && s.phase !== "founding") return [];
   return s.houses.flatMap((h, i) => (h.sealed ? [] : [s.players[i]!]));
 }
@@ -515,6 +524,7 @@ function botFieldMove(s: SovState, house: number): SovMove {
 export function botMove(s: SovState, playerId: PlayerId): SovMove {
   const house = houseOf(s, playerId);
   // A bot founds the Random House it was dealt, keeping the first Ambition (§5.1).
+  if (s.muster && musterTurn(s) === house) return { type: "muster", ...botMuster(s) };
   if (s.phase === "founding") return house >= 0 && !s.houses[house]!.sealed ? botFounding(s, house) : { type: "swear", ambition: 0 };
   // In battle, the Scion's gambits: the same engine plays a bot's turn and an absent player's (§6.11).
   if (s.phase === "expedition" && house >= 0 && s.expedition?.fight) return { type: "command", auto: "turn" };
@@ -574,7 +584,7 @@ export const sovereignPact: GameDefinition<SovState, SovMove, SovView, SovSave> 
   timeoutMove: (s, playerId) => botMove(s, playerId),
   passiveMoves: (s, playerId) => {
     const house = houseOf(s, playerId);
-    return (s.phase === "settlement" || s.phase === "founding") && house >= 0 && s.houses[house]!.sealed ? ["unseal"] : [];
+    return (s.phase === "settlement" || (s.phase === "founding" && !s.muster)) && house >= 0 && s.houses[house]!.sealed ? ["unseal"] : [];
   },
   checkpoint,
   describeSave,

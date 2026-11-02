@@ -25,7 +25,7 @@ describe("the Lost (§9.9)", () => {
     expect(s.people.find((p) => p.id === ids[0])!.lost).toEqual({ year: 1, pool: "barrows", level: 3 });
     s.year = 2;
     const cards = offer(s);
-    expect(cards[0]).toEqual({ type: "rescue", pool: "barrows", level: 3, size: 4, rescue: ids });
+    expect({ ...cards[0], rescue: [...((cards[0] as { rescue?: number[] }).rescue ?? [])].sort((a, b) => a - b) }).toEqual({ type: "rescue", pool: "barrows", level: 3, size: 4, rescue: [...ids].sort((a, b) => a - b) });
     expect(cards.length).toBeGreaterThanOrEqual(3);
   });
 

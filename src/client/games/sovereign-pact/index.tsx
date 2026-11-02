@@ -19,6 +19,7 @@ import Roster from "./Roster";
 import { HERALDRY_COLORS, Emblem } from "./Emblem";
 import RiftGate from "./RiftGate";
 import TownMap from "./TownMap";
+import Volunteers from "./Volunteers";
 import Works from "./Works";
 import "./SovereignPact.css";
 
@@ -221,6 +222,7 @@ export default function SovereignPact({ view, isMyTurn, sendMove, lastError }: P
         ) : null}
       </div>
 
+      {view.muster ? <Volunteers view={view} sendMove={sendMove} /> : null}
       {view.phase === "settlement" || view.phase === "omens" || view.phase === "reckoning" ? (
         <TownMap view={view} sendMove={sendMove} canAssign={view.phase === "settlement" && !!mine && !mine.sealed} />
       ) : null}

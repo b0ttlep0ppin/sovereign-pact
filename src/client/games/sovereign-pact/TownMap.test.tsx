@@ -21,7 +21,8 @@ describe("the Town Map (§15.6)", () => {
     const { view } = town();
     const sendMove = vi.fn();
     render(<TownMap view={view} sendMove={sendMove} canAssign />);
-    const mine = view.people.find((p) => p.host === view.me && p.status === "scion")!;
+    // A Scion whose name nobody else shares, so its chit is the only one with that title.
+    const mine = view.people.find((p) => p.host === view.me && p.status === "scion" && view.people.filter((q) => q.name === p.name).length === 1)!;
     fireEvent.click(screen.getAllByTitle(new RegExp(`^${mine.name}`))[0]!);
     fireEvent.click(screen.getByLabelText("The walls"));
     expect(sendMove).toHaveBeenCalledWith({ type: "assign", person: mine.id, to: "guard" });
