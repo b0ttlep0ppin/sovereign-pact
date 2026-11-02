@@ -1,0 +1,88 @@
+{
+  "id": "the_six_pilgrims",
+  "pools": [
+    "shrine_of_six"
+  ],
+  "weight": 3,
+  "band": [
+    1,
+    8
+  ],
+  "title": "Six Pilgrims",
+  "text": "Six pilgrims at a well, one devoted to each of the Six, arguing. They ask a stranger to settle which god the well belongs to.",
+  "options": [
+    {
+      "id": "one",
+      "label": "Name one god.",
+      "rule": "leader",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Five pilgrims leave angry. One stays, and blesses you.",
+          "effects": [
+            {
+              "blessing": {
+                "trait": "lucky",
+                "years": 1
+              }
+            },
+            {
+              "score": {
+                "intrigue": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "all",
+      "label": "Say it belongs to all six.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "They grumble, and share the water, and share their food.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 10
+            },
+            {
+              "to": "party",
+              "durability": 10
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mine",
+      "label": "Say it belongs to you.",
+      "rule": "leader",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "All six turn on you.",
+          "effects": [
+            {
+              "encounter": {}
+            },
+            {
+              "doom": 1
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

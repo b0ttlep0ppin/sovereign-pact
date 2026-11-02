@@ -1,0 +1,88 @@
+{
+  "id": "the_wyrm_graveyard",
+  "pools": [
+    "dragon_reaches"
+  ],
+  "weight": 3,
+  "band": [
+    4,
+    10
+  ],
+  "title": "The Wyrm Graveyard",
+  "text": "A valley of great bones, where old wyrms go to die. One of them has not quite finished.",
+  "options": [
+    {
+      "id": "mercy",
+      "label": "Give it a clean end.",
+      "rule": "scion:most_kills",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It lets them. Its last breath is warm, and it leaves a gift.",
+          "effects": [
+            {
+              "resources": {
+                "wyrmbone": 2
+              }
+            },
+            {
+              "score": {
+                "valor": 3
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bones",
+      "label": "Take bones from the dead ones and leave it be.",
+      "rule": "leader",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It watches you work, very slowly.",
+          "effects": [
+            {
+              "resources": {
+                "wyrmbone": 1,
+                "gold": 10
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "listen",
+      "label": "Listen to what it has to say.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It talks for an hour about a world before the rift. Nobody sleeps well after.",
+          "effects": [
+            {
+              "score": {
+                "lore": 3
+              }
+            },
+            {
+              "to": "party",
+              "sanity": -10
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

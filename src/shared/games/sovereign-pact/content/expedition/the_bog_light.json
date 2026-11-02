@@ -1,0 +1,93 @@
+{
+  "id": "the_bog_light",
+  "pools": [
+    "drowned_marches"
+  ],
+  "weight": 3,
+  "band": [
+    1,
+    8
+  ],
+  "title": "The Bog Light",
+  "text": "A light bobbing over the marsh, just ahead, always just ahead. It goes the way you were going anyway.",
+  "options": [
+    {
+      "id": "follow",
+      "label": "Follow it.",
+      "rule": "vote",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 40,
+          "text": "It leads you through the marsh by a dry path no map shows.",
+          "effects": [
+            {
+              "skip": 1
+            }
+          ]
+        },
+        {
+          "w": 60,
+          "text": "It leads you into the deep water, and waits.",
+          "effects": [
+            {
+              "to": "party",
+              "durability": -15,
+              "loc": "legs"
+            },
+            {
+              "encounter": {}
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "catch",
+      "label": "The quickest tries to catch it in a jar.",
+      "rule": "scion:highest:speed",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "It is in the jar, and very angry, and very bright.",
+          "effects": [
+            {
+              "resources": {
+                "essence": 4
+              }
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "It is not in the jar.",
+          "effects": [
+            {
+              "sanity": -10
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ignore",
+      "label": "Keep to your own way.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It sulks off over the water.",
+          "effects": []
+        }
+      ]
+    }
+  ]
+}

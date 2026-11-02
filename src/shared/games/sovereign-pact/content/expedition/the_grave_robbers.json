@@ -1,0 +1,103 @@
+{
+  "id": "the_grave_robbers",
+  "pools": [
+    "barrows"
+  ],
+  "weight": 3,
+  "band": [
+    1,
+    8
+  ],
+  "title": "The Grave Robbers",
+  "text": "A gang of living thieves digging into a barrow, with a stolen lantern and a great deal of rope. They offer you a cut.",
+  "options": [
+    {
+      "id": "join",
+      "label": "Take the cut and help them dig.",
+      "rule": "leader",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "The barrow is rich, and its keeper is away.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 20
+              }
+            },
+            {
+              "item": {
+                "tier": 2
+              }
+            },
+            {
+              "doom": 1
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "The barrow's keeper is home.",
+          "effects": [
+            {
+              "encounter": {}
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "stop",
+      "label": "Run them off.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "They run. The barrow is quiet, and seems to thank you.",
+          "effects": [
+            {
+              "score": {
+                "renown": 1
+              }
+            },
+            {
+              "to": "party",
+              "sanity": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "watch",
+      "label": "Watch from a distance and see what comes out.",
+      "rule": "scion:highest:acuity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Something comes out. The thieves do not. You learn a lot about what lives there.",
+          "effects": [
+            {
+              "score": {
+                "lore": 2
+              }
+            },
+            {
+              "to": "party",
+              "sanity": -5
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,92 @@
+{
+  "id": "the_avalanche_bell",
+  "pools": [
+    "deep_cold"
+  ],
+  "weight": 3,
+  "band": [
+    3,
+    10
+  ],
+  "title": "The Avalanche Bell",
+  "text": "A bell hung over a pass to warn of avalanches, its rope frozen stiff. Above, the snow hangs heavy.",
+  "options": [
+    {
+      "id": "ring",
+      "label": "Ring it and run.",
+      "rule": "leader",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The snow comes down behind you, and buries whatever was following.",
+          "effects": [
+            {
+              "skip": 1
+            },
+            {
+              "to": "party",
+              "durability": -10,
+              "loc": "legs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "quiet",
+      "label": "Creep through in silence.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 75,
+          "text": "Not a flake falls.",
+          "effects": [
+            {
+              "to": "party",
+              "xp": 30
+            }
+          ]
+        },
+        {
+          "w": 25,
+          "text": "Someone coughs.",
+          "effects": [
+            {
+              "injury": "body"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "take",
+      "label": "Take the bell.",
+      "rule": "scion:highest:might",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Old bronze, very heavy, very valuable, and the pass has no warning now.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 15
+              }
+            },
+            {
+              "doom": 1
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "id": "the_pit_brawl",
+  "pools": [
+    "pit"
+  ],
+  "weight": 3,
+  "band": [
+    2,
+    9
+  ],
+  "title": "The Pit Brawl",
+  "text": "A ring of demons around a fighting pit, roaring. They want a champion from the living, and they will let the rest pass if one fights.",
+  "options": [
+    {
+      "id": "fight",
+      "label": "The one with most kills goes down.",
+      "rule": "scion:most_kills",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 55,
+          "text": "They win, and the demons cheer like a crowd at a fair.",
+          "effects": [
+            {
+              "score": {
+                "valor": 3
+              }
+            },
+            {
+              "xp": 150
+            }
+          ]
+        },
+        {
+          "w": 45,
+          "text": "They lose, and live, which the demons find funny.",
+          "effects": [
+            {
+              "injury": "body"
+            },
+            {
+              "sanity": -10
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cheat",
+      "label": "The craftiest fixes the fight.",
+      "rule": "scion:highest:guile",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The demons never notice. Some of the bets were very large.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 25
+              }
+            },
+            {
+              "score": {
+                "intrigue": 2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "all",
+      "label": "Everyone goes down together.",
+      "rule": "vote",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The demons love it.",
+          "effects": [
+            {
+              "encounter": {
+                "level": 1
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

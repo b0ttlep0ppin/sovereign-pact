@@ -1,0 +1,87 @@
+{
+  "id": "the_pack_den",
+  "pools": [
+    "beast_lands"
+  ],
+  "weight": 3,
+  "band": [
+    1,
+    8
+  ],
+  "title": "The Pack Den",
+  "text": "A den under the roots, and in it a litter of pups with eyes like coals. The mother is out hunting. Not far out.",
+  "options": [
+    {
+      "id": "take",
+      "label": "Take a pup to raise.",
+      "rule": "leader",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 40,
+          "text": "It bites, then settles, then follows. It will be a great hound, or something else.",
+          "effects": [
+            {
+              "house_improvement": "recruit"
+            }
+          ]
+        },
+        {
+          "w": 60,
+          "text": "The mother was not far out.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "ambush"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "leave",
+      "label": "Leave them be and go quietly.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The mother passes you on the path an hour later, and only looks.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hunt",
+      "label": "Wait for the mother and take her.",
+      "rule": "vote",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "She comes home to you.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "surprise",
+                "level": 1
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

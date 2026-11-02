@@ -1,0 +1,96 @@
+{
+  "id": "the_unlit_stars",
+  "pools": [
+    "outer_dark"
+  ],
+  "weight": 3,
+  "band": [
+    5,
+    10
+  ],
+  "title": "The Unlit Stars",
+  "text": "Out here the stars are unlit, hanging like dead lamps. One can be reached, if someone climbs.",
+  "options": [
+    {
+      "id": "climb",
+      "label": "The quickest climbs to it.",
+      "rule": "scion:highest:speed",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "They bring it down, cold and heavy and humming.",
+          "effects": [
+            {
+              "score": {
+                "relics": 1
+              }
+            },
+            {
+              "resources": {
+                "essence": 5
+              }
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "They fall a long way, in a place with no ground.",
+          "effects": [
+            {
+              "injury": "legs"
+            },
+            {
+              "sanity": -15
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "light",
+      "label": "The wisest tries to light it.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It flickers, and for a moment you can see the way home.",
+          "effects": [
+            {
+              "skip": 1
+            },
+            {
+              "to": "party",
+              "sanity": 10
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ignore",
+      "label": "Do not look up.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It is hard not to.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -5
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
