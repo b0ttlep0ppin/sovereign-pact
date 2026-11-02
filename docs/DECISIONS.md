@@ -2,6 +2,11 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 8ax): enemies hit harder
+
+- Josh: "bad guys are not threatening enough, i feel like they don't even attack". A probe of the campaign's battles found enemies act on about 90% of their turns, so the trouble was their damage: a party lost only 12-16% of its HP in an early battle.
+- Reading: the early-level soften (`tuning.enemies.soften`) now thins enemy HP only; their damage has its own, gentler curve (`softenAtk`, 0.95 at level 1 then full), and every enemy's damage is multiplied by `atkMult` 1.15. An early battle now costs the party about a fifth of its HP, a level-6 one nearly a third, and HP carries between an expedition's battles.
+
 ## 2026-11-02 (implementation, Milestone 8aw): a pause before each battle, an ending after it, the turn order, and command sets
 
 - Josh: "there should also be pauses before battle, if you have a battle, with some flavor text". A battle opens on a card: the region, the boss or the encounter, an omen (six per region, in `pools.json` `omens`, chosen by the battle's seed) and what waits; it lasts five seconds or until a key or "To arms".

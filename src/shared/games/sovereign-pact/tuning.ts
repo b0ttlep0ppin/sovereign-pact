@@ -495,6 +495,14 @@ export const TUNING = {
      * tactics nearly always lose (6 bot campaigns: 0 won, 4 of 17 mandatory expeditions won).
      */
     soften: [0.7, 0.75, 0.8, 0.85, 0.9, 0.95] as readonly number[],
+    /**
+     * Enemy damage × this at levels 1, 2, 3… (1 beyond the list), in place of `soften`, which now
+     * thins only their HP. Josh 2026-11-02: enemies were "not threatening enough": a party lost 12–20%
+     * of its HP a battle at L2–4.
+     */
+    softenAtk: [0.95, 1, 1, 1, 1, 1] as readonly number[],
+    /** Every enemy's damage × this (Josh 2026-11-02, "not threatening enough"). */
+    atkMult: 1.15,
     /** §14.1 Parts, first pass: the share of a blow on a Part the body also takes, and the stagger when one breaks. */
     parts: { bodySharePct: 50, stagger: 50 },
     /** §14.6: everyone starts a boss fight at CT 30. */

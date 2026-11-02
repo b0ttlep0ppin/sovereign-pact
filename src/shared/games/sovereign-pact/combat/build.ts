@@ -223,7 +223,7 @@ export function enemyCombatant(def: EnemyDef | string, o: EnemyOpts): Combatant 
     accuracy: 0,
     defense: Math.round(block("defense", L) * m.def),
     weapon: { kind: "natural", power: block("power", L), acc: Math.round(block("accuracy", L) * m.acc), crit: 0, reach: melee, hands: 1 },
-    enemyScale: m.atk * (1 + C.enemyLevelFactor * L) * soft,
+    enemyScale: m.atk * (1 + C.enemyLevelFactor * L) * (TUNING.enemies.softenAtk[L - 1] ?? 1) * TUNING.enemies.atkMult,
     broken: [],
     affinity: { ...e.affinity },
     resist: { physical: resist, mental: resist },

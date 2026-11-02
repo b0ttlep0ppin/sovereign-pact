@@ -20,7 +20,8 @@ describe("enemy scaling (§14.2)", () => {
     expect(e.weapon.power).toBeCloseTo(power, 0);
     expect(e.weapon.acc).toBe(acc);
     expect(e.evasion / 0.6).toBeCloseTo(eva, -1);
-    expect(e.enemyScale).toBeCloseTo(TUNING.enemies.roles.bruiser.atk * (1 + TUNING.combat.enemyLevelFactor * L) * soft);
+    // Their damage takes its own softening and the global multiplier instead (Josh: "not threatening enough").
+    expect(e.enemyScale).toBeCloseTo(TUNING.enemies.roles.bruiser.atk * (1 + TUNING.combat.enemyLevelFactor * L) * (TUNING.enemies.softenAtk[L - 1] ?? 1) * TUNING.enemies.atkMult);
   });
 
   it("takes role multipliers when an enemy names no stats of its own", () => {
