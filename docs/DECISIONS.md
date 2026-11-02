@@ -2,6 +2,17 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 8h): readying Scions
+
+- The Settlement Phase shows a readying panel (§12.1, §13.1), one Scion at a time (tabs):
+  - **Job:** the current Job, the JP left in each Job, and the Jobs the Scion may take now (advanced ones once their prerequisites' JP is earned).
+  - **Abilities:** the primary Job's actives and passives with their JP prices; Learn is enabled when the JP covers it.
+  - **Secondary set:** any other Job with an active bought, or none.
+  - **Passives:** every bought passive as a toggle, with the points used out of the budget.
+  - **Gear:** each of the eight slots with what is worn, Take off (not for a cursed piece), and the stashed items that fit that slot.
+- The view gives each of the host House's own Scions and Retired a `kit`: JP left by Job, the abilities known, the passives on, the budget and points, the Jobs it may take, and which stashed items fit which slot. The rules work these out, so the screen never guesses.
+- Reading: a Scion's JP, abilities and passives are the host House's to see, like Growth; rivals see Job, level and gear as before. A Ward's kit goes to the House hosting it, which outfits it (§13.4).
+
 ## 2026-11-02 (implementation, Milestone 8g): deals between Houses
 
 - The Settlement Phase shows the Deals panel (§8.9). It lists every deal the viewer may see:

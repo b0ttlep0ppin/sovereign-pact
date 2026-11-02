@@ -2,7 +2,7 @@
 // secondary Jobs, equipping passives within the budget, and putting a House's gear on its Scions.
 // All of it happens in the Settlement Phase only: on an expedition Jobs, passives and gear are locked
 // (§9.2). A House readies its own Scions and the Wards it hosts (§13.4: the host outfits its Wards).
-import { ABILITY_SET_BY_JOB, ACTIVE_BY_ID, JOB_BY_ID, JOB_PASSIVE_BY_ID } from "./content.ts";
+import { ABILITY_SET_BY_JOB, ACTIVE_BY_ID, JOB_BY_ID, JOB_PASSIVE_BY_ID, JOBS } from "./content.ts";
 import { baseOf, cannotEquip, equip, itemById, stash } from "./items.ts";
 import { canTakeJob, changeJob, equipPassive, jpLeft, knows, learn, passiveBudget, passivePoints, setSecondary, unequipPassive } from "./progression.ts";
 import { GEAR_SLOTS, type GearSlot, type Item, type JobId, type Person, type SovMove, type SovState } from "./state.ts";
@@ -98,6 +98,41 @@ export function outfit(s: SovState, house: number, m: OutfitMove): void {
       delete p.gear[m.slot];
       return;
   }
+}
+
+/** What a House sees of its own Scion's readying (the view's `kit`): never shown to rivals. */
+export interface Kit {
+  secondary: JobId | null;
+  /** JP left to spend, by Job. */
+  jp: Partial<Record<JobId, number>>;
+  mastered: JobId[];
+  /** Every active and passive bought, a mastered Job's included. */
+  known: string[];
+  passives: string[];
+  budget: number;
+  points: number;
+  /** Jobs they may take now, besides their own. */
+  jobs: JobId[];
+  /** Stashed items they may wear, and where. */
+  fits: [number, GearSlot][];
+}
+
+export function kitOf(s: SovState, house: number, p: Person): Kit {
+  const jobs = JOBS.filter((j) => !cannotOutfit(s, house, { type: "take_job", person: p.id, job: j.id })).map((j) => j.id);
+  const known = [...ABILITY_SET_BY_JOB.values()].flatMap((set) => [...set.actives, ...set.passives].filter((a) => knows(p, a.id)).map((a) => a.id));
+  const fits: [number, GearSlot][] = [];
+  for (const it of stash(s, house)) for (const slot of SLOTS) if (!cannotOutfit(s, house, { type: "equip", person: p.id, item: it.id, slot })) fits.push([it.id, slot]);
+  return {
+    secondary: p.secondary ?? null,
+    jp: Object.fromEntries((Object.keys(p.jp) as JobId[]).map((j) => [j, jpLeft(p, j)])),
+    mastered: p.mastered,
+    known,
+    passives: p.passives,
+    budget: passiveBudget(p),
+    points: passivePoints(p),
+    jobs,
+    fits,
+  };
 }
 
 /** How good an item is to the bot: its tier, then the level it was made for. */

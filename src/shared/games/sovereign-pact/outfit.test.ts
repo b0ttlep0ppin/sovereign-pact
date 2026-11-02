@@ -113,6 +113,23 @@ describe("gear", () => {
   });
 });
 
+describe("the view's kit", () => {
+  it("shows a House its own Scions' JP, abilities, Jobs and the gear that fits, and no one else's", () => {
+    const { s, p } = town(120);
+    const t = move(s, "p1", { type: "learn", person: p.id, ability: "heavy_blow" });
+    const spear = mint(t, "spear", 0, 3);
+    const kit = g.view(t, "p1").people.find((x) => x.id === p.id)!.kit!;
+    expect(kit.jp.soldier).toBe(70);
+    expect(kit.known).toContain("heavy_blow");
+    expect(kit.jobs).toContain("magus");
+    expect(kit.jobs).not.toContain("soldier");
+    expect(kit.fits).toContainEqual([spear.id, "main"]);
+    expect(kit.fits).not.toContainEqual([spear.id, "head"]);
+    expect(kit.budget).toBeGreaterThanOrEqual(5);
+    expect(g.view(t, "p2").people.find((x) => x.id === p.id)!.kit).toBeUndefined();
+  });
+});
+
 describe("the bot", () => {
   it("spends its JP, equips its passives and wears the best of its stash, then stops", () => {
     const { s, p } = town(1500);
