@@ -37,6 +37,13 @@ const sendTheParty = () => {
   }
 };
 
+/** Seals the Year, past the prompt about Scions given no post (they idle). */
+const seal = () => {
+  fireEvent.click(screen.getByRole("button", { name: "Seal the Year" }));
+  const anyway = screen.queryByRole("button", { name: "Seal anyway" });
+  if (anyway) fireEvent.click(anyway);
+};
+
 describe("the standalone host", () => {
   it("starts a campaign, seals the Year, lets the bot seal, and autosaves the next Year", () => {
     vi.useFakeTimers();
@@ -49,7 +56,7 @@ describe("the standalone host", () => {
       letBotsMove();
       draft();
       expect(screen.getByText("Year 1 of 20.")).toBeTruthy();
-      fireEvent.click(screen.getByRole("button", { name: "Seal the Year" }));
+      seal();
       letBotsMove();
       sendTheParty();
       expect(screen.getByText("Year 2 of 20.")).toBeTruthy();
@@ -69,7 +76,7 @@ describe("the standalone host", () => {
       fireEvent.click(screen.getByRole("button", { name: "Swear the Pact" }));
       letBotsMove();
       draft();
-      fireEvent.click(screen.getByRole("button", { name: "Seal the Year" }));
+      seal();
       letBotsMove();
       sendTheParty();
       first.unmount();
