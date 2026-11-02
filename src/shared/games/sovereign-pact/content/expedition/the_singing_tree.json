@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "touch",
-      "label": "The kindest presses the knot.",
+      "label": "The wisest presses the knot.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "kind"

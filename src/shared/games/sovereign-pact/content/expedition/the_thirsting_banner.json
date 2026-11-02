@@ -14,7 +14,7 @@
     {
       "id": "carry",
       "label": "The bravest takes it up.",
-      "rule": "scion:highest:might",
+      "rule": "scion:trait:brave|scion:highest:might",
       "tags": [
         "bold"
       ],

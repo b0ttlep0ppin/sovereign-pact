@@ -75,7 +75,7 @@
     },
     {
       "id": "take",
-      "label": "Take the gnomon.",
+      "label": "The strongest wrenches out the gnomon.",
       "rule": "scion:highest:might",
       "tags": [
         "clever"

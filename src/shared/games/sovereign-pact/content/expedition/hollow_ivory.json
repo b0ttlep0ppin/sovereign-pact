@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "harvest",
-      "label": "Harvest the ivory.",
+      "label": "The deftest hands harvest the ivory.",
       "rule": "scion:highest:guile",
       "tags": [
         "reckless"

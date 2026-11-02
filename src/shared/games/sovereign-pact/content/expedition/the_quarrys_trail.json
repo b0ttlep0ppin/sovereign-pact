@@ -35,7 +35,7 @@
     },
     {
       "id": "trap",
-      "label": "Set a trap on its trail.",
+      "label": "The craftiest sets a trap on its trail.",
       "rule": "scion:highest:guile",
       "tags": [
         "cautious"

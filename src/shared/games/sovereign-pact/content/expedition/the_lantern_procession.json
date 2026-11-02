@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "follow",
-      "label": "Follow the one that flickers.",
+      "label": "The most troubled follows the one that flickers toward them.",
       "rule": "scion:lowest:sanity",
       "tags": [
         "kind"

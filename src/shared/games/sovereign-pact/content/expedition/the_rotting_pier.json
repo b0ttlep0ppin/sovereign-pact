@@ -43,8 +43,8 @@
     },
     {
       "id": "light",
-      "label": "The lightest goes first and tests each plank.",
-      "rule": "scion:highest:speed",
+      "label": "The lightest-laden goes first and tests each plank.",
+      "rule": "scion:most_open_slots",
       "tags": [
         "clever"
       ],

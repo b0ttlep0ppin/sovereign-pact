@@ -34,7 +34,7 @@
     },
     {
       "id": "free",
-      "label": "Cut the man out.",
+      "label": "The strongest cuts the man out.",
       "rule": "scion:highest:might",
       "tags": [
         "kind"

@@ -56,7 +56,7 @@
     },
     {
       "id": "poison",
-      "label": "Foul it, so no rival can use it.",
+      "label": "The craftiest fouls it, so no rival can use it.",
       "rule": "scion:highest:guile",
       "tags": [
         "cruel"

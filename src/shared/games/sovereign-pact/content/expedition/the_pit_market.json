@@ -53,7 +53,7 @@
     },
     {
       "id": "steal",
-      "label": "Steal from the stalls.",
+      "label": "The quickest steals from the stalls.",
       "rule": "scion:highest:speed",
       "tags": [
         "reckless"

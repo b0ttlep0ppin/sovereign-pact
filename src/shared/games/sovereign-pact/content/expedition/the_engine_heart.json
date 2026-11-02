@@ -51,7 +51,7 @@
     },
     {
       "id": "shut",
-      "label": "Shut it down.",
+      "label": "The strongest shuts it down.",
       "rule": "scion:highest:might",
       "tags": [
         "bold"

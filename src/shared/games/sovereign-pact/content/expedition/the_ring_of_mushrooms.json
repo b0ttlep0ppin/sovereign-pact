@@ -14,7 +14,7 @@
     {
       "id": "dance",
       "label": "The boldest steps in.",
-      "rule": "scion:random",
+      "rule": "scion:trait:brave|scion:random",
       "tags": [
         "reckless"
       ],

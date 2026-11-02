@@ -59,7 +59,7 @@
     },
     {
       "id": "smoke",
-      "label": "Smoke them out with a fire.",
+      "label": "The cleverest smokes them out with a fire.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"

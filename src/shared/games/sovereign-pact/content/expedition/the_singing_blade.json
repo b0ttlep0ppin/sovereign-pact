@@ -68,7 +68,7 @@
     },
     {
       "id": "talk",
-      "label": "Ask it who it was.",
+      "label": "The wisest asks it who it was.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "kind"

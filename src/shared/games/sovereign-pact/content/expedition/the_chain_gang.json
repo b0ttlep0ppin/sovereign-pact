@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "free",
-      "label": "Break the chain.",
+      "label": "The strongest breaks the chain.",
       "rule": "scion:highest:might",
       "tags": [
         "kind"
@@ -48,7 +48,7 @@
     },
     {
       "id": "bribe",
-      "label": "Bribe the imp.",
+      "label": "The shrewdest bribes the imp.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"

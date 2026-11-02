@@ -50,7 +50,7 @@
     },
     {
       "id": "bones",
-      "label": "Take only a bone.",
+      "label": "The strongest takes only a bone.",
       "rule": "scion:highest:might",
       "tags": [
         "clever"

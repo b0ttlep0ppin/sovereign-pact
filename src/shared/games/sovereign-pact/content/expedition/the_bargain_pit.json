@@ -45,7 +45,7 @@
     },
     {
       "id": "blood",
-      "label": "The boldest gives blood to the pit.",
+      "label": "The hardiest gives blood to the pit.",
       "rule": "scion:highest:resilience",
       "tags": [
         "bold"

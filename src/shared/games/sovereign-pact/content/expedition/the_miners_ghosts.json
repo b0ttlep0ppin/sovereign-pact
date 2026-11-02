@@ -65,7 +65,7 @@
     },
     {
       "id": "ask",
-      "label": "Ask them how they died.",
+      "label": "The wisest asks them how they died.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "eggs",
-      "label": "Take an egg.",
+      "label": "The quickest takes an egg.",
       "rule": "scion:highest:speed",
       "tags": [
         "reckless"

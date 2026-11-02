@@ -37,7 +37,7 @@
     },
     {
       "id": "race",
-      "label": "Race it to the next ridge.",
+      "label": "The quickest leads the race to the next ridge.",
       "rule": "scion:highest:speed",
       "tags": [
         "bold"
@@ -65,7 +65,7 @@
     },
     {
       "id": "bottle",
-      "label": "Catch some in a bottle.",
+      "label": "The cleverest catches some in a bottle.",
       "rule": "scion:highest:acuity",
       "tags": [
         "reckless"

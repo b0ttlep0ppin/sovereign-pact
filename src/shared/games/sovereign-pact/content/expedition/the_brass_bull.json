@@ -67,7 +67,7 @@
     {
       "id": "leave",
       "label": "Leave it.",
-      "rule": "scion:highest:guile|vote",
+      "rule": "vote",
       "tags": [
         "cruel"
       ],

@@ -14,7 +14,7 @@
   "options": [
     {
       "id": "limb",
-      "label": "Pay in kind.",
+      "label": "Pay in kind; the merchant picks whose.",
       "rule": "scion:random",
       "tags": [
         "reckless"

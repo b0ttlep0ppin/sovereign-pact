@@ -39,7 +39,7 @@
     },
     {
       "id": "feed",
-      "label": "Feed it a hand's worth of your own heat.",
+      "label": "The strongest feeds it a hand's worth of their own heat.",
       "rule": "scion:highest:might",
       "tags": [
         "reckless"

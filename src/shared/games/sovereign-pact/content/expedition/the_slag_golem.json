@@ -33,7 +33,7 @@
     },
     {
       "id": "smash",
-      "label": "Smash it for the metal inside.",
+      "label": "The strongest smashes it for the metal inside.",
       "rule": "scion:highest:might",
       "tags": [
         "cruel"

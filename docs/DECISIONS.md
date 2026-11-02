@@ -2,6 +2,11 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 8aq): every expedition event's options make sense of who they fall on
+
+- Josh: "These sorts of events should be logical, or provide a reason. A narrow crack requiring someone carrying the most makes no sense." All 556 expedition events were read for whether each option's rule (who it happens to) follows from what the option says. 86 were fixed: the rule changed to the Scion the fiction points at (the sharpest eye spots the mark, the bravest grabs the crown), or the text now gives the reason (the narrow crack: squeeze through gear and all, and whoever carries the most is the one who sticks). Labels now name who steps up where it is not obvious ("The strongest lifts it").
+- No numbers changed, and no event's outcomes, only who they fall on and the words that say why.
+
 ## 2026-11-02 (implementation, Milestone 8ap): Pugilist combos by hand; House arms on the battle grid
 
 - Josh: "The pugilist is supposed to make combos but I'm just doing one attack?" Gambits already chained combos (§12.2); a turn by hand now offers "Build a combo" too. The player adds moves one after another, each paying its TP (plus the repeat cost for a move used again), sees what is left, can undo, and strikes. Finishers show what they need first and stay shut until the chain fits them. The rules check the chain again when it arrives (`do: "combo"`), so the screen only helps.

@@ -53,7 +53,7 @@
     },
     {
       "id": "cheat",
-      "label": "Move his target while he isn't looking.",
+      "label": "The craftiest moves his target while he isn't looking.",
       "rule": "scion:highest:guile",
       "tags": [
         "cruel"

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "dance",
-      "label": "The boldest goes in and dances.",
+      "label": "The most charming goes in and dances.",
       "rule": "scion:highest:guile",
       "tags": [
         "bold"

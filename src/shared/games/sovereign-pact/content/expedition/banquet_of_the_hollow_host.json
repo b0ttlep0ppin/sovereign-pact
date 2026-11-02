@@ -71,7 +71,7 @@
     },
     {
       "id": "one_tastes",
-      "label": "One of you tastes it first.",
+      "label": "The most seasoned of you tastes it first.",
       "rule": "scion:most_expeditions",
       "tags": [
         "clever"

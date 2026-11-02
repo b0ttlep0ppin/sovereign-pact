@@ -52,7 +52,7 @@
     },
     {
       "id": "ambush",
-      "label": "Lie in wait at the oak.",
+      "label": "The craftiest lies in wait at the oak.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"

@@ -57,7 +57,7 @@
     },
     {
       "id": "break",
-      "label": "Break it apart before it moves again.",
+      "label": "The strongest breaks it apart before it moves again.",
       "rule": "scion:highest:might",
       "tags": [
         "bold"

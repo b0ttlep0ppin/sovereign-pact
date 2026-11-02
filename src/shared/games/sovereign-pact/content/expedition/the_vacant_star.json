@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "look",
-      "label": "The wisest looks back.",
+      "label": "The sharpest eye looks back.",
       "rule": "scion:highest:acuity",
       "tags": [
         "bold"

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "learn",
-      "label": "The youngest learns from him.",
+      "label": "The greenest learns from him.",
       "rule": "scion:fewest_expeditions",
       "tags": [
         "kind"

@@ -68,7 +68,7 @@
     },
     {
       "id": "tusks",
-      "label": "The cruelest says a calf's tusks fetch a price.",
+      "label": "The shrewdest says a calf's tusks fetch a price.",
       "rule": "scion:highest:guile",
       "tags": [
         "cruel"

@@ -41,7 +41,7 @@
     },
     {
       "id": "sword",
-      "label": "The boldest takes the sword.",
+      "label": "The strongest pries the sword from the ice.",
       "rule": "scion:highest:might",
       "tags": [
         "reckless"

@@ -13,8 +13,8 @@
   "options": [
     {
       "id": "follow",
-      "label": "Follow the blood.",
-      "rule": "scion:most_targeted",
+      "label": "The best tracker follows the blood.",
+      "rule": "scion:highest:acuity",
       "tags": [
         "bold"
       ],

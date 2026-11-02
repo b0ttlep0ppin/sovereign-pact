@@ -54,7 +54,7 @@
     },
     {
       "id": "cut",
-      "label": "Cut straight through.",
+      "label": "The strongest cuts straight through.",
       "rule": "scion:highest:might",
       "tags": [
         "bold"

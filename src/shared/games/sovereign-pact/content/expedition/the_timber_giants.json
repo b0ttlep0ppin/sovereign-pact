@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "fell",
-      "label": "Fell one.",
+      "label": "The strongest fells one.",
       "rule": "scion:highest:might",
       "tags": [
         "cruel"

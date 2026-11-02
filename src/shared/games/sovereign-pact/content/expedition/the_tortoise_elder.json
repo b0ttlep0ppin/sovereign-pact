@@ -34,7 +34,7 @@
     {
       "id": "ride",
       "label": "The boldest climbs on its shell.",
-      "rule": "scion:random",
+      "rule": "scion:trait:brave|scion:random",
       "tags": [
         "reckless"
       ],

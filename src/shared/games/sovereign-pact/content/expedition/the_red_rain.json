@@ -54,7 +54,7 @@
     },
     {
       "id": "drink",
-      "label": "Drink it.",
+      "label": "Someone drinks it, on a dare.",
       "rule": "scion:random",
       "tags": [
         "reckless"
