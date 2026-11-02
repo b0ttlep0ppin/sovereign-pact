@@ -1,0 +1,65 @@
+{
+  "id": "the_echo_self",
+  "pools": [
+    "outer_dark"
+  ],
+  "weight": 2,
+  "band": [
+    6,
+    10
+  ],
+  "title": "The Echo Self",
+  "text": "Each Scion meets themselves, coming back the other way, and older.",
+  "options": [
+    {
+      "id": "talk",
+      "label": "Each talks to their echo.",
+      "rule": "each_scion",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "Advice from the one who knows.",
+          "effects": [
+            {
+              "xp": 60
+            },
+            {
+              "sanity": 5
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "A warning they do not want.",
+          "effects": [
+            {
+              "sanity": -15
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pass",
+      "label": "Each walks past without a word.",
+      "rule": "each_scion",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It does not look back.",
+          "effects": [
+            {
+              "sanity": -3
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

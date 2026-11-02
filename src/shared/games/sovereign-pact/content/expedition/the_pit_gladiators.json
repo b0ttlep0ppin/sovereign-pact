@@ -1,0 +1,104 @@
+{
+  "id": "the_pit_gladiators",
+  "pools": [
+    "pit"
+  ],
+  "weight": 2,
+  "band": [
+    4,
+    10
+  ],
+  "title": "The Pit Gladiators",
+  "text": "Damned souls fight in an arena for the devils' amusement. The winner goes free, they say.",
+  "options": [
+    {
+      "id": "fight",
+      "label": "The strongest fights.",
+      "rule": "scion:highest:might",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "Victory, and the crowd's roar.",
+          "effects": [
+            {
+              "score": {
+                "valor": 3
+              }
+            },
+            {
+              "xp": 100
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "Defeat.",
+          "effects": [
+            {
+              "injury": "body"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "free",
+      "label": "Free a gladiator.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The devils are displeased.",
+          "effects": [
+            {
+              "encounter": {}
+            },
+            {
+              "score": {
+                "renown": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bet",
+      "label": "The shrewdest bets on the fights.",
+      "rule": "scion:highest:guile",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "Winnings in devil coin.",
+          "effects": [
+            {
+              "resources": {
+                "essence": 5
+              }
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "Lost.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -15
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

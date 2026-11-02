@@ -1,0 +1,91 @@
+{
+  "id": "the_hoarfrost_hermit",
+  "pools": [
+    "deep_cold"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    8
+  ],
+  "title": "The Hoarfrost Hermit",
+  "text": "A hermit made half of ice lives in a cave of frost and offers shelter from the storm.",
+  "options": [
+    {
+      "id": "shelter",
+      "label": "Shelter with him.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 80,
+          "text": "A cold, safe night.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 5
+            }
+          ]
+        },
+        {
+          "w": 20,
+          "text": "Colder than you thought.",
+          "effects": [
+            {
+              "to": "party",
+              "status": "frozen"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ask",
+      "label": "The wisest asks how he became so.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A warning, and a way to keep warm.",
+          "effects": [
+            {
+              "blessing": {
+                "trait": "stout_hearted",
+                "years": 2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "storm",
+      "label": "Push on through the storm.",
+      "rule": "leader",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Through, and frostbitten.",
+          "effects": [
+            {
+              "to": "party",
+              "durability": -15,
+              "loc": "legs"
+            },
+            {
+              "skip": 1
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

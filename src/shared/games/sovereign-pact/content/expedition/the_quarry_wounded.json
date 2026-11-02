@@ -1,0 +1,79 @@
+{
+  "id": "the_quarry_wounded",
+  "pools": [
+    "hunt"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    10
+  ],
+  "title": "The Wounded Quarry",
+  "text": "The quarry lies wounded, by someone else's hand. It can still fight.",
+  "options": [
+    {
+      "id": "finish",
+      "label": "Finish it.",
+      "rule": "vote",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It fights to the last.",
+          "effects": [
+            {
+              "encounter": {}
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mercy",
+      "label": "The healer tends it instead.",
+      "rule": "scion:most_healing|scion:fewest_kills",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It lets them, and limps away. The hunt is over another way.",
+          "effects": [
+            {
+              "score": {
+                "renown": 2
+              }
+            },
+            {
+              "skip": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "who",
+      "label": "The sharpest eye finds who wounded it.",
+      "rule": "scion:highest:acuity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A rival House's arrow.",
+          "effects": [
+            {
+              "score": {
+                "intrigue": 2
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

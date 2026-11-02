@@ -1,0 +1,81 @@
+{
+  "id": "the_fallen_watchtower",
+  "pools": [
+    "resource"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    10
+  ],
+  "title": "The Fallen Watchtower",
+  "text": "A watchtower fallen in a storm, its good dressed stone scattered on the hill.",
+  "options": [
+    {
+      "id": "haul",
+      "label": "Haul the stone.",
+      "rule": "vote",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Heavy, good stone.",
+          "effects": [
+            {
+              "resources": {
+                "stone": 6
+              }
+            },
+            {
+              "to": "party",
+              "durability": -5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "search",
+      "label": "The sharpest eye searches the ruin.",
+      "rule": "scion:highest:acuity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The guard's strongbox.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 15,
+                "stone": 2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rebuild",
+      "label": "Mark it for the House to rebuild.",
+      "rule": "leader",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A watchtower of your own, in time.",
+          "effects": [
+            {
+              "house_improvement": "building"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,83 @@
+{
+  "id": "the_hunters_moon",
+  "pools": [
+    "hunt"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    10
+  ],
+  "title": "The Hunter's Moon",
+  "text": "The moon rises red and full. The old hunters say the quarry cannot hide tonight.",
+  "options": [
+    {
+      "id": "hunt",
+      "label": "Hunt by moonlight.",
+      "rule": "vote",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "There it is.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "surprise"
+              }
+            },
+            {
+              "score": {
+                "valor": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rest",
+      "label": "Rest, and hunt at dawn.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It moves in the night.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pray",
+      "label": "The devout asks the moon for luck.",
+      "rule": "scion:trait:devout|scion:highest:sagacity",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The moon answers.",
+          "effects": [
+            {
+              "blessing": {
+                "trait": "lucky",
+                "years": 1
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

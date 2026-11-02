@@ -1,0 +1,75 @@
+{
+  "id": "the_dragon_bard",
+  "pools": [
+    "dragon_reaches"
+  ],
+  "weight": 2,
+  "band": [
+    5,
+    10
+  ],
+  "title": "The Dragon Bard",
+  "text": "A bard who sings only of dragons, and knows every one by name. He wants to hear your story.",
+  "options": [
+    {
+      "id": "tell",
+      "label": "The best talker tells it.",
+      "rule": "scion:highest:guile",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "He makes a song of it. Your House is famous.",
+          "effects": [
+            {
+              "score": {
+                "renown": 2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ask",
+      "label": "Ask which dragon rules here.",
+      "rule": "vote",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Her name, and her weakness.",
+          "effects": [
+            {
+              "foresee": true
+            },
+            {
+              "score": {
+                "lore": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pass",
+      "label": "Pass by.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "He sings of you anyway, badly.",
+          "effects": []
+        }
+      ]
+    }
+  ]
+}
