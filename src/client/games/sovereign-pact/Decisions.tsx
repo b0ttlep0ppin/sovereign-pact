@@ -116,7 +116,7 @@ function CrisisCard({ view, sendMove, canAct }: Props) {
       <h3>Crisis: {ev?.title}</h3>
       <p>{ev?.text}</p>
       <p>
-        <strong>The city needs</strong> {amounts(c.need)}. Pledges are private and spent whatever comes.
+        <strong>The city needs</strong> {amounts(c.need)}. Pledges are private and spent whatever comes; anything given beyond the Need goes back to each House in proportion to what it gave.
       </p>
       <p className="sp-private">Your pledge so far: {own && amounts(own.pledge) ? amounts(own.pledge) : "nothing"}.</p>
       {canAct ? (

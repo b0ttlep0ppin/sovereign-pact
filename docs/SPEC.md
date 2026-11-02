@@ -89,7 +89,7 @@ A House's **Ascendancy** is the sum of eight categories, each House's exact tota
 
 [DECIDED Crisis resolution, numbers to tune]
 1. The Crisis shows a Need (e.g. 40 Timber + 20 Grain) and a few outcome bands.
-2. Each House pledges privately; pledges are revealed only as a total.
+2. Each House pledges privately; pledges are revealed only as a total. Anything pledged beyond the Need goes back to each House in proportion to what it gave (Josh 2026-11-02).
 3. Result = total pledged ÷ Need, adjusted by a hidden random swing (roughly ±20%) and modifiers (traits, buildings, Scions in town).
 4. Bands: ≥100% Triumph, 75–99% Holds, 50–74% Falters, <50% Calamity. Lower bands cost Accord and cause harm (buildings damaged, recruits lost, unrest).
 5. Some Crises offer a private temptation (e.g. "the quartermaster offers to look the other way"): withhold and gain an item.

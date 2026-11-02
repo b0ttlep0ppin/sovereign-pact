@@ -2,6 +2,11 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 8au): Crisis refunds, Year assignments explained, a prompt before sealing
+
+- Josh: "for crisis, if more than the max is pledged everyone should get a proportional refund". When the Houses pledge more of a resource than the Need, the excess goes back to each House in proportion to what it pledged (whole units: floors first, leftovers to the largest remainders, then the lower House). Renown for giving counts only what the city used. SPEC §3.5 step 2 notes it.
+- Josh asked for tooltips on where people can be posted (Rift Gate, walls...) and a prompt when someone is left without a post. Each place on the Town Map says on hover what a person does there. People with no post this Year sit in their own tray, "Not yet assigned" (they were drawn as resting; they idle, at +10% Sanity, which is not the same). Sealing a Year with Scions still unassigned asks first, naming them; "Seal anyway" goes on.
+
 ## 2026-11-02 (implementation, Milestone 8at): character cards show the stats a battle reads
 
 - Josh: "its appears the stats and traits aren't applied on the character card... she has 10 speed despite the fleet trait", and asked for an icon per stat, a description on hover, Tarot symbols and elemental affinities on the card. The card now shows each stat as a battle reads it: the rolled base in the primary Job, then every flat and percent bonus (birth House, traits, Change, Tarot, lasting injuries, the Job's innate passive, worn gear; and, for the viewer's own people, masteries and chosen passives). Hovering a stat says what it does and lists each bonus (`stats.ts`). Speed in battle already took Fleet; only the card was wrong.

@@ -143,6 +143,9 @@ export default function SovereignPact({ view, isMyTurn, sendMove, lastError }: P
   const mustering = !!exp && !!mine && exp.party[view.me!] === null && !exp.pool && !exp.event && !exp.fight && exp.leader === undefined && !exp.votes;
   const able = ableOf(view);
   const [pick, setPick] = useState<{ key: string; ids: number[] } | null>(null);
+  // Sealing with Scions left unassigned asks first (Josh 2026-11-02): they would only idle.
+  const [sealAsk, setSealAsk] = useState(false);
+  const idle = view.people.filter((p) => p.host === view.me && p.status === "scion" && !view.mine?.assign[p.id]);
   const pickKey = `${view.year}:${seats}`;
   const chosen = pick?.key === pickKey ? pick.ids.filter((id) => able.some((p) => p.id === id)) : able.slice(0, seats).map((p) => p.id);
   const setChosen = (ids: number[]) => setPick({ key: pickKey, ids });
@@ -295,9 +298,23 @@ export default function SovereignPact({ view, isMyTurn, sendMove, lastError }: P
         <span className="sp-top__commons">Commons: {view.commons.gold} Gold</span>
         {view.phase === "settlement" && mine ? (
           isMyTurn ? (
-            <button type="button" className="sp-button" onClick={() => sendMove({ type: "seal" })}>
-              Seal the Year
-            </button>
+            sealAsk && idle.length ? (
+              <span className="sp-seal-ask" role="alertdialog" aria-label="Seal the Year?">
+                <span>
+                  {idle.map((p) => p.name).join(", ")} {idle.length === 1 ? "has" : "have"} no assignment and will idle (Sanity +10% only).
+                </span>
+                <button type="button" className="sp-button" onClick={() => (setSealAsk(false), sendMove({ type: "seal" }))}>
+                  Seal anyway
+                </button>
+                <button type="button" className="sp-button sp-button--quiet" onClick={() => setSealAsk(false)}>
+                  Back
+                </button>
+              </span>
+            ) : (
+              <button type="button" className="sp-button" onClick={() => (idle.length ? setSealAsk(true) : sendMove({ type: "seal" }))}>
+                Seal the Year
+              </button>
+            )
           ) : (
             <button type="button" className="sp-button sp-button--quiet" onClick={() => sendMove({ type: "unseal" })}>
               Unseal

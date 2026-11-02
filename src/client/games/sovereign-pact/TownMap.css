@@ -74,3 +74,7 @@
 .sp-map__purse { font-size: 0.8rem; color: var(--muted); }
 .sp-map__marker { justify-self: start; font-size: 0.75rem; font-weight: 700; padding: 2px 8px; border-radius: 10px; background: var(--blood); color: var(--text); }
 [data-motion="reduced"] .sp-map__gate-tear, [data-flash="reduced"] .sp-map__gate-tear { animation: none; }
+/* The unassigned (Josh 2026-11-02): people with no place this Year wait here, not in the Keep. */
+.sp-map__idle { position: relative; z-index: 2; display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px; margin: -40px 0 10px; padding: 6px 10px; border: 1px dashed #8a6a3a; border-radius: 2px; background: rgba(20, 14, 10, 0.85); }
+.sp-map__idle small { color: var(--muted); }
+.sp-map__idle[data-over="yes"] { border-style: solid; border-color: var(--gold, #d7b45a); }
