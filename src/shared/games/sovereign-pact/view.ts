@@ -52,6 +52,8 @@ export interface PublicHouse {
   standing: StandingTier;
   /** No Scions, recruits or Retired left (§6.13): its district goes dark. */
   fallen: boolean;
+  /** Pact marks (§14.7a): hidden from everyone, the House too, until the campaign is over. */
+  pactMarks?: number;
   sealed: boolean;
 }
 
@@ -71,6 +73,8 @@ export interface PrivateHouse {
   assign: Record<number, Assignment>;
   /** What happened at home: this House's own events and their outcomes (Q89), newest last. */
   notes: string[];
+  /** Dark Bargains offered to this House and not yet answered, by content id (§14.7a). */
+  bargains: string[];
   /** At founding: the two Ambitions dealt, to keep one (§5.1 step 7). */
   dealt: [Ambition, Ambition] | null;
 }
@@ -163,6 +167,7 @@ function publicHouse(s: SovState, h: House, index: number): PublicHouse {
     standing: standing(s, index),
     fallen: fallen(s, index),
     sealed: h.sealed,
+    ...(s.phase === "over" ? { pactMarks: h.pactMarks } : {}),
   };
 }
 
@@ -250,6 +255,8 @@ export function view(s: SovState, playerId: PlayerId): SovView {
             insight,
             crisis: s.crisis ? { pledge: s.crisis.pledges[me]!, tempted: s.crisis.tempted[me]! } : null,
             notes: s.notes[me] ?? [],
+            // Dark Bargains offered to this House alone (§14.7a).
+            bargains: s.bargains.pending.filter((b) => b.house === me).map((b) => b.id),
             dealt: own.dealt ?? null,
             assign: Object.fromEntries(s.people.filter((p) => p.host === me && s.assign[p.id]).map((p) => [p.id, s.assign[p.id]!])),
           },

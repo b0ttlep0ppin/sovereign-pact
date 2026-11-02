@@ -19,9 +19,11 @@ function keys(value: unknown, path = ""): string[] {
 
 function checkSeat(s: SovState, seat: number, v: SovView): void {
   expect(v.me).toBe(seat);
-  // Pact marks are hidden from everyone, their own House included (§14.7a).
-  expect(keys(v).filter((k) => k.endsWith(".pactMarks"))).toEqual([]);
-  for (const h of v.houses) for (const k of PRIVATE_HOUSE_KEYS) expect(h).not.toHaveProperty(k);
+  // Pact marks are hidden from everyone, their own House included, until the final score (§14.7a).
+  if (s.phase !== "over") expect(keys(v).filter((k) => k.endsWith(".pactMarks"))).toEqual([]);
+  // Dark Bargains: a House sees only those offered to it.
+  expect(v.mine?.bargains ?? []).toEqual(s.bargains.pending.filter((b) => b.house === seat).map((b) => b.id));
+  for (const h of v.houses) for (const k of PRIVATE_HOUSE_KEYS) if (k !== "pactMarks" || s.phase !== "over") expect(h).not.toHaveProperty(k);
   expect(v.mine?.ambition).toEqual(s.houses[seat]!.ambition);
   const mineIds = new Set(s.people.filter((p) => p.host === seat).map((p) => p.id));
   // Items: what a shown person wears, and this House's own stash; never another House's stash.

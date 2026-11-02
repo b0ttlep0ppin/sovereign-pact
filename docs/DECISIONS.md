@@ -2,6 +2,27 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 7c: Dark Bargains) — implementer
+- **Built** (§14.7a, `bargains.ts`, content `content/bargains.json`, numbers in `tuning.bargain`):
+  - Eleven offers: nine at Omens, two from the Crown.
+  - A House is offered one at Omens 8% of Years from Year 2, at most twice a campaign, so about 1.5 each. Pious and Ink-and-Seal Houses are offered half as often.
+  - Each House gets a Crown offer when the Cursed King kneels (the Year 10 assault won).
+  - A `bargain` move accepts or refuses. A bane names a rival House. Whatever is unanswered at the seal fades, refused.
+  - Bots always refuse.
+- **Readings**:
+  - The price is paid on accepting, whatever then comes.
+  - The hidden roll is 60% as promised, 25% nothing, 15% twisted. A twisted boon comes at half (an item one tier lower). A twisted bane strikes the bargainer's own House.
+  - Demon-Blooded, Cursed Line and Old Blood of Kings move 15 points from "nothing" to "as promised".
+  - Grudge-Holders' banes are 1.5× as strong.
+  - A bane's victim reads only the offer's `misfortune` line (ruined buildings still show on the Town Map as any damage does). The bargainer reads the same line whether the bane struck or came to nothing, so neither House can be sure.
+  - A Watchtower at L3 has a 25% chance to hear that some House struck a bargain, never which.
+  - Pact marks: 50% on Omens offers and 75% on the Crown's. Each mark takes 25% of the kingdom's mean Ascendancy off the House's final score, which is about one Standing tier. Marks are shown to everyone only once the campaign is over.
+  - Pious Houses do not lose Piety yet, since no Piety track exists.
+- **Not yet**:
+  - The Year 20 bargain (*The Gate's Reflection*, always marked) needs a step after the final assault and before the score.
+  - Expedition `house_private` bargains (the Idol, the Sealed Card, the Mi-go) come with their events.
+  - Some banes wait on systems that do not exist yet: illness for a Year, and a halved Crisis pledge.
+
 ## 2026-11-02 (implementation, Milestone 7b: the mandatory arc's stakes) — implementer
 - **Built** (§14.7, `arc.ts`, numbers in `tuning.arc`):
   - Year 5 won: the Bastion of the Gate can be built (`unlockedBy` on a project). Before then the Commons cannot fund it.

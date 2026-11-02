@@ -215,6 +215,30 @@ export const TUNING = {
   /** §8.8 town events [DECIDED cadence]: one settlement event a Year; each House's own event at this % chance. */
   omens: { houseEventPct: 50 },
 
+  /**
+   * §14.7a Dark Bargains, first pass. A House is offered one at Omens `omenPct`% of Years from `fromYear`,
+   * at most `omenMax` a campaign (halved odds for `wary` traits). An accepted bargain resolves on a hidden
+   * roll: `promisedPct` as promised, `nothingPct` nothing, the rest twisted (a boon at `twistScale`, a bane
+   * on the bargainer's own House); `dark` traits move `darkPct` from nothing to promised. `grudge` traits'
+   * banes are scaled by `grudgeScale`. A Watchtower at L3 hears that some House struck one `watchPct`% of
+   * the time. Each Pact mark costs `markPct`% of the kingdom's mean Ascendancy at the final score.
+   */
+  bargain: {
+    omenPct: 8,
+    fromYear: 2,
+    omenMax: 2,
+    promisedPct: 60,
+    nothingPct: 25,
+    twistScale: 0.5,
+    dark: ["demon_blooded", "cursed_line", "old_blood_of_kings"] as readonly string[],
+    darkPct: 15,
+    wary: ["pious", "ink_and_seal"] as readonly string[],
+    grudge: ["grudge_holders"] as readonly string[],
+    grudgeScale: 1.5,
+    watchPct: 25,
+    markPct: 25,
+  },
+
   /** §8.6 shops and §13.4a auctions, first pass. */
   shops: {
     /** Lots a shop stocks a Year, by its stock tier 1–3. */

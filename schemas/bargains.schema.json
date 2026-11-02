@@ -1,0 +1,49 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Dark Bargains (SPEC §14.7a): private offers to one House, a price for a boon or for a bane on a rival, settled on a hidden roll",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["bargains"],
+  "definitions": {
+    "effect": {
+      "type": "object",
+      "additionalProperties": false,
+      "minProperties": 1,
+      "properties": {
+        "resources": { "type": "object", "additionalProperties": { "type": "integer" }, "description": "Gold and stores, + or −" },
+        "sanity": { "type": "integer", "description": "% of maximum Sanity, every Scion of the House" },
+        "score": { "type": "object", "additionalProperties": { "type": "integer" }, "description": "Hidden score points by category" },
+        "ruin": { "type": "integer", "minimum": 1, "description": "Building levels lost" },
+        "recruits_lost": { "type": "integer", "minimum": 1 },
+        "recruit_gain": { "type": "integer", "minimum": 1 },
+        "item": { "enum": [2, 3, 4], "description": "An item of this tier for the House's stash" },
+        "cursed": { "const": true, "description": "A cursed item appears in the House's stash" },
+        "stat": { "type": "integer", "minimum": 1, "description": "Added to one stat of the House's highest-level Scion" },
+        "building": { "type": "integer", "minimum": 1, "description": "Standing buildings raised a level (at most 3)" }
+      }
+    }
+  },
+  "properties": {
+    "bargains": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "title", "text", "when", "price", "promise", "mark"],
+        "properties": {
+          "id": { "$ref": "defs.schema.json#/definitions/id" },
+          "title": { "type": "string", "minLength": 1, "maxLength": 40 },
+          "text": { "type": "string", "minLength": 1, "maxLength": 300 },
+          "when": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "enum": ["omen", "crown"] }, "description": "Where it is offered: at Omens, or by the Crown after the Year 10 assault" },
+          "price": { "$ref": "#/definitions/effect" },
+          "boon": { "$ref": "#/definitions/effect" },
+          "bane": { "$ref": "#/definitions/effect" },
+          "misfortune": { "type": "string", "minLength": 1, "maxLength": 200, "description": "What the bane's victim reads: an ordinary misfortune" },
+          "promise": { "type": "string", "minLength": 1, "maxLength": 200, "description": "What the bargainer reads when it comes as promised" },
+          "mark": { "type": "integer", "minimum": 0, "maximum": 100, "description": "% chance it carries a hidden Pact mark" }
+        }
+      }
+    }
+  }
+}

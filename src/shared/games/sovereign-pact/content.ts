@@ -21,6 +21,7 @@ import vagabondSet from "./content/abilities/vagabond.json" with { type: "json" 
 import buildingsJson from "./content/buildings.json" with { type: "json" };
 import changesJson from "./content/changes.json" with { type: "json" };
 import namedJson from "./content/named.json" with { type: "json" };
+import bargainsJson from "./content/bargains.json" with { type: "json" };
 import formsJson from "./content/forms.json" with { type: "json" };
 import projectsJson from "./content/projects.json" with { type: "json" };
 import summonsJson from "./content/summons.json" with { type: "json" };
@@ -789,3 +790,40 @@ export interface NamedDef {
 }
 export const NAMED = namedJson.named as unknown as readonly NamedDef[];
 export const NAMED_BY_ID = byId(NAMED);
+
+/** What a Dark Bargain costs, grants or inflicts (§14.7a), on one House. */
+export interface BargainEffect {
+  resources?: Partial<Record<string, number>>;
+  /** % of maximum Sanity, every Scion of the House. */
+  sanity?: number;
+  score?: Partial<Record<ScoreCategory, number>>;
+  ruin?: number;
+  recruits_lost?: number;
+  recruit_gain?: number;
+  /** An item of this tier for the stash. */
+  item?: 2 | 3 | 4;
+  /** A cursed item turns up in the stash. */
+  cursed?: true;
+  /** Added to one stat of the House's highest-level Scion. */
+  stat?: number;
+  /** Standing buildings raised a level. */
+  building?: number;
+}
+/** A Dark Bargain (§14.7a): a private offer, a price for a boon or for a bane on a named rival. */
+export interface BargainDef {
+  id: string;
+  title: string;
+  text: string;
+  when: ("omen" | "crown")[];
+  price: BargainEffect;
+  boon?: BargainEffect;
+  bane?: BargainEffect;
+  /** What a bane's victim reads: an ordinary misfortune. */
+  misfortune?: string;
+  /** What the bargainer reads when it comes as promised. */
+  promise: string;
+  /** % chance it carries a hidden Pact mark. */
+  mark: number;
+}
+export const BARGAINS = bargainsJson.bargains as unknown as readonly BargainDef[];
+export const BARGAIN_BY_ID = byId(BARGAINS);

@@ -1,0 +1,119 @@
+{
+  "bargains": [
+    {
+      "id": "gold_in_the_ashes",
+      "title": "Gold in the Ashes",
+      "text": "The hearth speaks in your father's voice. There is gold under the old wing, it says, if someone will dream of where.",
+      "when": ["omen"],
+      "price": { "sanity": -15 },
+      "boon": { "resources": { "gold": 300 } },
+      "promise": "Beneath the old wing, a strongbox no one remembers burying.",
+      "mark": 50
+    },
+    {
+      "id": "the_smiths_dream",
+      "title": "The Smith's Dream",
+      "text": "Your armorer wakes with burned palms and a shape in his head he cannot stop drawing. He could forge it, if he is paid in years.",
+      "when": ["omen"],
+      "price": { "resources": { "gold": 120 } },
+      "boon": { "item": 4 },
+      "promise": "The thing he forges in a single night is finer than anything in the kingdom.",
+      "mark": 50
+    },
+    {
+      "id": "a_name_in_the_ledger",
+      "title": "A Name in the Ledger",
+      "text": "A ledger lies open on your desk, in a hand you do not know. Write a rival House's name in it, and their luck will change.",
+      "when": ["omen"],
+      "price": { "sanity": -10 },
+      "bane": { "ruin": 1 },
+      "misfortune": "A beam gives way in the night; part of the house will need rebuilding.",
+      "promise": "The ink dries, and the ledger closes by itself.",
+      "mark": 50
+    },
+    {
+      "id": "the_crying_cradle",
+      "title": "The Crying Cradle",
+      "text": "Something cries in the nursery, though there is no child there. Hush it with one of your recruits, it suggests, and it will go next door.",
+      "when": ["omen"],
+      "price": { "recruits_lost": 1 },
+      "bane": { "recruits_lost": 2 },
+      "misfortune": "Two of the household's hopefuls are gone by morning, their beds cold.",
+      "promise": "The crying stops. Somewhere down the street, it begins again.",
+      "mark": 50
+    },
+    {
+      "id": "a_gift_for_the_rival",
+      "title": "A Gift for a Rival",
+      "text": "A stranger leaves a beautiful casket at your gate, addressed to no one. Send it on, he says, to whoever you like least.",
+      "when": ["omen"],
+      "price": { "resources": { "gold": 40 } },
+      "bane": { "cursed": true },
+      "misfortune": "A casket turns up among the stores; whatever is inside will not let go of whoever lifts it.",
+      "promise": "The casket is carried away, and the stranger smiles.",
+      "mark": 50
+    },
+    {
+      "id": "the_whispering_well",
+      "title": "The Whispering Well",
+      "text": "Your well has begun to answer questions. It wants only a little of your Scions' sleep in return.",
+      "when": ["omen"],
+      "price": { "sanity": -20 },
+      "boon": { "score": { "lore": 6 } },
+      "promise": "The well tells you things about the rift that no book holds.",
+      "mark": 50
+    },
+    {
+      "id": "the_mirror_of_blood",
+      "title": "The Mirror of Blood",
+      "text": "Your strongest Scion sees another face in the mirror: their own, but stronger. It would trade places, a little, for a little blood.",
+      "when": ["omen"],
+      "price": { "sanity": -10, "resources": { "grain": -6 } },
+      "boon": { "stat": 3 },
+      "promise": "They are stronger in the morning, and will not look at the mirror again.",
+      "mark": 50
+    },
+    {
+      "id": "stones_that_move",
+      "title": "Stones That Move",
+      "text": "Masons from nowhere offer to raise a wall by morning. They want to be paid in timber, and in a word you will not remember saying.",
+      "when": ["omen"],
+      "price": { "resources": { "timber": -8 } },
+      "boon": { "building": 1 },
+      "promise": "By morning one of your halls stands taller, its new stones still warm.",
+      "mark": 50
+    },
+    {
+      "id": "the_long_fever",
+      "title": "The Long Fever",
+      "text": "A plague-doctor with no face asks which House deserves the fever he carries. Not yours, he promises, if you answer.",
+      "when": ["omen"],
+      "price": { "resources": { "gold": 60 } },
+      "bane": { "sanity": -25 },
+      "misfortune": "A sweating fever goes through the household; the Scions sleep badly for weeks.",
+      "promise": "He bows, and walks off toward the house you named.",
+      "mark": 50
+    },
+    {
+      "id": "the_crowns_favor",
+      "title": "The Crown's Favor",
+      "text": "The Cursed King kneels, but the crown is still talking. It offers you the old court's treasury, for one oath sworn in the dark.",
+      "when": ["crown"],
+      "price": { "sanity": -15 },
+      "boon": { "resources": { "gold": 500 }, "score": { "lineage": 6 } },
+      "promise": "The old court's tithe-chests are found under the drowned palace, sealed with your arms.",
+      "mark": 75
+    },
+    {
+      "id": "the_crowns_grudge",
+      "title": "The Crown's Grudge",
+      "text": "The crown remembers every House that bent its knee to the old King. Name one, it says, and it will remind them.",
+      "when": ["crown"],
+      "price": { "sanity": -10 },
+      "bane": { "ruin": 2 },
+      "misfortune": "Old foundations crack all at once; the house groans like something remembering.",
+      "promise": "The crown goes quiet, satisfied.",
+      "mark": 75
+    }
+  ]
+}
