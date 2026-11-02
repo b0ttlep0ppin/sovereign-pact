@@ -50,7 +50,7 @@ export const GEAR_SLOTS = ["main", "off", "head", "body", "arms", "legs", "acc1"
 export type GearSlot = (typeof GEAR_SLOTS)[number];
 
 /** The counters event resolution rules read (§9.4: most kills, most expeditions, the healer…). */
-export const HIST_KEYS = ["kills", "expeditions", "led", "healing", "targeted", "bosses", "sorties", "devastating", "dead_comrades", "retired"] as const;
+export const HIST_KEYS = ["kills", "expeditions", "led", "healing", "targeted", "bosses", "sorties", "devastating", "dead_comrades", "retired", "tarot_tokens"] as const;
 export type HistKey = (typeof HIST_KEYS)[number];
 
 /** A lasting injury result (§11.2). `years` −1 is permanent. */
@@ -533,6 +533,8 @@ export type SovMove =
   | { type: "buy_consumable"; id: string; n?: number }
   /** Opens the satchel between nodes: a Camp item (on a Scion, for Widow's Tea and the Smuggler's Flask), a Lantern, a Signal Flare (§13.7). */
   | { type: "use_item"; id: string; person?: number }
+  /** Spends a Tarot Token in town (§13.7): one Scion draws a new Tarot, once in their life. */
+  | { type: "draw_tarot"; person: number }
   /** Put a stashed item up for sealed bids, with a reserve. */
   | { type: "auction"; item: number; reserve: number }
   /** Offer a deal to another House; `open` makes it public (§8.9). */

@@ -12,8 +12,8 @@ import { log } from "./year.ts";
 const B = TUNING.consumables.bots;
 const W = TUNING.consumables.uses;
 
-/** What a bot opens on the road, and so packs one of. */
-export const BOT_OPENS: readonly string[] = ["pilgrims_bread", "widows_tea", "smugglers_flask", "lantern", "signal_flare"];
+/** What a bot packs one of beyond battle things: what it opens on the road, and what works when carried. */
+export const BOT_OPENS: readonly string[] = ["pilgrims_bread", "widows_tea", "smugglers_flask", "lantern", "signal_flare", "saints_tooth", "dice_of_the_marches"];
 
 export type OpenMove = Extract<SovMove, { type: "use_item" }>;
 

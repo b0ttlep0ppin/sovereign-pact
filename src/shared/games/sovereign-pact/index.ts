@@ -21,7 +21,7 @@ import { cannotPromote, promoteRecruit } from "./promotion.ts";
 import { botOutfit, cannotOutfit, outfit } from "./outfit.ts";
 import { bargain, botBargain, cannotBargain } from "./bargains.ts";
 import { botCure, cannotCure, cure } from "./cures.ts";
-import { botBuyConsumable, botPack, buyConsumable, cannotBuyConsumable, cannotPack, pack } from "./consumables.ts";
+import { botBuyConsumable, botPack, buyConsumable, cannotBuyConsumable, cannotDrawTarot, cannotPack, drawTarot, pack } from "./consumables.ts";
 import { botOpen, cannotOpen, open } from "./satchel.ts";
 import { cannotReinstate, cannotRetire, reinstate, retire } from "./lifecycle.ts";
 import { botCard, cannotPick, pick } from "./gate.ts";
@@ -277,6 +277,15 @@ export function applyMove(state: SovState, playerId: PlayerId, move: SovMove): M
       const why = cannotBuy(s, house, move.item);
       if (why) return fail(why);
       buy(s, house, move.item);
+      s.phaseMoves += 1;
+      return { ok: true, state: s };
+    }
+    case "draw_tarot": {
+      if (s.phase !== "settlement") return fail("A Tarot Token is spent in town, in the Settlement Phase.");
+      if (h.sealed) return fail("Unseal the Year first.");
+      const why = cannotDrawTarot(s, house, move.person);
+      if (why) return fail(why);
+      drawTarot(s, house, move.person);
       s.phaseMoves += 1;
       return { ok: true, state: s };
     }

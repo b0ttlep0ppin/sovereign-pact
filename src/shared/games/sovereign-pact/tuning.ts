@@ -289,8 +289,8 @@ export const TUNING = {
     botReserve: 40,
     /** When a bot Scion reaches into the satchel: an ally under this share of HP or of a location's Durability, its own MP under this share, or this many foes standing for a bomb (and for Oathwine), or undead and constructs for a dust. A bot House at a Camp opens Camp items for a Scion under `campBelow` of MP, Sanity or a location. */
     bots: { hpBelow: 0.35, durBelow: 0.3, mpBelow: 0.2, bombFoes: 3, dustFoes: 2, campBelow: 0.5 },
-    /** Camp items (§13.7): Widow's Tea's Sanity and its Sleep, the Smuggler's Flask's Sanity cost (% of max). */
-    uses: { teaSanityPct: 20, teaSleepTicks: 100, flaskSanityPct: 5 },
+    /** Camp items (§13.7): Widow's Tea's Sanity and its Sleep, the Smuggler's Flask's Sanity cost (% of max); the die the Dice of the Marches rerolls at or under; what the Saint's Tooth turns a Mortal wound into. */
+    uses: { teaSanityPct: 20, teaSleepTicks: 100, flaskSanityPct: 5, diceRerollAt: 5, toothResult: "arms_severed" },
   },
 
   /** §8.9 deals, first pass: score for a deal honored (Intrigue, each side) and for a public one (Renown, each side). */
