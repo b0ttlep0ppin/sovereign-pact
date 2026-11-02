@@ -1,0 +1,82 @@
+{
+  "id": "the_old_soldier",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    7
+  ],
+  "title": "The Old Soldier",
+  "text": "A veteran sits by the road in rusted mail, waiting for orders from a war that ended long ago. He offers to teach a trick or two.",
+  "options": [
+    {
+      "id": "learn",
+      "label": "The youngest learns from him.",
+      "rule": "scion:fewest_expeditions",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "He is a hard teacher, and a good one.",
+          "effects": [
+            {
+              "xp": 150
+            },
+            {
+              "jp": 60
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "relieve",
+      "label": "The leader relieves him of duty.",
+      "rule": "leader",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "He salutes, and goes home at last, wherever that is.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 8
+            },
+            {
+              "score": {
+                "renown": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "enlist",
+      "label": "Ask him to march with you.",
+      "rule": "vote",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "He marches with you as far as the next fight, and fights like ten.",
+          "effects": [
+            {
+              "to": "party",
+              "status": "protect"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

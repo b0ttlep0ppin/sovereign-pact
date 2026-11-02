@@ -1,0 +1,101 @@
+{
+  "id": "the_one_rope",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    10
+  ],
+  "title": "The One Rope",
+  "text": "A chasm, and one old rope across it that will bear one more crossing at most. Below, the river. Behind, something coming. Each House decides, alone, whether to wait its turn.",
+  "options": [
+    {
+      "id": "wait",
+      "label": "Wait your turn.",
+      "rule": "secret",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Every House waited. The rope held for all of you, somehow, and the Houses look at each other differently.",
+          "effects": [
+            {
+              "score": {
+                "renown": 1
+              }
+            },
+            {
+              "accord": 2
+            }
+          ],
+          "when": {
+            "none": "rush"
+          }
+        },
+        {
+          "w": 100,
+          "text": "Someone else rushed it, and the rope went with them across. You go the long way round.",
+          "effects": [
+            {
+              "to": "party",
+              "durability": -15,
+              "loc": "legs"
+            },
+            {
+              "sanity": -10
+            }
+          ],
+          "when": {
+            "any": "rush"
+          }
+        }
+      ]
+    },
+    {
+      "id": "rush",
+      "label": "Cut in and cross first.",
+      "rule": "secret",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Nobody else thought of it. You are over before the others have finished being polite.",
+          "effects": [
+            {
+              "xp": 80
+            },
+            {
+              "score": {
+                "intrigue": 2
+              }
+            }
+          ],
+          "when": {
+            "none": "rush"
+          }
+        },
+        {
+          "w": 100,
+          "text": "Everyone rushed it at once. The rope did not hold.",
+          "effects": [
+            {
+              "injury": "legs"
+            },
+            {
+              "accord": -3
+            }
+          ],
+          "when": {
+            "any": "rush"
+          }
+        }
+      ]
+    }
+  ]
+}

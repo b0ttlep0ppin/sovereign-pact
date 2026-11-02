@@ -1,0 +1,81 @@
+{
+  "id": "the_quiet_battlefield",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    10
+  ],
+  "title": "The Quiet Battlefield",
+  "text": "An old battlefield, very still. A sword stands upright in the middle of it with a ring of clean ground round it, and a voice on the wind asks who fought best of you.",
+  "options": [
+    {
+      "id": "killer",
+      "label": "The one with most kills steps up.",
+      "rule": "scion:most_kills",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The sword comes free in their hand, and the wind sighs.",
+          "effects": [
+            {
+              "item": {
+                "tier": 3
+              }
+            },
+            {
+              "score": {
+                "valor": 2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "healer",
+      "label": "The one who has saved most lives steps up.",
+      "rule": "scion:most_healing",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The sword stays put. The wind says this was the right answer anyway.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 10
+            },
+            {
+              "growth": {
+                "sagacity": 10
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "nobody",
+      "label": "Nobody answers.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The wind waits a long time, and then gives up.",
+          "effects": []
+        }
+      ]
+    }
+  ]
+}

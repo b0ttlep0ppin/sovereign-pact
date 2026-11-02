@@ -1,0 +1,88 @@
+{
+  "id": "the_glass_garden",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    10
+  ],
+  "title": "The Glass Garden",
+  "text": "Flowers of colored glass in neat rows, chiming in the wind. Someone tends them; the paths are swept.",
+  "options": [
+    {
+      "id": "pick",
+      "label": "Pick a glass rose.",
+      "rule": "leader",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "It never wilts and never breaks.",
+          "effects": [
+            {
+              "score": {
+                "relics": 1
+              }
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "The gardener comes.",
+          "effects": [
+            {
+              "encounter": {}
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tend",
+      "label": "The gentlest sweeps a path.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The chimes play a tune, and the way out is shorter than the way in.",
+          "effects": [
+            {
+              "skip": 1
+            },
+            {
+              "to": "party",
+              "sanity": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "walk",
+      "label": "Walk carefully round.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Not one petal touched.",
+          "effects": [
+            {
+              "to": "party",
+              "xp": 20
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

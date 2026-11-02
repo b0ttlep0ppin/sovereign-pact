@@ -47,14 +47,21 @@ import spider_queens_court from "./spider_queens_court.json" with { type: "json"
 import still_warm_camp from "./still_warm_camp.json" with { type: "json" };
 import the_bargain_pit from "./the_bargain_pit.json" with { type: "json" };
 import the_barrow_feast from "./the_barrow_feast.json" with { type: "json" };
+import the_beggar_king from "./the_beggar_king.json" with { type: "json" };
 import the_bellows_ghost from "./the_bellows_ghost.json" with { type: "json" };
 import the_bone_dice from "./the_bone_dice.json" with { type: "json" };
+import the_crooked_signpost from "./the_crooked_signpost.json" with { type: "json" };
+import the_dreaming_tent from "./the_dreaming_tent.json" with { type: "json" };
 import the_drowned_chapel from "./the_drowned_chapel.json" with { type: "json" };
+import the_echoing_hall from "./the_echoing_hall.json" with { type: "json" };
 import the_empty_court from "./the_empty_court.json" with { type: "json" };
 import the_engine_heart from "./the_engine_heart.json" with { type: "json" };
 import the_faceless_census from "./the_faceless_census.json" with { type: "json" };
 import the_fallen_scion from "./the_fallen_scion.json" with { type: "json" };
+import the_feast_of_crows from "./the_feast_of_crows.json" with { type: "json" };
+import the_fortune_teller from "./the_fortune_teller.json" with { type: "json" };
 import the_frozen_hunter from "./the_frozen_hunter.json" with { type: "json" };
+import the_glass_garden from "./the_glass_garden.json" with { type: "json" };
 import the_hanging_wood from "./the_hanging_wood.json" with { type: "json" };
 import the_heretics_trial from "./the_heretics_trial.json" with { type: "json" };
 import the_ice_choir from "./the_ice_choir.json" with { type: "json" };
@@ -64,8 +71,12 @@ import the_lullaby from "./the_lullaby.json" with { type: "json" };
 import the_masked_ball from "./the_masked_ball.json" with { type: "json" };
 import the_merchant_of_teeth from "./the_merchant_of_teeth.json" with { type: "json" };
 import the_mirror_pool from "./the_mirror_pool.json" with { type: "json" };
+import the_old_soldier from "./the_old_soldier.json" with { type: "json" };
+import the_one_rope from "./the_one_rope.json" with { type: "json" };
 import the_open_grave from "./the_open_grave.json" with { type: "json" };
 import the_pit_market from "./the_pit_market.json" with { type: "json" };
+import the_poisoned_well from "./the_poisoned_well.json" with { type: "json" };
+import the_quiet_battlefield from "./the_quiet_battlefield.json" with { type: "json" };
 import the_red_rain from "./the_red_rain.json" with { type: "json" };
 import the_rusted_army from "./the_rusted_army.json" with { type: "json" };
 import the_seventh_altar from "./the_seventh_altar.json" with { type: "json" };
@@ -75,8 +86,11 @@ import the_six_bowls from "./the_six_bowls.json" with { type: "json" };
 import the_sleeping_giant from "./the_sleeping_giant.json" with { type: "json" };
 import the_stampede from "./the_stampede.json" with { type: "json" };
 import the_starving_pilgrims from "./the_starving_pilgrims.json" with { type: "json" };
+import the_steaming_pool from "./the_steaming_pool.json" with { type: "json" };
 import the_still_traveler from "./the_still_traveler.json" with { type: "json" };
+import the_stranded_merchant from "./the_stranded_merchant.json" with { type: "json" };
 import the_sunken_bell from "./the_sunken_bell.json" with { type: "json" };
+import the_thirsting_banner from "./the_thirsting_banner.json" with { type: "json" };
 import the_toll from "./the_toll.json" with { type: "json" };
 import the_toll_keeper from "./the_toll_keeper.json" with { type: "json" };
 import the_vacant_star from "./the_vacant_star.json" with { type: "json" };
@@ -141,14 +155,21 @@ export default [
   still_warm_camp,
   the_bargain_pit,
   the_barrow_feast,
+  the_beggar_king,
   the_bellows_ghost,
   the_bone_dice,
+  the_crooked_signpost,
+  the_dreaming_tent,
   the_drowned_chapel,
+  the_echoing_hall,
   the_empty_court,
   the_engine_heart,
   the_faceless_census,
   the_fallen_scion,
+  the_feast_of_crows,
+  the_fortune_teller,
   the_frozen_hunter,
+  the_glass_garden,
   the_hanging_wood,
   the_heretics_trial,
   the_ice_choir,
@@ -158,8 +179,12 @@ export default [
   the_masked_ball,
   the_merchant_of_teeth,
   the_mirror_pool,
+  the_old_soldier,
+  the_one_rope,
   the_open_grave,
   the_pit_market,
+  the_poisoned_well,
+  the_quiet_battlefield,
   the_red_rain,
   the_rusted_army,
   the_seventh_altar,
@@ -169,8 +194,11 @@ export default [
   the_sleeping_giant,
   the_stampede,
   the_starving_pilgrims,
+  the_steaming_pool,
   the_still_traveler,
+  the_stranded_merchant,
   the_sunken_bell,
+  the_thirsting_banner,
   the_toll,
   the_toll_keeper,
   the_vacant_star,

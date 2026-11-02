@@ -1,0 +1,73 @@
+{
+  "id": "the_fortune_teller",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    10
+  ],
+  "title": "The Fortune Teller",
+  "text": "An old woman with a deck of cards sits on a rock. She will read for one of you, for free; the cards, she says, are the price.",
+  "options": [
+    {
+      "id": "read",
+      "label": "The leader has their cards read.",
+      "rule": "leader",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "She turns a card over, and it is not the one the leader was born under.",
+          "effects": [
+            {
+              "tarot": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "listen",
+      "label": "The wisest listens from the edge.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Every reading she gives is a little true. The wisest learns how she does it.",
+          "effects": [
+            {
+              "score": {
+                "lore": 1
+              }
+            },
+            {
+              "jp": 50
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pass",
+      "label": "Pass by.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "She laughs, and shuffles, and waits.",
+          "effects": []
+        }
+      ]
+    }
+  ]
+}

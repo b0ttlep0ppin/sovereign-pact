@@ -1,0 +1,103 @@
+{
+  "id": "the_beggar_king",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    10
+  ],
+  "title": "The Beggar King",
+  "text": "An old man in a paper crown begs at a crossroads in the otherworld. He says he once ruled all of this. He asks the House that has least.",
+  "options": [
+    {
+      "id": "give",
+      "label": "The poorest House gives what it can.",
+      "rule": "house:lowest_standing",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "He blesses them in a voice that was once used to giving orders.",
+          "effects": [
+            {
+              "blessing": {
+                "trait": "stout_hearted",
+                "years": 2
+              }
+            },
+            {
+              "score": {
+                "renown": 1
+              }
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "He takes it and laughs, and his crown is gold for a moment.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -5
+              }
+            },
+            {
+              "item": {
+                "tier": 3
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mock",
+      "label": "The richest House mocks him.",
+      "rule": "house:highest_standing",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "He takes it with dignity, and something in the otherworld remembers.",
+          "effects": [
+            {
+              "doom": 1
+            },
+            {
+              "score": {
+                "intrigue": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ask",
+      "label": "Ask him about his kingdom.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "He tells it well, and some of it is even true.",
+          "effects": [
+            {
+              "score": {
+                "lore": 2
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

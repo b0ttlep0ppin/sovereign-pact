@@ -1,0 +1,80 @@
+{
+  "id": "the_thirsting_banner",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    10
+  ],
+  "title": "The Thirsting Banner",
+  "text": "A war banner planted in a field of old bones, still bright. Whoever carries it, the stories say, wins every battle but one.",
+  "options": [
+    {
+      "id": "carry",
+      "label": "The bravest takes it up.",
+      "rule": "scion:highest:might",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It is light in the hand and very heavy everywhere else.",
+          "effects": [
+            {
+              "blessing": {
+                "trait": "lucky",
+                "years": 2
+              }
+            },
+            {
+              "doom": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "burn",
+      "label": "Burn it.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It burns slowly, and the bones in the field settle as it goes.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 5
+            },
+            {
+              "score": {
+                "valor": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "leave",
+      "label": "Leave it for some other fool.",
+      "rule": "leader",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Somebody will. Somebody always does.",
+          "effects": []
+        }
+      ]
+    }
+  ]
+}

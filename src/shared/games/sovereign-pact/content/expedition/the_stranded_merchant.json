@@ -1,0 +1,93 @@
+{
+  "id": "the_stranded_merchant",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    8
+  ],
+  "title": "The Stranded Merchant",
+  "text": "A merchant's wagon with a broken wheel, its owner sitting on the steps. Fix it, and the merchant will pay; or there is the cargo.",
+  "options": [
+    {
+      "id": "fix",
+      "label": "The strongest fixes the wheel.",
+      "rule": "scion:highest:might",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The merchant pays with a fine thing from the back.",
+          "effects": [
+            {
+              "item": {
+                "tier": 2
+              }
+            },
+            {
+              "xp": 60
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "buy",
+      "label": "Buy from the cargo at the side of the road.",
+      "rule": "leader",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Fair prices, for once.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -10
+              }
+            },
+            {
+              "item": {
+                "tier": 3
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rob",
+      "label": "Take the cargo.",
+      "rule": "leader",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It is a lot of cargo.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 15,
+                "iron": 2,
+                "timber": 2
+              }
+            },
+            {
+              "score": {
+                "renown": -2
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
