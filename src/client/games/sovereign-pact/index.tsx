@@ -4,6 +4,7 @@
 import type { GameClientProps } from "@vibepulse/shared";
 import { Content, TIER_NAMES, type SovMove, type SovView } from "@vibepulse/shared/games/sovereign-pact";
 import { useState } from "react";
+import AccessPanel, { accessAttrs, useAccess } from "./Access";
 import BattleScreen from "./BattleScreen";
 import ChainMap from "./ChainMap";
 import Deals from "./Deals";
@@ -115,10 +116,11 @@ function useBattles(battles: SovView["battles"]) {
 
 export default function SovereignPact({ view, isMyTurn, sendMove, lastError }: Props) {
   const battles = useBattles(view.battles);
+  const [access, setAccess] = useAccess();
   const mine = view.me === null ? null : view.houses[view.me]!;
   const others = view.people.filter((p) => p.host !== view.me);
   return (
-    <div className="sp">
+    <div className="sp" {...accessAttrs(access)}>
       <section className="sp-top" aria-label="The kingdom">
         <div className="sp-top__year">
           <strong>
@@ -133,6 +135,7 @@ export default function SovereignPact({ view, isMyTurn, sendMove, lastError }: P
         </div>
       </section>
       <Timeline view={view} />
+      <AccessPanel access={access} set={setAccess} />
 
       {view.outcome ? (
         <p className={`sp-outcome${view.outcome.won ? " is-won" : ""}`} role="status">
@@ -242,7 +245,7 @@ export default function SovereignPact({ view, isMyTurn, sendMove, lastError }: P
           </ul>
         </section>
       ) : null}
-      {battles.watching ? <BattleScreen key={battles.watching.key} replay={battles.watching} view={view} onClose={battles.next} waiting={battles.waiting} /> : null}
+      {battles.watching ? <BattleScreen key={battles.watching.key} replay={battles.watching} view={view} onClose={battles.next} waiting={battles.waiting} fullLog={access.log} /> : null}
 
       <section className="sp-panel" aria-label="Chronicle of the Year">
         <h2>What happened</h2>

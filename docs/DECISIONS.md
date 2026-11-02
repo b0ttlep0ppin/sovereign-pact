@@ -2,6 +2,16 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 8n): accessibility toggles
+
+- An Accessibility section under the timeline holds the five toggles of §15.8:
+  - **Reduce flashing:** no pulsing Last Stand (a dashed outline instead), no injury flash, no shimmering Gate.
+  - **Reduce motion:** no transitions, no tilted planes, damage numbers shown without flying, as the system's own reduced-motion setting already does.
+  - **Color-blind palette:** heals, crits and Sanity damage change color (blue, amber, violet) and also carry a mark (+, ✦, ◉), so color is never the only cue.
+  - **Larger damage numbers.**
+  - **Full battle log:** the log under the battle shows every turn so far, numbered, to read instead of watch.
+- Reading: these are per-viewer conveniences, kept in the browser (localStorage) and never in the game's state, so they do not travel with a save. Element icons on the battle grid come with the sprite pipeline; until then elements show only in words.
+
 ## 2026-11-02 (implementation, Milestone 8m): founding a House step by step
 
 - Founding now shows a House designer (§5.1), with the House's emblem, name and motto at the top and five steps:

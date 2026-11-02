@@ -99,3 +99,20 @@
   .sp-battle__planes { grid-column: 1 / -1; grid-row: 1; }
   .sp-grid { height: min(52vh, 440px); }
 }
+
+/* Accessibility toggles (§15.8), set on the client's root. */
+[data-motion="reduced"] .sp-unit, [data-motion="reduced"] .sp-unit__hp span, [data-motion="reduced"] .sp-bar > span { transition: none; }
+[data-motion="reduced"] .sp-pop { animation-duration: 1ms; animation-fill-mode: none; }
+[data-motion="reduced"] .sp-grid--enemy, [data-motion="reduced"] .sp-grid--party { transform: none; }
+[data-motion="reduced"] .sp-injury, [data-flash="reduced"] .sp-injury { animation: none; }
+[data-flash="reduced"] .sp-unit.is-last-stand .sp-unit__body, [data-motion="reduced"] .sp-unit.is-last-stand .sp-unit__body { animation: none; outline: 2px dashed var(--danger, #d05050); outline-offset: 2px; }
+[data-numbers="big"] .sp-pop { font-size: 1.5rem; }
+[data-numbers="big"] .sp-pop--crit { font-size: 2rem; }
+[data-numbers="big"] .sp-pop--miss { font-size: 1.15rem; }
+[data-palette="cb"] .sp-pop--heal { color: #5aa8ff; }
+[data-palette="cb"] .sp-pop--crit { color: #ffb000; }
+[data-palette="cb"] .sp-pop--sanity { color: #dc7cff; }
+[data-palette="cb"] .sp-pop--heal::before { content: "+ "; }
+[data-palette="cb"] .sp-pop--crit::before { content: "✦ "; }
+[data-palette="cb"] .sp-pop--sanity::before { content: "◉ "; }
+.sp-battle__log.is-full { max-height: 14em; }

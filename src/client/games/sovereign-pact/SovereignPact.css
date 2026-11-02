@@ -163,3 +163,8 @@
 .sp-swatch { width: 32px; height: 32px; border-radius: 50%; border: 2px solid var(--line); cursor: pointer; padding: 0; }
 .sp-swatch[aria-pressed="true"] { border-color: var(--text); box-shadow: 0 0 0 2px var(--accent); }
 .sp-swatch:disabled { opacity: 0.25; cursor: not-allowed; }
+/* Accessibility (§15.8). */
+.sp-access { margin: 0 0 12px; }
+.sp-access summary { cursor: pointer; color: var(--muted); }
+.sp-access__list { display: flex; flex-wrap: wrap; gap: 6px 18px; padding: 8px 0; }
+[data-motion="reduced"] * { scroll-behavior: auto !important; }
