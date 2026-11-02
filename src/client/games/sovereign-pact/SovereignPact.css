@@ -130,6 +130,14 @@
 .sp-item small { color: var(--muted); }
 .sp-item__curse { color: var(--danger) !important; }
 .sp-bid { display: inline-flex; gap: 6px; align-items: center; }
+.sp-restyle { grid-column: 1 / -1; margin-top: 10px; }
+.sp-restyle summary { cursor: pointer; color: var(--muted); font-size: 0.9rem; }
+.sp-restyle__row { display: grid; grid-template-columns: 3.6em 26px minmax(0, 1fr) 26px; gap: 6px; align-items: center; margin-top: 6px; max-width: 18em; }
+.sp-restyle__step { width: 26px; height: 24px; padding: 0; border: 1px solid var(--line); border-radius: 3px; background: var(--panel); color: var(--gold); font-size: 0.7rem; cursor: pointer; }
+.sp-restyle__step:hover, .sp-restyle__step:focus-visible { border-color: var(--line-hi); color: var(--text); }
+.sp-restyle__label { font-size: 0.85rem; color: var(--muted); }
+.sp-restyle__value { text-align: center; font-size: 0.9rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sp-restyle > .sp-button { margin-top: 8px; }
 @media (max-width: 640px) { .sp-lots li { grid-template-columns: 1fr; } }
 /* Deals (§8.9). */
 .sp-offer { display: grid; gap: 8px; margin-top: 12px; justify-items: start; }
@@ -263,7 +271,7 @@
 .sp-person--portrait { grid-template-columns: auto 1fr; column-gap: 12px; }
 .sp-person--portrait > :not(.sp-person__portrait) { grid-column: 2; }
 .sp-person__portrait { grid-column: 1; grid-row: 1 / span 3; align-self: start; border: 1px solid var(--line-hi); border-radius: 2px; background: radial-gradient(ellipse at 50% 30%, #3a2e24, #0d0a08 75%); box-shadow: inset 0 0 0 1px #000; }
-.sp-person--portrait > .sp-person__traits, .sp-person--portrait > .sp-person__injuries, .sp-person--portrait > .sp-actions { grid-column: 1 / -1; }
+.sp-person--portrait > .sp-person__traits, .sp-person--portrait > .sp-person__injuries, .sp-person--portrait > .sp-actions, .sp-person--portrait > .sp-restyle { grid-column: 1 / -1; }
 
 /* Screens (DECISIONS 8af): a bar across the top, the map or the road in the middle with what needs
    the House beside it, and the town's panels in tabs underneath. */

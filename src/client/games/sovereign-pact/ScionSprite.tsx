@@ -2,7 +2,7 @@
 // the body and head by sex and age, a hair style and colors read from who they are, and an outfit by
 // Job: armor, a hat, a weapon, and a cape and shield in their House's colors. The pieces are recolored
 // once each and stacked into one sheet per Scion, cached; a sprite shows one row of it.
-import type { SovView } from "@vibepulse/shared/games/sovereign-pact";
+import { HAIR_COLORS as HAIR_ALL_COLORS, HAIR_LONG, HAIR_SHORT, styleOf, type SovView } from "@vibepulse/shared/games/sovereign-pact";
 import { useEffect, useState, type CSSProperties } from "react";
 import { HERALDRY_COLORS } from "./Emblem";
 import LAYERS from "./scion-layers.json";
@@ -46,9 +46,8 @@ const OUTFIT: Record<string, Partial<Record<Slot, string>>> = {
 const ATTACK: Record<string, Anim> = { sword: "slash", longsword: "slash", mace: "slash", dagger: "slash", staff: "spellcast", bow: "shoot", crossbow: "shoot" };
 
 const SKINS = ["light", "amber", "olive", "taupe", "bronze", "brown", "black"];
-const HAIR_COLORS = ["blonde", "sandy", "light_brown", "chestnut", "dark_brown", "black", "raven", "ginger", "redhead", "strawberry", "ash"];
-const SHORT = ["plain", "parted_side_bangs", "page", "swoop_side", "cowlick", "idol", "curtains"];
-const LONG = ["long_straight", "wavy", "curtains_long", "long_messy", "single"];
+/** The colors a young Scion is born with; the old go gray or white. */
+const HAIR_COLORS = HAIR_ALL_COLORS.filter((c) => c !== "gray" && c !== "white");
 
 /** A small stable hash: the same Scion always gets the same look. */
 function hash(n: number, salt: number): number {
@@ -71,6 +70,8 @@ export interface ScionLook {
   colors: [string, string];
   /** What they wear, when it is known: it replaces their Job's outfit piece by piece ("" is bare). */
   kit?: Partial<Record<"weapon" | "shield" | "hat" | "armor", string>>;
+  /** Bareheaded: no hat or hood, so the hair shows (the restyle preview). */
+  bare?: boolean;
 }
 
 /** The sprite piece each item base is drawn with (DECISIONS 8aj); the LPC set has no attribution-only axe or spear. */
@@ -116,15 +117,27 @@ export function kitOf(gear: Person["gear"], items: readonly { id: number; base: 
  * How a Scion looks: read from who they are (their id, sex and age), their Job and their House's colors,
  * and, given the items the view holds, the gear they wear.
  */
-export function lookOf(p: Pick<Person, "id" | "sex" | "age" | "job" | "status"> & { gear?: Person["gear"] }, colors: readonly string[] | undefined, items?: readonly { id: number; base: string }[]): ScionLook {
-  const elderly = p.age >= 55;
+/** How they were born to look, before any restyling: the same person always rolls the same. */
+export function bornLook(p: Pick<Person, "id" | "sex" | "age">): { hair: string; hairColor: string; beard?: string } {
   const long = p.sex === "f" ? hash(p.id, 3) % 5 !== 0 : hash(p.id, 3) % 6 === 0;
+  return {
+    hair: pick(long ? HAIR_LONG : HAIR_SHORT, p.id, 2),
+    hairColor: p.age >= 55 ? (hash(p.id, 4) % 2 ? "gray" : "white") : pick(HAIR_COLORS, p.id, 4),
+    ...(p.sex === "m" && hash(p.id, 5) % 5 < 2 ? { beard: pick(["trimmed", "medium"], p.id, 6) } : {}),
+  };
+}
+
+export function lookOf(p: Pick<Person, "id" | "sex" | "age" | "job" | "status"> & { gear?: Person["gear"]; look?: readonly string[] }, colors: readonly string[] | undefined, items?: readonly { id: number; base: string }[]): ScionLook {
+  const elderly = p.age >= 55;
+  const born = bornLook(p);
+  const chosen = styleOf({ look: [...(p.look ?? [])] });
+  const beard = chosen.beard === undefined ? born.beard : chosen.beard === "none" || p.sex !== "m" ? undefined : chosen.beard;
   return {
     sex: p.sex,
     skin: pick(SKINS, p.id, 1),
-    hair: pick(long ? LONG : SHORT, p.id, 2),
-    hairColor: elderly ? (hash(p.id, 4) % 2 ? "gray" : "white") : pick(HAIR_COLORS, p.id, 4),
-    ...(p.sex === "m" && hash(p.id, 5) % 5 < 2 ? { beard: pick(["trimmed", "medium"], p.id, 6) } : {}),
+    hair: chosen.hair ?? born.hair,
+    hairColor: chosen.hair_color ?? born.hairColor,
+    ...(beard ? { beard } : {}),
     elderly,
     job: p.status === "recruit" ? "recruit" : (p.job ?? "recruit"),
     colors: [HERALDRY_COLORS.get(colors?.[0] ?? "") ?? "#6b5a3a", HERALDRY_COLORS.get(colors?.[1] ?? "") ?? "#8a8a8a"],
@@ -140,6 +153,7 @@ const outfitOf = (look: ScionLook): Partial<Record<Slot, string>> => {
     // Bare-handed or unarmored: no weapon or armor; a helmless head keeps its Job's hat.
     else if (slot === "weapon" || slot === "armor") delete out[slot];
   }
+  if (look.bare) delete out.hat;
   return out;
 };
 

@@ -67,3 +67,21 @@ describe("your people", () => {
     expect(screen.queryByRole("listitem", { name: rival.name })).toBeNull();
   });
 });
+
+describe("restyling on the card (§5.8)", () => {
+  it("steps through hair and beard and sends each choice at once", () => {
+    const { s, scion } = town();
+    scion.sex = "m";
+    scion.look = [...scion.look, "hair=plain"];
+    const sendMove = vi.fn();
+    render(<Roster view={g.view(s, "p1")} sendMove={sendMove} canAct />);
+    const card = screen.getByRole("listitem", { name: scion.name });
+    const hair = within(card).getByRole("group", { name: `Hair for ${scion.name}` });
+    expect(within(hair).getByText("Plain")).toBeTruthy();
+    fireEvent.click(within(hair).getByRole("button", { name: "Next hair" }));
+    expect(sendMove).toHaveBeenCalledWith({ type: "restyle", person: scion.id, hair: "parted_side_bangs" });
+    fireEvent.click(within(card).getByRole("button", { name: "As they were born" }));
+    expect(sendMove).toHaveBeenLastCalledWith({ type: "restyle", person: scion.id, hair: "", hair_color: "", beard: "" });
+    expect(within(card).getByRole("group", { name: `Beard for ${scion.name}` })).toBeTruthy();
+  });
+});

@@ -2,6 +2,19 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 8ak): restyling hair and beard
+
+- I'd promised Josh a look editor on each person's card. §5.8 says the player can "restyle hair, beard, and clothes freely", while body features "stay as rolled or granted". So the editor offers hair style, hair color and beard. Skin does not change.
+- Clothes already follow the Job and the gear a Scion wears (8aj), so there is no separate clothes picker.
+- New move `restyle {person, hair?, hair_color?, beard?}`:
+  - Each choice comes from a list in `style.ts`.
+  - "" goes back to the born look.
+  - It is free, allowed in any phase, and limited to the House's own people.
+  - The Lost cannot be restyled, and neither can a Changed body, whose look is its Change's.
+- Beards are for men only, because the LPC beard layers are drawn on the male frame.
+- Choices are stored as `key=value` tags in `Person.look`. They need no new save field, and a Change sets them aside with the rest of the old look.
+- On the card, each choice is a ◀ name ▶ stepper, and "As they were born" resets all three. While the panel is open, the portrait drops hat or hood so the hair shows.
+
 ## 2026-11-02 (implementation, Milestone 8aj): sprites wear the Scion's gear
 
 - I'd told Josh "the weapon they actually have equipped shows in their hands." A Scion's sprite is now drawn from what they wear, laid over their Job's outfit:
