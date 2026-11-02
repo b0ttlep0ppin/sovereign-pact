@@ -1,0 +1,91 @@
+{
+  "id": "the_map_of_nowhere",
+  "pools": [
+    "outer_dark"
+  ],
+  "weight": 1,
+  "band": [
+    6,
+    10
+  ],
+  "title": "The Map of Nowhere",
+  "text": "A map lies on the ground in the dark. It shows exactly where you stand, and a road that is not there.",
+  "options": [
+    {
+      "id": "follow",
+      "label": "Follow the road on the map.",
+      "rule": "vote",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "It is there when you walk it.",
+          "effects": [
+            {
+              "skip": 2
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "It leads somewhere else entirely.",
+          "effects": [
+            {
+              "fork": {
+                "add": [
+                  "encounter",
+                  "encounter"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "study",
+      "label": "The wisest studies who drew it.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Your own hand, years from now.",
+          "effects": [
+            {
+              "score": {
+                "lore": 2
+              }
+            },
+            {
+              "sanity": -10
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "burn",
+      "label": "Burn it.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The ash spells a word you do not know.",
+          "effects": [
+            {
+              "doom": -1
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

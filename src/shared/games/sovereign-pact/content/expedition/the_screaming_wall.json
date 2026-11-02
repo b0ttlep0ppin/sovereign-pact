@@ -1,0 +1,94 @@
+{
+  "id": "the_screaming_wall",
+  "pools": [
+    "pit"
+  ],
+  "weight": 1,
+  "band": [
+    6,
+    10
+  ],
+  "title": "The Screaming Wall",
+  "text": "A wall built of the damned, still alive, still screaming. One of them is calling a Scion by name.",
+  "options": [
+    {
+      "id": "answer",
+      "label": "The one called answers.",
+      "rule": "scion:random",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "An ancestor, who tells them a secret of the House before the wall swallows him.",
+          "effects": [
+            {
+              "score": {
+                "lore": 2
+              }
+            },
+            {
+              "sanity": -10
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "A liar, who only wanted to be heard.",
+          "effects": [
+            {
+              "sanity": -15
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "free",
+      "label": "Pull him free.",
+      "rule": "vote",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "He comes out, and the wall comes after him.",
+          "effects": [
+            {
+              "encounter": {
+                "level": 1
+              }
+            },
+            {
+              "score": {
+                "renown": 2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "deaf",
+      "label": "Stop your ears and walk on.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "You hear it for a day after.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -6
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

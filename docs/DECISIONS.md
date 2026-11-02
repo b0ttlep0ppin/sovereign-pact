@@ -2,6 +2,11 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 7ao): sixteen region events for the thinnest regions
+
+- Sixteen events (448 in all): three each for the Beast Lands, the Deep Cold, the Pit and the Dragon Reaches, two each for the Apostate Court and the Outer Dark. Every region now has 15–17; the budget is 25.
+- Readings: a Fork that sends the party "somewhere else entirely" adds two encounters (the schema's node kinds are encounter, event, camp and cache). Burning the Map of Nowhere lowers Doom by 1, the same size as the other events that lower it.
+
 ## 2026-11-02 (implementation, Milestone 7an: every card-type pool reaches 25) — implementer
 - **Built** (content only). Sixteen events: the Trail of Coins, the Mad Hermit and the Lost One's Shadow (Rescue); the Fallen Watchtower, the Copper Creek, the Wild Horses and the Essence Moths (Resource); the Bone Pile, the Hunter's Moon and the Wounded Quarry (Hunt); and the Thorn Lion, the Hoarfrost Hermit, the Pit Gladiators, the Dragon Bard, the Echo Self and the Spirit Bear for the six thinnest regions. That makes 432 expedition events. Every card-type pool (Delve, Hunt, Pilgrimage, Rescue, Resource) and the general pool now meet HANDOFF §6; the twelve regions have 14 to 17 each and remain to fill.
 

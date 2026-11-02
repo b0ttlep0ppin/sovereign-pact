@@ -1,0 +1,91 @@
+{
+  "id": "the_molten_river",
+  "pools": [
+    "dragon_reaches"
+  ],
+  "weight": 2,
+  "band": [
+    5,
+    10
+  ],
+  "title": "The Molten River",
+  "text": "A river of slow fire crosses the valley. Stepping stones of cooled rock bob on it.",
+  "options": [
+    {
+      "id": "hop",
+      "label": "Hop the stones.",
+      "rule": "vote",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "Across, with singed boots.",
+          "effects": [
+            {
+              "to": "party",
+              "durability": -6,
+              "loc": "legs"
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "A stone sinks.",
+          "effects": [
+            {
+              "to": "party",
+              "status": "burn"
+            },
+            {
+              "to": "party",
+              "durability": -10,
+              "loc": "legs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "swift",
+      "label": "The quickest goes first and calls the safe stones.",
+      "rule": "scion:highest:speed",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Every stone called right.",
+          "effects": [
+            {
+              "xp": 50
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bridge",
+      "label": "Wait for a dragon to cool a bridge with its breath of frost.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It comes, and it sees you.",
+          "effects": [
+            {
+              "encounter": {
+                "level": 1
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

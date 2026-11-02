@@ -1,0 +1,87 @@
+{
+  "id": "the_snow_blind",
+  "pools": [
+    "deep_cold"
+  ],
+  "weight": 1,
+  "band": [
+    4,
+    8
+  ],
+  "title": "The Snow Blind",
+  "text": "The white glare off the snow is blinding. The Scions walk with eyes half shut, roped together.",
+  "options": [
+    {
+      "id": "rope",
+      "label": "Stay roped and keep on.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Slow, and safe.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lead",
+      "label": "The steadiest leads with eyes shut, by feel.",
+      "rule": "scion:highest:resilience",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "Through the glare, and out.",
+          "effects": [
+            {
+              "skip": 1
+            },
+            {
+              "xp": 40
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "Over a lip of ice.",
+          "effects": [
+            {
+              "injury": "legs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wait",
+      "label": "Wait for cloud.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The cloud brings snow, and things in it.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "surprise"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

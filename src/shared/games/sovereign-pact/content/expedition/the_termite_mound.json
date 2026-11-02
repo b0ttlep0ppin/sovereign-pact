@@ -1,0 +1,85 @@
+{
+  "id": "the_termite_mound",
+  "pools": [
+    "beast_lands"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    6
+  ],
+  "title": "The Termite Mound",
+  "text": "A termite mound taller than a house, humming. Something glints in its walls.",
+  "options": [
+    {
+      "id": "dig",
+      "label": "The strongest breaks it open.",
+      "rule": "scion:highest:might",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "Old coins the termites built around.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 12
+              }
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "The termites answer.",
+          "effects": [
+            {
+              "to": "party",
+              "status": "poison"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "smoke",
+      "label": "The cleverest smokes them out first.",
+      "rule": "scion:highest:acuity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A quiet dig, and the coins.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 8
+              }
+            },
+            {
+              "skip": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "leave",
+      "label": "Leave it be.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The humming follows you a while.",
+          "effects": []
+        }
+      ]
+    }
+  ]
+}

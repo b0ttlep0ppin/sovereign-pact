@@ -1,0 +1,92 @@
+{
+  "id": "the_mock_coronation",
+  "pools": [
+    "apostate_court"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    9
+  ],
+  "title": "The Mock Coronation",
+  "text": "The apostates are crowning a goat as the Ruler of the Pact. They want a noble to place the crown.",
+  "options": [
+    {
+      "id": "crown",
+      "label": "The boldest crowns the goat.",
+      "rule": "scion:highest:guile",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The court roars with laughter, and lets you through as friends.",
+          "effects": [
+            {
+              "skip": 2
+            },
+            {
+              "score": {
+                "intrigue": 1
+              }
+            },
+            {
+              "doom": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "refuse",
+      "label": "Refuse, with dignity.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "They are offended. Then they are armed.",
+          "effects": [
+            {
+              "encounter": {}
+            },
+            {
+              "score": {
+                "renown": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "steal",
+      "label": "Steal the crown in the uproar.",
+      "rule": "leader",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Real gold, under the paint.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 25
+              }
+            },
+            {
+              "encounter": {
+                "modifier": "surprise"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
