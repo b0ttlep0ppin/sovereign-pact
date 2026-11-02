@@ -2,6 +2,13 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 6k: the Lost and Rescue cards) — implementer
+- **The Lost** (§9.9): a Scion left behind (a wipe, or a `scion_lost` effect) carries `lost`: the Year, and the pool and level of the expedition that left them.
+- **Rescue cards**: from the next Year, the Rift Gate adds a Rescue card for each place Scions were Lost, beside its usual 2–3 cards. A Rescue card is size 4, at that pool and level, and holds all the Scions Lost there. Mandatory Years offer only the arc's card. A won Rescue brings them home as Scions, still without the gear they lost. A bot House votes for the card that holds its own Lost.
+- **The death clock**: a Lost Scion not found by the second Reckoning after they were left is counted among the dead in their House's Chronicle (cause "lost"). Reading: Rescue cards come in the two Years between.
+- **Save version 12**: people carry `blessed` (6h) and `lost`, and the history counters gained `retired`.
+- **Change** (Josh, 2026-11-02): a Scion's permanent transformation is a Change; Form stays the Alterer's word. → GLOSSARY
+
 ## 2026-11-02 (implementation, Milestone 6j: Sorties) — implementer
 - **Sorties** (§6.11) are a Year assignment, `sortie`, with the Sortie's id (`content/sorties.json`). Four are written, from §6.11's list: Patrol the walls, Hunt the marsh, Escort a caravan, Dig the old mine.
   - Each House runs one Sortie a Year, with up to four Scions or Retired. Recruits do not go.

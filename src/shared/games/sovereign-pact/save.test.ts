@@ -19,8 +19,8 @@ const sealAll = sealYear;
 describe("the packed people", () => {
   it("unpack to exactly the people that were packed", () => {
     const s = playOut(campaign(4, 9));
-    s.people[0] = { ...s.people[0]!, secondary: "knight", reversed: true, aff: { fire: 20 }, loyalty: 40, gear: { main: 3, acc2: 9 }, hist: { kills: 4, sorties: 1 } };
-    s.people[1] = { ...s.people[1]!, injuries: [{ id: "body_broken_ribs", years: 2 }], jp: { magus: 120, soldier: 2500 }, mastered: ["soldier"] };
+    s.people[0] = { ...s.people[0]!, secondary: "knight", reversed: true, aff: { fire: 20 }, loyalty: 40, gear: { main: 3, acc2: 9 }, hist: { kills: 4, sorties: 1, retired: 2 }, blessed: [{ id: "lucky", years: 1 }] };
+    s.people[1] = { ...s.people[1]!, injuries: [{ id: "body_broken_ribs", years: 2 }], jp: { magus: 120, soldier: 2500 }, mastered: ["soldier"], status: "lost", lost: { year: 3, pool: "barrows", level: 4 } };
     expect(unpackPeople(JSON.parse(JSON.stringify(packPeople(s.people))))).toEqual(s.people);
   });
 

@@ -10,7 +10,7 @@ import { campaignYears, clone, trackName } from "./year.ts";
 // 6: votes and proposers (Milestone 4d). 7: Crises (Milestone 4e).
 // 8: pending town events (Milestone 4f). 9: deals (Milestone 4g).
 // 10: the market (Milestone 4h).
-export const SAVE_VERSION = 11;
+export const SAVE_VERSION = 12;
 export const GAME_ID = "sovereign-pact";
 
 /** The campaign without who sat where or the public log, its people and items packed (codec.ts). */
