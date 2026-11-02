@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { sovereignPact, type SovState } from "./index.ts";
-import { calm, campaign, playOut, seats } from "./testing.ts";
+import { calm, campaign, playOut, sealYear, seats } from "./testing.ts";
 import { TUNING } from "./tuning.ts";
 
 const g = sovereignPact;
@@ -52,6 +52,8 @@ describe("the Settlement Phase", () => {
     s = move(s, "p2", { type: "unseal" });
     expect(g.activePlayers(s)).toEqual(seats(3));
     for (const p of seats(3)) s = move(s, p, { type: "seal" });
+    expect(s.phase).toBe("expedition");
+    s = sealYear(s);
     expect(s.year).toBe(2);
     expect(s.phase).toBe("settlement");
     expect(s.doom).toBe(TUNING.tracks.doomStart + TUNING.tracks.doomPerYear);

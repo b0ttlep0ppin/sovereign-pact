@@ -41,6 +41,8 @@ export function offer(s: SovState): ExpeditionCard[] {
 
 /** Opens the Gate for the Year. */
 export function openGate(s: SovState): void {
+  // A test's still Year (testing.ts `calm`) sends no one.
+  if (s.flags.includes("calm")) return void delete s.gate;
   s.gate = { cards: offer(s), votes: s.houses.map(() => null) };
 }
 

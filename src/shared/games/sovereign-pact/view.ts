@@ -126,6 +126,8 @@ export interface SovView {
   deals: Deal[];
   /** The Rift Gate's cards this Year and the Houses' votes. */
   gate: SovState["gate"] | null;
+  /** The Year's party: seats, who each House fielded, the Leader vote (all open). */
+  expedition: SovState["expedition"] | null;
   /** Town events waiting on choices; a secret one shows others' choices only as made (-1) or not. */
   events: PendingEvent[];
   /** The open vote, cast in the open (§8.1). */
@@ -223,6 +225,7 @@ export function view(s: SovState, playerId: PlayerId): SovView {
     events: eventsFor(s, me),
     // The Gate's cards and votes are open: the Houses argue over them in public (§9.1).
     gate: s.gate ?? null,
+    expedition: s.expedition ?? null,
     deals: dealsFor(s, me),
     market: marketFor(s, me),
     crisis: s.crisis ? { id: s.crisis.id, need: s.crisis.need } : null,

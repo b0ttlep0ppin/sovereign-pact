@@ -3,6 +3,7 @@
 // rules can be watched in play; the Town Map, battle screen and the rest replace it in Milestone 8.
 import type { GameClientProps } from "@vibepulse/shared";
 import { Content, type SovMove, type SovView } from "@vibepulse/shared/games/sovereign-pact";
+import { useState } from "react";
 import { HERALDRY_COLORS, Emblem } from "./Emblem";
 import "./SovereignPact.css";
 
@@ -147,6 +148,7 @@ export default function SovereignPact({ view, isMyTurn, sendMove, lastError }: P
                 )}
               </div>
             ) : null}
+            {view.phase === "expedition" && view.expedition ? <Muster key={view.expedition.seats[view.me!]} view={view} sendMove={sendMove} /> : null}
             {lastError ? <p className="sp-error" role="alert">{lastError.message}</p> : null}
           </section>
         ) : null}
@@ -261,6 +263,53 @@ function Founding({ view, sworn, sendMove }: { view: SovView; sworn: boolean; se
           ))}
         </div>
       )}
+    </div>
+  );
+}
+
+/** The Expedition Phase (§9.2): field your Scions in your seats, then vote the party's Leader. */
+function Muster({ view, sendMove }: { view: SovView; sendMove: (m: SovMove) => void }) {
+  const e = view.expedition!;
+  const me = view.me!;
+  const seats = e.seats[me] ?? 0;
+  const able = view.people.filter((p) => p.host === me && p.status === "scion").sort((a, b) => b.level - a.level || a.id - b.id);
+  const [chosen, setChosen] = useState<number[]>(() => able.slice(0, seats).map((p) => p.id));
+  const name = (id: number) => view.people.find((p) => p.id === id)?.name ?? `#${id}`;
+  if (e.votes) {
+    const party = e.party.flatMap((p) => p ?? []);
+    return (
+      <div className="sp-actions" aria-label="Choose the Leader">
+        {e.votes[me] !== null ? (
+          <span>You voted for {name(e.votes[me]!)}. Waiting for the other Houses.</span>
+        ) : (
+          party.map((id) => (
+            <button key={id} type="button" className="sp-button" onClick={() => sendMove({ type: "lead", person: id })}>
+              {name(id)} leads
+            </button>
+          ))
+        )}
+      </div>
+    );
+  }
+  if (e.party[me] !== null) return <p>{seats ? `You sent ${e.party[me]!.map(name).join(", ") || "no one"}.` : "Your House has no seats this time."} Waiting for the other Houses.</p>;
+  const toggle = (id: number) => setChosen((c) => (c.includes(id) ? c.filter((x) => x !== id) : c.length < seats ? [...c, id] : c));
+  return (
+    <div className="sp-muster">
+      <p>
+        Your House has {seats} seat{seats === 1 ? "" : "s"} on the expedition.
+      </p>
+      <div className="sp-actions">
+        {able.map((p) => (
+          <button key={p.id} type="button" className="sp-button sp-button--quiet" aria-pressed={chosen.includes(p.id)} onClick={() => toggle(p.id)}>
+            {p.name} (L{p.level})
+          </button>
+        ))}
+      </div>
+      <div className="sp-actions">
+        <button type="button" className="sp-button" onClick={() => sendMove({ type: "field", people: chosen })}>
+          {chosen.length ? `Send ${chosen.length}` : "Decline the seats"}
+        </button>
+      </div>
     </div>
   );
 }

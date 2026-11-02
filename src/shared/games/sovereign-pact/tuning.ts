@@ -45,6 +45,9 @@ export const TUNING = {
     sizes: [[4, 70], [8, 20], ["2x4", 10]] as const,
   },
 
+  /** §9.2: Renown the Leader's House gains (first pass). */
+  expedition: { leaderRenown: 2 },
+
   /** §6.5 [PROPOSED numbers]: a promotion's Gold, ceremony slots a Year, and the Chapel's extra slot; the bot promotes while under its target of Scions. */
   promotion: { gold: 20, slots: 1, chapelSlots: 1, botScions: [8, 5, 4, 4] as ByHouses },
 

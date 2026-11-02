@@ -12,7 +12,7 @@ import { byPct, econ } from "./houses.ts";
 import { wardYear } from "./wards.ts";
 import { fallen } from "./lifecycle.ts";
 import { chosenCard, openGate } from "./gate.ts";
-import { POOL_BY_ID } from "./content.ts";
+import { muster, waiting } from "./expedition.ts";
 import { settleVote } from "./votes.ts";
 import { resolveCrisis } from "./crisis.ts";
 import { closeEvents, drawOmens } from "./omens.ts";
@@ -81,8 +81,13 @@ export function closeSettlement(s: SovState): void {
   delete s.gate;
   // §1.4, §6.13: with every House Fallen, a mandatory expedition has no one to send.
   if (mandatoryYears(s).includes(s.year) && s.houses.every((_, i) => fallen(s, i))) return end(s, false, `No House had anyone left to send in Year ${s.year}.`);
-  // The party and the chain go here (Milestone 6b on).
-  if (card) log(s, `The Houses turn the Rift Gate toward ${POOL_BY_ID.get(card.pool)?.name ?? card.pool} (a level ${card.level} ${card.type} expedition); no one is sent yet.`);
+  if (card) muster(s, card);
+  if (!waiting(s).length) closeExpedition(s);
+}
+
+/** The party is home (or never left): the Reckoning. The chain goes here (Milestone 6c on). */
+export function closeExpedition(s: SovState): void {
+  delete s.expedition;
   reckoning(s);
 }
 
