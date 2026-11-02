@@ -1,0 +1,93 @@
+{
+  "id": "the_antler_crown",
+  "pools": [
+    "hollow_wood"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    7
+  ],
+  "title": "The Antler Crown",
+  "text": "A crown of antlers hangs on a branch over the path. The wood falls silent as you look at it.",
+  "options": [
+    {
+      "id": "wear",
+      "label": "The boldest puts it on.",
+      "rule": "scion:random",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "The wood bows to them.",
+          "effects": [
+            {
+              "blessing": {
+                "trait": "lucky",
+                "years": 2
+              }
+            },
+            {
+              "to": "party",
+              "sanity": 4
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "The wood does not bow. It comes.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "surprise"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "leave",
+      "label": "Leave it hanging.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The birds start singing again.",
+          "effects": []
+        }
+      ]
+    },
+    {
+      "id": "sell",
+      "label": "Take it to sell.",
+      "rule": "leader",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A good price, and thorns in every step.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 20
+              }
+            },
+            {
+              "to": "party",
+              "durability": -8,
+              "loc": "legs"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

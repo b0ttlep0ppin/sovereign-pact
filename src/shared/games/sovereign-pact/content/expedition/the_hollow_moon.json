@@ -1,0 +1,95 @@
+{
+  "id": "the_hollow_moon",
+  "pools": [
+    "outer_dark"
+  ],
+  "weight": 2,
+  "band": [
+    6,
+    10
+  ],
+  "title": "The Hollow Moon",
+  "text": "A moon hangs low over the dark, close enough to touch. It is hollow, and there is a door in it.",
+  "options": [
+    {
+      "id": "enter",
+      "label": "Climb up and go in.",
+      "rule": "vote",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "A room of silver dust, and a gift on a table.",
+          "effects": [
+            {
+              "item": {
+                "tier": 3
+              }
+            },
+            {
+              "to": "party",
+              "sanity": -8
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "A room of silver dust, and its keeper.",
+          "effects": [
+            {
+              "encounter": {
+                "level": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "knock",
+      "label": "The wisest knocks first.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Something knocks back, and the moon drifts higher.",
+          "effects": [
+            {
+              "score": {
+                "lore": 2
+              }
+            },
+            {
+              "sanity": -5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "away",
+      "label": "Walk away from it.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It follows for a while.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -4
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

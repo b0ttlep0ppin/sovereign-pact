@@ -1,0 +1,91 @@
+{
+  "id": "the_tidal_dark",
+  "pools": [
+    "outer_dark"
+  ],
+  "weight": 1,
+  "band": [
+    7,
+    10
+  ],
+  "title": "The Tidal Dark",
+  "text": "The dark comes in like a tide, and goes out again. Each time it goes out, something is left on the shore.",
+  "options": [
+    {
+      "id": "comb",
+      "label": "Comb the shore between tides.",
+      "rule": "vote",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "Strange stones, heavy with essence.",
+          "effects": [
+            {
+              "resources": {
+                "essence": 8
+              }
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "The tide comes in early.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -12
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "race",
+      "label": "The quickest runs the shore at low tide.",
+      "rule": "scion:highest:speed",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Back with an armful before the dark returns.",
+          "effects": [
+            {
+              "resources": {
+                "essence": 5
+              }
+            },
+            {
+              "item": {
+                "tier": 2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "high",
+      "label": "Keep to high ground.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "You watch the tide take something that was walking toward you.",
+          "effects": [
+            {
+              "foresee": true
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

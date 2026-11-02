@@ -1,0 +1,107 @@
+{
+  "id": "the_hollow_sermon",
+  "pools": [
+    "apostate_court"
+  ],
+  "weight": 1,
+  "band": [
+    4,
+    9
+  ],
+  "title": "The Hollow Sermon",
+  "text": "A preacher of the court speaks to a crowd that is not there. The words are clever, and they work their way in.",
+  "options": [
+    {
+      "id": "listen",
+      "label": "Listen to the end.",
+      "rule": "vote",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "You understand the court now.",
+          "effects": [
+            {
+              "score": {
+                "lore": 2
+              }
+            },
+            {
+              "to": "party",
+              "sanity": -6
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "You almost agree.",
+          "effects": [
+            {
+              "to": "party",
+              "status": "confusion"
+            },
+            {
+              "to": "party",
+              "sanity": -10
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "argue",
+      "label": "The wisest argues back.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "The preacher falls silent, and the empty crowd turns on him.",
+          "effects": [
+            {
+              "xp": 60
+            },
+            {
+              "score": {
+                "valor": 1
+              }
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "He is better at this.",
+          "effects": [
+            {
+              "sanity": -15
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "stop",
+      "label": "Stop your ears.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "You hear it anyway, faint.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -3
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

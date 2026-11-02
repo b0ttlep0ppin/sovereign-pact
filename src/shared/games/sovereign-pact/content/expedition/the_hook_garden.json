@@ -1,0 +1,91 @@
+{
+  "id": "the_hook_garden",
+  "pools": [
+    "pit"
+  ],
+  "weight": 2,
+  "band": [
+    4,
+    10
+  ],
+  "title": "The Hook Garden",
+  "text": "A field of chains hanging from nothing, each ending in a hook. Some of the hooks hold the damned. One holds a key.",
+  "options": [
+    {
+      "id": "key",
+      "label": "The quickest snatches the key.",
+      "rule": "scion:highest:speed",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "The key, to a devil's strongbox.",
+          "effects": [
+            {
+              "resources": {
+                "essence": 6,
+                "gold": 10
+              }
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "A hook takes them instead.",
+          "effects": [
+            {
+              "durability": -25,
+              "loc": "body"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "free",
+      "label": "Free the damned on the low hooks.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "They thank you, and the gardener comes.",
+          "effects": [
+            {
+              "score": {
+                "renown": 2
+              }
+            },
+            {
+              "encounter": {}
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "through",
+      "label": "Go straight through, heads down.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Chains brush every shoulder.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -6
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
