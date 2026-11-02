@@ -135,7 +135,8 @@ export function randomHouse(rng: Rng, takenNames: readonly string[], takenColors
     emblem: {
       shield: rng.pick(HERALDRY.shields),
       division: rng.pick(HERALDRY.divisions),
-      tinctures: [primary, rng.pick(HERALDRY.metals)],
+      // The emblem is painted in the House's own colors (DECISIONS 8ab).
+      tinctures: [primary, secondary],
       charge: rng.pick(HERALDRY.charges),
     },
     seat: rng.pick(SEATS).id,

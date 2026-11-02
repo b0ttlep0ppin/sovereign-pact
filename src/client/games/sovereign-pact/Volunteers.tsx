@@ -86,7 +86,7 @@ function VolunteerCard({ v, crunch, picked, onPick }: { v: Volunteer; crunch: bo
       <header>
         <strong className="sp-person__name">{v.name}</strong> <small>{v.sex === "f" ? "she" : "he"}, age {v.age}</small>
         {onPick ? (
-          <button type="button" className="sp-button sp-button--quiet sp-muster__pick" aria-pressed={picked} aria-label={`Choose ${v.name}`} onClick={onPick}>
+          <button type="button" className="sp-button sp-button--quiet sp-muster__pick" aria-pressed={picked} aria-label={`Choose ${v.name}, age ${v.age}`} onClick={onPick}>
             {picked ? "Chosen" : "Choose"}
           </button>
         ) : null}

@@ -44,6 +44,8 @@ describe("offering", () => {
   it("whispers at Omens to the House alone, at most twice a campaign", () => {
     const s = campaign(2, 3);
     s.year = 4;
+    // No House traits, so none is Wary of whispers.
+    for (const h of s.houses) h.traits = [];
     const pct = B.omenPct;
     (B as { omenPct: number }).omenPct = 100;
     try {

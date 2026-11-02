@@ -110,6 +110,7 @@ function ColorsStep({ h, design }: StepProps) {
     <>
       <Swatches label="First color" value={h.colors[0]} not={h.colors[1]} onPick={(c) => design({ colors: [c, h.colors[1]] })} />
       <Swatches label="Second color" value={h.colors[1]} not={h.colors[0]} onPick={(c) => design({ colors: [h.colors[0], c] })} />
+      <p className="sp-event__status">Your banner, your emblem and your people's names all wear these colors.</p>
     </>
   );
 }
@@ -139,8 +140,7 @@ function EmblemStep({ h, design }: StepProps) {
         if (!v) delete next.secondary;
         design({ emblem: next });
       })}
-      <Swatches label="Field" value={e.tinctures[0] ?? h.colors[0]} onPick={(c) => set({ tinctures: [c, ...e.tinctures.slice(1)] })} />
-      <Swatches label="Second tincture" value={e.tinctures[1] ?? h.colors[1]} onPick={(c) => set({ tinctures: [e.tinctures[0] ?? h.colors[0], c] })} />
+      <p className="sp-event__status">The emblem is painted in your House colors: change them in the Colors step.</p>
     </div>
   );
 }

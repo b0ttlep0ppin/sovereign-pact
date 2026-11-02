@@ -69,6 +69,19 @@ describe("founding the Houses (§5.1)", () => {
     expect(move(t, "p1", { type: "design", house: { traits: blood } }).houses[0]!.bane).toBeUndefined();
   });
 
+  it("paints the emblem in the House's colors, whatever is designed or rerolled", () => {
+    let s = fresh();
+    for (const h of s.houses) expect(h.emblem.tinctures).toEqual(h.colors);
+    s = move(s, "p1", { type: "design", house: { colors: ["moss", "crimson"] } });
+    expect(s.houses[0]!.emblem.tinctures).toEqual(["moss", "crimson"]);
+    s = move(s, "p1", { type: "design", house: { emblem: { ...s.houses[0]!.emblem, tinctures: ["gold", "sable"] } } });
+    expect(s.houses[0]!.emblem.tinctures).toEqual(["moss", "crimson"]);
+    for (const step of ["colors", "emblem", undefined] as const) {
+      s = move(s, "p1", { type: "random_house", ...(step ? { step } : {}) });
+      expect(s.houses[0]!.emblem.tinctures).toEqual(s.houses[0]!.colors);
+    }
+  });
+
   it("rerolls one step or the whole House", () => {
     const s = fresh();
     const t = move(s, "p1", { type: "random_house", step: "seat" });
