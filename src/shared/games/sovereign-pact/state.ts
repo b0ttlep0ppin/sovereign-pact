@@ -281,7 +281,7 @@ export interface Expedition {
   chain: NodeKind[];
   /** The next node's index. */
   at: number;
-  /** What each Scion carries from battle to battle: Durability, Broken locations, this expedition's injury mods, an ailment for the next battle. */
+  /** What each Scion carries from battle to battle: Durability, Broken locations, this expedition's injury mods, an ailment for the next battle (`id` or `id:ticks`). */
   carry: Record<number, { dur: Partial<Record<Location, number>>; broken: Location[]; mods?: Record<string, number>; start?: string[] }>;
   /** Scions out of the fight for the rest of the expedition (Catatonic). */
   out: number[];
@@ -301,6 +301,8 @@ export interface Expedition {
   split?: Split;
   /** The party satchel (§9.10, §13.7): one consumable a slot, with the House that packed it. */
   satchel?: { id: string; house: number }[];
+  /** The node a Lantern lights (§13.7): it cannot Ambush the party, and an Encounter there is a Surprise. */
+  lit?: number;
 }
 
 /** Where one of a 2×4 card's parties is: on its way, at the meeting place, or gone home. */
@@ -529,6 +531,8 @@ export type SovMove =
   | { type: "bid"; item: number; gold: number }
   /** Buy consumables where they are sold: a Commons shop or the House's own building (§13.7). */
   | { type: "buy_consumable"; id: string; n?: number }
+  /** Opens the satchel between nodes: a Camp item (on a Scion, for Widow's Tea and the Smuggler's Flask), a Lantern, a Signal Flare (§13.7). */
+  | { type: "use_item"; id: string; person?: number }
   /** Put a stashed item up for sealed bids, with a reserve. */
   | { type: "auction"; item: number; reserve: number }
   /** Offer a deal to another House; `open` makes it public (§8.9). */

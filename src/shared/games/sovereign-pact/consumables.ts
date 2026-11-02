@@ -5,6 +5,7 @@
 import { CONSUMABLE_BY_ID, type ConsumableDef } from "./content.ts";
 import { built } from "./commons.ts";
 import { seatsOf } from "./expedition.ts";
+import { BOT_OPENS } from "./satchel.ts";
 import { byPct, econ } from "./houses.ts";
 import type { House, SovMove, SovState } from "./state.ts";
 import { TUNING } from "./tuning.ts";
@@ -124,8 +125,10 @@ export function botPack(s: SovState, house: number, fielded: number): Partial<Re
   const out: Partial<Record<string, number>> = {};
   for (const id of [...Object.keys(T.botKeeps), ...Object.keys(h.consumables ?? {})]) {
     const def = CONSUMABLE_BY_ID.get(id);
-    if (!def || def.use !== "battle" || out[id] !== undefined) continue;
-    const n = Math.min(room, held(h, id));
+    // Battle things as many as fit; one of each road thing a bot knows how to use (satchel.ts).
+    const road = BOT_OPENS.includes(id) && (id !== "signal_flare" || s.expedition?.card.type === "rescue");
+    if (!def || (def.use !== "battle" && !road) || out[id] !== undefined) continue;
+    const n = Math.min(room, held(h, id), road ? 1 : Infinity);
     if (n > 0) out[id] = n;
     room -= n;
   }

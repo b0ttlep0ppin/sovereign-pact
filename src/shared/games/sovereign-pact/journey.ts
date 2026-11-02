@@ -89,7 +89,10 @@ export function partyOf(s: SovState, ids: number[], carried: Expedition["carry"]
       u.broken = c.broken.filter((l) => u.dur![l] === 0);
       for (const [k, v] of Object.entries(c.mods ?? {})) u.mods[k] = (u.mods[k] ?? 0) + v;
       // An event's ailment, for this battle only.
-      for (const id of c.start ?? []) if (!u.statuses.some((x) => x.id === id)) u.statuses.push({ id, ticks: meta(id).ticks });
+      for (const x of c.start ?? []) {
+        const [id, ticks] = x.split(":") as [string, string?];
+        if (!u.statuses.some((y) => y.id === id)) u.statuses.push({ id, ticks: ticks ? Number(ticks) : meta(id).ticks });
+      }
     }
     return u;
   });
@@ -179,10 +182,13 @@ function fight(s: SovState, boss: boolean, o: FightOpts): Battle {
   const scions = party(s);
   bastionShields(s, scions);
   const pool = o.raid ? TUNING.arc.raidPool : card.pool;
+  // A Lantern lit for this node (§13.7): no Ambush; an Encounter is a Surprise.
+  const lit = !id && s.expedition!.lit === s.expedition!.at - 1;
+  if (lit) log(s, "The Lantern's light finds them first: the party has the Surprise.");
   const b = id
     ? bossBattle(seed, scions, id, card.level)
     : // A pool with no boss near the level ends in a fight a level above the card's (reading, see DECISIONS).
-      encounterBattle(seed, scions, { pool, level, year: s.year, spread: s.flags.includes(ARC.nestLost), quarry: o.lair ? lairOf(s) : undefined, ...(o.modifier ? { modifier: o.modifier } : {}), ...(o.template ? { template: o.template } : {}) }).battle;
+      encounterBattle(seed, scions, { pool, level, year: s.year, spread: s.flags.includes(ARC.nestLost), quarry: o.lair ? lairOf(s) : undefined, ...(lit ? { modifier: "surprise" as const } : o.modifier ? { modifier: o.modifier } : {}), ...(o.template ? { template: o.template } : {}) }).battle;
   // The party satchel goes into the fight; what is used there is gone (§13.7).
   if (s.expedition!.satchel?.length) b.satchel = s.expedition!.satchel.map((x) => x.id);
   simulate(b);
