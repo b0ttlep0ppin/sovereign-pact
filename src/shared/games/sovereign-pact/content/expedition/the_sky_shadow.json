@@ -1,0 +1,89 @@
+{
+  "id": "the_sky_shadow",
+  "pools": [
+    "dragon_reaches"
+  ],
+  "weight": 2,
+  "band": [
+    5,
+    10
+  ],
+  "title": "The Sky Shadow",
+  "text": "A shadow sweeps over the party, vast as a cloud. Something is circling high above.",
+  "options": [
+    {
+      "id": "hide",
+      "label": "Take cover and wait.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It passes. Hours lost.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "watch",
+      "label": "The sharpest watches where it lands.",
+      "rule": "scion:highest:acuity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Its lair, and when it leaves it.",
+          "effects": [
+            {
+              "foresee": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "signal",
+      "label": "Signal it, and see what it wants.",
+      "rule": "leader",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "An old dragon, curious, who gives you a ride.",
+          "effects": [
+            {
+              "skip": 2
+            },
+            {
+              "score": {
+                "renown": 2
+              }
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "A young dragon, hungry.",
+          "effects": [
+            {
+              "encounter": {
+                "level": 2
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

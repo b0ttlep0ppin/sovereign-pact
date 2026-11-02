@@ -1,0 +1,104 @@
+{
+  "id": "the_hoard_map",
+  "pools": [
+    "dragon_reaches"
+  ],
+  "weight": 1,
+  "band": [
+    6,
+    10
+  ],
+  "title": "The Hoard Map",
+  "text": "A dying treasure hunter presses a map into a Scion's hand: a dragon's hoard, and the hour it sleeps.",
+  "options": [
+    {
+      "id": "go",
+      "label": "Go for the hoard.",
+      "rule": "vote",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "The hour was right.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 30,
+                "wyrmbone": 3
+              }
+            },
+            {
+              "item": {
+                "tier": 3
+              }
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "The hour was wrong.",
+          "effects": [
+            {
+              "encounter": {
+                "level": 2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sell",
+      "label": "The shrewdest sells the map.",
+      "rule": "scion:highest:guile",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A rival House pays well, and goes.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 20
+              }
+            },
+            {
+              "score": {
+                "intrigue": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bury",
+      "label": "Bury the hunter, and the map with him.",
+      "rule": "leader",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "He would have wanted to keep it.",
+          "effects": [
+            {
+              "score": {
+                "renown": 1
+              }
+            },
+            {
+              "to": "party",
+              "sanity": 3
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

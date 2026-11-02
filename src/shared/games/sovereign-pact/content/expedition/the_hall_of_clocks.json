@@ -1,0 +1,91 @@
+{
+  "id": "the_hall_of_clocks",
+  "pools": [
+    "outer_dark"
+  ],
+  "weight": 2,
+  "band": [
+    6,
+    10
+  ],
+  "title": "The Hall of Clocks",
+  "text": "A hall of a thousand clocks, each telling a different time. One of them is ticking backward.",
+  "options": [
+    {
+      "id": "wind",
+      "label": "Wind the backward clock forward.",
+      "rule": "vote",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "Time catches up all at once, and carries you ahead.",
+          "effects": [
+            {
+              "skip": 2
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "Time catches up with you.",
+          "effects": [
+            {
+              "to": "party",
+              "durability": -10
+            },
+            {
+              "to": "party",
+              "sanity": -6
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "listen",
+      "label": "The wisest listens to the ticking.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It counts down to something.",
+          "effects": [
+            {
+              "foresee": true
+            },
+            {
+              "sanity": -6
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "smash",
+      "label": "Smash them all.",
+      "rule": "leader",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Silence, and something that was waiting for it.",
+          "effects": [
+            {
+              "encounter": {
+                "level": 1
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

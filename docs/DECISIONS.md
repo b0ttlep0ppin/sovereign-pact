@@ -2,6 +2,11 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 7at): sixteen region events toward 23 each
+
+- Sixteen events (528 in all): two each for the Deep Cold, the Pit, the Forge Ruins, the Faceless City, the Apostate Court, the Shrine of Six, the Dragon Reaches and the Outer Dark. Those eight regions now have 23, the other four 22; the budget is 25.
+- Reading: the Healing Hands names its subject with `scion:injured:any`, falling back to the Scion with the least Sanity when no one is injured, so the shrine always has someone to mend.
+
 ## 2026-11-02 (implementation, Milestone 7as): sixteen region events toward 22 each
 
 - Sixteen events (512 in all): two each for the Beast Lands, the Hollow Wood, the Drowned Marches and the Barrows, one for each of the other eight regions. Four regions now have 22, the rest 21; the budget is 25.

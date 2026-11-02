@@ -1,0 +1,94 @@
+{
+  "id": "the_blind_astronomer",
+  "pools": [
+    "outer_dark"
+  ],
+  "weight": 2,
+  "band": [
+    6,
+    10
+  ],
+  "title": "The Blind Astronomer",
+  "text": "An old man with no eyes charts the stars of the outer dark, by touch, on a brass globe.",
+  "options": [
+    {
+      "id": "ask",
+      "label": "Ask him the way.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "He traces it on the globe.",
+          "effects": [
+            {
+              "skip": 1
+            },
+            {
+              "score": {
+                "lore": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "study",
+      "label": "The sharpest studies his globe.",
+      "rule": "scion:highest:acuity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A star that should not be there, coming closer.",
+          "effects": [
+            {
+              "foresee": true
+            },
+            {
+              "score": {
+                "lore": 2
+              }
+            },
+            {
+              "sanity": -6
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "globe",
+      "label": "Take the globe.",
+      "rule": "leader",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "He weeps, and the stars go wrong around you.",
+          "effects": [
+            {
+              "item": {
+                "tier": 3
+              }
+            },
+            {
+              "fork": {
+                "add": [
+                  "encounter"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

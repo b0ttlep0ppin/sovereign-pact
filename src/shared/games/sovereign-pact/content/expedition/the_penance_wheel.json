@@ -1,0 +1,91 @@
+{
+  "id": "the_penance_wheel",
+  "pools": [
+    "apostate_court"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    9
+  ],
+  "title": "The Penance Wheel",
+  "text": "A wheel in the court's square: the court ties a penitent to it, and anyone may spin it, for luck.",
+  "options": [
+    {
+      "id": "free",
+      "label": "Untie the penitent.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The crowd boos. The penitent blesses you.",
+          "effects": [
+            {
+              "score": {
+                "renown": 1
+              }
+            },
+            {
+              "blessing": {
+                "trait": "lucky",
+                "years": 1
+              }
+            },
+            {
+              "encounter": {}
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "spin",
+      "label": "Spin it, as the custom asks.",
+      "rule": "leader",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Luck, of a kind, and his screams.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 10
+              }
+            },
+            {
+              "to": "party",
+              "sanity": -8
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "watch",
+      "label": "The sharpest watches the crowd instead.",
+      "rule": "scion:highest:acuity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "You learn who rules here, and who wants to.",
+          "effects": [
+            {
+              "score": {
+                "intrigue": 2
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

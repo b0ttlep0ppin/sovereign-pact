@@ -1,0 +1,88 @@
+{
+  "id": "the_weeping_river",
+  "pools": [
+    "pit"
+  ],
+  "weight": 2,
+  "band": [
+    5,
+    10
+  ],
+  "title": "The Weeping River",
+  "text": "A river of tears runs through the Pit. To drink from it is to remember every sorrow.",
+  "options": [
+    {
+      "id": "ford",
+      "label": "Ford it, lips shut.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 80,
+          "text": "Across, wet and grieving.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -5
+            }
+          ]
+        },
+        {
+          "w": 20,
+          "text": "A splash in the mouth.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -12
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "drink",
+      "label": "The bravest drinks, to know what the river knows.",
+      "rule": "scion:trait:brave|scion:highest:resilience",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Every sorrow, and among them a secret.",
+          "effects": [
+            {
+              "sanity": -20
+            },
+            {
+              "score": {
+                "lore": 3
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bridge",
+      "label": "Find the devils' bridge.",
+      "rule": "leader",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Guarded.",
+          "effects": [
+            {
+              "encounter": {}
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

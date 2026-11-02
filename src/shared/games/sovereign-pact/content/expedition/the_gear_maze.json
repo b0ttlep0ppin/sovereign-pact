@@ -1,0 +1,89 @@
+{
+  "id": "the_gear_maze",
+  "pools": [
+    "forge_ruins"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    9
+  ],
+  "title": "The Gear Maze",
+  "text": "A hall of turning gears, each as tall as a house. The only way through is between them.",
+  "options": [
+    {
+      "id": "time",
+      "label": "The sharpest times the gears.",
+      "rule": "scion:highest:acuity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Through without a scratch.",
+          "effects": [
+            {
+              "xp": 40
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rush",
+      "label": "Rush through.",
+      "rule": "vote",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "Through, mostly.",
+          "effects": [
+            {
+              "to": "party",
+              "durability": -8
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "A sleeve caught.",
+          "effects": [
+            {
+              "injury": "arms"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "jam",
+      "label": "Jam the gears with a beam.",
+      "rule": "leader",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "They grind to a halt, and the whole ruin shudders awake.",
+          "effects": [
+            {
+              "encounter": {
+                "level": 1
+              }
+            },
+            {
+              "resources": {
+                "iron": 4
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
