@@ -370,6 +370,8 @@ export interface Battle {
   pool?: string;
   /** Hazards lying on the party's grid (§14.8). A hidden one's place is never shown to the players. */
   field?: FieldHazard[];
+  /** The worst injury band this battle can deal (a Sortie's: Moderate, §6.11); a worse roll lands on the next milder result. */
+  injuryCap?: "moderate" | "mild";
 }
 
 /** A hazard on the party's grid: where it lies, and when its timer runs out. */

@@ -2,7 +2,7 @@
 // House's buildings open. They take effect at the Reckoning (§8.10 steps 3–4) and carry over to the
 // next Year until changed; a slot that no longer exists (a ruined building) leaves its person idle.
 import { built } from "./commons.ts";
-import { BUILDING_BY_ID, INJURY_TABLE_BY_ID } from "./content.ts";
+import { BUILDING_BY_ID, INJURY_TABLE_BY_ID, SORTIE_BY_ID } from "./content.ts";
 import { caps } from "./combat/build.ts";
 import { econ, houseEffects } from "./houses.ts";
 import { gainJp, gainXpUpTo } from "./progression.ts";
@@ -40,6 +40,8 @@ export function slots(s: SovState, house: number, to: AssignmentKind, where?: st
       return built(s, "university") ? Infinity : lvl(s, house, "scriptorium") ? A.studySlots : 0;
     case "guard":
       return A.guardSlots;
+    case "sortie":
+      return A.sortieSlots;
     case "work":
       return where && BUILDING_BY_ID.get(where)?.produces && lvl(s, house, where) ? 1 : 0;
   }
@@ -67,6 +69,12 @@ export function cannotAssign(s: SovState, house: number, m: AssignMove): string 
   const current = s.assign[p.id];
   const same = (x: Assignment | undefined) => x?.to === m.to && (m.to !== "work" || x.at === m.at);
   if (!same(current) && holders(s, house, m.to, m.at).length >= slots(s, house, m.to, m.at)) return "There is no free slot for that.";
+  if (m.to === "sortie") {
+    if (p.status !== "scion" && p.status !== "retired") return "Only Scions and the Retired go on Sorties.";
+    if (!SORTIE_BY_ID.has(m.at ?? "")) return "Choose one of the Sorties.";
+    const other = holders(s, house, "sortie").find((x) => x.id !== p.id && s.assign[x.id]!.at !== m.at);
+    if (other) return `Your House's Sortie this Year is ${SORTIE_BY_ID.get(s.assign[other.id]!.at!)!.name}.`;
+  }
   if (m.to === "teach" && !mayTeach(p)) return "Only the Retired, or a Scion who has mastered a Job, can teach.";
   if (m.to === "train" && m.mentor !== undefined) {
     const mentor = s.people.find((x) => x.id === m.mentor);
@@ -83,7 +91,7 @@ export function assign(s: SovState, m: AssignMove): void {
     delete s.assign[m.person];
   } else {
     const a: Assignment = { to: m.to };
-    if (m.to === "work") a.at = m.at;
+    if (m.to === "work" || m.to === "sortie") a.at = m.at;
     if (m.to === "train" && m.mentor !== undefined) Object.assign(a, { mentor: m.mentor, job: m.job });
     s.assign[m.person] = a;
   }

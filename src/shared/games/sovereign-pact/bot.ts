@@ -4,7 +4,7 @@
 import { cannotAssign, slots, type AssignMove } from "./assign.ts";
 import { cannotPledge, projectCost, stillNeeded } from "./commons.ts";
 import { cannotPropose } from "./votes.ts";
-import { BUILDING_BY_ID, TOWN_EVENT_BY_ID } from "./content.ts";
+import { BUILDING_BY_ID, SORTIES, TOWN_EVENT_BY_ID } from "./content.ts";
 import { cautious } from "./omens.ts";
 import { caps } from "./combat/build.ts";
 import { cannotAccept } from "./deals.ts";
@@ -110,6 +110,9 @@ export function assignPlan(s: SovState, house: number): Map<number, Assignment |
       const m = mentors.find((x) => x.room > 0 && x.id !== p.id);
       if (m) m.room -= 1;
       plan.set(p.id, m ? { to: "train", mentor: m.id, job: m.job } : { to: "train" });
+    } else if (p.status === "scion" && !p.injuries.some((x) => x.years > 0) && take("sortie")) {
+      // A Scion with nothing better to do goes on the House's Sortie (the safest, §6.11); one fielded for the expedition goes there instead.
+      plan.set(p.id, { to: "sortie", at: SORTIES[0]!.id });
     } else plan.set(p.id, p.status === "recruit" ? undefined : { to: "rest" });
   }
   return plan;

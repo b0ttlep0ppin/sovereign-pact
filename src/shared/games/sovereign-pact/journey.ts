@@ -53,16 +53,18 @@ export const person = (s: SovState, id: number): Person => s.people.find((p) => 
 export const marching = (s: SovState): number[] => roster(s).filter((id) => s.people.some((p) => p.id === id && p.status === "scion") && !s.expedition!.out.includes(id));
 
 /** The party as combatants: each in their Job's column, carrying the Durability they came in with. */
-function party(s: SovState): Combatant[] {
+const party = (s: SovState): Combatant[] => partyOf(s, marching(s), s.expedition!.carry);
+
+/** Scions as combatants (ids 1–8: enemies number from 101), each in their Job's column, with what they carry if anything. */
+export function partyOf(s: SovState, ids: number[], carried: Expedition["carry"] = {}): Combatant[] {
   const rows: Record<number, number> = { 0: 0, 1: 0, 2: 0 };
-  return marching(s).map((id, i) => {
+  return ids.map((id, i) => {
     const p = person(s, id);
     const col = LOADOUTS[p.job!]?.col ?? 1;
     const row = rows[col]!;
     rows[col] = row + 1;
-    // Combatant ids 1–8: enemies number from 101.
     const u = scionCombatant(p, { id: i + 1, col, row: row % 8, gear: gearTotals(s, p), house: s.houses[p.house] });
-    const c = s.expedition!.carry[id];
+    const c = carried[id];
     if (c && u.dur && u.maxDur) {
       for (const loc of LOCATIONS) u.dur[loc] = Math.min(u.maxDur[loc], c.dur[loc] ?? u.maxDur[loc]);
       u.broken = c.broken.filter((l) => u.dur![l] === 0);

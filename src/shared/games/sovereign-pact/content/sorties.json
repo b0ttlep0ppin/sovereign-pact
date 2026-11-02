@@ -1,0 +1,48 @@
+{
+  "sorties": [
+    {
+      "id": "patrol_the_walls",
+      "name": "Patrol the walls",
+      "text": "A night on the walls and the ditch beyond them, where things come up out of the dark to test the gate.",
+      "pool": "beast_lands",
+      "battles": 1,
+      "xp": 30,
+      "jp": 25,
+      "rolls": 0,
+      "score": {
+        "valor": 1
+      }
+    },
+    {
+      "id": "hunt_the_marsh",
+      "name": "Hunt the marsh",
+      "text": "Out into the reeds after whatever has been taking the goats.",
+      "pool": "drowned_marches",
+      "battles": 2,
+      "xp": 35,
+      "jp": 25,
+      "rolls": 1
+    },
+    {
+      "id": "escort_a_caravan",
+      "name": "Escort a caravan",
+      "text": "Walk a merchant's wagons to the next town and back, and see that they get there.",
+      "pool": "hollow_wood",
+      "battles": 1,
+      "xp": 25,
+      "jp": 25,
+      "rolls": 0,
+      "gold": 20
+    },
+    {
+      "id": "dig_the_old_mine",
+      "name": "Dig the old mine",
+      "text": "Down into the workings under the hill, where the last crew stopped coming up.",
+      "pool": "forge_ruins",
+      "battles": 2,
+      "xp": 30,
+      "jp": 25,
+      "rolls": 2
+    }
+  ]
+}
