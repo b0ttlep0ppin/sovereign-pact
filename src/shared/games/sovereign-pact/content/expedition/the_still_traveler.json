@@ -1,0 +1,94 @@
+{
+  "id": "the_still_traveler",
+  "pools": [
+    "outer_dark"
+  ],
+  "weight": 3,
+  "band": [
+    5,
+    10
+  ],
+  "title": "The Still Traveler",
+  "text": "In the dark between places, a lantern, and under it a traveler sitting very still with a pack exactly like yours.",
+  "options": [
+    {
+      "id": "talk",
+      "label": "The leader speaks to it.",
+      "rule": "leader",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "It is the leader, a little older. It says one thing, and it is worth the trip.",
+          "effects": [
+            {
+              "foresee": true
+            },
+            {
+              "xp": 120
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "It is the leader, a little older, and it is not well.",
+          "effects": [
+            {
+              "sanity": -25
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "trade",
+      "label": "Swap packs with it.",
+      "rule": "vote",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Its pack holds things you have not found yet.",
+          "effects": [
+            {
+              "item": {
+                "tier": 3
+              }
+            },
+            {
+              "to": "party",
+              "sanity": -10
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dim",
+      "label": "Put out its lantern.",
+      "rule": "leader",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It goes out. So does the traveler. The dark is darker.",
+          "effects": [
+            {
+              "doom": 1
+            },
+            {
+              "to": "party",
+              "xp": 40
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

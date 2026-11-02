@@ -1,0 +1,96 @@
+{
+  "id": "the_bargain_pit",
+  "pools": [
+    "pit"
+  ],
+  "weight": 3,
+  "band": [
+    3,
+    10
+  ],
+  "title": "The Bargain Pit",
+  "text": "A ring of smooth stone round a pit that breathes warm air. Carved on the rim: anything thrown in comes back as something better.",
+  "options": [
+    {
+      "id": "throw",
+      "label": "Throw in a purse of gold.",
+      "rule": "leader",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "It comes back as a heavier purse.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 20
+              }
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "It does not come back.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -20
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "blood",
+      "label": "The boldest gives blood to the pit.",
+      "rule": "scion:highest:resilience",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It comes back as something in the veins that was not there before.",
+          "effects": [
+            {
+              "durability": -25,
+              "loc": "arms"
+            },
+            {
+              "growth": {
+                "might": 15
+              }
+            },
+            {
+              "doom": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "seal",
+      "label": "Roll a stone over it.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The breathing stops. Somewhere a long way down, something is disappointed.",
+          "effects": [
+            {
+              "score": {
+                "valor": 1
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

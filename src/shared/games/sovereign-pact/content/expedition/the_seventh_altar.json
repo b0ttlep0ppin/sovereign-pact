@@ -1,0 +1,97 @@
+{
+  "id": "the_seventh_altar",
+  "pools": [
+    "shrine_of_six"
+  ],
+  "weight": 3,
+  "band": [
+    2,
+    9
+  ],
+  "title": "The Seventh Altar",
+  "text": "Six altars in a ring, each to one of the Six. Between two of them, where no altar should be, someone has built a seventh out of bones.",
+  "options": [
+    {
+      "id": "tear",
+      "label": "Tear the seventh down.",
+      "rule": "scion:highest:might",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The bones come apart easily. The Six are pleased.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 10
+            },
+            {
+              "score": {
+                "valor": 2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "offer",
+      "label": "Leave an offering on the seventh.",
+      "rule": "leader",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "Something takes it gratefully, and gives back.",
+          "effects": [
+            {
+              "growth": {
+                "all": 10
+              }
+            },
+            {
+              "doom": 1
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "Something takes it, and the leader.",
+          "effects": [
+            {
+              "curse": true
+            },
+            {
+              "sanity": -15
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "study",
+      "label": "The wisest studies who built it.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A name, scratched on a thighbone. Someone in town will want to hear it.",
+          "effects": [
+            {
+              "score": {
+                "intrigue": 2
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

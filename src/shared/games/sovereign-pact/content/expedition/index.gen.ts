@@ -45,10 +45,18 @@ import saints_tongue from "./saints_tongue.json" with { type: "json" };
 import sinking_mother from "./sinking_mother.json" with { type: "json" };
 import spider_queens_court from "./spider_queens_court.json" with { type: "json" };
 import still_warm_camp from "./still_warm_camp.json" with { type: "json" };
+import the_bargain_pit from "./the_bargain_pit.json" with { type: "json" };
+import the_barrow_feast from "./the_barrow_feast.json" with { type: "json" };
+import the_bellows_ghost from "./the_bellows_ghost.json" with { type: "json" };
 import the_bone_dice from "./the_bone_dice.json" with { type: "json" };
+import the_drowned_chapel from "./the_drowned_chapel.json" with { type: "json" };
 import the_empty_court from "./the_empty_court.json" with { type: "json" };
 import the_engine_heart from "./the_engine_heart.json" with { type: "json" };
+import the_faceless_census from "./the_faceless_census.json" with { type: "json" };
 import the_fallen_scion from "./the_fallen_scion.json" with { type: "json" };
+import the_frozen_hunter from "./the_frozen_hunter.json" with { type: "json" };
+import the_hanging_wood from "./the_hanging_wood.json" with { type: "json" };
+import the_heretics_trial from "./the_heretics_trial.json" with { type: "json" };
 import the_ice_choir from "./the_ice_choir.json" with { type: "json" };
 import the_last_hoard from "./the_last_hoard.json" with { type: "json" };
 import the_lost_child from "./the_lost_child.json" with { type: "json" };
@@ -60,12 +68,14 @@ import the_open_grave from "./the_open_grave.json" with { type: "json" };
 import the_pit_market from "./the_pit_market.json" with { type: "json" };
 import the_red_rain from "./the_red_rain.json" with { type: "json" };
 import the_rusted_army from "./the_rusted_army.json" with { type: "json" };
+import the_seventh_altar from "./the_seventh_altar.json" with { type: "json" };
 import the_singing_skull from "./the_singing_skull.json" with { type: "json" };
 import the_singing_tree from "./the_singing_tree.json" with { type: "json" };
 import the_six_bowls from "./the_six_bowls.json" with { type: "json" };
 import the_sleeping_giant from "./the_sleeping_giant.json" with { type: "json" };
 import the_stampede from "./the_stampede.json" with { type: "json" };
 import the_starving_pilgrims from "./the_starving_pilgrims.json" with { type: "json" };
+import the_still_traveler from "./the_still_traveler.json" with { type: "json" };
 import the_sunken_bell from "./the_sunken_bell.json" with { type: "json" };
 import the_toll from "./the_toll.json" with { type: "json" };
 import the_toll_keeper from "./the_toll_keeper.json" with { type: "json" };
@@ -73,6 +83,8 @@ import the_vacant_star from "./the_vacant_star.json" with { type: "json" };
 import the_warm_ashes from "./the_warm_ashes.json" with { type: "json" };
 import the_weeping_statue from "./the_weeping_statue.json" with { type: "json" };
 import the_whispering_well from "./the_whispering_well.json" with { type: "json" };
+import the_white_stag from "./the_white_stag.json" with { type: "json" };
+import the_wyrm_egg from "./the_wyrm_egg.json" with { type: "json" };
 import tithe_men from "./tithe_men.json" with { type: "json" };
 import trial_of_the_veteran from "./trial_of_the_veteran.json" with { type: "json" };
 import twins from "./twins.json" with { type: "json" };
@@ -127,10 +139,18 @@ export default [
   sinking_mother,
   spider_queens_court,
   still_warm_camp,
+  the_bargain_pit,
+  the_barrow_feast,
+  the_bellows_ghost,
   the_bone_dice,
+  the_drowned_chapel,
   the_empty_court,
   the_engine_heart,
+  the_faceless_census,
   the_fallen_scion,
+  the_frozen_hunter,
+  the_hanging_wood,
+  the_heretics_trial,
   the_ice_choir,
   the_last_hoard,
   the_lost_child,
@@ -142,12 +162,14 @@ export default [
   the_pit_market,
   the_red_rain,
   the_rusted_army,
+  the_seventh_altar,
   the_singing_skull,
   the_singing_tree,
   the_six_bowls,
   the_sleeping_giant,
   the_stampede,
   the_starving_pilgrims,
+  the_still_traveler,
   the_sunken_bell,
   the_toll,
   the_toll_keeper,
@@ -155,6 +177,8 @@ export default [
   the_warm_ashes,
   the_weeping_statue,
   the_whispering_well,
+  the_white_stag,
+  the_wyrm_egg,
   tithe_men,
   trial_of_the_veteran,
   twins,
