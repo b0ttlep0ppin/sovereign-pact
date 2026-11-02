@@ -1,0 +1,88 @@
+{
+  "id": "the_rotting_pier",
+  "pools": [
+    "drowned_marches"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    7
+  ],
+  "title": "The Rotting Pier",
+  "text": "A pier juts into the black water, rotten planks over a drop. A boat is tied at the far end.",
+  "options": [
+    {
+      "id": "walk",
+      "label": "Walk it carefully.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "To the boat, and a short way across.",
+          "effects": [
+            {
+              "skip": 1
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "A plank gives.",
+          "effects": [
+            {
+              "to": "party",
+              "durability": -8,
+              "loc": "legs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "light",
+      "label": "The lightest goes first and tests each plank.",
+      "rule": "scion:highest:speed",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Every bad plank found.",
+          "effects": [
+            {
+              "skip": 1
+            },
+            {
+              "xp": 30
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "swim",
+      "label": "Swim for the boat.",
+      "rule": "leader",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Something in the water likes swimmers.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "ambush"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

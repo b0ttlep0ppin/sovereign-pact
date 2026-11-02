@@ -1,0 +1,99 @@
+{
+  "id": "the_frost_shrine",
+  "pools": [
+    "deep_cold"
+  ],
+  "weight": 2,
+  "band": [
+    4,
+    8
+  ],
+  "title": "The Frost Shrine",
+  "text": "A shrine of ice to a winter god, offerings frozen on the altar: coins, a sword, a child's doll.",
+  "options": [
+    {
+      "id": "offer",
+      "label": "Leave an offering of your own.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The wind drops for a day.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -5
+              }
+            },
+            {
+              "skip": 1
+            },
+            {
+              "to": "party",
+              "sanity": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sword",
+      "label": "The boldest takes the sword.",
+      "rule": "scion:highest:might",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "Cold steel that never dulls.",
+          "effects": [
+            {
+              "item": {
+                "tier": 2
+              }
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "The god takes something back.",
+          "effects": [
+            {
+              "to": "party",
+              "status": "frozen"
+            },
+            {
+              "injury": "arms"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pray",
+      "label": "The devout prays.",
+      "rule": "scion:trait:devout|scion:highest:sagacity",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The winter god listens.",
+          "effects": [
+            {
+              "blessing": {
+                "trait": "stout_hearted",
+                "years": 2
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

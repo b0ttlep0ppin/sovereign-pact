@@ -1,0 +1,84 @@
+{
+  "id": "the_snow_hare",
+  "pools": [
+    "deep_cold"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    8
+  ],
+  "title": "The Snow Hare",
+  "text": "A white hare sits in the snow and does not run. It is watching the party with a man's eyes.",
+  "options": [
+    {
+      "id": "follow",
+      "label": "Follow it.",
+      "rule": "vote",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "To a hidden cave, warm and dry.",
+          "effects": [
+            {
+              "to": "party",
+              "durability": 10
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "To a hunter's snare.",
+          "effects": [
+            {
+              "injury": "legs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "speak",
+      "label": "The wisest speaks to it.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A shapeshifter, who warns you of what is ahead.",
+          "effects": [
+            {
+              "foresee": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hunt",
+      "label": "Hunt it.",
+      "rule": "leader",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It becomes something larger.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "surprise"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

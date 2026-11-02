@@ -1,0 +1,87 @@
+{
+  "id": "the_fallen_nest",
+  "pools": [
+    "hollow_wood"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    7
+  ],
+  "title": "The Fallen Nest",
+  "text": "A great nest has fallen from the canopy. In it, an egg the size of a shield, still warm.",
+  "options": [
+    {
+      "id": "return",
+      "label": "The strongest lifts it back up.",
+      "rule": "scion:highest:might",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "A cry of thanks from above, and a feather falls.",
+          "effects": [
+            {
+              "blessing": {
+                "trait": "lucky",
+                "years": 2
+              }
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "The parent thinks you are stealing it.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "surprise"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "take",
+      "label": "Take the egg.",
+      "rule": "leader",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A rare egg, and a shadow circling.",
+          "effects": [
+            {
+              "resources": {
+                "essence": 4
+              }
+            },
+            {
+              "encounter": {}
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "leave",
+      "label": "Leave it be.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It will be what it will be.",
+          "effects": []
+        }
+      ]
+    }
+  ]
+}

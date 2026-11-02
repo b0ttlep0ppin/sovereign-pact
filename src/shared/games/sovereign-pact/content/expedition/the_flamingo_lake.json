@@ -1,0 +1,88 @@
+{
+  "id": "the_flamingo_lake",
+  "pools": [
+    "beast_lands"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    6
+  ],
+  "title": "The Flamingo Lake",
+  "text": "A salt lake pink with flamingos, thousands of them. The water is bitter, but the shore is crusted with salt.",
+  "options": [
+    {
+      "id": "salt",
+      "label": "Gather the salt.",
+      "rule": "vote",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Good salt sells well.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 10
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rest",
+      "label": "Rest by the water and watch them.",
+      "rule": "leader",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "An afternoon of pink and quiet.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 8
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wade",
+      "label": "The quickest wades out for a feather.",
+      "rule": "scion:highest:speed",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "A feather for luck.",
+          "effects": [
+            {
+              "blessing": {
+                "trait": "lucky",
+                "years": 1
+              }
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "The flock rises all at once, and the salt cuts.",
+          "effects": [
+            {
+              "durability": -10,
+              "loc": "legs"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

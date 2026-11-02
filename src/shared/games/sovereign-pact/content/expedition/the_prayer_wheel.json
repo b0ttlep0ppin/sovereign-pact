@@ -1,0 +1,96 @@
+{
+  "id": "the_prayer_wheel",
+  "pools": [
+    "shrine_of_six"
+  ],
+  "weight": 2,
+  "band": [
+    4,
+    10
+  ],
+  "title": "The Prayer Wheel",
+  "text": "A great wheel of prayers turns by the shrine path. Each turn sends a prayer to the Six.",
+  "options": [
+    {
+      "id": "turn",
+      "label": "Each of you gives it a turn.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Prayers, and a lightness.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 6
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "spin",
+      "label": "The strongest spins it as hard as they can.",
+      "rule": "scion:highest:might",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "A thousand prayers at once, and one answered.",
+          "effects": [
+            {
+              "blessing": {
+                "trait": "lucky",
+                "years": 2
+              }
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "It flies off its axle.",
+          "effects": [
+            {
+              "durability": -15,
+              "loc": "body"
+            },
+            {
+              "score": {
+                "renown": -1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "read",
+      "label": "The wisest reads the prayers.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "One of them is a prayer for your House.",
+          "effects": [
+            {
+              "score": {
+                "lore": 1
+              }
+            },
+            {
+              "sanity": 5
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

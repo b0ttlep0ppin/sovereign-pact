@@ -1,0 +1,95 @@
+{
+  "id": "the_faceless_wedding",
+  "pools": [
+    "faceless_city"
+  ],
+  "weight": 2,
+  "band": [
+    4,
+    9
+  ],
+  "title": "The Faceless Wedding",
+  "text": "Two faceless figures are being married, and the guests have no faces either. They beckon you to sit.",
+  "options": [
+    {
+      "id": "sit",
+      "label": "Sit and celebrate.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "Good food, odd music, and gifts for the guests.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 10
+              }
+            },
+            {
+              "to": "party",
+              "sanity": -3
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "You are not guests. You are the feast.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "surprise"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gift",
+      "label": "The shrewdest offers a gift.",
+      "rule": "scion:highest:guile",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "They are delighted, and show you the way out.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -5
+              }
+            },
+            {
+              "skip": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "leave",
+      "label": "Slip away.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The music follows.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -4
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

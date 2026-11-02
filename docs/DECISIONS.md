@@ -2,6 +2,12 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 7au): every event pool meets its budget
+
+- Twenty-eight events (556 in all) bring every region to 25: two each for the Beast Lands, the Hollow Wood, the Drowned Marches and the Barrows, and one or two for each of the rest. With the general pool at 150 and the five card-type pools at 25, every pool HANDOFF §6 budgets is now full; `npm run events` shows each as ok.
+- Maiming stays at about 0.13% of outcome weight, well under the 2% budget, and every subject rule is used at least five times.
+- Reading: the Name Wall's subject is a random Scion ("one of the uncrossed names is a Scion's"); crossing it out either lets the party pass as the city's own or silences that Scion.
+
 ## 2026-11-02 (implementation, Milestone 7at): sixteen region events toward 23 each
 
 - Sixteen events (528 in all): two each for the Deep Cold, the Pit, the Forge Ruins, the Faceless City, the Apostate Court, the Shrine of Six, the Dragon Reaches and the Outer Dark. Those eight regions now have 23, the other four 22; the budget is 25.

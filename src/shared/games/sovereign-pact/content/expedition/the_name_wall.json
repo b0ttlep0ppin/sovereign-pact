@@ -1,0 +1,90 @@
+{
+  "id": "the_name_wall",
+  "pools": [
+    "faceless_city"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    9
+  ],
+  "title": "The Name Wall",
+  "text": "A wall covered in names, crossed out one by one. These are the faceless, before. One of the uncrossed names is a Scion's.",
+  "options": [
+    {
+      "id": "cross",
+      "label": "The named Scion crosses their own name out.",
+      "rule": "scion:random",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "The city takes them for its own, and lets you all pass.",
+          "effects": [
+            {
+              "skip": 2
+            },
+            {
+              "sanity": -12
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "Their face goes numb for a day.",
+          "effects": [
+            {
+              "sanity": -8
+            },
+            {
+              "status": "silence"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "scrub",
+      "label": "Scrub the name off.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It comes back, fainter.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "read",
+      "label": "The wisest reads the other names.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Some you know, from the House's histories.",
+          "effects": [
+            {
+              "score": {
+                "lore": 2
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

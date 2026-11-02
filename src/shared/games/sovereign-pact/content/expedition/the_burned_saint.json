@@ -1,0 +1,89 @@
+{
+  "id": "the_burned_saint",
+  "pools": [
+    "apostate_court"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    9
+  ],
+  "title": "The Burned Saint",
+  "text": "The court has burned a statue of a saint and left it in the square, blackened. Pilgrims creep in at night to touch it.",
+  "options": [
+    {
+      "id": "touch",
+      "label": "Touch it, with the pilgrims.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Warm, still, and comforting.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 6
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "carry",
+      "label": "The strongest carries it out of the court.",
+      "rule": "scion:highest:might",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The court notices, and the pilgrims cheer.",
+          "effects": [
+            {
+              "score": {
+                "renown": 2
+              }
+            },
+            {
+              "encounter": {}
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "report",
+      "label": "Report the pilgrims to the court.",
+      "rule": "leader",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The court rewards you. The pilgrims weep.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 15
+              }
+            },
+            {
+              "score": {
+                "intrigue": 1
+              }
+            },
+            {
+              "to": "party",
+              "sanity": -8
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
