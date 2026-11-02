@@ -17,6 +17,7 @@ import Market from "./Market";
 import HouseDesigner from "./HouseDesigner";
 import Readying from "./Readying";
 import Roster from "./Roster";
+import ScionSprite, { lookOf } from "./ScionSprite";
 import { HERALDRY_COLORS, Emblem } from "./Emblem";
 import RiftGate from "./RiftGate";
 import TownMap from "./TownMap";
@@ -136,9 +137,19 @@ export default function SovereignPact({ view, isMyTurn, sendMove, lastError }: P
   const others = view.people.filter((p) => p.host !== view.me);
   const open = view.phase === "settlement" && !!mine && !mine.sealed;
   const ownScions = view.people.filter((p) => p.host === view.me && p.status === "scion");
-  // The party's grid: everyone fielded so far, or your own Scions before you field them.
-  const fielded = (view.expedition?.party ?? []).flatMap((x) => x ?? []);
-  const partyPeople = fielded.length ? fielded.flatMap((id) => view.people.filter((p) => p.id === id)) : ownScions;
+  // Fielding your seats: the Scions you have chosen so far, which the formation shows before you send them.
+  const exp = view.expedition;
+  const seats = exp && view.me !== null ? (exp.seats[view.me] ?? 0) : 0;
+  const mustering = !!exp && !!mine && exp.party[view.me!] === null && !exp.pool && !exp.event && !exp.fight && exp.leader === undefined && !exp.votes;
+  const able = ableOf(view);
+  const [pick, setPick] = useState<{ key: string; ids: number[] } | null>(null);
+  const pickKey = `${view.year}:${seats}`;
+  const chosen = pick?.key === pickKey ? pick.ids.filter((id) => able.some((p) => p.id === id)) : able.slice(0, seats).map((p) => p.id);
+  const setChosen = (ids: number[]) => setPick({ key: pickKey, ids });
+  // The party's grid: everyone fielded so far, and while you choose, the Scions you have chosen.
+  const fielded = (exp?.party ?? []).flatMap((x) => x ?? []);
+  const byId = (id: number) => view.people.filter((p) => p.id === id);
+  const partyPeople = mustering ? [...fielded, ...chosen].flatMap(byId) : fielded.length ? fielded.flatMap(byId) : ownScions;
   // One screen at a time (DECISIONS 8af): founding the House, the town, the expedition, the end.
   const scene = view.phase === "founding" ? "founding" : view.phase === "expedition" ? "expedition" : "town";
   const settings = (
@@ -281,11 +292,6 @@ export default function SovereignPact({ view, isMyTurn, sendMove, lastError }: P
         </div>
         <Track label={view.track} value={view.accord} danger={view.accord <= 25} />
         <Track label="Doom" value={view.doom} danger={view.doom >= 75} />
-        {view.mine ? (
-          <span className="sp-head__purse" title={Object.entries(view.mine.stores).map(([k, v]) => `${v} ${k}`).join(", ") || "Stores empty"}>
-            {view.mine.gold} Gold{view.mine.debt ? ` (${view.mine.debt} owed)` : ""} · {view.mine.stores.grain ?? 0} Grain
-          </span>
-        ) : null}
         <span className="sp-top__commons">Commons: {view.commons.gold} Gold</span>
         {view.phase === "settlement" && mine ? (
           isMyTurn ? (
@@ -300,6 +306,7 @@ export default function SovereignPact({ view, isMyTurn, sendMove, lastError }: P
         ) : null}
         {settings}
       </header>
+      {view.mine ? <Stores mine={view.mine} /> : null}
       <Timeline view={view} />
       {view.outcome ? (
         <p className={`sp-outcome${view.outcome.won ? " is-won" : ""}`} role="status">
@@ -314,12 +321,21 @@ export default function SovereignPact({ view, isMyTurn, sendMove, lastError }: P
             {mine && view.expedition ? (
               <section className="sp-panel sp-orders" aria-label="Your orders">
                 <h2>Your orders</h2>
-                <Muster key={view.expedition.seats[view.me!]} view={view} sendMove={sendMove} openBattle={hidden ? () => setHidden(false) : undefined} />
+                <Muster view={view} sendMove={sendMove} chosen={chosen} setChosen={setChosen} openBattle={hidden ? () => setHidden(false) : undefined} />
               </section>
             ) : null}
             <div className="sp-stage__pair">
               <ChainMap view={view} sendMove={sendMove} />
-              {mine ? <Formation view={view} people={partyPeople} sendMove={sendMove} canAct={!fight} title="The party's formation" /> : null}
+              {mine ? (
+                <Formation
+                  view={view}
+                  people={partyPeople}
+                  sendMove={sendMove}
+                  canAct={!fight}
+                  title="The party's formation"
+                  note={mustering ? (chosen.length ? "The Scions you have chosen stand here when the first battle opens; move them now or later." : "Choose Scions in your orders to see where they will stand.") : undefined}
+                />
+              ) : null}
             </div>
           </div>
           <aside className="sp-stage__side">
@@ -524,13 +540,40 @@ function Oath({ dealt, swear }: { dealt: NonNullable<NonNullable<SovView["mine"]
   );
 }
 
+/** The basic resources, always shown, then any rare material the House holds (§8.1). */
+const BASICS = ["grain", "timber", "stone", "iron", "essence"] as const;
+const titled = (k: string) => Content.RARE_MATERIALS.find((m) => m.id === k)?.name ?? k[0]!.toUpperCase() + k.slice(1);
+
+/** Your House's treasury and stores in one band under the header. */
+function Stores({ mine }: { mine: NonNullable<SovView["mine"]> }) {
+  const rare = Object.entries(mine.stores).filter(([k, n]) => !(BASICS as readonly string[]).includes(k) && n);
+  const chip = (k: string, n: number, extra?: string) => (
+    <li key={k} className={`sp-stores__item sp-stores__item--${k}`}>
+      <span className="sp-stores__pip" aria-hidden="true" />
+      <strong>{n}</strong> {titled(k)}
+      {extra ? <small> {extra}</small> : null}
+    </li>
+  );
+  return (
+    <ul className="sp-stores" aria-label="Your stores">
+      {chip("gold", mine.gold, mine.debt ? `(${mine.debt} owed)` : undefined)}
+      {BASICS.map((k) => chip(k, mine.stores[k] ?? 0))}
+      {rare.map(([k, n]) => chip(k, n!))}
+    </ul>
+  );
+}
+
+/** Your Scions who can take a seat, strongest first. */
+function ableOf(view: SovView) {
+  return view.people.filter((p) => p.host === view.me && p.status === "scion").sort((a, b) => b.level - a.level || a.id - b.id);
+}
+
 /** The Expedition Phase (§9.2): field your Scions in your seats, then vote the party's Leader. */
-function Muster({ view, sendMove, openBattle }: { view: SovView; sendMove: (m: SovMove) => void; openBattle?: () => void }) {
+function Muster({ view, sendMove, chosen, setChosen, openBattle }: { view: SovView; sendMove: (m: SovMove) => void; chosen: number[]; setChosen: (ids: number[]) => void; openBattle?: () => void }) {
   const e = view.expedition!;
   const me = view.me!;
   const seats = e.seats[me] ?? 0;
-  const able = view.people.filter((p) => p.host === me && p.status === "scion").sort((a, b) => b.level - a.level || a.id - b.id);
-  const [chosen, setChosen] = useState<number[]>(() => able.slice(0, seats).map((p) => p.id));
+  const able = ableOf(view);
   const name = (id: number) => view.people.find((p) => p.id === id)?.name ?? `#${id}`;
   if (e.pool && e.draft?.length) {
     const turn = e.draft[0]!;
@@ -662,22 +705,47 @@ function Muster({ view, sendMove, openBattle }: { view: SovView; sendMove: (m: S
     );
   }
   if (e.party[me] !== null) return <p>{seats ? `You sent ${e.party[me]!.map(name).join(", ") || "no one"}.` : "Your House has no seats this time."} Waiting for the other Houses.</p>;
-  const toggle = (id: number) => setChosen((c) => (c.includes(id) ? c.filter((x) => x !== id) : c.length < seats ? [...c, id] : c));
+  const toggle = (id: number) => setChosen(chosen.includes(id) ? chosen.filter((x) => x !== id) : chosen.length < seats ? [...chosen, id] : chosen);
+  const full = chosen.length >= seats;
   return (
-    <div className="sp-muster">
-      <p>
-        Your House has {seats} seat{seats === 1 ? "" : "s"} on the expedition.
+    <div className="sp-muster sp-field">
+      <p className="sp-field__count" role="status">
+        <strong>
+          {chosen.length} of {seats}
+        </strong>{" "}
+        seat{seats === 1 ? "" : "s"} filled.{" "}
+        {seats ? (full ? "Your seats are full; set someone down to choose another." : "Click your Scions to choose who goes.") : "Your House has no seats this time."}
       </p>
-      <div className="sp-actions">
-        {able.map((p) => (
-          <button key={p.id} type="button" className="sp-button sp-button--quiet" aria-pressed={chosen.includes(p.id)} onClick={() => toggle(p.id)}>
-            {p.name} (L{p.level})
-          </button>
-        ))}
+      <div className="sp-field__cards" role="group" aria-label="Your Scions">
+        {able.map((p) => {
+          const on = chosen.includes(p.id);
+          const colors = view.houses[p.house]?.colors;
+          const job = p.job ? (Content.JOB_BY_ID.get(p.job)?.name ?? p.job) : "";
+          return (
+            <button
+              key={p.id}
+              type="button"
+              className={`sp-field__card${on ? " is-chosen" : ""}`}
+              aria-pressed={on}
+              aria-label={`${p.name}, level ${p.level} ${job}`}
+              disabled={!on && full}
+              onClick={() => toggle(p.id)}
+            >
+              <ScionSprite look={lookOf(p, colors, view.items)} anim="idle" frame={0} size={56} />
+              <span className="sp-field__name">{p.name.split(" ")[0]}</span>
+              <small>
+                L{p.level} {job}
+              </small>
+              <span className="sp-field__mark" aria-hidden="true">
+                {on ? `Seat ${chosen.indexOf(p.id) + 1}` : "Stays home"}
+              </span>
+            </button>
+          );
+        })}
       </div>
       <div className="sp-actions">
         <button type="button" className="sp-button" onClick={() => sendMove({ type: "field", people: chosen })}>
-          {chosen.length ? `Send ${chosen.length}` : "Decline the seats"}
+          {chosen.length ? `Send ${chosen.length} Scion${chosen.length === 1 ? "" : "s"} on the expedition` : "Decline the seats"}
         </button>
       </div>
     </div>

@@ -40,6 +40,14 @@ describe("commanding a turn (§15.5)", () => {
     expect((screen.getByRole("button", { name: /^Firestorm/ }) as HTMLButtonElement).disabled).toBe(true);
   });
 
+  it("keeps the waiting turn a click away while you watch the battle back", () => {
+    setup(turnOf);
+    fireEvent.keyDown(screen.getByRole("dialog"), { key: "ArrowLeft" });
+    expect(screen.queryByRole("group", { name: /'s turn$/ })).toBe(null);
+    fireEvent.click(screen.getByRole("button", { name: /^Back to .*'s turn$/ }));
+    expect(screen.getByRole("group", { name: /'s turn$/ })).toBeTruthy();
+  });
+
   it("aims at a target by keyboard: arrows, then Enter", () => {
     const { send, foe } = setup(turnOf);
     fireEvent.click(screen.getByRole("button", { name: "Attack" }));
