@@ -228,6 +228,13 @@ export interface ExpeditionCard {
   boss?: string;
 }
 
+/** One share of a drafted haul: an item, or a bundle of materials. */
+export interface Share {
+  id: number;
+  item?: Item;
+  stores?: Stores;
+}
+
 /** The Year's expedition (§9.2): seats per House, the Scions each fielded, the Leader vote. */
 export interface Expedition {
   card: ExpeditionCard;
@@ -255,6 +262,8 @@ export interface Expedition {
   event?: { id: string; votes: (number | null)[]; picks?: Record<number, number | null> };
   /** What the party carries home (§9.8, §9.10): found items, not yet anyone's, and materials. Lost on a wipe. */
   haul?: { items: Item[]; stores: Stores };
+  /** The haul as shares, being drafted (§9.10). */
+  pool?: Share[];
   /** The Houses' picks still to come in the loot draft, in snake order (§9.10). */
   draft?: number[];
   /** How it ended: the boss beaten, turned back, wiped, nobody came, or it never left. */
@@ -437,8 +446,8 @@ export type SovMove =
   /** A House's vote on the waiting event's option (§9.4). */
   | { type: "decide"; option: number; person?: number }
   | { type: "retreat" }
-  /** Your House's pick from the haul when the draft comes to it (§9.10). */
-  | { type: "draft"; item: number }
+  /** Your House's pick of a share of the haul when the draft comes to it (§9.10). */
+  | { type: "draft"; share: number }
   /** Retire a Scion, or bring a Retired one back (§6.12). */
   | { type: "retire"; person: number }
   | { type: "reinstate"; person: number }

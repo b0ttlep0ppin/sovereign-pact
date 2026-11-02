@@ -275,15 +275,21 @@ function Muster({ view, sendMove }: { view: SovView; sendMove: (m: SovMove) => v
   const able = view.people.filter((p) => p.host === me && p.status === "scion").sort((a, b) => b.level - a.level || a.id - b.id);
   const [chosen, setChosen] = useState<number[]>(() => able.slice(0, seats).map((p) => p.id));
   const name = (id: number) => view.people.find((p) => p.id === id)?.name ?? `#${id}`;
-  if (e.haul && e.draft?.length) {
+  if (e.pool && e.draft?.length) {
     const turn = e.draft[0]!;
+    const label = (x: (typeof e.pool)[number]) =>
+      x.item
+        ? `${TIER_NAMES[x.item.tier - 1]} ${Content.ITEM_BASE_BY_ID.get(x.item.base)?.name}`
+        : Object.entries(x.stores ?? {})
+            .map(([k, n]) => `${n} ${Content.RARE_MATERIALS.find((m) => m.id === k)?.name ?? k[0]!.toUpperCase() + k.slice(1)}`)
+            .join(", ");
     return (
       <div className="sp-muster" aria-label="The draft">
-        <p>The Houses draft the haul, blind. {turn === me ? "Your pick." : `House ${view.houses[turn]?.name} picks.`}</p>
+        <p>The Houses claim shares of the haul; gear is drafted blind. {turn === me ? "Your pick." : `House ${view.houses[turn]?.name} picks.`}</p>
         <div className="sp-actions">
-          {e.haul.items.map((i) => (
-            <button key={i.id} type="button" className="sp-button" disabled={turn !== me} onClick={() => sendMove({ type: "draft", item: i.id })}>
-              {TIER_NAMES[i.tier - 1]} {Content.ITEM_BASE_BY_ID.get(i.base)?.name}
+          {e.pool.map((x) => (
+            <button key={x.id} type="button" className="sp-button" disabled={turn !== me} onClick={() => sendMove({ type: "draft", share: x.id })}>
+              {label(x)}
             </button>
           ))}
         </div>

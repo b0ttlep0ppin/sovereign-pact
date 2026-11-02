@@ -95,15 +95,30 @@ describe("Caches and the boss", () => {
 });
 
 describe("coming home (§9.9, §9.10)", () => {
-  it("splits materials evenly between the Houses present, the remainder to the Commons", () => {
+  it("turns the haul into shares: an item each, and each material in a bundle per House drafting", () => {
     let s = underway(2);
     s.expedition!.haul = { items: [], stores: { iron: 5, voidglass: 1 } };
-    const iron = s.houses.map((h) => h.stores.iron ?? 0);
-    const [ci, cv] = [s.commons.stores.iron ?? 0, s.commons.stores.voidglass ?? 0];
+    find(s, 3);
     s.expedition!.chain = ["event", "boss"];
     s = move(s, "p1", { type: "retreat" });
-    expect(s.houses.map((h, i) => (h.stores.iron ?? 0) - iron[i]!)).toEqual([2, 2]);
-    expect([(s.commons.stores.iron ?? 0) - ci, (s.commons.stores.voidglass ?? 0) - cv]).toEqual([1, 1]);
+    const pool = s.expedition!.pool!;
+    expect(pool.filter((x) => x.item).length).toBe(1);
+    expect(pool.filter((x) => x.stores).map((x) => x.stores)).toEqual([{ iron: 3 }, { iron: 2 }, { voidglass: 1 }]);
+    expect(s.expedition!.draft!.length).toBe(4);
+    expect(s.expedition!.haul).toBeUndefined();
+  });
+
+  it("alone, a House takes the whole haul", () => {
+    let s = underway(1);
+    s.expedition!.haul = { items: [], stores: { iron: 5 } };
+    const iron = s.houses[0]!.stores.iron ?? 0;
+    find(s, 3);
+    const owned = s.items.length;
+    s.expedition!.chain = ["event", "boss"];
+    s = move(s, "p1", { type: "retreat" });
+    expect(s.houses[0]!.stores.iron).toBe(iron + 5);
+    expect(s.items.length).toBe(owned + 1);
+    expect(s.expedition).toBeUndefined();
   });
 
   it("loses the haul in a wipe", () => {
@@ -117,36 +132,43 @@ describe("coming home (§9.9, §9.10)", () => {
   });
 });
 
-describe("the draft (§9.10)", () => {
-  it("goes lowest Standing first in snake order", () => {
-    const s = underway(3);
-    s.houses[2]!.score.renown = 60;
-    s.houses[1]!.score.renown = 30;
-    expect(snake(s, [0, 1, 2], 7)).toEqual([0, 1, 2, 2, 1, 0, 0]);
+describe("the draft (Josh, 2026-11-02: one pool of shares, a random House order)", () => {
+  it("goes in a random order, then snakes back", () => {
+    const firsts = new Set<number>();
+    for (let seed = 1; seed <= 12; seed++) {
+      const order = snake(underway(3, card(), seed), [0, 1, 2], 7);
+      const [a, b, c] = order;
+      expect(order).toEqual([a, b, c, c, b, a, a]);
+      expect(new Set([a, b, c]).size).toBe(3);
+      firsts.add(a!);
+    }
+    expect(firsts.size).toBeGreaterThan(1);
   });
 
-  it("is drafted blind, a pick at a time, by the Houses still in the party; then the Year goes on", () => {
+  it("is claimed a share at a time, gear blind, by the Houses still in the party; then the Year goes on", () => {
     let s = underway(2);
-    s.houses[1]!.score.renown = 50;
-    for (let i = 0; i < 3; i++) find(s, (2 + i) as 2 | 3 | 4);
+    for (let i = 0; i < 2; i++) find(s, (3 + i) as 3 | 4);
+    s.expedition!.haul!.stores = { essence: 2 };
     s.expedition!.chain = ["event", "boss"];
     s = move(s, "p1", { type: "retreat" });
     const e = s.expedition!;
-    expect(e.draft).toEqual([0, 1, 1]);
-    expect(g.activePlayers(s)).toEqual(["p1"]);
-    expect(view(s, "p2").expedition!.haul!.items.every((i) => i.props === undefined)).toBe(true);
-    expect(e.haul!.items.some((i) => i.props)).toBe(true);
-    const [a, b] = e.haul!.items;
-    expect(error(s, "p2", { type: "draft", item: a!.id })).toMatch(/not your House's pick/);
-    expect(error(s, "p1", { type: "draft", item: 999 })).toMatch(/not in the haul/);
-    s = move(s, "p1", { type: "draft", item: a!.id });
-    expect(s.items.find((i) => i.id === a!.id)!.house).toBe(0);
-    expect(g.botMove!(s, "p2", undefined as never)).toEqual({ type: "draft", item: s.expedition!.haul!.items.find((i) => i.tier === 4)!.id });
-    s = move(s, "p2", { type: "draft", item: b!.id });
-    expect(s.phase).toBe("expedition");
-    s = move(s, "p2", g.botMove!(s, "p2", undefined as never));
+    const [first, second] = e.draft!;
+    expect(e.draft!.length).toBe(4);
+    expect(g.activePlayers(s)).toEqual([`p${first! + 1}`]);
+    expect(view(s, "p2").expedition!.pool!.every((x) => !x.item || x.item.props === undefined)).toBe(true);
+    expect(e.pool!.some((x) => x.item?.props)).toBe(true);
+    const essence = e.pool!.find((x) => x.stores)!;
+    expect(error(s, `p${second! + 1}`, { type: "draft", share: essence.id })).toMatch(/not your House's pick/);
+    expect(error(s, `p${first! + 1}`, { type: "draft", share: 999 })).toMatch(/not in the haul/);
+    const had = s.houses[first!]!.stores.essence ?? 0;
+    s = move(s, `p${first! + 1}`, { type: "draft", share: essence.id });
+    expect(s.houses[first!]!.stores.essence).toBe(had + 1);
+    // The bot takes the Masterwork over the Fine item and the other Essence.
+    const mw = s.expedition!.pool!.find((x) => x.item?.tier === 4)!;
+    expect(g.botMove!(s, `p${second! + 1}`, undefined as never)).toEqual({ type: "draft", share: mw.id });
+    for (let i = 0; i < 3; i++) s = move(s, g.activePlayers(s)[0]!, g.botMove!(s, g.activePlayers(s)[0]!, undefined as never));
     expect(s.expedition).toBeUndefined();
-    expect(s.items.filter((i) => i.house === 1).length).toBeGreaterThan(0);
+    expect(s.items.find((i) => i.id === mw.id)!.house).toBe(second);
     expect([s.year, s.phase]).toEqual([2, "settlement"]);
   });
 });

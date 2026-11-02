@@ -262,10 +262,12 @@ export function view(s: SovState, playerId: PlayerId): SovView {
  */
 function expeditionView(e: Expedition): Expedition & { length: number } {
   const v = { ...e, chain: e.chain.slice(0, e.at), length: e.chain.length };
-  if (e.haul) v.haul = { ...e.haul, items: e.haul.items.map((i) => {
-      const seen = { ...i };
-      delete seen.props;
-      return seen;
-    }) };
+  const blind = (i: Item): Item => {
+    const seen = { ...i };
+    delete seen.props;
+    return seen;
+  };
+  if (e.haul) v.haul = { ...e.haul, items: e.haul.items.map(blind) };
+  if (e.pool) v.pool = e.pool.map((x) => (x.item ? { ...x, item: blind(x.item) } : x));
   return v;
 }

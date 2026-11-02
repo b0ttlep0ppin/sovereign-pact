@@ -99,7 +99,7 @@ Canonical terms. Code identifiers, UI text and the spec use these spellings. **S
 | Turn forecast | The predicted next-10-turns bar. | ✅ |
 | Readiness damage | Subtracting CT from a target (delay). | ✅ (brief) |
 | Lost | A Scion left behind after a wipe; recoverable by a Rescue card for 2 Years. | ✅ |
-| Draft (loot) | Houses pick boss/cache loot in turn, lowest Standing first, snake order. | ✅ |
+| Draft (loot) | The haul goes to one pool of shares (an item, a bundle of materials); Houses claim them in turn, in a random order and then snake order. | ✅ |
 | Individual trait | A trait on one Scion (Fleet, Brave…), distinct from House traits. | ❓ |
 | Potential tier | A recruit's growth quality: Common / Promising / Gifted / Prodigy. | ❓ |
 | Pledge | A House's private contribution to a Crisis. | ✅ |

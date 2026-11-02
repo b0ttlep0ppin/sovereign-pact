@@ -877,8 +877,7 @@ A `transform` effect replaces the Scion's base stats, growths, individual traits
 ### 9.10 Loot and ownership [DECIDED]
 
 - An event's finds go to the **subject Scion's House** (or the deciding House when there is no subject; to the Commons when the rule was `vote`).
-- Boss and Cache loot is **drafted**: items are laid out and Houses pick in turn, lowest Standing tier first (ties random), snake order. A House with no Scion on the expedition does not draft.
-- Materials and Essence are split evenly into the participating Houses' Stores, the remainder to the Commons. Shop unlocks, recipes and settlement improvements always go to the Commons (everyone).
+- [DECIDED 2026-11-02, Josh] **Treasure goes to one pool, and the Houses claim shares of it.** Everything the party carries home (Encounter drops, Caches, the boss's loot) is laid out as shares: each item is one share, and each material or Essence is split into bundles, one per drafting House. Houses pick a share in turn (gear, a bundle of materials, an artifact), in a random House order and then snake order, until the pool is empty. A House with no Scion still on the expedition does not draft. Shop unlocks, recipes and settlement improvements always go to the Commons (everyone).
 - House-score artifacts (Lore/Relics) are items: whoever holds them at campaign end scores them, so they can be traded.
 
 ## 10. Combat
