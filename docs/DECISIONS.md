@@ -2,6 +2,15 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 8af): one screen at a time
+
+- Josh: the expedition should be its own screen with no settlement panels. On desktop the long single page buried House creation and the map, so the client now shows one screen per part of the Year.
+  - **Founding:** a "Found your House" bar and the House designer with the oath, then the muster. No Year bar, score table or map until the first Year begins.
+  - **The town** (Omens, Settlement, Reckoning): a bar across the top with the Year, Accord, Doom, your Gold and Grain, the Commons and Seal the Year. Below it the timeline, then the Town Map, with Decisions and the chronicle beside it. The other panels sit in tabs under the map: the Rift Gate, Your people, Readying, Building, Market, Deals, the Houses (Ambition, scores, rivals' Scions) and Battles. The last tab opened is remembered on that device.
+  - **The expedition:** the same top bar, then your orders (field, Leader, press on, events, the draft), with the road and the party beneath. The battles and the chronicle sit beside them. Nothing from the town shows.
+  - **Battles** open over whichever screen is showing, as before.
+- Music, accessibility and credits moved into a Settings menu in the top bar.
+
 ## 2026-11-02 (implementation, Milestone 8ae): recruits work on their own, off the Town Map
 
 - Josh picked "Off the map, they work on their own" for where recruits should go.

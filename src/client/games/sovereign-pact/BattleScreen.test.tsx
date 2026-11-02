@@ -68,6 +68,9 @@ describe("battles in the campaign screen", () => {
     expect(screen.queryByRole("dialog")).toBe(null);
     // The next move drops the replay from the view; the screen keeps it.
     rerender(<SovereignPact {...props} view={{ ...view, battles: [] }} />);
+    // In town the list sits under its own tab.
+    const tab = screen.queryByRole("tab", { name: "Battles" });
+    if (tab) fireEvent.click(tab);
     fireEvent.click(screen.getByRole("button", { name: "Watch" }));
     expect(screen.getByRole("dialog")).toBeTruthy();
   });

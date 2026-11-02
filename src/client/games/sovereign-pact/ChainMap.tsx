@@ -46,7 +46,8 @@ function Road({ passed, length, here, end }: { passed: Node[]; length: number; h
 
 export default function ChainMap({ view, sendMove }: { view: SovView; sendMove?: (m: SovMove) => void }) {
   const e = view.expedition;
-  if (!e || e.leader === undefined) return null;
+  // Before a Leader is chosen it shows the card and the road still face down, and who has been sent.
+  if (!e) return null;
   const person = (id: number) => view.people.find((p) => p.id === id);
   const t = CARD_TYPES[e.card.type];
   const end = quarryOf(e.card);
