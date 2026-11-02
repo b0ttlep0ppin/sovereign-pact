@@ -9,6 +9,7 @@ import ChainMap from "./ChainMap";
 import Deals from "./Deals";
 import Decisions from "./Decisions";
 import Market from "./Market";
+import HouseDesigner from "./HouseDesigner";
 import Readying from "./Readying";
 import Roster from "./Roster";
 import { HERALDRY_COLORS, Emblem } from "./Emblem";
@@ -303,44 +304,45 @@ function PeopleTable({ people, houses }: { people: SovView["people"]; houses?: S
 
 const KIND_NAMES: Record<string, string> = { major: "Major", minor: "Minor", major_flaw: "Major Flaw", minor_flaw: "Minor Flaw", bloodline: "Bloodline" };
 
-/** House creation, for now a Random House to reroll and swear (§5.1); the step-by-step screens come in Milestone 8. */
+/** House creation (§5.1): the House designed step by step, or rolled whole, then sworn with an Ambition kept. */
 function Founding({ view, sworn, sendMove }: { view: SovView; sworn: boolean; sendMove: (m: SovMove) => void }) {
   const h = view.houses[view.me!]!;
   const crunch = view.display === "crunch";
-  return (
-    <div className="sp-founding">
-      <ul className="sp-traits">
-        {h.traits.map((id) => {
-          const t = Content.HOUSE_TRAIT_BY_ID.get(id);
-          return (
-            <li key={id}>
-              <strong>{t?.name ?? id}</strong> <small>{KIND_NAMES[t?.kind ?? ""]}</small> — {crunch ? t?.crunch : t?.flavor}
-            </li>
-          );
-        })}
-      </ul>
-      {sworn ? (
+  if (sworn) {
+    return (
+      <div className="sp-founding">
+        <ul className="sp-traits">
+          {h.traits.map((id) => {
+            const t = Content.HOUSE_TRAIT_BY_ID.get(id);
+            return (
+              <li key={id}>
+                <strong>{t?.name ?? id}</strong> <small>{KIND_NAMES[t?.kind ?? "major"]}</small> — {crunch ? t?.crunch : t?.flavor}
+              </li>
+            );
+          })}
+        </ul>
         <div className="sp-actions">
           <span>Sworn. Waiting for the other Houses.</span>
           <button type="button" className="sp-button sp-button--quiet" onClick={() => sendMove({ type: "unseal" })}>
             Take back the oath
           </button>
         </div>
-      ) : (
-        <div className="sp-actions">
-          <button type="button" className="sp-button sp-button--quiet" onClick={() => sendMove({ type: "random_house" })}>
-            Random House
+      </div>
+    );
+  }
+  return (
+    <div className="sp-founding">
+      <HouseDesigner view={view} sendMove={sendMove} />
+      <div className="sp-actions">
+        <button type="button" className="sp-button sp-button--quiet" onClick={() => sendMove({ type: "random_house" })}>
+          🎲 Random House
+        </button>
+        {view.mine!.dealt!.map((a, i) => (
+          <button key={i} type="button" className="sp-button" onClick={() => sendMove({ type: "swear", ambition: i as 0 | 1 })}>
+            Swear, keeping {CATEGORY_NAMES[a.double]} double and {CATEGORY_NAMES[a.halve]} half
           </button>
-          <button type="button" className="sp-button sp-button--quiet" onClick={() => sendMove({ type: "random_house", step: "traits" })}>
-            Reroll traits
-          </button>
-          {view.mine!.dealt!.map((a, i) => (
-            <button key={i} type="button" className="sp-button" onClick={() => sendMove({ type: "swear", ambition: i as 0 | 1 })}>
-              Swear, keeping {CATEGORY_NAMES[a.double]} double and {CATEGORY_NAMES[a.halve]} half
-            </button>
-          ))}
-        </div>
-      )}
+        ))}
+      </div>
     </div>
   );
 }
