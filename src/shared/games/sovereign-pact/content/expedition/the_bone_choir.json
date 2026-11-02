@@ -1,0 +1,79 @@
+{
+  "id": "the_bone_choir",
+  "pools": [
+    "barrows"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    8
+  ],
+  "title": "The Bone Choir",
+  "text": "Skulls in niches sing a dirge in a hundred voices. One niche is empty, and the song is missing a part.",
+  "options": [
+    {
+      "id": "sing",
+      "label": "The steadiest voice sings the part.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The dead are satisfied.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 10
+            },
+            {
+              "score": {
+                "lore": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fill",
+      "label": "Put a skull from outside into the niche.",
+      "rule": "leader",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The song changes key, and the dead stand up.",
+          "effects": [
+            {
+              "encounter": {}
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hush",
+      "label": "Walk on quietly.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The song follows you for a mile.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -5
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

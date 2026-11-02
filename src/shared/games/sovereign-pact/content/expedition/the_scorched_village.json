@@ -1,0 +1,96 @@
+{
+  "id": "the_scorched_village",
+  "pools": [
+    "dragon_reaches"
+  ],
+  "weight": 2,
+  "band": [
+    5,
+    10
+  ],
+  "title": "The Scorched Village",
+  "text": "A village burned so hot the stones ran. One house stands untouched, its door open.",
+  "options": [
+    {
+      "id": "enter",
+      "label": "Go into the house.",
+      "rule": "vote",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "A dragon's gift to a favorite. It forgot to come back.",
+          "effects": [
+            {
+              "item": {
+                "tier": 3
+              }
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "A dragon's favorite. It is home.",
+          "effects": [
+            {
+              "encounter": {
+                "level": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "survey",
+      "label": "The sharpest eye reads the burn.",
+      "rule": "scion:highest:acuity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It came from the north, and it is old.",
+          "effects": [
+            {
+              "foresee": true
+            },
+            {
+              "score": {
+                "lore": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bury",
+      "label": "Bury what can be buried.",
+      "rule": "leader",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Long work. The dead rest.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 5
+            },
+            {
+              "score": {
+                "renown": 1
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

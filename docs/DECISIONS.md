@@ -2,6 +2,10 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 7ad: a second round for the regions, Pilgrimages and Delves) — implementer
+- **Built** (content only). Sixteen events: the Boar King, the Moth Lantern, the Floating Market, the Bone Choir, the Ice Bridge, the Chain Gang, the Slag Golem, the Masked Judge, the Heretic's Bonfire, the Sixth Bell, the Scorched Village and the Hole in the Sky (one for each region), plus the Pilgrims' Well and the Hermit's Cave for Pilgrimages and the Flooded Gallery and the Singing Vein for Delves. That makes 272 expedition events; every region now has 6 to 10.
+- **Reading:** two subject rules join the pool (the weakest Resilience and the lowest Speed, for a scene that falls on the one who lags behind); `npm run events` flags them until the next batches bring each to five uses.
+
 ## 2026-11-02 (implementation, Milestone 7ac: Rescue, Resource and Hunt cards get their own scenes) — implementer
 - **Built** (content only). Sixteen card-type events: six for Rescue cards (the Torn Banner, the Ransom Note, the Survivor's Cache, the Lost One's Trade, the Echoing Voice, the Healer's Hut), five for Resource cards (the Quarry Face, the Timber Giants, the Ore Beast, the Essence Well, the Abandoned Mill) and five for Hunts (the Blood Trail, the Baited Snare, the Quarry's Den, the Hunter's Tale, the False Quarry). That makes 256 expedition events; Rescue has 7, Resource 10 and Hunt 11 against a goal of 25.
 - **Reading:** a Rescue scene speaks of the Lost without naming them, since the rules do not yet pass the card's Lost Scions to an event; its options shorten the way to them (`skip`) or warn of what follows (`foresee`).

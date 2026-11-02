@@ -1,0 +1,82 @@
+{
+  "id": "the_slag_golem",
+  "pools": [
+    "forge_ruins"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    9
+  ],
+  "title": "The Slag Golem",
+  "text": "A golem of cooled slag sits on a heap, humming a work song. It wants a job.",
+  "options": [
+    {
+      "id": "hire",
+      "label": "Give it a job.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It carries your heaviest packs and leaves at the next fork.",
+          "effects": [
+            {
+              "to": "party",
+              "durability": 10
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "smash",
+      "label": "Smash it for the metal inside.",
+      "rule": "scion:highest:might",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It does not want to be smashed.",
+          "effects": [
+            {
+              "encounter": {}
+            },
+            {
+              "resources": {
+                "iron": 4
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "talk",
+      "label": "The cleverest asks about the forge.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It remembers where the master kept his best work.",
+          "effects": [
+            {
+              "fork": {
+                "add": [
+                  "cache"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

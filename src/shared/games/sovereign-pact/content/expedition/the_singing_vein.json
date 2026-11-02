@@ -1,0 +1,84 @@
+{
+  "id": "the_singing_vein",
+  "pools": [
+    "delve"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    10
+  ],
+  "title": "The Singing Vein",
+  "text": "A vein of crystal in the rock rings like glass when touched, and the tunnel hums with it.",
+  "options": [
+    {
+      "id": "mine",
+      "label": "Mine it.",
+      "rule": "vote",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "Crystal that holds essence.",
+          "effects": [
+            {
+              "resources": {
+                "essence": 5
+              }
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "The hum becomes a shriek, and the tunnel answers.",
+          "effects": [
+            {
+              "encounter": {}
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "listen",
+      "label": "The keenest ear listens to it.",
+      "rule": "scion:highest:acuity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It echoes the shape of the tunnels ahead.",
+          "effects": [
+            {
+              "skip": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "leave",
+      "label": "Leave it singing.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The hum follows you a while, soothing.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 5
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,83 @@
+{
+  "id": "the_hermits_cave",
+  "pools": [
+    "pilgrimage"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    10
+  ],
+  "title": "The Hermit's Cave",
+  "text": "A holy hermit lives in a cave above the road. Pilgrims leave bread at the bottom of the path; few climb.",
+  "options": [
+    {
+      "id": "climb",
+      "label": "The wisest climbs to see him.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "He says three words, and they help.",
+          "effects": [
+            {
+              "growth": {
+                "sagacity": 10
+              }
+            },
+            {
+              "score": {
+                "lore": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bread",
+      "label": "Leave bread with the rest.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A small good thing.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "test",
+      "label": "The proudest climbs to test him.",
+      "rule": "scion:highest:might|leader",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "He sends them down humbled.",
+          "effects": [
+            {
+              "sanity": -10
+            },
+            {
+              "xp": 60
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
