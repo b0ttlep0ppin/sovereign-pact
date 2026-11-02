@@ -1,0 +1,100 @@
+{
+  "id": "the_bone_dice",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    10
+  ],
+  "title": "The Bone Dice",
+  "text": "A skeleton in a gambler's coat sits at a table set for two, a cup of dice by its hand. Its jaw clicks: one throw.",
+  "options": [
+    {
+      "id": "play",
+      "label": "The leader plays honestly.",
+      "rule": "leader",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "Sixes. The skeleton pays out with a clatter and a bow.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 25
+              }
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "Ones. It takes its winnings and a little of your nerve.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -10
+              }
+            },
+            {
+              "sanity": -10
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cheat",
+      "label": "The craftiest plays, and cheats.",
+      "rule": "scion:highest:guile",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 65,
+          "text": "It never sees it. Or it likes to lose to a good cheat.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 20
+              }
+            },
+            {
+              "score": {
+                "intrigue": 1
+              }
+            }
+          ]
+        },
+        {
+          "w": 35,
+          "text": "It sees it.",
+          "effects": [
+            {
+              "encounter": {}
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "decline",
+      "label": "Decline the game.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It shrugs, a long rattle, and waits for the next ones.",
+          "effects": []
+        }
+      ]
+    }
+  ]
+}

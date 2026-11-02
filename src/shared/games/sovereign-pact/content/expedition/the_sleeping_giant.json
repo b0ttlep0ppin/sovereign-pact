@@ -1,0 +1,110 @@
+{
+  "id": "the_sleeping_giant",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    4,
+    10
+  ],
+  "title": "The Sleeping Giant",
+  "text": "A shape the size of a hill rises and falls in its sleep. Its purse, as big as a cart, lies open by its hand.",
+  "options": [
+    {
+      "id": "sneak",
+      "label": "Sneak past, everyone together.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "Not a breath out of place.",
+          "effects": [
+            {
+              "to": "party",
+              "xp": 30
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "Someone steps on a twig the size of a tree.",
+          "effects": [
+            {
+              "encounter": {
+                "level": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "steal",
+      "label": "The quickest goes for the purse.",
+      "rule": "scion:highest:speed",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 55,
+          "text": "In and out, and the giant only sighs.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 30,
+                "iron": 3
+              }
+            },
+            {
+              "score": {
+                "intrigue": 1
+              }
+            }
+          ]
+        },
+        {
+          "w": 45,
+          "text": "The giant wakes up with you in its hand.",
+          "effects": [
+            {
+              "injury": "body"
+            },
+            {
+              "encounter": {
+                "modifier": "ambush",
+                "level": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kill",
+      "label": "Kill it in its sleep.",
+      "rule": "vote",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It does not stay asleep for long.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "surprise",
+                "level": 1
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

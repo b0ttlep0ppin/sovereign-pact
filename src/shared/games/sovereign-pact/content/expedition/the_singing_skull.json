@@ -1,0 +1,99 @@
+{
+  "id": "the_singing_skull",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    8
+  ],
+  "title": "The Singing Skull",
+  "text": "A skull on a pole, singing a marching song in a cracked voice. It knows all the verses, and it says it knows the way.",
+  "options": [
+    {
+      "id": "take",
+      "label": "Take it along as a guide.",
+      "rule": "leader",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "It sings you down a better road.",
+          "effects": [
+            {
+              "skip": 1
+            },
+            {
+              "to": "party",
+              "sanity": 5
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "It sings you down a road it likes better.",
+          "effects": [
+            {
+              "fork": {
+                "add": [
+                  "encounter"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "learn",
+      "label": "The kindest learns the song from it.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It is a good song, and it sticks.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 10
+            },
+            {
+              "jp": 60
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "smash",
+      "label": "Smash it.",
+      "rule": "leader",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It goes on singing, quieter, from the pieces.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -5
+            },
+            {
+              "score": {
+                "valor": 1
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

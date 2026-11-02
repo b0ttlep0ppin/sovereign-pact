@@ -2,6 +2,10 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 7n: fourteen more general events) — implementer
+- **Built** (content only). Fourteen general expedition events, which can turn up on any card: the Toll Keeper, the Weeping Statue, the Lost Child, the Mirror Pool, the Rusted Army, the Merchant of Teeth, the Starving Pilgrims, the Warm Ashes, the Fallen Scion, the Whispering Well, the Bone Dice, the Red Rain, the Sleeping Giant and the Singing Skull. That makes 80 expedition events, 46 of them open to any card.
+- **Reading:** each uses only effects the rules already have. Each has a careful option, a bold or reckless one, and a clever, kind or cruel one, so a party's temper shows in what it picks.
+
 ## 2026-11-02 (implementation, Milestone 7m: a pool event for each of the twelve regions) — implementer
 - **Built** (content only). One expedition event of its own for each otherworld pool, so every region has a scene that can happen nowhere else: the Stampede (Beast Lands), the Singing Tree (Hollow Wood), the Ice Choir (Deep Cold), the Pit Market (Pit), the Vacant Star (Outer Dark), the Last Hoard (Dragon Reaches), the Masked Ball (Faceless City), the Empty Court (Apostate Court), the Sunken Bell (Drowned Marches), the Engine Heart (Forge Ruins), the Six Bowls (Shrine of Six) and the Open Grave (Barrows). That makes 66 expedition events.
 - **Reading:** each uses only effects the rules already have, and draws at weight 3 within its pool's own level range, so it turns up about as often as a general event on that pool's cards. The SPEC budget (at least 150 general and 25 per pool) is still being filled.

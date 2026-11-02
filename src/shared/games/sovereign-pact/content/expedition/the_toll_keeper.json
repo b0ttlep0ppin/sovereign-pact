@@ -1,0 +1,93 @@
+{
+  "id": "the_toll_keeper",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    8
+  ],
+  "title": "The Toll Keeper",
+  "text": "A bridge of black stone over nothing, and on it a hunched keeper with a bowl. It names a price in a voice like grinding millstones.",
+  "options": [
+    {
+      "id": "pay",
+      "label": "Pay what it asks.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The coins ring in the bowl and the keeper steps aside, humming.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -15
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "riddle",
+      "label": "The wisest offers a riddle instead.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "The keeper thinks for a long while, then laughs, and lets you pass for the pleasure of it.",
+          "effects": [
+            {
+              "xp": 100
+            },
+            {
+              "score": {
+                "lore": 2
+              }
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "It answers at once, and asks one back. Nobody knows it.",
+          "effects": [
+            {
+              "sanity": -15
+            },
+            {
+              "resources": {
+                "gold": -25
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fight",
+      "label": "Shove it off its own bridge.",
+      "rule": "vote",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It does not go over easily.",
+          "effects": [
+            {
+              "encounter": {}
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

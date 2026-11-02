@@ -1,0 +1,95 @@
+{
+  "id": "the_lost_child",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    7
+  ],
+  "title": "The Lost Child",
+  "text": "A child sits on a stone by the road, crying quietly, dressed for a town that burned a hundred years ago.",
+  "options": [
+    {
+      "id": "take",
+      "label": "Take the child along.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 55,
+          "text": "The child walks with you as far as the next bend, smiles, and is gone. The air smells of bread.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 10
+            },
+            {
+              "score": {
+                "renown": 2
+              }
+            }
+          ]
+        },
+        {
+          "w": 45,
+          "text": "The child is not a child.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "ambush"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ask",
+      "label": "The sharpest asks it questions first.",
+      "rule": "scion:highest:acuity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Its answers are wrong in small ways, and the questions tell you a great deal about what lives here.",
+          "effects": [
+            {
+              "xp": 80
+            },
+            {
+              "score": {
+                "intrigue": 2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "leave",
+      "label": "Leave it be.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The crying follows you for hours.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -8
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

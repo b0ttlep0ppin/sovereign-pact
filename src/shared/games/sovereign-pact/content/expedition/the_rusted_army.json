@@ -1,0 +1,110 @@
+{
+  "id": "the_rusted_army",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    9
+  ],
+  "title": "The Rusted Army",
+  "text": "Rank on rank of empty armor stands to attention in a long field, rust running down it like tears. One helm turns to follow you.",
+  "options": [
+    {
+      "id": "loot",
+      "label": "Take the best of it.",
+      "rule": "leader",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 65,
+          "text": "Most is past saving, but not all.",
+          "effects": [
+            {
+              "item": {
+                "tier": 2
+              }
+            },
+            {
+              "resources": {
+                "iron": 4
+              }
+            }
+          ]
+        },
+        {
+          "w": 35,
+          "text": "As you take it, the ranks close.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "surprise"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "salute",
+      "label": "Salute them and march past in step.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Every helm turns to watch you go, and the field feels honored.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 5
+            },
+            {
+              "score": {
+                "valor": 2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "command",
+      "label": "The strongest orders them to stand down.",
+      "rule": "scion:highest:might",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 40,
+          "text": "They kneel, one by one, all down the field.",
+          "effects": [
+            {
+              "score": {
+                "renown": 3
+              }
+            },
+            {
+              "xp": 150
+            }
+          ]
+        },
+        {
+          "w": 60,
+          "text": "They do not take orders from the living.",
+          "effects": [
+            {
+              "encounter": {}
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

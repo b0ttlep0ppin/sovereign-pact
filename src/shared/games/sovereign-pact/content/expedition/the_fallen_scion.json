@@ -1,0 +1,89 @@
+{
+  "id": "the_fallen_scion",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    10
+  ],
+  "title": "The Fallen Scion",
+  "text": "A body in good armor under a cairn the weather has pulled apart. The sigil on its shield belongs to no House you know, and the seal on its letters is unbroken.",
+  "options": [
+    {
+      "id": "bury",
+      "label": "Bury it properly.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It takes an hour. Nobody minds.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 8
+            },
+            {
+              "score": {
+                "renown": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "strip",
+      "label": "Take the armor.",
+      "rule": "leader",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It fits. Nobody says anything for a while.",
+          "effects": [
+            {
+              "item": {
+                "tier": 3
+              }
+            },
+            {
+              "to": "party",
+              "sanity": -10
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "read",
+      "label": "The wisest reads the letters.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "They tell of a House that held this place once, and what it found here.",
+          "effects": [
+            {
+              "score": {
+                "lore": 2
+              }
+            },
+            {
+              "xp": 100
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
