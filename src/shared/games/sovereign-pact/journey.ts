@@ -19,6 +19,7 @@ import { LOCATIONS, type Expedition, type NodeKind, type Person, type SovState }
 import { devastate } from "./timeline.ts";
 import { TUNING } from "./tuning.ts";
 import { creditWard } from "./wards.ts";
+import { divided, gate, partyGone, rally } from "./split.ts";
 import { endCampaign, log, mandatoryYears, withRng } from "./year.ts";
 
 const J = TUNING.journey;
@@ -50,7 +51,13 @@ export function bossFor(s: SovState): string | undefined {
 
 export const person = (s: SovState, id: number): Person => s.people.find((p) => p.id === id)!;
 /** Scions still with the party: not dead, not Lost, not out of the fight for good. */
-export const marching = (s: SovState): number[] => roster(s).filter((id) => s.people.some((p) => p.id === id && p.status === "scion") && !s.expedition!.out.includes(id));
+export const marching = (s: SovState): number[] => walkers(s).filter((id) => s.people.some((p) => p.id === id && p.status === "scion") && !s.expedition!.out.includes(id));
+
+/** Who set out on the way being walked: the whole roster, or a 2×4 card's walking party (split.ts). */
+export const walkers = (s: SovState): number[] => {
+  const e = s.expedition!;
+  return divided(e) ? e.split!.teams[e.split!.turn] : roster(s);
+};
 
 /** The party as combatants: each in their Job's column, carrying the Durability they came in with. */
 const party = (s: SovState): Combatant[] => partyOf(s, marching(s), s.expedition!.carry);
@@ -191,6 +198,8 @@ export function pressOn(s: SovState): void {
   if (kind === "camp") return camp(s);
   if (kind === "event") return meet(s);
   if (kind === "cache") return cache(s);
+  if (kind === "gate") return gate(s);
+  if (kind === "rally") return rally(s);
   battle(s, kind === "boss");
 }
 
@@ -214,6 +223,17 @@ export function cannotRetreat(s: SovState): string | null {
 /** The party comes home: finished, turned back, or wiped (§9.9). */
 export function home(s: SovState, how: NonNullable<Expedition["result"]>): void {
   const e = s.expedition!;
+  // A 2×4 card (§9.3): one party turning back or falling leaves the other on its way.
+  if (divided(e) && (how === "retreated" || how === "wiped")) {
+    const party = marching(s);
+    if (how === "retreated") {
+      log(s, "The party turns back for home.");
+      for (const h of new Set(party.map((id) => person(s, id).host))) s.houses[h]!.score.valor = Math.max(0, s.houses[h]!.score.valor - J.valor.retreat);
+    } else log(s, "The party is overrun.");
+    const end = partyGone(s, how, party);
+    if (!end) return;
+    how = end as typeof how;
+  }
   e.result = how;
   const mandatory = e.card.type === "mandatory";
   if (how === "won") {
@@ -265,6 +285,6 @@ export function botPress(s: SovState): boolean {
   const e = s.expedition!;
   if (e.card.type === "mandatory" || e.card.type === "forced" || cannotRetreat(s)) return true;
   const ids = marching(s);
-  if (ids.length < roster(s).length) return false;
+  if (ids.length < walkers(s).length) return false;
   return ids.every((id) => !e.carry[id]?.broken.length && person(s, id).sanity >= J.botRetreatSanity);
 }

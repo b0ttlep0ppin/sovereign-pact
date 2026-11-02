@@ -6,6 +6,7 @@ import type { ExpeditionCard, Person, SovState } from "./state.ts";
 import { TUNING } from "./tuning.ts";
 import { bossFor, home, rollChain } from "./journey.ts";
 import { log, mandatoryYears } from "./year.ts";
+import { divide } from "./split.ts";
 
 const seatsOf = (card: ExpeditionCard): number => (card.size === 4 ? 4 : 8);
 
@@ -159,6 +160,8 @@ function depart(s: SovState, leader: number): void {
   });
   e.chain = rollChain(s);
   e.at = 0;
+  // A 2×4 card's eight walk as two parties of four (§9.3).
+  if (e.card.size === "2x4" && roster(s).length > 1) divide(s, roster(s), leader);
   // The boss is fixed at departure (the Observatory will show it).
   const boss = bossFor(s);
   if (boss) e.card.boss = boss;
