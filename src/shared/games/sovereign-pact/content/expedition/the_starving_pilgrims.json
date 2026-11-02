@@ -1,0 +1,92 @@
+{
+  "id": "the_starving_pilgrims",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    6
+  ],
+  "title": "The Starving Pilgrims",
+  "text": "A line of pilgrims in rags, too thin to walk much further, going the way you came. They do not ask for anything. They only look.",
+  "options": [
+    {
+      "id": "share",
+      "label": "Share what food there is.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "You go hungrier, and they go on. Word of it will reach town before you do.",
+          "effects": [
+            {
+              "to": "party",
+              "durability": -8
+            },
+            {
+              "score": {
+                "renown": 2
+              }
+            },
+            {
+              "accord": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "send",
+      "label": "Point them home and walk on.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "They do not thank you, and they do not need to.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rob",
+      "label": "Take their last coins.",
+      "rule": "leader",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It is easy, and nobody looks at anyone for the rest of the day.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 12
+              }
+            },
+            {
+              "score": {
+                "renown": -2
+              }
+            },
+            {
+              "doom": 1
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

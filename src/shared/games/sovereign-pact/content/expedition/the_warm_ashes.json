@@ -1,0 +1,90 @@
+{
+  "id": "the_warm_ashes",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    8
+  ],
+  "title": "The Warm Ashes",
+  "text": "A campfire, still warm, set exactly the way you set yours. Someone is a few hours ahead of you, or a few hours behind.",
+  "options": [
+    {
+      "id": "rest",
+      "label": "Rest by it while it lasts.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "The warmth goes to the bone.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 10
+            },
+            {
+              "to": "party",
+              "durability": 5
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "They were behind you.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "ambush"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "trap",
+      "label": "The craftiest sets a trap and waits.",
+      "rule": "scion:highest:guile",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "They come back for the fire, and you are ready.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "surprise"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hurry",
+      "label": "Push on before they return.",
+      "rule": "leader",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "You make good time, and leave nothing to follow.",
+          "effects": [
+            {
+              "skip": 1
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

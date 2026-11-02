@@ -1,0 +1,90 @@
+{
+  "id": "the_red_rain",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    10
+  ],
+  "title": "The Red Rain",
+  "text": "The sky clouds over and it rains warm and red, and it does not wash off.",
+  "options": [
+    {
+      "id": "shelter",
+      "label": "Shelter and wait it out.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It takes all day, and the day is gone.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "collect",
+      "label": "Catch it in every flask you have.",
+      "rule": "leader",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It thickens in the flask to something precious.",
+          "effects": [
+            {
+              "resources": {
+                "essence": 4
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "drink",
+      "label": "Drink it.",
+      "rule": "scion:random",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "It burns going down, and the next fight comes fast.",
+          "effects": [
+            {
+              "status": "haste"
+            },
+            {
+              "sanity": -10
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "It burns going down, and keeps burning.",
+          "effects": [
+            {
+              "status": "burn"
+            },
+            {
+              "curse": true
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

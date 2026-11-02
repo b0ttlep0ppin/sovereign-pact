@@ -1,0 +1,95 @@
+{
+  "id": "the_merchant_of_teeth",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    10
+  ],
+  "title": "The Merchant of Teeth",
+  "text": "A smiling trader with a cart of fine things and a necklace of teeth. It wants nothing you carry. It wants a little of you.",
+  "options": [
+    {
+      "id": "trade",
+      "label": "The leader trades.",
+      "rule": "leader",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It takes something you will not miss for years, and hands over something fine.",
+          "effects": [
+            {
+              "item": {
+                "tier": 3
+              }
+            },
+            {
+              "stat": {
+                "speed": -1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "haggle",
+      "label": "The cleverest haggles it down.",
+      "rule": "scion:highest:guile",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 45,
+          "text": "It is delighted to be bested, and pays for the lesson.",
+          "effects": [
+            {
+              "item": {
+                "tier": 2
+              }
+            },
+            {
+              "score": {
+                "intrigue": 2
+              }
+            }
+          ]
+        },
+        {
+          "w": 55,
+          "text": "It is delighted, and takes a tooth for its trouble.",
+          "effects": [
+            {
+              "durability": -20,
+              "loc": "head"
+            },
+            {
+              "sanity": -10
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "refuse",
+      "label": "Refuse politely.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It shrugs and trundles off, still smiling.",
+          "effects": []
+        }
+      ]
+    }
+  ]
+}
