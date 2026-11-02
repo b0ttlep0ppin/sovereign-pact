@@ -120,3 +120,12 @@
 .sp-offer legend { color: var(--muted); font-size: 0.85rem; }
 .sp-offer input[type="number"] { width: 4.5em; font: inherit; padding: 4px 6px; background: var(--panel); color: var(--text); border: 1px solid var(--line); border-radius: 4px; }
 .sp-offer select { font: inherit; }
+
+/* Readying Scions (§12.1, §13.1). */
+.sp-ready__tabs { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+.sp-ready__scion h3 { margin: 14px 0 6px; font-size: 0.85rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.sp-ready__scion h3 small { text-transform: none; letter-spacing: 0; }
+.sp-ready__scion select { font: inherit; padding: 6px; background: var(--panel); color: var(--text); border: 1px solid var(--line); border-radius: 4px; max-width: 100%; }
+.sp-abilities li.is-known { opacity: 0.7; }
+.sp-gear li { grid-template-columns: 7em 1fr auto; }
+@media (max-width: 640px) { .sp-gear li { grid-template-columns: 1fr; } }

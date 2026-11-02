@@ -35,6 +35,7 @@ import type {
   StandingTier,
   Stores,
 } from "./state.ts";
+import { kitOf, type Kit } from "./outfit.ts";
 import { campaignYears, mandatoryYears, trackName } from "./year.ts";
 
 /** Another House as everyone sees it. */
@@ -118,6 +119,8 @@ export interface PersonView {
   change?: string;
   /** Worn items by slot (ids into `SovView.items`); Scions and the Retired only. */
   gear?: Partial<Record<GearSlot, number>>;
+  /** Jobs, JP, abilities, passives and the gear that fits: the host House's own Scions and Retired only. */
+  kit?: Kit;
 }
 
 export interface SovView {
@@ -227,7 +230,11 @@ export function view(s: SovState, playerId: PlayerId): SovView {
   const me = seat >= 0 && seat < s.houses.length ? seat : null;
   const own = me === null ? null : s.houses[me]!;
   const insight = own?.buildings.scriptorium ?? 0;
-  const people = s.people.flatMap((p) => personView(p, me, insight) ?? []);
+  const people = s.people.flatMap((p) => {
+    const v = personView(p, me, insight);
+    if (v && me !== null && p.host === me && (p.status === "scion" || p.status === "retired")) v.kit = kitOf(s, me, p);
+    return v ?? [];
+  });
   const worn = new Set(people.flatMap((p) => Object.values(p.gear ?? {})));
   const wornByAnyone = new Set(s.people.flatMap((p) => Object.values(p.gear)));
   return {

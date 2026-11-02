@@ -9,6 +9,7 @@ import ChainMap from "./ChainMap";
 import Deals from "./Deals";
 import Decisions from "./Decisions";
 import Market from "./Market";
+import Readying from "./Readying";
 import { HERALDRY_COLORS, Emblem } from "./Emblem";
 import RiftGate from "./RiftGate";
 import TownMap from "./TownMap";
@@ -205,6 +206,7 @@ export default function SovereignPact({ view, isMyTurn, sendMove, lastError }: P
       ) : null}
       {view.phase === "settlement" || view.phase === "expedition" ? <Decisions view={view} sendMove={sendMove} canAct={view.phase === "settlement" && !!mine && !mine.sealed} /> : null}
       {view.phase === "settlement" || view.phase === "omens" ? <RiftGate view={view} sendMove={sendMove} canVote={view.phase === "settlement" && !!mine && !mine.sealed} /> : null}
+      {view.phase === "settlement" ? <Readying view={view} sendMove={sendMove} canAct={!!mine && !mine.sealed} /> : null}
       {view.phase === "settlement" ? <Market view={view} sendMove={sendMove} canAct={!!mine && !mine.sealed} /> : null}
       {view.phase === "settlement" ? <Deals view={view} sendMove={sendMove} canAct={!!mine && !mine.sealed} /> : null}
       {view.phase === "expedition" ? <ChainMap view={view} /> : null}
