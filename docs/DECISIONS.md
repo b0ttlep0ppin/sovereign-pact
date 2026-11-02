@@ -2,6 +2,10 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 7af: a fourth round for the regions, with two more secret choices) — implementer
+- **Built** (content only). Sixteen events: the Stag Trial, the Lost Children, the Drowned Hoard, the Barrow Wight, the Frost Giant's Cup, the Devil's Contract, the Last Apprentice, the Mirror Maze, the Inquisitor, the Fasting Monks, the Wyrm Priest and the Starless Choir (one for each region), the Pilgrims' Bridge and the Saint's Bones for Pilgrimages, and the Cave-In and the Glowworm Cavern for Delves. That makes 304 expedition events; every region has 8 to 12.
+- **Reading:** the Drowned Hoard and the Devil's Contract are secret choices (Q91): each House picks alone, and the outcome turns on whether any House took the selfish option. If every House tears up the Devil's Contract, Doom falls by one.
+
 ## 2026-11-02 (implementation, Milestone 7ae: a third round for the regions, and the ones who lag behind) — implementer
 - **Built** (content only). Sixteen events: the Crow Counsel, the Weeping Willow, the Sinking Road, the Open Coffin, the White Bear, the Brimstone Lift, the Bellows' Breath, the House of Doors, the Relic Procession, the Six Masks, the Dragon's Shed Skin and the Silence (one for each region), the Lost One's Camp and the Captor's Deal for Rescues, the Salt Pans for Resource cards and the Rival Party for Hunts. That makes 288 expedition events; every region has 7 to 11.
 - **Budget:** the lowest-Resilience and lowest-Speed rules 7ad added now have five uses each, so `npm run events` flags no rule.

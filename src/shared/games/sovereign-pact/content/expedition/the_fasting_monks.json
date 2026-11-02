@@ -1,0 +1,93 @@
+{
+  "id": "the_fasting_monks",
+  "pools": [
+    "shrine_of_six"
+  ],
+  "weight": 2,
+  "band": [
+    4,
+    10
+  ],
+  "title": "The Fasting Monks",
+  "text": "Monks who have not eaten in forty days sit in a ring. They will share their visions with anyone who fasts a day with them.",
+  "options": [
+    {
+      "id": "fast",
+      "label": "The toughest fasts.",
+      "rule": "scion:highest:resilience",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A vision, and a hunger.",
+          "effects": [
+            {
+              "foresee": true
+            },
+            {
+              "sanity": -5
+            },
+            {
+              "jp": 40
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "feed",
+      "label": "Feed them.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "They break their fast and weep. Their visions end.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 5
+            },
+            {
+              "score": {
+                "renown": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "all",
+      "label": "Everyone fasts.",
+      "rule": "each_scion",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "Clear-headed and light.",
+          "effects": [
+            {
+              "sanity": 5
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "Faint and dizzy.",
+          "effects": [
+            {
+              "status": "slow"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,92 @@
+{
+  "id": "the_stag_trial",
+  "pools": [
+    "beast_lands"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    6
+  ],
+  "title": "The Stag Trial",
+  "text": "A stag with antlers like a tree offers a race to whoever thinks they can win it.",
+  "options": [
+    {
+      "id": "fast",
+      "label": "The fastest races.",
+      "rule": "scion:highest:speed",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "Neck and neck, and the stag bows.",
+          "effects": [
+            {
+              "growth": {
+                "speed": 10
+              }
+            },
+            {
+              "xp": 60
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "The stag wins, and leaves them in a thicket.",
+          "effects": [
+            {
+              "durability": -20,
+              "loc": "legs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bow",
+      "label": "Bow to it.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It leads you a stretch.",
+          "effects": [
+            {
+              "skip": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "shoot",
+      "label": "Shoot it.",
+      "rule": "leader",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The forest goes very quiet.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 15
+              }
+            },
+            {
+              "doom": 1
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

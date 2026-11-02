@@ -1,0 +1,78 @@
+{
+  "id": "the_pilgrims_bridge",
+  "pools": [
+    "pilgrimage"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    10
+  ],
+  "title": "The Pilgrims' Bridge",
+  "text": "A narrow bridge to a shrine; a toll-keeper asks each pilgrim to leave something behind.",
+  "options": [
+    {
+      "id": "pay",
+      "label": "Leave coin.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "He lets you pass with a blessing.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -10
+              }
+            },
+            {
+              "to": "party",
+              "sanity": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sin",
+      "label": "Each Scion leaves a sin.",
+      "rule": "each_scion",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Lighter, every one.",
+          "effects": [
+            {
+              "sanity": 8
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "force",
+      "label": "Push past him.",
+      "rule": "leader",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The shrine will not open for you.",
+          "effects": [
+            {
+              "doom": 1
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

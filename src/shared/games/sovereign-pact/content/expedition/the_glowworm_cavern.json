@@ -1,0 +1,80 @@
+{
+  "id": "the_glowworm_cavern",
+  "pools": [
+    "delve"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    10
+  ],
+  "title": "The Glowworm Cavern",
+  "text": "A cavern lit by worms, their light like stars. The floor is soft and the air is warm.",
+  "options": [
+    {
+      "id": "rest",
+      "label": "Rest here.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A good rest under false stars.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 10
+            },
+            {
+              "to": "party",
+              "mp": 15
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gather",
+      "label": "Gather the worms for light.",
+      "rule": "scion:highest:acuity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Jars of light, for the dark ahead.",
+          "effects": [
+            {
+              "to": "party",
+              "status": "protect"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "deeper",
+      "label": "Follow the worms deeper.",
+      "rule": "leader",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "They lead to something that eats them.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "surprise"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

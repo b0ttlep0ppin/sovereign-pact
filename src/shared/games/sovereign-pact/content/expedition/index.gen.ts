@@ -59,6 +59,7 @@ import the_bandits_toll from "./the_bandits_toll.json" with { type: "json" };
 import the_bargain_pit from "./the_bargain_pit.json" with { type: "json" };
 import the_bark_mask from "./the_bark_mask.json" with { type: "json" };
 import the_barrow_feast from "./the_barrow_feast.json" with { type: "json" };
+import the_barrow_wight from "./the_barrow_wight.json" with { type: "json" };
 import the_beggar_king from "./the_beggar_king.json" with { type: "json" };
 import the_bellows_breath from "./the_bellows_breath.json" with { type: "json" };
 import the_bellows_ghost from "./the_bellows_ghost.json" with { type: "json" };
@@ -76,6 +77,7 @@ import the_bridge_of_names from "./the_bridge_of_names.json" with { type: "json"
 import the_brimstone_lift from "./the_brimstone_lift.json" with { type: "json" };
 import the_brimstone_spring from "./the_brimstone_spring.json" with { type: "json" };
 import the_captors_deal from "./the_captors_deal.json" with { type: "json" };
+import the_cave_in from "./the_cave_in.json" with { type: "json" };
 import the_chain_gang from "./the_chain_gang.json" with { type: "json" };
 import the_changed_mans_inn from "./the_changed_mans_inn.json" with { type: "json" };
 import the_changed_ones_kin from "./the_changed_ones_kin.json" with { type: "json" };
@@ -92,6 +94,7 @@ import the_crow_counsel from "./the_crow_counsel.json" with { type: "json" };
 import the_crown_in_the_mud from "./the_crown_in_the_mud.json" with { type: "json" };
 import the_cursed_coin from "./the_cursed_coin.json" with { type: "json" };
 import the_dancing_bear from "./the_dancing_bear.json" with { type: "json" };
+import the_devils_contract from "./the_devils_contract.json" with { type: "json" };
 import the_dice_of_houses from "./the_dice_of_houses.json" with { type: "json" };
 import the_dice_pit from "./the_dice_pit.json" with { type: "json" };
 import the_door_out from "./the_door_out.json" with { type: "json" };
@@ -100,6 +103,7 @@ import the_dragons_shed from "./the_dragons_shed.json" with { type: "json" };
 import the_dragons_tithe from "./the_dragons_tithe.json" with { type: "json" };
 import the_dreaming_tent from "./the_dreaming_tent.json" with { type: "json" };
 import the_drowned_chapel from "./the_drowned_chapel.json" with { type: "json" };
+import the_drowned_hoard from "./the_drowned_hoard.json" with { type: "json" };
 import the_echoing_hall from "./the_echoing_hall.json" with { type: "json" };
 import the_echoing_voice from "./the_echoing_voice.json" with { type: "json" };
 import the_eel_wife from "./the_eel_wife.json" with { type: "json" };
@@ -115,6 +119,7 @@ import the_fallen_scion from "./the_fallen_scion.json" with { type: "json" };
 import the_fallen_star from "./the_fallen_star.json" with { type: "json" };
 import the_falling_rocks from "./the_falling_rocks.json" with { type: "json" };
 import the_false_quarry from "./the_false_quarry.json" with { type: "json" };
+import the_fasting_monks from "./the_fasting_monks.json" with { type: "json" };
 import the_ferryman from "./the_ferryman.json" with { type: "json" };
 import the_field_hospital from "./the_field_hospital.json" with { type: "json" };
 import the_floating_market from "./the_floating_market.json" with { type: "json" };
@@ -123,12 +128,14 @@ import the_ford from "./the_ford.json" with { type: "json" };
 import the_forge_spirit from "./the_forge_spirit.json" with { type: "json" };
 import the_forgotten_god from "./the_forgotten_god.json" with { type: "json" };
 import the_fortune_teller from "./the_fortune_teller.json" with { type: "json" };
+import the_frost_giants_cup from "./the_frost_giants_cup.json" with { type: "json" };
 import the_frozen_hunter from "./the_frozen_hunter.json" with { type: "json" };
 import the_frozen_lake from "./the_frozen_lake.json" with { type: "json" };
 import the_ghost_caravan from "./the_ghost_caravan.json" with { type: "json" };
 import the_glass_bridge from "./the_glass_bridge.json" with { type: "json" };
 import the_glass_garden from "./the_glass_garden.json" with { type: "json" };
 import the_glass_house from "./the_glass_house.json" with { type: "json" };
+import the_glowworm_cavern from "./the_glowworm_cavern.json" with { type: "json" };
 import the_golden_cage from "./the_golden_cage.json" with { type: "json" };
 import the_grave_robbers from "./the_grave_robbers.json" with { type: "json" };
 import the_green_hand from "./the_green_hand.json" with { type: "json" };
@@ -151,14 +158,17 @@ import the_hunters_tale from "./the_hunters_tale.json" with { type: "json" };
 import the_ice_bridge from "./the_ice_bridge.json" with { type: "json" };
 import the_ice_choir from "./the_ice_choir.json" with { type: "json" };
 import the_idle_golem from "./the_idle_golem.json" with { type: "json" };
+import the_inquisitor from "./the_inquisitor.json" with { type: "json" };
 import the_iron_maiden from "./the_iron_maiden.json" with { type: "json" };
 import the_lame_horse from "./the_lame_horse.json" with { type: "json" };
 import the_lamp_on_the_peak from "./the_lamp_on_the_peak.json" with { type: "json" };
 import the_lantern_procession from "./the_lantern_procession.json" with { type: "json" };
+import the_last_apprentice from "./the_last_apprentice.json" with { type: "json" };
 import the_last_dance from "./the_last_dance.json" with { type: "json" };
 import the_last_hoard from "./the_last_hoard.json" with { type: "json" };
 import the_listening_chamber from "./the_listening_chamber.json" with { type: "json" };
 import the_lost_child from "./the_lost_child.json" with { type: "json" };
+import the_lost_children from "./the_lost_children.json" with { type: "json" };
 import the_lost_ones_camp from "./the_lost_ones_camp.json" with { type: "json" };
 import the_lost_ones_mark from "./the_lost_ones_mark.json" with { type: "json" };
 import the_lost_ones_trade from "./the_lost_ones_trade.json" with { type: "json" };
@@ -170,6 +180,7 @@ import the_masked_ball from "./the_masked_ball.json" with { type: "json" };
 import the_masked_judge from "./the_masked_judge.json" with { type: "json" };
 import the_merchant_of_teeth from "./the_merchant_of_teeth.json" with { type: "json" };
 import the_miners_ghosts from "./the_miners_ghosts.json" with { type: "json" };
+import the_mirror_maze from "./the_mirror_maze.json" with { type: "json" };
 import the_moth_lantern from "./the_moth_lantern.json" with { type: "json" };
 import the_mother_superior from "./the_mother_superior.json" with { type: "json" };
 import the_nest_of_knives from "./the_nest_of_knives.json" with { type: "json" };
@@ -192,6 +203,7 @@ import the_pack_den from "./the_pack_den.json" with { type: "json" };
 import the_painted_cave from "./the_painted_cave.json" with { type: "json" };
 import the_penitents_steps from "./the_penitents_steps.json" with { type: "json" };
 import the_pilgrim_road from "./the_pilgrim_road.json" with { type: "json" };
+import the_pilgrims_bridge from "./the_pilgrims_bridge.json" with { type: "json" };
 import the_pilgrims_well from "./the_pilgrims_well.json" with { type: "json" };
 import the_pit_brawl from "./the_pit_brawl.json" with { type: "json" };
 import the_pit_market from "./the_pit_market.json" with { type: "json" };
@@ -215,6 +227,7 @@ import the_rival_party from "./the_rival_party.json" with { type: "json" };
 import the_ruined_watchtower from "./the_ruined_watchtower.json" with { type: "json" };
 import the_rust_moths from "./the_rust_moths.json" with { type: "json" };
 import the_rusted_army from "./the_rusted_army.json" with { type: "json" };
+import the_saints_bones from "./the_saints_bones.json" with { type: "json" };
 import the_salt_flats from "./the_salt_flats.json" with { type: "json" };
 import the_salt_pans from "./the_salt_pans.json" with { type: "json" };
 import the_scholars_tower from "./the_scholars_tower.json" with { type: "json" };
@@ -242,7 +255,9 @@ import the_sixth_bell from "./the_sixth_bell.json" with { type: "json" };
 import the_slag_golem from "./the_slag_golem.json" with { type: "json" };
 import the_sleeping_giant from "./the_sleeping_giant.json" with { type: "json" };
 import the_sleeping_knight from "./the_sleeping_knight.json" with { type: "json" };
+import the_stag_trial from "./the_stag_trial.json" with { type: "json" };
 import the_stampede from "./the_stampede.json" with { type: "json" };
+import the_starless_choir from "./the_starless_choir.json" with { type: "json" };
 import the_starving_pilgrims from "./the_starving_pilgrims.json" with { type: "json" };
 import the_starving_wolf from "./the_starving_wolf.json" with { type: "json" };
 import the_steaming_pool from "./the_steaming_pool.json" with { type: "json" };
@@ -281,6 +296,7 @@ import the_widows_tide from "./the_widows_tide.json" with { type: "json" };
 import the_worlds_root from "./the_worlds_root.json" with { type: "json" };
 import the_wyrm_egg from "./the_wyrm_egg.json" with { type: "json" };
 import the_wyrm_graveyard from "./the_wyrm_graveyard.json" with { type: "json" };
+import the_wyrm_priest from "./the_wyrm_priest.json" with { type: "json" };
 import tithe_men from "./tithe_men.json" with { type: "json" };
 import trial_of_the_veteran from "./trial_of_the_veteran.json" with { type: "json" };
 import twins from "./twins.json" with { type: "json" };
@@ -349,6 +365,7 @@ export default [
   the_bargain_pit,
   the_bark_mask,
   the_barrow_feast,
+  the_barrow_wight,
   the_beggar_king,
   the_bellows_breath,
   the_bellows_ghost,
@@ -366,6 +383,7 @@ export default [
   the_brimstone_lift,
   the_brimstone_spring,
   the_captors_deal,
+  the_cave_in,
   the_chain_gang,
   the_changed_mans_inn,
   the_changed_ones_kin,
@@ -382,6 +400,7 @@ export default [
   the_crown_in_the_mud,
   the_cursed_coin,
   the_dancing_bear,
+  the_devils_contract,
   the_dice_of_houses,
   the_dice_pit,
   the_door_out,
@@ -390,6 +409,7 @@ export default [
   the_dragons_tithe,
   the_dreaming_tent,
   the_drowned_chapel,
+  the_drowned_hoard,
   the_echoing_hall,
   the_echoing_voice,
   the_eel_wife,
@@ -405,6 +425,7 @@ export default [
   the_fallen_star,
   the_falling_rocks,
   the_false_quarry,
+  the_fasting_monks,
   the_ferryman,
   the_field_hospital,
   the_floating_market,
@@ -413,12 +434,14 @@ export default [
   the_forge_spirit,
   the_forgotten_god,
   the_fortune_teller,
+  the_frost_giants_cup,
   the_frozen_hunter,
   the_frozen_lake,
   the_ghost_caravan,
   the_glass_bridge,
   the_glass_garden,
   the_glass_house,
+  the_glowworm_cavern,
   the_golden_cage,
   the_grave_robbers,
   the_green_hand,
@@ -441,14 +464,17 @@ export default [
   the_ice_bridge,
   the_ice_choir,
   the_idle_golem,
+  the_inquisitor,
   the_iron_maiden,
   the_lame_horse,
   the_lamp_on_the_peak,
   the_lantern_procession,
+  the_last_apprentice,
   the_last_dance,
   the_last_hoard,
   the_listening_chamber,
   the_lost_child,
+  the_lost_children,
   the_lost_ones_camp,
   the_lost_ones_mark,
   the_lost_ones_trade,
@@ -460,6 +486,7 @@ export default [
   the_masked_judge,
   the_merchant_of_teeth,
   the_miners_ghosts,
+  the_mirror_maze,
   the_moth_lantern,
   the_mother_superior,
   the_nest_of_knives,
@@ -482,6 +509,7 @@ export default [
   the_painted_cave,
   the_penitents_steps,
   the_pilgrim_road,
+  the_pilgrims_bridge,
   the_pilgrims_well,
   the_pit_brawl,
   the_pit_market,
@@ -505,6 +533,7 @@ export default [
   the_ruined_watchtower,
   the_rust_moths,
   the_rusted_army,
+  the_saints_bones,
   the_salt_flats,
   the_salt_pans,
   the_scholars_tower,
@@ -532,7 +561,9 @@ export default [
   the_slag_golem,
   the_sleeping_giant,
   the_sleeping_knight,
+  the_stag_trial,
   the_stampede,
+  the_starless_choir,
   the_starving_pilgrims,
   the_starving_wolf,
   the_steaming_pool,
@@ -571,6 +602,7 @@ export default [
   the_worlds_root,
   the_wyrm_egg,
   the_wyrm_graveyard,
+  the_wyrm_priest,
   tithe_men,
   trial_of_the_veteran,
   twins,

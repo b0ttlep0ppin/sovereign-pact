@@ -1,0 +1,87 @@
+{
+  "id": "the_cave_in",
+  "pools": [
+    "delve"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    10
+  ],
+  "title": "The Cave-In",
+  "text": "The roof comes down behind you. The way back is gone.",
+  "options": [
+    {
+      "id": "dig",
+      "label": "Everyone digs.",
+      "rule": "vote",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Hours of it.",
+          "effects": [
+            {
+              "to": "party",
+              "durability": -10,
+              "loc": "arms"
+            },
+            {
+              "to": "party",
+              "sanity": -3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "strong",
+      "label": "The strongest clears it.",
+      "rule": "scion:highest:might",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Faster.",
+          "effects": [
+            {
+              "durability": -30,
+              "loc": "arms"
+            },
+            {
+              "xp": 40
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "forward",
+      "label": "Go forward. There is no back now.",
+      "rule": "leader",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Deeper.",
+          "effects": [
+            {
+              "fork": {
+                "drop": 1,
+                "add": [
+                  "encounter"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

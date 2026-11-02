@@ -1,0 +1,95 @@
+{
+  "id": "the_saints_bones",
+  "pools": [
+    "pilgrimage"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    10
+  ],
+  "title": "The Saint's Bones",
+  "text": "A reliquary of bones in a ruined chapel, unguarded, and pilgrims who say they cure the sick.",
+  "options": [
+    {
+      "id": "touch",
+      "label": "The most injured touches them.",
+      "rule": "scion:injured:any|scion:lowest:sanity",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "It works.",
+          "effects": [
+            {
+              "mend": true
+            },
+            {
+              "sanity": 10
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "Nothing happens.",
+          "effects": [
+            {
+              "sanity": -5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pray",
+      "label": "Pray before them.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A quiet hour.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 5
+            },
+            {
+              "score": {
+                "renown": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "take",
+      "label": "Take a finger bone.",
+      "rule": "leader",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A relic is a relic.",
+          "effects": [
+            {
+              "score": {
+                "relics": 1
+              }
+            },
+            {
+              "curse": true
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

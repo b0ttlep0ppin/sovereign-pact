@@ -1,0 +1,89 @@
+{
+  "id": "the_lost_children",
+  "pools": [
+    "hollow_wood"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    7
+  ],
+  "title": "The Lost Children",
+  "text": "Children's voices in the trees, playing a counting game. They want you to play too.",
+  "options": [
+    {
+      "id": "play",
+      "label": "Play.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "They are only children, lost. They show you the way out.",
+          "effects": [
+            {
+              "skip": 1
+            },
+            {
+              "score": {
+                "renown": 1
+              }
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "They are not children.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "ambush"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "count",
+      "label": "The cleverest listens to how they count.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "They skip a number. Something hides in that number.",
+          "effects": [
+            {
+              "foresee": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "leave",
+      "label": "Stop your ears and walk.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The counting follows until dark.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -5
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

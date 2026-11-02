@@ -1,0 +1,94 @@
+{
+  "id": "the_mirror_maze",
+  "pools": [
+    "faceless_city"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    9
+  ],
+  "title": "The Mirror Maze",
+  "text": "A maze of mirrors where the reflections walk a step behind. One of them is a step ahead.",
+  "options": [
+    {
+      "id": "follow",
+      "label": "Follow the one that is ahead.",
+      "rule": "scion:highest:acuity",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "It leads you out the far side.",
+          "effects": [
+            {
+              "skip": 1
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "It leads you to its friends.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "ambush"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "break",
+      "label": "Break the mirrors.",
+      "rule": "vote",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Glass everywhere, and blood.",
+          "effects": [
+            {
+              "to": "party",
+              "durability": -15,
+              "loc": "arms"
+            },
+            {
+              "to": "party",
+              "sanity": -3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "guile",
+      "label": "The shrewdest tricks the reflection.",
+      "rule": "scion:highest:guile",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It walks into a mirror and does not come out.",
+          "effects": [
+            {
+              "score": {
+                "intrigue": 1
+              }
+            },
+            {
+              "xp": 60
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

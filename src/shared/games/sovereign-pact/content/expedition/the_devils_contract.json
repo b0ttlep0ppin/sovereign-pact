@@ -1,0 +1,101 @@
+{
+  "id": "the_devils_contract",
+  "pools": [
+    "pit"
+  ],
+  "weight": 2,
+  "band": [
+    4,
+    10
+  ],
+  "title": "The Devil's Contract",
+  "text": "A devil in a clerk's coat offers every House a contract: a boon for you, a bane for a rival. Each signs or tears it alone.",
+  "options": [
+    {
+      "id": "tear",
+      "label": "Tear it up.",
+      "rule": "secret",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Every House tore it. The devil sulks off.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 5
+            },
+            {
+              "doom": -1
+            }
+          ],
+          "when": {
+            "none": "sign"
+          }
+        },
+        {
+          "w": 100,
+          "text": "Somebody signed. You feel it land on you.",
+          "effects": [
+            {
+              "sanity": -15
+            }
+          ],
+          "when": {
+            "any": "sign"
+          }
+        }
+      ]
+    },
+    {
+      "id": "sign",
+      "label": "Sign it.",
+      "rule": "secret",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Only you signed. The boon is real.",
+          "effects": [
+            {
+              "resources": {
+                "essence": 6
+              }
+            },
+            {
+              "blessing": {
+                "trait": "lucky",
+                "years": 2
+              }
+            },
+            {
+              "doom": 1
+            }
+          ],
+          "when": {
+            "none": "sign"
+          }
+        },
+        {
+          "w": 100,
+          "text": "Others signed too. The banes cancel out, and the devil keeps the difference.",
+          "effects": [
+            {
+              "doom": 2
+            },
+            {
+              "sanity": -5
+            }
+          ],
+          "when": {
+            "any": "sign"
+          }
+        }
+      ]
+    }
+  ]
+}

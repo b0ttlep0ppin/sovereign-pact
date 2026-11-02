@@ -1,0 +1,91 @@
+{
+  "id": "the_barrow_wight",
+  "pools": [
+    "barrows"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    8
+  ],
+  "title": "The Barrow Wight",
+  "text": "A wight sits on a mound and asks riddles. Answer wrong and it keeps your shadow.",
+  "options": [
+    {
+      "id": "answer",
+      "label": "The wisest answers.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "Right. It gives up a grave-good.",
+          "effects": [
+            {
+              "item": {
+                "tier": 2
+              }
+            },
+            {
+              "score": {
+                "lore": 1
+              }
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "Wrong.",
+          "effects": [
+            {
+              "sanity": -15
+            },
+            {
+              "status": "exposed"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "trick",
+      "label": "The shrewdest answers with a riddle of their own.",
+      "rule": "scion:highest:guile",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It is still thinking when you leave.",
+          "effects": [
+            {
+              "skip": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fight",
+      "label": "Don't answer.",
+      "rule": "vote",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It stands.",
+          "effects": [
+            {
+              "encounter": {}
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
