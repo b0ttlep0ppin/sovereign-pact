@@ -1,0 +1,87 @@
+{
+  "id": "the_empty_feast",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    10
+  ],
+  "title": "The Empty Feast",
+  "text": "A long table laid for a feast, food still warm, chairs pushed back as if everyone left at once. A placecard at the head names your poorest House.",
+  "options": [
+    {
+      "id": "sit",
+      "label": "The poorest House takes the head of the table.",
+      "rule": "house:lowest_standing",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "The food is real, and very good, and nobody comes back.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 10
+            },
+            {
+              "to": "party",
+              "durability": 10
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "The guests come back.",
+          "effects": [
+            {
+              "encounter": {}
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pocket",
+      "label": "Pocket the silver and go.",
+      "rule": "leader",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Very fine silver.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 18
+              }
+            },
+            {
+              "doom": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "leave",
+      "label": "Leave it untouched.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The candles go out behind you, one by one.",
+          "effects": []
+        }
+      ]
+    }
+  ]
+}

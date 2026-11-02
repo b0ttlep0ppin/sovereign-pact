@@ -1,0 +1,68 @@
+{
+  "id": "the_bridge_of_names",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    10
+  ],
+  "title": "The Bridge of Names",
+  "text": "A bridge built of planks, each carved with a name. The bridge holds only those who give one of their own to it.",
+  "options": [
+    {
+      "id": "give",
+      "label": "Each Scion decides.",
+      "rule": "each_scion",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Their name joins the others, and something of them stays behind with it.",
+          "effects": [
+            {
+              "sanity": -5
+            },
+            {
+              "growth": {
+                "all": 5
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lie",
+      "label": "Each Scion decides: cross on someone else's name.",
+      "rule": "each_scion",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "Nobody notices the lie.",
+          "effects": [
+            {
+              "xp": 40
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "The plank under them notices.",
+          "effects": [
+            {
+              "durability": -20,
+              "loc": "legs"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

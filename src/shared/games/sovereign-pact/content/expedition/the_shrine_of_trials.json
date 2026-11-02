@@ -1,0 +1,104 @@
+{
+  "id": "the_shrine_of_trials",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    10
+  ],
+  "title": "The Shrine of Trials",
+  "text": "A shrine to the Six with a basin of coals before it. A devout soul may walk them and be blessed; anyone else is burned.",
+  "options": [
+    {
+      "id": "devout",
+      "label": "The most devout walks the coals.",
+      "rule": "scion:trait:devout|scion:highest:sagacity",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "Not a blister. The Six are pleased.",
+          "effects": [
+            {
+              "blessing": {
+                "trait": "stout_hearted",
+                "years": 3
+              }
+            },
+            {
+              "score": {
+                "renown": 1
+              }
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "The Six are not so sure.",
+          "effects": [
+            {
+              "durability": -30,
+              "loc": "legs"
+            },
+            {
+              "status": "burn"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pray",
+      "label": "Pray before the shrine.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The coals glow kindly.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 8
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "douse",
+      "label": "Douse the coals and take the basin.",
+      "rule": "leader",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Brass, heavy, and very old.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 10
+              }
+            },
+            {
+              "score": {
+                "relics": 1
+              }
+            },
+            {
+              "doom": 1
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

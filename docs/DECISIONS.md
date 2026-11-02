@@ -2,6 +2,10 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 7t: the event pool report, and fourteen events for the quieter rules) — implementer
+- **Built.** `npm run events` (`tools/events.ts`) reports the expedition event pool against HANDOFF §6's budget and lints: events per pool (≥ 150 general, ≥ 25 for each other pool), option tags, the share of outcome weight that can maim (≤ 2%; an injury roll maims on its table's devastating results), and how often each subject rule is used (≥ 5 times each). It is a report, not a test, while the pool is being filled; it becomes a test once the budget is met.
+- **Built** (content). Fourteen general events written for the subject rules the report showed as rarely used: Falling Rocks, the Veterans' Shrine, the Field Hospital, the Proving Stone, the Hungry Doorway, the Watcher in the Trees, the Empty Feast, the Drawing of Lots, the Greenhorn's Chance, the Bridge of Names, the Simple Oracle, the Kin of the Changed, the Shrine of Trials and the Newcomer's Luck. That makes 120 expedition events, 74 of them open to any card. Maiming stays well under budget (about 0.3%).
+
 ## 2026-11-02 (implementation, Milestone 7s: the named items reach 120) — implementer
 - **Built** (content only). The last twenty named items of the budget, which makes 120. Each pool now hides at least five of its own, from the Bloodhound Collar (Beast Lands) to the Voidstep Sabatons (Outer Dark and the Pit).
 - **Reading:** six of them carry a real cost beside their gift, so a House has to want them: the Rootbound Plate (more Fire damage), the Chain of the Pit (hexed: Sanity −5 each battle), the Ring of the Kept Promise (Marked every battle), the Veil of Many Faces (lower max Sanity), the Hollow Crown (it whispers, queueing a trauma incident) and the Voidstep Sabatons (weaker against physical ailments).

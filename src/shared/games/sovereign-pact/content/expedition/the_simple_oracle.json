@@ -1,0 +1,85 @@
+{
+  "id": "the_simple_oracle",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    10
+  ],
+  "title": "The Simple Oracle",
+  "text": "An oracle who will only speak to whoever in the party is the least clever, and talks to them as an old friend.",
+  "options": [
+    {
+      "id": "talk",
+      "label": "The least sharp of you talks with it.",
+      "rule": "scion:lowest:acuity",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It tells them something simple and true, and they understand it better than any of you could.",
+          "effects": [
+            {
+              "growth": {
+                "sagacity": 10
+              }
+            },
+            {
+              "sanity": 10
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "trick",
+      "label": "The cleverest pretends to be simple.",
+      "rule": "scion:highest:guile",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 40,
+          "text": "The oracle plays along, and gives a clever answer.",
+          "effects": [
+            {
+              "score": {
+                "lore": 2
+              }
+            }
+          ]
+        },
+        {
+          "w": 60,
+          "text": "The oracle is not fooled, and is hurt.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pass",
+      "label": "Pass by.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It waves.",
+          "effects": []
+        }
+      ]
+    }
+  ]
+}

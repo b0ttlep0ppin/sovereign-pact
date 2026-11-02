@@ -1,0 +1,93 @@
+{
+  "id": "the_changed_ones_kin",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    10
+  ],
+  "title": "The Kin of the Changed",
+  "text": "Shapes in the mist, too tall and too thin, greet one of you like family.",
+  "options": [
+    {
+      "id": "go",
+      "label": "The Changed among you goes to them.",
+      "rule": "scion:changed|vote",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "They are kind, in their way, and give a gift for the road.",
+          "effects": [
+            {
+              "item": {
+                "tier": 3
+              }
+            },
+            {
+              "sanity": -5
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "They want them to stay.",
+          "effects": [
+            {
+              "sanity": -20
+            },
+            {
+              "encounter": {
+                "modifier": "ambush"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "drive",
+      "label": "Drive them off.",
+      "rule": "vote",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "They go, hurt. The mist feels colder.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -5
+            },
+            {
+              "score": {
+                "valor": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hide",
+      "label": "Hide until they pass.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "They pass, calling a name.",
+          "effects": []
+        }
+      ]
+    }
+  ]
+}

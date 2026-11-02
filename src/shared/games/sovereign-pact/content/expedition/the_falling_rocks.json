@@ -1,0 +1,102 @@
+{
+  "id": "the_falling_rocks",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    10
+  ],
+  "title": "Falling Rocks",
+  "text": "A rumble overhead, and the cliff starts to come down. There is time for one shout.",
+  "options": [
+    {
+      "id": "dodge",
+      "label": "Everyone scatters.",
+      "rule": "scion:random",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "Everyone makes it but one, who is only grazed.",
+          "effects": [
+            {
+              "durability": -20,
+              "loc": "head"
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "Everyone makes it but one.",
+          "effects": [
+            {
+              "injury": "head"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "catch",
+      "label": "The quickest pulls the slowest clear.",
+      "rule": "scion:highest:speed",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A hand in the collar, a heave, and the rocks land where they were.",
+          "effects": [
+            {
+              "score": {
+                "valor": 1
+              }
+            },
+            {
+              "xp": 80
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "brace",
+      "label": "The hardiest braces the overhang.",
+      "rule": "scion:highest:resilience",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 55,
+          "text": "It holds, and so do they.",
+          "effects": [
+            {
+              "score": {
+                "valor": 2
+              }
+            },
+            {
+              "durability": -25,
+              "loc": "arms"
+            }
+          ]
+        },
+        {
+          "w": 45,
+          "text": "It does not hold.",
+          "effects": [
+            {
+              "injury": "arms"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

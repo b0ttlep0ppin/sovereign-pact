@@ -1,0 +1,89 @@
+{
+  "id": "the_lots_drawn",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    10
+  ],
+  "title": "The Drawing of Lots",
+  "text": "A spirit at a crossroads demands one House pay a toll for all, chosen by lot. It shakes a cup of bones.",
+  "options": [
+    {
+      "id": "draw",
+      "label": "Draw lots.",
+      "rule": "house:random",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The lot falls, and that House pays.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -15
+              }
+            },
+            {
+              "score": {
+                "renown": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "richest",
+      "label": "The richest House offers to pay for all.",
+      "rule": "house:highest_standing",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The spirit is impressed, which is rare.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -20
+              }
+            },
+            {
+              "score": {
+                "renown": 2
+              }
+            },
+            {
+              "accord": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "refuse",
+      "label": "Refuse to pay.",
+      "rule": "vote",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The spirit takes it out of you another way.",
+          "effects": [
+            {
+              "encounter": {}
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

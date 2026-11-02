@@ -1,0 +1,90 @@
+{
+  "id": "the_field_hospital",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    9
+  ],
+  "title": "The Field Hospital",
+  "text": "Tents of rotten canvas, cots, and the smell of old medicine. Some of the supplies are still sealed.",
+  "options": [
+    {
+      "id": "heal",
+      "label": "The best healer goes through the stores.",
+      "rule": "scion:most_healing",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Bandages, salves, and a surgeon's notes that make sense.",
+          "effects": [
+            {
+              "to": "party",
+              "durability": 15
+            },
+            {
+              "jp": 60
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wounded",
+      "label": "The worst hurt gets a cot for an hour.",
+      "rule": "scion:injured:any|scion:lowest:sanity",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "An hour of real rest, in a real bed.",
+          "effects": [
+            {
+              "sanity": 15
+            },
+            {
+              "mend": true
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "An hour of rest, and a dream about whoever had the cot before.",
+          "effects": [
+            {
+              "sanity": -10
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "strip",
+      "label": "Strip the tents for anything worth selling.",
+      "rule": "leader",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Silver instruments and old coin.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 12
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
