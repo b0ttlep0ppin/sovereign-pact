@@ -240,7 +240,7 @@
 .sp-muster__order li.is-now { color: var(--gold); background: color-mix(in srgb, var(--blood) 60%, transparent); box-shadow: 0 0 8px rgba(220, 181, 94, 0.35); }
 .sp-muster__turn { margin: 0; font-family: var(--display); font-size: 1.4rem; color: var(--gold); }
 .sp-muster__turn strong { font-weight: 400; }
-.sp-muster__pool { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+.sp-muster__pool { grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); }
 .sp-muster__pool .sp-person header { display: flex; align-items: baseline; gap: 6px; flex-wrap: wrap; }
 .sp-muster__pick { margin-left: auto; min-height: 30px; padding: 3px 12px; }
 .sp-muster__pool .sp-person.is-picked { border-color: var(--gold); box-shadow: 0 0 0 1px var(--gold-dim), 0 0 14px rgba(220, 181, 94, 0.25); }
@@ -255,3 +255,8 @@
 .sp-jobpick:focus-visible { outline: 2px solid var(--text); outline-offset: 2px; }
 .sp-person__growth { font-size: 0.68rem; color: #9fc58a; }
 .sp-muster__pool .sp-person__stats { grid-template-columns: repeat(6, 1fr); }
+
+.sp-person--portrait { grid-template-columns: auto 1fr; column-gap: 12px; }
+.sp-person--portrait > :not(.sp-person__portrait) { grid-column: 2; }
+.sp-person__portrait { grid-column: 1; grid-row: 1 / span 3; align-self: start; border: 1px solid var(--line-hi); border-radius: 2px; background: radial-gradient(ellipse at 50% 30%, #3a2e24, #0d0a08 75%); box-shadow: inset 0 0 0 1px #000; }
+.sp-person--portrait > .sp-person__traits, .sp-person--portrait > .sp-person__injuries, .sp-person--portrait > .sp-actions { grid-column: 1 / -1; }

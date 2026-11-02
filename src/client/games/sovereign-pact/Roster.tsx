@@ -5,6 +5,10 @@
 import { Content, itemName, type SovMove, type SovView } from "@vibepulse/shared/games/sovereign-pact";
 import { useState } from "react";
 import { inkOf } from "./Emblem";
+import ScionSprite, { lookOf } from "./ScionSprite";
+
+/** Head and shoulders in a 64 px portrait frame: x, y, width, height. */
+export const BUST: [number, number, number, number] = [12, 4, 40, 44];
 
 type Props = { view: SovView; sendMove: (m: SovMove) => void; canAct: boolean };
 type Person = SovView["people"][number];
@@ -74,7 +78,8 @@ function Card({ p, view, sendMove, canAct }: Props & { p: Person }) {
   const crunch = view.display === "crunch";
   const promote = mine.promotion.left < 1 ? "There is no ceremony left this Year." : mine.gold < mine.promotion.gold ? `A promotion costs ${mine.promotion.gold} Gold.` : null;
   return (
-    <li className="sp-person" aria-label={p.name}>
+    <li className="sp-person sp-person--portrait" aria-label={p.name}>
+      <ScionSprite className="sp-person__portrait" look={lookOf(p, view.houses[p.house]?.colors)} crop={BUST} size={(64 * 64) / BUST[2]} />
       <header>
         <strong className="sp-person__name" style={p.status === "recruit" ? undefined : { color: inkOf(view.houses[p.house]?.colors) }}>
           {p.name}

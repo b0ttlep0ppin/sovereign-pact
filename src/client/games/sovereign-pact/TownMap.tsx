@@ -5,6 +5,10 @@
 // Tiles are drawn in CSS until the Oryx tiles are cut (HANDOFF §8.5).
 import { BUILDING_ICONS, JOB_ICONS, SEAT_ART } from "./icons";
 import { BONE, PixelArt } from "./PixelArt";
+import ScionSprite, { lookOf } from "./ScionSprite";
+
+/** The head in a 64 px portrait frame: x, y, width, height. */
+const HEAD: [number, number, number, number] = [18, 13, 28, 28];
 import type { SovMove, SovView } from "@vibepulse/shared/games/sovereign-pact";
 import { Content } from "@vibepulse/shared/games/sovereign-pact";
 import { useState, type DragEvent } from "react";
@@ -112,15 +116,16 @@ export default function TownMap({ view, sendMove, canAssign }: Props) {
         draggable={canAssign}
         disabled={!canAssign}
         aria-pressed={picked === p.id}
-        title={`${p.name}${p.job ? `, ${p.job.replace(/_/g, " ")}` : ""} (level ${p.level})`}
+        title={p.status === "recruit" ? `${p.name}, a recruit` : `${p.name}, level ${p.level} ${(p.job ?? "").replace(/_/g, " ")}`}
         onDragStart={(e) => e.dataTransfer.setData("text/plain", String(p.id))}
         onClick={(e) => {
           e.stopPropagation();
           setPicked(picked === p.id ? null : p.id);
         }}
       >
-        <PixelArt rows={JOB_ICONS[p.status === "recruit" ? "recruit" : (p.job ?? "recruit")]} size={20} />
-        <span className="sp-chit__tag">{p.name.slice(0, 2)}</span>
+        <ScionSprite look={lookOf(p, view.houses[p.house]?.colors)} crop={HEAD} size={(32 * 64) / HEAD[2]} />
+        {p.status === "recruit" ? null : <PixelArt className="sp-chit__job" rows={JOB_ICONS[p.job ?? "recruit"]} size={13} />}
+        <span className="sp-chit__tag">{p.name.split(" ")[0]}</span>
       </button>
     ));
 

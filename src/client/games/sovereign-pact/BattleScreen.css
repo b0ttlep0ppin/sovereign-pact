@@ -131,3 +131,5 @@
 .sp-unit.is-targetable { cursor: pointer; outline: 2px dashed rgba(240, 200, 90, 0.7); outline-offset: -2px; }
 .sp-unit.is-targetable.is-cursor { outline-style: solid; outline-color: #f0c85a; }
 .sp-command .sp-actions { display: flex; flex-wrap: wrap; gap: 6px; margin: 0; }
+.sp-unit__scion { scale: 1.6; transform-origin: center bottom; filter: drop-shadow(0 2px 0 rgba(0, 0, 0, 0.6)); }
+.sp-unit.is-acting .sp-unit__scion { filter: drop-shadow(0 0 6px var(--gold, #d7b45a)); }
