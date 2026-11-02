@@ -1,0 +1,91 @@
+{
+  "id": "the_pilgrims_staff",
+  "pools": [
+    "shrine_of_six"
+  ],
+  "weight": 2,
+  "band": [
+    4,
+    10
+  ],
+  "title": "The Pilgrim's Staff",
+  "text": "A staff stands upright in the road where no one planted it, carved with the marks of all six shrines.",
+  "options": [
+    {
+      "id": "take",
+      "label": "The devout takes it up.",
+      "rule": "scion:trait:devout|scion:highest:sagacity",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It fits their hand as if made for it.",
+          "effects": [
+            {
+              "item": {
+                "tier": 2
+              }
+            },
+            {
+              "sanity": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "leave",
+      "label": "Leave it for its owner.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A limping pilgrim passes later, and smiles to see it.",
+          "effects": [
+            {
+              "score": {
+                "renown": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pull",
+      "label": "The strongest pulls it free.",
+      "rule": "scion:highest:might",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "It comes free.",
+          "effects": [
+            {
+              "item": {
+                "tier": 2
+              }
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "It does not want them.",
+          "effects": [
+            {
+              "durability": -15,
+              "loc": "arms"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

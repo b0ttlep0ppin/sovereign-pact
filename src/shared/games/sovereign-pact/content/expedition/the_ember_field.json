@@ -1,0 +1,90 @@
+{
+  "id": "the_ember_field",
+  "pools": [
+    "dragon_reaches"
+  ],
+  "weight": 2,
+  "band": [
+    5,
+    10
+  ],
+  "title": "The Ember Field",
+  "text": "A field where a dragon fought another. The ground still glows, and dragon scales lie among the embers.",
+  "options": [
+    {
+      "id": "gather",
+      "label": "Gather scales among the embers.",
+      "rule": "vote",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "A good haul, and burned fingers.",
+          "effects": [
+            {
+              "resources": {
+                "wyrmbone": 4
+              }
+            },
+            {
+              "to": "party",
+              "durability": -6,
+              "loc": "arms"
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "The embers flare.",
+          "effects": [
+            {
+              "to": "party",
+              "status": "burn"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "read",
+      "label": "The sharpest reads the battle in the ground.",
+      "rule": "scion:highest:acuity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Which dragon won, and where it went to heal.",
+          "effects": [
+            {
+              "foresee": true
+            },
+            {
+              "score": {
+                "lore": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "round",
+      "label": "Go round the field.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The long way, under a hot wind.",
+          "effects": []
+        }
+      ]
+    }
+  ]
+}

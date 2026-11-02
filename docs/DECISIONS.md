@@ -2,6 +2,11 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 7ar): every region reaches 20 events
+
+- Sixteen events (496 in all): two each for the Drowned Marches, the Forge Ruins, the Faceless City and the Shrine of Six, one for each of the other eight regions. All twelve regions now have 20; the budget is 25.
+- Reading: a Fork that sends the party off course on the Drifting Island adds an encounter and a cache, so a wrong landing can still pay.
+
 ## 2026-11-02 (implementation, Milestone 7aq): sixteen region events toward 19 each
 
 - Sixteen events (480 in all): three for the Outer Dark, two each for the Beast Lands, the Barrows, the Deep Cold, the Pit, the Apostate Court and the Dragon Reaches, one for the Hollow Wood. Eight regions now have 19, the other four 18; the budget is 25.

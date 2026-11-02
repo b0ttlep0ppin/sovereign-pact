@@ -1,0 +1,88 @@
+{
+  "id": "the_empty_shoes",
+  "pools": [
+    "faceless_city"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    9
+  ],
+  "title": "The Empty Shoes",
+  "text": "A street lined with shoes set neatly by every door, as if their owners stepped out of them and kept walking.",
+  "options": [
+    {
+      "id": "follow",
+      "label": "Follow the bare footprints.",
+      "rule": "vote",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "To a square where the faceless dance, and let you watch.",
+          "effects": [
+            {
+              "foresee": true
+            },
+            {
+              "to": "party",
+              "sanity": -5
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "To where they went.",
+          "effects": [
+            {
+              "encounter": {}
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "search",
+      "label": "The shrewdest searches the houses.",
+      "rule": "scion:highest:guile",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Every house left as if for a moment.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 12
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "keep",
+      "label": "Keep your own shoes on, and keep moving.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Your feet ache to be bare.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -3
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

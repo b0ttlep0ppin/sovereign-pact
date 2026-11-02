@@ -1,0 +1,93 @@
+{
+  "id": "the_rivet_rain",
+  "pools": [
+    "forge_ruins"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    9
+  ],
+  "title": "The Rivet Rain",
+  "text": "The ruined roof of the forge drops rivets like hail each time the wind blows through it.",
+  "options": [
+    {
+      "id": "dash",
+      "label": "Dash across between gusts.",
+      "rule": "vote",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "Across, with a few dents.",
+          "effects": [
+            {
+              "to": "party",
+              "durability": -6,
+              "loc": "head"
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "A big gust.",
+          "effects": [
+            {
+              "to": "party",
+              "durability": -12,
+              "loc": "head"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "time",
+      "label": "The sharpest times the wind.",
+      "rule": "scion:highest:acuity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Across without a scratch, and a pocketful of rivets.",
+          "effects": [
+            {
+              "resources": {
+                "iron": 3
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "shield",
+      "label": "The strongest holds a door over everyone's heads.",
+      "rule": "scion:highest:might",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It rings like a bell all the way across.",
+          "effects": [
+            {
+              "durability": -15,
+              "loc": "arms"
+            },
+            {
+              "score": {
+                "valor": 1
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

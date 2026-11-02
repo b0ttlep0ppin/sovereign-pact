@@ -1,0 +1,95 @@
+{
+  "id": "the_torn_scripture",
+  "pools": [
+    "apostate_court"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    9
+  ],
+  "title": "The Torn Scripture",
+  "text": "The apostates have torn a holy book into pages and nailed them to every door. Each page has been rewritten.",
+  "options": [
+    {
+      "id": "read",
+      "label": "The wisest reads the rewritten pages.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "The court's real creed, in their own hand.",
+          "effects": [
+            {
+              "score": {
+                "lore": 2
+              }
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "It makes too much sense.",
+          "effects": [
+            {
+              "sanity": -12
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gather",
+      "label": "Gather the pages to restore the book.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A slow, careful work, and the court notices.",
+          "effects": [
+            {
+              "score": {
+                "renown": 2
+              }
+            },
+            {
+              "encounter": {}
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "burn",
+      "label": "Burn them all.",
+      "rule": "leader",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The court comes running.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "surprise"
+              }
+            },
+            {
+              "score": {
+                "valor": 1
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
