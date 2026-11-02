@@ -1,9 +1,9 @@
 // The Sovereign Pact's client: what a seat sees and the moves it can send, from its view alone (the
 // same props Vibe Pulse's room gives a game). Milestone 0 is a plain read-out of the campaign so the
-// rules can be watched in play; the Town Map, battle screen and the rest replace it in Milestone 8.
+// rules can be watched in play; Milestone 8 gives it screens: founding, the town, the expedition, battle.
 import type { GameClientProps } from "@vibepulse/shared";
 import { Content, TIER_NAMES, type SovMove, type SovView } from "@vibepulse/shared/games/sovereign-pact";
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 import AccessPanel, { accessAttrs, useAccess } from "./Access";
 import BattleScreen from "./BattleScreen";
 import Credits from "./Credits";
@@ -133,9 +133,141 @@ export default function SovereignPact({ view, isMyTurn, sendMove, lastError }: P
   useMusic(track, music);
   const mine = view.me === null ? null : view.houses[view.me]!;
   const others = view.people.filter((p) => p.host !== view.me);
+  const open = view.phase === "settlement" && !!mine && !mine.sealed;
+  // One screen at a time (DECISIONS 8af): founding the House, the town, the expedition, the end.
+  const scene = view.phase === "founding" ? "founding" : view.phase === "expedition" ? "expedition" : "town";
+  const settings = (
+    <details className="sp-settings">
+      <summary aria-label="Settings">⚙ Settings</summary>
+      <div className="sp-settings__body">
+        <MusicPanel track={track} settings={music} set={setMusic} />
+        <AccessPanel access={access} set={setAccess} />
+        <Credits />
+      </div>
+    </details>
+  );
+  const error = lastError ? (
+    <p className="sp-error" role="alert">
+      {lastError.message}
+    </p>
+  ) : null;
+  const chronicle = (
+    <section className="sp-panel sp-chronicle" aria-label="Chronicle of the Year">
+      <h2>What happened</h2>
+      <ol className="sp-log">
+        {view.log.slice(-12).map((line, i) => (
+          <li key={i}>{line}</li>
+        ))}
+      </ol>
+    </section>
+  );
+  const battleList = battles.seen.length ? (
+    <section className="sp-panel" aria-label="Battles">
+      <h2>Battles</h2>
+      <label className="sp-check">
+        <input type="checkbox" checked={battles.auto} onChange={(e) => battles.toggle(e.target.checked)} /> Watch battles as they happen
+      </label>
+      <ul className="sp-battles">
+        {[...battles.seen].reverse().map((b) => (
+          <li key={b.key}>
+            <span>
+              Year {b.key.split(":")[0]}: {b.title} <small>({b.outcome === "victory" ? "won" : b.outcome === "defeat" ? "lost" : "withdrew"}, {b.frames.length} turns)</small>
+            </span>
+            <button type="button" className="sp-button sp-button--quiet" onClick={() => battles.watch(b.key)}>
+              Watch
+            </button>
+          </li>
+        ))}
+      </ul>
+    </section>
+  ) : null;
+  const houses = (
+    <div className="sp-cols">
+      <section className="sp-panel" aria-label="The Houses">
+        <h2>The Houses</h2>
+        <ul className="sp-houses">
+          {view.houses.map((h) => (
+            <li key={h.index} className={`sp-house${h.index === view.me ? " is-me" : ""}`} style={{ borderColor: HERALDRY_COLORS.get(h.colors[0]) }}>
+              <Emblem emblem={h.emblem} colors={h.colors} size={40} />
+              <div>
+                <strong>House {h.name}</strong>
+                <em>“{h.motto}”</em>
+                <span className="sp-house__meta">
+                  {h.element ?? "unaligned"} · {h.seat.replace(/_/g, " ")} · <span className={`sp-standing sp-standing--${h.standing}`}>{h.standing}</span>
+                </span>
+              </div>
+              <span className="sp-house__sealed">{view.phase === "settlement" ? (h.sealed ? "sealed" : "deciding") : ""}</span>
+            </li>
+          ))}
+        </ul>
+      </section>
+      {mine && view.mine ? (
+        <section className="sp-panel" aria-label={`House ${mine.name}`}>
+          <h2>House {mine.name}</h2>
+          <p className="sp-private">
+            Only you see this. Ambition: <strong>{CATEGORY_NAMES[view.mine.ambition.double]}</strong> counts double, <strong>{CATEGORY_NAMES[view.mine.ambition.halve]}</strong> half.
+          </p>
+          <dl className="sp-stats">
+            <dt>Ascendancy</dt>
+            <dd>{view.mine.ascendancy}</dd>
+            {Object.entries(view.mine.score).map(([k, v]) => (
+              <div key={k} className="sp-stats__row">
+                <dt>{CATEGORY_NAMES[k]}</dt>
+                <dd>{v}</dd>
+              </div>
+            ))}
+          </dl>
+        </section>
+      ) : null}
+      {others.length ? (
+        <section className="sp-panel" aria-label="People">
+          <h2>{view.me === null ? "The Houses' Scions" : "Scions of the other Houses"}</h2>
+          <PeopleTable people={others} houses={view.houses} />
+        </section>
+      ) : null}
+    </div>
+  );
+  const battle = battles.watching ? (
+    <BattleScreen key={battles.watching.key} replay={battles.watching} view={view} onClose={battles.next} waiting={battles.waiting} fullLog={access.log} sound={music.sfx ? music.sfxVolume : 0} />
+  ) : fight && !hidden ? (
+    <BattleScreen
+      key="live"
+      replay={fight.replay}
+      view={view}
+      onClose={() => setHidden(true)}
+      fullLog={access.log}
+      sound={music.sfx ? music.sfxVolume : 0}
+      live={{
+        turn: fight.turn,
+        waiting: fight.house === null || fight.house === view.me ? null : `House ${view.houses[fight.house]?.name}`,
+        send: (c) => sendMove({ type: "command", ...c }),
+      }}
+    />
+  ) : null;
+
+  if (scene === "founding") {
+    return (
+      <div className="sp sp--founding" {...accessAttrs(access)}>
+        <header className="sp-head">
+          <strong className="sp-head__title">Found your House</strong>
+          <span className="sp-head__phase">{view.muster ? "The muster: choose your first Scions" : `${view.houses.filter((h) => h.sealed).length} of ${view.houses.length} Houses sworn`}</span>
+          {settings}
+        </header>
+        {error}
+        {view.muster ? <Volunteers view={view} sendMove={sendMove} /> : null}
+        {mine && view.mine?.dealt && !view.muster ? (
+          <section className="sp-panel sp-founding-panel" aria-label={`House ${mine.name}`}>
+            <Founding view={view} sworn={mine.sealed} sendMove={sendMove} />
+          </section>
+        ) : null}
+        {view.muster ? <Roster view={view} sendMove={sendMove} canAct={false} /> : null}
+      </div>
+    );
+  }
+
   return (
-    <div className="sp" {...accessAttrs(access)}>
-      <section className="sp-top" aria-label="The kingdom">
+    <div className={`sp sp--${scene}`} {...accessAttrs(access)}>
+      <header className="sp-head" aria-label="The kingdom">
         <div className="sp-top__year">
           <strong>
             Year {view.year} <small>of {view.years}</small>
@@ -144,150 +276,110 @@ export default function SovereignPact({ view, isMyTurn, sendMove, lastError }: P
         </div>
         <Track label={view.track} value={view.accord} danger={view.accord <= 25} />
         <Track label="Doom" value={view.doom} danger={view.doom >= 75} />
-        <div className="sp-top__commons">
-          Commons: {view.commons.gold} Gold, {view.commons.stores.grain ?? 0} Grain
-        </div>
-      </section>
+        {view.mine ? (
+          <span className="sp-head__purse" title={Object.entries(view.mine.stores).map(([k, v]) => `${v} ${k}`).join(", ") || "Stores empty"}>
+            {view.mine.gold} Gold{view.mine.debt ? ` (${view.mine.debt} owed)` : ""} · {view.mine.stores.grain ?? 0} Grain
+          </span>
+        ) : null}
+        <span className="sp-top__commons">Commons: {view.commons.gold} Gold</span>
+        {view.phase === "settlement" && mine ? (
+          isMyTurn ? (
+            <button type="button" className="sp-button" onClick={() => sendMove({ type: "seal" })}>
+              Seal the Year
+            </button>
+          ) : (
+            <button type="button" className="sp-button sp-button--quiet" onClick={() => sendMove({ type: "unseal" })}>
+              Unseal
+            </button>
+          )
+        ) : null}
+        {settings}
+      </header>
       <Timeline view={view} />
-      <MusicPanel track={track} settings={music} set={setMusic} />
-      <AccessPanel access={access} set={setAccess} />
-      <Credits />
-
       {view.outcome ? (
         <p className={`sp-outcome${view.outcome.won ? " is-won" : ""}`} role="status">
           {view.outcome.reason}
         </p>
       ) : null}
+      {error}
 
-      <div className="sp-cols">
-        <section className="sp-panel" aria-label="The Houses">
-          <h2>The Houses</h2>
-          <ul className="sp-houses">
-            {view.houses.map((h) => (
-              <li key={h.index} className={`sp-house${h.index === view.me ? " is-me" : ""}`} style={{ borderColor: HERALDRY_COLORS.get(h.colors[0]) }}>
-                <Emblem emblem={h.emblem} colors={h.colors} size={40} />
-                <div>
-                  <strong>House {h.name}</strong>
-                  <em>“{h.motto}”</em>
-                  <span className="sp-house__meta">
-                    {h.element ?? "unaligned"} · {h.seat.replace(/_/g, " ")} · <span className={`sp-standing sp-standing--${h.standing}`}>{h.standing}</span>
-                  </span>
-                </div>
-                <span className="sp-house__sealed">{view.phase === "settlement" ? (h.sealed ? "sealed" : "deciding") : ""}</span>
-              </li>
-            ))}
-          </ul>
-        </section>
-
-        {mine && view.mine ? (
-          <section className="sp-panel" aria-label={`House ${mine.name}`}>
-            <h2>House {mine.name}</h2>
-            <p className="sp-private" hidden={view.phase === "founding"}>
-              Only you see this. Ambition: <strong>{CATEGORY_NAMES[view.mine.ambition.double]}</strong> counts double,{" "}
-              <strong>{CATEGORY_NAMES[view.mine.ambition.halve]}</strong> half.
-            </p>
-            <dl className="sp-stats">
-              <dt>Ascendancy</dt>
-              <dd>{view.mine.ascendancy}</dd>
-              <dt>Gold</dt>
-              <dd>
-                {view.mine.gold} Gold{view.mine.debt ? `, ${view.mine.debt} owed` : ""}
-              </dd>
-              <dt>Stores</dt>
-              <dd>{Object.entries(view.mine.stores).map(([k, v]) => `${v} ${k}`).join(", ") || "empty"}</dd>
-              {Object.entries(view.mine.score).map(([k, v]) => (
-                <div key={k} className="sp-stats__row">
-                  <dt>{CATEGORY_NAMES[k]}</dt>
-                  <dd>{v}</dd>
-                </div>
-              ))}
-            </dl>
-            {view.phase === "founding" && view.mine.dealt ? <Founding view={view} sworn={mine.sealed} sendMove={sendMove} /> : null}
-            {view.phase === "settlement" ? (
-              <div className="sp-actions">
-                {isMyTurn ? (
-                  <button type="button" className="sp-button" onClick={() => sendMove({ type: "seal" })}>
-                    Seal the Year
-                  </button>
-                ) : (
-                  <button type="button" className="sp-button sp-button--quiet" onClick={() => sendMove({ type: "unseal" })}>
-                    Unseal
-                  </button>
-                )}
-              </div>
+      {scene === "expedition" ? (
+        <div className="sp-stage">
+          <div className="sp-stage__main">
+            {mine && view.expedition ? (
+              <section className="sp-panel sp-orders" aria-label="Your orders">
+                <h2>Your orders</h2>
+                <Muster key={view.expedition.seats[view.me!]} view={view} sendMove={sendMove} openBattle={hidden ? () => setHidden(false) : undefined} />
+              </section>
             ) : null}
-            {view.phase === "expedition" && view.expedition ? <Muster key={view.expedition.seats[view.me!]} view={view} sendMove={sendMove} openBattle={hidden ? () => setHidden(false) : undefined} /> : null}
-            {lastError ? <p className="sp-error" role="alert">{lastError.message}</p> : null}
-          </section>
-        ) : null}
+            <ChainMap view={view} sendMove={sendMove} />
+          </div>
+          <aside className="sp-stage__side">
+            {battleList}
+            {chronicle}
+          </aside>
+        </div>
+      ) : (
+        <div className="sp-stage">
+          <div className="sp-stage__main">
+            <TownMap view={view} sendMove={sendMove} canAssign={open} />
+            <Tabs
+              tabs={[
+                ["gate", "The Rift Gate", view.phase === "settlement" || view.phase === "omens" ? <RiftGate view={view} sendMove={sendMove} canVote={open} /> : null],
+                ["people", "Your people", <Roster view={view} sendMove={sendMove} canAct={open} />],
+                ["readying", "Readying", view.phase === "settlement" ? <Readying view={view} sendMove={sendMove} canAct={open} /> : null],
+                ["building", "Building", view.phase === "settlement" ? <Works view={view} sendMove={sendMove} canAct={open} /> : null],
+                ["market", "Market", view.phase === "settlement" ? <Market view={view} sendMove={sendMove} canAct={open} /> : null],
+                ["deals", "Deals", view.phase === "settlement" ? <Deals view={view} sendMove={sendMove} canAct={open} /> : null],
+                ["houses", "The Houses", houses],
+                ["battles", "Battles", battleList],
+              ]}
+            />
+          </div>
+          <aside className="sp-stage__side">
+            {view.phase === "settlement" ? <Decisions view={view} sendMove={sendMove} canAct={open} /> : null}
+            {chronicle}
+          </aside>
+        </div>
+      )}
+      {battle}
+    </div>
+  );
+}
+
+const TAB_KEY = "sovereign-pact:tab";
+
+/** The town's panels, one at a time under the map; the last one opened is remembered. */
+function Tabs({ tabs }: { tabs: [string, string, ReactNode][] }) {
+  const live = tabs.filter(([, , body]) => body);
+  const [tab, setTab] = useState(() => {
+    try {
+      return globalThis.localStorage?.getItem(TAB_KEY) ?? "gate";
+    } catch {
+      return "gate";
+    }
+  });
+  const shown = live.find(([id]) => id === tab) ?? live[0];
+  const pick = (id: string) => {
+    setTab(id);
+    try {
+      globalThis.localStorage?.setItem(TAB_KEY, id);
+    } catch {
+      // Storage blocked: the tab lasts this visit.
+    }
+  };
+  return (
+    <div className="sp-tabs">
+      <div className="sp-tabs__bar" role="tablist" aria-label="The town">
+        {live.map(([id, label]) => (
+          <button key={id} type="button" role="tab" className="sp-tabs__tab" aria-selected={shown?.[0] === id} onClick={() => pick(id)}>
+            {label}
+          </button>
+        ))}
       </div>
-
-      {view.muster ? <Volunteers view={view} sendMove={sendMove} /> : null}
-      {view.phase === "settlement" || view.phase === "omens" || view.phase === "reckoning" ? (
-        <TownMap view={view} sendMove={sendMove} canAssign={view.phase === "settlement" && !!mine && !mine.sealed} />
-      ) : null}
-      {view.phase === "settlement" || view.phase === "expedition" ? <Decisions view={view} sendMove={sendMove} canAct={view.phase === "settlement" && !!mine && !mine.sealed} /> : null}
-      {view.phase === "settlement" || view.phase === "omens" ? <RiftGate view={view} sendMove={sendMove} canVote={view.phase === "settlement" && !!mine && !mine.sealed} /> : null}
-      {view.phase === "settlement" ? <Works view={view} sendMove={sendMove} canAct={!!mine && !mine.sealed} /> : null}
-      {view.phase === "settlement" ? <Readying view={view} sendMove={sendMove} canAct={!!mine && !mine.sealed} /> : null}
-      {view.phase === "settlement" ? <Market view={view} sendMove={sendMove} canAct={!!mine && !mine.sealed} /> : null}
-      {view.phase === "settlement" ? <Deals view={view} sendMove={sendMove} canAct={!!mine && !mine.sealed} /> : null}
-      {view.phase === "expedition" ? <ChainMap view={view} sendMove={sendMove} /> : null}
-
-      <Roster view={view} sendMove={sendMove} canAct={view.phase === "settlement" && !!mine && !mine.sealed} />
-      {others.length ? (
-        <section className="sp-panel" aria-label="People">
-          <h2>{view.me === null ? "The Houses' Scions" : "Scions of the other Houses"}</h2>
-          <PeopleTable people={others} houses={view.houses} />
-        </section>
-      ) : null}
-
-      {battles.seen.length ? (
-        <section className="sp-panel" aria-label="Battles">
-          <h2>Battles</h2>
-          <label className="sp-check">
-            <input type="checkbox" checked={battles.auto} onChange={(e) => battles.toggle(e.target.checked)} /> Watch battles as they happen
-          </label>
-          <ul className="sp-battles">
-            {[...battles.seen].reverse().map((b) => (
-              <li key={b.key}>
-                <span>
-                  Year {b.key.split(":")[0]}: {b.title} <small>({b.outcome === "victory" ? "won" : b.outcome === "defeat" ? "lost" : "withdrew"}, {b.frames.length} turns)</small>
-                </span>
-                <button type="button" className="sp-button sp-button--quiet" onClick={() => battles.watch(b.key)}>
-                  Watch
-                </button>
-              </li>
-            ))}
-          </ul>
-        </section>
-      ) : null}
-      {battles.watching ? (
-        <BattleScreen key={battles.watching.key} replay={battles.watching} view={view} onClose={battles.next} waiting={battles.waiting} fullLog={access.log} sound={music.sfx ? music.sfxVolume : 0} />
-      ) : fight && !hidden ? (
-        <BattleScreen
-          key="live"
-          replay={fight.replay}
-          view={view}
-          onClose={() => setHidden(true)}
-          fullLog={access.log}
-          sound={music.sfx ? music.sfxVolume : 0}
-          live={{
-            turn: fight.turn,
-            waiting: fight.house === null || fight.house === view.me ? null : `House ${view.houses[fight.house]?.name}`,
-            send: (c) => sendMove({ type: "command", ...c }),
-          }}
-        />
-      ) : null}
-
-      <section className="sp-panel" aria-label="Chronicle of the Year">
-        <h2>What happened</h2>
-        <ol className="sp-log">
-          {view.log.slice(-12).map((line, i) => (
-            <li key={i}>{line}</li>
-          ))}
-        </ol>
-      </section>
+      <div className="sp-tabs__body" role="tabpanel" aria-label={shown?.[1]}>
+        {shown?.[2]}
+      </div>
     </div>
   );
 }
