@@ -1,0 +1,94 @@
+{
+  "id": "the_stilt_house",
+  "pools": [
+    "drowned_marches"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    7
+  ],
+  "title": "The Stilt House",
+  "text": "A house on stilts above the bog, a light in the window. The ladder has been pulled up.",
+  "options": [
+    {
+      "id": "call",
+      "label": "Call up to them.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "A family of eel-catchers, who let you sleep dry.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 6
+            },
+            {
+              "to": "party",
+              "durability": 5
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "No one answers, and the light goes out.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "climb",
+      "label": "The quickest shins up a stilt.",
+      "rule": "scion:highest:speed",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Empty, a meal still warm on the table.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 8
+              }
+            },
+            {
+              "foresee": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pass",
+      "label": "Pass under it.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Something drops from under the floor.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "ambush"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

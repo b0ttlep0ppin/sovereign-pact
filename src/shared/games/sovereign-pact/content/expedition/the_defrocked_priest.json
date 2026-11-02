@@ -1,0 +1,102 @@
+{
+  "id": "the_defrocked_priest",
+  "pools": [
+    "apostate_court"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    9
+  ],
+  "title": "The Defrocked Priest",
+  "text": "A priest stripped of his robes begs at the court's gate. He says he knows how the court is run, for a price.",
+  "options": [
+    {
+      "id": "pay",
+      "label": "Pay him.",
+      "rule": "vote",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "A back way through the court.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -10
+              }
+            },
+            {
+              "skip": 2
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "He takes the money and runs.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -10
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "feed",
+      "label": "The kindest gives him bread instead.",
+      "rule": "scion:most_healing|scion:highest:sagacity",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "He weeps, and tells you everything.",
+          "effects": [
+            {
+              "foresee": true
+            },
+            {
+              "score": {
+                "renown": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "turn",
+      "label": "Turn him over to the court.",
+      "rule": "leader",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The court thanks you, and lets you pass.",
+          "effects": [
+            {
+              "skip": 1
+            },
+            {
+              "score": {
+                "intrigue": 1
+              }
+            },
+            {
+              "to": "party",
+              "sanity": -5
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

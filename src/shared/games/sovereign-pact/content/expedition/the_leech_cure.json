@@ -1,0 +1,83 @@
+{
+  "id": "the_leech_cure",
+  "pools": [
+    "drowned_marches"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    7
+  ],
+  "title": "The Leech Cure",
+  "text": "A marsh doctor offers to bleed your wounded with his prize leeches. He swears by them.",
+  "options": [
+    {
+      "id": "accept",
+      "label": "Let him treat the wounded.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "Pale, and on the mend.",
+          "effects": [
+            {
+              "to": "party",
+              "durability": 12
+            },
+            {
+              "to": "party",
+              "mp": -10
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "The leeches are not his prize ones.",
+          "effects": [
+            {
+              "to": "party",
+              "status": "poison"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ask",
+      "label": "The sharpest asks to see his notes.",
+      "rule": "scion:highest:acuity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Gibberish, but one good recipe in it.",
+          "effects": [
+            {
+              "mend": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "refuse",
+      "label": "Refuse, politely.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "He sulks into the reeds.",
+          "effects": []
+        }
+      ]
+    }
+  ]
+}

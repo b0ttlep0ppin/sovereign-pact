@@ -2,6 +2,11 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 7ap): sixteen more region events
+
+- Sixteen events (464 in all): three each for the Hollow Wood, the Drowned Marches, the Forge Ruins, the Faceless City and the Shrine of Six, one for the Apostate Court. Every region now has 16–18; the budget is 25.
+- Reading: the Blank Portraits is an each_scion event (both options), since each Scion sees their own likeness.
+
 ## 2026-11-02 (implementation, Milestone 7ao): sixteen region events for the thinnest regions
 
 - Sixteen events (448 in all): three each for the Beast Lands, the Deep Cold, the Pit and the Dragon Reaches, two each for the Apostate Court and the Outer Dark. Every region now has 15–17; the budget is 25.

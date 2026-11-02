@@ -1,0 +1,85 @@
+{
+  "id": "the_owl_parliament",
+  "pools": [
+    "hollow_wood"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    7
+  ],
+  "title": "The Owl Parliament",
+  "text": "A hundred owls sit in the branches in rows, like a court in session. They fall silent when you arrive.",
+  "options": [
+    {
+      "id": "plead",
+      "label": "The wisest pleads the party's case.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "They hoot, and the way through the wood opens.",
+          "effects": [
+            {
+              "skip": 1
+            },
+            {
+              "score": {
+                "lore": 1
+              }
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "They find against you.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -8
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wait",
+      "label": "Stand and wait for their verdict.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "They lose interest, and talk among themselves.",
+          "effects": []
+        }
+      ]
+    },
+    {
+      "id": "scatter",
+      "label": "Scatter them.",
+      "rule": "leader",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A storm of feathers, and something bigger wakes.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "surprise"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

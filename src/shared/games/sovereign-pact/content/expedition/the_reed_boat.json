@@ -1,0 +1,92 @@
+{
+  "id": "the_reed_boat",
+  "pools": [
+    "drowned_marches"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    7
+  ],
+  "title": "The Reed Boat",
+  "text": "A boat of woven reeds tied at the water's edge, with a paddle and a note: take me where you need to go.",
+  "options": [
+    {
+      "id": "take",
+      "label": "Take the boat.",
+      "rule": "vote",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "It carries you far and lets you off gently.",
+          "effects": [
+            {
+              "skip": 2
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "It carries you somewhere it wanted to go.",
+          "effects": [
+            {
+              "fork": {
+                "drop": 1,
+                "add": [
+                  "encounter"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "read",
+      "label": "The wisest reads the note again.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Written in a drowned woman's hand. You leave the boat.",
+          "effects": [
+            {
+              "score": {
+                "lore": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "burn",
+      "label": "Burn it.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Something in the water screams.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -5
+            },
+            {
+              "doom": -1
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

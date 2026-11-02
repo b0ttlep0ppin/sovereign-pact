@@ -1,0 +1,96 @@
+{
+  "id": "the_shrine_cat",
+  "pools": [
+    "shrine_of_six"
+  ],
+  "weight": 2,
+  "band": [
+    4,
+    10
+  ],
+  "title": "The Shrine Cat",
+  "text": "A fat old cat sleeps on the altar steps. The priests say it is holy, and it is very hungry.",
+  "options": [
+    {
+      "id": "feed",
+      "label": "Feed the cat.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It purrs. The priests bless the party.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 5
+            },
+            {
+              "to": "party",
+              "status": "regen"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pet",
+      "label": "The luckiest pets it.",
+      "rule": "scion:random",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "It allows this.",
+          "effects": [
+            {
+              "blessing": {
+                "trait": "lucky",
+                "years": 1
+              }
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "It does not allow this.",
+          "effects": [
+            {
+              "durability": -10,
+              "loc": "arms"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "shoo",
+      "label": "Shoo it off the steps.",
+      "rule": "leader",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The priests are horrified.",
+          "effects": [
+            {
+              "score": {
+                "renown": -1
+              }
+            },
+            {
+              "to": "party",
+              "sanity": -4
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "id": "the_woodcutters_axe",
+  "pools": [
+    "hollow_wood"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    7
+  ],
+  "title": "The Woodcutter's Axe",
+  "text": "An axe stuck in a living tree, the handle worn smooth. The tree has grown around the blade.",
+  "options": [
+    {
+      "id": "pull",
+      "label": "The strongest pulls it out.",
+      "rule": "scion:highest:might",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "A fine old axe, and the tree sighs.",
+          "effects": [
+            {
+              "item": {
+                "tier": 2
+              }
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "The tree does not let go, and neither does the wood around it.",
+          "effects": [
+            {
+              "encounter": {}
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "leave",
+      "label": "Leave the axe where it is.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The wood watches you go, approving.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cut",
+      "label": "Cut the tree down for timber.",
+      "rule": "leader",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Good timber. The wood remembers.",
+          "effects": [
+            {
+              "resources": {
+                "timber": 6
+              }
+            },
+            {
+              "to": "party",
+              "sanity": -6
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
