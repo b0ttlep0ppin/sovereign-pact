@@ -1,0 +1,95 @@
+{
+  "id": "the_singing_blade",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    10
+  ],
+  "title": "The Singing Blade",
+  "text": "A sword lies in the path, singing a battle hymn in a woman's voice. It wants a wielder. It is very insistent.",
+  "options": [
+    {
+      "id": "take",
+      "label": "The strongest takes it up.",
+      "rule": "scion:highest:might",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "It sings through every fight, and the fights go better.",
+          "effects": [
+            {
+              "item": {
+                "tier": 3
+              }
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "It sings through every fight, and every night.",
+          "effects": [
+            {
+              "item": {
+                "tier": 3
+              }
+            },
+            {
+              "trait": "+nightmares"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bury",
+      "label": "Bury it.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It sings under the earth for a long time.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "talk",
+      "label": "Ask it who it was.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A champion of an old House. She tells you how she died, and how to avoid it.",
+          "effects": [
+            {
+              "score": {
+                "lore": 2
+              }
+            },
+            {
+              "to": "party",
+              "xp": 40
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

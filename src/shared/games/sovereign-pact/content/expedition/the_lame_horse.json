@@ -1,0 +1,80 @@
+{
+  "id": "the_lame_horse",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    7
+  ],
+  "title": "The Lame Horse",
+  "text": "A fine warhorse, saddled, standing on three legs in the road. Its rider is nowhere.",
+  "options": [
+    {
+      "id": "heal",
+      "label": "The best healer sees to its leg.",
+      "rule": "scion:most_healing",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It walks again, and follows you, and kicks the first thing that attacks you.",
+          "effects": [
+            {
+              "to": "party",
+              "status": "protect"
+            },
+            {
+              "xp": 60
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "saddle",
+      "label": "Take the saddle and gear.",
+      "rule": "leader",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Fine tack, and a purse in the saddlebag.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 12,
+                "iron": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "end",
+      "label": "End its pain.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It is the kind thing. It does not feel kind.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -5
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

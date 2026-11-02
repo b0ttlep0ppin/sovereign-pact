@@ -1,0 +1,87 @@
+{
+  "id": "the_glass_bridge",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    10
+  ],
+  "title": "The Glass Bridge",
+  "text": "A bridge of clear glass over a gorge. Below, far below, a city you have never heard of.",
+  "options": [
+    {
+      "id": "cross",
+      "label": "Cross carefully.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 80,
+          "text": "It holds.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -3
+            }
+          ]
+        },
+        {
+          "w": 20,
+          "text": "It cracks under the heaviest.",
+          "effects": [
+            {
+              "injury": "legs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "run",
+      "label": "Run across together.",
+      "rule": "vote",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Fast, and the cracks only start behind you.",
+          "effects": [
+            {
+              "skip": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "look",
+      "label": "The wisest studies the city below.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It is a city from the time before the rift, and it is not empty.",
+          "effects": [
+            {
+              "score": {
+                "lore": 3
+              }
+            },
+            {
+              "sanity": -10
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

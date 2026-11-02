@@ -1,0 +1,95 @@
+{
+  "id": "the_blind_archer",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    10
+  ],
+  "title": "The Blind Archer",
+  "text": "An old archer, blind, sits on a stump and challenges the party to a contest. He has never lost.",
+  "options": [
+    {
+      "id": "shoot",
+      "label": "The sharpest eye takes him on.",
+      "rule": "scion:highest:acuity",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 35,
+          "text": "They beat him by a hair. He laughs and gives them his quiver.",
+          "effects": [
+            {
+              "item": {
+                "tier": 3
+              }
+            },
+            {
+              "score": {
+                "renown": 2
+              }
+            }
+          ]
+        },
+        {
+          "w": 65,
+          "text": "He wins, and gives them a lesson anyway.",
+          "effects": [
+            {
+              "jp": 80
+            },
+            {
+              "growth": {
+                "acuity": 10
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cheat",
+      "label": "Move his target while he isn't looking.",
+      "rule": "scion:highest:guile",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "He hits it anyway, and does not offer a lesson.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -5
+            },
+            {
+              "score": {
+                "intrigue": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "decline",
+      "label": "Decline politely.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "He nods. Most people do.",
+          "effects": []
+        }
+      ]
+    }
+  ]
+}

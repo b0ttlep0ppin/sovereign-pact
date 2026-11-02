@@ -1,0 +1,106 @@
+{
+  "id": "the_struck_oak",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    10
+  ],
+  "title": "The Struck Oak",
+  "text": "An oak split by lightning, still smoking, though the sky is clear. The heartwood glows.",
+  "options": [
+    {
+      "id": "cut",
+      "label": "Cut out the heartwood.",
+      "rule": "scion:highest:might",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "It hums in the hand.",
+          "effects": [
+            {
+              "resources": {
+                "timber": 3,
+                "essence": 2
+              }
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "The lightning was not finished.",
+          "effects": [
+            {
+              "durability": -30,
+              "loc": "arms"
+            },
+            {
+              "status": "burn"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "shelter",
+      "label": "Shelter under it: lightning never strikes twice.",
+      "rule": "vote",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "It doesn't.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 8
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "It does.",
+          "effects": [
+            {
+              "to": "party",
+              "durability": -15
+            },
+            {
+              "to": "party",
+              "sanity": -5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pray",
+      "label": "Leave an offering at its roots.",
+      "rule": "leader",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Something in the sky approves.",
+          "effects": [
+            {
+              "blessing": {
+                "trait": "lucky",
+                "years": 1
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
