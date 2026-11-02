@@ -1,6 +1,7 @@
 // The Year (§3.1): Omens → Settlement Phase → Expedition Phase → Reckoning. The Settlement Phase is the
 // only step that waits for players so far; the others resolve on their own until their milestones
 // (Omens and Reckoning: 4, the Expedition Phase: 6) give them decisions.
+import { fadeBlessings } from "./events.ts";
 import { createRng, type Rng } from "../../rng.ts";
 import { rollRecruit } from "./generate.ts";
 import { yearOfAssignments } from "./assign.ts";
@@ -149,6 +150,7 @@ export function reckoning(s: SovState): void {
   completeProjects(s);
   // Injuries tick down, everyone recovers and grows by assignment, and MP refills (§8.3, §8.10).
   yearOfAssignments(s);
+  fadeBlessings(s);
   wardYear(s);
   for (const p of s.people) p.mp = caps(s, p).mp;
   s.doom = Math.min(100, s.doom + TUNING.tracks.doomPerYear);

@@ -113,6 +113,8 @@
         "curse": { "const": true, "description": "A random Curse the subject lacks." },
         "tarot": { "const": true, "description": "The Tarot redrawn." },
         "status": { "$ref": "defs.schema.json#/definitions/id", "description": "An ailment for the subject's next battle." },
+        "blessing": { "type": "object", "additionalProperties": false, "required": ["trait", "years"], "properties": { "trait": { "$ref": "defs.schema.json#/definitions/id" }, "years": { "type": "integer", "minimum": 0, "maximum": 5 } }, "description": "A trait held for a time: it fades at the Reckoning after `years` more Years." },
+        "house_improvement": { "enum": ["recruit", "building", "shop"], "description": "A recruit or a building's next level for the subject's House (a random House present when the party chose), or a Commons shop's next tier." },
         "loyalty": { "type": "integer", "description": "A Ward's Loyalty, + or −." },
         "fork": { "type": "object", "additionalProperties": false, "minProperties": 1, "properties": { "drop": { "type": "integer", "minimum": 1, "maximum": 4 }, "add": { "type": "array", "maxItems": 3, "items": { "enum": ["encounter", "event", "camp", "cache"] } } }, "description": "A Fork: the next drop places are passed by and add come next; never the boss." },
         "scion_lost": { "const": true, "description": "The subject is Lost in the otherworld." },

@@ -111,6 +111,8 @@ export interface Person {
   gear: Partial<Record<GearSlot, number>>;
   /** Counters event rules read: kills, expeditions, heals, times targeted… (§9.4). */
   hist: Partial<Record<HistKey, number>>;
+  /** Traits held for a time (§9.4 blessings): the Reckonings each has left before it fades. */
+  blessed?: { id: string; years: number }[];
   /** Wards only: 0–100, hidden from both Houses (§6.9). */
   loyalty?: number;
   /** Wards only: the Year the host took them in (no giving back within 3 Years). */

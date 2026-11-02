@@ -2,6 +2,15 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 6h: blessings and House improvements) — implementer
+- **`blessing`**: a trait held for a time. The trait is added as any trait is, and `Person.blessed` counts the Reckonings it has left: `years: 1` lasts through the next Year and fades at its Reckoning. A trait already held is not blessed again. Gaining the same trait for good makes it stay.
+- **`house_improvement`**:
+  - `recruit` gives the subject's House a recruit.
+  - `building` raises one of its built buildings a level, below the top.
+  - `shop` raises one built Commons shop a tier, for everyone, up to 3.
+  - Reading: when the party chose together, the recruit or building goes to a random House present (as town effects do with no subject House).
+- New events: the Child in the Well, the Roadside Shrine, the Lost Caravan.
+
 ## 2026-11-02 (implementation, Milestone 6g: each Scion's choice and Forks) — implementer
 - **`each_scion`** (§9.4): an event whose options are all `each_scion` is put to every Scion in the party. Their House picks for each of them, and nothing resolves until every pick is in. Then each Scion meets the outcome of their own pick, drawn for them alone. The `decide` move carries the Scion's id.
 - **Forks** (§9.3): a `fork` effect passes by the next `drop` places and puts `add` places next. It never touches the boss, and the way ahead stays hidden. New events: the Mirror Pool (each Scion), the Twins, the Rift Scar and the Hidden Trapdoor (Forks).
@@ -681,7 +690,7 @@ Batches 1–12 (answered 2026-10-31 / 2026-11-01): Q1–Q84 closed, see above. Q
 
 - **Q85 (asked 2026-11-01, Milestone 0): how is a House's Standing tier worked out?** §3.4 names the four tiers (Waning / Steady / Rising / Ascendant) but not the rule, and it decides how much the other Houses can read. Built as the default, PROPOSED: a House's Ascendancy divided by the kingdom's mean, Waning below 0.75, Steady 0.75–1, Rising 1–1.25, Ascendant 1.25 and up; Steady when solo or before anyone scores. Alternatives: tiers by rank (the leader is always Ascendant, which tells everyone who leads), or fixed Ascendancy thresholds that rise with the Year (tiers say how well a House does, not how it compares).
 - **Q89 (asked 2026-11-01, Milestone 4f): should a House event be private to its House?** §8.8 gives each House its own events (the Cousin's Claim, the Locked Wing…) but does not say whether rivals see them. Built as public (the Town Map's log shows them, and their choices) until Josh decides. Private would make them like the recruit pool: the House sees the event and its outcome, the others see nothing, or only "House X has troubles at home". **Answered 2026-11-01 by Josh: private, with a hint** (rivals see only that the House has troubles at home).
-- **Q91 (asked 2026-11-02, Milestone 6g): how does a `secret` expedition event resolve?** §9.4: "each player picks secretly; revealed together", for betrayal-shaped events. The picks stay hidden until all are in. It does not say what the reveal does. Recommended: each House's pick happens to its own Scions, and an outcome may depend on what the others chose ("if anyone else took the bribe…"). Alternatives: each House's pick alone decides its result; or a hidden majority vote for the whole party. Not built until answered.
+- **Q91 (asked 2026-11-02, Milestone 6g): how does a `secret` expedition event resolve?** §9.4: "each player picks secretly; revealed together", for betrayal-shaped events. The picks stay hidden until all are in. It does not say what the reveal does. Recommended: each House's pick happens to its own Scions, and an outcome may depend on what the others chose ("if anyone else took the bribe…"). Alternatives: each House's pick alone decides its result; or a hidden majority vote for the whole party. **Answered 2026-11-02 by Josh: each House's own pick happens to its own Scions, and others' picks matter** (an outcome may depend on what the other Houses chose).
 - **Q87 (asked 2026-11-01, Milestone 1): should Durability grow with level?** The simulator finds injury rolls in an ordinary fight climbing from 0.1 at L1 to about 6 at L10, because §7.3's Durability (10–15 + 1.5–2 × a stat) grows slowly while enemy damage grows about fivefold. A level term (+1 or +2 Durability per level on every location) brings L10 to about 2–3 rolls; heavier armor in Milestone 2 may do the rest. Built as specified (no level term) until Josh decides; `formulas.durabilityPerLevel` is the knob. **Answered 2026-11-01 by Josh: no level term (keep it as specified).** Pass 1 had set it to 2; Milestone 3x puts it back to 0 and lowers `combat.enemyLevelFactor` instead.
 
 

@@ -27,6 +27,9 @@ export const listPrice = (item: Pick<Item, "tier" | "ilvl">): number => Math.rou
 export const auctioned = (item: Item): boolean => item.tier >= 4 || (item.props ?? []).some(([id]) => T.rareProps.includes(id));
 
 /** A stock tier per shop: 1 when built; expedition finds raise it (Milestone 6). */
+/** The shops of the Commons (§8.6). */
+export const SHOPS = Object.keys(SELLS);
+
 export const stockTier = (s: SovState, shop: string): number => (built(s, shop) ? Math.min(3, s.commons.shopTiers?.[shop] ?? 1) : 0);
 
 /** The Year's stock, seeded, replacing last Year's. */

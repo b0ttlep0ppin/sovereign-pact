@@ -5,6 +5,7 @@ import banquet_of_the_hollow_host from "./banquet_of_the_hollow_host.json" with 
 import beggar_at_the_ford from "./beggar_at_the_ford.json" with { type: "json" };
 import bone_market from "./bone_market.json" with { type: "json" };
 import bread_on_the_water from "./bread_on_the_water.json" with { type: "json" };
+import child_in_the_well from "./child_in_the_well.json" with { type: "json" };
 import collapsed_chapel from "./collapsed_chapel.json" with { type: "json" };
 import door_with_your_emblem from "./door_with_your_emblem.json" with { type: "json" };
 import feast_of_crows from "./feast_of_crows.json" with { type: "json" };
@@ -14,11 +15,13 @@ import hidden_trapdoor from "./hidden_trapdoor.json" with { type: "json" };
 import hollow_ivory from "./hollow_ivory.json" with { type: "json" };
 import hunters_mark from "./hunters_mark.json" with { type: "json" };
 import lantern_keeper from "./lantern_keeper.json" with { type: "json" };
+import lost_caravan from "./lost_caravan.json" with { type: "json" };
 import mirror_pool from "./mirror_pool.json" with { type: "json" };
 import narrow_crack from "./narrow_crack.json" with { type: "json" };
 import offer_of_wings from "./offer_of_wings.json" with { type: "json" };
 import old_soldiers_grave from "./old_soldiers_grave.json" with { type: "json" };
 import rift_scar from "./rift_scar.json" with { type: "json" };
+import roadside_shrine from "./roadside_shrine.json" with { type: "json" };
 import saints_tongue from "./saints_tongue.json" with { type: "json" };
 import still_warm_camp from "./still_warm_camp.json" with { type: "json" };
 import the_lullaby from "./the_lullaby.json" with { type: "json" };
@@ -34,6 +37,7 @@ export default [
   beggar_at_the_ford,
   bone_market,
   bread_on_the_water,
+  child_in_the_well,
   collapsed_chapel,
   door_with_your_emblem,
   feast_of_crows,
@@ -43,11 +47,13 @@ export default [
   hollow_ivory,
   hunters_mark,
   lantern_keeper,
+  lost_caravan,
   mirror_pool,
   narrow_crack,
   offer_of_wings,
   old_soldiers_grave,
   rift_scar,
+  roadside_shrine,
   saints_tongue,
   still_warm_camp,
   the_lullaby,
