@@ -41,6 +41,7 @@
 .sp-button { font: inherit; font-weight: 600; padding: 10px 18px; border-radius: 4px; border: 1px solid var(--accent); background: var(--accent); color: var(--bg); cursor: pointer; min-height: 44px; }
 .sp-button--quiet { background: transparent; color: var(--text); border-color: var(--line); }
 .sp-button:focus-visible { outline: 2px solid var(--text); outline-offset: 2px; }
+.sp-button:disabled { opacity: 0.45; cursor: not-allowed; }
 .sp-error { color: var(--danger); }
 .sp-table-wrap { overflow-x: auto; }
 .sp-table { border-collapse: collapse; width: 100%; font-size: 0.82rem; font-variant-numeric: tabular-nums; }
@@ -129,6 +130,9 @@
 .sp-abilities li { grid-template-columns: 1fr auto; padding: 4px 8px; }
 .sp-abilities li.is-known { opacity: 0.7; }
 .sp-ability__text { display: block; color: var(--muted); font-size: 0.85rem; }
-.sp-abilities button:disabled { opacity: 0.45; }
 .sp-gear li { grid-template-columns: 7em 1fr auto; }
 @media (max-width: 640px) { .sp-gear li { grid-template-columns: 1fr; } }
+/* Building (§8.2, §8.5). */
+.sp-works h3 { margin: 14px 0 6px; font-size: 0.85rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.sp-works li.is-rising { outline: 1px dashed var(--line); }
+.sp-projects li { grid-template-columns: 1fr; }

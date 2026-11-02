@@ -23,6 +23,18 @@ const error = (s: SovState, player: string, m: SovMove): string => {
 const sealAll = (s: SovState): SovState => s.players.reduce((x, p, i) => (x.houses[i]!.sealed ? x : move(x, p, { type: "seal" })), s);
 
 describe("House buildings (§8.3–8.4)", () => {
+  it("shows the House what each building's next level costs, and why it cannot build", () => {
+    let s = calm(campaign(2, 3));
+    s.commons.gold = 100;
+    s = move(s, "p1", { type: "build", building: "farm" });
+    const builds = view(s, "p1").mine!.builds;
+    expect(builds.find((b) => b.id === "farm")).toEqual({ id: "farm", level: 1, cost: buildCost("farm", 1), why: null });
+    expect(builds.find((b) => b.id === "quarry")!.why).toMatch(/busy/);
+    const open = view(s, "p1").mine!.projects;
+    expect(open.find((p) => p.id === "granary")).toMatchObject({ level: 1, propose: null });
+    expect(open.every((p) => Object.keys(p.need).length > 0)).toBe(true);
+  });
+
   it("costs every building by its class at every level", () => {
     for (const b of BUILDINGS) for (const level of [1, 2, 3]) expect(buildCost(b.id, level), `${b.id} L${level}`).toEqual(TUNING.town.costs[b.cost][level - 1]);
     expect(buildCost("farm", 4)).toBeNull();
