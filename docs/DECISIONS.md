@@ -2,6 +2,12 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 7i: the great Arcana's Hunts) — implementer
+- **Built** (§14.9, `arcanaHuntFor` and `huntArcana` in `arcana.ts`, numbers in `tuning.arcana`). The Tower, Death and the World carry a Hunt card of their own: a card the Gate deals in their boss's pool at level 8 or higher becomes that Arcana's Hunt 35% of the time, while it is unmet. The Arcana is the card's boss, shown on the Gate. Setting out meets it for the campaign (no Arcana node on the same chain); the kill marks a bearer of that Tarot with its trait and drops its Relic, as at a node.
+- **Readings**:
+  - The Hunt is dealt in the boss's pool whatever cards that pool usually deals (the Barrows deal no Hunts; Death's is the exception). Never on a Rescue, mandatory or forced card, and not on a card that already ends at an Idol.
+  - It is fought as a boss at the card's level, like an Idol. A lost fight still uses the Arcana up, as a node does.
+
 ## 2026-11-02 (implementation, Milestone 7h: the last eight Arcana) — implementer
 - **Built** (§14.9, content only). All 22 Major Arcana now have a node; a test checks the list against the Tarot.
   - Wheel of Fortune: the Temporal Snail (Outer Dark), slows and Stops everyone, hastens itself; trait Wheel-Turned, Relic the Clockwork Shell

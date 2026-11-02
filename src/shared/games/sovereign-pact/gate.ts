@@ -2,10 +2,11 @@
 // Year's level band; in a mandatory Year it offers the arc's card alone (§14.7). The Houses vote on the card
 // in the Settlement Phase, sealed with the Year: the most votes take it, a tie costs Accord and goes to
 // the higher Renown, and no votes at all take the first card.
+import { arcanaHuntFor } from "./arcana.ts";
 import { idolFor } from "./idols.ts";
 import { quarryFor } from "./hunt.ts";
 import { loseAccord } from "./commons.ts";
-import { BOSS_BY_ID, IDOL_BY_ID, POOL_BY_ID, POOLS, TOWN_EVENT_BY_ID, TOWN_EVENTS } from "./content.ts";
+import { ARCANA_BY_TAROT, BOSS_BY_ID, IDOL_BY_ID, POOL_BY_ID, POOLS, TOWN_EVENT_BY_ID, TOWN_EVENTS } from "./content.ts";
 import { year20 } from "./crisis.ts";
 import type { ExpeditionCard, SovState } from "./state.ts";
 import { TUNING } from "./tuning.ts";
@@ -49,6 +50,12 @@ export function offer(s: SovState): ExpeditionCard[] {
       // A high Pilgrimage may end at an Idol (§14.9): it is the card's boss.
       const idol = idolFor(s, rng, card);
       if (idol) Object.assign(card, { idol, boss: IDOL_BY_ID.get(idol)!.boss });
+      // A high card of a great Arcana's pool may be its Hunt instead (§14.9): the Arcana is the boss.
+      const arcana = idol ? undefined : arcanaHuntFor(s, rng, card);
+      if (arcana) {
+        cards.push({ type: "hunt", pool: pool.id, level, size, arcana, boss: ARCANA_BY_TAROT.get(arcana)!.boss });
+        continue;
+      }
       cards.push(card);
     }
     return cards;

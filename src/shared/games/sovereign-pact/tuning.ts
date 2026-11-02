@@ -224,8 +224,10 @@ export const TUNING = {
   /**
    * §14.9 Arcana nodes, first pass: the chance a chain holds one, `bearerPct` when a Scion of a still-unmet
    * Arcana is in the party (that Arcana), else `basePct` (any unmet one). Never on a mandatory or forced card.
+   * The great Arcana in `hunts` also carry a Hunt card of their own: a card of their boss's pool from
+   * `huntLevel` becomes that Arcana's Hunt `huntPct`% of the time, with the Arcana as its boss.
    */
-  arcana: { basePct: 6, bearerPct: 30 },
+  arcana: { basePct: 6, bearerPct: 30, huntLevel: 8, huntPct: 35, hunts: ["tower", "death", "world"] as string[] },
 
   /**
    * §14.9 Idols, first pass: a Pilgrimage card from `minLevel` ends at one of its pool's unmet Idols `pct`%

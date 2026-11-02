@@ -20,7 +20,7 @@ import { devastate } from "./timeline.ts";
 import { TUNING } from "./tuning.ts";
 import { creditWard } from "./wards.ts";
 import { lairOf, slay, tally, withLair } from "./hunt.ts";
-import { arcanaBoss, arcanaFor, arcanaWon, withArcana } from "./arcana.ts";
+import { arcanaBoss, arcanaFor, arcanaWon, huntArcana, withArcana } from "./arcana.ts";
 import { idolEvent, idolSlain, withIdol } from "./idols.ts";
 import { ARC, arcDoom, arcResult, bastionFallBack, bastionShields, withRaid } from "./arc.ts";
 import { divided, gate, partyGone, rally } from "./split.ts";
@@ -41,6 +41,7 @@ export function rollChain(s: SovState): NodeKind[] {
     let chain: NodeKind[] = [...nodes, "boss"];
     if (card.quarry) chain = withLair(rng, chain);
     if (card.idol) chain = withIdol(s, chain);
+    if (card.arcana) huntArcana(s);
     const tarot = arcanaFor(s, rng, roster(s).map((id) => person(s, id)));
     if (tarot) chain = withArcana(s, rng, chain, tarot);
     return withRaid(s, rng, chain);
@@ -192,6 +193,7 @@ export function battle(s: SovState, boss: boolean, o: FightOpts = {}): boolean {
     for (const id of marching(s)) creditWard(s, person(s, id), "valor", boss ? J.valor.boss : J.valor.battle);
     if (boss) {
       if (e.card.idol) idolSlain(s, [...new Set(marching(s).map((id) => person(s, id).host))]);
+      if (e.card.arcana) arcanaWon(s, marching(s));
       bossLoot(s);
       home(s, "won");
     } else {

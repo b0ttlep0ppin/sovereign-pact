@@ -2,13 +2,14 @@
 // fought in the chain; the kill marks the bearer with its trait and drops its Relic.
 import { describe, expect, it } from "vitest";
 import { createRng } from "../../rng.ts";
-import { arcanaFor, withArcana } from "./arcana.ts";
+import { arcanaFor, arcanaHuntFor, withArcana } from "./arcana.ts";
 import { bossBattle } from "./combat/bosses.ts";
 import { BASELINE, realParty } from "./combat/roster.ts";
 import { simulate } from "./combat/sim.ts";
 import { ARCANA, BOSS_BY_ID, NAMED_BY_ID, TAROT, TAROT_BY_ID, TRAIT_BY_ID } from "./content.ts";
 import { muster } from "./expedition.ts";
-import { bossFor, pressOn } from "./journey.ts";
+import { offer } from "./gate.ts";
+import { bossFor, pressOn, rollChain } from "./journey.ts";
 import { levelUp, passiveBudget } from "./progression.ts";
 import type { ExpeditionCard, SovState } from "./state.ts";
 import { calm, campaign } from "./testing.ts";
@@ -110,5 +111,54 @@ describe("the kill", () => {
     expect(s.log.some((l) => l.includes("A card turns over"))).toBe(true);
     expect(s.people.find((p) => p.id === bearer.id)!.traits).toContain("fools_luck");
     expect(s.expedition!.haul!.items.some((i) => i.named === "the_fools_bell")).toBe(true);
+  });
+});
+
+describe("the great Arcana's Hunts", () => {
+  const card = (pool: string, level: number, type: ExpeditionCard["type"] = "delve"): ExpeditionCard => ({ type, pool, level, size: 4 });
+  const rolls = (s: SovState, c: ExpeditionCard) => Array.from({ length: 300 }, (_, i) => arcanaHuntFor(s, createRng(i + 1), c));
+
+  it("turn some high cards of their boss's pool into their Hunt, never a low one or a Rescue", () => {
+    const s = calm(campaign(2, 1));
+    for (const tarot of A.hunts) {
+      const pool = BOSS_BY_ID.get(ARCANA.find((a) => a.tarot === tarot)!.boss)!.pool;
+      expect(rolls(s, card(pool, A.huntLevel)).filter((t) => t === tarot).length / 300, tarot).toBeGreaterThan(0.15);
+      expect(rolls(s, card(pool, A.huntLevel - 1)).some(Boolean)).toBe(false);
+      expect(rolls(s, card(pool, 10, "rescue")).some(Boolean)).toBe(false);
+    }
+    expect(rolls(s, card("pit", 10)).some(Boolean)).toBe(false);
+  });
+
+  it("are dealt by the Gate as Hunt cards with the Arcana as their boss", () => {
+    let seen = 0;
+    for (let seed = 1; seed <= 200 && !seen; seed++) {
+      const s = campaign(2, seed);
+      s.year = 19;
+      for (const c of offer(s).filter((x) => x.arcana)) {
+        expect(c).toMatchObject({ type: "hunt", boss: ARCANA.find((a) => a.tarot === c.arcana)!.boss });
+        seen++;
+      }
+    }
+    expect(seen).toBeGreaterThan(0);
+  });
+
+  it("killed, the Arcana marks its bearer, leaves its Relic, and is never dealt again", () => {
+    // Bare-handed campaign Scions win or lose on the rolls: take the first of a few fights they win.
+    const won = Array.from({ length: 20 }, (_, seed) => {
+      const s = away({ type: "hunt", pool: "dragon_reaches", level: 1, arcana: "world", boss: "arcana_world" });
+      for (const p of s.people) while (p.status === "scion" && p.level < 30) Object.assign(p, levelUp(p));
+      walkers(s)[0]!.tarot = "world";
+      s.expedition!.chain = rollChain(s).slice(-1);
+      expect(s.expedition!.arcana).toBe("world");
+      s.rng = seed + 1;
+      pressOn(s);
+      return s;
+    }).find((s) => s.log.some((l) => l.includes("defeats the boss")));
+    expect(won).toBeDefined();
+    const s = won!;
+    const bearer = walkers(s)[0]!;
+    expect(s.people.find((p) => p.id === bearer.id)!.traits).toContain("worldwalker");
+    expect((s.expedition?.pool ?? []).some((x) => x.item?.named === "the_worlds_mantle")).toBe(true);
+    expect(rolls(s, card("dragon_reaches", 10)).some(Boolean)).toBe(false);
   });
 });
