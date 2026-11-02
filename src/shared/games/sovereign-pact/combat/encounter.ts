@@ -2,7 +2,7 @@
 // pool's roster (entries whose `levels` span L), places the group on the enemy grid, and may open with
 // an Ambush or a Surprise. All seeded.
 import { createRng, type Rng } from "../../../rng.ts";
-import { ENEMIES, POOL_BY_ID, rosterOf, TEMPLATE_BY_ID, TEMPLATES, VARIANT_BY_ID, HAZARD_BY_ID, type EnemyDef, type TemplateDef, type TemplateRole } from "../content.ts";
+import { ENEMIES, ENEMY_BY_ID, POOL_BY_ID, rosterOf, TEMPLATE_BY_ID, TEMPLATES, VARIANT_BY_ID, HAZARD_BY_ID, type EnemyDef, type TemplateDef, type TemplateRole } from "../content.ts";
 import { TUNING } from "../tuning.ts";
 import { enemyCombatant, newBattle } from "./build.ts";
 import { partsOf } from "./enemyparts.ts";
@@ -12,6 +12,7 @@ import { COLS, ROWS, type Battle, type Combatant } from "./types.ts";
 
 const E = TUNING.encounters;
 const V = TUNING.encounters.variants;
+const Q = TUNING.hunt;
 
 export type Modifier = "ambush" | "surprise";
 
@@ -31,6 +32,8 @@ export interface EncounterSpec {
   year?: number;
   /** The Nest stands (§14.7, Year 15 lost): the Outer Dark's fodder and swarms join every pool's. */
   spread?: boolean;
+  /** A Hunt's Lair (§14.9): the named quarry leads its kin, a level up with half again its HP. */
+  quarry?: { enemy: string; title: string; ability: "enrage" | "ambush" | "call_pack" };
   /** Shifts on the base odds, in points (traits, buildings, the Lantern). */
   ambushPct?: number;
   surprisePct?: number;
@@ -114,12 +117,13 @@ const COLUMNS: Record<string, number[]> = {
 const order = (e: EnemyDef) => -e.size[0] * e.size[1] * 10 + (COLUMNS[e.role]?.[0] ?? 0);
 
 /** An enemy to place, optionally as a variant (§14.10). */
-export type Placing = EnemyDef | { def: EnemyDef; variant?: string };
+export type Placing = EnemyDef | { def: EnemyDef; variant?: string; up?: number };
 
 /** Places the group on the enemy grid, each on the free cells nearest the middle rows of its preferred column. */
 export function place(group: readonly Placing[], level: number, firstId = 101): Combatant[] {
   const defs = group.map((g) => ("def" in g ? g.def : g));
   const variants = group.map((g) => ("def" in g ? g.variant : undefined));
+  const ups = group.map((g) => ("def" in g ? (g.up ?? 0) : 0));
   const taken = Array.from({ length: COLS }, () => Array<boolean>(ROWS).fill(false));
   const fits = (c: number, r: number, [w, h]: readonly number[]) => {
     if (c + w! > COLS || r + h! > ROWS) return false;
@@ -137,7 +141,7 @@ export function place(group: readonly Placing[], level: number, firstId = 101): 
     for (let a = 0; a < w; a++) for (let b = 0; b < h; b++) taken[col + a]![row + b] = true;
     const v = variants[i];
     const def = v ? withVariant(d, v) : d;
-    const body = enemyCombatant(def, { id: firstId + i, level: level + (v ? (VARIANT_BY_ID.get(v)!.level ?? 0) : 0), col, row });
+    const body = enemyCombatant(def, { id: firstId + i, level: level + ups[i]! + (v ? (VARIANT_BY_ID.get(v)!.level ?? 0) : 0), col, row });
     if (v) body.variant = v;
     out.push(body, ...partsOf(body, def));
     if (d.parts?.length) body.mods.noMove = 1;
@@ -189,8 +193,18 @@ export function encounter(rng: Rng, spec: EncounterSpec): Encounter {
   // A pool fields its own enemies at the nearest level it has, scaled to the fight's (the Pit at Year 5).
   const [lo, hi] = POOL_BY_ID.get(spec.pool)!.levels;
   const from = Math.max(lo, Math.min(hi, spec.level));
-  const enemies = place(rollVariants(rng, fill(rng, spec.pool, from, rolesFor(rng, t, spec.party), spec.spread), spec.year), spec.level, spec.firstId);
-  const modifier = spec.modifier === null ? undefined : (spec.modifier ?? rollModifier(rng, t, spec));
+  const q = spec.quarry;
+  const roles = [...rolesFor(rng, t, spec.party), ...(q?.ability === "call_pack" ? Q.pack : [])];
+  const kin = rollVariants(rng, fill(rng, spec.pool, from, roles, spec.spread), spec.year);
+  const first = spec.firstId ?? 101;
+  const enemies = place(q ? [{ def: ENEMY_BY_ID.get(q.enemy)!, up: Q.levelUp }, ...kin] : kin, spec.level, first);
+  const lead = q ? enemies.find((u) => u.id === first) : undefined;
+  if (lead) {
+    lead.name = q!.title;
+    lead.maxHp = lead.hp = Math.round((lead.maxHp * Q.hpPct) / 100);
+    if (q!.ability === "enrage") lead.statuses.push({ id: "enrage", ticks: Q.enrageTicks });
+  }
+  const modifier = spec.modifier === null ? undefined : q?.ability === "ambush" ? "ambush" : (spec.modifier ?? rollModifier(rng, t, spec));
   applyModifier(enemies, modifier);
   const hazard = spec.hazards === false ? undefined : rollHazard(rng, spec.pool, spec.hazards)?.id;
   return { template: t.id, modifier, hazard, enemies };

@@ -22,6 +22,7 @@ import buildingsJson from "./content/buildings.json" with { type: "json" };
 import changesJson from "./content/changes.json" with { type: "json" };
 import namedJson from "./content/named.json" with { type: "json" };
 import bargainsJson from "./content/bargains.json" with { type: "json" };
+import quarriesJson from "./content/quarries.json" with { type: "json" };
 import formsJson from "./content/forms.json" with { type: "json" };
 import projectsJson from "./content/projects.json" with { type: "json" };
 import summonsJson from "./content/summons.json" with { type: "json" };
@@ -827,3 +828,16 @@ export interface BargainDef {
 }
 export const BARGAINS = bargainsJson.bargains as unknown as readonly BargainDef[];
 export const BARGAIN_BY_ID = byId(BARGAINS);
+
+/** A Hunt quarry (§14.9): a named enemy of its pool, +1 level and +50% HP, with one trick and a trophy. */
+export interface QuarryDef {
+  id: string;
+  title: string;
+  /** The enemy it is; its pool and levels are the quarry's. */
+  enemy: string;
+  ability: "enrage" | "ambush" | "call_pack";
+  trophy: { valor: number; stores?: Partial<Record<string, number>> };
+  text: string;
+}
+export const QUARRIES = quarriesJson.quarries as unknown as readonly QuarryDef[];
+export const QUARRY_BY_ID = byId(QUARRIES);

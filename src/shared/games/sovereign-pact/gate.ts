@@ -2,6 +2,7 @@
 // Year's level band; in a mandatory Year it offers the arc's card alone (§14.7). The Houses vote on the card
 // in the Settlement Phase, sealed with the Year: the most votes take it, a tie costs Accord and goes to
 // the higher Renown, and no votes at all take the first card.
+import { quarryFor } from "./hunt.ts";
 import { loseAccord } from "./commons.ts";
 import { BOSS_BY_ID, POOL_BY_ID, POOLS, TOWN_EVENT_BY_ID, TOWN_EVENTS } from "./content.ts";
 import { year20 } from "./crisis.ts";
@@ -40,7 +41,10 @@ export function offer(s: SovState): ExpeditionCard[] {
       const level = floor ? Math.max(lo, pool.levels[0]) : Math.max(lo, pool.levels[0]) + rng.int(Math.min(hi, pool.levels[1]) - Math.max(lo, pool.levels[0]) + 1);
       let roll = rng.int(100);
       const size = floor ? 4 : G.sizes.find(([, w]) => (roll -= w) < 0)![0];
-      cards.push({ type: rng.pick(pool.cards) as ExpeditionCard["type"], pool: pool.id, level, size });
+      const type = rng.pick(pool.cards) as ExpeditionCard["type"];
+      // A Hunt card names its quarry (§14.9), while the pool has one left alive.
+      const quarry = type === "hunt" ? quarryFor(s, rng, pool.id, level) : undefined;
+      cards.push({ type, pool: pool.id, level, size, ...(quarry ? { quarry } : {}) });
     }
     return cards;
   });

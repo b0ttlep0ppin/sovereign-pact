@@ -1,0 +1,22 @@
+{
+  "quarries": [
+    { "id": "old_scar", "title": "Old Scar, the Great Boar", "enemy": "beast_wild_boar", "ability": "enrage", "trophy": { "valor": 8, "stores": { "grain": 20 } }, "text": "A boar the size of a cart, its hide a map of every spear that failed." },
+    { "id": "the_tusked_mountain", "title": "The Tusked Mountain", "enemy": "beast_mammoth", "ability": "call_pack", "trophy": { "valor": 12, "stores": { "wyrmbone": 2 } }, "text": "The herd follows it, and the herd tramples villages." },
+    { "id": "the_striped_blade", "title": "Kesh, the Striped Blade", "enemy": "beast_tiger_swordsman", "ability": "ambush", "trophy": { "valor": 12, "stores": { "iron": 10 } }, "text": "A beastfolk duelist who collects the swords of the knights he kills." },
+    { "id": "the_white_tyrant", "title": "The White Tyrant", "enemy": "cold_woolly_mammoth", "ability": "call_pack", "trophy": { "valor": 12, "stores": { "grain": 30 } }, "text": "It drives its herd down the passes every winter, and the passes close behind it." },
+    { "id": "the_iceborn_knight", "title": "Sir Rime, the Iceborn", "enemy": "cold_black_knight", "ability": "enrage", "trophy": { "valor": 15, "stores": { "iron": 15 } }, "text": "A knight who froze on watch a century ago, and never stopped standing it." },
+    { "id": "frostmaw", "title": "Frostmaw", "enemy": "cold_ice_dragon", "ability": "ambush", "trophy": { "valor": 20, "stores": { "wyrmbone": 4 } }, "text": "A white dragon that sleeps under the glacier and wakes hungry." },
+    { "id": "the_brute_of_the_pit", "title": "Gorrh, Fist of the Pit", "enemy": "pit_elite_demon", "ability": "enrage", "trophy": { "valor": 15, "stores": { "iron": 15 } }, "text": "The demon army's champion, who fights for the joy of it." },
+    { "id": "the_ashen_beast", "title": "The Ashen Beast", "enemy": "pit_dark_beast", "ability": "call_pack", "trophy": { "valor": 15, "stores": { "voidglass": 1 } }, "text": "A beast of smoke and teeth that leads the Pit's hounds." },
+    { "id": "the_demon_princess", "title": "Lilu, Daughter of the Pit", "enemy": "pit_demon_princess", "ability": "ambush", "trophy": { "valor": 20, "stores": { "voidglass": 2 } }, "text": "Heir to a throne of fire, and in no hurry to inherit it." },
+    { "id": "the_highway_king", "title": "Red Garrick, the Highway King", "enemy": "court_bandit_boss", "ability": "call_pack", "trophy": { "valor": 8, "stores": { "timber": 20 } }, "text": "He robs the caravans in the old King's name, and keeps the King's share." },
+    { "id": "the_traitor_captain", "title": "Captain Vell, Who Opened the Gate", "enemy": "court_guard_captain", "ability": "ambush", "trophy": { "valor": 12, "stores": { "iron": 10 } }, "text": "The captain who let the otherworld in, and was paid for it." },
+    { "id": "the_zealot", "title": "Brother Ash, the Zealot", "enemy": "court_fanatic_knight", "ability": "enrage", "trophy": { "valor": 15, "stores": { "iron": 15 } }, "text": "He burns villages to save them, and has saved a great many." },
+    { "id": "the_storm_bird", "title": "The Storm That Flies", "enemy": "shrine_thunderbird", "ability": "ambush", "trophy": { "valor": 15, "stores": { "wyrmbone": 2 } }, "text": "Where it nests, it has not stopped raining in forty years." },
+    { "id": "the_hollow_paladin", "title": "The Hollow Paladin", "enemy": "shrine_holy_armor", "ability": "enrage", "trophy": { "valor": 15, "stores": { "iron": 20 } }, "text": "An empty suit of armor still keeping its temple from the faithful." },
+    { "id": "the_earth_shaker", "title": "The One Who Shakes the Earth", "enemy": "shrine_earth_divine_beast", "ability": "call_pack", "trophy": { "valor": 20, "stores": { "stone": 30 } }, "text": "A Divine Beast that has forgotten whom it was set to guard." },
+    { "id": "ironjaw", "title": "Ironjaw, the Crag Wyrm", "enemy": "reach_dragon", "ability": "enrage", "trophy": { "valor": 20, "stores": { "wyrmbone": 5 } }, "text": "A red dragon whose lair is paved with the shields of those who came for it." },
+    { "id": "the_one_eye", "title": "Brom One-Eye", "enemy": "reach_cyclops", "ability": "call_pack", "trophy": { "valor": 18, "stores": { "stone": 25 } }, "text": "A giant who keeps the dragons' cattle, and eats their thieves." },
+    { "id": "nightwing", "title": "Nightwing, the Black Wyrm", "enemy": "reach_dark_wyrm", "ability": "ambush", "trophy": { "valor": 25, "stores": { "wyrmbone": 6, "voidglass": 1 } }, "text": "A wyrm that hunts by night and is never seen until it has chosen." }
+  ]
+}

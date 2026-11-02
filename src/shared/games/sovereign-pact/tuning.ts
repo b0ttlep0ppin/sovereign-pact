@@ -216,6 +216,14 @@ export const TUNING = {
   omens: { houseEventPct: 50 },
 
   /**
+   * §14.9 Hunts, first pass. A Hunt card's quarry is `levelUp` levels above the fight with `hpPct`% HP;
+   * Enrage starts it enraged for `enrageTicks`, Call the Pack adds `pack` to its kin, Ambush opens the
+   * Lair with an ambush. Its trophy is in its content; the first kill of any enemy adds `lorePerEntry`
+   * Lore to each House in the fight (a bestiary entry).
+   */
+  hunt: { levelUp: 1, hpPct: 150, enrageTicks: 600, pack: ["fodder", "fodder"] as const, lorePerEntry: 1 },
+
+  /**
    * §14.7a Dark Bargains, first pass. A House is offered one at Omens `omenPct`% of Years from `fromYear`,
    * at most `omenMax` a campaign (halved odds for `wary` traits). An accepted bargain resolves on a hidden
    * roll: `promisedPct` as promised, `nothingPct` nothing, the rest twisted (a boon at `twistScale`, a bane

@@ -19,6 +19,7 @@ import { LOCATIONS, type Expedition, type NodeKind, type Person, type SovState }
 import { devastate } from "./timeline.ts";
 import { TUNING } from "./tuning.ts";
 import { creditWard } from "./wards.ts";
+import { lairOf, slay, tally, withLair } from "./hunt.ts";
 import { ARC, arcDoom, arcResult, bastionFallBack, bastionShields, withRaid } from "./arc.ts";
 import { divided, gate, partyGone, rally } from "./split.ts";
 import { endCampaign, log, mandatoryYears, withRng } from "./year.ts";
@@ -35,7 +36,8 @@ export function rollChain(s: SovState): NodeKind[] {
       let roll = rng.int(100);
       return J.nodes.find(([, w]) => (roll -= w) < 0)![0];
     });
-    return withRaid(s, [...nodes, "boss"]);
+    const chain: NodeKind[] = [...nodes, "boss"];
+    return withRaid(s, card.quarry ? withLair(rng, chain) : chain);
   });
 }
 
@@ -115,6 +117,7 @@ export function lostClock(s: SovState): void {
 function settle(s: SovState, b: Battle, cause: string): void {
   const e = s.expedition!;
   const won = b.outcome === "victory";
+  tally(s, b, [...new Set(b.units.flatMap((u) => (u.side === "party" && u.person !== undefined && u.owner === undefined ? [person(s, u.person).host] : [])))]);
   for (const u of b.units) {
     if (u.side !== "party" || u.person === undefined || u.owner !== undefined) continue;
     let p = person(s, u.person);
@@ -154,7 +157,7 @@ function camp(s: SovState): void {
 }
 
 /** A battle at the next node: an Encounter from the card's pool, or the boss. */
-export type FightOpts = NonNullable<TripEffect["encounter"]> & { raid?: true };
+export type FightOpts = NonNullable<TripEffect["encounter"]> & { raid?: true; lair?: true };
 
 function fight(s: SovState, boss: boolean, o: FightOpts): Battle {
   const card = s.expedition!.card;
@@ -167,7 +170,7 @@ function fight(s: SovState, boss: boolean, o: FightOpts): Battle {
   const b = id
     ? bossBattle(seed, scions, id, card.level)
     : // A pool with no boss near the level ends in a fight a level above the card's (reading, see DECISIONS).
-      encounterBattle(seed, scions, { pool, level, year: s.year, spread: s.flags.includes(ARC.nestLost), ...(o.modifier ? { modifier: o.modifier } : {}), ...(o.template ? { template: o.template } : {}) }).battle;
+      encounterBattle(seed, scions, { pool, level, year: s.year, spread: s.flags.includes(ARC.nestLost), quarry: o.lair ? lairOf(s) : undefined, ...(o.modifier ? { modifier: o.modifier } : {}), ...(o.template ? { template: o.template } : {}) }).battle;
   simulate(b);
   return b;
 }
@@ -184,6 +187,7 @@ export function battle(s: SovState, boss: boolean, o: FightOpts = {}): boolean {
       bossLoot(s);
       home(s, "won");
     } else {
+      if (o.lair) slay(s, [...new Set(marching(s).map((id) => person(s, id).host))]);
       encounterLoot(s);
       succeed(s);
     }
@@ -211,7 +215,8 @@ export function pressOn(s: SovState): void {
   if (kind === "gate") return gate(s);
   if (kind === "rally") return rally(s);
   if (kind === "raid") log(s, "The Cursed King's knights ride against the party.");
-  battle(s, kind === "boss", kind === "raid" ? { raid: true } : {});
+  if (kind === "lair") log(s, "The party finds the quarry's lair.");
+  battle(s, kind === "boss", kind === "raid" ? { raid: true } : kind === "lair" ? { lair: true } : {});
 }
 
 /** A Leader who falls is replaced by the most travelled Scion still marching (§9.2's tie rule). */

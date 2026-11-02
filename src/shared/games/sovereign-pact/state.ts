@@ -245,6 +245,8 @@ export interface ExpeditionCard {
   boss?: string;
   /** A Rescue card's Lost Scions (§9.9): a won expedition brings them home. */
   rescue?: number[];
+  /** A Hunt card's named quarry (§14.9), by content id: fought in its Lair, one node of the chain. */
+  quarry?: string;
 }
 
 /** One share of a drafted haul: an item, or a bundle of materials. */
@@ -310,7 +312,7 @@ export interface Split {
 }
 
 /** `gate` and `rally` are a 2×4 card's: a Gate waits on the other party; the rally is where they meet for the boss. */
-export type NodeKind = "encounter" | "event" | "camp" | "cache" | "boss" | "gate" | "rally" | "raid";
+export type NodeKind = "encounter" | "event" | "camp" | "cache" | "boss" | "gate" | "rally" | "raid" | "lair";
 
 /**
  * A vote of the Houses (§8.1, §8.8): open in the Settlement Phase, settled when every House has voted or
@@ -468,6 +470,8 @@ export interface SovState {
   notes: string[][];
   /** Set when the campaign ends. */
   outcome?: { won: boolean; reason: string };
+  /** The bestiary (§14.3, §14.9), open to every House: kills by enemy id, and each slain quarry's Houses. */
+  bestiary: { kills: Partial<Record<string, number>>; quarries: Partial<Record<string, number[]>> };
   /** Hidden: Dark Bargains offered and not yet answered, each seen only by its House; Omens offers made to each House (§14.7a). */
   bargains: { pending: PendingBargain[]; offered: number[] };
 }
