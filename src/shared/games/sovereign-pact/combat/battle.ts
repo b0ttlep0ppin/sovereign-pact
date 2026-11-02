@@ -135,19 +135,28 @@ function beginTurn(b: Battle, rng: Rng, u: Combatant): boolean {
   return true;
 }
 
+/** Why the actor cannot move to (col, row) now, or null. */
+export function cannotMove(b: Battle, u: Combatant, col: number, row: number): string | null {
+  if (b.actor !== u.id || b.moved) return "not this combatant's move";
+  if (u.mods.noMove || hasStatus(u, "rooted") || hasStatus(u, "frozen")) return "cannot move";
+  const cells = Math.abs(col - u.col) + Math.abs(row - u.row);
+  if (cells < 1 || cells > Math.min(C.move.maxCells, u.mods.maxMove ?? C.move.maxCells)) return "too far";
+  const there = b.units.find((o) => o.id !== u.id && !o.dead && o.side === u.side && o.col === col && o.row === row);
+  if (there) return cells !== 1 || there.size[0] * there.size[1] !== 1 || u.size[0] * u.size[1] !== 1 ? "cannot swap" : null;
+  return isFree(b, u.side, col, row, u.size, u.id) ? null : "cell taken";
+}
+
 /** Moves the actor up to 2 cells on its own grid, or swaps it with an adjacent ally (§10.4). */
 export function move(b: Battle, u: Combatant, col: number, row: number): void {
-  if (b.actor !== u.id || b.moved) throw new Error("not this combatant's move");
-  if (u.mods.noMove || hasStatus(u, "rooted") || hasStatus(u, "frozen")) throw new Error("cannot move");
+  const why = cannotMove(b, u, col, row);
+  if (why) throw new Error(why);
   const cells = Math.abs(col - u.col) + Math.abs(row - u.row);
-  if (cells < 1 || cells > Math.min(C.move.maxCells, u.mods.maxMove ?? C.move.maxCells)) throw new Error("too far");
   const there = b.units.find((o) => o.id !== u.id && !o.dead && o.side === u.side && o.col === col && o.row === row);
   if (there) {
-    if (cells !== 1 || there.size[0] * there.size[1] !== 1 || u.size[0] * u.size[1] !== 1) throw new Error("cannot swap");
     there.col = u.col;
     there.row = u.row;
     b.events.push({ t: "move", unit: there.id, col: there.col, row: there.row });
-  } else if (!isFree(b, u.side, col, row, u.size, u.id)) throw new Error("cell taken");
+  }
   u.col = col;
   u.row = row;
   u.ct = Math.max(0, u.ct - moveCost(u, cells));

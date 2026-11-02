@@ -2,11 +2,16 @@
 // turns, then stops on a Scion's and waits for the Scion's House to say what they do. A House can hand
 // a turn, or the rest of the battle, to the Scion's gambits; a bot or a player who is away does that
 // every turn, so the gambit engine is the bot. A table that chose "gambits" never stops at all.
-import { act, advance, move, unit, type Action } from "./combat/battle.ts";
-import { frame } from "./combat/replay.ts";
+import { act, advance, ATTACK, cannotMove, cannotUse, move, mpCost, tpCost, unit, type Action } from "./combat/battle.ts";
+import { CONSUMABLE_BY_ID } from "./content.ts";
+import { frame, unitOf, vitalsOf, type Replay, type Vitals } from "./combat/replay.ts";
 import { autoAct, withRng } from "./combat/sim.ts";
 import { hasStatus } from "./combat/grid.ts";
-import type { Combatant } from "./combat/types.ts";
+import { cannotUseItem, itemAbility } from "./combat/items.ts";
+import { hasRoom } from "./combat/summons.ts";
+import { canShift } from "./combat/forms.ts";
+import { cellOf, isSingle, singleTargets, targetSide } from "./combat/targets.ts";
+import { COLS, ROWS, type AbilityDef, type Battle, type Cell, type Combatant, type Side } from "./combat/types.ts";
 import { concluded } from "./journey.ts";
 import type { LiveFight, SovState } from "./state.ts";
 
@@ -107,4 +112,91 @@ export function command(s: SovState, house: number, c: Command): string | null {
   turned(f);
   play(s);
   return null;
+}
+
+/** How a choice is aimed: at the Scion themself, at one of `targets`, or at any cell of `side` (an area). */
+export type Aim = { aim: "self" } | { aim: "unit"; targets: Cell[] } | { aim: "area"; side: Side };
+
+/** One thing the Scion may do this turn, or could if not for `why`. */
+export interface Choice {
+  id: string;
+  name: string;
+  mp: number;
+  tp: number;
+  /** Why it cannot be used now (MP, cooldown, silence…), or null. */
+  why: string | null;
+}
+
+/** The commanding House's view of the turn: where the Scion can move, and what they can do from where they stand. */
+export interface TurnView {
+  unit: number;
+  moved: boolean;
+  moves: [col: number, row: number][];
+  abilities: (Choice & Aim)[];
+  items: (Choice & Aim & { left: number })[];
+}
+
+/** A battle under way, as every House sees it (§15.5): the replay so far, everyone's vitals now, and whose turn waits on which House. */
+export interface FightView {
+  title: string;
+  /** The Scion whose turn waits on a command, and the House that gives it. */
+  person: number | null;
+  house: number | null;
+  /** Houses whose Scions fight by gambits for the rest of it. */
+  auto: number[];
+  replay: Replay;
+  now: Vitals[];
+  /** The turn's choices, for the House that commands it only. */
+  turn: TurnView | null;
+}
+
+const NO_AIM = new Set(["self", "all", "line", "nearest", "random", "front_each_row"]);
+
+function aimOf(b: Battle, u: Combatant, ab: AbilityDef): Aim {
+  if (ab.side === "self" || ab.summon || ab.form || ab.revert || ab.raise || ab.call || ab.devour || ab.song || NO_AIM.has(ab.shape.split(":")[0]!)) return { aim: "self" };
+  if (isSingle(ab)) return { aim: "unit", targets: singleTargets(b, u, ab).map(cellOf) };
+  return { aim: "area", side: targetSide(u, ab) };
+}
+
+/** Why the ability has nothing to aim at, beyond `cannotUse`. */
+function stuck(b: Battle, u: Combatant, ab: AbilityDef, aim: Aim): string | null {
+  if (ab.summon && !hasRoom(b, u, ab.summon)) return "no room";
+  if (ab.form && !canShift(b, u, ab.form)) return "no room";
+  return aim.aim === "unit" && !aim.targets.length ? "out of reach" : null;
+}
+
+function turnView(b: Battle, u: Combatant): TurnView {
+  const moves: [number, number][] = [];
+  for (let col = 0; col < COLS; col++) for (let row = 0; row < ROWS; row++) if (!cannotMove(b, u, col, row)) moves.push([col, row]);
+  const abilities = [ATTACK, ...u.abilities.filter((a) => !a.move?.finisher)].map((ab) => {
+    const aim = aimOf(b, u, ab);
+    return { id: ab.id, name: ab.name ?? ab.id.replace(/_/g, " "), mp: mpCost(u, ab), tp: tpCost(u, ab), why: cannotUse(u, ab) ?? stuck(b, u, ab, aim), ...aim };
+  });
+  const counts = new Map<string, number>();
+  for (const id of b.satchel ?? []) counts.set(id, (counts.get(id) ?? 0) + 1);
+  const items = [...counts].flatMap(([id, left]) => {
+    const ab = itemAbility(u, id);
+    if (!ab) return [];
+    const aim = aimOf(b, u, ab);
+    return [{ id, name: CONSUMABLE_BY_ID.get(id)?.name ?? id, mp: 0, tp: 0, why: cannotUseItem(b, u, id) ?? stuck(b, u, ab, aim), left, ...aim }];
+  });
+  return { unit: u.id, moved: !!b.moved, moves, abilities, items };
+}
+
+/** The battle for `me`'s screen, or null when none is under way. */
+export function fightView(s: SovState, me: number | null): FightView | null {
+  const f = s.expedition?.fight;
+  if (!f) return null;
+  const u = f.unit === undefined ? undefined : unit(f.b, f.unit);
+  const house = awaited(s);
+  return {
+    title: f.title,
+    person: u?.person ?? null,
+    house,
+    auto: f.auto ?? [],
+    // Summons that came since the start are on the replay's roll too.
+    replay: { ...f.replay, units: f.b.units.map(unitOf) },
+    now: f.b.units.map(vitalsOf),
+    turn: u && me !== null && me === house ? turnView(f.b, u) : null,
+  };
 }
