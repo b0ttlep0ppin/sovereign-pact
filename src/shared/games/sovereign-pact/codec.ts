@@ -111,6 +111,7 @@ export function packPeople(people: readonly Person[]): PackedPeople {
       int(w.job === null ? -1 : ref(w.job));
       int(w.secondary === undefined ? -1 : ref(w.secondary));
     }
+    list(p.post ?? []);
     return encodeInts(out);
   });
   return { dict, rows };
@@ -179,6 +180,7 @@ export function unpackPeople({ dict, rows }: PackedPeople): Person[] {
       change = { id: str(changed), was: { level, base: b, growth: g, carry: c, traits, look, injuries, job: j === -1 ? null : (str(j) as JobId) } };
       if (sec !== -1) change.was.secondary = str(sec) as JobId;
     }
+    const post = list();
     const person: Person = {
       id, status, house, host, name, sex, look, age, base, growth, carry, potential, level, xp,
       job: job === -1 ? null : (str(job) as JobId),
@@ -194,6 +196,7 @@ export function unpackPeople({ dict, rows }: PackedPeople): Person[] {
     if (blessed.length) person.blessed = blessed;
     if (lost.length === 3) person.lost = { year: lost[0]!, pool: str(lost[1]!), level: lost[2]! };
     if (change) person.change = change;
+    if (post.length === 2) person.post = [post[0]!, post[1]!];
     return person;
   });
 }
