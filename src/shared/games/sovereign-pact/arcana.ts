@@ -2,10 +2,10 @@
 // card in an expedition's chain, far likelier when a Scion of that Tarot walks with the party. Killing it
 // gives that Scion (if they still stand) the Arcana's trait for good, and drops its Relic into the haul.
 import type { Rng } from "../../rng.ts";
-import { ARCANA, ARCANA_BY_TAROT, TRAIT_BY_ID } from "./content.ts";
+import { ARCANA, ARCANA_BY_TAROT, BOSS_BY_ID, TRAIT_BY_ID } from "./content.ts";
 import { madeNamed } from "./items.ts";
 import { carryNamed } from "./loot.ts";
-import type { NodeKind, Person, SovState } from "./state.ts";
+import type { ExpeditionCard, NodeKind, Person, SovState } from "./state.ts";
 import { TUNING } from "./tuning.ts";
 import { log } from "./year.ts";
 
@@ -28,6 +28,20 @@ export function withArcana(s: SovState, rng: Rng, chain: NodeKind[], tarot: stri
   s.flags.push(`arcana_${tarot}`);
   const at = rng.int(chain.length);
   return [...chain.slice(0, at), "arcana", ...chain.slice(at)];
+}
+
+/** A high card in a great Arcana's pool may become that Arcana's Hunt (§14.9): the Gate deals it so. */
+export function arcanaHuntFor(s: SovState, rng: Rng, card: ExpeditionCard): string | undefined {
+  if (card.level < A.huntLevel || card.type === "mandatory" || card.type === "forced" || card.type === "rescue") return undefined;
+  const here = A.hunts.filter((t) => !met(s, t) && BOSS_BY_ID.get(ARCANA_BY_TAROT.get(t)!.boss)!.pool === card.pool);
+  return here.length && rng.int(100) < A.huntPct ? rng.pick(here) : undefined;
+}
+
+/** An Arcana Hunt sets out: its Arcana is met for the campaign, and this chain holds no other. */
+export function huntArcana(s: SovState): void {
+  const tarot = s.expedition!.card.arcana!;
+  s.expedition!.arcana = tarot;
+  s.flags.push(`arcana_${tarot}`);
 }
 
 /** The boss the Arcana node fights. */

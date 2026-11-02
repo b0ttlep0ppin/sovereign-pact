@@ -249,6 +249,8 @@ export interface ExpeditionCard {
   idol?: string;
   /** A Hunt card's named quarry (§14.9), by content id: fought in its Lair, one node of the chain. */
   quarry?: string;
+  /** An Arcana Hunt's Tarot (§14.9): the great Arcana is the card's boss. */
+  arcana?: string;
 }
 
 /** One share of a drafted haul: an item, or a bundle of materials. */

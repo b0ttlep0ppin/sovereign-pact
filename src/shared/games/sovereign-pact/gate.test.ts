@@ -43,7 +43,8 @@ describe("the Rift Gate's offer (§9.1)", () => {
           const pool = POOL_BY_ID.get(c.pool)!;
           expect(c.level).toBeGreaterThanOrEqual(Math.max(lo, pool.levels[0]));
           expect(c.level).toBeLessThanOrEqual(Math.min(hi, pool.levels[1]));
-          expect(pool.cards).toContain(c.type);
+          // A great Arcana's Hunt is dealt in its boss's pool, whatever cards the pool deals (§14.9).
+          expect(c.arcana ? ["hunt"] : pool.cards).toContain(c.type);
           expect([4, 8, "2x4"]).toContain(c.size);
         }
       }
