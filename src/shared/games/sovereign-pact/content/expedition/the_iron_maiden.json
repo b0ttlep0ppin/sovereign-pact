@@ -1,0 +1,96 @@
+{
+  "id": "the_iron_maiden",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    10
+  ],
+  "title": "The Iron Maiden",
+  "text": "An iron coffin stands open on a hill, lined with spikes, and a voice inside promises strength to whoever steps in.",
+  "options": [
+    {
+      "id": "weak",
+      "label": "The weakest steps in to be made strong.",
+      "rule": "scion:lowest:might|scion:random",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "The spikes close and do not quite meet. They step out harder.",
+          "effects": [
+            {
+              "stat": {
+                "might": 1
+              }
+            },
+            {
+              "durability": -40,
+              "loc": "body"
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "The spikes meet.",
+          "effects": [
+            {
+              "injury": "body"
+            },
+            {
+              "sanity": -10
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "scarred",
+      "label": "Someone who has already bled in it knows the trick.",
+      "rule": "scion:injured:any|scion:highest:resilience",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "They wedge the lid with a scabbard and pry out the iron.",
+          "effects": [
+            {
+              "resources": {
+                "iron": 4
+              }
+            },
+            {
+              "xp": 60
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "leave",
+      "label": "Close the lid and walk on.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The voice keeps calling all afternoon.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -3
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

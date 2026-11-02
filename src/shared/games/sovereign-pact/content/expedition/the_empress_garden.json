@@ -1,0 +1,96 @@
+{
+  "id": "the_empress_garden",
+  "pools": [
+    "general"
+  ],
+  "weight": 1,
+  "band": [
+    3,
+    10
+  ],
+  "title": "The Overgrown Throne",
+  "text": "A throne sits in a garden gone wild, roses climbing its arms, and the roses turn toward one of you.",
+  "options": [
+    {
+      "id": "empress",
+      "label": "The one the roses turn to takes the seat.",
+      "rule": "scion:tarot:empress|vote",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The garden kneels.",
+          "effects": [
+            {
+              "to": "party",
+              "status": "regen"
+            },
+            {
+              "to": "party",
+              "sanity": 10
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cut",
+      "label": "Cut a path to the throne.",
+      "rule": "scion:highest:might",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "The roses bleed, and the throne holds a jeweled seed.",
+          "effects": [
+            {
+              "resources": {
+                "essence": 6
+              }
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "The thorns fight back.",
+          "effects": [
+            {
+              "to": "party",
+              "status": "poison"
+            },
+            {
+              "durability": -20,
+              "loc": "arms"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bow",
+      "label": "Bow to the empty seat and go.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A rose follows you out on the wind.",
+          "effects": [
+            {
+              "blessing": {
+                "trait": "lucky",
+                "years": 1
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

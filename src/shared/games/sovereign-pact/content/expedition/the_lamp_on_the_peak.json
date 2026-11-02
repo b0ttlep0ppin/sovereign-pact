@@ -1,0 +1,87 @@
+{
+  "id": "the_lamp_on_the_peak",
+  "pools": [
+    "general"
+  ],
+  "weight": 1,
+  "band": [
+    4,
+    10
+  ],
+  "title": "The Lamp on the Peak",
+  "text": "A single lamp burns on a peak no one could climb. Someone has to want very little to reach it.",
+  "options": [
+    {
+      "id": "hermit",
+      "label": "The one who wants least goes up.",
+      "rule": "scion:tarot:hermit|scion:highest:sagacity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "They come down quieter, and know which way to go.",
+          "effects": [
+            {
+              "foresee": true
+            },
+            {
+              "score": {
+                "lore": 2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "climb",
+      "label": "The strongest climbs.",
+      "rule": "scion:highest:might",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 40,
+          "text": "They reach it, somehow.",
+          "effects": [
+            {
+              "xp": 120
+            },
+            {
+              "score": {
+                "valor": 2
+              }
+            }
+          ]
+        },
+        {
+          "w": 60,
+          "text": "They fall a long way.",
+          "effects": [
+            {
+              "injury": "legs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pass",
+      "label": "It is not for you.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The lamp goes out as you leave.",
+          "effects": []
+        }
+      ]
+    }
+  ]
+}

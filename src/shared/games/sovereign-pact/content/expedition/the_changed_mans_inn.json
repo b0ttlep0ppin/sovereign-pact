@@ -1,0 +1,90 @@
+{
+  "id": "the_changed_mans_inn",
+  "pools": [
+    "general"
+  ],
+  "weight": 1,
+  "band": [
+    5,
+    10
+  ],
+  "title": "The Inn of the Changed",
+  "text": "An inn where every guest is something other than they were. The keeper will not serve the merely human.",
+  "options": [
+    {
+      "id": "changed",
+      "label": "One of you who has been Changed asks for a room.",
+      "rule": "scion:changed|vote",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "They are welcome, and so are their friends.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 15
+            },
+            {
+              "to": "party",
+              "mp": 30
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pretend",
+      "label": "Pretend to be changed.",
+      "rule": "scion:highest:guile",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 55,
+          "text": "A convincing limp and a glass eye.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 10
+            }
+          ]
+        },
+        {
+          "w": 45,
+          "text": "The guests know.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "ambush"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "leave",
+      "label": "Sleep outside.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Something watches from the windows all night.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -5
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

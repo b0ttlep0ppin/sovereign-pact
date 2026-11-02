@@ -2,6 +2,10 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 7aa: the general pool reaches 150) — implementer
+- **Built** (content only). Sixteen general expedition events: the Iron Maiden, the Archer's Wager, the Green Hand, the Widow's Tide, the Overgrown Throne, the Lamp on the Peak, the Old Soldiers, the Inn of the Changed, the Arrow Storm, the Shy Ghost, the Brave Man's Bridge, the Scrap Heap, the Dice of Houses, the Coward's Cave, the Altar of Scars and the Tide Bell. That makes 224 expedition events, 150 of them open to any card, which meets HANDOFF §6's general budget.
+- **Reading:** these lean on the subject rules `npm run events` flagged as rarely used (a trait, a Tarot card, a Change, an old wound, fewest kills or expeditions, the House the dice pick), each with a fallback rule for a party that has no such Scion. Fewest kills and fewest expeditions now reach five uses; the per-pool fill will raise the rest.
+
 ## 2026-11-02 (implementation, Milestone 7z: sixteen more general events) — implementer
 - **Built** (content only). Sixteen general expedition events: the Fallen Messenger, the Oathstone, the Chess Player, the Fallen Star, the Prison Cart, the Bridge of Light, the Sunken Road, the Lantern Procession, the Crown in the Mud, the Cold Cave, the Puppet Show, the Honest Merchant, the Black Dog, the Clear Spring, the Bandits' Toll and the Glass House. That makes 208 expedition events, 134 of them open to any card.
 - **Reading:** each uses only effects and subject rules the rules already have.

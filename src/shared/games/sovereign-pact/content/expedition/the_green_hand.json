@@ -1,0 +1,100 @@
+{
+  "id": "the_green_hand",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    8
+  ],
+  "title": "The Green Hand",
+  "text": "A hand of living vine reaches from a well, offering to take the hurt from any wounded arm laid in it.",
+  "options": [
+    {
+      "id": "arm",
+      "label": "The one with the hurt arm lays it in.",
+      "rule": "scion:injured:arms|scion:lowest:might",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "The vine knits the arm and lets go.",
+          "effects": [
+            {
+              "mend": true
+            },
+            {
+              "sanity": -5
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "The vine takes the arm's strength instead of its hurt.",
+          "effects": [
+            {
+              "stat": {
+                "might": -1
+              }
+            },
+            {
+              "mend": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pious",
+      "label": "Someone with healer's hands asks the well's name.",
+      "rule": "scion:trait:pious_hands|scion:most_healing",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It answers, and teaches a little of its craft.",
+          "effects": [
+            {
+              "growth": {
+                "sagacity": 10
+              }
+            },
+            {
+              "jp": 40
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "burn",
+      "label": "Burn it out.",
+      "rule": "vote",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It screams like a child.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -8
+            },
+            {
+              "resources": {
+                "essence": 4
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,100 @@
+{
+  "id": "the_brave_mans_bridge",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    10
+  ],
+  "title": "The Brave Man's Bridge",
+  "text": "A bridge of a single rope, and a sign: only the brave may cross, the rest must swim.",
+  "options": [
+    {
+      "id": "brave",
+      "label": "The bravest crosses and makes it fast.",
+      "rule": "scion:trait:brave|scion:highest:speed",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 85,
+          "text": "A second rope, then a third. Everyone crosses dry.",
+          "effects": [
+            {
+              "xp": 80
+            },
+            {
+              "score": {
+                "valor": 1
+              }
+            }
+          ]
+        },
+        {
+          "w": 15,
+          "text": "The rope snaps.",
+          "effects": [
+            {
+              "durability": -40,
+              "loc": "legs"
+            },
+            {
+              "to": "party",
+              "sanity": -5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "swim",
+      "label": "Swim.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Cold, wet, and slower.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -5
+            },
+            {
+              "to": "party",
+              "status": "slow"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "burn",
+      "label": "Burn the bridge so no one follows.",
+      "rule": "leader",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "You swim, but nothing follows.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -5
+            },
+            {
+              "skip": 1
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
