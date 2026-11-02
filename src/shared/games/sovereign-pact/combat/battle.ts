@@ -17,7 +17,7 @@ import { hasStatus, isFree, standing } from "./grid.ts";
 import { kill } from "./injury.ts";
 import { cannotUseItem, itemAbility, spendItem } from "./items.ts";
 import { addStatus, extraOf, meta, removeStatus } from "./status.ts";
-import { cellOf, isSingle, resolveTargets, singleTargets } from "./targets.ts";
+import { cellOf, isSingle, resolveTargets, rushCol, singleTargets } from "./targets.ts";
 import type { AbilityDef, Battle, Cell, Combatant } from "./types.ts";
 
 const C = TUNING.combat;
@@ -108,6 +108,8 @@ function beginTurn(b: Battle, rng: Rng, u: Combatant): boolean {
   b.events.push({ t: "turn", unit: u.id, tick: b.tick });
   u.turns++;
   u.defending = false;
+  // Last Stand (§12.5): a free Defend every turn while it lasts.
+  if (hasStatus(u, "last_stand")) u.defending = true;
   // Cast Lots' and Reckless Swing's "until next turn" effects end here, and so does Mirror Stance.
   for (const k of Object.keys(u.mods)) if (k.startsWith("turn.")) delete u.mods[k];
   for (const s of [...u.statuses]) if (meta(s.id).endsOnTurn) removeStatus(b, u, s.id);
@@ -299,6 +301,18 @@ export function resolve(b: Battle, rng: Rng, u: Combatant, ab: AbilityDef, at: C
     else if (ab.form) shift(b, u, ab.form);
     else revert(b, u);
     return;
+  }
+  // Charge!: the run comes first (§12.5).
+  if (ab.rush) {
+    const col = rushCol(b, u, ab.rush);
+    if (col !== u.col) {
+      u.col = col;
+      b.events.push({ t: "move", unit: u.id, col: u.col, row: u.row });
+    }
+  }
+  if (ab.defend) {
+    u.defending = true;
+    b.events.push({ t: "defend", unit: u.id });
   }
   let targets = resolveTargets(b, rng, u, ab, at, homingOn);
   if (counterspelled(b, rng, u, ab, targets)) return;

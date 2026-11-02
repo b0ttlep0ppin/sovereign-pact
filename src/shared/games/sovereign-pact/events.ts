@@ -13,7 +13,8 @@ import { isWard } from "./wards.ts";
 import { carriedRoll } from "./combat/injury.ts";
 import { BUILDING_BY_ID, HOUSE_TRAIT_BY_ID, INJURY_BY_ID, INJURY_TABLE_BY_ID, TAROT, TAROT_BY_ID, TRAIT_BY_ID, TRAITS, TRIP_EVENT_BY_ID, TRIP_EVENTS, type InjuryTableId, type TripEffect, type TripEventDef, type TripOption } from "./content.ts";
 import { battle, die, home, lose, marching, person, succeed } from "./journey.ts";
-import { gainJp, gainXp, jobStats, passiveBudget, passivePoints } from "./progression.ts";
+import { gainJp, gainXp, jobStats, passiveBudget, passiveMods, passivePoints } from "./progression.ts";
+import { jobStat } from "./formulas.ts";
 import { ascendancy } from "./score.ts";
 import { GEAR_SLOTS, LOCATIONS, STATS, type HistKey, type NodeKind, type Person, type ScoreCategory, type SovState, type Then } from "./state.ts";
 import { TUNING } from "./tuning.ts";
@@ -233,6 +234,7 @@ function apply(s: SovState, fx: TripEffect, ids: number[], house: number | null,
     const at = s.people.findIndex((p) => p.id === id);
     if (at < 0) continue;
     let p = s.people[at]!;
+    if (shrugs(s, p, fx)) continue;
     const cap = caps(s, p);
     if (fx.sanity) p.sanity = Math.max(0, Math.min(cap.sanity, p.sanity + pctOf(cap.sanity, fx.sanity)));
     if (fx.mp) p.mp = Math.max(0, Math.min(cap.mp, p.mp + pctOf(cap.mp, fx.mp)));
@@ -308,6 +310,21 @@ function apply(s: SovState, fx: TripEffect, ids: number[], house: number | null,
     log(s, "The party kneels, and the Idol lets it go home.");
     home(s, "won");
   }
+}
+
+/** Whether an effect does a Scion harm: wounds, lost Sanity, MP or Durability, an injury, a Curse, a stat lost, being Lost. */
+const harms = (fx: TripEffect): boolean =>
+  (fx.hp ?? 0) < 0 || (fx.sanity ?? 0) < 0 || (fx.mp ?? 0) < 0 || (fx.durability ?? 0) < 0 || !!fx.injury || !!fx.curse || !!fx.scion_lost || Object.values(fx.stat ?? {}).some((n) => n! < 0);
+
+/** Veteran (§12.5): once an expedition, a Guile % chance to shrug off a harm. */
+function shrugs(s: SovState, p: Person, fx: TripEffect): boolean {
+  const c = s.expedition?.carry[p.id];
+  if (!harms(fx) || c?.shrugged || !passiveMods(p).some((m) => m.veteran)) return false;
+  const guile = jobStat(p, "guile");
+  if (withRng(s, (rng) => rng.int(100)) >= guile) return false;
+  (s.expedition!.carry[p.id] ??= { dur: {}, broken: [] }).shrugged = true;
+  log(s, `${p.name} has seen worse, and shrugs it off.`);
+  return true;
 }
 
 /** The effects that change one person for good: stats, growths, traits, Curses, the Tarot, a Ward's Loyalty, being Lost. */

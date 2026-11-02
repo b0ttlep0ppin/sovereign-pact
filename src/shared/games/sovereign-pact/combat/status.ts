@@ -111,6 +111,9 @@ export const STATUSES: Record<string, StatusMeta> = {
   interposing: { kind: "buff", ticks: 0, endsOnTurn: true },
   riposte: { kind: "buff", ticks: 500 },
   stand_fast: { kind: "buff", ticks: 300 },
+  // The Soldier (§12.5): Brace holds until the next turn; Last Stand's damage and no-healing ride in its mods.
+  braced: { kind: "buff", ticks: 0, endsOnTurn: true },
+  last_stand: { kind: "buff", ticks: 300 },
 };
 
 // A Form's mods ride on a status of its own, which only Revert removes.

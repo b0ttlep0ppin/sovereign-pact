@@ -2,7 +2,7 @@
 import type { Rng } from "../../../rng.ts";
 import { TUNING } from "../tuning.ts";
 import { reachOf } from "./damage.ts";
-import { cellsOf, frontEachRow, hasStatus, lineTargets, meleeTargets, other, shapeCells, standing, unitsIn, unseen, untouchable } from "./grid.ts";
+import { cellsOf, frontEachRow, hasStatus, isFree, lineTargets, meleeTargets, other, shapeCells, standing, unitsIn, unseen, untouchable } from "./grid.ts";
 import { ROWS, type AbilityDef, type Battle, type Cell, type Combatant, type Side } from "./types.ts";
 
 /** The side `u` fights for: a Charmed combatant fights for the other one (§10.8). */
@@ -26,6 +26,19 @@ export const crossDistance = (a: Combatant, b: Combatant) =>
  * (§10.9, §10.8); allies can always be picked.
  */
 export function singleTargets(b: Battle, u: Combatant, ab: AbilityDef): Combatant[] {
+  // Charge! picks from where the run ends.
+  if (ab.rush) {
+    const col = rushCol(b, u, ab.rush);
+    if (col !== u.col) {
+      const from = u.col;
+      u.col = col;
+      try {
+        return singleTargets(b, u, { ...ab, rush: undefined });
+      } finally {
+        u.col = from;
+      }
+    }
+  }
   const side = targetSide(u, ab);
   if (ab.side === "self") return [u];
   // Rescue swaps with a one-cell ally in the user's own row.
@@ -48,6 +61,13 @@ export function singleTargets(b: Battle, u: Combatant, ab: AbilityDef): Combatan
     return [...new Set([...found, ...exposed])];
   }
   return meleeTargets(b, u, reach);
+}
+
+/** Where a run of up to `cells` toward the Front of `u`'s row stops: the last free cell before anything in the way. */
+export function rushCol(b: Battle, u: Combatant, cells: number): number {
+  let col = u.col;
+  while (col > 0 && u.col - col < cells && u.size[0] * u.size[1] === 1 && isFree(b, u.side, col - 1, u.row, u.size, u.id)) col--;
+  return col;
 }
 
 /** The cell a combatant stands on (its top-left), for aiming. */

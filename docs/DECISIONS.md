@@ -2,6 +2,13 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 8az): the Soldier's last seven abilities
+
+- Built: Brace (a Defend, and Knockdown immunity until the next turn), Charge! (runs to the Front of the Soldier's own row, stopping at whoever stands in the way, then strikes from there; it picks its target from where the run ends), Throw Weapon, Last Stand (+30% damage, a free Defend at the start of each turn, no healing, 300 ticks), Skullsplitter, Grizzled (Head, Body, Arms and Legs rolls; not Sanity's) and Veteran.
+- Reading: Throw Weapon's "it lands on the target cell" is the lob's landing, not a lost weapon: the throw reaches any foe whatever the weapon's reach, and the Soldier keeps fighting with it.
+- Reading: Veteran's "bad event outcome" is any expedition event effect that harms that Scion (lost HP, Sanity, MP or Durability, an injury, a Curse, a stat lost, being Lost). The shrug, once an expedition, skips that effect for them only, and the log says so.
+- Bots Brace and take their Last Stand only below half HP.
+
 ## 2026-11-02 (implementation, Milestone 8ay): the Knight's last nine abilities
 
 - Josh: "there are also a ton of abilities you didn't bother to implement". The Knight's nine are built: Interpose (a foe's hits on that ally, area ones too, strike the Knight until the Knight's next turn), Riposte, Rescue (only a one-cell ally in the Knight's own row), Stand Fast (immune to Knockdown, Fear and Readiness damage), Valor (each physical ailment is rolled apiece), Commanding Presence (the best Knight in the column lends, not each), Shieldbearer, Heavy Step, Bodyguard (allies beside the Knight among the foe's choices).
