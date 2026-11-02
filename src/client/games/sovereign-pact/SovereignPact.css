@@ -113,3 +113,10 @@
 .sp-bid { display: inline-flex; gap: 6px; align-items: center; }
 .sp-bid input { width: 5em; font: inherit; padding: 6px; background: var(--panel); color: var(--text); border: 1px solid var(--line); border-radius: 4px; }
 @media (max-width: 640px) { .sp-lots li { grid-template-columns: 1fr; } }
+/* Deals (§8.9). */
+.sp-offer { display: grid; gap: 8px; margin-top: 12px; justify-items: start; }
+.sp-offer h3 { margin: 0; font-size: 0.85rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.sp-offer fieldset { display: flex; flex-wrap: wrap; gap: 8px 14px; border: 1px solid var(--line); border-radius: 4px; padding: 8px 10px; margin: 0; }
+.sp-offer legend { color: var(--muted); font-size: 0.85rem; }
+.sp-offer input[type="number"] { width: 4.5em; font: inherit; padding: 4px 6px; background: var(--panel); color: var(--text); border: 1px solid var(--line); border-radius: 4px; }
+.sp-offer select { font: inherit; }

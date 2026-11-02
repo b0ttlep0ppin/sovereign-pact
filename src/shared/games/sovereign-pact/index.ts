@@ -34,6 +34,7 @@ import { botDraft, cannotDraft, draftPick } from "./loot.ts";
 import { botField, botLeader, cannotField, cannotLead, field, voteLeader, waiting } from "./expedition.ts";
 
 export type { SovMove, SovState } from "./state.ts";
+export { MATERIALS } from "./state.ts";
 export type { SovView } from "./view.ts";
 export { restore, type SovSave } from "./save.ts";
 export * as Content from "./content.ts";

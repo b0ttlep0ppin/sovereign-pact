@@ -6,6 +6,7 @@ import { Content, TIER_NAMES, type SovMove, type SovView } from "@vibepulse/shar
 import { useState } from "react";
 import BattleScreen from "./BattleScreen";
 import ChainMap from "./ChainMap";
+import Deals from "./Deals";
 import Decisions from "./Decisions";
 import Market from "./Market";
 import { HERALDRY_COLORS, Emblem } from "./Emblem";
@@ -205,6 +206,7 @@ export default function SovereignPact({ view, isMyTurn, sendMove, lastError }: P
       {view.phase === "settlement" || view.phase === "expedition" ? <Decisions view={view} sendMove={sendMove} canAct={view.phase === "settlement" && !!mine && !mine.sealed} /> : null}
       {view.phase === "settlement" || view.phase === "omens" ? <RiftGate view={view} sendMove={sendMove} canVote={view.phase === "settlement" && !!mine && !mine.sealed} /> : null}
       {view.phase === "settlement" ? <Market view={view} sendMove={sendMove} canAct={!!mine && !mine.sealed} /> : null}
+      {view.phase === "settlement" ? <Deals view={view} sendMove={sendMove} canAct={!!mine && !mine.sealed} /> : null}
       {view.phase === "expedition" ? <ChainMap view={view} /> : null}
 
       <section className="sp-panel" aria-label="People">
