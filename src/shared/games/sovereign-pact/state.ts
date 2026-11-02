@@ -113,6 +113,8 @@ export interface Person {
   hist: Partial<Record<HistKey, number>>;
   /** Traits held for a time (§9.4 blessings): the Reckonings each has left before it fades. */
   blessed?: { id: string; years: number }[];
+  /** A Lost Scion's last sighting (§9.9): the Year, and the pool and level of the expedition that left them. */
+  lost?: { year: number; pool: string; level: number };
   /** Wards only: 0–100, hidden from both Houses (§6.9). */
   loyalty?: number;
   /** Wards only: the Year the host took them in (no giving back within 3 Years). */
@@ -226,6 +228,8 @@ export interface ExpeditionCard {
   size: 4 | 8 | "2x4";
   /** The mandatory arc's boss (§14.7); other cards draw theirs from the pool. */
   boss?: string;
+  /** A Rescue card's Lost Scions (§9.9): a won expedition brings them home. */
+  rescue?: number[];
 }
 
 /** One share of a drafted haul: an item, or a bundle of materials. */

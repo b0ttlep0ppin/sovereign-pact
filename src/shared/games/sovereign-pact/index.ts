@@ -424,7 +424,7 @@ export function botMove(s: SovState, playerId: PlayerId): SovMove {
   if (house >= 0 && s.phase === "settlement" && !s.houses[house]!.sealed) {
     const help = botCrisis(s, house);
     if (help) return { type: "crisis_pledge", give: help };
-    if (s.gate && s.gate.cards.length > 1 && s.gate.votes[house] === null) return { type: "pick_card", card: botCard(s) };
+    if (s.gate && s.gate.cards.length > 1 && s.gate.votes[house] === null) return { type: "pick_card", card: botCard(s, house) };
     const raise = botPromote(s, house);
     if (raise) return { type: "promote", ...raise };
     const job = botAssign(s, house);

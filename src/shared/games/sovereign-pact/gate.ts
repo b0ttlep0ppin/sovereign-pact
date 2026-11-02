@@ -27,9 +27,11 @@ export function offer(s: SovState): ExpeditionCard[] {
     }
     const [lo, hi] = band(y);
     const count = G.cards[0] + rng.int(G.cards[1] - G.cards[0] + 1);
-    const cards: ExpeditionCard[] = [];
+    // §9.9: the Lost are sought where they were left, on a Rescue card of its own beside the offer.
+    const cards: ExpeditionCard[] = rescues(s);
+    const fixed = cards.length;
     for (const pool of rng.shuffle(POOLS.filter((p) => p.levels[0] <= hi && lo <= p.levels[1]))) {
-      if (cards.length >= count) break;
+      if (cards.length - fixed >= count) break;
       const level = Math.max(lo, pool.levels[0]) + rng.int(Math.min(hi, pool.levels[1]) - Math.max(lo, pool.levels[0]) + 1);
       let roll = rng.int(100);
       const size = G.sizes.find(([, w]) => (roll -= w) < 0)![0];
@@ -37,6 +39,19 @@ export function offer(s: SovState): ExpeditionCard[] {
     }
     return cards;
   });
+}
+
+/** A Rescue card for each place Scions were Lost, holding them all (§9.9). */
+function rescues(s: SovState): ExpeditionCard[] {
+  const groups = new Map<string, ExpeditionCard>();
+  for (const p of s.people) {
+    if (p.status !== "lost" || !p.lost) continue;
+    const key = `${p.lost.pool}:${p.lost.level}`;
+    const card = groups.get(key) ?? { type: "rescue" as const, pool: p.lost.pool, level: p.lost.level, size: 4 as const, rescue: [] };
+    card.rescue!.push(p.id);
+    groups.set(key, card);
+  }
+  return [...groups.values()];
 }
 
 /** Opens the Gate for the Year. */
@@ -78,7 +93,10 @@ export function chosenCard(s: SovState): ExpeditionCard | undefined {
 }
 
 /** The bot's card: the lowest level among those the Houses' Scions could fill, else the lowest (it is cautious). */
-export function botCard(s: SovState): number {
+export function botCard(s: SovState, house?: number): number {
+  // A bot goes looking for its own Lost first.
+  const own = s.gate!.cards.findIndex((c) => c.rescue?.some((id) => s.people.find((p) => p.id === id)?.house === house));
+  if (own >= 0) return own;
   const scions = s.people.filter((p) => p.status === "scion").length;
   const cards = s.gate!.cards.map((c, i) => ({ c, i, fits: (c.size === 4 ? 4 : 8) <= scions }));
   const pool = cards.some((x) => x.fits) ? cards.filter((x) => x.fits) : cards;

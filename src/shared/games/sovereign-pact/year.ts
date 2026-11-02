@@ -15,7 +15,7 @@ import { wardYear } from "./wards.ts";
 import { fallen } from "./lifecycle.ts";
 import { chosenCard, openGate } from "./gate.ts";
 import { muster, waiting } from "./expedition.ts";
-import { home } from "./journey.ts";
+import { home, lostClock } from "./journey.ts";
 import { settleVote } from "./votes.ts";
 import { resolveCrisis } from "./crisis.ts";
 import { closeEvents, drawOmens } from "./omens.ts";
@@ -154,6 +154,7 @@ export function reckoning(s: SovState): void {
   yearOfAssignments(s);
   fadeBlessings(s);
   wardYear(s);
+  lostClock(s);
   for (const p of s.people) p.mp = caps(s, p).mp;
   s.doom = Math.min(100, s.doom + TUNING.tracks.doomPerYear);
   arrivals(s);

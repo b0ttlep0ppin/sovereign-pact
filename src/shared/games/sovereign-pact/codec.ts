@@ -95,6 +95,8 @@ export function packPeople(people: readonly Person[]): PackedPeople {
     list(trimZeros(HIST_KEYS.map((key) => p.hist[key] ?? 0)));
     int(p.loyalty ?? -1);
     int(p.wardSince ?? -1);
+    list((p.blessed ?? []).flatMap((b) => [ref(b.id), b.years]));
+    list(p.lost ? [p.lost.year, ref(p.lost.pool), p.lost.level] : []);
     return encodeInts(out);
   });
   return { dict, rows };
@@ -150,6 +152,8 @@ export function unpackPeople({ dict, rows }: PackedPeople): Person[] {
     const hist = list();
     const loyalty = int();
     const wardSince = int();
+    const blessed = pairs(list()).map(([i, years]) => ({ id: str(i), years }));
+    const lost = list();
     const person: Person = {
       id, status, house, host, name, sex, look, age, base, growth, carry, potential, level, xp,
       job: job === -1 ? null : (str(job) as JobId),
@@ -162,6 +166,8 @@ export function unpackPeople({ dict, rows }: PackedPeople): Person[] {
     if (aff.length) person.aff = Object.fromEntries(aff.flatMap((n, i) => (n ? [[ELEMENTS[i]! as Element, n]] : [])));
     if (loyalty !== -1) person.loyalty = loyalty;
     if (wardSince !== -1) person.wardSince = wardSince;
+    if (blessed.length) person.blessed = blessed;
+    if (lost.length === 3) person.lost = { year: lost[0]!, pool: str(lost[1]!), level: lost[2]! };
     return person;
   });
 }

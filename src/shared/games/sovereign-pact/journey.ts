@@ -87,9 +87,20 @@ export function die(s: SovState, p: Person, cause: string): void {
 /** A Scion is Lost (§9.9): left behind in the otherworld, their gear with them, until a Rescue. */
 export function lose(s: SovState, p: Person): void {
   p.status = "lost";
+  const card = s.expedition?.card;
+  if (card) p.lost = { year: s.year, pool: card.pool, level: card.level };
   p.gear = {};
   delete s.assign[p.id];
   log(s, `${p.name} of House ${s.houses[p.host]!.name} is left behind in the otherworld.`);
+}
+
+/** At the Reckoning: a Scion Lost two Years ago and never found is dead (§9.9). */
+export function lostClock(s: SovState): void {
+  for (const p of s.people.filter((x) => x.status === "lost" && x.lost && s.year - x.lost.year >= TUNING.journey.lostYears)) {
+    s.houses[p.house]!.chronicle.push({ name: p.name, year: s.year, cause: "lost", level: p.level });
+    s.people = s.people.filter((x) => x.id !== p.id);
+    log(s, `${p.name} of House ${s.houses[p.house]!.name} was never found. The Chronicle counts them among the dead.`);
+  }
 }
 
 /** What a battle leaves on the people: Sanity, MP and Durability carry; injuries last; the dead die; victory pays. */
@@ -211,6 +222,14 @@ export function home(s: SovState, how: NonNullable<Expedition["result"]>): void 
       s.people[i] = gainJp(gainXp(s.people[i]!, P.expeditionXp), P.expeditionJp);
     }
     log(s, "The expedition returns in triumph.");
+    // A Rescue card's Lost come home with the party (§9.9).
+    for (const id of e.card.rescue ?? []) {
+      const p = s.people.find((x) => x.id === id && x.status === "lost");
+      if (!p) continue;
+      p.status = "scion";
+      delete p.lost;
+      log(s, `${p.name} of House ${s.houses[p.house]!.name} is found alive and brought home.`);
+    }
   }
   if (how === "retreated") {
     log(s, "The expedition turns back; whatever lay at its end stays there.");
