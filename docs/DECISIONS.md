@@ -2,6 +2,15 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 8s): monsters on the battle screen
+
+- Every enemy, boss, summon and hazard (339 ids) has a picture cut from the two 1000-Monster Mega Packs. `content/sprites/manifest.json` names each id's source file (validated by `schemas/sprites.schema.json`); `tools/cut-monsters.py` crops each to its drawn pixels and writes lossless webp into `public/sprites/sovereign-pact/enemies/`, about 6 MB in all. The packs themselves stay out of the repo, as their license asks.
+- Readings:
+  - 286 ids match a pack file by name, the rest by the pack codes the spec cites, and about 46 were picked by eye. Some ids share a picture where the packs have one fitting monster (corpse hound and bone hound, the hanged shadow and the Hanged Man, the undine and Temperance, the arcane cannon and the turret, the machine golem and the Chariot; the unknown beast is the Siege Beast, as §14 says).
+  - The pictures are larger than a grid cell, so each fits its cell's width and stands up out of it, scaled smoothly rather than by whole pixels. A unit with no picture keeps its initials token; Scions keep theirs until the LPC sprites come.
+  - Every picture faces the way the pack drew it (`flip: false`); flipping one is a one-word change in the manifest.
+  - Weak matches to swap when Josh has seen them: the Court crossbowman and soldier look like science fiction, the goblin shaman is an old human, the weasel ninja is tiny.
+
 ## 2026-11-02 (implementation, Milestone 8r): music
 
 - The 18 tracks ship as Opus in Ogg at 48 kb/s, loudness-matched to −16 LUFS, cut to 3 minutes at most with a 4-second fade, about 1 MB each (`tools/encode-music.sh` from Josh's folder; the sources stay out of the repo). Each screen plays its track from §16.2, looping, crossfading over 1.5 s. A Music checkbox and volume slider sit over the Accessibility panel, kept in the browser; a Credits panel lists every asset author.

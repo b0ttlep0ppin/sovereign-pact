@@ -18,6 +18,8 @@ export interface ReplayUnit {
   person?: number;
   house?: number;
   boss?: boolean;
+  /** The summon's content id. */
+  summon?: string;
   /** A summon's owner; a Part's body. */
   owner?: number;
   partOf?: number;
@@ -77,6 +79,7 @@ export const unitOf = (u: Combatant): ReplayUnit => ({
   ...(u.enemy ? { enemy: u.enemy } : {}),
   ...(u.person !== undefined ? { person: u.person, house: u.house } : {}),
   ...(u.boss ? { boss: true } : {}),
+  ...(u.summon ? { summon: u.summon } : {}),
   ...(u.owner !== undefined ? { owner: u.owner } : {}),
   ...(u.partOf !== undefined ? { partOf: u.partOf } : {}),
   ...(u.hazard ? { hazard: u.hazard } : {}),

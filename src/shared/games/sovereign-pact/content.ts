@@ -30,6 +30,7 @@ import formsJson from "./content/forms.json" with { type: "json" };
 import projectsJson from "./content/projects.json" with { type: "json" };
 import summonsJson from "./content/summons.json" with { type: "json" };
 import hazardsJson from "./content/hazards.json" with { type: "json" };
+import spritesJson from "./content/sprites/manifest.json" with { type: "json" };
 import heraldryJson from "./content/heraldry.json" with { type: "json" };
 import houseTraitsJson from "./content/house_traits.json" with { type: "json" };
 import traitsJson from "./content/traits.json" with { type: "json" };
@@ -306,6 +307,18 @@ export interface HazardDef {
 
 export const HAZARDS = hazardsJson.hazards as unknown as readonly HazardDef[];
 export const HAZARD_BY_ID: ReadonlyMap<string, HazardDef> = new Map(HAZARDS.map((h) => [h.id, h]));
+
+/** The pack picture an enemy, boss, summon or hazard is drawn with (§14.11): content/sprites/manifest.json. */
+export interface SpriteDef {
+  id: string;
+  /** The source file in the Mega Packs, for the cutting tool and the credits. */
+  source: string;
+  /** Mirrored to face the party. */
+  flip: boolean;
+}
+
+export const SPRITES = spritesJson.sprites as readonly SpriteDef[];
+export const SPRITE_BY_ID: ReadonlyMap<string, SpriteDef> = new Map(SPRITES.map((s) => [s.id, s]));
 
 export type CardType = "resource" | "hunt" | "delve" | "rescue" | "pilgrimage";
 

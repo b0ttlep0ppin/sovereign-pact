@@ -27,6 +27,11 @@
 .sp-unit--enemy .sp-unit__body { background: #5a3434; border-color: #e7e2e2; }
 .sp-unit.is-boss .sp-unit__body { background: #6d2626; border-width: 3px; font-size: 1.1rem; }
 .sp-unit.is-hazard .sp-unit__body { background: #4b4320; border-style: dashed; }
+/* Pack sprites are larger than a cell: they fit its width and stand up out of it, feet on the cell. */
+.sp-unit__sprite { flex: 1; min-height: 0; width: 100%; object-fit: contain; object-position: center bottom; transform-origin: center bottom; scale: 1.35; filter: drop-shadow(0 2px 0 rgba(0, 0, 0, 0.6)); pointer-events: none; }
+.sp-unit__sprite.is-flipped { transform: scaleX(-1); }
+.sp-unit.is-acting .sp-unit__sprite { filter: drop-shadow(0 0 6px var(--gold, #d7b45a)); }
+.sp-unit.is-charging .sp-unit__sprite { filter: drop-shadow(0 0 4px var(--gold, #d7b45a)) brightness(1.15); }
 .sp-unit__hp { flex: none; width: 92%; height: 4px; background: rgba(0, 0, 0, 0.6); border-radius: 2px; overflow: hidden; }
 .sp-unit__hp span { display: block; height: 100%; background: #c94a4a; transition: width 250ms; }
 .sp-unit--party .sp-unit__hp span { background: #5fbf6a; }
