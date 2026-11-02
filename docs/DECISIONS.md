@@ -2,6 +2,21 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 6l: Changes) — implementer
+- **Changes** (§9.6, `content/changes.json`): Hollow Knight, Marsh Thing, Seraph Husk and Wyrmling. A Change's stats are its level-1 numbers grown by its own growths to the Scion's level. It wipes the Scion's traits (blessings too), injuries and look, and keeps name, House, Tarot, level, JP, learned Jobs and Loyalty.
+- **What a Change can do**, all data:
+  - `mods` ride into battle like a trait's (wards, immunities, Poisoning attackers, Regen, one-cell moves, Fire attacks, claws);
+  - `job` fixes the Job (the Hollow Knight is a Knight and can take no other);
+  - `slots` are the gear slots left (a Wyrmling has no hands; the Hollow Knight's armor is its own head, body, arms and legs);
+  - `barred` Year assignments (the Hollow Knight and the Wyrmling cannot use the Chapel);
+  - `upkeep` paid from the host House's Stores at each Reckoning. Short of it, the Scion loses 25% of their Sanity ceiling (`tuning.change.hungerSanityPct`, first pass).
+- Reading: "no healing from Holy" is a −50% to healing received for the Hollow Knight, because no heal has an element yet. Changes take one cell for now; a two-cell Wyrmling waits for the party's 2×4 grid.
+- **The effect** is `change` (an id), not `transform`, after Josh's word. `unchange` gives the old body back. Reading: the old body returns grown by the levels gained while Changed, with its old traits, injuries and Job. A second Change replaces the first, and the body kept is still the one they were born in.
+- **Events** can pick a Changed Scion: `scion:changed` and `scion:change:<id>` (§9.6: "some Forms count as a unique Scion").
+- **Everyone sees** a Scion's Change (`PersonView.change`); nobody sees the body it replaced.
+- New events: The Armor That Walks (the Barrows), The Sinking Mother (the Drowned Marches), The Choir Missing a Voice (the Shrine of Six), The Egg That Hums (the Dragon Reaches), The Unmaking Spring (general; it reverses a Change).
+- **Save version 13**: people carry `change` and the body it replaced.
+
 ## 2026-11-02 (implementation, Milestone 6k: the Lost and Rescue cards) — implementer
 - **The Lost** (§9.9): a Scion left behind (a wipe, or a `scion_lost` effect) carries `lost`: the Year, and the pool and level of the expedition that left them.
 - **Rescue cards**: from the next Year, the Rift Gate adds a Rescue card for each place Scions were Lost, beside its usual 2–3 cards. A Rescue card is size 4, at that pool and level, and holds all the Scions Lost there. Mandatory Years offer only the arc's card. A won Rescue brings them home as Scions, still without the gear they lost. A bot House votes for the card that holds its own Lost.

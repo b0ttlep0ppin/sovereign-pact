@@ -1,7 +1,7 @@
 // Growing a Scion (§6.6, §7.2, §12.1): XP into levels through the growth accumulator, JP per Job,
 // Job prerequisites, the passive budget, and the stats a Job's multipliers make. Pure: every function
 // returns a new Person.
-import { ABILITY_SET_BY_JOB, ACTIVE_BY_ID, JOB_BY_ID, JOB_PASSIVE_BY_ID, TAROT_BY_ID, type ActiveDef, type JobDef } from "./content.ts";
+import { ABILITY_SET_BY_JOB, ACTIVE_BY_ID, CHANGE_BY_ID, JOB_BY_ID, JOB_PASSIVE_BY_ID, TAROT_BY_ID, type ActiveDef, type JobDef } from "./content.ts";
 import { jobStat, maxMp } from "./formulas.ts";
 import { STATS, type JobId, type Person, type Six, type Stat } from "./state.ts";
 import { TUNING } from "./tuning.ts";
@@ -61,6 +61,9 @@ export const passiveBudget = (p: Pick<Person, "level"> & Partial<Pick<Person, "t
 export function canTakeJob(p: Person, job: JobId): boolean {
   const def = JOB_BY_ID.get(job);
   if (!def) return false;
+  // A Change with a fixed Job allows no other (§9.6: a Hollow Knight is a Knight).
+  const fixed = p.change && CHANGE_BY_ID.get(p.change.id)?.job;
+  if (fixed) return job === fixed;
   if (!def.advanced) return true;
   if (p.mastered.includes(job) || (p.jp[job] ?? 0) > 0) return true;
   return (def.requires ?? []).every((r) => (p.jp[r.job] ?? 0) >= r.jp);

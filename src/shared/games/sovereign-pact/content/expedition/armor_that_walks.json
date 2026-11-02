@@ -1,0 +1,111 @@
+{
+  "id": "armor_that_walks",
+  "pools": [
+    "barrows"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    8
+  ],
+  "title": "The Armor That Walks",
+  "text": "A suit of black plate stands in the barrow's mouth. As you come close it turns its empty helm toward the one of you who has killed the least, and opens its arms.",
+  "options": [
+    {
+      "id": "wear",
+      "label": "Let the gentlest of you put it on.",
+      "rule": "scion:fewest_kills",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "The plates close over them one by one. When the helm shuts, the eyes inside are not quite theirs any more.",
+          "effects": [
+            {
+              "change": "hollow_knight"
+            },
+            {
+              "sanity": -20
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "It is only armor after all: very old, very good, and it fits.",
+          "effects": [
+            {
+              "item": {
+                "tier": 4
+              }
+            }
+          ]
+        },
+        {
+          "w": 20,
+          "text": "It was not empty. It never was.",
+          "effects": [
+            {
+              "encounter": {
+                "level": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "break",
+      "label": "Break it apart before it moves again.",
+      "rule": "scion:highest:might",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "It comes apart like a dropped pot, and something sighs out of the pieces.",
+          "effects": [
+            {
+              "resources": {
+                "essence": 2
+              }
+            },
+            {
+              "score": {
+                "valor": 1
+              }
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "It does not want to be broken.",
+          "effects": [
+            {
+              "encounter": {
+                "level": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "leave",
+      "label": "Back away and go round.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It watches you go. It is still standing there when you look back.",
+          "effects": []
+        }
+      ]
+    }
+  ]
+}

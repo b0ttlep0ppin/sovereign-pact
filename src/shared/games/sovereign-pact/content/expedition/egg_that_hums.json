@@ -1,0 +1,123 @@
+{
+  "id": "egg_that_hums",
+  "pools": [
+    "dragon_reaches"
+  ],
+  "weight": 2,
+  "band": [
+    4,
+    10
+  ],
+  "title": "The Egg That Hums",
+  "text": "In a nest of melted gold sits one egg the size of a barrel. It is warm, and it hums, and the hum gets louder when your fiercest fighter is near.",
+  "options": [
+    {
+      "id": "eat",
+      "label": "Crack it and drink.",
+      "rule": "scion:most_kills",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 45,
+          "text": "Scales first, by evening. Then the hunger, then the fire.",
+          "effects": [
+            {
+              "change": "wyrmling"
+            }
+          ]
+        },
+        {
+          "w": 35,
+          "text": "It tastes of smoke and iron, and they come away stronger.",
+          "effects": [
+            {
+              "stat": {
+                "might": 2
+              }
+            }
+          ]
+        },
+        {
+          "w": 20,
+          "text": "Something in it fights back on the way down.",
+          "effects": [
+            {
+              "injury": "body"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "carry",
+      "label": "Carry it out, carefully.",
+      "rule": "vote",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "It goes quiet in the dark of a pack. The scholars will pay for it.",
+          "effects": [
+            {
+              "resources": {
+                "essence": 3
+              }
+            },
+            {
+              "score": {
+                "relics": 2
+              }
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "Its mother wants it back.",
+          "effects": [
+            {
+              "encounter": {
+                "level": 2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "smash",
+      "label": "Smash it.",
+      "rule": "leader",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "It goes out like a coal in the rain. The gold around it is still gold.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 40
+              }
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "Its mother heard.",
+          "effects": [
+            {
+              "encounter": {
+                "level": 2
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -104,6 +104,8 @@ export interface PersonView {
   growth?: Six;
   /** Face-up once promoted (§6.5); Insight 3 for recruits. */
   tarot?: string;
+  /** The Change they have undergone (§9.6), for all to see; never the body it replaced. */
+  change?: string;
   /** Worn items by slot (ids into `SovView.items`); Scions and the Retired only. */
   gear?: Partial<Record<GearSlot, number>>;
 }
@@ -182,6 +184,7 @@ function personView(p: Person, viewer: number | null, insight: number): PersonVi
     traits: p.status === "recruit" && insight < 2 ? p.traits.slice(0, 1) : p.traits,
     injuries: p.injuries,
   };
+  if (p.change) v.change = p.change.id;
   if (p.status !== "recruit" || insight >= 1) {
     v.sanity = p.sanity;
     v.mp = p.mp;

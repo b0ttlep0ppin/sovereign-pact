@@ -1,7 +1,7 @@
 // Making combatants: a Scion from a Person with the §7.3 formulas in their Job (§12.3), an enemy from
 // its content at an expedition level with the §14.2 block, and a battle from both sides. Gear arrives
 // as the `weapon` and `armor` arguments until items exist.
-import { ENEMY_BY_ID, fromEnemySide, INJURY_BY_ID, TRAIT_BY_ID, type EnemyAbility, type EnemyDef } from "../content.ts";
+import { CHANGE_BY_ID, ENEMY_BY_ID, fromEnemySide, INJURY_BY_ID, TRAIT_BY_ID, type EnemyAbility, type EnemyDef } from "../content.ts";
 import { jobStat, maxHp, maxMp, maxSanity } from "../formulas.ts";
 import { houseEffects } from "../houses.ts";
 import { gearTotals, UNARMED, type GearTotals } from "../items.ts";
@@ -50,6 +50,8 @@ export function carriedMods(p: Person, house?: ScionOpts["house"]): Record<strin
   if (house) add(houseEffects(house).mods);
   // Individual traits (§6.7): Fleet's Speed, Thick Skull's Durability…
   for (const id of p.traits) add(TRAIT_BY_ID.get(id)?.mods);
+  // A Change's own strangeness (§9.6): a Hollow Knight's Dark ward, a Marsh Thing's poison.
+  if (p.change) add(CHANGE_BY_ID.get(p.change.id)?.mods);
   // The Tarot's battle bonuses; The World's passive point is read by the passive budget instead.
   const tarot = { ...tarotMods(p) };
   delete tarot.passiveBudget;

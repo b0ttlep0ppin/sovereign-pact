@@ -2,7 +2,7 @@
 // the Crude starting kit a new Scion gets, and rolled properties (§13.4). Bases and properties are
 // content (content/items.json, content/properties.json); numbers are in tuning.items.
 import type { Rng } from "../../rng.ts";
-import { ITEM_BASE_BY_ID, PROPERTIES, PROPERTY_BY_ID, type ArmorClass, type ItemBase, type PropertyDef, type PropertyOn } from "./content.ts";
+import { CHANGE_BY_ID, ITEM_BASE_BY_ID, PROPERTIES, PROPERTY_BY_ID, type ArmorClass, type ItemBase, type PropertyDef, type PropertyOn } from "./content.ts";
 import { jobStat } from "./formulas.ts";
 import { jobOf, mayWear, mayWield } from "./progression.ts";
 import { type GearSlot, type Item, type ItemTier, type Location, type Person, type SovState } from "./state.ts";
@@ -120,6 +120,8 @@ export function cannotEquip(s: Pick<SovState, "items">, p: Person, item: Item, s
   // Any one-hand weapon may go in the off hand too: dual wield (§13.2).
   const want = b.slot === "acc" ? ["acc1", "acc2"] : b.slot === "main" && (b.hands ?? 1) === 1 ? ["main", "off"] : [b.slot];
   if (!want.includes(slot)) return "wrong slot";
+  // A Change takes some slots away: a Wyrmling has no hands for a sword (§9.6).
+  if (p.change && !CHANGE_BY_ID.get(p.change.id)?.slots.includes(slot)) return "the Change leaves no room for it";
   if (b.slot === "main" && !mayWield(p, b.type, b.hands ?? 1)) return "the Job forbids it";
   if (b.type === "shield" && !jobOf(p)?.shields) return "the Job forbids shields";
   if (b.type === "thrown" && !mayWield(p, "thrown", 1)) return "the Job forbids it";

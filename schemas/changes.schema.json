@@ -1,0 +1,156 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Changes: a Scion's permanent transformation (SPEC §9.6; Josh 2026-11-02: called a Change, Form stays the Alterer's)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "changes"
+  ],
+  "definitions": {
+    "six": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "might",
+        "resilience",
+        "guile",
+        "acuity",
+        "sagacity",
+        "speed"
+      ],
+      "properties": {
+        "might": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "resilience": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "guile": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "acuity": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "sagacity": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "speed": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    }
+  },
+  "properties": {
+    "changes": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "name",
+          "flavor",
+          "crunch",
+          "base",
+          "growth",
+          "mods",
+          "slots",
+          "look"
+        ],
+        "properties": {
+          "id": {
+            "$ref": "defs.schema.json#/definitions/id"
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "flavor": {
+            "type": "string",
+            "minLength": 1
+          },
+          "crunch": {
+            "type": "string",
+            "minLength": 1
+          },
+          "base": {
+            "$ref": "#/definitions/six",
+            "description": "Stats at level 1; the Change's growths raise them to the Scion's level."
+          },
+          "growth": {
+            "$ref": "#/definitions/six",
+            "description": "Growth per level, in hundredths."
+          },
+          "mods": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "number"
+            },
+            "description": "Battle mods, as a trait's."
+          },
+          "job": {
+            "$ref": "defs.schema.json#/definitions/id",
+            "description": "A fixed Job: the Scion takes it and can take no other."
+          },
+          "slots": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "enum": [
+                "main",
+                "off",
+                "head",
+                "body",
+                "arms",
+                "legs",
+                "acc1",
+                "acc2"
+              ]
+            },
+            "description": "The gear slots the Change can still use."
+          },
+          "barred": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "enum": [
+                "rest",
+                "chapel",
+                "infirmary",
+                "train",
+                "teach",
+                "study",
+                "work",
+                "guard",
+                "sortie"
+              ]
+            },
+            "description": "Year assignments the Changed cannot take."
+          },
+          "upkeep": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "description": "Stores the host House pays at each Reckoning; unpaid, the Scion loses Sanity."
+          },
+          "look": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Sprite layers that replace the Scion's own."
+          }
+        }
+      }
+    }
+  }
+}

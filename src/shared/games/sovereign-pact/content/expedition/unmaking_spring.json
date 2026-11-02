@@ -1,0 +1,66 @@
+{
+  "id": "unmaking_spring",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    10
+  ],
+  "title": "The Unmaking Spring",
+  "text": "Clear water rises in a ring of white stones. The moss around it grows in the shape of whatever drinks there, before they came here.",
+  "options": [
+    {
+      "id": "bathe",
+      "label": "Let the strangest of you bathe in it.",
+      "rule": "scion:changed|vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "The water is cold and clean. Whatever was not theirs washes off.",
+          "effects": [
+            {
+              "unchange": true
+            },
+            {
+              "sanity": 20
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "The water is cold, and nothing changes but their mood.",
+          "effects": [
+            {
+              "sanity": 20
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fill",
+      "label": "Fill the flasks and go.",
+      "rule": "leader",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It tastes of nothing at all. It is the best water any of you have had.",
+          "effects": [
+            {
+              "to": "party",
+              "mp": 20
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -115,10 +115,25 @@ export interface Person {
   blessed?: { id: string; years: number }[];
   /** A Lost Scion's last sighting (§9.9): the Year, and the pool and level of the expedition that left them. */
   lost?: { year: number; pool: string; level: number };
+  /** A Change (§9.6) and the body it replaced, kept so an event can give it back. */
+  change?: { id: string; was: Body };
   /** Wards only: 0–100, hidden from both Houses (§6.9). */
   loyalty?: number;
   /** Wards only: the Year the host took them in (no giving back within 3 Years). */
   wardSince?: number;
+}
+
+/** What a Change replaces (§9.6), at the level it happened. */
+export interface Body {
+  level: number;
+  base: Six;
+  growth: Six;
+  carry: Six;
+  traits: string[];
+  look: string[];
+  injuries: Injury[];
+  job: JobId | null;
+  secondary?: JobId;
 }
 
 /** A dead Scion, kept in the House's Chronicle (§6.13). */

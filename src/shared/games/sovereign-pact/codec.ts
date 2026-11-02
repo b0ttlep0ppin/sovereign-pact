@@ -97,6 +97,20 @@ export function packPeople(people: readonly Person[]): PackedPeople {
     int(p.wardSince ?? -1);
     list((p.blessed ?? []).flatMap((b) => [ref(b.id), b.years]));
     list(p.lost ? [p.lost.year, ref(p.lost.pool), p.lost.level] : []);
+    // A Change (§9.6) and the body it replaced.
+    int(p.change ? ref(p.change.id) : -1);
+    if (p.change) {
+      const w = p.change.was;
+      int(w.level);
+      w.base.forEach(int);
+      w.growth.forEach(int);
+      w.carry.forEach(int);
+      refs(w.traits);
+      refs(w.look);
+      list(w.injuries.flatMap((inj) => [ref(inj.id), inj.years]));
+      int(w.job === null ? -1 : ref(w.job));
+      int(w.secondary === undefined ? -1 : ref(w.secondary));
+    }
     return encodeInts(out);
   });
   return { dict, rows };
@@ -154,6 +168,17 @@ export function unpackPeople({ dict, rows }: PackedPeople): Person[] {
     const wardSince = int();
     const blessed = pairs(list()).map(([i, years]) => ({ id: str(i), years }));
     const lost = list();
+    const changed = int();
+    let change: Person["change"];
+    if (changed !== -1) {
+      const level = int();
+      const [b, g, c] = [six(), six(), six()];
+      const [traits, look] = [strs(), strs()];
+      const injuries = pairs(list()).map(([i, years]) => ({ id: str(i), years }));
+      const [j, sec] = [int(), int()];
+      change = { id: str(changed), was: { level, base: b, growth: g, carry: c, traits, look, injuries, job: j === -1 ? null : (str(j) as JobId) } };
+      if (sec !== -1) change.was.secondary = str(sec) as JobId;
+    }
     const person: Person = {
       id, status, house, host, name, sex, look, age, base, growth, carry, potential, level, xp,
       job: job === -1 ? null : (str(job) as JobId),
@@ -168,6 +193,7 @@ export function unpackPeople({ dict, rows }: PackedPeople): Person[] {
     if (wardSince !== -1) person.wardSince = wardSince;
     if (blessed.length) person.blessed = blessed;
     if (lost.length === 3) person.lost = { year: lost[0]!, pool: str(lost[1]!), level: lost[2]! };
+    if (change) person.change = change;
     return person;
   });
 }

@@ -3,6 +3,7 @@
 // (Omens and Reckoning: 4, the Expedition Phase: 6) give them decisions.
 import { fadeBlessings } from "./events.ts";
 import { runSorties } from "./sortie.ts";
+import { changeUpkeep } from "./change.ts";
 import { createRng, type Rng } from "../../rng.ts";
 import { rollRecruit } from "./generate.ts";
 import { yearOfAssignments } from "./assign.ts";
@@ -153,6 +154,7 @@ export function reckoning(s: SovState): void {
   // Injuries tick down, everyone recovers and grows by assignment, and MP refills (§8.3, §8.10).
   yearOfAssignments(s);
   fadeBlessings(s);
+  changeUpkeep(s);
   wardYear(s);
   lostClock(s);
   for (const p of s.people) p.mp = caps(s, p).mp;
