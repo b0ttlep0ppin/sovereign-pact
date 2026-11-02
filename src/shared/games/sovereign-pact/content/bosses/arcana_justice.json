@@ -1,0 +1,37 @@
+{
+  "id": "arcana_justice",
+  "name": "The Lady of the Scales",
+  "pool": "apostate_court",
+  "tags": ["divine", "humanoid", "arcana"],
+  "role": "boss",
+  "size": [1, 2],
+  "at": "E2",
+  "levels": [1, 10],
+  "stats": {"speed": 11, "hp": 4},
+  "affinity": {"holy": 50, "earth": 25, "dark": -50},
+  "immune": ["fear", "charm", "confusion"],
+  "abilities": [
+    {"id": "judgement_of_the_feather", "shape": "single", "side": "player", "power": 1.3, "kind": "magic", "element": "holy", "statuses": [{"id": "marked", "chance": 100, "ticks": 300}]},
+    {"id": "balance", "shape": "self", "side": "self", "power": 0, "kind": "support", "statuses": [{"id": "counter_up", "chance": 100, "ticks": 300}, {"id": "reflect", "chance": 100, "ticks": 200}], "cooldown": 4},
+    {"id": "sentence", "shape": "single", "side": "player", "power": 1.8, "charge": 150, "telegraph": true, "cooldown": 3},
+    {"id": "even_scales", "shape": "row", "side": "player", "power": 0.6, "kind": "magic", "statuses": [{"id": "silence", "chance": 30, "ticks": 200}]}
+  ],
+  "gambits": [
+    {"if": "turn%4==0", "do": "balance"},
+    {"if": "foe.marked && turn%3==2", "do": "sentence", "target": "marked"},
+    {"if": "!foe.marked", "do": "judgement_of_the_feather", "target": "highest_might"},
+    {"do": "even_scales", "target": "densest_row"}
+  ],
+  "phases": [
+    {"at": "hp<=0.5", "name": "The Scales Tip", "speed": 12, "say": "You have been weighed. You are found wanting.", "gambits": [{"if": "turn%3==0", "do": "balance"}, {"if": "foe.marked", "do": "sentence", "target": "marked"}, {"do": "judgement_of_the_feather", "target": "lowest_hp"}]}
+  ],
+  "say": {
+    "open": "(She holds a feather in one pan of her scales. The other is empty, and waiting.)",
+    "death": "(The scales settle, level, and she nods, as if that were fair.)"
+  },
+  "bestiary": {
+    "lore": "The card of justice and balance: a judge of the old court who weighs every blow struck against her, and returns it.",
+    "weakness": "Dark. Hold your hardest blows while she counters and reflects.",
+    "pattern": "Every fourth turn she balances (Counter up, Reflect): strike softly then. She marks the strongest with a feather and passes sentence on them; scales silence a row between. At half she balances every third turn."
+  }
+}

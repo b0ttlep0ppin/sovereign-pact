@@ -83,6 +83,54 @@
       "boss": "arcana_hermit",
       "trait": "lanternbearer",
       "relic": "the_hermits_lantern"
+    },
+    {
+      "tarot": "wheel_of_fortune",
+      "boss": "arcana_wheel_of_fortune",
+      "trait": "wheel_turned",
+      "relic": "the_clockwork_shell"
+    },
+    {
+      "tarot": "justice",
+      "boss": "arcana_justice",
+      "trait": "even_handed",
+      "relic": "the_feather_blade"
+    },
+    {
+      "tarot": "hanged_man",
+      "boss": "arcana_hanged_man",
+      "trait": "seen_from_below",
+      "relic": "the_gallows_cord"
+    },
+    {
+      "tarot": "temperance",
+      "boss": "arcana_temperance",
+      "trait": "tempered",
+      "relic": "the_mixing_cups"
+    },
+    {
+      "tarot": "devil",
+      "boss": "arcana_devil",
+      "trait": "unsigned",
+      "relic": "the_devils_fork"
+    },
+    {
+      "tarot": "star",
+      "boss": "arcana_star",
+      "trait": "starlit",
+      "relic": "the_fallen_star"
+    },
+    {
+      "tarot": "judgement",
+      "boss": "arcana_judgement",
+      "trait": "answered",
+      "relic": "the_last_trumpet"
+    },
+    {
+      "tarot": "world",
+      "boss": "arcana_world",
+      "trait": "worldwalker",
+      "relic": "the_worlds_mantle"
     }
   ]
 }

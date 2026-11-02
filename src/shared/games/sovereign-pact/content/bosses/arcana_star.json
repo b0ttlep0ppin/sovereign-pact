@@ -1,0 +1,37 @@
+{
+  "id": "arcana_star",
+  "name": "The Willbound Star",
+  "pool": "outer_dark",
+  "tags": ["elemental", "aberration", "flyer", "arcana"],
+  "role": "boss",
+  "size": [1, 1],
+  "at": "E2",
+  "levels": [1, 10],
+  "stats": {"speed": 13, "hp": 3},
+  "affinity": {"holy": 50, "wind": 25, "dark": -25},
+  "immune": ["blind", "fear", "sleep", "charm"],
+  "abilities": [
+    {"id": "starfall", "shape": "band:4", "side": "player", "power": 0.9, "kind": "magic", "element": "holy", "charge": 200, "telegraph": true, "cooldown": 3},
+    {"id": "twinkle", "shape": "single", "side": "player", "power": 0.8, "kind": "magic", "element": "holy", "statuses": [{"id": "blind", "chance": 35, "ticks": 200}]},
+    {"id": "wish", "shape": "self", "side": "self", "power": 0, "kind": "support", "statuses": [{"id": "regen", "chance": 100, "ticks": 300}, {"id": "hidden", "chance": 100, "ticks": 150}], "cooldown": 4},
+    {"id": "cold_light", "shape": "row", "side": "player", "power": 0.4, "kind": "magic", "sanity": 5}
+  ],
+  "gambits": [
+    {"if": "turn%3==0", "do": "starfall", "target": "densest_row"},
+    {"if": "hp<0.7 && turn%4==1", "do": "wish"},
+    {"if": "turn%2==1", "do": "cold_light", "target": "densest_row"},
+    {"do": "twinkle", "target": "back_random"}
+  ],
+  "phases": [
+    {"at": "hp<=0.5", "name": "Supernova", "speed": 15, "say": "(It brightens until it is the only thing anyone can see.)", "gambits": [{"if": "turn%2==0", "do": "starfall", "target": "densest_cluster"}, {"do": "twinkle", "target": "lowest_hp"}]}
+  ],
+  "say": {
+    "open": "(A star has come down out of the dark, and it has made up its mind about you.)",
+    "death": "(It goes out like a wish someone gave up on.)"
+  },
+  "bestiary": {
+    "lore": "The card of hope, from the far side of the rift: a fallen star that will not go back up, and will not be argued with.",
+    "weakness": "Dark. It is quick and small: pin it down before it wishes itself whole.",
+    "pattern": "Every third turn a starfall on four rows; cold light on a row's Sanity and blinding twinkles on the Back; it wishes itself hidden and healing when hurt. At Supernova the starfall comes every other turn."
+  }
+}

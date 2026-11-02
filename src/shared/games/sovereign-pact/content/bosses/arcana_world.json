@@ -1,0 +1,37 @@
+{
+  "id": "arcana_world",
+  "name": "Gaia, the World Mother",
+  "pool": "dragon_reaches",
+  "tags": ["divine", "giant", "elemental", "arcana"],
+  "role": "boss",
+  "size": [2, 2],
+  "at": "E2",
+  "levels": [1, 10],
+  "stats": {"speed": 8, "hp": 6},
+  "affinity": {"earth": 75, "water": 25, "wind": -50},
+  "immune": ["fear", "charm", "poison", "knockdown", "stun"],
+  "abilities": [
+    {"id": "continents_shift", "shape": "band:4", "side": "player", "power": 1.0, "kind": "magic", "element": "earth", "charge": 200, "telegraph": true, "cooldown": 3, "statuses": [{"id": "knockdown", "chance": 40, "ticks": 0}]},
+    {"id": "cradle", "shape": "self", "side": "self", "power": 0, "kind": "support", "statuses": [{"id": "regen", "chance": 100, "ticks": 400}, {"id": "protect", "chance": 100, "ticks": 300}], "cooldown": 5},
+    {"id": "root_and_stone", "shape": "row", "side": "player", "power": 0.8, "statuses": [{"id": "rooted", "chance": 50, "ticks": 200}]},
+    {"id": "mothers_hand", "shape": "single", "side": "player", "power": 1.5, "statuses": [{"id": "stun", "chance": 20, "ticks": 0}]}
+  ],
+  "gambits": [
+    {"if": "turn%4==0", "do": "cradle"},
+    {"if": "turn%3==1", "do": "continents_shift", "target": "densest_row"},
+    {"if": "turn%2==0", "do": "root_and_stone", "target": "densest_row"},
+    {"do": "mothers_hand", "target": "nearest"}
+  ],
+  "phases": [
+    {"at": "hp<=0.5", "name": "The World Turns", "speed": 10, "say": "(The ground under everyone's feet begins, very slowly, to move.)", "gambits": [{"if": "turn%2==0", "do": "continents_shift", "target": "densest_cluster"}, {"if": "turn%5==1", "do": "cradle"}, {"do": "mothers_hand", "target": "lowest_hp"}]}
+  ],
+  "say": {
+    "open": "(The hillside opens its eyes. It is not a hillside.)",
+    "death": "(She lies back down, and is a hillside again, and is quiet.)"
+  },
+  "bestiary": {
+    "lore": "The card of completion: the World herself, risen in the Dragon Reaches, the mother of every pool the rift has opened.",
+    "weakness": "Wind, heavily. She is slow; strike between the shifts, and dispel her cradle.",
+    "pattern": "Every fourth turn she cradles herself (Regen, Protect); every third the continents shift over four rows; root and stone on a row between, and her hand on the nearest. When the world turns, the shift comes every other turn."
+  }
+}

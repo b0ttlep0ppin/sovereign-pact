@@ -1,0 +1,37 @@
+{
+  "id": "arcana_wheel_of_fortune",
+  "name": "The Temporal Snail",
+  "pool": "outer_dark",
+  "tags": ["aberration", "beast", "arcana"],
+  "role": "boss",
+  "size": [2, 2],
+  "at": "E2",
+  "levels": [1, 10],
+  "stats": {"speed": 7, "hp": 5},
+  "affinity": {"wind": 25, "earth": 25, "holy": -25},
+  "immune": ["slow", "stop", "sleep"],
+  "abilities": [
+    {"id": "turn_of_the_wheel", "shape": "all", "side": "player", "power": 0.2, "kind": "magic", "statuses": [{"id": "slow", "chance": 40, "ticks": 300}, {"id": "stop", "chance": 10, "ticks": 100}], "charge": 150, "telegraph": true, "cooldown": 3},
+    {"id": "spiral_shell", "shape": "self", "side": "self", "power": 0, "kind": "support", "statuses": [{"id": "haste", "chance": 100, "ticks": 300}, {"id": "protect", "chance": 100, "ticks": 300}], "cooldown": 5},
+    {"id": "slime_of_ages", "shape": "row", "side": "player", "power": 0.8, "statuses": [{"id": "rooted", "chance": 40, "ticks": 200}]},
+    {"id": "rewind", "shape": "single", "side": "player", "power": 1.1, "kind": "magic", "element": "wind"}
+  ],
+  "gambits": [
+    {"if": "turn%4==0", "do": "spiral_shell"},
+    {"if": "turn%3==1", "do": "turn_of_the_wheel"},
+    {"if": "turn%2==0", "do": "slime_of_ages", "target": "densest_row"},
+    {"do": "rewind", "target": "lowest_hp"}
+  ],
+  "phases": [
+    {"at": "hp<=0.5", "name": "The Wheel Spins Back", "speed": 10, "say": "(The shell turns the other way, and the last few moments happen again.)", "gambits": [{"if": "turn%2==0", "do": "turn_of_the_wheel"}, {"if": "turn%3==1", "do": "spiral_shell"}, {"do": "rewind", "target": "lowest_hp"}]}
+  ],
+  "say": {
+    "open": "(A snail the size of a cart. Its shell is a clock, and the hands are moving.)",
+    "death": "(The hands stop. Somewhere, a moment finally ends.)"
+  },
+  "bestiary": {
+    "lore": "The card of fortune and turning: a snail from beyond the rift whose shell keeps the time, and bends it.",
+    "weakness": "Holy. Dispel its haste, and spread out against the slime.",
+    "pattern": "Every third turn the wheel turns on everyone, slowing and sometimes Stopping; every fourth it hastens and shields itself; slime roots a row between. At half the wheel turns every other turn."
+  }
+}
