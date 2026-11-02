@@ -1,0 +1,92 @@
+{
+  "id": "the_raiders_nest",
+  "scope": "settlement",
+  "weight": 1,
+  "years": [
+    3,
+    19
+  ],
+  "title": "The Raiders' Nest",
+  "text": "The raids on the outer farms were never bandits. Tracks lead back through the Rift Gate to a den in the Beast Lands, and the beasts are learning the way. It has to be burned out this Year.",
+  "rule": "vote",
+  "forces": {
+    "pool": "beast_lands"
+  },
+  "options": [
+    {
+      "id": "arm",
+      "label": "Strip the armories to arm the party.",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Every House gives up iron for spearheads.",
+          "effects": [
+            {
+              "resources": {
+                "iron": -3
+              },
+              "to": "all"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bait",
+      "label": "Leave a herd out as bait to draw them.",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "The beasts take the bait and the den is half empty.",
+          "effects": [
+            {
+              "resources": {
+                "grain": -5
+              },
+              "to": "all"
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "The beasts take the bait, and the herd, and come back for more.",
+          "effects": [
+            {
+              "resources": {
+                "grain": -5
+              },
+              "to": "all"
+            },
+            {
+              "accord": -3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wait",
+      "label": "Bar the farms and wait for the party.",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The farmers sleep in the town square until it is done.",
+          "effects": [
+            {
+              "accord": -2
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -14,7 +14,9 @@ import { log, trackName, withRng } from "./year.ts";
  * draw and a House event that House's roll, so a second one due for the same slot waits a Year.
  */
 export function dueEvents(s: SovState): TimelineEntry[] {
-  const due = s.timeline.filter((t) => t.year <= s.year && TOWN_EVENT_BY_ID.has(t.id));
+  // A forcing event (§3.2) goes first: it was foreshadowed for this Year and must not slip.
+  const forcing = (t: TimelineEntry) => (TOWN_EVENT_BY_ID.get(t.id)!.forces ? 0 : 1);
+  const due = s.timeline.filter((t) => t.year <= s.year && TOWN_EVENT_BY_ID.has(t.id)).sort((a, b) => forcing(a) - forcing(b));
   s.timeline = s.timeline.filter((t) => !due.includes(t));
   const taken = new Set<string>();
   return due.filter((t) => {

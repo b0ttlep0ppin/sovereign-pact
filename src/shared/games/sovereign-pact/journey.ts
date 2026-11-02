@@ -253,6 +253,8 @@ export function home(s: SovState, how: NonNullable<Expedition["result"]>): void 
     if (s.year === mandatoryYears(s).at(-1)) return endCampaign(s, false, "The assault on the rift failed, and the otherworld takes the kingdom.");
     devastate(s, "mandatory");
   }
+  // A forced expedition counts as the Year's mandatory one, with lesser stakes (§3.2).
+  if (how !== "won" && e.card.type === "forced") devastate(s, "forced");
 }
 
 /**
@@ -261,7 +263,7 @@ export function home(s: SovState, how: NonNullable<Expedition["result"]>): void 
  */
 export function botPress(s: SovState): boolean {
   const e = s.expedition!;
-  if (e.card.type === "mandatory" || cannotRetreat(s)) return true;
+  if (e.card.type === "mandatory" || e.card.type === "forced" || cannotRetreat(s)) return true;
   const ids = marching(s);
   if (ids.length < roster(s).length) return false;
   return ids.every((id) => !e.carry[id]?.broken.length && person(s, id).sanity >= J.botRetreatSanity);

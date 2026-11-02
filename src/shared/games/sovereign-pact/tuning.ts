@@ -43,6 +43,11 @@ export const TUNING = {
       { boss: "end_ruler", level: 10 },
     ],
     sizes: [[4, 70], [8, 20], ["2x4", 10]] as const,
+    /**
+     * Forced expeditions (§3.2, first pass): each Year from Year 2 on, this % chance that a forcing event
+     * is queued, hidden, for next Year; at most `max` a campaign, never for a Year before `fromYear` or a mandatory Year.
+     */
+    forced: { pct: 10, max: 2, fromYear: 3 },
   },
 
   /** §9.2: Renown the Leader's House gains (first pass). */

@@ -1,0 +1,90 @@
+{
+  "id": "the_taken_child",
+  "scope": "settlement",
+  "weight": 1,
+  "years": [
+    3,
+    19
+  ],
+  "title": "The Taken Child",
+  "text": "A recruit sleeping in the barracks was gone at dawn, and a trail of black leaves leads to the Rift Gate. The Hollow Wood has taken one of ours. Someone must go and bring them back.",
+  "rule": "vote",
+  "forces": {
+    "pool": "hollow_wood"
+  },
+  "options": [
+    {
+      "id": "vigil",
+      "label": "Keep a vigil at the Gate for them.",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Candles burn at the Gate every night. The town is with you.",
+          "effects": [
+            {
+              "accord": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bargain",
+      "label": "Leave the wood an offering, in case.",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "The offering is gone in the morning. Nothing else is.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -10
+              },
+              "to": "all"
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "The offering is gone, and a second bed is empty.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -10
+              },
+              "to": "all"
+            },
+            {
+              "recruits_lost": 1,
+              "to": "random"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hush",
+      "label": "Keep it quiet; it is only a recruit.",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The barracks talk anyway.",
+          "effects": [
+            {
+              "accord": -4
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

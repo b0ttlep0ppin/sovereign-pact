@@ -3,11 +3,11 @@
 // in the Settlement Phase, sealed with the Year: the most votes take it, a tie costs Accord and goes to
 // the higher Renown, and no votes at all take the first card.
 import { loseAccord } from "./commons.ts";
-import { BOSS_BY_ID, POOLS } from "./content.ts";
+import { BOSS_BY_ID, POOL_BY_ID, POOLS, TOWN_EVENT_BY_ID, TOWN_EVENTS } from "./content.ts";
 import { year20 } from "./crisis.ts";
 import type { ExpeditionCard, SovState } from "./state.ts";
 import { TUNING } from "./tuning.ts";
-import { log, mandatoryYears, withRng } from "./year.ts";
+import { campaignYears, log, mandatoryYears, withRng } from "./year.ts";
 
 const G = TUNING.gate;
 
@@ -41,6 +41,32 @@ export function offer(s: SovState): ExpeditionCard[] {
   });
 }
 
+/** The card a forcing event makes (§3.2): its pool, at a level in both the Year's band and the pool's range. */
+function forcedCard(s: SovState, pool: string, size: 4 | 8 = 4): ExpeditionCard {
+  const [lo, hi] = band(year20(s));
+  const [plo, phi] = POOL_BY_ID.get(pool)!.levels;
+  const [a, b] = [Math.max(lo, plo), Math.min(hi, phi)];
+  const level = a <= b ? a + withRng(s, (rng) => rng.int(b - a + 1)) : Math.min(Math.max(lo, plo), phi);
+  return { type: "forced", pool, level, size };
+}
+
+/**
+ * Foreshadows a forced expedition (§3.2): now and then, a forcing event is queued hidden on the
+ * timeline for next Year, where a Watchtower can read it. At most two a campaign; never for a Year
+ * before Year 3, a mandatory Year, or past the end.
+ */
+export function scheduleForced(s: SovState): void {
+  const F = G.forced;
+  const next = s.year + 1;
+  const done = s.flags.filter((f) => f.startsWith("forced_y")).length;
+  if (s.flags.includes("calm") || done >= F.max || next < F.fromYear || next > campaignYears(s) || mandatoryYears(s).includes(next)) return;
+  const pool = TOWN_EVENTS.filter((e) => e.forces && !s.flags.includes(`forced_${e.id}`));
+  if (!pool.length || withRng(s, (rng) => rng.int(100)) >= F.pct) return;
+  const ev = withRng(s, (rng) => rng.pick(pool));
+  s.timeline.push({ year: next, id: ev.id, hidden: true });
+  s.flags.push(`forced_y${next}`, `forced_${ev.id}`);
+}
+
 /** A Rescue card for each place Scions were Lost, holding them all (§9.9). */
 function rescues(s: SovState): ExpeditionCard[] {
   const groups = new Map<string, ExpeditionCard>();
@@ -63,6 +89,13 @@ export function openGate(s: SovState): void {
     s.flags = s.flags.filter((f) => f !== "expedition_delayed");
     log(s, "The walls are manned this Year; the Rift Gate stays shut.");
     return void delete s.gate;
+  }
+  // A forcing event in this Year's Omens replaces the whole offer with its one card (§3.2).
+  const opened = [...s.events.map((e) => e.id), ...(s.vote?.kind === "event" ? [s.vote.subject] : [])];
+  const forcing = opened.map((id) => TOWN_EVENT_BY_ID.get(id)?.forces).find(Boolean);
+  if (forcing && !mandatoryYears(s).includes(s.year)) {
+    s.gate = { cards: [forcedCard(s, forcing.pool, forcing.size)], votes: s.houses.map(() => null) };
+    return log(s, "The Rift Gate shows one way only this Year: the expedition is forced.");
   }
   s.gate = { cards: offer(s), votes: s.houses.map(() => null) };
 }

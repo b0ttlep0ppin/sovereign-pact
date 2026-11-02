@@ -1,0 +1,83 @@
+{
+  "id": "the_sick_well",
+  "scope": "settlement",
+  "weight": 1,
+  "years": [
+    3,
+    19
+  ],
+  "title": "The Sick Well",
+  "text": "The town well has turned brackish and the children who drank from it dream of drowning. The physicians traced the sickness to a nest beyond the Gate, in the Drowned Marches. It must be cleansed at the source.",
+  "rule": "vote",
+  "forces": {
+    "pool": "drowned_marches"
+  },
+  "options": [
+    {
+      "id": "seal",
+      "label": "Seal the well until it is done.",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Water comes by cart from the river, dear and slow.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -8
+              },
+              "to": "all"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "boil",
+      "label": "Boil it and keep drinking.",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "It tastes of iron, but it holds.",
+          "effects": []
+        },
+        {
+          "w": 50,
+          "text": "The dreams spread.",
+          "effects": [
+            {
+              "sanity": -10,
+              "to": "all"
+            },
+            {
+              "doom": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pray",
+      "label": "Bless it at the Shrine.",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The priests sing over it every night. It helps the singers, at least.",
+          "effects": [
+            {
+              "accord": 2
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

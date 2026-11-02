@@ -2,6 +2,13 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 6m: forced expeditions) — implementer
+- **Forcing events** (§3.2) are town events with `forces: { pool, size? }`: The Raiders' Nest (the Beast Lands), The Taken Child (the Hollow Wood), The Sick Well (the Drowned Marches). They are never drawn in the Omens. Reading, so that the Watchtower can foreshadow one a Year ahead: each Year there is a 10% chance (`tuning.gate.forced.pct`, first pass) that one is queued, hidden, on the timeline for the next Year. The Watchtower reads hidden entries, so its House sees which event is coming; everyone else sees "?" for that Year.
+- **Limits**: at most two a campaign, each forcing event at most once, never for a Year before Year 3, a mandatory Year, or past the end. A forcing event due goes ahead of any other event due in the same Year, so it never slips.
+- **The forced Year**: the forcing event opens in the Omens like any settlement event (a vote on how the town prepares). The Rift Gate offers only its card: type `forced`, its pool, a level in both the Year's band and the pool's range, 4 Scions unless the event says 8.
+- **Failure**: turning back, a wipe, or no one going counts as failing it. That is the lesser Devastation already in `devastate(s, "forced")`: one building ruined, Accord (or Unrest) −10, Doom +10. Bots never turn back from one, as with a mandatory card.
+- **Seen in play**: 12 two-House bot campaigns met 5 forced expeditions and failed 4 of them. That is the known early-wipe problem, left for the tuning pass.
+
 ## 2026-11-02 (implementation, Milestone 6l: Changes) — implementer
 - **Changes** (§9.6, `content/changes.json`): Hollow Knight, Marsh Thing, Seraph Husk and Wyrmling. A Change's stats are its level-1 numbers grown by its own growths to the Scion's level. It wipes the Scion's traits (blessings too), injuries and look, and keeps name, House, Tarot, level, JP, learned Jobs and Loyalty.
 - **What a Change can do**, all data:
