@@ -2,6 +2,22 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 8c): the battle screen, playing back
+
+- A battle now opens on its own screen as soon as it is fought (§15.5). The pieces:
+  - The enemy grid (E3 E2 E1) faces the party's (Front, Middle, Back) across a gap, both planes tilted.
+  - The enemy panel is on the left, with HP. The party panel is on the right, with HP, MP, TP, Sanity, the four Durability pips (cracked under half, dark when Broken) and statuses.
+  - The acting combatant glows. A telegraphed charge hatches its target cell red.
+  - Damage numbers pop from the struck combatant: white, gold and larger for a crit, green for a heal, magenta for Sanity, with "Legs!" and the like on Scions and "Weak!" on a weak point.
+  - An injury roll gets its own moment: the d20, the total, and the result in its band's color. The turn lasts twice as long.
+  - The turn's headline sits above the field and its log lines below.
+- Controls: play and pause, step a turn either way, 1×/2×/4×, skip to the end, and a turn slider. By keyboard: Space, the arrows, End and Escape.
+- Several battles in one move queue up ("Next battle (2 more)"). A Battles panel lists the last twelve to watch again. "Watch battles as they happen" can be turned off, and the choice is remembered on that device.
+- Readings:
+  - The tokens are CSS (initials in House-colored rings) until the sprite pipeline exists (HANDOFF §8). The 4× gambit speed of §15.5 is one of the speed buttons rather than forced for Sorties.
+  - Reduced motion (the system setting, until the game's own toggles exist): no tilt, no slides, no pops floating away (the numbers simply show for the turn).
+  - Under 900 px the panels go under the field, and the controls stay pinned to the bottom.
+
 ## 2026-11-02 (implementation, Milestone 8b): battle replays
 
 - Battles are still fought by gambits (DECISIONS, Milestone 6), so the battle screen (§15.5) plays them back. The rules record each battle as it is fought (`combat/replay.ts`):

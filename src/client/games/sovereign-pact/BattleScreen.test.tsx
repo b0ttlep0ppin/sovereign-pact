@@ -1,0 +1,74 @@
+import { act, fireEvent, render, screen } from "@testing-library/react";
+import { describe, expect, it, vi } from "vitest";
+import { sovereignPact as g } from "@vibepulse/shared/games/sovereign-pact";
+import { warbandBattle } from "../../../shared/games/sovereign-pact/combat/fixtures.ts";
+import { recorded } from "../../../shared/games/sovereign-pact/combat/replay.ts";
+import { found, campaign } from "../../../shared/games/sovereign-pact/testing.ts";
+import BattleScreen, { abilityName, framesOf } from "./BattleScreen";
+import SovereignPact from "./index";
+
+const setup = () => {
+  const s = found(campaign(1, 2));
+  const view = g.view(s, s.players[0]!);
+  const { replay } = recorded(warbandBattle(3, 3), "An Encounter");
+  return { s, view, replay };
+};
+
+describe("the battle screen (§15.5)", () => {
+  it("draws both sides from the replay's start", () => {
+    const { view, replay } = setup();
+    render(<BattleScreen replay={replay} view={view} onClose={() => {}} />);
+    expect(screen.getByRole("dialog", { name: "Battle: An Encounter" })).toBeTruthy();
+    for (const u of replay.units.filter((x) => x.side === "party")) expect(screen.getAllByText(u.name).length).toBeGreaterThan(0);
+    expect(screen.getByText(`Turn 0 of ${replay.frames.length}`)).toBeTruthy();
+  });
+
+  it("plays turn by turn, steps by keyboard, and skips to the end", () => {
+    vi.useFakeTimers();
+    const { view, replay } = setup();
+    const onClose = vi.fn();
+    render(<BattleScreen replay={replay} view={view} onClose={onClose} />);
+    act(() => void vi.advanceTimersByTime(2000));
+    const dialog = screen.getByRole("dialog");
+    expect(screen.queryByText(`Turn 0 of ${replay.frames.length}`)).toBe(null);
+    fireEvent.keyDown(dialog, { key: "End" });
+    expect(screen.getByText(`Turn ${replay.frames.length} of ${replay.frames.length}`)).toBeTruthy();
+    expect(screen.getByText(replay.outcome === "victory" ? "Victory" : /The party/)).toBeTruthy();
+    fireEvent.keyDown(dialog, { key: "ArrowLeft" });
+    expect(screen.getByText(`Turn ${replay.frames.length - 1} of ${replay.frames.length}`)).toBeTruthy();
+    fireEvent.keyDown(dialog, { key: "Escape" });
+    expect(onClose).toHaveBeenCalled();
+    vi.useRealTimers();
+  });
+
+  it("folds the frames into each turn's vitals", () => {
+    const { replay } = setup();
+    const states = framesOf(replay);
+    expect(states).toHaveLength(replay.frames.length + 1);
+    const lastHit = [...replay.frames].reverse().find((f) => f.vit.length)!;
+    const i = replay.frames.lastIndexOf(lastHit) + 1;
+    for (const v of lastHit.vit) expect(states[i]!.get(v[0])).toEqual(v);
+  });
+
+  it("names abilities by their content names", () => {
+    expect(abilityName("attack")).toBe("Attack");
+    expect(abilityName("item:tonic")).not.toMatch(/item:/);
+  });
+});
+
+describe("battles in the campaign screen", () => {
+  it("opens a new battle on its own, and lists it to watch again", () => {
+    const { view, replay } = setup();
+    const props = { me: "p1", players: [], isMyTurn: false, sendMove: () => {}, lastError: null };
+    const { rerender } = render(<SovereignPact {...props} view={view} />);
+    expect(screen.queryByRole("dialog")).toBe(null);
+    rerender(<SovereignPact {...props} view={{ ...view, battles: [{ ...replay, key: "1:9:0" }] }} />);
+    expect(screen.getByRole("dialog", { name: "Battle: An Encounter" })).toBeTruthy();
+    fireEvent.click(screen.getByRole("button", { name: "Close" }));
+    expect(screen.queryByRole("dialog")).toBe(null);
+    // The next move drops the replay from the view; the screen keeps it.
+    rerender(<SovereignPact {...props} view={{ ...view, battles: [] }} />);
+    fireEvent.click(screen.getByRole("button", { name: "Watch" }));
+    expect(screen.getByRole("dialog")).toBeTruthy();
+  });
+});
