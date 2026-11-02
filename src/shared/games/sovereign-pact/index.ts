@@ -23,6 +23,7 @@ import { botCard, cannotPick, pick } from "./gate.ts";
 import { TUNING } from "./tuning.ts";
 import { view, type SovView } from "./view.ts";
 import { clone, closeExpedition, closeSettlement } from "./year.ts";
+import { botPress, cannotRetreat, home, pressOn } from "./journey.ts";
 import { botField, botLeader, cannotField, cannotLead, field, voteLeader, waiting } from "./expedition.ts";
 
 export type { SovMove, SovState } from "./state.ts";
@@ -176,6 +177,20 @@ export function applyMove(state: SovState, playerId: PlayerId, move: SovMove): M
       if (why) return fail(why);
       if (move.type === "field") field(s, house, move.people);
       else voteLeader(s, house, move.person);
+      s.phaseMoves += 1;
+      if (!waiting(s).length) closeExpedition(s);
+      return { ok: true, state: s };
+    }
+    case "press_on":
+    case "retreat": {
+      const e = s.expedition;
+      if (s.phase !== "expedition" || e?.leader === undefined || e.result) return fail("No expedition is underway.");
+      if (s.people.find((p) => p.id === e.leader)!.host !== house) return fail("The Leader's House decides the way.");
+      if (move.type === "retreat") {
+        const why = cannotRetreat(s);
+        if (why) return fail(why);
+        home(s, "retreated");
+      } else pressOn(s);
       s.phaseMoves += 1;
       if (!waiting(s).length) closeExpedition(s);
       return { ok: true, state: s };
@@ -370,7 +385,11 @@ export function botMove(s: SovState, playerId: PlayerId): SovMove {
   // A bot founds the Random House it was dealt, keeping the first Ambition (§5.1).
   if (s.phase === "founding") return house >= 0 && !s.houses[house]!.sealed ? botFounding(s, house) : { type: "swear", ambition: 0 };
   if (s.phase === "expedition" && house >= 0)
-    return s.expedition?.votes ? { type: "lead", person: botLeader(s, house) } : { type: "field", people: botField(s, house) };
+    return s.expedition?.leader !== undefined
+      ? { type: botPress(s) ? "press_on" : "retreat" }
+      : s.expedition?.votes
+        ? { type: "lead", person: botLeader(s, house) }
+        : { type: "field", people: botField(s, house) };
   if (house >= 0 && s.phase === "settlement" && s.vote && s.vote.by[house] === null) return { type: "vote", choice: botVote(s, house) };
   const offered = house >= 0 && s.phase === "settlement" ? s.deals.find((d) => d.to === house) : undefined;
   if (offered) return botDeal(s, house, offered);

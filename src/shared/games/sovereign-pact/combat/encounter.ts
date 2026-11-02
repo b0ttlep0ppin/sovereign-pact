@@ -179,7 +179,10 @@ export function encounter(rng: Rng, spec: EncounterSpec): Encounter {
   if (!POOL_BY_ID.has(spec.pool)) throw new Error(`unknown pool ${spec.pool}`);
   const t = spec.template ? TEMPLATE_BY_ID.get(spec.template) : drawTemplate(rng, spec.level);
   if (!t) throw new Error(`unknown template ${String(spec.template)}`);
-  const enemies = place(rollVariants(rng, fill(rng, spec.pool, spec.level, rolesFor(rng, t, spec.party)), spec.year), spec.level, spec.firstId);
+  // A pool fields its own enemies at the nearest level it has, scaled to the fight's (the Pit at Year 5).
+  const [lo, hi] = POOL_BY_ID.get(spec.pool)!.levels;
+  const from = Math.max(lo, Math.min(hi, spec.level));
+  const enemies = place(rollVariants(rng, fill(rng, spec.pool, from, rolesFor(rng, t, spec.party)), spec.year), spec.level, spec.firstId);
   const modifier = spec.modifier === null ? undefined : (spec.modifier ?? rollModifier(rng, t, spec));
   applyModifier(enemies, modifier);
   const hazard = spec.hazards === false ? undefined : rollHazard(rng, spec.pool, spec.hazards)?.id;

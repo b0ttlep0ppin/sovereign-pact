@@ -5,6 +5,7 @@ import { loseAccord } from "./commons.ts";
 import { POOL_BY_ID } from "./content.ts";
 import type { ExpeditionCard, Person, SovState } from "./state.ts";
 import { TUNING } from "./tuning.ts";
+import { home, rollChain } from "./journey.ts";
 import { log, mandatoryYears } from "./year.ts";
 
 const seatsOf = (card: ExpeditionCard): number => (card.size === 4 ? 4 : 8);
@@ -52,6 +53,10 @@ export function muster(s: SovState, card: ExpeditionCard): void {
     seats: s.houses.map((_, i) => seats[i] ?? 0),
     party: s.houses.map((_, i) => (seats[i] ? null : [])),
     declined: [],
+    chain: [],
+    at: 0,
+    carry: {},
+    out: [],
   };
   log(s, `The Houses turn the Rift Gate toward ${POOL_BY_ID.get(card.pool)?.name ?? card.pool}, a level ${card.level} ${card.type} expedition for ${seatsOf(card)}.`);
 }
@@ -59,7 +64,7 @@ export function muster(s: SovState, card: ExpeditionCard): void {
 /** Why House `house` cannot field `people`, or null. */
 export function cannotField(s: SovState, house: number, people: unknown): string | null {
   const e = s.expedition;
-  if (!e || e.leader !== undefined || e.votes) return "No seats are being filled.";
+  if (!e || e.leader !== undefined || e.votes || e.result) return "No seats are being filled.";
   if (e.party[house] !== null) return e.seats[house] ? "You have already fielded your Scions." : "Your House has no seats on this expedition.";
   if (!Array.isArray(people) || people.some((id) => typeof id !== "number")) return "Name the Scions you field.";
   if (new Set(people).size !== people.length) return "A Scion can take only one seat.";
@@ -106,10 +111,10 @@ function openLeaderVote(s: SovState): void {
   // §9.2: with the seats unfilled the card cannot depart (a mandatory one goes with whoever came).
   if (party.length < seatsOf(e.card) && e.card.type !== "mandatory") {
     log(s, `Too few Scions answer the Rift Gate: the expedition to ${POOL_BY_ID.get(e.card.pool)?.name ?? e.card.pool} cannot depart this Year.`);
-    delete s.expedition;
+    e.result = "stayed";
     return;
   }
-  if (!party.length) return;
+  if (!party.length) return home(s, "unanswered");
   if (party.length === 1 || s.houses.length === 1) return depart(s, choose(s, party.map((id) => [id, 1])));
   e.votes = s.houses.map(() => null);
 }
@@ -154,6 +159,8 @@ function depart(s: SovState, leader: number): void {
   e.party.forEach((p, h) => {
     if (p?.length) s.houses[h]!.attended = (s.houses[h]!.attended ?? 0) + 1;
   });
+  e.chain = rollChain(s);
+  e.at = 0;
   const n = roster(s).length;
   log(s, `${lead.name} of House ${s.houses[lead.host]!.name} leads ${n} Scion${n === 1 ? "" : "s"} through the Rift Gate${mandatoryYears(s).includes(s.year) ? ", and the settlement holds its breath" : ""}.`);
 }
@@ -161,7 +168,8 @@ function depart(s: SovState, leader: number): void {
 /** The Houses that must still act in the Expedition Phase. */
 export function waiting(s: SovState): number[] {
   const e = s.expedition;
-  if (!e || e.leader !== undefined) return [];
+  if (!e || e.result) return [];
+  if (e.leader !== undefined) return [s.people.find((p) => p.id === e.leader)!.host];
   if (e.votes) return e.votes.flatMap((v, i) => (v === null ? [i] : []));
   return e.party.flatMap((p, i) => (p === null ? [i] : []));
 }

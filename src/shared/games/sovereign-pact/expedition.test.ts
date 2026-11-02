@@ -106,7 +106,10 @@ describe("the Leader (§9.2)", () => {
     expect(party.every((id) => s.people.find((p) => p.id === id)!.hist.expeditions === 1)).toBe(true);
     expect(s.houses.map((h) => h.attended)).toEqual([1, 1]);
     expect(s.log.some((l) => l.includes(`${lead.name} of House`))).toBe(true);
-    expect([s.year, s.phase, s.expedition]).toEqual([2, "settlement", undefined]);
+    // Underway: the Leader's House walks the chain.
+    expect([s.phase, s.expedition!.leader, s.expedition!.at]).toEqual(["expedition", leader, 0]);
+    expect(g.activePlayers(s)).toEqual(["p2"]);
+    expect(sealYear(s).year).toBe(2);
   });
 
   it("breaks a tie for the Scion with the most expeditions, at a cost in Accord", () => {
@@ -125,7 +128,7 @@ describe("the Leader (§9.2)", () => {
   it("needs no vote with one House", () => {
     let s = at(1, card(4));
     s = move(s, "p1", { type: "field", people: ids(s, 0, 4) });
-    expect(s.year).toBe(2);
+    expect(s.expedition!.leader).toBeDefined();
     expect(s.people.filter((p) => p.hist.led === 1)).toHaveLength(1);
   });
 });

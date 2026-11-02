@@ -275,6 +275,28 @@ function Muster({ view, sendMove }: { view: SovView; sendMove: (m: SovMove) => v
   const able = view.people.filter((p) => p.host === me && p.status === "scion").sort((a, b) => b.level - a.level || a.id - b.id);
   const [chosen, setChosen] = useState<number[]>(() => able.slice(0, seats).map((p) => p.id));
   const name = (id: number) => view.people.find((p) => p.id === id)?.name ?? `#${id}`;
+  if (e.leader !== undefined) {
+    const leads = view.people.find((p) => p.id === e.leader)?.host === me;
+    return (
+      <div className="sp-muster" aria-label="The expedition">
+        <p>
+          {name(e.leader)} leads. The party has passed {e.at} of {e.length} places{e.chain.length ? `: ${e.chain.join(", ")}` : ""}.
+        </p>
+        {leads ? (
+          <div className="sp-actions">
+            <button type="button" className="sp-button" onClick={() => sendMove({ type: "press_on" })}>
+              {e.at === e.length - 1 ? "Face the boss" : "Press on"}
+            </button>
+            {e.at < e.length - 1 ? (
+              <button type="button" className="sp-button sp-button--quiet" onClick={() => sendMove({ type: "retreat" })}>
+                Turn back
+              </button>
+            ) : null}
+          </div>
+        ) : null}
+      </div>
+    );
+  }
   if (e.votes) {
     const party = e.party.flatMap((p) => p ?? []);
     return (

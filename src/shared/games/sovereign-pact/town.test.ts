@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import { BUILDINGS } from "./content.ts";
 import { sovereignPact, type SovMove, type SovState } from "./index.ts";
 import { ascendancy, categories } from "./score.ts";
-import { calm, campaign, playOut } from "./testing.ts";
+import { ashore, calm, campaign, playOut } from "./testing.ts";
 import { buildCost } from "./town.ts";
 import { TUNING } from "./tuning.ts";
 import { view } from "./view.ts";
@@ -110,7 +110,7 @@ describe("the settlement bot builds", () => {
   it("keeps its upkeep reserve and raises a town over a campaign", () => {
     for (const H of [1, 4]) {
       let negative = false;
-      const end = playOut(campaign(H, 11), (s) => {
+      const end = playOut(ashore(campaign(H, 11)), (s) => {
         if (s.houses.some((h) => h.gold < 0)) negative = true;
       });
       expect(negative).toBe(false);

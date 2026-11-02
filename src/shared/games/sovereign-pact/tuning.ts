@@ -48,6 +48,21 @@ export const TUNING = {
   /** §9.2: Renown the Leader's House gains (first pass). */
   expedition: { leaderRenown: 2 },
 
+  /**
+   * §9.3 [DECIDED mix]: node weights, the mandatory +2; a Camp's rest (first pass); a boss within this
+   * many levels of the card; Valor per battle and boss won, lost per House on a retreat; §9.9's Lost 50%.
+   */
+  journey: {
+    nodes: [["encounter", 40], ["event", 45], ["camp", 10], ["cache", 5]] as const,
+    mandatoryExtra: 2,
+    camp: { durabilityPct: 50, sanityPct: 10 },
+    bossReach: 2,
+    valor: { battle: 1, boss: 5, retreat: 3 },
+    lostPct: 50,
+    /** The bot Leader turns back when a Scion's Sanity falls below this. */
+    botRetreatSanity: 15,
+  },
+
   /** §6.5 [PROPOSED numbers]: a promotion's Gold, ceremony slots a Year, and the Chapel's extra slot; the bot promotes while under its target of Scions. */
   promotion: { gold: 20, slots: 1, chapelSlots: 1, botScions: [8, 5, 4, 4] as ByHouses },
 

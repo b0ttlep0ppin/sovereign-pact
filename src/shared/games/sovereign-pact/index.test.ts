@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { sovereignPact, type SovState } from "./index.ts";
-import { calm, campaign, playOut, sealYear, seats } from "./testing.ts";
+import { ashore, calm, campaign, playOut, sealYear, seats } from "./testing.ts";
 import { TUNING } from "./tuning.ts";
 
 const g = sovereignPact;
@@ -117,8 +117,9 @@ describe("a whole campaign with bots", () => {
   });
 
   it("plays the Short campaign in 10 Years", () => {
-    // Bots can lose a campaign early (seed 3 loses its Accord in Year 9); seed 1 endures.
-    const end = playOut(campaign(2, 1, { length: "short" }));
+    // With the Gate shut the bots' settlement endures; with it open, expeditions can end it sooner.
+    const end = playOut(ashore(campaign(2, 1, { length: "short" })));
     expect([end.year, end.outcome?.won]).toEqual([10, true]);
+    expect(playOut(campaign(2, 1, { length: "short" })).year).toBeLessThanOrEqual(10);
   });
 });

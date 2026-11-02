@@ -1,0 +1,221 @@
+// The expedition's chain (§9.3) and its walk: N nodes then the boss, rolled at departure and hidden
+// beyond the next. The Leader's House presses on or turns back. Battles are fought by gambits here
+// (playing them by hand comes later); Durability, Sanity and MP carry from node to node, injuries
+// last, the dead go to the Chronicle. Events and Caches are passed through until the event engine
+// and loot exist (Milestone 6d on).
+import { BOSSES, INJURY_BY_ID } from "./content.ts";
+import { bossBattle } from "./combat/bosses.ts";
+import { scionCombatant } from "./combat/build.ts";
+import { encounterBattle } from "./combat/encounter.ts";
+import { LOADOUTS } from "./combat/roster.ts";
+import { simulate } from "./combat/sim.ts";
+import type { Battle, Combatant } from "./combat/types.ts";
+import { roster } from "./expedition.ts";
+import { gearTotals } from "./items.ts";
+import { gainJp, gainXp } from "./progression.ts";
+import { LOCATIONS, type Expedition, type NodeKind, type Person, type SovState } from "./state.ts";
+import { devastate } from "./timeline.ts";
+import { TUNING } from "./tuning.ts";
+import { creditWard } from "./wards.ts";
+import { endCampaign, log, mandatoryYears, withRng } from "./year.ts";
+
+const J = TUNING.journey;
+const P = TUNING.progression;
+
+/** The chain for the card (§9.3): N = 4 + level/2 nodes (+2 mandatory), each rolled by weight, then the boss. */
+export function rollChain(s: SovState): NodeKind[] {
+  const card = s.expedition!.card;
+  const n = 4 + Math.floor(card.level / 2) + (card.type === "mandatory" ? J.mandatoryExtra : 0);
+  return withRng(s, (rng) => {
+    const nodes = Array.from({ length: n }, () => {
+      let roll = rng.int(100);
+      return J.nodes.find(([, w]) => (roll -= w) < 0)![0];
+    });
+    return [...nodes, "boss"];
+  });
+}
+
+/** The boss a card ends in: the arc's, else one of its pool's (not the arc's) nearest its level, if any. */
+export function bossFor(s: SovState): string | undefined {
+  const card = s.expedition!.card;
+  if (card.boss) return card.boss;
+  const near = (b: (typeof BOSSES)[number]) => (card.level < b.levels[0] ? b.levels[0] - card.level : Math.max(0, card.level - b.levels[1]));
+  const fits = BOSSES.filter((b) => b.pool === card.pool && !b.tags.includes("arc") && !b.id.match(/_(risen|ascendant|final)$/) && near(b) <= J.bossReach);
+  if (!fits.length) return undefined;
+  const best = Math.min(...fits.map(near));
+  return withRng(s, (rng) => rng.pick(fits.filter((b) => near(b) === best)).id);
+}
+
+const person = (s: SovState, id: number): Person => s.people.find((p) => p.id === id)!;
+/** Scions still with the party: not dead, not Lost, not out of the fight for good. */
+export const marching = (s: SovState): number[] => roster(s).filter((id) => s.people.some((p) => p.id === id && p.status === "scion") && !s.expedition!.out.includes(id));
+
+/** The party as combatants: each in their Job's column, carrying the Durability they came in with. */
+function party(s: SovState): Combatant[] {
+  const rows: Record<number, number> = { 0: 0, 1: 0, 2: 0 };
+  return marching(s).map((id, i) => {
+    const p = person(s, id);
+    const col = LOADOUTS[p.job!]?.col ?? 1;
+    const row = rows[col]!;
+    rows[col] = row + 1;
+    // Combatant ids 1–8: enemies number from 101.
+    const u = scionCombatant(p, { id: i + 1, col, row: row % 8, gear: gearTotals(s, p), house: s.houses[p.house] });
+    const c = s.expedition!.carry[id];
+    if (c && u.dur && u.maxDur) {
+      for (const loc of LOCATIONS) u.dur[loc] = Math.min(u.maxDur[loc], c.dur[loc] ?? u.maxDur[loc]);
+      u.broken = c.broken.filter((l) => u.dur![l] === 0);
+      for (const [k, v] of Object.entries(c.mods ?? {})) u.mods[k] = (u.mods[k] ?? 0) + v;
+    }
+    return u;
+  });
+}
+
+/** The Chronicle takes the dead (§6.13): they leave the House, their gear back in its stash. */
+function die(s: SovState, p: Person, cause: string): void {
+  s.houses[p.house]!.chronicle.push({ name: p.name, year: s.year, cause, level: p.level });
+  s.people = s.people.filter((x) => x.id !== p.id);
+  delete s.assign[p.id];
+  log(s, `${p.name} of House ${s.houses[p.house]!.name} dies in the otherworld.`);
+}
+
+/** What a battle leaves on the people: Sanity, MP and Durability carry; injuries last; the dead die; victory pays. */
+function settle(s: SovState, b: Battle, cause: string): void {
+  const e = s.expedition!;
+  const won = b.outcome === "victory";
+  for (const u of b.units) {
+    if (u.side !== "party" || u.person === undefined || u.owner !== undefined) continue;
+    let p = person(s, u.person);
+    const mods: Record<string, number> = { ...e.carry[p.id]?.mods };
+    for (const ev of b.events) {
+      if (ev.t !== "injury" || ev.target !== u.id) continue;
+      const res = INJURY_BY_ID.get(ev.result);
+      if (res?.lasting) p.injuries.push({ id: res.id, years: res.lasting.years });
+      for (const [k, v] of Object.entries(res?.expedition ?? {})) mods[k] = (mods[k] ?? 0) + v;
+    }
+    if (u.dead) {
+      die(s, p, cause);
+      continue;
+    }
+    p.sanity = u.sanity;
+    p.mp = u.mp;
+    e.carry[p.id] = { dur: { ...u.dur! }, broken: [...u.broken], ...(Object.keys(mods).length ? { mods } : {}) };
+    if (u.catatonic && !e.out.includes(p.id)) e.out.push(p.id);
+    if (won) p = gainJp(gainXp(p, P.battleXp), P.battleJp);
+    s.people[s.people.findIndex((x) => x.id === p.id)] = p;
+  }
+}
+
+/** A Camp (§9.3): the party rests, each location back by a share of its Durability, Sanity a little. */
+function camp(s: SovState): void {
+  const e = s.expedition!;
+  for (const u of party(s)) {
+    const p = person(s, u.person!);
+    const c = e.carry[p.id];
+    if (c) {
+      for (const loc of LOCATIONS) c.dur[loc] = Math.min(u.maxDur![loc], u.dur![loc] + Math.round((u.maxDur![loc] * J.camp.durabilityPct) / 100));
+      c.broken = [];
+    }
+    p.sanity = Math.min(u.maxSanity, p.sanity + Math.round((u.maxSanity * J.camp.sanityPct) / 100));
+  }
+  log(s, "The party makes camp and rests.");
+}
+
+/** A battle at the next node: an Encounter from the card's pool, or the boss. */
+function fight(s: SovState, boss: boolean): Battle {
+  const card = s.expedition!.card;
+  const seed = withRng(s, (rng) => rng.int(2 ** 31));
+  const id = boss ? bossFor(s) : undefined;
+  const b = id
+    ? bossBattle(seed, party(s), id, card.level)
+    : // A pool with no boss near the level ends in a fight a level above the card's (reading, see DECISIONS).
+      encounterBattle(seed, party(s), { pool: card.pool, level: boss ? Math.min(10, card.level + 1) : card.level, year: s.year }).battle;
+  simulate(b);
+  return b;
+}
+
+/** The Leader's House presses on: the next node resolves. */
+export function pressOn(s: SovState): void {
+  const e = s.expedition!;
+  const kind = e.chain[e.at]!;
+  e.at += 1;
+  if (kind === "camp") return camp(s);
+  if (kind === "event") return log(s, "The party passes something strange, and leaves it be.");
+  if (kind === "cache") return log(s, "The party finds an old cache, already picked clean.");
+  const b = fight(s, kind === "boss");
+  const where = kind === "boss" ? "the boss" : "an encounter";
+  settle(s, b, kind === "boss" ? (bossFor(s) ?? "boss") : `${e.card.pool}_encounter`);
+  if (b.outcome === "victory") {
+    log(s, kind === "boss" ? "The party defeats the boss." : "The party wins a battle.");
+    for (const id of marching(s)) creditWard(s, person(s, id), "valor", kind === "boss" ? J.valor.boss : J.valor.battle);
+    if (kind === "boss") return home(s, "won");
+    return succeed(s);
+  }
+  log(s, `The party falls before ${where}.`);
+  home(s, "wiped");
+}
+
+/** A Leader who falls is replaced by the most travelled Scion still marching (§9.2's tie rule). */
+function succeed(s: SovState): void {
+  const e = s.expedition!;
+  const left = marching(s);
+  if (!left.length || left.includes(e.leader!)) return;
+  const runs = (id: number) => person(s, id).hist.expeditions ?? 0;
+  e.leader = left.reduce((a, b) => (runs(b) > runs(a) ? b : a));
+  const p = person(s, e.leader);
+  log(s, `${p.name} of House ${s.houses[p.host]!.name} takes command.`);
+}
+
+/** Why the Leader's House cannot turn back now, or null. */
+export function cannotRetreat(s: SovState): string | null {
+  const e = s.expedition!;
+  return e.chain[e.at] === "boss" ? "There is no turning back before the boss." : null;
+}
+
+/** The party comes home: finished, turned back, or wiped (§9.9). */
+export function home(s: SovState, how: NonNullable<Expedition["result"]>): void {
+  const e = s.expedition!;
+  e.result = how;
+  const mandatory = e.card.type === "mandatory";
+  if (how === "won") {
+    for (const id of marching(s)) {
+      const i = s.people.findIndex((p) => p.id === id);
+      s.people[i] = gainJp(gainXp(s.people[i]!, P.expeditionXp), P.expeditionJp);
+    }
+    log(s, "The expedition returns in triumph.");
+  }
+  if (how === "retreated") {
+    log(s, "The expedition turns back; whatever lay at its end stays there.");
+    for (const h of new Set(marching(s).map((id) => person(s, id).host))) s.houses[h]!.score.valor = Math.max(0, s.houses[h]!.score.valor - J.valor.retreat);
+  }
+  if (how === "wiped") {
+    // §9.9: each falls; half are left behind, Lost, and the rest crawl home.
+    withRng(s, (rng) => {
+      for (const id of marching(s)) {
+        const p = person(s, id);
+        if (rng.int(100) < J.lostPct) {
+          p.status = "lost";
+          p.gear = {};
+          delete s.assign[p.id];
+          log(s, `${p.name} of House ${s.houses[p.host]!.name} is left behind in the otherworld.`);
+        }
+      }
+    });
+  }
+  if (how === "unanswered") log(s, "No one answers the Rift Gate's call.");
+  if (how !== "won" && mandatory) {
+    if (s.year === mandatoryYears(s).at(-1)) return endCampaign(s, false, "The assault on the rift failed, and the otherworld takes the kingdom.");
+    devastate(s, "mandatory");
+  }
+}
+
+/**
+ * The bot Leader presses on while the party is whole; it turns back once it has lost a Scion or has
+ * one Broken or near the end of their Sanity, and never from a mandatory expedition.
+ */
+export function botPress(s: SovState): boolean {
+  const e = s.expedition!;
+  if (e.card.type === "mandatory" || cannotRetreat(s)) return true;
+  const ids = marching(s);
+  if (ids.length < roster(s).length) return false;
+  return ids.every((id) => !e.carry[id]?.broken.length && person(s, id).sanity >= J.botRetreatSanity);
+}
