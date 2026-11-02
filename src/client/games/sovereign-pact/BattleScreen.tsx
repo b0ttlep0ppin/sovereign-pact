@@ -6,7 +6,7 @@
 import { Content, FLAG, replayLine, type Cell, type Command, type Replay, type ReplayUnit, type SovView, type TurnView, type Vitals } from "@vibepulse/shared/games/sovereign-pact";
 import { useEffect, useMemo, useRef, useState, type CSSProperties, type KeyboardEvent } from "react";
 import CommandBar, { type Aiming } from "./CommandBar";
-import { HERALDRY_COLORS } from "./Emblem";
+import { Emblem, HERALDRY_COLORS } from "./Emblem";
 import ScionSprite, { animFor, lunges, lookOf, type Anim } from "./ScionSprite";
 import { spriteOf } from "./sprites";
 import { playSounds, soundsOf } from "./sfx";
@@ -224,6 +224,12 @@ export default function BattleScreen({ replay, view, onClose, waiting = 0, fullL
         <span className="sp-unit__hp" aria-hidden="true">
           <span style={{ width: `${pct(hp, u.maxHp)}%` }} />
         </span>
+        {u.house !== undefined && view.houses[u.house] ? (
+          // Whose Scion this is (Josh 2026-11-02): the House's arms in miniature.
+          <span className="sp-unit__house" title={`House ${view.houses[u.house]!.name}`}>
+            <Emblem emblem={view.houses[u.house]!.emblem} colors={view.houses[u.house]!.colors} size={16} />
+          </span>
+        ) : null}
         {mine.map((p, i) => (
           <span key={p.key} className={`sp-pop sp-pop--${p.kind}`} style={{ ["--i" as string]: i }}>
             {p.text}

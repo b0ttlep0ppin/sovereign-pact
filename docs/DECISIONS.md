@@ -2,6 +2,12 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 8ap): Pugilist combos by hand; House arms on the battle grid
+
+- Josh: "The pugilist is supposed to make combos but I'm just doing one attack?" Gambits already chained combos (§12.2); a turn by hand now offers "Build a combo" too. The player adds moves one after another, each paying its TP (plus the repeat cost for a move used again), sees what is left, can undo, and strikes. Finishers show what they need first and stay shut until the chain fits them. The rules check the chain again when it arrives (`do: "combo"`), so the screen only helps.
+- The view lists the combo moves on a Pugilist's turn (`turn.combo`): each move's TP, MP, tag, finisher pattern, whether it strikes a foe, and why it can't go (MP, silence).
+- Josh: "maybe a micro house icon on the battle grid so you can tell who belongs to who". Each Scion's cell on the battle grid, and each post in the formation, carries a small copy of their House's arms.
+
 ## 2026-11-02 (implementation, Milestone 8ao): HP carries through an expedition; Pugilists wear a kerchief
 
 - Josh: "TP should reset per battle, and HP damage and MP should persist; that's the point of the event battles, to soften you up for the main boss." MP already carried and TP already starts each battle at 0. HP was refilled before every battle; now it carries.
