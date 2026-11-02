@@ -1,0 +1,80 @@
+{
+  "id": "the_sap_trees",
+  "pools": [
+    "resource"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    10
+  ],
+  "title": "The Sap Trees",
+  "text": "Trees that bleed a golden sap, prized by alchemists.",
+  "options": [
+    {
+      "id": "tap",
+      "label": "Tap them.",
+      "rule": "vote",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Jars of it.",
+          "effects": [
+            {
+              "resources": {
+                "essence": 4
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fell",
+      "label": "Fell them.",
+      "rule": "leader",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Timber and sap both.",
+          "effects": [
+            {
+              "resources": {
+                "timber": 4,
+                "essence": 2
+              }
+            },
+            {
+              "doom": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "plant",
+      "label": "The wisest takes seedlings for the House.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A grove, in time.",
+          "effects": [
+            {
+              "house_improvement": "building"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

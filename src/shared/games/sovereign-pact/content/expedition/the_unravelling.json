@@ -1,0 +1,84 @@
+{
+  "id": "the_unravelling",
+  "pools": [
+    "outer_dark"
+  ],
+  "weight": 2,
+  "band": [
+    6,
+    10
+  ],
+  "title": "The Unravelling",
+  "text": "A thread hangs in the dark, and pulling it unravels something. Maybe the dark. Maybe you.",
+  "options": [
+    {
+      "id": "pull",
+      "label": "Pull it.",
+      "rule": "leader",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "The dark unravels a little. Light.",
+          "effects": [
+            {
+              "skip": 2
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "You unravel a little.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -20
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cut",
+      "label": "Cut it.",
+      "rule": "vote",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It whips back, and the dark tightens.",
+          "effects": [
+            {
+              "encounter": {}
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tie",
+      "label": "The wisest ties it off.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Tied. The dark holds still.",
+          "effects": [
+            {
+              "score": {
+                "lore": 2
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

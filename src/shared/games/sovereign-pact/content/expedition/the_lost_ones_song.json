@@ -1,0 +1,83 @@
+{
+  "id": "the_lost_ones_song",
+  "pools": [
+    "rescue"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    10
+  ],
+  "title": "The Lost One's Song",
+  "text": "A song carries on the wind, a House song, sung badly by someone who is tired.",
+  "options": [
+    {
+      "id": "follow",
+      "label": "Follow the song.",
+      "rule": "vote",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Closer.",
+          "effects": [
+            {
+              "skip": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sing",
+      "label": "The steadiest voice sings back.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The song answers, stronger.",
+          "effects": [
+            {
+              "skip": 1
+            },
+            {
+              "to": "party",
+              "sanity": 8
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "quiet",
+      "label": "Keep quiet, in case it is a lure.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "It is not.",
+          "effects": []
+        },
+        {
+          "w": 50,
+          "text": "It is.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "surprise"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

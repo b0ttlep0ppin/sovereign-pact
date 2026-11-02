@@ -1,0 +1,78 @@
+{
+  "id": "the_vulture_tree",
+  "pools": [
+    "beast_lands"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    6
+  ],
+  "title": "The Vulture Tree",
+  "text": "A dead tree heavy with vultures. Beneath it, something they are waiting on is still breathing.",
+  "options": [
+    {
+      "id": "help",
+      "label": "The healer looks.",
+      "rule": "scion:most_healing|scion:random",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A wounded traveler, who pays in thanks and a map.",
+          "effects": [
+            {
+              "skip": 1
+            },
+            {
+              "score": {
+                "renown": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "leave",
+      "label": "Leave it to the birds.",
+      "rule": "vote",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The birds lift as you pass, and settle behind.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "scare",
+      "label": "Scare the vultures off.",
+      "rule": "leader",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Something bigger was waiting too.",
+          "effects": [
+            {
+              "encounter": {}
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

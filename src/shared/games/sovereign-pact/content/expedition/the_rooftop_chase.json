@@ -1,0 +1,92 @@
+{
+  "id": "the_rooftop_chase",
+  "pools": [
+    "faceless_city"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    9
+  ],
+  "title": "The Rooftop Chase",
+  "text": "Masked figures leap across the rooftops, carrying something that belongs to your House.",
+  "options": [
+    {
+      "id": "chase",
+      "label": "The fastest gives chase.",
+      "rule": "scion:highest:speed",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "Caught, and it is yours again.",
+          "effects": [
+            {
+              "item": {
+                "tier": 2
+              }
+            },
+            {
+              "score": {
+                "valor": 1
+              }
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "A fall.",
+          "effects": [
+            {
+              "injury": "legs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "street",
+      "label": "Follow from the street.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Lost among the masks.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -10
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ahead",
+      "label": "The cleverest guesses where they go.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Waiting when they land.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "surprise"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

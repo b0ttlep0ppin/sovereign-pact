@@ -1,0 +1,62 @@
+{
+  "id": "the_northern_lights",
+  "pools": [
+    "deep_cold"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    8
+  ],
+  "title": "The Northern Lights",
+  "text": "The lights in the sky come down to the ice and dance among you. They are cold, and curious.",
+  "options": [
+    {
+      "id": "dance",
+      "label": "Dance with them.",
+      "rule": "each_scion",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "Light and joy.",
+          "effects": [
+            {
+              "sanity": 15
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "Too cold.",
+          "effects": [
+            {
+              "status": "frozen"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "still",
+      "label": "Stand still.",
+      "rule": "each_scion",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "They pass through you.",
+          "effects": [
+            {
+              "sanity": 3
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

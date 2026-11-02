@@ -1,0 +1,88 @@
+{
+  "id": "the_brass_bull",
+  "pools": [
+    "pit"
+  ],
+  "weight": 2,
+  "band": [
+    5,
+    10
+  ],
+  "title": "The Brass Bull",
+  "text": "A brass bull sits over a fire in the Pit. Something inside it is singing.",
+  "options": [
+    {
+      "id": "open",
+      "label": "Open it.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "A soul, freed, grateful.",
+          "effects": [
+            {
+              "blessing": {
+                "trait": "lucky",
+                "years": 2
+              }
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "A devil, freed, grateful in its own way.",
+          "effects": [
+            {
+              "encounter": {
+                "level": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fire",
+      "label": "Put out the fire.",
+      "rule": "leader",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The singing stops.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "leave",
+      "label": "Leave it.",
+      "rule": "scion:highest:guile|vote",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The song follows you down.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -8
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

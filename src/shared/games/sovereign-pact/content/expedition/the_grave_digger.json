@@ -1,0 +1,76 @@
+{
+  "id": "the_grave_digger",
+  "pools": [
+    "barrows"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    8
+  ],
+  "title": "The Grave Digger",
+  "text": "An old man digs graves among the barrows, more than there are dead. He says they will be needed.",
+  "options": [
+    {
+      "id": "ask",
+      "label": "Ask who for.",
+      "rule": "vote",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "He names a rival House.",
+          "effects": [
+            {
+              "score": {
+                "intrigue": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "help",
+      "label": "The strongest helps him dig.",
+      "rule": "scion:highest:might",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "He gives them a shovel blessed against the dead.",
+          "effects": [
+            {
+              "item": {
+                "tier": 2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fill",
+      "label": "Fill them in.",
+      "rule": "leader",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "He weeps, and the barrows stir.",
+          "effects": [
+            {
+              "encounter": {}
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

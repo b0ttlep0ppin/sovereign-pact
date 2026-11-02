@@ -1,0 +1,62 @@
+{
+  "id": "the_confessional",
+  "pools": [
+    "apostate_court"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    9
+  ],
+  "title": "The Confessional",
+  "text": "A confessional booth stands alone in a burned church. A voice inside invites confession.",
+  "options": [
+    {
+      "id": "confess",
+      "label": "Each Scion confesses.",
+      "rule": "each_scion",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "A weight lifted.",
+          "effects": [
+            {
+              "sanity": 12
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "The voice tells it to someone.",
+          "effects": [
+            {
+              "sanity": -5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "listen",
+      "label": "Each Scion listens instead.",
+      "rule": "each_scion",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Other people's sins, and useful ones.",
+          "effects": [
+            {
+              "xp": 30
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
