@@ -1,0 +1,89 @@
+{
+  "id": "the_wyrm_priest",
+  "pools": [
+    "dragon_reaches"
+  ],
+  "weight": 2,
+  "band": [
+    5,
+    10
+  ],
+  "title": "The Wyrm Priest",
+  "text": "A priest of the dragons blesses travelers with fire, lightly, if they kneel.",
+  "options": [
+    {
+      "id": "kneel",
+      "label": "Kneel.",
+      "rule": "each_scion",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 80,
+          "text": "Warm, not burned.",
+          "effects": [
+            {
+              "status": "protect"
+            }
+          ]
+        },
+        {
+          "w": 20,
+          "text": "Burned.",
+          "effects": [
+            {
+              "status": "burn"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "brave",
+      "label": "The bravest asks for the full blessing.",
+      "rule": "scion:trait:brave|scion:highest:resilience",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Fire. They come out of it changed in small ways.",
+          "effects": [
+            {
+              "growth": {
+                "all": 5
+              }
+            },
+            {
+              "durability": -30,
+              "loc": "body"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "refuse",
+      "label": "Refuse.",
+      "rule": "vote",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "He calls his gods.",
+          "effects": [
+            {
+              "encounter": {
+                "level": 1
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

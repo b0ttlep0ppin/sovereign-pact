@@ -1,0 +1,99 @@
+{
+  "id": "the_frost_giants_cup",
+  "pools": [
+    "deep_cold"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    8
+  ],
+  "title": "The Frost Giant's Cup",
+  "text": "A cup of ice the size of a cart, abandoned on a glacier, still holding something that steams.",
+  "options": [
+    {
+      "id": "drink",
+      "label": "The toughest drinks.",
+      "rule": "scion:highest:resilience",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "Giant's mead. They feel enormous.",
+          "effects": [
+            {
+              "growth": {
+                "resilience": 10
+              }
+            },
+            {
+              "to": "party",
+              "sanity": 5
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "Giant's poison.",
+          "effects": [
+            {
+              "status": "poison"
+            },
+            {
+              "sanity": -10
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "take",
+      "label": "Chip off the cup's rim. Giant ice never melts.",
+      "rule": "vote",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It sells for a fortune to anyone who wants to keep things cold.",
+          "effects": [
+            {
+              "resources": {
+                "essence": 5
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "giant",
+      "label": "Wait for the giant.",
+      "rule": "leader",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It comes back thirsty.",
+          "effects": [
+            {
+              "encounter": {
+                "level": 1
+              }
+            },
+            {
+              "score": {
+                "valor": 2
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

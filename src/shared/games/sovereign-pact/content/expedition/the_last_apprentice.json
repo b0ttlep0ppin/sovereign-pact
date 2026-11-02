@@ -1,0 +1,95 @@
+{
+  "id": "the_last_apprentice",
+  "pools": [
+    "forge_ruins"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    9
+  ],
+  "title": "The Last Apprentice",
+  "text": "A boy has been tending the dead forge alone for years, waiting for his master. He wants to show someone his work.",
+  "options": [
+    {
+      "id": "look",
+      "label": "The strongest arm tests his blade.",
+      "rule": "scion:highest:might",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It is good. He beams.",
+          "effects": [
+            {
+              "item": {
+                "tier": 2
+              }
+            },
+            {
+              "score": {
+                "renown": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "recruit",
+      "label": "Offer him a place in the House.",
+      "rule": "house:random",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "He packs his hammer.",
+          "effects": [
+            {
+              "house_improvement": "recruit"
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "He will wait for his master.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "truth",
+      "label": "Tell him his master is dead.",
+      "rule": "leader",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "He lets the fire go out.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -5
+            },
+            {
+              "resources": {
+                "iron": 3
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

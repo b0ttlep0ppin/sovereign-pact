@@ -1,0 +1,90 @@
+{
+  "id": "the_starless_choir",
+  "pools": [
+    "outer_dark"
+  ],
+  "weight": 2,
+  "band": [
+    6,
+    10
+  ],
+  "title": "The Starless Choir",
+  "text": "Voices sing out of nothing, in a language that hurts. Each Scion hears a different song.",
+  "options": [
+    {
+      "id": "listen",
+      "label": "Listen.",
+      "rule": "each_scion",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "A song of home.",
+          "effects": [
+            {
+              "sanity": 5
+            },
+            {
+              "xp": 40
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "A song of the end.",
+          "effects": [
+            {
+              "sanity": -15
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hum",
+      "label": "Hum over it.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Your own tune, thin but yours.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "answer",
+      "label": "The wisest sings back.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The choir falls silent, surprised.",
+          "effects": [
+            {
+              "score": {
+                "lore": 2
+              }
+            },
+            {
+              "skip": 1
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

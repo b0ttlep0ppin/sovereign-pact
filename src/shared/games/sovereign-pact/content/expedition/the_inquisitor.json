@@ -1,0 +1,82 @@
+{
+  "id": "the_inquisitor",
+  "pools": [
+    "apostate_court"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    9
+  ],
+  "title": "The Inquisitor",
+  "text": "An inquisitor of the Court stops the party, and wants to know which of you is the heretic.",
+  "options": [
+    {
+      "id": "accuse",
+      "label": "Accuse a rival House.",
+      "rule": "house:random|vote",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The inquisitor takes note.",
+          "effects": [
+            {
+              "score": {
+                "intrigue": 2
+              }
+            },
+            {
+              "accord": -2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "faith",
+      "label": "The devout recites the creed.",
+      "rule": "scion:trait:devout|scion:highest:sagacity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Word-perfect. You may pass.",
+          "effects": [
+            {
+              "skip": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "strike",
+      "label": "Strike first.",
+      "rule": "leader",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "He has guards.",
+          "effects": [
+            {
+              "encounter": {}
+            },
+            {
+              "score": {
+                "valor": 1
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

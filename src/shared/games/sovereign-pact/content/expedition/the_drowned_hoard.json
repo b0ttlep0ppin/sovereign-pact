@@ -1,0 +1,106 @@
+{
+  "id": "the_drowned_hoard",
+  "pools": [
+    "drowned_marches"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    7
+  ],
+  "title": "The Drowned Hoard",
+  "text": "A strongbox at the bottom of a clear pool, too heavy for one, easy for all. The Houses agree to split it. Each decides alone whether to.",
+  "options": [
+    {
+      "id": "share",
+      "label": "Split it fairly.",
+      "rule": "secret",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Everyone is honest. The box opens, and the shares are good.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 20
+              }
+            },
+            {
+              "score": {
+                "renown": 1
+              }
+            }
+          ],
+          "when": {
+            "none": "grab"
+          }
+        },
+        {
+          "w": 100,
+          "text": "Your share is gone before you reach it.",
+          "effects": [
+            {
+              "sanity": -8
+            }
+          ],
+          "when": {
+            "any": "grab"
+          }
+        }
+      ]
+    },
+    {
+      "id": "grab",
+      "label": "Dive early and take the lot.",
+      "rule": "secret",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Nobody else thought of it.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 45
+              }
+            },
+            {
+              "score": {
+                "intrigue": 2
+              }
+            }
+          ],
+          "when": {
+            "none": "grab"
+          }
+        },
+        {
+          "w": 100,
+          "text": "Others had the same idea. There is a fight in the water.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 10
+              }
+            },
+            {
+              "durability": -20,
+              "loc": "body"
+            },
+            {
+              "accord": -3
+            }
+          ],
+          "when": {
+            "any": "grab"
+          }
+        }
+      ]
+    }
+  ]
+}
