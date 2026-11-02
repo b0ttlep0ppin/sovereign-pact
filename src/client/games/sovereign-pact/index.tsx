@@ -304,6 +304,7 @@ function Muster({ view, sendMove }: { view: SovView; sendMove: (m: SovMove) => v
         <p>
           <strong>{ev?.title}</strong> {ev?.text}
         </p>
+        {ev?.options.every((o) => o.rule === "secret") ? <p>Each House chooses in secret, for its own Scions.</p> : null}
         {mine === null && e.event.picks ? (
           // Each Scion's House picks for them (§9.4 each_scion): the first of yours still to choose.
           (() => {

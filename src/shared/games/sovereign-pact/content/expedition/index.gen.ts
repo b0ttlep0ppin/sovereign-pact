@@ -12,8 +12,10 @@ import feast_of_crows from "./feast_of_crows.json" with { type: "json" };
 import field_of_flowers from "./field_of_flowers.json" with { type: "json" };
 import hanging_garden from "./hanging_garden.json" with { type: "json" };
 import hidden_trapdoor from "./hidden_trapdoor.json" with { type: "json" };
+import hoard_in_the_hollow from "./hoard_in_the_hollow.json" with { type: "json" };
 import hollow_ivory from "./hollow_ivory.json" with { type: "json" };
 import hunters_mark from "./hunters_mark.json" with { type: "json" };
+import informers_offer from "./informers_offer.json" with { type: "json" };
 import lantern_keeper from "./lantern_keeper.json" with { type: "json" };
 import lost_caravan from "./lost_caravan.json" with { type: "json" };
 import mirror_pool from "./mirror_pool.json" with { type: "json" };
@@ -44,8 +46,10 @@ export default [
   field_of_flowers,
   hanging_garden,
   hidden_trapdoor,
+  hoard_in_the_hollow,
   hollow_ivory,
   hunters_mark,
+  informers_offer,
   lantern_keeper,
   lost_caravan,
   mirror_pool,

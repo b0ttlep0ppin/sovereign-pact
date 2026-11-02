@@ -558,7 +558,8 @@ export interface TripOption {
   label: string;
   rule: string;
   tags?: string[];
-  outcomes: { w: number; text: string; effects: TripEffect[] }[];
+  /** `when` (secret events): another House picked option `any`, or no other House picked `none`. */
+  outcomes: { w: number; text: string; effects: TripEffect[]; when?: { any?: string; none?: string } }[];
 }
 /** An expedition event, met at an Event node (§9.4). */
 export interface TripEventDef {

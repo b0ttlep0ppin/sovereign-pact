@@ -1,0 +1,107 @@
+{
+  "id": "hoard_in_the_hollow",
+  "pools": [
+    "general",
+    "delve"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    10
+  ],
+  "title": "The Hoard in the Hollow",
+  "text": "A dead king's gold, spilled across the floor of a hollow tree, more than any one House could carry. You agree to share it. Each House decides, alone, whether it means to.",
+  "options": [
+    {
+      "id": "share",
+      "label": "Share it fairly.",
+      "rule": "secret",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Every House kept its word. The gold is shared, and so is a little trust.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 25
+              }
+            },
+            {
+              "score": {
+                "renown": 1
+              }
+            }
+          ],
+          "when": {
+            "none": "take"
+          }
+        },
+        {
+          "w": 100,
+          "text": "Your share is gone when you reach for it. Someone else did not keep their word.",
+          "effects": [
+            {
+              "sanity": -10
+            }
+          ],
+          "when": {
+            "any": "take"
+          }
+        }
+      ]
+    },
+    {
+      "id": "take",
+      "label": "Take more than your share.",
+      "rule": "secret",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Nobody else thought of it. Your packs are heavy all the way home.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 60
+              }
+            },
+            {
+              "score": {
+                "intrigue": 2
+              }
+            }
+          ],
+          "when": {
+            "none": "take"
+          }
+        },
+        {
+          "w": 100,
+          "text": "Others had the same idea. Knives come out over the coins before anyone thinks better of it.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 20
+              }
+            },
+            {
+              "durability": -20,
+              "loc": "arms"
+            },
+            {
+              "accord": -3
+            }
+          ],
+          "when": {
+            "any": "take"
+          }
+        }
+      ]
+    }
+  ]
+}

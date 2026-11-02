@@ -2,6 +2,12 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 6i: secret events) — implementer
+- **`secret`** (§9.4, Q91): an event whose options are all `secret` is put to the Houses present. Each picks unseen: the view shows another House's pick only as chosen (−2) until every pick is in.
+- At the reveal, the log names every House's choice. Each pick then happens to that House's own Scions in the party, its finds to that House.
+- An outcome may carry `when`: `{ "any": option }` (another House picked it) or `{ "none": option }` (no other House did). Only the fitting outcomes are drawn from; if none fits, the plain ones are.
+- New events: the Hoard in the Hollow, the Informer's Offer.
+
 ## 2026-11-02 (treasure as a pool of shares) — Josh
 - **Treasure goes to one pool and Houses claim "shares" of it**: gear, a resource or an artifact, in a randomized House order. This replaces 6e's even split of materials (remainder to the Commons) and its lowest-Standing-first order. → SPEC §9.10, GLOSSARY "Draft"
 - Implementer's reading: each item is one share, and each material is split into one bundle per drafting House (fewer when there is too little). The order is random, then snakes back as before, so no House picks twice running at the turn. The bot takes the share it values most (`tuning.loot.botWorth`). Gear is still drafted blind.

@@ -46,6 +46,9 @@ export const present = (s: SovState): number[] => [...new Set(marching(s).map((i
 /** Whether every Scion's owner picks for them (§9.4 `each_scion`) instead of the party voting. */
 export const eachScion = (id: string): boolean => TRIP_EVENT_BY_ID.get(id)!.options.every((o) => o.rule === "each_scion");
 
+/** Whether each House picks secretly for its own Scions (§9.4 `secret`; Josh, Q91). */
+export const secretEvent = (id: string): boolean => TRIP_EVENT_BY_ID.get(id)!.options.every((o) => o.rule === "secret");
+
 /** An Event node: the event is drawn and put to the party (or, for `each_scion`, to every Scion's House). */
 export function meet(s: SovState): void {
   const e = s.expedition!;
@@ -89,6 +92,7 @@ export function decide(s: SovState, house: number, option: number, who?: number)
   }
   ev.votes[house] = option;
   if (ev.votes.some((v) => v === null)) return;
+  if (secretEvent(ev.id)) return revealSecret(s);
   const tally = def.options.map((_, i) => ev.votes.filter((v) => v === i).length);
   const top = Math.max(...tally);
   const tied = tally.flatMap((n, i) => (n === top ? [i] : []));
@@ -152,18 +156,41 @@ function subjectOf(s: SovState, rule: string): Subjects | null {
   return one(ids.reduce((x, y) => ((high ? score(y) > score(x) : score(y) < score(x)) ? y : x)));
 }
 
+/**
+ * A secret event's reveal (Q91, Josh 2026-11-02): each House's pick happens to its own Scions, and
+ * an outcome may turn on what the others chose (`when`: another House picked that option, or none did).
+ */
+function revealSecret(s: SovState): void {
+  const e = s.expedition!;
+  const ev = e.event!;
+  const def = TRIP_EVENT_BY_ID.get(ev.id)!;
+  delete e.event;
+  const picks = ev.votes.flatMap((v, h) => (v !== null && v >= 0 ? [[h, v] as const] : []));
+  log(s, `The choices are revealed: ${picks.map(([h, v]) => `House ${s.houses[h]!.name}, ${def.options[v]!.label}`).join("; ")}`);
+  for (const [h, v] of picks) {
+    if (e.result) return;
+    const others = picks.filter(([x]) => x !== h).map(([, o]) => def.options[o]!.id);
+    const scions = marching(s).filter((id) => person(s, id).host === h);
+    if (scions.length) land(s, def.options[v]!, { scions, house: h }, others);
+  }
+  after(s);
+}
+
 /** The option is taken: its subject found, its outcome drawn, its effects applied in order. */
 export function resolve(s: SovState, option: TripOption): void {
   land(s, option, subjects(s, option.rule));
   after(s);
 }
 
-function land(s: SovState, option: TripOption, { scions, house }: Subjects): void {
+function land(s: SovState, option: TripOption, { scions, house }: Subjects, others: string[] = []): void {
+  // Outcomes that turn on the other Houses' secret picks; with none of them fitting, the plain ones.
+  const fits = option.outcomes.filter((o) => !o.when || (o.when.any ? others.includes(o.when.any) : !others.includes(o.when.none!)));
+  const pool = fits.length ? fits : option.outcomes.filter((o) => !o.when);
   const outcome = withRng(s, (rng) => {
-    let r = rng.int(option.outcomes.reduce((n, o) => n + o.w, 0));
-    return option.outcomes.find((o) => (r -= o.w) < 0)!;
+    let r = rng.int(pool.reduce((n, o) => n + o.w, 0));
+    return pool.find((o) => (r -= o.w) < 0)!;
   });
-  const who = option.rule === "vote" ? "" : `${scions.map((id) => person(s, id).name).join(" and ")}: `;
+  const who = option.rule === "vote" ? "" : option.rule === "secret" ? `House ${s.houses[house!]!.name}: ` : `${scions.map((id) => person(s, id).name).join(" and ")}: `;
   log(s, `${option.label} ${who}${outcome.text}`);
   for (const fx of outcome.effects) {
     if (s.expedition!.result) return;

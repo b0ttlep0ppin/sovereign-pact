@@ -1,0 +1,99 @@
+{
+  "id": "informers_offer",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    10
+  ],
+  "title": "The Informer's Offer",
+  "text": "A man in a rival House's colours finds each House's camp alone in the night with the same offer: tell him the others' weakness, and he will see you are paid for it.",
+  "options": [
+    {
+      "id": "refuse",
+      "label": "Send him away.",
+      "rule": "secret",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "He shrugs and goes. Everyone sends him away, it seems. He looks tired.",
+          "effects": [],
+          "when": {
+            "none": "inform"
+          }
+        },
+        {
+          "w": 100,
+          "text": "He goes, and in the morning your Scions find someone has told him exactly where to cut.",
+          "effects": [
+            {
+              "sanity": -10
+            },
+            {
+              "status": "exposed"
+            }
+          ],
+          "when": {
+            "any": "inform"
+          }
+        }
+      ]
+    },
+    {
+      "id": "inform",
+      "label": "Tell him what he wants.",
+      "rule": "secret",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "He pays in old silver. Nobody will ever know.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 30
+              }
+            },
+            {
+              "score": {
+                "intrigue": 2
+              }
+            }
+          ],
+          "when": {
+            "none": "inform"
+          }
+        },
+        {
+          "w": 100,
+          "text": "He pays you, and he pays the others for the same, and goes off laughing with all of your secrets.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 10
+              }
+            },
+            {
+              "score": {
+                "intrigue": 1
+              }
+            },
+            {
+              "accord": -2
+            }
+          ],
+          "when": {
+            "any": "inform"
+          }
+        }
+      ]
+    }
+  ]
+}

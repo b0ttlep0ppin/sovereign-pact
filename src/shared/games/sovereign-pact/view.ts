@@ -3,6 +3,7 @@
 // recruit's unrevealed potential, Ward Loyalty, and Pact marks (which no House ever sees, §14.7a).
 import type { PlayerId } from "../../game.ts";
 import { dealsFor } from "./deals.ts";
+import { secretEvent } from "./events.ts";
 import { marketFor } from "./market.ts";
 import { eventsFor } from "./omens.ts";
 import { fallen } from "./lifecycle.ts";
@@ -227,7 +228,7 @@ export function view(s: SovState, playerId: PlayerId): SovView {
     // The Gate's cards and votes are open: the Houses argue over them in public (§9.1).
     gate: s.gate ?? null,
     // §9.3: the chain's shape is unknown until walked.
-    expedition: s.expedition ? expeditionView(s.expedition) : null,
+    expedition: s.expedition ? expeditionView(s.expedition, me) : null,
     deals: dealsFor(s, me),
     market: marketFor(s, me),
     crisis: s.crisis ? { id: s.crisis.id, need: s.crisis.need } : null,
@@ -260,8 +261,10 @@ export function view(s: SovState, playerId: PlayerId): SovView {
  * The expedition as everyone sees it: only the nodes passed, the chain's length, and the haul drafted
  * blind, its items' properties hidden until identified (§13.4: Identify comes with the Scriptorium).
  */
-function expeditionView(e: Expedition): Expedition & { length: number } {
+function expeditionView(e: Expedition, me: number | null): Expedition & { length: number } {
   const v = { ...e, chain: e.chain.slice(0, e.at), length: e.chain.length };
+  // A secret event's picks stay hidden until all are in (§9.4): another House's shows only as chosen (-2).
+  if (e.event && secretEvent(e.event.id)) v.event = { ...e.event, votes: e.event.votes.map((x, h) => (x === null || x === -1 || h === me ? x : -2)) };
   const blind = (i: Item): Item => {
     const seen = { ...i };
     delete seen.props;

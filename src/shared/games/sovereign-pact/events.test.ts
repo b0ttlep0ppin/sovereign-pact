@@ -11,6 +11,7 @@ import { levelUp } from "./progression.ts";
 import { STATS, type ExpeditionCard } from "./state.ts";
 import { stockTier } from "./market.ts";
 import { calm, campaign, sealYear } from "./testing.ts";
+import { view } from "./view.ts";
 
 const g = sovereignPact;
 const move = (s: SovState, player: string, m: SovMove): SovState => {
@@ -288,6 +289,41 @@ describe("each Scion's own choice and Forks (§9.3, §9.4)", () => {
   });
 });
 
+describe("secret events (Q91, Josh 2026-11-02)", () => {
+  const meetHoard = (H: number) => {
+    let s = underway(H);
+    s.expedition!.chain = ["event", "boss"];
+    s.expedition!.seen = TRIP_EVENTS.filter((d) => d.id !== "hoard_in_the_hollow").map((d) => d.id);
+    s = move(s, "p1", { type: "press_on" });
+    expect(s.expedition!.event!.id).toBe("hoard_in_the_hollow");
+    return s;
+  };
+
+  it("hides the other Houses' picks until all are in", () => {
+    let s = meetHoard(3);
+    s = move(s, "p1", { type: "decide", option: 1 });
+    expect(view(s, "p1").expedition!.event!.votes).toEqual([1, null, null]);
+    expect(view(s, "p2").expedition!.event!.votes).toEqual([-2, null, null]);
+  });
+
+  it("each House's pick happens to its own Scions, and turns on what the others chose", () => {
+    let s = meetHoard(3);
+    const gold = s.houses.map((h) => h.gold);
+    s = move(move(move(s, "p1", { type: "decide", option: 1 }), "p2", { type: "decide", option: 0 }), "p3", { type: "decide", option: 0 });
+    expect(s.log.some((l) => l.startsWith("The choices are revealed"))).toBe(true);
+    // House 0 alone took more: 60 gold; the others kept faith and lost their share.
+    expect(s.houses.map((h, i) => h.gold - gold[i]!)).toEqual([60, 0, 0]);
+    let t = meetHoard(2);
+    const tg = t.houses.map((h) => h.gold);
+    t = move(move(t, "p1", { type: "decide", option: 0 }), "p2", { type: "decide", option: 0 });
+    expect(t.houses.map((h, i) => h.gold - tg[i]!)).toEqual([25, 25]);
+    let u = meetHoard(2);
+    const ug = u.houses.map((h) => h.gold);
+    u = move(move(u, "p1", { type: "decide", option: 1 }), "p2", { type: "decide", option: 1 });
+    expect(u.houses.map((h, i) => h.gold - ug[i]!)).toEqual([20, 20]);
+  });
+});
+
 describe("blessings and House improvements (§9.4)", () => {
   it("a blessing is a trait held for a time: it fades at a later Reckoning", () => {
     let s = underway(1);
@@ -332,6 +368,7 @@ describe("the content and the bot", () => {
           if (a === "tarot") expect(TAROT_BY_ID.has(b!), `${d.id}: ${r}`).toBe(true);
           if (a === "trait") expect((kind === "house" ? houseTags : tags).has(b!), `${d.id}: ${r}`).toBe(true);
         }
+        for (const w of o.outcomes.flatMap((x) => (x.when ? [x.when.any ?? x.when.none] : []))) expect(d.options.map((x) => x.id), `${d.id}: when ${w}`).toContain(w);
         for (const fx of o.outcomes.flatMap((x) => x.effects)) {
           if (fx.trait) expect(TRAIT_BY_ID.has(fx.trait.slice(1)), `${d.id}: ${fx.trait}`).toBe(true);
           if (fx.blessing) expect(TRAIT_BY_ID.has(fx.blessing.trait), `${d.id}: ${fx.blessing.trait}`).toBe(true);
