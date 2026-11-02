@@ -1,0 +1,75 @@
+{
+  "id": "the_deserters",
+  "pools": [
+    "rescue"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    10
+  ],
+  "title": "The Deserters",
+  "text": "Soldiers who deserted another House's expedition. They know where your Lost are held, and want passage home.",
+  "options": [
+    {
+      "id": "take",
+      "label": "Take them along.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "They lead the way.",
+          "effects": [
+            {
+              "skip": 2
+            },
+            {
+              "accord": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "turn",
+      "label": "Turn them in to their House.",
+      "rule": "leader",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Their House is grateful. You are on your own.",
+          "effects": [
+            {
+              "accord": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "question",
+      "label": "The shrewdest gets the location and leaves them.",
+      "rule": "scion:highest:guile",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Enough to go on.",
+          "effects": [
+            {
+              "skip": 1
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

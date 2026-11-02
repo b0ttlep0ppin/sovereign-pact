@@ -2,6 +2,10 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 7al: a ninth round for the regions; 400 events) — implementer
+- **Built** (content only). Sixteen events: the Vulture Tree, the Green Knight, the Mud Men, the Grave Digger, the Northern Lights, the Brass Bull, the Forge-Master's Ghost, the Rooftop Chase, the Confessional, the Six Stars, the Kobold Mine and the Unravelling (one for each region), the Lost One's Song and the Deserters for Rescues, the Sap Trees for Resource cards and the Quarry's Hide for Hunts. That makes 400 expedition events; every region has 13 to 17.
+- **Reading:** the Green Knight's return a Year later would want a town event of its own; for now his promise only raises Doom, and the return is left for a later pass.
+
 ## 2026-11-02 (implementation, Milestone 7ak: an eighth round for the regions, Delves and Pilgrimages) — implementer
 - **Built** (content only). Sixteen events: the Snake Charmer, the Hollow Oak, the Eelmen, the King's Barrow, the Ice Witch, the Hellhound, the Quench Pool, the Pickpocket, the Burning Heretic, the Offering Bowl, the Dragon-Bone Bridge and the Door in the Air (one for each region), the Crystal Cave and the Underground River for Delves, and the Pilgrim Ghost and the Relic Thieves for Pilgrimages. That makes 384 expedition events; every region has 12 to 16, Delve 23 and Pilgrimage 20.
 

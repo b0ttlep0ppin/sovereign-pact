@@ -1,0 +1,83 @@
+{
+  "id": "the_quarrys_hide",
+  "pools": [
+    "hunt"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    10
+  ],
+  "title": "The Quarry's Hide",
+  "text": "The quarry's hiding place: a thicket it thinks no one can see into.",
+  "options": [
+    {
+      "id": "rush",
+      "label": "Rush it.",
+      "rule": "vote",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Into the thorns.",
+          "effects": [
+            {
+              "encounter": {}
+            },
+            {
+              "to": "party",
+              "durability": -10
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "burn",
+      "label": "Burn it out.",
+      "rule": "leader",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It runs into your trap.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "surprise"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wait",
+      "label": "The patient one waits for it to leave.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It leaves, and you have the drop on it.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "surprise"
+              }
+            },
+            {
+              "xp": 40
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

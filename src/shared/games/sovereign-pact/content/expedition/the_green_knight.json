@@ -1,0 +1,75 @@
+{
+  "id": "the_green_knight",
+  "pools": [
+    "hollow_wood"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    7
+  ],
+  "title": "The Green Knight",
+  "text": "A knight made of leaves and bark offers a game: strike him once, and he strikes back in a year.",
+  "options": [
+    {
+      "id": "strike",
+      "label": "The strongest strikes.",
+      "rule": "scion:highest:might",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "His head rolls, and he picks it up. He says he will find you again.",
+          "effects": [
+            {
+              "score": {
+                "valor": 3
+              }
+            },
+            {
+              "doom": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "decline",
+      "label": "Decline the game.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "He laughs, a sound like wind.",
+          "effects": []
+        }
+      ]
+    },
+    {
+      "id": "trick",
+      "label": "The shrewdest offers a different game.",
+      "rule": "scion:highest:guile",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "He loses a riddle and gives up his belt.",
+          "effects": [
+            {
+              "item": {
+                "tier": 2
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

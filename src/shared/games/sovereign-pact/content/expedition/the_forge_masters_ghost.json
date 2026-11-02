@@ -1,0 +1,83 @@
+{
+  "id": "the_forge_masters_ghost",
+  "pools": [
+    "forge_ruins"
+  ],
+  "weight": 2,
+  "band": [
+    4,
+    9
+  ],
+  "title": "The Forge-Master's Ghost",
+  "text": "The ghost of the forge-master walks the halls, inspecting. He stops before the one with the heaviest gear.",
+  "options": [
+    {
+      "id": "heavy",
+      "label": "The one in the heaviest gear stands for inspection.",
+      "rule": "scion:heaviest_gear|scion:highest:might",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "He approves, and reforges a piece.",
+          "effects": [
+            {
+              "durability": 40
+            },
+            {
+              "growth": {
+                "resilience": 5
+              }
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "He does not approve.",
+          "effects": [
+            {
+              "durability": -30,
+              "loc": "body"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bow",
+      "label": "Bow to him.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "He nods and walks on.",
+          "effects": []
+        }
+      ]
+    },
+    {
+      "id": "dismiss",
+      "label": "Tell him the forge is dead.",
+      "rule": "leader",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "He does not take it well.",
+          "effects": [
+            {
+              "encounter": {}
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
