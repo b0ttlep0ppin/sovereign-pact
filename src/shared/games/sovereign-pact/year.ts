@@ -13,6 +13,7 @@ import { wardYear } from "./wards.ts";
 import { fallen } from "./lifecycle.ts";
 import { chosenCard, openGate } from "./gate.ts";
 import { muster, waiting } from "./expedition.ts";
+import { home } from "./journey.ts";
 import { settleVote } from "./votes.ts";
 import { resolveCrisis } from "./crisis.ts";
 import { closeEvents, drawOmens } from "./omens.ts";
@@ -80,14 +81,18 @@ export function closeSettlement(s: SovState): void {
   const card = chosenCard(s);
   delete s.gate;
   // §1.4, §6.13: with every House Fallen, a mandatory expedition has no one to send.
-  if (mandatoryYears(s).includes(s.year) && s.houses.every((_, i) => fallen(s, i))) return end(s, false, `No House had anyone left to send in Year ${s.year}.`);
+  if (mandatoryYears(s).includes(s.year) && s.houses.every((_, i) => fallen(s, i))) return endCampaign(s, false, `No House had anyone left to send in Year ${s.year}.`);
   if (card) muster(s, card);
   if (!waiting(s).length) closeExpedition(s);
 }
 
-/** The party is home (or never left): the Reckoning. The chain goes here (Milestone 6c on). */
+/** The party is home (or never left): the Reckoning, unless a failed final assault ended the campaign. */
 export function closeExpedition(s: SovState): void {
+  const e = s.expedition;
+  // Seats were offered and nobody could take one.
+  if (e && !e.result && e.leader === undefined) home(s, "unanswered");
   delete s.expedition;
+  if (s.phase === "over") return;
   reckoning(s);
 }
 
@@ -148,9 +153,9 @@ export function reckoning(s: SovState): void {
   for (const p of s.people) p.mp = caps(s, p).mp;
   s.doom = Math.min(100, s.doom + TUNING.tracks.doomPerYear);
   arrivals(s);
-  if (s.doom >= 100) return end(s, false, `The city was overwhelmed in Year ${s.year}.`);
-  if (s.accord <= 0) return end(s, false, H === 1 ? `The people rose against their lords in Year ${s.year}.` : `The Houses turned on each other in Year ${s.year}.`);
-  if (s.year >= campaignYears(s)) return end(s, true, `The kingdom endured ${s.year} Years.`);
+  if (s.doom >= 100) return endCampaign(s, false, `The city was overwhelmed in Year ${s.year}.`);
+  if (s.accord <= 0) return endCampaign(s, false, H === 1 ? `The people rose against their lords in Year ${s.year}.` : `The Houses turned on each other in Year ${s.year}.`);
+  if (s.year >= campaignYears(s)) return endCampaign(s, true, `The kingdom endured ${s.year} Years.`);
   s.year += 1;
   openYear(s);
 }
@@ -182,7 +187,7 @@ function arrivals(s: SovState): void {
   });
 }
 
-function end(s: SovState, won: boolean, reason: string): void {
+export function endCampaign(s: SovState, won: boolean, reason: string): void {
   s.phase = "over";
   s.outcome = { won, reason };
   log(s, reason);

@@ -9,6 +9,7 @@ import { fallen } from "./lifecycle.ts";
 import { timelineFor } from "./timeline.ts";
 import { ascendancy, categories, standing } from "./score.ts";
 import type {
+  Expedition,
   Ambition,
   Assignment,
   ChronicleEntry,
@@ -126,8 +127,8 @@ export interface SovView {
   deals: Deal[];
   /** The Rift Gate's cards this Year and the Houses' votes. */
   gate: SovState["gate"] | null;
-  /** The Year's party: seats, who each House fielded, the Leader vote (all open). */
-  expedition: SovState["expedition"] | null;
+  /** The Year's party: seats, who each House fielded, the Leader vote (all open); of the chain, only the nodes passed and its length. */
+  expedition: (Expedition & { length: number }) | null;
   /** Town events waiting on choices; a secret one shows others' choices only as made (-1) or not. */
   events: PendingEvent[];
   /** The open vote, cast in the open (§8.1). */
@@ -225,7 +226,8 @@ export function view(s: SovState, playerId: PlayerId): SovView {
     events: eventsFor(s, me),
     // The Gate's cards and votes are open: the Houses argue over them in public (§9.1).
     gate: s.gate ?? null,
-    expedition: s.expedition ?? null,
+    // §9.3: the chain's shape is unknown until walked.
+    expedition: s.expedition ? { ...s.expedition, chain: s.expedition.chain.slice(0, s.expedition.at), length: s.expedition.chain.length } : null,
     deals: dealsFor(s, me),
     market: marketFor(s, me),
     crisis: s.crisis ? { id: s.crisis.id, need: s.crisis.need } : null,

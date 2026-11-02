@@ -237,9 +237,21 @@ export interface Expedition {
   declined: number[];
   /** Each House's vote for a Leader while the vote is open. */
   votes?: (number | null)[];
-  /** The Leader's person id, once the party departs. */
+  /** The Leader's person id, once the party departs; a fallen Leader's successor after. */
   leader?: number;
+  /** The chain (§9.3), rolled at departure; only the nodes passed are shown. */
+  chain: NodeKind[];
+  /** The next node's index. */
+  at: number;
+  /** What each Scion carries from battle to battle: Durability, Broken locations, this expedition's injury mods. */
+  carry: Record<number, { dur: Partial<Record<Location, number>>; broken: Location[]; mods?: Record<string, number> }>;
+  /** Scions out of the fight for the rest of the expedition (Catatonic). */
+  out: number[];
+  /** How it ended: the boss beaten, turned back, wiped, nobody came, or it never left. */
+  result?: "won" | "retreated" | "wiped" | "unanswered" | "stayed";
 }
+
+export type NodeKind = "encounter" | "event" | "camp" | "cache" | "boss";
 
 /**
  * A vote of the Houses (§8.1, §8.8): open in the Settlement Phase, settled when every House has voted or
@@ -410,6 +422,9 @@ export type SovMove =
   /** Field your Scions in your seats (fewer declines the rest), then vote a Leader (§9.2). */
   | { type: "field"; people: number[] }
   | { type: "lead"; person: number }
+  /** The Leader's House: on to the next node, or home (§9.9). */
+  | { type: "press_on" }
+  | { type: "retreat" }
   /** Retire a Scion, or bring a Retired one back (§6.12). */
   | { type: "retire"; person: number }
   | { type: "reinstate"; person: number }

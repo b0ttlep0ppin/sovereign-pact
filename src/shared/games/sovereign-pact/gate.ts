@@ -41,8 +41,8 @@ export function offer(s: SovState): ExpeditionCard[] {
 
 /** Opens the Gate for the Year. */
 export function openGate(s: SovState): void {
-  // A test's still Year (testing.ts `calm`) sends no one.
-  if (s.flags.includes("calm")) return void delete s.gate;
+  // A test's still Year (testing.ts `calm`, `ashore`) sends no one.
+  if (s.flags.includes("calm") || s.flags.includes("no_gate")) return void delete s.gate;
   s.gate = { cards: offer(s), votes: s.houses.map(() => null) };
 }
 
@@ -71,6 +71,10 @@ export function chosenCard(s: SovState): ExpeditionCard | undefined {
   return gate.cards[gate.votes[by]!];
 }
 
-/** The bot's card: the lowest level on offer (it is cautious). */
-export const botCard = (s: SovState): number =>
-  s.gate!.cards.reduce((best, c, i) => (c.level < s.gate!.cards[best]!.level ? i : best), 0);
+/** The bot's card: the lowest level among those the Houses' Scions could fill, else the lowest (it is cautious). */
+export function botCard(s: SovState): number {
+  const scions = s.people.filter((p) => p.status === "scion").length;
+  const cards = s.gate!.cards.map((c, i) => ({ c, i, fits: (c.size === 4 ? 4 : 8) <= scions }));
+  const pool = cards.some((x) => x.fits) ? cards.filter((x) => x.fits) : cards;
+  return pool.reduce((best, x) => (x.c.level < best.c.level ? x : best)).i;
+}

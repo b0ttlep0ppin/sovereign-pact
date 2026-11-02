@@ -40,6 +40,13 @@ export function calm(s: SovState): SovState {
   return s;
 }
 
+/** The Rift Gate stays shut for the whole campaign: the settlement bots alone, whatever expeditions would do to them. */
+export function ashore(s: SovState): SovState {
+  s.flags.push("no_gate");
+  delete s.gate;
+  return s;
+}
+
 /** Plays bots in every seat until the campaign ends (or `maxMoves`), calling `each` on every state. */
 export function playOut(start: SovState, each?: (s: SovState) => void, maxMoves = 10_000): SovState {
   let s = start;

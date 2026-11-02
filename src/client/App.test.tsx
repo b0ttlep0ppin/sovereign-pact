@@ -15,6 +15,12 @@ const sendTheParty = () => {
   const lead = screen.queryAllByRole("button", { name: / leads$/ })[0];
   if (lead) fireEvent.click(lead);
   letBotsMove();
+  for (let i = 0; i < 20; i++) {
+    const on = screen.queryByRole("button", { name: /^(Press on|Face the boss)$/ });
+    if (!on) break;
+    fireEvent.click(on);
+    letBotsMove();
+  }
 };
 
 describe("the standalone host", () => {

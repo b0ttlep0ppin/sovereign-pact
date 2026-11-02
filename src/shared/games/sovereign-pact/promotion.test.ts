@@ -5,7 +5,7 @@ import { scionCombatant } from "./combat/build.ts";
 import { promote, rollRecruit } from "./generate.ts";
 import { sovereignPact, type SovMove, type SovState } from "./index.ts";
 import { passiveBudget, tarotMods } from "./progression.ts";
-import { calm, campaign, playOut } from "./testing.ts";
+import { ashore, calm, campaign, playOut } from "./testing.ts";
 import { TUNING } from "./tuning.ts";
 import { view } from "./view.ts";
 
@@ -56,7 +56,7 @@ describe("promotion (§6.5)", () => {
   });
 
   it("lets the bot grow its roster over a campaign", () => {
-    const start = campaign(2, 5);
+    const start = ashore(campaign(2, 5));
     const end = playOut(start);
     const scions = (s: SovState) => s.people.filter((p) => p.host === 0 && p.status === "scion").length;
     expect(scions(end)).toBeGreaterThan(scions(start));
