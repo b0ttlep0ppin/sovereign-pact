@@ -1,0 +1,78 @@
+{
+  "id": "the_procession",
+  "pools": [
+    "apostate_court"
+  ],
+  "weight": 3,
+  "band": [
+    2,
+    9
+  ],
+  "title": "The Procession",
+  "text": "A line of penitents whipping their own backs, singing, all going the same way: toward the Court. They ask you to walk with them a while.",
+  "options": [
+    {
+      "id": "walk",
+      "label": "Walk with them.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "They take you through the Court's gates as one of theirs.",
+          "effects": [
+            {
+              "skip": 1
+            },
+            {
+              "to": "party",
+              "sanity": -5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "question",
+      "label": "The wisest asks them what they repent.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Their answers draw a map of the Court's sins.",
+          "effects": [
+            {
+              "score": {
+                "intrigue": 2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "break",
+      "label": "Break up the procession.",
+      "rule": "leader",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "They do not break easily.",
+          "effects": [
+            {
+              "encounter": {}
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

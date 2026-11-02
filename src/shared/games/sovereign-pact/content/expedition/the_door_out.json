@@ -1,0 +1,90 @@
+{
+  "id": "the_door_out",
+  "pools": [
+    "outer_dark"
+  ],
+  "weight": 3,
+  "band": [
+    5,
+    10
+  ],
+  "title": "The Door Out",
+  "text": "In the dark, a door with light under it and voices on the other side, speaking your language, laughing. It is not the way you came.",
+  "options": [
+    {
+      "id": "open",
+      "label": "Open it.",
+      "rule": "leader",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 40,
+          "text": "A tavern, somewhere, somewhen. They feed you and send you back better than you were.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 20
+            },
+            {
+              "to": "party",
+              "durability": 20
+            }
+          ]
+        },
+        {
+          "w": 60,
+          "text": "The voices stop when the door opens.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "ambush",
+                "level": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "knock",
+      "label": "Knock and listen.",
+      "rule": "scion:highest:acuity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The laughter stops. Someone on the other side whispers a warning, and it is a good one.",
+          "effects": [
+            {
+              "skip": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "walk",
+      "label": "Walk on.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The laughter goes on behind you for a long time.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -8
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

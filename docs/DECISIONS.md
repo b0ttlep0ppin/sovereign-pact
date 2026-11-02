@@ -2,6 +2,10 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 7u: a third event for each pool) — implementer
+- **Built** (content only). Fourteen pool events, one more for each region and a fourth for the Pit and the Outer Dark, the two thinnest: the Pack Den, the Ring of Mushrooms, the Bog Light, the Grave Robbers, the Avalanche Bell, the Brimstone Spring, the Forge Spirit, the Mask Seller, the Procession, Six Pilgrims, the Wyrm Graveyard, the Unlit Stars, the Pit Brawl and the Door Out. That makes 134 expedition events.
+- **Reading:** the Pack Den brings home a recruit (`house_improvement: recruit`): a pup raised in the House stands for a new follower, as that effect already allows.
+
 ## 2026-11-02 (implementation, Milestone 7t: the event pool report, and fourteen events for the quieter rules) — implementer
 - **Built.** `npm run events` (`tools/events.ts`) reports the expedition event pool against HANDOFF §6's budget and lints: events per pool (≥ 150 general, ≥ 25 for each other pool), option tags, the share of outcome weight that can maim (≤ 2%; an injury roll maims on its table's devastating results), and how often each subject rule is used (≥ 5 times each). It is a report, not a test, while the pool is being filled; it becomes a test once the budget is met.
 - **Built** (content). Fourteen general events written for the subject rules the report showed as rarely used: Falling Rocks, the Veterans' Shrine, the Field Hospital, the Proving Stone, the Hungry Doorway, the Watcher in the Trees, the Empty Feast, the Drawing of Lots, the Greenhorn's Chance, the Bridge of Names, the Simple Oracle, the Kin of the Changed, the Shrine of Trials and the Newcomer's Luck. That makes 120 expedition events, 74 of them open to any card. Maiming stays well under budget (about 0.3%).

@@ -1,0 +1,88 @@
+{
+  "id": "the_mask_seller",
+  "pools": [
+    "faceless_city"
+  ],
+  "weight": 3,
+  "band": [
+    2,
+    10
+  ],
+  "title": "The Mask Seller",
+  "text": "A stall of masks, each a face from your own past. The seller has no face. It would like one.",
+  "options": [
+    {
+      "id": "buy",
+      "label": "Buy back a face you lost.",
+      "rule": "scion:lowest:sanity",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It fits perfectly. They had forgotten what it felt like.",
+          "effects": [
+            {
+              "sanity": 20
+            },
+            {
+              "resources": {
+                "gold": -10
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "trade",
+      "label": "Trade your own face for the finest mask.",
+      "rule": "leader",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The mask is magnificent. In the mirror, the leader is not sure who looks back.",
+          "effects": [
+            {
+              "item": {
+                "tier": 3
+              }
+            },
+            {
+              "sanity": -20
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "burn",
+      "label": "Burn the stall.",
+      "rule": "vote",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The masks scream as they burn. Every face in them.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -10
+            },
+            {
+              "score": {
+                "valor": 2
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

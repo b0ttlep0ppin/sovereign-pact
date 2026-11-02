@@ -1,0 +1,91 @@
+{
+  "id": "the_brimstone_spring",
+  "pools": [
+    "pit"
+  ],
+  "weight": 3,
+  "band": [
+    3,
+    10
+  ],
+  "title": "The Brimstone Spring",
+  "text": "A yellow spring, scalding, that smells of rot. Pit-folk say a body that bathes in it comes out harder.",
+  "options": [
+    {
+      "id": "bathe",
+      "label": "The hardiest bathes.",
+      "rule": "scion:highest:resilience",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "It hurts more than anything. They come out harder.",
+          "effects": [
+            {
+              "growth": {
+                "resilience": 15
+              }
+            },
+            {
+              "durability": -25,
+              "loc": "body"
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "It hurts more than anything.",
+          "effects": [
+            {
+              "injury": "body"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bottle",
+      "label": "Bottle some to sell.",
+      "rule": "leader",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Apothecaries in town will want it.",
+          "effects": [
+            {
+              "resources": {
+                "essence": 2,
+                "gold": 8
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "go",
+      "label": "Keep well away.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The smell follows you for a day.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -3
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,87 @@
+{
+  "id": "the_ring_of_mushrooms",
+  "pools": [
+    "hollow_wood"
+  ],
+  "weight": 3,
+  "band": [
+    1,
+    9
+  ],
+  "title": "The Ring of Mushrooms",
+  "text": "A perfect ring of white mushrooms in a clearing, and music from nowhere. Step in, the stories say, and you dance for a night or a hundred years.",
+  "options": [
+    {
+      "id": "dance",
+      "label": "The boldest steps in.",
+      "rule": "scion:random",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "They dance for a night, and come out laughing and younger in the eyes.",
+          "effects": [
+            {
+              "sanity": 25
+            },
+            {
+              "growth": {
+                "speed": 10
+              }
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "They dance for longer than a night.",
+          "effects": [
+            {
+              "sanity": -20
+            },
+            {
+              "status": "sleep"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pick",
+      "label": "Pick the mushrooms.",
+      "rule": "leader",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The music stops. The mushrooms are worth a great deal to the right apothecary.",
+          "effects": [
+            {
+              "resources": {
+                "essence": 3
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "around",
+      "label": "Walk well round it.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The music follows you a while.",
+          "effects": []
+        }
+      ]
+    }
+  ]
+}

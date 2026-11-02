@@ -1,0 +1,85 @@
+{
+  "id": "the_forge_spirit",
+  "pools": [
+    "forge_ruins"
+  ],
+  "weight": 3,
+  "band": [
+    3,
+    10
+  ],
+  "title": "The Forge Spirit",
+  "text": "A shape of glowing slag in the ruined furnace offers to temper one weapon in its own heart. It wants something to burn.",
+  "options": [
+    {
+      "id": "temper",
+      "label": "Give it a piece of good iron.",
+      "rule": "leader",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It eats the iron and hands back a better blade.",
+          "effects": [
+            {
+              "resources": {
+                "iron": -4
+              }
+            },
+            {
+              "item": {
+                "tier": 3
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "feed",
+      "label": "Feed it a hand's worth of your own heat.",
+      "rule": "scion:highest:might",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It drinks the warmth from their arm, and gives a gift for it.",
+          "effects": [
+            {
+              "durability": -30,
+              "loc": "arms"
+            },
+            {
+              "stat": {
+                "might": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "quench",
+      "label": "Quench it with water.",
+      "rule": "vote",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It does not like that.",
+          "effects": [
+            {
+              "encounter": {}
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
