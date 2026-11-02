@@ -1,6 +1,6 @@
 // Loot (§9.8, §9.10): drop tables, Caches, the boss's haul, sharing it out at home, and the draft.
 import { describe, expect, it } from "vitest";
-import { POOLS, RARE_MATERIALS } from "./content.ts";
+import { NAMED, POOLS, RARE_MATERIALS } from "./content.ts";
 import { able, muster } from "./expedition.ts";
 import { sovereignPact, type SovMove, type SovState } from "./index.ts";
 import { cache, find, gather, snake } from "./loot.ts";
@@ -68,8 +68,10 @@ describe("Caches and the boss", () => {
       for (const p of s.people) while (p.status === "scion" && p.level < 15) Object.assign(p, levelUp(p));
       const owned = s.items.length;
       cache(s);
-      if (s.log.some((l) => l.includes("is a trap"))) trapped++;
-      if (s.expedition!.result) continue;
+      const trap = s.log.some((l) => l.includes("is a trap"));
+      if (trap) trapped++;
+      // A sprung trap is a fight first, and a won fight leaves its own find.
+      if (s.expedition!.result || trap) continue;
       const items = s.expedition!.haul!.items;
       expect(items.length).toBeGreaterThanOrEqual(1);
       expect(items.length).toBeLessThanOrEqual(2);
@@ -148,6 +150,8 @@ describe("the draft (Josh, 2026-11-02: one pool of shares, a random House order)
 
   it("is claimed a share at a time, gear blind, by the Houses still in the party; then the Year goes on", () => {
     let s = underway(2);
+    // Plain finds only: no named item turns up in their place.
+    s.flags.push(...NAMED.map((n) => `named_${n.id}`));
     for (let i = 0; i < 2; i++) find(s, (3 + i) as 3 | 4);
     s.expedition!.haul!.stores = { essence: 2 };
     s.expedition!.chain = ["event", "boss"];

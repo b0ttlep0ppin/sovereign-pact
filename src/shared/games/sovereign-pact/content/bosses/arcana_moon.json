@@ -1,0 +1,32 @@
+{
+  "id": "arcana_moon",
+  "name": "The Smiling Moon",
+  "pool": "faceless_city",
+  "tags": ["spirit", "horror", "flyer", "arcana"],
+  "role": "boss",
+  "size": [2, 2],
+  "at": "E2",
+  "levels": [1, 10],
+  "stats": {"speed": 9, "hp": 4, "sanityTouch": 3},
+  "affinity": {"dark": 25, "water": 25, "fire": -25},
+  "immune": ["fear", "sleep", "confusion", "blind"],
+  "abilities": [
+    {"id": "moonbeam", "shape": "column:B", "side": "player", "power": 0.8, "kind": "magic", "element": "water"},
+    {"id": "lullaby_of_tides", "shape": "all", "side": "player", "power": 0.2, "kind": "magic", "sanity": 6, "charge": 200, "telegraph": true, "cooldown": 4, "statuses": [{"id": "sleep", "chance": 35, "ticks": 200}]},
+    {"id": "false_light", "shape": "row", "side": "player", "power": 0.5, "kind": "magic", "statuses": [{"id": "confusion", "chance": 35, "ticks": 200}, {"id": "blind", "chance": 25, "ticks": 200}]}
+  ],
+  "gambits": [
+    {"if": "turn%4==0", "do": "lullaby_of_tides"},
+    {"if": "turn%2==1", "do": "false_light", "target": "densest_row"},
+    {"do": "moonbeam", "target": "back_random"}
+  ],
+  "phases": [
+    {"at": "hp<=0.5", "name": "The Wide Grin", "speed": 11, "say": "(The smile widens past the edges of its face.)", "gambits": [{"if": "turn%3==0", "do": "lullaby_of_tides"}, {"do": "false_light", "target": "densest_row"}]}
+  ],
+  "say": {"open": "(A smile hangs in the dark where the sky should be.)", "death": "(The smile fades last of all.)"},
+  "bestiary": {
+    "lore": "The card of illusion and the long night: a moon that smiles at travelers and leads them off the road.",
+    "weakness": "Fire. Keep Sanity high; a sleeping party is a feast.",
+    "pattern": "Every fourth turn a lullaby on everyone (Sanity, Sleep); false light confuses and blinds a row; moonbeams hit the Back. At half, the lullaby every third turn."
+  }
+}

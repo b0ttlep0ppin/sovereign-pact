@@ -313,6 +313,88 @@
       ],
       "text": "Two knives, always found together, never apart for long.",
       "pools": ["pit", "faceless_city"]
+    },
+    {
+      "id": "the_fools_bell",
+      "name": "The Fool's Bell",
+      "base": "charm",
+      "tier": 5,
+      "props": [
+        ["ready", 1],
+        ["resolute", 1]
+      ],
+      "text": "A jester's bell that rings only when its bearer is about to fall, and never too late.",
+      "boss": "arcana_fool",
+      "minLevel": 1
+    },
+    {
+      "id": "the_golden_wand",
+      "name": "The Golden Wand",
+      "base": "staff",
+      "tier": 5,
+      "props": [
+        ["spellbound", 1],
+        ["surging", 40],
+        ["mana_thirst", 3]
+      ],
+      "text": "The Archmage's own, still warm, and still asking what it will be used for.",
+      "boss": "arcana_magician",
+      "minLevel": 1
+    },
+    {
+      "id": "the_reapers_sickle",
+      "name": "The Reaper's Sickle",
+      "base": "knife",
+      "tier": 5,
+      "props": [
+        ["executioners", 1],
+        ["dark_edge", 35],
+        ["draining", 15]
+      ],
+      "text": "It cuts what is ready to be cut, and seems to know which.",
+      "boss": "arcana_death",
+      "minLevel": 1
+    },
+    {
+      "id": "the_tower_stone",
+      "name": "The Tower Stone",
+      "base": "amulet",
+      "tier": 5,
+      "props": [
+        ["stat_resilience", 4],
+        ["resist_stun", 40]
+      ],
+      "text": "A cornerstone from the Colossus, which still remembers being a wall.",
+      "boss": "stone_colossus",
+      "minLevel": 1
+    },
+    {
+      "id": "the_moonsilver_mirror",
+      "name": "The Moonsilver Mirror",
+      "base": "ring",
+      "tier": 5,
+      "props": [
+        ["resist_sleep", 40],
+        ["resist_confusion", 40],
+        ["keen_eye", 1]
+      ],
+      "text": "In it, the false light shows its true face.",
+      "boss": "arcana_moon",
+      "minLevel": 1
+    },
+    {
+      "id": "the_sunbrand",
+      "name": "The Sunbrand",
+      "base": "sword",
+      "tier": 5,
+      "props": [
+        ["holy_edge", 35],
+        ["fire_edge", 25],
+        ["blessed", 1]
+      ],
+      "text": "A blade that holds a little noon in it, and does not like the dark.",
+      "boss": "arcana_sun",
+      "minLevel": 1
     }
   ]
 }

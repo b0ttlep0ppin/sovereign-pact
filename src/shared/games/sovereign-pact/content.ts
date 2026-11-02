@@ -23,6 +23,7 @@ import changesJson from "./content/changes.json" with { type: "json" };
 import namedJson from "./content/named.json" with { type: "json" };
 import bargainsJson from "./content/bargains.json" with { type: "json" };
 import quarriesJson from "./content/quarries.json" with { type: "json" };
+import arcanaJson from "./content/arcana.json" with { type: "json" };
 import formsJson from "./content/forms.json" with { type: "json" };
 import projectsJson from "./content/projects.json" with { type: "json" };
 import summonsJson from "./content/summons.json" with { type: "json" };
@@ -841,3 +842,13 @@ export interface QuarryDef {
 }
 export const QUARRIES = quarriesJson.quarries as unknown as readonly QuarryDef[];
 export const QUARRY_BY_ID = byId(QUARRIES);
+
+/** An Arcana node (§14.9): a Major Arcana's mini-boss, the trait its bearer gains on the kill, and its Relic. */
+export interface ArcanaDef {
+  tarot: string;
+  boss: string;
+  trait: string;
+  relic: string;
+}
+export const ARCANA = arcanaJson.arcana as readonly ArcanaDef[];
+export const ARCANA_BY_TAROT: ReadonlyMap<string, ArcanaDef> = new Map(ARCANA.map((a) => [a.tarot, a]));

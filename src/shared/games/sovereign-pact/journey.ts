@@ -20,6 +20,7 @@ import { devastate } from "./timeline.ts";
 import { TUNING } from "./tuning.ts";
 import { creditWard } from "./wards.ts";
 import { lairOf, slay, tally, withLair } from "./hunt.ts";
+import { arcanaBoss, arcanaFor, arcanaWon, withArcana } from "./arcana.ts";
 import { ARC, arcDoom, arcResult, bastionFallBack, bastionShields, withRaid } from "./arc.ts";
 import { divided, gate, partyGone, rally } from "./split.ts";
 import { endCampaign, log, mandatoryYears, withRng } from "./year.ts";
@@ -36,8 +37,11 @@ export function rollChain(s: SovState): NodeKind[] {
       let roll = rng.int(100);
       return J.nodes.find(([, w]) => (roll -= w) < 0)![0];
     });
-    const chain: NodeKind[] = [...nodes, "boss"];
-    return withRaid(s, card.quarry ? withLair(rng, chain) : chain);
+    let chain: NodeKind[] = [...nodes, "boss"];
+    if (card.quarry) chain = withLair(rng, chain);
+    const tarot = arcanaFor(s, rng, roster(s).map((id) => person(s, id)));
+    if (tarot) chain = withArcana(s, rng, chain, tarot);
+    return withRaid(s, rng, chain);
   });
 }
 
@@ -46,7 +50,7 @@ export function bossFor(s: SovState): string | undefined {
   const card = s.expedition!.card;
   if (card.boss) return card.boss;
   const near = (b: (typeof BOSSES)[number]) => (card.level < b.levels[0] ? b.levels[0] - card.level : Math.max(0, card.level - b.levels[1]));
-  const fits = BOSSES.filter((b) => b.pool === card.pool && !b.tags.includes("arc") && !b.id.match(/_(risen|ascendant|final)$/) && near(b) <= J.bossReach);
+  const fits = BOSSES.filter((b) => b.pool === card.pool && !b.tags.includes("arc") && !b.tags.includes("arcana") && !b.id.match(/_(risen|ascendant|final)$/) && near(b) <= J.bossReach);
   if (!fits.length) return undefined;
   const best = Math.min(...fits.map(near));
   return withRng(s, (rng) => rng.pick(fits.filter((b) => near(b) === best)).id);
@@ -157,12 +161,13 @@ function camp(s: SovState): void {
 }
 
 /** A battle at the next node: an Encounter from the card's pool, or the boss. */
-export type FightOpts = NonNullable<TripEffect["encounter"]> & { raid?: true; lair?: true };
+export type FightOpts = NonNullable<TripEffect["encounter"]> & { raid?: true; lair?: true; arcana?: true };
 
 function fight(s: SovState, boss: boolean, o: FightOpts): Battle {
   const card = s.expedition!.card;
   const seed = withRng(s, (rng) => rng.int(2 ** 31));
-  const id = boss ? card.boss : undefined;
+  // An Arcana is fought as a boss at the card's level, without the boss's extra level (§14.9: elite-tier).
+  const id = boss ? card.boss : o.arcana ? arcanaBoss(s) : undefined;
   const level = Math.max(1, Math.min(10, card.level + (o.level ?? 0) + (boss ? 1 : 0)));
   const scions = party(s);
   bastionShields(s, scions);
@@ -188,6 +193,7 @@ export function battle(s: SovState, boss: boolean, o: FightOpts = {}): boolean {
       home(s, "won");
     } else {
       if (o.lair) slay(s, [...new Set(marching(s).map((id) => person(s, id).host))]);
+      if (o.arcana) arcanaWon(s, marching(s));
       encounterLoot(s);
       succeed(s);
     }
@@ -216,7 +222,8 @@ export function pressOn(s: SovState): void {
   if (kind === "rally") return rally(s);
   if (kind === "raid") log(s, "The Cursed King's knights ride against the party.");
   if (kind === "lair") log(s, "The party finds the quarry's lair.");
-  battle(s, kind === "boss", kind === "raid" ? { raid: true } : kind === "lair" ? { lair: true } : {});
+  if (kind === "arcana") log(s, "A card turns over in the dark, and something steps out of it.");
+  battle(s, kind === "boss", kind === "raid" ? { raid: true } : kind === "lair" ? { lair: true } : kind === "arcana" ? { arcana: true } : {});
 }
 
 /** A Leader who falls is replaced by the most travelled Scion still marching (§9.2's tie rule). */
