@@ -10,6 +10,9 @@ import dark_general from "./dark_general.json" with { type: "json" };
 import divine_beast_fusion from "./divine_beast_fusion.json" with { type: "json" };
 import end_ruler from "./end_ruler.json" with { type: "json" };
 import goblin_lord from "./goblin_lord.json" with { type: "json" };
+import idol_lord_below from "./idol_lord_below.json" with { type: "json" };
+import idol_thunderer from "./idol_thunderer.json" with { type: "json" };
+import idol_weigher from "./idol_weigher.json" with { type: "json" };
 import orochi from "./orochi.json" with { type: "json" };
 import overlord from "./overlord.json" with { type: "json" };
 import overlord_ascendant from "./overlord_ascendant.json" with { type: "json" };
@@ -34,6 +37,9 @@ export default [
   divine_beast_fusion,
   end_ruler,
   goblin_lord,
+  idol_lord_below,
+  idol_thunderer,
+  idol_weigher,
   orochi,
   overlord,
   overlord_ascendant,

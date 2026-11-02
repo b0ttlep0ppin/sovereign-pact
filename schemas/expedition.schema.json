@@ -115,6 +115,7 @@
         },
         "skip": { "type": "integer", "minimum": 1, "maximum": 3, "description": "Nodes passed by, never the boss." },
         "retreat": { "const": true, "description": "The expedition ends here, as a retreat." },
+        "idol": { "const": "kneel", "description": "The party kneels to the Idol (§14.9): the expedition ends in triumph, its boss unfought." },
         "stat": { "type": "object", "propertyNames": { "enum": ["might", "resilience", "guile", "acuity", "sagacity", "speed"] }, "additionalProperties": { "type": "integer" }, "description": "Permanent base stat changes." },
         "growth": { "type": "object", "propertyNames": { "enum": ["might", "resilience", "guile", "acuity", "sagacity", "speed", "all"] }, "additionalProperties": { "type": "integer" }, "description": "Growth changes in hundredths; all is every stat but Speed." },
         "trait": { "type": "string", "pattern": "^[+-][a-z][a-z0-9_]*$", "description": "+id gains an individual trait (replacing one of its group), -id loses it." },

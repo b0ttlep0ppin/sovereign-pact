@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Idols (SPEC §14.9): the otherworld's old gods at the end of Pilgrimage cards, an offer first and a boss if refused or cheated",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["idols"],
+  "properties": {
+    "idols": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "pool", "boss", "event", "relic"],
+        "properties": {
+          "id": { "$ref": "defs.schema.json#/definitions/id" },
+          "pool": { "$ref": "defs.schema.json#/definitions/id", "description": "Where its Pilgrimage cards go" },
+          "boss": { "$ref": "defs.schema.json#/definitions/id", "description": "A boss in bosses/, fought if the party refuses or cheats it" },
+          "event": { "$ref": "defs.schema.json#/definitions/id", "description": "Its offer: an expedition event of pool \"idol\"" },
+          "relic": { "$ref": "defs.schema.json#/definitions/id", "description": "A named Lore artifact its boss drops" }
+        }
+      }
+    }
+  }
+}

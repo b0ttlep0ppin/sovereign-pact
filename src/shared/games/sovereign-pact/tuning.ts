@@ -227,6 +227,12 @@ export const TUNING = {
    */
   arcana: { basePct: 6, bearerPct: 30 },
 
+  /**
+   * §14.9 Idols, first pass: a Pilgrimage card from `minLevel` ends at one of its pool's unmet Idols `pct`%
+   * of the time. Killing one pays each House in the party `valor` Valor and `renown` Renown (Piety, DECISIONS Q92).
+   */
+  idol: { minLevel: 6, pct: 60, valor: 10, renown: 6 },
+
   hunt: { levelUp: 1, hpPct: 150, enrageTicks: 600, pack: ["fodder", "fodder"] as const, lorePerEntry: 1 },
 
   /**

@@ -24,6 +24,7 @@ import namedJson from "./content/named.json" with { type: "json" };
 import bargainsJson from "./content/bargains.json" with { type: "json" };
 import quarriesJson from "./content/quarries.json" with { type: "json" };
 import arcanaJson from "./content/arcana.json" with { type: "json" };
+import idolsJson from "./content/idols.json" with { type: "json" };
 import formsJson from "./content/forms.json" with { type: "json" };
 import projectsJson from "./content/projects.json" with { type: "json" };
 import summonsJson from "./content/summons.json" with { type: "json" };
@@ -538,6 +539,8 @@ export interface TripEffect {
   encounter?: { template?: string; modifier?: "ambush" | "surprise"; level?: number };
   skip?: number;
   retreat?: true;
+  /** The party kneels to the Idol (§14.9): the expedition ends in triumph, its boss unfought. */
+  idol?: "kneel";
   /** Permanent base stat changes; growth changes in hundredths ("all": every stat but Speed). */
   stat?: Partial<Record<Stat, number>>;
   growth?: Partial<Record<Stat | "all", number>>;
@@ -852,3 +855,15 @@ export interface ArcanaDef {
 }
 export const ARCANA = arcanaJson.arcana as readonly ArcanaDef[];
 export const ARCANA_BY_TAROT: ReadonlyMap<string, ArcanaDef> = new Map(ARCANA.map((a) => [a.tarot, a]));
+
+/** An Idol (§14.9): an old god at the end of a Pilgrimage card, an offer first and a boss if refused or cheated. */
+export interface IdolDef {
+  id: string;
+  pool: string;
+  boss: string;
+  /** Its offer, an expedition event of pool "idol". */
+  event: string;
+  relic: string;
+}
+export const IDOLS = idolsJson.idols as readonly IdolDef[];
+export const IDOL_BY_ID = byId(IDOLS);

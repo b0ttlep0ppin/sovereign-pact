@@ -2,9 +2,10 @@
 // Year's level band; in a mandatory Year it offers the arc's card alone (§14.7). The Houses vote on the card
 // in the Settlement Phase, sealed with the Year: the most votes take it, a tie costs Accord and goes to
 // the higher Renown, and no votes at all take the first card.
+import { idolFor } from "./idols.ts";
 import { quarryFor } from "./hunt.ts";
 import { loseAccord } from "./commons.ts";
-import { BOSS_BY_ID, POOL_BY_ID, POOLS, TOWN_EVENT_BY_ID, TOWN_EVENTS } from "./content.ts";
+import { BOSS_BY_ID, IDOL_BY_ID, POOL_BY_ID, POOLS, TOWN_EVENT_BY_ID, TOWN_EVENTS } from "./content.ts";
 import { year20 } from "./crisis.ts";
 import type { ExpeditionCard, SovState } from "./state.ts";
 import { TUNING } from "./tuning.ts";
@@ -44,7 +45,11 @@ export function offer(s: SovState): ExpeditionCard[] {
       const type = rng.pick(pool.cards) as ExpeditionCard["type"];
       // A Hunt card names its quarry (§14.9), while the pool has one left alive.
       const quarry = type === "hunt" ? quarryFor(s, rng, pool.id, level) : undefined;
-      cards.push({ type, pool: pool.id, level, size, ...(quarry ? { quarry } : {}) });
+      const card: ExpeditionCard = { type, pool: pool.id, level, size, ...(quarry ? { quarry } : {}) };
+      // A high Pilgrimage may end at an Idol (§14.9): it is the card's boss.
+      const idol = idolFor(s, rng, card);
+      if (idol) Object.assign(card, { idol, boss: IDOL_BY_ID.get(idol)!.boss });
+      cards.push(card);
     }
     return cards;
   });

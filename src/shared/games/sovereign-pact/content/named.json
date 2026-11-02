@@ -395,6 +395,60 @@
       "text": "A blade that holds a little noon in it, and does not like the dark.",
       "boss": "arcana_sun",
       "minLevel": 1
+    },
+    {
+      "id": "the_thunderers_bolt",
+      "name": "The Thunderer's Bolt",
+      "base": "spear",
+      "tier": 5,
+      "props": [
+        ["wind_edge", 40],
+        ["stunning", 25],
+        ["reaching", 1]
+      ],
+      "text": "A spear of frozen lightning, taken from a god who did not think it could be taken.",
+      "boss": "idol_thunderer",
+      "minLevel": 6,
+      "artifact": {
+        "category": "lore",
+        "points": 8
+      }
+    },
+    {
+      "id": "the_seventh_key",
+      "name": "The Seventh Key",
+      "base": "amulet",
+      "tier": 5,
+      "props": [
+        ["resist_poison", 50],
+        ["warded_dark", 30],
+        ["essence_sense", 1]
+      ],
+      "text": "The key to the lowest gate. It is warm, and it should not be.",
+      "boss": "idol_lord_below",
+      "minLevel": 6,
+      "artifact": {
+        "category": "lore",
+        "points": 8
+      }
+    },
+    {
+      "id": "the_feather_of_truth",
+      "name": "The Feather of Truth",
+      "base": "charm",
+      "tier": 5,
+      "props": [
+        ["keen_eye", 1],
+        ["resist_charm", 50],
+        ["stat_sagacity", 4]
+      ],
+      "text": "Lighter than any heart. Whoever carries it finds lies weigh on them.",
+      "boss": "idol_weigher",
+      "minLevel": 6,
+      "artifact": {
+        "category": "lore",
+        "points": 8
+      }
     }
   ]
 }

@@ -1,0 +1,33 @@
+{
+  "id": "idol_thunderer",
+  "name": "The Thunderer",
+  "pool": "shrine_of_six",
+  "tags": ["divine", "giant", "idol"],
+  "role": "boss",
+  "size": [2, 3],
+  "at": "E2",
+  "levels": [6, 10],
+  "stats": {"speed": 11, "hp": 7},
+  "affinity": {"wind": 75, "holy": 25, "earth": -50},
+  "immune": ["fear", "charm", "stun"],
+  "abilities": [
+    {"id": "thunderbolt", "shape": "column:B", "side": "player", "power": 1.1, "kind": "magic", "element": "wind", "statuses": [{"id": "stun", "chance": 20, "ticks": 0}]},
+    {"id": "storm_of_heaven", "shape": "all", "side": "player", "power": 0.8, "kind": "magic", "element": "wind", "charge": 250, "telegraph": true, "cooldown": 4},
+    {"id": "olympian_blow", "shape": "single", "side": "player", "power": 1.5},
+    {"id": "aegis", "shape": "self", "side": "self", "power": 0, "kind": "support", "statuses": [{"id": "protect", "chance": 100, "ticks": 300}, {"id": "shell", "chance": 100, "ticks": 300}], "cooldown": 5}
+  ],
+  "gambits": [
+    {"if": "turn%4==0", "do": "storm_of_heaven"},
+    {"if": "turn%3==1", "do": "thunderbolt", "target": "back_random"},
+    {"do": "olympian_blow", "target": "highest_might"}
+  ],
+  "phases": [
+    {"at": "hp<=0.5", "name": "Wrath of the Sky", "speed": 13, "say": "You were offered a gift. Now take the other thing I give.", "gambits": [{"if": "turn%4==0", "do": "aegis"}, {"if": "turn%3==0", "do": "storm_of_heaven"}, {"do": "thunderbolt", "target": "back_random"}]}
+  ],
+  "say": {"open": "Kneel, or be struck. I have never minded which.", "death": "So the sky can fall after all..."},
+  "bestiary": {
+    "lore": "An old king of heaven who came through the rift looking for worshippers, and found the Shrine of Six had none to spare.",
+    "weakness": "Earth grounds his lightning. Interrupt the storm while it charges.",
+    "pattern": "A storm on everyone every fourth turn, bolts on the Back every third, and his fist on the strongest between. At half he shields himself every fourth turn and storms every third."
+  }
+}
