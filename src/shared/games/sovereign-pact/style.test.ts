@@ -37,6 +37,7 @@ describe("restyling (§5.8)", () => {
     const theirs = s.people.find((p) => p.host === 1)!;
     expect(error(s, "p1", { type: "restyle", person: theirs.id, hair: "wavy" })).toMatch(/your own/);
     expect(error(s, "p1", { type: "restyle", person: mine.id, hair: "mohawk" })).toMatch(/no such hair/);
+    expect(error(s, "p1", { type: "restyle", person: mine.id, headwear: "sideways" })).toMatch(/no such headwear/);
     expect(error(s, "p1", { type: "restyle", person: mine.id })).toMatch(/Choose/);
     mine.sex = "f";
     expect(error(s, "p1", { type: "restyle", person: mine.id, beard: "trimmed" })).toMatch(/beards/);

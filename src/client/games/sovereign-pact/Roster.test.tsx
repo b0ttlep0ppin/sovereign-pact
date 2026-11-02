@@ -81,7 +81,11 @@ describe("restyling on the card (§5.8)", () => {
     fireEvent.click(within(hair).getByRole("button", { name: "Next hair" }));
     expect(sendMove).toHaveBeenCalledWith({ type: "restyle", person: scion.id, hair: "parted_side_bangs" });
     fireEvent.click(within(card).getByRole("button", { name: "As they were born" }));
-    expect(sendMove).toHaveBeenLastCalledWith({ type: "restyle", person: scion.id, hair: "", hair_color: "", beard: "" });
+    expect(sendMove).toHaveBeenLastCalledWith({ type: "restyle", person: scion.id, hair: "", hair_color: "", beard: "", headwear: "" });
+    const headwear = within(card).getByRole("switch", { name: `Headwear for ${scion.name}` });
+    expect(headwear.getAttribute("aria-checked")).toBe("true");
+    fireEvent.click(headwear);
+    expect(sendMove).toHaveBeenLastCalledWith({ type: "restyle", person: scion.id, headwear: "off" });
     expect(within(card).getByRole("group", { name: `Beard for ${scion.name}` })).toBeTruthy();
   });
 });
