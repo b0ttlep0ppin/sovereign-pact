@@ -5,7 +5,7 @@ import type { PlayerId } from "../../game.ts";
 import type { Replay } from "./combat/replay.ts";
 import { dealsFor } from "./deals.ts";
 import { secretEvent } from "./events.ts";
-import { awaited } from "./fight.ts";
+import { fightView, type FightView } from "./fight.ts";
 import { marketFor, priceFor } from "./market.ts";
 import { cannotDrawTarot, cannotDrinkDraught, consumablePrice, forSale } from "./consumables.ts";
 import { eventsFor } from "./omens.ts";
@@ -350,29 +350,12 @@ function opensFor(s: SovState, me: number): SovView["opens"] {
   });
 }
 
-/** A battle under way, as every House sees it: what it is, and whose turn waits on which House. */
-export interface FightView {
-  title: string;
-  /** The Scion whose turn waits on a command, and the House that gives it. */
-  person: number | null;
-  house: number | null;
-  /** Houses whose Scions fight by gambits for the rest of it. */
-  auto: number[];
-}
-
 export type ExpeditionView = Omit<Expedition, "fight"> & { length: number; fight: FightView | null };
-
-function fightView(s: SovState): FightView | null {
-  const f = s.expedition?.fight;
-  if (!f) return null;
-  const u = f.unit === undefined ? undefined : f.b.units.find((x) => x.id === f.unit);
-  return { title: f.title, person: u?.person ?? null, house: awaited(s), auto: f.auto ?? [] };
-}
 
 function expeditionView(s: SovState, e: Expedition, me: number | null): ExpeditionView {
   const rest: Omit<Expedition, "fight"> = { ...e };
   delete (rest as Expedition).fight;
-  const v: ExpeditionView = { ...rest, chain: e.chain.slice(0, e.at), length: e.chain.length, fight: fightView(s) };
+  const v: ExpeditionView = { ...rest, chain: e.chain.slice(0, e.at), length: e.chain.length, fight: fightView(s, me) };
   // A 2×4 card's other party's way shows only as far as it has walked.
   if (e.split) v.split = { ...e.split, chains: e.split.chains.map((c, i) => c.slice(0, e.split!.at[i])) as typeof e.split.chains };
   // A secret event's picks stay hidden until all are in (§9.4): another House's shows only as chosen (-2).

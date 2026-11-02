@@ -70,7 +70,7 @@ export const vitalsOf = (u: Combatant): Vitals => [
   u.statuses.map((s) => s.id),
 ];
 
-const unitOf = (u: Combatant): ReplayUnit => ({
+export const unitOf = (u: Combatant): ReplayUnit => ({
   id: u.id,
   side: u.side,
   name: u.name,

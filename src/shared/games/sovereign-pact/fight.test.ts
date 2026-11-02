@@ -79,13 +79,53 @@ describe("a battle by hand", () => {
     expect(shown.frames.some((x) => x.ev.some((e) => e.t === "defend" && e.unit === u.id))).toBe(true);
   });
 
-  it("shows every House the battle and whose turn it is, not the battle's insides", () => {
+  it("shows every House the battle and whose turn it is; only the commander sees the choices", () => {
     let s = underway();
     s.expedition!.chain = ["encounter", "boss"];
     s = move(s, "p2", { type: "press_on" });
-    const f = view(s, "p1").expedition!.fight!;
-    expect(f).toEqual({ title: "An Encounter", person: s.expedition!.fight!.b.units.find((u) => u.id === s.expedition!.fight!.unit)!.person, house: awaited(s), auto: [] });
-    expect(view(s, "p2").expedition!.fight).toEqual(f);
+    const house = awaited(s)!;
+    const mine = view(s, s.players[house]!).expedition!.fight!;
+    const theirs = view(s, s.players[1 - house]!).expedition!.fight!;
+    const f = s.expedition!.fight!;
+    expect(mine).toMatchObject({ title: "An Encounter", person: f.b.units.find((u) => u.id === f.unit)!.person, house, auto: [] });
+    expect(mine.now.length).toBe(f.b.units.length);
+    expect(mine.replay.units.length).toBe(f.b.units.length);
+    expect(theirs.turn).toBeNull();
+    expect({ ...theirs, turn: null }).toEqual({ ...mine, turn: null });
+    expect(mine.turn!.unit).toBe(f.unit);
+    expect(mine.turn!.abilities[0]).toMatchObject({ id: "attack", name: "Attack", aim: "unit" });
+    expect(JSON.stringify(mine)).not.toContain("gambits");
+  });
+
+  it("plays a whole battle from the choices the view offers", () => {
+    let s = underway(5, 4);
+    s.expedition!.chain = ["encounter", "boss"];
+    s = move(s, "p2", { type: "press_on" });
+    for (let i = 0; i < 500 && s.expedition?.fight; i++) {
+      const who = s.players[awaited(s)!]!;
+      const t = view(s, who).expedition!.fight!.turn!;
+      const pick = [...t.abilities, ...t.items].find((c) => !c.why);
+      const target = !pick ? null : pick.aim === "unit" ? pick.targets[0]! : pick.aim === "area" ? { side: pick.side, col: 0, row: 0 } : s.expedition!.fight!.b.units.find((u) => u.id === t.unit)!;
+      const action = !pick || !target ? { do: "defend" as const } : t.items.includes(pick as never) ? { do: "item" as const, item: pick.id, target: { side: target.side, col: target.col, row: target.row } } : { do: "ability" as const, ability: pick.id, target: { side: target.side, col: target.col, row: target.row } };
+      s = move(s, who, { type: "command", action });
+    }
+    expect(s.expedition!.fight).toBeUndefined();
+    expect(s.battles![0]!.outcome).not.toBe("retreat");
+  });
+
+  it("lists only the cells a Scion can move to", () => {
+    let s = underway();
+    s.expedition!.chain = ["encounter", "boss"];
+    s = move(s, "p2", { type: "press_on" });
+    const who = s.players[awaited(s)!]!;
+    const t = view(s, who).expedition!.fight!.turn!;
+    for (const to of t.moves) expect(g.applyMove(s, who, { type: "command", move: to }).ok).toBe(true);
+    const u = s.expedition!.fight!.b.units.find((x) => x.id === t.unit)!;
+    expect(t.moves.every(([c, r]) => Math.abs(c - u.col) + Math.abs(r - u.row) <= 2)).toBe(true);
+    if (t.moves.length) {
+      const after = move(s, who, { type: "command", move: t.moves[0]! });
+      expect(view(after, who).expedition!.fight!.turn).toMatchObject({ moved: true, moves: [] });
+    }
   });
 
   it("hands the rest of the battle to a House's gambits: it waits only on the others", () => {

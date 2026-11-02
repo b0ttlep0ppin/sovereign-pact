@@ -15,10 +15,11 @@ const sendTheParty = () => {
   const lead = screen.queryAllByRole("button", { name: / leads$/ })[0];
   if (lead) fireEvent.click(lead);
   letBotsMove();
-  for (let i = 0; i < 80; i++) {
+  for (let i = 0; i < 200; i++) {
     const on = screen.queryByRole("button", { name: /^(Press on|Face the boss|Let the gambits fight the rest)$/ }) ?? document.querySelector<HTMLButtonElement>('[aria-label="An event"] button, [aria-label="The draft"] button:not([disabled])');
-    if (!on) break;
-    fireEvent.click(on);
+    // Nothing of ours to click: the bots are still moving (their Scions' battle turns), unless the Year is over.
+    if (!on && screen.queryByText(/^Year 2 of/)) break;
+    if (on) fireEvent.click(on);
     letBotsMove();
   }
 };
