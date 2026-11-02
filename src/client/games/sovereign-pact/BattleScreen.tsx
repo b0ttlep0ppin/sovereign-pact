@@ -7,6 +7,7 @@ import { Content, FLAG, replayLine, type Replay, type ReplayUnit, type SovView, 
 import { useEffect, useMemo, useRef, useState, type CSSProperties, type KeyboardEvent } from "react";
 import { HERALDRY_COLORS } from "./Emblem";
 import { spriteOf } from "./sprites";
+import { playSounds, soundsOf } from "./sfx";
 import "./BattleScreen.css";
 
 type Event = Replay["frames"][number]["ev"][number];
@@ -82,9 +83,11 @@ interface Props {
   waiting?: number;
   /** Show every turn's lines so far, to read instead of watch (§15.8). */
   fullLog?: boolean;
+  /** The battle's sound effects (§16.1): off, or their volume. */
+  sound?: number;
 }
 
-export default function BattleScreen({ replay, view, onClose, waiting = 0, fullLog = false }: Props) {
+export default function BattleScreen({ replay, view, onClose, waiting = 0, fullLog = false, sound = 0 }: Props) {
   const states = useMemo(() => framesOf(replay), [replay]);
   const units = useMemo(() => new Map(replay.units.map((u) => [u.id, u])), [replay]);
   const [at, setAt] = useState(0);
@@ -108,6 +111,14 @@ export default function BattleScreen({ replay, view, onClose, waiting = 0, fullL
     const t = setTimeout(() => setAt((i) => Math.min(last, i + 1)), (TURN_MS * (injury ? 2 : 1)) / speed);
     return () => clearTimeout(t);
   }, [playing, at, last, speed, injury]);
+  // Each turn sounds as it comes on screen, stepping forward; stepping back is silent.
+  const heard = useRef(0);
+  useEffect(() => {
+    const forward = at === heard.current + 1;
+    heard.current = at;
+    if (!forward || !sound) return;
+    return playSounds(soundsOf(replay.frames[at - 1]!.ev, units), sound, speed);
+  }, [at, replay, units, sound, speed]);
   useEffect(() => root.current?.focus(), []);
   useEffect(() => {
     if (fullLog && log.current) log.current.scrollTop = log.current.scrollHeight;

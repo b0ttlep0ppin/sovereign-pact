@@ -31,6 +31,7 @@ import projectsJson from "./content/projects.json" with { type: "json" };
 import summonsJson from "./content/summons.json" with { type: "json" };
 import hazardsJson from "./content/hazards.json" with { type: "json" };
 import spritesJson from "./content/sprites/manifest.json" with { type: "json" };
+import sfxJson from "./content/audio/sfx.json" with { type: "json" };
 import heraldryJson from "./content/heraldry.json" with { type: "json" };
 import houseTraitsJson from "./content/house_traits.json" with { type: "json" };
 import traitsJson from "./content/traits.json" with { type: "json" };
@@ -319,6 +320,16 @@ export interface SpriteDef {
 
 export const SPRITES = spritesJson.sprites as readonly SpriteDef[];
 export const SPRITE_BY_ID: ReadonlyMap<string, SpriteDef> = new Map(SPRITES.map((s) => [s.id, s]));
+
+/** A battle sound cue (§16.1): content/audio/sfx.json, the BOOM file its takes are cut from (tools/cut-sfx.py). */
+export interface SfxCue {
+  id: string;
+  source: string;
+  takes: number;
+  max: number;
+}
+export const SFX = sfxJson.cues as readonly SfxCue[];
+export const SFX_BY_ID: ReadonlyMap<string, SfxCue> = new Map(SFX.map((c) => [c.id, c]));
 
 export type CardType = "resource" | "hunt" | "delve" | "rescue" | "pilgrimage";
 

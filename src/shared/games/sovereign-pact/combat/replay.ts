@@ -24,6 +24,8 @@ export interface ReplayUnit {
   owner?: number;
   partOf?: number;
   hazard?: string;
+  /** A Scion's weapon kind, for the sound of their blows. */
+  weapon?: string;
   size: [number, number];
   maxHp: number;
   maxMp: number;
@@ -83,6 +85,7 @@ export const unitOf = (u: Combatant): ReplayUnit => ({
   ...(u.owner !== undefined ? { owner: u.owner } : {}),
   ...(u.partOf !== undefined ? { partOf: u.partOf } : {}),
   ...(u.hazard ? { hazard: u.hazard } : {}),
+  ...(u.person !== undefined ? { weapon: u.weapon.kind } : {}),
   size: u.form?.size ?? u.size,
   maxHp: u.maxHp,
   maxMp: u.maxMp,

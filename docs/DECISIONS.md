@@ -2,6 +2,15 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 8t): battle sound effects
+
+- 46 battle cues ship, 126 takes in all (2.4 MB), cut from the BOOM "Designed" libraries. `content/audio/sfx.json` names each cue's source file (validated by `schemas/audio.schema.json`); `tools/cut-sfx.py` finds the variations inside each file, keeps up to three, trims and fades them, and writes mono Vorbis at 44.1 kHz and −16 LUFS into `public/sfx/sovereign-pact/`. The packs stay out of the repo. Each turn of a battle plays its cues as it comes on screen, a random take each, pitch ±5%. A Sound effects checkbox and volume sit under Music.
+- Readings:
+  - A Scion's blow sounds like their weapon (sword, axe, mace, spear, bow…: swing, then landing). A creature's sounds like its first telling tag: beasts, dragons, insects and the like bite (a 2×2 or larger one mauls); constructs, the armored and giants strike heavy; undead, spirits, demons and the Unknown claw.
+  - Spells cast and land by element (the six, plus an arcane pair for the unelemental); heals, buffs, debuffs, summons, vanishing, telegraphed charges and boss phases each have their own.
+  - Falls thud; an injury cracks a bone, and a Devastating one (or a death) gets the Death Whistle's scream; lost Sanity a distant one.
+  - The Creature Foley library on Josh's PC holds bites, scratches, steps, wings and body falls, not voices, so §16.1's growls and moans per tag wait for a voice library. Stepping back through a replay is silent. Ambience (§16.3), UI sounds and the mixer's ducking come later.
+
 ## 2026-11-02 (implementation, Milestone 8s): monsters on the battle screen
 
 - Every enemy, boss, summon and hazard (339 ids) has a picture cut from the two 1000-Monster Mega Packs. `content/sprites/manifest.json` names each id's source file (validated by `schemas/sprites.schema.json`); `tools/cut-monsters.py` crops each to its drawn pixels and writes lossless webp into `public/sprites/sovereign-pact/enemies/`, about 6 MB in all. The packs themselves stay out of the repo, as their license asks.

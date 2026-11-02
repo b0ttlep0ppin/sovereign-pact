@@ -253,7 +253,7 @@ export default function SovereignPact({ view, isMyTurn, sendMove, lastError }: P
           </ul>
         </section>
       ) : null}
-      {battles.watching ? <BattleScreen key={battles.watching.key} replay={battles.watching} view={view} onClose={battles.next} waiting={battles.waiting} fullLog={access.log} /> : null}
+      {battles.watching ? <BattleScreen key={battles.watching.key} replay={battles.watching} view={view} onClose={battles.next} waiting={battles.waiting} fullLog={access.log} sound={music.sfx ? music.sfxVolume : 0} /> : null}
 
       <section className="sp-panel" aria-label="Chronicle of the Year">
         <h2>What happened</h2>
