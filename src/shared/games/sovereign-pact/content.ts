@@ -31,6 +31,7 @@ import itemsJson from "./content/items.json" with { type: "json" };
 import jobsJson from "./content/jobs.json" with { type: "json" };
 import namesJson from "./content/names.json" with { type: "json" };
 import poolsJson from "./content/pools.json" with { type: "json" };
+import sortiesJson from "./content/sorties.json" with { type: "json" };
 import propertiesJson from "./content/properties.json" with { type: "json" };
 import seatsJson from "./content/seats.json" with { type: "json" };
 import tarotJson from "./content/tarot.json" with { type: "json" };
@@ -720,3 +721,19 @@ export interface TraitDef {
 }
 export const TRAITS = traitsJson.traits as readonly TraitDef[];
 export const TRAIT_BY_ID = byId(TRAITS);
+
+/** A Sortie (§6.11): content/sorties.json. Rewards are per Scion (XP per battle won, JP if won) and per House. */
+export interface SortieDef {
+  id: string;
+  name: string;
+  text: string;
+  pool: string;
+  battles: 1 | 2;
+  xp: number;
+  jp: number;
+  rolls: number;
+  gold?: number;
+  score?: Partial<Record<ScoreCategory, number>>;
+}
+export const SORTIES = sortiesJson.sorties as readonly SortieDef[];
+export const SORTIE_BY_ID = byId(SORTIES);

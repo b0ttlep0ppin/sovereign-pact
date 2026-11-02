@@ -2,6 +2,20 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 6j: Sorties) — implementer
+- **Sorties** (§6.11) are a Year assignment, `sortie`, with the Sortie's id (`content/sorties.json`). Four are written, from §6.11's list: Patrol the walls, Hunt the marsh, Escort a caravan, Dig the old mine.
+  - Each House runs one Sortie a Year, with up to four Scions or Retired. Recruits do not go.
+  - A Scion fielded on the expedition goes there instead of on the Sortie.
+- **When**: reading, every House's Sortie resolves as the expedition comes home, before the Reckoning.
+- **The fights**: 1–2 gambit battles from the Sortie's pool, a level under the Year's band (`tuning.sortie`). Injuries are capped at Moderate: a worse roll lands on the table's next milder result (`Battle.injuryCap`), so nobody dies on a Sortie. A lost battle ends it, and the Scions limp home.
+- **Rewards** (about a quarter of an expedition):
+  - XP per battle won;
+  - 25 JP for each Scion if every battle is won;
+  - the pool's finds to the House per battle won;
+  - some Gold or Valor by Sortie.
+- **Bots**: a bot Scion with no training slot and no injury goes on Patrol the walls.
+- **Not built yet**: per-Scion gambit lists (Sortie Scions fight with their Job's default gambits, as expedition battles do), the Arena's +50% and Mild cap, the Kennels' beasts, and injuries that forbid Sorties.
+
 ## 2026-11-02 (implementation, Milestone 6i: secret events) — implementer
 - **`secret`** (§9.4, Q91): an event whose options are all `secret` is put to the Houses present. Each picks unseen: the view shows another House's pick only as chosen (−2) until every pick is in.
 - At the reveal, the log names every House's choice. Each pick then happens to that House's own Scions in the party, its finds to that House.

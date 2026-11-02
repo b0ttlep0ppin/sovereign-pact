@@ -44,10 +44,21 @@ const pct = (n: number, p: number) => Math.round((n * p) / 100);
  */
 export function injure(b: Battle, rng: Rng, u: Combatant, table: InjuryTableId, steps: number): InjuryResult {
   const r = roll(rng, table, baseSteps(u, table) + steps);
-  b.events.push({ t: "injury", target: u.id, table, roll: r.roll, total: r.total, result: r.result.id });
-  u.injuries.push(r.result.id);
-  apply(b, u, r.result, table);
-  return r.result;
+  const result = capped(b, table, r.result, r.total);
+  b.events.push({ t: "injury", target: u.id, table, roll: r.roll, total: r.total, result: result.id });
+  u.injuries.push(result.id);
+  apply(b, u, result, table);
+  return result;
+}
+
+const BANDS = ["devastating", "moderate", "mild", "shrug"] as const;
+
+/** Under a cap, a worse result becomes the first result of the table, at or above the roll, that the cap allows. */
+function capped(b: Battle, table: InjuryTableId, res: InjuryResult, total: number): InjuryResult {
+  if (!b.injuryCap || BANDS.indexOf(res.band) >= BANDS.indexOf(b.injuryCap)) return res;
+  const ok = (x: InjuryResult) => BANDS.indexOf(x.band) >= BANDS.indexOf(b.injuryCap!);
+  const rows = INJURY_TABLE_BY_ID.get(table)!.results;
+  return rows.find((x) => ok(x) && x.max >= total) ?? rows.find(ok) ?? res;
 }
 
 function apply(b: Battle, u: Combatant, res: InjuryResult, table: InjuryTableId): void {

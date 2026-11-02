@@ -2,6 +2,7 @@
 // only step that waits for players so far; the others resolve on their own until their milestones
 // (Omens and Reckoning: 4, the Expedition Phase: 6) give them decisions.
 import { fadeBlessings } from "./events.ts";
+import { runSorties } from "./sortie.ts";
 import { createRng, type Rng } from "../../rng.ts";
 import { rollRecruit } from "./generate.ts";
 import { yearOfAssignments } from "./assign.ts";
@@ -92,6 +93,7 @@ export function closeExpedition(s: SovState): void {
   const e = s.expedition;
   // Seats were offered and nobody could take one.
   if (e && !e.result && e.leader === undefined) home(s, "unanswered");
+  if (s.phase !== "over") runSorties(s);
   delete s.expedition;
   if (s.phase === "over") return;
   reckoning(s);

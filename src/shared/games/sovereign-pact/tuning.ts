@@ -52,6 +52,8 @@ export const TUNING = {
    * §9.3 [DECIDED mix]: node weights, the mandatory +2; a Camp's rest (first pass); a boss within this
    * many levels of the card; Valor per battle and boss won, lost per House on a retreat; §9.9's Lost 50%.
    */
+  /** Sorties (§6.11, first pass): their battles a level under the Year's band, injuries no worse than Moderate. */
+  sortie: { levelBelow: 1, injuryCap: "moderate" as const },
   /** Loot (§9.8, §9.10, first pass). Drop tables are per pool in content/pools.json. */
   loot: {
     /** Each hit on a drop table: a common material 1 + level/3, Essence 1 + level/4, a rare material 1. */
@@ -148,6 +150,8 @@ export const TUNING = {
     studentsPerSeat: 2,
     /** Guard slots per House; Study slots from Scriptorium L1 (University: unlimited, with shared projects). */
     guardSlots: 2,
+    /** One Sortie a House a Year, up to 4 Scions not on the expedition (§6.11). */
+    sortieSlots: 4,
     studySlots: 1,
     /** Sanity recovered in a Year, % of max: idle, Rest; the Chapel building adds its own for all in town (§8.4). */
     idleSanityPct: 10,

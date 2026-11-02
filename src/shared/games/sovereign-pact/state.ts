@@ -189,11 +189,11 @@ export interface TimelineEntry {
 }
 
 /** What a person does with the Year (§8.3). Expedition, Sortie and Special come with Milestone 6 and events. */
-export const ASSIGNMENTS = ["rest", "chapel", "infirmary", "train", "teach", "study", "work", "guard"] as const;
+export const ASSIGNMENTS = ["rest", "chapel", "infirmary", "train", "teach", "study", "work", "guard", "sortie"] as const;
 export type AssignmentKind = (typeof ASSIGNMENTS)[number];
 export interface Assignment {
   to: AssignmentKind;
-  /** Work: the producer building worked. */
+  /** Work: the producer building worked; Sortie: the Sortie's content id. */
   at?: string;
   /** Train: the Mentor's person id, and the mastered Job taught. */
   mentor?: number;
