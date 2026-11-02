@@ -392,7 +392,7 @@ function applyHit(b: Battle, rng: Rng, u: Combatant, t: Combatant, ab: AbilityDe
     t.sanity = Math.max(0, t.sanity - sanity);
     b.events.push({ t: "sanity", target: t.id, amount: sanity });
   }
-  for (const s of ab.statuses ?? []) if (t.hp > 0 && !sanityHolds(rng, t, ab)) tryStatus(b, rng, t, s.id, s.chance, s.ticks, s.value, s.mods);
+  for (const s of ab.statuses ?? []) if (t.hp > 0 && (!s.tag || t.tags.includes(s.tag)) && !sanityHolds(rng, t, ab)) tryStatus(b, rng, t, s.id, s.chance, s.ticks, s.value, s.mods);
 
   // The injury check (§10.6 step 8). Enemies have no locations: 0 HP is death (§10.9).
   if (t.side === "enemy") {
@@ -468,7 +468,7 @@ function sanityHolds(rng: Rng, t: Combatant, ab: AbilityDef): boolean {
 
 /** What a support ability (or a heal) does besides HP: statuses, restores, cures, Sanity, TP, revival (§12.4–12.11). */
 function supportEffects(b: Battle, rng: Rng, u: Combatant, t: Combatant, ab: AbilityDef): void {
-  if (t.dead) return;
+  if (t.dead || (ab.ownHouse && t.house !== u.house)) return;
   if (ab.revive && t.down) revive(b, t, ab.revive);
   if (t.down) return;
   const r = ab.restore;
@@ -478,7 +478,7 @@ function supportEffects(b: Battle, rng: Rng, u: Combatant, t: Combatant, ab: Abi
     for (const l of locs) t.dur[l] = Math.min(t.maxDur[l], t.dur[l] + Math.round((t.maxDur[l] * r.durPct) / 100));
   }
   for (const c of ab.cure ?? []) for (const x of [...t.statuses]) if ((x.id === c || meta(x.id).kind === c) && !meta(x.id).fixed) removeStatus(b, t, x.id);
-  if (ab.sanityPct && t.maxSanity) t.sanity = Math.min(t.maxSanity, t.sanity + Math.round((t.maxSanity * ab.sanityPct) / 100));
+  if (ab.sanityPct && t.maxSanity) t.sanity = Math.max(0, Math.min(t.maxSanity, t.sanity + Math.round((t.maxSanity * ab.sanityPct) / 100)));
   if (ab.tpGrant) t.tp = Math.min(C.tp.max, t.tp + ab.tpGrant);
   if (ab.mpPct && t.maxMp) t.mp = Math.min(t.maxMp, t.mp + Math.round((t.maxMp * ab.mpPct) / 100));
   if (ab.flag && !t.flags.includes(ab.flag)) t.flags.push(ab.flag);
@@ -493,7 +493,9 @@ function supportEffects(b: Battle, rng: Rng, u: Combatant, t: Combatant, ab: Abi
   if (ab.constructHpPct && t.tags.includes("construct")) t.hp = Math.min(t.maxHp, t.hp + Math.round((t.maxHp * ab.constructHpPct) / 100));
   if (ab.readiness && t.side !== u.side && !t.mods.readinessImmune) t.ct = Math.max(0, t.ct - Math.round(ab.readiness * (t.boss ? C.bossReadiness : 1)));
   if (ab.dispelBuffs) for (const x of t.statuses.filter((s) => meta(s.id).kind === "buff" && !meta(s.id).fixed).reverse().slice(0, ab.dispelBuffs)) removeStatus(b, t, x.id);
+  if (ab.bossReadiness && t.boss && t.side !== u.side && !t.mods.readinessImmune) t.ct = Math.max(0, t.ct - ab.bossReadiness);
   for (const x of ab.statuses ?? []) {
+    if (x.tag && !t.tags.includes(x.tag)) continue;
     // Breath of Steel and Lasting Wards: timed buffs cast with MP last longer.
     const longer = ab.mp && x.ticks > 0 && meta(x.id).kind === "buff" ? (u.mods.buffTicks ?? 0) : 0;
     if (t.side === u.side) addStatus(b, t, x.id, x.ticks + longer, extraOf(x.value, x.mods));

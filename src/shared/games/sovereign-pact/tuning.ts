@@ -287,8 +287,8 @@ export const TUNING = {
     satchel: 12,
     botKeeps: { tonic: 4, bone_salve: 2, antidote: 1, clarity_draught: 1, smelling_salts: 1 } as Readonly<Record<string, number>>,
     botReserve: 40,
-    /** When a bot Scion reaches into the satchel: an ally under this share of HP or of a location's Durability, its own MP under this share, or this many foes standing for a bomb. */
-    bots: { hpBelow: 0.35, durBelow: 0.3, mpBelow: 0.2, bombFoes: 3 },
+    /** When a bot Scion reaches into the satchel: an ally under this share of HP or of a location's Durability, its own MP under this share, or this many foes standing for a bomb (and for Oathwine), or undead and constructs for a dust. */
+    bots: { hpBelow: 0.35, durBelow: 0.3, mpBelow: 0.2, bombFoes: 3, dustFoes: 2 },
   },
 
   /** §8.9 deals, first pass: score for a deal honored (Intrigue, each side) and for a public one (Renown, each side). */

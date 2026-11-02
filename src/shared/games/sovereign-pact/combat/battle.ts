@@ -2,6 +2,7 @@
 // charging and resolving, and the end. Plain functions over a mutable `Battle`; callers clone first.
 import type { Rng } from "../../../rng.ts";
 import { TUNING } from "../tuning.ts";
+import { LOCATIONS } from "../state.ts";
 import { bossPhases, spawnAdds } from "./bosses.ts";
 import { fights, hazardStruck, springTrap } from "./hazards.ts";
 import { chargeTicks, moveCost, nextActor, step } from "./clock.ts";
@@ -116,7 +117,8 @@ function beginTurn(b: Battle, rng: Rng, u: Combatant): boolean {
   // Attuned and Resolute accessories (§13.4).
   if (u.mods.mpPerTurn) u.mp = Math.min(u.maxMp, u.mp + u.mods.mpPerTurn);
   if (u.mods.sanityPerTurn) u.sanity = Math.min(u.maxSanity, u.sanity + u.mods.sanityPerTurn);
-  if (hasStatus(u, "fear")) u.sanity = Math.max(0, u.sanity - 5);
+  if (u.mods.durPctPerTurn && u.dur && u.maxDur) for (const l of LOCATIONS) u.dur[l] = Math.min(u.maxDur[l], u.dur[l] + Math.round((u.maxDur[l] * u.mods.durPctPerTurn) / 100));
+  if (hasStatus(u, "fear") && (u.mods.sanityTakenPct ?? 0) > -100) u.sanity = Math.max(0, u.sanity - 5);
   if (hasStatus(u, "hidden") && u.turns > 1) removeStatus(b, u, "hidden");
   const lost = u.statuses.find((s) => meta(s.id).oneTurn || meta(s.id).blocks);
   if (lost) {

@@ -2,7 +2,7 @@
 // (60 under Quick Hands). Each one acts as an ability built from its content; healing rises with Herb
 // Lore and the Herbalists. Bots reach for the satchel when someone is Down, badly hurt or afflicted,
 // a caster runs dry, or the foes bunch up for a bomb.
-import { CONSUMABLE_BY_ID } from "../content.ts";
+import { ACTIVE_BY_ID, CONSUMABLE_BY_ID } from "../content.ts";
 import { TUNING } from "../tuning.ts";
 import type { Action } from "./battle.ts";
 import { hasStatus, standing } from "./grid.ts";
@@ -16,6 +16,11 @@ const B = TUNING.consumables.bots;
 /** The ability a consumable acts as when `u` uses it, or undefined if it has no battle effect of its own. */
 export function itemAbility(u: Combatant, id: string): AbilityDef | undefined {
   const def = CONSUMABLE_BY_ID.get(id);
+  // A Scroll casts its spell at once, from the reader's own stats, for no MP.
+  const spell = def?.battle?.cast ? ACTIVE_BY_ID.get(def.battle.cast) : undefined;
+  if (spell) {
+    return { ...spell, mp: 0, charge: 0, id: `item:${id}`, name: def!.name, cost: u.mods.itemCt ?? C.cost.action };
+  }
   if (!def?.battle) return undefined;
   const more = u.mods.itemHealPct ?? 0;
   const r = def.battle.restore;
@@ -86,5 +91,10 @@ export function itemPlan(b: Battle, u: Combatant): Action | undefined {
   }
   const bomb = first(["firebomb", "frost_flask", "shock_jar"]);
   if (bomb && standing(b, "enemy").length >= B.bombFoes) return { do: "item", item: bomb, target: bestCell(b, u, itemAbility(u, bomb)!, "enemy") };
+  // Dust for the dead and the made, when enough of them stand; Oathwine once, when the field is full.
+  const foes = standing(b, "enemy");
+  for (const [dust, tags] of [["grave_dust", ["undead"]], ["hollow_ivory_dust", ["undead", "construct"]]] as const)
+    if (has(dust) && foes.filter((x) => tags.some((t) => x.tags.includes(t))).length >= B.dustFoes) return { do: "item", item: dust, target: bestCell(b, u, itemAbility(u, dust)!, "enemy") };
+  if (has("oathwine") && foes.length >= B.bombFoes && !scions.some((x) => x.house === u.house && hasStatus(x, "oathbound"))) return { do: "item", item: "oathwine", target: cellOf(u) };
   return undefined;
 }

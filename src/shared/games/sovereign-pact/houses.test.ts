@@ -37,6 +37,7 @@ describe("the House trait set (§5.7)", () => {
       /^(arms|body|legs|head)DurabilityPct$/,
       /^ward\.(holy|dark|fire|water|earth|wind)$/,
       /^resist\.\w+$/,
+      /^immune\.tipsy$/,
     ];
     for (const t of HOUSE_TRAITS) {
       for (const key of Object.keys(t.mods ?? {})) expect(read.some((r) => r.test(key)), `${t.id}: ${key}`).toBe(true);

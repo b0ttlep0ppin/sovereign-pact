@@ -14,15 +14,19 @@
         "chance": { "type": "integer", "minimum": 1, "maximum": 100 },
         "ticks": { "type": "integer", "minimum": 0 },
         "value": { "type": "number" },
+        "tag": { "$ref": "defs.schema.json#/definitions/id", "description": "Only a target with this tag takes it (undead, construct…)." },
         "mods": { "type": "object", "additionalProperties": { "type": "number" } }
       }
     },
     "battle": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["shape", "side", "power"],
-      "description": "Used in battle like an ability, from the user's point of view (combat/types.ts AbilityDef).",
+      "anyOf": [{ "properties": { "shape": true, "side": true, "power": true }, "required": ["shape", "side", "power"] }, { "properties": { "cast": true }, "required": ["cast"] }],
+      "description": "Used in battle like an ability, from the user's point of view (combat/types.ts AbilityDef), or as a Job active cast at once (a Scroll).",
       "properties": {
+        "cast": { "$ref": "defs.schema.json#/definitions/id", "description": "A Job active, cast at charge 0 for no MP." },
+        "ownHouse": { "const": true, "description": "Only Scions of the user's House take its effects." },
+        "bossReadiness": { "type": "integer", "minimum": 1, "description": "Readiness taken from a boss it hits." },
         "shape": { "type": "string", "minLength": 1 },
         "side": { "enum": ["foe", "ally", "self"] },
         "power": { "type": "number", "minimum": 0 },
@@ -35,7 +39,7 @@
           "properties": { "hpPct": { "type": "integer", "minimum": 1 }, "durPct": { "type": "integer", "minimum": 1 }, "loc": { "enum": ["random", "lowest", "all"] } }
         },
         "cure": { "type": "array", "minItems": 1, "items": { "$ref": "defs.schema.json#/definitions/id" } },
-        "sanityPct": { "type": "integer", "minimum": 1 },
+        "sanityPct": { "type": "integer", "minimum": -100, "maximum": 100, "not": { "const": 0 }, "description": "Sanity restored (or, below 0, lost), % of max." },
         "mpPct": { "type": "integer", "minimum": 1, "description": "MP restored, % of max." },
         "revive": { "type": "integer", "minimum": 1, "maximum": 100 },
         "statuses": { "type": "array", "minItems": 1, "items": { "$ref": "#/definitions/status" } },
