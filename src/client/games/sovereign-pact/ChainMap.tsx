@@ -1,7 +1,8 @@
 // The expedition's chain (SPEC §9.3, §15.2): the places passed shown for what they were, the rest face
 // down until reached, the boss waiting at the end. Beside it the party, its Leader, the satchel and
 // the haul so far. A 2×4 card shows each party's road.
-import { Content, type SovView } from "@vibepulse/shared/games/sovereign-pact";
+import { Content, type SovMove, type SovView } from "@vibepulse/shared/games/sovereign-pact";
+import { useState } from "react";
 import { CARD_TYPES, quarryOf } from "./RiftGate";
 import { HERALDRY_COLORS } from "./Emblem";
 
@@ -43,7 +44,7 @@ function Road({ passed, length, here, end }: { passed: Node[]; length: number; h
   );
 }
 
-export default function ChainMap({ view }: { view: SovView }) {
+export default function ChainMap({ view, sendMove }: { view: SovView; sendMove?: (m: SovMove) => void }) {
   const e = view.expedition;
   if (!e || e.leader === undefined) return null;
   const person = (id: number) => view.people.find((p) => p.id === id);
@@ -90,10 +91,45 @@ export default function ChainMap({ view }: { view: SovView }) {
         <p>
           <strong>Satchel:</strong> {satchel.length ? satchel.map(([id, n]) => `${n > 1 ? `${n} ` : ""}${Content.CONSUMABLE_BY_ID.get(id)?.name ?? id}`).join(", ") : "empty"}
         </p>
+        {sendMove && view.opens.length ? (
+          <div className="sp-actions sp-satchel" aria-label="Open the satchel">
+            {view.opens.map((o) => (
+              <Open key={o.id} open={o} view={view} sendMove={sendMove} />
+            ))}
+          </div>
+        ) : null}
         <p>
           <strong>Haul:</strong> {haul ? `${e.haul!.items.length} item${e.haul!.items.length === 1 ? "" : "s"}${Object.keys(e.haul!.stores).length ? " and materials" : ""}, lost if the party falls` : "nothing yet"}
         </p>
       </div>
     </section>
+  );
+}
+
+/** One kind from the satchel: a button, with a Scion to name when it goes to one. */
+function Open({ open, view, sendMove }: { open: SovView["opens"][number]; view: SovView; sendMove: (m: SovMove) => void }) {
+  const [who, setWho] = useState(open.people?.[0] ?? -1);
+  const def = Content.CONSUMABLE_BY_ID.get(open.id);
+  const name = def?.name ?? open.id;
+  if (!open.people) {
+    return (
+      <button type="button" className="sp-button sp-button--quiet" title={def?.text} onClick={() => sendMove({ type: "use_item", id: open.id })}>
+        Use {name}
+      </button>
+    );
+  }
+  return (
+    <span className="sp-bid" title={def?.text}>
+      <select value={who} aria-label={`Who takes ${name}`} onChange={(e) => setWho(Number(e.target.value))}>
+        {open.people.map((id) => (
+          <option key={id} value={id}>
+            {view.people.find((p) => p.id === id)?.name ?? `Scion ${id}`}
+          </option>
+        ))}
+      </select>
+      <button type="button" className="sp-button sp-button--quiet" onClick={() => sendMove({ type: "use_item", id: open.id, person: who })}>
+        Use {name}
+      </button>
+    </span>
   );
 }

@@ -40,6 +40,7 @@ import { BUILDINGS, PROJECTS } from "./content.ts";
 import { built, projectCost, stillNeeded } from "./commons.ts";
 import { buildCost, cannotBuild, levelOf } from "./town.ts";
 import { cannotPropose } from "./votes.ts";
+import { cannotOpen } from "./satchel.ts";
 import { ceremonies } from "./promotion.ts";
 import { cureOf, mends } from "./cures.ts";
 import { stash } from "./items.ts";
@@ -179,6 +180,8 @@ export interface SovView {
   outcome: SovState["outcome"] | null;
   /** The bestiary: kills by enemy and the slain quarries, open to every House (§14.3). */
   bestiary: SovState["bestiary"];
+  /** What the viewer's House may open from the satchel now (§13.7), and on whom when it needs a Scion named. */
+  opens: { id: string; people: number[] | null }[];
   /** The battles the last move fought, to play back (§15.5); `key` tells a new one from one already seen. */
   battles: (Replay & { key: string })[];
 }
@@ -273,6 +276,7 @@ export function view(s: SovState, playerId: PlayerId): SovView {
     gate: s.gate ?? null,
     // §9.3: the chain's shape is unknown until walked.
     expedition: s.expedition ? expeditionView(s.expedition, me) : null,
+    opens: me === null ? [] : opensFor(s, me),
     deals: dealsFor(s, me),
     // A shop lot's price to the viewer (its discount, §5.7); sealed lots show their reserve.
     market: marketFor(s, me).map((l) => (me !== null && l.shop !== null && !l.auction ? { ...l, cost: priceFor(s, me, l) } : l)),
@@ -332,6 +336,16 @@ export function view(s: SovState, playerId: PlayerId): SovView {
  * The expedition as everyone sees it: only the nodes passed, the chain's length, and the haul drafted
  * blind, its items' properties hidden until identified (§13.4: Identify comes with the Scriptorium).
  */
+/** Each kind in the satchel the House may open now: alone, or naming one of the Scions it may go to. */
+function opensFor(s: SovState, me: number): SovView["opens"] {
+  const ids = [...new Set((s.expedition?.satchel ?? []).map((x) => x.id))];
+  return ids.flatMap((id): SovView["opens"] => {
+    if (!cannotOpen(s, me, { id })) return [{ id, people: null }];
+    const people = s.people.filter((p) => !cannotOpen(s, me, { id, person: p.id })).map((p) => p.id);
+    return people.length ? [{ id, people }] : [];
+  });
+}
+
 function expeditionView(e: Expedition, me: number | null): Expedition & { length: number } {
   const v = { ...e, chain: e.chain.slice(0, e.at), length: e.chain.length };
   // A 2×4 card's other party's way shows only as far as it has walked.

@@ -2,6 +2,11 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 8k): the satchel on the road
+
+- The expedition panel lets a House with a Scion marching open the party's satchel between nodes (§13.7): a Use button for each kind it may open now (Pilgrim's Bread at a Camp, a Lantern, a Signal Flare on a Rescue card), and a Scion to name for those that go to one (Widow's Tea, a Smuggler's Flask).
+- The view gives the viewer `opens`: each kind it may open now and, when one needs a Scion, the Scions it may go to, worked out by `cannotOpen`.
+
 ## 2026-11-02 (implementation, Milestone 8j): your people
 
 - "Your people" is now a panel of cards (§6), grouped as Scions, Retired, recruits and the Lost. Each card shows what the House knows: age, level and Job, stats, Sanity and MP, potential, Tarot, traits, injuries (with Years left), a Ward's birth House and, with Insight 3, its Loyalty.

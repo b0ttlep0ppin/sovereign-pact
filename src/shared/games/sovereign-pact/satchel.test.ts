@@ -38,6 +38,17 @@ const scion = (s: SovState, i: number) => s.people.find((p) => p.id === s.expedi
 const unit = (s: SovState, i: number) => partyOf(s, [scion(s, i).id], s.expedition!.carry)[0]!;
 
 describe("Camp items (§13.7)", () => {
+  it("shows the House what it may open now, and on whom", () => {
+    const s = camped(["pilgrims_bread", "widows_tea", "tonic"]);
+    const party = s.expedition!.party[0]!;
+    expect(g.view(s, "p1").opens).toEqual([
+      { id: "pilgrims_bread", people: null },
+      { id: "widows_tea", people: [...party].sort((a, b) => s.people.findIndex((p) => p.id === a) - s.people.findIndex((p) => p.id === b)) },
+    ]);
+    s.expedition!.at = 2;
+    expect(g.view(s, "p1").opens).toEqual([]);
+  });
+
   it("are opened only at a Camp, and only what the satchel holds", () => {
     const s = camped(["pilgrims_bread", "tonic"]);
     expect(error(s, { type: "use_item", id: "widows_tea", person: scion(s, 0).id })).toMatch(/holds none/);

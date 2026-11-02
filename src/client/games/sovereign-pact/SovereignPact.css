@@ -147,3 +147,4 @@
 .sp-person__injuries span { font-size: 0.8rem; color: var(--danger); border: 1px solid currentColor; border-radius: 3px; padding: 0 5px; }
 .sp-person .sp-actions { gap: 6px; }
 .sp-person select { font: inherit; padding: 6px; background: var(--panel); color: var(--text); border: 1px solid var(--line); border-radius: 4px; }
+.sp-satchel select { font: inherit; padding: 6px; background: var(--panel); color: var(--text); border: 1px solid var(--line); border-radius: 4px; }
