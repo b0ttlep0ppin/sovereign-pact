@@ -50,6 +50,7 @@ export function carriedMods(p: Person, house?: ScionOpts["house"]): Record<strin
   if (house) add(houseEffects(house).mods);
   // Individual traits (§6.7): Fleet's Speed, Thick Skull's Durability…
   for (const id of p.traits) add(TRAIT_BY_ID.get(id)?.mods);
+  delete mods.passiveBudget;
   // A Change's own strangeness (§9.6): a Barrow Knight's Dark ward, a Marsh Thing's poison.
   if (p.change) add(CHANGE_BY_ID.get(p.change.id)?.mods);
   // The Tarot's battle bonuses; The World's passive point is read by the passive budget instead.

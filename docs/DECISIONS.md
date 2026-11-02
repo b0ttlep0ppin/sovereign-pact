@@ -2,6 +2,18 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 7h: the last eight Arcana) — implementer
+- **Built** (§14.9, content only). All 22 Major Arcana now have a node; a test checks the list against the Tarot.
+  - Wheel of Fortune: the Temporal Snail (Outer Dark), slows and Stops everyone, hastens itself; trait Wheel-Turned, Relic the Clockwork Shell
+  - Justice: the Lady of the Scales (Apostate Court), counters and reflects, sentences the marked; Even-Handed, the Feather Blade
+  - the Hanged Man: the Hanged Shadow (Barrows), roots, confuses and drains Sanity; Seen from Below, the Gallows Cord
+  - Temperance: the Undine (Drowned Marches, 2×2), freezes and burns together; Tempered, the Mixing Cups
+  - the Devil: the Smiling Devil (Pit), charms and hexes the strongest, hellfire; Unsigned, the Devil's Fork
+  - the Star: the Willbound Star (Outer Dark), starfall, blinding, hides to heal; Starlit, the Fallen Star
+  - Judgement: the Last Trumpeter (Shrine of Six), a trumpet that deafens all, rises when hurt; Answered, the Last Trumpet
+  - the World: Gaia, the World Mother (Dragon Reaches), slow and huge; Worldwalker (+1 passive budget), the World's Mantle
+- **Readings**: SPEC's table names Maat and Mephistopheles; the bosses carry titles (the Lady of the Scales, the Smiling Devil) as the Idols do, and Gaia keeps her name (a Greek figure, like Thanatos). Every boss is won 100% by the simulator's party at levels 3, 6 and 8, losing 10–32% of HP. The Arcana Hunt cards for the Tower, Death and the World come next, as their own step.
+
 ## 2026-11-02 (implementation, Milestone 7g: eight more Arcana) — implementer
 - **Built** (§14.9, content only: `content/arcana.json`, eight `content/bosses/arcana_*.json`, eight traits, eight named Relics). Fourteen of the 22 Major Arcana now have a mini-boss:
   - the High Priestess: the Veiled Priestess (Shrine of Six), silences and tides; trait Veiled Sight, Relic the Priestess's Veil

@@ -555,6 +555,118 @@
       "text": "Its light shows only what is true, and only a little way ahead.",
       "boss": "arcana_hermit",
       "minLevel": 1
+    },
+    {
+      "id": "the_clockwork_shell",
+      "name": "The Clockwork Shell",
+      "base": "amulet",
+      "tier": 5,
+      "props": [
+        ["quickening", 1],
+        ["keen_eye", 1],
+        ["stat_guile", 3]
+      ],
+      "text": "A piece of the snail's shell. It ticks, and sometimes it ticks backward.",
+      "boss": "arcana_wheel_of_fortune",
+      "minLevel": 1
+    },
+    {
+      "id": "the_feather_blade",
+      "name": "The Feather Blade",
+      "base": "sword",
+      "tier": 5,
+      "props": [
+        ["riposting", 1],
+        ["holy_edge", 30],
+        ["keen", 10]
+      ],
+      "text": "Light as a feather, and every blow struck against its bearer is weighed and returned.",
+      "boss": "arcana_justice",
+      "minLevel": 1
+    },
+    {
+      "id": "the_gallows_cord",
+      "name": "The Gallows Cord",
+      "base": "amulet",
+      "tier": 5,
+      "props": [
+        ["mourning", 1],
+        ["resist_confusion", 50],
+        ["stat_sagacity", 4]
+      ],
+      "text": "Worn round the neck, as it was meant to be. It has never once tightened.",
+      "boss": "arcana_hanged_man",
+      "minLevel": 1
+    },
+    {
+      "id": "the_mixing_cups",
+      "name": "The Mixing Cups",
+      "base": "charm",
+      "tier": 5,
+      "props": [
+        ["warded_fire", 30],
+        ["warded_water", 30],
+        ["stat_acuity", 3]
+      ],
+      "text": "Two cups on a chain. What is poured between them comes out cool.",
+      "boss": "arcana_temperance",
+      "minLevel": 1
+    },
+    {
+      "id": "the_devils_fork",
+      "name": "The Devil's Fork",
+      "base": "spear",
+      "tier": 5,
+      "props": [
+        ["hungry", 1],
+        ["dark_edge", 35],
+        ["siphoning", 1]
+      ],
+      "text": "It takes a little more with every kill, and it never says what for.",
+      "boss": "arcana_devil",
+      "minLevel": 1
+    },
+    {
+      "id": "the_fallen_star",
+      "name": "The Fallen Star",
+      "base": "staff",
+      "tier": 5,
+      "props": [
+        ["mana_thirst", 4],
+        ["holy_edge", 30],
+        ["surging", 40]
+      ],
+      "text": "A staff with a star caught in its head. It hums when anyone wishes nearby.",
+      "boss": "arcana_star",
+      "minLevel": 1
+    },
+    {
+      "id": "the_last_trumpet",
+      "name": "The Last Trumpet",
+      "base": "instrument",
+      "tier": 5,
+      "props": [
+        ["holy_edge", 35],
+        ["staggering", 1],
+        ["undead_bane", 1]
+      ],
+      "text": "The dead hear it and lie still, out of respect, or fear.",
+      "boss": "arcana_judgement",
+      "minLevel": 1
+    },
+    {
+      "id": "the_worlds_mantle",
+      "name": "The World's Mantle",
+      "base": "hauberk",
+      "tier": 5,
+      "props": [
+        ["bulwark", 1],
+        ["fortified", 30],
+        ["second_wind", 1]
+      ],
+      "text": "Woven of moss and stone and root. The ground holds up whoever wears it.",
+      "boss": "arcana_world",
+      "minLevel": 1
     }
   ]
 }

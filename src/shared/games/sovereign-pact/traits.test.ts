@@ -8,7 +8,7 @@ import { promote, rollRecruit, rollTraits } from "./generate.ts";
 describe("the individual trait set (§6.7)", () => {
   it("names only battle mods the rules read", () => {
     const read = [
-      /^(speed|accuracy|rangedAccuracy|evasion|crit|lucky|injurySteps|dualWieldMastery|moveCostPct)$/,
+      /^(speed|accuracy|rangedAccuracy|evasion|crit|counter|lucky|injurySteps|dualWieldMastery|moveCostPct|mpPerPulse|passiveBudget)$/,
       /^(maxHp|maxMp|maxSanity|healingDealt|healingReceived|head)Pct$/,
       /^headDurabilityPct$/,
       /^(ward)\.(holy|dark|fire|water|earth|wind)$/,

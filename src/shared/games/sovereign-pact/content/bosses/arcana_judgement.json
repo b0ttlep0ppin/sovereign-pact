@@ -1,0 +1,37 @@
+{
+  "id": "arcana_judgement",
+  "name": "The Last Trumpeter",
+  "pool": "shrine_of_six",
+  "tags": ["divine", "humanoid", "armored", "arcana"],
+  "role": "boss",
+  "size": [1, 2],
+  "at": "E2",
+  "levels": [1, 10],
+  "stats": {"speed": 10, "hp": 5},
+  "affinity": {"holy": 50, "wind": 25, "dark": -50},
+  "immune": ["fear", "charm", "silence", "deaf"],
+  "abilities": [
+    {"id": "last_trumpet", "shape": "all", "side": "player", "power": 0.5, "kind": "magic", "element": "holy", "statuses": [{"id": "deaf", "chance": 50, "ticks": 300}, {"id": "stun", "chance": 15, "ticks": 0}], "charge": 200, "telegraph": true, "cooldown": 4},
+    {"id": "verdict", "shape": "single", "side": "player", "power": 1.4, "statuses": [{"id": "marked", "chance": 100, "ticks": 300}]},
+    {"id": "rise_again", "shape": "self", "side": "self", "power": 0, "kind": "support", "statuses": [{"id": "regen", "chance": 100, "ticks": 400}, {"id": "protect", "chance": 100, "ticks": 300}], "cooldown": 5},
+    {"id": "rank_and_file", "shape": "front_each_row", "side": "player", "power": 0.9}
+  ],
+  "gambits": [
+    {"if": "turn%4==0", "do": "last_trumpet"},
+    {"if": "hp<0.7 && turn%5==2", "do": "rise_again"},
+    {"if": "turn%2==1", "do": "rank_and_file"},
+    {"do": "verdict", "target": "lowest_durability"}
+  ],
+  "phases": [
+    {"at": "hp<=0.5", "name": "The Graves Open", "speed": 11, "say": "Rise. All of you. Rise and be judged.", "gambits": [{"if": "turn%3==0", "do": "last_trumpet"}, {"if": "turn%4==1", "do": "rise_again"}, {"do": "verdict", "target": "marked"}]}
+  ],
+  "say": {
+    "open": "(A soldier in white stands at the shrine's door with a trumpet, and lifts it to his lips.)",
+    "death": "(The trumpet falls silent. The dead lie down again.)"
+  },
+  "bestiary": {
+    "lore": "The card of reckoning and rising: a herald of the shrine who sounds the last call, and rises from every fall to sound it again.",
+    "weakness": "Dark, heavily. Interrupt the trumpet while it charges.",
+    "pattern": "Every fourth turn the last trumpet on everyone (Deaf, sometimes Stun); verdicts on the weakest armor between, and every Front struck on the odd turns; he rises when hurt. When the graves open the trumpet sounds every third turn."
+  }
+}

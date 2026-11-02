@@ -1,0 +1,37 @@
+{
+  "id": "arcana_devil",
+  "name": "The Smiling Devil",
+  "pool": "pit",
+  "tags": ["demon", "arcana"],
+  "role": "boss",
+  "size": [1, 2],
+  "at": "E2",
+  "levels": [1, 10],
+  "stats": {"speed": 12, "hp": 4, "sanityTouch": 2},
+  "affinity": {"fire": 50, "dark": 50, "holy": -50},
+  "immune": ["fear", "charm", "burn"],
+  "abilities": [
+    {"id": "contract", "shape": "single", "side": "player", "power": 0.3, "kind": "magic", "sanity": 6, "statuses": [{"id": "charm", "chance": 40, "ticks": 200}, {"id": "hex", "chance": 40, "ticks": 300}]},
+    {"id": "chains_of_desire", "shape": "row", "side": "player", "power": 0.7, "statuses": [{"id": "rooted", "chance": 50, "ticks": 300}]},
+    {"id": "hellfire", "shape": "band:3", "side": "player", "power": 1.1, "kind": "magic", "element": "fire", "charge": 200, "telegraph": true, "cooldown": 3, "statuses": [{"id": "burn", "chance": 40, "ticks": 300}]},
+    {"id": "pitchfork", "shape": "single", "side": "player", "power": 1.2, "statuses": [{"id": "bleed", "chance": 30, "ticks": 300}]}
+  ],
+  "gambits": [
+    {"if": "turn%3==0", "do": "hellfire", "target": "densest_row"},
+    {"if": "turn%3==1", "do": "contract", "target": "highest_might"},
+    {"if": "turn%2==0", "do": "chains_of_desire", "target": "densest_row"},
+    {"do": "pitchfork", "target": "lowest_hp"}
+  ],
+  "phases": [
+    {"at": "hp<=0.5", "name": "The Fine Print", "speed": 14, "say": "You signed. You all signed. Read it again.", "gambits": [{"if": "turn%2==0", "do": "hellfire", "target": "densest_cluster"}, {"if": "turn%3==1", "do": "contract", "target": "highest_might"}, {"do": "pitchfork", "target": "lowest_hp"}]}
+  ],
+  "say": {
+    "open": "Ah, guests. Sit, sit. Everything here is free, until it isn't.",
+    "death": "No matter. There is always another signature..."
+  },
+  "bestiary": {
+    "lore": "The card of chains and appetite: a devil of the Pit who offers everything, and keeps the receipt.",
+    "weakness": "Holy, heavily. Cure the charm before he turns your strongest on you.",
+    "pattern": "Every third turn hellfire burns three rows; the turn after, a contract charms and hexes the strongest; chains root a row between. In the Fine Print the hellfire comes every other turn."
+  }
+}

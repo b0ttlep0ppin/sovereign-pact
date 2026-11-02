@@ -1,0 +1,35 @@
+{
+  "id": "arcana_hanged_man",
+  "name": "The Hanged Shadow",
+  "pool": "barrows",
+  "tags": ["undead", "spirit", "arcana"],
+  "role": "boss",
+  "size": [1, 2],
+  "at": "E2",
+  "levels": [1, 10],
+  "stats": {"speed": 10, "hp": 4, "sanityTouch": 3},
+  "affinity": {"dark": 50, "wind": 25, "holy": -50},
+  "immune": ["fear", "poison", "bleed", "sleep", "rooted"],
+  "abilities": [
+    {"id": "the_noose", "shape": "single", "side": "player", "power": 0.9, "statuses": [{"id": "rooted", "chance": 60, "ticks": 300}, {"id": "silence", "chance": 30, "ticks": 200}]},
+    {"id": "upside_down", "shape": "row", "side": "player", "power": 0.3, "kind": "magic", "sanity": 6, "statuses": [{"id": "confusion", "chance": 35, "ticks": 200}]},
+    {"id": "swinging_dread", "shape": "column:B", "side": "player", "power": 1.0, "kind": "magic", "element": "dark", "charge": 150, "telegraph": true, "cooldown": 3}
+  ],
+  "gambits": [
+    {"if": "turn%3==0", "do": "swinging_dread", "target": "column_weighted"},
+    {"if": "turn%2==1", "do": "upside_down", "target": "densest_row"},
+    {"do": "the_noose", "target": "highest_might"}
+  ],
+  "phases": [
+    {"at": "hp<=0.5", "name": "The Rope Snaps", "speed": 13, "say": "(It drops, and lands on its feet, and is suddenly much closer.)", "gambits": [{"if": "turn%2==0", "do": "swinging_dread", "target": "column_weighted"}, {"do": "upside_down", "target": "densest_row"}]}
+  ],
+  "say": {
+    "open": "(Something hangs from the barrow's lintel by one foot, and smiles at you the wrong way up.)",
+    "death": "(The rope is empty. It was always empty.)"
+  },
+  "bestiary": {
+    "lore": "The card of surrender and seeing differently: a shade that hangs between the worlds and turns the minds of those who look at it.",
+    "weakness": "Holy, heavily. Keep Sanity up and spread the Back.",
+    "pattern": "Every third turn a swinging dread down the Back; every other turn it turns a row upside down (Sanity, Confusion); the noose roots and silences the strongest. When the rope snaps the dread comes every other turn."
+  }
+}

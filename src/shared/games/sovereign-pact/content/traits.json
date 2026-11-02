@@ -68,6 +68,14 @@
     {"id": "heartwhole", "name": "Heartwhole", "flavor": "The tempters asked, and they said no.", "crunch": "Charm immune.", "mods": {"immune.charm": 1}, "tags": ["arcana"], "weight": 0},
     {"id": "unstoppable", "name": "Unstoppable", "flavor": "They stood in front of the Chariot, and it went around.", "crunch": "Knockdown resist +40%; Speed +1.", "mods": {"resist.knockdown": 40, "speed": 1}, "tags": ["arcana"], "weight": 0},
     {"id": "laborer", "name": "Laborer", "flavor": "They finished the twelfth labor.", "crunch": "Max HP +10%; Crit chance +2%.", "mods": {"maxHpPct": 10, "crit": 2}, "tags": ["arcana"], "weight": 0},
-    {"id": "lanternbearer", "name": "Lanternbearer", "flavor": "They carried the monk's lantern down from the ice.", "crunch": "Accuracy +5%; Sleep resist +30%.", "mods": {"accuracy": 5, "resist.sleep": 30}, "tags": ["arcana"], "weight": 0}
+    {"id": "lanternbearer", "name": "Lanternbearer", "flavor": "They carried the monk's lantern down from the ice.", "crunch": "Accuracy +5%; Sleep resist +30%.", "mods": {"accuracy": 5, "resist.sleep": 30}, "tags": ["arcana"], "weight": 0},
+    {"id": "wheel_turned", "name": "Wheel-Turned", "flavor": "The wheel came round for them, and stopped at the top.", "crunch": "Crit chance +3%; Evasion +2%.", "mods": {"crit": 3, "evasion": 2}, "tags": ["arcana"], "weight": 0},
+    {"id": "even_handed", "name": "Even-Handed", "flavor": "They were weighed by the Lady of the Scales, and found even.", "crunch": "Counter chance +5%; Accuracy +3%.", "mods": {"counter": 5, "accuracy": 3}, "tags": ["arcana"], "weight": 0},
+    {"id": "seen_from_below", "name": "Seen from Below", "flavor": "They looked at the world upside down, and it made more sense.", "crunch": "Injury rolls +1 step; Confusion resist +25%.", "mods": {"injurySteps": 1, "resist.confusion": 25}, "tags": ["arcana"], "weight": 0},
+    {"id": "tempered", "name": "Tempered", "flavor": "Fire and ice both, and neither took.", "crunch": "Burn and Frozen resist +30%; healing dealt +10%.", "mods": {"resist.burn": 30, "resist.frozen": 30, "healingDealtPct": 10}, "tags": ["arcana"], "weight": 0},
+    {"id": "unsigned", "name": "Unsigned", "flavor": "The Devil offered, and they did not sign.", "crunch": "Dark +15%; Charm resist +25%.", "mods": {"ward.dark": 15, "resist.charm": 25}, "tags": ["arcana"], "weight": 0},
+    {"id": "starlit", "name": "Starlit", "flavor": "A fallen star went out in their hands, and left its light behind.", "crunch": "MP regen +1 per 100 ticks; Max MP +5%.", "mods": {"mpPerPulse": 1, "maxMpPct": 5}, "tags": ["arcana"], "weight": 0},
+    {"id": "answered", "name": "Answered", "flavor": "They heard the last trumpet, and stood.", "crunch": "Fear resist +30%; Holy +10%.", "mods": {"resist.fear": 30, "ward.holy": 10}, "tags": ["arcana"], "weight": 0},
+    {"id": "worldwalker", "name": "Worldwalker", "flavor": "The World Mother lay down, and let them walk on.", "crunch": "Passive budget +1.", "mods": {"passiveBudget": 1}, "tags": ["arcana"], "weight": 0}
   ]
 }

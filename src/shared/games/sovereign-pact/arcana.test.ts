@@ -6,10 +6,10 @@ import { arcanaFor, withArcana } from "./arcana.ts";
 import { bossBattle } from "./combat/bosses.ts";
 import { BASELINE, realParty } from "./combat/roster.ts";
 import { simulate } from "./combat/sim.ts";
-import { ARCANA, BOSS_BY_ID, NAMED_BY_ID, TAROT_BY_ID, TRAIT_BY_ID } from "./content.ts";
+import { ARCANA, BOSS_BY_ID, NAMED_BY_ID, TAROT, TAROT_BY_ID, TRAIT_BY_ID } from "./content.ts";
 import { muster } from "./expedition.ts";
 import { bossFor, pressOn } from "./journey.ts";
-import { levelUp } from "./progression.ts";
+import { levelUp, passiveBudget } from "./progression.ts";
 import type { ExpeditionCard, SovState } from "./state.ts";
 import { calm, campaign } from "./testing.ts";
 import { TUNING } from "./tuning.ts";
@@ -33,6 +33,10 @@ describe("the Arcana's content", () => {
     expect(BOSS_BY_ID.has(a.boss)).toBe(true);
     expect(TRAIT_BY_ID.get(a.trait)?.weight).toBe(0);
     expect(NAMED_BY_ID.get(a.relic)?.boss).toBe(a.boss);
+  });
+
+  it("every one of the 22 Major Arcana has its node, once", () => {
+    expect(ARCANA.map((a) => a.tarot).sort()).toEqual(TAROT.map((t) => t.id).sort());
   });
 
   it("an Arcana's own boss never ends a card as the pool's boss", () => {
@@ -90,6 +94,11 @@ describe("meeting one", () => {
 });
 
 describe("the kill", () => {
+  it("the World's mark is a passive point more", () => {
+    const p = calm(campaign(2, 8)).people.find((x) => x.status === "scion")!;
+    expect(passiveBudget({ ...p, traits: [...p.traits, "worldwalker"] })).toBe(passiveBudget(p) + 1);
+  });
+
   it("marks its bearer with the card's trait and carries its Relic home", () => {
     const s = away({ level: 1 });
     for (const p of s.people) while (p.status === "scion" && p.level < 25) Object.assign(p, levelUp(p));

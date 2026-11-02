@@ -1,0 +1,37 @@
+{
+  "id": "arcana_temperance",
+  "name": "The Undine",
+  "pool": "drowned_marches",
+  "tags": ["elemental", "spirit", "arcana"],
+  "role": "boss",
+  "size": [2, 2],
+  "at": "E2",
+  "levels": [1, 10],
+  "stats": {"speed": 10, "hp": 4},
+  "affinity": {"water": 75, "fire": 25, "earth": -50},
+  "immune": ["burn", "frozen", "poison", "sleep"],
+  "abilities": [
+    {"id": "two_cups", "shape": "row", "side": "player", "power": 0.7, "kind": "magic", "element": "water", "statuses": [{"id": "frozen", "chance": 25, "ticks": 150}, {"id": "burn", "chance": 25, "ticks": 300}]},
+    {"id": "tide_pour", "shape": "band:3", "side": "player", "power": 0.9, "kind": "magic", "element": "water", "charge": 200, "telegraph": true, "cooldown": 3},
+    {"id": "the_mixing", "shape": "self", "side": "self", "power": 0, "kind": "support", "statuses": [{"id": "regen", "chance": 100, "ticks": 400}, {"id": "shell", "chance": 100, "ticks": 300}], "cooldown": 4},
+    {"id": "undertow", "shape": "single", "side": "player", "power": 1.2, "statuses": [{"id": "slow", "chance": 40, "ticks": 200}]}
+  ],
+  "gambits": [
+    {"if": "turn%3==0", "do": "tide_pour", "target": "densest_row"},
+    {"if": "hp<0.8 && turn%4==1", "do": "the_mixing"},
+    {"if": "turn%2==0", "do": "two_cups", "target": "densest_row"},
+    {"do": "undertow", "target": "nearest"}
+  ],
+  "phases": [
+    {"at": "hp<=0.5", "name": "The Flood", "speed": 12, "say": "(The cups spill. All of it, at once.)", "gambits": [{"if": "turn%2==0", "do": "tide_pour", "target": "densest_cluster"}, {"do": "two_cups", "target": "densest_row"}]}
+  ],
+  "say": {
+    "open": "(A woman of water pours from one cup into another, and never spills a drop.)",
+    "death": "(The water runs back into the marsh, and the cups fall empty.)"
+  },
+  "bestiary": {
+    "lore": "The card of patience and mixing: a water spirit of the Drowned Marches who pours fire and ice together and calls it balance.",
+    "weakness": "Earth, heavily. Break her shell before you spend magic on her.",
+    "pattern": "Every third turn a tide pours over three rows; her cups freeze and burn a row; she mixes herself whole again when hurt. In the Flood the tide comes every other turn."
+  }
+}
