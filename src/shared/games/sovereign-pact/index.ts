@@ -2,6 +2,7 @@
 // One seat is one Great House. Milestone 0 runs the Year loop with the Settlement Phase's seal; every
 // later milestone adds its decisions as moves here.
 import { cannotPost, post } from "./formation.ts";
+import { cannotRestyle, restyle } from "./style.ts";
 import type { GameDefinition, GameResult, MoveResult, PlayerId } from "../../game.ts";
 import type { Rng } from "../../rng.ts";
 import type { TableOption, TableOptions } from "../../table-options.ts";
@@ -46,6 +47,7 @@ export { FLAG, replayLine, type Replay, type ReplayUnit, type Vitals } from "./c
 export type { Aim, Choice, Command, FightView, TurnView } from "./fight.ts";
 export type { Cell } from "./combat/types.ts";
 export { deploy } from "./formation.ts";
+export { BEARDS, HAIR_COLORS, HAIR_LONG, HAIR_SHORT, HAIR_STYLES, styleOf } from "./style.ts";
 
 export const SOVEREIGN_PACT_OPTIONS: readonly TableOption[] = [
   {
@@ -192,6 +194,12 @@ export function applyMove(state: SovState, playerId: PlayerId, move: SovMove): M
       const why = cannotPost(s, house, move);
       if (why) return fail(why);
       post(s, house, move);
+      return { ok: true, state: s };
+    }
+    case "restyle": {
+      const why = cannotRestyle(s, house, move);
+      if (why) return fail(why);
+      restyle(s, move);
       return { ok: true, state: s };
     }
     case "retire":

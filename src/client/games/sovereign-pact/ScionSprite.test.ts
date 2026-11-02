@@ -3,10 +3,17 @@ import { scionCredits } from "./credits";
 import LAYERS from "./scion-layers.json";
 import { animFor, attackOf, kitOf, lookOf, lunges, piecesOf } from "./ScionSprite";
 
-const person = (id: number, over: Partial<{ sex: "m" | "f"; age: number; job: string | null; status: "recruit" | "scion" }> = {}) =>
+const person = (id: number, over: Partial<{ sex: "m" | "f"; age: number; job: string | null; status: "recruit" | "scion"; look: string[] }> = {}) =>
   ({ id, sex: "m" as const, age: 25, job: "knight", status: "scion", ...over }) as unknown as Parameters<typeof lookOf>[0];
 
 describe("Scion sprites", () => {
+  it("wears the House's restyling over the look they were born with (§5.8)", () => {
+    const styled = lookOf(person(7, { look: ["hair=wavy", "hair_color=ginger", "beard=none"] }), undefined);
+    expect([styled.hair, styled.hairColor, styled.beard]).toEqual(["wavy", "ginger", undefined]);
+    const bearded = lookOf(person(7, { look: ["beard=medium"] }), undefined);
+    expect([bearded.hair, bearded.beard]).toEqual([lookOf(person(7), undefined).hair, "medium"]);
+  });
+
   it("draws the same person the same way every time", () => {
     expect(lookOf(person(7), ["gules", "or"])).toEqual(lookOf(person(7), ["gules", "or"]));
   });

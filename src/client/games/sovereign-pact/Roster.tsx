@@ -1,11 +1,11 @@
 // The House's own people (SPEC §6): Scions, the Retired, recruits and the Lost, each as a card with
 // what the House knows of them. In the Settlement Phase, the moves that change who they are: promote a
 // recruit into a base Job, retire a Scion or bring one back, mend an injury with a cure from the stash,
-// and spend a Tarot Token or a Passive Draught.
-import { Content, itemName, type SovMove, type SovView } from "@vibepulse/shared/games/sovereign-pact";
+// and spend a Tarot Token or a Passive Draught. Any of them can be restyled (§5.8).
+import { BEARDS, Content, HAIR_COLORS, HAIR_STYLES, itemName, styleOf, type SovMove, type SovView } from "@vibepulse/shared/games/sovereign-pact";
 import { useState } from "react";
 import { inkOf } from "./Emblem";
-import ScionSprite, { lookOf } from "./ScionSprite";
+import ScionSprite, { bornLook, lookOf } from "./ScionSprite";
 
 /** Head and shoulders in a 64 px portrait frame: x, y, width, height. */
 export const BUST: [number, number, number, number] = [12, 4, 40, 44];
@@ -73,13 +73,14 @@ export default function Roster({ view, sendMove, canAct }: Props) {
 function Card({ p, view, sendMove, canAct }: Props & { p: Person }) {
   const mine = view.mine!;
   const [job, setJob] = useState<JobId>(BASE[0]!.id);
+  const [styling, setStyling] = useState(false);
   const cures = mine.cures.filter((c) => c.person === p.id);
   const ward = p.house !== p.host;
   const crunch = view.display === "crunch";
   const promote = mine.promotion.left < 1 ? "There is no ceremony left this Year." : mine.gold < mine.promotion.gold ? `A promotion costs ${mine.promotion.gold} Gold.` : null;
   return (
     <li className="sp-person sp-person--portrait" aria-label={p.name}>
-      <ScionSprite className="sp-person__portrait" look={lookOf(p, view.houses[p.house]?.colors, view.items)} crop={BUST} size={(64 * 64) / BUST[2]} />
+      <ScionSprite className="sp-person__portrait" look={{ ...lookOf(p, view.houses[p.house]?.colors, view.items), bare: styling }} crop={BUST} size={(64 * 64) / BUST[2]} />
       <header>
         <strong className="sp-person__name" style={p.status === "recruit" ? undefined : { color: inkOf(view.houses[p.house]?.colors) }}>
           {p.name}
@@ -193,7 +194,50 @@ function Card({ p, view, sendMove, canAct }: Props & { p: Person }) {
           })}
         </div>
       ) : null}
+      {canAct && p.status !== "lost" && !p.change ? <Restyle p={p} sendMove={sendMove} onToggle={setStyling} /> : null}
     </li>
+  );
+}
+
+const STYLE_NAMES: Record<string, string> = { none: "Clean-shaven", parted_side_bangs: "Side bangs", swoop_side: "Side swoop", curtains_long: "Long curtains", long_messy: "Long and messy", single: "Single braid" };
+const styleName = (id: string) => STYLE_NAMES[id] ?? id[0]!.toUpperCase() + words(id).slice(1);
+
+/** Hair, hair color and beard (§5.8): each a ◀ name ▶ stepper that restyles them at once. Skin and the rest stay as born. Open, the portrait goes bareheaded. */
+function Restyle({ p, sendMove, onToggle }: { p: Person; sendMove: (m: SovMove) => void; onToggle: (open: boolean) => void }) {
+  const born = bornLook(p);
+  const chosen = styleOf({ look: [...p.look] });
+  const now = { hair: chosen.hair ?? born.hair, hair_color: chosen.hair_color ?? born.hairColor, beard: chosen.beard ?? born.beard ?? "none" };
+  const rows: { key: "hair" | "hair_color" | "beard"; label: string; list: readonly string[] }[] = [
+    { key: "hair", label: "Hair", list: HAIR_STYLES },
+    { key: "hair_color", label: "Color", list: HAIR_COLORS },
+    ...(p.sex === "m" ? [{ key: "beard" as const, label: "Beard", list: BEARDS }] : []),
+  ];
+  const step = (key: (typeof rows)[number]["key"], list: readonly string[], by: number) => {
+    const at = Math.max(0, list.indexOf(now[key]));
+    sendMove({ type: "restyle", person: p.id, [key]: list[(at + by + list.length) % list.length]! });
+  };
+  const restyled = Object.keys(chosen).length > 0;
+  return (
+    <details className="sp-restyle" onToggle={(e) => onToggle(e.currentTarget.open)}>
+      <summary>Restyle</summary>
+      {rows.map(({ key, label, list }) => (
+        <div key={key} className="sp-restyle__row" role="group" aria-label={`${label} for ${p.name}`}>
+          <span className="sp-restyle__label">{label}</span>
+          <button type="button" className="sp-restyle__step" aria-label={`Previous ${label.toLowerCase()}`} onClick={() => step(key, list, -1)}>
+            ◀
+          </button>
+          <span className="sp-restyle__value">{styleName(now[key])}</span>
+          <button type="button" className="sp-restyle__step" aria-label={`Next ${label.toLowerCase()}`} onClick={() => step(key, list, 1)}>
+            ▶
+          </button>
+        </div>
+      ))}
+      {restyled ? (
+        <button type="button" className="sp-button sp-button--quiet" onClick={() => sendMove({ type: "restyle", person: p.id, hair: "", hair_color: "", beard: "" })}>
+          As they were born
+        </button>
+      ) : null}
+    </details>
   );
 }
 

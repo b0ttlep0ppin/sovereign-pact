@@ -555,6 +555,8 @@ export type SovMove =
   | { type: "draft"; share: number }
   /** Place one of your Scions in the formation, or clear their place (col and row null) (§10.12). */
   | { type: "post"; person: number; col: number | null; row: number | null }
+  /** Change a person's hair, hair color or beard ("" goes back to how they were born) (§5.8). */
+  | { type: "restyle"; person: number; hair?: string; hair_color?: string; beard?: string }
   /** Retire a Scion, or bring a Retired one back (§6.12). */
   | { type: "retire"; person: number }
   | { type: "reinstate"; person: number }
