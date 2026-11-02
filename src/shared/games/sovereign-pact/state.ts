@@ -193,6 +193,8 @@ export interface House {
   promotions?: number;
   /** Expeditions it has sent Scions on: spare seats go to the fewest first (§9.2). */
   attended?: number;
+  /** Consumables held at home, by id → count (§13.7). */
+  consumables?: Partial<Record<string, number>>;
 }
 
 /** A queued thing on the 20-Year strip (§8.7). Hidden entries show as "?" until revealed. */
@@ -523,6 +525,8 @@ export type SovMove =
   /** Buy a shop item at its list price (first come), or bid sealed on a lot at auction (§13.4a). */
   | { type: "buy"; item: number }
   | { type: "bid"; item: number; gold: number }
+  /** Buy consumables where they are sold: a Commons shop or the House's own building (§13.7). */
+  | { type: "buy_consumable"; id: string; n?: number }
   /** Put a stashed item up for sealed bids, with a reserve. */
   | { type: "auction"; item: number; reserve: number }
   /** Offer a deal to another House; `open` makes it public (§8.9). */

@@ -280,6 +280,13 @@ export const TUNING = {
     rareProps: ["quickening", "multi_hit", "massive_crits"] as readonly string[],
   },
 
+  /** §13.7 consumables, first pass: the most bought at once, and what a bot keeps at home (with Gold it never spends below). */
+  consumables: {
+    perBuy: 10,
+    botKeeps: { tonic: 4, bone_salve: 2, antidote: 1, clarity_draught: 1, smelling_salts: 1 } as Readonly<Record<string, number>>,
+    botReserve: 40,
+  },
+
   /** §8.9 deals, first pass: score for a deal honored (Intrigue, each side) and for a public one (Renown, each side). */
   deals: { intrigue: 1, publicRenown: 1, maxOpen: 6 },
 

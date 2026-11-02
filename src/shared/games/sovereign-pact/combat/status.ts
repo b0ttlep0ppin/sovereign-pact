@@ -67,6 +67,8 @@ export const STATUSES: Record<string, StatusMeta> = {
   /** A lurker that leapt into the formation (§14.3): any Scion's melee reaches it until its next turn. */
   exposed: { kind: "debuff", ticks: 0, endsOnTurn: true },
   rooted: { kind: "physical", ticks: 200 },
+  /** Wine (§13.7): its Accuracy malus rides in its mods. */
+  tipsy: { kind: "debuff", ticks: 100 },
   /** Answers the next melee blow with a counter, then ends (§14.7 the Cursed King's Royal Parry). */
   parry: { kind: "buff", ticks: 300 },
   /** Under the water (§14.6 Scylla): nothing can target or reach it, area or not, until it surfaces. */

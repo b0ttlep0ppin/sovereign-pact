@@ -1,0 +1,78 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Consumables (SPEC §13.7, HANDOFF §6): held by Houses, carried in the party satchel, used for 100 CT (60 for Vagabonds)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["consumables"],
+  "definitions": {
+    "status": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "chance", "ticks"],
+      "properties": {
+        "id": { "$ref": "defs.schema.json#/definitions/id" },
+        "chance": { "type": "integer", "minimum": 1, "maximum": 100 },
+        "ticks": { "type": "integer", "minimum": 0 },
+        "value": { "type": "number" },
+        "mods": { "type": "object", "additionalProperties": { "type": "number" } }
+      }
+    },
+    "battle": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["shape", "side", "power"],
+      "description": "Used in battle like an ability, from the user's point of view (combat/types.ts AbilityDef).",
+      "properties": {
+        "shape": { "type": "string", "minLength": 1 },
+        "side": { "enum": ["foe", "ally", "self"] },
+        "power": { "type": "number", "minimum": 0 },
+        "kind": { "enum": ["physical", "magic", "heal", "support"] },
+        "element": { "enum": ["holy", "dark", "fire", "water", "earth", "wind"] },
+        "restore": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": { "hpPct": { "type": "integer", "minimum": 1 }, "durPct": { "type": "integer", "minimum": 1 }, "loc": { "enum": ["random", "lowest", "all"] } }
+        },
+        "cure": { "type": "array", "minItems": 1, "items": { "$ref": "defs.schema.json#/definitions/id" } },
+        "sanityPct": { "type": "integer", "minimum": 1 },
+        "mpPct": { "type": "integer", "minimum": 1, "description": "MP restored, % of max." },
+        "revive": { "type": "integer", "minimum": 1, "maximum": 100 },
+        "statuses": { "type": "array", "minItems": 1, "items": { "$ref": "#/definitions/status" } },
+        "readiness": { "type": "integer", "minimum": 1 }
+      }
+    }
+  },
+  "properties": {
+    "consumables": {
+      "type": "array",
+      "minItems": 35,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "name", "text", "price", "sold", "use"],
+        "properties": {
+          "id": { "$ref": "defs.schema.json#/definitions/id" },
+          "name": { "type": "string", "minLength": 1, "maxLength": 32 },
+          "text": { "type": "string", "minLength": 1, "maxLength": 160 },
+          "price": { "type": "integer", "minimum": 1, "description": "Gold, first pass." },
+          "sold": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["at", "level"],
+              "properties": {
+                "at": { "$ref": "defs.schema.json#/definitions/id", "description": "A Commons shop or project (apothecary, curio_dealer, fence, great_market) or a House building (workshop, chapel, farm, shrine, forge, scriptorium)." },
+                "level": { "type": "integer", "minimum": 1, "maximum": 3, "description": "The shop's stock tier, or the House building's level." }
+              }
+            },
+            "description": "Where a House can buy it in the Settlement Phase; empty: found only on expeditions and in events."
+          },
+          "use": { "enum": ["battle", "camp", "node", "town", "held"], "description": "When it is used: an action in battle, at a Camp, before a node, in town, or carried and spent on its own." },
+          "battle": { "$ref": "#/definitions/battle" },
+          "special": { "$ref": "defs.schema.json#/definitions/id", "description": "An effect the rules hand-code, by id." }
+        }
+      }
+    }
+  }
+}

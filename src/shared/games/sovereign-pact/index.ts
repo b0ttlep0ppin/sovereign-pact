@@ -21,6 +21,7 @@ import { cannotPromote, promoteRecruit } from "./promotion.ts";
 import { botOutfit, cannotOutfit, outfit } from "./outfit.ts";
 import { bargain, botBargain, cannotBargain } from "./bargains.ts";
 import { botCure, cannotCure, cure } from "./cures.ts";
+import { botBuyConsumable, buyConsumable, cannotBuyConsumable } from "./consumables.ts";
 import { cannotReinstate, cannotRetire, reinstate, retire } from "./lifecycle.ts";
 import { botCard, cannotPick, pick } from "./gate.ts";
 import { TUNING } from "./tuning.ts";
@@ -275,6 +276,15 @@ export function applyMove(state: SovState, playerId: PlayerId, move: SovMove): M
       s.phaseMoves += 1;
       return { ok: true, state: s };
     }
+    case "buy_consumable": {
+      if (s.phase !== "settlement") return fail("The shops open in the Settlement Phase.");
+      if (h.sealed) return fail("Unseal the Year first.");
+      const why = cannotBuyConsumable(s, house, move);
+      if (why) return fail(why);
+      buyConsumable(s, house, move);
+      s.phaseMoves += 1;
+      return { ok: true, state: s };
+    }
     case "bid": {
       if (s.phase !== "settlement") return fail("Bids are made in the Settlement Phase.");
       if (h.sealed) return fail("Unseal the Year first.");
@@ -470,6 +480,8 @@ export function botMove(s: SovState, playerId: PlayerId): SovMove {
     if (raise) return { type: "promote", ...raise };
     const ready = botOutfit(s, house);
     if (ready) return ready;
+    const stock = botBuyConsumable(s, house);
+    if (stock) return stock;
     const job = botAssign(s, house);
     if (job) return { type: "assign", ...job };
     const next = botBuild(s, house);
