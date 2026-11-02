@@ -1,0 +1,33 @@
+{
+  "id": "idol_ten_headed_king",
+  "name": "The Ten-Headed King",
+  "pool": "shrine_of_six",
+  "tags": ["demon", "giant", "idol"],
+  "role": "boss",
+  "size": [2, 2],
+  "at": "E2",
+  "levels": [6, 10],
+  "stats": {"speed": 11, "hp": 7},
+  "affinity": {"dark": 50, "fire": 25, "holy": -50},
+  "immune": ["fear", "charm", "confusion"],
+  "abilities": [
+    {"id": "ten_voices", "shape": "all", "side": "player", "power": 0.5, "kind": "magic", "element": "dark", "sanity": 6, "statuses": [{"id": "confusion", "chance": 15, "ticks": 200}]},
+    {"id": "moonlight_blade", "shape": "single", "side": "player", "power": 1.5, "statuses": [{"id": "bleed", "chance": 40, "ticks": 300}]},
+    {"id": "the_flying_chariot", "shape": "row", "side": "player", "power": 1.1, "charge": 200, "telegraph": true, "cooldown": 3},
+    {"id": "the_head_grows_back", "shape": "self", "side": "self", "power": 0, "kind": "support", "statuses": [{"id": "regen", "chance": 100, "ticks": 300}], "cooldown": 5}
+  ],
+  "gambits": [
+    {"if": "turn%4==0", "do": "ten_voices"},
+    {"if": "turn%3==1", "do": "the_flying_chariot", "target": "densest_row"},
+    {"do": "moonlight_blade", "target": "highest_might"}
+  ],
+  "phases": [
+    {"at": "hp<=0.5", "name": "The Heads Grow Back", "speed": 13, "say": "Cut one off. I have nine more opinions of you.", "gambits": [{"if": "turn%4==0", "do": "the_head_grows_back"}, {"if": "turn%3==0", "do": "ten_voices"}, {"if": "turn%3==1", "do": "the_flying_chariot", "target": "densest_row"}, {"do": "moonlight_blade", "target": "lowest_hp"}]}
+  ],
+  "say": {"open": "A king of a golden city does not kneel. He is knelt to. Begin.", "death": "Ten heads... and not one of them saw this coming..."},
+  "bestiary": {
+    "lore": "A demon king with ten heads and twenty arms, who once stole a queen and a flying chariot, and took a golden city from his own brother. He keeps a seventh shrine among the six, and calls it his.",
+    "weakness": "Holy, heavily. Interrupt the Chariot while it circles; in the second half, break his Regen before it outlasts you.",
+    "pattern": "His ten voices strike everyone every fourth turn, the Chariot charges at the densest row every third, and the moon-pale sword cuts the strongest between. At half he grows a head back (Regen) every fourth turn and cuts the weakest."
+  }
+}

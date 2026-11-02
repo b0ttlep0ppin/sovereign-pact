@@ -25,7 +25,10 @@ import hidden_trapdoor from "./hidden_trapdoor.json" with { type: "json" };
 import hoard_in_the_hollow from "./hoard_in_the_hollow.json" with { type: "json" };
 import hollow_ivory from "./hollow_ivory.json" with { type: "json" };
 import hunters_mark from "./hunters_mark.json" with { type: "json" };
+import idol_bull_demon_king_offer from "./idol_bull_demon_king_offer.json" with { type: "json" };
 import idol_lord_below_offer from "./idol_lord_below_offer.json" with { type: "json" };
+import idol_serpent_king_offer from "./idol_serpent_king_offer.json" with { type: "json" };
+import idol_ten_headed_king_offer from "./idol_ten_headed_king_offer.json" with { type: "json" };
 import idol_thunderer_offer from "./idol_thunderer_offer.json" with { type: "json" };
 import idol_weigher_offer from "./idol_weigher_offer.json" with { type: "json" };
 import informers_offer from "./informers_offer.json" with { type: "json" };
@@ -583,7 +586,10 @@ export default [
   hoard_in_the_hollow,
   hollow_ivory,
   hunters_mark,
+  idol_bull_demon_king_offer,
   idol_lord_below_offer,
+  idol_serpent_king_offer,
+  idol_ten_headed_king_offer,
   idol_thunderer_offer,
   idol_weigher_offer,
   informers_offer,

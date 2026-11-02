@@ -1250,6 +1250,60 @@
       }
     },
     {
+      "id": "the_moonlight_blade",
+      "name": "The Moonlight Blade",
+      "base": "sword",
+      "tier": 5,
+      "props": [
+        ["dark_edge", 40],
+        ["bleeding", 30],
+        ["keen", 10]
+      ],
+      "text": "A sword pale as the moon, given to a demon king by a god who regretted it.",
+      "boss": "idol_ten_headed_king",
+      "minLevel": 6,
+      "artifact": {
+        "category": "lore",
+        "points": 8
+      }
+    },
+    {
+      "id": "the_usurpers_crown",
+      "name": "The Usurper's Crown",
+      "base": "amulet",
+      "tier": 5,
+      "props": [
+        ["resist_poison", 50],
+        ["stat_guile", 4],
+        ["unnerving", 1]
+      ],
+      "text": "A thin gold band with two small serpents worked into it. Nobody who wears it sleeps well.",
+      "boss": "idol_serpent_king",
+      "minLevel": 6,
+      "artifact": {
+        "category": "lore",
+        "points": 8
+      }
+    },
+    {
+      "id": "the_iron_cudgel",
+      "name": "The Iron Cudgel",
+      "base": "maul",
+      "tier": 5,
+      "props": [
+        ["fire_edge", 40],
+        ["staggering", 1],
+        ["demon_bane", 1]
+      ],
+      "text": "An iron club still warm from the burning mountain. It was a king's, and it remembers.",
+      "boss": "idol_bull_demon_king",
+      "minLevel": 6,
+      "artifact": {
+        "category": "lore",
+        "points": 8
+      }
+    },
+    {
       "id": "the_veil_of_isis",
       "name": "The Priestess's Veil",
       "base": "hood",

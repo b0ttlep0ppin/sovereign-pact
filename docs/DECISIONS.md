@@ -2,6 +2,11 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 7bc): the Hindu, Persian and Chinese Idols
+
+- Per Josh's answer to Q93, the last three Idols are demons and usurpers from those myths, given titles rather than names, like the first three: **the Ten-Headed King** (the rakshasa king, D172), **the Serpent-Shouldered King** (the usurper with serpents at his shoulders, D178) and **the Bull Demon King** (the demon king of the western road, D227). Each is an offer first (kneel for a blessing at a price, defy it, or try to cheat it), a level-6+ two-phase boss if refused or cheated, and drops a Lore Relic: the Moonlight Blade, the Usurper's Crown, the Iron Cudgel.
+- Reading: Idols are met at the end of Pilgrimage cards, and only the Barrows and the Shrine of Six offer Pilgrimages (§14.1). The Serpent-Shouldered King waits in the Barrows; the other two keep shrines at the Shrine of Six. Each region now holds three Idols.
+
 ## 2026-11-02 (implementation, Milestone 8q): commanding a battle on screen
 
 - A battle fought by hand opens on the battle screen as it happens, for every House. The turns so far play out, and when a Scion's turn waits on this seat, a command bar lists what they can do from where they stand. It offers abilities with their MP and TP, satchel items, Move, Defend, and handing this turn or the rest of the battle to the gambits. A choice that cannot be used is greyed out, and hovering it says why.
@@ -546,7 +551,7 @@ With these, every consumable in §13.7 works.
     - **Take the gift and refuse the price**: the Leader's gamble, and a fight either way.
   - Killing an Idol pays each House in the party 10 Valor and 6 Renown. Renown stands in for Piety until Q92 is answered.
   - An Idol is met once a campaign. Bots kneel (the cautious option).
-- **Not yet**: the other three Idols (Q93).
+- **Done in 7bc**: the other three Idols (Q93).
 
 ## 2026-11-02 (implementation, Milestone 7e: Arcana nodes, the first six) — implementer
 - **Built** (§14.9, `arcana.ts`, content `content/arcana.json`, numbers in `tuning.arcana`):

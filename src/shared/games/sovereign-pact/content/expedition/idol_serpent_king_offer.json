@@ -1,0 +1,98 @@
+{
+  "id": "idol_serpent_king_offer",
+  "pools": [
+    "idol"
+  ],
+  "weight": 1,
+  "band": [
+    6,
+    10
+  ],
+  "title": "The Feast of the Serpent King",
+  "text": "In a hall of scales a crowned man sits with a serpent growing from each shoulder. He offers you a long life, as long as his own, if you will feed his serpents a little of what you know.",
+  "options": [
+    {
+      "id": "kneel",
+      "label": "Kneel, and pay what it asks.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The serpents eat, politely. You walk out sound in body and a little emptier behind the eyes.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -20
+            },
+            {
+              "to": "party",
+              "growth": {
+                "resilience": 10,
+                "might": 10
+              }
+            },
+            {
+              "to": "party",
+              "score": {
+                "renown": -6
+              }
+            },
+            {
+              "idol": "kneel"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "defy",
+      "label": "Refuse it.",
+      "rule": "vote",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The serpents rise first. The King follows them.",
+          "effects": []
+        }
+      ]
+    },
+    {
+      "id": "cheat",
+      "label": "Take the gift and refuse the price.",
+      "rule": "leader",
+      "tags": [
+        "clever",
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "The leader takes the gift and offers the serpents nothing. The King smiles with both of them.",
+          "effects": [
+            {
+              "growth": {
+                "resilience": 15,
+                "might": 15
+              }
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "The serpents are quicker than the leader. They eat anyway.",
+          "effects": [
+            {
+              "sanity": -25
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

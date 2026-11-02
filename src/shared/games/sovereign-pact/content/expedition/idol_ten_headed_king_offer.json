@@ -1,0 +1,97 @@
+{
+  "id": "idol_ten_headed_king_offer",
+  "pools": [
+    "idol"
+  ],
+  "weight": 1,
+  "band": [
+    6,
+    10
+  ],
+  "title": "The Court of Ten Heads",
+  "text": "At the end of the last shrine a king sits on a throne of gold, and every one of his ten faces turns to look at you. He offers cunning to anyone who will call him master, and asks that you leave him a little of your judgement.",
+  "options": [
+    {
+      "id": "kneel",
+      "label": "Kneel, and pay what it asks.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Ten voices whisper their tricks into you at once. You come away cleverer, and you will never be sure again which thoughts are yours.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -15
+            },
+            {
+              "to": "party",
+              "stat": {
+                "guile": 2
+              }
+            },
+            {
+              "to": "party",
+              "score": {
+                "renown": -6
+              }
+            },
+            {
+              "idol": "kneel"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "defy",
+      "label": "Refuse it.",
+      "rule": "vote",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Ten faces frown at once. He stands, and keeps standing, and he is very tall.",
+          "effects": []
+        }
+      ]
+    },
+    {
+      "id": "cheat",
+      "label": "Take the gift and refuse the price.",
+      "rule": "leader",
+      "tags": [
+        "clever",
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 55,
+          "text": "The leader learns the trick and does not bow. Nine of the heads laugh; the tenth draws its sword.",
+          "effects": [
+            {
+              "stat": {
+                "guile": 3
+              }
+            }
+          ]
+        },
+        {
+          "w": 45,
+          "text": "One of the heads saw it coming. The trick goes the other way.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -12
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

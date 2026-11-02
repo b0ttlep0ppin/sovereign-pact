@@ -20,6 +20,27 @@
       "boss": "idol_weigher",
       "event": "idol_weigher_offer",
       "relic": "the_feather_of_truth"
+    },
+    {
+      "id": "idol_ten_headed_king",
+      "pool": "shrine_of_six",
+      "boss": "idol_ten_headed_king",
+      "event": "idol_ten_headed_king_offer",
+      "relic": "the_moonlight_blade"
+    },
+    {
+      "id": "idol_serpent_king",
+      "pool": "barrows",
+      "boss": "idol_serpent_king",
+      "event": "idol_serpent_king_offer",
+      "relic": "the_usurpers_crown"
+    },
+    {
+      "id": "idol_bull_demon_king",
+      "pool": "shrine_of_six",
+      "boss": "idol_bull_demon_king",
+      "event": "idol_bull_demon_king_offer",
+      "relic": "the_iron_cudgel"
     }
   ]
 }

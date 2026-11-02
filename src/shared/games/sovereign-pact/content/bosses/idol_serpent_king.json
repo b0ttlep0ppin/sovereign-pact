@@ -1,0 +1,34 @@
+{
+  "id": "idol_serpent_king",
+  "name": "The Serpent-Shouldered King",
+  "pool": "barrows",
+  "tags": ["demon", "dragonkin", "idol"],
+  "role": "boss",
+  "size": [2, 2],
+  "at": "E2",
+  "levels": [6, 10],
+  "stats": {"speed": 12, "hp": 6, "sanityTouch": 2},
+  "affinity": {"dark": 50, "earth": 25, "holy": -25, "fire": -25},
+  "immune": ["fear", "poison", "charm"],
+  "abilities": [
+    {"id": "the_serpents_feed", "shape": "single", "side": "player", "power": 1.0, "drain": 50, "sanity": 10, "statuses": [{"id": "marked", "chance": 100, "ticks": 300}]},
+    {"id": "twin_fangs", "shape": "band:3", "side": "player", "power": 0.8, "statuses": [{"id": "poison", "chance": 50, "ticks": 300}]},
+    {"id": "the_usurpers_decree", "shape": "row", "side": "player", "power": 0.4, "kind": "magic", "element": "dark", "statuses": [{"id": "silence", "chance": 40, "ticks": 200}]},
+    {"id": "a_thousand_years", "shape": "single", "side": "player", "power": 2.0, "charge": 150, "telegraph": true, "cooldown": 3}
+  ],
+  "gambits": [
+    {"if": "!foe.marked", "do": "the_serpents_feed", "target": "lowest_sanity"},
+    {"if": "foe.marked && turn%3==0", "do": "a_thousand_years", "target": "marked"},
+    {"if": "turn%2==1", "do": "twin_fangs", "target": "densest_row"},
+    {"do": "the_usurpers_decree", "target": "densest_row"}
+  ],
+  "phases": [
+    {"at": "hp<=0.5", "name": "The Serpents Hunger", "speed": 14, "say": "They have not eaten today. They are not particular.", "gambits": [{"if": "turn%2==0", "do": "the_serpents_feed", "target": "lowest_sanity"}, {"if": "foe.marked && turn%3==1", "do": "a_thousand_years", "target": "marked"}, {"do": "twin_fangs", "target": "densest_row"}]}
+  ],
+  "say": {"open": "I took a throne once with a kiss on each shoulder. I can take yours with less.", "death": "Feed... them... someone has to feed them..."},
+  "bestiary": {
+    "lore": "A usurper who let the Lie kiss his shoulders and woke with two serpents growing there, which must be fed each day on the minds of men. He ruled a thousand years. The Barrows kept him when his kingdom died.",
+    "weakness": "Holy and Fire. Keep Sanity up: the serpents feed on the least sane, and their Mark calls down the King's own blow.",
+    "pattern": "The serpents feed on the least sane and Mark them; every third turn the King strikes whoever is Marked; fangs on a row and decrees that silence between. At half the serpents feed every other turn."
+  }
+}
