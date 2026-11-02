@@ -20,6 +20,7 @@ import { home, lostClock } from "./journey.ts";
 import { settleVote } from "./votes.ts";
 import { resolveCrisis } from "./crisis.ts";
 import { closeEvents, drawOmens } from "./omens.ts";
+import { closeBargains, offerOmenBargains } from "./bargains.ts";
 import { restock, settleAuctions } from "./market.ts";
 import { foreshadow } from "./timeline.ts";
 import { forHouses, TUNING } from "./tuning.ts";
@@ -60,6 +61,7 @@ export function openYear(s: SovState): void {
   for (const y of due) log(s, `The timeline darkens: a mandatory expedition comes in Year ${y}.`);
   // Omens: the settlement event (perhaps a Crisis) and the House events (§8.8).
   drawOmens(s);
+  offerOmenBargains(s);
   restock(s);
   openGate(s);
   scheduleForced(s);
@@ -77,6 +79,7 @@ export function closeSettlement(s: SovState): void {
   // An open vote is settled with the votes cast; the rest abstain.
   settleVote(s);
   closeEvents(s);
+  closeBargains(s);
   settleAuctions(s);
   // Offers left on the table lapse.
   s.deals = [];

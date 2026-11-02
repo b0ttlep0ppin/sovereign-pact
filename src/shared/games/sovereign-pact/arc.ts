@@ -3,6 +3,7 @@
 // Year 10 (the Hollow Court) lost: the Court's knights raid every expedition after. Year 15 (the Nest)
 // lost: more Doom, and Unknown fodder in every pool's fights; won: Doom falls. The final Year ends the
 // campaign either way (year.ts). Devastation itself is timeline.ts's.
+import { offerCrown } from "./bargains.ts";
 import { built } from "./commons.ts";
 import type { Combatant } from "./combat/types.ts";
 import type { NodeKind, SovState } from "./state.ts";
@@ -36,6 +37,7 @@ export function arcResult(s: SovState, won: boolean): void {
     flag(s, ARC.gateWon);
     log(s, "The tide breaks on the walls. The Bastion of the Gate may now be raised.");
   }
+  if (step === 1 && won) offerCrown(s);
   if (step === 1 && !won) {
     flag(s, ARC.courtRaids);
     log(s, "The Cursed King keeps his crown, and his knights will ride against every expedition from now on.");

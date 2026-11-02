@@ -71,8 +71,18 @@ export function standing(state: SovState, house: number): StandingTier {
   return "waning";
 }
 
-/** Final placements: the Sovereign (highest Ascendancy) is 1, ties share a place. */
-export function placements(state: SovState): number[] {
+/**
+ * The final score (§14.7a): Ascendancy less each Pact mark's share of the kingdom's mean, so a mark
+ * costs about one Standing tier (reading, see DECISIONS).
+ */
+export function finalAscendancy(state: SovState, house: number): number {
   const totals = state.houses.map((_, i) => ascendancy(state, i));
+  const mean = Math.max(0, totals.reduce((a, b) => a + b, 0) / totals.length);
+  return totals[house]! - Math.round((state.houses[house]!.pactMarks * TUNING.bargain.markPct * mean) / 100);
+}
+
+/** Final placements: the Sovereign (highest final score) is 1, ties share a place. */
+export function placements(state: SovState): number[] {
+  const totals = state.houses.map((_, i) => finalAscendancy(state, i));
   return totals.map((t) => 1 + totals.filter((other) => other > t).length);
 }

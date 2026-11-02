@@ -468,6 +468,14 @@ export interface SovState {
   notes: string[][];
   /** Set when the campaign ends. */
   outcome?: { won: boolean; reason: string };
+  /** Hidden: Dark Bargains offered and not yet answered, each seen only by its House; Omens offers made to each House (§14.7a). */
+  bargains: { pending: PendingBargain[]; offered: number[] };
+}
+
+/** A Dark Bargain waiting on its House's answer (§14.7a). */
+export interface PendingBargain {
+  house: number;
+  id: string;
 }
 
 export type SovMove =
@@ -514,6 +522,8 @@ export type SovMove =
   | { type: "decline"; deal: number }
   /** Choose an option of a town event this House decides (`key` as in the view). */
   | { type: "choose"; event: string; option: number }
+  /** Answer a Dark Bargain (§14.7a); a bane names its victim. */
+  | { type: "bargain"; id: string; accept: boolean; target?: number }
   /** Give in to the Crisis's private temptation. */
   | { type: "tempt" }
   /** Propose spending the Commons' stock on a shared project (a vote of the Houses, §8.1). */
