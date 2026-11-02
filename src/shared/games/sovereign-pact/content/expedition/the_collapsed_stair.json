@@ -1,0 +1,95 @@
+{
+  "id": "the_collapsed_stair",
+  "pools": [
+    "delve"
+  ],
+  "weight": 3,
+  "band": [
+    1,
+    10
+  ],
+  "title": "The Collapsed Stair",
+  "text": "The way down has fallen in. There is a narrow crack for the slender, a rope for the strong, and a long way round.",
+  "options": [
+    {
+      "id": "crack",
+      "label": "The one carrying least squeezes through and drops a rope.",
+      "rule": "scion:most_open_slots",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 80,
+          "text": "They make it, and the rope holds.",
+          "effects": [
+            {
+              "skip": 1
+            }
+          ]
+        },
+        {
+          "w": 20,
+          "text": "They make it, mostly.",
+          "effects": [
+            {
+              "durability": -25,
+              "loc": "body"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "climb",
+      "label": "The strongest climbs down.",
+      "rule": "scion:highest:might",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "Down and done.",
+          "effects": [
+            {
+              "skip": 1
+            },
+            {
+              "xp": 60
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "The stone gives.",
+          "effects": [
+            {
+              "injury": "arms"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "round",
+      "label": "Take the long way round.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Longer, darker, and safe.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -5
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

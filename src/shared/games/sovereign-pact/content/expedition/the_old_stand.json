@@ -1,0 +1,96 @@
+{
+  "id": "the_old_stand",
+  "pools": [
+    "resource"
+  ],
+  "weight": 3,
+  "band": [
+    1,
+    10
+  ],
+  "title": "The Old Stand",
+  "text": "A stand of huge, straight trees, perfect timber, guarded by a ring of standing stones.",
+  "options": [
+    {
+      "id": "fell",
+      "label": "Fell them.",
+      "rule": "vote",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "Fine timber, a great deal of it.",
+          "effects": [
+            {
+              "resources": {
+                "timber": 6
+              }
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "The stones were guarding the trees.",
+          "effects": [
+            {
+              "resources": {
+                "timber": 3
+              }
+            },
+            {
+              "encounter": {}
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ask",
+      "label": "Ask the stones' leave first.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "One tree, given freely, and the stones are content.",
+          "effects": [
+            {
+              "resources": {
+                "timber": 3
+              }
+            },
+            {
+              "to": "party",
+              "sanity": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "deadfall",
+      "label": "Take only the fallen wood.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Less, but no one minds.",
+          "effects": [
+            {
+              "resources": {
+                "timber": 2
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

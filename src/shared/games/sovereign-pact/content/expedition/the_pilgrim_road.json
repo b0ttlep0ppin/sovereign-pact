@@ -1,0 +1,77 @@
+{
+  "id": "the_pilgrim_road",
+  "pools": [
+    "pilgrimage"
+  ],
+  "weight": 3,
+  "band": [
+    1,
+    10
+  ],
+  "title": "The Pilgrim Road",
+  "text": "The road is lined with little shrines, each with a candle burning, each to someone who did not finish this journey.",
+  "options": [
+    {
+      "id": "light",
+      "label": "Light a candle at each.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It takes all day. The road feels lighter after.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 10
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pray",
+      "label": "The most devout prays at the last.",
+      "rule": "scion:trait:devout|scion:highest:sagacity",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Someone answers.",
+          "effects": [
+            {
+              "blessing": {
+                "trait": "stout_hearted",
+                "years": 2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pass",
+      "label": "Walk past without stopping.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The candles go out as you pass, one by one.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -5
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

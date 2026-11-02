@@ -1,0 +1,80 @@
+{
+  "id": "the_penitents_steps",
+  "pools": [
+    "pilgrimage"
+  ],
+  "weight": 3,
+  "band": [
+    2,
+    10
+  ],
+  "title": "The Penitent's Steps",
+  "text": "Three thousand stone steps, worn into bowls by knees. Climb on your knees, the old priests said, and be forgiven.",
+  "options": [
+    {
+      "id": "kneel",
+      "label": "Climb on your knees, together.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It takes a day and a night. You are forgiven something.",
+          "effects": [
+            {
+              "to": "party",
+              "durability": -15,
+              "loc": "legs"
+            },
+            {
+              "to": "party",
+              "sanity": 15
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "walk",
+      "label": "Walk up like anyone else.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Faster, and the priests at the top look at you sideways.",
+          "effects": []
+        }
+      ]
+    },
+    {
+      "id": "carry",
+      "label": "The strongest carries the weakest up.",
+      "rule": "scion:highest:might",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "They talk about it at the top for years.",
+          "effects": [
+            {
+              "score": {
+                "renown": 2
+              }
+            },
+            {
+              "durability": -20,
+              "loc": "legs"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
