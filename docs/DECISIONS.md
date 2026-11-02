@@ -2,6 +2,17 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 8j): your people
+
+- "Your people" is now a panel of cards (§6), grouped as Scions, Retired, recruits and the Lost. Each card shows what the House knows: age, level and Job, stats, Sanity and MP, potential, Tarot, traits, injuries (with Years left), a Ward's birth House and, with Insight 3, its Loyalty.
+- In the Settlement Phase, unsealed, the cards carry the moves that change who people are:
+  - a recruit: Promote into a chosen base Job, at its price, while a ceremony is left this Year;
+  - a Scion: Retire; a Retired: Return to arms;
+  - Mend an injury with a cure item from the stash, one button per injury it mends;
+  - Draw a new Tarot (a Tarot Token) or Drink a Passive Draught, when the House holds one and the Scion may.
+- The view gives the House `mine.promotion` (price, ceremonies left), `mine.cures` (which stashed cure mends whom, and what), and `mine.tarot` / `mine.draught` (who may use each). The rules work these out.
+- Other Houses' Scions stay in the table below, as before.
+
 ## 2026-11-02 (implementation, Milestone 8i): building
 
 - The Settlement Phase shows a Building panel (§8.2–8.5):
