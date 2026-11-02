@@ -2,6 +2,10 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 7p: two more named items for each pool) — implementer
+- **Built** (content only). Twenty-four named items found in the otherworld, two for each pool, so every region now hides at least three: for example the Alpha's Mantle and the Long Spear of the Hunt (Beast Lands), the Brimstone Plate (Pit), the Unfinished Blade (Forge Ruins), the Scale of the Old Wyrm (Dragon Reaches) and the Starless Blade (Outer Dark). That makes 80 named items.
+- **Reading:** each has a property or two that make it worth carrying, and the strongest have a cost too: the Shroud of the Unquiet takes more Holy damage, the Brimstone Plate more Water, the Lantern That Remembers lowers max Sanity and the Starless Blade weakens its wielder's mind. Every value stays within its property's roll range.
+
 ## 2026-11-02 (implementation, Milestone 7o: a second event for each pool) — implementer
 - **Built** (content only). A second pool event for each of the twelve regions: the White Stag (Beast Lands), the Hanging Wood (Hollow Wood), the Drowned Chapel (Drowned Marches), the Barrow Feast (Barrows), the Frozen Hunter (Deep Cold), the Bargain Pit (Pit), the Bellows Ghost (Forge Ruins), the Census Takers (Faceless City), the Heretic's Trial (Apostate Court), the Seventh Altar (Shrine of Six), the Wyrm Egg (Dragon Reaches) and the Still Traveler (Outer Dark). That makes 92 expedition events.
 - **Reading:** each uses only effects the rules already have; the Still Traveler is the first event outside the arc to use `foresee`, as the rarest kind of luck in the Outer Dark.
