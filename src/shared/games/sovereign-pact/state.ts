@@ -50,7 +50,7 @@ export const GEAR_SLOTS = ["main", "off", "head", "body", "arms", "legs", "acc1"
 export type GearSlot = (typeof GEAR_SLOTS)[number];
 
 /** The counters event resolution rules read (§9.4: most kills, most expeditions, the healer…). */
-export const HIST_KEYS = ["kills", "expeditions", "led", "healing", "targeted", "bosses", "sorties", "devastating", "dead_comrades"] as const;
+export const HIST_KEYS = ["kills", "expeditions", "led", "healing", "targeted", "bosses", "sorties", "devastating", "dead_comrades", "retired"] as const;
 export type HistKey = (typeof HIST_KEYS)[number];
 
 /** A lasting injury result (§11.2). `years` −1 is permanent. */
@@ -243,8 +243,8 @@ export interface Expedition {
   chain: NodeKind[];
   /** The next node's index. */
   at: number;
-  /** What each Scion carries from battle to battle: Durability, Broken locations, this expedition's injury mods. */
-  carry: Record<number, { dur: Partial<Record<Location, number>>; broken: Location[]; mods?: Record<string, number> }>;
+  /** What each Scion carries from battle to battle: Durability, Broken locations, this expedition's injury mods, an ailment for the next battle. */
+  carry: Record<number, { dur: Partial<Record<Location, number>>; broken: Location[]; mods?: Record<string, number>; start?: string[] }>;
   /** Scions out of the fight for the rest of the expedition (Catatonic). */
   out: number[];
   /** Events met this expedition: none comes twice. */

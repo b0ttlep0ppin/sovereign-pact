@@ -526,6 +526,25 @@ export interface TripEffect {
   encounter?: { template?: string; modifier?: "ambush" | "surprise"; level?: number };
   skip?: number;
   retreat?: true;
+  /** Permanent base stat changes; growth changes in hundredths ("all": every stat but Speed). */
+  stat?: Partial<Record<Stat, number>>;
+  growth?: Partial<Record<Stat | "all", number>>;
+  /** "+id" gains an individual trait (replacing one of its group), "-id" loses it. */
+  trait?: string;
+  /** A random Curse (a trait tagged cursed) the subject lacks. */
+  curse?: true;
+  /** The Tarot redrawn (§6.8). */
+  tarot?: true;
+  /** An ailment the subject starts the next battle with. */
+  status?: string;
+  /** A Ward's Loyalty, + or − (§6.9). */
+  loyalty?: number;
+  /** The subject is Lost in the otherworld (§9.9). */
+  scion_lost?: true;
+  /** A found item of this tier: to the subject's House, or into the haul for the draft when the party chose together. */
+  item?: { tier: 2 | 3 | 4 };
+  /** A town event queued on the timeline `years` from now (§8.7), for the subject's House if it has one. */
+  timeline?: { id: string; years: number };
 }
 /** An option of an expedition event: the party votes for it; its rule names its subject (§9.4). */
 export interface TripOption {

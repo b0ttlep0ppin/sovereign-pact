@@ -12,6 +12,7 @@ export function cannotRetire(s: SovState, house: number, person: number): string
 export function retire(s: SovState, person: number): void {
   const p = s.people.find((x) => x.id === person)!;
   p.status = "retired";
+  p.hist.retired = (p.hist.retired ?? 0) + 1;
   p.gear = {};
   log(s, `${p.name} of House ${s.houses[p.host]!.name} retires.`);
 }

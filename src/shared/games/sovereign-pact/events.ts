@@ -1,16 +1,19 @@
 // Expedition events (§9.4): met at an Event node, from the card's own pools half the time and the
-// general pool the rest. Every House in the party votes on the option; a tie costs Accord and goes to
-// the Leader's House (free: only settlement ties cost Accord). The option's rule names its subject, the Scion or House it happens to; its
-// outcome is drawn by weight and its effects land (§9.4's catalogue, the parts built so far).
+// general pool the rest. Every House in the party votes on the option; a tie goes to the Leader's
+// House at no cost (only settlement ties cost Accord). The option's rule names its subject, the
+// Scion or House it happens to; its outcome is drawn by weight and its effects land (§9.4's
+// catalogue; blessings, transformation, Forks and House improvements come later).
 import { loseAccord } from "./commons.ts";
 import { caps, scionCombatant } from "./combat/build.ts";
 import { gearTotals } from "./items.ts";
+import { found } from "./loot.ts";
+import { isWard } from "./wards.ts";
 import { roll } from "./combat/injury.ts";
-import { TRIP_EVENT_BY_ID, TRIP_EVENTS, type TripEffect, type TripEventDef, type TripOption } from "./content.ts";
-import { battle, die, home, marching, person, succeed } from "./journey.ts";
+import { HOUSE_TRAIT_BY_ID, INJURY_TABLE_BY_ID, TAROT, TAROT_BY_ID, TRAIT_BY_ID, TRAITS, TRIP_EVENT_BY_ID, TRIP_EVENTS, type InjuryTableId, type TripEffect, type TripEventDef, type TripOption } from "./content.ts";
+import { battle, die, home, lose, marching, person, succeed } from "./journey.ts";
 import { gainJp, gainXp, jobStats } from "./progression.ts";
 import { ascendancy } from "./score.ts";
-import { LOCATIONS, type HistKey, type ScoreCategory, type SovState } from "./state.ts";
+import { GEAR_SLOTS, LOCATIONS, STATS, type HistKey, type Person, type ScoreCategory, type SovState } from "./state.ts";
 import { TUNING } from "./tuning.ts";
 import { log, withRng } from "./year.ts";
 
@@ -76,29 +79,53 @@ export function decide(s: SovState, house: number, option: number): void {
   resolve(s, def.options[pick]!);
 }
 
-/** The Scions an option's rule makes its subject (§9.4); a `house:` rule makes that House's Scions present the subject. */
-export function subjects(s: SovState, rule: string): { scions: number[]; house: number | null } {
+type Subjects = { scions: number[]; house: number | null };
+
+/**
+ * The Scions an option's rule makes its subject (§9.4); a `house:` rule makes that House's Scions
+ * present the subject. `a|b` tries `b` when nobody fits `a`; when nobody fits any, the whole party is.
+ */
+export function subjects(s: SovState, rule: string): Subjects {
+  for (const r of rule.split("|")) {
+    const got = subjectOf(s, r);
+    if (got) return got;
+  }
+  return { scions: marching(s), house: null };
+}
+
+const tagged = (tag: string, ids: readonly string[], byId: ReadonlyMap<string, { tags?: string[] }>) =>
+  ids.some((id) => id === tag || byId.get(id)?.tags?.includes(tag));
+
+function subjectOf(s: SovState, rule: string): Subjects | null {
   const e = s.expedition!;
   const ids = marching(s);
-  const one = (id: number) => ({ scions: [id], house: person(s, id).host });
+  const one = (id: number | undefined) => (id === undefined ? null : { scions: [id], house: person(s, id).host });
+  const [kind, a, b] = rule.split(":") as [string, string?, string?];
   if (rule === "vote") return { scions: ids, house: null };
-  if (rule === "leader") return one(e.leader!);
+  if (rule === "leader") return one(e.leader);
   if (rule === "scion:random") return one(withRng(s, (rng) => rng.pick(ids)));
-  const [, a, b] = rule.split(":");
-  if (rule.startsWith("house:")) {
+  if (kind === "house") {
     const houses = present(s);
+    const of = (h: number | undefined) => (h === undefined ? null : { scions: ids.filter((id) => person(s, id).host === h), house: h });
+    if (a === "random") return of(withRng(s, (rng) => rng.pick(houses)));
+    if (a === "trait") return of(houses.find((h) => tagged(b!, s.houses[h]!.traits, HOUSE_TRAIT_BY_ID)));
     const by = (h: number) => ascendancy(s, h);
-    const h = houses.reduce((x, y) => ((a === "lowest_standing" ? by(y) < by(x) : by(y) > by(x)) ? y : x));
-    return { scions: ids.filter((id) => person(s, id).host === h), house: h };
+    return of(houses.reduce((x, y) => ((a === "lowest_standing" ? by(y) < by(x) : by(y) > by(x)) ? y : x)));
   }
+  // Ties go to the first fielded.
+  const find = (test: (p: Person) => boolean) => one(ids.find((id) => test(person(s, id))));
+  if (a === "tarot") return find((p) => p.tarot === b);
+  if (a === "trait") return find((p) => tagged(b!, p.traits, TRAIT_BY_ID));
+  if (a === "retired_once") return find((p) => (p.hist.retired ?? 0) > 0);
+  if (a === "injured") return find((p) => p.injuries.some((i) => b === "any" || INJURY_TABLE_BY_ID.get(b as InjuryTableId)?.results.some((r) => r.id === i.id)));
   const score = (id: number): number => {
     const p = person(s, id);
+    if (a === "heaviest_gear") return gearTotals(s, p).weight;
+    if (a === "most_open_slots") return GEAR_SLOTS.filter((k) => p.gear[k] === undefined).length;
     if (b) return b === "sanity" ? p.sanity : jobStats(p)[b as keyof ReturnType<typeof jobStats>];
-    const [, key] = a!.split("_") as [string, string];
-    return p.hist[key as HistKey] ?? 0;
+    return p.hist[a!.split("_")[1] as HistKey] ?? 0;
   };
-  const high = a === "highest" || a!.startsWith("most_");
-  // Ties go to the first fielded.
+  const high = a === "highest" || a!.startsWith("most_") || a === "heaviest_gear";
   return one(ids.reduce((x, y) => ((high ? score(y) > score(x) : score(y) < score(x)) ? y : x)));
 }
 
@@ -145,6 +172,7 @@ function apply(s: SovState, fx: TripEffect, ids: number[], house: number | null)
     if (fx.xp) p = gainXp(p, fx.xp);
     if (fx.jp) p = gainJp(p, fx.jp);
     s.people[at] = p;
+    person_(s, p, fx);
     if (fx.injury) {
       const r = withRng(s, (rng) => roll(rng, fx.injury!, 0)).result;
       log(s, `${p.name}: ${r.name}.`);
@@ -168,10 +196,45 @@ function apply(s: SovState, fx: TripEffect, ids: number[], house: number | null)
   }
   if (fx.doom) s.doom = Math.max(0, Math.min(100, s.doom + fx.doom));
   if (fx.flag && !s.flags.includes(fx.flag)) s.flags.push(fx.flag);
+  // §9.10: an item goes to the subject's House; one the party chose together goes to the draft.
+  if (fx.item) found(s, fx.item.tier, house);
+  if (fx.timeline) s.timeline.push({ year: s.year + fx.timeline.years, id: fx.timeline.id, ...(house === null ? {} : { house }) });
   // Passed by, never the boss.
   if (fx.skip) e.at = Math.min(e.chain.length - 1, e.at + fx.skip);
   if (fx.encounter) battle(s, false, fx.encounter);
   else if (fx.retreat) home(s, "retreated");
+}
+
+/** The effects that change one person for good: stats, growths, traits, Curses, the Tarot, a Ward's Loyalty, being Lost. */
+function person_(s: SovState, p: Person, fx: TripEffect): void {
+  STATS.forEach((k, i) => {
+    if (fx.stat?.[k]) p.base[i] = Math.max(1, p.base[i]! + fx.stat[k]);
+    const g = (fx.growth?.[k] ?? 0) + (k === "speed" ? 0 : (fx.growth?.all ?? 0));
+    if (g) p.growth[i] = Math.max(0, p.growth[i]! + g);
+  });
+  if (fx.trait) gainTrait(s, p, fx.trait.slice(1), fx.trait[0] === "+");
+  if (fx.curse) {
+    const open = TRAITS.filter((t) => t.tags?.includes("cursed") && !p.traits.includes(t.id));
+    if (open.length) gainTrait(s, p, withRng(s, (rng) => rng.pick(open)).id, true);
+  }
+  if (fx.tarot) {
+    p.tarot = withRng(s, (rng) => rng.pick(TAROT.filter((t) => t.id !== p.tarot))).id;
+    delete p.reversed;
+    log(s, `${p.name} now walks under ${TAROT_BY_ID.get(p.tarot)!.name}.`);
+  }
+  if (fx.status) (s.expedition!.carry[p.id] ??= { dur: {}, broken: [] }).start = [...(s.expedition!.carry[p.id]?.start ?? []), fx.status];
+  if (fx.loyalty && isWard(p)) p.loyalty = Math.max(0, Math.min(100, (p.loyalty ?? 0) + fx.loyalty));
+  if (fx.scion_lost && p.status === "scion") lose(s, p);
+}
+
+/** Gains (one of a group replaces the other) or loses an individual trait. */
+function gainTrait(s: SovState, p: Person, id: string, gain: boolean): void {
+  const def = TRAIT_BY_ID.get(id);
+  if (!def) return;
+  const had = p.traits.includes(id);
+  p.traits = p.traits.filter((t) => t !== id && !(gain && def.group && TRAIT_BY_ID.get(t)?.group === def.group));
+  if (gain) p.traits.push(id);
+  if (gain !== had) log(s, `${p.name} ${gain ? "is now" : "is no longer"} ${def.name}.`);
 }
 
 /** A Scion's full Durability by location, as a battle would build it. */

@@ -1,0 +1,66 @@
+{
+  "id": "door_with_your_emblem",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    10
+  ],
+  "title": "The Door With Your Emblem",
+  "text": "A door in the open hillside, nothing behind it, and on it in old paint the arms of one of your Houses.",
+  "options": [
+    {
+      "id": "open",
+      "label": "Its House opens it.",
+      "rule": "house:random",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "A room that was never built, full of things that were always theirs. And a letter, sealed, to be opened at home.",
+          "effects": [
+            {
+              "item": {
+                "tier": 3
+              }
+            },
+            {
+              "timeline": {
+                "id": "locked_wing",
+                "years": 2
+              }
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "A hallway of their own house, the way it will look when they are all dead. They close it quickly.",
+          "effects": [
+            {
+              "sanity": -20
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "leave",
+      "label": "Leave it shut.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "When you look back the door is gone, and the paint is on your hands.",
+          "effects": []
+        }
+      ]
+    }
+  ]
+}

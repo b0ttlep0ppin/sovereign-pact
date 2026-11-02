@@ -1,0 +1,68 @@
+{
+  "id": "weeping_statue",
+  "pools": [
+    "pilgrimage"
+  ],
+  "weight": 3,
+  "band": [
+    2,
+    9
+  ],
+  "title": "The Weeping Statue",
+  "text": "A saint in grey stone, her face worn smooth, weeps clear water into a bowl at her feet. The bowl never fills.",
+  "options": [
+    {
+      "id": "drink",
+      "label": "The healer drinks the tears.",
+      "rule": "scion:most_healing",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 55,
+          "text": "The water is cold and it stays cold, a well inside them.",
+          "effects": [
+            {
+              "trait": "+deep_well"
+            },
+            {
+              "mp": 100
+            }
+          ]
+        },
+        {
+          "w": 45,
+          "text": "They sleep badly ever after. They will not say what the saint shows them.",
+          "effects": [
+            {
+              "trait": "+nightmares"
+            },
+            {
+              "sanity": -10
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "leave",
+      "label": "Leave her to her grief.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Her weeping follows you a long way.",
+          "effects": [
+            {
+              "sanity": -5
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

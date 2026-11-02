@@ -1,0 +1,90 @@
+{
+  "id": "bone_market",
+  "pools": [
+    "barrows",
+    "delve"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    9
+  ],
+  "title": "The Bone Market",
+  "text": "Stalls of yellow bone under lanterns made of skulls. The merchants have no faces and every price is fair. You can tell by how they smile without mouths.",
+  "options": [
+    {
+      "id": "limb",
+      "label": "Pay in kind.",
+      "rule": "scion:random",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The merchant takes its due with a little silver knife and gives good weight for it.",
+          "effects": [
+            {
+              "injury": "arms"
+            },
+            {
+              "item": {
+                "tier": 4
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gold",
+      "label": "Pay in gold.",
+      "rule": "house:highest_standing",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "They accept the coin with some disappointment.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -30
+              }
+            },
+            {
+              "item": {
+                "tier": 3
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "browse",
+      "label": "Only look.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "You look. They let you.",
+          "effects": []
+        },
+        {
+          "w": 30,
+          "text": "You look too long.",
+          "effects": [
+            {
+              "sanity": -10
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

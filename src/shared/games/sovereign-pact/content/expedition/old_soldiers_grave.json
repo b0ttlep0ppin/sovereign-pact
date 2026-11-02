@@ -1,0 +1,67 @@
+{
+  "id": "old_soldiers_grave",
+  "pools": [
+    "general",
+    "barrows"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    10
+  ],
+  "title": "The Old Soldier's Grave",
+  "text": "A cairn with a rusted helm on top, and words scratched in the rock: FOR THE ONE WHO PUT THE SWORD DOWN AND PICKED IT UP AGAIN.",
+  "options": [
+    {
+      "id": "kneel",
+      "label": "The one it names kneels.",
+      "rule": "scion:retired_once|scion:most_expeditions",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "They stand up with an old soldier's patience in them.",
+          "effects": [
+            {
+              "xp": 40
+            },
+            {
+              "stat": {
+                "resilience": 1
+              }
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "They stand up older.",
+          "effects": [
+            {
+              "xp": 40
+            },
+            {
+              "sanity": -10
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pass",
+      "label": "Pass by.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The helm turns to watch you go.",
+          "effects": []
+        }
+      ]
+    }
+  ]
+}

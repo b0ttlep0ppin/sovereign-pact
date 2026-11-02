@@ -1,0 +1,75 @@
+{
+  "id": "altar_of_hands",
+  "pools": [
+    "barrows",
+    "delve"
+  ],
+  "weight": 3,
+  "band": [
+    2,
+    8
+  ],
+  "title": "The Altar of Hands",
+  "text": "A stone table set with hands: wax, bone, one that is still warm. A hollow in the middle is shaped for one more.",
+  "options": [
+    {
+      "id": "lay",
+      "label": "Lay a hand in the hollow.",
+      "rule": "scion:injured:arms|scion:lowest:might",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 45,
+          "text": "The stone closes over the wrist and lets go. The hand that comes back is not quite theirs, and it is better.",
+          "effects": [
+            {
+              "trait": "+grafted"
+            },
+            {
+              "sanity": -10
+            }
+          ]
+        },
+        {
+          "w": 35,
+          "text": "The stone closes, and keeps what it took.",
+          "effects": [
+            {
+              "injury": "arms"
+            }
+          ]
+        },
+        {
+          "w": 20,
+          "text": "Nothing happens. That is somehow worse.",
+          "effects": [
+            {
+              "sanity": -15
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "leave",
+      "label": "Leave the hands to their table.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "You go on, and nobody looks at their own hands for a while.",
+          "effects": [
+            {
+              "sanity": -5
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
