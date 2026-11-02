@@ -2,6 +2,18 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 8b): battle replays
+
+- Battles are still fought by gambits (DECISIONS, Milestone 6), so the battle screen (§15.5) plays them back. The rules record each battle as it is fought (`combat/replay.ts`):
+  - who fought (names, sides, sizes, maxima),
+  - every turn's events,
+  - and after each turn, the vitals that changed: HP, MP, TP, Sanity, place, Down/Dead/Last Stand/Charging/Fled, Durability and statuses.
+  The screen draws what was recorded and never re-runs the rules. Recording changes nothing: a recorded battle plays out exactly as an unrecorded one (tested).
+- Expedition battles and Sorties are both recorded. Every House sees every battle, Sorties too, since the log already tells them all.
+- Readings:
+  - A replay is large (a long battle is up to about 100 KB). So the state keeps a move's replays only until the next move, and the screen keeps its own copy of what it has seen. A save never holds one (`checkpoint` drops them), so the 64 KB budget is untouched. On Vibe Pulse this means a replay crosses the network once, with the move that fought it.
+  - A hidden trap's place is not in a replay: the field's hazards are not recorded, only the events, and a hidden trap makes none until it is sprung or disarmed.
+
 ## 2026-11-02 (implementation, Milestone 8a): the Town Map, first prototype
 
 - The Settlement Phase now shows the Town Map (§15.6). Its pieces:

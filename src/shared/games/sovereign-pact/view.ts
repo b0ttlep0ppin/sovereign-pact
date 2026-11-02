@@ -2,6 +2,7 @@
 // Ascendancy and its categories, the Ambition, another House's Treasury, Stores and recruit pool, a
 // recruit's unrevealed potential, Ward Loyalty, and Pact marks (which no House ever sees, §14.7a).
 import type { PlayerId } from "../../game.ts";
+import type { Replay } from "./combat/replay.ts";
 import { dealsFor } from "./deals.ts";
 import { secretEvent } from "./events.ts";
 import { marketFor } from "./market.ts";
@@ -153,6 +154,8 @@ export interface SovView {
   outcome: SovState["outcome"] | null;
   /** The bestiary: kills by enemy and the slain quarries, open to every House (§14.3). */
   bestiary: SovState["bestiary"];
+  /** The battles the last move fought, to play back (§15.5); `key` tells a new one from one already seen. */
+  battles: (Replay & { key: string })[];
 }
 
 function publicHouse(s: SovState, h: House, index: number): PublicHouse {
@@ -271,6 +274,8 @@ export function view(s: SovState, playerId: PlayerId): SovView {
     outcome: s.outcome ?? null,
     // The bestiary opens for every House (§14.3).
     bestiary: s.bestiary,
+    // Every House watches every battle, Sorties too: the log already tells them all.
+    battles: (s.battles ?? []).map((b, i) => ({ ...b, key: `${s.year}:${b.seed}:${i}` })),
   };
 }
 

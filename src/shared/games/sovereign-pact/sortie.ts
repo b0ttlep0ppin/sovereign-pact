@@ -6,7 +6,7 @@ import { tally } from "./hunt.ts";
 import { ARC } from "./arc.ts";
 import { INJURY_BY_ID, POOL_BY_ID, SORTIE_BY_ID, type SortieDef } from "./content.ts";
 import { encounterBattle } from "./combat/encounter.ts";
-import { simulate } from "./combat/sim.ts";
+import { recorded } from "./combat/replay.ts";
 import type { Battle } from "./combat/types.ts";
 import { holders, slots } from "./assign.ts";
 import { roster } from "./expedition.ts";
@@ -47,7 +47,7 @@ function sortie(s: SovState, house: number, def: SortieDef, ids: number[]): void
     const seed = withRng(s, (rng) => rng.int(2 ** 31));
     const b = encounterBattle(seed, partyOf(s, left), { pool: def.pool, level, year: s.year, spread: s.flags.includes(ARC.nestLost) }).battle;
     b.injuryCap = T.injuryCap;
-    simulate(b);
+    (s.battles ??= []).push(recorded(b, `House ${H.name}'s Sortie: ${def.name}`).replay);
     const victory = b.outcome === "victory";
     settle(s, b, def, victory);
     if (!victory) {

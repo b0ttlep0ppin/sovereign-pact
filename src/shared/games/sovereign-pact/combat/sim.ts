@@ -51,10 +51,14 @@ export interface BattleSummary {
   dead: number;
 }
 
-/** Runs a battle to the end (mutating it) and sums it up. */
-export function simulate(b: Battle, maxTurns = 2_000, strict = false): BattleSummary {
+/** Runs a battle to the end (mutating it) and sums it up; `onTurn` hears each turn's end (replay.ts). */
+export function simulate(b: Battle, maxTurns = 2_000, strict = false, onTurn?: () => void): BattleSummary {
   const start = new Map(b.units.map((u) => [u.id, u.hp]));
-  for (let i = 0; i < maxTurns && autoTurn(b, strict); i++);
+  for (let i = 0; i < maxTurns; i++) {
+    const going = autoTurn(b, strict);
+    onTurn?.();
+    if (!going) break;
+  }
   if (!b.outcome) b.outcome = "retreat";
   // Scions only: summons come and go and are not counted.
   const party = b.units.filter((u) => u.side === "party" && u.owner === undefined);
