@@ -11,6 +11,8 @@ import { completeWorks, produce, upkeepDue } from "./town.ts";
 import { byPct, econ } from "./houses.ts";
 import { wardYear } from "./wards.ts";
 import { fallen } from "./lifecycle.ts";
+import { chosenCard, openGate } from "./gate.ts";
+import { POOL_BY_ID } from "./content.ts";
 import { settleVote } from "./votes.ts";
 import { resolveCrisis } from "./crisis.ts";
 import { closeEvents, drawOmens } from "./omens.ts";
@@ -55,6 +57,7 @@ export function openYear(s: SovState): void {
   // Omens: the settlement event (perhaps a Crisis) and the House events (§8.8).
   drawOmens(s);
   restock(s);
+  openGate(s);
   s.phase = "settlement";
   s.phaseMoves = 0;
   s.proposers = [];
@@ -74,10 +77,12 @@ export function closeSettlement(s: SovState): void {
   s.deals = [];
   resolveCrisis(s);
   s.phase = "expedition";
+  const card = chosenCard(s);
+  delete s.gate;
   // §1.4, §6.13: with every House Fallen, a mandatory expedition has no one to send.
   if (mandatoryYears(s).includes(s.year) && s.houses.every((_, i) => fallen(s, i))) return end(s, false, `No House had anyone left to send in Year ${s.year}.`);
-  // The Rift Gate, the party and the chain go here (Milestone 6).
-  log(s, "No expedition departs: the Rift Gate is not yet built.");
+  // The party and the chain go here (Milestone 6b on).
+  if (card) log(s, `The Houses turn the Rift Gate toward ${POOL_BY_ID.get(card.pool)?.name ?? card.pool} (a level ${card.level} ${card.type} expedition); no one is sent yet.`);
   reckoning(s);
 }
 

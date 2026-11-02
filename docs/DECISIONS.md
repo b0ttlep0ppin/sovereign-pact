@@ -2,6 +2,13 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-01 (implementation, Milestone 6a: the Rift Gate's cards) — implementer
+- **The offer** (`gate.ts`, §9.1): when the Year opens, the Gate deals 2–3 cards (`tuning.gate.cards`) from different pools whose level range meets the Year's band; each card's level is rolled inside both, its type from the pool's own card types, its party size by weight (first pass: 4 at 70%, 8 at 20%, 2×4 at 10%). The short campaign reads its band and arc by Year-of-20, as Crises do.
+- **Mandatory Years.** Reading: §9.1 says "plus the mandatory one when due", but a mandatory expedition is do-or-die and only one expedition departs a Year, so in a mandatory Year the Gate offers the arc's card alone and there is no vote. The arc is fixed and in order (§14.7, `tuning.gate.arc`): the Siege Beast (L3, the Pit), the Cursed King (L6, the Barrows), the Unknown Mother (L8) and the End Ruler (L10), each in its boss's pool; both campaign lengths walk it in order. Mandatory cards take 8 Scions (reading: the arc's bosses fill the full grid and the stakes are the whole settlement's).
+- **The vote** (`pick_card`, Settlement Phase): open, changeable until the House seals. At the seal the most votes take the card; a tie costs Accord −3 and goes to the card of the highest-Renown House among the tied voters (§9.1); no votes at all take the first card. The view shows the cards and votes to everyone.
+- **The bot** votes for the lowest level on offer (cautious, like its combat).
+- **Not yet:** nobody departs. The Year's log names the chosen card and the Reckoning follows; seats, the Leader and the chain are 6b on. Forced expeditions, the Observatory's preview and "Houses may pick a card above band" (no above-band cards are dealt yet) come with them. No save change: `gate` is plain state, and a save taken mid-Settlement before this restores with no Gate, which takes no card.
+
 ## 2026-11-01 (implementation, Milestone 5g: the Retired and Fallen Houses) — implementer
 - **Retire and reinstate** (`lifecycle.ts`, §6.12):
   - `retire` and `reinstate` are free Settlement moves on the House's own people.
