@@ -1,6 +1,6 @@
 // The text renderer (HANDOFF §4, Milestone 1): the two grids and a battle log as plain text, for the
 // simulator, tests and debugging before the battle screen exists.
-import { BOSS_BY_ID, INJURY_BY_ID } from "../content.ts";
+import { BOSS_BY_ID, CONSUMABLE_BY_ID, INJURY_BY_ID } from "../content.ts";
 import { covers } from "./grid.ts";
 import { COLS, ROWS, type Battle, type BattleEvent, type Combatant } from "./types.ts";
 
@@ -65,6 +65,8 @@ export function describeEvent(b: Battle, e: BattleEvent): string {
       return `${n(e.unit)}'s ${e.ability} is cancelled`;
     case "miss":
       return `${n(e.unit)} misses ${n(e.target)}`;
+    case "pocket":
+      return e.target === undefined ? `${n(e.unit)} makes ${CONSUMABLE_BY_ID.get(e.item)?.name ?? e.item}` : `${n(e.unit)} steals ${CONSUMABLE_BY_ID.get(e.item)?.name ?? e.item} from ${n(e.target)}`;
     case "hit":
       if (e.unit === e.target && !e.loc) return `${n(e.target)} suffers ${e.damage}`;
       return `${n(e.unit)} hits ${n(e.target)} for ${e.damage}${e.loc ? ` (${e.loc})` : ""}${e.crit ? " CRIT" : ""}${e.weak ? " weak point" : ""}`;

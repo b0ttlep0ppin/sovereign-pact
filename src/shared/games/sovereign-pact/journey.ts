@@ -130,6 +130,8 @@ export function lostClock(s: SovState): void {
 function settle(s: SovState, b: Battle, cause: string): void {
   const e = s.expedition!;
   const won = b.outcome === "victory";
+  // What a Vagabond stole joins the satchel, as the thief's House's (§12.6).
+  for (const ev of b.events) if (ev.t === "pocket") (e.satchel ??= []).push({ id: ev.item, house: person(s, b.units.find((u) => u.id === ev.unit)!.person!).host });
   // The first packed of a kind is the first used.
   for (const id of b.used ?? []) e.satchel!.splice(e.satchel!.findIndex((x) => x.id === id), 1);
   tally(s, b, [...new Set(b.units.flatMap((u) => (u.side === "party" && u.person !== undefined && u.owner === undefined ? [person(s, u.person).host] : [])))]);

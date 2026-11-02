@@ -60,7 +60,8 @@ export function singleTargets(b: Battle, u: Combatant, ab: AbilityDef): Combatan
     for (let n = rowReach + 1; can && nearestIfNone && !found.length && n < ROWS; n++) found = within(n);
     return [...new Set([...found, ...exposed])];
   }
-  return meleeTargets(b, u, reach);
+  // A Vagabond who lunged in stands Exposed: every foe's melee reaches them (§12.6).
+  return [...new Set([...meleeTargets(b, u, reach), ...exposed])];
 }
 
 /** Where a run of up to `cells` toward the Front of `u`'s row stops: the last free cell before anything in the way. */

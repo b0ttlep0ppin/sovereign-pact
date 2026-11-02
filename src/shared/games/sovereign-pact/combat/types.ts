@@ -187,6 +187,12 @@ export interface AbilityDef {
   graft?: boolean;
   /** Calls a summon from summons.json (§12.15). */
   summon?: string;
+  /** Dirty Trick: one of these, at random, is what it does (statuses, Readiness damage). */
+  pick?: Pick<AbilityDef, "statuses" | "readiness">[];
+  /** Steal: takes a buff from the target, or failing that (a Guile % chance, once a foe) a consumable into the satchel. */
+  steal?: boolean;
+  /** Pickpocket the Reaper: this much CT is taken from the target (bosses half) and given to the most hurt ally. */
+  ctToAlly?: number;
   /** Charge!: the user first runs up to this many cells toward the Front of its row, then strikes from there. */
   rush?: number;
   /** Brace: the user also Defends. */
@@ -364,6 +370,7 @@ export type BattleEvent =
   | { t: "phase"; unit: number; phase: number }
   | { t: "say"; unit: number; line: "open" | "death" | number }
   | { t: "flee"; unit: number }
+  | { t: "pocket"; unit: number; target?: number; item: string }
   | { t: "hazard"; hazard: string; what: "set" | "trigger" | "disarmed"; col?: number; row?: number }
   | { t: "shift"; unit: number; form: string | null }
   | { t: "dead"; target: number }
@@ -392,6 +399,8 @@ export interface Battle {
   field?: FieldHazard[];
   /** The party satchel's consumables (§13.7), one a slot, and those used this battle. */
   satchel?: string[];
+  /** Consumables stolen or made this battle (Steal, Jury-Rig); the expedition's satchel keeps them. */
+  stolen?: string[];
   used?: string[];
   /** The worst injury band this battle can deal (a Sortie's: Moderate, §6.11); a worse roll lands on the next milder result. */
   injuryCap?: "moderate" | "mild";

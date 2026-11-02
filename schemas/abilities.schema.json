@@ -476,6 +476,25 @@
           "type": "boolean",
           "description": "Removes an enemy summon or add"
         },
+        "pick": {
+          "type": "array",
+          "minItems": 2,
+          "items": { "type": "object" },
+          "description": "One of these at random: statuses, readiness (Dirty Trick)"
+        },
+        "steal": {
+          "type": "boolean",
+          "description": "Takes a buff, or failing that a consumable (Steal)"
+        },
+        "ctToAlly": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "CT taken from the target and given to the most hurt ally (Pickpocket the Reaper)"
+        },
+        "leap": {
+          "type": "boolean",
+          "description": "Reaches any standing foe, then the user stands Exposed among them (Shadow Lunge)"
+        },
         "rush": {
           "type": "integer",
           "minimum": 1,

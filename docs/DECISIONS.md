@@ -2,6 +2,15 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 8ba): the Vagabond's last seven abilities
+
+- Built: Steal, Shadow Lunge, Dirty Trick (Stun, Blind, Disarm or 30 Readiness damage, one at random, never missing but resisted as usual), Vanish, Pickpocket the Reaper, Knife Flurry and Sixth Sense.
+- Reading: Steal takes the target's newest buff (not a Shield); a foe with none may yield a consumable, a Guile % chance once a foe: one of the cheap battle consumables a shop sells from the start, into the satchel at once and kept after the battle as the thief's House's.
+- Reading: Shadow Lunge "moves into the enemy's reach": the Vagabond darts to the Front of their row, strikes any standing foe like a lurker's leap, and stands Exposed (any foe's melee reaches them) until their next turn. Exposed now works both ways.
+- Reading: Vanish's Hiding lasts until the Vagabond acts (a Wait or Defend keeps it); the next Backstab is +50%.
+- Reading: Pickpocket the Reaper gives the CT to the most hurt ally standing (the Vagabond if alone); a boss gives half, like Readiness damage.
+- Reading: Sixth Sense's "cannot be surprised" means the party is never caught by an ambush (no one starts behind), and "traps revealed" means the hidden traps on the party's grid are shown from the start.
+
 ## 2026-11-02 (implementation, Milestone 8az): the Soldier's last seven abilities
 
 - Built: Brace (a Defend, and Knockdown immunity until the next turn), Charge! (runs to the Front of the Soldier's own row, stopping at whoever stands in the way, then strikes from there; it picks its target from where the run ends), Throw Weapon, Last Stand (+30% damage, a free Defend at the start of each turn, no healing, 300 ticks), Skullsplitter, Grizzled (Head, Body, Arms and Legs rolls; not Sanity's) and Veteran.

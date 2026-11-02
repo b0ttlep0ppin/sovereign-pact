@@ -218,8 +218,16 @@ export function encounterBattle(seed: number, party: Combatant[], spec: Omit<Enc
   const rng = createRng(seed ^ 0x5eed);
   const found = encounter(rng, { ...spec, party: party.length, firstId: spec.firstId ?? 101 });
   const units = [...party, ...found.enemies];
+  // Sixth Sense (§12.6): a party with one is never caught by an ambush.
+  const sensed = found.modifier === "ambush" && party.some((u) => u.mods.sixthSense);
+  if (sensed) {
+    found.modifier = undefined;
+    for (const u of found.enemies) u.ct = 0;
+  }
   applyModifier(units, found.modifier);
   const battle = { ...newBattle(seed, units), pool: spec.pool };
   if (found.hazard) placeHazard(battle, rng, HAZARD_BY_ID.get(found.hazard)!, spec.level);
+  // …and sees the hidden traps on its own grid.
+  if (party.some((u) => u.mods.sixthSense)) for (const f of battle.field ?? []) if (f.hidden) delete f.hidden;
   return { battle, encounter: found };
 }

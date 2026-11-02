@@ -78,6 +78,7 @@ function popsOf(ev: Event[], frame: number, units: Map<number, ReplayUnit>): Pop
     } else if (e.t === "heal") out.push({ key, target: e.target, text: `+${e.amount}`, kind: "heal" });
     else if (e.t === "sanity") out.push({ key, target: e.target, text: `-${e.amount}`, kind: "sanity" });
     else if (e.t === "miss") out.push({ key, target: e.target, text: "Miss", kind: "miss" });
+    else if (e.t === "pocket") out.push({ key, target: e.unit, text: `${Content.CONSUMABLE_BY_ID.get(e.item)?.name ?? e.item}!`, kind: "heal", tag: e.target === undefined ? "Made" : "Stolen" });
   });
   return out;
 }
