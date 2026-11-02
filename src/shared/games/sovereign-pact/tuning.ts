@@ -431,11 +431,11 @@ export const TUNING = {
   progression: {
     levelCap: 30,
     xpPerLevel: 100,
-    /** XP and JP per battle won and per expedition finished (§6.6, §12.1: ~100 JP a battle, ~300 an expedition). */
+    /** XP and JP per battle won and per expedition finished (§6.6, §12.1; JP halved by Josh 2026-11-02: "700 jp for one mission" was too much). */
     battleXp: 40,
     expeditionXp: 150,
-    battleJp: 100,
-    expeditionJp: 300,
+    battleJp: 50,
+    expeditionJp: 150,
     /** Battle and expedition XP +this % per level a Scion stands below the reference 3L (progression.ts xpAt). */
     catchUpPct: 50,
     /** JP a new Scion starts with in their first Job, enough for a first ability or two (tuning pass, 2026-11-02). */

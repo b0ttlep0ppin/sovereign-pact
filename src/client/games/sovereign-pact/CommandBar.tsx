@@ -1,7 +1,7 @@
 // The command bar (SPEC §15.5): when a battle waits on one of your Scions, what they can do from where
 // they stand. A choice aimed at the Scion goes at once; one aimed at someone, or at an area, asks for
 // the cell (click it, or move through them with the arrows and press Enter). Moving first keeps the turn.
-import { fitsPattern, type Aim, type Cell, type Choice, type ComboView, type Command, type TurnView } from "@vibepulse/shared/games/sovereign-pact";
+import { areaCells, fitsPattern, type Aim, type Cell, type Choice, type ComboView, type Command, type TurnView } from "@vibepulse/shared/games/sovereign-pact";
 import { useState } from "react";
 
 /** A choice waiting for its cell: the cells it may go to, the one under the cursor, and what it sends. */
@@ -10,6 +10,8 @@ export interface Aiming {
   cells: Cell[];
   cursor: number;
   send: (at: Cell) => Command;
+  /** For an area choice: the cells it covers when aimed at a cell, lit before it is cast. */
+  covers?: (at: Cell) => Cell[];
 }
 
 const ALL = (side: Cell["side"]): Cell[] => Array.from({ length: 24 }, (_, i) => ({ side, col: i % 3, row: Math.floor(i / 3) }));
@@ -34,13 +36,13 @@ export default function CommandBar({ turn, name, at, aiming, aim, send }: Props)
   const pick = (c: Choice & Aim, act: (target: Cell) => Command) => {
     const cells = cellsOf(c);
     if (!cells) send(act(at));
-    else aim({ label: c.name, cells, cursor: 0, send: act });
+    else aim({ label: c.name, cells, cursor: 0, send: act, ...(c.aim === "area" ? { covers: (at: Cell) => areaCells(c.shape, at) } : {}) });
   };
   if (aiming)
     return (
       <div className="sp-command" role="group" aria-label="Choose a target">
         <span>
-          <strong>{aiming.label}</strong>: choose {aiming.cells.length === 1 ? "the" : "a"} cell (arrows and Enter, or click).
+          <strong>{aiming.label}</strong>: choose {aiming.cells.length === 1 ? "the" : "a"} target. Click one, or pick with the arrows and press Enter.
         </span>
         <button type="button" className="sp-button" onClick={() => send(aiming.send(aiming.cells[aiming.cursor]!))}>
           Confirm

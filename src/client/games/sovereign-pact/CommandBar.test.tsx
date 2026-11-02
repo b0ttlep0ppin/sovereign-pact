@@ -27,7 +27,7 @@ const turnOf = (unit: number, foe: { side: "enemy"; col: number; row: number }):
   abilities: [
     { id: "attack", name: "Attack", mp: 0, tp: 0, why: null, aim: "unit", targets: [foe] },
     { id: "rally", name: "Rally", mp: 6, tp: 0, why: null, aim: "self" },
-    { id: "firestorm", name: "Firestorm", mp: 40, tp: 0, why: "not enough MP", aim: "area", side: "enemy" },
+    { id: "firestorm", name: "Firestorm", mp: 40, tp: 0, why: "not enough MP", aim: "area", side: "enemy", shape: "burst:3x3" },
   ],
   items: [],
 });
