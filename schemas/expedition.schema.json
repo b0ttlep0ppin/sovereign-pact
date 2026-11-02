@@ -40,7 +40,7 @@
           "label": { "type": "string", "minLength": 1 },
           "rule": {
             "type": "string",
-            "pattern": "^(each_scion|(vote|leader|scion:random|scion:(most|fewest)_(expeditions|kills|healing|targeted)|scion:(highest|lowest):(might|resilience|guile|acuity|sagacity|speed|sanity)|scion:heaviest_gear|scion:most_open_slots|scion:tarot:[a-z_]+|scion:trait:[a-z_]+|scion:injured:(head|body|arms|legs|sanity|any)|scion:retired_once|house:(lowest|highest)_standing|house:random|house:trait:[a-z_]+)(\\|(vote|leader|scion:random|scion:(most|fewest)_(expeditions|kills|healing|targeted)|scion:(highest|lowest):(might|resilience|guile|acuity|sagacity|speed|sanity)|scion:heaviest_gear|scion:most_open_slots|scion:tarot:[a-z_]+|scion:trait:[a-z_]+|scion:injured:(head|body|arms|legs|sanity|any)|scion:retired_once|house:(lowest|highest)_standing|house:random|house:trait:[a-z_]+))*)$",
+            "pattern": "^(each_scion|secret|(vote|leader|scion:random|scion:(most|fewest)_(expeditions|kills|healing|targeted)|scion:(highest|lowest):(might|resilience|guile|acuity|sagacity|speed|sanity)|scion:heaviest_gear|scion:most_open_slots|scion:tarot:[a-z_]+|scion:trait:[a-z_]+|scion:injured:(head|body|arms|legs|sanity|any)|scion:retired_once|house:(lowest|highest)_standing|house:random|house:trait:[a-z_]+)(\\|(vote|leader|scion:random|scion:(most|fewest)_(expeditions|kills|healing|targeted)|scion:(highest|lowest):(might|resilience|guile|acuity|sagacity|speed|sanity)|scion:heaviest_gear|scion:most_open_slots|scion:tarot:[a-z_]+|scion:trait:[a-z_]+|scion:injured:(head|body|arms|legs|sanity|any)|scion:retired_once|house:(lowest|highest)_standing|house:random|house:trait:[a-z_]+))*)$",
             "description": "Who the option happens to (SPEC §9.4's rules): vote is the whole party, leader the Leader, scion:… one Scion, house:… one House present. `a|b` falls back to b when nobody fits a; when nobody fits any, the whole party."
           },
           "tags": {
@@ -58,7 +58,15 @@
               "properties": {
                 "w": { "type": "integer", "minimum": 1 },
                 "text": { "type": "string", "minLength": 1 },
-                "effects": { "type": "array", "items": { "$ref": "#/definitions/effect" } }
+                "effects": { "type": "array", "items": { "$ref": "#/definitions/effect" } },
+                "when": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "minProperties": 1,
+                  "maxProperties": 1,
+                  "properties": { "any": { "$ref": "defs.schema.json#/definitions/id" }, "none": { "$ref": "defs.schema.json#/definitions/id" } },
+                  "description": "Secret events: this outcome only when another House picked option `any`, or when no other House picked `none`."
+                }
               }
             }
           }
