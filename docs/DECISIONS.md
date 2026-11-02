@@ -2,6 +2,10 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 7s: the named items reach 120) — implementer
+- **Built** (content only). The last twenty named items of the budget, which makes 120. Each pool now hides at least five of its own, from the Bloodhound Collar (Beast Lands) to the Voidstep Sabatons (Outer Dark and the Pit).
+- **Reading:** six of them carry a real cost beside their gift, so a House has to want them: the Rootbound Plate (more Fire damage), the Chain of the Pit (hexed: Sanity −5 each battle), the Ring of the Kept Promise (Marked every battle), the Veil of Many Faces (lower max Sanity), the Hollow Crown (it whispers, queueing a trauma incident) and the Voidstep Sabatons (weaker against physical ailments).
+
 ## 2026-11-02 (implementation, Milestone 7r: twenty more named items) — implementer
 - **Built** (content only). Twenty named items found in the otherworld, most of them shared between two pools that border each other in theme (the Lantern Shield in the Outer Dark and the Barrows, Tidebreaker in the Drowned Marches and the Deep Cold), a few kept to one pool (Frostbrand, the Dragonhide Boots, the Marsh-Lord's Circlet). That makes 100 named items.
 - **Reading:** the Eye of the Deep pays for its sight with a weaker mind (brittle nerve); every value stays within its property's roll range.

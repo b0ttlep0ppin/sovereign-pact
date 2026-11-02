@@ -862,6 +862,258 @@
       "pools": ["dragon_reaches"]
     },
     {
+      "id": "bloodhound_collar",
+      "name": "Bloodhound Collar",
+      "base": "amulet",
+      "tier": 3,
+      "props": [
+        ["keen_eye", 1],
+        ["resist_bleed", 35]
+      ],
+      "text": "A hunting dog's collar, worn smooth. Whoever wears it can smell a wound a mile off.",
+      "pools": ["beast_lands"]
+    },
+    {
+      "id": "antler_crown",
+      "name": "Antler Crown",
+      "base": "helm",
+      "tier": 4,
+      "props": [
+        ["visored", 1],
+        ["resist_charm", 40],
+        ["second_wind", 1]
+      ],
+      "text": "Grown, not forged, from the head of something that ruled the wood. It does not want to come off.",
+      "pools": ["beast_lands", "hollow_wood"]
+    },
+    {
+      "id": "rootbound_plate",
+      "name": "Rootbound Plate",
+      "base": "plate",
+      "tier": 4,
+      "props": [
+        ["warded_earth", 30],
+        ["fortified", 25],
+        ["exposed_fire", 1]
+      ],
+      "text": "Living roots grown round a knight who stood too long in one place. Very strong. Very dry.",
+      "pools": ["hollow_wood"]
+    },
+    {
+      "id": "drowned_mans_ring",
+      "name": "Drowned Man's Ring",
+      "base": "ring",
+      "tier": 3,
+      "props": [
+        ["resist_sleep", 40],
+        ["attuned", 1]
+      ],
+      "text": "Taken off a finger that had been under the water a long time. It keeps its wearer awake.",
+      "pools": ["drowned_marches", "barrows"]
+    },
+    {
+      "id": "sexton_gloves",
+      "name": "Sexton's Gloves",
+      "base": "gloves",
+      "tier": 3,
+      "props": [
+        ["padded", 1],
+        ["resist_poison", 35]
+      ],
+      "text": "For handling the dead. They handle the living, too.",
+      "pools": ["barrows"]
+    },
+    {
+      "id": "glacier_plate",
+      "name": "Glacier Plate",
+      "base": "plate",
+      "tier": 4,
+      "props": [
+        ["warded_water", 30],
+        ["thorned", 15],
+        ["padded", 1]
+      ],
+      "text": "Ice that never melts, bound in iron. Blows go into it and do not come out.",
+      "pools": ["deep_cold"]
+    },
+    {
+      "id": "snow_hare_boots",
+      "name": "Snow-Hare Boots",
+      "base": "boots",
+      "tier": 3,
+      "props": [
+        ["lightfoot", 1],
+        ["resist_stun", 30]
+      ],
+      "text": "White fur over soft soles. They never break the crust of the snow.",
+      "pools": ["deep_cold", "beast_lands"]
+    },
+    {
+      "id": "chain_of_the_pit",
+      "name": "Chain of the Pit",
+      "base": "knuckles",
+      "tier": 4,
+      "props": [
+        ["fire_edge", 30],
+        ["dreadful", 20],
+        ["hexed", 1]
+      ],
+      "text": "A length of black chain wrapped round the fist. It burns, and it frightens, and it takes a little of you every fight.",
+      "pools": ["pit"]
+    },
+    {
+      "id": "ring_of_the_kept_promise",
+      "name": "Ring of the Kept Promise",
+      "base": "ring",
+      "tier": 4,
+      "props": [
+        ["ready", 1],
+        ["stat_might", 4],
+        ["curse_marked", 1]
+      ],
+      "text": "Its wearer always fights first and hardest, and everything in the battle knows exactly where they are.",
+      "pools": ["pit", "apostate_court"]
+    },
+    {
+      "id": "foremans_helm",
+      "name": "Foreman's Helm",
+      "base": "helm",
+      "tier": 3,
+      "props": [
+        ["visored", 1],
+        ["resist_stun", 40]
+      ],
+      "text": "Dented a hundred times. It took every one so the head beneath did not have to.",
+      "pools": ["forge_ruins"]
+    },
+    {
+      "id": "clockwork_crossbow",
+      "name": "Clockwork Crossbow",
+      "base": "crossbow",
+      "tier": 4,
+      "props": [
+        ["multi_hit", 20],
+        ["surging", 35]
+      ],
+      "text": "It winds itself between shots, and never quite stops ticking.",
+      "pools": ["forge_ruins", "faceless_city"]
+    },
+    {
+      "id": "veil_of_many_faces",
+      "name": "Veil of Many Faces",
+      "base": "hood",
+      "tier": 4,
+      "props": [
+        ["quiet", 1],
+        ["resist_confusion", 40],
+        ["unnerving", 1]
+      ],
+      "text": "Under it, the face is whatever the onlooker expects. Sometimes the wearer forgets which one is theirs.",
+      "pools": ["faceless_city"]
+    },
+    {
+      "id": "confessors_mace",
+      "name": "Confessor's Mace",
+      "base": "mace",
+      "tier": 4,
+      "props": [
+        ["holy_edge", 30],
+        ["stunning", 15],
+        ["human_bane", 1]
+      ],
+      "text": "Every heretic who met it confessed, eventually.",
+      "pools": ["apostate_court"]
+    },
+    {
+      "id": "judges_mantle",
+      "name": "Judge's Mantle",
+      "base": "jerkin",
+      "tier": 3,
+      "props": [
+        ["resist_charm", 40],
+        ["resist_fear", 30]
+      ],
+      "text": "Black and heavy. The Court's judges could not be swayed in it, by fear or by favor.",
+      "pools": ["apostate_court", "shrine_of_six"]
+    },
+    {
+      "id": "sixfold_amulet",
+      "name": "Sixfold Amulet",
+      "base": "amulet",
+      "tier": 4,
+      "props": [
+        ["warded_holy", 25],
+        ["warded_dark", 25],
+        ["resolute", 1]
+      ],
+      "text": "Six small saints round a silver disc, each turned to face away from the others.",
+      "pools": ["shrine_of_six"]
+    },
+    {
+      "id": "acolytes_censer",
+      "name": "Acolyte's Censer",
+      "base": "instrument",
+      "tier": 3,
+      "props": [
+        ["blessed", 1],
+        ["mana_thirst", 2]
+      ],
+      "text": "Swung on a chain, it rings like a bell and smokes like a prayer.",
+      "pools": ["shrine_of_six"]
+    },
+    {
+      "id": "wyrmscale_hauberk",
+      "name": "Wyrmscale Hauberk",
+      "base": "hauberk",
+      "tier": 4,
+      "props": [
+        ["warded_fire", 30],
+        ["fortified", 20],
+        ["second_wind", 1]
+      ],
+      "text": "Each scale was shed, not taken. The wyrm that grew them would like them back.",
+      "pools": ["dragon_reaches"]
+    },
+    {
+      "id": "sky_hunters_bow",
+      "name": "Sky-Hunter's Bow",
+      "base": "bow",
+      "tier": 4,
+      "props": [
+        ["wind_edge", 35],
+        ["giantslayer", 1],
+        ["keen", 12]
+      ],
+      "text": "Strung for shooting things out of the sky. It has done it.",
+      "pools": ["dragon_reaches"]
+    },
+    {
+      "id": "hollow_crown",
+      "name": "The Hollow Crown",
+      "base": "coif",
+      "tier": 4,
+      "props": [
+        ["resist_silence", 40],
+        ["mourning", 1],
+        ["curse_whispers", 1]
+      ],
+      "text": "A crown with nothing in it, not even metal: just the shape of one. It whispers what it used to rule.",
+      "pools": ["outer_dark"]
+    },
+    {
+      "id": "voidstep_sabatons",
+      "name": "Voidstep Sabatons",
+      "base": "sabatons",
+      "tier": 4,
+      "props": [
+        ["quickening", 1],
+        ["warded_dark", 25],
+        ["sickly", 1]
+      ],
+      "text": "They step between moments. The body does not always keep up.",
+      "pools": ["outer_dark", "pit"]
+    },
+    {
       "id": "the_fools_bell",
       "name": "The Fool's Bell",
       "base": "charm",
