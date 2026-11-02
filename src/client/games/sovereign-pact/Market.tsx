@@ -37,6 +37,7 @@ export default function Market({ view, sendMove, canAct }: Props) {
       <p className="sp-market__purse">
         Your purse: <strong>{mine.gold} Gold</strong>
       </p>
+      {!shops.length && !sealed.length && !mine.shop.length ? <p className="sp-event__status">Nothing is for sale yet: the Commons has built no shops, and no House has put anything up.</p> : null}
       {shops.length ? (
         <>
           <h3>In the shops</h3>

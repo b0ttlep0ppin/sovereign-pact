@@ -2,6 +2,23 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 8g): deals between Houses
+
+- The Settlement Phase shows the Deals panel (§8.9). It lists every deal the viewer may see:
+  - offers to it, with Accept or Decline;
+  - its own offers, with Withdraw;
+  - public deals between others, shown for information.
+
+  Each deal reads as what moves each way, and whether it is public or private.
+- An unsealed House can make an offer:
+  - to another House;
+  - giving Gold, any materials it holds (capped at what it holds) and items from its stash;
+  - asking for Gold and any material;
+  - public (logged, counts for Renown) or private.
+- Readings:
+  - Wards are not yet offered from this form; the rules take them, and the form adds them with the Ward screens.
+  - An item another House offers from its own stash shows as "an item": its stash is hidden from the viewer (the view shows only one's own stash and what people wear).
+
 ## 2026-11-02 (implementation, Milestone 8f): the market
 
 - The Settlement Phase shows the market (§8.6, §13.4a, §13.7). It has four parts:
