@@ -315,6 +315,304 @@
       "pools": ["pit", "faceless_city"]
     },
     {
+      "id": "alphas_mantle",
+      "name": "Alpha's Mantle",
+      "base": "jerkin",
+      "tier": 3,
+      "props": [
+        ["resist_fear", 40],
+        ["thorned", 15]
+      ],
+      "text": "The pack leader's hide, still bristling. Other beasts give its wearer room.",
+      "pools": ["beast_lands"]
+    },
+    {
+      "id": "long_spear_of_the_hunt",
+      "name": "Long Spear of the Hunt",
+      "base": "spear",
+      "tier": 4,
+      "props": [
+        ["reaching", 1],
+        ["beast_bane", 1],
+        ["keen", 10]
+      ],
+      "text": "Long enough to keep the thing you are hunting from reaching you. Mostly.",
+      "pools": ["beast_lands"]
+    },
+    {
+      "id": "witchwood_staff",
+      "name": "Witchwood Staff",
+      "base": "staff",
+      "tier": 3,
+      "props": [
+        ["dark_edge", 30],
+        ["mana_thirst", 3]
+      ],
+      "text": "Cut from a tree that was cut from a witch. It drinks.",
+      "pools": ["hollow_wood"]
+    },
+    {
+      "id": "mossback_boots",
+      "name": "Mossback Boots",
+      "base": "boots",
+      "tier": 3,
+      "props": [
+        ["lightfoot", 1],
+        ["quiet", 1]
+      ],
+      "text": "Grown, not made. They leave no prints, only a little moss.",
+      "pools": ["hollow_wood"]
+    },
+    {
+      "id": "tidecallers_spear",
+      "name": "Tidecaller's Spear",
+      "base": "spear",
+      "tier": 4,
+      "props": [
+        ["water_edge", 35],
+        ["multi_hit", 15]
+      ],
+      "text": "It strikes like the tide comes in: once, and then again.",
+      "pools": ["drowned_marches"]
+    },
+    {
+      "id": "eelskin_gloves",
+      "name": "Eelskin Gloves",
+      "base": "gloves",
+      "tier": 3,
+      "props": [
+        ["resist_bleed", 40],
+        ["warded_water", 20]
+      ],
+      "text": "Slick, cold, and nothing gets a grip on the hands inside.",
+      "pools": ["drowned_marches"]
+    },
+    {
+      "id": "gravediggers_axe",
+      "name": "Gravedigger's Axe",
+      "base": "axe",
+      "tier": 3,
+      "props": [
+        ["undead_bane", 1],
+        ["staggering", 1]
+      ],
+      "text": "For roots, for coffin lids, and for whatever is inside that will not lie down.",
+      "pools": ["barrows"]
+    },
+    {
+      "id": "shroud_of_the_unquiet",
+      "name": "Shroud of the Unquiet",
+      "base": "hood",
+      "tier": 4,
+      "props": [
+        ["gravewalker", 1],
+        ["mourning", 1],
+        ["exposed_holy", 1]
+      ],
+      "text": "A burial hood. The dead take its wearer for kin; the Six are less sure.",
+      "pools": ["barrows"]
+    },
+    {
+      "id": "rimeheart_amulet",
+      "name": "Rimeheart Amulet",
+      "base": "amulet",
+      "tier": 4,
+      "props": [
+        ["warded_water", 30],
+        ["resolute", 1]
+      ],
+      "text": "A heart of ice on a chain. It keeps its wearer's heart from going the same way.",
+      "pools": ["deep_cold"]
+    },
+    {
+      "id": "icebound_greataxe",
+      "name": "Icebound Greataxe",
+      "base": "greataxe",
+      "tier": 4,
+      "props": [
+        ["water_edge", 30],
+        ["stunning", 15],
+        ["massive_crits", 1]
+      ],
+      "text": "Frozen in the ice for an age. It has not warmed, and neither do the things it hits.",
+      "pools": ["deep_cold"]
+    },
+    {
+      "id": "pit_fighters_knuckles",
+      "name": "Pit-Fighter's Knuckles",
+      "base": "knuckles",
+      "tier": 3,
+      "props": [
+        ["multi_hit", 20],
+        ["bleeding", 20]
+      ],
+      "text": "Iron and old blood. Someone won a great many fights in these, and then one too few.",
+      "pools": ["pit"]
+    },
+    {
+      "id": "brimstone_plate",
+      "name": "Brimstone Plate",
+      "base": "plate",
+      "tier": 4,
+      "props": [
+        ["warded_fire", 30],
+        ["thorned", 20],
+        ["exposed_water", 1]
+      ],
+      "text": "Forged in the Pit's own heat. It burns whatever burns it, and hates the rain.",
+      "pools": ["pit"]
+    },
+    {
+      "id": "cogwork_gauntlets",
+      "name": "Cogwork Gauntlets",
+      "base": "gauntlets",
+      "tier": 3,
+      "props": [
+        ["resist_stun", 40],
+        ["fortified", 20]
+      ],
+      "text": "They tick quietly. They have not stopped since the forge went cold.",
+      "pools": ["forge_ruins"]
+    },
+    {
+      "id": "the_unfinished_blade",
+      "name": "The Unfinished Blade",
+      "base": "sword",
+      "tier": 4,
+      "props": [
+        ["charged", 1],
+        ["keen", 12],
+        ["surging", 40]
+      ],
+      "text": "The smith died before the last fold. The blade has been trying to finish itself ever since.",
+      "pools": ["forge_ruins"]
+    },
+    {
+      "id": "borrowed_face",
+      "name": "The Borrowed Face",
+      "base": "amulet",
+      "tier": 3,
+      "props": [
+        ["thieves_token", 1],
+        ["stat_guile", 3]
+      ],
+      "text": "A locket with a face inside that is never quite the same twice. People tell its wearer things.",
+      "pools": ["faceless_city"]
+    },
+    {
+      "id": "whisper_crossbow",
+      "name": "Whisper Crossbow",
+      "base": "crossbow",
+      "tier": 3,
+      "props": [
+        ["headsmans", 1],
+        ["keen", 10]
+      ],
+      "text": "It makes no sound. In the city, nobody would have heard it anyway.",
+      "pools": ["faceless_city"]
+    },
+    {
+      "id": "inquisitors_signet",
+      "name": "Inquisitor's Signet",
+      "base": "ring",
+      "tier": 4,
+      "props": [
+        ["noble_signet", 1],
+        ["stat_sagacity", 3],
+        ["resist_charm", 40]
+      ],
+      "text": "Its seal still opens doors in the Court, and some of the doors are glad to see it.",
+      "pools": ["apostate_court"]
+    },
+    {
+      "id": "penitents_flail",
+      "name": "Penitent's Flail",
+      "base": "mace",
+      "tier": 3,
+      "props": [
+        ["holy_edge", 25],
+        ["dreadful", 15]
+      ],
+      "text": "Made for the back of the one who carries it. It works better on other people.",
+      "pools": ["apostate_court"]
+    },
+    {
+      "id": "six_bell_lyre",
+      "name": "Six-Bell Lyre",
+      "base": "instrument",
+      "tier": 4,
+      "props": [
+        ["blessed", 1],
+        ["surging", 30]
+      ],
+      "text": "Six bells for six strings. Played well, it sounds like the Shrine on a feast day.",
+      "pools": ["shrine_of_six"]
+    },
+    {
+      "id": "pilgrims_sandals",
+      "name": "Pilgrim's Sandals",
+      "base": "boots",
+      "tier": 3,
+      "props": [
+        ["lightfoot", 1],
+        ["resist_fear", 30]
+      ],
+      "text": "Worn thin on the road to the Six. The road remembers them.",
+      "pools": ["shrine_of_six"]
+    },
+    {
+      "id": "scale_of_the_old_wyrm",
+      "name": "Scale of the Old Wyrm",
+      "base": "heater_shield",
+      "tier": 4,
+      "props": [
+        ["warded_fire", 30],
+        ["guarding", 1],
+        ["bulwark", 1]
+      ],
+      "text": "One scale off a wyrm that died of age. It is the size of a door, and lighter.",
+      "pools": ["dragon_reaches"]
+    },
+    {
+      "id": "wyrmtooth_dagger",
+      "name": "Wyrmtooth Dagger",
+      "base": "knife",
+      "tier": 4,
+      "props": [
+        ["fire_edge", 30],
+        ["giantslayer", 1],
+        ["executioners", 1]
+      ],
+      "text": "A tooth, sharpened. It remembers what it is for.",
+      "pools": ["dragon_reaches"]
+    },
+    {
+      "id": "lantern_that_remembers",
+      "name": "The Lantern That Remembers",
+      "base": "charm",
+      "tier": 4,
+      "props": [
+        ["essence_sense", 1],
+        ["tarot_amplifier", 1],
+        ["unnerving", 1]
+      ],
+      "text": "In its light you can see the way you came, and the way you were always going to go.",
+      "pools": ["outer_dark"]
+    },
+    {
+      "id": "starless_blade",
+      "name": "Starless Blade",
+      "base": "greatsword",
+      "tier": 4,
+      "props": [
+        ["dark_edge", 40],
+        ["hungry", 1],
+        ["brittle_nerve", 1]
+      ],
+      "text": "Black from hilt to point, with no shine at all. Looking at it too long is a mistake.",
+      "pools": ["outer_dark"]
+    },
+    {
       "id": "the_fools_bell",
       "name": "The Fool's Bell",
       "base": "charm",
