@@ -1,0 +1,33 @@
+{
+  "id": "idol_bull_demon_king",
+  "name": "The Bull Demon King",
+  "pool": "shrine_of_six",
+  "tags": ["demon", "beast", "giant", "idol"],
+  "role": "boss",
+  "size": [2, 3],
+  "at": "E2",
+  "levels": [6, 10],
+  "stats": {"speed": 10, "hp": 8},
+  "affinity": {"fire": 75, "earth": 25, "water": -50},
+  "immune": ["fear", "stun", "knockdown"],
+  "abilities": [
+    {"id": "iron_cudgel", "shape": "single", "side": "player", "power": 1.6, "statuses": [{"id": "stun", "chance": 20, "ticks": 0}]},
+    {"id": "the_flaming_mountain", "shape": "all", "side": "player", "power": 0.8, "kind": "magic", "element": "fire", "charge": 250, "telegraph": true, "cooldown": 4, "statuses": [{"id": "burn", "chance": 30, "ticks": 300}]},
+    {"id": "horns_of_the_white_ox", "shape": "row", "side": "player", "power": 1.2, "statuses": [{"id": "knockdown", "chance": 30, "ticks": 0}]},
+    {"id": "demon_kings_roar", "shape": "self", "side": "self", "power": 0, "kind": "support", "statuses": [{"id": "might_up", "chance": 100, "ticks": 300}, {"id": "protect", "chance": 100, "ticks": 300}], "cooldown": 5}
+  ],
+  "gambits": [
+    {"if": "turn%4==0", "do": "the_flaming_mountain"},
+    {"if": "turn%3==1", "do": "horns_of_the_white_ox", "target": "densest_row"},
+    {"do": "iron_cudgel", "target": "highest_might"}
+  ],
+  "phases": [
+    {"at": "hp<=0.5", "name": "The White Ox", "speed": 12, "say": "You have seen the king. Now see the ox.", "gambits": [{"if": "turn%4==0", "do": "demon_kings_roar"}, {"if": "turn%3==0", "do": "the_flaming_mountain"}, {"if": "turn%2==1", "do": "horns_of_the_white_ox", "target": "densest_row"}, {"do": "iron_cudgel", "target": "lowest_hp"}]}
+  ],
+  "say": {"open": "Pilgrims on the western road pay the toll at my mountain. You will pay it too, one way or another.", "death": "The mountain... has gone out..."},
+  "bestiary": {
+    "lore": "The demon king of the western road, who kept a mountain on fire to tax the pilgrims who passed it, and fought a monkey for forty days. The Shrine's pilgrims pay the same toll.",
+    "weakness": "Water, heavily. Interrupt the Flaming Mountain while it builds; when he roars, wait out the Protect or dispel it.",
+    "pattern": "The Flaming Mountain burns everyone every fourth turn, the white ox's horns gore a row every third, and the iron cudgel finds the strongest between. At half he roars (Might and Protect) every fourth turn and gores every other."
+  }
+}

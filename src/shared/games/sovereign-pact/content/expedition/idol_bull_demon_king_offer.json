@@ -1,0 +1,102 @@
+{
+  "id": "idol_bull_demon_king_offer",
+  "pools": [
+    "idol"
+  ],
+  "weight": 1,
+  "band": [
+    6,
+    10
+  ],
+  "title": "The Toll at the Burning Mountain",
+  "text": "The road runs straight into a mountain on fire, and in front of it sits a king with an ox's horns and an iron cudgel across his knees. He offers strength for the toll every pilgrim pays: bow, and empty your purses at his feet.",
+  "options": [
+    {
+      "id": "kneel",
+      "label": "Kneel, and pay what it asks.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The fire goes into your arms and does not burn. The gold goes into the fire.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -10
+            },
+            {
+              "to": "party",
+              "stat": {
+                "might": 2
+              }
+            },
+            {
+              "resources": {
+                "gold": -40
+              }
+            },
+            {
+              "to": "party",
+              "score": {
+                "renown": -6
+              }
+            },
+            {
+              "idol": "kneel"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "defy",
+      "label": "Refuse it.",
+      "rule": "vote",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "He stands. The mountain behind him burns higher.",
+          "effects": []
+        }
+      ]
+    },
+    {
+      "id": "cheat",
+      "label": "Take the gift and refuse the price.",
+      "rule": "leader",
+      "tags": [
+        "clever",
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "The leader takes the fire and keeps the years. The King laughs, and picks up his cudgel.",
+          "effects": [
+            {
+              "stat": {
+                "might": 3
+              }
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "He was a demon before he was a king. The fire goes into the leader the other way.",
+          "effects": [
+            {
+              "durability": -40,
+              "loc": "arms"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
