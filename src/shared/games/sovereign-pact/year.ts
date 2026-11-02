@@ -22,6 +22,7 @@ import { resolveCrisis } from "./crisis.ts";
 import { closeEvents, drawOmens } from "./omens.ts";
 import { closeBargains, offerOmenBargains } from "./bargains.ts";
 import { restock, settleAuctions } from "./market.ts";
+import { unpack } from "./consumables.ts";
 import { foreshadow } from "./timeline.ts";
 import { forHouses, TUNING } from "./tuning.ts";
 
@@ -98,6 +99,7 @@ export function closeExpedition(s: SovState): void {
   const e = s.expedition;
   // Seats were offered and nobody could take one.
   if (e && !e.result && e.leader === undefined) home(s, "unanswered");
+  unpack(s);
   if (s.phase !== "over") runSorties(s);
   delete s.expedition;
   if (s.phase === "over") return;

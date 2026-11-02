@@ -283,6 +283,8 @@ export const TUNING = {
   /** §13.7 consumables, first pass: the most bought at once, and what a bot keeps at home (with Gold it never spends below). */
   consumables: {
     perBuy: 10,
+    /** The party satchel's slots (§9.10). */
+    satchel: 12,
     botKeeps: { tonic: 4, bone_salve: 2, antidote: 1, clarity_draught: 1, smelling_salts: 1 } as Readonly<Record<string, number>>,
     botReserve: 40,
   },
