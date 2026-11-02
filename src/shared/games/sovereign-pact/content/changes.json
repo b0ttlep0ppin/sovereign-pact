@@ -1,0 +1,28 @@
+{
+  "changes": [
+    {"id": "hollow_knight", "name": "Hollow Knight", "flavor": "The armor walks, and something wears it back.",
+      "crunch": "Dark +50%, Holy −50%; Poison immune; Body and Arms Durability +30%; healing received −50%; a Knight for good; the armor is their head, body, arms and legs; cannot enter the Chapel.",
+      "base": {"might": 16, "resilience": 18, "guile": 6, "acuity": 7, "sagacity": 6, "speed": 9},
+      "growth": {"might": 130, "resilience": 150, "guile": 50, "acuity": 50, "sagacity": 40, "speed": 0},
+      "mods": {"ward.dark": 50, "ward.holy": -50, "immune.poison": 1, "bodyDurabilityPct": 30, "armsDurabilityPct": 30, "healingReceivedPct": -50},
+      "job": "knight", "slots": ["main", "off", "acc1", "acc2"], "barred": ["chapel"], "look": ["change_hollow_knight"]},
+    {"id": "marsh_thing", "name": "Marsh Thing", "flavor": "It drips. It remembers being someone.",
+      "crunch": "Poison immune; whoever strikes it is Poisoned; starts every battle with Regen; moves one cell at a time; eats 1 Essence a Year.",
+      "base": {"might": 12, "resilience": 15, "guile": 7, "acuity": 6, "sagacity": 12, "speed": 8},
+      "growth": {"might": 90, "resilience": 130, "guile": 50, "acuity": 40, "sagacity": 100, "speed": 0},
+      "mods": {"immune.poison": 1, "poisonAttackers": 100, "start.regen": 1, "maxMove": 1},
+      "slots": ["main", "off", "body", "acc1", "acc2"], "upkeep": {"essence": 1}, "look": ["change_marsh_thing"]},
+    {"id": "seraph_husk", "name": "Seraph Husk", "flavor": "Something holy moved out, and left the light on.",
+      "crunch": "Holy +50%, Dark −50%; healing dealt +25%; Sanity ceiling −30%; burns 1 Essence a Year; no helm fits the halo.",
+      "base": {"might": 8, "resilience": 10, "guile": 10, "acuity": 14, "sagacity": 18, "speed": 11},
+      "growth": {"might": 50, "resilience": 70, "guile": 80, "acuity": 110, "sagacity": 150, "speed": 0},
+      "mods": {"ward.holy": 50, "ward.dark": -50, "healingDealtPct": 25, "maxSanityPct": -30},
+      "slots": ["main", "off", "body", "arms", "legs", "acc1", "acc2"], "upkeep": {"essence": 1}, "look": ["change_seraph_husk"]},
+    {"id": "wyrmling", "name": "Wyrmling", "flavor": "Scales first, then the hunger, then the fire.",
+      "crunch": "Fire +50%, Water −30%; every attack is Fire; fights with claws that grow with them; no hands for weapons or gloves; eats 4 Grain a Year; too big for the Chapel.",
+      "base": {"might": 18, "resilience": 16, "guile": 8, "acuity": 10, "sagacity": 8, "speed": 10},
+      "growth": {"might": 150, "resilience": 130, "guile": 60, "acuity": 70, "sagacity": 50, "speed": 0},
+      "mods": {"ward.fire": 50, "ward.water": -30, "enchant.fire": 1, "ironFists": 3},
+      "slots": ["body", "acc1", "acc2"], "upkeep": {"grain": 4}, "barred": ["chapel"], "look": ["change_wyrmling"]}
+  ]
+}

@@ -21,6 +21,11 @@ describe("the packed people", () => {
     const s = playOut(campaign(4, 9));
     s.people[0] = { ...s.people[0]!, secondary: "knight", reversed: true, aff: { fire: 20 }, loyalty: 40, gear: { main: 3, acc2: 9 }, hist: { kills: 4, sorties: 1, retired: 2 }, blessed: [{ id: "lucky", years: 1 }] };
     s.people[1] = { ...s.people[1]!, injuries: [{ id: "body_broken_ribs", years: 2 }], jp: { magus: 120, soldier: 2500 }, mastered: ["soldier"], status: "lost", lost: { year: 3, pool: "barrows", level: 4 } };
+    s.people[2] = {
+      ...s.people[2]!,
+      change: { id: "hollow_knight", was: { level: 3, base: [9, 10, 11, 12, 8, 10], growth: [80, 90, 60, 70, 50, 0], carry: [10, 0, 20, 0, 0, 0], traits: ["brave"], look: ["body_a"], injuries: [{ id: "head_lost_eye", years: -1 }], job: "soldier", secondary: "magus" } },
+    };
+    s.people[3] = { ...s.people[3]!, change: { id: "wyrmling", was: { level: 1, base: [9, 9, 9, 9, 9, 10], growth: [50, 50, 50, 50, 50, 0], carry: [0, 0, 0, 0, 0, 0], traits: [], look: [], injuries: [], job: null } } };
     expect(unpackPeople(JSON.parse(JSON.stringify(packPeople(s.people))))).toEqual(s.people);
   });
 

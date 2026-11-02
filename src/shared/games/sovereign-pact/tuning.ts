@@ -72,6 +72,8 @@ export const TUNING = {
     /** How the bot values a share: an item by tier (Crude…Relic); materials 1 each, Essence and rare ones more. */
     botWorth: { tier: [1, 3, 6, 12, 30], essence: 2, rare: 6 },
   },
+  /** Changes (§9.6): an unfed Change loses this % of its Sanity ceiling at the Reckoning. */
+  change: { hungerSanityPct: 25 },
   journey: {
     nodes: [["encounter", 40], ["event", 45], ["camp", 10], ["cache", 5]] as const,
     mandatoryExtra: 2,

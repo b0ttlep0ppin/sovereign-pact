@@ -18,6 +18,7 @@ import { ascendancy } from "./score.ts";
 import { GEAR_SLOTS, LOCATIONS, STATS, type HistKey, type Person, type ScoreCategory, type SovState } from "./state.ts";
 import { TUNING } from "./tuning.ts";
 import { log, withRng } from "./year.ts";
+import { change, unchange } from "./change.ts";
 
 const flagged = (s: SovState, req: string): boolean => (req.startsWith("!") ? !s.flags.includes(req.slice(6)) : s.flags.includes(req.slice(5)));
 
@@ -144,6 +145,9 @@ function subjectOf(s: SovState, rule: string): Subjects | null {
   if (a === "tarot") return find((p) => p.tarot === b);
   if (a === "trait") return find((p) => tagged(b!, p.traits, TRAIT_BY_ID));
   if (a === "retired_once") return find((p) => (p.hist.retired ?? 0) > 0);
+  // A Changed Scion is one of a kind to the things out there (§9.6).
+  if (a === "changed") return find((p) => !!p.change);
+  if (a === "change") return find((p) => p.change?.id === b);
   if (a === "injured") return find((p) => p.injuries.some((i) => b === "any" || INJURY_TABLE_BY_ID.get(b as InjuryTableId)?.results.some((r) => r.id === i.id)));
   const score = (id: number): number => {
     const p = person(s, id);
@@ -292,6 +296,8 @@ function person_(s: SovState, p: Person, fx: TripEffect): void {
     log(s, `${p.name} is blessed: ${TRAIT_BY_ID.get(fx.blessing.trait)?.name}.`);
   }
   if (fx.loyalty && isWard(p)) p.loyalty = Math.max(0, Math.min(100, (p.loyalty ?? 0) + fx.loyalty));
+  if (fx.change) change(s, p, fx.change);
+  if (fx.unchange) unchange(s, p);
   if (fx.scion_lost && p.status === "scion") lose(s, p);
 }
 

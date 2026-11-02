@@ -8,6 +8,7 @@ import { econ, houseEffects } from "./houses.ts";
 import { gainJp, gainXpUpTo } from "./progression.ts";
 import type { Assignment, AssignmentKind, JobId, Person, SovState } from "./state.ts";
 import { TUNING } from "./tuning.ts";
+import { barred, changeOf } from "./change.ts";
 
 const A = TUNING.assignments;
 
@@ -66,6 +67,7 @@ export function cannotAssign(s: SovState, house: number, m: AssignMove): string 
   if (!p || p.host !== house || p.status === "lost") return "That person is not yours to assign.";
   if (m.to === "idle") return null;
   if (p.status === "recruit" && !["rest", "train", "work"].includes(m.to)) return "A recruit can only rest, train or work.";
+  if (barred(p, m.to)) return `A ${changeOf(p)!.name} cannot take that assignment.`;
   const current = s.assign[p.id];
   const same = (x: Assignment | undefined) => x?.to === m.to && (m.to !== "work" || x.at === m.at);
   if (!same(current) && holders(s, house, m.to, m.at).length >= slots(s, house, m.to, m.at)) return "There is no free slot for that.";

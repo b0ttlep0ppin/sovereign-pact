@@ -1,0 +1,83 @@
+{
+  "id": "sinking_mother",
+  "pools": [
+    "drowned_marches"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    8
+  ],
+  "title": "The Sinking Mother",
+  "text": "A woman stands waist-deep in the black water, her arms held out, humming. She is looking at the most tired of you as if she has been waiting for them all her life.",
+  "options": [
+    {
+      "id": "go",
+      "label": "Let them go to her.",
+      "rule": "scion:lowest:sanity",
+      "tags": [
+        "reckless",
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 45,
+          "text": "She holds them under, gently, a long time. What climbs out is green and dripping and still knows your names.",
+          "effects": [
+            {
+              "change": "marsh_thing"
+            }
+          ]
+        },
+        {
+          "w": 35,
+          "text": "She kisses their brow and is gone. They come back calmer, holding something she gave them.",
+          "effects": [
+            {
+              "sanity": 30
+            },
+            {
+              "item": {
+                "tier": 3
+              }
+            }
+          ]
+        },
+        {
+          "w": 20,
+          "text": "She will not let go.",
+          "effects": [
+            {
+              "injury": "body"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ignore",
+      "label": "Walk on, eyes front.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "The humming follows you a while and then stops.",
+          "effects": []
+        },
+        {
+          "w": 30,
+          "text": "The humming follows you all day.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -10
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

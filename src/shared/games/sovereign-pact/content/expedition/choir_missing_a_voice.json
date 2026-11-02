@@ -1,0 +1,79 @@
+{
+  "id": "choir_missing_a_voice",
+  "pools": [
+    "shrine_of_six"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    9
+  ],
+  "title": "The Choir Missing a Voice",
+  "text": "Light stands in rows in the ruined nave and sings. There is a gap in the middle row the shape of a person, and the song keeps stumbling over it.",
+  "options": [
+    {
+      "id": "sing",
+      "label": "Let your wisest step into the gap.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 40,
+          "text": "They take the missing part. The song ends, and the light that was singing it stays inside them.",
+          "effects": [
+            {
+              "change": "seraph_husk"
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "They sing it once, perfectly, and the choir lets them go with a blessing.",
+          "effects": [
+            {
+              "blessing": {
+                "trait": "lucky",
+                "years": 3
+              }
+            },
+            {
+              "sanity": 30
+            }
+          ]
+        },
+        {
+          "w": 20,
+          "text": "They sing it wrong.",
+          "effects": [
+            {
+              "sanity": -30
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "listen",
+      "label": "Sit at the back and listen.",
+      "rule": "vote",
+      "tags": [
+        "kind",
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Nobody speaks for a long time afterwards. Nobody needs to.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 20
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

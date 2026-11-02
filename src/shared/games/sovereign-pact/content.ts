@@ -19,6 +19,7 @@ import tinkererSet from "./content/abilities/tinkerer.json" with { type: "json" 
 import swordSaintSet from "./content/abilities/sword_saint.json" with { type: "json" };
 import vagabondSet from "./content/abilities/vagabond.json" with { type: "json" };
 import buildingsJson from "./content/buildings.json" with { type: "json" };
+import changesJson from "./content/changes.json" with { type: "json" };
 import formsJson from "./content/forms.json" with { type: "json" };
 import projectsJson from "./content/projects.json" with { type: "json" };
 import summonsJson from "./content/summons.json" with { type: "json" };
@@ -38,7 +39,7 @@ import tarotJson from "./content/tarot.json" with { type: "json" };
 import variantsJson from "./content/variants.json" with { type: "json" };
 import templatesJson from "./content/templates.json" with { type: "json" };
 import type { AbilityDef, GambitRule } from "./combat/types.ts";
-import type { Element, JobId, Location, Material, NodeKind, ScoreCategory, Stat } from "./state.ts";
+import type { AssignmentKind, Element, GearSlot, JobId, Location, Material, NodeKind, ScoreCategory, Stat } from "./state.ts";
 
 export interface TarotCard {
   id: string;
@@ -552,6 +553,10 @@ export interface TripEffect {
   item?: { tier: 2 | 3 | 4 };
   /** A town event queued on the timeline `years` from now (§8.7), for the subject's House if it has one. */
   timeline?: { id: string; years: number };
+  /** The subject is Changed (§9.6): a Change id from content/changes.json. */
+  change?: string;
+  /** A Changed subject's old body comes back (§9.6: some events can reverse a Change). */
+  unchange?: true;
 }
 /** An option of an expedition event: the party votes for it; its rule names its subject (§9.4). */
 export interface TripOption {
@@ -737,3 +742,25 @@ export interface SortieDef {
 }
 export const SORTIES = sortiesJson.sorties as readonly SortieDef[];
 export const SORTIE_BY_ID = byId(SORTIES);
+
+/**
+ * A Change (§9.6; Josh 2026-11-02: the word for a Scion's permanent transformation): content/changes.json.
+ * It replaces the Scion's stats, growths, traits, look and injuries; `mods` ride into battle like a trait's.
+ */
+export interface ChangeDef {
+  id: string;
+  name: string;
+  flavor: string;
+  crunch: string;
+  base: Record<Stat, number>;
+  growth: Record<Stat, number>;
+  mods: Record<string, number>;
+  /** A fixed Job: the Scion takes it and can take no other. */
+  job?: JobId;
+  slots: GearSlot[];
+  barred?: AssignmentKind[];
+  upkeep?: Partial<Record<string, number>>;
+  look: string[];
+}
+export const CHANGES = changesJson.changes as unknown as readonly ChangeDef[];
+export const CHANGE_BY_ID = byId(CHANGES);

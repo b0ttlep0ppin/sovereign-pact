@@ -40,7 +40,7 @@
           "label": { "type": "string", "minLength": 1 },
           "rule": {
             "type": "string",
-            "pattern": "^(each_scion|secret|(vote|leader|scion:random|scion:(most|fewest)_(expeditions|kills|healing|targeted)|scion:(highest|lowest):(might|resilience|guile|acuity|sagacity|speed|sanity)|scion:heaviest_gear|scion:most_open_slots|scion:tarot:[a-z_]+|scion:trait:[a-z_]+|scion:injured:(head|body|arms|legs|sanity|any)|scion:retired_once|house:(lowest|highest)_standing|house:random|house:trait:[a-z_]+)(\\|(vote|leader|scion:random|scion:(most|fewest)_(expeditions|kills|healing|targeted)|scion:(highest|lowest):(might|resilience|guile|acuity|sagacity|speed|sanity)|scion:heaviest_gear|scion:most_open_slots|scion:tarot:[a-z_]+|scion:trait:[a-z_]+|scion:injured:(head|body|arms|legs|sanity|any)|scion:retired_once|house:(lowest|highest)_standing|house:random|house:trait:[a-z_]+))*)$",
+            "pattern": "^(each_scion|secret|(vote|leader|scion:random|scion:(most|fewest)_(expeditions|kills|healing|targeted)|scion:(highest|lowest):(might|resilience|guile|acuity|sagacity|speed|sanity)|scion:heaviest_gear|scion:most_open_slots|scion:tarot:[a-z_]+|scion:trait:[a-z_]+|scion:injured:(head|body|arms|legs|sanity|any)|scion:retired_once|scion:changed|scion:change:[a-z_]+|house:(lowest|highest)_standing|house:random|house:trait:[a-z_]+)(\\|(vote|leader|scion:random|scion:(most|fewest)_(expeditions|kills|healing|targeted)|scion:(highest|lowest):(might|resilience|guile|acuity|sagacity|speed|sanity)|scion:heaviest_gear|scion:most_open_slots|scion:tarot:[a-z_]+|scion:trait:[a-z_]+|scion:injured:(head|body|arms|legs|sanity|any)|scion:retired_once|scion:changed|scion:change:[a-z_]+|house:(lowest|highest)_standing|house:random|house:trait:[a-z_]+))*)$",
             "description": "Who the option happens to (SPEC §9.4's rules): vote is the whole party, leader the Leader, scion:… one Scion, house:… one House present. `a|b` falls back to b when nobody fits a; when nobody fits any, the whole party."
           },
           "tags": {
@@ -126,6 +126,8 @@
         "loyalty": { "type": "integer", "description": "A Ward's Loyalty, + or −." },
         "fork": { "type": "object", "additionalProperties": false, "minProperties": 1, "properties": { "drop": { "type": "integer", "minimum": 1, "maximum": 4 }, "add": { "type": "array", "maxItems": 3, "items": { "enum": ["encounter", "event", "camp", "cache"] } } }, "description": "A Fork: the next drop places are passed by and add come next; never the boss." },
         "scion_lost": { "const": true, "description": "The subject is Lost in the otherworld." },
+        "change": { "$ref": "defs.schema.json#/definitions/id", "description": "The subject is Changed (SPEC §9.6): a Change id from content/changes.json." },
+        "unchange": { "const": true, "description": "A Changed subject gets their own body back." },
         "item": { "type": "object", "additionalProperties": false, "required": ["tier"], "properties": { "tier": { "enum": [2, 3, 4] } }, "description": "A found item: to the subject's House, or to the draft when the party chose together." },
         "timeline": { "type": "object", "additionalProperties": false, "required": ["id", "years"], "properties": { "id": { "$ref": "defs.schema.json#/definitions/id" }, "years": { "type": "integer", "minimum": 1, "maximum": 10 } }, "description": "A town event queued on the timeline." }
       }
