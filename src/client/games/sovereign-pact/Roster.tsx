@@ -4,7 +4,7 @@
 // and spend a Tarot Token or a Passive Draught.
 import { Content, itemName, type SovMove, type SovView } from "@vibepulse/shared/games/sovereign-pact";
 import { useState } from "react";
-import { HERALDRY_COLORS } from "./Emblem";
+import { inkOf } from "./Emblem";
 
 type Props = { view: SovView; sendMove: (m: SovMove) => void; canAct: boolean };
 type Person = SovView["people"][number];
@@ -19,16 +19,6 @@ const GROUPS: { status: Person["status"]; title: string }[] = [
 ];
 const BASE = Content.JOBS.filter((j) => !j.advanced);
 const words = (id: string) => id.replace(/_/g, " ");
-/** A House's color for text on the dark ground: its primary, or its secondary when the primary is too dark to read. */
-export function inkOf(colors: readonly string[] | undefined): string | undefined {
-  if (!colors) return undefined;
-  const hexes = colors.map((c) => HERALDRY_COLORS.get(c)).filter((h): h is string => !!h);
-  const light = (hex: string) => {
-    const n = parseInt(hex.slice(1), 16);
-    return 0.2126 * ((n >> 16) & 255) + 0.7152 * ((n >> 8) & 255) + 0.0722 * (n & 255);
-  };
-  return hexes.find((h) => light(h) >= 90) ?? (hexes.length ? "var(--text)" : undefined);
-}
 const TAROT_BY_ID = new Map(Content.TAROT.map((t) => [t.id, t]));
 
 /** One trait or the Tarot card: its name, then what it does (Crunch) or how it reads (Flavor). */

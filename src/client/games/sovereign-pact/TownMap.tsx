@@ -3,10 +3,12 @@
 // edge and the walls along the bottom. The viewer's people stand as chits by what they do this Year:
 // drag one onto a building, the Gate or the walls (or pick it, then pick the place) to assign it.
 // Tiles are drawn in CSS until the Oryx tiles are cut (HANDOFF §8.5).
+import { BUILDING_ICONS, JOB_ICONS, SEAT_ART } from "./icons";
+import { BONE, PixelArt } from "./PixelArt";
 import type { SovMove, SovView } from "@vibepulse/shared/games/sovereign-pact";
 import { Content } from "@vibepulse/shared/games/sovereign-pact";
 import { useState, type DragEvent } from "react";
-import { Emblem, HERALDRY_COLORS } from "./Emblem";
+import { Emblem, HERALDRY_COLORS, inkOf } from "./Emblem";
 import "./TownMap.css";
 
 type Person = SovView["people"][number];
@@ -28,25 +30,6 @@ const BUILDING_TASK: Record<string, "chapel" | "infirmary" | "study" | "train" |
 };
 
 /** Short marks for buildings and projects until their tiles exist. */
-const GLYPHS: Record<string, string> = {
-  training_ground: "⚔",
-  scriptorium: "✎",
-  infirmary: "✚",
-  chapel: "✝",
-  forge: "⚒",
-  workshop: "⚙",
-  hall_of_petitions: "⚖",
-  vault: "◈",
-  shrine: "☉",
-  crypt: "⚰",
-  farm: "❦",
-  lumber_camp: "♣",
-  quarry: "▲",
-  mine: "⛏",
-  kennels: "❀",
-  watchtower: "♜",
-};
-
 /** The move that puts `p` at `place`, or null if it takes no one. */
 export function moveFor(view: SovView, p: Person, place: Place): SovMove | null {
   if (place.kind === "rest") return { type: "assign", person: p.id, to: "rest" };
@@ -125,7 +108,7 @@ export default function TownMap({ view, sendMove, canAssign }: Props) {
         key={p.id}
         type="button"
         className={`sp-chit${picked === p.id ? " is-picked" : ""}${p.status === "recruit" ? " is-recruit" : ""}`}
-        style={{ background: HERALDRY_COLORS.get(view.houses[p.house]!.colors[0]) }}
+        style={{ borderColor: HERALDRY_COLORS.get(view.houses[p.house]!.colors[0]) }}
         draggable={canAssign}
         disabled={!canAssign}
         aria-pressed={picked === p.id}
@@ -136,7 +119,8 @@ export default function TownMap({ view, sendMove, canAssign }: Props) {
           setPicked(picked === p.id ? null : p.id);
         }}
       >
-        {p.name.split(" ")[0]!.slice(0, 2)}
+        <PixelArt rows={JOB_ICONS[p.status === "recruit" ? "recruit" : (p.job ?? "recruit")]} size={20} />
+        <span className="sp-chit__tag">{p.name.slice(0, 2)}</span>
       </button>
     ));
 
@@ -192,8 +176,8 @@ export default function TownMap({ view, sendMove, canAssign }: Props) {
                 <strong>House {h.name}</strong>
               </header>
               <div {...target(`keep${h.index}`, { kind: "rest" }, own)} className="sp-map__keep">
-                <span className="sp-bld__glyph" aria-hidden="true">⌂</span>
-                <span className="sp-bld__name">{h.seat.replace(/_/g, " ")}</span>
+                <PixelArt className="sp-map__seat-art" rows={SEAT_ART[h.seat]} size={56} color={inkOf(h.colors) ?? BONE} />
+                <span className="sp-bld__name">{Content.SEATS.find((x) => x.id === h.seat)?.name ?? h.seat.replace(/_/g, " ")}</span>
                 {own ? <div className="sp-chits">{chits({ kind: "rest" })}</div> : null}
               </div>
               <div className="sp-map__blds">
@@ -202,7 +186,7 @@ export default function TownMap({ view, sendMove, canAssign }: Props) {
                   const takes = own && BUILDING_TASK[b.id] !== undefined;
                   return (
                     <div key={b.id} {...target(`${h.index}:${b.id}`, place, takes)} className="sp-bld" title={`${b.name}, level ${h.buildings[b.id]}`}>
-                      <span className="sp-bld__glyph" aria-hidden="true">{GLYPHS[b.id] ?? "▣"}</span>
+                      <PixelArt className="sp-bld__icon" rows={BUILDING_ICONS[b.id]} size={22} />
                       <span className="sp-bld__name">{b.name}</span>
                       <Pips level={h.buildings[b.id] ?? 0} />
                       {own ? <div className="sp-chits">{chits(place)}</div> : null}

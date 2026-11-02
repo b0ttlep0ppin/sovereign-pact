@@ -2,6 +2,14 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 8z): a drawn Town Map
+
+- Josh: "Some more visual flair… draw some of the shapes of the houses", and "the scion tokens are hard to distinguish".
+  - Each of the 8 Seats has a 16×16 pixel silhouette, drawn in the House's color in its keep.
+  - Each of the 16 House buildings has a 12×12 icon in place of the old text glyphs.
+  - Each Scion's chit shows what their Job carries (14 icons; recruits a hood), ringed in their House's color, with their initials beneath. All drawn for this game (`icons.ts`, `PixelArt.tsx`).
+- The chits will switch to each Scion's sprite head once the LPC Scion sprites are in (§15.1 portraits).
+
 ## 2026-11-02 (implementation, Milestone 8y): heraldic charges
 
 - Josh: "The single letter emblem is kinda weak… draw your own". Every one of the 44 charges in `heraldry.json` is now a 16×16 pixel silhouette drawn for this game (`charges.ts`; §15.1 pixel art throughout). Each is outlined in black so it reads on any field, with dark details (eyes, doors) and light ones (flames, pages).
