@@ -1,0 +1,71 @@
+{
+  "id": "the_sunken_bell",
+  "pools": [
+    "drowned_marches"
+  ],
+  "weight": 3,
+  "band": [
+    1,
+    8
+  ],
+  "title": "The Sunken Bell",
+  "text": "A bell tolls under the black water, once every hundred heartbeats. There is a rope on the bank, tied off, leading down.",
+  "options": [
+    {
+      "id": "pull",
+      "label": "The strongest hauls it up.",
+      "rule": "scion:highest:might",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 55,
+          "text": "A chapel bell, green with age. Its tone clears the head.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 15
+            },
+            {
+              "resources": {
+                "iron": 3
+              }
+            }
+          ]
+        },
+        {
+          "w": 45,
+          "text": "Something is holding the other end.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "surprise"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cut",
+      "label": "Cut the rope.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The bell stops. The marsh is very quiet after.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -5
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

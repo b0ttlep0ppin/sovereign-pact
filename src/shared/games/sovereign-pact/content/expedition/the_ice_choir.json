@@ -1,0 +1,93 @@
+{
+  "id": "the_ice_choir",
+  "pools": [
+    "deep_cold"
+  ],
+  "weight": 3,
+  "band": [
+    3,
+    10
+  ],
+  "title": "The Ice Choir",
+  "text": "Figures frozen in a ring on the ice, mouths open. When the wind moves across them, they sing.",
+  "options": [
+    {
+      "id": "listen",
+      "label": "Stop and listen.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 55,
+          "text": "The song is a lament for somewhere warm. It makes the cold easier to bear.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 10
+            },
+            {
+              "to": "party",
+              "status": "protect"
+            }
+          ]
+        },
+        {
+          "w": 45,
+          "text": "The song is an invitation. One of the figures is new.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -10
+            },
+            {
+              "status": "frozen"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "break",
+      "label": "Break the ring.",
+      "rule": "leader",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The figures shatter, and something under the ice is very angry about it.",
+          "effects": [
+            {
+              "encounter": {
+                "level": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hurry",
+      "label": "Hurry past with ears covered.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Nobody hears it. Nobody quite forgets it either.",
+          "effects": [
+            {
+              "to": "party",
+              "durability": -10
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

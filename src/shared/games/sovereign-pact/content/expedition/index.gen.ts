@@ -45,8 +45,20 @@ import saints_tongue from "./saints_tongue.json" with { type: "json" };
 import sinking_mother from "./sinking_mother.json" with { type: "json" };
 import spider_queens_court from "./spider_queens_court.json" with { type: "json" };
 import still_warm_camp from "./still_warm_camp.json" with { type: "json" };
+import the_empty_court from "./the_empty_court.json" with { type: "json" };
+import the_engine_heart from "./the_engine_heart.json" with { type: "json" };
+import the_ice_choir from "./the_ice_choir.json" with { type: "json" };
+import the_last_hoard from "./the_last_hoard.json" with { type: "json" };
 import the_lullaby from "./the_lullaby.json" with { type: "json" };
+import the_masked_ball from "./the_masked_ball.json" with { type: "json" };
+import the_open_grave from "./the_open_grave.json" with { type: "json" };
+import the_pit_market from "./the_pit_market.json" with { type: "json" };
+import the_singing_tree from "./the_singing_tree.json" with { type: "json" };
+import the_six_bowls from "./the_six_bowls.json" with { type: "json" };
+import the_stampede from "./the_stampede.json" with { type: "json" };
+import the_sunken_bell from "./the_sunken_bell.json" with { type: "json" };
 import the_toll from "./the_toll.json" with { type: "json" };
+import the_vacant_star from "./the_vacant_star.json" with { type: "json" };
 import tithe_men from "./tithe_men.json" with { type: "json" };
 import trial_of_the_veteran from "./trial_of_the_veteran.json" with { type: "json" };
 import twins from "./twins.json" with { type: "json" };
@@ -101,8 +113,20 @@ export default [
   sinking_mother,
   spider_queens_court,
   still_warm_camp,
+  the_empty_court,
+  the_engine_heart,
+  the_ice_choir,
+  the_last_hoard,
   the_lullaby,
+  the_masked_ball,
+  the_open_grave,
+  the_pit_market,
+  the_singing_tree,
+  the_six_bowls,
+  the_stampede,
+  the_sunken_bell,
   the_toll,
+  the_vacant_star,
   tithe_men,
   trial_of_the_veteran,
   twins,

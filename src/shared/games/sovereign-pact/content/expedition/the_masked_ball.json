@@ -1,0 +1,72 @@
+{
+  "id": "the_masked_ball",
+  "pools": [
+    "faceless_city"
+  ],
+  "weight": 3,
+  "band": [
+    3,
+    10
+  ],
+  "title": "The Masked Ball",
+  "text": "Music from a lit hall: dancers in masks turning in pairs. A doorman offers masks. Nobody inside seems to have a face to put one over.",
+  "options": [
+    {
+      "id": "dance",
+      "label": "The boldest goes in and dances.",
+      "rule": "scion:highest:guile",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "They dance until the music stops, and someone presses a gift into their hand on the way out.",
+          "effects": [
+            {
+              "item": {
+                "tier": 3
+              }
+            },
+            {
+              "score": {
+                "intrigue": 2
+              }
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "When the music stops, their mask will not come off for a while.",
+          "effects": [
+            {
+              "sanity": -25
+            },
+            {
+              "status": "charm"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "refuse",
+      "label": "Refuse the masks.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The doorman is offended. So is everyone inside.",
+          "effects": [
+            {
+              "encounter": {}
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

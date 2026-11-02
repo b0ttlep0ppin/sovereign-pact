@@ -1,0 +1,77 @@
+{
+  "id": "the_open_grave",
+  "pools": [
+    "barrows"
+  ],
+  "weight": 3,
+  "band": [
+    1,
+    8
+  ],
+  "title": "The Open Grave",
+  "text": "A barrow open to the sky, its stone door pulled off. The shroud inside is empty and folded neatly beside the bier.",
+  "options": [
+    {
+      "id": "search",
+      "label": "The bravest searches inside.",
+      "rule": "scion:highest:resilience",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 55,
+          "text": "Grave goods, left behind by whoever walked out.",
+          "effects": [
+            {
+              "item": {
+                "tier": 2
+              }
+            },
+            {
+              "resources": {
+                "gold": 60
+              }
+            }
+          ]
+        },
+        {
+          "w": 45,
+          "text": "Whoever walked out has come back for their things.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "ambush"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "close",
+      "label": "Close it again.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It takes all of you to lift the door. The barrow seems quieter for it.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 5
+            },
+            {
+              "to": "party",
+              "durability": -10,
+              "loc": "arms"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

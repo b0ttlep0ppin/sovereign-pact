@@ -1,0 +1,122 @@
+{
+  "id": "the_stampede",
+  "pools": [
+    "beast_lands"
+  ],
+  "weight": 3,
+  "band": [
+    1,
+    8
+  ],
+  "title": "The Stampede",
+  "text": "The ground starts to shake long before anything can be seen. Something huge is coming across the plain, a great many of them, and they are not stopping.",
+  "options": [
+    {
+      "id": "run",
+      "label": "Run for the rocks.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "Everyone makes the rocks, barely, with dust in their teeth.",
+          "effects": [
+            {
+              "to": "party",
+              "durability": -10,
+              "loc": "legs"
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "Not everyone is quick enough.",
+          "effects": [
+            {
+              "to": "party",
+              "durability": -10,
+              "loc": "legs"
+            },
+            {
+              "injury": "legs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "stand",
+      "label": "The hardiest stands and turns them.",
+      "rule": "scion:highest:resilience",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 45,
+          "text": "They stand, and the herd splits around them like water around a stone. The others will tell this one for years.",
+          "effects": [
+            {
+              "score": {
+                "valor": 3
+              }
+            },
+            {
+              "xp": 120
+            }
+          ]
+        },
+        {
+          "w": 55,
+          "text": "The herd does not split.",
+          "effects": [
+            {
+              "injury": "body"
+            },
+            {
+              "durability": -40,
+              "loc": "body"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ride",
+      "label": "The quickest jumps on one.",
+      "rule": "scion:highest:speed",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "They ride it for a mile, whooping, and drop off at the far side with a horn for a trophy.",
+          "effects": [
+            {
+              "score": {
+                "valor": 2
+              }
+            },
+            {
+              "resources": {
+                "hollow_ivory": 1
+              }
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "They do not stay on long.",
+          "effects": [
+            {
+              "injury": "arms"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
