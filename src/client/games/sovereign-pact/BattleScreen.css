@@ -133,3 +133,12 @@
 .sp-command .sp-actions { display: flex; flex-wrap: wrap; gap: 6px; margin: 0; }
 .sp-unit__scion { scale: 1.6; transform-origin: center bottom; filter: drop-shadow(0 2px 0 rgba(0, 0, 0, 0.6)); }
 .sp-unit.is-acting .sp-unit__scion { filter: drop-shadow(0 0 6px var(--gold, #d7b45a)); }
+/* A spell gathering: a slow violet glow around the chanting Scion. */
+.sp-unit.is-charging .sp-unit__scion { animation: sp-chant-glow 1.1s ease-in-out infinite alternate; }
+@keyframes sp-chant-glow { from { filter: drop-shadow(0 0 2px #8a6ad8); } to { filter: drop-shadow(0 0 9px #b89cff) brightness(1.12); } }
+/* A melee blow: a step toward the foe and back (the party stands on the right). */
+.sp-unit__scion.is-lunging { animation: sp-lunge 600ms ease-out 1; }
+.sp-unit--enemy .sp-unit__scion.is-lunging { animation-name: sp-lunge-right; }
+@keyframes sp-lunge { 0% { translate: 0; } 35% { translate: -45% 0; } 100% { translate: 0; } }
+@keyframes sp-lunge-right { 0% { translate: 0; } 35% { translate: 45% 0; } 100% { translate: 0; } }
+@media (prefers-reduced-motion: reduce) { .sp-unit__scion.is-lunging, .sp-unit.is-charging .sp-unit__scion { animation: none; } }

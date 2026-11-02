@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { scionCredits } from "./credits";
 import LAYERS from "./scion-layers.json";
-import { attackOf, lookOf, piecesOf } from "./ScionSprite";
+import { animFor, attackOf, lookOf, lunges, piecesOf } from "./ScionSprite";
 
 const person = (id: number, over: Partial<{ sex: "m" | "f"; age: number; job: string | null; status: "recruit" | "scion" }> = {}) =>
   ({ id, sex: "m" as const, age: 25, job: "knight", status: "scion", ...over }) as unknown as Parameters<typeof lookOf>[0];
@@ -43,5 +43,17 @@ describe("Scion sprites", () => {
     expect(lines).toContain("Stephen Challener (Redshrike)");
     expect(lines).not.toContain("@");
     expect(lines).not.toMatch(/SA|GPL/);
+  });
+
+  it("animates what a Scion does, not only what they carry", () => {
+    const knight = lookOf(person(4), undefined);
+    const vagabond = lookOf(person(4, { job: "vagabond" }), undefined);
+    expect(animFor(knight, { kind: "magic" })).toBe("spellcast");
+    expect(animFor(knight, { kind: "heal" })).toBe("spellcast");
+    expect(animFor(knight, { kind: "physical" })).toBe("slash");
+    expect(animFor(vagabond, { kind: "physical", reach: "ranged" })).toBe("shoot");
+    expect(animFor(vagabond, undefined)).toBe("shoot");
+    expect(lunges("slash")).toBe(true);
+    expect(lunges("spellcast")).toBe(false);
   });
 });
