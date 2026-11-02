@@ -2,6 +2,11 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 8y): heraldic charges
+
+- Josh: "The single letter emblem is kinda weak… draw your own". Every one of the 44 charges in `heraldry.json` is now a 16×16 pixel silhouette drawn for this game (`charges.ts`; §15.1 pixel art throughout). Each is outlined in black so it reads on any field, with dark details (eyes, doors) and light ones (flames, pages).
+- Reading: on a plain field the charge takes the House's second tincture, unless the two are too alike to tell apart. On a divided field it is bone, or sable on a pale field, so it reads across both halves. A second charge now shows, small, in the chief.
+
 ## 2026-11-02 (implementation, Milestone 8x): the prologue, and people cards that read
 
 - **Prologue** (Josh: a splash explaining the kingdom swallowed by a rift, the monarch gone, the Great Houses left to rule together despite their own interests). It opens the standalone game: five lines rise one by one under a torn sky, and you can click to show all, Skip, or Enter the city.
