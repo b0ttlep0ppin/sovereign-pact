@@ -2,6 +2,7 @@
 // they stand. A choice aimed at the Scion goes at once; one aimed at someone, or at an area, asks for
 // the cell (click it, or move through them with the arrows and press Enter). Moving first keeps the turn.
 import { areaCells, fitsPattern, type Aim, type Cell, type Choice, type ComboView, type Command, type TurnView } from "@vibepulse/shared/games/sovereign-pact";
+import { Content } from "@vibepulse/shared/games/sovereign-pact";
 import { useState } from "react";
 
 /** A choice waiting for its cell: the cells it may go to, the one under the cursor, and what it sends. */
@@ -19,6 +20,17 @@ const ALL = (side: Cell["side"]): Cell[] => Array.from({ length: 24 }, (_, i) =>
 /** The cells a choice can be aimed at, or null when it needs none. */
 export const cellsOf = (c: Aim): Cell[] | null => (c.aim === "unit" ? c.targets : c.aim === "area" ? ALL(c.side) : null);
 
+/** What a choice does, in a line, for the panel under the buttons. */
+const ABOUT: Record<string, string> = {
+  attack: "A blow with the weapon in hand.",
+  move: "Step to another cell. They can still act after moving.",
+  defend: "Brace until their next turn: blows land softer.",
+  combo: "Chain moves into one strike, paying TP for each; a finisher ends it.",
+  gambits_turn: "Let their gambits choose this one turn for them.",
+  gambits_battle: "Hand the rest of this battle to the gambits: it plays out on its own.",
+};
+export const aboutOf = (id: string): string => ABOUT[id] ?? Content.ACTIVE_BY_ID.get(id)?.text ?? Content.CONSUMABLE_BY_ID.get(id)?.text ?? "";
+
 const cost = (c: Choice) => [c.mp ? `${c.mp} MP` : "", c.tp ? `${c.tp} TP` : ""].filter(Boolean).join(", ");
 
 interface Props {
@@ -33,6 +45,35 @@ interface Props {
 
 export default function CommandBar({ turn, name, at, aiming, aim, send }: Props) {
   const [chain, setChain] = useState<string[] | null>(null);
+  // The choice under the pointer or the keyboard, described below the buttons.
+  const [about, setAbout] = useState<{ name: string; text: string; why?: string | null; cost?: string } | null>(null);
+  // A Job's abilities sit under its command set's name (Josh: "a sub menu for each job's commands"), as do the items.
+  const [menu, setMenu] = useState<string | null>(null);
+  const setOf = (id: string): string | null => {
+    const job = Content.ACTIVE_BY_ID.get(id)?.job;
+    return job ? (Content.JOB_BY_ID.get(job)?.set ?? null) : null;
+  };
+  const plain = turn.abilities.filter((c) => setOf(c.id) === null);
+  const sets: [string, typeof turn.abilities][] = [];
+  for (const c of turn.abilities) {
+    const set = setOf(c.id);
+    if (set === null) continue;
+    const at = sets.find(([s]) => s === set);
+    if (at) at[1].push(c);
+    else sets.push([set, [c]]);
+  }
+  const abilityButton = (c: (typeof turn.abilities)[number]) => (
+    <li key={c.id}>
+      <button type="button" className="sp-button sp-command__choice" disabled={!!c.why} title={[aboutOf(c.id), c.why ? `Cannot: ${c.why}` : ""].filter(Boolean).join("\n") || undefined} {...tell(c.name, c.id, { why: c.why, cost: cost(c) })} onClick={() => pick(c, (target) => ({ action: { do: "ability", ability: c.id, target } }))}>
+        {c.name}
+        {cost(c) ? <small> {cost(c)}</small> : null}
+      </button>
+    </li>
+  );
+  const tell = (name: string, id: string, extra: { why?: string | null; cost?: string } = {}) => ({
+    onMouseEnter: () => setAbout({ name, text: aboutOf(id), ...extra }),
+    onFocus: () => setAbout({ name, text: aboutOf(id), ...extra }),
+  });
   const pick = (c: Choice & Aim, act: (target: Cell) => Command) => {
     const cells = cellsOf(c);
     if (!cells) send(act(at));
@@ -72,45 +113,78 @@ export default function CommandBar({ turn, name, at, aiming, aim, send }: Props)
       <span>
         <strong>{name}</strong>: what do they do?
       </span>
-      <ul className="sp-command__choices">
-        {turn.abilities.map((c) => (
-          <li key={c.id}>
-            <button type="button" className="sp-button" disabled={!!c.why} title={c.why ?? undefined} onClick={() => pick(c, (target) => ({ action: { do: "ability", ability: c.id, target } }))}>
-              {c.name}
-              {cost(c) ? <small> {cost(c)}</small> : null}
-            </button>
-          </li>
-        ))}
-        {turn.items.map((c) => (
-          <li key={`item:${c.id}`}>
-            <button type="button" className="sp-button sp-button--quiet" disabled={!!c.why} title={c.why ?? undefined} onClick={() => pick(c, (target) => ({ action: { do: "item", item: c.id, target } }))}>
-              {c.name}
-              <small> ×{c.left}</small>
-            </button>
-          </li>
-        ))}
+      <ul className="sp-command__choices" aria-label={menu ?? "Commands"}>
+        {menu === null ? (
+          <>
+            {plain.map(abilityButton)}
+            {sets.map(([set, list]) => (
+              <li key={set}>
+                <button type="button" className="sp-button sp-command__choice is-set" disabled={list.every((c) => !!c.why)} {...tell(set, "", { cost: `${list.length} ${list.length === 1 ? "ability" : "abilities"}` })} onClick={() => setMenu(set)}>
+                  {set} ▸
+                </button>
+              </li>
+            ))}
+            {turn.items.length ? (
+              <li>
+                <button type="button" className="sp-button sp-command__choice is-item" {...tell("Items", "", { cost: `${turn.items.length} in the satchel` })} onClick={() => setMenu("Items")}>
+                  Items ▸
+                </button>
+              </li>
+            ) : null}
+          </>
+        ) : (
+          <>
+            <li>
+              <button type="button" className="sp-button sp-command__choice is-plain" onClick={() => setMenu(null)}>
+                ◂ Back
+              </button>
+            </li>
+            {menu === "Items"
+              ? turn.items.map((c) => (
+                  <li key={`item:${c.id}`}>
+                    <button type="button" className="sp-button sp-command__choice is-item" disabled={!!c.why} title={[aboutOf(c.id), c.why ? `Cannot: ${c.why}` : ""].filter(Boolean).join("\n") || undefined} {...tell(c.name, c.id, { why: c.why, cost: `${c.left} left` })} onClick={() => pick(c, (target) => ({ action: { do: "item", item: c.id, target } }))}>
+                      {c.name}
+                      <small> ×{c.left}</small>
+                    </button>
+                  </li>
+                ))
+              : (sets.find(([s]) => s === menu)?.[1] ?? []).map(abilityButton)}
+          </>
+        )}
       </ul>
       <span className="sp-actions">
         {turn.combo ? (
-          <button type="button" className="sp-button" onClick={() => setChain([])}>
+          <button type="button" className="sp-button sp-command__choice" {...tell("Build a combo", "combo", { cost: `${turn.combo.tp} TP` })} onClick={() => setChain([])}>
             Build a combo <small>{turn.combo.tp} TP</small>
           </button>
         ) : null}
         {!turn.moved && turn.moves.length ? (
-          <button type="button" className="sp-button sp-button--quiet" onClick={() => aim({ label: "Move", cells: turn.moves.map(([col, row]) => ({ side: "party", col, row })), cursor: 0, send: (c) => ({ move: [c.col, c.row] }) })}>
+          <button type="button" className="sp-button sp-command__choice is-plain" {...tell("Move", "move")} onClick={() => aim({ label: "Move", cells: turn.moves.map(([col, row]) => ({ side: "party", col, row })), cursor: 0, send: (c) => ({ move: [c.col, c.row] }) })}>
             Move
           </button>
         ) : null}
-        <button type="button" className="sp-button sp-button--quiet" onClick={() => send({ action: { do: "defend" } })}>
+        <button type="button" className="sp-button sp-command__choice is-plain" {...tell("Defend", "defend")} onClick={() => send({ action: { do: "defend" } })}>
           Defend
         </button>
-        <button type="button" className="sp-button sp-button--quiet" onClick={() => send({ auto: "turn" })}>
+        <button type="button" className="sp-button sp-command__choice is-plain" {...tell("Gambits: this turn", "gambits_turn")} onClick={() => send({ auto: "turn" })}>
           Gambits: this turn
         </button>
-        <button type="button" className="sp-button sp-button--quiet" onClick={() => send({ auto: "battle" })}>
+        <button type="button" className="sp-button sp-command__choice is-plain" {...tell("Gambits: the rest of the battle", "gambits_battle")} onClick={() => send({ auto: "battle" })}>
           Gambits: the rest of the battle
         </button>
       </span>
+      <p className="sp-command__about" aria-live="polite">
+        {about ? (
+          <>
+            <strong>{about.name}</strong>
+            {about.cost ? <small> {about.cost}</small> : null}
+            {about.text ? <> · {about.text}</> : null}
+            {about.why ? <em> Cannot now: {about.why}.</em> : null}
+          </>
+        ) : (
+          "Point at an action to see what it does."
+        )}
+      </p>
     </div>
   );
 }

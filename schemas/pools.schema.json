@@ -20,6 +20,7 @@
           "resist": { "$ref": "#/definitions/elements" },
           "weak": { "$ref": "#/definitions/elements" },
           "hazardPct": { "type": "integer", "minimum": 0, "maximum": 100, "description": "Chance an Encounter carries a hazard (§14.8)" },
+          "omens": { "type": "array", "minItems": 3, "items": { "type": "string", "minLength": 10 }, "description": "Lines shown before a battle here (Josh 2026-11-02: a pause with flavor text before each fight)" },
           "drops": {
             "type": "object",
             "additionalProperties": false,

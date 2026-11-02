@@ -101,13 +101,18 @@ function useBattles(battles: SovView["battles"], quiet: boolean) {
   const [seen, setSeen] = useState<Seen[]>(battles);
   const [auto, setAuto] = useState(readWatch);
   const [queue, setQueue] = useState<string[]>(() => (readWatch() ? battles.map((b) => b.key) : []));
+  // Battles just fought on screen open on their ending, not from the start (Josh: not "instantly cut back").
+  const [ended, setEnded] = useState<string[]>([]);
   if (battles !== last) {
     setLast(battles);
     const fresh = battles.filter((b) => !seen.some((x) => x.key === b.key));
     if (fresh.length) {
       setSeen([...seen, ...fresh].slice(-12));
-      // A battle just fought on screen is not shown again.
-      if (auto && !quiet) setQueue([...queue, ...fresh.map((b) => b.key)]);
+      // A battle just fought on screen opens on its ending; others play from the start if watched.
+      if (quiet) {
+        setQueue([...queue, ...fresh.map((b) => b.key)]);
+        setEnded([...ended, ...fresh.map((b) => b.key)]);
+      } else if (auto) setQueue([...queue, ...fresh.map((b) => b.key)]);
     }
   }
   const toggle = (on: boolean) => {
@@ -118,7 +123,7 @@ function useBattles(battles: SovView["battles"], quiet: boolean) {
       // Storage blocked: the choice lasts this visit.
     }
   };
-  return { seen, auto, toggle, watching: seen.find((b) => b.key === queue[0]), waiting: Math.max(0, queue.length - 1), watch: (key: string) => setQueue([key]), next: () => setQueue(queue.slice(1)) };
+  return { seen, auto, toggle, watching: seen.find((b) => b.key === queue[0]), ending: ended.includes(queue[0] ?? ""), waiting: Math.max(0, queue.length - 1), watch: (key: string) => setQueue([key]), next: () => setQueue(queue.slice(1)) };
 }
 
 export default function SovereignPact({ view, isMyTurn, sendMove, lastError }: Props) {
@@ -247,7 +252,7 @@ export default function SovereignPact({ view, isMyTurn, sendMove, lastError }: P
     </div>
   );
   const battle = battles.watching ? (
-    <BattleScreen key={battles.watching.key} replay={battles.watching} view={view} onClose={battles.next} waiting={battles.waiting} fullLog={access.log} sound={music.sfx ? music.sfxVolume : 0} />
+    <BattleScreen key={battles.watching.key} replay={battles.watching} view={view} onClose={battles.next} waiting={battles.waiting} ending={battles.ending} fullLog={access.log} sound={music.sfx ? music.sfxVolume : 0} />
   ) : fight && !hidden ? (
     <BattleScreen
       key="live"
@@ -258,6 +263,7 @@ export default function SovereignPact({ view, isMyTurn, sendMove, lastError }: P
       sound={music.sfx ? music.sfxVolume : 0}
       live={{
         turn: fight.turn,
+        order: fight.order,
         waiting: fight.house === null || fight.house === view.me ? null : `House ${view.houses[fight.house]?.name}`,
         send: (c) => sendMove({ type: "command", ...c }),
       }}

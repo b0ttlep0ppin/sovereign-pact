@@ -38,12 +38,19 @@ describe("the battle screen (§15.5)", () => {
     const { view, replay } = setup();
     const onClose = vi.fn();
     render(<BattleScreen replay={replay} view={view} onClose={onClose} />);
+    // The pause before the fight (an omen), then the first turn.
+    expect(screen.getByRole("region", { name: "Before the battle" })).toBeTruthy();
+    act(() => void vi.advanceTimersByTime(5000));
     act(() => void vi.advanceTimersByTime(2000));
+    expect(screen.queryByRole("region", { name: "Before the battle" })).toBe(null);
     const dialog = screen.getByRole("dialog");
     expect(screen.queryByText(`Turn 0 of ${replay.frames.length}`)).toBe(null);
     fireEvent.keyDown(dialog, { key: "End" });
     expect(screen.getByText(`Turn ${replay.frames.length} of ${replay.frames.length}`)).toBeTruthy();
-    expect(screen.getByText(replay.outcome === "victory" ? "Victory" : /The party/)).toBeTruthy();
+    expect(screen.getAllByText(replay.outcome === "victory" ? "Victory" : /The party/).length).toBeGreaterThan(0);
+    // The ending: how it went, and Continue.
+    expect(screen.getByRole("region", { name: replay.outcome === "victory" ? "Victory" : "Defeat" })).toBeTruthy();
+    expect(screen.getByRole("button", { name: "Continue" })).toBeTruthy();
     fireEvent.keyDown(dialog, { key: "ArrowLeft" });
     expect(screen.getByText(`Turn ${replay.frames.length - 1} of ${replay.frames.length}`)).toBeTruthy();
     fireEvent.keyDown(dialog, { key: "Escape" });

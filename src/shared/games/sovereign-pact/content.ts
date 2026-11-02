@@ -351,6 +351,8 @@ export interface PoolDef {
   weak: Element[];
   /** Chance an Encounter here carries a hazard (§14.8). */
   hazardPct: number;
+  /** Lines shown before a battle here, one chosen by the battle's seed. */
+  omens?: string[];
   /** The drop table (§9.8): each material's % chance per roll, and Essence's. */
   drops: { materials: [string, number][]; essencePct: number };
 }

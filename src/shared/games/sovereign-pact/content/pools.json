@@ -1,16 +1,100 @@
 {
   "pools": [
-    { "id": "beast_lands", "name": "The Beast Lands", "levels": [1, 6], "cards": ["resource", "hunt"], "resist": [], "weak": ["fire"], "hazardPct": 10, "drops": { "materials": [["grain", 50], ["timber", 30], ["wyrmbone", 3]], "essencePct": 10 } },
-    { "id": "hollow_wood", "name": "The Hollow Wood", "levels": [1, 7], "cards": ["resource", "delve"], "resist": ["earth", "water"], "weak": ["fire"], "hazardPct": 10, "drops": { "materials": [["timber", 60], ["grain", 20], ["moonsilver", 3]], "essencePct": 15 } },
-    { "id": "drowned_marches", "name": "The Drowned Marches", "levels": [2, 7], "cards": ["resource", "rescue", "delve"], "resist": ["water"], "weak": ["wind"], "hazardPct": 20, "drops": { "materials": [["grain", 30], ["stone", 30], ["moonsilver", 4]], "essencePct": 15 } },
-    { "id": "barrows", "name": "The Barrows", "levels": [2, 8], "cards": ["delve", "rescue", "pilgrimage"], "resist": ["dark"], "weak": ["holy", "fire"], "hazardPct": 20, "drops": { "materials": [["stone", 40], ["iron", 30], ["saints_ash", 5]], "essencePct": 20 } },
-    { "id": "deep_cold", "name": "The Deep Cold", "levels": [3, 8], "cards": ["hunt", "resource"], "resist": ["water"], "weak": ["fire"], "hazardPct": 10, "drops": { "materials": [["stone", 40], ["iron", 30], ["moonsilver", 5]], "essencePct": 15 } },
-    { "id": "pit", "name": "The Pit", "levels": [4, 10], "cards": ["delve", "hunt"], "resist": ["fire", "dark"], "weak": ["holy", "water"], "hazardPct": 20, "drops": { "materials": [["iron", 40], ["stone", 30], ["voidglass", 4]], "essencePct": 25 } },
-    { "id": "forge_ruins", "name": "The Forge Ruins", "levels": [3, 9], "cards": ["resource", "delve"], "resist": ["earth"], "weak": ["water", "wind"], "hazardPct": 30, "drops": { "materials": [["iron", 60], ["stone", 30], ["hollow_ivory", 5]], "essencePct": 20 } },
-    { "id": "faceless_city", "name": "The Faceless City", "levels": [3, 9], "cards": ["delve", "rescue"], "resist": ["dark"], "weak": [], "hazardPct": 30, "drops": { "materials": [["stone", 40], ["iron", 30], ["voidglass", 5]], "essencePct": 25 } },
-    { "id": "apostate_court", "name": "The Apostate Court", "levels": [2, 9], "cards": ["rescue", "hunt"], "resist": [], "weak": [], "hazardPct": 30, "drops": { "materials": [["iron", 30], ["timber", 30], ["saints_ash", 5]], "essencePct": 20 } },
-    { "id": "shrine_of_six", "name": "The Shrine of Six", "levels": [4, 10], "cards": ["pilgrimage", "hunt"], "resist": [], "weak": [], "hazardPct": 20, "drops": { "materials": [["stone", 30], ["timber", 30], ["saints_ash", 6]], "essencePct": 30 } },
-    { "id": "dragon_reaches", "name": "The Dragon Reaches", "levels": [5, 10], "cards": ["hunt"], "resist": [], "weak": [], "hazardPct": 10, "drops": { "materials": [["iron", 40], ["stone", 30], ["wyrmbone", 8]], "essencePct": 25 } },
-    { "id": "outer_dark", "name": "The Outer Dark", "levels": [6, 10], "cards": ["delve"], "resist": ["dark"], "weak": ["holy"], "hazardPct": 20, "drops": { "materials": [["iron", 30], ["stone", 20], ["voidglass", 8]], "essencePct": 40 } }
+    { "id": "beast_lands", "name": "The Beast Lands", "levels": [1, 6], "cards": ["resource", "hunt"], "resist": [], "weak": ["fire"], "hazardPct": 10, "drops": { "materials": [["grain", 50], ["timber", 30], ["wyrmbone", 3]], "essencePct": 10 }, "omens": [
+      "The grass is flattened in a wide ring, and in its center something has been eating. It lifts its head.",
+      "Every bird in the valley falls silent at once. The herd that was grazing is not a herd.",
+      "Antlers rise from the bracken, too many of them, and the thing beneath them is smiling.",
+      "A carcass hangs in the fork of a tree, fresh, at a height no wolf could reach.",
+      "The tracks circle the camp twice and stop. Something breathes behind you, hot and patient.",
+      "The wind carries the smell of wet fur and old blood. The hunt has turned around."
+    ] },
+    { "id": "hollow_wood", "name": "The Hollow Wood", "levels": [1, 7], "cards": ["resource", "delve"], "resist": ["earth", "water"], "weak": ["fire"], "hazardPct": 10, "drops": { "materials": [["timber", 60], ["grain", 20], ["moonsilver", 3]], "essencePct": 15 }, "omens": [
+      "The trees lean in to listen. Somewhere in the bark, a mouth opens.",
+      "A path appears that was not there before, lined with pale mushrooms that turn to watch you pass.",
+      "The leaves fall upward. Between the trunks, shapes that were standing very still begin to move.",
+      "Sap runs red from a split in the oak, and the oak is screaming.",
+      "Seed husks crunch underfoot like knuckles. The undergrowth rustles in every direction at once.",
+      "A child's voice calls your names from the dark between the roots. No child lives here."
+    ] },
+    { "id": "drowned_marches", "name": "The Drowned Marches", "levels": [2, 7], "cards": ["resource", "rescue", "delve"], "resist": ["water"], "weak": ["wind"], "hazardPct": 20, "drops": { "materials": [["grain", 30], ["stone", 30], ["moonsilver", 4]], "essencePct": 15 }, "omens": [
+      "The water is waist-deep and warm as a body. Something brushes your legs and keeps going.",
+      "Lanterns bob on the black water, held by no hands. They drift closer.",
+      "The reeds part. A face looks up from beneath the surface, and its eyes are open.",
+      "Bells toll from a chapel that sank a hundred years ago. The tide is coming in.",
+      "Mud sucks at your boots and lets go reluctantly, like something tasting.",
+      "Bloated shapes rise from the bog in a slow ring, still wearing what they drowned in."
+    ] },
+    { "id": "barrows", "name": "The Barrows", "levels": [2, 8], "cards": ["delve", "rescue", "pilgrimage"], "resist": ["dark"], "weak": ["holy", "fire"], "hazardPct": 20, "drops": { "materials": [["stone", 40], ["iron", 30], ["saints_ash", 5]], "essencePct": 20 }, "omens": [
+      "The barrow door is open, and it was sealed from the inside.",
+      "Grave-goods glitter in the torchlight. The bones they were buried with sit up.",
+      "Dust falls from the ceiling in a steady hiss, as though the earth above is breathing out.",
+      "Your torch burns blue. The names carved on the lintel have been scratched out, then carved again, fresher.",
+      "Somewhere below, a slow scrape: armor dragging over stone, coming up the stair.",
+      "The dead here were buried face down, so they would dig the wrong way. Someone turned them over."
+    ] },
+    { "id": "deep_cold", "name": "The Deep Cold", "levels": [3, 8], "cards": ["hunt", "resource"], "resist": ["water"], "weak": ["fire"], "hazardPct": 10, "drops": { "materials": [["stone", 40], ["iron", 30], ["moonsilver", 5]], "essencePct": 15 }, "omens": [
+      "Your breath freezes into shapes you did not make. The ice beneath you is lit from below.",
+      "A frozen army stands in the pass, mid-stride. The nearest one has turned its head since you arrived.",
+      "The snow falls without sound, and the footprints ahead of you are your own, walking back.",
+      "The cold has teeth tonight. Out on the white, something howls with a human throat.",
+      "Blue fire crawls along the glacier's crack. Whatever sleeps inside it is waking hungry.",
+      "Frost spreads across your shields in the shape of a hand."
+    ] },
+    { "id": "pit", "name": "The Pit", "levels": [4, 10], "cards": ["delve", "hunt"], "resist": ["fire", "dark"], "weak": ["holy", "water"], "hazardPct": 20, "drops": { "materials": [["iron", 40], ["stone", 30], ["voidglass", 4]], "essencePct": 25 }, "omens": [
+      "The heat rises in waves, and in the waves are faces, mouthing your names.",
+      "Chains rattle in the dark below, all at once, as if something has stood up.",
+      "The walls weep a black oil that smells of tallow and old prayers. The ledge narrows.",
+      "Screams echo up the shaft, too regular to be pain. They are counting.",
+      "A ring of brass hooks hangs over the drop, each one wet. The pit is feeding.",
+      "Embers drift upward against the wind. Below, eyes open in the coals."
+    ] },
+    { "id": "forge_ruins", "name": "The Forge Ruins", "levels": [3, 9], "cards": ["resource", "delve"], "resist": ["earth"], "weak": ["water", "wind"], "hazardPct": 30, "drops": { "materials": [["iron", 60], ["stone", 30], ["hollow_ivory", 5]], "essencePct": 20 }, "omens": [
+      "The great bellows heave on their own. The furnace has been lit for you.",
+      "Hammers ring on anvils in an empty hall, keeping time to a heartbeat.",
+      "Cold iron limbs lie heaped by the slag pit. Some of them still twitch.",
+      "Molten metal runs down the gutters in letters, spelling a word nobody wants to read.",
+      "A smith's apron hangs by the door, stiff with blood, still warm.",
+      "Gears grind behind the walls. Every door slams shut, one after another, toward you."
+    ] },
+    { "id": "faceless_city", "name": "The Faceless City", "levels": [3, 9], "cards": ["delve", "rescue"], "resist": ["dark"], "weak": [], "hazardPct": 30, "drops": { "materials": [["stone", 40], ["iron", 30], ["voidglass", 5]], "essencePct": 25 }, "omens": [
+      "The streets are full of people, and none of them has a face. They all turn toward you.",
+      "Masks hang from every lintel, and every mask is weeping. The square ahead is too quiet.",
+      "A bell rings for a festival. The dancers move without music, and their steps leave stains.",
+      "Every window shows the same room, and in every room the same figure rises from its chair.",
+      "Your own names are painted on the walls, already crossed out.",
+      "A crowd parts in perfect silence. At its heart, something wears the mayor's chain."
+    ] },
+    { "id": "apostate_court", "name": "The Apostate Court", "levels": [2, 9], "cards": ["rescue", "hunt"], "resist": [], "weak": [], "hazardPct": 30, "drops": { "materials": [["iron", 30], ["timber", 30], ["saints_ash", 5]], "essencePct": 20 }, "omens": [
+      "The throne room is lit for a feast. Every guest is dead, and every guest is listening.",
+      "A herald announces you by titles you have never held, and the court laughs behind its fans.",
+      "Banners of Houses that no longer exist hang from the rafters. Yours is among them.",
+      "Wine runs from the fountain thick and dark. The courtiers bow, and keep bowing, until their necks break.",
+      "A crown lies on the steps, waiting. Whoever wears it here does not take it off.",
+      "The judges in their black hoods have already reached a verdict."
+    ] },
+    { "id": "shrine_of_six", "name": "The Shrine of Six", "levels": [4, 10], "cards": ["pilgrimage", "hunt"], "resist": [], "weak": [], "hazardPct": 20, "drops": { "materials": [["stone", 30], ["timber", 30], ["saints_ash", 6]], "essencePct": 30 }, "omens": [
+      "Six candles burn on the altar. One for each god, and one that should not be lit.",
+      "Hymns rise from the empty pews, in a language that hurts the teeth.",
+      "Pilgrims kneel in rows, their foreheads worn to the bone against the stone. They rise as one.",
+      "The holy water boils without fire. The saint in the window has turned her back.",
+      "Incense thick as wool fills the nave, and something in it is breathing.",
+      "The relic in the reliquary blinks."
+    ] },
+    { "id": "dragon_reaches", "name": "The Dragon Reaches", "levels": [5, 10], "cards": ["hunt"], "resist": [], "weak": [], "hazardPct": 10, "drops": { "materials": [["iron", 40], ["stone", 30], ["wyrmbone", 8]], "essencePct": 25 }, "omens": [
+      "The mountainside is glassed black, and the glass is still warm.",
+      "Bones the size of ship's keels line the pass. Some of them are new.",
+      "A shadow passes over the sun, then over you, then circles back.",
+      "Gold coins cover the slope like scree, and every one is stamped with a dead king's face. Something stirs under the hoard.",
+      "Sulfur stings your eyes. The ground trembles with a slow, enormous breath.",
+      "Scales litter the path, shed and sharp as knives. Whatever wore them has grown."
+    ] },
+    { "id": "outer_dark", "name": "The Outer Dark", "levels": [6, 10], "cards": ["delve"], "resist": ["dark"], "weak": ["holy"], "hazardPct": 20, "drops": { "materials": [["iron", 30], ["stone", 20], ["voidglass", 8]], "essencePct": 40 }, "omens": [
+      "The stars go out, one by one, until only the eyes are left.",
+      "Up and down lose their meaning. A voice speaks from the inside of your skull, gently, like a mother.",
+      "Geometry fails. The thing ahead has too many angles, and all of them are looking at you.",
+      "You hear your own heartbeat outside your body, and something else is listening to it.",
+      "The light from your lanterns bends away from what waits, afraid.",
+      "Here at the edge of all things, the Rift is not a door. It is a mouth."
+    ] }
   ]
 }

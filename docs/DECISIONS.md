@@ -2,6 +2,14 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 8aw): a pause before each battle, an ending after it, the turn order, and command sets
+
+- Josh: "there should also be pauses before battle, if you have a battle, with some flavor text". A battle opens on a card: the region, the boss or the encounter, an omen (six per region, in `pools.json` `omens`, chosen by the battle's seed) and what waits; it lasts five seconds or until a key or "To arms".
+- Josh: "After you win a battle, there should be some celebration or a transition back". A battle ends on a card: Victory (or "The party falls" / "withdraws"), how many foes lie dead, each Scion's HP or Down or Dead and the injuries they took, then Continue or Watch it again. A battle fought on screen reopens on its ending instead of cutting away.
+- Josh: "there should be a turn order clock". A strip over the field shows the next eight turns: a fight in progress sends the turn forecast (§10.4, public: CT and Speed are known), a battle watched back reads its own turns; a charged spell landing is marked.
+- Josh did not know what "replay 1× 2× 4× skip to the end" were. They are labelled "Playback" ("Watch back" in a live fight), each with a tooltip; in a live fight the last is "Skip to now".
+- Josh: "would like to be able to see what abilities do in combat", "the red vs brown highlighting for buttons feels a bit arbitrary", and "should have a sub menu for each job's commands". Every action has the same look (items edged green, plain actions dimmer); pointing at one shows its cost and what it does under the buttons. A Job's abilities sit under its command set's name (Warfare, Sorcery…), items under Items; Attack, Move, Defend and the gambit choices stay at the top.
+
 ## 2026-11-02 (implementation, Milestone 8av): blows land with weight; whose turn and what you aim at are plain
 
 - Josh: the sprites "stay paused on the last animation frame"; swings need "more oomph... maybe in the dead area in the middle"; Ember had "virtually no animation" though he wants "tons of animations, color distortions". A Scion now swings once and returns to the ready. Every blow is drawn as a strike (`BattleFx.tsx`): the attacker winds up and dashes into the gap (melee deep, ranged and spells a step), speed lines cross the gap, the target takes a slash, a bolt or an element-colored orb and burst, flashes white for a beat (the hit-stop), splits red and cyan and is knocked back; criticals and spells shake the field, criticals redden the screen's edges, and each spell washes the whole screen in its element (fire scorches, water chills, dark inverts, holy blinds). Numbers pop as the blow lands. Several actions in one turn land one after another. A turn lasts 1.3 s at 1× (was 0.9 s), longer when it holds several blows. All of it is off under reduced motion.

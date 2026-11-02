@@ -36,8 +36,13 @@ describe("commanding a turn (§15.5)", () => {
   it("lists what the Scion can do, with costs, and greys out what they cannot", () => {
     setup(turnOf);
     expect(screen.getByRole("group", { name: /'s turn$/ })).toBeTruthy();
+    // Each Job's abilities sit under its command set: Warfare (Soldier), Sorcery (Magus).
+    fireEvent.click(screen.getByRole("button", { name: "Warfare ▸" }));
     expect(screen.getByRole("button", { name: /^Rally/ }).textContent).toBe("Rally 6 MP");
-    expect((screen.getByRole("button", { name: /^Firestorm/ }) as HTMLButtonElement).disabled).toBe(true);
+    fireEvent.click(screen.getByRole("button", { name: "◂ Back" }));
+    expect((screen.getByRole("button", { name: "Sorcery ▸" }) as HTMLButtonElement).disabled).toBe(true);
+    fireEvent.click(screen.getByRole("button", { name: "Sorcery ▸" }));
+    expect(screen.queryByRole("button", { name: /^Firestorm/ })).toBe(null);
   });
 
   it("keeps the waiting turn a click away while you watch the battle back", () => {
@@ -70,6 +75,7 @@ describe("commanding a turn (§15.5)", () => {
 
   it("sends a self-aimed choice at once, and hands turns to the gambits", () => {
     const { send } = setup(turnOf);
+    fireEvent.click(screen.getByRole("button", { name: "Warfare ▸" }));
     fireEvent.click(screen.getByRole("button", { name: /^Rally/ }));
     expect(send.mock.calls[0]![0]).toMatchObject({ action: { do: "ability", ability: "rally", target: { side: "party" } } });
     fireEvent.click(screen.getByRole("button", { name: "Gambits: the rest of the battle" }));
