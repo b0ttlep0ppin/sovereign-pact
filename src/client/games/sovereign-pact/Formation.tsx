@@ -41,7 +41,7 @@ export default function Formation({ view, people, sendMove, canAct, title = "For
             const p = at(col, row);
             const own = !!p && mine(p);
             const colors = p ? view.houses[p.house]?.colors : undefined;
-            const label = p ? `${p.name}, ${c}, row ${row + 1}` : `${c}, row ${row + 1}`;
+            const label = p ? `${p.name}, ${c}, row ${row + 1}${p.hp ? `, ${p.hp[0]} of ${p.hp[1]} HP` : ""}` : `${c}, row ${row + 1}`;
             return (
               <button
                 key={`${col}:${row}`}
@@ -58,6 +58,7 @@ export default function Formation({ view, people, sendMove, canAct, title = "For
                   <>
                     <ScionSprite look={lookOf(p, colors, view.items)} anim="idle" frame={0} size={44} />
                     <small>{p.name.split(" ")[0]}</small>
+                    {p.hp ? <span className="sp-formation__hp" style={{ width: `${(100 * p.hp[0]) / p.hp[1]}%` }} aria-hidden="true" /> : null}
                   </>
                 ) : null}
               </button>

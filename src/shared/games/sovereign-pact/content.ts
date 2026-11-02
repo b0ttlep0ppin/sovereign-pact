@@ -560,6 +560,8 @@ export interface TripEffect {
   sanity?: number;
   durability?: number;
   loc?: "head" | "body" | "arms" | "legs";
+  /** % of max HP, carried to the next battle (Josh 2026-11-02); never below 1. */
+  hp?: number;
   mp?: number;
   xp?: number;
   jp?: number;

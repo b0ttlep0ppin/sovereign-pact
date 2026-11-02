@@ -89,7 +89,7 @@ export const TUNING = {
   journey: {
     nodes: [["encounter", 40], ["event", 45], ["camp", 10], ["cache", 5]] as const,
     mandatoryExtra: 2,
-    camp: { durabilityPct: 50, sanityPct: 10 },
+    camp: { durabilityPct: 50, sanityPct: 10, hpPct: 35 },
     bossReach: 2,
     valor: { battle: 1, boss: 5, retreat: 3 },
     lostPct: 50,
@@ -101,6 +101,8 @@ export const TUNING = {
     botRetreatSanity: 15,
     botRetreatHurtPct: 50,
     botRetreatBroken: 2,
+    /** A Scion under this % of their HP counts as badly hurt for the bot Leader. */
+    botRetreatHp: 30,
   },
 
   /** §6.5 [PROPOSED numbers]: a promotion's Gold, ceremony slots a Year, and the Chapel's extra slot; the bot promotes while under its target of Scions. */

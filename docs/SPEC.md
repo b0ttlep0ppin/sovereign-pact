@@ -865,7 +865,7 @@ A `change` effect replaces the Scion's base stats, growths, individual traits, l
 ### 9.8 Encounters
 
 - Each card has an **enemy pool** (themed by its sprites, §14). An Encounter node draws a **group template** for the level: 2–6 enemies for a 4-party, 4–10 for an 8-party, with roles (fodder, bruiser, caster, support, elite). Ambush/surprise modifiers come from events and traits (Light Sleepers, Watchtower).
-- Victory: XP and JP for all present, TP reset, some Durability and Sanity loss persists. Loot: a small roll from the pool's drop table.
+- Victory: XP and JP for all present, TP reset; HP, MP, Durability and Sanity loss persist to the next battle (HP: Josh 2026-11-02, DECISIONS 8ao), mended by Camps, Pilgrim's Bread and events. Loot: a small roll from the pool's drop table.
 - **Retreat from an encounter:** the Leader's player may call it after the first full round; each Scion must pass a Legs-Durability-based escape check or take a free hit; the node is marked failed and the party arrives at the next node with −10% Sanity.
 
 ### 9.9 The Boss and the result [DECIDED]

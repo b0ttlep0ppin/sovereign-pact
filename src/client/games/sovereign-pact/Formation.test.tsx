@@ -31,4 +31,13 @@ describe("the formation", () => {
     render(<Formation view={view} people={people} sendMove={() => {}} canAct={false} />);
     for (const c of screen.getAllByRole("gridcell")) expect((c as HTMLButtonElement).disabled).toBe(true);
   });
+
+  it("shows a Scion's HP once the road has hurt them", () => {
+    const s = calm(campaign(1, 5));
+    const view = g.view(s, "p1");
+    const people = view.people.filter((p) => p.host === 0 && p.status === "scion");
+    const hurt = people.map((p, i) => (i === 0 ? { ...p, hp: [12, 40] as [number, number] } : p));
+    render(<Formation view={view} people={hurt} sendMove={() => {}} canAct={false} />);
+    expect(screen.getByRole("gridcell", { name: new RegExp(`^${people[0]!.name}, .*12 of 40 HP$`) })).toBeTruthy();
+  });
 });

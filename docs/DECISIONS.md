@@ -2,6 +2,16 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 8ao): HP carries through an expedition; Pugilists wear a kerchief
+
+- Josh: "TP should reset per battle, and HP damage and MP should persist; that's the point of the event battles, to soften you up for the main boss." MP already carried and TP already starts each battle at 0. HP was refilled before every battle; now it carries.
+- What a battle leaves is kept as `carry[id].hurt` (HP missing), so a level-up mid-expedition raises the cap without healing. A Down Scion who gets up after a win carries the get-up HP (10%). Never below 1 HP.
+- Mending: a Camp gives back `tuning.journey.camp.hpPct` (35%, first pass) of max HP, Pilgrim's Bread fills HP and MP (§13.7 as written), and an event's `hp` effect (new, % of max HP, + or −) can hurt or heal. Home mends all, because the carry ends with the expedition.
+- Bots: a Scion under `tuning.journey.botRetreatHp` (30%) counts as badly hurt in the bot Leader's turn-back rule, and the bot breaks bread when HP is low.
+- The view shows `hp: [now, max]` on a hurt Scion during an expedition. The formation draws a bar and reads it out.
+- Josh: "kerchief makes more sense than hood for pugilist head wear, hood is more vagabond style". So the Pugilist's outfit has the LPC bandana (kerchief), the Vagabond's has the hood, and a Hood item worn by a Pugilist is drawn as the kerchief.
+- Josh: "the game should be pretty hard or else there's no point", and bots "with no tactics, no character building and no strategy" should find it almost impossible. The enemy pass tunes toward bots losing nearly every campaign.
+
 ## 2026-11-02 (implementation, Milestone 8am): Scion melee is lenient about rows
 
 - Josh: "Need more leniency on targeting melee and stuff like that." Before this, a Scion's sword reached only the front-most foe in its own row, so a Scion one row off from every foe had nothing to swing at.

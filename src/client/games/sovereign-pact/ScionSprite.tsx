@@ -31,8 +31,8 @@ const OUTFIT: Record<string, Partial<Record<Slot, string>>> = {
   knight: { armor: "plate", weapon: "sword", shield: "heater", cape: "solid" },
   magus: { shirt: "longsleeve", hat: "wizard", weapon: "staff", cape: "solid" },
   soothsayer: { shirt: "longsleeve", hat: "hood", weapon: "staff" },
-  vagabond: { armor: "leather", hat: "bandana", weapon: "bow" },
-  pugilist: { shirt: "sleeveless" },
+  vagabond: { armor: "leather", hat: "hood", weapon: "bow" },
+  pugilist: { shirt: "sleeveless", hat: "bandana" },
   minstrel: { shirt: "tshirt", hat: "cavalier", weapon: "dagger", cape: "solid" },
   gambler: { shirt: "longsleeve", hat: "tricorne", weapon: "crossbow" },
   ravager: { armor: "chainmail", weapon: "sword", cape: "solid" },
@@ -150,7 +150,8 @@ export function lookOf(p: Pick<Person, "id" | "sex" | "age" | "job" | "status"> 
 const outfitOf = (look: ScionLook): Partial<Record<Slot, string>> => {
   const out = { ...(OUTFIT[look.job] ?? OUTFIT.recruit!) };
   for (const [slot, piece] of Object.entries(look.kit ?? {}) as [Slot, string][]) {
-    if (piece) out[slot] = piece;
+    // A light hood on a Pugilist is tied as a kerchief (Josh 2026-11-02): the hood is the Vagabond's.
+    if (piece) out[slot] = slot === "hat" && piece === "hood" && look.job === "pugilist" ? "bandana" : piece;
     // Bare-handed or unarmored: no weapon or armor; a helmless head keeps its Job's hat.
     else if (slot === "weapon" || slot === "armor") delete out[slot];
   }

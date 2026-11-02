@@ -89,15 +89,16 @@ describe("walking it", () => {
     expect(error(s, "p2", { type: "retreat" })).toMatch(/no turning back/);
   });
 
-  it("rests at a Camp: Durability and Sanity come back", () => {
+  it("rests at a Camp: HP, Durability and Sanity come back", () => {
     let s = underway(card(1));
     const e = s.expedition!;
     e.chain = ["camp", "boss"];
     const id = e.party[0]![0]!;
-    e.carry[id] = { dur: { head: 1, body: 1, arms: 1, legs: 0 }, broken: ["legs"] };
+    e.carry[id] = { dur: { head: 1, body: 1, arms: 1, legs: 0 }, broken: ["legs"], hurt: 1000 };
     const p = s.people.find((x) => x.id === id)!;
     p.sanity = 10;
     s = move(s, "p1", { type: "press_on" });
+    expect(s.expedition!.carry[id]!.hurt).toBeLessThan(1000);
     expect(s.expedition!.carry[id]!.dur.legs).toBeGreaterThan(0);
     expect(s.expedition!.carry[id]!.broken).toEqual([]);
     expect(s.people.find((x) => x.id === id)!.sanity).toBeGreaterThan(10);
@@ -116,6 +117,24 @@ describe("walking it", () => {
       expect(p.jp[p.job!]).toBeGreaterThanOrEqual(TUNING.progression.battleJp);
       expect(s.expedition!.carry[id]).toBeDefined();
     });
+  });
+
+  it("carries HP lost from battle to battle: the next fight starts where the last left them", () => {
+    let s = underway(card(1), 12);
+    s.expedition!.chain = ["encounter", "encounter", "boss"];
+    const id = s.expedition!.party[0]![0]!;
+    s.expedition!.carry[id] = { dur: {}, broken: [], hurt: 40 };
+    s = move(s, "p1", { type: "press_on" });
+    const fought = s.battles!.at(-1)!;
+    const u = fought.units.find((x) => x.person === id)!;
+    const start = fought.start.find((v) => v[0] === u.id)!;
+    expect(start[1]).toBe(u.maxHp - 40);
+    // What the battle left is what the next one starts with: still hurt, never at 0.
+    const end = s.expedition!.carry[id]!.hurt ?? 0;
+    const last = fought.frames.reduce((hp, f) => f.vit.find((v) => v[0] === u.id)?.[1] ?? hp, start[1]);
+    expect(end).toBeGreaterThan(0);
+    expect(end).toBeLessThan(u.maxHp);
+    if (last > 0) expect(end).toBe(u.maxHp - last);
   });
 
   it("comes home in triumph from the boss, with the expedition's XP", () => {

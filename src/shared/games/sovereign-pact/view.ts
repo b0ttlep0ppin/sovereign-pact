@@ -136,6 +136,8 @@ export interface PersonView {
   /** Pools follow from the stats, so a recruit's show from Insight 1, like its stats. */
   sanity?: number;
   mp?: number;
+  /** On an expedition, once hurt: HP now and at full. */
+  hp?: [now: number, max: number];
   /** Insight 1+ for recruits. */
   base?: Six;
   potential?: Person["potential"];
@@ -289,6 +291,10 @@ export function view(s: SovState, playerId: PlayerId): SovView {
   const people = s.people.flatMap((p) => {
     const v = personView(p, me, insight);
     if (v && me !== null && p.host === me && (p.status === "scion" || p.status === "retired")) v.kit = kitOf(s, me, p);
+    // On the road, HP lost in battle stays lost until mended; everyone sees it, as they see Sanity and MP.
+    // The cap is the one the last battle or event measured, so the view need not build the Scion.
+    const c = s.expedition?.carry[p.id];
+    if (v && c?.hurt && c.hpMax) v.hp = [Math.max(1, c.hpMax - c.hurt), c.hpMax];
     return v ?? [];
   });
   const worn = new Set(people.flatMap((p) => Object.values(p.gear ?? {})));
