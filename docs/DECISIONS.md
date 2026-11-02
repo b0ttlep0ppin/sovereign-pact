@@ -2,6 +2,33 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 8a): the Town Map, first prototype
+
+- The Settlement Phase now shows the Town Map (§15.6). Its pieces:
+  - The Rift Gate tears open at the top edge.
+  - The Commons sits in the middle, with its treasury, the year's Crisis, and its projects at their levels (those being paid for show as "rising").
+  - Each House's Seat stands around it, with its keep and its buildings at their levels, in House colors with the emblem and a banner.
+  - The walls run along the bottom.
+  - The sky moves from dusk in Year 1 to red in the last Year, and Doom draws cracks of light along the horizon.
+- The viewer's people stand as chits by their Year assignment. Dragging a chit onto a place assigns them; so does picking a chit and then the place, which also works by keyboard and touch. The places and what they do:
+
+  | Place | Assignment |
+  |---|---|
+  | Keep | Rest |
+  | Chapel | Chapel |
+  | Infirmary | Infirmary |
+  | Scriptorium | Study |
+  | Training Ground | Train, or Teach for the Retired |
+  | Farm, Lumber Camp, Quarry, Mine | Work there |
+  | The walls | Guard |
+  | The Rift Gate | Sortie |
+
+  The rules refuse what is not allowed, and the reason shows.
+- Readings:
+  - The tiles are drawn in CSS for now. The Oryx tiles replace them once the packs are cut (HANDOFF §8.5), and the layout stays: four Seat quadrants around the Commons, rather than a 60×40 panning tile map, until the tiles exist.
+  - Only the viewer's own chits are shown. Other Houses' assignments are private, as they are in the view.
+  - A chit dropped on the Gate goes on the House's Sortie for this Year, or the first Sortie on offer if the House has none yet. A Sortie picker comes with the Gate's own panel.
+
 ## 2026-11-02 (implementation, Milestone 7bb): the last four consumables
 
 With these, every consumable in §13.7 works.
