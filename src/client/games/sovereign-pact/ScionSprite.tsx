@@ -10,12 +10,19 @@ import "./ScionSprite.css";
 
 type Person = SovView["people"][number];
 type Slot = "body" | "head" | "hair" | "beard" | "legs" | "feet" | "shirt" | "armor" | "cape" | "hat" | "weapon" | "shield";
-/** A sheet row: idle facing down (the portrait), idle facing left (toward the enemy), four attacks, and the fall. */
-export type Anim = "portrait" | "idle" | "slash" | "thrust" | "spellcast" | "shoot" | "hurt";
-const ROW: Record<Anim, number> = { portrait: 0, idle: 1, slash: 2, thrust: 3, spellcast: 4, shoot: 5, hurt: 6 };
+/**
+ * A sheet row: idle facing down (the portrait), idle facing left (toward the enemy), four attacks, and the
+ * fall. The chant is the spellcast's raised-hands frames, swayed back and forth while a spell charges.
+ */
+export type Anim = "portrait" | "idle" | "slash" | "thrust" | "spellcast" | "shoot" | "hurt" | "chant";
+const ROW: Record<Anim, number> = { portrait: 0, idle: 1, slash: 2, thrust: 3, spellcast: 4, shoot: 5, hurt: 6, chant: 4 };
+/** The first frame an animation plays from (the chant starts with the hands already up). */
+const START: Partial<Record<Anim, number>> = { chant: 2 };
+/** Milliseconds a frame shows. */
+const FRAME_MS: Partial<Record<Anim, number>> = { idle: 400, chant: 220 };
 const CELL = LAYERS.cell;
 const COLS = Math.max(...LAYERS.frames);
-export const FRAMES: Record<Anim, number> = { portrait: 1, idle: LAYERS.frames[1]!, slash: LAYERS.frames[2]!, thrust: LAYERS.frames[3]!, spellcast: LAYERS.frames[4]!, shoot: LAYERS.frames[5]!, hurt: LAYERS.frames[6]! };
+export const FRAMES: Record<Anim, number> = { portrait: 1, idle: LAYERS.frames[1]!, slash: LAYERS.frames[2]!, thrust: LAYERS.frames[3]!, spellcast: LAYERS.frames[4]!, shoot: LAYERS.frames[5]!, hurt: LAYERS.frames[6]!, chant: 4 };
 
 /** What each Job wears and carries; the advanced Jobs dress like the base Job nearest them. */
 const OUTFIT: Record<string, Partial<Record<Slot, string>>> = {
@@ -81,6 +88,29 @@ export function lookOf(p: Pick<Person, "id" | "sex" | "age" | "job" | "status">,
 }
 
 export const attackOf = (look: ScionLook): Anim => ATTACK[OUTFIT[look.job]?.weapon ?? ""] ?? "thrust";
+
+/** The ability the way the content describes it, as far as the animation cares. */
+export interface Action {
+  kind?: string;
+  reach?: string;
+}
+
+/**
+ * What a Scion does on screen when they use `action`: a spell, a heal or a song is cast; a ranged attack
+ * is shot (a staff or a bare hand throws it); a melee one is swung with their weapon, a staff thrust.
+ * An unknown action (an item, a plain move) is the weapon's own attack.
+ */
+export function animFor(look: ScionLook, action: Action | undefined): Anim {
+  const weapon = OUTFIT[look.job]?.weapon;
+  if (!action) return attackOf(look);
+  if (action.kind === "magic" || action.kind === "heal" || action.kind === "support") return "spellcast";
+  if (action.reach === "ranged") return weapon === "bow" || weapon === "crossbow" ? "shoot" : "thrust";
+  if (weapon === "staff" || weapon === "bow" || weapon === "crossbow" || !weapon) return "thrust";
+  return "slash";
+}
+
+/** Whether `anim` carries the Scion toward the foe. */
+export const lunges = (anim: Anim): boolean => anim === "slash" || anim === "thrust";
 
 /** Six tones of a House color, dark to light, to stand in for a cloth palette. */
 function ramp(hex: string): string[] {
@@ -255,7 +285,8 @@ function Frame({ look, anim = "portrait", size, crop, className, play = "loop", 
   const [x, y, w, h] = crop ?? [0, 0, 64, 64];
   const k = size / 64;
   const frames = frame === undefined ? FRAMES[anim] : 1;
-  const col = frame ?? 0;
+  const first = START[anim] ?? 0;
+  const col = frame ?? first;
   const style: CSSProperties = {
     width: w * k,
     height: h * k,
@@ -264,11 +295,14 @@ function Frame({ look, anim = "portrait", size, crop, className, play = "loop", 
     backgroundPosition: `${-(col * CELL + 32 + x) * k}px ${-(ROW[anim] * CELL + 32 + y) * k}px`,
     ...(frames > 1
       ? {
-          ["--sp-from" as string]: `${-(32 + x) * k}px`,
-          // A loop steps past the last frame and wraps; a held swing stops on its last frame.
-          ["--sp-to" as string]: `${-((play === "loop" ? frames : frames - 1) * CELL + 32 + x) * k}px`,
+          ["--sp-from" as string]: `${-(first * CELL + 32 + x) * k}px`,
+          // A loop steps past the last frame and wraps; a held swing stops on its last frame. The chant
+          // sways: it plays to its last frame and back.
+          ["--sp-to" as string]: `${-((first + (play === "loop" && anim !== "chant" ? frames : frames - 1)) * CELL + 32 + x) * k}px`,
           ["--sp-y" as string]: `${-(ROW[anim] * CELL + 32 + y) * k}px`,
-          animation: `sp-scion ${frames * (anim === "idle" ? 400 : 110)}ms ${play === "loop" ? `steps(${frames}) infinite` : `steps(${frames}, jump-none) 1 forwards`}`,
+          animation: `sp-scion ${frames * (FRAME_MS[anim] ?? 110)}ms ${
+            anim === "chant" ? `steps(${frames}, jump-none) infinite alternate` : play === "loop" ? `steps(${frames}) infinite` : `steps(${frames}, jump-none) 1 forwards`
+          }`,
         }
       : {}),
   };

@@ -2,6 +2,16 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 8ad): Scions act out what they do in battle
+
+- A Scion's animation now follows the ability they use, not only their weapon.
+  - Spells, heals and songs are cast.
+  - Ranged attacks are shot with a bow or crossbow, or thrown with a hand thrust.
+  - Melee blows are slashed with a blade or thrust with a staff or a fist.
+- Melee blows also step toward the foe and back.
+- Josh: "Maybe do the chanting animation while they charge stuff." While a spell charges, the Scion chants: their raised-hands frames sway back and forth, with a slow violet glow, until the spell lands or is broken.
+- Moving, defending and waiting leave them at the ready.
+
 ## 2026-11-02 (implementation, Milestone 8ac): Scions drawn from LPC sprite pieces
 
 - Josh: "you assemble the sprites from the pieces." Every Scion, volunteer and recruit is now stacked at run time from LPC layers: body, head, hair, beard, clothes, armor, cape, hat, weapon and shield.
