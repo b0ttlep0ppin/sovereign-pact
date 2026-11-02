@@ -1,0 +1,90 @@
+{
+  "id": "the_idle_golem",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    10
+  ],
+  "title": "The Idle Golem",
+  "text": "An iron guardian stands in a ruined square, rusted still. A word is carved on its brow. Change the word, and it might serve.",
+  "options": [
+    {
+      "id": "word",
+      "label": "The wisest changes the word.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "It turns, and kneels, and walks with you to the next fight.",
+          "effects": [
+            {
+              "to": "party",
+              "status": "protect"
+            },
+            {
+              "score": {
+                "lore": 1
+              }
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "It turns, and remembers its orders.",
+          "effects": [
+            {
+              "encounter": {}
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "scrap",
+      "label": "Break it up for iron.",
+      "rule": "scion:highest:might",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It is a great deal of iron.",
+          "effects": [
+            {
+              "resources": {
+                "iron": 6
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "leave",
+      "label": "Leave it be.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Its head turns to watch you go. It was not still at all.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -5
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

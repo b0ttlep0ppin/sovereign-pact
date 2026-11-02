@@ -1,0 +1,101 @@
+{
+  "id": "the_sleeping_knight",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    10
+  ],
+  "title": "The Sleeping Knight",
+  "text": "In a ring of thorns, a knight in old armor sleeps on a stone bier. The stories say he will wake for the realm's last battle.",
+  "options": [
+    {
+      "id": "wake",
+      "label": "Wake him.",
+      "rule": "leader",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 40,
+          "text": "He wakes, and fights beside you, and goes back to sleep after.",
+          "effects": [
+            {
+              "to": "party",
+              "status": "protect"
+            },
+            {
+              "score": {
+                "valor": 2
+              }
+            }
+          ]
+        },
+        {
+          "w": 60,
+          "text": "He wakes, and thinks you are the enemy.",
+          "effects": [
+            {
+              "encounter": {
+                "level": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "guard",
+      "label": "Leave him an offering and guard his sleep a while.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "He sighs in his sleep, and you feel braver.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 10
+            },
+            {
+              "blessing": {
+                "trait": "stout_hearted",
+                "years": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sword",
+      "label": "Take his sword.",
+      "rule": "scion:highest:guile",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "He does not wake. Yet.",
+          "effects": [
+            {
+              "item": {
+                "tier": 4
+              }
+            },
+            {
+              "doom": 2
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

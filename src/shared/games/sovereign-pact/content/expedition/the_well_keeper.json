@@ -1,0 +1,90 @@
+{
+  "id": "the_well_keeper",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    10
+  ],
+  "title": "The Well-Keeper",
+  "text": "An old woman keeps a well with a bucket of gold. A drink, she says, costs a true answer to one question.",
+  "options": [
+    {
+      "id": "answer",
+      "label": "The leader drinks and answers.",
+      "rule": "leader",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "She asks something hard. The truth costs, and the water heals.",
+          "effects": [
+            {
+              "sanity": -10
+            },
+            {
+              "to": "party",
+              "durability": 20
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lie",
+      "label": "The best liar drinks and lies.",
+      "rule": "scion:highest:guile",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 40,
+          "text": "She lets it pass, and laughs.",
+          "effects": [
+            {
+              "to": "party",
+              "durability": 15
+            }
+          ]
+        },
+        {
+          "w": 60,
+          "text": "The water turns to sand in the mouth.",
+          "effects": [
+            {
+              "sanity": -10
+            },
+            {
+              "status": "silence"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pass",
+      "label": "Go thirsty.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Thirsty, and none the wiser.",
+          "effects": [
+            {
+              "to": "party",
+              "durability": -5
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

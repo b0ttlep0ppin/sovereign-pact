@@ -1,0 +1,99 @@
+{
+  "id": "the_dancing_bear",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    9
+  ],
+  "title": "The Dancing Bear",
+  "text": "A showman with a whip and a great bear on a chain, dancing for nobody on an empty road. The bear looks at you as if it knows what you are.",
+  "options": [
+    {
+      "id": "free",
+      "label": "Break the chain.",
+      "rule": "scion:highest:might",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "The bear walks off into the trees, and the showman runs the other way.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 10
+            },
+            {
+              "score": {
+                "renown": 1
+              }
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "The bear remembers every whip it ever felt, and does not ask whose they were.",
+          "effects": [
+            {
+              "encounter": {}
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "buy",
+      "label": "Buy the bear off him.",
+      "rule": "leader",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It follows you a day, and fights for you, and then goes home.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -10
+              }
+            },
+            {
+              "to": "party",
+              "status": "protect"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "watch",
+      "label": "Watch the dance and pay the man.",
+      "rule": "vote",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It is a sad dance.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -3
+              }
+            },
+            {
+              "to": "party",
+              "sanity": -8
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

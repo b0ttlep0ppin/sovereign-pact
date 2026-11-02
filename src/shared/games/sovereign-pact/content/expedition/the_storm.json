@@ -1,0 +1,101 @@
+{
+  "id": "the_storm",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    10
+  ],
+  "title": "The Storm",
+  "text": "A storm out of nowhere, purple lightning walking across the land on long legs.",
+  "options": [
+    {
+      "id": "shelter",
+      "label": "Find shelter and wait.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A long cold wait in a cave.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -5
+            },
+            {
+              "to": "party",
+              "durability": -5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "race",
+      "label": "Race it to the next ridge.",
+      "rule": "scion:highest:speed",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "You make it, and the storm loses you.",
+          "effects": [
+            {
+              "skip": 1
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "The lightning catches someone.",
+          "effects": [
+            {
+              "injury": "body"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bottle",
+      "label": "Catch some in a bottle.",
+      "rule": "scion:highest:acuity",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "A bottle of lightning, humming.",
+          "effects": [
+            {
+              "resources": {
+                "essence": 5
+              }
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "The bottle holds; the hand does not.",
+          "effects": [
+            {
+              "durability": -30,
+              "loc": "arms"
+            },
+            {
+              "status": "burn"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

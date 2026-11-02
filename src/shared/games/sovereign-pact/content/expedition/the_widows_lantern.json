@@ -1,0 +1,94 @@
+{
+  "id": "the_widows_lantern",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    10
+  ],
+  "title": "The Widow's Lantern",
+  "text": "A woman with a lantern on a roadside post, waiting for someone who went into the Gate. She asks if you have seen him.",
+  "options": [
+    {
+      "id": "lie",
+      "label": "Tell her he is coming home.",
+      "rule": "leader",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "She smiles and puts out the lantern and goes home.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -5
+            },
+            {
+              "score": {
+                "renown": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "truth",
+      "label": "Tell her the truth: you do not know.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "She nods, and keeps the lantern lit, and gives you bread.",
+          "effects": [
+            {
+              "to": "party",
+              "durability": 10
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "search",
+      "label": "Promise to look for him.",
+      "rule": "scion:highest:acuity",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "You find his pack a mile on, and a ring for her.",
+          "effects": [
+            {
+              "score": {
+                "renown": 2
+              }
+            },
+            {
+              "to": "party",
+              "sanity": 5
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "You find what found him.",
+          "effects": [
+            {
+              "encounter": {}
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

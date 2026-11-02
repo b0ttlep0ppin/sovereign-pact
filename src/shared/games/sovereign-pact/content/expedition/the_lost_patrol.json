@@ -1,0 +1,91 @@
+{
+  "id": "the_lost_patrol",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    8
+  ],
+  "title": "The Lost Patrol",
+  "text": "A patrol from your own city, half starved, lost in the Gate for months. Their sergeant salutes the nearest House.",
+  "options": [
+    {
+      "id": "feed",
+      "label": "Share supplies and send them home.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "They make it home. The city hears who brought them.",
+          "effects": [
+            {
+              "to": "party",
+              "durability": -8
+            },
+            {
+              "score": {
+                "renown": 2
+              }
+            },
+            {
+              "accord": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "enlist",
+      "label": "The poorest House asks them to serve.",
+      "rule": "house:lowest_standing",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "One stays on, glad of a House to serve.",
+          "effects": [
+            {
+              "house_improvement": "recruit"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rob",
+      "label": "Take their gear; they are as good as dead.",
+      "rule": "leader",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Good city iron.",
+          "effects": [
+            {
+              "resources": {
+                "iron": 4
+              }
+            },
+            {
+              "score": {
+                "renown": -2
+              }
+            },
+            {
+              "doom": 1
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

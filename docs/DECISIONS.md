@@ -2,6 +2,10 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 7y: sixteen general events, and one title per scene) — implementer
+- **Built** (content only). Sixteen general expedition events: the Hollow Hill, the Ship on the Hill, the Sick Village, the Doppelganger, the Dancing Bear, the Storm, the Sleeping Knight, the Ogre's Kitchen, the Hedge Maze, the Widow's Lantern, the Stone Circle, the Thief in Camp, the World's Root, the Lost Patrol, the Well-Keeper and the Idle Golem. That makes 192 expedition events, 118 of them open to any card.
+- **Test.** `npm run content` now fails when two expedition events share a title (ignoring case and a leading "The"), after 7x found three near-copies by hand; it caught a fourth in this batch (a Bone Market beside §9.7's), which became the Dancing Bear.
+
 ## 2026-11-02 (implementation, Milestone 7x: seventeen general events, three in place of near-copies) — implementer
 - **Built** (content only). Seventeen general expedition events: the Ruined Watchtower, the Cursed Coin, the Abandoned Kennel, the Ferryman, the Painted Cave, the Starving Wolf, the Scholar's Tower, the Two Doors, the Bleeding Ground, the Sellswords, the Hedge Witch, the Ford, the Golden Cage, the Stopped Sundial, the Salt Flats, the Collector and the Howling Pass.
 - **Fixed.** Three events from 7n and 7q (the Weeping Statue, the Mirror Pool, the Feast of Crows) shared their title and idea with §9.7's own Weeping Statue, Mirror Pool and Feast of Crows; they are removed, and the Salt Flats, the Collector and the Howling Pass take their places. That makes 176 expedition events, 102 of them open to any card.

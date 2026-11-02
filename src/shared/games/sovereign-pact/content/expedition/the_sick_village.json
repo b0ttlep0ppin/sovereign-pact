@@ -1,0 +1,101 @@
+{
+  "id": "the_sick_village",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    10
+  ],
+  "title": "The Sick Village",
+  "text": "A village where everyone is ill with something that turns the skin to bark. They beg for help, from a careful distance.",
+  "options": [
+    {
+      "id": "help",
+      "label": "The best healer goes in.",
+      "rule": "scion:most_healing",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "They help a great many, and are not taken by it.",
+          "effects": [
+            {
+              "score": {
+                "renown": 3
+              }
+            },
+            {
+              "xp": 120
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "They help a great many, and bring a little of it out.",
+          "effects": [
+            {
+              "score": {
+                "renown": 2
+              }
+            },
+            {
+              "trait": "+bleeder"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "supplies",
+      "label": "Leave supplies at the edge.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "They wave from the distance.",
+          "effects": [
+            {
+              "to": "party",
+              "durability": -8
+            },
+            {
+              "score": {
+                "renown": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "burn",
+      "label": "Burn it, for everyone's safety.",
+      "rule": "leader",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It is the safe thing.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -15
+            },
+            {
+              "doom": 1
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
