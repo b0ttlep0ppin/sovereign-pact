@@ -1,8 +1,9 @@
 // Who an ability can be aimed at and whom it hits when it lands (§10.2–10.3).
 import type { Rng } from "../../../rng.ts";
+import { TUNING } from "../tuning.ts";
 import { reachOf } from "./damage.ts";
 import { cellsOf, frontEachRow, hasStatus, lineTargets, meleeTargets, other, shapeCells, standing, unitsIn, unseen, untouchable } from "./grid.ts";
-import type { AbilityDef, Battle, Cell, Combatant, Side } from "./types.ts";
+import { ROWS, type AbilityDef, type Battle, type Cell, type Combatant, type Side } from "./types.ts";
 
 /** The side `u` fights for: a Charmed combatant fights for the other one (§10.8). */
 export const allegiance = (u: Combatant): Side => (hasStatus(u, "charm") ? other(u.side) : u.side);
@@ -19,8 +20,10 @@ export const crossDistance = (a: Combatant, b: Combatant) =>
 
 /**
  * Combatants `u` may pick for a single-target `ab` (§10.3): melee follows the reach rules, and a Scion's
- * melee from Middle reaches only E1–E2 and from Back needs a reach weapon. Down and Hidden are not
- * single-targetable by foes (§10.9, §10.8); allies can always be picked.
+ * melee from Middle reaches only E1–E2 and from Back needs a reach weapon. A Scion's melee is lenient
+ * about rows (DECISIONS 8am): it reaches the front-most foe of every row (tuning `scionMelee.rowReach`),
+ * so any foe with nothing standing in front of it. Down and Hidden are not single-targetable by foes
+ * (§10.9, §10.8); allies can always be picked.
  */
 export function singleTargets(b: Battle, u: Combatant, ab: AbilityDef): Combatant[] {
   const side = targetSide(u, ab);
@@ -31,8 +34,16 @@ export function singleTargets(b: Battle, u: Combatant, ab: AbilityDef): Combatan
   // A lurker that leapt in stands among the Scions: every Scion's melee reaches it (§14.3).
   const exposed = standing(b, side).filter((t) => hasStatus(t, "exposed"));
   if (u.side === "party") {
-    const found = u.col === 2 && reach !== "reach" ? [] : meleeTargets(b, u, reach);
-    return [...new Set([...(u.col === 1 && reach === "melee" ? found.filter((t) => t.col <= 1) : found), ...exposed])];
+    const { rowReach, nearestIfNone } = TUNING.combat.scionMelee;
+    const within = (n: number) => {
+      const found = meleeTargets(b, u, reach, n);
+      return u.col === 1 && reach === "melee" ? found.filter((t) => t.col <= 1) : found;
+    };
+    // From Back, melee needs a reach weapon.
+    const can = u.col !== 2 || reach === "reach";
+    let found = can ? within(rowReach) : [];
+    for (let n = rowReach + 1; can && nearestIfNone && !found.length && n < ROWS; n++) found = within(n);
+    return [...new Set([...found, ...exposed])];
   }
   return meleeTargets(b, u, reach);
 }

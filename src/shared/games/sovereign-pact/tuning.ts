@@ -365,6 +365,11 @@ export const TUNING = {
     locations: { body: 40, arms: 25, legs: 20, head: 15 },
     locationBias: 60,
     /** Column and status modifiers in % (§10.3, §10.6, §10.8). */
+    /**
+     * Scion melee leniency (DECISIONS 8am): how many rows above and below their own it reaches (7 = every
+     * row: any foe nothing stands in front of), and whether, with none in reach, it reaches the nearest rows that hold one.
+     */
+    scionMelee: { rowReach: 7, nearestIfNone: true },
     frontMelee: 10,
     middleMelee: -10,
     bowFromFront: -10,

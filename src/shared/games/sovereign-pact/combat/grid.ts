@@ -56,13 +56,15 @@ export function distance(a: Combatant, b: Combatant): number {
 /**
  * Who a melee attack from `u` can reach (§10.3): in each row it occupies, the front-most opponent.
  * A `reach` weapon or monster also reaches the one behind it; a flyer reaches anyone in its rows.
+ * `rowReach` widens that to the rows that many above and below (Scion melee, DECISIONS 8am).
  * Down Scions are not single-targetable (§10.9) and Hidden ones not at all.
  */
-export function meleeTargets(b: Battle, u: Combatant, reach: "melee" | "reach" = "melee"): Combatant[] {
+export function meleeTargets(b: Battle, u: Combatant, reach: "melee" | "reach" = "melee", rowReach = 0): Combatant[] {
   const foes = standing(b, other(u.side)).filter((f) => !unseen(f));
-  if (u.tags.includes("flyer")) return foes.filter((f) => rowsOf(f).some((r) => rowsOf(u).includes(r)));
+  const rows = [...new Set(rowsOf(u).flatMap((r) => Array.from({ length: 2 * rowReach + 1 }, (_, i) => r - rowReach + i)))].filter((r) => r >= 0 && r < ROWS);
+  if (u.tags.includes("flyer")) return foes.filter((f) => rowsOf(f).some((r) => rows.includes(r)));
   const out = new Set<Combatant>();
-  for (const row of rowsOf(u)) {
+  for (const row of rows) {
     const inRow = present(b)
       .filter((f) => f.side !== u.side && rowsOf(f).includes(row))
       .sort((x, y) => x.col - y.col);
