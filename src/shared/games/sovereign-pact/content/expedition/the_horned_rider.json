@@ -1,0 +1,92 @@
+{
+  "id": "the_horned_rider",
+  "pools": [
+    "beast_lands"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    6
+  ],
+  "title": "The Horned Rider",
+  "text": "A rider with antlers growing from his helm leads a herd of elk. He asks for the one among you who has killed the most beasts.",
+  "options": [
+    {
+      "id": "killer",
+      "label": "The most blooded steps forward.",
+      "rule": "scion:most_kills|scion:highest:might",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "He judges them fairly, and gives them a horn to call the herd.",
+          "effects": [
+            {
+              "item": {
+                "tier": 2
+              }
+            },
+            {
+              "score": {
+                "valor": 1
+              }
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "He judges them harshly.",
+          "effects": [
+            {
+              "encounter": {
+                "level": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gentle",
+      "label": "The gentlest speaks for you instead.",
+      "rule": "scion:fewest_kills|scion:highest:sagacity",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "He is satisfied, and the herd lets you pass.",
+          "effects": [
+            {
+              "skip": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hide",
+      "label": "Hide in the brush until he passes.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The herd tramples your packs.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -5
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

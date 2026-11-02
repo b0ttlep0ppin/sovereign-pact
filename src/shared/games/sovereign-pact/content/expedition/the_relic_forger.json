@@ -1,0 +1,91 @@
+{
+  "id": "the_relic_forger",
+  "pools": [
+    "apostate_court"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    9
+  ],
+  "title": "The Relic Forger",
+  "text": "A man in the Court's back alleys sells saints' relics he carved himself. His work is very good.",
+  "options": [
+    {
+      "id": "buy",
+      "label": "Buy one.",
+      "rule": "vote",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It will fool almost anyone.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -15
+              }
+            },
+            {
+              "score": {
+                "relics": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "expose",
+      "label": "Expose him to the Court.",
+      "rule": "leader",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The Court thanks you. He does not.",
+          "effects": [
+            {
+              "score": {
+                "renown": 1
+              }
+            },
+            {
+              "score": {
+                "intrigue": -1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "blackmail",
+      "label": "The shrewdest blackmails him.",
+      "rule": "scion:highest:guile",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A real relic, from his private collection.",
+          "effects": [
+            {
+              "score": {
+                "relics": 1
+              }
+            },
+            {
+              "doom": 1
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

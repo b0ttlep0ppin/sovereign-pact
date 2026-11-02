@@ -1,0 +1,85 @@
+{
+  "id": "the_fox_wedding",
+  "pools": [
+    "hollow_wood"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    7
+  ],
+  "title": "The Fox Wedding",
+  "text": "Rain from a clear sky, and a procession of foxes in silk walking upright through the wood. It is bad luck to be seen watching.",
+  "options": [
+    {
+      "id": "hide",
+      "label": "Look away and hide.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "They pass. The rain stops.",
+          "effects": []
+        }
+      ]
+    },
+    {
+      "id": "gift",
+      "label": "Leave a gift for the bride.",
+      "rule": "leader",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A fox returns with a gift of its own.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -5
+              }
+            },
+            {
+              "blessing": {
+                "trait": "lucky",
+                "years": 2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "watch",
+      "label": "The boldest watches.",
+      "rule": "scion:highest:guile",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "Unseen, and they learn the foxes' road.",
+          "effects": [
+            {
+              "skip": 1
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "Seen.",
+          "effects": [
+            {
+              "curse": true
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

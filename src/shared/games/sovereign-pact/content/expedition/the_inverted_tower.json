@@ -1,0 +1,85 @@
+{
+  "id": "the_inverted_tower",
+  "pools": [
+    "outer_dark"
+  ],
+  "weight": 2,
+  "band": [
+    6,
+    10
+  ],
+  "title": "The Inverted Tower",
+  "text": "A tower hangs point-down from nothing. Its door is at the bottom, open.",
+  "options": [
+    {
+      "id": "climb",
+      "label": "Climb up into it.",
+      "rule": "vote",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "A library upside down, its books still readable.",
+          "effects": [
+            {
+              "score": {
+                "lore": 3
+              }
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "It falls up with you inside.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -15
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "look",
+      "label": "The sharpest eye looks in from below.",
+      "rule": "scion:highest:acuity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Someone looks back, and points the way.",
+          "effects": [
+            {
+              "skip": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "leave",
+      "label": "Do not go up.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The tower turns to watch you go.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -3
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

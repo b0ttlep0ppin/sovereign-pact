@@ -1,0 +1,89 @@
+{
+  "id": "the_clockwork_bird",
+  "pools": [
+    "forge_ruins"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    9
+  ],
+  "title": "The Clockwork Bird",
+  "text": "A brass bird flits from beam to beam, singing a song from the forge's best days. It is running down.",
+  "options": [
+    {
+      "id": "wind",
+      "label": "The cleverest hands wind it.",
+      "rule": "scion:highest:guile",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It sings, and leads you to its maker's room.",
+          "effects": [
+            {
+              "fork": {
+                "add": [
+                  "cache"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "catch",
+      "label": "Catch it for the House.",
+      "rule": "vote",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "It is a fine toy, and worth a lot.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 20
+              }
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "Its beak is sharp.",
+          "effects": [
+            {
+              "durability": -20,
+              "loc": "arms"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "let",
+      "label": "Let it run down.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The song slows, and stops.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -3
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

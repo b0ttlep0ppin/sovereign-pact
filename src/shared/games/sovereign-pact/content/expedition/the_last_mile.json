@@ -1,0 +1,57 @@
+{
+  "id": "the_last_mile",
+  "pools": [
+    "pilgrimage"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    10
+  ],
+  "title": "The Last Mile",
+  "text": "Pilgrims walk the last mile to the shrine on their knees. A monk says it is the only way to be heard.",
+  "options": [
+    {
+      "id": "kneel",
+      "label": "Each Scion walks it on their knees.",
+      "rule": "each_scion",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Bloody knees, and a quiet mind.",
+          "effects": [
+            {
+              "durability": -15,
+              "loc": "legs"
+            },
+            {
+              "sanity": 15
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "walk",
+      "label": "Each Scion walks it on their feet.",
+      "rule": "each_scion",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The monks frown.",
+          "effects": [
+            {
+              "sanity": -3
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
