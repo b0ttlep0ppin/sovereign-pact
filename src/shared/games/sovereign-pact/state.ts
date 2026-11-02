@@ -172,6 +172,8 @@ export interface House {
   sealed: boolean;
   /** Recruits promoted this Year (§6.5). */
   promotions?: number;
+  /** Expeditions it has sent Scions on: spare seats go to the fewest first (§9.2). */
+  attended?: number;
 }
 
 /** A queued thing on the 20-Year strip (§8.7). Hidden entries show as "?" until revealed. */
@@ -222,6 +224,21 @@ export interface ExpeditionCard {
   size: 4 | 8 | "2x4";
   /** The mandatory arc's boss (§14.7); other cards draw theirs from the pool. */
   boss?: string;
+}
+
+/** The Year's expedition (§9.2): seats per House, the Scions each fielded, the Leader vote. */
+export interface Expedition {
+  card: ExpeditionCard;
+  /** Seats per House index. */
+  seats: number[];
+  /** Person ids each House fielded; null while it is still choosing. */
+  party: (number[] | null)[];
+  /** Houses that left seats empty: they are not offered more. */
+  declined: number[];
+  /** Each House's vote for a Leader while the vote is open. */
+  votes?: (number | null)[];
+  /** The Leader's person id, once the party departs. */
+  leader?: number;
 }
 
 /**
@@ -366,6 +383,8 @@ export interface SovState {
   vote?: Vote;
   /** The Rift Gate's cards this Year and each House's vote for one (§9.1). */
   gate?: { cards: ExpeditionCard[]; votes: (number | null)[] };
+  /** The Expedition Phase's party (§9.2). */
+  expedition?: Expedition;
   /** Houses that proposed a vote this Year: one proposal each a Year. */
   proposers: number[];
   /** Year assignments by person id; kept from Year to Year until changed. Unassigned people idle. */
@@ -388,6 +407,9 @@ export type SovMove =
   | { type: "seal" }
   /** Vote for one of the Rift Gate's cards (§9.1). */
   | { type: "pick_card"; card: number }
+  /** Field your Scions in your seats (fewer declines the rest), then vote a Leader (§9.2). */
+  | { type: "field"; people: number[] }
+  | { type: "lead"; person: number }
   /** Retire a Scion, or bring a Retired one back (§6.12). */
   | { type: "retire"; person: number }
   | { type: "reinstate"; person: number }

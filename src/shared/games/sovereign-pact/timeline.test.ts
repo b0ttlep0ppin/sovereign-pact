@@ -17,7 +17,7 @@ const move = (s: SovState, player: string, m: SovMove): SovState => {
 function nextYear(s: SovState): SovState {
   const year = s.year;
   while (s.year === year && s.phase !== "over") {
-    const p = s.players.find((_, i) => !s.houses[i]!.sealed)!;
+    const p = g.activePlayers(s)[0]!;
     s = move(s, p, g.botMove!(s, p, undefined as never));
   }
   return s;

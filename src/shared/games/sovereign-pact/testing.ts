@@ -23,6 +23,7 @@ export function found(s: SovState): SovState {
 /**
  * Stills the Omens (tests of exact amounts): this Year's events, Crisis and event vote are cleared, and
  * none come. The Houses also lose their traits (and any starting debt), so amounts are the plain rules'.
+ * The Rift Gate offers nothing, so no expedition departs.
  */
 export function calm(s: SovState): SovState {
   for (const h of s.houses) {
@@ -34,6 +35,7 @@ export function calm(s: SovState): SovState {
   s.events = [];
   s.notes = s.houses.map(() => []);
   delete s.crisis;
+  delete s.gate;
   if (s.vote?.kind === "event") delete s.vote;
   return s;
 }
@@ -50,6 +52,24 @@ export function playOut(start: SovState, each?: (s: SovState) => void, maxMoves 
     if (!r.ok) throw new Error(r.error);
     s = r.state;
     each?.(s);
+  }
+  return s;
+}
+
+/** Every House seals the Year; bots then field the party and vote its Leader, as far as the next Year. */
+export function sealYear(start: SovState): SovState {
+  let s = start;
+  for (const [i, p] of s.players.entries()) {
+    if (s.phase !== "settlement" || s.houses[i]!.sealed) continue;
+    const r = sovereignPact.applyMove(s, p, { type: "seal" });
+    if (!r.ok) throw new Error(r.error);
+    s = r.state;
+  }
+  while (s.phase === "expedition") {
+    const who = sovereignPact.activePlayers(s)[0]!;
+    const r = sovereignPact.applyMove(s, who, sovereignPact.botMove!(s, who, undefined as never));
+    if (!r.ok) throw new Error(r.error);
+    s = r.state;
   }
   return s;
 }

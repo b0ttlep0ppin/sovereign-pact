@@ -3,7 +3,7 @@ import { describe, expect, it } from "vitest";
 import { POOL_BY_ID } from "./content.ts";
 import { band, chosenCard, offer, openGate } from "./gate.ts";
 import { sovereignPact, type SovMove, type SovState } from "./index.ts";
-import { calm, campaign } from "./testing.ts";
+import { calm, campaign, sealYear } from "./testing.ts";
 import { TUNING } from "./tuning.ts";
 import { view } from "./view.ts";
 
@@ -19,9 +19,17 @@ const error = (s: SovState, player: string, m: SovMove): string => {
   return r.error;
 };
 
+/** A still Year (no events) whose Gate is open. */
+const open = (H: number, seed = 5): SovState => {
+  const s = calm(campaign(H, seed));
+  s.flags = s.flags.filter((f) => f !== "calm");
+  openGate(s);
+  return s;
+};
+
 describe("the Rift Gate's offer (§9.1)", () => {
   it("offers 2–3 cards of different pools at the Year's band, each a type its pool allows", () => {
-    const s = calm(campaign(2, 5));
+    const s = open(2);
     for (let year = 1; year <= 20; year++) {
       if ((TUNING.campaign.mandatoryYears.full as readonly number[]).includes(year)) continue;
       s.year = year;
@@ -43,7 +51,7 @@ describe("the Rift Gate's offer (§9.1)", () => {
   });
 
   it("offers the mandatory arc's card alone in its Years, in order, for both lengths", () => {
-    const s = calm(campaign(2, 5));
+    const s = open(2);
     TUNING.campaign.mandatoryYears.full.forEach((year, i) => {
       s.year = year;
       const arc = TUNING.gate.arc[i]!;
@@ -56,7 +64,7 @@ describe("the Rift Gate's offer (§9.1)", () => {
   });
 
   it("opens with the Year and shows the cards and votes to everyone", () => {
-    const s = calm(campaign(2, 5));
+    const s = open(2);
     expect(s.gate!.cards.length).toBeGreaterThan(1);
     expect(s.gate!.votes).toEqual([null, null]);
     expect(view(s, "p2").gate).toEqual(s.gate);
@@ -65,7 +73,7 @@ describe("the Rift Gate's offer (§9.1)", () => {
 
 describe("the vote on the card (§9.1)", () => {
   it("takes votes, changeable until the seal, and refuses cards not on offer", () => {
-    let s = calm(campaign(2, 5));
+    let s = open(2);
     expect(error(s, "p1", { type: "pick_card", card: 7 })).toMatch(/not on offer/);
     s = move(s, "p1", { type: "pick_card", card: 1 });
     s = move(s, "p1", { type: "pick_card", card: 0 });
@@ -78,7 +86,7 @@ describe("the vote on the card (§9.1)", () => {
   });
 
   it("goes to the most votes; no votes take the first card", () => {
-    const s = calm(campaign(3, 5));
+    const s = open(3);
     s.gate!.cards = [s.gate!.cards[0]!, s.gate!.cards[1]!];
     expect(chosenCard(s)).toBe(s.gate!.cards[0]);
     s.gate!.votes = [1, 1, 0];
@@ -86,7 +94,7 @@ describe("the vote on the card (§9.1)", () => {
   });
 
   it("breaks a tie for the highest-Renown voter's card, at a cost in Accord", () => {
-    const s = calm(campaign(2, 5));
+    const s = open(2);
     s.gate!.votes = [0, 1];
     s.houses[1]!.score.renown = s.houses[0]!.score.renown + 5;
     const accord = s.accord;
@@ -96,18 +104,18 @@ describe("the vote on the card (§9.1)", () => {
   });
 
   it("closes with the Year: the chosen card is logged and the Gate shuts", () => {
-    let s = calm(campaign(2, 5));
+    let s = open(2);
     s = move(s, "p1", { type: "pick_card", card: 1 });
     s = move(s, "p2", { type: "pick_card", card: 1 });
     const pool = POOL_BY_ID.get(s.gate!.cards[1]!.pool)!.name;
-    s = move(move(s, "p1", { type: "seal" }), "p2", { type: "seal" });
+    s = sealYear(s);
     expect(s.log.some((l) => l.includes(`toward ${pool}`))).toBe(true);
     expect(s.year).toBe(2);
     expect(s.gate!.votes).toEqual([null, null]);
   });
 
   it("the bot votes for the lowest level on offer", () => {
-    const s = calm(campaign(2, 5));
+    const s = open(2);
     s.gate!.cards = [
       { type: "resource", pool: "hollow_wood", level: 3, size: 4 },
       { type: "resource", pool: "beast_lands", level: 1, size: 4 },

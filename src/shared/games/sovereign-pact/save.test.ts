@@ -8,20 +8,13 @@ import { packItems, packPeople, unpackItems, unpackPeople } from "./codec.ts";
 import { ITEM_BASES } from "./content.ts";
 import { GEAR_SLOTS } from "./state.ts";
 import type { SovSave } from "./save.ts";
-import { campaign, playOut, seats } from "./testing.ts";
+import { campaign, playOut, sealYear, seats } from "./testing.ts";
 import { TUNING } from "./tuning.ts";
 
 const g = sovereignPact;
 const bytes = (x: unknown): number => new TextEncoder().encode(JSON.stringify(x)).length;
 
-function sealAll(s: SovState): SovState {
-  for (const p of s.players) {
-    const r = g.applyMove(s, p, { type: "seal" });
-    if (!r.ok) throw new Error(r.error);
-    s = r.state;
-  }
-  return s;
-}
+const sealAll = sealYear;
 
 describe("the packed people", () => {
   it("unpack to exactly the people that were packed", () => {

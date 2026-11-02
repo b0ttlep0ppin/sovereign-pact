@@ -3,7 +3,7 @@ import { slots } from "./assign.ts";
 import { loseAccord, projectCost, stillNeeded } from "./commons.ts";
 import { PROJECTS } from "./content.ts";
 import { sovereignPact, type SovMove, type SovState } from "./index.ts";
-import { calm, campaign } from "./testing.ts";
+import { calm, campaign, sealYear } from "./testing.ts";
 import { TUNING } from "./tuning.ts";
 import { view } from "./view.ts";
 
@@ -20,7 +20,7 @@ const error = (s: SovState, player: string, m: SovMove): string => {
   if (r.ok) throw new Error("expected a refusal");
   return r.error;
 };
-const sealAll = (s: SovState): SovState => s.players.reduce((x, p, i) => (x.houses[i]!.sealed ? x : move(x, p, { type: "seal" })), s);
+const sealAll = sealYear;
 /** A campaign whose Houses can pay for anything. */
 const rich = (H: number): SovState => {
   const s = campaign(H, 4);
