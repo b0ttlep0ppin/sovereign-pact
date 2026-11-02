@@ -70,7 +70,7 @@ export interface ScionLook {
   colors: [string, string];
   /** What they wear, when it is known: it replaces their Job's outfit piece by piece ("" is bare). */
   kit?: Partial<Record<"weapon" | "shield" | "hat" | "armor", string>>;
-  /** Bareheaded: no hat or hood, so the hair shows (the restyle preview). */
+  /** Bareheaded: no hat, hood or helm (restyled so). */
   bare?: boolean;
 }
 
@@ -138,6 +138,7 @@ export function lookOf(p: Pick<Person, "id" | "sex" | "age" | "job" | "status"> 
     hair: chosen.hair ?? born.hair,
     hairColor: chosen.hair_color ?? born.hairColor,
     ...(beard ? { beard } : {}),
+    ...(chosen.headwear === "off" ? { bare: true } : {}),
     elderly,
     job: p.status === "recruit" ? "recruit" : (p.job ?? "recruit"),
     colors: [HERALDRY_COLORS.get(colors?.[0] ?? "") ?? "#6b5a3a", HERALDRY_COLORS.get(colors?.[1] ?? "") ?? "#8a8a8a"],
@@ -208,7 +209,7 @@ export function piecesOf(look: ScionLook): Piece[] {
   const want: [Slot, string | undefined, string[] | undefined][] = [
     ["body", "body", palettes.body!.colors[look.skin]],
     ["head", `${look.sex === "f" ? "female" : "male"}${look.elderly ? "_elderly" : ""}`, palettes.body!.colors[look.skin]],
-    ["hair", outfit.hat === "hood" || outfit.hat === "mail" ? undefined : look.hair, palettes.hair!.colors[look.hairColor]],
+    ["hair", look.hair, palettes.hair!.colors[look.hairColor]],
     ["beard", look.beard, palettes.hair!.colors[look.hairColor]],
     ["legs", "pants", palettes.cloth!.colors.charcoal],
     ["feet", "boots", palettes.cloth!.colors.leather],
@@ -286,18 +287,94 @@ function pieceImage(piece: Piece): Promise<HTMLCanvasElement | HTMLImageElement>
 /** Canvas is missing under jsdom (the tests); there the sprites are simply not drawn. */
 const canDraw = typeof document !== "undefined" && typeof navigator !== "undefined" && !/jsdom/i.test(navigator.userAgent);
 
+/** RGBA pixels, as ImageData holds them. */
+export interface Pixels {
+  data: Uint8ClampedArray<ArrayBuffer>;
+  width: number;
+  height: number;
+}
+
+/** A layer's pixels, read back from a canvas. */
+function pixels(im: HTMLCanvasElement | HTMLImageElement): ImageData {
+  const c = document.createElement("canvas");
+  c.width = im.width;
+  c.height = im.height;
+  const ctx = c.getContext("2d")!;
+  ctx.drawImage(im, 0, 0);
+  return ctx.getImageData(0, 0, c.width, c.height);
+}
+
+/**
+ * Hair (or a beard) worn under headwear, frame by frame: what lies inside the headwear's outline stays
+ * (the hat covers it, and it shows through a hood's opening), as does what falls below it; whatever would
+ * poke out above or beside it is cut away.
+ */
+export function underHat(hair: Pixels, hat: Pixels, cell = CELL): Pixels {
+  const out = { data: new Uint8ClampedArray(hair.data), width: hair.width, height: hair.height };
+  const w = hair.width;
+  const opaque = (d: Pixels, x: number, y: number) => d.data[(y * w + x) * 4 + 3]! > 0;
+  for (let cy = 0; cy + cell <= hair.height; cy += cell) {
+    for (let cx = 0; cx + cell <= w; cx += cell) {
+      // Each row's leftmost and rightmost headwear pixel, and the lowest row it reaches.
+      const left: number[] = [];
+      const right: number[] = [];
+      let top = -1;
+      let bottom = -1;
+      for (let y = 0; y < cell; y++) {
+        for (let x = 0; x < cell; x++) {
+          if (!opaque(hat, cx + x, cy + y)) continue;
+          left[y] = Math.min(left[y] ?? x, x);
+          right[y] = Math.max(right[y] ?? x, x);
+          if (top < 0) top = y;
+          bottom = y;
+        }
+      }
+      if (top < 0) continue;
+      for (let y = 0; y <= bottom; y++) {
+        for (let x = 0; x < cell; x++) {
+          const inside = y >= top && left[y] !== undefined && x >= left[y]! && x <= right[y]!;
+          if (!inside) out.data[((cy + y) * w + cx + x) * 4 + 3] = 0;
+        }
+      }
+    }
+  }
+  return out;
+}
+
 const sheets = new Map<string, Promise<string>>();
 /** The Scion's whole sheet, stacked from its pieces, as an image URL. */
 export function sheetOf(look: ScionLook): Promise<string> {
   const key = JSON.stringify(look);
   let p = sheets.get(key);
   if (!p) {
-    p = Promise.all(piecesOf(look).map(pieceImage)).then((ims) => {
+    const pieces = piecesOf(look);
+    p = Promise.all(pieces.map(pieceImage)).then((ims) => {
       const c = document.createElement("canvas");
       c.width = CELL * COLS;
       c.height = CELL * LAYERS.rows.length;
       const ctx = c.getContext("2d")!;
-      for (const im of ims) ctx.drawImage(im, 0, 0);
+      // Every headwear layer together makes the outline the hair is cut to.
+      const hats = ims.filter((_, i) => pieces[i]!.layer.slot === "hat");
+      let hat: Pixels | null = null;
+      if (hats.length) {
+        const h = document.createElement("canvas");
+        h.width = c.width;
+        h.height = c.height;
+        const hctx = h.getContext("2d")!;
+        for (const im of hats) hctx.drawImage(im, 0, 0);
+        hat = hctx.getImageData(0, 0, h.width, h.height);
+      }
+      for (const [i, im] of ims.entries()) {
+        const slot = pieces[i]!.layer.slot;
+        if (hat && (slot === "hair" || slot === "beard")) {
+          const layer = document.createElement("canvas");
+          layer.width = im.width;
+          layer.height = im.height;
+          const cut = underHat(pixels(im), hat);
+          layer.getContext("2d")!.putImageData(new ImageData(cut.data, cut.width, cut.height), 0, 0);
+          ctx.drawImage(layer, 0, 0);
+        } else ctx.drawImage(im, 0, 0);
+      }
       return c.toDataURL("image/png");
     });
     sheets.set(key, p);

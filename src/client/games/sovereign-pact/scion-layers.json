@@ -619,12 +619,30 @@
    "slot": "hat",
    "option": "cavalier",
    "sex": "m",
-   "z": 131,
+   "z": 130,
    "material": null
   },
   {
    "id": "hat_cavalier_1_f",
    "file": "hat_cavalier_1_m",
+   "slot": "hat",
+   "option": "cavalier",
+   "sex": "f",
+   "z": 130,
+   "material": null
+  },
+  {
+   "id": "hat_cavalier_1b_m",
+   "file": "hat_cavalier_1b_m",
+   "slot": "hat",
+   "option": "cavalier",
+   "sex": "m",
+   "z": 131,
+   "material": null
+  },
+  {
+   "id": "hat_cavalier_1b_f",
+   "file": "hat_cavalier_1b_m",
    "slot": "hat",
    "option": "cavalier",
    "sex": "f",

@@ -47,7 +47,7 @@ export { FLAG, replayLine, type Replay, type ReplayUnit, type Vitals } from "./c
 export type { Aim, Choice, Command, FightView, TurnView } from "./fight.ts";
 export type { Cell } from "./combat/types.ts";
 export { deploy } from "./formation.ts";
-export { BEARDS, HAIR_COLORS, HAIR_LONG, HAIR_SHORT, HAIR_STYLES, styleOf } from "./style.ts";
+export { BEARDS, HEADWEAR, HAIR_COLORS, HAIR_LONG, HAIR_SHORT, HAIR_STYLES, styleOf } from "./style.ts";
 
 export const SOVEREIGN_PACT_OPTIONS: readonly TableOption[] = [
   {

@@ -73,14 +73,13 @@ export default function Roster({ view, sendMove, canAct }: Props) {
 function Card({ p, view, sendMove, canAct }: Props & { p: Person }) {
   const mine = view.mine!;
   const [job, setJob] = useState<JobId>(BASE[0]!.id);
-  const [styling, setStyling] = useState(false);
   const cures = mine.cures.filter((c) => c.person === p.id);
   const ward = p.house !== p.host;
   const crunch = view.display === "crunch";
   const promote = mine.promotion.left < 1 ? "There is no ceremony left this Year." : mine.gold < mine.promotion.gold ? `A promotion costs ${mine.promotion.gold} Gold.` : null;
   return (
     <li className="sp-person sp-person--portrait" aria-label={p.name}>
-      <ScionSprite className="sp-person__portrait" look={{ ...lookOf(p, view.houses[p.house]?.colors, view.items), bare: styling }} crop={BUST} size={(64 * 64) / BUST[2]} />
+      <ScionSprite className="sp-person__portrait" look={lookOf(p, view.houses[p.house]?.colors, view.items)} crop={BUST} size={(64 * 64) / BUST[2]} />
       <header>
         <strong className="sp-person__name" style={p.status === "recruit" ? undefined : { color: inkOf(view.houses[p.house]?.colors) }}>
           {p.name}
@@ -194,7 +193,7 @@ function Card({ p, view, sendMove, canAct }: Props & { p: Person }) {
           })}
         </div>
       ) : null}
-      {canAct && p.status !== "lost" && !p.change ? <Restyle p={p} sendMove={sendMove} onToggle={setStyling} /> : null}
+      {canAct && p.status !== "lost" && !p.change ? <Restyle p={p} sendMove={sendMove} /> : null}
     </li>
   );
 }
@@ -202,12 +201,12 @@ function Card({ p, view, sendMove, canAct }: Props & { p: Person }) {
 const STYLE_NAMES: Record<string, string> = { none: "Clean-shaven", parted_side_bangs: "Side bangs", swoop_side: "Side swoop", curtains_long: "Long curtains", long_messy: "Long and messy", single: "Single braid" };
 const styleName = (id: string) => STYLE_NAMES[id] ?? id[0]!.toUpperCase() + words(id).slice(1);
 
-/** Hair, hair color and beard (§5.8): each a ◀ name ▶ stepper that restyles them at once. Skin and the rest stay as born. Open, the portrait goes bareheaded. */
-function Restyle({ p, sendMove, onToggle }: { p: Person; sendMove: (m: SovMove) => void; onToggle: (open: boolean) => void }) {
+/** Hair, hair color, beard and headwear (§5.8): each a ◀ name ▶ stepper that restyles them at once. Skin and the rest stay as born. */
+function Restyle({ p, sendMove }: { p: Person; sendMove: (m: SovMove) => void }) {
   const born = bornLook(p);
   const chosen = styleOf({ look: [...p.look] });
-  const now = { hair: chosen.hair ?? born.hair, hair_color: chosen.hair_color ?? born.hairColor, beard: chosen.beard ?? born.beard ?? "none" };
-  const rows: { key: "hair" | "hair_color" | "beard"; label: string; list: readonly string[] }[] = [
+  const now = { hair: chosen.hair ?? born.hair, hair_color: chosen.hair_color ?? born.hairColor, beard: chosen.beard ?? born.beard ?? "none", headwear: chosen.headwear ?? "worn" };
+  const rows: { key: keyof typeof now; label: string; list: readonly string[] }[] = [
     { key: "hair", label: "Hair", list: HAIR_STYLES },
     { key: "hair_color", label: "Color", list: HAIR_COLORS },
     ...(p.sex === "m" ? [{ key: "beard" as const, label: "Beard", list: BEARDS }] : []),
@@ -218,7 +217,7 @@ function Restyle({ p, sendMove, onToggle }: { p: Person; sendMove: (m: SovMove) 
   };
   const restyled = Object.keys(chosen).length > 0;
   return (
-    <details className="sp-restyle" onToggle={(e) => onToggle(e.currentTarget.open)}>
+    <details className="sp-restyle">
       <summary>Restyle</summary>
       {rows.map(({ key, label, list }) => (
         <div key={key} className="sp-restyle__row" role="group" aria-label={`${label} for ${p.name}`}>
@@ -232,8 +231,21 @@ function Restyle({ p, sendMove, onToggle }: { p: Person; sendMove: (m: SovMove) 
           </button>
         </div>
       ))}
+      <div className="sp-restyle__row">
+        <span className="sp-restyle__label">Headwear</span>
+        <button
+          type="button"
+          role="switch"
+          aria-checked={now.headwear === "worn"}
+          aria-label={`Headwear for ${p.name}`}
+          className="sp-restyle__switch"
+          onClick={() => sendMove({ type: "restyle", person: p.id, headwear: now.headwear === "worn" ? "off" : "worn" })}
+        >
+          {now.headwear === "worn" ? "Worn" : "Off"}
+        </button>
+      </div>
       {restyled ? (
-        <button type="button" className="sp-button sp-button--quiet" onClick={() => sendMove({ type: "restyle", person: p.id, hair: "", hair_color: "", beard: "" })}>
+        <button type="button" className="sp-button sp-button--quiet" onClick={() => sendMove({ type: "restyle", person: p.id, hair: "", hair_color: "", beard: "", headwear: "" })}>
           As they were born
         </button>
       ) : null}

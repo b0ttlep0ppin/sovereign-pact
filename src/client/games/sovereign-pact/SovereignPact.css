@@ -136,6 +136,9 @@
 .sp-restyle__step { width: 26px; height: 24px; padding: 0; border: 1px solid var(--line); border-radius: 3px; background: var(--panel); color: var(--gold); font-size: 0.7rem; cursor: pointer; }
 .sp-restyle__step:hover, .sp-restyle__step:focus-visible { border-color: var(--line-hi); color: var(--text); }
 .sp-restyle__label { font-size: 0.85rem; color: var(--muted); }
+.sp-restyle__switch { grid-column: 2 / -1; justify-self: start; min-width: 5.5em; height: 24px; padding: 0 10px; border: 1px solid var(--line); border-radius: 12px; background: var(--panel); color: var(--muted); font: inherit; font-size: 0.85rem; cursor: pointer; }
+.sp-restyle__switch[aria-checked="true"] { border-color: var(--gold); color: var(--gold); }
+.sp-restyle__switch:focus-visible { outline: 2px solid var(--text); outline-offset: 2px; }
 .sp-restyle__value { text-align: center; font-size: 0.9rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .sp-restyle > .sp-button { margin-top: 8px; }
 @media (max-width: 640px) { .sp-lots li { grid-template-columns: 1fr; } }

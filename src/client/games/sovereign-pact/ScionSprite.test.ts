@@ -1,12 +1,37 @@
 import { describe, expect, it } from "vitest";
 import { scionCredits } from "./credits";
 import LAYERS from "./scion-layers.json";
-import { animFor, attackOf, kitOf, lookOf, lunges, piecesOf } from "./ScionSprite";
+import { animFor, attackOf, kitOf, lookOf, lunges, piecesOf, underHat, type Pixels } from "./ScionSprite";
 
 const person = (id: number, over: Partial<{ sex: "m" | "f"; age: number; job: string | null; status: "recruit" | "scion"; look: string[] }> = {}) =>
   ({ id, sex: "m" as const, age: 25, job: "knight", status: "scion", ...over }) as unknown as Parameters<typeof lookOf>[0];
 
 describe("Scion sprites", () => {
+  it("draws hair under headwear: kept inside its outline and below it, cut where it pokes out (§5.8)", () => {
+    // One 8 px frame: a hat covering rows 1-3, columns 2-5, with an opening at row 2, columns 3-4.
+    const frame = (on: (x: number, y: number) => boolean): Pixels => {
+      const data = new Uint8ClampedArray(8 * 8 * 4);
+      for (let y = 0; y < 8; y++) for (let x = 0; x < 8; x++) data[(y * 8 + x) * 4 + 3] = on(x, y) ? 255 : 0;
+      return { data, width: 8, height: 8 };
+    };
+    const hat = frame((x, y) => y >= 1 && y <= 3 && x >= 2 && x <= 5 && !(y === 2 && (x === 3 || x === 4)));
+    const hair = frame(() => true);
+    const cut = underHat(hair, hat, 8);
+    const shows = (x: number, y: number) => cut.data[(y * 8 + x) * 4 + 3]! > 0;
+    expect(shows(3, 0)).toBe(false); // above the hat
+    expect(shows(0, 2)).toBe(false); // beside it
+    expect(shows(3, 2)).toBe(true); // through its opening
+    expect(shows(0, 5)).toBe(true); // falling below it
+  });
+
+  it("bares the head when headwear is off", () => {
+    const worn = piecesOf(lookOf(person(1, { job: "magus" }), undefined)).map((p) => p.layer.slot);
+    const off = piecesOf(lookOf(person(1, { job: "magus", look: ["headwear=off"] }), undefined)).map((p) => p.layer.slot);
+    expect(worn).toContain("hat");
+    expect(off).not.toContain("hat");
+    expect(off).toContain("hair");
+  });
+
   it("wears the House's restyling over the look they were born with (§5.8)", () => {
     const styled = lookOf(person(7, { look: ["hair=wavy", "hair_color=ginger", "beard=none"] }), undefined);
     expect([styled.hair, styled.hairColor, styled.beard]).toEqual(["wavy", "ginger", undefined]);

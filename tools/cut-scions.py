@@ -30,8 +30,8 @@ gen = Path(sys.argv[1])
 out = root / "public/sprites/sovereign-pact/scions"
 out.mkdir(parents=True, exist_ok=True)
 
-# slot -> option -> sheet definition (relative to sheet_definitions/), and the metal or color file
-# to take where a layer comes in several.
+# slot -> option -> sheet definition (relative to sheet_definitions/), or several drawn together, and
+# the metal or color file to take where a layer comes in several.
 PICK = {
     "body": {"body": "body/body.json"},
     "head": {
@@ -57,7 +57,8 @@ PICK = {
     "hat": {
         "wizard": "headwear/hats/magic/hat_magic_celestial.json",
         "hood": "headwear/coverings/hoods/hat_hood_cloth.json",
-        "cavalier": "headwear/hats/caps/hat_cap_cavalier_feather.json",
+        # The cap and its feather are two definitions; both are drawn.
+        "cavalier": ["headwear/hats/caps/hat_cap_cavalier.json", "headwear/hats/caps/hat_cap_cavalier_feather.json"],
         "bandana": "headwear/coverings/bandana/hat_bandana.json",
         "tricorne": "headwear/hats/tricorne/hat_tricorne.json",
         "mail": "headwear/helmets/helmets/hat_helmet_mail.json",
@@ -118,66 +119,68 @@ def custom(base: Path) -> Path | None:
 manifest = {"rows": [r[0] for r in ROWS], "frames": [r[2] for r in ROWS], "cell": CELL, "layers": [], "palettes": {}, "credits": []}
 seen_credits = set()
 for slot, opts in PICK.items():
-    for oid, rel in opts.items():
-        d = json.loads((gen / "sheet_definitions" / rel).read_text())
-        # Only the credits of the files we cut (a definition also credits its child or teen art).
-        used = [layer[sex] for k, layer in d.items() if k.startswith("layer_") for sex in ("male", "female") if sex in layer]
-        d["credits"] = [c for c in d.get("credits", []) if any(u.startswith(c["file"].rstrip("/") + "/") or u.rstrip("/") == c["file"].rstrip("/") for u in used)]
-        if not d["credits"] or not all(any(l.startswith(BY) for l in c.get("licenses", [])) for c in d["credits"]):
-            print(f"skipped {slot}:{oid}: no attribution-only license")
-            continue
-        recolor = d.get("recolors", {})
-        material = recolor.get("material") or recolor.get("color_1", {}).get("material")
-        for lk in sorted(k for k in d if k.startswith("layer_")):
-            layer = d[lk]
-            for sex in ("male", "female"):
-                if sex not in layer:
-                    continue
-                path = gen / "spritesheets" / layer[sex]
-                sheet = Image.new("RGBA", (CELL * COLS, CELL * len(ROWS)))
-                drawn = False
-                for r, (anim, row, frames) in enumerate(ROWS):
-                    if "custom_animation" in layer:
-                        # An oversized swing (128 px frames) for one animation only.
-                        # Only this row's own swing: "slash_oversize" or "slash_128", not "slash_reverse_oversize".
-                        if layer["custom_animation"] not in (f"{anim}_oversize", f"{anim}_128"):
-                            continue
-                        src = custom(path.parent if path.name == "" else path)
-                        tail = layer["custom_animation"].split("_")[-1]
-                        size = 192 if tail == "oversize" else int(tail)
-                    else:
-                        src = find(path, anim)
-                        size = 64
-                    if src is None:
-                        continue
-                    im = Image.open(src).convert("RGBA")
-                    rows_in = im.height // size
-                    srow = min(row, rows_in - 1)
-                    for f in range(min(frames, im.width // size)):
-                        cut = im.crop((f * size, srow * size, (f + 1) * size, (srow + 1) * size))
-                        if size > CELL:
-                            # A 192 px swing keeps its middle 128 px: the cell the Scion stands in.
-                            m = (size - CELL) // 2
-                            cut = cut.crop((m, m, m + CELL, m + CELL))
-                        off = max(0, (CELL - size) // 2)
-                        sheet.alpha_composite(cut, (f * CELL + off, r * CELL + off))
-                    drawn = True
-                if not drawn:
-                    continue
-                lid = f"{slot}_{oid}_{lk[6:]}_{sex[0]}"
-                # Same art for both bodies: keep one file.
-                other = f"{slot}_{oid}_{lk[6:]}_m"
-                if sex == "female" and layer.get("female") == layer.get("male"):
-                    manifest["layers"].append({"id": lid, "file": other, "slot": slot, "option": oid, "sex": "f", "z": layer["zPos"], "material": material})
-                    continue
-                sheet.save(out / f"{lid}.webp", "WEBP", lossless=True, method=6)
-                manifest["layers"].append({"id": lid, "file": lid, "slot": slot, "option": oid, "sex": sex[0], "z": layer["zPos"], "material": material})
-        for c in d["credits"]:
-            key = c["file"]
-            if key in seen_credits:
+    for oid, rels in opts.items():
+        for part, rel in enumerate([rels] if isinstance(rels, str) else rels):
+            d = json.loads((gen / "sheet_definitions" / rel).read_text())
+            # Only the credits of the files we cut (a definition also credits its child or teen art).
+            used = [layer[sex] for k, layer in d.items() if k.startswith("layer_") for sex in ("male", "female") if sex in layer]
+            d["credits"] = [c for c in d.get("credits", []) if any(u.startswith(c["file"].rstrip("/") + "/") or u.rstrip("/") == c["file"].rstrip("/") for u in used)]
+            if not d["credits"] or not all(any(l.startswith(BY) for l in c.get("licenses", [])) for c in d["credits"]):
+                print(f"skipped {slot}:{oid}: no attribution-only license")
                 continue
-            seen_credits.add(key)
-            manifest["credits"].append({"file": key, "authors": c["authors"], "licenses": [l for l in c["licenses"] if l.startswith(BY)], "urls": c.get("urls", [])})
+            recolor = d.get("recolors", {})
+            material = recolor.get("material") or recolor.get("color_1", {}).get("material")
+            for lk in sorted(k for k in d if k.startswith("layer_")):
+                layer = d[lk]
+                for sex in ("male", "female"):
+                    if sex not in layer:
+                        continue
+                    path = gen / "spritesheets" / layer[sex]
+                    sheet = Image.new("RGBA", (CELL * COLS, CELL * len(ROWS)))
+                    drawn = False
+                    for r, (anim, row, frames) in enumerate(ROWS):
+                        if "custom_animation" in layer:
+                            # An oversized swing (128 px frames) for one animation only.
+                            # Only this row's own swing: "slash_oversize" or "slash_128", not "slash_reverse_oversize".
+                            if layer["custom_animation"] not in (f"{anim}_oversize", f"{anim}_128"):
+                                continue
+                            src = custom(path.parent if path.name == "" else path)
+                            tail = layer["custom_animation"].split("_")[-1]
+                            size = 192 if tail == "oversize" else int(tail)
+                        else:
+                            src = find(path, anim)
+                            size = 64
+                        if src is None:
+                            continue
+                        im = Image.open(src).convert("RGBA")
+                        rows_in = im.height // size
+                        srow = min(row, rows_in - 1)
+                        for f in range(min(frames, im.width // size)):
+                            cut = im.crop((f * size, srow * size, (f + 1) * size, (srow + 1) * size))
+                            if size > CELL:
+                                # A 192 px swing keeps its middle 128 px: the cell the Scion stands in.
+                                m = (size - CELL) // 2
+                                cut = cut.crop((m, m, m + CELL, m + CELL))
+                            off = max(0, (CELL - size) // 2)
+                            sheet.alpha_composite(cut, (f * CELL + off, r * CELL + off))
+                        drawn = True
+                    if not drawn:
+                        continue
+                    tag = f"{lk[6:]}{'abcdefgh'[part] if part else ''}"
+                    lid = f"{slot}_{oid}_{tag}_{sex[0]}"
+                    # Same art for both bodies: keep one file.
+                    other = f"{slot}_{oid}_{tag}_m"
+                    if sex == "female" and layer.get("female") == layer.get("male"):
+                        manifest["layers"].append({"id": lid, "file": other, "slot": slot, "option": oid, "sex": "f", "z": layer["zPos"], "material": material})
+                        continue
+                    sheet.save(out / f"{lid}.webp", "WEBP", lossless=True, method=6)
+                    manifest["layers"].append({"id": lid, "file": lid, "slot": slot, "option": oid, "sex": sex[0], "z": layer["zPos"], "material": material})
+            for c in d["credits"]:
+                key = c["file"]
+                if key in seen_credits:
+                    continue
+                seen_credits.add(key)
+                manifest["credits"].append({"file": key, "authors": c["authors"], "licenses": [l for l in c["licenses"] if l.startswith(BY)], "urls": c.get("urls", [])})
 
 for material in ["body", "hair", "cloth", "eye"]:
     meta = json.loads((gen / "palette_definitions" / material / f"meta_{material}.json").read_text())

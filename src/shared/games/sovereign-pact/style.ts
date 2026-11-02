@@ -1,4 +1,4 @@
-// Restyling (§5.8): a House may change its people's hair, hair color and beard whenever it likes. Body
+// Restyling (§5.8): a House may change its people's hair, hair color and beard, and bare their heads, whenever it likes. Body
 // features (skin, sex, age and anything a trait, Change or event grants) stay as rolled. A choice is kept
 // as a `key=value` tag in the person's look, where the sprite reads it and a Change sets it aside with
 // the rest of their old look.
@@ -12,9 +12,11 @@ export const HAIR_STYLES: readonly string[] = [...HAIR_SHORT, ...HAIR_LONG];
 export const HAIR_COLORS: readonly string[] = ["blonde", "sandy", "light_brown", "chestnut", "dark_brown", "black", "raven", "ginger", "redhead", "strawberry", "ash", "gray", "white"];
 /** "none" is clean-shaven. The beard layers are drawn for the male frame only. */
 export const BEARDS: readonly string[] = ["none", "trimmed", "medium"];
+/** Whether they wear their hat, hood or helm (worn, the hair shows only where it falls beneath it). */
+export const HEADWEAR: readonly string[] = ["worn", "off"];
 
-export type StyleKey = "hair" | "hair_color" | "beard";
-const CHOICES: Record<StyleKey, readonly string[]> = { hair: HAIR_STYLES, hair_color: HAIR_COLORS, beard: BEARDS };
+export type StyleKey = "hair" | "hair_color" | "beard" | "headwear";
+const CHOICES: Record<StyleKey, readonly string[]> = { hair: HAIR_STYLES, hair_color: HAIR_COLORS, beard: BEARDS, headwear: HEADWEAR };
 
 export interface RestyleMove {
   person: number;
@@ -22,6 +24,7 @@ export interface RestyleMove {
   hair?: string;
   hair_color?: string;
   beard?: string;
+  headwear?: string;
 }
 
 /** Their restyled choices, read from the look's tags. */

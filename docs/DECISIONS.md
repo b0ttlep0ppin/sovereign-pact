@@ -2,6 +2,17 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 8al): hair under headwear, and a headwear switch
+
+- Josh asked for a headwear toggle, and for hair to be drawn under headwear so it sometimes shows.
+- Reading taken: the toggle is per person, in the Restyle panel. It is a `headwear` choice (`worn` or `off`) in the same `restyle` move and tag scheme as 8ak, so different people can go bareheaded or not.
+- Hair and beards are now drawn under every hat, hood and helm, then cut to the headwear's outline, frame by frame (`underHat` in ScionSprite.tsx):
+  - Hair inside the outline stays. The headwear covers it, except where it shows through an opening: a fringe in a hood or a coif's face.
+  - Hair below the headwear stays: long hair under a helm, brim or cap.
+  - Hair poking out above or beside it is cut away.
+- The restyle panel no longer bares the head on its own; the switch does that now.
+- Fixed with it: the Minstrel's cavalier cap had been cut as its feather alone. `tools/cut-scions.py` now takes several definitions for one option and cuts the cap (OGA-BY 3.0; bluecarrot16 and JaidynReiman, already credited) under the feather.
+
 ## 2026-11-02 (implementation, Milestone 8ak): restyling hair and beard
 
 - I'd promised Josh a look editor on each person's card. §5.8 says the player can "restyle hair, beard, and clothes freely", while body features "stay as rolled or granted". So the editor offers hair style, hair color and beard. Skin does not change.
