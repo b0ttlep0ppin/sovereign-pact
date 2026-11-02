@@ -1,0 +1,97 @@
+{
+  "id": "the_beggar_saint",
+  "pools": [
+    "pilgrimage"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    10
+  ],
+  "title": "The Beggar Saint",
+  "text": "A beggar on the pilgrim road who the faithful say is a saint in disguise.",
+  "options": [
+    {
+      "id": "give",
+      "label": "Give him your best.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "He blesses you.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -10
+              }
+            },
+            {
+              "blessing": {
+                "trait": "lucky",
+                "years": 2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "test",
+      "label": "The shrewdest tests whether he is a saint.",
+      "rule": "scion:highest:guile",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "He is.",
+          "effects": [
+            {
+              "score": {
+                "lore": 1
+              }
+            },
+            {
+              "sanity": -5
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "He is not, but he is clever.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 5
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pass",
+      "label": "Pass him by.",
+      "rule": "leader",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A cold feeling, all day.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -5
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

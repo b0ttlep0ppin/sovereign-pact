@@ -1,0 +1,79 @@
+{
+  "id": "the_stigmata",
+  "pools": [
+    "pilgrimage"
+  ],
+  "weight": 1,
+  "band": [
+    4,
+    10
+  ],
+  "title": "The Stigmata",
+  "text": "At a shrine, a Scion's hands begin to bleed. The monks fall to their knees.",
+  "options": [
+    {
+      "id": "accept",
+      "label": "Accept it as a sign.",
+      "rule": "scion:trait:devout|scion:random",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "They are holy now, in the monks' eyes.",
+          "effects": [
+            {
+              "score": {
+                "renown": 2
+              }
+            },
+            {
+              "durability": -20,
+              "loc": "arms"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bind",
+      "label": "Bind the hands and go.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The bleeding stops at the town's edge.",
+          "effects": []
+        }
+      ]
+    },
+    {
+      "id": "fake",
+      "label": "The shrewdest makes the most of it.",
+      "rule": "scion:highest:guile",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Donations pour in.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 25
+              }
+            },
+            {
+              "doom": 1
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "id": "the_poachers",
+  "pools": [
+    "hunt"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    10
+  ],
+  "title": "The Poachers",
+  "text": "Poachers have trapped the quarry and mean to sell it alive.",
+  "options": [
+    {
+      "id": "buy",
+      "label": "Buy it from them.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A fair price, and a fair fight.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -20
+              }
+            },
+            {
+              "encounter": {}
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "drive",
+      "label": "Drive them off.",
+      "rule": "leader",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "They fight. The quarry escapes in the chaos.",
+          "effects": [
+            {
+              "encounter": {}
+            },
+            {
+              "to": "party",
+              "sanity": -3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "free",
+      "label": "The gentlest frees it.",
+      "rule": "scion:fewest_kills|scion:highest:sagacity",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It does not attack. It watches, and goes.",
+          "effects": [
+            {
+              "score": {
+                "renown": 1
+              }
+            },
+            {
+              "skip": 1
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -2,6 +2,9 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 7am: Delve and Pilgrimage pools reach 25) — implementer
+- **Built** (content only). Sixteen card-type events: the Sealed Vault and the Lowest Level (Delve); the Beggar Saint, the Vigil, the Pilgrims' Feast, the Stigmata and the Chained Pilgrims (Pilgrimage); the Ghost of the Lost, the Broken Bridge and the Last Letter (Rescue); the Beaver Dam, the Star Iron and the Mushroom Cellar (Resource); the Shed Scales, the Poachers and the Calling Horn (Hunt). That makes 416 expedition events. Delve and Pilgrimage meet HANDOFF §6's 25; Rescue and Hunt have 22, Resource 21.
+
 ## 2026-11-02 (implementation, Milestone 7al: a ninth round for the regions; 400 events) — implementer
 - **Built** (content only). Sixteen events: the Vulture Tree, the Green Knight, the Mud Men, the Grave Digger, the Northern Lights, the Brass Bull, the Forge-Master's Ghost, the Rooftop Chase, the Confessional, the Six Stars, the Kobold Mine and the Unravelling (one for each region), the Lost One's Song and the Deserters for Rescues, the Sap Trees for Resource cards and the Quarry's Hide for Hunts. That makes 400 expedition events; every region has 13 to 17.
 - **Reading:** the Green Knight's return a Year later would want a town event of its own; for now his promise only raises Doom, and the return is left for a later pass.

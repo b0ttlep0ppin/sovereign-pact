@@ -1,0 +1,88 @@
+{
+  "id": "the_beaver_dam",
+  "pools": [
+    "resource"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    10
+  ],
+  "title": "The Beaver Dam",
+  "text": "Beavers the size of bears have dammed a river. Their dam is the finest timber in the land.",
+  "options": [
+    {
+      "id": "take",
+      "label": "Take timber from the dam.",
+      "rule": "vote",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "Fine timber.",
+          "effects": [
+            {
+              "resources": {
+                "timber": 6
+              }
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "The beavers.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "surprise"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "trade",
+      "label": "Trade the beavers for their offcuts.",
+      "rule": "scion:highest:guile",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "They drive a hard bargain.",
+          "effects": [
+            {
+              "resources": {
+                "timber": 3,
+                "gold": -5
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "watch",
+      "label": "Watch how they build.",
+      "rule": "leader",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The House carpenters will want to hear of it.",
+          "effects": [
+            {
+              "house_improvement": "building"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
