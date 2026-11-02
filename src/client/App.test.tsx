@@ -30,7 +30,8 @@ describe("the standalone host", () => {
     try {
       render(<App />);
       fireEvent.click(screen.getByRole("button", { name: "Swear the Pact" }));
-      fireEvent.click(screen.getAllByRole("button", { name: /^Swear, keeping/ })[0]!);
+      fireEvent.click(screen.getAllByRole("radio", { name: /counts double/ })[0]!);
+      fireEvent.click(screen.getByRole("button", { name: "Swear the Pact" }));
       letBotsMove();
       expect(screen.getByText("Year 1 of 20.")).toBeTruthy();
       fireEvent.click(screen.getByRole("button", { name: "Seal the Year" }));
@@ -48,7 +49,8 @@ describe("the standalone host", () => {
     try {
       const first = render(<App />);
       fireEvent.click(screen.getByRole("button", { name: "Swear the Pact" }));
-      fireEvent.click(screen.getAllByRole("button", { name: /^Swear, keeping/ })[0]!);
+      fireEvent.click(screen.getAllByRole("radio", { name: /counts double/ })[0]!);
+      fireEvent.click(screen.getByRole("button", { name: "Swear the Pact" }));
       letBotsMove();
       fireEvent.click(screen.getByRole("button", { name: "Seal the Year" }));
       letBotsMove();

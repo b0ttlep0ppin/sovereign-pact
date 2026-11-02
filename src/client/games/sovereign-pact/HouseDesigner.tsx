@@ -176,38 +176,81 @@ function SeatStep({ h, design }: StepProps) {
   );
 }
 
+const kindOf = (id: string) => Content.HOUSE_TRAIT_BY_ID.get(id)?.kind as Kind | undefined;
+const ONE: Record<Kind, string> = { major: "a Major Trait", minor: "a Minor Trait", major_flaw: "a Major Flaw", minor_flaw: "a Minor Flaw", bloodline: "a Bloodline" };
+const MANY: Record<Kind, string> = { major: "Major Traits", minor: "Minor Traits", major_flaw: "Major Flaws", minor_flaw: "Minor Flaws", bloodline: "Bloodlines" };
+
+/** How many of each kind the set may hold: a Bloodline takes the place of one Major Trait and the Major Flaw. */
+export const capsOf = (ids: string[]): Record<Kind, number> => (ids.some((id) => kindOf(id) === "bloodline") ? SHAPES[1]! : SHAPES[0]!);
+
+/** Ticking a trait. A kind that holds one swaps it; a Bloodline makes room for itself, and a Major Flaw for itself. */
+export function toggleTrait(picked: string[], id: string): string[] {
+  if (picked.includes(id)) return picked.filter((x) => x !== id);
+  const k = kindOf(id)!;
+  let next = picked;
+  if (k === "bloodline") {
+    next = next.filter((x) => kindOf(x) !== "bloodline" && kindOf(x) !== "major_flaw");
+    const majors = next.filter((x) => kindOf(x) === "major");
+    next = next.filter((x) => kindOf(x) !== "major" || x === majors[0]);
+  } else if (k === "major_flaw") next = next.filter((x) => kindOf(x) !== "bloodline");
+  const cap = capsOf([...next, id])[k];
+  const have = next.filter((x) => kindOf(x) === k);
+  if (have.length >= cap) {
+    if (cap !== 1) return picked;
+    next = next.filter((x) => x !== have[0]);
+  }
+  return [...next, id];
+}
+
+/** What the set still lacks, in words, or "" when it is whole. */
+export function missingOf(ids: string[]): string {
+  const caps = capsOf(ids);
+  const parts = KINDS.flatMap((k) => {
+    const n = caps[k] - ids.filter((id) => kindOf(id) === k).length;
+    return n <= 0 ? [] : [n === 1 ? ONE[k] : `${n} ${MANY[k]}`];
+  });
+  return parts.length ? `Still to choose: ${parts.join(", ")}.` : "";
+}
+
 function TraitsStep({ h, bane, crunch, design }: StepProps & { bane: string | null; crunch: boolean }) {
   const [picked, setPicked] = useState<string[]>(h.traits);
   const [hated, setHated] = useState<string>(bane ?? ELEMENTS[0]);
-  const needsBane = picked.some((id) => Content.HOUSE_TRAIT_BY_ID.get(id)?.choice === "element");
-  const ok = traitShape(picked);
-  const same = picked.length === h.traits.length && picked.every((id) => h.traits.includes(id)) && (!needsBane || hated === bane);
+  const needsBane = (ids: string[]) => ids.some((id) => Content.HOUSE_TRAIT_BY_ID.get(id)?.choice === "element");
+  const caps = capsOf(picked);
+  const blood = caps.bloodline > 0;
+  // A whole set is kept at once; a partial one waits on screen while the House keeps its last whole set.
+  const pick = (ids: string[], element = hated) => {
+    setPicked(ids);
+    setHated(element);
+    if (traitShape(ids)) design({ traits: ids, ...(needsBane(ids) ? { bane: element } : {}) });
+  };
+  const missing = missingOf(picked);
   return (
     <div>
-      <p className="sp-event__status">Take 2 Major Traits, 2 Minor Traits, a Major Flaw and a Minor Flaw; or a Bloodline in place of one Major Trait and the Major Flaw.</p>
+      <p className="sp-event__status">
+        Take 2 Major Traits, 2 Minor Traits, a Major Flaw and a Minor Flaw. Or take a Bloodline in place of one Major Trait and the Major Flaw.
+      </p>
       {KINDS.map((k) => {
         const of = Content.HOUSE_TRAITS.filter((t) => t.kind === k);
-        const n = picked.filter((id) => Content.HOUSE_TRAIT_BY_ID.get(id)?.kind === k).length;
+        const mine = picked.filter((id) => kindOf(id) === k);
+        const cap = caps[k];
+        const full = mine.length >= cap;
         return (
-          <details key={k}>
+          <details key={k} open={mine.length < cap || undefined}>
             <summary>
-              {KIND_NAMES[k]}{" "}
-              <small>
-                {n
-                  ? picked
-                      .filter((id) => Content.HOUSE_TRAIT_BY_ID.get(id)?.kind === k)
-                      .map((id) => Content.HOUSE_TRAIT_BY_ID.get(id)!.name)
-                      .join(", ")
-                  : "none chosen"}
-              </small>
+              {KIND_NAMES[k]} <small>{k === "bloodline" && !blood ? "optional" : cap === 0 ? "your Bloodline stands in for it" : `${mine.length} of ${cap}`}</small>{" "}
+              <small className="sp-ability__text">{mine.map((id) => Content.HOUSE_TRAIT_BY_ID.get(id)!.name).join(", ")}</small>
             </summary>
+            {k === "bloodline" && !blood ? <p className="sp-event__status">Choosing one gives up your second Major Trait and your Major Flaw.</p> : null}
+            {k === "major_flaw" && blood ? <p className="sp-event__status">Your Bloodline stands in for it. Choosing one gives up the Bloodline.</p> : null}
             <ul className="sp-lots sp-abilities">
               {of.map((t) => {
                 const on = picked.includes(t.id);
+                const locked = !on && full && cap > 1;
                 return (
                   <li key={t.id} className={on ? "is-known" : undefined}>
                     <label>
-                      <input type="checkbox" checked={on} onChange={(e) => setPicked(e.target.checked ? [...picked, t.id] : picked.filter((x) => x !== t.id))} /> <strong>{t.name}</strong>
+                      <input type={cap === 1 ? "radio" : "checkbox"} name={cap === 1 ? `trait-${k}` : undefined} checked={on} disabled={locked} onChange={() => pick(toggleTrait(picked, t.id))} /> <strong>{t.name}</strong>
                       <span className="sp-ability__text">{crunch ? t.crunch : t.flavor}</span>
                     </label>
                   </li>
@@ -217,10 +260,10 @@ function TraitsStep({ h, bane, crunch, design }: StepProps & { bane: string | nu
           </details>
         );
       })}
-      {needsBane ? (
+      {needsBane(picked) ? (
         <label>
           The element that hates your House{" "}
-          <select value={hated} onChange={(e) => setHated(e.target.value)}>
+          <select value={hated} onChange={(e) => pick(picked, e.target.value)}>
             {ELEMENTS.map((el) => (
               <option key={el} value={el}>
                 {words(el)}
@@ -229,10 +272,9 @@ function TraitsStep({ h, bane, crunch, design }: StepProps & { bane: string | nu
           </select>
         </label>
       ) : null}
-      <button type="button" className="sp-button" disabled={!ok || same} onClick={() => design({ traits: picked, ...(needsBane ? { bane: hated } : {}) })}>
-        {ok ? "Keep these traits" : "Not a full set yet"}
-      </button>
+      <p className="sp-event__status" role="status">
+        {missing || "A full set: your House keeps these traits."}
+      </p>
     </div>
   );
 }
-
