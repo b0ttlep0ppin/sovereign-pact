@@ -36,7 +36,8 @@ export function mint(s: SovState, base: string, house: number, tier: ItemTier = 
 export function mintNamed(s: SovState, id: string, house: number, ilvl: number): Item {
   const def = NAMED_BY_ID.get(id);
   if (!def) throw new Error(`unknown named item ${id}`);
-  s.flags.push(`named_${id}`);
+  // Cures (§11.2) are made as often as they are found; every other named item once a campaign.
+  if (!def.cure) s.flags.push(`named_${id}`);
   return { id: s.nextId++, base: def.base, tier: def.tier, ilvl: Math.max(ilvl, def.minLevel ?? 1), house, named: id, props: def.props.map(([p, v]) => [p, v] as [string, number]) };
 }
 
@@ -141,6 +142,7 @@ export function cannotEquip(s: Pick<SovState, "items">, p: Person, item: Item, s
   // Any one-hand weapon may go in the off hand too: dual wield (§13.2).
   const want = b.slot === "acc" ? ["acc1", "acc2"] : b.slot === "main" && (b.hands ?? 1) === 1 ? ["main", "off"] : [b.slot];
   if (!want.includes(slot)) return "wrong slot";
+  if (item.named && NAMED_BY_ID.get(item.named)?.cure) return "a cure is used, not worn";
   // A Change takes some slots away: a Wyrmling has no hands for a sword (§9.6).
   if (p.change && !CHANGE_BY_ID.get(p.change.id)?.slots.includes(slot)) return "the Change leaves no room for it";
   if (b.slot === "main" && !mayWield(p, b.type, b.hands ?? 1)) return "the Job forbids it";

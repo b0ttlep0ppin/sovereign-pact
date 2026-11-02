@@ -34,6 +34,16 @@
               "points": { "type": "integer", "minimum": 1 }
             },
             "description": "A House-score artifact: whoever holds it at the end scores the points (§9.10)"
+          },
+          "cure": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "injuries": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "$ref": "defs.schema.json#/definitions/id" }, "description": "Injury results it mends" },
+              "band": { "enum": ["moderate"], "description": "Or any lasting result of this band" },
+              "look": { "$ref": "defs.schema.json#/definitions/id", "description": "A look it leaves on the mended" }
+            },
+            "description": "A cure item (§11.2): one use, made as often as it is found"
           }
         }
       }

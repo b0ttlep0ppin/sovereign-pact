@@ -20,6 +20,7 @@ import { build, cannotBuild, unbuild } from "./town.ts";
 import { cannotPromote, promoteRecruit } from "./promotion.ts";
 import { botOutfit, cannotOutfit, outfit } from "./outfit.ts";
 import { bargain, botBargain, cannotBargain } from "./bargains.ts";
+import { botCure, cannotCure, cure } from "./cures.ts";
 import { cannotReinstate, cannotRetire, reinstate, retire } from "./lifecycle.ts";
 import { botCard, cannotPick, pick } from "./gate.ts";
 import { TUNING } from "./tuning.ts";
@@ -332,6 +333,15 @@ export function applyMove(state: SovState, playerId: PlayerId, move: SovMove): M
       s.phaseMoves += 1;
       return { ok: true, state: s };
     }
+    case "cure": {
+      if (s.phase !== "settlement") return fail("Cures are spent at home, in the Settlement Phase.");
+      if (h.sealed) return fail("Unseal the Year first.");
+      const why = cannotCure(s, house, move);
+      if (why) return fail(why);
+      cure(s, move);
+      s.phaseMoves += 1;
+      return { ok: true, state: s };
+    }
     case "tempt": {
       if (s.phase !== "settlement") return fail("Nothing tempts you now.");
       if (h.sealed) return fail("Unseal the Year first.");
@@ -447,6 +457,8 @@ export function botMove(s: SovState, playerId: PlayerId): SovMove {
   if (offered) return botDeal(s, house, offered);
   const whisper = house >= 0 && s.phase === "settlement" ? botBargain(s, house) : null;
   if (whisper) return whisper;
+  const mend = house >= 0 && s.phase === "settlement" && !s.houses[house]!.sealed ? botCure(s, house) : null;
+  if (mend) return mend;
   const pick = house >= 0 && s.phase === "settlement" ? s.events.find((e) => e.deciders.includes(house) && e.choices[house] === null) : undefined;
   if (pick) return { type: "choose", event: pick.key, option: botChoice(s, house, pick.id) };
   if (house >= 0 && s.phase === "settlement" && !s.houses[house]!.sealed) {

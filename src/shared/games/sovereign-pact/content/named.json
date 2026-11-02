@@ -667,6 +667,62 @@
       "text": "Woven of moss and stone and root. The ground holds up whoever wears it.",
       "boss": "arcana_world",
       "minLevel": 1
+    },
+    {
+      "id": "saints_hand",
+      "name": "The Saint's Hand",
+      "base": "charm",
+      "tier": 5,
+      "props": [],
+      "text": "A reliquary hand of silver and old bone. Laid on a stump, it takes, and a hand grows back.",
+      "cure": {
+        "injuries": ["arms_severed", "arms_hand_mangled"]
+      }
+    },
+    {
+      "id": "clockwork_leg",
+      "name": "Clockwork Leg",
+      "base": "charm",
+      "tier": 5,
+      "props": [],
+      "text": "A leg of brass and spring from the Forge Ruins. It walks as well as the one it replaces, and never tires.",
+      "cure": {
+        "injuries": ["legs_severed", "legs_pelvis_shattered"]
+      }
+    },
+    {
+      "id": "seers_eye",
+      "name": "The Seer's Eye",
+      "base": "charm",
+      "tier": 5,
+      "props": [],
+      "text": "A glass eye that sees. Whoever wears it sees again, though their gaze is never quite warm after.",
+      "cure": {
+        "injuries": ["head_blinded", "head_lost_eye"],
+        "look": "hollow_eyes"
+      }
+    },
+    {
+      "id": "lethe_water",
+      "name": "Lethe Water",
+      "base": "charm",
+      "tier": 5,
+      "props": [],
+      "text": "A stoppered flask from the river of forgetting. One swallow, and the worst thing is gone.",
+      "cure": {
+        "injuries": ["sanity_mind_shattered", "sanity_thrall"]
+      }
+    },
+    {
+      "id": "surgeons_kit",
+      "name": "Surgeon's Kit",
+      "base": "charm",
+      "tier": 5,
+      "props": [],
+      "text": "Steel, thread and a dead surgeon's notes. Enough for one patient, done properly.",
+      "cure": {
+        "band": "moderate"
+      }
     }
   ]
 }
