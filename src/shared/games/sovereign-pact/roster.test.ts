@@ -15,7 +15,8 @@ describe("real Scions for the simulator", () => {
       expect(p.job).toBe(job);
       expect(p.level).toBe(level);
       expect(canTakeJob(p, job)).toBe(true);
-      expect(p.learned.length).toBeGreaterThan(0);
+      // A Scion who learned every ability of a Job has mastered it (its abilities stop being listed).
+      expect(p.learned.length + p.mastered.length).toBeGreaterThan(0);
       expect(passivePoints(p)).toBeLessThanOrEqual(passiveBudget(p));
       const s = outfit(p, level);
       expect(Object.keys(p.gear)).toEqual(expect.arrayContaining(["main", "head", "body", "arms", "legs"]));

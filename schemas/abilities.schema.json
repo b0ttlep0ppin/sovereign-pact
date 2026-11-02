@@ -476,6 +476,14 @@
           "type": "boolean",
           "description": "Removes an enemy summon or add"
         },
+        "interpose": {
+          "type": "boolean",
+          "description": "Until the user's next turn, foes' hits on the target strike the user instead (Interpose)"
+        },
+        "swap": {
+          "type": "boolean",
+          "description": "The user and the target, an ally in the user's row, swap places (Rescue)"
+        },
         "parts": {
           "type": "array",
           "items": {

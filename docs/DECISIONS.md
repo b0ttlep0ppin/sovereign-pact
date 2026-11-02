@@ -2,6 +2,13 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 8ay): the Knight's last nine abilities
+
+- Josh: "there are also a ton of abilities you didn't bother to implement". The Knight's nine are built: Interpose (a foe's hits on that ally, area ones too, strike the Knight until the Knight's next turn), Riposte, Rescue (only a one-cell ally in the Knight's own row), Stand Fast (immune to Knockdown, Fear and Readiness damage), Valor (each physical ailment is rolled apiece), Commanding Presence (the best Knight in the column lends, not each), Shieldbearer, Heavy Step, Bodyguard (allies beside the Knight among the foe's choices).
+- Reading: Riposte as written ("counter-attacks Stun on a crit") gave a 60 CT stance nothing to do for a Knight without counters, so the stance also adds 20% counter chance, its own (it stacks with En Garde's).
+- Bots: Interpose and Rescue wait for an ally under half HP, and no bot casts a self-ward or stance that is already up.
+- A Scion who has learned all of a Job's abilities has mastered it, so the Knight can now be mastered.
+
 ## 2026-11-02 (implementation, Milestone 8ax): enemies hit harder
 
 - Josh: "bad guys are not threatening enough, i feel like they don't even attack". A probe of the campaign's battles found enemies act on about 90% of their turns, so the trouble was their damage: a party lost only 12-16% of its HP in an early battle.

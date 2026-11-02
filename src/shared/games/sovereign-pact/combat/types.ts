@@ -187,6 +187,10 @@ export interface AbilityDef {
   graft?: boolean;
   /** Calls a summon from summons.json (§12.15). */
   summon?: string;
+  /** Interpose: until the user's next turn, foes' hits on the target strike the user instead. */
+  interpose?: boolean;
+  /** Rescue: the user and the target (an ally in the user's row) swap places. */
+  swap?: boolean;
   /** Dismisses one of the user's summons; allies around it heal this % of max HP (Sacrifice). */
   sacrifice?: number;
   /** Removes an enemy summon or add outright (Banish). */

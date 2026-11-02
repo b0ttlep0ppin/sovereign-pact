@@ -38,6 +38,8 @@ export interface Armor {
   /** Durability bonus per location, in %. */
   durabilityPct?: Partial<Record<Location, number>>;
   evasion?: number;
+  /** The part of `evasion` heavy armor takes (Heavy Step gives it back). */
+  heavyEvasion?: number;
   guard?: number;
 }
 
@@ -131,7 +133,8 @@ export function scionCombatant(p: Person, opts: ScionOpts): Combatant {
     tp: Math.min(C.tp.max, mods.tpStart ?? 0),
     maxSanity: sanity,
     sanity: Math.max(0, Math.min(sanity, p.sanity + (mods.sanityStart ?? 0))),
-    evasion: Math.max(0, Math.floor(F.evasion.base + F.evasion.guile * guile + (o.armor?.evasion ?? 0))),
+    // Heavy Step (§12.4): heavy armor costs no evasion.
+    evasion: Math.max(0, Math.floor(F.evasion.base + F.evasion.guile * guile + (o.armor?.evasion ?? 0) - (mods.heavyStep ? (o.armor?.heavyEvasion ?? 0) : 0))),
     accuracy: Math.floor(F.accuracy.guile * guile),
     defense: o.armor?.defense ?? 0,
     weapon,

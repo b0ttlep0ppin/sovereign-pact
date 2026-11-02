@@ -5,20 +5,20 @@
     {"id": "challenger", "name": "Challenger", "jp": 100, "text": "Provoke: enemies' single-target weight on you ×3 for 300 ticks.", "shape": "self", "side": "self", "power": 0, "kind": "support", "tp": 15, "cost": 60, "statuses": [{"id": "provoke", "chance": 100, "ticks": 300}]},
     {"id": "guardian_shout", "name": "Guardian Shout", "jp": 200, "text": "Protect for 300 ticks on allies in the burst.", "shape": "burst:3x3", "side": "ally", "power": 0, "kind": "support", "mp": 25, "statuses": [{"id": "protect", "chance": 100, "ticks": 300}]},
     {"id": "soothing_voice", "name": "Soothing Voice", "jp": 100, "text": "Sanity +10% to adjacent allies.", "shape": "adjacent", "side": "ally", "power": 0, "kind": "support", "mp": 15, "sanityPct": 10},
-    {"id": "interpose", "name": "Interpose", "jp": 200, "text": "Until your next turn, hits on that ally strike you instead.", "shape": "single", "side": "ally", "power": 0, "kind": "support", "tp": 20, "later": true},
+    {"id": "interpose", "name": "Interpose", "jp": 200, "text": "Until your next turn, hits on that ally strike you instead.", "shape": "single", "side": "ally", "power": 0, "kind": "support", "tp": 20, "interpose": true},
     {"id": "shield_wall", "name": "Shield Wall", "jp": 200, "text": "Needs a shield: the column gains Guard Up for 300 ticks.", "shape": "column", "side": "ally", "power": 0, "kind": "support", "mp": 30, "requires": ["shield"], "statuses": [{"id": "guard_up", "chance": 100, "ticks": 300}]},
     {"id": "lance", "name": "Lance", "jp": 150, "text": "Spear: hits three in a line.", "shape": "line:3", "side": "foe", "power": 1, "tp": 25, "requires": ["spear"]},
-    {"id": "riposte", "name": "Riposte", "jp": 150, "text": "Stance: counter-attacks Stun on a crit.", "shape": "self", "side": "self", "power": 0, "kind": "support", "cost": 60, "later": true},
+    {"id": "riposte", "name": "Riposte", "jp": 150, "text": "Stance: counter chance +20% for 500 ticks, and a counter that crits Stuns.", "shape": "self", "side": "self", "power": 0, "kind": "support", "cost": 60, "statuses": [{"id": "riposte", "chance": 100, "ticks": 500, "value": 20}]},
     {"id": "oathbound_strike", "name": "Oathbound Strike", "jp": 200, "text": "Damage +20%; +60% if an ally is Down.", "shape": "single", "side": "foe", "power": 1.2, "powerIfAllyDown": 1.6, "tp": 30},
-    {"id": "rescue", "name": "Rescue", "jp": 150, "text": "Swap places with an ally anywhere in your row.", "shape": "single", "side": "ally", "power": 0, "kind": "support", "tp": 25, "later": true},
-    {"id": "stand_fast", "name": "Stand Fast", "jp": 150, "text": "Immune to Knockdown, Fear and Readiness damage for 300 ticks.", "shape": "self", "side": "self", "power": 0, "kind": "support", "mp": 20, "later": true},
+    {"id": "rescue", "name": "Rescue", "jp": 150, "text": "Swap places with an ally anywhere in your row.", "shape": "single", "side": "ally", "power": 0, "kind": "support", "tp": 25, "swap": true},
+    {"id": "stand_fast", "name": "Stand Fast", "jp": 150, "text": "Immune to Knockdown, Fear and Readiness damage for 300 ticks.", "shape": "self", "side": "self", "power": 0, "kind": "support", "mp": 20, "statuses": [{"id": "stand_fast", "chance": 100, "ticks": 300, "mods": {"immune.knockdown": 1, "immune.fear": 1, "readinessImmune": 1}}]},
     {"id": "judgement", "name": "Judgement", "jp": 300, "text": "Holy strike at the Head; Marked 300 ticks; ×1.5 against undead and demons.", "shape": "single", "side": "foe", "power": 1, "tp": 40, "element": "holy", "aim": "head", "vs": {"undead": 1.5, "demon": 1.5}, "statuses": [{"id": "marked", "chance": 100, "ticks": 300}]}
   ],
   "passives": [
-    {"id": "valor", "name": "Valor", "points": 2, "jp": 200, "text": "A Resilience % chance to end physical ailments early each turn.", "later": true},
-    {"id": "commanding_presence", "name": "Commanding Presence", "points": 2, "jp": 200, "text": "Allies in your column: physical accuracy +Sagacity/5 %.", "later": true},
-    {"id": "shieldbearer", "name": "Shieldbearer", "points": 1, "jp": 100, "text": "Guard chance +Resilience/4 % with a shield.", "later": true},
-    {"id": "heavy_step", "name": "Heavy Step", "points": 1, "jp": 150, "text": "No evasion penalty from heavy armor.", "later": true},
-    {"id": "bodyguard", "name": "Bodyguard", "points": 3, "jp": 300, "text": "Adjacent allies' single-target weight −30%, yours +30%.", "later": true}
+    {"id": "valor", "name": "Valor", "points": 2, "jp": 200, "text": "A Resilience % chance to end physical ailments early each turn.", "mods": {"valor": 1}},
+    {"id": "commanding_presence", "name": "Commanding Presence", "points": 2, "jp": 200, "text": "Allies in your column: physical accuracy +Sagacity/5 %.", "mods": {"commandingPresence": 1}},
+    {"id": "shieldbearer", "name": "Shieldbearer", "points": 1, "jp": 100, "text": "Guard chance +Resilience/4 % with a shield.", "mods": {"shieldbearer": 1}},
+    {"id": "heavy_step", "name": "Heavy Step", "points": 1, "jp": 150, "text": "No evasion penalty from heavy armor.", "mods": {"heavyStep": 1}},
+    {"id": "bodyguard", "name": "Bodyguard", "points": 3, "jp": 300, "text": "Adjacent allies' single-target weight −30%, yours +30%.", "mods": {"bodyguard": 1}}
   ]
 }

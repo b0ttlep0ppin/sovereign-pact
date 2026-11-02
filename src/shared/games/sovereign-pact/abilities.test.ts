@@ -80,7 +80,9 @@ describe("abilities in battle", () => {
   };
 
   it.each(ABILITY_SETS.flatMap((s) => s.actives.filter((a) => !a.later).map((a) => [s.job, a.id, a] as const)))("%s %s resolves", (_, __, ab) => {
-    const { u, b } = field();
+    const { u, ally, b } = field();
+    // Rescue swaps with an ally in the user's row.
+    if (ab.swap) [ally.row, ally.col] = [u.row, 1];
     const weapon = ab.requires?.find((w) => w !== "shield");
     if (weapon) u.weapon = { ...u.weapon, kind: weapon };
     if (ab.requires?.includes("shield")) u.offhand = "shield";
