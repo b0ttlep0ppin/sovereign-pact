@@ -1,0 +1,91 @@
+{
+  "id": "the_damned_cartographer",
+  "pools": [
+    "pit"
+  ],
+  "weight": 2,
+  "band": [
+    4,
+    10
+  ],
+  "title": "The Damned Cartographer",
+  "text": "A damned soul chained to a desk maps the Pit, forever. The maps change as he draws them.",
+  "options": [
+    {
+      "id": "buy",
+      "label": "Buy his newest map.",
+      "rule": "vote",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "True for a day.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -15
+              }
+            },
+            {
+              "skip": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "free",
+      "label": "The kindest unchains him.",
+      "rule": "scion:most_healing|scion:highest:sagacity",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "He draws one last map, a true one, and fades.",
+          "effects": [
+            {
+              "foresee": true
+            },
+            {
+              "skip": 1
+            },
+            {
+              "doom": -1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "steal",
+      "label": "Steal his maps.",
+      "rule": "leader",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "They change in your pack into maps of nowhere.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -5
+            },
+            {
+              "fork": {
+                "add": [
+                  "encounter"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

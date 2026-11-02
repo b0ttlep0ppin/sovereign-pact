@@ -1,0 +1,82 @@
+{
+  "id": "the_tortoise_elder",
+  "pools": [
+    "beast_lands"
+  ],
+  "weight": 1,
+  "band": [
+    2,
+    6
+  ],
+  "title": "The Tortoise Elder",
+  "text": "A tortoise as big as a cart, older than the Pact, crosses the path one step a minute.",
+  "options": [
+    {
+      "id": "wait",
+      "label": "Wait for it to cross.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Hours. It looks at each of you as it passes, and nods.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 6
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ride",
+      "label": "The boldest climbs on its shell.",
+      "rule": "scion:random",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "It carries them, and the party walks alongside, the slow sure way.",
+          "effects": [
+            {
+              "blessing": {
+                "trait": "stout_hearted",
+                "years": 2
+              }
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "It shrugs them off.",
+          "effects": [
+            {
+              "durability": -15,
+              "loc": "body"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "round",
+      "label": "Go round it.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Round it is a long way too.",
+          "effects": []
+        }
+      ]
+    }
+  ]
+}

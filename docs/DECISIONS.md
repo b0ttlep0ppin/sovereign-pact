@@ -2,6 +2,11 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 7aq): sixteen region events toward 19 each
+
+- Sixteen events (480 in all): three for the Outer Dark, two each for the Beast Lands, the Barrows, the Deep Cold, the Pit, the Apostate Court and the Dragon Reaches, one for the Hollow Wood. Eight regions now have 19, the other four 18; the budget is 25.
+- Reading: the Sleeping Queen wakes more often than not when her crown is taken (60%), at encounter level +2, since the crown is a tier-3 item.
+
 ## 2026-11-02 (implementation, Milestone 7ap): sixteen more region events
 
 - Sixteen events (464 in all): three each for the Hollow Wood, the Drowned Marches, the Forge Ruins, the Faceless City and the Shrine of Six, one for the Apostate Court. Every region now has 16–18; the budget is 25.

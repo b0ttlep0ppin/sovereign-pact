@@ -1,0 +1,90 @@
+{
+  "id": "the_thawing_man",
+  "pools": [
+    "deep_cold"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    8
+  ],
+  "title": "The Thawing Man",
+  "text": "A man frozen in the ice is thawing in a shaft of sun. His eyes are open. His lips are moving.",
+  "options": [
+    {
+      "id": "free",
+      "label": "Chip him out.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "A soldier of the last war, who tells you of the road and dies glad.",
+          "effects": [
+            {
+              "foresee": true
+            },
+            {
+              "score": {
+                "renown": 1
+              }
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "Not a man.",
+          "effects": [
+            {
+              "encounter": {}
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "read",
+      "label": "The sharpest reads his lips.",
+      "rule": "scion:highest:acuity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A warning, over and over.",
+          "effects": [
+            {
+              "foresee": true
+            },
+            {
+              "sanity": -5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "leave",
+      "label": "Leave him to the sun.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "His lips keep moving.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -3
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

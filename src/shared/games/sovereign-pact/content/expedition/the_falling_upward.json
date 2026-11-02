@@ -1,0 +1,96 @@
+{
+  "id": "the_falling_upward",
+  "pools": [
+    "outer_dark"
+  ],
+  "weight": 2,
+  "band": [
+    6,
+    10
+  ],
+  "title": "The Falling Upward",
+  "text": "The ground lets go. The party falls up, slowly, toward a sky of other ground.",
+  "options": [
+    {
+      "id": "swim",
+      "label": "Swim through the air toward the far ground.",
+      "rule": "vote",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "You land on the far side, a long way on.",
+          "effects": [
+            {
+              "skip": 2
+            },
+            {
+              "to": "party",
+              "sanity": -5
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "You land somewhere else.",
+          "effects": [
+            {
+              "fork": {
+                "drop": 1,
+                "add": [
+                  "encounter"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "anchor",
+      "label": "The strongest grabs a rock and holds on.",
+      "rule": "scion:highest:might",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The world settles. Their arms do not.",
+          "effects": [
+            {
+              "durability": -20,
+              "loc": "arms"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "let",
+      "label": "Let go and fall.",
+      "rule": "leader",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Up, and up, and down again, all of you shaking.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -10
+            },
+            {
+              "to": "party",
+              "xp": 50
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

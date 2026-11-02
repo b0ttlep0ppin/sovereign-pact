@@ -1,0 +1,86 @@
+{
+  "id": "the_sleeping_queen",
+  "pools": [
+    "barrows"
+  ],
+  "weight": 1,
+  "band": [
+    4,
+    8
+  ],
+  "title": "The Sleeping Queen",
+  "text": "A queen lies on a stone bier, not rotted at all. Her crown is the finest thing you have ever seen.",
+  "options": [
+    {
+      "id": "crown",
+      "label": "Take the crown.",
+      "rule": "vote",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 40,
+          "text": "She sleeps on.",
+          "effects": [
+            {
+              "item": {
+                "tier": 3
+              }
+            }
+          ]
+        },
+        {
+          "w": 60,
+          "text": "She wakes.",
+          "effects": [
+            {
+              "encounter": {
+                "level": 2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kiss",
+      "label": "The bravest kisses her brow, as the old stories say.",
+      "rule": "scion:trait:brave|scion:highest:resilience",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "She smiles in her sleep and whispers a name.",
+          "effects": [
+            {
+              "score": {
+                "lore": 2
+              }
+            },
+            {
+              "sanity": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "leave",
+      "label": "Let her sleep.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "You close the door softly.",
+          "effects": []
+        }
+      ]
+    }
+  ]
+}

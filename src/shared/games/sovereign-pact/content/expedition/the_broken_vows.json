@@ -1,0 +1,84 @@
+{
+  "id": "the_broken_vows",
+  "pools": [
+    "apostate_court"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    9
+  ],
+  "title": "The Broken Vows",
+  "text": "A pile of holy vows written on ribbons, torn and thrown in the mud by the court's new converts.",
+  "options": [
+    {
+      "id": "gather",
+      "label": "Gather and keep them.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The converts jeer. The old saints are pleased.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 5
+            },
+            {
+              "score": {
+                "renown": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "read",
+      "label": "The shrewdest reads whose vows they were.",
+      "rule": "scion:highest:guile",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Names worth knowing.",
+          "effects": [
+            {
+              "score": {
+                "intrigue": 2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "join",
+      "label": "Tear one of your own, to blend in.",
+      "rule": "leader",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Through the court as friends, and something inside you tears too.",
+          "effects": [
+            {
+              "skip": 2
+            },
+            {
+              "to": "party",
+              "sanity": -8
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

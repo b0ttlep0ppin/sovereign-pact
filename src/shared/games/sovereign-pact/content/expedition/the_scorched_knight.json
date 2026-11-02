@@ -1,0 +1,84 @@
+{
+  "id": "the_scorched_knight",
+  "pools": [
+    "dragon_reaches"
+  ],
+  "weight": 2,
+  "band": [
+    5,
+    10
+  ],
+  "title": "The Scorched Knight",
+  "text": "A knight in fire-blackened armor sits by the road, still alive inside it. He went to slay a dragon.",
+  "options": [
+    {
+      "id": "help",
+      "label": "Help him out of the armor.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "He will live. He gives you his sword.",
+          "effects": [
+            {
+              "item": {
+                "tier": 2
+              }
+            },
+            {
+              "score": {
+                "renown": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ask",
+      "label": "The wisest asks about the dragon.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Where it sleeps, and which side it favors.",
+          "effects": [
+            {
+              "foresee": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "armor",
+      "label": "Take his armor; he will not need it.",
+      "rule": "leader",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Good steel. He curses you as you go.",
+          "effects": [
+            {
+              "resources": {
+                "iron": 6
+              }
+            },
+            {
+              "curse": true
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

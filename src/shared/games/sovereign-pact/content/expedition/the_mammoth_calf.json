@@ -1,0 +1,96 @@
+{
+  "id": "the_mammoth_calf",
+  "pools": [
+    "deep_cold"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    8
+  ],
+  "title": "The Mammoth Calf",
+  "text": "A mammoth calf, lost in the snow, crying for its mother. The ground shakes in the distance.",
+  "options": [
+    {
+      "id": "lead",
+      "label": "Lead it back toward the shaking.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "Its mother finds it, and lets you walk in her shelter.",
+          "effects": [
+            {
+              "skip": 1
+            },
+            {
+              "score": {
+                "renown": 1
+              }
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "Its mother finds you first.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "surprise"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hide",
+      "label": "Hide until they pass.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A herd, a long cold wait.",
+          "effects": [
+            {
+              "to": "party",
+              "durability": -6
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tusks",
+      "label": "The cruelest says a calf's tusks fetch a price.",
+      "rule": "scion:highest:guile",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "They do, and the herd will remember.",
+          "effects": [
+            {
+              "resources": {
+                "wyrmbone": 3
+              }
+            },
+            {
+              "encounter": {
+                "level": 1
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

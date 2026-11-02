@@ -1,0 +1,88 @@
+{
+  "id": "the_laughing_hyenas",
+  "pools": [
+    "beast_lands"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    6
+  ],
+  "title": "The Laughing Hyenas",
+  "text": "Hyenas laugh in the long grass all night, closer each time.",
+  "options": [
+    {
+      "id": "fire",
+      "label": "Build the fire high.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A sleepless night, but no visitors.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "scare",
+      "label": "The strongest charges out roaring.",
+      "rule": "scion:highest:might",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "They scatter, still laughing.",
+          "effects": [
+            {
+              "score": {
+                "valor": 1
+              }
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "They do not scatter.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "surprise"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bait",
+      "label": "Leave them meat away from camp.",
+      "rule": "leader",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "They feast, and leave you be.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -5
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

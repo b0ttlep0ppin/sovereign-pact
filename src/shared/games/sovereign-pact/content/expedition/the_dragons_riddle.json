@@ -1,0 +1,94 @@
+{
+  "id": "the_dragons_riddle",
+  "pools": [
+    "dragon_reaches"
+  ],
+  "weight": 1,
+  "band": [
+    6,
+    10
+  ],
+  "title": "The Dragon's Riddle",
+  "text": "An old dragon blocks the pass, too tired to fight. It will let you through for the answer to a riddle.",
+  "options": [
+    {
+      "id": "answer",
+      "label": "The cleverest answers.",
+      "rule": "scion:highest:acuity|scion:highest:sagacity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "Right. The dragon laughs, and gives you a scale for luck.",
+          "effects": [
+            {
+              "resources": {
+                "wyrmbone": 3
+              }
+            },
+            {
+              "skip": 1
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "Wrong. It is not too tired after all.",
+          "effects": [
+            {
+              "encounter": {
+                "level": 2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "riddle",
+      "label": "The shrewdest asks one back.",
+      "rule": "scion:highest:guile",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It thinks for an hour, and lets you pass while it thinks.",
+          "effects": [
+            {
+              "skip": 1
+            },
+            {
+              "score": {
+                "intrigue": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "other",
+      "label": "Find another pass.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A long, cold way round.",
+          "effects": [
+            {
+              "to": "party",
+              "durability": -8
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
