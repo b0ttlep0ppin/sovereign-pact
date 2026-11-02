@@ -1,0 +1,88 @@
+{
+  "id": "the_newcomers_luck",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    7
+  ],
+  "title": "The Newcomer's Luck",
+  "text": "A glint in a stream that only fresh eyes would notice. It is the youngest of you who sees it.",
+  "options": [
+    {
+      "id": "young",
+      "label": "The least traveled wades in.",
+      "rule": "scion:fewest_expeditions",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "Gold, a fistful, from somewhere upstream.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 15
+              }
+            },
+            {
+              "xp": 60
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "Something in the stream bites.",
+          "effects": [
+            {
+              "status": "poison"
+            },
+            {
+              "durability": -10,
+              "loc": "legs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "old",
+      "label": "The most traveled goes instead, to be safe.",
+      "rule": "scion:most_expeditions",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Gold, and the old hand knows exactly where the rest is.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 20
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "leave",
+      "label": "Leave it; it is a trap.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Maybe it was.",
+          "effects": []
+        }
+      ]
+    }
+  ]
+}

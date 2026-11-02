@@ -1,0 +1,108 @@
+{
+  "id": "the_proving_stone",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    8
+  ],
+  "title": "The Proving Stone",
+  "text": "A boulder with a sword driven into it, and many hands' worth of scratches round the hilt. A sign in a dead language. Everyone knows what it says.",
+  "options": [
+    {
+      "id": "strong",
+      "label": "The strongest tries.",
+      "rule": "scion:highest:might",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 35,
+          "text": "It comes out with a sound like a bell.",
+          "effects": [
+            {
+              "item": {
+                "tier": 3
+              }
+            },
+            {
+              "score": {
+                "renown": 2
+              }
+            }
+          ]
+        },
+        {
+          "w": 65,
+          "text": "It does not, and the stone seems amused.",
+          "effects": [
+            {
+              "durability": -10,
+              "loc": "arms"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "weak",
+      "label": "The weakest tries, for luck.",
+      "rule": "scion:lowest:might",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 25,
+          "text": "It comes out. Everyone is very quiet.",
+          "effects": [
+            {
+              "item": {
+                "tier": 3
+              }
+            },
+            {
+              "blessing": {
+                "trait": "lucky",
+                "years": 2
+              }
+            }
+          ]
+        },
+        {
+          "w": 75,
+          "text": "It does not. Nobody laughs.",
+          "effects": [
+            {
+              "xp": 40
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "read",
+      "label": "The sharpest reads the scratches.",
+      "rule": "scion:highest:acuity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Names. Hundreds of them. Some are from your Houses.",
+          "effects": [
+            {
+              "score": {
+                "lore": 2
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

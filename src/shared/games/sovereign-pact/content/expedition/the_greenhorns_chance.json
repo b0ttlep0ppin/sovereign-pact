@@ -1,0 +1,72 @@
+{
+  "id": "the_greenhorns_chance",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    6
+  ],
+  "title": "The Greenhorn's Chance",
+  "text": "A small beast, hurt and cornered, snarls in a hollow. The party's least blooded could finish it, and learn something about the work.",
+  "options": [
+    {
+      "id": "blood",
+      "label": "The least blooded finishes it.",
+      "rule": "scion:fewest_kills",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It is quick and ugly, and they will remember it.",
+          "effects": [
+            {
+              "xp": 120
+            },
+            {
+              "sanity": -5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mend",
+      "label": "Bind its leg and let it go.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It limps off, and something in the wood is grateful.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 8
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "leave",
+      "label": "Leave it.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It watches you go.",
+          "effects": []
+        }
+      ]
+    }
+  ]
+}

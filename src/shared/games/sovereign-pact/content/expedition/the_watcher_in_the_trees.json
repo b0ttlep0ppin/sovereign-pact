@@ -1,0 +1,91 @@
+{
+  "id": "the_watcher_in_the_trees",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    10
+  ],
+  "title": "The Watcher in the Trees",
+  "text": "Someone has been following since dawn, never close. Only one of you has seen them clearly. They seem to want that one.",
+  "options": [
+    {
+      "id": "marked",
+      "label": "The one they watch goes to meet them.",
+      "rule": "scion:most_targeted",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "An old hunter, offering a trade: a lesson for a story.",
+          "effects": [
+            {
+              "jp": 80
+            },
+            {
+              "growth": {
+                "guile": 10
+              }
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "It is not a hunter.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "ambush"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ambush",
+      "label": "Set an ambush for them.",
+      "rule": "scion:highest:guile",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "You catch them, and they are not pleased.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "surprise"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ignore",
+      "label": "Keep walking.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "They follow you all the way to the next fight, and watch.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -5
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

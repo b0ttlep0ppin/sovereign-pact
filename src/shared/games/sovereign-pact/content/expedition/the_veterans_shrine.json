@@ -1,0 +1,84 @@
+{
+  "id": "the_veterans_shrine",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    10
+  ],
+  "title": "The Veterans' Shrine",
+  "text": "A cairn of old weapons, each laid by someone who came back from the Gate one time too many. There is room for one more.",
+  "options": [
+    {
+      "id": "veteran",
+      "label": "The one who has been out most often lays something down.",
+      "rule": "scion:retired_once|scion:most_expeditions",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It is easier to leave than they thought.",
+          "effects": [
+            {
+              "sanity": 25
+            },
+            {
+              "score": {
+                "renown": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "take",
+      "label": "Take the best of the old weapons.",
+      "rule": "leader",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It is a fine old blade, and it does not want to be here.",
+          "effects": [
+            {
+              "item": {
+                "tier": 2
+              }
+            },
+            {
+              "to": "party",
+              "sanity": -8
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "salute",
+      "label": "Salute and move on.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Old iron, rusting in the rain.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 3
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

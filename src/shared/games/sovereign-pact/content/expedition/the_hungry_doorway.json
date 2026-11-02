@@ -1,0 +1,89 @@
+{
+  "id": "the_hungry_doorway",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    10
+  ],
+  "title": "The Hungry Doorway",
+  "text": "A doorway standing alone in a field, with nothing behind it but more field. Through it, the field is night.",
+  "options": [
+    {
+      "id": "send",
+      "label": "Send through whoever is carrying least.",
+      "rule": "scion:most_open_slots",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "They come back with their arms full.",
+          "effects": [
+            {
+              "item": {
+                "tier": 3
+              }
+            },
+            {
+              "sanity": -10
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "They come back with their eyes wrong.",
+          "effects": [
+            {
+              "sanity": -25
+            },
+            {
+              "curse": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "heavy",
+      "label": "The most armored goes first.",
+      "rule": "scion:heaviest_gear",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Whatever is on the other side cannot get through all that iron.",
+          "effects": [
+            {
+              "xp": 120
+            },
+            {
+              "durability": -20,
+              "loc": "body"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "close",
+      "label": "Close the door.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It closes very easily. Too easily.",
+          "effects": []
+        }
+      ]
+    }
+  ]
+}
