@@ -32,7 +32,7 @@ describe("the House trait set (§5.7)", () => {
 
   it("only names battle mods the rules read, real Jobs and real score categories", () => {
     const read = [
-      /^(accuracy|crit|evasion|ctStart|restCt|rangedAccuracy|meleeDrainPct|injurySteps|moveCostPct)$/,
+      /^(accuracy|crit|evasion|ctStart|restCt|rangedAccuracy|meleeDrainPct|injurySteps|moveCostPct|itemHealPct)$/,
       /^(maxHp|maxMp|maxSanity|healingDealt|healingReceived|head|body|arms|legs(Durability)?)Pct$/,
       /^(arms|body|legs|head)DurabilityPct$/,
       /^ward\.(holy|dark|fire|water|earth|wind)$/,

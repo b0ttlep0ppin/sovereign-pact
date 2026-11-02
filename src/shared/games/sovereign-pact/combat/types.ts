@@ -126,6 +126,8 @@ export interface AbilityDef {
   restore?: { hpPct?: number; durPct?: number; loc?: "random" | "lowest" | "all" };
   /** Ailments cured on each target: status ids, or "physical" / "mental" for every one of that kind. */
   cure?: string[];
+  /** MP restored, % of max, to each target (an Ether). */
+  mpPct?: number;
   /** Sanity restored, % of max, and TP given, to each target. */
   sanityPct?: number;
   tpGrant?: number;
@@ -370,6 +372,9 @@ export interface Battle {
   pool?: string;
   /** Hazards lying on the party's grid (§14.8). A hidden one's place is never shown to the players. */
   field?: FieldHazard[];
+  /** The party satchel's consumables (§13.7), one a slot, and those used this battle. */
+  satchel?: string[];
+  used?: string[];
   /** The worst injury band this battle can deal (a Sortie's: Moderate, §6.11); a worse roll lands on the next milder result. */
   injuryCap?: "moderate" | "mild";
 }

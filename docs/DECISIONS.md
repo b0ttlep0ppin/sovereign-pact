@@ -2,6 +2,17 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 7ax): consumables in battle
+
+- Any Scion may use a consumable from the party satchel as its action (`{do: "item"}`), for 100 CT, or 60 under the Vagabond's Quick Hands (`itemCt`). Each consumable acts as the ability its content describes: Tonics heal, salves mend Durability, Antidotes and Clarity Draughts cure, Smelling Salts revive, Ethers restore MP (a new `mpPct`), bombs strike a 3×3, and Nets root. What a battle uses leaves the expedition's satchel, the first packed of its kind first.
+- Herb Lore (`itemHealPct` 30) and the Herbalists (20) raise what consumables heal and mend; Herb Lore is no longer marked for later.
+- Readings:
+  - A bot Scion without a gambit list of its own reaches into the satchel in this order: Smelling Salts on a Down Scion, a Tonic on an ally under 35% HP, a Clarity Draught or an Antidote on the afflicted, a salve on a location under 30%, an Ether when its own MP is under 20%, and a bomb when three foes stand (`tuning.consumables.bots`).
+  - A Scion with its own gambits uses items only through rules that name them (`do: "item:tonic"`).
+  - Thrown single-target items (the Net, Caltrops, the Hangman's Rope) reach any column.
+  - The hand-coded specials (Grave Dust, edges, Oathwine and the rest) wait for the next PR, and so does Wine's exception for the Fond of Wine.
+- Six 2-House campaigns from seed 1 (`npm run sim:campaign`): mandatory expeditions won rose from 6 to 8 of 18, and wipes fell from 31 to 30.
+
 ## 2026-11-02 (implementation, Milestone 7aw): packing the party satchel
 
 - A House packs the satchel as it fields its Scions (`field` takes an optional `pack`, by id and count), from what it holds at home. The satchel holds one consumable a slot, 12 slots (`tuning.consumables.satchel`), and remembers who packed each one.

@@ -14,6 +14,7 @@ import { atCap, deathThroes, devour, hasRoom, openingSummons, raise, sacrifice, 
 import { offHandStrike, strike } from "./damage.ts";
 import { hasStatus, isFree, standing } from "./grid.ts";
 import { kill } from "./injury.ts";
+import { cannotUseItem, itemAbility, spendItem } from "./items.ts";
 import { addStatus, extraOf, meta, removeStatus } from "./status.ts";
 import { cellOf, isSingle, resolveTargets, singleTargets } from "./targets.ts";
 import type { AbilityDef, Battle, Cell, Combatant } from "./types.ts";
@@ -31,6 +32,8 @@ export type Action = (
   | { do: "combo"; moves: string[]; target: Cell }
   | { do: "wait" }
   | { do: "defend" }
+  /** A consumable from the party satchel (§13.7). */
+  | { do: "item"; item: string; target: Cell }
 ) & { keep?: string[] };
 
 /** The battle stops after this many ticks with a retreat, so a stalemate cannot run forever. */
@@ -168,6 +171,8 @@ export function act(b: Battle, rng: Rng, u: Combatant, action: Action): void {
     cost = (u.mods.defendCost ?? C.cost.defend) + (u.mods.restCt ?? 0);
     u.defending = true;
     b.events.push({ t: "defend", unit: u.id });
+  } else if (action.do === "item") {
+    cost = useItem(b, rng, u, action.item, action.target);
   } else if (action.do === "combo") {
     cost = playCombo(b, rng, u, action.moves, action.target);
   } else if (abilityOf(u, action.ability)?.move) {
@@ -223,6 +228,22 @@ export function act(b: Battle, rng: Rng, u: Combatant, action: Action): void {
   b.acted = true;
   b.actor = null;
   checkEnd(b);
+}
+
+/** Uses a consumable on `at`: it leaves the satchel and acts as its ability. Returns the CT. */
+function useItem(b: Battle, rng: Rng, u: Combatant, id: string, at: Cell): number {
+  const why = cannotUseItem(b, u, id);
+  if (why) throw new Error(`cannot use ${id}: ${why}`);
+  const ab = itemAbility(u, id)!;
+  let homingOn: number | undefined;
+  if (isSingle(ab)) {
+    const t = singleTargets(b, u, ab).find((x) => x.side === at.side && x.col === at.col && x.row === at.row);
+    if (!t) throw new Error("no valid target there");
+    homingOn = t.id;
+  }
+  spendItem(b, id);
+  resolve(b, rng, u, ab, at, homingOn);
+  return ab.cost!;
 }
 
 /** Plays a combo: each move pays its TP and lands in turn until the target falls. Returns the CT. */

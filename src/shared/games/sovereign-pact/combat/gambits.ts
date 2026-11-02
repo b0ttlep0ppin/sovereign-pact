@@ -7,6 +7,7 @@ import { abilityOf, cannotUse, type Action } from "./battle.ts";
 import { roomFor } from "./bosses.ts";
 import { canShift } from "./forms.ts";
 import { holds } from "./conditions.ts";
+import { cannotUseItem, itemAbility, itemPlan } from "./items.ts";
 import { fallen, hasRoom, prey } from "./summons.ts";
 
 export { holds };
@@ -159,8 +160,20 @@ export function decide(b: Battle, rng: Rng, u: Combatant): Plan {
   }
   // A feral Form's pick is the only thing to do.
   if (u.feral) return aimOrApproach(b, rng, u, abilityOf(u, u.feral)!) ?? { action: { do: "wait" } };
+  // A Scion without its own list reaches into the satchel when someone needs it (§13.7).
+  if (!u.gambits.length) {
+    const item = itemPlan(b, u);
+    if (item) return { action: item };
+  }
   for (const g of u.gambits.length ? u.gambits : defaultGambits(u)) {
     if (!holds(b, u, g.if)) continue;
+    if (g.do.startsWith("item:")) {
+      const id = g.do.slice(5);
+      const ab = cannotUseItem(b, u, id) ? undefined : itemAbility(u, id);
+      const a = ab && aim(b, rng, u, ab, g.target);
+      if (a?.do === "ability") return { action: { do: "item", item: id, target: a.target } };
+      continue;
+    }
     if (g.do === "wait" || g.do === "defend") return { action: { do: g.do } };
     if (g.do === "retreat") {
       // A captain falls back to E3 in its row and Defends (§14.5, the Apostate Court); nothing if it is there or cannot move.
