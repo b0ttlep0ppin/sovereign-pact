@@ -2,6 +2,10 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 7m: a pool event for each of the twelve regions) — implementer
+- **Built** (content only). One expedition event of its own for each otherworld pool, so every region has a scene that can happen nowhere else: the Stampede (Beast Lands), the Singing Tree (Hollow Wood), the Ice Choir (Deep Cold), the Pit Market (Pit), the Vacant Star (Outer Dark), the Last Hoard (Dragon Reaches), the Masked Ball (Faceless City), the Empty Court (Apostate Court), the Sunken Bell (Drowned Marches), the Engine Heart (Forge Ruins), the Six Bowls (Shrine of Six) and the Open Grave (Barrows). That makes 66 expedition events.
+- **Reading:** each uses only effects the rules already have, and draws at weight 3 within its pool's own level range, so it turns up about as often as a general event on that pool's cards. The SPEC budget (at least 150 general and 25 per pool) is still being filled.
+
 ## 2026-11-02 (implementation, Milestone 7l: the rest of §9.7's events) — implementer
 - **Built** (content only, plus the `mend` effect). The 13 events in §9.7's table that were not yet in the game: the Trial of the Veteran, A Perfectly Preserved Library, Wolves at the Fire, the Rot That Thinks, the Hermit of the Gate, Footprints Leading Back, the Spider Queen's Court, the Chained Angel, the Prisoner Who Knows Your Name, the Burning Man, the Grinning Surgeon, the Count of the Dead and the Last Stair. That makes 54 expedition events.
 - **New effect** `mend`: the subject's oldest lasting Moderate injury heals. It is used by the Grinning Surgeon.

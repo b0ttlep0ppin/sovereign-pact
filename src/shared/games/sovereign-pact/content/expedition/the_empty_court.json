@@ -1,0 +1,91 @@
+{
+  "id": "the_empty_court",
+  "pools": [
+    "apostate_court"
+  ],
+  "weight": 3,
+  "band": [
+    2,
+    9
+  ],
+  "title": "The Empty Court",
+  "text": "A throne room with every seat filled by armor sitting straight and empty. A herald's armor turns its helm and announces you by name.",
+  "options": [
+    {
+      "id": "kneel",
+      "label": "The Leader kneels to the empty throne.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The armor kneels back. The herald gives you safe passage and a sealed letter that no one can open.",
+          "effects": [
+            {
+              "skip": 1
+            },
+            {
+              "score": {
+                "intrigue": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "claim",
+      "label": "The highest-ranked House claims the throne.",
+      "rule": "house:highest_standing",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 40,
+          "text": "The armor applauds, slowly, and lets you take the throne's gold.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 200
+              }
+            },
+            {
+              "score": {
+                "renown": 2
+              }
+            }
+          ]
+        },
+        {
+          "w": 60,
+          "text": "The armor stands.",
+          "effects": [
+            {
+              "encounter": {
+                "level": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "leave",
+      "label": "Back out quietly.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The herald announces your departure too.",
+          "effects": []
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "id": "the_last_hoard",
+  "pools": [
+    "dragon_reaches"
+  ],
+  "weight": 3,
+  "band": [
+    5,
+    10
+  ],
+  "title": "The Last Hoard",
+  "text": "A dead dragon's hoard, unguarded: gold to the knee, and the dragon's bones curled around it. Its skull's eye-sockets glow faintly.",
+  "options": [
+    {
+      "id": "take",
+      "label": "Take what can be carried.",
+      "rule": "vote",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 55,
+          "text": "Pockets, packs and boots full of gold. The skull watches, and does nothing.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 250
+              }
+            }
+          ]
+        },
+        {
+          "w": 45,
+          "text": "The skull does something.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 120
+              }
+            },
+            {
+              "encounter": {
+                "level": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bones",
+      "label": "Take only a bone.",
+      "rule": "scion:highest:might",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Wyrmbone, heavy as iron and twice as hard. The skull's glow dims, almost approving.",
+          "effects": [
+            {
+              "resources": {
+                "wyrmbone": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "honor",
+      "label": "Leave it to the dead.",
+      "rule": "leader",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "You go on with empty pockets and a lighter heart.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 10
+            },
+            {
+              "score": {
+                "renown": 2
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

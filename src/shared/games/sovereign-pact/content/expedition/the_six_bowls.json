@@ -1,0 +1,103 @@
+{
+  "id": "the_six_bowls",
+  "pools": [
+    "shrine_of_six"
+  ],
+  "weight": 3,
+  "band": [
+    2,
+    10
+  ],
+  "title": "The Six Bowls",
+  "text": "Six bowls on six pillars, one for each of the gods the shrine was built for. Five are full of water. One is dry.",
+  "options": [
+    {
+      "id": "fill",
+      "label": "Fill the dry bowl.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "The water shines, just for a moment. Someone, long ago, is grateful.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 10
+            },
+            {
+              "to": "party",
+              "status": "regen"
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "It was dry for a reason.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -15
+            },
+            {
+              "curse": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "drink",
+      "label": "The most devout drinks from all five.",
+      "rule": "scion:trait:devout|scion:trait:pious_hands|scion:highest:sagacity",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "Five gods' water, and none of them minds.",
+          "effects": [
+            {
+              "growth": {
+                "all": 5
+              }
+            },
+            {
+              "sanity": 15
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "Five gods' water, and one of them minds very much.",
+          "effects": [
+            {
+              "sanity": -30
+            },
+            {
+              "status": "confusion"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "leave",
+      "label": "Leave the bowls as they are.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The water does not ripple as you pass.",
+          "effects": []
+        }
+      ]
+    }
+  ]
+}

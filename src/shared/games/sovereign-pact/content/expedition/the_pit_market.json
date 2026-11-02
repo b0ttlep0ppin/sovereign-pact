@@ -1,0 +1,107 @@
+{
+  "id": "the_pit_market",
+  "pools": [
+    "pit"
+  ],
+  "weight": 3,
+  "band": [
+    2,
+    9
+  ],
+  "title": "The Pit Market",
+  "text": "In a cave lit by burning fat, things that were once people sell things that once belonged to people. Everything has a price, and most prices are in fingers.",
+  "options": [
+    {
+      "id": "trade",
+      "label": "The craftiest haggles.",
+      "rule": "scion:highest:guile",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "They talk the stallholder down to something reasonable, and walk away with a real find.",
+          "effects": [
+            {
+              "item": {
+                "tier": 3
+              }
+            },
+            {
+              "score": {
+                "intrigue": 1
+              }
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "The price was more than it seemed.",
+          "effects": [
+            {
+              "item": {
+                "tier": 3
+              }
+            },
+            {
+              "injury": "arms"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "steal",
+      "label": "Steal from the stalls.",
+      "rule": "scion:highest:speed",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 45,
+          "text": "In and out before anyone counts their fingers.",
+          "effects": [
+            {
+              "resources": {
+                "essence": 3
+              }
+            },
+            {
+              "score": {
+                "intrigue": 2
+              }
+            }
+          ]
+        },
+        {
+          "w": 55,
+          "text": "Everyone in the market counts their fingers at once.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "ambush"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "leave",
+      "label": "Leave.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A hundred eyes follow you out. None follow further.",
+          "effects": []
+        }
+      ]
+    }
+  ]
+}

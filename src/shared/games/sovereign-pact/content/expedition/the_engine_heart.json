@@ -1,0 +1,92 @@
+{
+  "id": "the_engine_heart",
+  "pools": [
+    "forge_ruins"
+  ],
+  "weight": 3,
+  "band": [
+    3,
+    10
+  ],
+  "title": "The Engine Heart",
+  "text": "Deep in the ruins a great engine still turns, its furnace burning without fuel. Its heart is a sphere of light no one could carry, and someone has tried.",
+  "options": [
+    {
+      "id": "tinker",
+      "label": "The cleverest tinkers with it.",
+      "rule": "scion:highest:acuity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 55,
+          "text": "A turn here, a tap there, and the engine gives up a gift of worked iron and a breath of essence.",
+          "effects": [
+            {
+              "resources": {
+                "iron": 4,
+                "essence": 2
+              }
+            },
+            {
+              "xp": 80
+            }
+          ]
+        },
+        {
+          "w": 45,
+          "text": "A turn here, and it explodes.",
+          "effects": [
+            {
+              "to": "party",
+              "durability": -20
+            },
+            {
+              "status": "burn"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "shut",
+      "label": "Shut it down.",
+      "rule": "scion:highest:might",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The light dies. Something somewhere in the Forge Ruins stops working, and is glad.",
+          "effects": [
+            {
+              "score": {
+                "valor": 2
+              }
+            },
+            {
+              "doom": -1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "leave",
+      "label": "Leave it turning.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It goes on turning, as it has for a thousand years.",
+          "effects": []
+        }
+      ]
+    }
+  ]
+}

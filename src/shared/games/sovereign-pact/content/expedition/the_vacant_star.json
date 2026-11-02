@@ -1,0 +1,75 @@
+{
+  "id": "the_vacant_star",
+  "pools": [
+    "outer_dark"
+  ],
+  "weight": 3,
+  "band": [
+    6,
+    10
+  ],
+  "title": "The Vacant Star",
+  "text": "A star hangs low over the path, close enough to touch, dark at its center like an eye. It is looking at the party.",
+  "options": [
+    {
+      "id": "look",
+      "label": "The wisest looks back.",
+      "rule": "scion:highest:acuity",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 40,
+          "text": "It shows them how far the dark goes, and how little it cares. They come back knowing more than anyone should.",
+          "effects": [
+            {
+              "growth": {
+                "acuity": 15
+              }
+            },
+            {
+              "score": {
+                "lore": 3
+              }
+            },
+            {
+              "sanity": -20
+            }
+          ]
+        },
+        {
+          "w": 60,
+          "text": "It shows them how far the dark goes, and they cannot stop looking.",
+          "effects": [
+            {
+              "sanity": -35
+            },
+            {
+              "injury": "sanity"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "veil",
+      "label": "Cover every face and walk on.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It watches you go, and something like interest passes over it.",
+          "effects": [
+            {
+              "doom": 2
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

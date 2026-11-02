@@ -1,0 +1,91 @@
+{
+  "id": "the_singing_tree",
+  "pools": [
+    "hollow_wood"
+  ],
+  "weight": 3,
+  "band": [
+    1,
+    8
+  ],
+  "title": "The Singing Tree",
+  "text": "An oak older than the rift hums one long note. The bark around a knot is worn smooth, as if many hands have pressed it.",
+  "options": [
+    {
+      "id": "touch",
+      "label": "The kindest presses the knot.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "The note changes to match their heartbeat, and for a while everything is quiet inside.",
+          "effects": [
+            {
+              "sanity": 25
+            },
+            {
+              "growth": {
+                "sagacity": 10
+              }
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "The note changes to match their heartbeat, and then it stops.",
+          "effects": [
+            {
+              "sanity": -20
+            },
+            {
+              "status": "sleep"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cut",
+      "label": "Cut it for timber.",
+      "rule": "leader",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It goes on singing all the way down. The wood is very good.",
+          "effects": [
+            {
+              "resources": {
+                "timber": 4
+              }
+            },
+            {
+              "to": "party",
+              "sanity": -10
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pass",
+      "label": "Pass by quietly.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The note follows you a little way, and then it lets you go.",
+          "effects": []
+        }
+      ]
+    }
+  ]
+}
