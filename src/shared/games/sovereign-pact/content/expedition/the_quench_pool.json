@@ -1,0 +1,101 @@
+{
+  "id": "the_quench_pool",
+  "pools": [
+    "forge_ruins"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    9
+  ],
+  "title": "The Quench Pool",
+  "text": "A pool where the forge's blades were quenched. The water is black, and it hardens whatever is dipped in it.",
+  "options": [
+    {
+      "id": "dip",
+      "label": "Dip your weapons.",
+      "rule": "vote",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "Harder, sharper.",
+          "effects": [
+            {
+              "to": "party",
+              "durability": 20
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "Brittle.",
+          "effects": [
+            {
+              "to": "party",
+              "durability": -20,
+              "loc": "arms"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "drink",
+      "label": "The toughest drinks.",
+      "rule": "scion:highest:resilience",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "Iron in the blood.",
+          "effects": [
+            {
+              "growth": {
+                "resilience": 10
+              }
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "Iron in the gut.",
+          "effects": [
+            {
+              "status": "poison"
+            },
+            {
+              "sanity": -5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bottle",
+      "label": "Bottle some for the House smiths.",
+      "rule": "leader",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "They will know what to do.",
+          "effects": [
+            {
+              "resources": {
+                "essence": 3,
+                "iron": 2
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

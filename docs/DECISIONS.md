@@ -2,6 +2,9 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 7ak: an eighth round for the regions, Delves and Pilgrimages) — implementer
+- **Built** (content only). Sixteen events: the Snake Charmer, the Hollow Oak, the Eelmen, the King's Barrow, the Ice Witch, the Hellhound, the Quench Pool, the Pickpocket, the Burning Heretic, the Offering Bowl, the Dragon-Bone Bridge and the Door in the Air (one for each region), the Crystal Cave and the Underground River for Delves, and the Pilgrim Ghost and the Relic Thieves for Pilgrimages. That makes 384 expedition events; every region has 12 to 16, Delve 23 and Pilgrimage 20.
+
 ## 2026-11-02 (implementation, Milestone 7aj: a seventh round for the regions) — implementer
 - **Built** (content only). Sixteen events: the Lion Pride, the Spider Silk, the Heron King, the Bone Harp, the Frozen Army, the Demon Tailor, the Mold Room, the Name Thief, the Penitent Knight, the Choir Loft, the Wyvern Nest and the Mouth (one for each region), the Message in the Bark and the Ransomed One for Rescues, the Ruined Quarry for Resource cards and the Track in the Snow for Hunts. That makes 368 expedition events; every region has 11 to 15.
 

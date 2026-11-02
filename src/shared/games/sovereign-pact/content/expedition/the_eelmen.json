@@ -1,0 +1,81 @@
+{
+  "id": "the_eelmen",
+  "pools": [
+    "drowned_marches"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    7
+  ],
+  "title": "The Eelmen",
+  "text": "Slick grey shapes rise around the boat: the eelmen of the Marches, and they want a toll.",
+  "options": [
+    {
+      "id": "pay",
+      "label": "Pay in fish and gold.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "They sink away.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -10
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fight",
+      "label": "Fight them off.",
+      "rule": "leader",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "In the water, where they are strongest.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "ambush"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "talk",
+      "label": "The shrewdest talks them into guiding you.",
+      "rule": "scion:highest:guile",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Through the reeds, quickly.",
+          "effects": [
+            {
+              "skip": 1
+            },
+            {
+              "score": {
+                "intrigue": 1
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

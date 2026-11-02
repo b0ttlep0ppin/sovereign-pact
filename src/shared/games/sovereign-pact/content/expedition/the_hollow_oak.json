@@ -1,0 +1,84 @@
+{
+  "id": "the_hollow_oak",
+  "pools": [
+    "hollow_wood"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    7
+  ],
+  "title": "The Hollow Oak",
+  "text": "An oak so old it is hollow, and someone lives inside. The door is a knot.",
+  "options": [
+    {
+      "id": "knock",
+      "label": "Knock.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "An old hermit, glad of company. He feeds you.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 8
+            },
+            {
+              "to": "party",
+              "mp": 10
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "Not a hermit.",
+          "effects": [
+            {
+              "encounter": {}
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "peek",
+      "label": "The quietest peeks in.",
+      "rule": "scion:highest:guile",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A hoard of acorns, and one gold one.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 15
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pass",
+      "label": "Let them be.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Eyes in the knot follow you.",
+          "effects": []
+        }
+      ]
+    }
+  ]
+}

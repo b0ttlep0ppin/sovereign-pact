@@ -1,0 +1,87 @@
+{
+  "id": "the_offering_bowl",
+  "pools": [
+    "shrine_of_six"
+  ],
+  "weight": 2,
+  "band": [
+    4,
+    10
+  ],
+  "title": "The Offering Bowl",
+  "text": "A great bronze bowl where pilgrims leave gifts for the Six. The monks have not emptied it in years.",
+  "options": [
+    {
+      "id": "give",
+      "label": "Give something.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The Six notice.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -10
+              }
+            },
+            {
+              "blessing": {
+                "trait": "lucky",
+                "years": 2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "take",
+      "label": "Take something.",
+      "rule": "leader",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The Six notice.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 30
+              }
+            },
+            {
+              "curse": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "count",
+      "label": "The wisest counts what is there.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Offerings from every House, and what each House prays for.",
+          "effects": [
+            {
+              "score": {
+                "intrigue": 2
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
