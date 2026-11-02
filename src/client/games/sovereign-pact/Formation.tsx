@@ -11,7 +11,7 @@ type Person = SovView["people"][number];
 const COLS = ["Front", "Middle", "Back"];
 const ROWS = 8;
 
-export default function Formation({ view, people, sendMove, canAct, title = "Formation" }: { view: SovView; people: Person[]; sendMove: (m: SovMove) => void; canAct: boolean; title?: string }) {
+export default function Formation({ view, people, sendMove, canAct, title = "Formation", note }: { view: SovView; people: Person[]; sendMove: (m: SovMove) => void; canAct: boolean; title?: string; note?: string }) {
   const [picked, setPicked] = useState<number | null>(null);
   const cells = deploy(people);
   const at = (col: number, row: number) => people.find((_, i) => cells[i]![0] === col && cells[i]![1] === row);
@@ -29,6 +29,7 @@ export default function Formation({ view, people, sendMove, canAct, title = "For
         Where your Scions stand when a battle opens. The foe is to the left: the Front takes most blows, the Back the fewest.
         {canAct ? " Pick one of yours, then a cell." : ""}
       </p>
+      {note ? <p className="sp-formation__note">{note}</p> : null}
       <div className="sp-formation__grid" role="grid" aria-label="The party's grid">
         {COLS.map((c) => (
           <span key={c} className="sp-formation__col" role="columnheader">

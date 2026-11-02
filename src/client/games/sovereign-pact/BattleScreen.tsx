@@ -324,6 +324,15 @@ export default function BattleScreen({ replay, view, onClose, waiting = 0, fullL
         </button>
         <input type="range" min={0} max={last} value={at} aria-label="Turn" onChange={(e) => step(Number(e.target.value) - at)} />
       </div>
+      {live && at < last && live.turn ? (
+        // Watching back over the battle: their turn still waits, a click away (scrubbing pauses the replay).
+        <p className="sp-command" role="status">
+          {name(live.turn.unit)}'s turn is waiting.{" "}
+          <button type="button" className="sp-button" onClick={() => setAt(last)}>
+            Back to {name(live.turn.unit)}'s turn
+          </button>
+        </p>
+      ) : null}
       {live && at >= last ? (
         commanding ? (
           <CommandBar
