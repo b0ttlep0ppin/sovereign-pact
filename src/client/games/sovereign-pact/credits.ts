@@ -23,6 +23,7 @@ export const CREDITS: CreditSection[] = [
     ],
   },
   { title: "Sound effects", lines: ["Sound effects cut from BOOM Library packs (boomlibrary.com: Close Combat, Creature Foley, Death Whistle, Magic – Arcane Forces, Magic, Medieval Weapons), used under its license."] },
+  { title: "Fonts", lines: ["Jacquard 12 by Sarah Cadigan-Fried; Alegreya Sans by Juan Pablo del Peral (Huerta Tipográfica). Both under the SIL Open Font License 1.1."] },
   {
     title: "Tiles and backgrounds",
     lines: ["Tiles and backgrounds built from Oryx Design Lab tilesets (oryxdesignlab.com: 16-bit Fantasy, Ultimate Fantasy, 32 Gothic), used under their royalty-free commercial license."],
