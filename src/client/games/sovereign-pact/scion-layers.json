@@ -542,6 +542,537 @@
    "material": "cloth"
   },
   {
+   "id": "armor_legion_1_m",
+   "file": "armor_legion_1_m",
+   "slot": "armor",
+   "option": "legion",
+   "sex": "m",
+   "z": 60,
+   "material": "metal"
+  },
+  {
+   "id": "armor_legion_1_f",
+   "file": "armor_legion_1_f",
+   "slot": "armor",
+   "option": "legion",
+   "sex": "f",
+   "z": 60,
+   "material": "metal"
+  },
+  {
+   "id": "tabard_tabard_1_m",
+   "file": "tabard_tabard_1_m",
+   "slot": "tabard",
+   "option": "tabard",
+   "sex": "m",
+   "z": 55,
+   "material": "cloth"
+  },
+  {
+   "id": "tabard_tabard_1_f",
+   "file": "tabard_tabard_1_f",
+   "slot": "tabard",
+   "option": "tabard",
+   "sex": "f",
+   "z": 55,
+   "material": "cloth"
+  },
+  {
+   "id": "belt_leather_1_m",
+   "file": "belt_leather_1_m",
+   "slot": "belt",
+   "option": "leather",
+   "sex": "m",
+   "z": 70,
+   "material": "cloth"
+  },
+  {
+   "id": "belt_leather_1_f",
+   "file": "belt_leather_1_f",
+   "slot": "belt",
+   "option": "leather",
+   "sex": "f",
+   "z": 70,
+   "material": "cloth"
+  },
+  {
+   "id": "belt_double_1_m",
+   "file": "belt_double_1_m",
+   "slot": "belt",
+   "option": "double",
+   "sex": "m",
+   "z": 70,
+   "material": "cloth"
+  },
+  {
+   "id": "belt_double_1_f",
+   "file": "belt_double_1_f",
+   "slot": "belt",
+   "option": "double",
+   "sex": "f",
+   "z": 70,
+   "material": "cloth"
+  },
+  {
+   "id": "belt_sash_1_m",
+   "file": "belt_sash_1_m",
+   "slot": "belt",
+   "option": "sash",
+   "sex": "m",
+   "z": 65,
+   "material": "cloth"
+  },
+  {
+   "id": "belt_sash_1_f",
+   "file": "belt_sash_1_f",
+   "slot": "belt",
+   "option": "sash",
+   "sex": "f",
+   "z": 65,
+   "material": "cloth"
+  },
+  {
+   "id": "belt_sash_narrow_1_m",
+   "file": "belt_sash_narrow_1_m",
+   "slot": "belt",
+   "option": "sash_narrow",
+   "sex": "m",
+   "z": 65,
+   "material": "cloth"
+  },
+  {
+   "id": "belt_sash_narrow_1_f",
+   "file": "belt_sash_narrow_1_f",
+   "slot": "belt",
+   "option": "sash_narrow",
+   "sex": "f",
+   "z": 65,
+   "material": "cloth"
+  },
+  {
+   "id": "belt_robe_1_m",
+   "file": "belt_robe_1_m",
+   "slot": "belt",
+   "option": "robe",
+   "sex": "m",
+   "z": 70,
+   "material": "cloth"
+  },
+  {
+   "id": "belt_robe_1_f",
+   "file": "belt_robe_1_f",
+   "slot": "belt",
+   "option": "robe",
+   "sex": "f",
+   "z": 70,
+   "material": "cloth"
+  },
+  {
+   "id": "belt_waistband_1_f",
+   "file": "belt_waistband_1_f",
+   "slot": "belt",
+   "option": "waistband",
+   "sex": "f",
+   "z": 65,
+   "material": "cloth"
+  },
+  {
+   "id": "belt_obi_1_m",
+   "file": "belt_obi_1_m",
+   "slot": "belt",
+   "option": "obi",
+   "sex": "m",
+   "z": 65,
+   "material": "cloth"
+  },
+  {
+   "id": "belt_obi_1_f",
+   "file": "belt_obi_1_f",
+   "slot": "belt",
+   "option": "obi",
+   "sex": "f",
+   "z": 65,
+   "material": "cloth"
+  },
+  {
+   "id": "shoulders_pauldrons_1_m",
+   "file": "shoulders_pauldrons_1_m",
+   "slot": "shoulders",
+   "option": "pauldrons",
+   "sex": "m",
+   "z": 60,
+   "material": "cloth"
+  },
+  {
+   "id": "shoulders_pauldrons_1_f",
+   "file": "shoulders_pauldrons_1_f",
+   "slot": "shoulders",
+   "option": "pauldrons",
+   "sex": "f",
+   "z": 60,
+   "material": "cloth"
+  },
+  {
+   "id": "shoulders_legion_1_m",
+   "file": "shoulders_legion_1_m",
+   "slot": "shoulders",
+   "option": "legion",
+   "sex": "m",
+   "z": 60,
+   "material": "metal"
+  },
+  {
+   "id": "shoulders_legion_1_f",
+   "file": "shoulders_legion_1_f",
+   "slot": "shoulders",
+   "option": "legion",
+   "sex": "f",
+   "z": 60,
+   "material": "metal"
+  },
+  {
+   "id": "shoulders_mantal_1_m",
+   "file": "shoulders_mantal_1_m",
+   "slot": "shoulders",
+   "option": "mantal",
+   "sex": "m",
+   "z": 75,
+   "material": "cloth"
+  },
+  {
+   "id": "shoulders_mantal_1_f",
+   "file": "shoulders_mantal_1_f",
+   "slot": "shoulders",
+   "option": "mantal",
+   "sex": "f",
+   "z": 75,
+   "material": "cloth"
+  },
+  {
+   "id": "shoulders_epaulets_1_m",
+   "file": "shoulders_epaulets_1_m",
+   "slot": "shoulders",
+   "option": "epaulets",
+   "sex": "m",
+   "z": 60,
+   "material": "cloth"
+  },
+  {
+   "id": "shoulders_epaulets_1_f",
+   "file": "shoulders_epaulets_1_f",
+   "slot": "shoulders",
+   "option": "epaulets",
+   "sex": "f",
+   "z": 60,
+   "material": "cloth"
+  },
+  {
+   "id": "arms_plate_1_m",
+   "file": "arms_plate_1_m",
+   "slot": "arms",
+   "option": "plate",
+   "sex": "m",
+   "z": 60,
+   "material": "metal"
+  },
+  {
+   "id": "arms_plate_1_f",
+   "file": "arms_plate_1_f",
+   "slot": "arms",
+   "option": "plate",
+   "sex": "f",
+   "z": 60,
+   "material": "metal"
+  },
+  {
+   "id": "wrists_bracers_1_m",
+   "file": "wrists_bracers_1_m",
+   "slot": "wrists",
+   "option": "bracers",
+   "sex": "m",
+   "z": 70,
+   "material": "metal"
+  },
+  {
+   "id": "wrists_bracers_1_f",
+   "file": "wrists_bracers_1_f",
+   "slot": "wrists",
+   "option": "bracers",
+   "sex": "f",
+   "z": 70,
+   "material": "metal"
+  },
+  {
+   "id": "wrists_cuffs_1_m",
+   "file": "wrists_cuffs_1_m",
+   "slot": "wrists",
+   "option": "cuffs",
+   "sex": "m",
+   "z": 70,
+   "material": "cloth"
+  },
+  {
+   "id": "wrists_cuffs_1_f",
+   "file": "wrists_cuffs_1_f",
+   "slot": "wrists",
+   "option": "cuffs",
+   "sex": "f",
+   "z": 70,
+   "material": "cloth"
+  },
+  {
+   "id": "wrists_lace_1_m",
+   "file": "wrists_lace_1_m",
+   "slot": "wrists",
+   "option": "lace",
+   "sex": "m",
+   "z": 70,
+   "material": "cloth"
+  },
+  {
+   "id": "wrists_lace_1_f",
+   "file": "wrists_lace_1_f",
+   "slot": "wrists",
+   "option": "lace",
+   "sex": "f",
+   "z": 70,
+   "material": "cloth"
+  },
+  {
+   "id": "gloves_gloves_1_m",
+   "file": "gloves_gloves_1_m",
+   "slot": "gloves",
+   "option": "gloves",
+   "sex": "m",
+   "z": 70,
+   "material": "metal"
+  },
+  {
+   "id": "gloves_gloves_1_f",
+   "file": "gloves_gloves_1_f",
+   "slot": "gloves",
+   "option": "gloves",
+   "sex": "f",
+   "z": 70,
+   "material": "metal"
+  },
+  {
+   "id": "neck_capeclip_1_m",
+   "file": "neck_capeclip_1_m",
+   "slot": "neck",
+   "option": "capeclip",
+   "sex": "m",
+   "z": 90,
+   "material": "cloth"
+  },
+  {
+   "id": "neck_capeclip_1_f",
+   "file": "neck_capeclip_1_f",
+   "slot": "neck",
+   "option": "capeclip",
+   "sex": "f",
+   "z": 90,
+   "material": "cloth"
+  },
+  {
+   "id": "neck_capetie_1_m",
+   "file": "neck_capetie_1_m",
+   "slot": "neck",
+   "option": "capetie",
+   "sex": "m",
+   "z": 90,
+   "material": "cloth"
+  },
+  {
+   "id": "neck_capetie_1_f",
+   "file": "neck_capetie_1_f",
+   "slot": "neck",
+   "option": "capetie",
+   "sex": "f",
+   "z": 90,
+   "material": "cloth"
+  },
+  {
+   "id": "neck_cravat_1_m",
+   "file": "neck_cravat_1_m",
+   "slot": "neck",
+   "option": "cravat",
+   "sex": "m",
+   "z": 90,
+   "material": "cloth"
+  },
+  {
+   "id": "neck_cravat_1_f",
+   "file": "neck_cravat_1_f",
+   "slot": "neck",
+   "option": "cravat",
+   "sex": "f",
+   "z": 90,
+   "material": "cloth"
+  },
+  {
+   "id": "neck_jabot_1_m",
+   "file": "neck_jabot_1_m",
+   "slot": "neck",
+   "option": "jabot",
+   "sex": "m",
+   "z": 90,
+   "material": "cloth"
+  },
+  {
+   "id": "neck_jabot_1_f",
+   "file": "neck_jabot_1_f",
+   "slot": "neck",
+   "option": "jabot",
+   "sex": "f",
+   "z": 90,
+   "material": "cloth"
+  },
+  {
+   "id": "neck_necklace_beaded_small_1_m",
+   "file": "neck_necklace_beaded_small_1_m",
+   "slot": "neck",
+   "option": "necklace_beaded_small",
+   "sex": "m",
+   "z": 80,
+   "material": "metal"
+  },
+  {
+   "id": "neck_necklace_beaded_small_1_f",
+   "file": "neck_necklace_beaded_small_1_f",
+   "slot": "neck",
+   "option": "necklace_beaded_small",
+   "sex": "f",
+   "z": 80,
+   "material": "metal"
+  },
+  {
+   "id": "neck_amulet_cross_1_m",
+   "file": "neck_amulet_cross_1_m",
+   "slot": "neck",
+   "option": "amulet_cross",
+   "sex": "m",
+   "z": 81,
+   "material": null
+  },
+  {
+   "id": "neck_amulet_cross_1_f",
+   "file": "neck_amulet_cross_1_f",
+   "slot": "neck",
+   "option": "amulet_cross",
+   "sex": "f",
+   "z": 81,
+   "material": null
+  },
+  {
+   "id": "neck_amulet_star_1_m",
+   "file": "neck_amulet_star_1_m",
+   "slot": "neck",
+   "option": "amulet_star",
+   "sex": "m",
+   "z": 81,
+   "material": null
+  },
+  {
+   "id": "neck_amulet_star_1_f",
+   "file": "neck_amulet_star_1_f",
+   "slot": "neck",
+   "option": "amulet_star",
+   "sex": "f",
+   "z": 81,
+   "material": null
+  },
+  {
+   "id": "neck_charm_star_1_m",
+   "file": "neck_charm_star_1_m",
+   "slot": "neck",
+   "option": "charm_star",
+   "sex": "m",
+   "z": 81,
+   "material": "metal"
+  },
+  {
+   "id": "neck_charm_star_1_f",
+   "file": "neck_charm_star_1_f",
+   "slot": "neck",
+   "option": "charm_star",
+   "sex": "f",
+   "z": 81,
+   "material": "metal"
+  },
+  {
+   "id": "face_eyepatch_1_m",
+   "file": "face_eyepatch_1_m",
+   "slot": "face",
+   "option": "eyepatch",
+   "sex": "m",
+   "z": 115,
+   "material": null
+  },
+  {
+   "id": "face_eyepatch_1_f",
+   "file": "face_eyepatch_1_m",
+   "slot": "face",
+   "option": "eyepatch",
+   "sex": "f",
+   "z": 115,
+   "material": null
+  },
+  {
+   "id": "face_glasses_1_m",
+   "file": "face_glasses_1_m",
+   "slot": "face",
+   "option": "glasses",
+   "sex": "m",
+   "z": 115,
+   "material": null
+  },
+  {
+   "id": "face_glasses_1_f",
+   "file": "face_glasses_1_m",
+   "slot": "face",
+   "option": "glasses",
+   "sex": "f",
+   "z": 115,
+   "material": null
+  },
+  {
+   "id": "face_halfmoon_1_m",
+   "file": "face_halfmoon_1_m",
+   "slot": "face",
+   "option": "halfmoon",
+   "sex": "m",
+   "z": 115,
+   "material": null
+  },
+  {
+   "id": "face_halfmoon_1_f",
+   "file": "face_halfmoon_1_m",
+   "slot": "face",
+   "option": "halfmoon",
+   "sex": "f",
+   "z": 115,
+   "material": null
+  },
+  {
+   "id": "face_mask_1_m",
+   "file": "face_mask_1_m",
+   "slot": "face",
+   "option": "mask",
+   "sex": "m",
+   "z": 114,
+   "material": null
+  },
+  {
+   "id": "face_mask_1_f",
+   "file": "face_mask_1_m",
+   "slot": "face",
+   "option": "mask",
+   "sex": "f",
+   "z": 114,
+   "material": null
+  },
+  {
    "id": "cape_solid_1_m",
    "file": "cape_solid_1_m",
    "slot": "cape",
@@ -578,13 +1109,67 @@
    "material": "cloth"
   },
   {
+   "id": "cape_tattered_1_m",
+   "file": "cape_tattered_1_m",
+   "slot": "cape",
+   "option": "tattered",
+   "sex": "m",
+   "z": 85,
+   "material": "cloth"
+  },
+  {
+   "id": "cape_tattered_1_f",
+   "file": "cape_tattered_1_m",
+   "slot": "cape",
+   "option": "tattered",
+   "sex": "f",
+   "z": 85,
+   "material": "cloth"
+  },
+  {
+   "id": "cape_tattered_2_m",
+   "file": "cape_tattered_2_m",
+   "slot": "cape",
+   "option": "tattered",
+   "sex": "m",
+   "z": 5,
+   "material": "cloth"
+  },
+  {
+   "id": "cape_tattered_2_f",
+   "file": "cape_tattered_2_m",
+   "slot": "cape",
+   "option": "tattered",
+   "sex": "f",
+   "z": 5,
+   "material": "cloth"
+  },
+  {
+   "id": "capetrim_trim_1_m",
+   "file": "capetrim_trim_1_m",
+   "slot": "capetrim",
+   "option": "trim",
+   "sex": "m",
+   "z": 90,
+   "material": "cloth"
+  },
+  {
+   "id": "capetrim_trim_1_f",
+   "file": "capetrim_trim_1_m",
+   "slot": "capetrim",
+   "option": "trim",
+   "sex": "f",
+   "z": 90,
+   "material": "cloth"
+  },
+  {
    "id": "hat_wizard_1_m",
    "file": "hat_wizard_1_m",
    "slot": "hat",
    "option": "wizard",
    "sex": "m",
    "z": 130,
-   "material": null
+   "material": "cloth"
   },
   {
    "id": "hat_wizard_1_f",
@@ -593,7 +1178,83 @@
    "option": "wizard",
    "sex": "f",
    "z": 130,
-   "material": null
+   "material": "cloth"
+  },
+  {
+   "id": "hat_wizard_trim_1_m",
+   "file": "hat_wizard_trim_1_m",
+   "slot": "hat",
+   "option": "wizard_trim",
+   "sex": "m",
+   "z": 130,
+   "material": "cloth"
+  },
+  {
+   "id": "hat_wizard_trim_1_f",
+   "file": "hat_wizard_trim_1_m",
+   "slot": "hat",
+   "option": "wizard_trim",
+   "sex": "f",
+   "z": 130,
+   "material": "cloth"
+  },
+  {
+   "id": "hat_wizard_trim_1b_m",
+   "file": "hat_wizard_trim_1b_m",
+   "slot": "hat",
+   "option": "wizard_trim",
+   "sex": "m",
+   "z": 131,
+   "material": "cloth",
+   "tone": "accent"
+  },
+  {
+   "id": "hat_wizard_trim_1b_f",
+   "file": "hat_wizard_trim_1b_m",
+   "slot": "hat",
+   "option": "wizard_trim",
+   "sex": "f",
+   "z": 131,
+   "material": "cloth",
+   "tone": "accent"
+  },
+  {
+   "id": "hat_wizard_moon_1_m",
+   "file": "hat_wizard_moon_1_m",
+   "slot": "hat",
+   "option": "wizard_moon",
+   "sex": "m",
+   "z": 130,
+   "material": "cloth"
+  },
+  {
+   "id": "hat_wizard_moon_1_f",
+   "file": "hat_wizard_moon_1_m",
+   "slot": "hat",
+   "option": "wizard_moon",
+   "sex": "f",
+   "z": 130,
+   "material": "cloth"
+  },
+  {
+   "id": "hat_wizard_moon_1b_m",
+   "file": "hat_wizard_moon_1b_m",
+   "slot": "hat",
+   "option": "wizard_moon",
+   "sex": "m",
+   "z": 131,
+   "material": "cloth",
+   "tone": "accent"
+  },
+  {
+   "id": "hat_wizard_moon_1b_f",
+   "file": "hat_wizard_moon_1b_m",
+   "slot": "hat",
+   "option": "wizard_moon",
+   "sex": "f",
+   "z": 131,
+   "material": "cloth",
+   "tone": "accent"
   },
   {
    "id": "hat_hood_1_m",
@@ -614,13 +1275,31 @@
    "material": "cloth"
   },
   {
+   "id": "hat_sack_hood_1_m",
+   "file": "hat_sack_hood_1_m",
+   "slot": "hat",
+   "option": "sack_hood",
+   "sex": "m",
+   "z": 130,
+   "material": "cloth"
+  },
+  {
+   "id": "hat_sack_hood_1_f",
+   "file": "hat_sack_hood_1_m",
+   "slot": "hat",
+   "option": "sack_hood",
+   "sex": "f",
+   "z": 130,
+   "material": "cloth"
+  },
+  {
    "id": "hat_cavalier_1_m",
    "file": "hat_cavalier_1_m",
    "slot": "hat",
    "option": "cavalier",
    "sex": "m",
    "z": 130,
-   "material": null
+   "material": "cloth"
   },
   {
    "id": "hat_cavalier_1_f",
@@ -629,7 +1308,7 @@
    "option": "cavalier",
    "sex": "f",
    "z": 130,
-   "material": null
+   "material": "cloth"
   },
   {
    "id": "hat_cavalier_1b_m",
@@ -638,7 +1317,7 @@
    "option": "cavalier",
    "sex": "m",
    "z": 131,
-   "material": null
+   "material": "cloth"
   },
   {
    "id": "hat_cavalier_1b_f",
@@ -647,7 +1326,83 @@
    "option": "cavalier",
    "sex": "f",
    "z": 131,
-   "material": null
+   "material": "cloth"
+  },
+  {
+   "id": "hat_bonnie_1_m",
+   "file": "hat_bonnie_1_m",
+   "slot": "hat",
+   "option": "bonnie",
+   "sex": "m",
+   "z": 130,
+   "material": "cloth"
+  },
+  {
+   "id": "hat_bonnie_1_f",
+   "file": "hat_bonnie_1_m",
+   "slot": "hat",
+   "option": "bonnie",
+   "sex": "f",
+   "z": 130,
+   "material": "cloth"
+  },
+  {
+   "id": "hat_bonnie_1b_m",
+   "file": "hat_bonnie_1b_m",
+   "slot": "hat",
+   "option": "bonnie",
+   "sex": "m",
+   "z": 131,
+   "material": "cloth",
+   "tone": "accent"
+  },
+  {
+   "id": "hat_bonnie_1b_f",
+   "file": "hat_bonnie_1b_m",
+   "slot": "hat",
+   "option": "bonnie",
+   "sex": "f",
+   "z": 131,
+   "material": "cloth",
+   "tone": "accent"
+  },
+  {
+   "id": "hat_leather_cap_1_m",
+   "file": "hat_leather_cap_1_m",
+   "slot": "hat",
+   "option": "leather_cap",
+   "sex": "m",
+   "z": 130,
+   "material": "cloth"
+  },
+  {
+   "id": "hat_leather_cap_1_f",
+   "file": "hat_leather_cap_1_m",
+   "slot": "hat",
+   "option": "leather_cap",
+   "sex": "f",
+   "z": 130,
+   "material": "cloth"
+  },
+  {
+   "id": "hat_leather_cap_1b_m",
+   "file": "hat_leather_cap_1b_m",
+   "slot": "hat",
+   "option": "leather_cap",
+   "sex": "m",
+   "z": 131,
+   "material": "cloth",
+   "tone": "accent"
+  },
+  {
+   "id": "hat_leather_cap_1b_f",
+   "file": "hat_leather_cap_1b_m",
+   "slot": "hat",
+   "option": "leather_cap",
+   "sex": "f",
+   "z": 131,
+   "material": "cloth",
+   "tone": "accent"
   },
   {
    "id": "hat_bandana_1_m",
@@ -668,13 +1423,103 @@
    "material": "cloth"
   },
   {
+   "id": "hat_kerchief_1_m",
+   "file": "hat_kerchief_1_m",
+   "slot": "hat",
+   "option": "kerchief",
+   "sex": "m",
+   "z": 125,
+   "material": "cloth"
+  },
+  {
+   "id": "hat_kerchief_1_f",
+   "file": "hat_kerchief_1_m",
+   "slot": "hat",
+   "option": "kerchief",
+   "sex": "f",
+   "z": 125,
+   "material": "cloth"
+  },
+  {
+   "id": "hat_thick_1_m",
+   "file": "hat_thick_1_m",
+   "slot": "hat",
+   "option": "thick",
+   "sex": "m",
+   "z": 125,
+   "material": "cloth"
+  },
+  {
+   "id": "hat_thick_1_f",
+   "file": "hat_thick_1_m",
+   "slot": "hat",
+   "option": "thick",
+   "sex": "f",
+   "z": 125,
+   "material": "cloth"
+  },
+  {
+   "id": "hat_tied_1_m",
+   "file": "hat_tied_1_m",
+   "slot": "hat",
+   "option": "tied",
+   "sex": "m",
+   "z": 125,
+   "material": "cloth"
+  },
+  {
+   "id": "hat_tied_1_f",
+   "file": "hat_tied_1_m",
+   "slot": "hat",
+   "option": "tied",
+   "sex": "f",
+   "z": 125,
+   "material": "cloth"
+  },
+  {
+   "id": "hat_hairtie_1_m",
+   "file": "hat_hairtie_1_m",
+   "slot": "hat",
+   "option": "hairtie",
+   "sex": "m",
+   "z": 125,
+   "material": "cloth"
+  },
+  {
+   "id": "hat_hairtie_1_f",
+   "file": "hat_hairtie_1_m",
+   "slot": "hat",
+   "option": "hairtie",
+   "sex": "f",
+   "z": 125,
+   "material": "cloth"
+  },
+  {
+   "id": "hat_thick_rune_1_m",
+   "file": "hat_thick_rune_1_m",
+   "slot": "hat",
+   "option": "thick_rune",
+   "sex": "m",
+   "z": 126,
+   "material": "cloth"
+  },
+  {
+   "id": "hat_thick_rune_1_f",
+   "file": "hat_thick_rune_1_m",
+   "slot": "hat",
+   "option": "thick_rune",
+   "sex": "f",
+   "z": 126,
+   "material": "cloth"
+  },
+  {
    "id": "hat_tricorne_1_m",
    "file": "hat_tricorne_1_m",
    "slot": "hat",
    "option": "tricorne",
    "sex": "m",
    "z": 130,
-   "material": null
+   "material": "cloth"
   },
   {
    "id": "hat_tricorne_1_f",
@@ -683,7 +1528,99 @@
    "option": "tricorne",
    "sex": "f",
    "z": 130,
+   "material": "cloth"
+  },
+  {
+   "id": "hat_tricorne_stitched_1_m",
+   "file": "hat_tricorne_stitched_1_m",
+   "slot": "hat",
+   "option": "tricorne_stitched",
+   "sex": "m",
+   "z": 130,
+   "material": "cloth"
+  },
+  {
+   "id": "hat_tricorne_stitched_1_f",
+   "file": "hat_tricorne_stitched_1_m",
+   "slot": "hat",
+   "option": "tricorne_stitched",
+   "sex": "f",
+   "z": 130,
+   "material": "cloth"
+  },
+  {
+   "id": "hat_tricorne_stitched_1b_m",
+   "file": "hat_tricorne_stitched_1b_m",
+   "slot": "hat",
+   "option": "tricorne_stitched",
+   "sex": "m",
+   "z": 131,
+   "material": "cloth",
+   "tone": "accent"
+  },
+  {
+   "id": "hat_tricorne_stitched_1b_f",
+   "file": "hat_tricorne_stitched_1b_m",
+   "slot": "hat",
+   "option": "tricorne_stitched",
+   "sex": "f",
+   "z": 131,
+   "material": "cloth",
+   "tone": "accent"
+  },
+  {
+   "id": "hat_tricorne_captain_1_m",
+   "file": "hat_tricorne_captain_1_m",
+   "slot": "hat",
+   "option": "tricorne_captain",
+   "sex": "m",
+   "z": 130,
+   "material": "cloth"
+  },
+  {
+   "id": "hat_tricorne_captain_1_f",
+   "file": "hat_tricorne_captain_1_m",
+   "slot": "hat",
+   "option": "tricorne_captain",
+   "sex": "f",
+   "z": 130,
+   "material": "cloth"
+  },
+  {
+   "id": "hat_tricorne_captain_1b_m",
+   "file": "hat_tricorne_captain_1b_m",
+   "slot": "hat",
+   "option": "tricorne_captain",
+   "sex": "m",
+   "z": 131,
    "material": null
+  },
+  {
+   "id": "hat_tricorne_captain_1b_f",
+   "file": "hat_tricorne_captain_1b_m",
+   "slot": "hat",
+   "option": "tricorne_captain",
+   "sex": "f",
+   "z": 131,
+   "material": null
+  },
+  {
+   "id": "hat_bicorne_1_m",
+   "file": "hat_bicorne_1_m",
+   "slot": "hat",
+   "option": "bicorne",
+   "sex": "m",
+   "z": 130,
+   "material": "cloth"
+  },
+  {
+   "id": "hat_bicorne_1_f",
+   "file": "hat_bicorne_1_m",
+   "slot": "hat",
+   "option": "bicorne",
+   "sex": "f",
+   "z": 130,
+   "material": "cloth"
   },
   {
    "id": "hat_mail_1_m",
@@ -722,13 +1659,499 @@
    "material": "metal"
   },
   {
+   "id": "hat_armet_1_m",
+   "file": "hat_armet_1_m",
+   "slot": "hat",
+   "option": "armet",
+   "sex": "m",
+   "z": 130,
+   "material": "metal"
+  },
+  {
+   "id": "hat_armet_1_f",
+   "file": "hat_armet_1_m",
+   "slot": "hat",
+   "option": "armet",
+   "sex": "f",
+   "z": 130,
+   "material": "metal"
+  },
+  {
+   "id": "hat_armet_simple_1_m",
+   "file": "hat_armet_simple_1_m",
+   "slot": "hat",
+   "option": "armet_simple",
+   "sex": "m",
+   "z": 130,
+   "material": "metal"
+  },
+  {
+   "id": "hat_armet_simple_1_f",
+   "file": "hat_armet_simple_1_m",
+   "slot": "hat",
+   "option": "armet_simple",
+   "sex": "f",
+   "z": 130,
+   "material": "metal"
+  },
+  {
+   "id": "hat_barbarian_1_m",
+   "file": "hat_barbarian_1_m",
+   "slot": "hat",
+   "option": "barbarian",
+   "sex": "m",
+   "z": 130,
+   "material": "metal"
+  },
+  {
+   "id": "hat_barbarian_1_f",
+   "file": "hat_barbarian_1_m",
+   "slot": "hat",
+   "option": "barbarian",
+   "sex": "f",
+   "z": 130,
+   "material": "metal"
+  },
+  {
+   "id": "hat_barbarian_nasal_1_m",
+   "file": "hat_barbarian_nasal_1_m",
+   "slot": "hat",
+   "option": "barbarian_nasal",
+   "sex": "m",
+   "z": 130,
+   "material": "metal"
+  },
+  {
+   "id": "hat_barbarian_nasal_1_f",
+   "file": "hat_barbarian_nasal_1_m",
+   "slot": "hat",
+   "option": "barbarian_nasal",
+   "sex": "f",
+   "z": 130,
+   "material": "metal"
+  },
+  {
+   "id": "hat_barbarian_viking_1_m",
+   "file": "hat_barbarian_viking_1_m",
+   "slot": "hat",
+   "option": "barbarian_viking",
+   "sex": "m",
+   "z": 130,
+   "material": "metal"
+  },
+  {
+   "id": "hat_barbarian_viking_1_f",
+   "file": "hat_barbarian_viking_1_m",
+   "slot": "hat",
+   "option": "barbarian_viking",
+   "sex": "f",
+   "z": 130,
+   "material": "metal"
+  },
+  {
+   "id": "hat_barbuta_1_m",
+   "file": "hat_barbuta_1_m",
+   "slot": "hat",
+   "option": "barbuta",
+   "sex": "m",
+   "z": 130,
+   "material": "metal"
+  },
+  {
+   "id": "hat_barbuta_1_f",
+   "file": "hat_barbuta_1_f",
+   "slot": "hat",
+   "option": "barbuta",
+   "sex": "f",
+   "z": 130,
+   "material": "metal"
+  },
+  {
+   "id": "hat_bascinet_1_m",
+   "file": "hat_bascinet_1_m",
+   "slot": "hat",
+   "option": "bascinet",
+   "sex": "m",
+   "z": 130,
+   "material": "metal"
+  },
+  {
+   "id": "hat_bascinet_1_f",
+   "file": "hat_bascinet_1_m",
+   "slot": "hat",
+   "option": "bascinet",
+   "sex": "f",
+   "z": 130,
+   "material": "metal"
+  },
+  {
+   "id": "hat_close_1_m",
+   "file": "hat_close_1_m",
+   "slot": "hat",
+   "option": "close",
+   "sex": "m",
+   "z": 130,
+   "material": "metal"
+  },
+  {
+   "id": "hat_close_1_f",
+   "file": "hat_close_1_f",
+   "slot": "hat",
+   "option": "close",
+   "sex": "f",
+   "z": 130,
+   "material": "metal"
+  },
+  {
+   "id": "hat_flattop_1_m",
+   "file": "hat_flattop_1_m",
+   "slot": "hat",
+   "option": "flattop",
+   "sex": "m",
+   "z": 130,
+   "material": "metal"
+  },
+  {
+   "id": "hat_flattop_1_f",
+   "file": "hat_flattop_1_f",
+   "slot": "hat",
+   "option": "flattop",
+   "sex": "f",
+   "z": 130,
+   "material": "metal"
+  },
+  {
+   "id": "hat_greathelm_1_m",
+   "file": "hat_greathelm_1_m",
+   "slot": "hat",
+   "option": "greathelm",
+   "sex": "m",
+   "z": 130,
+   "material": "metal"
+  },
+  {
+   "id": "hat_greathelm_1_f",
+   "file": "hat_greathelm_1_f",
+   "slot": "hat",
+   "option": "greathelm",
+   "sex": "f",
+   "z": 130,
+   "material": "metal"
+  },
+  {
+   "id": "hat_kettle_1_m",
+   "file": "hat_kettle_1_m",
+   "slot": "hat",
+   "option": "kettle",
+   "sex": "m",
+   "z": 135,
+   "material": "metal"
+  },
+  {
+   "id": "hat_kettle_1_f",
+   "file": "hat_kettle_1_m",
+   "slot": "hat",
+   "option": "kettle",
+   "sex": "f",
+   "z": 135,
+   "material": "metal"
+  },
+  {
+   "id": "hat_legion_1_m",
+   "file": "hat_legion_1_m",
+   "slot": "hat",
+   "option": "legion",
+   "sex": "m",
+   "z": 130,
+   "material": "metal"
+  },
+  {
+   "id": "hat_legion_1_f",
+   "file": "hat_legion_1_m",
+   "slot": "hat",
+   "option": "legion",
+   "sex": "f",
+   "z": 130,
+   "material": "metal"
+  },
+  {
+   "id": "hat_morion_1_m",
+   "file": "hat_morion_1_m",
+   "slot": "hat",
+   "option": "morion",
+   "sex": "m",
+   "z": 135,
+   "material": "metal"
+  },
+  {
+   "id": "hat_morion_1_f",
+   "file": "hat_morion_1_m",
+   "slot": "hat",
+   "option": "morion",
+   "sex": "f",
+   "z": 135,
+   "material": "metal"
+  },
+  {
+   "id": "hat_norman_1_m",
+   "file": "hat_norman_1_m",
+   "slot": "hat",
+   "option": "norman",
+   "sex": "m",
+   "z": 135,
+   "material": "metal"
+  },
+  {
+   "id": "hat_norman_1_f",
+   "file": "hat_norman_1_m",
+   "slot": "hat",
+   "option": "norman",
+   "sex": "f",
+   "z": 135,
+   "material": "metal"
+  },
+  {
+   "id": "hat_pointed_1_m",
+   "file": "hat_pointed_1_m",
+   "slot": "hat",
+   "option": "pointed",
+   "sex": "m",
+   "z": 135,
+   "material": "metal"
+  },
+  {
+   "id": "hat_pointed_1_f",
+   "file": "hat_pointed_1_m",
+   "slot": "hat",
+   "option": "pointed",
+   "sex": "f",
+   "z": 135,
+   "material": "metal"
+  },
+  {
+   "id": "hat_spangenhelm_1_m",
+   "file": "hat_spangenhelm_1_m",
+   "slot": "hat",
+   "option": "spangenhelm",
+   "sex": "m",
+   "z": 130,
+   "material": "metal"
+  },
+  {
+   "id": "hat_spangenhelm_1_f",
+   "file": "hat_spangenhelm_1_m",
+   "slot": "hat",
+   "option": "spangenhelm",
+   "sex": "f",
+   "z": 130,
+   "material": "metal"
+  },
+  {
+   "id": "hat_spangenhelm_viking_1_m",
+   "file": "hat_spangenhelm_viking_1_m",
+   "slot": "hat",
+   "option": "spangenhelm_viking",
+   "sex": "m",
+   "z": 130,
+   "material": "metal"
+  },
+  {
+   "id": "hat_spangenhelm_viking_1_f",
+   "file": "hat_spangenhelm_viking_1_m",
+   "slot": "hat",
+   "option": "spangenhelm_viking",
+   "sex": "f",
+   "z": 130,
+   "material": "metal"
+  },
+  {
+   "id": "hat_sugarloaf_1_m",
+   "file": "hat_sugarloaf_1_m",
+   "slot": "hat",
+   "option": "sugarloaf",
+   "sex": "m",
+   "z": 130,
+   "material": "metal"
+  },
+  {
+   "id": "hat_sugarloaf_1_f",
+   "file": "hat_sugarloaf_1_f",
+   "slot": "hat",
+   "option": "sugarloaf",
+   "sex": "f",
+   "z": 130,
+   "material": "metal"
+  },
+  {
+   "id": "crest_plumage_1_m",
+   "file": "crest_plumage_1_m",
+   "slot": "crest",
+   "option": "plumage",
+   "sex": "m",
+   "z": 139,
+   "material": "cloth"
+  },
+  {
+   "id": "crest_plumage_1_f",
+   "file": "crest_plumage_1_m",
+   "slot": "crest",
+   "option": "plumage",
+   "sex": "f",
+   "z": 139,
+   "material": "cloth"
+  },
+  {
+   "id": "crest_plumage_centurion_1_m",
+   "file": "crest_plumage_centurion_1_m",
+   "slot": "crest",
+   "option": "plumage_centurion",
+   "sex": "m",
+   "z": 139,
+   "material": "cloth"
+  },
+  {
+   "id": "crest_plumage_centurion_1_f",
+   "file": "crest_plumage_centurion_1_m",
+   "slot": "crest",
+   "option": "plumage_centurion",
+   "sex": "f",
+   "z": 139,
+   "material": "cloth"
+  },
+  {
+   "id": "crest_crest_centurion_1_m",
+   "file": "crest_crest_centurion_1_m",
+   "slot": "crest",
+   "option": "crest_centurion",
+   "sex": "m",
+   "z": 139,
+   "material": "metal"
+  },
+  {
+   "id": "crest_crest_centurion_1_f",
+   "file": "crest_crest_centurion_1_m",
+   "slot": "crest",
+   "option": "crest_centurion",
+   "sex": "f",
+   "z": 139,
+   "material": "metal"
+  },
+  {
+   "id": "crest_horns_short_1_m",
+   "file": "crest_horns_short_1_m",
+   "slot": "crest",
+   "option": "horns_short",
+   "sex": "m",
+   "z": 139,
+   "material": "metal"
+  },
+  {
+   "id": "crest_horns_short_1_f",
+   "file": "crest_horns_short_1_m",
+   "slot": "crest",
+   "option": "horns_short",
+   "sex": "f",
+   "z": 139,
+   "material": "metal"
+  },
+  {
+   "id": "crest_horns_short_2_m",
+   "file": "crest_horns_short_2_m",
+   "slot": "crest",
+   "option": "horns_short",
+   "sex": "m",
+   "z": 95,
+   "material": "metal"
+  },
+  {
+   "id": "crest_horns_short_2_f",
+   "file": "crest_horns_short_2_m",
+   "slot": "crest",
+   "option": "horns_short",
+   "sex": "f",
+   "z": 95,
+   "material": "metal"
+  },
+  {
+   "id": "crest_horns_upward_1_m",
+   "file": "crest_horns_upward_1_m",
+   "slot": "crest",
+   "option": "horns_upward",
+   "sex": "m",
+   "z": 139,
+   "material": "metal"
+  },
+  {
+   "id": "crest_horns_upward_1_f",
+   "file": "crest_horns_upward_1_m",
+   "slot": "crest",
+   "option": "horns_upward",
+   "sex": "f",
+   "z": 139,
+   "material": "metal"
+  },
+  {
+   "id": "crest_horns_upward_2_m",
+   "file": "crest_horns_upward_2_m",
+   "slot": "crest",
+   "option": "horns_upward",
+   "sex": "m",
+   "z": 95,
+   "material": "metal"
+  },
+  {
+   "id": "crest_horns_upward_2_f",
+   "file": "crest_horns_upward_2_m",
+   "slot": "crest",
+   "option": "horns_upward",
+   "sex": "f",
+   "z": 95,
+   "material": "metal"
+  },
+  {
+   "id": "crest_wings_1_m",
+   "file": "crest_wings_1_m",
+   "slot": "crest",
+   "option": "wings",
+   "sex": "m",
+   "z": 139,
+   "material": "metal"
+  },
+  {
+   "id": "crest_wings_1_f",
+   "file": "crest_wings_1_m",
+   "slot": "crest",
+   "option": "wings",
+   "sex": "f",
+   "z": 139,
+   "material": "metal"
+  },
+  {
+   "id": "crest_wings_2_m",
+   "file": "crest_wings_2_m",
+   "slot": "crest",
+   "option": "wings",
+   "sex": "m",
+   "z": 125,
+   "material": "metal"
+  },
+  {
+   "id": "crest_wings_2_f",
+   "file": "crest_wings_2_m",
+   "slot": "crest",
+   "option": "wings",
+   "sex": "f",
+   "z": 125,
+   "material": "metal"
+  },
+  {
    "id": "weapon_sword_1_m",
    "file": "weapon_sword_1_m",
    "slot": "weapon",
    "option": "sword",
    "sex": "m",
    "z": 140,
-   "material": null
+   "material": "metal"
   },
   {
    "id": "weapon_sword_1_f",
@@ -737,7 +2160,7 @@
    "option": "sword",
    "sex": "f",
    "z": 140,
-   "material": null
+   "material": "metal"
   },
   {
    "id": "weapon_sword_2_m",
@@ -746,7 +2169,7 @@
    "option": "sword",
    "sex": "m",
    "z": 9,
-   "material": null
+   "material": "metal"
   },
   {
    "id": "weapon_sword_2_f",
@@ -755,7 +2178,7 @@
    "option": "sword",
    "sex": "f",
    "z": 9,
-   "material": null
+   "material": "metal"
   },
   {
    "id": "weapon_sword_3_m",
@@ -764,7 +2187,7 @@
    "option": "sword",
    "sex": "m",
    "z": 8,
-   "material": null
+   "material": "metal"
   },
   {
    "id": "weapon_sword_3_f",
@@ -773,7 +2196,7 @@
    "option": "sword",
    "sex": "f",
    "z": 8,
-   "material": null
+   "material": "metal"
   },
   {
    "id": "weapon_sword_4_m",
@@ -782,7 +2205,7 @@
    "option": "sword",
    "sex": "m",
    "z": 150,
-   "material": null
+   "material": "metal"
   },
   {
    "id": "weapon_sword_4_f",
@@ -791,7 +2214,7 @@
    "option": "sword",
    "sex": "f",
    "z": 150,
-   "material": null
+   "material": "metal"
   },
   {
    "id": "weapon_longsword_1_m",
@@ -1052,7 +2475,7 @@
    "option": "bow",
    "sex": "m",
    "z": -1,
-   "material": null
+   "material": "metal"
   },
   {
    "id": "weapon_bow_1_f",
@@ -1061,7 +2484,7 @@
    "option": "bow",
    "sex": "f",
    "z": -1,
-   "material": null
+   "material": "metal"
   },
   {
    "id": "weapon_bow_2_m",
@@ -1070,7 +2493,7 @@
    "option": "bow",
    "sex": "m",
    "z": 140,
-   "material": null
+   "material": "metal"
   },
   {
    "id": "weapon_bow_2_f",
@@ -1079,7 +2502,7 @@
    "option": "bow",
    "sex": "f",
    "z": 140,
-   "material": null
+   "material": "metal"
   },
   {
    "id": "weapon_crossbow_1_m",
@@ -1844,6 +3267,75 @@
      "#ada18f"
     ]
    }
+  },
+  "metal": {
+   "base": "steel",
+   "colors": {
+    "ceramic": [
+     "#181009",
+     "#32251A",
+     "#594435",
+     "#7D604D",
+     "#BA9069",
+     "#FBE3B0"
+    ],
+    "brass": [
+     "#1A1213",
+     "#61482C",
+     "#836332",
+     "#AF8A35",
+     "#FDD082",
+     "#FDF5CC"
+    ],
+    "copper": [
+     "#691503",
+     "#7B2008",
+     "#973C23",
+     "#9D5427",
+     "#EC855C",
+     "#FFC95A"
+    ],
+    "bronze": [
+     "#4F2313",
+     "#6D4A00",
+     "#966600",
+     "#BF8200",
+     "#E7A820",
+     "#FBE3B0"
+    ],
+    "iron": [
+     "#000000",
+     "#1B192B",
+     "#29253A",
+     "#343043",
+     "#484152",
+     "#726B7E"
+    ],
+    "steel": [
+     "#1D131E",
+     "#4D4A5D",
+     "#726B7E",
+     "#867E7F",
+     "#C4B59F",
+     "#FFFFFF"
+    ],
+    "silver": [
+     "#1D131E",
+     "#31313E",
+     "#4A5057",
+     "#818B8B",
+     "#D6E1D3",
+     "#FFFFFF"
+    ],
+    "gold": [
+     "#2E2533",
+     "#6D4A00",
+     "#966600",
+     "#DC6F35",
+     "#FFC95A",
+     "#FFFF61"
+    ]
+   }
   }
  },
  "credits": [
@@ -2402,6 +3894,509 @@
    ]
   },
   {
+   "file": "torso/armour/legion",
+   "authors": [
+    "Napsio (Vitruvian Studio)",
+    "JaidynReiman",
+    "bluecarrot16",
+    "Nila122"
+   ],
+   "licenses": [
+    "OGA-BY 3.0"
+   ],
+   "urls": [
+    "https://opengameart.org/content/lpc-roman-armor"
+   ]
+  },
+  {
+   "file": "torso/jacket/tabard",
+   "authors": [
+    "bluecarrot16",
+    "Johannes Sj\u00f6lund (wulax)"
+   ],
+   "licenses": [
+    "OGA-BY 3.0"
+   ],
+   "urls": [
+    "https://opengameart.org/content/lpc-medieval-fantasy-character-sprites",
+    "http://opengameart.org/content/lpc-clothing-updates"
+   ]
+  },
+  {
+   "file": "torso/jacket/tabard/female",
+   "authors": [
+    "JaidynReiman",
+    "Matthew Krohn (makrohn)",
+    "Johannes Sj\u00f6lund (wulax)"
+   ],
+   "licenses": [
+    "OGA-BY 3.0"
+   ],
+   "urls": [
+    "https://opengameart.org/content/lpc-medieval-fantasy-character-sprites",
+    "https://opengameart.org/content/lpc-combat-armor-for-women",
+    "http://opengameart.org/content/lpc-clothing-updates"
+   ]
+  },
+  {
+   "file": "torso/waist/belt_leather",
+   "authors": [
+    "bluecarrot16",
+    "Johannes Sj\u00f6lund (wulax)",
+    "Matthew Krohn (makrohn)"
+   ],
+   "licenses": [
+    "OGA-BY 3.0"
+   ],
+   "urls": [
+    "https://opengameart.org/content/lpc-combat-armor-for-women",
+    "https://opengameart.org/content/lpc-pirates"
+   ]
+  },
+  {
+   "file": "torso/waist/belt_double",
+   "authors": [
+    "bluecarrot16",
+    "Johannes Sj\u00f6lund (wulax)",
+    "Matthew Krohn (makrohn)"
+   ],
+   "licenses": [
+    "OGA-BY 3.0"
+   ],
+   "urls": [
+    "https://opengameart.org/content/lpc-combat-armor-for-women",
+    "https://opengameart.org/content/lpc-pirates"
+   ]
+  },
+  {
+   "file": "torso/waist/sash",
+   "authors": [
+    "bluecarrot16",
+    "Nila122"
+   ],
+   "licenses": [
+    "OGA-BY 3.0"
+   ],
+   "urls": [
+    "https://opengameart.org/content/more-lpc-clothes-and-hair",
+    "https://opengameart.org/content/lpc-pirates"
+   ]
+  },
+  {
+   "file": "torso/waist/sash_narrow",
+   "authors": [
+    "bluecarrot16",
+    "Nila122"
+   ],
+   "licenses": [
+    "OGA-BY 3.0"
+   ],
+   "urls": [
+    "https://opengameart.org/content/more-lpc-clothes-and-hair",
+    "https://opengameart.org/content/lpc-pirates"
+   ]
+  },
+  {
+   "file": "torso/waist/belt_robe",
+   "authors": [
+    "Johannes Sj\u00f6lund (wulax)",
+    "Matthew Krohn (makrohn)"
+   ],
+   "licenses": [
+    "OGA-BY 3.0"
+   ],
+   "urls": [
+    "https://opengameart.org/content/lpc-medieval-fantasy-character-sprites"
+   ]
+  },
+  {
+   "file": "torso/waist/waistband",
+   "authors": [
+    "Bluecarrot16",
+    "Mandi Paugh",
+    "Stephen Challener (Redshrike)",
+    "William.Thompsonj"
+   ],
+   "licenses": [
+    "OGA-BY 3.0"
+   ],
+   "urls": [
+    "http://opengameart.org/content/sara-wizard",
+    "https://opengameart.org/content/lpc-sara"
+   ]
+  },
+  {
+   "file": "torso/waist/obi",
+   "authors": [
+    "JaidynReiman"
+   ],
+   "licenses": [
+    "OGA-BY 3.0+",
+    "CC-BY 3.0+"
+   ],
+   "urls": [
+    "https://opengameart.org/content/lpc-kimono-relm"
+   ]
+  },
+  {
+   "file": "shoulders/pauldrons",
+   "authors": [
+    "Matthew Krohn (makrohn)",
+    "Johannes Sj\u00f6lund (wulax)",
+    "bluecarrot16",
+    "JaidynReiman"
+   ],
+   "licenses": [
+    "OGA-BY 3.0"
+   ],
+   "urls": [
+    "https://opengameart.org/content/lpc-medieval-fantasy-character-sprites",
+    "http://opengameart.org/content/lpc-clothing-updates"
+   ]
+  },
+  {
+   "file": "shoulders/legion",
+   "authors": [
+    "Nila122"
+   ],
+   "licenses": [
+    "OGA-BY 3.0"
+   ],
+   "urls": [
+    "https://opengameart.org/content/lpc-roman-armor"
+   ]
+  },
+  {
+   "file": "shoulders/mantal",
+   "authors": [
+    "bluecarrot16",
+    "JaidynReiman"
+   ],
+   "licenses": [
+    "OGA-BY 3.0"
+   ],
+   "urls": [
+    "https://opengameart.org/content/lpc-pirates"
+   ]
+  },
+  {
+   "file": "shoulders/mantal/thin",
+   "authors": [
+    "bluecarrot16",
+    "JaidynReiman"
+   ],
+   "licenses": [
+    "OGA-BY 3.0"
+   ],
+   "urls": [
+    "https://opengameart.org/content/lpc-pirates"
+   ]
+  },
+  {
+   "file": "shoulders/epaulets",
+   "authors": [
+    "bluecarrot16",
+    "JaidynReiman"
+   ],
+   "licenses": [
+    "OGA-BY 3.0"
+   ],
+   "urls": [
+    "https://opengameart.org/content/lpc-pirates"
+   ]
+  },
+  {
+   "file": "arms/armour/plate/male",
+   "authors": [
+    "Michael Whitlock (bigbeargames)",
+    "Matthew Krohn (makrohn)",
+    "Johannes Sj\u00f6lund (wulax)",
+    "bluecarrot16",
+    "JaidynReiman"
+   ],
+   "licenses": [
+    "OGA-BY 3.0"
+   ],
+   "urls": [
+    "https://opengameart.org/content/lpc-medieval-fantasy-character-sprites",
+    "http://opengameart.org/content/lpc-clothing-updates"
+   ]
+  },
+  {
+   "file": "arms/armour/plate/thin",
+   "authors": [
+    "Michael Whitlock (bigbeargames)",
+    "Matthew Krohn (makrohn)",
+    "Johannes Sj\u00f6lund (wulax)",
+    "bluecarrot16",
+    "JaidynReiman"
+   ],
+   "licenses": [
+    "OGA-BY 3.0"
+   ],
+   "urls": [
+    "https://opengameart.org/content/lpc-medieval-fantasy-character-sprites",
+    "https://opengameart.org/content/lpc-combat-armor-for-women",
+    "http://opengameart.org/content/lpc-clothing-updates"
+   ]
+  },
+  {
+   "file": "arms/bracers",
+   "authors": [
+    "Matthew Krohn (makrohn)",
+    "Johannes Sj\u00f6lund (wulax)",
+    "JaidynReiman"
+   ],
+   "licenses": [
+    "OGA-BY 3.0"
+   ],
+   "urls": [
+    "https://opengameart.org/content/lpc-medieval-fantasy-character-sprites"
+   ]
+  },
+  {
+   "file": "arms/wrists/cuffs",
+   "authors": [
+    "bluecarrot16",
+    "JaidynReiman"
+   ],
+   "licenses": [
+    "OGA-BY 3.0"
+   ],
+   "urls": [
+    "https://opengameart.org/content/lpc-pirates"
+   ]
+  },
+  {
+   "file": "arms/wrists/cuffs/thin",
+   "authors": [
+    "bluecarrot16",
+    "JaidynReiman"
+   ],
+   "licenses": [
+    "OGA-BY 3.0"
+   ],
+   "urls": [
+    "https://opengameart.org/content/lpc-pirates"
+   ]
+  },
+  {
+   "file": "arms/wrists/lace",
+   "authors": [
+    "bluecarrot16",
+    "JaidynReiman"
+   ],
+   "licenses": [
+    "OGA-BY 3.0"
+   ],
+   "urls": [
+    "https://opengameart.org/content/lpc-pirates"
+   ]
+  },
+  {
+   "file": "arms/wrists/lace/thin",
+   "authors": [
+    "bluecarrot16",
+    "JaidynReiman"
+   ],
+   "licenses": [
+    "OGA-BY 3.0"
+   ],
+   "urls": [
+    "https://opengameart.org/content/lpc-pirates"
+   ]
+  },
+  {
+   "file": "arms/hands/gloves/male",
+   "authors": [
+    "Michael Whitlock (bigbeargames)",
+    "Matthew Krohn (makrohn)",
+    "Johannes Sj\u00f6lund (wulax)",
+    "bluecarrot16",
+    "JaidynReiman"
+   ],
+   "licenses": [
+    "OGA-BY 3.0"
+   ],
+   "urls": [
+    "https://opengameart.org/content/lpc-medieval-fantasy-character-sprites",
+    "http://opengameart.org/content/lpc-clothing-updates"
+   ]
+  },
+  {
+   "file": "arms/hands/gloves/thin",
+   "authors": [
+    "Michael Whitlock (bigbeargames)",
+    "Matthew Krohn (makrohn)",
+    "Johannes Sj\u00f6lund (wulax)",
+    "bluecarrot16",
+    "JaidynReiman"
+   ],
+   "licenses": [
+    "OGA-BY 3.0"
+   ],
+   "urls": [
+    "https://opengameart.org/content/lpc-medieval-fantasy-character-sprites",
+    "http://opengameart.org/content/lpc-clothing-updates"
+   ]
+  },
+  {
+   "file": "neck/capeclip",
+   "authors": [
+    "bluecarrot16",
+    "JaidynReiman"
+   ],
+   "licenses": [
+    "OGA-BY 3.0"
+   ],
+   "urls": [
+    "https://opengameart.org/content/lpc-curly-hair-elven-ears-white-cape-with-blue-trim-and-more",
+    "http://opengameart.org/content/lpc-clothing-updates"
+   ]
+  },
+  {
+   "file": "neck/capetie",
+   "authors": [
+    "bluecarrot16",
+    "JaidynReiman"
+   ],
+   "licenses": [
+    "OGA-BY 3.0"
+   ],
+   "urls": [
+    "https://opengameart.org/content/lpc-curly-hair-elven-ears-white-cape-with-blue-trim-and-more"
+   ]
+  },
+  {
+   "file": "neck/cravat",
+   "authors": [
+    "bluecarrot16"
+   ],
+   "licenses": [
+    "OGA-BY 3.0"
+   ],
+   "urls": [
+    "https://opengameart.org/content/lpc-pirates"
+   ]
+  },
+  {
+   "file": "neck/jabot",
+   "authors": [
+    "bluecarrot16"
+   ],
+   "licenses": [
+    "OGA-BY 3.0"
+   ],
+   "urls": [
+    "https://opengameart.org/content/lpc-pirates"
+   ]
+  },
+  {
+   "file": "neck/necklace/beaded_small",
+   "authors": [
+    "bluecarrot16",
+    "JaidynReiman"
+   ],
+   "licenses": [
+    "CC0"
+   ],
+   "urls": [
+    "https://opengameart.org/content/lpc-jewelry"
+   ]
+  },
+  {
+   "file": "neck/amulet/cross",
+   "authors": [
+    "bluecarrot16"
+   ],
+   "licenses": [
+    "CC0"
+   ],
+   "urls": [
+    "https://opengameart.org/content/lpc-jewelry"
+   ]
+  },
+  {
+   "file": "neck/amulet/star",
+   "authors": [
+    "bluecarrot16",
+    "AntumDeluge",
+    "7Soul"
+   ],
+   "licenses": [
+    "CC0"
+   ],
+   "urls": [
+    "https://www.deviantart.com/7soul1/art/129892453",
+    "https://opengameart.org/content/cc0-jewelry-icons",
+    "https://opengameart.org/content/lpc-jewelry"
+   ]
+  },
+  {
+   "file": "neck/charm",
+   "authors": [
+    "bluecarrot16"
+   ],
+   "licenses": [
+    "CC0"
+   ],
+   "urls": [
+    "https://opengameart.org/content/lpc-jewelry"
+   ]
+  },
+  {
+   "file": "facial/patches/eyepatch",
+   "authors": [
+    "bluecarrot16"
+   ],
+   "licenses": [
+    "OGA-BY 3.0"
+   ],
+   "urls": [
+    "https://opengameart.org/content/lpc-pirates",
+    "https://opengameart.org/content/lpc-expanded-hats-facial-helmets"
+   ]
+  },
+  {
+   "file": "facial/glasses/glasses",
+   "authors": [
+    "ElizaWy"
+   ],
+   "licenses": [
+    "OGA-BY 3.0"
+   ],
+   "urls": [
+    "https://github.com/ElizaWy/LPC/tree/main/Characters/Head%20Accessories",
+    "https://opengameart.org/content/lpc-expanded-sit-run-jump-more"
+   ]
+  },
+  {
+   "file": "facial/glasses/halfmoon",
+   "authors": [
+    "ElizaWy"
+   ],
+   "licenses": [
+    "OGA-BY 3.0"
+   ],
+   "urls": [
+    "https://github.com/ElizaWy/LPC/tree/main/Characters/Head%20Accessories",
+    "https://opengameart.org/content/lpc-expanded-sit-run-jump-more"
+   ]
+  },
+  {
+   "file": "facial/masks/plain",
+   "authors": [
+    "Nila122"
+   ],
+   "licenses": [
+    "OGA-BY 3.0"
+   ],
+   "urls": [
+    "https://opengameart.org/content/lpc-masks",
+    "https://opengameart.org/content/lpc-expanded-hats-facial-helmets"
+   ]
+  },
+  {
    "file": "cape/solid/fg",
    "authors": [
     "bluecarrot16",
@@ -2431,6 +4426,48 @@
    ]
   },
   {
+   "file": "cape/tattered/fg",
+   "authors": [
+    "Nila122",
+    "JaidynReiman"
+   ],
+   "licenses": [
+    "OGA-BY 3.0"
+   ],
+   "urls": [
+    "https://opengameart.org/content/lpc-curly-hair-elven-ears-white-cape-with-blue-trim-and-more",
+    "https://opengameart.org/content/lpc-roman-armor"
+   ]
+  },
+  {
+   "file": "cape/tattered/bg",
+   "authors": [
+    "Nila122",
+    "JaidynReiman"
+   ],
+   "licenses": [
+    "OGA-BY 3.0"
+   ],
+   "urls": [
+    "https://opengameart.org/content/lpc-curly-hair-elven-ears-white-cape-with-blue-trim-and-more",
+    "https://opengameart.org/content/lpc-roman-armor"
+   ]
+  },
+  {
+   "file": "cape/trim",
+   "authors": [
+    "bluecarrot16",
+    "JaidynReiman"
+   ],
+   "licenses": [
+    "OGA-BY 3.0"
+   ],
+   "urls": [
+    "https://opengameart.org/content/lpc-curly-hair-elven-ears-white-cape-with-blue-trim-and-more",
+    "http://opengameart.org/content/lpc-clothing-updates"
+   ]
+  },
+  {
    "file": "hat/magic/celestial",
    "authors": [
     "Napsio (Vitruvian Studio)",
@@ -2443,6 +4480,21 @@
    "urls": [
     "https://opengameart.org/content/lpc-celestial-wizard-hats",
     "https://opengameart.org/content/lpc-expanded-hats-facial-helmets"
+   ]
+  },
+  {
+   "file": "hat/magic/celestial_moon",
+   "authors": [
+    "Napsio (Vitruvian Studio)",
+    "Michael Whitlock (bigbeargames)",
+    "Tracy"
+   ],
+   "licenses": [
+    "CC-BY 3.0"
+   ],
+   "urls": [
+    "https:/opengameart.org/content/lpc-celestial-wizard-hats",
+    "https:/opengameart.org/content/lpc-expanded-hats-facial-helmets"
    ]
   },
   {
@@ -2460,6 +4512,20 @@
    ]
   },
   {
+   "file": "hat/cloth/hood_sack/adult",
+   "authors": [
+    "Nila122",
+    "JaidynReiman"
+   ],
+   "licenses": [
+    "OGA-BY 3.0"
+   ],
+   "urls": [
+    "https://opengameart.org/content/lpc-lizard-headgear",
+    "https://opengameart.org/content/lpc-expanded-hats-facial-helmets"
+   ]
+  },
+  {
    "file": "hat/pirate/cavalier",
    "authors": [
     "bluecarrot16",
@@ -2470,6 +4536,35 @@
    ],
    "urls": [
     "https://opengameart.org/content/lpc-pirates",
+    "https://opengameart.org/content/lpc-expanded-hats-facial-helmets"
+   ]
+  },
+  {
+   "file": "hat/pirate/bonnie",
+   "authors": [
+    "bluecarrot16",
+    "JaidynReiman"
+   ],
+   "licenses": [
+    "OGA-BY 3.0"
+   ],
+   "urls": [
+    "https://opengameart.org/content/lpc-pirates",
+    "https://opengameart.org/content/lpc-expanded-hats-facial-helmets"
+   ]
+  },
+  {
+   "file": "hat/cloth/leather_cap",
+   "authors": [
+    "Johannes Sj\u00f6lund (wulax)",
+    "Matthew Krohn (Makrohn)",
+    "JaidynReiman"
+   ],
+   "licenses": [
+    "OGA-BY 3.0"
+   ],
+   "urls": [
+    "https://opengameart.org/content/lpc-medieval-fantasy-character-sprites",
     "https://opengameart.org/content/lpc-expanded-hats-facial-helmets"
    ]
   },
@@ -2491,9 +4586,93 @@
    ]
   },
   {
+   "file": "hat/pirate/kerchief",
+   "authors": [
+    "bluecarrot16",
+    "JaidynReiman",
+    "Nila122"
+   ],
+   "licenses": [
+    "OGA-BY 3.0"
+   ],
+   "urls": [
+    "https://opengameart.org/content/more-lpc-clothes-and-hair",
+    "https://opengameart.org/content/lpc-pirates",
+    "https://opengameart.org/content/lpc-expanded-hats-facial-helmets"
+   ]
+  },
+  {
+   "file": "hat/headband/thick",
+   "authors": [
+    "JaidynReiman"
+   ],
+   "licenses": [
+    "OGA-BY 3.0+",
+    "CC-BY 3.0+"
+   ],
+   "urls": [
+    "https://opengameart.org/content/lpc-relm-hair-xlong-ponytail",
+    "https://opengameart.org/content/lpc-expanded-hats-facial-helmets"
+   ]
+  },
+  {
+   "file": "hat/headband/tied",
+   "authors": [
+    "Nila122"
+   ],
+   "licenses": [
+    "OGA-BY 3.0"
+   ],
+   "urls": [
+    "https://opengameart.org/content/lpc-lizard-headgear",
+    "https://opengameart.org/content/lpc-expanded-hats-facial-helmets"
+   ]
+  },
+  {
+   "file": "hat/headband/hairtie",
+   "authors": [
+    "JaidynReiman"
+   ],
+   "licenses": [
+    "OGA-BY 3.0+",
+    "CC-BY 3.0+"
+   ],
+   "urls": [
+    "https://opengameart.org/content/lpc-relm-hair-xlong-ponytail",
+    "https://opengameart.org/content/lpc-expanded-hats-facial-helmets"
+   ]
+  },
+  {
    "file": "hat/pirate/tricorne",
    "authors": [
     "bluecarrot16"
+   ],
+   "licenses": [
+    "OGA-BY 3.0"
+   ],
+   "urls": [
+    "https://opengameart.org/content/lpc-pirates",
+    "https://opengameart.org/content/lpc-expanded-hats-facial-helmets"
+   ]
+  },
+  {
+   "file": "hat/pirate/tricorne/captain",
+   "authors": [
+    "bluecarrot16"
+   ],
+   "licenses": [
+    "OGA-BY 3.0"
+   ],
+   "urls": [
+    "https://opengameart.org/content/lpc-pirates",
+    "https://opengameart.org/content/lpc-expanded-hats-facial-helmets"
+   ]
+  },
+  {
+   "file": "hat/pirate/bicorne/athwart/captain",
+   "authors": [
+    "bluecarrot16",
+    "JaidynReiman"
    ],
    "licenses": [
     "OGA-BY 3.0"
@@ -2530,6 +4709,371 @@
    ],
    "urls": [
     "https://opengameart.org/content/lpc-helmets",
+    "https://opengameart.org/content/lpc-expanded-hats-facial-helmets"
+   ]
+  },
+  {
+   "file": "hat/helmet/armet",
+   "authors": [
+    "bluecarrot16",
+    "Johannes Sj\u00f6lund (wulax)",
+    "JaidynReiman"
+   ],
+   "licenses": [
+    "OGA-BY 3.0"
+   ],
+   "urls": [
+    "https://opengameart.org/content/lpc-medieval-fantasy-character-sprites",
+    "https://opengameart.org/content/lpc-expanded-hats-facial-helmets"
+   ]
+  },
+  {
+   "file": "hat/helmet/armet_simple",
+   "authors": [
+    "bluecarrot16",
+    "Johannes Sj\u00f6lund (wulax)",
+    "JaidynReiman"
+   ],
+   "licenses": [
+    "OGA-BY 3.0"
+   ],
+   "urls": [
+    "https://opengameart.org/content/lpc-medieval-fantasy-character-sprites",
+    "https://opengameart.org/content/lpc-expanded-hats-facial-helmets"
+   ]
+  },
+  {
+   "file": "hat/helmet/barbarian",
+   "authors": [
+    "bluecarrot16",
+    "JaidynReiman",
+    "Napsio (Vitruvian Studio)"
+   ],
+   "licenses": [
+    "CC-BY 3.0",
+    "CC-BY 4.0",
+    "OGA-BY 3.0"
+   ],
+   "urls": [
+    "https://opengameart.org/content/lpc-helmets",
+    "https://opengameart.org/content/lpc-expanded-hats-facial-helmets"
+   ]
+  },
+  {
+   "file": "hat/helmet/barbarian_nasal",
+   "authors": [
+    "bluecarrot16",
+    "JaidynReiman",
+    "Napsio (Vitruvian Studio)"
+   ],
+   "licenses": [
+    "CC-BY 3.0",
+    "CC-BY 4.0",
+    "OGA-BY 3.0"
+   ],
+   "urls": [
+    "https://opengameart.org/content/lpc-helmets",
+    "https://opengameart.org/content/lpc-expanded-hats-facial-helmets"
+   ]
+  },
+  {
+   "file": "hat/helmet/barbarian_viking",
+   "authors": [
+    "bluecarrot16",
+    "JaidynReiman",
+    "Napsio (Vitruvian Studio)"
+   ],
+   "licenses": [
+    "CC-BY 3.0",
+    "CC-BY 4.0",
+    "OGA-BY 3.0"
+   ],
+   "urls": [
+    "https://opengameart.org/content/lpc-helmets",
+    "https://opengameart.org/content/lpc-expanded-hats-facial-helmets"
+   ]
+  },
+  {
+   "file": "hat/helmet/barbuta",
+   "authors": [
+    "bluecarrot16"
+   ],
+   "licenses": [
+    "OGA-BY 3.0",
+    "CC-BY 3.0",
+    "CC-BY 4.0"
+   ],
+   "urls": [
+    "https://opengameart.org/content/lpc-helmets",
+    "https://opengameart.org/content/lpc-expanded-hats-facial-helmets"
+   ]
+  },
+  {
+   "file": "hat/helmet/bascinet",
+   "authors": [
+    "bluecarrot16",
+    "ElizaWy",
+    "Sander Frenken (castelonia)"
+   ],
+   "licenses": [
+    "OGA-BY 3.0"
+   ],
+   "urls": [
+    "https://opengameart.org/content/lpc-realistic-helmet-pack",
+    "https://opengameart.org/content/lpc-helmets-mega-pack",
+    "https://opengameart.org/content/lpc-expanded-hats-facial-helmets"
+   ]
+  },
+  {
+   "file": "hat/helmet/close",
+   "authors": [
+    "bluecarrot16"
+   ],
+   "licenses": [
+    "OGA-BY 3.0",
+    "CC-BY 3.0",
+    "CC-BY 4.0"
+   ],
+   "urls": [
+    "https://opengameart.org/content/lpc-helmets",
+    "https://opengameart.org/content/lpc-expanded-hats-facial-helmets"
+   ]
+  },
+  {
+   "file": "hat/helmet/flattop",
+   "authors": [
+    "bluecarrot16"
+   ],
+   "licenses": [
+    "OGA-BY 3.0",
+    "CC-BY 3.0",
+    "CC-BY 4.0"
+   ],
+   "urls": [
+    "https://opengameart.org/content/lpc-helmets",
+    "https://opengameart.org/content/lpc-expanded-hats-facial-helmets"
+   ]
+  },
+  {
+   "file": "hat/helmet/greathelm",
+   "authors": [
+    "bluecarrot16"
+   ],
+   "licenses": [
+    "OGA-BY 3.0",
+    "CC-BY 3.0",
+    "CC-BY 4.0"
+   ],
+   "urls": [
+    "https://opengameart.org/content/lpc-helmets",
+    "https://opengameart.org/content/lpc-expanded-hats-facial-helmets"
+   ]
+  },
+  {
+   "file": "hat/helmet/kettle",
+   "authors": [
+    "Johannes Sj\u00f6lund (wulax)",
+    "JaidynReiman",
+    "Napsio (Vitruvian Studio)"
+   ],
+   "licenses": [
+    "OGA-BY 3.0"
+   ],
+   "urls": [
+    "https://opengameart.org/content/lpc-medieval-fantasy-character-sprites",
+    "https://opengameart.org/content/lpc-expanded-hats-facial-helmets"
+   ]
+  },
+  {
+   "file": "hat/helmet/legion",
+   "authors": [
+    "bluecarrot16",
+    "Nila122",
+    "JaidynReiman",
+    "Matthew Krohn (makrohn)",
+    "Johannes Sj\u00f6lund (wulax)"
+   ],
+   "licenses": [
+    "OGA-BY 3.0"
+   ],
+   "urls": [
+    "https://opengameart.org/content/lpc-roman-armor",
+    "https://opengameart.org/content/lpc-expanded-hats-facial-helmets"
+   ]
+  },
+  {
+   "file": "hat/helmet/morion",
+   "authors": [
+    "ElizaWy",
+    "Sander Frenken (castelonia)"
+   ],
+   "licenses": [
+    "OGA-BY 3.0"
+   ],
+   "urls": [
+    "https://opengameart.org/content/lpc-realistic-helmet-pack",
+    "https://opengameart.org/content/lpc-expanded-hats-facial-helmets"
+   ]
+  },
+  {
+   "file": "hat/helmet/norman",
+   "authors": [
+    "ElizaWy",
+    "Sander Frenken (castelonia)"
+   ],
+   "licenses": [
+    "OGA-BY 3.0"
+   ],
+   "urls": [
+    "https://opengameart.org/content/lpc-realistic-helmet-pack",
+    "https://opengameart.org/content/lpc-expanded-hats-facial-helmets"
+   ]
+  },
+  {
+   "file": "hat/helmet/pointed",
+   "authors": [
+    "bluecarrot16",
+    "JaidynReiman"
+   ],
+   "licenses": [
+    "CC-BY 3.0",
+    "CC-BY 4.0",
+    "OGA-BY 3.0"
+   ],
+   "urls": [
+    "https://opengameart.org/content/lpc-helmets",
+    "https://opengameart.org/content/lpc-expanded-hats-facial-helmets"
+   ]
+  },
+  {
+   "file": "hat/helmet/spangenhelm",
+   "authors": [
+    "bluecarrot16"
+   ],
+   "licenses": [
+    "CC-BY 3.0",
+    "CC-BY 4.0",
+    "OGA-BY 3.0"
+   ],
+   "urls": [
+    "https://opengameart.org/content/lpc-helmets",
+    "https://opengameart.org/content/lpc-expanded-hats-facial-helmets"
+   ]
+  },
+  {
+   "file": "hat/helmet/spangenhelm_viking",
+   "authors": [
+    "bluecarrot16"
+   ],
+   "licenses": [
+    "CC-BY 3.0",
+    "CC-BY 4.0",
+    "OGA-BY 3.0"
+   ],
+   "urls": [
+    "https://opengameart.org/content/lpc-helmets",
+    "https://opengameart.org/content/lpc-expanded-hats-facial-helmets"
+   ]
+  },
+  {
+   "file": "hat/helmet/sugarloaf",
+   "authors": [
+    "bluecarrot16"
+   ],
+   "licenses": [
+    "CC-BY 3.0",
+    "CC-BY 4.0",
+    "OGA-BY 3.0"
+   ],
+   "urls": [
+    "https://opengameart.org/content/lpc-helmets",
+    "https://opengameart.org/content/lpc-expanded-hats-facial-helmets"
+   ]
+  },
+  {
+   "file": "hat/accessory/plumage",
+   "authors": [
+    "ElizaWy"
+   ],
+   "licenses": [
+    "OGA-BY 3.0"
+   ],
+   "urls": [
+    "https://opengameart.org/content/lpc-realistic-helmet-pack",
+    "https://opengameart.org/content/lpc-expanded-hats-facial-helmets"
+   ]
+  },
+  {
+   "file": "hat/accessory/plumage_centurion",
+   "authors": [
+    "bluecarrot16",
+    "DCSS authors"
+   ],
+   "licenses": [
+    "CC0"
+   ],
+   "urls": [
+    "http://opengameart.org/content/dungeon-crawl-32x32-tiles",
+    "https://opengameart.org/content/cc0-headgear-icons",
+    "https://opengameart.org/content/lpc-helmets-mega-pack",
+    "https://opengameart.org/content/lpc-expanded-hats-facial-helmets"
+   ]
+  },
+  {
+   "file": "hat/accessory/crest_centurion",
+   "authors": [
+    "bluecarrot16",
+    "DCSS authors"
+   ],
+   "licenses": [
+    "CC0"
+   ],
+   "urls": [
+    "http://opengameart.org/content/dungeon-crawl-32x32-tiles",
+    "https://opengameart.org/content/cc0-headgear-icons",
+    "https://opengameart.org/content/lpc-helmets-mega-pack",
+    "https://opengameart.org/content/lpc-expanded-hats-facial-helmets"
+   ]
+  },
+  {
+   "file": "hat/accessory/horns_short",
+   "authors": [
+    "bluecarrot16"
+   ],
+   "licenses": [
+    "OGA-BY 3.0"
+   ],
+   "urls": [
+    "https://opengameart.org/content/lpc-helmets",
+    "https://opengameart.org/content/lpc-expanded-hats-facial-helmets"
+   ]
+  },
+  {
+   "file": "hat/accessory/horns_upward",
+   "authors": [
+    "bluecarrot16"
+   ],
+   "licenses": [
+    "OGA-BY 3.0"
+   ],
+   "urls": [
+    "https://opengameart.org/content/lpc-helmets",
+    "https://opengameart.org/content/lpc-expanded-hats-facial-helmets"
+   ]
+  },
+  {
+   "file": "hat/accessory/wings",
+   "authors": [
+    "bluecarrot16",
+    "DCSS authors"
+   ],
+   "licenses": [
+    "CC0"
+   ],
+   "urls": [
+    "http://opengameart.org/content/dungeon-crawl-32x32-tiles",
+    "https://opengameart.org/content/cc0-headgear-icons",
+    "https://opengameart.org/content/lpc-helmets-mega-pack",
     "https://opengameart.org/content/lpc-expanded-hats-facial-helmets"
    ]
   },
