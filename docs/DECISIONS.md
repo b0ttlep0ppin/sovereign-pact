@@ -2,6 +2,15 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 7aw): packing the party satchel
+
+- A House packs the satchel as it fields its Scions (`field` takes an optional `pack`, by id and count), from what it holds at home. The satchel holds one consumable a slot, 12 slots (`tuning.consumables.satchel`), and remembers who packed each one.
+- Unused consumables go home to the Houses that packed them when the expedition closes. A wiped party loses its satchel with everything else it carried (§9.9). Every House sees the satchel.
+- Readings:
+  - Each House may fill its share of the 12 slots: 12 × the Scions it fields ÷ the card's seats, rounded up, and never more than the satchel has left. First come, so no House can fill it alone.
+  - A bot packs the battle consumables it holds, Tonics first, up to its share.
+- Using them in battle comes next.
+
 ## 2026-11-02 (implementation, Milestone 7av): consumables as data, and buying them
 
 - `content/consumables.json` holds §13.7's list, the slashed entries split into their own items (Tonic, Strong Tonic and Vital Draught; Firebomb, Frost Flask and Shock Jar; Ember Oil, Brine and Stormwax…), 41 in all. Each has a first-pass Gold price, where it is sold, when it is used (battle, camp, node, town or held), and either a battle effect shaped as an ability or a hand-coded `special`. Its schema is `schemas/consumables.schema.json`.

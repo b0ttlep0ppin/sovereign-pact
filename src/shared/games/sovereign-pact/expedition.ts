@@ -8,7 +8,7 @@ import { bossFor, home, rollChain } from "./journey.ts";
 import { log, mandatoryYears } from "./year.ts";
 import { divide } from "./split.ts";
 
-const seatsOf = (card: ExpeditionCard): number => (card.size === 4 ? 4 : 8);
+export const seatsOf = (card: ExpeditionCard): number => (card.size === 4 ? 4 : 8);
 
 /** A Scion the House can field: its own (a Ward is its host's), not Lost. The Retired return first (§6.12). */
 export const able = (s: SovState, house: number): Person[] => s.people.filter((p) => p.host === house && p.status === "scion");

@@ -1,7 +1,8 @@
 // Consumables (§13.7): the content, and buying them where they are sold.
 import { describe, expect, it } from "vitest";
 import { STATUSES } from "./combat/status.ts";
-import { botBuyConsumable, consumablePrice, held, soldAt } from "./consumables.ts";
+import { botBuyConsumable, botPack, consumablePrice, held, packRoom, soldAt, unpack } from "./consumables.ts";
+import { able, muster } from "./expedition.ts";
 import { BUILDINGS, CONSUMABLES, CONSUMABLE_BY_ID, PROJECT_BY_ID } from "./content.ts";
 import { sovereignPact as g } from "./index.ts";
 import type { SovState } from "./state.ts";
@@ -86,5 +87,46 @@ describe("buying consumables", () => {
     expect(botBuyConsumable(s, 0)?.id).toBe("bone_salve");
     s.houses[0]!.gold = TUNING.consumables.botReserve;
     expect(botBuyConsumable(s, 0)).toBe(null);
+  });
+});
+
+describe("the party satchel (§9.10)", () => {
+  function mustered(): SovState {
+    const s = calm(campaign(2, 4));
+    s.phase = "expedition";
+    muster(s, { type: "resource", pool: "beast_lands", level: 1, size: 4 });
+    s.houses[0]!.consumables = { tonic: 9, firebomb: 2, lantern: 1 };
+    return s;
+  }
+  const mine = (s: SovState, n: number) => able(s, 0).slice(0, n).map((p) => p.id);
+
+  it("takes each House's share of the 12 slots, from what it holds at home", () => {
+    let s = mustered();
+    expect(packRoom(s, 0, 2)).toBe(6);
+    expect(g.applyMove(s, s.players[0]!, { type: "field", people: mine(s, 2), pack: { tonic: 7 } })).toMatchObject({ ok: false, error: expect.stringMatching(/6 of the satchel/) });
+    expect(g.applyMove(s, s.players[0]!, { type: "field", people: mine(s, 2), pack: { firebomb: 3 } })).toMatchObject({ ok: false, error: expect.stringMatching(/only 2/) });
+    s = after(g.applyMove(s, s.players[0]!, { type: "field", people: mine(s, 2), pack: { tonic: 4, firebomb: 2 } }));
+    expect(s.expedition!.satchel).toHaveLength(6);
+    expect(s.houses[0]!.consumables).toEqual({ tonic: 5, lantern: 1 });
+  });
+
+  it("sends the unused home to the Houses that packed them, unless the party is wiped", () => {
+    let s = mustered();
+    s = after(g.applyMove(s, s.players[0]!, { type: "field", people: mine(s, 2), pack: { tonic: 3 } }));
+    const kept = structuredClone(s);
+    s.expedition!.result = "retreated";
+    unpack(s);
+    expect(held(s.houses[0]!, "tonic")).toBe(9);
+    kept.expedition!.result = "wiped";
+    unpack(kept);
+    expect(held(kept.houses[0]!, "tonic")).toBe(6);
+  });
+
+  it("is packed by bots with battle things, up to their share", () => {
+    const s = mustered();
+    expect(botPack(s, 0, 2)).toEqual({ tonic: 6 });
+    s.houses[0]!.consumables = { tonic: 2, firebomb: 2, lantern: 1 };
+    expect(botPack(s, 0, 2)).toEqual({ tonic: 2, firebomb: 2 });
+    expect(botPack(s, 1, 2)).toBe(undefined);
   });
 });

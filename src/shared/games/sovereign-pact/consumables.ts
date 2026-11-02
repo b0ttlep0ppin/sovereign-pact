@@ -4,6 +4,7 @@
 // Chapel, the Farm…). Houses pack them into the party satchel for an expedition (§9.10).
 import { CONSUMABLE_BY_ID, type ConsumableDef } from "./content.ts";
 import { built } from "./commons.ts";
+import { seatsOf } from "./expedition.ts";
 import { byPct, econ } from "./houses.ts";
 import type { House, SovMove, SovState } from "./state.ts";
 import { TUNING } from "./tuning.ts";
@@ -71,4 +72,62 @@ export function botBuyConsumable(s: SovState, house: number): BuyConsumableMove 
     return { type: "buy_consumable", id, n: 1 };
   }
   return null;
+}
+
+/**
+ * The satchel slots `house` may fill as it fields `fielded` Scions (§9.10): its share of the card's
+ * seats, rounded up, and never more than the satchel has left.
+ */
+export function packRoom(s: SovState, house: number, fielded: number): number {
+  const e = s.expedition!;
+  const share = Math.ceil((T.satchel * fielded) / seatsOf(e.card));
+  return Math.max(0, Math.min(share, T.satchel - (e.satchel?.length ?? 0)));
+}
+
+export function cannotPack(s: SovState, house: number, fielded: number, pack: unknown): string | null {
+  if (pack === undefined) return null;
+  if (typeof pack !== "object" || pack === null || Array.isArray(pack)) return "Pack consumables by id and count.";
+  const h = s.houses[house]!;
+  let n = 0;
+  for (const [id, k] of Object.entries(pack)) {
+    if (!CONSUMABLE_BY_ID.has(id)) return `There is no such thing as ${id}.`;
+    if (!Number.isInteger(k) || (k as number) < 1) return "Pack whole counts.";
+    if (held(h, id) < (k as number)) return `Your House holds only ${held(h, id)} ${CONSUMABLE_BY_ID.get(id)!.name}.`;
+    n += k as number;
+  }
+  const room = packRoom(s, house, fielded);
+  return n > room ? `Your House may pack ${room} of the satchel's ${T.satchel} slots.` : null;
+}
+
+/** Moves what `house` packs from its home stock into the party satchel, one slot each. */
+export function pack(s: SovState, house: number, pack: Partial<Record<string, number>> | undefined): void {
+  const e = s.expedition!;
+  for (const [id, n] of Object.entries(pack ?? {})) {
+    give(s.houses[house]!, id, -n!);
+    e.satchel ??= [];
+    for (let k = 0; k < n!; k++) e.satchel.push({ id, house });
+  }
+}
+
+/** The satchel's unused consumables go home to the Houses that packed them (§13.8); a wiped party's are lost with it. */
+export function unpack(s: SovState): void {
+  const e = s.expedition;
+  if (!e?.satchel) return;
+  if (e.result !== "wiped") for (const x of e.satchel) give(s.houses[x.house]!, x.id, 1);
+  delete e.satchel;
+}
+
+/** A bot packs what helps in battle, in its keeping order, up to its share. */
+export function botPack(s: SovState, house: number, fielded: number): Partial<Record<string, number>> | undefined {
+  const h = s.houses[house]!;
+  let room = packRoom(s, house, fielded);
+  const out: Partial<Record<string, number>> = {};
+  for (const id of [...Object.keys(T.botKeeps), ...Object.keys(h.consumables ?? {})]) {
+    const def = CONSUMABLE_BY_ID.get(id);
+    if (!def || def.use !== "battle" || out[id] !== undefined) continue;
+    const n = Math.min(room, held(h, id));
+    if (n > 0) out[id] = n;
+    room -= n;
+  }
+  return Object.keys(out).length ? out : undefined;
 }

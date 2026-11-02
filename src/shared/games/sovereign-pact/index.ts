@@ -21,7 +21,7 @@ import { cannotPromote, promoteRecruit } from "./promotion.ts";
 import { botOutfit, cannotOutfit, outfit } from "./outfit.ts";
 import { bargain, botBargain, cannotBargain } from "./bargains.ts";
 import { botCure, cannotCure, cure } from "./cures.ts";
-import { botBuyConsumable, buyConsumable, cannotBuyConsumable } from "./consumables.ts";
+import { botBuyConsumable, botPack, buyConsumable, cannotBuyConsumable, cannotPack, pack } from "./consumables.ts";
 import { cannotReinstate, cannotRetire, reinstate, retire } from "./lifecycle.ts";
 import { botCard, cannotPick, pick } from "./gate.ts";
 import { TUNING } from "./tuning.ts";
@@ -182,9 +182,12 @@ export function applyMove(state: SovState, playerId: PlayerId, move: SovMove): M
     case "field":
     case "lead": {
       if (s.phase !== "expedition") return fail("The party is chosen in the Expedition Phase.");
-      const why = move.type === "field" ? cannotField(s, house, move.people) : cannotLead(s, house, move.person);
+      const why = move.type === "field" ? (cannotField(s, house, move.people) ?? cannotPack(s, house, move.people.length, move.pack)) : cannotLead(s, house, move.person);
       if (why) return fail(why);
-      if (move.type === "field") field(s, house, move.people);
+      if (move.type === "field") {
+        pack(s, house, move.pack);
+        field(s, house, move.people);
+      }
       else voteLeader(s, house, move.person);
       s.phaseMoves += 1;
       if (!waiting(s).length) closeExpedition(s);
@@ -449,6 +452,13 @@ export function describeResult(s: SovState): string | null {
 }
 
 /** The settlement bot is cautious (HANDOFF §3.4): it builds what it can afford by its plan, then seals. */
+/** A bot fields its best and packs its share of the satchel. */
+function botFieldMove(s: SovState, house: number): SovMove {
+  const people = botField(s, house);
+  const kit = botPack(s, house, people.length);
+  return { type: "field", people, ...(kit ? { pack: kit } : {}) };
+}
+
 export function botMove(s: SovState, playerId: PlayerId): SovMove {
   const house = houseOf(s, playerId);
   // A bot founds the Random House it was dealt, keeping the first Ambition (§5.1).
@@ -462,7 +472,7 @@ export function botMove(s: SovState, playerId: PlayerId): SovMove {
       ? { type: botPress(s) ? "press_on" : "retreat" }
       : s.expedition?.votes
         ? { type: "lead", person: botLeader(s, house) }
-        : { type: "field", people: botField(s, house) });
+        : botFieldMove(s, house));
   if (house >= 0 && s.phase === "settlement" && s.vote && s.vote.by[house] === null) return { type: "vote", choice: botVote(s, house) };
   const offered = house >= 0 && s.phase === "settlement" ? s.deals.find((d) => d.to === house) : undefined;
   if (offered) return botDeal(s, house, offered);

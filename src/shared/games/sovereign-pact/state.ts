@@ -299,6 +299,8 @@ export interface Expedition {
   result?: "won" | "retreated" | "wiped" | "unanswered" | "stayed";
   /** A 2×4 card's two parties (§9.3, split.ts); `chain`, `at` and `leader` above are the walking party's. */
   split?: Split;
+  /** The party satchel (§9.10, §13.7): one consumable a slot, with the House that packed it. */
+  satchel?: { id: string; house: number }[];
 }
 
 /** Where one of a 2×4 card's parties is: on its way, at the meeting place, or gone home. */
@@ -498,8 +500,8 @@ export type SovMove =
   | { type: "seal" }
   /** Vote for one of the Rift Gate's cards (§9.1). */
   | { type: "pick_card"; card: number }
-  /** Field your Scions in your seats (fewer declines the rest), then vote a Leader (§9.2). */
-  | { type: "field"; people: number[] }
+  /** Field your Scions in your seats (fewer declines the rest) and pack the satchel, then vote a Leader (§9.2). */
+  | { type: "field"; people: number[]; pack?: Partial<Record<string, number>> }
   | { type: "lead"; person: number }
   /** The Leader's House: on to the next node, or home (§9.9). */
   | { type: "press_on" }
