@@ -3,8 +3,9 @@
 // the party panel on the right, the turn and the log beneath. Damage numbers pop from the struck
 // cell, colored by kind; an injury roll gets its own moment. Tokens are drawn in CSS until the sprite
 // pipeline exists (HANDOFF §8). Space plays and pauses, the arrows step, Escape closes.
-import { Content, FLAG, replayLine, type Replay, type ReplayUnit, type SovView, type Vitals } from "@vibepulse/shared/games/sovereign-pact";
+import { Content, FLAG, replayLine, type Cell, type Command, type Replay, type ReplayUnit, type SovView, type TurnView, type Vitals } from "@vibepulse/shared/games/sovereign-pact";
 import { useEffect, useMemo, useRef, useState, type CSSProperties, type KeyboardEvent } from "react";
+import CommandBar, { type Aiming } from "./CommandBar";
 import { HERALDRY_COLORS } from "./Emblem";
 import { spriteOf } from "./sprites";
 import { playSounds, soundsOf } from "./sfx";
@@ -85,9 +86,20 @@ interface Props {
   fullLog?: boolean;
   /** The battle's sound effects (§16.1): off, or their volume. */
   sound?: number;
+  /** A battle being fought now (§10.4): its turn's choices for this seat, or whom it waits on. */
+  live?: Live;
 }
 
-export default function BattleScreen({ replay, view, onClose, waiting = 0, fullLog = false, sound = 0 }: Props) {
+export interface Live {
+  turn: TurnView | null;
+  /** Whom the battle waits on, when not on this seat. */
+  waiting: string | null;
+  send: (c: Command) => void;
+}
+
+const same = (a: Cell, b: Cell) => a.side === b.side && a.col === b.col && a.row === b.row;
+
+export default function BattleScreen({ replay, view, onClose, waiting = 0, fullLog = false, sound = 0, live }: Props) {
   const states = useMemo(() => framesOf(replay), [replay]);
   const units = useMemo(() => new Map(replay.units.map((u) => [u.id, u])), [replay]);
   const [at, setAt] = useState(0);
@@ -96,7 +108,9 @@ export default function BattleScreen({ replay, view, onClose, waiting = 0, fullL
   const last = replay.frames.length;
   const vit = states[at]!;
   const ev = at > 0 ? replay.frames[at - 1]!.ev : [];
-  const actor = actorOf(ev);
+  // A turn waiting on this seat's command is the one on screen.
+  const commanding = live?.turn && at >= last ? live.turn : null;
+  const actor = commanding?.unit ?? actorOf(ev);
   const name = (id: number) => units.get(id)?.name ?? "someone";
   const pops = popsOf(ev, at, units);
   const injury = ev.find((e) => e.t === "injury");
@@ -111,6 +125,24 @@ export default function BattleScreen({ replay, view, onClose, waiting = 0, fullL
     const t = setTimeout(() => setAt((i) => Math.min(last, i + 1)), (TURN_MS * (injury ? 2 : 1)) / speed);
     return () => clearTimeout(t);
   }, [playing, at, last, speed, injury]);
+  // A command aimed at a cell; it is dropped once the battle moves on.
+  const [aiming, setAiming] = useState<Aiming | null>(null);
+  const [aimedAt, setAimedAt] = useState(last);
+  if (aimedAt !== last) {
+    setAimedAt(last);
+    setAiming(null);
+  }
+  const aimable = (c: Cell) => (aiming ? aiming.cells.findIndex((x) => same(x, c)) : -1);
+  /** The cell a click on `u` aims at: the first of theirs the choice can go to. */
+  const aimOn = (u: ReplayUnit): Cell | undefined => {
+    const [, , , , , col, row] = vit.get(u.id)!;
+    return aiming?.cells.find((c) => c.side === u.side && c.col >= col && c.col < col + u.size[0] && c.row >= row && c.row < row + u.size[1]);
+  };
+  const fire = (c: Cell) => {
+    if (!aiming || !live) return;
+    live.send(aiming.send(c));
+    setAiming(null);
+  };
   // Each turn sounds as it comes on screen, stepping forward; stepping back is silent.
   const heard = useRef(0);
   useEffect(() => {
@@ -119,7 +151,9 @@ export default function BattleScreen({ replay, view, onClose, waiting = 0, fullL
     if (!forward || !sound) return;
     return playSounds(soundsOf(replay.frames[at - 1]!.ev, units), sound, speed);
   }, [at, replay, units, sound, speed]);
-  useEffect(() => root.current?.focus(), []);
+  // The keys go to the screen: on opening, and when a choice asks for its cell (its button is gone).
+  const aimingNow = aiming !== null;
+  useEffect(() => root.current?.focus(), [aimingNow]);
   useEffect(() => {
     if (fullLog && log.current) log.current.scrollTop = log.current.scrollHeight;
   }, [fullLog, at]);
@@ -149,10 +183,12 @@ export default function BattleScreen({ replay, view, onClose, waiting = 0, fullL
     const state = flags & FLAG.dead ? " is-dead" : flags & FLAG.down ? " is-down" : flags & FLAG.lastStand ? " is-last-stand" : "";
     const mine = pops.filter((p) => p.target === u.id);
     const sprite = spriteOf(u);
+    const aimed = aimOn(u);
     return (
       <div
         key={u.id}
-        className={`sp-unit sp-unit--${u.side}${u.boss ? " is-boss" : ""}${u.hazard ? " is-hazard" : ""}${actor === u.id ? " is-acting" : ""}${flags & FLAG.charging ? " is-charging" : ""}${state}`}
+        onClick={aimed ? () => fire(aimed) : undefined}
+        className={`sp-unit sp-unit--${u.side}${aimed ? " is-targetable" : ""}${aimed && aiming && same(aimed, aiming.cells[aiming.cursor]!) ? " is-cursor" : ""}${u.boss ? " is-boss" : ""}${u.hazard ? " is-hazard" : ""}${actor === u.id ? " is-acting" : ""}${flags & FLAG.charging ? " is-charging" : ""}${state}`}
         style={style}
         title={`${u.name}: ${hp}/${u.maxHp} HP`}
       >
@@ -181,7 +217,9 @@ export default function BattleScreen({ replay, view, onClose, waiting = 0, fullL
         const row = Math.floor(i / COLS);
         const col = s === "enemy" ? COLS - 1 - x : x;
         const marked = charges.some((c) => c.t === "charge" && c.target.side === s && c.target.col === col && c.target.row === row);
-        return <span key={i} className={`sp-cell${marked ? " is-telegraphed" : ""}`} style={{ gridColumn: x + 1, gridRow: row + 1 }} />;
+        const k = aimable({ side: s, col, row });
+        const cls = `sp-cell${marked ? " is-telegraphed" : ""}${k >= 0 ? " is-target" : ""}${k >= 0 && k === aiming?.cursor ? " is-cursor" : ""}`;
+        return <span key={i} className={cls} style={{ gridColumn: x + 1, gridRow: row + 1 }} onClick={k >= 0 ? () => fire({ side: s, col, row }) : undefined} />;
       })}
       {side(s).map(token)}
     </div>
@@ -192,6 +230,16 @@ export default function BattleScreen({ replay, view, onClose, waiting = 0, fullL
     setAt((i) => Math.max(0, Math.min(last, i + by)));
   };
   const keys = (e: KeyboardEvent) => {
+    if (aiming) {
+      const n = aiming.cells.length;
+      if (e.key === "ArrowRight" || e.key === "ArrowDown") setAiming({ ...aiming, cursor: (aiming.cursor + 1) % n });
+      else if (e.key === "ArrowLeft" || e.key === "ArrowUp") setAiming({ ...aiming, cursor: (aiming.cursor + n - 1) % n });
+      else if (e.key === "Enter") fire(aiming.cells[aiming.cursor]!);
+      else if (e.key === "Escape") setAiming(null);
+      else return;
+      e.preventDefault();
+      return;
+    }
     if (e.key === " ") setPlaying((p) => !p);
     else if (e.key === "ArrowRight") step(1);
     else if (e.key === "ArrowLeft") step(-1);
@@ -210,11 +258,11 @@ export default function BattleScreen({ replay, view, onClose, waiting = 0, fullL
           Turn {at} of {last}
         </span>
         <button type="button" className="sp-button sp-button--quiet" onClick={onClose}>
-          {waiting ? `Next battle (${waiting} more)` : "Close"}
+          {live ? "Hide the battle" : waiting ? `Next battle (${waiting} more)` : "Close"}
         </button>
       </header>
       <p className="sp-battle__headline" aria-live="polite">
-        {at === 0 ? "The battle is joined." : headline(replay, ev, name)}
+        {commanding ? `${name(commanding.unit)}'s turn` : at === 0 ? "The battle is joined." : headline(replay, ev, name)}
       </p>
       <div className="sp-battle__field">
         <Panel title="Enemies" units={side("enemy").filter((u) => !u.hazard)} vit={vit} actor={actor} />
@@ -252,6 +300,25 @@ export default function BattleScreen({ replay, view, onClose, waiting = 0, fullL
         </button>
         <input type="range" min={0} max={last} value={at} aria-label="Turn" onChange={(e) => step(Number(e.target.value) - at)} />
       </div>
+      {live && at >= last ? (
+        commanding ? (
+          <CommandBar
+            turn={commanding}
+            name={name(commanding.unit)}
+            at={{ side: "party", col: vit.get(commanding.unit)?.[5] ?? 0, row: vit.get(commanding.unit)?.[6] ?? 0 }}
+            aiming={aiming}
+            aim={setAiming}
+            send={(c) => {
+              setAiming(null);
+              live.send(c);
+            }}
+          />
+        ) : (
+          <p className="sp-command" role="status">
+            {live.waiting ? `Waiting on ${live.waiting}.` : "The battle runs on."}
+          </p>
+        )
+      ) : null}
       <ol className={`sp-battle__log${fullLog ? " is-full" : ""}`} aria-label="Battle log" ref={log}>
         {lines.map(([turn, e], i) => (
           <li key={`${turn}:${i}`}>

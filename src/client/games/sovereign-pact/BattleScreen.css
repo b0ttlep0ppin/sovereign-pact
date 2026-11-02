@@ -121,3 +121,13 @@
 [data-palette="cb"] .sp-pop--crit::before { content: "✦ "; }
 [data-palette="cb"] .sp-pop--sanity::before { content: "◉ "; }
 .sp-battle__log.is-full { max-height: 14em; }
+
+/* Commanding a turn (§15.5): the choices, and the cells a choice may be aimed at. */
+.sp-command { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; margin: 0; padding: 8px 10px; border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 8px; background: rgba(0, 0, 0, 0.35); }
+.sp-command__choices { display: flex; flex-wrap: wrap; gap: 6px; margin: 0; padding: 0; list-style: none; }
+.sp-command__choices small { opacity: 0.7; }
+.sp-cell.is-target { cursor: pointer; background: rgba(240, 200, 90, 0.16); border-color: rgba(240, 200, 90, 0.55); }
+.sp-cell.is-target.is-cursor { background: rgba(240, 200, 90, 0.4); }
+.sp-unit.is-targetable { cursor: pointer; outline: 2px dashed rgba(240, 200, 90, 0.7); outline-offset: -2px; }
+.sp-unit.is-targetable.is-cursor { outline-style: solid; outline-color: #f0c85a; }
+.sp-command .sp-actions { display: flex; flex-wrap: wrap; gap: 6px; margin: 0; }
