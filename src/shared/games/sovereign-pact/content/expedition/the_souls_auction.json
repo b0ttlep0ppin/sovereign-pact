@@ -1,0 +1,99 @@
+{
+  "id": "the_souls_auction",
+  "pools": [
+    "pit"
+  ],
+  "weight": 2,
+  "band": [
+    4,
+    10
+  ],
+  "title": "The Soul Auction",
+  "text": "Devils bid on souls in a burning hall. One lot is a Scion of your House, sold by a rival.",
+  "options": [
+    {
+      "id": "bid",
+      "label": "Outbid them.",
+      "rule": "house:highest_standing|vote",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The soul is yours, at a price.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -25
+              }
+            },
+            {
+              "to": "party",
+              "sanity": 10
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "steal",
+      "label": "The shrewdest steals the lot.",
+      "rule": "scion:highest:guile",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "Out the back with it.",
+          "effects": [
+            {
+              "score": {
+                "intrigue": 2
+              }
+            },
+            {
+              "to": "party",
+              "sanity": 5
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "Caught.",
+          "effects": [
+            {
+              "encounter": {
+                "level": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "leave",
+      "label": "Let it go.",
+      "rule": "leader",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The gavel falls.",
+          "effects": [
+            {
+              "doom": 1
+            },
+            {
+              "to": "party",
+              "sanity": -10
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

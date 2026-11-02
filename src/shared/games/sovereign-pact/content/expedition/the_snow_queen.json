@@ -1,0 +1,82 @@
+{
+  "id": "the_snow_queen",
+  "pools": [
+    "deep_cold"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    8
+  ],
+  "title": "The Snow Queen",
+  "text": "A woman in white rides by on a sledge drawn by wolves, and offers to carry one of you to her palace.",
+  "options": [
+    {
+      "id": "go",
+      "label": "The bravest goes with her.",
+      "rule": "scion:trait:brave|scion:highest:resilience",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "They come back with a sliver of her mirror and a cold heart.",
+          "effects": [
+            {
+              "item": {
+                "tier": 3
+              }
+            },
+            {
+              "sanity": -15
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "They come back with frostbite and nothing else.",
+          "effects": [
+            {
+              "injury": "arms"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "decline",
+      "label": "Decline politely.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "She laughs and is gone.",
+          "effects": []
+        }
+      ]
+    },
+    {
+      "id": "follow",
+      "label": "Follow the sledge tracks.",
+      "rule": "leader",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Her wolves are waiting.",
+          "effects": [
+            {
+              "encounter": {}
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

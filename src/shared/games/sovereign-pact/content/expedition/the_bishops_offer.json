@@ -1,0 +1,88 @@
+{
+  "id": "the_bishops_offer",
+  "pools": [
+    "apostate_court"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    9
+  ],
+  "title": "The Bishop's Offer",
+  "text": "A bishop of the Court offers absolution, for a donation, and a name: which House has sinned most?",
+  "options": [
+    {
+      "id": "name",
+      "label": "Name a rival.",
+      "rule": "house:random|vote",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The Court will look into it.",
+          "effects": [
+            {
+              "score": {
+                "intrigue": 2
+              }
+            },
+            {
+              "accord": -2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "donate",
+      "label": "Donate, and name no one.",
+      "rule": "leader",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Absolved.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -15
+              }
+            },
+            {
+              "to": "party",
+              "sanity": 10
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "expose",
+      "label": "The wisest exposes his own sins.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "He goes white, and lets you go.",
+          "effects": [
+            {
+              "skip": 1
+            },
+            {
+              "score": {
+                "lore": 1
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

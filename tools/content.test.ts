@@ -84,6 +84,16 @@ describe("content", () => {
     expect(TRIP_EVENTS.filter((e, i) => titles.indexOf(key(e.title)) !== i).map((e) => e.id)).toEqual([]);
   });
 
+  it("keeps each_scion and secret events whole: all of an event's options use the rule, or none do", () => {
+    const mixed = TRIP_EVENTS.filter((e) =>
+      (["each_scion", "secret"] as const).some((r) => {
+        const n = e.options.filter((o) => o.rule === r).length;
+        return n > 0 && n < e.options.length;
+      }),
+    );
+    expect(mixed.map((e) => e.id)).toEqual([]);
+  });
+
   it("files enemies by pool and id", () => {
     for (const file of contentFiles.filter((f) => f.startsWith("enemies/"))) {
       const [, pool, name] = file.split("/");

@@ -14,7 +14,7 @@
     {
       "id": "listen",
       "label": "Listen.",
-      "rule": "each_scion",
+      "rule": "vote",
       "tags": [
         "bold"
       ],
@@ -24,9 +24,11 @@
           "text": "A song of home.",
           "effects": [
             {
+              "to": "party",
               "sanity": 5
             },
             {
+              "to": "party",
               "xp": 40
             }
           ]
@@ -36,6 +38,7 @@
           "text": "A song of the end.",
           "effects": [
             {
+              "to": "party",
               "sanity": -15
             }
           ]

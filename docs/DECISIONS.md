@@ -2,6 +2,10 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 7ag: a fifth round for the regions, and whole each_scion events) — implementer
+- **Built** (content only). Sixteen events: the Wolf Mother, the Witch's Hut, the Bog Bodies, the Tomb Robber's Map, the Snow Queen, the Soul Auction, the Rusted Titan, the Dung Heap Court, the Bishop's Offer, the Pool of Six, the Dragon Knights and the Last Lamp (one for each region), the Signal Fire and the Prisoner Exchange for Rescues, the Wild Orchard for Resource cards and the Quarry's Mate for Hunts. That makes 320 expedition events; every region has 9 to 13.
+- **Fix.** The rules treat `each_scion` and `secret` as the way a whole event is put (every option has the rule), but six events from 7af and this batch gave one option `each_scion` beside voted ones, and choosing it crashed the reducer (the view test's campaign found it). Those options are now voted, with their effects on the whole party. `npm run content` now fails on an event that mixes either rule with others.
+
 ## 2026-11-02 (implementation, Milestone 7af: a fourth round for the regions, with two more secret choices) — implementer
 - **Built** (content only). Sixteen events: the Stag Trial, the Lost Children, the Drowned Hoard, the Barrow Wight, the Frost Giant's Cup, the Devil's Contract, the Last Apprentice, the Mirror Maze, the Inquisitor, the Fasting Monks, the Wyrm Priest and the Starless Choir (one for each region), the Pilgrims' Bridge and the Saint's Bones for Pilgrimages, and the Cave-In and the Glowworm Cavern for Delves. That makes 304 expedition events; every region has 8 to 12.
 - **Reading:** the Drowned Hoard and the Devil's Contract are secret choices (Q91): each House picks alone, and the outcome turns on whether any House took the selfish option. If every House tears up the Devil's Contract, Doom falls by one.

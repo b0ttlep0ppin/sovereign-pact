@@ -1,0 +1,83 @@
+{
+  "id": "the_dung_heap_court",
+  "pools": [
+    "faceless_city"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    9
+  ],
+  "title": "The Dung Heap Court",
+  "text": "The Faceless City's beggars have a lord. He holds court on a dung heap and knows every secret in the city.",
+  "options": [
+    {
+      "id": "pay",
+      "label": "Pay for a secret.",
+      "rule": "vote",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A rival House's weakness.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -10
+              }
+            },
+            {
+              "score": {
+                "intrigue": 2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kind",
+      "label": "The kindest shares their food with his court.",
+      "rule": "scion:most_healing|scion:fewest_kills",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "He names them a friend of the poor.",
+          "effects": [
+            {
+              "score": {
+                "renown": 2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "threaten",
+      "label": "Threaten him.",
+      "rule": "leader",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Every beggar in the city turns.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "ambush"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

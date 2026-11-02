@@ -1,0 +1,84 @@
+{
+  "id": "the_quarrys_mate",
+  "pools": [
+    "hunt"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    10
+  ],
+  "title": "The Quarry's Mate",
+  "text": "The quarry is not alone: its mate shadows the party, looking for the one who strikes first.",
+  "options": [
+    {
+      "id": "target",
+      "label": "The one it hunts walks alone as bait.",
+      "rule": "scion:most_targeted|scion:highest:resilience",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It strikes, and you strike back.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "surprise"
+              }
+            },
+            {
+              "durability": -20,
+              "loc": "body"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "together",
+      "label": "Stay together.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It does not attack. It waits.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "first",
+      "label": "Hunt the mate first.",
+      "rule": "leader",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Two quarries, then.",
+          "effects": [
+            {
+              "encounter": {}
+            },
+            {
+              "score": {
+                "valor": 1
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

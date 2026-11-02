@@ -1,0 +1,102 @@
+{
+  "id": "the_dragon_knights",
+  "pools": [
+    "dragon_reaches"
+  ],
+  "weight": 2,
+  "band": [
+    5,
+    10
+  ],
+  "title": "The Dragon Knights",
+  "text": "A company of knights who ride wyverns patrols the Reaches. Their captain demands to know your business.",
+  "options": [
+    {
+      "id": "truth",
+      "label": "Tell the truth.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "They escort you a way.",
+          "effects": [
+            {
+              "skip": 1
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "They do not believe you.",
+          "effects": [
+            {
+              "encounter": {}
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bluff",
+      "label": "The smoothest bluffs.",
+      "rule": "scion:highest:guile",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "They salute.",
+          "effects": [
+            {
+              "score": {
+                "intrigue": 1
+              }
+            },
+            {
+              "skip": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "duel",
+      "label": "The strongest challenges the captain.",
+      "rule": "scion:highest:might",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "The captain yields, and gives up her lance.",
+          "effects": [
+            {
+              "item": {
+                "tier": 3
+              }
+            },
+            {
+              "score": {
+                "valor": 2
+              }
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "The captain wins.",
+          "effects": [
+            {
+              "injury": "body"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

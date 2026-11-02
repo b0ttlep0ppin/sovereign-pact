@@ -14,7 +14,7 @@
     {
       "id": "kneel",
       "label": "Kneel.",
-      "rule": "each_scion",
+      "rule": "vote",
       "tags": [
         "cautious"
       ],
@@ -24,6 +24,7 @@
           "text": "Warm, not burned.",
           "effects": [
             {
+              "to": "party",
               "status": "protect"
             }
           ]
@@ -33,6 +34,7 @@
           "text": "Burned.",
           "effects": [
             {
+              "to": "party",
               "status": "burn"
             }
           ]

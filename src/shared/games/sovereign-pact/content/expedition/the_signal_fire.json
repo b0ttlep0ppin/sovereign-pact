@@ -1,0 +1,87 @@
+{
+  "id": "the_signal_fire",
+  "pools": [
+    "rescue"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    10
+  ],
+  "title": "The Signal Fire",
+  "text": "Smoke on a far hill, in the pattern your House uses. Someone is still alive out there.",
+  "options": [
+    {
+      "id": "run",
+      "label": "Run for the hill.",
+      "rule": "vote",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Closer.",
+          "effects": [
+            {
+              "skip": 1
+            },
+            {
+              "to": "party",
+              "durability": -10,
+              "loc": "legs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "answer",
+      "label": "Light an answering fire.",
+      "rule": "leader",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "The smoke changes: they saw.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 10
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "Something else saw too.",
+          "effects": [
+            {
+              "encounter": {}
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "scout",
+      "label": "The sharpest eye scouts the way.",
+      "rule": "scion:highest:acuity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A safe path to the hill.",
+          "effects": [
+            {
+              "skip": 1
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,91 @@
+{
+  "id": "the_bog_bodies",
+  "pools": [
+    "drowned_marches"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    7
+  ],
+  "title": "The Bog Bodies",
+  "text": "Bodies in the peat, perfectly kept, some still wearing jewelry. The marsh folk say they were offerings.",
+  "options": [
+    {
+      "id": "take",
+      "label": "Take the jewelry.",
+      "rule": "vote",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "Old gold.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 20
+              }
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "The bodies sit up.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "ambush"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "study",
+      "label": "The wisest studies them.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Marks of the old marsh gods.",
+          "effects": [
+            {
+              "score": {
+                "lore": 2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rebury",
+      "label": "Push them back under.",
+      "rule": "leader",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The marsh seems grateful.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 5
+            },
+            {
+              "skip": 1
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,91 @@
+{
+  "id": "the_wild_orchard",
+  "pools": [
+    "resource"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    10
+  ],
+  "title": "The Wild Orchard",
+  "text": "An orchard gone wild, trees heavy with fruit and timber. A bear thinks it is his.",
+  "options": [
+    {
+      "id": "pick",
+      "label": "Pick fast.",
+      "rule": "vote",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "Baskets full.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 15,
+                "timber": 2
+              }
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "The bear.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "surprise"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "share",
+      "label": "Leave the bear his share.",
+      "rule": "leader",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "He lets you take half.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 8,
+                "timber": 2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fell",
+      "label": "The strongest fells the old trees.",
+      "rule": "scion:highest:might",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Fine timber.",
+          "effects": [
+            {
+              "resources": {
+                "timber": 6
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
