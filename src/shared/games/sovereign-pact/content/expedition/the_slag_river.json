@@ -1,0 +1,86 @@
+{
+  "id": "the_slag_river",
+  "pools": [
+    "forge_ruins"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    9
+  ],
+  "title": "The Slag River",
+  "text": "A river of cooling slag crosses the ruin, a crust over red. Bits of good metal glint in the crust.",
+  "options": [
+    {
+      "id": "cross",
+      "label": "Cross on the crust.",
+      "rule": "vote",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "Across, boots smoking.",
+          "effects": [
+            {
+              "to": "party",
+              "durability": -6,
+              "loc": "legs"
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "The crust breaks.",
+          "effects": [
+            {
+              "to": "party",
+              "status": "burn"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pick",
+      "label": "The sharpest picks out the metal.",
+      "rule": "scion:highest:acuity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A pocketful of good iron.",
+          "effects": [
+            {
+              "resources": {
+                "iron": 5
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wait",
+      "label": "Wait for it to cool.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It cools. Something else comes along the bank.",
+          "effects": [
+            {
+              "encounter": {}
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

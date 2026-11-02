@@ -1,0 +1,79 @@
+{
+  "id": "the_wildebeest_crossing",
+  "pools": [
+    "beast_lands"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    6
+  ],
+  "title": "The Wildebeest Crossing",
+  "text": "A herd of wildebeest crosses the river in a thundering mass. Crocodiles wait in the shallows.",
+  "options": [
+    {
+      "id": "wait",
+      "label": "Wait for the herd to pass.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Hours, and then a calm river.",
+          "effects": []
+        }
+      ]
+    },
+    {
+      "id": "among",
+      "label": "Cross among the herd.",
+      "rule": "leader",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "The crocodiles have other things to eat.",
+          "effects": [
+            {
+              "skip": 1
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "A crocodile prefers you.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "ambush"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "watch",
+      "label": "The sharpest watches for the safe ford.",
+      "rule": "scion:highest:acuity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Upstream, where the crocodiles are not.",
+          "effects": [
+            {
+              "xp": 30
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

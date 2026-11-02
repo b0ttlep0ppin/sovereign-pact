@@ -1,0 +1,81 @@
+{
+  "id": "the_hermit_monk",
+  "pools": [
+    "shrine_of_six"
+  ],
+  "weight": 2,
+  "band": [
+    4,
+    10
+  ],
+  "title": "The Hermit Monk",
+  "text": "A monk who has not spoken in forty years sits by the road to the shrines. He holds up a slate: Ask me one thing.",
+  "options": [
+    {
+      "id": "way",
+      "label": "Ask the way.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "He draws a map.",
+          "effects": [
+            {
+              "skip": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "future",
+      "label": "The wisest asks about the House's future.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "He writes one word, and weeps.",
+          "effects": [
+            {
+              "foresee": true
+            },
+            {
+              "score": {
+                "lore": 1
+              }
+            },
+            {
+              "sanity": -5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bless",
+      "label": "Ask for his blessing.",
+      "rule": "leader",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "He touches each brow.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 8
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

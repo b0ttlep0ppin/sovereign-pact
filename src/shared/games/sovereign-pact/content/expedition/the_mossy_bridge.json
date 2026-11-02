@@ -1,0 +1,95 @@
+{
+  "id": "the_mossy_bridge",
+  "pools": [
+    "hollow_wood"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    7
+  ],
+  "title": "The Mossy Bridge",
+  "text": "A stone bridge so overgrown it looks like a hill. A troll's toll sign hangs on it, but the troll is asleep.",
+  "options": [
+    {
+      "id": "sneak",
+      "label": "Sneak across.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "Across, and the troll snores on.",
+          "effects": []
+        },
+        {
+          "w": 30,
+          "text": "It wakes.",
+          "effects": [
+            {
+              "encounter": {}
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pay",
+      "label": "Leave the toll on its belly.",
+      "rule": "leader",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Honest, and the wood approves.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -5
+              }
+            },
+            {
+              "to": "party",
+              "sanity": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "purse",
+      "label": "The quietest lifts the troll's purse.",
+      "rule": "scion:highest:guile",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "A fat purse of other travelers' tolls.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 20
+              }
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "A troll's grip.",
+          "effects": [
+            {
+              "durability": -25,
+              "loc": "body"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

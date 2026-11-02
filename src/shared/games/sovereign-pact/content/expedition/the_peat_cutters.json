@@ -1,0 +1,88 @@
+{
+  "id": "the_peat_cutters",
+  "pools": [
+    "drowned_marches"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    7
+  ],
+  "title": "The Peat Cutters",
+  "text": "Peat cutters have found something in the bog: a body, perfectly kept, wearing a torc of gold.",
+  "options": [
+    {
+      "id": "buy",
+      "label": "Buy the torc from them.",
+      "rule": "vote",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Old gold, older magic.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -15
+              }
+            },
+            {
+              "item": {
+                "tier": 2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bury",
+      "label": "The kindest asks them to bury it again.",
+      "rule": "scion:most_healing|scion:highest:sagacity",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "They grumble, and do it, and the bog is quieter.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 5
+            },
+            {
+              "doom": -1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "study",
+      "label": "The wisest studies the body.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A sacrifice, to keep something down.",
+          "effects": [
+            {
+              "score": {
+                "lore": 2
+              }
+            },
+            {
+              "foresee": true
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

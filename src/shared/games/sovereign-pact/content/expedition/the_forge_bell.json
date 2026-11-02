@@ -1,0 +1,85 @@
+{
+  "id": "the_forge_bell",
+  "pools": [
+    "forge_ruins"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    9
+  ],
+  "title": "The Forge Bell",
+  "text": "An iron bell that once called the smiths to work. Its rope is still there, frayed.",
+  "options": [
+    {
+      "id": "ring",
+      "label": "Ring it.",
+      "rule": "vote",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "The ghosts of the smiths rise to work, and make you something.",
+          "effects": [
+            {
+              "item": {
+                "tier": 2
+              }
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "Something else rises to the call.",
+          "effects": [
+            {
+              "encounter": {}
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "take",
+      "label": "The strongest takes the bell for its bronze.",
+      "rule": "scion:highest:might",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Heavy, and worth it.",
+          "effects": [
+            {
+              "resources": {
+                "iron": 6
+              }
+            },
+            {
+              "durability": -10,
+              "loc": "arms"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "leave",
+      "label": "Leave it silent.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The rope sways as you pass.",
+          "effects": []
+        }
+      ]
+    }
+  ]
+}

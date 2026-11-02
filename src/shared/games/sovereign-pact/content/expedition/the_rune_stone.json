@@ -1,0 +1,88 @@
+{
+  "id": "the_rune_stone",
+  "pools": [
+    "barrows"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    8
+  ],
+  "title": "The Rune Stone",
+  "text": "A standing stone carved with runes, half sunk in the turf. Some say the runes change each time you look.",
+  "options": [
+    {
+      "id": "read",
+      "label": "The wisest reads them.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "A warning about the road ahead.",
+          "effects": [
+            {
+              "foresee": true
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "A curse on whoever reads.",
+          "effects": [
+            {
+              "curse": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rub",
+      "label": "Take a rubbing to sell to scholars.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Scholars pay well.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 8
+              }
+            },
+            {
+              "score": {
+                "lore": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "topple",
+      "label": "Topple it.",
+      "rule": "leader",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "What was under it was sleeping.",
+          "effects": [
+            {
+              "encounter": {}
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

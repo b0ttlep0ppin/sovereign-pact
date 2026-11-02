@@ -1,0 +1,92 @@
+{
+  "id": "the_debt_collector",
+  "pools": [
+    "pit"
+  ],
+  "weight": 2,
+  "band": [
+    5,
+    10
+  ],
+  "title": "The Debt Collector",
+  "text": "A devil with a ledger stops the party. It says a Scion's ancestor owes the Pit a debt.",
+  "options": [
+    {
+      "id": "pay",
+      "label": "Pay it off.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The ledger closes.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -20
+              }
+            },
+            {
+              "doom": -1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "argue",
+      "label": "The shrewdest argues the debt is void.",
+      "rule": "scion:highest:guile",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "A clause in the small print.",
+          "effects": [
+            {
+              "score": {
+                "intrigue": 2
+              }
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "It has better lawyers.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -25
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fight",
+      "label": "Refuse, and fight.",
+      "rule": "leader",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It collects by force.",
+          "effects": [
+            {
+              "encounter": {
+                "level": 1
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

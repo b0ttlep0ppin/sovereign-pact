@@ -1,0 +1,90 @@
+{
+  "id": "the_smoking_mountain",
+  "pools": [
+    "dragon_reaches"
+  ],
+  "weight": 2,
+  "band": [
+    5,
+    10
+  ],
+  "title": "The Smoking Mountain",
+  "text": "The mountain ahead is smoking. The dragons nest in its warmth, and the path goes over its shoulder.",
+  "options": [
+    {
+      "id": "over",
+      "label": "Go over the shoulder.",
+      "rule": "vote",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "Over, choking on ash.",
+          "effects": [
+            {
+              "to": "party",
+              "durability": -8
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "A dragon's nest on the path.",
+          "effects": [
+            {
+              "encounter": {
+                "level": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "vents",
+      "label": "The sharpest finds the old lava tubes.",
+      "rule": "scion:highest:acuity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Through the mountain's belly, and out the far side.",
+          "effects": [
+            {
+              "skip": 1
+            },
+            {
+              "resources": {
+                "essence": 3
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "round",
+      "label": "Go round, the long way.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Days lost.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -4
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

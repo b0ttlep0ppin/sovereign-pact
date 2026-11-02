@@ -1,0 +1,74 @@
+{
+  "id": "the_charcoal_burners",
+  "pools": [
+    "hollow_wood"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    7
+  ],
+  "title": "The Charcoal Burners",
+  "text": "Charcoal burners tend their smoking mounds in a clearing. They do not like strangers.",
+  "options": [
+    {
+      "id": "help",
+      "label": "Help them tend the mounds.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Smoky work, and they share their supper.",
+          "effects": [
+            {
+              "to": "party",
+              "durability": 6
+            },
+            {
+              "resources": {
+                "timber": 2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "talk",
+      "label": "The best talker wins them over.",
+      "rule": "scion:highest:guile",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "They tell you which paths the wood keeps.",
+          "effects": [
+            {
+              "foresee": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pass",
+      "label": "Pass by.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Their eyes follow you out of the clearing.",
+          "effects": []
+        }
+      ]
+    }
+  ]
+}

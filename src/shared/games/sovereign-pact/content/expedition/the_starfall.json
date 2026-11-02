@@ -1,0 +1,92 @@
+{
+  "id": "the_starfall",
+  "pools": [
+    "outer_dark"
+  ],
+  "weight": 2,
+  "band": [
+    6,
+    10
+  ],
+  "title": "The Starfall",
+  "text": "Stars fall through the dark like slow snow. Where they land, they hiss and dim.",
+  "options": [
+    {
+      "id": "catch",
+      "label": "Catch a falling star.",
+      "rule": "vote",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "It burns, and it is yours.",
+          "effects": [
+            {
+              "resources": {
+                "essence": 8
+              }
+            },
+            {
+              "to": "party",
+              "durability": -6,
+              "loc": "arms"
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "It is not a star.",
+          "effects": [
+            {
+              "encounter": {}
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wish",
+      "label": "The wisest makes a wish on one.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Something, somewhere, hears.",
+          "effects": [
+            {
+              "blessing": {
+                "trait": "lucky",
+                "years": 2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "shelter",
+      "label": "Shelter until it stops.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It does not stop for a long time.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -5
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

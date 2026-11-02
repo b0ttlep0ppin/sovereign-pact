@@ -1,0 +1,95 @@
+{
+  "id": "the_chained_devil",
+  "pools": [
+    "pit"
+  ],
+  "weight": 2,
+  "band": [
+    5,
+    10
+  ],
+  "title": "The Chained Devil",
+  "text": "A devil chained to a pillar begs to be freed. It promises to show you the way out of the Pit.",
+  "options": [
+    {
+      "id": "free",
+      "label": "Free it.",
+      "rule": "vote",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 40,
+          "text": "It keeps its word, to everyone's surprise.",
+          "effects": [
+            {
+              "skip": 2
+            },
+            {
+              "doom": 1
+            }
+          ]
+        },
+        {
+          "w": 60,
+          "text": "It keeps its word, in its own way.",
+          "effects": [
+            {
+              "fork": {
+                "drop": 1,
+                "add": [
+                  "encounter"
+                ]
+              }
+            },
+            {
+              "doom": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ask",
+      "label": "The shrewdest asks why it was chained.",
+      "rule": "scion:highest:guile",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It lied to the wrong devil. It tells you who.",
+          "effects": [
+            {
+              "score": {
+                "intrigue": 2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "leave",
+      "label": "Leave it chained.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It curses you as you go.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -4
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

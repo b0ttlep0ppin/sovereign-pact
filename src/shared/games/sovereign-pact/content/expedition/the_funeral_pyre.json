@@ -1,0 +1,94 @@
+{
+  "id": "the_funeral_pyre",
+  "pools": [
+    "barrows"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    8
+  ],
+  "title": "The Funeral Pyre",
+  "text": "Mourners are building a pyre for a warrior, but they have not enough wood, and the dead will not rest unburned.",
+  "options": [
+    {
+      "id": "help",
+      "label": "Give them wood and help build it.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A fine burning. The warrior rests.",
+          "effects": [
+            {
+              "resources": {
+                "timber": -3
+              }
+            },
+            {
+              "score": {
+                "renown": 2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "watch",
+      "label": "Keep watch while they work.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The barrow dead come to see, and are turned back.",
+          "effects": [
+            {
+              "encounter": {}
+            },
+            {
+              "score": {
+                "valor": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "goods",
+      "label": "The shrewdest asks after the warrior's grave goods.",
+      "rule": "scion:highest:guile",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "They sell you a sword they should have burned.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -10
+              }
+            },
+            {
+              "item": {
+                "tier": 2
+              }
+            },
+            {
+              "curse": true
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

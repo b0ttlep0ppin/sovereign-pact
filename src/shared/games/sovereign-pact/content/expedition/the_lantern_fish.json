@@ -1,0 +1,89 @@
+{
+  "id": "the_lantern_fish",
+  "pools": [
+    "outer_dark"
+  ],
+  "weight": 2,
+  "band": [
+    6,
+    10
+  ],
+  "title": "The Lantern Fish",
+  "text": "A great fish swims through the dark as if it were water, a light dangling before its mouth.",
+  "options": [
+    {
+      "id": "follow",
+      "label": "Follow the light.",
+      "rule": "vote",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 40,
+          "text": "Toward its mouth.",
+          "effects": [
+            {
+              "encounter": {
+                "level": 1
+              }
+            }
+          ]
+        },
+        {
+          "w": 60,
+          "text": "It leads you somewhere, and turns away.",
+          "effects": [
+            {
+              "skip": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dark",
+      "label": "Douse your lights and let it pass.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Its eye passes very close.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -6
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lure",
+      "label": "The cleverest lures it with a lamp, and cuts off its light.",
+      "rule": "scion:highest:acuity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A lantern that never goes out.",
+          "effects": [
+            {
+              "item": {
+                "tier": 2
+              }
+            },
+            {
+              "encounter": {}
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,88 @@
+{
+  "id": "the_dragonslayers_tomb",
+  "pools": [
+    "dragon_reaches"
+  ],
+  "weight": 1,
+  "band": [
+    6,
+    10
+  ],
+  "title": "The Dragon-Slayer's Tomb",
+  "text": "The tomb of a dragon-slayer, guarded by the dragon he slew, which was never quite dead.",
+  "options": [
+    {
+      "id": "rouse",
+      "label": "Rouse the dragon and finish it.",
+      "rule": "vote",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It is weak, and furious.",
+          "effects": [
+            {
+              "encounter": {
+                "level": 1
+              }
+            },
+            {
+              "score": {
+                "valor": 3
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "slip",
+      "label": "The quietest slips into the tomb.",
+      "rule": "scion:highest:guile|scion:highest:speed",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "The slayer's spear.",
+          "effects": [
+            {
+              "item": {
+                "tier": 3
+              }
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "The dragon stirs.",
+          "effects": [
+            {
+              "encounter": {
+                "level": 2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "leave",
+      "label": "Leave them both to their long sleep.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The dragon opens one eye, and closes it.",
+          "effects": []
+        }
+      ]
+    }
+  ]
+}

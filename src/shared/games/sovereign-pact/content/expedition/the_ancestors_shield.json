@@ -1,0 +1,99 @@
+{
+  "id": "the_ancestors_shield",
+  "pools": [
+    "barrows"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    8
+  ],
+  "title": "The Ancestor's Shield",
+  "text": "A shield hangs over a barrow's door, painted with a House's arms. Your own House's arms.",
+  "options": [
+    {
+      "id": "take",
+      "label": "Take it down, by right of blood.",
+      "rule": "vote",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "It is yours. It always was.",
+          "effects": [
+            {
+              "item": {
+                "tier": 2
+              }
+            },
+            {
+              "score": {
+                "renown": 1
+              }
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "The ancestor disagrees.",
+          "effects": [
+            {
+              "encounter": {
+                "level": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "honor",
+      "label": "Kneel and honor the dead.",
+      "rule": "leader",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Something in the barrow is proud of you.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 6
+            },
+            {
+              "blessing": {
+                "trait": "stout_hearted",
+                "years": 2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "read",
+      "label": "The wisest reads the barrow's runes.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A forgotten branch of the House.",
+          "effects": [
+            {
+              "score": {
+                "lore": 2
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
