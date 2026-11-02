@@ -1,0 +1,83 @@
+{
+  "id": "the_ingot_vault",
+  "pools": [
+    "forge_ruins"
+  ],
+  "weight": 2,
+  "band": [
+    4,
+    9
+  ],
+  "title": "The Ingot Vault",
+  "text": "A vault door half open, stacked ingots glinting inside. The floor before it is scorched in a perfect circle.",
+  "options": [
+    {
+      "id": "run",
+      "label": "The quickest dashes in and out.",
+      "rule": "scion:highest:speed",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "An armful of ingots, and their boots smoking.",
+          "effects": [
+            {
+              "resources": {
+                "iron": 8
+              }
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "The circle lights.",
+          "effects": [
+            {
+              "durability": -30,
+              "loc": "legs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "study",
+      "label": "The sharpest finds the trigger.",
+      "rule": "scion:highest:acuity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A pressure plate. You step around it.",
+          "effects": [
+            {
+              "resources": {
+                "iron": 5,
+                "gold": 10
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "leave",
+      "label": "Too obvious a trap.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Probably.",
+          "effects": []
+        }
+      ]
+    }
+  ]
+}

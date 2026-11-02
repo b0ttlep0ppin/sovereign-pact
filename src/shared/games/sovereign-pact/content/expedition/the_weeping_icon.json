@@ -1,0 +1,93 @@
+{
+  "id": "the_weeping_icon",
+  "pools": [
+    "shrine_of_six"
+  ],
+  "weight": 2,
+  "band": [
+    4,
+    10
+  ],
+  "title": "The Weeping Icon",
+  "text": "An icon of one of the Six weeps real tears into a silver bowl. Pilgrims drink from it.",
+  "options": [
+    {
+      "id": "drink",
+      "label": "Drink from the bowl.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 80,
+          "text": "Salt, and peace.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 10
+            }
+          ]
+        },
+        {
+          "w": 20,
+          "text": "Salt, and grief that is not yours.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -6
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pray",
+      "label": "The devout prays before it.",
+      "rule": "scion:trait:devout|scion:highest:sagacity",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The icon's eyes follow them out.",
+          "effects": [
+            {
+              "blessing": {
+                "trait": "lucky",
+                "years": 2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bottle",
+      "label": "Bottle the tears to sell.",
+      "rule": "leader",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Worth their weight in gold, and the pilgrims see you do it.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 20
+              }
+            },
+            {
+              "score": {
+                "renown": -2
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,94 @@
+{
+  "id": "the_town_crier",
+  "pools": [
+    "faceless_city"
+  ],
+  "weight": 2,
+  "band": [
+    4,
+    9
+  ],
+  "title": "The Town Crier",
+  "text": "A faceless crier rings his bell in an empty square, calling out news of your own House.",
+  "options": [
+    {
+      "id": "listen",
+      "label": "Listen to the news.",
+      "rule": "vote",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "News of a rival's troubles.",
+          "effects": [
+            {
+              "score": {
+                "intrigue": 2
+              }
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "News of your own, not yet happened.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -6
+            },
+            {
+              "foresee": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pay",
+      "label": "The shrewdest pays him to cry a lie about a rival.",
+      "rule": "scion:highest:guile",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The faceless will repeat it everywhere.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -10
+              }
+            },
+            {
+              "score": {
+                "intrigue": 3
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "silence",
+      "label": "Silence him.",
+      "rule": "leader",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The square fills with the faceless.",
+          "effects": [
+            {
+              "encounter": {}
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

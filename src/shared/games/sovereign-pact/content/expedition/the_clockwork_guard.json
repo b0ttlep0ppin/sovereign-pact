@@ -1,0 +1,87 @@
+{
+  "id": "the_clockwork_guard",
+  "pools": [
+    "forge_ruins"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    9
+  ],
+  "title": "The Clockwork Guard",
+  "text": "A clockwork soldier still walks its patrol in the ruins, round and round. It has not seen you yet.",
+  "options": [
+    {
+      "id": "wait",
+      "label": "Wait for it to pass.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It passes, and you slip by.",
+          "effects": []
+        }
+      ]
+    },
+    {
+      "id": "wind",
+      "label": "The cleverest winds it down from behind.",
+      "rule": "scion:highest:guile|scion:highest:acuity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "It stops mid-step. Its gears are worth a fortune.",
+          "effects": [
+            {
+              "resources": {
+                "iron": 6,
+                "gold": 10
+              }
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "It turns.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "surprise"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fight",
+      "label": "Break it.",
+      "rule": "leader",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It fights as it was built to.",
+          "effects": [
+            {
+              "encounter": {}
+            },
+            {
+              "resources": {
+                "iron": 3
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

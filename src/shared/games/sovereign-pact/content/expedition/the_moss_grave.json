@@ -1,0 +1,94 @@
+{
+  "id": "the_moss_grave",
+  "pools": [
+    "hollow_wood"
+  ],
+  "weight": 1,
+  "band": [
+    3,
+    7
+  ],
+  "title": "The Moss Grave",
+  "text": "A grave so overgrown with moss that it has become a hill. A sword hilt pokes out of the top.",
+  "options": [
+    {
+      "id": "dig",
+      "label": "Dig for the sword.",
+      "rule": "vote",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "The sword, and the old bones politely still.",
+          "effects": [
+            {
+              "item": {
+                "tier": 2
+              }
+            },
+            {
+              "to": "party",
+              "sanity": -4
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "The bones are not still.",
+          "effects": [
+            {
+              "encounter": {
+                "level": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pray",
+      "label": "The devout prays over it.",
+      "rule": "scion:trait:devout|scion:highest:sagacity",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Something old is grateful.",
+          "effects": [
+            {
+              "blessing": {
+                "trait": "stout_hearted",
+                "years": 2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mark",
+      "label": "Mark it, and leave it.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A grave is a grave.",
+          "effects": [
+            {
+              "score": {
+                "renown": 1
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

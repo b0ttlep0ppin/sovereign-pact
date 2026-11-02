@@ -1,0 +1,89 @@
+{
+  "id": "the_broken_hammer",
+  "pools": [
+    "forge_ruins"
+  ],
+  "weight": 1,
+  "band": [
+    5,
+    9
+  ],
+  "title": "The Broken Hammer",
+  "text": "The head of a great smith's hammer, split in two. Both halves are still warm, and humming.",
+  "options": [
+    {
+      "id": "take",
+      "label": "Take a half each.",
+      "rule": "vote",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Heavy, and warm in the pack.",
+          "effects": [
+            {
+              "to": "party",
+              "status": "protect"
+            },
+            {
+              "resources": {
+                "essence": 4
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "join",
+      "label": "The strongest tries to join the halves.",
+      "rule": "scion:highest:might",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "They fuse with a ring like a bell.",
+          "effects": [
+            {
+              "item": {
+                "tier": 3
+              }
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "They fuse with a blast.",
+          "effects": [
+            {
+              "injury": "arms"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bury",
+      "label": "Bury them apart.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The humming stops.",
+          "effects": [
+            {
+              "doom": -1
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

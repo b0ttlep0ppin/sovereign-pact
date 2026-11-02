@@ -1,0 +1,62 @@
+{
+  "id": "the_blank_portraits",
+  "pools": [
+    "faceless_city"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    9
+  ],
+  "title": "The Blank Portraits",
+  "text": "A gallery of portraits with no faces. As you walk past, one by one they start to paint themselves as you.",
+  "options": [
+    {
+      "id": "watch",
+      "label": "Each Scion watches their portrait finish.",
+      "rule": "each_scion",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "A flattering likeness.",
+          "effects": [
+            {
+              "sanity": 4
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "A true likeness.",
+          "effects": [
+            {
+              "sanity": -12
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "smash",
+      "label": "Each Scion slashes their portrait before it finishes.",
+      "rule": "each_scion",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Paint like blood on the floor.",
+          "effects": [
+            {
+              "sanity": -3
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
