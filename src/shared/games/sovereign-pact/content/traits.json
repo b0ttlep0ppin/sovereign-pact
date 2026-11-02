@@ -76,6 +76,7 @@
     {"id": "unsigned", "name": "Unsigned", "flavor": "The Devil offered, and they did not sign.", "crunch": "Dark +15%; Charm resist +25%.", "mods": {"ward.dark": 15, "resist.charm": 25}, "tags": ["arcana"], "weight": 0},
     {"id": "starlit", "name": "Starlit", "flavor": "A fallen star went out in their hands, and left its light behind.", "crunch": "MP regen +1 per 100 ticks; Max MP +5%.", "mods": {"mpPerPulse": 1, "maxMpPct": 5}, "tags": ["arcana"], "weight": 0},
     {"id": "answered", "name": "Answered", "flavor": "They heard the last trumpet, and stood.", "crunch": "Fear resist +30%; Holy +10%.", "mods": {"resist.fear": 30, "ward.holy": 10}, "tags": ["arcana"], "weight": 0},
+    {"id": "draught_strong", "name": "Draught-Strong", "flavor": "Something in the draught makes room in them.", "crunch": "Passive budget +1, until the Reckoning (a Passive Draught).", "mods": {"passiveBudget": 1}, "tags": ["consumable"], "weight": 0},
     {"id": "worldwalker", "name": "Worldwalker", "flavor": "The World Mother lay down, and let them walk on.", "crunch": "Passive budget +1.", "mods": {"passiveBudget": 1}, "tags": ["arcana"], "weight": 0}
   ]
 }

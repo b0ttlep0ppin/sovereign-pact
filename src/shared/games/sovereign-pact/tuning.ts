@@ -291,6 +291,8 @@ export const TUNING = {
     bots: { hpBelow: 0.35, durBelow: 0.3, mpBelow: 0.2, bombFoes: 3, dustFoes: 2, campBelow: 0.5 },
     /** Camp items (§13.7): Widow's Tea's Sanity and its Sleep, the Smuggler's Flask's Sanity cost (% of max); the die the Dice of the Marches rerolls at or under; what the Saint's Tooth turns a Mortal wound into. */
     uses: { teaSanityPct: 20, teaSleepTicks: 100, flaskSanityPct: 5, diceRerollAt: 5, toothResult: "arms_severed" },
+    /** The blessing a Passive Draught gives until the Reckoning. */
+    draughtTrait: "draught_strong",
   },
 
   /** §8.9 deals, first pass: score for a deal honored (Intrigue, each side) and for a public one (Renown, each side). */

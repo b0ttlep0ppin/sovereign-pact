@@ -4,6 +4,7 @@ import type { Rng } from "../../../rng.ts";
 import { ELEMENTS, LOCATIONS, type Element, type Location } from "../state.ts";
 import { TUNING } from "../tuning.ts";
 import { bodyOf, bodyShare } from "./enemyparts.ts";
+import { bestParts, PARTS } from "./parts.ts";
 import { hasStatus } from "./grid.ts";
 import { down, injure, kill, steel, steelSanity } from "./injury.ts";
 import { addStatus, extraOf, meta, removeStatus, statusValue, tryStatus } from "./status.ts";
@@ -493,6 +494,13 @@ function supportEffects(b: Battle, rng: Rng, u: Combatant, t: Combatant, ab: Abi
   if (ab.constructHpPct && t.tags.includes("construct")) t.hp = Math.min(t.maxHp, t.hp + Math.round((t.maxHp * ab.constructHpPct) / 100));
   if (ab.readiness && t.side !== u.side && !t.mods.readinessImmune) t.ct = Math.max(0, t.ct - Math.round(ab.readiness * (t.boss ? C.bossReadiness : 1)));
   if (ab.dispelBuffs) for (const x of t.statuses.filter((s) => meta(s.id).kind === "buff" && !meta(s.id).fixed).reverse().slice(0, ab.dispelBuffs)) removeStatus(b, t, x.id);
+  if (ab.reveal) {
+    const hidden = (b.field ?? []).filter((f) => f.hidden);
+    b.field = (b.field ?? []).filter((f) => !f.hidden);
+    for (const f of hidden) b.events.push({ t: "hazard", hazard: f.id, what: "disarmed", col: f.col, row: f.row });
+    for (const x of b.units) if (x.side !== u.side && x.role === "lurker" && !x.dead) x.ct = 0;
+  }
+  if (ab.grantParts && t.mods.scavenge) t.parts = [...(t.parts ?? []), ...bestParts(t, PARTS, ab.grantParts)];
   if (ab.bossReadiness && t.boss && t.side !== u.side && !t.mods.readinessImmune) t.ct = Math.max(0, t.ct - ab.bossReadiness);
   for (const x of ab.statuses ?? []) {
     if (x.tag && !t.tags.includes(x.tag)) continue;

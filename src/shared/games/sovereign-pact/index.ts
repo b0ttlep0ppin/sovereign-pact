@@ -21,7 +21,7 @@ import { cannotPromote, promoteRecruit } from "./promotion.ts";
 import { botOutfit, cannotOutfit, outfit } from "./outfit.ts";
 import { bargain, botBargain, cannotBargain } from "./bargains.ts";
 import { botCure, cannotCure, cure } from "./cures.ts";
-import { botBuyConsumable, botPack, buyConsumable, cannotBuyConsumable, cannotDrawTarot, cannotPack, drawTarot, pack } from "./consumables.ts";
+import { botBuyConsumable, botPack, buyConsumable, cannotBuyConsumable, cannotDrawTarot, cannotDrinkDraught, cannotPack, drawTarot, drinkDraught, pack } from "./consumables.ts";
 import { botOpen, cannotOpen, open } from "./satchel.ts";
 import { cannotReinstate, cannotRetire, reinstate, retire } from "./lifecycle.ts";
 import { botCard, cannotPick, pick } from "./gate.ts";
@@ -286,6 +286,15 @@ export function applyMove(state: SovState, playerId: PlayerId, move: SovMove): M
       const why = cannotDrawTarot(s, house, move.person);
       if (why) return fail(why);
       drawTarot(s, house, move.person);
+      s.phaseMoves += 1;
+      return { ok: true, state: s };
+    }
+    case "drink_draught": {
+      if (s.phase !== "settlement") return fail("A Passive Draught is drunk in town, in the Settlement Phase.");
+      if (h.sealed) return fail("Unseal the Year first.");
+      const why = cannotDrinkDraught(s, house, move.person);
+      if (why) return fail(why);
+      drinkDraught(s, house, move.person);
       s.phaseMoves += 1;
       return { ok: true, state: s };
     }

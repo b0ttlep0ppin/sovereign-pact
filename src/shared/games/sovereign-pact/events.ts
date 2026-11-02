@@ -13,7 +13,7 @@ import { isWard } from "./wards.ts";
 import { carriedRoll } from "./combat/injury.ts";
 import { BUILDING_BY_ID, HOUSE_TRAIT_BY_ID, INJURY_BY_ID, INJURY_TABLE_BY_ID, TAROT, TAROT_BY_ID, TRAIT_BY_ID, TRAITS, TRIP_EVENT_BY_ID, TRIP_EVENTS, type InjuryTableId, type TripEffect, type TripEventDef, type TripOption } from "./content.ts";
 import { battle, die, home, lose, marching, person, succeed } from "./journey.ts";
-import { gainJp, gainXp, jobStats } from "./progression.ts";
+import { gainJp, gainXp, jobStats, passiveBudget, passivePoints } from "./progression.ts";
 import { ascendancy } from "./score.ts";
 import { GEAR_SLOTS, LOCATIONS, STATS, type HistKey, type NodeKind, type Person, type ScoreCategory, type SovState } from "./state.ts";
 import { TUNING } from "./tuning.ts";
@@ -363,6 +363,8 @@ export function fadeBlessings(s: SovState): void {
     }
     p.blessed = p.blessed.filter((x) => x.years > 0).map((x) => ({ ...x, years: x.years - 1 }));
     if (!p.blessed.length) delete p.blessed;
+    // A budget that shrank sheds passives, the last equipped first.
+    while (p.passives.length && passivePoints(p) > passiveBudget(p)) p.passives = p.passives.slice(0, -1);
   }
 }
 

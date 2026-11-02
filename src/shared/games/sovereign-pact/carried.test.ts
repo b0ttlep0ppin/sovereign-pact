@@ -5,7 +5,10 @@ import type { Rng } from "../../rng.ts";
 import { carriedRoll, injure } from "./combat/injury.ts";
 import { newBattle } from "./combat/build.ts";
 import { standardParty } from "./combat/fixtures.ts";
+import { JOB_PASSIVE_BY_ID } from "./content.ts";
+import { fadeBlessings } from "./events.ts";
 import { sovereignPact as g } from "./index.ts";
+import { passiveBudget, passivePoints } from "./progression.ts";
 import type { SovState } from "./state.ts";
 import { calm, campaign } from "./testing.ts";
 
@@ -65,5 +68,26 @@ describe("the Tarot Token (§13.7)", () => {
     expect(g.applyMove(r.state, s.players[0]!, { type: "draw_tarot", person: p.id })).toMatchObject({ ok: false, error: expect.stringMatching(/only once/) });
     const theirs = s.people.find((x) => x.host === 1 && x.status === "scion")!;
     expect(g.applyMove(r.state, s.players[0]!, { type: "draw_tarot", person: theirs.id })).toMatchObject({ ok: false });
+  });
+});
+
+describe("the Passive Draught (§13.7)", () => {
+  it("gives one Scion a passive budget +1 until the Reckoning, then sheds what no longer fits", () => {
+    const s = calm(campaign(2, 4));
+    s.phase = "settlement";
+    s.houses[0]!.consumables = { passive_draught: 2 };
+    const p = s.people.find((x) => x.host === 0 && x.status === "scion")!;
+    const budget = passiveBudget(p);
+    const r = g.applyMove(s, s.players[0]!, { type: "drink_draught", person: p.id });
+    if (!r.ok) throw new Error(r.error);
+    const q = r.state.people.find((x) => x.id === p.id)!;
+    expect(passiveBudget(q)).toBe(budget + 1);
+    expect(g.applyMove(r.state, s.players[0]!, { type: "drink_draught", person: p.id })).toMatchObject({ ok: false, error: expect.stringMatching(/already/) });
+    // Fill the larger budget with one-point passives, then let the Reckoning come.
+    q.passives = [...JOB_PASSIVE_BY_ID.values()].filter((x) => x.points === 1).slice(0, budget + 1).map((x) => x.id);
+    expect(passivePoints(q)).toBe(budget + 1);
+    fadeBlessings(r.state);
+    expect(passiveBudget(q)).toBe(budget);
+    expect(passivePoints(q)).toBe(budget);
   });
 });
