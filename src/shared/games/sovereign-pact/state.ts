@@ -534,6 +534,8 @@ export type SovMove =
   | { type: "choose"; event: string; option: number }
   /** Answer a Dark Bargain (§14.7a); a bane names its victim. */
   | { type: "bargain"; id: string; accept: boolean; target?: number }
+  /** Spend a cure item on one of the House's own (§11.2): the injury it names, else the oldest it mends. */
+  | { type: "cure"; item: number; person: number; injury?: string }
   /** Give in to the Crisis's private temptation. */
   | { type: "tempt" }
   /** Propose spending the Commons' stock on a shared project (a vote of the Houses, §8.1). */

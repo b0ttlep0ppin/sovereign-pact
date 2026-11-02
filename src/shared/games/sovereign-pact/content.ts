@@ -792,6 +792,8 @@ export interface NamedDef {
   pools?: string[];
   minLevel?: number;
   artifact?: { category: ScoreCategory; points: number };
+  /** A cure item (§11.2): one use, mending these injury results or any lasting one of a band; it may leave a look. */
+  cure?: { injuries?: string[]; band?: "moderate"; look?: string };
 }
 export const NAMED = namedJson.named as unknown as readonly NamedDef[];
 export const NAMED_BY_ID = byId(NAMED);

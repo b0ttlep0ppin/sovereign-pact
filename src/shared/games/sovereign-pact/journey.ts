@@ -22,7 +22,8 @@ import { creditWard } from "./wards.ts";
 import { lairOf, slay, tally, withLair } from "./hunt.ts";
 import { arcanaBoss, arcanaFor, arcanaWon, huntArcana, withArcana } from "./arcana.ts";
 import { idolEvent, idolSlain, withIdol } from "./idols.ts";
-import { ARC, arcDoom, arcResult, bastionFallBack, bastionShields, withRaid } from "./arc.ts";
+import { coreSpoils } from "./cures.ts";
+import { ARC, arcDoom, arcResult, arcStep, bastionFallBack, bastionShields, withRaid } from "./arc.ts";
 import { divided, gate, partyGone, rally } from "./split.ts";
 import { endCampaign, log, mandatoryYears, withRng } from "./year.ts";
 
@@ -285,6 +286,8 @@ export function home(s: SovState, how: NonNullable<Expedition["result"]>): void 
     for (const h of new Set(marching(s).map((id) => person(s, id).host))) s.houses[h]!.score.valor = Math.max(0, s.houses[h]!.score.valor - J.valor.retreat);
   }
   // §9.9: a party that walks home brings what it carries; a wiped one loses it.
+  // The Nest won (Year 15): its Core yields one cure of each kind into the haul (§14.7).
+  if (how === "won" && mandatory && arcStep(s) === 2) coreSpoils(s);
   if (how === "won" || how === "retreated") shareOut(s);
   if (how === "wiped") {
     if (e.haul) log(s, "Everything the party carried is lost with it.");

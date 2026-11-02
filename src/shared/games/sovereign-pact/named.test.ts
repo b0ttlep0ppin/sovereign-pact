@@ -31,7 +31,7 @@ describe("the named items' content", () => {
     }
     if (n.boss) expect(BOSS_BY_ID.has(n.boss), n.boss).toBe(true);
     for (const pool of n.pools ?? []) expect(POOL_BY_ID.has(pool), pool).toBe(true);
-    expect(n.boss || n.pools, "found somewhere").toBeTruthy();
+    expect(n.boss || n.pools || n.cure, "found somewhere").toBeTruthy();
   });
 
   it("every pool hides at least one", () => {

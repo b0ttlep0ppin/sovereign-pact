@@ -2,6 +2,14 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 7j: cure items) — implementer
+- **Built** (§11.2, §13.6, `cures.ts`; content: five named items with a `cure` in `content/named.json`). The Saint's Hand (a severed or mangled arm), the Clockwork Leg (a severed leg or shattered pelvis), the Seer's Eye (blindness or a lost eye; leaves the `hollow_eyes` look), Lethe Water (a shattered mind or the Thrall of the Rift) and the Surgeon's Kit (any one lasting Moderate result). The Nest won in Year 15 puts one of each into the haul, so the Houses draft them.
+- **Readings**:
+  - A cure is a named item on a charm base that cannot be worn, so the draft, deals, auctions and the Relics score all handle it as they do any Relic. Unlike other named items, it can be made more than once a campaign.
+  - It is spent with a new Settlement Phase move, `cure` (item, person, optional injury), on any of the House's own who are at home: its Scions, Retired and Wards it hosts. Without a named injury it mends the oldest one it can. Bots spend a cure as soon as one of theirs needs it.
+  - The Seer's Eye also mends a lost eye, and the Saint's Hand a mangled hand, since both are the same kind of wound. Lethe Water mends only the two Devastating sanity results.
+  - Events and bosses that reward a cure come with the event fill; the `cure` field on a named item is all they need.
+
 ## 2026-11-02 (implementation, Milestone 7i: the great Arcana's Hunts) — implementer
 - **Built** (§14.9, `arcanaHuntFor` and `huntArcana` in `arcana.ts`, numbers in `tuning.arcana`). The Tower, Death and the World carry a Hunt card of their own: a card the Gate deals in their boss's pool at level 8 or higher becomes that Arcana's Hunt 35% of the time, while it is unmet. The Arcana is the card's boss, shown on the Gate. Setting out meets it for the campaign (no Arcana node on the same chain); the kill marks a bearer of that Tarot with its trait and drops its Relic, as at a node.
 - **Readings**:
