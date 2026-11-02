@@ -251,6 +251,10 @@ export interface Expedition {
   seen: string[];
   /** The event waiting on the party (§9.4): each House's vote, −1 for a House with no one present. */
   event?: { id: string; votes: (number | null)[] };
+  /** What the party carries home (§9.8, §9.10): found items, not yet anyone's, and materials. Lost on a wipe. */
+  haul?: { items: Item[]; stores: Stores };
+  /** The Houses' picks still to come in the loot draft, in snake order (§9.10). */
+  draft?: number[];
   /** How it ended: the boss beaten, turned back, wiped, nobody came, or it never left. */
   result?: "won" | "retreated" | "wiped" | "unanswered" | "stayed";
 }
@@ -431,6 +435,8 @@ export type SovMove =
   /** A House's vote on the waiting event's option (§9.4). */
   | { type: "decide"; option: number }
   | { type: "retreat" }
+  /** Your House's pick from the haul when the draft comes to it (§9.10). */
+  | { type: "draft"; item: number }
   /** Retire a Scion, or bring a Retired one back (§6.12). */
   | { type: "retire"; person: number }
   | { type: "reinstate"; person: number }

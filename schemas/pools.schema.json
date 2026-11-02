@@ -11,7 +11,7 @@
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["id", "name", "levels", "cards", "resist", "weak", "hazardPct"],
+        "required": ["id", "name", "levels", "cards", "resist", "weak", "hazardPct", "drops"],
         "properties": {
           "id": { "$ref": "defs.schema.json#/definitions/id" },
           "name": { "type": "string", "minLength": 1 },
@@ -19,7 +19,25 @@
           "cards": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "enum": ["resource", "hunt", "delve", "rescue", "pilgrimage"] } },
           "resist": { "$ref": "#/definitions/elements" },
           "weak": { "$ref": "#/definitions/elements" },
-          "hazardPct": { "type": "integer", "minimum": 0, "maximum": 100, "description": "Chance an Encounter carries a hazard (§14.8)" }
+          "hazardPct": { "type": "integer", "minimum": 0, "maximum": 100, "description": "Chance an Encounter carries a hazard (§14.8)" },
+          "drops": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["materials", "essencePct"],
+            "description": "The pool's drop table (§9.8): each material's % chance per roll, and Essence's.",
+            "properties": {
+              "materials": {
+                "type": "array",
+                "items": {
+                  "type": "array",
+                  "minItems": 2,
+                  "maxItems": 2,
+                  "items": [{ "enum": ["grain", "timber", "stone", "iron", "wyrmbone", "moonsilver", "voidglass", "saints_ash", "hollow_ivory"] }, { "type": "integer", "minimum": 1, "maximum": 100 }]
+                }
+              },
+              "essencePct": { "type": "integer", "minimum": 0, "maximum": 100 }
+            }
+          }
         }
       }
     }

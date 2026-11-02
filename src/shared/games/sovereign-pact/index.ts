@@ -25,12 +25,14 @@ import { view, type SovView } from "./view.ts";
 import { clone, closeExpedition, closeSettlement } from "./year.ts";
 import { botPress, cannotRetreat, home, pressOn } from "./journey.ts";
 import { botDecide, cannotDecide, decide } from "./events.ts";
+import { botDraft, cannotDraft, draftPick } from "./loot.ts";
 import { botField, botLeader, cannotField, cannotLead, field, voteLeader, waiting } from "./expedition.ts";
 
 export type { SovMove, SovState } from "./state.ts";
 export type { SovView } from "./view.ts";
 export { restore, type SovSave } from "./save.ts";
 export * as Content from "./content.ts";
+export { TIER_NAMES } from "./loot.ts";
 
 export const SOVEREIGN_PACT_OPTIONS: readonly TableOption[] = [
   {
@@ -187,6 +189,15 @@ export function applyMove(state: SovState, playerId: PlayerId, move: SovMove): M
       const why = cannotDecide(s, house, move.option);
       if (why) return fail(why);
       decide(s, house, move.option);
+      s.phaseMoves += 1;
+      if (!waiting(s).length) closeExpedition(s);
+      return { ok: true, state: s };
+    }
+    case "draft": {
+      if (s.phase !== "expedition") return fail("Nothing is being drafted.");
+      const why = cannotDraft(s, house, move.item);
+      if (why) return fail(why);
+      draftPick(s, house, move.item);
       s.phaseMoves += 1;
       if (!waiting(s).length) closeExpedition(s);
       return { ok: true, state: s };
@@ -396,7 +407,9 @@ export function botMove(s: SovState, playerId: PlayerId): SovMove {
   // A bot founds the Random House it was dealt, keeping the first Ambition (§5.1).
   if (s.phase === "founding") return house >= 0 && !s.houses[house]!.sealed ? botFounding(s, house) : { type: "swear", ambition: 0 };
   if (s.phase === "expedition" && house >= 0)
-    return s.expedition?.event
+    return s.expedition?.draft?.length
+      ? { type: "draft", item: botDraft(s, house) }
+      : s.expedition?.event
       ? { type: "decide", option: botDecide(s) }
       : s.expedition?.leader !== undefined
       ? { type: botPress(s) ? "press_on" : "retreat" }

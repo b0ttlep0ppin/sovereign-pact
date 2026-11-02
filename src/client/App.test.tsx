@@ -16,7 +16,7 @@ const sendTheParty = () => {
   if (lead) fireEvent.click(lead);
   letBotsMove();
   for (let i = 0; i < 40; i++) {
-    const on = screen.queryByRole("button", { name: /^(Press on|Face the boss)$/ }) ?? document.querySelector<HTMLButtonElement>('[aria-label="An event"] button');
+    const on = screen.queryByRole("button", { name: /^(Press on|Face the boss)$/ }) ?? document.querySelector<HTMLButtonElement>('[aria-label="An event"] button, [aria-label="The draft"] button:not([disabled])');
     if (!on) break;
     fireEvent.click(on);
     letBotsMove();

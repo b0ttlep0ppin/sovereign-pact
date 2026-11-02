@@ -2,6 +2,15 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 6e: loot and the draft) — implementer
+- **The haul** (`loot.ts`): everything found on the way (Encounter drops, Caches, the boss) rides home with the party and is shared out when it comes home, won or turned back (§9.9: "returns with everything carried so far"). A wipe loses it. Event finds still land at once, by §9.10's subject rule.
+- **Drop tables** are per pool (`content/pools.json` `drops`, first pass): each material's % per roll and Essence's. A won Encounter rolls once and has a 10% chance of an item (Common, Fine at 20% + 5% × level). Common materials come 1 + level/3 at a time, Essence 1 + level/4, rare materials one.
+- **Caches**: 1–2 items, Fine or Masterwork (5% × level), and two rolls on the table. Reading: one Cache in six is trapped, and until the Mimic has its enemy entry a trap is an ambush a level above the card; the party gets the Cache only if it wins.
+- **Bosses**: one Masterwork item per House still in the party plus one, and three rolls on the table. Relics wait for named-item content.
+- **Sharing out**: materials split evenly between the Houses with a Scion still in the party, the remainder to the Commons (§9.10). Reading: "a House with no Scion on the expedition does not draft" counts the Scions still marching at the end, so a House whose Scions all died or were Lost drafts nothing.
+- **The draft**: lowest Standing tier first, ties at random, snake order, one pick per item until the haul is gone. Alone, a House takes everything. Found items are drafted **blind** (§13.4): the view hides their properties, showing base and tier only, until Identify exists with the Scriptorium. The bot takes the highest tier, preferring something one of its Scions can wear.
+- Card completion rewards by type (Resource, Delve, Hunt…) are not built yet.
+
 ## 2026-11-02 (Q90 answered) — Josh
 - **Who picks an expedition event's option: the party votes; the option's rule names who it happens to.** Every House with someone in the party votes. A tie goes to the Leader's House.
 - **Only settlement ties cost Accord; expedition ties do not** (Josh, same day). Reading: settlement ties are votes in the Settlement Phase (Commons votes, town events, the Rift Gate's card) and keep −3. Expedition Phase ties are free: event options go to the Leader's House, the Leader vote to the most travelled Scion. → SPEC §8.1, §9.2, §9.4 The rule (`leader`, `scion:most_expeditions`, `house:lowest_standing`…) chooses the subject: the Scion or House the effects fall on. `each_scion` and `secret` events keep their own way of choosing. → SPEC §9.4

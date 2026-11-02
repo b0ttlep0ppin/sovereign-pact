@@ -311,6 +311,8 @@ export interface PoolDef {
   weak: Element[];
   /** Chance an Encounter here carries a hazard (§14.8). */
   hazardPct: number;
+  /** The drop table (§9.8): each material's % chance per roll, and Essence's. */
+  drops: { materials: [string, number][]; essencePct: number };
 }
 
 export const POOLS = poolsJson.pools as unknown as readonly PoolDef[];

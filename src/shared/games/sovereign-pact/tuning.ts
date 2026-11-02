@@ -52,6 +52,22 @@ export const TUNING = {
    * §9.3 [DECIDED mix]: node weights, the mandatory +2; a Camp's rest (first pass); a boss within this
    * many levels of the card; Valor per battle and boss won, lost per House on a retreat; §9.9's Lost 50%.
    */
+  /** Loot (§9.8, §9.10, first pass). Drop tables are per pool in content/pools.json. */
+  loot: {
+    /** Each hit on a drop table: a common material 1 + level/3, Essence 1 + level/4, a rare material 1. */
+    qtyDiv: { common: 3, essence: 4 },
+    /** A won Encounter: one roll on the table, and this % chance of an item. */
+    encounterGearPct: 10,
+    /** Found items: Common, or Fine at finePct + finePerLevel × level %. */
+    finePct: 20,
+    finePerLevel: 5,
+    /** A Cache: 1–2 items, Fine or Masterwork at masterworkPerLevel × level %, two rolls on the table; trapped trapPct %. */
+    cache: { items: [1, 2], rolls: 2, masterworkPerLevel: 5, trapPct: 16 },
+    /** A boss: one Masterwork item per House present plus extraItems, three rolls on the table. */
+    boss: { extraItems: 1, rolls: 3 },
+    /** Found gear's chance of one bad property (§13.4). */
+    negativePct: 20,
+  },
   journey: {
     nodes: [["encounter", 40], ["event", 45], ["camp", 10], ["cache", 5]] as const,
     mandatoryExtra: 2,

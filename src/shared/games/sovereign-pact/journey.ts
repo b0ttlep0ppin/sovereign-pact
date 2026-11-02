@@ -1,8 +1,7 @@
 // The expedition's chain (§9.3) and its walk: N nodes then the boss, rolled at departure and hidden
 // beyond the next. The Leader's House presses on or turns back. Battles are fought by gambits here
 // (playing them by hand comes later); Durability, Sanity and MP carry from node to node, injuries
-// last, the dead go to the Chronicle. Events and Caches are passed through until the event engine
-// and loot exist (Milestone 6d on).
+// last, the dead go to the Chronicle. What the party finds rides home in the haul (loot.ts).
 import { BOSSES, INJURY_BY_ID, type TripEffect } from "./content.ts";
 import { bossBattle } from "./combat/bosses.ts";
 import { scionCombatant } from "./combat/build.ts";
@@ -13,6 +12,7 @@ import type { Battle, Combatant } from "./combat/types.ts";
 import { meet } from "./events.ts";
 import { roster } from "./expedition.ts";
 import { gearTotals } from "./items.ts";
+import { bossLoot, cache, encounterLoot, shareOut } from "./loot.ts";
 import { gainJp, gainXp } from "./progression.ts";
 import { LOCATIONS, type Expedition, type NodeKind, type Person, type SovState } from "./state.ts";
 import { devastate } from "./timeline.ts";
@@ -145,8 +145,13 @@ export function battle(s: SovState, boss: boolean, o: FightOpts = {}): boolean {
   if (b.outcome === "victory") {
     log(s, boss ? "The party defeats the boss." : "The party wins a battle.");
     for (const id of marching(s)) creditWard(s, person(s, id), "valor", boss ? J.valor.boss : J.valor.battle);
-    if (boss) home(s, "won");
-    else succeed(s);
+    if (boss) {
+      bossLoot(s);
+      home(s, "won");
+    } else {
+      encounterLoot(s);
+      succeed(s);
+    }
     return true;
   }
   log(s, `The party falls before ${boss ? "the boss" : "an encounter"}.`);
@@ -161,7 +166,7 @@ export function pressOn(s: SovState): void {
   e.at += 1;
   if (kind === "camp") return camp(s);
   if (kind === "event") return meet(s);
-  if (kind === "cache") return log(s, "The party finds an old cache, already picked clean.");
+  if (kind === "cache") return cache(s);
   battle(s, kind === "boss");
 }
 
@@ -198,7 +203,11 @@ export function home(s: SovState, how: NonNullable<Expedition["result"]>): void 
     log(s, "The expedition turns back; whatever lay at its end stays there.");
     for (const h of new Set(marching(s).map((id) => person(s, id).host))) s.houses[h]!.score.valor = Math.max(0, s.houses[h]!.score.valor - J.valor.retreat);
   }
+  // §9.9: a party that walks home brings what it carries; a wiped one loses it.
+  if (how === "won" || how === "retreated") shareOut(s);
   if (how === "wiped") {
+    if (e.haul) log(s, "Everything the party carried is lost with it.");
+    delete e.haul;
     // §9.9: each falls; half are left behind, Lost, and the rest crawl home.
     withRng(s, (rng) => {
       for (const id of marching(s)) {
