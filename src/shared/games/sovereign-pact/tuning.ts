@@ -357,6 +357,8 @@ export const TUNING = {
     /** Conjurer summons (§12.2): two bound at once (+1 with Legion), and their accuracy. */
     summons: { cap: 2, accuracy: 90 },
     jobs: { healCapPct: 50, lowHpBelow: 30, mirrorTp: 20, oneCutMult: 2, stillWaterPct: 20, graftTicks: 200 },
+    /** The Knight's passives (§12.4): Commanding Presence lends Sagacity/5 % accuracy, Shieldbearer adds Resilience/4 % guard, Bodyguard shifts 30% of single-target weight. */
+    knight: { presenceDiv: 5, shieldbearerDiv: 4, bodyguardPct: 30 },
     /** §7.3: 20 CT a cell, −1 per 5 Guile, at least 10; up to 2 cells a turn (§10.4). */
     move: { perCell: 20, guilePer: 5, min: 10, maxCells: 2 },
     hitClamp: [5, 95] as const,

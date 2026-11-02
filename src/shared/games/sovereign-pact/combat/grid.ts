@@ -1,5 +1,6 @@
 // The two 3×8 grids (§10.1), targeting shapes (§10.2) and the reach rules (§10.3).
 import type { Rng } from "../../../rng.ts";
+import { TUNING } from "../tuning.ts";
 import { COLS, ROWS, type Battle, type Cell, type Combatant, type Side } from "./types.ts";
 
 export const other = (side: Side): Side => (side === "party" ? "enemy" : "party");
@@ -106,7 +107,11 @@ export function pickWeighted(rng: Rng, candidates: Combatant[], rule: keyof type
   const scored = candidates.map((c) => {
     const inCol = candidates.filter((x) => x.col === c.col).length;
     const provoke = hasStatus(c, "provoke") ? 3 : 1;
-    return { c, w: (weights[c.col]! / inCol) * provoke };
+    // Bodyguard (§12.4): the Knight draws 30% more, the allies beside them 30% less.
+    const bg = TUNING.combat.knight.bodyguardPct / 100;
+    const guarded = candidates.some((g) => g.id !== c.id && g.mods.bodyguard && Math.abs(g.col - c.col) + Math.abs(g.row - c.row) === 1);
+    const guard = (c.mods.bodyguard ? 1 + bg : 1) * (guarded ? 1 - bg : 1);
+    return { c, w: (weights[c.col]! / inCol) * provoke * guard };
   });
   const total = scored.reduce((s, x) => s + x.w, 0);
   let roll = rng.next() * total;

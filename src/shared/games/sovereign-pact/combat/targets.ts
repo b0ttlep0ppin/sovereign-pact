@@ -28,7 +28,9 @@ export const crossDistance = (a: Combatant, b: Combatant) =>
 export function singleTargets(b: Battle, u: Combatant, ab: AbilityDef): Combatant[] {
   const side = targetSide(u, ab);
   if (ab.side === "self") return [u];
-  if (ab.side === "ally") return b.units.filter((t) => !t.dead && t.side === side && !t.hazard && (ab.kind !== "heal" || !t.down));
+  // Rescue swaps with a one-cell ally in the user's own row.
+  if (ab.swap) return b.units.filter((t) => !t.dead && t.side === side && t.id !== u.id && !t.hazard && t.row === u.row && t.size[0] * t.size[1] === 1 && t.partOf === undefined);
+  if (ab.side === "ally") return b.units.filter((t) => !t.dead && t.side === side && !t.hazard && (ab.kind !== "heal" || !t.down) && (!ab.interpose || t.id !== u.id));
   const reach = reachOf(u, ab);
   if (reach === "ranged" || ab.leap || side === u.side) return standing(b, side).filter((t) => !unseen(t));
   // A lurker that leapt in stands among the Scions: every Scion's melee reaches it (§14.3).

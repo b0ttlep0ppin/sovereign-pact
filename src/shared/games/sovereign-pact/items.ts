@@ -80,6 +80,8 @@ export interface GearTotals {
   defense: number;
   durabilityPct: Partial<Record<Location, number>>;
   evasion: number;
+  /** The part of `evasion` heavy armor takes (Heavy Step gives it back, §12.4). */
+  heavyEvasion?: number;
   guard: number;
   weight: number;
   /** Spell damage and max MP bonuses from a staff or focus, in %. */
@@ -114,6 +116,7 @@ export function gearTotals(s: Pick<SovState, "items">, p: Person): GearTotals {
       t.defense += T.armorDefense[b.armor] * T.slotShare[loc] * block("defense", item.ilvl) * quality(item);
       t.durabilityPct[loc] = (t.durabilityPct[loc] ?? 0) + T.armorDurabilityPct[b.armor];
       t.evasion += T.armorEvasion[b.armor];
+      if (b.armor === "heavy") t.heavyEvasion = (t.heavyEvasion ?? 0) + T.armorEvasion.heavy;
       t.weight += T.armorWeight[b.armor];
     } else if (b.type === "shield") t.weight += b.weight ?? 0;
     else if (b.power !== undefined) t.weight += T.weaponWeight[(b.hands ?? 1) - 1]!;

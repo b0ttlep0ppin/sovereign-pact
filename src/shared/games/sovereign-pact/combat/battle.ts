@@ -120,6 +120,8 @@ function beginTurn(b: Battle, rng: Rng, u: Combatant): boolean {
   if (u.mods.durPctPerTurn && u.dur && u.maxDur) for (const l of LOCATIONS) u.dur[l] = Math.min(u.maxDur[l], u.dur[l] + Math.round((u.maxDur[l] * u.mods.durPctPerTurn) / 100));
   if (hasStatus(u, "fear") && (u.mods.sanityTakenPct ?? 0) > -100) u.sanity = Math.max(0, u.sanity - 5);
   if (hasStatus(u, "hidden") && u.turns > 1) removeStatus(b, u, "hidden");
+  // Valor (§12.4): each physical ailment may end early, a Resilience % chance apiece.
+  if (u.mods.valor) for (const s of [...u.statuses]) if (meta(s.id).kind === "physical" && !meta(s.id).fixed && rng.int(100) < u.resilience) removeStatus(b, u, s.id);
   const lost = u.statuses.find((s) => meta(s.id).oneTurn || meta(s.id).blocks);
   if (lost) {
     if (meta(lost.id).oneTurn) removeStatus(b, u, lost.id);
@@ -337,6 +339,12 @@ export function resolve(b: Battle, rng: Rng, u: Combatant, ab: AbilityDef, at: C
       b.events.push({ t: "move", unit: t.id, col: t.col, row: t.row });
     }
     if (ab.graft) graft(b, u, t, C.jobs.graftTicks);
+    // Rescue (§12.4): the Knight and the ally trade places.
+    if (ab.swap && t.id !== u.id && !t.dead && !u.dead) {
+      [u.col, t.col] = [t.col, u.col];
+      [u.row, t.row] = [t.row, u.row];
+      b.events.push({ t: "move", unit: u.id, col: u.col, row: u.row }, { t: "move", unit: t.id, col: t.col, row: t.row });
+    }
     // Sacrifice and Banish (§12.15): only summons and adds answer them.
     if (ab.sacrifice) sacrifice(b, u, t, ab.sacrifice);
     if (ab.banish && !t.dead && !t.boss && (t.owner !== undefined || t.tags.includes("add"))) kill(b, t);

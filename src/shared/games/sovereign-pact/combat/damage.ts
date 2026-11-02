@@ -23,7 +23,7 @@ export const reachOf = (u: Combatant, ab: AbilityDef) => ab.reach ?? (kindOf(ab)
 const isMelee = (u: Combatant, ab: AbilityDef) => reachOf(u, ab) !== "ranged";
 
 /** The chance in % that `u` lands `ab` on `t` (§7.3, §10.6 step 1). */
-export function hitChance(u: Combatant, t: Combatant, ab: AbilityDef): number {
+export function hitChance(u: Combatant, t: Combatant, ab: AbilityDef, b?: Battle): number {
   if (t.down || hasStatus(t, "sleep") || hasStatus(t, "stun") || hasStatus(t, "stop")) return C.hitClamp[1];
   let chance: number;
   if (kindOf(ab) === "magic") chance = C.spellAccuracy.base + C.spellAccuracy.sagacity * u.sagacity;
@@ -32,11 +32,17 @@ export function hitChance(u: Combatant, t: Combatant, ab: AbilityDef): number {
     if (hasStatus(t, "knockdown")) evasion += C.knockdownEvasion;
     if (hasStatus(t, "frozen")) evasion += C.frozenEvasion;
     const drill = reachOf(u, ab) !== "ranged" ? (u.mods.meleeAccuracy ?? 0) : (u.mods.rangedAccuracy ?? 0);
-    chance = u.weapon.acc + u.accuracy + (u.mods.accuracy ?? 0) + (u.mods["turn.accuracy"] ?? 0) + drill + (ab.accuracy ?? 0) - Math.max(0, evasion);
+    chance = u.weapon.acc + u.accuracy + (u.mods.accuracy ?? 0) + (u.mods["turn.accuracy"] ?? 0) + drill + (ab.accuracy ?? 0) + (b ? presence(b, u) : 0) - Math.max(0, evasion);
     if (hasStatus(u, "blind")) chance += C.blind;
   }
   if (t.charge) chance += C.chargingHitBonus;
   return clamp(chance, C.hitClamp[0], C.hitClamp[1]);
+}
+
+/** Commanding Presence (§12.4): a Knight in the attacker's column lends Sagacity/5 % physical accuracy (the best one only). */
+function presence(b: Battle, u: Combatant): number {
+  const lend = b.units.filter((k) => k.id !== u.id && k.side === u.side && k.col === u.col && k.mods.commandingPresence && !k.dead && !k.down);
+  return Math.max(0, ...lend.map((k) => Math.floor(k.sagacity / C.knight.presenceDiv)));
 }
 
 /** Aimed, biased (60%) or rolled Body 40 / Arms 25 / Legs 20 / Head 15 (§7.4). */
@@ -140,6 +146,9 @@ export interface StrikeOpts {
 /** One hit of `ab` from `u` on `t`, through the whole pipeline. */
 export function strike(b: Battle, rng: Rng, u: Combatant, t: Combatant, ab: AbilityDef, opts: StrikeOpts = {}): HitResult {
   if (t.dead) return { hit: false, damage: 0 };
+  // Interpose (§12.4): a Knight standing over this ally takes the foe's blow instead.
+  const guardian = u.side !== t.side && kindOf(ab) !== "heal" && kindOf(ab) !== "support" ? b.units.find((g) => g.id !== t.id && g.side === t.side && !g.dead && !g.down && statusValue(g, "interposing") === t.id) : undefined;
+  if (guardian) t = guardian;
   if (kindOf(ab) === "heal" || kindOf(ab) === "support") {
     const healed = kindOf(ab) === "heal" ? heal(b, u, t, ab) : 0;
     supportEffects(b, rng, u, t, ab);
@@ -151,7 +160,7 @@ export function strike(b: Battle, rng: Rng, u: Combatant, t: Combatant, ab: Abil
     return strike(b, rng, u, u, ab, { ...opts, reflected: true });
   }
   const weaponHit = isWeaponHit(ab);
-  let missed = rng.int(100) >= hitChance(u, t, ab);
+  let missed = rng.int(100) >= hitChance(u, t, ab, b);
   // Cast Lots 11: the next hit cannot miss.
   const sure = u.flags.indexOf("sure_hit");
   if (sure >= 0 && t.side !== u.side) {
@@ -162,12 +171,12 @@ export function strike(b: Battle, rng: Rng, u: Combatant, t: Combatant, ab: Abil
   const mulligan = u.flags.indexOf("mulligan");
   if (missed && mulligan >= 0) {
     u.flags.splice(mulligan, 1);
-    missed = rng.int(100) >= hitChance(u, t, ab);
+    missed = rng.int(100) >= hitChance(u, t, ab, b);
   }
   // Lucky: one miss a battle is rolled again.
   if (missed && weaponHit && u.mods.lucky && !u.flags.includes("lucky_used")) {
     u.flags.push("lucky_used");
-    missed = rng.int(100) >= hitChance(u, t, ab);
+    missed = rng.int(100) >= hitChance(u, t, ab, b);
   }
   if (missed) {
     b.events.push({ t: "miss", unit: u.id, target: t.id });
@@ -201,7 +210,9 @@ export function strike(b: Battle, rng: Rng, u: Combatant, t: Combatant, ab: Abil
   const executing = !!ab.execute && t.hp < (t.maxHp * ab.execute.below) / 100;
   if (executing) dmg *= pct(ab.execute!.pct ?? 0);
   // Guard: a shield block halves the hit before the multipliers (§10.6 step 6).
-  const guard = u.side !== t.side && physical ? t.guard + (hasStatus(t, "guard_up") ? C.guardUp : 0) : 0;
+  // Shieldbearer (§12.4): Resilience/4 % more with a shield.
+  const bearer = t.mods.shieldbearer && t.offhand === "shield" ? Math.floor(t.resilience / C.knight.shieldbearerDiv) : 0;
+  const guard = u.side !== t.side && physical ? t.guard + bearer + (hasStatus(t, "guard_up") ? C.guardUp : 0) : 0;
   if (guard > 0 && rng.int(100) < guard) dmg *= C.block / 100;
 
   dmg *= pct(columnMod(u, ab));
@@ -257,6 +268,8 @@ export function strike(b: Battle, rng: Rng, u: Combatant, t: Combatant, ab: Abil
   applyHit(b, rng, u, t, ab, damage, loc, opts);
   // An axe's crit bleeds, a mace's stuns (§13.2): the target's resist still applies.
   if (crit && physical && u.weapon.critStatus && !t.dead) tryStatus(b, rng, t, u.weapon.critStatus, 100);
+  // Riposte (§12.4): a counter that crits stuns.
+  if (crit && opts.counter && hasStatus(u, "riposte") && !t.dead) tryStatus(b, rng, t, "stun", 100);
   if (weaponHit && damage > 0) afterWeaponHit(b, rng, u, t, damage);
   for (const id of ab.dispel ?? []) if (!t.dead) removeStatus(b, t, id);
   // Bloodbound: a summon's blows heal its Conjurer (§12.15).
@@ -339,7 +352,7 @@ function afterMeleeHit(b: Battle, rng: Rng, u: Combatant, t: Combatant, damage: 
     strike(b, rng, t, u, COUNTER, { counter: true });
     return;
   }
-  const counter = t.counter + (statusValue(t, "counter_up") ?? 0);
+  const counter = t.counter + (statusValue(t, "counter_up") ?? 0) + (statusValue(t, "riposte") ?? 0);
   if (counter && rng.int(100) < counter) strike(b, rng, t, u, COUNTER, { counter: true });
 }
 
@@ -483,6 +496,7 @@ function supportEffects(b: Battle, rng: Rng, u: Combatant, t: Combatant, ab: Abi
   if (ab.tpGrant) t.tp = Math.min(C.tp.max, t.tp + ab.tpGrant);
   if (ab.mpPct && t.maxMp) t.mp = Math.min(t.maxMp, t.mp + Math.round((t.maxMp * ab.mpPct) / 100));
   if (ab.flag && !t.flags.includes(ab.flag)) t.flags.push(ab.flag);
+  if (ab.interpose && t.id !== u.id) addStatus(b, u, "interposing", 0, { value: t.id });
   // Barrier and Bulwark (§12.14), stronger from an Aegis caster; the Shield Drone only tops up.
   if (ab.shieldPct) {
     const size = Math.round(((t.maxHp * ab.shieldPct) / 100) * pct(u.mods.shieldCastPct ?? 0));

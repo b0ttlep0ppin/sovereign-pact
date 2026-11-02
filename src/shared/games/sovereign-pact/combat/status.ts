@@ -107,6 +107,10 @@ export const STATUSES: Record<string, StatusMeta> = {
   // The Alterer (§12.17): a Revert's Exhaustion and a Graft.
   exhausted: { kind: "debuff", ticks: 300 },
   graft: { kind: "buff", ticks: 200 },
+  // The Knight (§12.4): Interpose takes an ally's hits until the Knight's next turn (its value is the ally's id); Riposte's counters stun on a crit; Stand Fast's immunities ride in its mods.
+  interposing: { kind: "buff", ticks: 0, endsOnTurn: true },
+  riposte: { kind: "buff", ticks: 500 },
+  stand_fast: { kind: "buff", ticks: 300 },
 };
 
 // A Form's mods ride on a status of its own, which only Revert removes.
