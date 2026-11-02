@@ -98,8 +98,8 @@ function Scion({ p, view, sendMove, canAct }: Props & { p: Person }) {
                   <span title={a.text}>
                     <strong>{a.name}</strong> <small>{a.points ? `passive, ${a.points} pt` : "active"}</small>
                     {a.later ? <small> (not in battle yet)</small> : null}
+                    <span className="sp-ability__text">{a.text}</span>
                   </span>
-                  <small>{a.text}</small>
                   {has ? (
                     <small>Known</small>
                   ) : (
@@ -132,15 +132,15 @@ function Scion({ p, view, sendMove, canAct }: Props & { p: Person }) {
         Passives <small>{kit.points} of {kit.budget} points</small>
       </h3>
       {passives.length ? (
-        <ul className="sp-lots">
+        <ul className="sp-lots sp-abilities">
           {passives.map((d) => {
             const on = kit.passives.includes(d.id);
             return (
               <li key={d.id}>
                 <label title={d.text}>
                   <input type="checkbox" checked={on} disabled={!canAct || (!on && kit.points + d.points > kit.budget)} onChange={(e) => send({ type: "passive", person: p.id, ability: d.id, on: e.target.checked })} /> <strong>{d.name}</strong> <small>{d.points} pt</small>
+                  <span className="sp-ability__text">{d.text}</span>
                 </label>
-                <small>{d.text}</small>
               </li>
             );
           })}

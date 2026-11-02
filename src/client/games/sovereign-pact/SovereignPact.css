@@ -126,6 +126,9 @@
 .sp-ready__scion h3 { margin: 14px 0 6px; font-size: 0.85rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
 .sp-ready__scion h3 small { text-transform: none; letter-spacing: 0; }
 .sp-ready__scion select { font: inherit; padding: 6px; background: var(--panel); color: var(--text); border: 1px solid var(--line); border-radius: 4px; max-width: 100%; }
+.sp-abilities li { grid-template-columns: 1fr auto; padding: 4px 8px; }
 .sp-abilities li.is-known { opacity: 0.7; }
+.sp-ability__text { display: block; color: var(--muted); font-size: 0.85rem; }
+.sp-abilities button:disabled { opacity: 0.45; }
 .sp-gear li { grid-template-columns: 7em 1fr auto; }
 @media (max-width: 640px) { .sp-gear li { grid-template-columns: 1fr; } }
