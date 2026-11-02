@@ -58,8 +58,8 @@ export function reroll(s: SovState, house: number, step?: FoundingStep): void {
     const fresh = randomHouse(rng, others.map((o) => o.name), others.map((o) => o.colors[0]), s.houses.length);
     const pick: Record<FoundingStep, HouseDesign> = {
       name: { name: fresh.name, motto: fresh.motto },
-      colors: { colors: fresh.colors, emblem: { ...h.emblem, tinctures: [fresh.colors[0], h.emblem.tinctures[1] ?? fresh.emblem.tinctures[1]!] } },
-      emblem: { emblem: { ...fresh.emblem, tinctures: [h.colors[0], fresh.emblem.tinctures[1]!] } },
+      colors: { colors: fresh.colors, emblem: { ...h.emblem, tinctures: [...fresh.colors] } },
+      emblem: { emblem: { ...fresh.emblem, tinctures: [...h.colors] } },
       seat: { seat: fresh.seat },
       element: { element: fresh.element },
       traits: randomTraits(rng, h.element),
@@ -122,6 +122,8 @@ export function design(s: SovState, house: number, patch: HouseDesign): void {
   const h = s.houses[house]!;
   if ("traits" in patch && !("bane" in patch)) delete h.bane;
   Object.assign(h, patch);
+  // The emblem is always painted in the House's colors (DECISIONS 8ab).
+  h.emblem = { ...h.emblem, tinctures: [...h.colors] };
 }
 
 export function cannotSwear(s: SovState, house: number, ambition: unknown): string | null {

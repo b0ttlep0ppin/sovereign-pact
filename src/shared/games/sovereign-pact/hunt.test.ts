@@ -43,7 +43,8 @@ describe("Hunt cards", () => {
     for (let seed = 1; seed <= 40; seed++) {
       const s = campaign(2, seed);
       s.year = 1 + (seed % 19);
-      for (const c of offer(s).filter((x) => x.type === "hunt")) {
+      for (const c of offer(s).filter((x) => x.type === "hunt" && !x.arcana)) {
+        // An Arcana's Hunt card (7i) hunts the Arcana, not a quarry.
         expect(c.quarry, `${c.pool} L${c.level}`).toBeDefined();
         expect(ENEMY_BY_ID.get(QUARRY_BY_ID.get(c.quarry!)!.enemy)!.pool).toBe(c.pool);
         seen++;

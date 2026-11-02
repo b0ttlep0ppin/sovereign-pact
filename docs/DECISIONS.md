@@ -2,6 +2,13 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 8ab): the emblem wears the House's colors
+
+- Josh: "When making a house the colors should be shared between the house and emblem."
+  - A House's emblem is always painted in its two House colors: the field in the first, the second color for the division or the charge. The Emblem step no longer has its own tincture pickers.
+  - Designing, rerolling or rolling a whole House keeps the two in step. The metals stay in the heraldry content for older saves, but new emblems don't use them.
+- Bots in the muster now fill a Job their House doesn't field yet (Knight, Soothsayer, Magus, Soldier first) when their best-suited Job is already taken. Before this they drafted mostly Soldiers, with no Pugilists, Minstrels or Gamblers.
+
 ## 2026-11-02 (implementation, Milestone 8aa): the muster, an opening recruit draft
 
 - Josh: "Should be an initial draft recruit phase during house creation, where you get to select a few scions to promote." He chose a **shared draft, taking turns** (decision card).

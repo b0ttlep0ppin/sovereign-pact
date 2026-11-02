@@ -63,8 +63,15 @@ export function muster(s: SovState, house: number, person: number, job: BaseJob)
 }
 
 /** A bot takes the volunteer with the best stats and growths, in the Job they suit. */
+/** The order a bot fills its House's missing Jobs in. */
+const BOT_ROLES: BaseJob[] = ["knight", "soothsayer", "magus", "soldier", "vagabond", "minstrel", "pugilist", "gambler"];
+
 export function botMuster(s: SovState): { person: number; job: BaseJob } {
   const worth = (p: Person) => p.base.reduce((a, b) => a + b, 0) + p.growth.reduce((a, b) => a + b, 0) / 20;
   const best = [...s.muster!.pool].sort((a, b) => worth(b) - worth(a) || a.id - b.id)[0]!;
-  return { person: best.id, job: bestJob(best.base) };
+  // A Job the House doesn't field yet, so a bot's party has a healer and a caster as well as blades.
+  const house = musterTurn(s)!;
+  const fielded = new Set(s.people.filter((p) => p.host === house && p.status === "scion").map((p) => p.job));
+  const job = bestJob(best.base);
+  return { person: best.id, job: fielded.has(job) ? (BOT_ROLES.find((j) => !fielded.has(j)) ?? job) : job };
 }

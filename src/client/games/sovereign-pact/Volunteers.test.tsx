@@ -28,7 +28,8 @@ describe("the muster", () => {
     const v = view.muster!.pool[0]!;
     const take = () => screen.getByRole("button", { name: /^(Take|Choose a|Choose their)/ });
     expect((take() as HTMLButtonElement).disabled).toBe(true);
-    fireEvent.click(screen.getByRole("button", { name: `Choose ${v.name}` }));
+    // Two volunteers can share a name; the first card is the pool's first.
+    fireEvent.click(screen.getAllByRole("button", { name: `Choose ${v.name}, age ${v.age}` })[0]!);
     fireEvent.click(screen.getByRole("button", { name: /^Knight/ }));
     fireEvent.click(take());
     expect(sendMove).toHaveBeenCalledWith({ type: "muster", person: v.id, job: "knight" });

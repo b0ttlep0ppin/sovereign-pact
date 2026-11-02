@@ -13,8 +13,8 @@ import { TUNING } from "./tuning.ts";
 
 const I = TUNING.idol;
 
-function pilgrimage(idol = "idol_weigher", card: Partial<ExpeditionCard> = {}): SovState {
-  const s = calm(campaign(2, 9));
+function pilgrimage(idol = "idol_weigher", card: Partial<ExpeditionCard> = {}, seed = 9): SovState {
+  const s = calm(campaign(2, seed));
   s.phase = "expedition";
   const def = IDOL_BY_ID.get(idol)!;
   muster(s, { type: "pilgrimage", pool: def.pool, level: 6, size: 4, idol, boss: def.boss, ...card });
@@ -83,9 +83,9 @@ describe("the offer", () => {
   });
 
   it("refused, the Idol is the boss; killed, it pays Valor and Renown and leaves its Relic", () => {
-    // The fight goes one way or the other on its rolls: take the first of a few that the party wins.
-    const won = Array.from({ length: 10 }, (_, seed) => {
-      const s = pilgrimage();
+    // The fight goes one way or the other on its party and rolls: take the first of a few that the party wins.
+    const won = Array.from({ length: 20 }, (_, seed) => {
+      const s = pilgrimage("idol_weigher", {}, 9 + (seed >> 1));
       for (const p of s.people) while (p.status === "scion" && p.level < 30) Object.assign(p, levelUp(p));
       s.expedition!.chain = ["idol", "boss"];
       pressOn(s);
