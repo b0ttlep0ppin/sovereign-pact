@@ -4,6 +4,7 @@
 // and spend a Tarot Token or a Passive Draught.
 import { Content, itemName, type SovMove, type SovView } from "@vibepulse/shared/games/sovereign-pact";
 import { useState } from "react";
+import { HERALDRY_COLORS } from "./Emblem";
 
 type Props = { view: SovView; sendMove: (m: SovMove) => void; canAct: boolean };
 type Person = SovView["people"][number];
@@ -18,6 +19,28 @@ const GROUPS: { status: Person["status"]; title: string }[] = [
 ];
 const BASE = Content.JOBS.filter((j) => !j.advanced);
 const words = (id: string) => id.replace(/_/g, " ");
+/** A House's color for text on the dark ground: its primary, or its secondary when the primary is too dark to read. */
+export function inkOf(colors: readonly string[] | undefined): string | undefined {
+  if (!colors) return undefined;
+  const hexes = colors.map((c) => HERALDRY_COLORS.get(c)).filter((h): h is string => !!h);
+  const light = (hex: string) => {
+    const n = parseInt(hex.slice(1), 16);
+    return 0.2126 * ((n >> 16) & 255) + 0.7152 * ((n >> 8) & 255) + 0.0722 * (n & 255);
+  };
+  return hexes.find((h) => light(h) >= 90) ?? (hexes.length ? "var(--text)" : undefined);
+}
+const TAROT_BY_ID = new Map(Content.TAROT.map((t) => [t.id, t]));
+
+/** One trait or the Tarot card: its name, then what it does (Crunch) or how it reads (Flavor). */
+function TraitLine({ kind, name, text }: { kind?: string; name: string; text?: string }) {
+  return (
+    <li className={kind ? "is-tarot" : undefined}>
+      {kind ? <span className="sp-person__kind">{kind}</span> : null}
+      <strong>{name}</strong>
+      {text ? <span className="sp-ability__text">{text}</span> : null}
+    </li>
+  );
+}
 
 export default function Roster({ view, sendMove, canAct }: Props) {
   const me = view.me;
@@ -58,11 +81,16 @@ function Card({ p, view, sendMove, canAct }: Props & { p: Person }) {
   const [job, setJob] = useState<JobId>(BASE[0]!.id);
   const cures = mine.cures.filter((c) => c.person === p.id);
   const ward = p.house !== p.host;
+  const crunch = view.display === "crunch";
   const promote = mine.promotion.left < 1 ? "There is no ceremony left this Year." : mine.gold < mine.promotion.gold ? `A promotion costs ${mine.promotion.gold} Gold.` : null;
   return (
     <li className="sp-person" aria-label={p.name}>
       <header>
-        <strong>{p.name}</strong> <small>age {p.age}</small>
+        <strong className="sp-person__name" style={p.status === "recruit" ? undefined : { color: inkOf(view.houses[p.house]?.colors) }}>
+          {p.name}
+          {p.status === "recruit" ? null : <span className="sp-person__surname"> {view.houses[p.house]?.name}</span>}
+        </strong>{" "}
+        <small>age {p.age}</small>
         {p.status !== "recruit" ? (
           <small>
             {" "}
@@ -73,22 +101,43 @@ function Card({ p, view, sendMove, canAct }: Props & { p: Person }) {
         {p.change ? <small> · {Content.CHANGE_BY_ID.get(p.change)?.name ?? words(p.change)}</small> : null}
       </header>
       {p.base ? (
-        <p className="sp-person__stats">
+        <dl className="sp-person__stats">
           {STATS.map((s, i) => (
-            <span key={s} title={s}>
-              {s.slice(0, 3)} {p.base![i]}
-            </span>
+            <div key={s} title={s}>
+              <dt>{s.slice(0, 3)}</dt>
+              <dd>{p.base![i]}</dd>
+            </div>
           ))}
-          {p.sanity !== undefined ? <span title="Sanity">San {p.sanity}</span> : null}
-          {p.mp !== undefined ? <span title="MP">MP {p.mp}</span> : null}
+          {p.sanity !== undefined ? (
+            <div title="Sanity" className="is-sanity">
+              <dt>San</dt>
+              <dd>{p.sanity}</dd>
+            </div>
+          ) : null}
+          {p.mp !== undefined ? (
+            <div title="MP" className="is-mp">
+              <dt>MP</dt>
+              <dd>{p.mp}</dd>
+            </div>
+          ) : null}
+        </dl>
+      ) : null}
+      {p.potential || p.loyalty !== undefined ? (
+        <p className="sp-person__meta">
+          {p.potential ? `${p.potential[0]!.toUpperCase()}${p.potential.slice(1)} potential` : ""}
+          {p.potential && p.loyalty !== undefined ? " · " : ""}
+          {p.loyalty !== undefined ? `Loyalty ${p.loyalty}` : ""}
         </p>
       ) : null}
-      <p className="sp-ability__text">
-        {p.potential ? `${p.potential[0]!.toUpperCase()}${p.potential.slice(1)} potential. ` : ""}
-        {p.tarot ? `${Content.TAROT.find((t) => t.id === p.tarot)?.name ?? words(p.tarot)}. ` : ""}
-        {p.traits.map((id) => Content.TRAIT_BY_ID.get(id)?.name ?? words(id)).join(", ")}
-        {p.loyalty !== undefined ? ` Loyalty ${p.loyalty}.` : ""}
-      </p>
+      {p.tarot || p.traits.length ? (
+        <ul className="sp-person__traits">
+          {p.tarot ? <TraitLine kind="Tarot" name={TAROT_BY_ID.get(p.tarot)?.name ?? words(p.tarot)} text={crunch ? TAROT_BY_ID.get(p.tarot)?.crunch : undefined} /> : null}
+          {p.traits.map((id) => {
+            const t = Content.TRAIT_BY_ID.get(id);
+            return <TraitLine key={id} name={t?.name ?? words(id)} text={crunch ? t?.crunch : t?.flavor} />;
+          })}
+        </ul>
+      ) : null}
       {p.injuries.length ? (
         <p className="sp-person__injuries">
           {p.injuries.map((i) => {

@@ -29,6 +29,7 @@ describe("the standalone host", () => {
     vi.useFakeTimers();
     try {
       render(<App />);
+      fireEvent.click(screen.getByRole("button", { name: "Skip" }));
       fireEvent.click(screen.getByRole("button", { name: "Swear the Pact" }));
       fireEvent.click(screen.getAllByRole("radio", { name: /counts double/ })[0]!);
       fireEvent.click(screen.getByRole("button", { name: "Swear the Pact" }));
@@ -48,6 +49,7 @@ describe("the standalone host", () => {
     vi.useFakeTimers();
     try {
       const first = render(<App />);
+      fireEvent.click(screen.getByRole("button", { name: "Skip" }));
       fireEvent.click(screen.getByRole("button", { name: "Swear the Pact" }));
       fireEvent.click(screen.getAllByRole("radio", { name: /counts double/ })[0]!);
       fireEvent.click(screen.getByRole("button", { name: "Swear the Pact" }));
@@ -57,6 +59,7 @@ describe("the standalone host", () => {
       sendTheParty();
       first.unmount();
       render(<App />);
+      fireEvent.click(screen.getByRole("button", { name: "Skip" }));
       fireEvent.click(screen.getByRole("button", { name: "Continue the campaign" }));
       expect(screen.getByText("The campaign resumes in Year 2.")).toBeTruthy();
     } finally {

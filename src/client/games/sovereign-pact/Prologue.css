@@ -1,0 +1,35 @@
+/* The prologue: a torn sky above, embers rising, the story in parchment on soot. */
+.sp-prologue {
+  position: fixed; inset: 0; z-index: 50; overflow-y: auto; outline: none;
+  display: grid; place-items: center; padding: 48px 16px;
+  background:
+    radial-gradient(ellipse 70% 40% at 50% 0%, rgba(120, 50, 170, 0.35), transparent 70%),
+    radial-gradient(ellipse 100% 60% at 50% 110%, rgba(110, 20, 16, 0.4), transparent 60%),
+    #070606;
+}
+.sp-prologue__rift {
+  position: absolute; top: 4%; left: 50%; width: min(70vw, 720px); height: 26px; transform: translateX(-50%);
+  border-radius: 50%; filter: blur(1px);
+  background: linear-gradient(90deg, transparent, #7c3fb8 20%, #e8c8ff 50%, #7c3fb8 80%, transparent);
+  box-shadow: 0 0 40px 10px rgba(150, 80, 220, 0.35);
+  animation: sp-prologue-tear 5s ease-in-out infinite;
+}
+@keyframes sp-prologue-tear { 50% { transform: translateX(-50%) scaleY(1.6); opacity: 0.8; } }
+.sp-prologue__embers { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.sp-prologue__embers span {
+  position: absolute; bottom: -10px; width: 3px; height: 3px; border-radius: 50%;
+  background: #ffb36b; box-shadow: 0 0 6px 2px rgba(255, 140, 60, 0.6);
+  animation: sp-prologue-ember linear infinite;
+}
+@keyframes sp-prologue-ember { from { transform: translateY(0); opacity: 0; } 15% { opacity: 0.9; } to { transform: translateY(-105vh) translateX(30px); opacity: 0; } }
+.sp-prologue__page { position: relative; max-width: 640px; display: grid; gap: 18px; text-align: center; }
+.sp-prologue__title { margin: 0 0 12px; font: 400 clamp(2.6rem, 8vw, 4.6rem)/1 var(--display); color: var(--gold); text-shadow: 0 0 24px rgba(220, 181, 94, 0.35), 0 3px 0 #000; }
+.sp-prologue__page p { margin: 0; font-size: 1.15rem; line-height: 1.6; color: var(--text); opacity: 0; transform: translateY(8px); transition: opacity 1.2s ease, transform 1.2s ease; }
+.sp-prologue__page p.is-shown { opacity: 1; transform: none; }
+.sp-prologue__page p:last-of-type { font-style: italic; color: var(--gold); }
+.sp-prologue__actions { margin-top: 12px; }
+@media (prefers-reduced-motion: reduce) {
+  .sp-prologue__rift, .sp-prologue__embers span { animation: none; }
+  .sp-prologue__embers { display: none; }
+  .sp-prologue__page p { transition: none; }
+}

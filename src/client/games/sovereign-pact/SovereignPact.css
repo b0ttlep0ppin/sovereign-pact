@@ -155,10 +155,23 @@
 /* Your people (§6). */
 .sp-roster h3 { margin: 14px 0 6px; font-size: 0.85rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
 .sp-people { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr)); gap: 8px; }
-.sp-person { background: var(--bg); border: 1px solid var(--line); border-radius: 4px; padding: 8px 10px; display: grid; gap: 4px; }
+.sp-person { background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.25)); border: 1px solid var(--line); border-radius: 2px; padding: 10px 12px; display: grid; gap: 8px; }
 .sp-person header small { color: var(--muted); }
 .sp-person p { margin: 0; }
-.sp-person__stats { display: flex; flex-wrap: wrap; gap: 2px 10px; font-size: 0.85rem; font-variant-numeric: tabular-nums; }
+/* Stats as a row of small plaques: the short name over the number. */
+.sp-person__stats { display: grid; grid-template-columns: repeat(auto-fill, minmax(2.6em, 1fr)); gap: 3px; margin: 0; font-variant-numeric: tabular-nums; }
+.sp-person__stats div { display: grid; justify-items: center; padding: 2px 0; border: 1px solid var(--line); border-radius: 2px; background: rgba(0, 0, 0, 0.35); }
+.sp-person__stats dt { font-size: 0.68rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.sp-person__stats dd { margin: 0; font-weight: 700; }
+.sp-person__stats .is-sanity dd { color: #e07ad0; }
+.sp-person__stats .is-mp dd { color: #7fa8e6; }
+.sp-person__meta { font-size: 0.85rem; color: var(--muted); }
+/* Traits and the Tarot card: the name on the left, what it does beside it. */
+.sp-person__traits { list-style: none; margin: 0; padding: 0; display: grid; gap: 3px; }
+.sp-person__traits li { display: grid; grid-template-columns: minmax(7.5em, max-content) 1fr; gap: 0 10px; align-items: baseline; padding: 2px 0; border-bottom: 1px solid rgba(59, 47, 36, 0.5); }
+.sp-person__traits li.is-tarot { grid-template-columns: auto minmax(6em, max-content) 1fr; }
+.sp-person__traits .sp-ability__text { font-size: 0.85rem; }
+.sp-person__kind { font-size: 0.68rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--bg); background: var(--accent); border-radius: 2px; padding: 0 4px; }
 .sp-person__injuries { display: flex; flex-wrap: wrap; gap: 4px; }
 .sp-person__injuries span { font-size: 0.8rem; color: var(--danger); border: 1px solid currentColor; border-radius: 3px; padding: 0 5px; }
 .sp-person .sp-actions { gap: 6px; }
@@ -215,3 +228,6 @@
 .sp details > summary::-webkit-details-marker { display: none; }
 .sp details > summary::before { content: "▸"; display: inline-block; width: 1em; color: var(--accent); transition: transform 0.15s; }
 .sp details[open] > summary::before { transform: rotate(90deg); }
+/* A Scion's name in their House's color, with the House name as surname; recruits have not earned it yet. */
+.sp-person__name { font-size: 1.05rem; text-shadow: 0 1px 0 #000, 0 0 6px rgba(0, 0, 0, 0.8); }
+.sp-person__surname { font-weight: 400; font-variant: small-caps; letter-spacing: 0.04em; }

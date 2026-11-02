@@ -6,6 +6,7 @@ import { useEffect, useMemo, useState } from "react";
 import { createRng, type RoomPlayer } from "@vibepulse/shared";
 import { restore, sovereignPact, type SovMove, type SovSave, type SovState } from "@vibepulse/shared/games/sovereign-pact";
 import SovereignPact from "./games/sovereign-pact";
+import Prologue from "./games/sovereign-pact/Prologue";
 
 const g = sovereignPact;
 const SAVE_KEY = "sovereign-pact:save";
@@ -89,6 +90,8 @@ export function App() {
   };
 
   const me = table ? seatIds(table.bots.length)[viewing]! : "";
+  // The story so far, once each time the game is opened.
+  const [prologue, setPrologue] = useState(true);
 
   return (
     <div className="app">
@@ -127,6 +130,8 @@ export function App() {
             sendMove={send}
             lastError={error ? { code: "illegal_move", message: error } : null}
           />
+        ) : prologue ? (
+          <Prologue onDone={() => setPrologue(false)} />
         ) : (
           <NewCampaign
             onStart={(t) => {
