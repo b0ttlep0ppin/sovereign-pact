@@ -2,6 +2,14 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 8q): commanding a battle on screen
+
+- A battle fought by hand opens on the battle screen as it happens, for every House. The turns so far play out, and when a Scion's turn waits on this seat, a command bar lists what they can do from where they stand. It offers abilities with their MP and TP, satchel items, Move, Defend, and handing this turn or the rest of the battle to the gambits. A choice that cannot be used is greyed out, and hovering it says why.
+- A choice aimed at the Scion goes at once. One aimed at someone or at an area lights the cells it may go to: click one, or move through them with the arrows and press Enter. Escape backs out. Moving first keeps the turn, as the rules allow.
+- Readings:
+  - The screen can be hidden ("Hide the battle"), and the expedition panel then offers "Open the battle"; its own two gambit buttons stay there too.
+  - A battle seen live does not open again as a replay when it ends; it is in the list of battles to watch again.
+
 ## 2026-11-02 (implementation, Milestone 8t): battle sound effects
 
 - 46 battle cues ship, 126 takes in all (2.4 MB), cut from the BOOM "Designed" libraries. `content/audio/sfx.json` names each cue's source file (validated by `schemas/audio.schema.json`); `tools/cut-sfx.py` finds the variations inside each file, keeps up to three, trims and fades them, and writes mono Vorbis at 44.1 kHz and −16 LUFS into `public/sfx/sovereign-pact/`. The packs stay out of the repo. Each turn of a battle plays its cues as it comes on screen, a random take each, pitch ±5%. A Sound effects checkbox and volume sit under Music.

@@ -41,6 +41,8 @@ export { restore, type SovSave } from "./save.ts";
 export * as Content from "./content.ts";
 export { itemName, TIER_NAMES } from "./loot.ts";
 export { FLAG, replayLine, type Replay, type ReplayUnit, type Vitals } from "./combat/replay.ts";
+export type { Aim, Choice, Command, FightView, TurnView } from "./fight.ts";
+export type { Cell } from "./combat/types.ts";
 
 export const SOVEREIGN_PACT_OPTIONS: readonly TableOption[] = [
   {

@@ -93,7 +93,7 @@ const readWatch = (): boolean => {
  * The battles this seat has been sent, kept by the screen (the state drops them a move later), and
  * the queue to watch: new battles open on their own unless the viewer turned that off.
  */
-function useBattles(battles: SovView["battles"]) {
+function useBattles(battles: SovView["battles"], quiet: boolean) {
   const [last, setLast] = useState(battles);
   const [seen, setSeen] = useState<Seen[]>(battles);
   const [auto, setAuto] = useState(readWatch);
@@ -103,7 +103,8 @@ function useBattles(battles: SovView["battles"]) {
     const fresh = battles.filter((b) => !seen.some((x) => x.key === b.key));
     if (fresh.length) {
       setSeen([...seen, ...fresh].slice(-12));
-      if (auto) setQueue([...queue, ...fresh.map((b) => b.key)]);
+      // A battle just fought on screen is not shown again.
+      if (auto && !quiet) setQueue([...queue, ...fresh.map((b) => b.key)]);
     }
   }
   const toggle = (on: boolean) => {
@@ -118,10 +119,16 @@ function useBattles(battles: SovView["battles"]) {
 }
 
 export default function SovereignPact({ view, isMyTurn, sendMove, lastError }: Props) {
-  const battles = useBattles(view.battles);
+  const fight = view.expedition?.fight ?? null;
+  // The render a live battle ends on still knows it was live, so its replay does not open again.
+  const [wasLive, setWasLive] = useState(!!fight);
+  if (wasLive !== !!fight) setWasLive(!!fight);
+  const battles = useBattles(view.battles, wasLive);
+  const [hidden, setHidden] = useState(false);
+  if (hidden && !fight) setHidden(false);
   const [access, setAccess] = useAccess();
   const [music, setMusic] = useMusicSettings();
-  const track = battles.watching ? battleTrack(battles.watching) : sceneTrack(view);
+  const track = battles.watching ? battleTrack(battles.watching) : fight && !hidden ? battleTrack(fight.replay) : sceneTrack(view);
   useMusic(track, music);
   const mine = view.me === null ? null : view.houses[view.me]!;
   const others = view.people.filter((p) => p.host !== view.me);
@@ -208,7 +215,7 @@ export default function SovereignPact({ view, isMyTurn, sendMove, lastError }: P
                 )}
               </div>
             ) : null}
-            {view.phase === "expedition" && view.expedition ? <Muster key={view.expedition.seats[view.me!]} view={view} sendMove={sendMove} /> : null}
+            {view.phase === "expedition" && view.expedition ? <Muster key={view.expedition.seats[view.me!]} view={view} sendMove={sendMove} openBattle={hidden ? () => setHidden(false) : undefined} /> : null}
             {lastError ? <p className="sp-error" role="alert">{lastError.message}</p> : null}
           </section>
         ) : null}
@@ -253,7 +260,23 @@ export default function SovereignPact({ view, isMyTurn, sendMove, lastError }: P
           </ul>
         </section>
       ) : null}
-      {battles.watching ? <BattleScreen key={battles.watching.key} replay={battles.watching} view={view} onClose={battles.next} waiting={battles.waiting} fullLog={access.log} sound={music.sfx ? music.sfxVolume : 0} /> : null}
+      {battles.watching ? (
+        <BattleScreen key={battles.watching.key} replay={battles.watching} view={view} onClose={battles.next} waiting={battles.waiting} fullLog={access.log} sound={music.sfx ? music.sfxVolume : 0} />
+      ) : fight && !hidden ? (
+        <BattleScreen
+          key="live"
+          replay={fight.replay}
+          view={view}
+          onClose={() => setHidden(true)}
+          fullLog={access.log}
+          sound={music.sfx ? music.sfxVolume : 0}
+          live={{
+            turn: fight.turn,
+            waiting: fight.house === null || fight.house === view.me ? null : `House ${view.houses[fight.house]?.name}`,
+            send: (c) => sendMove({ type: "command", ...c }),
+          }}
+        />
+      ) : null}
 
       <section className="sp-panel" aria-label="Chronicle of the Year">
         <h2>What happened</h2>
@@ -359,7 +382,7 @@ function Founding({ view, sworn, sendMove }: { view: SovView; sworn: boolean; se
 }
 
 /** The Expedition Phase (§9.2): field your Scions in your seats, then vote the party's Leader. */
-function Muster({ view, sendMove }: { view: SovView; sendMove: (m: SovMove) => void }) {
+function Muster({ view, sendMove, openBattle }: { view: SovView; sendMove: (m: SovMove) => void; openBattle?: () => void }) {
   const e = view.expedition!;
   const me = view.me!;
   const seats = e.seats[me] ?? 0;
@@ -433,6 +456,11 @@ function Muster({ view, sendMove }: { view: SovView; sendMove: (m: SovMove) => v
         <p>
           {f.title}. {f.person === null ? "The battle runs on." : `${name(f.person)}'s turn${yours ? ": what do they do?" : `, waiting on House ${view.houses[f.house!]?.name}.`}`}
         </p>
+        {openBattle ? (
+          <button type="button" className="sp-button" onClick={openBattle}>
+            Open the battle
+          </button>
+        ) : null}
         {yours ? (
           <div className="sp-actions">
             <button type="button" className="sp-button" onClick={() => sendMove({ type: "command", auto: "turn" })}>
