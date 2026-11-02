@@ -1,0 +1,83 @@
+{
+  "id": "the_seal_hunters",
+  "pools": [
+    "deep_cold"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    8
+  ],
+  "title": "The Seal Hunters",
+  "text": "Hunters on the ice, clubbing seals by a breathing hole. They offer to share their fire.",
+  "options": [
+    {
+      "id": "share",
+      "label": "Share their fire.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Warm, fed, and full of their stories.",
+          "effects": [
+            {
+              "to": "party",
+              "durability": 8
+            },
+            {
+              "to": "party",
+              "sanity": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "trade",
+      "label": "The shrewdest trades for their furs.",
+      "rule": "scion:highest:guile",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Good furs, warm for the road.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -10
+              }
+            },
+            {
+              "to": "party",
+              "status": "shell"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ask",
+      "label": "Ask what else hunts the ice.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "They tell you, and where.",
+          "effects": [
+            {
+              "foresee": true
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

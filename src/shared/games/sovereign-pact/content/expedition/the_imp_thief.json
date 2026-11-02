@@ -1,0 +1,89 @@
+{
+  "id": "the_imp_thief",
+  "pools": [
+    "pit"
+  ],
+  "weight": 2,
+  "band": [
+    4,
+    10
+  ],
+  "title": "The Imp Thief",
+  "text": "An imp darts through camp and is gone, with a House's purse in its claws.",
+  "options": [
+    {
+      "id": "chase",
+      "label": "The quickest gives chase.",
+      "rule": "scion:highest:speed",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "Caught, with its whole stash.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 15
+              }
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "Into its nest.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "surprise"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "let",
+      "label": "Let it go.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Lighter, and wiser.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -10
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "trap",
+      "label": "The cleverest baits a trap with more gold.",
+      "rule": "scion:highest:acuity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It comes back for seconds.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 8
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

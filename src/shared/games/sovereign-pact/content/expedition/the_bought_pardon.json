@@ -1,0 +1,101 @@
+{
+  "id": "the_bought_pardon",
+  "pools": [
+    "apostate_court"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    9
+  ],
+  "title": "The Bought Pardon",
+  "text": "A pardoner sells forgiveness for every sin, signed and sealed by the court's own bishop.",
+  "options": [
+    {
+      "id": "buy",
+      "label": "Buy a pardon for the party.",
+      "rule": "vote",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It does nothing, but you sleep better.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -10
+              }
+            },
+            {
+              "to": "party",
+              "sanity": 8
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "forge",
+      "label": "The shrewdest forges the bishop's seal.",
+      "rule": "scion:highest:guile",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "Pardons to sell back home.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 20
+              }
+            },
+            {
+              "score": {
+                "intrigue": 1
+              }
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "The pardoner knows his own work.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "surprise"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "expose",
+      "label": "Expose him to the crowd.",
+      "rule": "leader",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The crowd turns on him, then on you.",
+          "effects": [
+            {
+              "score": {
+                "renown": 1
+              }
+            },
+            {
+              "encounter": {}
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

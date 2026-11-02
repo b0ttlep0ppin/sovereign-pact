@@ -1,0 +1,92 @@
+{
+  "id": "the_ice_chimes",
+  "pools": [
+    "deep_cold"
+  ],
+  "weight": 1,
+  "band": [
+    4,
+    8
+  ],
+  "title": "The Ice Chimes",
+  "text": "Icicles hang in a cave mouth, chiming in the wind. The tune is almost a voice.",
+  "options": [
+    {
+      "id": "listen",
+      "label": "Stop and listen.",
+      "rule": "vote",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "A lullaby, and rest.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 8
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "A song of the frozen dead.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -10
+            },
+            {
+              "to": "party",
+              "status": "sleep"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "break",
+      "label": "The strongest breaks the chimes.",
+      "rule": "scion:highest:might",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Silence, and something in the cave wakes to it.",
+          "effects": [
+            {
+              "encounter": {}
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hum",
+      "label": "The wisest hums the tune back.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The chimes answer, and show the way.",
+          "effects": [
+            {
+              "skip": 1
+            },
+            {
+              "score": {
+                "lore": 1
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

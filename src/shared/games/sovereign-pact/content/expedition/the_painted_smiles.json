@@ -1,0 +1,93 @@
+{
+  "id": "the_painted_smiles",
+  "pools": [
+    "faceless_city"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    9
+  ],
+  "title": "The Painted Smiles",
+  "text": "The faceless here have painted smiles on their blank faces. They smile at you, all of them, all the time.",
+  "options": [
+    {
+      "id": "smile",
+      "label": "Smile back.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "They are delighted, and give you gifts.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 10
+              }
+            },
+            {
+              "to": "party",
+              "sanity": -3
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "Your smile is wrong somehow.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "surprise"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "paint",
+      "label": "The shrewdest paints a smile on their own face.",
+      "rule": "scion:highest:guile",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "They take them for one of their own, and lead you out.",
+          "effects": [
+            {
+              "skip": 2
+            },
+            {
+              "sanity": -8
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hurry",
+      "label": "Hurry past.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The smiles follow you.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -5
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

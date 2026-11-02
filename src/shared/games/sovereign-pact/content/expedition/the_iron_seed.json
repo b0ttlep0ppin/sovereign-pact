@@ -1,0 +1,84 @@
+{
+  "id": "the_iron_seed",
+  "pools": [
+    "forge_ruins"
+  ],
+  "weight": 1,
+  "band": [
+    4,
+    9
+  ],
+  "title": "The Iron Seed",
+  "text": "A seed of iron lies in a crucible. When warmed in the hand, it puts out a tiny root.",
+  "options": [
+    {
+      "id": "plant",
+      "label": "Plant it in the forge's ashes.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "An iron sapling, and the ruins feel less dead.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 5
+            },
+            {
+              "doom": -1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "keep",
+      "label": "The wisest keeps it close.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It grows into something worth having.",
+          "effects": [
+            {
+              "item": {
+                "tier": 2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "melt",
+      "label": "Melt it down.",
+      "rule": "leader",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Good iron, and a feeling of having killed something.",
+          "effects": [
+            {
+              "resources": {
+                "iron": 5
+              }
+            },
+            {
+              "to": "party",
+              "sanity": -4
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

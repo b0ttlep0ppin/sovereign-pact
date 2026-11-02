@@ -1,0 +1,89 @@
+{
+  "id": "the_glass_eyes",
+  "pools": [
+    "faceless_city"
+  ],
+  "weight": 2,
+  "band": [
+    4,
+    9
+  ],
+  "title": "The Glass Eyes",
+  "text": "A jar of glass eyes on a stall, each one turning to follow you.",
+  "options": [
+    {
+      "id": "buy",
+      "label": "Buy one.",
+      "rule": "vote",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "It sees things you cannot.",
+          "effects": [
+            {
+              "foresee": true
+            },
+            {
+              "resources": {
+                "gold": -8
+              }
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "It sees you, and tells someone.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -8
+              }
+            },
+            {
+              "encounter": {}
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "smash",
+      "label": "The strongest smashes the jar.",
+      "rule": "scion:highest:might",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Silence, and every faceless head turns your way.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "surprise"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cover",
+      "label": "Cover the jar and walk on.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "They keep looking, through the cloth.",
+          "effects": []
+        }
+      ]
+    }
+  ]
+}
