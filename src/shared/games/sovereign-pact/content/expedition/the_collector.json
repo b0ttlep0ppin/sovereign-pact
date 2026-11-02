@@ -1,0 +1,80 @@
+{
+  "id": "the_collector",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    10
+  ],
+  "title": "The Collector",
+  "text": "A polite gentleman in a carriage with no horses collects curiosities. He would pay well for a story of how one of you got their worst scar.",
+  "options": [
+    {
+      "id": "tell",
+      "label": "The most scarred tells it.",
+      "rule": "scion:injured:any|scion:random",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "He pays in old gold and writes every word down.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 15
+              }
+            },
+            {
+              "sanity": -5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lie",
+      "label": "The best liar tells a better one.",
+      "rule": "scion:highest:guile",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "He pays double, and knows, and does not mind.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 25
+              }
+            },
+            {
+              "score": {
+                "intrigue": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "refuse",
+      "label": "Refuse him.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "He tips his hat and rolls on.",
+          "effects": []
+        }
+      ]
+    }
+  ]
+}

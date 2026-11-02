@@ -1,0 +1,97 @@
+{
+  "id": "the_golden_cage",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    10
+  ],
+  "title": "The Golden Cage",
+  "text": "A golden birdcage hangs from a dead tree, and in it a bird that speaks in your mother's voice.",
+  "options": [
+    {
+      "id": "free",
+      "label": "Open the cage.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "It flies, singing, and the singing stays with you.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 12
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "It flies, and laughs in a voice that is not your mother's.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -12
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "take",
+      "label": "Take the cage, bird and all.",
+      "rule": "leader",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Very fine gold. The bird does not speak again.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 15
+              }
+            },
+            {
+              "to": "party",
+              "sanity": -5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "listen",
+      "label": "The wisest listens to what it says.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It says something only your mother knew.",
+          "effects": [
+            {
+              "score": {
+                "lore": 1
+              }
+            },
+            {
+              "sanity": -5
+            },
+            {
+              "xp": 80
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

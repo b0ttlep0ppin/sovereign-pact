@@ -1,0 +1,80 @@
+{
+  "id": "the_hedge_witch",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    10
+  ],
+  "title": "The Hedge Witch",
+  "text": "A witch in a hut on chicken legs offers a cure for what ails you. Her price is always the same: a lock of hair, freely given.",
+  "options": [
+    {
+      "id": "cure",
+      "label": "The most hurt takes the cure.",
+      "rule": "scion:injured:any|scion:lowest:sanity",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It works, and she smiles at the hair as if it were gold.",
+          "effects": [
+            {
+              "mend": true
+            },
+            {
+              "sanity": 10
+            },
+            {
+              "doom": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "trade",
+      "label": "Trade for a potion instead.",
+      "rule": "leader",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A good potion.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -8
+              }
+            },
+            {
+              "to": "party",
+              "durability": 15
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "leave",
+      "label": "Leave before the hut stands up.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It stands up anyway, and watches you go.",
+          "effects": []
+        }
+      ]
+    }
+  ]
+}

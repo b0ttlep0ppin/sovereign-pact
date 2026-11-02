@@ -1,0 +1,88 @@
+{
+  "id": "the_scholars_tower",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    10
+  ],
+  "title": "The Scholar's Tower",
+  "text": "A tower full of books, and a scholar too old to leave, who offers to teach one of you anything in exchange for news of the world.",
+  "options": [
+    {
+      "id": "learn",
+      "label": "The most curious learns from him.",
+      "rule": "scion:highest:acuity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A week's lessons in a night.",
+          "effects": [
+            {
+              "jp": 120
+            },
+            {
+              "growth": {
+                "acuity": 10
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "news",
+      "label": "Tell him everything; he is lonely.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "He listens like a child, and gives you a map in thanks.",
+          "effects": [
+            {
+              "skip": 1
+            },
+            {
+              "score": {
+                "lore": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "books",
+      "label": "Take the rarest books.",
+      "rule": "leader",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "He weeps, and does not stop you.",
+          "effects": [
+            {
+              "score": {
+                "lore": 3
+              }
+            },
+            {
+              "to": "party",
+              "sanity": -8
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

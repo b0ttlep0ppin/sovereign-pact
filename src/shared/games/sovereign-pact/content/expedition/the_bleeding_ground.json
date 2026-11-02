@@ -1,0 +1,93 @@
+{
+  "id": "the_bleeding_ground",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    10
+  ],
+  "title": "The Bleeding Ground",
+  "text": "The grass is red and wet, and the earth is warm. Something died here, very big, a long time ago, and it is still dying.",
+  "options": [
+    {
+      "id": "dig",
+      "label": "Dig down to whatever it was.",
+      "rule": "scion:highest:might",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "A heart of something, still beating, very valuable.",
+          "effects": [
+            {
+              "resources": {
+                "essence": 6
+              }
+            },
+            {
+              "doom": 1
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "It is still alive, a little.",
+          "effects": [
+            {
+              "encounter": {
+                "level": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cross",
+      "label": "Cross quickly.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Red to the knees, and no worse.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bury",
+      "label": "The kindest says the rites for it.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The ground cools under your feet.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 5
+            },
+            {
+              "doom": -1
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

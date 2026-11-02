@@ -1,0 +1,94 @@
+{
+  "id": "the_salt_flats",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    10
+  ],
+  "title": "The Salt Flats",
+  "text": "White salt to the edge of the world, and a glare that burns the eyes. Ahead, always ahead, a lake that is not there.",
+  "options": [
+    {
+      "id": "mirage",
+      "label": "Make for the lake.",
+      "rule": "vote",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 40,
+          "text": "There is water there after all, under the salt.",
+          "effects": [
+            {
+              "skip": 1
+            },
+            {
+              "to": "party",
+              "sanity": 5
+            }
+          ]
+        },
+        {
+          "w": 60,
+          "text": "There is no lake.",
+          "effects": [
+            {
+              "to": "party",
+              "durability": -15
+            },
+            {
+              "to": "party",
+              "sanity": -5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "read",
+      "label": "The sharpest eye reads the true way.",
+      "rule": "scion:highest:acuity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Old cart ruts under the crust, going straight across.",
+          "effects": [
+            {
+              "skip": 1
+            },
+            {
+              "xp": 50
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "march",
+      "label": "Cover your eyes and march by the compass.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Slow, blind, and safe.",
+          "effects": [
+            {
+              "to": "party",
+              "durability": -5
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

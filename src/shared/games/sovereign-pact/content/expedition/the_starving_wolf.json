@@ -1,0 +1,84 @@
+{
+  "id": "the_starving_wolf",
+  "pools": [
+    "general"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    6
+  ],
+  "title": "The Starving Wolf",
+  "text": "A wolf, ribs showing, walks right up to the fire and sits, like a dog that wants feeding.",
+  "options": [
+    {
+      "id": "feed",
+      "label": "Feed it.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It eats, and lies down by the fire, and is gone in the morning. So is a tracker's worry.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 8
+            },
+            {
+              "skip": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "drive",
+      "label": "Drive it away.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It goes, and its pack watches from the trees all night.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kill",
+      "label": "Kill it for its pelt.",
+      "rule": "scion:most_kills",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A good pelt. The pack does not forgive.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 6
+              }
+            },
+            {
+              "encounter": {
+                "modifier": "ambush"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
