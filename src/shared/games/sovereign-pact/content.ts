@@ -20,6 +20,7 @@ import swordSaintSet from "./content/abilities/sword_saint.json" with { type: "j
 import vagabondSet from "./content/abilities/vagabond.json" with { type: "json" };
 import buildingsJson from "./content/buildings.json" with { type: "json" };
 import changesJson from "./content/changes.json" with { type: "json" };
+import consumablesJson from "./content/consumables.json" with { type: "json" };
 import namedJson from "./content/named.json" with { type: "json" };
 import bargainsJson from "./content/bargains.json" with { type: "json" };
 import quarriesJson from "./content/quarries.json" with { type: "json" };
@@ -873,3 +874,21 @@ export interface IdolDef {
 }
 export const IDOLS = idolsJson.idols as readonly IdolDef[];
 export const IDOL_BY_ID = byId(IDOLS);
+
+/** A consumable (§13.7): Houses hold them by count, the party satchel carries them, and a use costs 100 CT. */
+export interface ConsumableDef {
+  id: string;
+  name: string;
+  text: string;
+  /** Gold, first pass. */
+  price: number;
+  /** Where a House buys it: a Commons shop at a stock tier, or one of its own buildings at a level. */
+  sold: readonly { at: string; level: number }[];
+  use: "battle" | "camp" | "node" | "town" | "held";
+  /** Its battle effect, shaped as an ability. */
+  battle?: Omit<import("./combat/types.ts").AbilityDef, "id"> & { mpPct?: number };
+  /** An effect the rules hand-code. */
+  special?: string;
+}
+export const CONSUMABLES = consumablesJson.consumables as unknown as readonly ConsumableDef[];
+export const CONSUMABLE_BY_ID = byId(CONSUMABLES);

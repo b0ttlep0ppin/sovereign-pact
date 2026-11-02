@@ -65,6 +65,8 @@ export interface PrivateHouse {
   gold: number;
   debt: number;
   stores: Stores;
+  /** Consumables held at home (§13.7). */
+  consumables: Partial<Record<string, number>>;
   /** The Scriptorium's level: how much of a recruit shows (§6.4). */
   insight: number;
   /** This House's own Crisis pledge, and whether it gave in to the temptation. */
@@ -254,6 +256,7 @@ export function view(s: SovState, playerId: PlayerId): SovView {
             gold: own.gold,
             debt: own.debt,
             stores: own.stores,
+            consumables: own.consumables ?? {},
             insight,
             crisis: s.crisis ? { pledge: s.crisis.pledges[me]!, tempted: s.crisis.tempted[me]! } : null,
             notes: s.notes[me] ?? [],

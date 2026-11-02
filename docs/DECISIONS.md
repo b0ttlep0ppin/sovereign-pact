@@ -2,6 +2,18 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 7av): consumables as data, and buying them
+
+- `content/consumables.json` holds §13.7's list, the slashed entries split into their own items (Tonic, Strong Tonic and Vital Draught; Firebomb, Frost Flask and Shock Jar; Ember Oil, Brine and Stormwax…), 41 in all. Each has a first-pass Gold price, where it is sold, when it is used (battle, camp, node, town or held), and either a battle effect shaped as an ability or a hand-coded `special`. Its schema is `schemas/consumables.schema.json`.
+- A House holds consumables by count (`House.consumables`), seen only by that House. It buys them in the Settlement Phase (`buy_consumable`, 1–10 at a time) wherever they are sold.
+- Readings:
+  - "Apothecary 1/2/3" is the Apothecary's stock tier, which expedition finds raise like the other shops'. "Workshop", "Chapel", "Farm", "Shrine", "Forge" and "Scriptorium L2" are the buying House's own building at that level. "Market" is the Great Market and "Curio" the Curio Dealer.
+  - A House pays the list price at its own buildings. The Patrons of the Guilds' discount applies only in the Commons shops.
+  - Caltrops slow, and the Net and the Hangman's Rope root, the one enemy they are thrown at. The enemy grid has no cell traps to place them in.
+  - Wine's Accuracy malus is a new status, Tipsy.
+  - A bot keeps a few Tonics, Bone Salves, Antidotes, Clarity Draughts and Smelling Salts at home while it has 40 Gold to spare (`tuning.consumables`).
+- Packing the satchel, using items in battle, and the camp, node and carried items follow in the next PRs.
+
 ## 2026-11-02 (implementation, Milestone 7au): every event pool meets its budget
 
 - Twenty-eight events (556 in all) bring every region to 25: two each for the Beast Lands, the Hollow Wood, the Drowned Marches and the Barrows, and one or two for each of the rest. With the general pool at 150 and the five card-type pools at 25, every pool HANDOFF §6 budgets is now full; `npm run events` shows each as ok.
