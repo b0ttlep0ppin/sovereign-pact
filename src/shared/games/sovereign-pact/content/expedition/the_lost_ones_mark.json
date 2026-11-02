@@ -1,0 +1,93 @@
+{
+  "id": "the_lost_ones_mark",
+  "pools": [
+    "rescue"
+  ],
+  "weight": 3,
+  "band": [
+    1,
+    10
+  ],
+  "title": "The Lost One's Mark",
+  "text": "Scratched on a stone at head height: your House's mark, and an arrow. Someone you are looking for passed this way.",
+  "options": [
+    {
+      "id": "follow",
+      "label": "Follow the arrow.",
+      "rule": "vote",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The marks go on, fresher each time.",
+          "effects": [
+            {
+              "skip": 1
+            },
+            {
+              "to": "party",
+              "sanity": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "read",
+      "label": "The sharpest reads the stone for more.",
+      "rule": "scion:highest:acuity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A second mark, under the first: a warning about what follows them.",
+          "effects": [
+            {
+              "to": "party",
+              "xp": 30
+            },
+            {
+              "to": "party",
+              "status": "protect"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "call",
+      "label": "Call out their name.",
+      "rule": "leader",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "An answer, far off.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 10
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "Something else answers.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "ambush"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

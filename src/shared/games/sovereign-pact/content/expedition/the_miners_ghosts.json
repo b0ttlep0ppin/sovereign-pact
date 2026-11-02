@@ -1,0 +1,91 @@
+{
+  "id": "the_miners_ghosts",
+  "pools": [
+    "delve",
+    "resource"
+  ],
+  "weight": 3,
+  "band": [
+    1,
+    9
+  ],
+  "title": "The Miners' Ghosts",
+  "text": "Pale shapes still swing their picks at a seam of ore, as they have for a hundred years. They ask for help with the last stretch.",
+  "options": [
+    {
+      "id": "help",
+      "label": "Pick up a pick and help.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The seam opens, and the ghosts lay down their picks for good.",
+          "effects": [
+            {
+              "resources": {
+                "iron": 5,
+                "stone": 3
+              }
+            },
+            {
+              "to": "party",
+              "sanity": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "take",
+      "label": "Wait for them to break through, then take it.",
+      "rule": "leader",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "They do not like it.",
+          "effects": [
+            {
+              "resources": {
+                "iron": 6
+              }
+            },
+            {
+              "to": "party",
+              "sanity": -10
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ask",
+      "label": "Ask them how they died.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A cave-in, and they show you where the next one will be.",
+          "effects": [
+            {
+              "skip": 1
+            },
+            {
+              "score": {
+                "lore": 1
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

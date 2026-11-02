@@ -1,0 +1,95 @@
+{
+  "id": "the_listening_chamber",
+  "pools": [
+    "delve"
+  ],
+  "weight": 3,
+  "band": [
+    1,
+    10
+  ],
+  "title": "The Listening Chamber",
+  "text": "A round chamber where every whisper carries for miles. Something deep below is listening for footsteps.",
+  "options": [
+    {
+      "id": "creep",
+      "label": "Everyone creeps across.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "Nothing hears.",
+          "effects": [
+            {
+              "to": "party",
+              "xp": 30
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "Something hears.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "ambush"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "shout",
+      "label": "Shout a challenge down.",
+      "rule": "leader",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It comes up.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "surprise"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "listen",
+      "label": "The sharpest ear listens back.",
+      "rule": "scion:highest:acuity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "They hear it all: where it sleeps, where it eats, where it keeps things.",
+          "effects": [
+            {
+              "fork": {
+                "add": [
+                  "cache"
+                ]
+              }
+            },
+            {
+              "score": {
+                "lore": 1
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

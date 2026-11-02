@@ -2,6 +2,10 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 7w: events for the card types) — implementer
+- **Built** (content only). Fourteen events drawn by card type rather than region, since an Event node draws from the card's pools (its region or its type) half the time: Delves (the Collapsed Stair, the Bad Air, the Listening Chamber, the Miners' Ghosts, which is also a Resource event), Hunts (the Quarry's Trail, the Old Hunters' Camp, the Bait, the Rival Hunter), Pilgrimages (the Pilgrim Road, the Penitent's Steps, the Relic Seller), Resource runs (the Rich Seam, the Old Stand) and the first Rescue event (the Lost One's Mark). That makes 162 expedition events.
+- **Reading:** a Rescue card draws `rescue` events like any other type; they speak of following the Lost and never decide whether the Lost are found, which stays with the Rescue rules (§9.9).
+
 ## 2026-11-02 (implementation, Milestone 7v: fourteen more general events) — implementer
 - **Built** (content only). Fourteen general expedition events: the Overturned Cart, the Struck Oak, the Singing Blade, the Honey Hall, the Ghost Caravan, the Blind Archer, the Glass Bridge, the Other Party, the Forgotten God, the Lame Horse, the Nest of Knives, the Last Dance, the Rust Moths and the Traveling Players. That makes 148 expedition events, 88 of them open to any card.
 - **Reading:** each uses only effects and subject rules the rules already have. In the Traveling Players the cruel option (paying to cast a rival House as the villain) falls to the House highest in Standing and costs Accord, as sabotage that is visible but deniable.

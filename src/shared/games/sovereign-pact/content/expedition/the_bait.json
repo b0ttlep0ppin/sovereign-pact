@@ -1,0 +1,88 @@
+{
+  "id": "the_bait",
+  "pools": [
+    "hunt"
+  ],
+  "weight": 3,
+  "band": [
+    2,
+    10
+  ],
+  "title": "The Bait",
+  "text": "The quarry is too wary to be caught by chance. It might come to bait, if the bait were living and a little hurt.",
+  "options": [
+    {
+      "id": "bait",
+      "label": "The hardiest plays the bait.",
+      "rule": "scion:highest:resilience",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It comes, and the rest of you are waiting.",
+          "effects": [
+            {
+              "durability": -20,
+              "loc": "legs"
+            },
+            {
+              "encounter": {
+                "modifier": "surprise"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "animal",
+      "label": "Buy a goat off a hermit and stake it out.",
+      "rule": "leader",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It works, and the goat does not mind as much as you do.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -5
+              }
+            },
+            {
+              "skip": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "patient",
+      "label": "Wait it out.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Days pass. It comes, in its own time, and on its own terms.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -8
+            },
+            {
+              "to": "party",
+              "durability": -5
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

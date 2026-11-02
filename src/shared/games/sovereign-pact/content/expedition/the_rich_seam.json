@@ -1,0 +1,103 @@
+{
+  "id": "the_rich_seam",
+  "pools": [
+    "resource"
+  ],
+  "weight": 3,
+  "band": [
+    1,
+    10
+  ],
+  "title": "The Rich Seam",
+  "text": "A vein of good stone and iron runs right along the path, close to the surface. Every hour spent digging is an hour the Gate is open.",
+  "options": [
+    {
+      "id": "dig",
+      "label": "Dig all day.",
+      "rule": "vote",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "A heavy haul.",
+          "effects": [
+            {
+              "resources": {
+                "iron": 5,
+                "stone": 5
+              }
+            },
+            {
+              "to": "party",
+              "durability": -10
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "Digging makes noise.",
+          "effects": [
+            {
+              "resources": {
+                "iron": 3
+              }
+            },
+            {
+              "encounter": {}
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "quick",
+      "label": "Take what is loose and go.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A little, safely.",
+          "effects": [
+            {
+              "resources": {
+                "iron": 2,
+                "stone": 2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mark",
+      "label": "The cleverest maps it for another trip.",
+      "rule": "scion:highest:acuity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Next time you will know just where to dig.",
+          "effects": [
+            {
+              "resources": {
+                "stone": 1
+              }
+            },
+            {
+              "score": {
+                "lore": 1
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

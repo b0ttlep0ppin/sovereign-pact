@@ -1,0 +1,90 @@
+{
+  "id": "the_bad_air",
+  "pools": [
+    "delve"
+  ],
+  "weight": 3,
+  "band": [
+    2,
+    10
+  ],
+  "title": "The Bad Air",
+  "text": "The candles gutter and burn blue. The air down here is thin and wrong.",
+  "options": [
+    {
+      "id": "hurry",
+      "label": "Hurry through holding your breath.",
+      "rule": "vote",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "Lungs burning, everyone makes it.",
+          "effects": [
+            {
+              "to": "party",
+              "durability": -10
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "Someone breathes.",
+          "effects": [
+            {
+              "status": "confusion"
+            },
+            {
+              "sanity": -10
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "vent",
+      "label": "The cleverest finds a draught and follows it.",
+      "rule": "scion:highest:acuity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A side passage, and clean air.",
+          "effects": [
+            {
+              "fork": {
+                "add": [
+                  "cache"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "back",
+      "label": "Turn back and find another way.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Another way, and a longer one.",
+          "effects": [
+            {
+              "to": "party",
+              "durability": -5
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

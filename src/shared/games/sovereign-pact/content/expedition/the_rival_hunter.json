@@ -1,0 +1,98 @@
+{
+  "id": "the_rival_hunter",
+  "pools": [
+    "hunt"
+  ],
+  "weight": 3,
+  "band": [
+    3,
+    10
+  ],
+  "title": "The Rival Hunter",
+  "text": "Another hunter, alone, after the same quarry, and better equipped than you. They suggest working together, for an even split.",
+  "options": [
+    {
+      "id": "join",
+      "label": "Work together.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 80,
+          "text": "They are as good as they look.",
+          "effects": [
+            {
+              "to": "party",
+              "status": "protect"
+            },
+            {
+              "score": {
+                "renown": 1
+              }
+            }
+          ]
+        },
+        {
+          "w": 20,
+          "text": "They take the trophy and run, at the end.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -10
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "race",
+      "label": "Race them to it.",
+      "rule": "scion:highest:speed",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "You get there first.",
+          "effects": [
+            {
+              "skip": 1
+            },
+            {
+              "score": {
+                "valor": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rob",
+      "label": "Rob them of their gear.",
+      "rule": "leader",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Very good gear.",
+          "effects": [
+            {
+              "item": {
+                "tier": 3
+              }
+            },
+            {
+              "doom": 1
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

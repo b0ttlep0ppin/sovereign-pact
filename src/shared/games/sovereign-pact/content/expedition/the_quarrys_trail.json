@@ -1,0 +1,82 @@
+{
+  "id": "the_quarrys_trail",
+  "pools": [
+    "hunt"
+  ],
+  "weight": 3,
+  "band": [
+    1,
+    10
+  ],
+  "title": "The Quarry's Trail",
+  "text": "Fresh tracks, deep and wide apart. Whatever you are hunting passed here not long ago, and it was hurt.",
+  "options": [
+    {
+      "id": "track",
+      "label": "The best tracker follows the blood.",
+      "rule": "scion:highest:acuity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Straight to where it rests.",
+          "effects": [
+            {
+              "skip": 1
+            },
+            {
+              "xp": 60
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "trap",
+      "label": "Set a trap on its trail.",
+      "rule": "scion:highest:guile",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It does not come back this way, but the waiting sharpens everyone.",
+          "effects": [
+            {
+              "to": "party",
+              "status": "protect"
+            },
+            {
+              "to": "party",
+              "xp": 30
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rush",
+      "label": "Run it down now while it bleeds.",
+      "rule": "vote",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It is not as hurt as it looked.",
+          "effects": [
+            {
+              "encounter": {
+                "level": 1
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
