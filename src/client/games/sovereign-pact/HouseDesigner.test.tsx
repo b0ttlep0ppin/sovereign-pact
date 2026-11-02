@@ -3,7 +3,7 @@ import { describe, expect, it, vi } from "vitest";
 import { Content, sovereignPact as g } from "@vibepulse/shared/games/sovereign-pact";
 import { seats } from "../../../shared/games/sovereign-pact/testing.ts";
 import { createRng } from "../../../shared/rng.ts";
-import HouseDesigner, { traitShape } from "./HouseDesigner";
+import HouseDesigner, { missingOf, toggleTrait, traitShape } from "./HouseDesigner";
 
 const founding = () => {
   const s = g.setup(seats(2), createRng(3), undefined, undefined);
@@ -45,15 +45,37 @@ describe("founding a House (§5.1)", () => {
     const sendMove = vi.fn();
     render(<HouseDesigner view={view} sendMove={sendMove} />);
     fireEvent.click(screen.getByRole("tab", { name: "Traits" }));
-    const first = Content.HOUSE_TRAIT_BY_ID.get(h.traits[0]!)!;
-    fireEvent.click(screen.getByRole("checkbox", { name: new RegExp(`^${first.name}`) }));
-    expect((screen.getByRole("button", { name: "Not a full set yet" }) as HTMLButtonElement).disabled).toBe(true);
-    // Swap in another trait of the same kind, without Elemental Bane's choice.
-    const swap = Content.HOUSE_TRAITS.find((t) => t.kind === first.kind && !h.traits.includes(t.id) && !t.choice)!;
+    const major = h.traits.find((id) => Content.HOUSE_TRAIT_BY_ID.get(id)!.kind === "major")!;
+    fireEvent.click(screen.getByRole("checkbox", { name: new RegExp(`^${Content.HOUSE_TRAIT_BY_ID.get(major)!.name}`) }));
+    expect(screen.getByRole("status").textContent).toBe("Still to choose: a Major Trait.");
+    expect(sendMove).not.toHaveBeenCalled();
+    // Swap in another Major Trait, without Elemental Bane's choice: a whole set again, kept at once.
+    const swap = Content.HOUSE_TRAITS.find((t) => t.kind === "major" && !h.traits.includes(t.id) && !t.choice)!;
     fireEvent.click(screen.getByRole("checkbox", { name: new RegExp(`^${swap.name}`) }));
-    fireEvent.click(screen.getByRole("button", { name: "Keep these traits" }));
     const patch = sendMove.mock.calls.at(-1)![0];
     expect(patch.type).toBe("design");
     expect(g.applyMove(s, "p1", patch).ok).toBe(true);
+  });
+
+  it("never holds more of a kind than the set allows", () => {
+    const { view } = founding();
+    const h = view.houses[0]!;
+    const kindOf = (id: string) => Content.HOUSE_TRAIT_BY_ID.get(id)!.kind;
+    const plain = h.traits.some((id) => kindOf(id) === "bloodline") ? toggleTrait(h.traits, Content.HOUSE_TRAITS.find((t) => t.kind === "major_flaw")!.id) : h.traits;
+    const of = (kind: string, ids: string[]) => Content.HOUSE_TRAITS.find((t) => t.kind === kind && !ids.includes(t.id) && !t.choice)!.id;
+    // A third Major Trait does not fit; a second Minor Flaw swaps out the first.
+    expect(toggleTrait(plain, of("major", plain))).toEqual(plain);
+    const flaw = of("minor_flaw", plain);
+    const swapped = toggleTrait(plain, flaw);
+    expect(swapped.filter((id) => kindOf(id) === "minor_flaw")).toEqual([flaw]);
+    expect(traitShape(swapped)).toBe(true);
+    // A Bloodline makes room for itself: one Major Trait and no Major Flaw, still a whole set.
+    const blood = toggleTrait(plain, of("bloodline", plain));
+    expect(traitShape(blood)).toBe(true);
+    expect(missingOf(blood)).toBe("");
+    // And a Major Flaw gives it up again, leaving a Major Trait to choose.
+    const back = toggleTrait(blood, of("major_flaw", blood));
+    expect(back.some((id) => kindOf(id) === "bloodline")).toBe(false);
+    expect(missingOf(back)).toBe("Still to choose: a Major Trait.");
   });
 });

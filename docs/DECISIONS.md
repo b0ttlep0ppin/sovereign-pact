@@ -2,6 +2,11 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 8u): a clearer founding
+
+- From Josh's first play on the founding screen. The traits list never holds more of a kind than the set allows: a full kind with room for two greys out the rest, a kind with room for one swaps (radio buttons), a Bloodline makes room for itself by giving up the second Major Trait and the Major Flaw, and a Major Flaw gives the Bloodline up. Each kind shows "n of m", the step says what is still missing, and a whole set is kept at once (no separate Keep button).
+- The two "Swear, keeping…" buttons became one "Swear the Pact" step: what an Ambition is, the two dealt as choices (each category with what earns it, from §3.4), then one button. Before the oath, "Your people" says the first Scions join once every House has sworn.
+
 ## 2026-11-02 (implementation, Milestone 7bc): the Hindu, Persian and Chinese Idols
 
 - Per Josh's answer to Q93, the last three Idols are demons and usurpers from those myths, given titles rather than names, like the first three: **the Ten-Headed King** (the rakshasa king, D172), **the Serpent-Shouldered King** (the usurper with serpents at his shoulders, D178) and **the Bull Demon King** (the demon king of the western road, D227). Each is an offer first (kneel for a blessing at a price, defy it, or try to cheat it), a level-6+ two-phase boss if refused or cheated, and drops a Lore Relic: the Moonlight Blade, the Usurper's Crown, the Iron Cudgel.

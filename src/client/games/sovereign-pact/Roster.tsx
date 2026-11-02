@@ -27,7 +27,7 @@ export default function Roster({ view, sendMove, canAct }: Props) {
   return (
     <section className="sp-panel sp-roster" aria-label="Your people">
       <h2>Your people</h2>
-      {own.length ? null : <p className="sp-event__status">Nobody is left.</p>}
+      {own.length ? null : <p className="sp-event__status">{view.phase === "founding" ? "Your first Scions join once every House has sworn the Pact." : "Nobody is left."}</p>}
       {GROUPS.map(({ status, title }) => {
         const group = own.filter((p) => p.status === status);
         if (!group.length) return null;

@@ -367,17 +367,51 @@ function Founding({ view, sworn, sendMove }: { view: SovView; sworn: boolean; se
   return (
     <div className="sp-founding">
       <HouseDesigner view={view} sendMove={sendMove} />
-      <div className="sp-actions">
-        <button type="button" className="sp-button sp-button--quiet" onClick={() => sendMove({ type: "random_house" })}>
-          🎲 Random House
-        </button>
-        {view.mine!.dealt!.map((a, i) => (
-          <button key={i} type="button" className="sp-button" onClick={() => sendMove({ type: "swear", ambition: i as 0 | 1 })}>
-            Swear, keeping {CATEGORY_NAMES[a.double]} double and {CATEGORY_NAMES[a.halve]} half
-          </button>
-        ))}
-      </div>
+      <button type="button" className="sp-button sp-button--quiet" onClick={() => sendMove({ type: "random_house" })}>
+        🎲 Roll a whole new House
+      </button>
+      <Oath dealt={view.mine!.dealt!} swear={(i) => sendMove({ type: "swear", ambition: i })} />
     </div>
+  );
+}
+
+/** What each score category counts (§3.4), for choosing an Ambition. */
+const CATEGORY_TEXT: Record<string, string> = {
+  lineage: "living Scions and recruits, heirs, Wards hosted",
+  valor: "bosses slain, expeditions attended and led, monsters killed",
+  treasury: "wealth held at the end",
+  holdings: "House buildings and estates",
+  lore: "artifacts, discoveries, bestiary entries",
+  renown: "shared projects, Crises, lives saved, votes won",
+  intrigue: "favors owed to you, secrets learned, deals honored",
+  relics: "unique items held at the end",
+};
+
+/** The last founding step: keep one of two secret Ambitions, then swear the Pact. */
+function Oath({ dealt, swear }: { dealt: NonNullable<NonNullable<SovView["mine"]>["dealt"]>; swear: (i: 0 | 1) => void }) {
+  const [choice, setChoice] = useState<0 | 1 | null>(null);
+  return (
+    <fieldset className="sp-oath">
+      <legend>Swear the Pact</legend>
+      <p className="sp-event__status">
+        When you are happy with your House, choose its secret <strong>Ambition</strong>. At the end of the campaign each House scores in eight categories; your Ambition makes one of them count double and another count half. Only you will ever see it.
+      </p>
+      {dealt.map((a, i) => (
+        <label key={i} className={`sp-oath__choice${choice === i ? " is-known" : ""}`}>
+          <input type="radio" name="ambition" checked={choice === i} onChange={() => setChoice(i as 0 | 1)} />
+          <span>
+            <strong>{CATEGORY_NAMES[a.double]} counts double</strong>
+            <span className="sp-ability__text">{CATEGORY_TEXT[a.double]}</span>
+            <strong>{CATEGORY_NAMES[a.halve]} counts half</strong>
+            <span className="sp-ability__text">{CATEGORY_TEXT[a.halve]}</span>
+          </span>
+        </label>
+      ))}
+      <button type="button" className="sp-button" disabled={choice === null} onClick={() => choice !== null && swear(choice)}>
+        {choice === null ? "Choose an Ambition to swear" : "Swear the Pact"}
+      </button>
+      <p className="sp-event__status">The first Year begins once every House has sworn. Until then you can take the oath back and change anything.</p>
+    </fieldset>
   );
 }
 

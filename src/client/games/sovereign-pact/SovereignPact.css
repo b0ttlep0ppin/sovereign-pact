@@ -153,11 +153,24 @@
 .sp-designer__head { display: flex; gap: 12px; align-items: center; }
 .sp-designer__head p { margin: 2px 0 0; }
 .sp-designer__step { display: grid; gap: 10px; justify-items: start; }
-.sp-designer__step input:not([type="checkbox"]) { font: inherit; padding: 6px; background: var(--panel); color: var(--text); border: 1px solid var(--line); border-radius: 4px; }
+.sp-designer__step input:not([type="checkbox"]):not([type="radio"]) { font: inherit; padding: 6px; background: var(--panel); color: var(--text); border: 1px solid var(--line); border-radius: 4px; }
 .sp-designer__step select { font: inherit; padding: 6px; background: var(--panel); color: var(--text); border: 1px solid var(--line); border-radius: 4px; }
 .sp-designer__step details { width: 100%; margin-bottom: 6px; }
 .sp-designer__step summary { cursor: pointer; padding: 4px 0; }
 .sp-designer__step summary small { color: var(--muted); }
+/* A chosen trait stands out; one the set has no room for fades. */
+.sp-designer__step .sp-abilities li.is-known { opacity: 1; border-color: var(--accent); background: color-mix(in srgb, var(--gold-dim) 45%, transparent); }
+.sp-designer__step .sp-abilities li:has(input:disabled) { opacity: 0.45; }
+.sp-designer__step .sp-abilities input { width: 1.2em; height: 1.2em; accent-color: var(--accent); vertical-align: -0.2em; }
+.sp-oath { display: grid; gap: 10px; margin: 16px 0 0; padding: 12px; border: 1px solid var(--accent); border-radius: 6px; min-width: 0; }
+.sp-oath legend { font-weight: 600; color: var(--gold); padding: 0 6px; }
+.sp-oath p { margin: 0; }
+.sp-oath__choice { display: flex; gap: 10px; align-items: flex-start; padding: 10px; border: 1px solid var(--line); border-radius: 6px; cursor: pointer; }
+.sp-oath__choice.is-known { border-color: var(--accent); background: color-mix(in srgb, var(--gold-dim) 45%, transparent); }
+.sp-oath__choice input { width: 1.2em; height: 1.2em; margin-top: 2px; accent-color: var(--accent); flex: none; }
+.sp-oath__choice > span { display: grid; gap: 2px; }
+.sp-oath__choice .sp-ability__text { margin-bottom: 4px; }
+.sp-founding > .sp-button { margin-top: 4px; }
 .sp-swatches { display: flex; flex-wrap: wrap; gap: 6px; border: 1px solid var(--line); border-radius: 4px; padding: 8px 10px; margin: 0; }
 .sp-swatches legend { color: var(--muted); font-size: 0.85rem; }
 .sp-swatch { width: 32px; height: 32px; border-radius: 50%; border: 2px solid var(--line); cursor: pointer; padding: 0; }
