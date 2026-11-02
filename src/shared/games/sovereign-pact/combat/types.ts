@@ -108,6 +108,10 @@ export interface AbilityDef {
   ownHouse?: boolean;
   /** Cast as this Job active, at charge 0 and no MP (a Scroll, §13.7). */
   cast?: string;
+  /** Disarms the hidden traps on the user's grid, and every enemy Lurker loses its head start (the Thief's Candle). */
+  reveal?: boolean;
+  /** A Tinkerer target gains this many Components, the ones its recipes want most (the Component Pouch). */
+  grantParts?: number;
   /** Hits per target. */
   hits?: number;
   accuracy?: number;
@@ -352,7 +356,7 @@ export type BattleEvent =
   | { t: "phase"; unit: number; phase: number }
   | { t: "say"; unit: number; line: "open" | "death" | number }
   | { t: "flee"; unit: number }
-  | { t: "hazard"; hazard: string; what: "set" | "trigger"; col?: number; row?: number }
+  | { t: "hazard"; hazard: string; what: "set" | "trigger" | "disarmed"; col?: number; row?: number }
   | { t: "shift"; unit: number; form: string | null }
   | { t: "dead"; target: number }
   | { t: "wait" | "defend"; unit: number }

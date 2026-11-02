@@ -1,6 +1,7 @@
 // Consumables in battle (§13.7): a Scion's action from the party satchel, and the bots' use of it.
 import { describe, expect, it } from "vitest";
 import { createRng } from "../../../rng.ts";
+import { ACTIVE_BY_ID } from "../content.ts";
 import { TUNING } from "../tuning.ts";
 import { act } from "./battle.ts";
 import { enemyCombatant, newBattle } from "./build.ts";
@@ -182,5 +183,39 @@ describe("the hand-coded battle items (§13.7)", () => {
     expect(itemPlan(b, unitOf(b, 1))).toMatchObject({ do: "item", item: "oathwine" });
     addStatus(b, unitOf(b, 1), "oathbound", 0);
     expect(itemPlan(b, unitOf(b, 1))).toBe(undefined);
+  });
+});
+
+describe("the Candle, the Chorus and the Pouch (§13.7)", () => {
+  const go = (b: Battle, item: string, on: Combatant) => {
+    b.actor = 1;
+    b.acted = false;
+    act(b, rng(), unitOf(b, 1), { do: "item", item, target: cellOf(on) });
+  };
+
+  it("the Thief's Candle disarms hidden traps and takes the Lurkers' head start", () => {
+    const lurker = { ...enemy(9, 1, 0), role: "lurker", ct: 100 };
+    const b = fight(["thiefs_candle"], scion(1, 0, 0), lurker, enemy(10, 0, 1));
+    b.field = [{ id: "bear_trap", col: 0, row: 3, hidden: true }, { id: "rockfall", col: 0, row: 2, at: 400 }];
+    expect(itemPlan(b, unitOf(b, 1))).toMatchObject({ item: "thiefs_candle" });
+    go(b, "thiefs_candle", unitOf(b, 1));
+    expect(b.field).toEqual([{ id: "rockfall", col: 0, row: 2, at: 400 }]);
+    expect(unitOf(b, 9).ct).toBe(0);
+  });
+
+  it("the Bottled Chorus plays a March for every ally", () => {
+    const b = fight(["bottled_chorus"], scion(1, 0, 0), scion(2, 0, 1), enemy(9, 0, 0));
+    go(b, "bottled_chorus", unitOf(b, 1));
+    expect([unitOf(b, 1), unitOf(b, 2)].map((u) => u.mods.speed)).toEqual([1, 1]);
+  });
+
+  it("the Component Pouch gives a Tinkerer what its recipes want, and nothing to anyone else", () => {
+    const tinkerer = scion(1, 0, 0, { mods: { scavenge: 3 }, abilities: [ACTIVE_BY_ID.get("shrapnel_mine")!], parts: [] });
+    const b = fight(["component_pouch", "component_pouch"], tinkerer, scion(2, 0, 1), enemy(9, 0, 0));
+    expect(itemPlan(b, unitOf(b, 1))).toMatchObject({ item: "component_pouch" });
+    go(b, "component_pouch", unitOf(b, 1));
+    expect([...unitOf(b, 1).parts!].sort()).toEqual(["plate", "powder"]);
+    go(b, "component_pouch", unitOf(b, 2));
+    expect(unitOf(b, 2).parts ?? []).toEqual([]);
   });
 });

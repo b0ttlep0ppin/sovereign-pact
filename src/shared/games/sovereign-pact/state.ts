@@ -535,6 +535,8 @@ export type SovMove =
   | { type: "use_item"; id: string; person?: number }
   /** Spends a Tarot Token in town (§13.7): one Scion draws a new Tarot, once in their life. */
   | { type: "draw_tarot"; person: number }
+  /** Gives one Scion a Passive Draught in town (§13.7): passive budget +1 until the Reckoning. */
+  | { type: "drink_draught"; person: number }
   /** Put a stashed item up for sealed bids, with a reserve. */
   | { type: "auction"; item: number; reserve: number }
   /** Offer a deal to another House; `open` makes it public (§8.9). */

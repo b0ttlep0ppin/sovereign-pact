@@ -77,6 +77,8 @@ export const STATUSES: Record<string, StatusMeta> = {
   turned: { kind: "debuff", ticks: 200 },
   /** …the Mourning Veil's Sanity-proofing… */
   veiled: { kind: "buff", ticks: 0 },
+  /** …the Bottled Chorus's March without a Minstrel… */
+  bottled_chorus: { kind: "buff", ticks: 200 },
   /** …and Blackroot Chew's Durability each turn. */
   blackroot: { kind: "buff", ticks: 300 },
   /** Answers the next melee blow with a counter, then ends (§14.7 the Cursed King's Royal Parry). */

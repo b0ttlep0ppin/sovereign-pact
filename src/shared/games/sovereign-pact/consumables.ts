@@ -153,3 +153,21 @@ export function drawTarot(s: SovState, house: number, person: number): void {
   p.hist.tarot_tokens = 1;
   log(s, `${p.name} of House ${s.houses[house]!.name} draws a new Tarot.`);
 }
+
+/** Why `house` cannot give `person` a Passive Draught now (§13.7), or null. */
+export function cannotDrinkDraught(s: SovState, house: number, person: unknown): string | null {
+  if (held(s.houses[house]!, "passive_draught") < 1) return "The House holds no Passive Draught.";
+  const p = s.people.find((x) => x.id === person);
+  if (!p || p.host !== house || p.status !== "scion") return "Name one of the House's Scions.";
+  if (p.traits.includes(T.draughtTrait)) return "The draught is already in them.";
+  return null;
+}
+
+/** `person`'s passive budget +1 until the Reckoning: a blessing that fades then (events.ts fadeBlessings). */
+export function drinkDraught(s: SovState, house: number, person: number): void {
+  const p = s.people.find((x) => x.id === person)!;
+  give(s.houses[house]!, "passive_draught", -1);
+  p.traits.push(T.draughtTrait);
+  (p.blessed ??= []).push({ id: T.draughtTrait, years: 0 });
+  log(s, `${p.name} of House ${s.houses[house]!.name} drinks a Passive Draught.`);
+}

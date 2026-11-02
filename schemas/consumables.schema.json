@@ -27,6 +27,8 @@
         "cast": { "$ref": "defs.schema.json#/definitions/id", "description": "A Job active, cast at charge 0 for no MP." },
         "ownHouse": { "const": true, "description": "Only Scions of the user's House take its effects." },
         "bossReadiness": { "type": "integer", "minimum": 1, "description": "Readiness taken from a boss it hits." },
+        "reveal": { "const": true, "description": "Disarms the hidden traps on the user's grid; enemy Lurkers lose their head start." },
+        "grantParts": { "type": "integer", "minimum": 1, "description": "Components a Tinkerer target gains." },
         "shape": { "type": "string", "minLength": 1 },
         "side": { "enum": ["foe", "ally", "self"] },
         "power": { "type": "number", "minimum": 0 },

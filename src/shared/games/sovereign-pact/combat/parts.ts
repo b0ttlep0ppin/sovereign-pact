@@ -36,10 +36,13 @@ export function spendParts(u: Combatant, parts: readonly string[]): void {
 }
 
 /** The bots' pick: whatever brings the nearest recipe closest to done, else the first offered. */
-export function pickParts(u: Combatant): string[] {
-  const offer = [...(u.offer ?? [])];
+export const pickParts = (u: Combatant): string[] => bestParts(u, u.offer ?? [], keepLimit(u));
+
+/** The `n` of `from` (each once) that bring `u`'s nearest recipe closest to done, else the first. */
+export function bestParts(u: Pick<Combatant, "parts" | "abilities">, from: readonly string[], n: number): string[] {
+  const offer = [...from];
   const out: string[] = [];
-  while (out.length < keepLimit(u) && offer.length) {
+  while (out.length < n && offer.length) {
     const held = { parts: [...(u.parts ?? []), ...out] };
     const needs = u.abilities
       .filter((a) => a.parts?.length)

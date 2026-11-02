@@ -2,6 +2,26 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 7bb): the last four consumables
+
+With these, every consumable in §13.7 works.
+
+- **Thief's Candle** (battle data `reveal`). It disarms every hidden trap on the party's grid, and every enemy Lurker's Readiness drops to 0.
+- **Bottled Chorus.** It plays a March, Speed +1 to every ally, for 200 ticks (status `bottled_chorus`).
+- **Component Pouch** (`grantParts` 2). A Tinkerer target gains the 2 Components its recipes want most, picked the way the bots pick from an offer. On anyone else it does nothing.
+- **Passive Draught.** A new Settlement Phase move, `drink_draught {person}`. One of the House's Scions gains the blessing Draught-Strong: passive budget +1 until the Reckoning, so for the Year's expedition.
+  - At every Reckoning, a Scion whose budget shrank now sheds passives, the last equipped first. Before this, a faded blessing could leave a Scion over budget.
+- Bots:
+  - The Candle on a first turn against a Lurker with a head start, or a hidden trap.
+  - The Chorus once three foes stand.
+  - The Pouch for a Tinkerer missing a recipe's parts.
+  - Bots don't buy Tarot Tokens or Passive Draughts yet.
+- Readings:
+  - Thief's Candle, "reveals every hazard on the enemy grid". Hazards on the enemy grid are always in plain sight; the hidden ones are traps on the party's grid. So the Candle finds those, and a trap that is found is stepped around (disarmed). "A Lurker loses its free turn": in battle, its head start (CT) is gone.
+  - Bottled Chorus, "a Minstrel song for 2 turns": the bottle holds a March. Two turns is 200 ticks.
+  - The Component Pouch picks the Components itself, as the bots do. A choice by hand comes with the battle screen.
+  - Passive Draught: "for one expedition" means until the next Reckoning. It is drunk in town, where passives are equipped.
+
 ## 2026-11-02 (implementation, Milestone 7ba): carried items, and the Tarot Token
 
 - The **Saint's Tooth** and the **Dice of the Marches** work from the party satchel on a Scion's injury rolls, in battle and in expedition events (`carriedRoll` in `combat/injury.ts`). Each is spent when it works.

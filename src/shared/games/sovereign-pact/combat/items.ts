@@ -6,6 +6,7 @@ import { ACTIVE_BY_ID, CONSUMABLE_BY_ID } from "../content.ts";
 import { TUNING } from "../tuning.ts";
 import type { Action } from "./battle.ts";
 import { hasStatus, standing } from "./grid.ts";
+import { missingParts } from "./parts.ts";
 import { meta } from "./status.ts";
 import { bestCell, cellOf, singleTargets } from "./targets.ts";
 import type { AbilityDef, Battle, Combatant } from "./types.ts";
@@ -95,6 +96,10 @@ export function itemPlan(b: Battle, u: Combatant): Action | undefined {
   const foes = standing(b, "enemy");
   for (const [dust, tags] of [["grave_dust", ["undead"]], ["hollow_ivory_dust", ["undead", "construct"]]] as const)
     if (has(dust) && foes.filter((x) => tags.some((t) => x.tags.includes(t))).length >= B.dustFoes) return { do: "item", item: dust, target: bestCell(b, u, itemAbility(u, dust)!, "enemy") };
+  // The Candle on a first turn against Lurkers or traps; the Chorus when the field is full; a Pouch for a Tinkerer short of a recipe.
+  if (has("thiefs_candle") && u.turns <= 1 && (foes.some((x) => x.role === "lurker" && x.ct > 0) || b.field?.some((f) => f.hidden))) return { do: "item", item: "thiefs_candle", target: cellOf(u) };
+  if (has("bottled_chorus") && foes.length >= B.bombFoes && !scions.some((x) => hasStatus(x, "bottled_chorus"))) return { do: "item", item: "bottled_chorus", target: cellOf(u) };
+  if (has("component_pouch") && u.mods.scavenge && u.abilities.some((a) => a.parts?.length && missingParts(u, a).length)) return { do: "item", item: "component_pouch", target: cellOf(u) };
   if (has("oathwine") && foes.length >= B.bombFoes && !scions.some((x) => x.house === u.house && hasStatus(x, "oathbound"))) return { do: "item", item: "oathwine", target: cellOf(u) };
   return undefined;
 }
