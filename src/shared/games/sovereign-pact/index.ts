@@ -91,6 +91,7 @@ export function newCampaign(players: readonly PlayerId[], rng: Rng, opts: Campai
     proposers: [],
     events: [],
     bargains: { pending: [], offered: houses.map(() => 0) },
+    bestiary: { kills: {}, quarries: {} },
     deals: [],
     market: [],
     flags: [],

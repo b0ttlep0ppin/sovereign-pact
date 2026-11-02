@@ -149,6 +149,8 @@ export interface SovView {
   items: Item[];
   log: string[];
   outcome: SovState["outcome"] | null;
+  /** The bestiary: kills by enemy and the slain quarries, open to every House (§14.3). */
+  bestiary: SovState["bestiary"];
 }
 
 function publicHouse(s: SovState, h: House, index: number): PublicHouse {
@@ -264,6 +266,8 @@ export function view(s: SovState, playerId: PlayerId): SovView {
     items: s.items.filter((i) => worn.has(i.id) || (me !== null && i.house === me && !wornByAnyone.has(i.id))),
     log: s.log,
     outcome: s.outcome ?? null,
+    // The bestiary opens for every House (§14.3).
+    bestiary: s.bestiary,
   };
 }
 

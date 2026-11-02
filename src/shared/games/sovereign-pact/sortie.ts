@@ -2,6 +2,7 @@
 // chosen from content/sorties.json. It is fought by gambits in 1–2 battles a level under the Year's
 // band, injuries no worse than Moderate, and pays about a quarter of an expedition: XP per battle won,
 // JP if they come through, and the pool's finds to the House. It resolves as the expedition comes home.
+import { tally } from "./hunt.ts";
 import { ARC } from "./arc.ts";
 import { INJURY_BY_ID, POOL_BY_ID, SORTIE_BY_ID, type SortieDef } from "./content.ts";
 import { encounterBattle } from "./combat/encounter.ts";
@@ -72,6 +73,7 @@ function sortie(s: SovState, house: number, def: SortieDef, ids: number[]): void
 
 /** What a Sortie battle leaves: injuries last, the dead die, Sanity and MP carry; a win pays XP. */
 function settle(s: SovState, b: Battle, def: SortieDef, won: boolean): void {
+  tally(s, b, [...new Set(b.units.flatMap((u) => (u.side === "party" && u.person !== undefined && u.owner === undefined ? [person(s, u.person).host] : [])))]);
   for (const u of b.units) {
     if (u.side !== "party" || u.person === undefined || u.owner !== undefined) continue;
     let p = person(s, u.person);

@@ -2,6 +2,21 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 7d: Hunt quarries and the bestiary) — implementer
+- **Built** (§14.9, `hunt.ts`, content `content/quarries.json`, numbers in `tuning.hunt`):
+  - Eighteen named quarries, three for each pool that deals Hunt cards.
+  - A Hunt card names one of its pool's living quarries, nearest the card's level, and one Encounter of its chain becomes the quarry's **Lair**. If the chain has no Encounter, the Lair goes before the boss.
+  - In the Lair, the quarry leads a normal Encounter of its kin. It is a level up, with 150% HP, and has one trick:
+    - Enrage: it starts enraged.
+    - Ambush: the Lair opens with an ambush.
+    - Call the Pack: two more fodder join.
+  - The trophy is Valor for each House in the party, plus materials into the haul (lost on a wipe like the rest).
+  - A slain quarry is never named again that campaign.
+- **Bestiary**: kills by enemy id for the whole campaign, open to every House in `view`, with each slain quarry beside the Houses that took it.
+  - **Reading**: the first kill of an enemy, by anyone, is a new entry and gives 1 Lore to each House in that fight (§3.4: bestiary entries score Lore).
+  - Weakness and pattern after 3 kills is the screens' job, from the counts.
+- **Not yet**: the Seat cosmetic for a trophy; dragons as Dragon Reaches quarries use the pool's Dragon and Dark Wyrm, not the named-boss dragons; Arcana Hunt cards (7e).
+
 ## 2026-11-02 (implementation, Milestone 7c: Dark Bargains) — implementer
 - **Built** (§14.7a, `bargains.ts`, content `content/bargains.json`, numbers in `tuning.bargain`):
   - Eleven offers: nine at Omens, two from the Crown.
