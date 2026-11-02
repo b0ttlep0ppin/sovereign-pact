@@ -2,6 +2,13 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, tuning pass 1: readying Scions in town) — implementer
+- **Why**: in two-House bot campaigns every Scion was still level 1 in Year 15 and the city fell. Four causes: Houses had no move to spend JP or put on gear, so loot sat in the stash and JP piled up unspent; bots chased their own Lost on Rescue cards above their level; bots turned back after one battle; and bosses at the end of a chain beat parties already worn down. This PR fixes the first; the rest follow.
+- **Readying moves** (§12.1, §13.1, `outfit.ts`), Settlement Phase only and not once sealed (on an expedition Jobs, passives and gear are locked, §9.2): `learn` (an ability of the primary Job, paid in its JP), `take_job`, `secondary` (or none), `passive` on/off within the budget, `equip`, `unequip`. A House readies its own Scions and the Wards it hosts, Retired ones included.
+- **Readings**: changing Job sends gear the new Job may not wear back to the stash. A cursed item will not come off and cannot be equipped over (§13.5). Abilities whose system is not built yet can still be bought (they count towards mastery) but do nothing yet; bots skip them.
+- **The bot** buys the cheapest ability it can afford (actives first at a price), equips bought passives while the budget allows, takes a secondary set when it has one, and wears the best stashed item in each slot it fits (tier, then item level).
+- **Simulator**: `npm run sim -- --scion N` (or `3L-2`) fights at a chosen Scion level instead of 3L, and `--curve` prints win rates by Scion level and expedition level.
+
 ## 2026-11-02 (implementation, Milestone 6n: 2×4 expeditions) — implementer
 - **Two parties** (§9.3, `split.ts`): at departure a 2×4 card's eight are dealt into two parties of four by House, so a House with two or more Scions is in both. The voted Leader's party walks first and the Leader is the expedition's. Reading: the other party's Leader is its most travelled Scion, with no second vote, to keep the phase short.
 - **The ways**: each party rolls its own chain of N nodes (§9.3's N), with a **Gate** halfway and the **meeting place** at the end. The boss comes after, fought by everyone left.

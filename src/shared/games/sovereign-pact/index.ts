@@ -18,6 +18,7 @@ import { cannotPropose, cannotVote, castVote, propose } from "./votes.ts";
 import { botDeal, botAssign, botPromote, botBuild, botChoice, botCrisis, botPledge, botPropose, botVote } from "./bot.ts";
 import { build, cannotBuild, unbuild } from "./town.ts";
 import { cannotPromote, promoteRecruit } from "./promotion.ts";
+import { botOutfit, cannotOutfit, outfit } from "./outfit.ts";
 import { cannotReinstate, cannotRetire, reinstate, retire } from "./lifecycle.ts";
 import { botCard, cannotPick, pick } from "./gate.ts";
 import { TUNING } from "./tuning.ts";
@@ -348,6 +349,20 @@ export function applyMove(state: SovState, playerId: PlayerId, move: SovMove): M
       s.phaseMoves += 1;
       return { ok: true, state: s };
     }
+    case "learn":
+    case "take_job":
+    case "secondary":
+    case "passive":
+    case "equip":
+    case "unequip": {
+      if (s.phase !== "settlement") return fail(s.phase === "expedition" ? "Jobs, passives and gear are locked until the expedition returns." : "Scions are readied in the Settlement Phase.");
+      if (h.sealed) return fail("Unseal the Year first.");
+      const why = cannotOutfit(s, house, move);
+      if (why) return fail(why);
+      outfit(s, house, move);
+      s.phaseMoves += 1;
+      return { ok: true, state: s };
+    }
     case "assign": {
       if (s.phase !== "settlement") return fail("Assignments are made in the Settlement Phase.");
       if (h.sealed) return fail("Unseal the Year first.");
@@ -427,6 +442,8 @@ export function botMove(s: SovState, playerId: PlayerId): SovMove {
     if (s.gate && s.gate.cards.length > 1 && s.gate.votes[house] === null) return { type: "pick_card", card: botCard(s, house) };
     const raise = botPromote(s, house);
     if (raise) return { type: "promote", ...raise };
+    const ready = botOutfit(s, house);
+    if (ready) return ready;
     const job = botAssign(s, house);
     if (job) return { type: "assign", ...job };
     const next = botBuild(s, house);

@@ -112,7 +112,7 @@ export function withJob(job: JobId): JobId[] {
 export type FightSpec = Partial<Omit<EncounterSpec, "party" | "level">>;
 const FIGHT = { pool: "barrows", template: "warband", modifier: null } as const;
 
-/** An Encounter (§14.4) against a real party at Scion level 3L (§14.2). */
-export function realBattle(seed: number, level: number, jobs: readonly JobId[], fight: FightSpec = {}): Battle {
-  return encounterBattle(seed, realParty(seed, level * 3, jobs), { ...FIGHT, ...fight, level }).battle;
+/** An Encounter (§14.4) against a real party, by default at the reference Scion level 3L (§14.2). */
+export function realBattle(seed: number, level: number, jobs: readonly JobId[], fight: FightSpec = {}, scion = level * 3): Battle {
+  return encounterBattle(seed, realParty(seed, scion, jobs), { ...FIGHT, ...fight, level }).battle;
 }
