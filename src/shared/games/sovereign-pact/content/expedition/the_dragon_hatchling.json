@@ -1,0 +1,84 @@
+{
+  "id": "the_dragon_hatchling",
+  "pools": [
+    "dragon_reaches"
+  ],
+  "weight": 2,
+  "band": [
+    5,
+    10
+  ],
+  "title": "The Dragon Hatchling",
+  "text": "A dragon hatchling, no bigger than a dog, has followed the party for a mile. It is hungry and it likes you.",
+  "options": [
+    {
+      "id": "feed",
+      "label": "Feed it.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "It follows you home.",
+          "effects": [
+            {
+              "house_improvement": "building"
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "Its mother finds you.",
+          "effects": [
+            {
+              "encounter": {
+                "level": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "drive",
+      "label": "Drive it away.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It sulks off, smoking.",
+          "effects": []
+        }
+      ]
+    },
+    {
+      "id": "sell",
+      "label": "The shrewdest sells it to a passing collector.",
+      "rule": "scion:highest:guile",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A fortune.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 35
+              }
+            },
+            {
+              "doom": 2
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

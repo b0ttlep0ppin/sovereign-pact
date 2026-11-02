@@ -1,0 +1,72 @@
+{
+  "id": "the_lava_ferry",
+  "pools": [
+    "pit"
+  ],
+  "weight": 2,
+  "band": [
+    4,
+    10
+  ],
+  "title": "The Lava Ferry",
+  "text": "A ferryman poles a stone boat across a river of fire. His fare is a memory, one per passenger.",
+  "options": [
+    {
+      "id": "pay",
+      "label": "Each pays a memory.",
+      "rule": "each_scion",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "A small one, gone.",
+          "effects": [
+            {
+              "sanity": -5
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "A big one.",
+          "effects": [
+            {
+              "sanity": -15
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "swim",
+      "label": "Find another way.",
+      "rule": "each_scion",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "Around the river, singed.",
+          "effects": [
+            {
+              "durability": -20,
+              "loc": "legs"
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "Through the fire.",
+          "effects": [
+            {
+              "status": "burn"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

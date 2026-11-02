@@ -1,0 +1,62 @@
+{
+  "id": "the_lamplighter",
+  "pools": [
+    "faceless_city"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    9
+  ],
+  "title": "The Lamplighter",
+  "text": "A lamplighter in the Faceless City lights lamps that show the true face of whoever passes under them.",
+  "options": [
+    {
+      "id": "walk",
+      "label": "Walk under the lamps.",
+      "rule": "each_scion",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "Their own face, a little older.",
+          "effects": [
+            {
+              "sanity": 5
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "Not their face.",
+          "effects": [
+            {
+              "sanity": -15
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "around",
+      "label": "Keep to the dark.",
+      "rule": "each_scion",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The faces in the dark are worse.",
+          "effects": [
+            {
+              "sanity": -5
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

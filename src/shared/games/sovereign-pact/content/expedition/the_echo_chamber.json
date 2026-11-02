@@ -1,0 +1,92 @@
+{
+  "id": "the_echo_chamber",
+  "pools": [
+    "delve"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    10
+  ],
+  "title": "The Echo Chamber",
+  "text": "A chamber where every sound comes back a hundred times. One wrong word brings the ceiling down.",
+  "options": [
+    {
+      "id": "silent",
+      "label": "Cross in silence.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 80,
+          "text": "Not a sound.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -3
+            }
+          ]
+        },
+        {
+          "w": 20,
+          "text": "Someone sneezes.",
+          "effects": [
+            {
+              "to": "party",
+              "durability": -20,
+              "loc": "head"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sing",
+      "label": "The steadiest voice sings the right note.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The ceiling hums, and holds, and shows a hidden door.",
+          "effects": [
+            {
+              "fork": {
+                "add": [
+                  "cache"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "shout",
+      "label": "Shout and run.",
+      "rule": "leader",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Out, and the way back is sealed.",
+          "effects": [
+            {
+              "skip": 1
+            },
+            {
+              "to": "party",
+              "durability": -10
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

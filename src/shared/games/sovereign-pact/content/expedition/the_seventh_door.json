@@ -1,0 +1,97 @@
+{
+  "id": "the_seventh_door",
+  "pools": [
+    "shrine_of_six"
+  ],
+  "weight": 2,
+  "band": [
+    4,
+    10
+  ],
+  "title": "The Seventh Door",
+  "text": "Six doors in the Shrine, each to a god. A seventh, unmarked, is ajar.",
+  "options": [
+    {
+      "id": "seventh",
+      "label": "Go through the seventh.",
+      "rule": "vote",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "A god no one prays to, glad of visitors.",
+          "effects": [
+            {
+              "growth": {
+                "all": 5
+              }
+            },
+            {
+              "to": "party",
+              "sanity": -10
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "Something that is not a god.",
+          "effects": [
+            {
+              "encounter": {
+                "level": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "six",
+      "label": "The wisest chooses one of the six.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The right one.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 10
+            },
+            {
+              "score": {
+                "lore": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "shut",
+      "label": "Shut the seventh.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It does not want to shut.",
+          "effects": [
+            {
+              "to": "party",
+              "durability": -10,
+              "loc": "arms"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

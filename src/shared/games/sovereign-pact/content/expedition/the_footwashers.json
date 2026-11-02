@@ -1,0 +1,73 @@
+{
+  "id": "the_footwashers",
+  "pools": [
+    "pilgrimage"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    10
+  ],
+  "title": "The Footwashers",
+  "text": "At a crossroads shrine, old women wash pilgrims' feet and ask for news of the road.",
+  "options": [
+    {
+      "id": "rest",
+      "label": "Let them.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Fresh feet and a lighter heart.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 8
+            },
+            {
+              "to": "party",
+              "status": "haste"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tell",
+      "label": "The best talker tells them the news.",
+      "rule": "scion:highest:guile",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "They give news back: what waits on the road ahead.",
+          "effects": [
+            {
+              "foresee": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hurry",
+      "label": "No time.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "They bless you anyway.",
+          "effects": []
+        }
+      ]
+    }
+  ]
+}

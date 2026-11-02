@@ -1,0 +1,87 @@
+{
+  "id": "the_ghost_light",
+  "pools": [
+    "delve"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    10
+  ],
+  "title": "The Ghost Light",
+  "text": "A cold blue light floats ahead in the tunnels, always just out of reach.",
+  "options": [
+    {
+      "id": "follow",
+      "label": "Follow it.",
+      "rule": "vote",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "To treasure.",
+          "effects": [
+            {
+              "item": {
+                "tier": 2
+              }
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "To a drop.",
+          "effects": [
+            {
+              "to": "party",
+              "durability": -20,
+              "loc": "legs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ignore",
+      "label": "Ignore it.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It sulks, and dims.",
+          "effects": []
+        }
+      ]
+    },
+    {
+      "id": "trap",
+      "label": "The shrewdest traps it in a jar.",
+      "rule": "scion:highest:guile",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A light that never goes out.",
+          "effects": [
+            {
+              "to": "party",
+              "status": "protect"
+            },
+            {
+              "resources": {
+                "essence": 2
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,89 @@
+{
+  "id": "the_frog_prince",
+  "pools": [
+    "drowned_marches"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    7
+  ],
+  "title": "The Frog Prince",
+  "text": "A frog with a crown begs to be kissed. He says he was a prince of the Drowned Marches once.",
+  "options": [
+    {
+      "id": "kiss",
+      "label": "The kindest kisses him.",
+      "rule": "scion:most_healing|scion:random",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 40,
+          "text": "A prince, wet and grateful. His House will remember.",
+          "effects": [
+            {
+              "score": {
+                "renown": 2
+              }
+            },
+            {
+              "resources": {
+                "gold": 20
+              }
+            }
+          ]
+        },
+        {
+          "w": 60,
+          "text": "Still a frog. A poisonous one.",
+          "effects": [
+            {
+              "status": "poison"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "crown",
+      "label": "Take the crown.",
+      "rule": "leader",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Real gold, and a very angry frog.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 15
+              }
+            },
+            {
+              "doom": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pass",
+      "label": "Wish him luck.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "He croaks after you.",
+          "effects": []
+        }
+      ]
+    }
+  ]
+}

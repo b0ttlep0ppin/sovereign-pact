@@ -2,6 +2,10 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 7ah: a sixth round for the regions, Pilgrimages and Delves) — implementer
+- **Built** (content only). Sixteen events: the Horned Rider, the Fox Wedding, the Frog Prince, the Mourners, the Mammoth Graveyard, the Lava Ferry, the Clockwork Bird, the Lamplighter, the Relic Forger, the Seventh Door, the Dragon Hatchling and the Inverted Tower (one for each region), the Footwashers and the Last Mile for Pilgrimages, and the Echo Chamber and the Ghost Light for Delves. That makes 336 expedition events; every region has 10 to 14.
+- **Reading:** the Lava Ferry, the Lamplighter and the Last Mile are whole `each_scion` events (every option is each Scion's own pick), as 7ag's test now requires.
+
 ## 2026-11-02 (implementation, Milestone 7ag: a fifth round for the regions, and whole each_scion events) — implementer
 - **Built** (content only). Sixteen events: the Wolf Mother, the Witch's Hut, the Bog Bodies, the Tomb Robber's Map, the Snow Queen, the Soul Auction, the Rusted Titan, the Dung Heap Court, the Bishop's Offer, the Pool of Six, the Dragon Knights and the Last Lamp (one for each region), the Signal Fire and the Prisoner Exchange for Rescues, the Wild Orchard for Resource cards and the Quarry's Mate for Hunts. That makes 320 expedition events; every region has 9 to 13.
 - **Fix.** The rules treat `each_scion` and `secret` as the way a whole event is put (every option has the rule), but six events from 7af and this batch gave one option `each_scion` beside voted ones, and choosing it crashed the reducer (the view test's campaign found it). Those options are now voted, with their effects on the whole party. `npm run content` now fails on an event that mixes either rule with others.

@@ -1,0 +1,89 @@
+{
+  "id": "the_mammoth_graveyard",
+  "pools": [
+    "deep_cold"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    8
+  ],
+  "title": "The Mammoth Graveyard",
+  "text": "Tusks rise out of the snow like a forest of ivory. Something still guards them.",
+  "options": [
+    {
+      "id": "ivory",
+      "label": "Take ivory.",
+      "rule": "vote",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "As much as you can carry.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 20,
+                "wyrmbone": 1
+              }
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "The guardian.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "surprise"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "guard",
+      "label": "The sharpest eye finds the guardian first.",
+      "rule": "scion:highest:acuity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Asleep. You take a little and go.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 10
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "respect",
+      "label": "Leave the dead their tusks.",
+      "rule": "leader",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The wind drops as you go.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 5
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
