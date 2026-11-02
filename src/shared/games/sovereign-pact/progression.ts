@@ -61,7 +61,7 @@ export const passiveBudget = (p: Pick<Person, "level"> & Partial<Pick<Person, "t
 export function canTakeJob(p: Person, job: JobId): boolean {
   const def = JOB_BY_ID.get(job);
   if (!def) return false;
-  // A Change with a fixed Job allows no other (§9.6: a Hollow Knight is a Knight).
+  // A Change with a fixed Job allows no other (§9.6: a Barrow Knight is a Knight).
   const fixed = p.change && CHANGE_BY_ID.get(p.change.id)?.job;
   if (fixed) return job === fixed;
   if (!def.advanced) return true;

@@ -24,7 +24,7 @@
           "text": "The plates close over them one by one. When the helm shuts, the eyes inside are not quite theirs any more.",
           "effects": [
             {
-              "change": "hollow_knight"
+              "change": "barrow_knight"
             },
             {
               "sanity": -20

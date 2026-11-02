@@ -2,6 +2,9 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (Barrow Knight) — Josh
+- The Change first written as the Hollow Knight is the **Barrow Knight** (`barrow_knight`): "Hollow Knight" is another game's name. → GLOSSARY, SPEC §9.6–9.7
+
 ## 2026-11-02 (implementation, Milestone 6m: forced expeditions) — implementer
 - **Forcing events** (§3.2) are town events with `forces: { pool, size? }`: The Raiders' Nest (the Beast Lands), The Taken Child (the Hollow Wood), The Sick Well (the Drowned Marches). They are never drawn in the Omens. Reading, so that the Watchtower can foreshadow one a Year ahead: each Year there is a 10% chance (`tuning.gate.forced.pct`, first pass) that one is queued, hidden, on the timeline for the next Year. The Watchtower reads hidden entries, so its House sees which event is coming; everyone else sees "?" for that Year.
 - **Limits**: at most two a campaign, each forcing event at most once, never for a Year before Year 3, a mandatory Year, or past the end. A forcing event due goes ahead of any other event due in the same Year, so it never slips.
@@ -10,14 +13,14 @@ Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md
 - **Seen in play**: 12 two-House bot campaigns met 5 forced expeditions and failed 4 of them. That is the known early-wipe problem, left for the tuning pass.
 
 ## 2026-11-02 (implementation, Milestone 6l: Changes) — implementer
-- **Changes** (§9.6, `content/changes.json`): Hollow Knight, Marsh Thing, Seraph Husk and Wyrmling. A Change's stats are its level-1 numbers grown by its own growths to the Scion's level. It wipes the Scion's traits (blessings too), injuries and look, and keeps name, House, Tarot, level, JP, learned Jobs and Loyalty.
+- **Changes** (§9.6, `content/changes.json`): Barrow Knight, Marsh Thing, Seraph Husk and Wyrmling. A Change's stats are its level-1 numbers grown by its own growths to the Scion's level. It wipes the Scion's traits (blessings too), injuries and look, and keeps name, House, Tarot, level, JP, learned Jobs and Loyalty.
 - **What a Change can do**, all data:
   - `mods` ride into battle like a trait's (wards, immunities, Poisoning attackers, Regen, one-cell moves, Fire attacks, claws);
-  - `job` fixes the Job (the Hollow Knight is a Knight and can take no other);
-  - `slots` are the gear slots left (a Wyrmling has no hands; the Hollow Knight's armor is its own head, body, arms and legs);
-  - `barred` Year assignments (the Hollow Knight and the Wyrmling cannot use the Chapel);
+  - `job` fixes the Job (the Barrow Knight is a Knight and can take no other);
+  - `slots` are the gear slots left (a Wyrmling has no hands; the Barrow Knight's armor is its own head, body, arms and legs);
+  - `barred` Year assignments (the Barrow Knight and the Wyrmling cannot use the Chapel);
   - `upkeep` paid from the host House's Stores at each Reckoning. Short of it, the Scion loses 25% of their Sanity ceiling (`tuning.change.hungerSanityPct`, first pass).
-- Reading: "no healing from Holy" is a −50% to healing received for the Hollow Knight, because no heal has an element yet. Changes take one cell for now; a two-cell Wyrmling waits for the party's 2×4 grid.
+- Reading: "no healing from Holy" is a −50% to healing received for the Barrow Knight, because no heal has an element yet. Changes take one cell for now; a two-cell Wyrmling waits for the party's 2×4 grid.
 - **The effect** is `change` (an id), not `transform`, after Josh's word. `unchange` gives the old body back. Reading: the old body returns grown by the levels gained while Changed, with its old traits, injuries and Job. A second Change replaces the first, and the body kept is still the one they were born in.
 - **Events** can pick a Changed Scion: `scion:changed` and `scion:change:<id>` (§9.6: "some Forms count as a unique Scion").
 - **Everyone sees** a Scion's Change (`PersonView.change`); nobody sees the body it replaced.

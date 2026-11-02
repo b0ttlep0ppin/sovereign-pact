@@ -815,7 +815,7 @@ Resolved in the **Omens** step before the Settlement Phase opens:
 
 ### 9.6 Transformation
 
-A `change` effect replaces the Scion's base stats, growths, individual traits, look and injuries with a **Change** record (`content/changes.json`; Josh 2026-11-02: Form stays the Alterer's word) (e.g. Hollow Knight, Marsh Thing, Seraph Husk, Wyrmling). The Scion keeps: name, House, Tarot, level, JP and learned Jobs (if the Form allows Jobs; some Forms have a fixed Job), gear slots the Form allows, Loyalty. Forms are strong but strange: most have at least one severe restriction (cannot enter the Chapel; no healing from Holy; must eat Essence as upkeep). Some events can reverse a Form; some Forms count as a unique Scion for events.
+A `change` effect replaces the Scion's base stats, growths, individual traits, look and injuries with a **Change** record (`content/changes.json`; Josh 2026-11-02: Form stays the Alterer's word) (e.g. Barrow Knight, Marsh Thing, Seraph Husk, Wyrmling). The Scion keeps: name, House, Tarot, level, JP and learned Jobs (if the Form allows Jobs; some Forms have a fixed Job), gear slots the Form allows, Loyalty. Forms are strong but strange: most have at least one severe restriction (cannot enter the Chapel; no healing from Holy; must eat Essence as upkeep). Some events can reverse a Form; some Forms count as a unique Scion for events.
 
 ### 9.7 First expedition events (target 300+; 40 here)
 
@@ -834,7 +834,7 @@ A `change` effect replaces the Scion's base stats, growths, individual traits, l
 | The Saint's Tongue | pilgrimage | Kiss it (most Holy affinity) | Holy +15% permanent, or struck mute (ailment: Silence 3 battles) |
 | The Rot That Thinks | delve | Study (highest Sagacity) / burn / bargain | Alterer form unlocked; Sickly; a Curio |
 | Twins | general | One twin lies, one tells the truth (clever tag: highest Guile) | Fork: a safe path, a Cache, or a trap node |
-| The Armor That Walks | undead | Wear it (fewest kills) | Transform: Hollow Knight |
+| The Armor That Walks | undead | Wear it (fewest kills) | Transform: Barrow Knight |
 | The Lantern Keeper | general | Trade a memory (lowest Sanity) for light | Skip a node; Sanity −20%; a Lore clue |
 | The Rift Scar | general | Cross (leader) / go around (an extra Encounter node) | Random elemental affinity ±20% to all; or nothing |
 | The Field of Flowers | pilgrimage, hope | Rest here (vote) | Full Sanity and Durability. No catch. |
