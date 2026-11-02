@@ -1,0 +1,98 @@
+{
+  "id": "the_hanging_wood",
+  "pools": [
+    "hollow_wood"
+  ],
+  "weight": 3,
+  "band": [
+    2,
+    9
+  ],
+  "title": "The Hanging Wood",
+  "text": "Every branch for a mile holds a little bundle of cloth and string, swaying. Some of them are knotted round small bones. Some round teeth.",
+  "options": [
+    {
+      "id": "cut",
+      "label": "Cut one down and open it.",
+      "rule": "leader",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "Inside is a charm, old but strong.",
+          "effects": [
+            {
+              "item": {
+                "tier": 2
+              }
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "Inside is a name, and it is the leader's.",
+          "effects": [
+            {
+              "curse": true
+            },
+            {
+              "sanity": -10
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "add",
+      "label": "Tie up a bundle of your own, for luck.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The wood seems to settle around you.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 5
+            },
+            {
+              "blessing": {
+                "trait": "lucky",
+                "years": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "burn",
+      "label": "Burn a path through.",
+      "rule": "leader",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The wood burns screaming, and what comes out of it is not happy.",
+          "effects": [
+            {
+              "encounter": {
+                "level": 1
+              }
+            },
+            {
+              "doom": 1
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

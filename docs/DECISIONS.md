@@ -2,6 +2,10 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 7o: a second event for each pool) — implementer
+- **Built** (content only). A second pool event for each of the twelve regions: the White Stag (Beast Lands), the Hanging Wood (Hollow Wood), the Drowned Chapel (Drowned Marches), the Barrow Feast (Barrows), the Frozen Hunter (Deep Cold), the Bargain Pit (Pit), the Bellows Ghost (Forge Ruins), the Census Takers (Faceless City), the Heretic's Trial (Apostate Court), the Seventh Altar (Shrine of Six), the Wyrm Egg (Dragon Reaches) and the Still Traveler (Outer Dark). That makes 92 expedition events.
+- **Reading:** each uses only effects the rules already have; the Still Traveler is the first event outside the arc to use `foresee`, as the rarest kind of luck in the Outer Dark.
+
 ## 2026-11-02 (implementation, Milestone 7n: fourteen more general events) — implementer
 - **Built** (content only). Fourteen general expedition events, which can turn up on any card: the Toll Keeper, the Weeping Statue, the Lost Child, the Mirror Pool, the Rusted Army, the Merchant of Teeth, the Starving Pilgrims, the Warm Ashes, the Fallen Scion, the Whispering Well, the Bone Dice, the Red Rain, the Sleeping Giant and the Singing Skull. That makes 80 expedition events, 46 of them open to any card.
 - **Reading:** each uses only effects the rules already have. Each has a careful option, a bold or reckless one, and a clever, kind or cruel one, so a party's temper shows in what it picks.

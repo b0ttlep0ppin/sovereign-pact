@@ -1,0 +1,100 @@
+{
+  "id": "the_heretics_trial",
+  "pools": [
+    "apostate_court"
+  ],
+  "weight": 3,
+  "band": [
+    3,
+    10
+  ],
+  "title": "The Heretic's Trial",
+  "text": "A court in session: robed judges, a crowd, and in the dock a woman in chains who says she is innocent. The judges turn to the party for a verdict.",
+  "options": [
+    {
+      "id": "free",
+      "label": "Find her innocent.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 55,
+          "text": "The judges bow and unlock her. She was telling the truth.",
+          "effects": [
+            {
+              "score": {
+                "renown": 2
+              }
+            },
+            {
+              "to": "party",
+              "sanity": 5
+            }
+          ]
+        },
+        {
+          "w": 45,
+          "text": "The judges unlock her. She was not.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "ambush"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "condemn",
+      "label": "Find her guilty.",
+      "rule": "vote",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The court is pleased with you, in its way.",
+          "effects": [
+            {
+              "score": {
+                "intrigue": 2
+              }
+            },
+            {
+              "to": "party",
+              "sanity": -10
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "question",
+      "label": "The wisest cross-examines the judges.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It is not a trial. It was never a trial. You learn a great deal about how the court thinks.",
+          "effects": [
+            {
+              "score": {
+                "lore": 2
+              }
+            },
+            {
+              "xp": 100
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

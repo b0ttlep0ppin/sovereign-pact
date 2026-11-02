@@ -1,0 +1,98 @@
+{
+  "id": "the_bellows_ghost",
+  "pools": [
+    "forge_ruins"
+  ],
+  "weight": 3,
+  "band": [
+    2,
+    9
+  ],
+  "title": "The Bellows Ghost",
+  "text": "In a ruined forge, the bellows still pump on their own, and the coals glow for no one. An anvil holds a blade half made.",
+  "options": [
+    {
+      "id": "finish",
+      "label": "The strongest finishes the blade.",
+      "rule": "scion:highest:might",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 55,
+          "text": "The bellows breathe with the hammer, and the blade comes out fine.",
+          "effects": [
+            {
+              "item": {
+                "tier": 3
+              }
+            },
+            {
+              "xp": 80
+            }
+          ]
+        },
+        {
+          "w": 45,
+          "text": "The coals flare at the first stroke.",
+          "effects": [
+            {
+              "durability": -25,
+              "loc": "arms"
+            },
+            {
+              "status": "burn"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "salvage",
+      "label": "Take the iron and the tools.",
+      "rule": "leader",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Good iron, old tools, still sharp.",
+          "effects": [
+            {
+              "resources": {
+                "iron": 5
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bank",
+      "label": "Bank the fire, as a smith would.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The bellows sigh to a stop, as if someone could rest at last.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 8
+            },
+            {
+              "score": {
+                "lore": 1
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

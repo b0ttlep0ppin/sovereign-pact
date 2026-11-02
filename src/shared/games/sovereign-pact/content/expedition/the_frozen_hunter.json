@@ -1,0 +1,93 @@
+{
+  "id": "the_frozen_hunter",
+  "pools": [
+    "deep_cold"
+  ],
+  "weight": 3,
+  "band": [
+    3,
+    10
+  ],
+  "title": "The Frozen Hunter",
+  "text": "A hunter stands frozen mid-stride in clear ice, bow drawn, looking at something behind you.",
+  "options": [
+    {
+      "id": "free",
+      "label": "Cut the hunter free.",
+      "rule": "scion:highest:might",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "They thaw, gasping, and before they run they press their bow into your hands.",
+          "effects": [
+            {
+              "item": {
+                "tier": 2
+              }
+            },
+            {
+              "score": {
+                "renown": 1
+              }
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "They thaw, and they are still aiming at what is behind you.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "ambush"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "turn",
+      "label": "Turn round and look.",
+      "rule": "vote",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "You see it before it sees you.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "surprise"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "go",
+      "label": "Walk on and do not look back.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "You do not look back. It is very hard.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -8
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

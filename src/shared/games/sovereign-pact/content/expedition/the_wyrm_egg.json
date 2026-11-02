@@ -1,0 +1,103 @@
+{
+  "id": "the_wyrm_egg",
+  "pools": [
+    "dragon_reaches"
+  ],
+  "weight": 3,
+  "band": [
+    4,
+    10
+  ],
+  "title": "The Wyrm Egg",
+  "text": "A nest of scorched stone with one egg left in it, warm, and something moving inside.",
+  "options": [
+    {
+      "id": "take",
+      "label": "Take the egg.",
+      "rule": "leader",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 45,
+          "text": "Nothing comes back for it. The shell alone is worth a fortune.",
+          "effects": [
+            {
+              "resources": {
+                "wyrmbone": 2
+              }
+            },
+            {
+              "score": {
+                "relics": 1
+              }
+            }
+          ]
+        },
+        {
+          "w": 55,
+          "text": "Its mother comes back for it.",
+          "effects": [
+            {
+              "encounter": {
+                "level": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "smash",
+      "label": "Smash it.",
+      "rule": "leader",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "There will be one fewer wyrm in the reaches.",
+          "effects": [
+            {
+              "score": {
+                "valor": 2
+              }
+            },
+            {
+              "to": "party",
+              "sanity": -5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "guard",
+      "label": "Keep it warm until its mother comes.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "She comes at dusk, and looks at you for a long time, and lets you go.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 10
+            },
+            {
+              "blessing": {
+                "trait": "stout_hearted",
+                "years": 2
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,93 @@
+{
+  "id": "the_drowned_chapel",
+  "pools": [
+    "drowned_marches"
+  ],
+  "weight": 3,
+  "band": [
+    1,
+    8
+  ],
+  "title": "The Drowned Chapel",
+  "text": "A chapel roof sticks out of the marsh, its doors under water. The water inside is perfectly clear, and candles are lit on the altar below.",
+  "options": [
+    {
+      "id": "dive",
+      "label": "The hardiest dives for the altar plate.",
+      "rule": "scion:highest:resilience",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 55,
+          "text": "They come up gasping with silver in their arms.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 20
+              }
+            },
+            {
+              "score": {
+                "relics": 1
+              }
+            }
+          ]
+        },
+        {
+          "w": 45,
+          "text": "Something down there holds on.",
+          "effects": [
+            {
+              "durability": -30,
+              "loc": "body"
+            },
+            {
+              "sanity": -15
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pray",
+      "label": "Pray from the roof.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The candles flare, and the marsh is quieter for a while.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 8
+            },
+            {
+              "to": "party",
+              "status": "protect"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "leave",
+      "label": "Leave it to the water.",
+      "rule": "leader",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The candles watch you go.",
+          "effects": []
+        }
+      ]
+    }
+  ]
+}

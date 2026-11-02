@@ -1,0 +1,94 @@
+{
+  "id": "the_faceless_census",
+  "pools": [
+    "faceless_city"
+  ],
+  "weight": 3,
+  "band": [
+    3,
+    10
+  ],
+  "title": "The Census Takers",
+  "text": "Two blank-faced clerks with ledgers stop the party at a crossing. Everyone in the city must be counted. They would like your names.",
+  "options": [
+    {
+      "id": "truth",
+      "label": "Give your true names.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "They write them down with care. Now the city knows you, for better and worse.",
+          "effects": [
+            {
+              "to": "party",
+              "xp": 30
+            },
+            {
+              "doom": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lie",
+      "label": "The craftiest gives false ones for everyone.",
+      "rule": "scion:highest:guile",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "They write them down. Somewhere a ledger now lists people who never were.",
+          "effects": [
+            {
+              "score": {
+                "intrigue": 2
+              }
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "They write them down, then look up. Nobody has a face to look up with.",
+          "effects": [
+            {
+              "encounter": {}
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ledger",
+      "label": "Take the ledger.",
+      "rule": "leader",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The city screams.",
+          "effects": [
+            {
+              "score": {
+                "lore": 2
+              }
+            },
+            {
+              "encounter": {
+                "level": 1
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,104 @@
+{
+  "id": "the_barrow_feast",
+  "pools": [
+    "barrows"
+  ],
+  "weight": 3,
+  "band": [
+    2,
+    9
+  ],
+  "title": "The Barrow Feast",
+  "text": "A barrow door stands open on a hall laid for a feast, the dead seated at the table in their finery. There is an empty place, set fresh.",
+  "options": [
+    {
+      "id": "sit",
+      "label": "The leader takes the empty place.",
+      "rule": "leader",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 45,
+          "text": "The dead drink to the living all night, and give a gift at parting.",
+          "effects": [
+            {
+              "item": {
+                "tier": 3
+              }
+            },
+            {
+              "score": {
+                "renown": 1
+              }
+            }
+          ]
+        },
+        {
+          "w": 55,
+          "text": "The place was set for someone who meant to stay.",
+          "effects": [
+            {
+              "sanity": -25
+            },
+            {
+              "status": "sleep"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "toast",
+      "label": "Raise a cup from the door, and go.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "They raise theirs back.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 5
+            },
+            {
+              "score": {
+                "lore": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rob",
+      "label": "Take the silver off the table.",
+      "rule": "leader",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The dead stand up.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 15
+              }
+            },
+            {
+              "encounter": {
+                "modifier": "ambush"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
