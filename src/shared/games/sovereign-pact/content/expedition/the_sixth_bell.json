@@ -1,0 +1,91 @@
+{
+  "id": "the_sixth_bell",
+  "pools": [
+    "shrine_of_six"
+  ],
+  "weight": 2,
+  "band": [
+    4,
+    10
+  ],
+  "title": "The Sixth Bell",
+  "text": "Six bells hang in the Shrine's tower; five are cracked. Ringing the last whole one, the monks say, is a prayer answered.",
+  "options": [
+    {
+      "id": "ring",
+      "label": "Ring it.",
+      "rule": "vote",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The note goes on for a long time.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 15
+            },
+            {
+              "to": "party",
+              "mp": 20
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "devout",
+      "label": "The devout asks what it would cost.",
+      "rule": "scion:trait:devout|scion:highest:sagacity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The monks tell them, and the price is fair.",
+          "effects": [
+            {
+              "blessing": {
+                "trait": "stout_hearted",
+                "years": 2
+              }
+            },
+            {
+              "resources": {
+                "gold": -10
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "take",
+      "label": "Take it down. A whole bell is worth a fortune.",
+      "rule": "leader",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Heavy, and the monks curse you.",
+          "effects": [
+            {
+              "resources": {
+                "iron": 6,
+                "gold": 20
+              }
+            },
+            {
+              "curse": true
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

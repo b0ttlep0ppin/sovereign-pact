@@ -1,0 +1,93 @@
+{
+  "id": "the_masked_judge",
+  "pools": [
+    "faceless_city"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    9
+  ],
+  "title": "The Masked Judge",
+  "text": "A judge in a blank mask holds court in the street, and you are accused, though of what no one will say.",
+  "options": [
+    {
+      "id": "plead",
+      "label": "The smoothest pleads.",
+      "rule": "scion:highest:guile",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "Acquitted, and the crowd cheers.",
+          "effects": [
+            {
+              "score": {
+                "intrigue": 2
+              }
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "Guilty.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -20
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "confess",
+      "label": "Confess to anything.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A small fine, and a long stare.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -10
+              }
+            },
+            {
+              "to": "party",
+              "sanity": -3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "unmask",
+      "label": "Unmask the judge.",
+      "rule": "leader",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Under the mask, another mask, and the court rises.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "ambush"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

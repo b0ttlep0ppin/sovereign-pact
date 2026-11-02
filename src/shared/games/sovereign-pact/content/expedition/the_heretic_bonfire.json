@@ -1,0 +1,86 @@
+{
+  "id": "the_heretic_bonfire",
+  "pools": [
+    "apostate_court"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    9
+  ],
+  "title": "The Heretic's Bonfire",
+  "text": "The Court's zealots are burning books. A novice weeps and slips a page into your hands.",
+  "options": [
+    {
+      "id": "read",
+      "label": "The wisest reads the page.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A lost rite of the Six.",
+          "effects": [
+            {
+              "score": {
+                "lore": 2
+              }
+            },
+            {
+              "jp": 40
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "save",
+      "label": "Save the books.",
+      "rule": "vote",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The zealots turn on you.",
+          "effects": [
+            {
+              "encounter": {}
+            },
+            {
+              "score": {
+                "lore": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "burn",
+      "label": "Throw the page in too.",
+      "rule": "leader",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The zealots bless you.",
+          "effects": [
+            {
+              "to": "party",
+              "status": "protect"
+            },
+            {
+              "doom": 1
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

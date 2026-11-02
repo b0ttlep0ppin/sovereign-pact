@@ -1,0 +1,91 @@
+{
+  "id": "the_floating_market",
+  "pools": [
+    "drowned_marches"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    7
+  ],
+  "title": "The Floating Market",
+  "text": "Rafts lashed together in the fog: a market of the drowned, selling things the marsh took.",
+  "options": [
+    {
+      "id": "buy",
+      "label": "Buy something.",
+      "rule": "vote",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A drowned soldier's gear, cleaned.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -15
+              }
+            },
+            {
+              "item": {
+                "tier": 2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "haggle",
+      "label": "The shrewdest haggles.",
+      "rule": "scion:highest:guile",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A good price, and gossip.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -5
+              }
+            },
+            {
+              "item": {
+                "tier": 2
+              }
+            },
+            {
+              "score": {
+                "intrigue": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "weak",
+      "label": "The weakest swimmer stays on the shore.",
+      "rule": "scion:lowest:resilience|scion:random",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The rafts drift off while they wait. They are alone a while.",
+          "effects": [
+            {
+              "sanity": -10
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

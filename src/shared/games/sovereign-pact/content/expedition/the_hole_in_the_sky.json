@@ -1,0 +1,94 @@
+{
+  "id": "the_hole_in_the_sky",
+  "pools": [
+    "outer_dark"
+  ],
+  "weight": 2,
+  "band": [
+    6,
+    10
+  ],
+  "title": "The Hole in the Sky",
+  "text": "There is a hole in the sky above the road, and something on the other side is looking down.",
+  "options": [
+    {
+      "id": "look",
+      "label": "The bravest looks back.",
+      "rule": "scion:trait:brave|scion:highest:resilience",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "It blinks first.",
+          "effects": [
+            {
+              "score": {
+                "valor": 3
+              }
+            },
+            {
+              "xp": 120
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "It does not blink.",
+          "effects": [
+            {
+              "sanity": -25
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cover",
+      "label": "Cover your eyes and walk.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "You walk blind for a mile.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -5
+            },
+            {
+              "to": "party",
+              "status": "slow"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "signal",
+      "label": "Signal it.",
+      "rule": "leader",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Something comes down.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "surprise",
+                "level": 1
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

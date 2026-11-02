@@ -1,0 +1,101 @@
+{
+  "id": "the_boar_king",
+  "pools": [
+    "beast_lands"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    6
+  ],
+  "title": "The Boar King",
+  "text": "Pigs as big as carts root through a ruined village. The biggest wears a rusted crown on one tusk.",
+  "options": [
+    {
+      "id": "crown",
+      "label": "The quickest snatches the crown.",
+      "rule": "scion:highest:speed",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "Crown in hand, and the whole herd behind.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 20
+              }
+            },
+            {
+              "encounter": {
+                "modifier": "surprise"
+              }
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "Too slow.",
+          "effects": [
+            {
+              "durability": -40,
+              "loc": "legs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "feed",
+      "label": "Leave food and slip past.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The herd is busy. You are not interesting.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -5
+              }
+            },
+            {
+              "skip": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hunt",
+      "label": "Hunt the king.",
+      "rule": "leader",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It is a king for a reason.",
+          "effects": [
+            {
+              "encounter": {
+                "level": 1
+              }
+            },
+            {
+              "score": {
+                "valor": 2
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

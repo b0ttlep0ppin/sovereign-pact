@@ -1,0 +1,99 @@
+{
+  "id": "the_ice_bridge",
+  "pools": [
+    "deep_cold"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    8
+  ],
+  "title": "The Ice Bridge",
+  "text": "A bridge of clear ice spans a chasm. Frozen inside it, other travelers, still walking.",
+  "options": [
+    {
+      "id": "cross",
+      "label": "Cross quickly.",
+      "rule": "vote",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 80,
+          "text": "Across, with the frozen faces watching.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -5
+            }
+          ]
+        },
+        {
+          "w": 20,
+          "text": "The ice cracks under the slowest.",
+          "effects": [
+            {
+              "durability": -30,
+              "loc": "legs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "slow",
+      "label": "The slowest goes last, roped.",
+      "rule": "scion:lowest:speed|scion:random",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Safe, but the cold gets into them.",
+          "effects": [
+            {
+              "status": "slow"
+            },
+            {
+              "sanity": -5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "free",
+      "label": "Cut a traveler out of the ice.",
+      "rule": "scion:highest:might",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "They thaw, and give thanks with a ring.",
+          "effects": [
+            {
+              "item": {
+                "tier": 2
+              }
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "They thaw, and they are not grateful.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "surprise"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "id": "the_pilgrims_well",
+  "pools": [
+    "pilgrimage"
+  ],
+  "weight": 3,
+  "band": [
+    1,
+    10
+  ],
+  "title": "The Pilgrims' Well",
+  "text": "Every pilgrim on this road drops a coin here and makes a wish. The well is full to the brim with them.",
+  "options": [
+    {
+      "id": "wish",
+      "label": "Drop a coin and wish.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Something lightens.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -5
+              }
+            },
+            {
+              "to": "party",
+              "sanity": 8
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "take",
+      "label": "Take the coins.",
+      "rule": "leader",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A fortune, and every wish in it.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 30
+              }
+            },
+            {
+              "doom": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pray",
+      "label": "The devout prays over it.",
+      "rule": "scion:trait:devout|scion:most_healing",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The well blesses them back.",
+          "effects": [
+            {
+              "blessing": {
+                "trait": "lucky",
+                "years": 1
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
