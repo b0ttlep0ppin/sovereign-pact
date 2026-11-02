@@ -69,6 +69,16 @@ export const STATUSES: Record<string, StatusMeta> = {
   rooted: { kind: "physical", ticks: 200 },
   /** Wine (§13.7): its Accuracy malus rides in its mods. */
   tipsy: { kind: "debuff", ticks: 100 },
+  /** Consumables (§13.7), their effects in their mods: a weapon edge (Ember Oil, Brine, Stormwax)… */
+  edged: { kind: "buff", ticks: 0 },
+  /** …Oathwine's +damage… */
+  oathbound: { kind: "buff", ticks: 0 },
+  /** …Grave Dust's Turning: the undead flee as if Afraid, though they are fearless… */
+  turned: { kind: "debuff", ticks: 200 },
+  /** …the Mourning Veil's Sanity-proofing… */
+  veiled: { kind: "buff", ticks: 0 },
+  /** …and Blackroot Chew's Durability each turn. */
+  blackroot: { kind: "buff", ticks: 300 },
   /** Answers the next melee blow with a counter, then ends (§14.7 the Cursed King's Royal Parry). */
   parry: { kind: "buff", ticks: 300 },
   /** Under the water (§14.6 Scylla): nothing can target or reach it, area or not, until it surfaces. */

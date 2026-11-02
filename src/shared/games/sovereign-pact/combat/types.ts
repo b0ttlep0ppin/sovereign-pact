@@ -102,6 +102,12 @@ export interface AbilityDef {
   statuses?: { id: string; chance: number; ticks: number; value?: number; tag?: string; mods?: Record<string, number> }[];
   /** Readiness damage (CT taken from each target). */
   readiness?: number;
+  /** Readiness taken from a boss it hits, in place of its statuses' bite (Grave Dust, §13.7). */
+  bossReadiness?: number;
+  /** Only the user's own House's Scions take its effects (Oathwine, §13.7). */
+  ownHouse?: boolean;
+  /** Cast as this Job active, at charge 0 and no MP (a Scroll, §13.7). */
+  cast?: string;
   /** Hits per target. */
   hits?: number;
   accuracy?: number;

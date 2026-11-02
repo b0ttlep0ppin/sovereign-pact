@@ -143,8 +143,8 @@ function approach(b: Battle, rng: Rng, u: Combatant, ab: AbilityDef, rule?: stri
 /** A plan for the actor: the mental statuses first, then its gambits in order, then attack or Defend. */
 export function decide(b: Battle, rng: Rng, u: Combatant): Plan {
   const attack = abilityOf(u, "attack")!;
-  if (hasStatus(u, "fear")) {
-    // Must move away or Wait (§10.8).
+  if (hasStatus(u, "fear") || hasStatus(u, "turned")) {
+    // Must move away or Wait (§10.8); the Turned undead too (Grave Dust, §13.7).
     const back = u.col + 1;
     if (back < 3 && !u.mods.noMove && !hasStatus(u, "rooted") && isFree(b, u.side, back, u.row, u.size, u.id)) return { move: [back, u.row], action: { do: "wait" } };
     return { action: { do: "wait" } };

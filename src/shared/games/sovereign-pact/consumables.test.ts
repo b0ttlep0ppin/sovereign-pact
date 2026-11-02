@@ -3,7 +3,7 @@ import { describe, expect, it } from "vitest";
 import { STATUSES } from "./combat/status.ts";
 import { botBuyConsumable, botPack, consumablePrice, held, packRoom, soldAt, unpack } from "./consumables.ts";
 import { able, muster } from "./expedition.ts";
-import { BUILDINGS, CONSUMABLES, CONSUMABLE_BY_ID, PROJECT_BY_ID } from "./content.ts";
+import { ACTIVE_BY_ID, BUILDINGS, CONSUMABLES, CONSUMABLE_BY_ID, PROJECT_BY_ID } from "./content.ts";
 import { sovereignPact as g } from "./index.ts";
 import type { SovState } from "./state.ts";
 import { calm, campaign } from "./testing.ts";
@@ -31,6 +31,7 @@ describe("the consumables' content", () => {
       expect(c.battle || c.special, c.id).toBeTruthy();
       if (c.use !== "battle") expect(c.special, c.id).toBeTruthy();
       for (const st of c.battle?.statuses ?? []) expect(STATUSES[st.id], `${c.id}: ${st.id}`).toBeDefined();
+      if (c.battle?.cast) expect(ACTIVE_BY_ID.has(c.battle.cast), `${c.id}: ${c.battle.cast}`).toBe(true);
     }
   });
 });

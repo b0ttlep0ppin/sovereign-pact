@@ -2,6 +2,22 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 7ay): the hand-coded battle items, as data
+
+- Most of §13.7's "special" battle items are now plain battle data, using four small additions to abilities: a status may name a `tag` (only targets with it take the status), `ownHouse` (only the user's House's Scions take the effects), `bossReadiness`, and `cast` (a Job active cast at once).
+  - Ember Oil, Brine and Stormwax give the Scion's weapon a fire, water or wind edge (status `edged`) for the battle. A new edge replaces the old one.
+  - Oathwine gives every Scion of the user's House on the field +10% damage (`oathbound`) for the battle.
+  - Blackroot Chew mends 5% of every location's Durability at the start of each turn for 300 ticks (`durPctPerTurn`).
+  - Hollow Ivory Dust Stuns the undead and constructs in a cross.
+  - Wine no longer makes a Scion of the Fond of Wine Tipsy (the trait gains `immune.tipsy`).
+- Readings:
+  - Grave Dust: 18 of the 24 undead enemies are immune to Fear, so the dust inflicts its own status, Turned. A Turned enemy flees as the Afraid do, fearless or not. A boss it hits loses 30 Readiness on top.
+  - The Mourning Veil's cost, "Sanity −10% after", is paid when the veil is worn. It then makes the Scion take no Sanity damage and immune to Fear for the battle (`veiled`). Paying up front keeps the cost in the battle that bought the protection.
+  - Blackroot's "Sanity −5" is read as 5% of maximum Sanity, like every other Sanity cost on a consumable.
+  - The one generic Scroll ("names its spell when found") is now five Scrolls, each naming its spell: Firestorm, Glacier, Tempest, Mending Rain and Breath of Life. A Scroll casts its spell at once, for no MP, from the reader's own stats.
+  - Bots use Grave Dust and Hollow Ivory Dust once two of their targets stand, and Oathwine once three foes stand and no Scion of their House has drunk it yet.
+- Still hand-coded, for 7az: Thief's Candle, the Bottled Chorus and the Component Pouch in battle, and the camp, node, held and town items.
+
 ## 2026-11-02 (implementation, Milestone 7ax): consumables in battle
 
 - Any Scion may use a consumable from the party satchel as its action (`{do: "item"}`), for 100 CT, or 60 under the Vagabond's Quick Hands (`itemCt`). Each consumable acts as the ability its content describes: Tonics heal, salves mend Durability, Antidotes and Clarity Draughts cure, Smelling Salts revive, Ethers restore MP (a new `mpPct`), bombs strike a 3×3, and Nets root. What a battle uses leaves the expedition's satchel, the first packed of its kind first.

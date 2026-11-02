@@ -101,3 +101,86 @@ describe("bots and the satchel", () => {
     expect(decide(b, rng(), unitOf(b, 1)).action).toMatchObject({ do: "item", item: "firebomb" });
   });
 });
+
+describe("the hand-coded battle items (§13.7)", () => {
+  /** Unit 1 uses `item` at `on`'s cell, with resists out of the way. */
+  const use = (b: Battle, item: string, on: Combatant) => {
+    for (const x of b.units) x.resist = { physical: 0, mental: 0 };
+    b.actor = 1;
+    b.acted = false;
+    act(b, rng(), unitOf(b, 1), { do: "item", item, target: cellOf(on) });
+  };
+  const has = (u: Combatant, id: string) => u.statuses.some((s) => s.id === id);
+
+  it("Grave Dust turns the undead, fearless or not, and takes Readiness from a boss", () => {
+    const bat = enemyCombatant("beast_bat", { id: 10, level: 2, col: 1, row: 0 });
+    const boss = { ...enemy(11, 2, 2), boss: true, ct: 80 };
+    const b = fight(["grave_dust"], scion(1, 0, 0), enemy(9, 1, 1), bat, boss);
+    use(b, "grave_dust", unitOf(b, 9));
+    expect(has(unitOf(b, 9), "turned")).toBe(true);
+    expect(has(unitOf(b, 10), "turned")).toBe(false);
+    expect(unitOf(b, 11).ct).toBe(50);
+    // The Turned flee as the Afraid do.
+    expect(decide(b, rng(), unitOf(b, 9)).action).toEqual({ do: "wait" });
+  });
+
+  it("Hollow Ivory Dust stuns the undead and constructs in a cross, no one else", () => {
+    const bat = enemyCombatant("beast_bat", { id: 10, level: 2, col: 0, row: 1 });
+    const b = fight(["hollow_ivory_dust"], scion(1, 0, 0), enemy(9, 1, 1), bat);
+    use(b, "hollow_ivory_dust", unitOf(b, 9));
+    expect(has(unitOf(b, 9), "stun")).toBe(true);
+    expect(has(unitOf(b, 10), "stun")).toBe(false);
+  });
+
+  it("gives a weapon an edge for the battle, one edge at a time", () => {
+    const b = fight(["ember_oil", "brine"], scion(1, 0, 0), enemy(9, 0, 0));
+    const u = unitOf(b, 1);
+    use(b, "ember_oil", u);
+    expect(u.mods["enchant.fire"]).toBe(1);
+    use(b, "brine", u);
+    expect(u.mods["enchant.fire"]).toBeUndefined();
+    expect(u.mods["enchant.water"]).toBe(1);
+  });
+
+  it("Oathwine strengthens the user's own House, not its allies'", () => {
+    const b = fight(["oathwine"], scion(1, 0, 0, { house: 0 }), scion(2, 0, 1, { house: 0 }), scion(3, 1, 0, { house: 1 }), enemy(9, 0, 0));
+    use(b, "oathwine", unitOf(b, 1));
+    expect([1, 2, 3].map((id) => unitOf(b, id).mods.damagePct ?? 0)).toEqual([10, 10, 0]);
+  });
+
+  it("the Mourning Veil costs Sanity, then keeps the rest; Blackroot mends at each turn for Sanity", () => {
+    const b = fight(["mourning_veil", "blackroot_chew"], scion(1, 0, 0), enemy(9, 0, 0));
+    const u = unitOf(b, 1);
+    const sanity = u.sanity;
+    use(b, "mourning_veil", u);
+    expect(u.sanity).toBe(sanity + Math.round((u.maxSanity * -10) / 100));
+    expect(u.mods.sanityTakenPct).toBe(-100);
+    expect(addStatus(b, u, "fear", 300)).toBe(false);
+    use(b, "blackroot_chew", u);
+    expect(u.mods.durPctPerTurn).toBe(5);
+    expect(has(u, "blackroot")).toBe(true);
+  });
+
+  it("a Scroll casts its spell at once for no MP; Wine leaves the Fond of Wine steady", () => {
+    const b = fight(["scroll_of_mending_rain", "wine"], scion(1, 0, 0), scion(2, 0, 1, { hp: 1 }), enemy(9, 0, 0));
+    const u = unitOf(b, 1);
+    const mp = u.mp;
+    use(b, "scroll_of_mending_rain", unitOf(b, 2));
+    expect(unitOf(b, 2).hp).toBeGreaterThan(1);
+    expect(u.mp).toBe(mp);
+    expect(u.charge).toBeUndefined();
+    u.mods["immune.tipsy"] = 1;
+    use(b, "wine", u);
+    expect(has(u, "tipsy")).toBe(false);
+  });
+
+  it("bots dust the dead and pour Oathwine when the field is full", () => {
+    const b = fight(["grave_dust"], scion(1, 0, 0), enemy(9, 0, 0), enemy(10, 1, 0));
+    expect(itemPlan(b, unitOf(b, 1))).toMatchObject({ do: "item", item: "grave_dust" });
+    b.satchel = ["oathwine"];
+    b.units.push(enemy(11, 2, 0));
+    expect(itemPlan(b, unitOf(b, 1))).toMatchObject({ do: "item", item: "oathwine" });
+    addStatus(b, unitOf(b, 1), "oathbound", 0);
+    expect(itemPlan(b, unitOf(b, 1))).toBe(undefined);
+  });
+});
