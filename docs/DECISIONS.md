@@ -2,6 +2,15 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 8am): Scion melee is lenient about rows
+
+- Josh: "Need more leniency on targeting melee and stuff like that." Before this, a Scion's sword reached only the front-most foe in its own row, so a Scion one row off from every foe had nothing to swing at.
+- Josh, a few minutes later: "Most front rank units should be able to target front rank enemies, and maybe middle or back rank enemies if not blocked; we don't want melee to be too weak."
+- So Scion melee reaches the front-most foe of every row: any foe with nothing standing in front of it, whichever row the Scion stands in.
+- Column rules stay as they were: Middle reaches only E1–E2, and Back needs a reach weapon.
+- Enemy melee keeps the strict rule (§10.3), so the change helps the players and does not make enemies hit harder.
+- Knobs: `tuning.combat.scionMelee` `{ rowReach: 7, nearestIfNone: true }`, where 7 means every row. A smaller `rowReach` gives the nearby-rows version. SPEC §10.3 updated.
+
 ## 2026-11-02 (implementation, Milestone 8al): hair under headwear, and a headwear switch
 
 - Josh asked for a headwear toggle, and for hair to be drawn under headwear so it sometimes shows.

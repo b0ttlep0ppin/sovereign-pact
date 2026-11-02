@@ -145,6 +145,22 @@ describe("reach and targeting (§10.3)", () => {
     expect(singleTargets(battle(mid, e), mid, HIT).map((x) => x.id)).toEqual([9]);
   });
 
+  it("lets Scion melee reach any foe with nothing in front of it, in any row (8am)", () => {
+    const u = scion(1, 0, 3);
+    const front = enemy(8, 0, 2);
+    const unblocked = enemy(9, 1, 6);
+    const blocked = enemy(7, 2, 2);
+    expect(singleTargets(battle(u, front, unblocked, blocked), u, HIT).map((x) => x.id).sort()).toEqual([8, 9]);
+    // Middle still reaches only E1–E2, and Back needs a reach weapon.
+    const mid = scion(2, 1, 3);
+    expect(singleTargets(battle(mid, enemy(6, 2, 7), enemy(5, 1, 0)), mid, HIT).map((x) => x.id)).toEqual([5]);
+    const back = scion(3, 2, 3);
+    expect(singleTargets(battle(back, front), back, HIT)).toEqual([]);
+    // Enemy melee keeps the strict rule (§10.3): only its own rows.
+    const e = enemy(9, 0, 3);
+    expect(meleeTargets(battle(scion(4, 0, 4), e), e)).toEqual([]);
+  });
+
   it("weights single targets 45/35/20 by column and passes an empty column's weight back", () => {
     const rng = createRng(5);
     const units = [scion(1, 0, 1), scion(2, 1, 1), scion(3, 2, 1)];
