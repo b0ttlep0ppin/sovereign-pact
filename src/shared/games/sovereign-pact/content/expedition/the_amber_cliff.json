@@ -1,0 +1,92 @@
+{
+  "id": "the_amber_cliff",
+  "pools": [
+    "resource"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    10
+  ],
+  "title": "The Amber Cliff",
+  "text": "A cliff of amber, with things caught inside: insects, birds, a man.",
+  "options": [
+    {
+      "id": "cut",
+      "label": "Cut amber.",
+      "rule": "vote",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Worth its weight in essence.",
+          "effects": [
+            {
+              "resources": {
+                "essence": 5
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "free",
+      "label": "Cut the man out.",
+      "rule": "scion:highest:might",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "He breathes, and thanks you, and pays in old coin.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 20
+              }
+            },
+            {
+              "score": {
+                "renown": 1
+              }
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "He breathes, and he is not a man.",
+          "effects": [
+            {
+              "encounter": {}
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "study",
+      "label": "The wisest studies the insects.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Old creatures, long gone.",
+          "effects": [
+            {
+              "score": {
+                "lore": 2
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

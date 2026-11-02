@@ -1,0 +1,81 @@
+{
+  "id": "the_cage_cart",
+  "pools": [
+    "rescue"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    10
+  ],
+  "title": "The Cage Cart",
+  "text": "A slaver's cart, its cages empty but for scratched names. One of them is a Scion's.",
+  "options": [
+    {
+      "id": "follow",
+      "label": "Follow the cart's ruts.",
+      "rule": "vote",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "To the slavers' camp.",
+          "effects": [
+            {
+              "encounter": {}
+            },
+            {
+              "skip": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "names",
+      "label": "The wisest reads all the names.",
+      "rule": "scion:highest:sagacity",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Where they were sold, and to whom.",
+          "effects": [
+            {
+              "foresee": true
+            },
+            {
+              "to": "party",
+              "sanity": -5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "burn",
+      "label": "Burn the cart.",
+      "rule": "leader",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The slavers will see the smoke.",
+          "effects": [
+            {
+              "score": {
+                "valor": 1
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

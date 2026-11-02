@@ -1,0 +1,57 @@
+{
+  "id": "the_shrine_of_feet",
+  "pools": [
+    "pilgrimage"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    10
+  ],
+  "title": "The Shrine of Feet",
+  "text": "A shrine hung with the worn shoes of a thousand pilgrims. Leave yours, the monks say, and walk on blessed.",
+  "options": [
+    {
+      "id": "leave",
+      "label": "Each leaves their shoes.",
+      "rule": "each_scion",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Blessed, and barefoot.",
+          "effects": [
+            {
+              "sanity": 8
+            },
+            {
+              "durability": -15,
+              "loc": "legs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "keep",
+      "label": "Each keeps their shoes.",
+      "rule": "each_scion",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The monks shake their heads.",
+          "effects": [
+            {
+              "sanity": -2
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

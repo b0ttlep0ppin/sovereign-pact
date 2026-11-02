@@ -1,0 +1,86 @@
+{
+  "id": "the_quarrys_lair_mouth",
+  "pools": [
+    "hunt"
+  ],
+  "weight": 2,
+  "band": [
+    3,
+    10
+  ],
+  "title": "The Lair Mouth",
+  "text": "The quarry's lair: a cave mouth littered with the bones of hunters who came before.",
+  "options": [
+    {
+      "id": "smoke",
+      "label": "Smoke it out.",
+      "rule": "vote",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It comes out angry.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "surprise"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "enter",
+      "label": "Go in after it.",
+      "rule": "leader",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "In its own den.",
+          "effects": [
+            {
+              "encounter": {
+                "modifier": "ambush"
+              }
+            },
+            {
+              "score": {
+                "valor": 2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "loot",
+      "label": "The quickest loots the dead hunters first.",
+      "rule": "scion:highest:speed",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A good bow, and the quarry wakes.",
+          "effects": [
+            {
+              "item": {
+                "tier": 2
+              }
+            },
+            {
+              "encounter": {}
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

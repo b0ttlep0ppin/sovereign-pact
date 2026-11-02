@@ -1,0 +1,88 @@
+{
+  "id": "the_bat_roost",
+  "pools": [
+    "delve"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    10
+  ],
+  "title": "The Bat Roost",
+  "text": "Ten thousand bats hang from the ceiling of the passage. The floor is deep in their droppings.",
+  "options": [
+    {
+      "id": "quiet",
+      "label": "Creep under them.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 80,
+          "text": "They sleep.",
+          "effects": []
+        },
+        {
+          "w": 20,
+          "text": "They wake.",
+          "effects": [
+            {
+              "to": "party",
+              "status": "confusion"
+            },
+            {
+              "to": "party",
+              "sanity": -5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "guano",
+      "label": "Gather the guano. Smiths pay for it.",
+      "rule": "leader",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Foul, profitable.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 15
+              }
+            },
+            {
+              "to": "party",
+              "sanity": -3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fire",
+      "label": "The strongest lights a torch and drives them out.",
+      "rule": "scion:highest:might",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "They go, and something big that ate them comes in.",
+          "effects": [
+            {
+              "encounter": {}
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

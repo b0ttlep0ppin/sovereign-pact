@@ -1,0 +1,76 @@
+{
+  "id": "the_wounded_hunter",
+  "pools": [
+    "hunt"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    10
+  ],
+  "title": "The Wounded Hunter",
+  "text": "A hunter from another House, mauled by your quarry, begs for help.",
+  "options": [
+    {
+      "id": "help",
+      "label": "The healer helps.",
+      "rule": "scion:most_healing|scion:random",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "He tells you how it fights.",
+          "effects": [
+            {
+              "to": "party",
+              "status": "protect"
+            },
+            {
+              "accord": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "leave",
+      "label": "Leave him.",
+      "rule": "leader",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "His House will hear.",
+          "effects": [
+            {
+              "accord": -2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ask",
+      "label": "Ask what he saw, then go.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Enough to go on.",
+          "effects": [
+            {
+              "foresee": true
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

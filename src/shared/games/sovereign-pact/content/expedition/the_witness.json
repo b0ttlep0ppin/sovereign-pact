@@ -1,0 +1,81 @@
+{
+  "id": "the_witness",
+  "pools": [
+    "rescue"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    10
+  ],
+  "title": "The Witness",
+  "text": "A shepherd saw the Lost pass, a week ago, and will say which way for a price.",
+  "options": [
+    {
+      "id": "pay",
+      "label": "Pay him.",
+      "rule": "vote",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "He points.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -10
+              }
+            },
+            {
+              "skip": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "charm",
+      "label": "The smoothest charms it out of him.",
+      "rule": "scion:highest:guile",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "He tells it for free, and more besides.",
+          "effects": [
+            {
+              "skip": 1
+            },
+            {
+              "foresee": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "frighten",
+      "label": "The strongest frightens it out of him.",
+      "rule": "scion:highest:might",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "He points the wrong way.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -3
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

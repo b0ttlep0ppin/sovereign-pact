@@ -1,0 +1,86 @@
+{
+  "id": "the_hunters_shrine",
+  "pools": [
+    "hunt"
+  ],
+  "weight": 2,
+  "band": [
+    2,
+    10
+  ],
+  "title": "The Hunters' Shrine",
+  "text": "A shrine of skulls where hunters ask the hunt's spirit for luck.",
+  "options": [
+    {
+      "id": "pray",
+      "label": "The most blooded prays.",
+      "rule": "scion:most_kills|scion:highest:might",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The spirit answers.",
+          "effects": [
+            {
+              "blessing": {
+                "trait": "lucky",
+                "years": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "offer",
+      "label": "Leave an offering.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A little luck.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -5
+              }
+            },
+            {
+              "to": "party",
+              "status": "haste"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "skull",
+      "label": "Take a skull.",
+      "rule": "leader",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The spirit is displeased.",
+          "effects": [
+            {
+              "curse": true
+            },
+            {
+              "resources": {
+                "wyrmbone": 1
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

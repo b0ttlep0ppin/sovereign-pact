@@ -1,0 +1,78 @@
+{
+  "id": "the_bloody_boot",
+  "pools": [
+    "rescue"
+  ],
+  "weight": 2,
+  "band": [
+    1,
+    10
+  ],
+  "title": "The Bloody Boot",
+  "text": "A boot in the mud, a Scion's, with the House's stitching. The foot is not in it.",
+  "options": [
+    {
+      "id": "track",
+      "label": "The sharpest eye reads the ground.",
+      "rule": "scion:highest:acuity",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Barefoot tracks, limping. Alive.",
+          "effects": [
+            {
+              "skip": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "carry",
+      "label": "Carry it along for them.",
+      "rule": "vote",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A small hope in the pack.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fear",
+      "label": "The leader fears the worst and hurries.",
+      "rule": "leader",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Faster, and careless.",
+          "effects": [
+            {
+              "skip": 1
+            },
+            {
+              "encounter": {
+                "modifier": "ambush"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
