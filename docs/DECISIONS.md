@@ -2,6 +2,20 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 8f): the market
+
+- The Settlement Phase shows the market (§8.6, §13.4a, §13.7). It has four parts:
+  - **In the shops:** the goods sold first come, at the House's own price.
+  - **Sealed bids:** each lot with its reserve. The House places or changes its bid, and sees no one else's.
+  - **Consumables:** what the House can buy now, from a Commons shop or its own building, at its price and with its count held.
+  - **Your stash:** items not worn, which the House can put up for sealed bids with a reserve. This needs another House to bid.
+- The view now carries the two prices the screen cannot work out alone:
+  - each shop lot's price to the viewer (`cost`, after Patrons of the Guilds' discount);
+  - the House's own consumable list with its prices (`mine.shop`).
+
+  Both are public information about the viewer's own House.
+- Reading: an item shows its tier, base, item level, curse, and its properties' names, with their texts on hover. A fuller item card belongs with the readying screens.
+
 ## 2026-11-02 (implementation, Milestone 8e): the Settlement Phase's decisions
 
 - A Decisions panel gathers what the Settlement Phase asks of a House (§15.2, §15.7):

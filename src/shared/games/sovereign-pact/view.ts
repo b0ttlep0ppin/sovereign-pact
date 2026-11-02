@@ -5,7 +5,8 @@ import type { PlayerId } from "../../game.ts";
 import type { Replay } from "./combat/replay.ts";
 import { dealsFor } from "./deals.ts";
 import { secretEvent } from "./events.ts";
-import { marketFor } from "./market.ts";
+import { marketFor, priceFor } from "./market.ts";
+import { consumablePrice, forSale } from "./consumables.ts";
 import { eventsFor } from "./omens.ts";
 import { fallen } from "./lifecycle.ts";
 import { timelineFor } from "./timeline.ts";
@@ -68,6 +69,8 @@ export interface PrivateHouse {
   stores: Stores;
   /** Consumables held at home (§13.7). */
   consumables: Partial<Record<string, number>>;
+  /** The consumables this House can buy now, at its price (§13.7). */
+  shop: { id: string; price: number }[];
   /** The Scriptorium's level: how much of a recruit shows (§6.4). */
   insight: number;
   /** This House's own Crisis pledge, and whether it gave in to the temptation. */
@@ -131,8 +134,8 @@ export interface SovView {
   commons: SovState["commons"];
   /** This Year's Crisis: its Need is public, every pledge private (§3.5). */
   crisis: { id: string; need: Partial<Record<string, number>> } | null;
-  /** This Year's shop stock and House lots; the viewer's own bids only (§13.4a). */
-  market: Lot[];
+  /** This Year's shop stock and House lots; the viewer's own bids only (§13.4a); `cost` is a shop lot's price to the viewer. */
+  market: (Lot & { cost?: number })[];
   /** Deals the viewer may see: its own, those offered to it, and public ones. */
   deals: Deal[];
   /** The Rift Gate's cards this Year and the Houses' votes. */
@@ -245,7 +248,8 @@ export function view(s: SovState, playerId: PlayerId): SovView {
     // §9.3: the chain's shape is unknown until walked.
     expedition: s.expedition ? expeditionView(s.expedition, me) : null,
     deals: dealsFor(s, me),
-    market: marketFor(s, me),
+    // A shop lot's price to the viewer (its discount, §5.7); sealed lots show their reserve.
+    market: marketFor(s, me).map((l) => (me !== null && l.shop !== null && !l.auction ? { ...l, cost: priceFor(s, me, l) } : l)),
     crisis: s.crisis ? { id: s.crisis.id, need: s.crisis.need } : null,
     timeline: timelineFor(s, me),
     houses: s.houses.map((h, i) => publicHouse(s, h, i)),
@@ -260,6 +264,7 @@ export function view(s: SovState, playerId: PlayerId): SovView {
             debt: own.debt,
             stores: own.stores,
             consumables: own.consumables ?? {},
+            shop: forSale(s, me).map((d) => ({ id: d.id, price: consumablePrice(s, me, d) })),
             insight,
             crisis: s.crisis ? { pledge: s.crisis.pledges[me]!, tempted: s.crisis.tempted[me]! } : null,
             notes: s.notes[me] ?? [],
