@@ -10,14 +10,19 @@ const FADE_MS = 1500;
 export interface MusicSettings {
   on: boolean;
   volume: number;
+  /** Battle sound effects (§16.1), and their volume. */
+  sfx: boolean;
+  sfxVolume: number;
 }
+
+const DEFAULTS: MusicSettings = { on: true, volume: 0.5, sfx: true, sfxVolume: 0.7 };
 
 function read(): MusicSettings {
   try {
     const raw = globalThis.localStorage?.getItem(KEY);
-    return raw ? { on: true, volume: 0.5, ...(JSON.parse(raw) as Partial<MusicSettings>) } : { on: true, volume: 0.5 };
+    return raw ? { ...DEFAULTS, ...(JSON.parse(raw) as Partial<MusicSettings>) } : DEFAULTS;
   } catch {
-    return { on: true, volume: 0.5 };
+    return DEFAULTS;
   }
 }
 
@@ -104,6 +109,10 @@ export default function MusicPanel({ track, settings, set }: { track: TrackId | 
         <input type="checkbox" checked={settings.on} onChange={(e) => set({ ...settings, on: e.target.checked })} /> Music
       </label>
       <input type="range" min={0} max={1} step={0.05} value={settings.volume} aria-label="Music volume" disabled={!settings.on} onChange={(e) => set({ ...settings, volume: Number(e.target.value) })} />
+      <label className="sp-check">
+        <input type="checkbox" checked={settings.sfx} onChange={(e) => set({ ...settings, sfx: e.target.checked })} /> Sound effects
+      </label>
+      <input type="range" min={0} max={1} step={0.05} value={settings.sfxVolume} aria-label="Sound effects volume" disabled={!settings.sfx} onChange={(e) => set({ ...settings, sfxVolume: Number(e.target.value) })} />
       {info && settings.on ? (
         <small>
           ♪ {info.title}, {info.author}
