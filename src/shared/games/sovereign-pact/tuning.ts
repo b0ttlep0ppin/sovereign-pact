@@ -215,7 +215,8 @@ export const TUNING = {
   },
 
   /** §8.8 town events [DECIDED cadence]: one settlement event a Year; each House's own event at this % chance. */
-  omens: { houseEventPct: 50 },
+  /** `fresh`: Years a drawn town event is passed by (Josh's playtest: "settlement events repeat far too much"). */
+  omens: { houseEventPct: 50, fresh: 6 },
 
   /**
    * §14.9 Hunts, first pass. A Hunt card's quarry is `levelUp` levels above the fight with `hpPct`% HP;

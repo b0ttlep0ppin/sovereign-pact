@@ -2,10 +2,12 @@
 // buildings, lost recruits, Sanity, score, flags and the timeline. Each effect names whom it touches;
 // without a subject House, an effect with no `to` falls on one random House.
 import { loseAccord } from "./commons.ts";
-import type { TownEffect } from "./content.ts";
+import type { TownEffect, TownScionEffect } from "./content.ts";
 import { caps } from "./combat/build.ts";
+import { befall } from "./events.ts";
+import { jobStat } from "./formulas.ts";
 import { rollRecruit } from "./generate.ts";
-import type { ScoreCategory, SovState } from "./state.ts";
+import { STATS, type Person, type ScoreCategory, type SovState, type Stat } from "./state.ts";
 import { log, withRng } from "./year.ts";
 
 /** The Houses an effect touches. */
@@ -32,8 +34,9 @@ export function applyEffects(s: SovState, effects: readonly TownEffect[], subjec
         else s.commons.stores[k] = Math.max(0, (s.commons.stores[k] ?? 0) + (n ?? 0));
       }
     }
-    const hit = e.resources || e.ruin || e.recruits_lost || e.sanity || e.score || e.recruit_gain ? targets(s, e, subject) : [];
+    const hit = e.resources || e.ruin || e.recruits_lost || e.sanity || e.score || e.recruit_gain || e.scion ? targets(s, e, subject) : [];
     for (const i of hit) touch(s, e, i);
+    for (const i of e.scion ? hit : []) befallAtHome(s, e.scion!, i);
   }
 }
 
@@ -75,4 +78,31 @@ function touch(s: SovState, e: TownEffect, i: number): void {
       p.sanity = Math.max(0, Math.min(max, p.sanity + Math.round((max * e.sanity) / 100)));
     }
   }
+}
+
+/** The Scion (or Retired) of House `house` that `who` names; ties go to the earliest sworn. */
+export function pickAtHome(s: SovState, house: number, who = "random"): Person | undefined {
+  const pool = s.people.filter((p) => p.host === house && (p.status === "scion" || p.status === "retired"));
+  if (!pool.length) return undefined;
+  if (who === "random") return withRng(s, (rng) => rng.pick(pool));
+  const [how, stat] = who.split(":") as [string, Stat | undefined];
+  const score = (p: Person): number => {
+    if (how === "eldest") return p.age;
+    if (how === "youngest") return -p.age;
+    if (how === "veteran") return p.level;
+    if (how === "greenest") return -p.level;
+    if (how === "sanest") return p.sanity;
+    if (how === "maddest") return -p.sanity;
+    const v = stat && STATS.includes(stat) ? jobStat(p, stat) : 0;
+    return how === "lowest" ? -v : v;
+  };
+  return pool.reduce((best, p) => (score(p) > score(best) ? p : best));
+}
+
+/** What befalls one of a House's own at home: picked by the effect's `who`, then changed as on the road. */
+function befallAtHome(s: SovState, fx: TownScionEffect, house: number): void {
+  const p = pickAtHome(s, house, fx.who);
+  if (!p) return;
+  if (fx.age) p.age = Math.max(14, p.age + fx.age);
+  befall(s, s.people.indexOf(p), fx, "at home");
 }

@@ -455,3 +455,9 @@
 .sp-doll__slot > small { color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.66rem; }
 .sp-doll__slot select { max-width: 100%; }
 .sp-doll__slot .sp-button { padding: 3px 10px; font-size: 0.72rem; }
+
+/* What came of the Omens: the town events' account, under the Year's decisions. */
+.sp-omens-told { display: grid; gap: 10px; margin-top: 14px; }
+.sp-omens-told .sp-told__where { text-align: left; }
+.sp-omens-told .sp-told__where small { color: #6e6880; letter-spacing: 0.06em; margin-left: 6px; }
+.sp-omens-told .is-private { border-left: 2px solid rgba(110, 90, 140, 0.45); padding-left: 10px; }

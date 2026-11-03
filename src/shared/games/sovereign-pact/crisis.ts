@@ -4,6 +4,7 @@
 // a Crisis can fail even when everyone gave fully, so a failure proves nothing.
 import { TOWN_EVENT_BY_ID, type TownEventDef } from "./content.ts";
 import { applyEffects } from "./effects.ts";
+import { recordOmen } from "./omens.ts";
 import type { SovState } from "./state.ts";
 import { forHouses, TUNING } from "./tuning.ts";
 import { log, withRng } from "./year.ts";
@@ -138,5 +139,5 @@ export function resolveCrisis(s: SovState): void {
     s.houses[i]!.score.renown += Math.floor(units / C.renownPer);
   });
   delete s.crisis;
-  applyEffects(s, ev.crisis![band].effects, null);
+  recordOmen(s, ev.id, undefined, null, `${band[0]!.toUpperCase()}${band.slice(1)}.`, ev.crisis![band].text, () => applyEffects(s, ev.crisis![band].effects, null));
 }

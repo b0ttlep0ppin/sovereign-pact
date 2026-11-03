@@ -67,7 +67,34 @@ describe("the Settlement Phase's decisions", () => {
     delete s.crisis;
     delete s.vote;
     s.bargains.pending = [];
+    s.omensTold = [];
     const { container } = render(<Decisions view={g.view(s, s.players[0]!)} sendMove={() => {}} canAct />);
     expect(container.innerHTML).toBe("");
+  });
+
+  it("tells what came of the Omens, keeping another House's stores to itself", () => {
+    const s = found(campaign(2, 4));
+    s.events = [];
+    delete s.crisis;
+    delete s.vote;
+    s.bargains.pending = [];
+    s.omensTold = [
+      {
+        year: s.year,
+        id: EVENT.id,
+        by: 1,
+        label: "Burn it.",
+        text: "It burns.",
+        lines: [
+          { text: "Accord −3.", of: null, open: true },
+          { text: "House B: −20 Gold.", of: 1, open: false },
+        ],
+      },
+    ];
+    render(<Decisions view={g.view(s, s.players[0]!)} sendMove={() => {}} canAct />);
+    const told = screen.getByLabelText("What came of the Omens");
+    expect(within(told).getByText("It burns.")).toBeTruthy();
+    expect(within(told).getByText("Accord −3.")).toBeTruthy();
+    expect(within(told).queryByText("House B: −20 Gold.")).toBeNull();
   });
 });

@@ -2,6 +2,14 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-03 (implementation, Milestone 8bm): town events that do not repeat, tell what they did, and can hurt one Scion
+
+- Built (Josh's playtest: "settlement events repeat far too much (stranger at the gate, bridge collapse)", "real consequences", "after an event option resolves, EXPLAIN what it did"):
+  - The Omens pass by any town event drawn in the last 6 Years (`TUNING.omens.fresh`) while another is eligible: settlement events and Crises by id, House events per House. Consequences queued on the timeline still come when due.
+  - Each outcome of a town event, a secret event's "none" or "all" result, and each Crisis band leaves an account of what it changed: the choice, who made it, the outcome text, and every change in plain words (Accord or Unrest, Doom, buildings damaged, recruits gained or gone, Gold and stores, a Scion's Sanity, injuries, traits, age, death). The Decisions panel shows this Year's and last Year's under "What came of the Omens". As on the expedition card, Gold, stores, Sanity and traits are the House's own; a House event's whole account is its House's alone (Q89). Not saved.
+  - A town outcome can fall on one Scion at home (`scion` on a town effect): picked at random, or the eldest, youngest, most or least seasoned, sanest, maddest, or highest or lowest in a stat. It can roll an injury (which can kill: "dies at home"), bring a Curse or a trait, a blessing, a Change, a stat or growth change, XP or JP, Sanity, or add years of age. It runs the same code as the expedition's effects.
+- Reading: Retired Scions count as "at home" and may be picked; recruits never are (a recruit's loss stays `recruits_lost`).
+
 ## 2026-11-03 (implementation, Milestone 8bl): Job icons and the paper doll in Readying
 
 - Built (Josh's playtest: "clickable per-Job icons for ability learning", "paper doll gear screen"):

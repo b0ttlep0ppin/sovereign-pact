@@ -103,11 +103,11 @@ export function partyOf(s: SovState, ids: number[], carried: Expedition["carry"]
 }
 
 /** The Chronicle takes the dead (§6.13): they leave the House, their gear back in its stash. */
-export function die(s: SovState, p: Person, cause: string): void {
+export function die(s: SovState, p: Person, cause: string, where = "in the otherworld"): void {
   s.houses[p.house]!.chronicle.push({ name: p.name, year: s.year, cause, level: p.level });
   s.people = s.people.filter((x) => x.id !== p.id);
   delete s.assign[p.id];
-  log(s, `${p.name} of House ${s.houses[p.house]!.name} dies in the otherworld.`);
+  log(s, `${p.name} of House ${s.houses[p.house]!.name} dies ${where}.`);
 }
 
 /** A Scion is Lost (§9.9): left behind in the otherworld, their gear with them, until a Rescue. */

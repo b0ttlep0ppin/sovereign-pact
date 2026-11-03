@@ -9,32 +9,47 @@ import { eligible, openCrisis } from "./crisis.ts";
 import { applyEffects } from "./effects.ts";
 import { econ } from "./houses.ts";
 import { dueEvents } from "./timeline.ts";
-import type { PendingEvent, SovState } from "./state.ts";
+import type { PendingEvent, SovState, Told } from "./state.ts";
+import { snap, tell } from "./told.ts";
 import { TUNING } from "./tuning.ts";
-import { log, note, withRng } from "./year.ts";
+import { log, note, trackName, withRng } from "./year.ts";
 
-function draw(rng: Rng, pool: readonly TownEventDef[]): TownEventDef | undefined {
-  let roll = rng.int(Math.max(1, pool.reduce((n, e) => n + e.weight, 0)));
-  return pool.find((e) => (roll -= e.weight) < 0);
+/** One event by weight, passing by those drawn in the last few Years while any others remain. */
+function draw(s: SovState, rng: Rng, pool: readonly TownEventDef[], house?: number): TownEventDef | undefined {
+  const stale = new Set((s.omensSeen ?? []).map((x) => x.key));
+  const fresh = pool.filter((e) => !stale.has(house === undefined ? e.id : `${e.id}@${house}`));
+  const from = fresh.length ? fresh : pool;
+  let roll = rng.int(Math.max(1, from.reduce((n, e) => n + e.weight, 0)));
+  return from.find((e) => (roll -= e.weight) < 0);
 }
 
 export function drawOmens(s: SovState): void {
   s.events = [];
+  s.omensSeen = (s.omensSeen ?? []).filter((x) => s.year - x.year < TUNING.omens.fresh);
+  s.omensTold = (s.omensTold ?? []).filter((x) => s.year - x.year <= 1);
   // The "calm" flag stills the Omens, for tests and tuning runs that measure the economy alone.
   if (s.flags.includes("calm")) return;
   // Consequences come due first, and take the draws they stand in for (§8.7).
   const queued = dueEvents(s).map((t) => ({ ev: TOWN_EVENT_BY_ID.get(t.id)!, house: t.house ?? 0 }));
   const fromTimeline = queued.find((q) => q.ev.scope !== "house")?.ev;
-  const settlement = fromTimeline ?? withRng(s, (rng) => draw(rng, TOWN_EVENTS.filter((e) => e.scope === "settlement" && eligible(s, e))));
+  const settlement = fromTimeline ?? withRng(s, (rng) => draw(s, rng, TOWN_EVENTS.filter((e) => e.scope === "settlement" && eligible(s, e))));
+  const seen = (key: string) => s.omensSeen!.push({ key, year: s.year });
+  if (settlement) seen(settlement.id);
   if (settlement?.crisis) openCrisis(s, settlement);
   else if (settlement) openEvent(s, settlement);
   s.houses.forEach((_, i) => {
     const owed = queued.find((q) => q.ev.scope === "house" && q.house === i);
-    if (owed) return void openEvent(s, owed.ev, i);
+    if (owed) {
+      seen(`${owed.ev.id}@${i}`);
+      return openEvent(s, owed.ev, i);
+    }
     // Haunted Halls and the like draw House events more often (§5.7).
     const pct = TUNING.omens.houseEventPct + econ(s.houses[i]!, "houseEventPct");
-    const ev = withRng(s, (rng) => (rng.int(100) < pct ? draw(rng, TOWN_EVENTS.filter((e) => e.scope === "house" && eligible(s, e, i))) : undefined));
-    if (ev) openEvent(s, ev, i);
+    const ev = withRng(s, (rng) => (rng.int(100) < pct ? draw(s, rng, TOWN_EVENTS.filter((e) => e.scope === "house" && eligible(s, e, i)), i) : undefined));
+    if (ev) {
+      seen(`${ev.id}@${i}`);
+      openEvent(s, ev, i);
+    }
   });
 }
 
@@ -107,8 +122,36 @@ export function outcome(s: SovState, ev: TownEventDef, opt: TownOption, subject:
   });
   if (home !== undefined) note(s, home, `${ev.title}: ${opt.label} ${out.text}`);
   else log(s, `${ev.title}: ${subject === null ? "" : `House ${s.houses[subject]!.name} — `}${opt.label} ${out.text}`);
-  applyEffects(s, out.effects, subject);
+  recordOmen(s, ev.id, home, subject, opt.label, out.text, () => applyEffects(s, out.effects, subject));
 }
+
+/** Runs an outcome's effects and keeps the account of what they changed, for the Omens' card (Josh's
+ *  playtest, 2026-11-02: "explain what it did"). The tracks and buildings are open to all; the rest
+ *  as told.ts tells it. */
+export function recordOmen(s: SovState, id: string, house: number | undefined, by: number | null, label: string, text: string, run: () => void): void {
+  const all = s.houses.map((_, i) => i);
+  const before = snap(s, s.people.filter((p) => p.status === "scion" || p.status === "retired").map((p) => p.id), all);
+  const was = { accord: s.accord, doom: s.doom, buildings: s.houses.map((h) => ({ ...h.buildings })), recruits: all.map((i) => recruits(s, i)) };
+  run();
+  const lines: Told[] = [];
+  const signed = (n: number) => (n > 0 ? `+${n}` : `−${-n}`);
+  if (s.accord !== was.accord) lines.push({ text: `${trackName(s)} ${signed(s.accord - was.accord)}.`, of: null, open: true });
+  if (s.doom !== was.doom) lines.push({ text: `Doom ${signed(s.doom - was.doom)}.`, of: null, open: true });
+  s.houses.forEach((h, i) => {
+    for (const b of new Set([...Object.keys(was.buildings[i]!), ...Object.keys(h.buildings)])) {
+      const from = was.buildings[i]![b] ?? 0;
+      const to = h.buildings[b] ?? 0;
+      const name = b.replace(/_/g, " ");
+      if (to < from) lines.push({ text: to ? `House ${h.name}'s ${name} is damaged (level ${from} → ${to}).` : `House ${h.name}'s ${name} is destroyed.`, of: i, open: true });
+    }
+    const d = recruits(s, i) - was.recruits[i]!;
+    if (d) lines.push({ text: `House ${h.name}: ${d > 0 ? `${d} new recruit${d > 1 ? "s" : ""}` : `${-d} recruit${d < -1 ? "s" : ""} gone`}.`, of: i, open: false });
+  });
+  lines.push(...tell(s, before));
+  (s.omensTold ??= []).push({ year: s.year, id, ...(house === undefined ? {} : { house }), by, label, text, lines });
+}
+
+const recruits = (s: SovState, house: number) => s.people.filter((p) => p.host === house && p.status === "recruit").length;
 
 function settleEvent(s: SovState, pe: PendingEvent): void {
   s.events = s.events.filter((e) => e !== pe);
@@ -119,7 +162,7 @@ function settleEvent(s: SovState, pe: PendingEvent): void {
     const picked = pe.deciders.filter((d) => pe.choices[d] === i).length;
     if ((t.when === "none" && picked === 0) || (t.when === "all" && picked === pe.deciders.length)) {
       log(s, `${ev.title}: ${t.text}`);
-      applyEffects(s, t.effects, null);
+      recordOmen(s, ev.id, pe.house, null, "", t.text, () => applyEffects(s, t.effects, null));
     }
   }
 }

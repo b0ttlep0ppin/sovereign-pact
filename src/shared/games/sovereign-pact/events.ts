@@ -272,11 +272,8 @@ function apply(s: SovState, fx: TripEffect, ids: number[], house: number | null,
   for (const id of ids) {
     const at = s.people.findIndex((p) => p.id === id);
     if (at < 0) continue;
-    let p = s.people[at]!;
+    const p = s.people[at]!;
     if (shrugs(s, p, fx)) continue;
-    const cap = caps(s, p);
-    if (fx.sanity) p.sanity = Math.max(0, Math.min(cap.sanity, p.sanity + pctOf(cap.sanity, fx.sanity)));
-    if (fx.mp) p.mp = Math.max(0, Math.min(cap.mp, p.mp + pctOf(cap.mp, fx.mp)));
     if (fx.hp) {
       const c = (e.carry[id] ??= { dur: {}, broken: [] });
       const max = full(s, id).maxHp;
@@ -293,20 +290,7 @@ function apply(s: SovState, fx: TripEffect, ids: number[], house: number | null,
         if (c.dur[loc]! > 0) c.broken = c.broken.filter((l) => l !== loc);
       }
     }
-    if (fx.xp) p = gainXp(p, fx.xp);
-    if (fx.jp) p = gainJp(p, fx.jp);
-    s.people[at] = p;
-    person_(s, p, fx);
-    if (fx.injury) {
-      const sat = s.expedition?.satchel;
-      const carried = sat ? { has: (id: string) => sat.some((x) => x.id === id), spend: (id: string) => void sat.splice(sat.findIndex((x) => x.id === id), 1) } : undefined;
-      const r = withRng(s, (rng) => carriedRoll(rng, fx.injury!, 0, carried)).result;
-      log(s, `${p.name}: ${r.name}.`);
-      if (r.death || r.mortal) die(s, p, r.id);
-      else if (r.lasting) p.injuries.push({ id: r.id, years: r.lasting.years });
-    }
-    const healed = fx.mend ? p.injuries.findIndex((x) => INJURY_BY_ID.get(x.id)?.band === "moderate") : -1;
-    if (healed >= 0) log(s, `${p.name}'s ${INJURY_BY_ID.get(p.injuries.splice(healed, 1)[0]!.id)!.name.toLowerCase()} is mended.`);
+    befall(s, at, fx);
   }
   const houses = house === null ? present(s) : [house];
   for (const [k, n] of Object.entries(fx.resources ?? {})) {
@@ -349,6 +333,29 @@ function apply(s: SovState, fx: TripEffect, ids: number[], house: number | null,
     log(s, "The party kneels, and the Idol lets it go home.");
     home(s, "won");
   }
+}
+
+/** What changes a person wherever they stand, on the road or at home (effects.ts): Sanity, MP, XP, JP,
+ *  the lasting changes, an injury roll and a mending. `at` is the person's index in `s.people`. */
+export function befall(s: SovState, at: number, fx: TripEffect, where = "in the otherworld"): void {
+  let p = s.people[at]!;
+  const cap = caps(s, p);
+  if (fx.sanity) p.sanity = Math.max(0, Math.min(cap.sanity, p.sanity + pctOf(cap.sanity, fx.sanity)));
+  if (fx.mp) p.mp = Math.max(0, Math.min(cap.mp, p.mp + pctOf(cap.mp, fx.mp)));
+  if (fx.xp) p = gainXp(p, fx.xp);
+  if (fx.jp) p = gainJp(p, fx.jp);
+  s.people[at] = p;
+  person_(s, p, fx);
+  if (fx.injury) {
+    const sat = s.expedition?.satchel;
+    const carried = sat ? { has: (id: string) => sat.some((x) => x.id === id), spend: (id: string) => void sat.splice(sat.findIndex((x) => x.id === id), 1) } : undefined;
+    const r = withRng(s, (rng) => carriedRoll(rng, fx.injury!, 0, carried)).result;
+    log(s, `${p.name}: ${r.name}.`);
+    if (r.death || r.mortal) die(s, p, r.id, where);
+    else if (r.lasting) p.injuries.push({ id: r.id, years: r.lasting.years });
+  }
+  const healed = fx.mend ? p.injuries.findIndex((x) => INJURY_BY_ID.get(x.id)?.band === "moderate") : -1;
+  if (healed >= 0) log(s, `${p.name}'s ${INJURY_BY_ID.get(p.injuries.splice(healed, 1)[0]!.id)!.name.toLowerCase()} is mended.`);
 }
 
 /** How well an outcome goes for its subjects, roughly: gains count up, harms down, the worst ones most. */
