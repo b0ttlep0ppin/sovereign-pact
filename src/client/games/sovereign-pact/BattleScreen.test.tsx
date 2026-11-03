@@ -42,7 +42,8 @@ describe("the battle screen (§15.5)", () => {
     const party = owned.units.filter((u) => u.side === "party" && u.partOf === undefined).length;
     expect(party).toBeGreaterThan(0);
     expect(document.querySelectorAll(".sp-unit__house").length).toBe(party);
-    expect(screen.getAllByTitle(`House ${view.houses[0]!.name}`).length).toBe(party);
+    // On the field (the log's lines carry the arms too).
+    expect(screen.getAllByTitle(`House ${view.houses[0]!.name}`).filter((el) => el.classList.contains("sp-unit__house")).length).toBe(party);
   });
 
   it("plays turn by turn, steps by keyboard, and skips to the end", () => {

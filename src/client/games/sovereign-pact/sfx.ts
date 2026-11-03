@@ -46,6 +46,9 @@ const ABILITIES: ReadonlyMap<string, Kind> = new Map<string, Kind>([
   ...Content.ABILITY_SETS.flatMap((set) => set.actives.map((a): [string, Kind] => [a.id, a])),
 ]);
 
+/** An ability's kind and element ("attack" is a plain blow), for the log's damage icons. */
+export const abilityKind = (id: string): Kind => (id === "attack" ? { kind: "physical" } : ABILITIES.get(id) ?? {});
+
 /** Injury results that end or maim (§11.2's Devastating band) get the Death Whistle's scream. */
 const DREADFUL = new Set(Content.INJURY_TABLES.flatMap((t) => t.results.filter((r) => r.band === "devastating" || r.death).map((r) => r.id)));
 

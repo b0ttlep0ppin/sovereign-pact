@@ -316,7 +316,7 @@
 .sp-settings__body { position: absolute; right: 0; top: calc(100% + 6px); z-index: 20; width: min(420px, 90vw); max-height: 70vh; overflow: auto; padding: 14px; background: var(--panel); border: 1px solid var(--line-hi); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7); }
 .sp-stage { display: grid; grid-template-columns: minmax(0, 1fr) minmax(300px, 380px); gap: 16px; align-items: start; }
 .sp-stage__side { display: grid; gap: 16px; align-content: start; }
-.sp-chronicle .sp-log { max-height: 320px; overflow: auto; }
+.sp-chronicle .sp-log { max-height: 320px; overflow: auto; padding-left: 0; list-style: none; }
 @media (max-width: 1100px) { .sp-stage { grid-template-columns: 1fr; } }
 .sp-stage__main { display: grid; gap: 16px; align-content: start; min-width: 0; }
 .sp-tabs__bar { display: flex; flex-wrap: wrap; gap: 4px; border-bottom: 1px solid var(--line-hi); }
@@ -543,3 +543,14 @@
   100% { transform: scale(1); filter: drop-shadow(0 0 4px rgba(160, 60, 40, 0.35)); }
 }
 @media (prefers-reduced-motion: reduce) { .sp-sigil-flare { animation: none; } }
+
+/* The logs' pictures: faces, House arms, and marks for the kind of harm (Josh 2026-11-03). */
+.sp-logline { display: flex; align-items: center; flex-wrap: wrap; gap: 4px; }
+.sp-logline__text { flex: 0 1 auto; min-width: 0; }
+.sp-face { display: inline-flex; flex: none; width: 18px; height: 18px; overflow: hidden; border-radius: 2px; background: rgba(0, 0, 0, 0.35); box-shadow: inset 0 0 0 1px rgba(200, 180, 140, 0.18); }
+.sp-face img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 20%; image-rendering: pixelated; }
+.sp-face img.is-flipped { transform: scaleX(-1); }
+.sp-face i { margin: auto; font-size: 11px; font-style: normal; opacity: 0.7; }
+.sp-sigil { display: inline-flex; flex: none; }
+.sp-mark { flex: none; display: inline-block; vertical-align: -2px; filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.8)); }
+.sp-mark--status { font-style: normal; font-weight: 700; font-size: 12px; line-height: 1; }

@@ -2,6 +2,14 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-03 (implementation, Milestone 8co): pictures in the logs
+
+Josh: **"I wouldn't mind some symbology in the what's happened and combat logs, using sprite face icons and house sigils, or spear or sword icon for damage type or fire icon for fire damage or poison icon when someone gets poisoned"**.
+- **Each battle log line leads with who acts**: a Scion's head (cut from their own sprite) and their House's arms, or the creature's sprite.
+- **It ends with what kind of harm it was.** A hit shows its element (fire, water, earth, wind, holy, dark), sorcery for an elementless spell, or the striker's blow: blade, axe, blunt, thrust, fist, arrow, and for creatures teeth, claws or a crushing blow. Healing, injuries and blows to the mind have their own marks; a status laid shows its own glyph in its colour (poison's skull, burn, bleed and the rest, as on the field); a death shows a cross.
+- **The Chronicle ("What happened")** gives each line the arms of the first House it names and the head of the first Scion it names.
+- The marks are small line drawings in the game's muted palette, not emoji, so they sit with the dark look.
+
 ## 2026-11-03 (implementation, Milestone 8cn): the chance to hit, shown while aiming
 
 Josh: **"I would also like to be able to see hit chance when selecting a target"**.
