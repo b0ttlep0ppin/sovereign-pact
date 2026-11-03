@@ -9,6 +9,7 @@ import { battle } from "./journey.ts";
 import type { GearSlot, Item, ItemTier, Share, SovState, Stores } from "./state.ts";
 import { TUNING } from "./tuning.ts";
 import { log, withRng } from "./year.ts";
+import { claimed } from "./homecoming.ts";
 
 const L = TUNING.loot;
 const RARE = new Map(RARE_MATERIALS.map((m) => [m.id, m.name]));
@@ -117,12 +118,14 @@ export function snake(s: SovState, houses: number[], picks: number): number[] {
 function give(s: SovState, item: Item, house: number): void {
   item.house = house;
   stock(s, item);
+  claimed(s, house, `the ${itemName(item)}`);
   log(s, `House ${s.houses[house]!.name} takes the ${itemName(item)}.`);
 }
 
 function claim(s: SovState, share: Share, house: number): void {
   if (share.item) return give(s, share.item, house);
   for (const [k, n] of Object.entries(share.stores!)) add(s.houses[house]!.stores, k, n!);
+  claimed(s, house, list(share.stores!));
   log(s, `House ${s.houses[house]!.name} takes ${list(share.stores!)}.`);
 }
 

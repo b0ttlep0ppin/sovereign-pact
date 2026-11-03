@@ -2,6 +2,11 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-03 (implementation, Milestone 8be): the homecoming
+
+- Built (Josh's playtest: a lone House saw no treasure, XP or JP after beating the Tree King): when the party is home, a card shows each Scion who went with their level before and after, the XP and JP the expedition gave (battles, events and the homecoming award together), new injuries, and who fell or was Lost; then what each House took from the haul. The haul was always claimed; it was only never shown.
+- Reading: the account is public, like the log that already told all of it. It is not saved (a checkpoint is the next Settlement Phase's start), and it opens once per expedition on each screen; the last one closed is remembered in the browser.
+
 ## 2026-11-03 (implementation, Milestone 8bd): the Minstrel's and Tinkerer's last abilities
 
 - Built: Carrying Voice, Crescendo, Finale; Shrapnel Mine, Jury-Rig and Pack Rat. With them no ability in any Job is left unbuilt.

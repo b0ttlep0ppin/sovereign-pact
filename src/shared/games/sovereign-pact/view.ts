@@ -225,6 +225,8 @@ export interface SovView {
   opens: { id: string; people: number[] | null }[];
   /** The battles the last move fought, to play back (§15.5); `key` tells a new one from one already seen. */
   battles: (Replay & { key: string })[];
+  /** The last expedition's account, open to every House like the log (homecoming.ts). */
+  homecoming: SovState["homecoming"] | null;
 }
 
 function publicHouse(s: SovState, h: House, index: number): PublicHouse {
@@ -402,6 +404,7 @@ export function view(s: SovState, playerId: PlayerId): SovView {
     bestiary: s.bestiary,
     // Every House watches every battle, Sorties too: the log already tells them all.
     battles: (s.battles ?? []).map((b, i) => ({ ...b, key: `${s.year}:${b.seed}:${i}` })),
+    homecoming: s.homecoming ?? null,
   };
 }
 

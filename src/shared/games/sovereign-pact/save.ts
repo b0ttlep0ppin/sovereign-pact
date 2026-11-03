@@ -31,6 +31,7 @@ export function checkpoint(s: SovState): SovSave | null {
   delete campaign.log;
   delete campaign.notes;
   delete campaign.battles;
+  delete campaign.homecoming;
   delete campaign.people;
   delete campaign.items;
   const rest = campaign as Omit<SovState, "players" | "log" | "notes" | "people" | "items">;
