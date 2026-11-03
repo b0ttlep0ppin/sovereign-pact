@@ -1,7 +1,8 @@
 import { describe, expect, it } from "vitest";
+import { Content } from "@vibepulse/shared/games/sovereign-pact";
 import { scionCredits } from "./credits";
 import LAYERS from "./scion-layers.json";
-import { animFor, attackOf, HELMS, kitOf, lookOf, lunges, piecesOf, underHat, type Pixels } from "./ScionSprite";
+import { animFor, attackOf, HELMS, KIT, kitOf, lookOf, lunges, piecesOf, underHat, type Pixels } from "./ScionSprite";
 
 const person = (id: number, over: Partial<{ sex: "m" | "f"; age: number; job: string | null; status: "recruit" | "scion"; look: string[] }> = {}) =>
   ({ id, sex: "m" as const, age: 25, job: "knight", status: "scion", ...over }) as unknown as Parameters<typeof lookOf>[0];
@@ -120,6 +121,18 @@ describe("Scion sprites", () => {
     expect(animFor(vagabond, undefined)).toBe("shoot");
     expect(lunges("slash")).toBe(true);
     expect(lunges("spellcast")).toBe(false);
+  });
+
+  it("draws every weapon as itself, never as another kind (Josh: a greataxe drawn as a greatsword)", () => {
+    // The only stand-ins: a greatsword is the longsword, knives are daggers; fists and instruments are bare.
+    const STAND_IN: Record<string, string> = { greatsword: "longsword", knife: "dagger", throwing_knives: "dagger", knuckles: "", instrument: "" };
+    const options = new Set(LAYERS.layers.filter((l) => l.slot === "weapon").map((l) => l.option));
+    for (const b of Content.ITEM_BASES.filter((x) => x.slot === "main" || (x.slot === "off" && x.hands))) {
+      const drawn = KIT[b.id];
+      expect(drawn?.[0], b.id).toBe("weapon");
+      expect(drawn![1], b.id).toBe(STAND_IN[b.id] ?? b.id);
+      if (drawn![1]) expect(options.has(drawn![1]), `${b.id} has a layer`).toBe(true);
+    }
   });
 
   it("draws the gear a Scion wears over their Job's outfit (8aj)", () => {

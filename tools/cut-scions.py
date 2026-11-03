@@ -244,17 +244,34 @@ for slot, opts in PICK.items():
                 manifest["credits"].append({"file": key, "authors": c["authors"], "licenses": [l for l in c["licenses"] if l.startswith(BY)], "urls": c.get("urls", [])})
 
 
-def spearhead(sheet: Image.Image) -> Image.Image:
-    """The staff with its crook and gem cut away and a steel spearhead in their place.
+STEEL = [(0x2a, 0x2c, 0x33, 255), (0x8e, 0x95, 0x9e, 255), (0xd4, 0xd9, 0xde, 255)]
 
-    The generator's spears are share-alike only, so the game's spear is its simple staff with a head
-    painted on (Josh 2026-11-03: "crude spear very clearly appears to be a staff"). In each frame the
-    shaft's line is fitted through its pixels; the end nearer the gem is the head end. Frames that show
-    no gem (the staff's far end only) are left as they are.
+
+def _axis(pts):
+    """The principal axis (unit vector) through a frame's pixels, and their centre."""
+    import math
+    mx = sum(x for x, _ in pts) / len(pts)
+    my = sum(y for _, y in pts) / len(pts)
+    sxx = sum((x - mx) ** 2 for x, _ in pts)
+    syy = sum((y - my) ** 2 for _, y in pts)
+    sxy = sum((x - mx) * (y - my) for x, y in pts)
+    ang = 0.5 * math.atan2(2 * sxy, sxx - syy)
+    return mx, my, math.cos(ang), math.sin(ang)
+
+
+def polehead(sheet: Image.Image, kind: str) -> Image.Image:
+    """The staff with its crook and gem cut away and a steel head in their place: a spear's blade, a
+    greataxe's crescent, or a maul's block.
+
+    The generator's spears, axes and hammers are share-alike only, so the game paints them onto its
+    simple staff (Josh 2026-11-03: "crude spear very clearly appears to be a staff", "masterwork
+    greataxe appears as a greatsword"). In each frame the shaft's line is fitted through its pixels; the
+    end nearer the gem is the head end. An axe's blade faces away from the body. Frames that show no
+    gem (the staff's far end only) are left as they are.
     """
     out = sheet.copy()
     px = out.load()
-    steel = [(0x2a, 0x2c, 0x33, 255), (0x8e, 0x95, 0x9e, 255), (0xd4, 0xd9, 0xde, 255)]
+    steel = STEEL
     for r in range(len(ROWS)):
         for c in range(COLS):
             x0, y0 = c * CELL, r * CELL
@@ -262,15 +279,7 @@ def spearhead(sheet: Image.Image) -> Image.Image:
             gem = [(x, y) for x, y in pts if px[x, y][2] > px[x, y][0] + 30]
             if not gem or len(pts) < 10:
                 continue
-            mx = sum(x for x, _ in pts) / len(pts)
-            my = sum(y for _, y in pts) / len(pts)
-            sxx = sum((x - mx) ** 2 for x, _ in pts)
-            syy = sum((y - my) ** 2 for _, y in pts)
-            sxy = sum((x - mx) * (y - my) for x, y in pts)
-            # The principal axis of the shaft's pixels.
-            import math
-            ang = 0.5 * math.atan2(2 * sxy, sxx - syy)
-            dx, dy = math.cos(ang), math.sin(ang)
+            mx, my, dx, dy = _axis(pts)
             gx = sum(x for x, _ in gem) / len(gem)
             gy = sum(y for _, y in gem) / len(gem)
             if (gx - mx) * dx + (gy - my) * dy < 0:
@@ -286,28 +295,104 @@ def spearhead(sheet: Image.Image) -> Image.Image:
             for x, y in pts:
                 if along(x, y) > head and (abs(across(x, y) - mid) > 1.2 or (x, y) in gem):
                     px[x, y] = (0, 0, 0, 0)
-            # The shaft runs on to the socket; the blade goes on past the old end.
-            base, tip = head, end + 3
+            # The blade's side: away from the body, which stands at the cell's centre.
+            side = -1 if across(x0 + 64, y0 + 72) - mid > 0 else 1
             for y in range(y0, y0 + CELL):
                 for x in range(x0, x0 + CELL):
                     a, t = along(x, y), across(x, y) - mid
-                    if base - 2 <= a < base and abs(t) <= 1.4:
-                        px[x, y] = steel[0]
-                    elif base <= a <= tip:
-                        k = (a - base) / (tip - base)
-                        half = 2.3 * (1 - k) + 0.4 if k > 0.3 else 1.2 + 3.7 * k
-                        if abs(t) <= half:
-                            edge = abs(t) > half - 1.0 or a > tip - 1
-                            px[x, y] = steel[0] if edge else (steel[2] if t < 0 else steel[1])
+                    if kind == "spear":
+                        base, tip = head, end + 3
+                        if base - 2 <= a < base and abs(t) <= 1.4:
+                            px[x, y] = steel[0]
+                        elif base <= a <= tip:
+                            k = (a - base) / (tip - base)
+                            half = 2.3 * (1 - k) + 0.4 if k > 0.3 else 1.2 + 3.7 * k
+                            if abs(t) <= half:
+                                edge = abs(t) > half - 1.0 or a > tip - 1
+                                px[x, y] = steel[0] if edge else (steel[2] if t < 0 else steel[1])
+                    elif kind == "greataxe":
+                        # A crescent on one side of the haft's head, a short spike behind.
+                        s = t * side
+                        lo, hi = end - 10, end
+                        if lo <= a <= hi and 0.6 < s:
+                            k = (a - lo) / (hi - lo)
+                            reach = 2.5 + 5.0 * (1 - (2 * k - 1) ** 2)
+                            if s <= reach:
+                                edge = s > reach - 1.2
+                                rim = a < lo + 1 or a > hi - 1
+                                px[x, y] = steel[2] if edge else (steel[0] if rim or s < 1.6 else steel[1])
+                        elif end - 6 <= a <= end - 3 and -3.2 <= s <= -0.6:
+                            px[x, y] = steel[0] if s < -2.4 else steel[1]
+                        elif end < a <= end + 2 and abs(t) <= 1.0:
+                            px[x, y] = steel[0]
+                    elif kind == "maul":
+                        # A squared iron block across the haft's head.
+                        lo, hi = end - 6, end + 1
+                        if lo <= a <= hi and abs(t) <= 4.4:
+                            edge = a < lo + 1 or a > hi - 1 or abs(t) > 3.4
+                            px[x, y] = steel[0] if edge else (steel[2] if a > hi - 2.5 else steel[1])
     return out
 
 
-# The spear (DECISIONS 8bs): the staff with a painted spearhead, credited as the staff.
-for layer in [l for l in manifest["layers"] if l["slot"] == "weapon" and l["option"] == "staff"]:
-    lid = layer["id"].replace("staff", "spear")
-    if layer["file"] == layer["id"]:
-        spearhead(Image.open(out / f"{layer['file']}.webp").convert("RGBA")).save(out / f"{lid}.webp", "WEBP", lossless=True, method=6)
-    manifest["layers"].append({**layer, "id": lid, "file": layer["file"].replace("staff", "spear"), "option": "spear"})
+def axehead(sheet: Image.Image) -> Image.Image:
+    """The mace with its spiked ball cut away and a hand axe's blade on its haft (the generator's axes
+    are share-alike only; Josh 2026-11-03). The ball is the densest knot of pixels; the haft runs from
+    it to the farthest pixel. Frames that are only a swing's blur are left as they are.
+    """
+    out = sheet.copy()
+    px = out.load()
+    steel = STEEL
+    for r in range(len(ROWS)):
+        for c in range(COLS):
+            x0, y0 = c * CELL, r * CELL
+            pts = [(x, y) for y in range(y0, y0 + CELL) for x in range(x0, x0 + CELL) if px[x, y][3] > 100]
+            if len(pts) < 12:
+                continue
+            on = set(pts)
+            dense = max(pts, key=lambda p: sum((p[0] + i, p[1] + j) in on for i in range(-3, 4) for j in range(-3, 4)))
+            hx, hy = dense
+            far = max(pts, key=lambda p: (p[0] - hx) ** 2 + (p[1] - hy) ** 2)
+            ln = ((far[0] - hx) ** 2 + (far[1] - hy) ** 2) ** 0.5
+            if ln < 6:
+                continue
+            ux, uy = (hx - far[0]) / ln, (hy - far[1]) / ln  # haft toward the head
+            along = lambda x, y: (x - hx) * ux + (y - hy) * uy
+            across = lambda x, y: -(x - hx) * uy + (y - hy) * ux
+            # The ball and its spikes go; what is left of the haft is dyed as wood.
+            wood = [(0x2b, 0x1a, 0x10, 255), (0x6b, 0x45, 0x2a, 255), (0x9a, 0x68, 0x3e, 255)]
+            for x, y in pts:
+                if along(x, y) > -4.5 or (x - hx) ** 2 + (y - hy) ** 2 <= 7.5**2:
+                    px[x, y] = (0, 0, 0, 0)
+                else:
+                    r_, g_, b_, _ = px[x, y]
+                    lum = (r_ + g_ + b_) / 3
+                    px[x, y] = wood[0] if lum < 70 else (wood[1] if lum < 150 else wood[2])
+            side = -1 if across(x0 + 64, y0 + 72) > 0 else 1
+            for y in range(y0, y0 + CELL):
+                for x in range(x0, x0 + CELL):
+                    a, t = along(x, y), across(x, y)
+                    s = t * side
+                    if -5 <= a <= 2.5 and abs(t) <= 0.8:
+                        px[x, y] = wood[0] if a > 1.5 else wood[1]
+                    elif 0.8 < s <= 7:
+                        half = 1.3 + 3.2 * (s - 0.8) / 6.2
+                        off = abs(a - 0.2)
+                        if off <= half:
+                            edge = off > half - 0.9
+                            px[x, y] = steel[2] if s > 6 else (steel[0] if edge else steel[1])
+                    elif -2.4 <= s <= -0.8 and -1.2 <= a <= 1.2:
+                        px[x, y] = steel[0]
+    return out
+
+
+# Weapons the generator has only under share-alike (DECISIONS 8bs, 8bt): painted onto a permissive
+# layer and credited as it. The staff becomes a spear, a greataxe and a maul; the mace a hand axe.
+for src, lid_kind, paint in [("staff", "spear", lambda im: polehead(im, "spear")), ("staff", "greataxe", lambda im: polehead(im, "greataxe")), ("staff", "maul", lambda im: polehead(im, "maul")), ("mace", "axe", axehead)]:
+    for layer in [l for l in manifest["layers"] if l["slot"] == "weapon" and l["option"] == src]:
+        lid = layer["id"].replace(src, lid_kind)
+        if layer["file"] == layer["id"]:
+            paint(Image.open(out / f"{layer['file']}.webp").convert("RGBA")).save(out / f"{lid}.webp", "WEBP", lossless=True, method=6)
+        manifest["layers"].append({**layer, "id": lid, "file": layer["file"].replace(src, lid_kind), "option": lid_kind})
 
 for material in ["body", "hair", "cloth", "eye", "metal"]:
     meta = json.loads((gen / "palette_definitions" / material / f"meta_{material}.json").read_text())

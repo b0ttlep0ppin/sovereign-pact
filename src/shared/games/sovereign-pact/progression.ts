@@ -32,11 +32,12 @@ export function gainXp(p: Person, xp: number): Person {
 
 /** XP capped so the Scion ends at most at `maxLevel` (training under a Mentor, §6.6). */
 /**
- * XP for a fight at expedition level `level` (tuning pass, FFT-like): `xp`, plus `catchUpPct`% for every
- * level the Scion stands below the reference 3L (§14.2), so a young Scion catches up on harder ground.
+ * XP for a fight (tuning pass, Josh 2026-11-03: "give a bonus for people who are underleveled so they can
+ * catch up"): `xp`, plus `catchUpPct`% for every level the Scion stands below `top`, the highest level
+ * among those who marched, counting at most `catchUpLevels` levels.
  */
-export function xpAt(p: Pick<Person, "level">, xp: number, level: number): number {
-  return Math.round(xp * (1 + (P.catchUpPct / 100) * Math.max(0, 3 * level - p.level)));
+export function xpAt(p: Pick<Person, "level">, xp: number, top: number): number {
+  return Math.round(xp * (1 + (P.catchUpPct / 100) * Math.min(P.catchUpLevels, Math.max(0, top - p.level))));
 }
 
 export function gainXpUpTo(p: Person, xp: number, maxLevel: number): Person {

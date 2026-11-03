@@ -10,13 +10,17 @@
   "stats": {"hp": 0.4, "speed": 10},
   "affinity": {"earth": 25, "water": 25, "fire": -25},
   "abilities": [
-    {"id": "twig_jab", "shape": "single", "side": "player", "power": 0.8}
+    {"id": "twig_jab", "shape": "single", "side": "player", "power": 0.8},
+    {"id": "feed_the_king", "shape": "single", "side": "ally", "power": 0.8, "kind": "heal", "cooldown": 2},
+    {"id": "creeping_root", "shape": "single", "side": "player", "power": 0.5, "reach": "ranged", "element": "earth", "statuses": [{"id": "rooted", "chance": 40, "ticks": 150}], "cooldown": 2}
   ],
   "gambits": [
+    {"if": "ally.hp<0.75", "do": "feed_the_king", "target": "ally_lowest_hp"},
+    {"do": "creeping_root", "target": "lob"},
     {"do": "twig_jab", "target": "column_weighted"}
   ],
   "bestiary": {
     "lore": "A seed of the Tree King, sent up through the floor of the wood.",
-    "weakness": "Fire. Each one is weak; the King sends more."
+    "weakness": "Fire. Each one is weak, but it feeds the King its sap and roots you where you stand, and the King sends more."
   }
 }

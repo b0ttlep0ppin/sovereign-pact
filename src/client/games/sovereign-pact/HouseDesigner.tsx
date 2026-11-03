@@ -5,7 +5,7 @@ import { Content, ELEMENTS, type SovMove, type SovView } from "@vibepulse/shared
 import { useState } from "react";
 import { Emblem, inkOf } from "./Emblem";
 import { SEAT_ART } from "./icons";
-import { houseTheme, SETTLEMENT_THEMES, TRACKS, type TrackId } from "./music";
+import { HOUSE_THEMES, houseTheme, TRACKS } from "./music";
 import { BONE, PixelArt } from "./PixelArt";
 
 type Props = { view: SovView; sendMove: (m: SovMove) => void };
@@ -298,7 +298,7 @@ function TraitsStep({ h, bane, crunch, design }: StepProps & { bane: string | nu
 /** The Settlement theme (§5.9): any track of the game's music; the founding screen plays it once chosen. */
 function ThemeStep({ view, h, design }: StepProps & { view: SovView }) {
   const now = houseTheme(view, h.index);
-  const ids = [...SETTLEMENT_THEMES, ...(Object.keys(TRACKS) as TrackId[]).filter((id) => !SETTLEMENT_THEMES.includes(id))];
+  const ids = HOUSE_THEMES;
   return (
     <>
       <p className="sp-event__status">

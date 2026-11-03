@@ -138,6 +138,8 @@ function settle(s: SovState, b: Battle, cause: string): void {
   // The first packed of a kind is the first used.
   for (const id of b.used ?? []) e.satchel!.splice(e.satchel!.findIndex((x) => x.id === id), 1);
   tally(s, b, [...new Set(b.units.flatMap((u) => (u.side === "party" && u.person !== undefined && u.owner === undefined ? [person(s, u.person).host] : [])))]);
+  // Catch-up XP is measured against the most seasoned Scion who fought.
+  const top = Math.max(1, ...b.units.flatMap((u) => (u.side === "party" && u.person !== undefined && u.owner === undefined ? [person(s, u.person).level] : [])));
   for (const u of b.units) {
     if (u.side !== "party" || u.person === undefined || u.owner !== undefined) continue;
     let p = person(s, u.person);
@@ -160,7 +162,7 @@ function settle(s: SovState, b: Battle, cause: string): void {
     const part = u.mods.packRat ? u.parts?.[0] : undefined;
     e.carry[p.id] = { dur: { ...u.dur! }, broken: [...u.broken], ...(Object.keys(mods).length ? { mods } : {}), ...(hurt ? { hurt, hpMax: u.maxHp } : {}), ...(shrugged ? { shrugged } : {}), ...(part ? { part } : {}) };
     if (u.catatonic && !e.out.includes(p.id)) e.out.push(p.id);
-    if (won) p = gainJp(gainXp(p, xpAt(p, P.battleXp, e.card.level)), P.battleJp);
+    if (won) p = gainJp(gainXp(p, xpAt(p, P.battleXp, top)), P.battleJp);
     s.people[s.people.findIndex((x) => x.id === p.id)] = p;
   }
 }
@@ -307,9 +309,10 @@ export function home(s: SovState, how: NonNullable<Expedition["result"]>): void 
   e.result = how;
   const mandatory = e.card.type === "mandatory";
   if (how === "won") {
+    const top = Math.max(1, ...marching(s).map((id) => person(s, id).level));
     for (const id of marching(s)) {
       const i = s.people.findIndex((p) => p.id === id);
-      s.people[i] = gainJp(gainXp(s.people[i]!, xpAt(s.people[i]!, P.expeditionXp, e.card.level)), P.expeditionJp);
+      s.people[i] = gainJp(gainXp(s.people[i]!, xpAt(s.people[i]!, P.expeditionXp, top)), P.expeditionJp);
     }
     log(s, "The expedition returns in triumph.");
     // A Rescue card's Lost come home with the party (§9.9).

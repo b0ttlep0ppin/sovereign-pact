@@ -55,6 +55,12 @@ const BATTLE_BY_POOL: Record<string, TrackId> = {
 /** The mandatory arc's bosses have their own themes; the End Ruler the last one. */
 const ARC_BOSSES: Record<string, TrackId> = { siege_beast: "the-spell", cursed_king: "the-spell", unknown_mother: "the-spell", end_ruler: "dark-fantasy-music" };
 
+/** Every track a battle plays: never a House's theme (Josh 2026-11-03: "don't let houses select the battle songs"). */
+export const BATTLE_TRACKS: ReadonlySet<TrackId> = new Set<TrackId>([...Object.values(BATTLE_BY_POOL), ...Object.values(ARC_BOSSES), "cursed-oni", "boss-battle"]);
+
+/** The tracks a House may take as its theme: the Settlement themes first, then the rest that are not battle music. */
+export const HOUSE_THEMES: TrackId[] = [...SETTLEMENT_THEMES, ...(Object.keys(TRACKS) as TrackId[]).filter((id) => !SETTLEMENT_THEMES.includes(id) && !BATTLE_TRACKS.has(id))];
+
 /** The track for a battle being watched or fought. */
 export function battleTrack(r: Pick<Replay, "title" | "pool" | "units">): TrackId {
   const boss = r.units.find((u) => u.boss && u.side === "enemy");
@@ -84,7 +90,7 @@ export function sceneTrack(view: SovView): TrackId {
 /** The Settlement theme a House chose at founding (§5.9), or its seat's until it has chosen one. */
 export function houseTheme(view: SovView, house: number): TrackId {
   const chosen = view.houses[house]?.theme;
-  return chosen && chosen in TRACKS ? (chosen as TrackId) : SETTLEMENT_THEMES[house % SETTLEMENT_THEMES.length]!;
+  return chosen && chosen in TRACKS && !BATTLE_TRACKS.has(chosen as TrackId) ? (chosen as TrackId) : SETTLEMENT_THEMES[house % SETTLEMENT_THEMES.length]!;
 }
 
 export const trackUrl = (id: TrackId): string => `${import.meta.env.BASE_URL ?? "./"}music/sovereign-pact/${id}.ogg`;
