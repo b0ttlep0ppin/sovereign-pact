@@ -2,6 +2,10 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-03 (implementation, Milestone 8br): volunteer cards that hold their stats
+
+- Fixed (Josh's playtest: "unit cards overflowing", on the muster): the battle screen's style for its own stat lines was written for every `.sp-stat` in the game, so once a battle had loaded, each stat box on a person's card (muster, Roster, Readying) turned into a wide row and spilled out of its card. That style now applies only inside the battle panel. A volunteer's card also lays out as portrait beside the name, then the stats, affinities and traits across the whole card, and its six stat boxes may shrink, so nothing spills into the next card at any width.
+
 ## 2026-11-03 (implementation, Milestone 8bq): choosing a House's theme, and a wider Seat step
 
 - Built (Josh's playtest: "where do you select your house theme?" and "seat selection UI weirdly narrow"): founding has a sixth tab, **Theme**, listing every track of the game's music (the six Settlement themes first) with its author. Choosing one sets the House's `theme` (§5.9), which plays at once on the founding screen and then whenever that player looks over the Settlement; until a House chooses, its seat's theme plays as before (DECISIONS, Milestone 8 music). Two Houses may share one. The theme is public (`PublicHouse.theme`), like colors and emblem. The Theme tab has no dice: the rules know no track ids, so a reroll would have nothing to draw from, and leaving it unchosen already gives the seat's theme. The Seat step is now a grid of cards across the panel (icon and text side by side, Choose beneath) instead of a narrow column, and its pros and cons are in muted green and red.

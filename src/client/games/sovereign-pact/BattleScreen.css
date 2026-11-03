@@ -63,7 +63,7 @@
 .sp-battle__panel li.is-dead { opacity: 0.45; }
 .sp-battle__panel li > .sp-bar, .sp-battle__panel li > .sp-stat, .sp-battle__panel li > .sp-dur, .sp-battle__panel li > .sp-statuses { grid-column: 1 / -1; }
 .sp-battle__panel small { color: var(--muted); font-variant-numeric: tabular-nums; }
-.sp-stat { display: grid; grid-template-columns: 2.2em 1fr auto; align-items: center; gap: 6px; }
+.sp-battle__panel .sp-stat { display: grid; grid-template-columns: 2.2em 1fr auto; align-items: center; gap: 6px; }
 .sp-stat__label { color: #9a8f80; font-size: 0.66rem; letter-spacing: 0.06em; text-transform: uppercase; }
 .sp-stat__value { color: #b8ad9c; font-size: 0.68rem; font-variant-numeric: tabular-nums; min-width: 4.5em; text-align: right; }
 .sp-bar { display: block; height: 5px; background: rgba(0, 0, 0, 0.55); border-radius: 1px; overflow: hidden; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05); }
