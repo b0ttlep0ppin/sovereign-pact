@@ -85,6 +85,40 @@
           ]
         }
       ]
+    },
+    {
+      "id": "lift_the_wax",
+      "label": "The Vagabond lifts the wax without breaking it.",
+      "rule": "scion:job:vagabond",
+      "only": true,
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "In and out, and the seal looks as it did. Inside was old money and older letters, and the letters are worth more.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 40
+              },
+              "score": {
+                "intrigue": 1
+              }
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "In, and the vault was sealed for a reason: something has waited a century to get out.",
+          "effects": [
+            {
+              "encounter": {}
+            }
+          ]
+        }
+      ]
     }
   ]
 }

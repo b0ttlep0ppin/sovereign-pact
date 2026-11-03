@@ -75,6 +75,29 @@
           ]
         }
       ]
+    },
+    {
+      "id": "swear_him_in",
+      "label": "Our own Knight hears his oath.",
+      "rule": "scion:job:knight",
+      "only": true,
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Two knights kneel in the road, and the penitent's oath binds to the Knight's. He walks away forgiven. The Knight walks away harder to break.",
+          "effects": [
+            {
+              "xp": 30,
+              "stat": {
+                "resilience": 1
+              }
+            }
+          ]
+        }
+      ]
     }
   ]
 }

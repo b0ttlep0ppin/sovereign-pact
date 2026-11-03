@@ -85,6 +85,39 @@
           ]
         }
       ]
+    },
+    {
+      "id": "punch_through",
+      "label": "The Pugilist punches through to the glint.",
+      "rule": "scion:job:pugilist",
+      "only": true,
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "One blow, a cloud of angry insects, and in the Pugilist's fist a lump of voidglass.",
+          "effects": [
+            {
+              "resources": {
+                "voidglass": 1
+              },
+              "status": "poison"
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "One blow, and the mound bites back all the way up the arm.",
+          "effects": [
+            {
+              "hp": -15,
+              "status": "poison"
+            }
+          ]
+        }
+      ]
     }
   ]
 }

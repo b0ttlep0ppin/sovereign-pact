@@ -84,6 +84,30 @@
           ]
         }
       ]
+    },
+    {
+      "id": "show_them",
+      "label": "The Soldier shows the least blooded how.",
+      "rule": "scion:job:soldier",
+      "only": true,
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It is quick and clean, and the least blooded learns it from someone who knows.",
+          "effects": [
+            {
+              "jp": 20
+            },
+            {
+              "to": "party",
+              "xp": 10
+            }
+          ]
+        }
+      ]
     }
   ]
 }

@@ -87,6 +87,39 @@
           ]
         }
       ]
+    },
+    {
+      "id": "in_and_out",
+      "label": "The Gambler bets they can step in and out before the music notices.",
+      "rule": "scion:job:gambler",
+      "only": true,
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "In and out, with a fistful of fair-folk coin and a grin.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 30
+              },
+              "tp": 50
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "In, and the music notices. They come out next morning, still dancing, a year older in the face.",
+          "effects": [
+            {
+              "sanity": -15,
+              "status": "slow"
+            }
+          ]
+        }
+      ]
     }
   ]
 }

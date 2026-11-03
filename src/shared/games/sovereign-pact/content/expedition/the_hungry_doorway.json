@@ -102,6 +102,36 @@
           ]
         }
       ]
+    },
+    {
+      "id": "call_through",
+      "label": "The Conjurer calls something through from the night side.",
+      "rule": "scion:job:conjurer",
+      "only": true,
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "Something small and willing comes through, and rides at the Conjurer's shoulder into the next fight.",
+          "effects": [
+            {
+              "tp": 100,
+              "mp": 30
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "Something comes through, and it is not small.",
+          "effects": [
+            {
+              "encounter": {}
+            }
+          ]
+        }
+      ]
     }
   ]
 }

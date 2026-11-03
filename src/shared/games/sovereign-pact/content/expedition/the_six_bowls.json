@@ -103,6 +103,30 @@
           ]
         }
       ]
+    },
+    {
+      "id": "fill_the_dry_bowl",
+      "label": "The Soothsayer fills the dry bowl from their own flask.",
+      "rule": "scion:job:soothsayer",
+      "only": true,
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The sixth god drinks. The Soothsayer's cards stay warm in their pocket for a long time after.",
+          "effects": [
+            {
+              "blessing": {
+                "trait": "answered",
+                "years": 1
+              },
+              "mp": 30
+            }
+          ]
+        }
+      ]
     }
   ]
 }

@@ -80,6 +80,29 @@
           ]
         }
       ]
+    },
+    {
+      "id": "curse_to_curse",
+      "label": "The one in cursed gear carries it. They are cursed already.",
+      "rule": "scion:cursed",
+      "only": true,
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The banner's curse and theirs snarl at each other, and both let go. They put the banner down lighter than they picked it up.",
+          "effects": [
+            {
+              "gear": {
+                "lift": "curse"
+              },
+              "sanity": -10
+            }
+          ]
+        }
+      ]
     }
   ]
 }

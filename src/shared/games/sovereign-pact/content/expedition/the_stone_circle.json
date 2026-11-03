@@ -98,6 +98,37 @@
           ]
         }
       ]
+    },
+    {
+      "id": "stay_till_dusk",
+      "label": "The Magus stays till dusk to speak with what comes.",
+      "rule": "scion:job:magus",
+      "only": true,
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "The old powers come, and speak, and the Magus understands one word in three. It is enough.",
+          "effects": [
+            {
+              "jp": 60,
+              "mp": 50
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "The old powers come, and the Magus understands every word, and wishes they did not.",
+          "effects": [
+            {
+              "jp": 80,
+              "sanity": -20
+            }
+          ]
+        }
+      ]
     }
   ]
 }

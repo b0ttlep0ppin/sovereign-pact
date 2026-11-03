@@ -95,6 +95,39 @@
           ]
         }
       ]
+    },
+    {
+      "id": "other_teeth",
+      "label": "The Pugilist offers it some teeth. Not their own.",
+      "rule": "scion:job:pugilist",
+      "only": true,
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "It is delighted, with the teeth and the knuckles both, and pays in iron rings that fit over them.",
+          "effects": [
+            {
+              "gear": {
+                "on": "weapon",
+                "add": "staggering"
+              }
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "It takes the teeth, and then some of the Pugilist's, for its trouble.",
+          "effects": [
+            {
+              "hp": -15,
+              "injury": "head"
+            }
+          ]
+        }
+      ]
     }
   ]
 }

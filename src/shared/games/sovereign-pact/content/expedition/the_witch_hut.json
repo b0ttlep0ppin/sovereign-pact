@@ -93,6 +93,27 @@
           ]
         }
       ]
+    },
+    {
+      "id": "witch_to_witch",
+      "label": "The one in a hood haggles with her, witch to witch.",
+      "rule": "scion:wears:hood",
+      "only": true,
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "She cackles, and takes a lock of hair instead of a year, and the cure is real.",
+          "effects": [
+            {
+              "mend": true,
+              "sanity": -5
+            }
+          ]
+        }
+      ]
     }
   ]
 }
