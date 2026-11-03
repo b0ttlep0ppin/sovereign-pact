@@ -2,6 +2,10 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-03 (implementation, Milestone 8cb): a restore on a whole party just says so
+
+Josh, on 8ca's carry-over: **"It doesn't have to carry into the next event, it just has to say they are healed (full hp)."** The carry-over is gone: a restore that finds a Scion already whole does nothing more, and the outcome card says so ("The party is already at full HP.", or "Cecily is already at full HP and MP." when only some are). Supersedes 8ca's first bullet.
+
 ## 2026-11-03 (implementation, Milestone 8ca): no restore wasted; still tabards; a log that keeps its place
 
 Josh's playtest: the Hollow Oak's "Let them be" (HP +10% to a party already whole) showed **"Nothing you can see has changed"**; **"something on my units chests is blinking in and out of existence"**; **"there should be a limit to the combat log, it seems to be growing window size"**.

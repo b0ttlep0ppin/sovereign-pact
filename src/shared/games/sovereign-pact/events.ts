@@ -16,7 +16,7 @@ import { battle, die, halt, home, lose, marching, person, succeed } from "./jour
 import { gainJp, gainXp, jobStats, passiveBudget, passiveMods, passivePoints } from "./progression.ts";
 import { jobStat } from "./formulas.ts";
 import { ascendancy } from "./score.ts";
-import { GEAR_SLOTS, LOCATIONS, STATS, type HistKey, type NodeKind, type Person, type ScoreCategory, type SovState, type Then } from "./state.ts";
+import { GEAR_SLOTS, LOCATIONS, STATS, type HistKey, type NodeKind, type Person, type ScoreCategory, type SovState, type Then, type Told } from "./state.ts";
 import { TUNING } from "./tuning.ts";
 import { log, note, withRng } from "./year.ts";
 import { change, unchange } from "./change.ts";
@@ -241,11 +241,11 @@ function land(s: SovState, option: TripOption, { scions, house }: Subjects, othe
   const who = option.rule === "vote" ? "" : option.rule === "secret" ? `House ${s.houses[house!]!.name}: ` : `${scions.map((id) => person(s, id).name).join(" and ")}: `;
   log(s, `${option.label} ${who}${outcome.text}`);
   const before = look(s);
-  const said = effectLines(s, outcome.effects, scions, marching(s), option.rule === "vote" ? null : house);
+  const said = [...effectLines(s, outcome.effects, scions, marching(s), option.rule === "vote" ? null : house), ...wholeLines(s, outcome.effects, scions, marching(s))];
   const done = effects(s, outcome.effects, scions, option.rule === "vote" ? null : house);
   const e = s.expedition!;
   if (e.told?.n !== e.seen.length) e.told = { id: e.seen.at(-1) ?? "", n: e.seen.length, parts: [] };
-  e.told.parts.push({ label: option.label, who: who.replace(/: $/, ""), text: outcome.text, lines: [...said, ...tell(s, before, new Set(outcome.effects.flatMap((x) => (x.status ? [x.status.split(":")[0]!] : []))))] });
+  e.told.parts.push({ label: option.label, who: who.replace(/: $/, ""), text: outcome.text, lines: [...said, ...tell(s, before)] });
   halt(s);
   return done;
 }
@@ -295,7 +295,6 @@ function apply(s: SovState, fx: TripEffect, ids: number[], house: number | null,
     if (shrugs(s, p, fx)) continue;
     if (fx.hp) {
       const c = (e.carry[id] ??= { dur: {}, broken: [] });
-      if (fx.hp > 0 && !c.hurt) spill(s, id, "regen");
       const max = full(s, id).maxHp;
       const hurt = Math.max(0, Math.min(max - 1, (c.hurt ?? 0) - pctOf(max, fx.hp)));
       if (hurt) Object.assign(c, { hurt, hpMax: max });
@@ -360,12 +359,31 @@ function apply(s: SovState, fx: TripEffect, ids: number[], house: number | null,
 }
 
 /**
- * A restore that finds them already whole is not lost (Josh 2026-11-03: "Nothing you can see has changed"):
- * they carry it into the next battle as Regen (HP), MP Regen (MP) or TP Regen (a steady mind, Sanity).
+ * Who a restore finds already whole, said before it lands (Josh 2026-11-03: "it just has to say they are
+ * healed (full hp)"), so an outcome that mends nobody never reads as "Nothing you can see has changed".
  */
-function spill(s: SovState, id: number, status: string): void {
-  const c = (s.expedition!.carry[id] ??= { dur: {}, broken: [] });
-  if (!(c.start ?? []).includes(status)) c.start = [...(c.start ?? []), status];
+function wholeLines(s: SovState, effects: readonly TripEffect[], scions: number[], party: number[]): Told[] {
+  const out: Told[] = [];
+  const e = s.expedition!;
+  for (const fx of effects) {
+    const ids = (fx.to === "party" ? party : scions).filter((id) => s.people.some((p) => p.id === id));
+    const full: string[] = [];
+    if ((fx.hp ?? 0) > 0) full.push("HP");
+    if ((fx.mp ?? 0) > 0) full.push("MP");
+    if ((fx.sanity ?? 0) > 0) full.push("Sanity");
+    if (!full.length || !ids.length) continue;
+    const whole = ids.filter((id) => {
+      const p = person(s, id);
+      const cap = caps(s, p);
+      return full.every((k) => (k === "HP" ? !e.carry[id]?.hurt : k === "MP" ? p.mp >= cap.mp : p.sanity >= cap.sanity));
+    });
+    if (!whole.length) continue;
+    const what = `full ${full.join(" and ")}`;
+    const all = whole.length === ids.length && ids.length > 1;
+    const names = whole.map((id) => person(s, id).name);
+    out.push({ text: all ? `The party is already at ${what}.` : `${names.join(" and ")} ${names.length > 1 ? "are" : "is"} already at ${what}.`, of: all ? null : person(s, whole[0]!).host, open: true });
+  }
+  return out;
 }
 
 /** What changes a person wherever they stand, on the road or at home (effects.ts): Sanity, MP, XP, JP,
@@ -373,8 +391,6 @@ function spill(s: SovState, id: number, status: string): void {
 export function befall(s: SovState, at: number, fx: TripEffect, where = "in the otherworld"): void {
   let p = s.people[at]!;
   const cap = caps(s, p);
-  if (where === "in the otherworld" && (fx.sanity ?? 0) > 0 && p.sanity >= cap.sanity) spill(s, p.id, "tp_regen");
-  if (where === "in the otherworld" && (fx.mp ?? 0) > 0 && p.mp >= cap.mp) spill(s, p.id, "mp_regen");
   if (fx.sanity) p.sanity = Math.max(0, Math.min(cap.sanity, p.sanity + pctOf(cap.sanity, fx.sanity)));
   if (fx.mp) p.mp = Math.max(0, Math.min(cap.mp, p.mp + pctOf(cap.mp, fx.mp)));
   if (fx.xp) p = gainXp(p, fx.xp);
