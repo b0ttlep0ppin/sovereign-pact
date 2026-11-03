@@ -25,7 +25,7 @@ describe("the Settlement Phase's decisions", () => {
     const sendMove = vi.fn();
     render(<Decisions view={view} sendMove={sendMove} canAct />);
     const card = screen.getByLabelText("The open vote");
-    expect(within(card).getByText(`A vote: ${voteText(view.vote!).question}`)).toBeTruthy();
+    expect(within(card).getByText(`A vote: ${voteText(view.vote!, view.houses).question}`)).toBeTruthy();
     expect(within(card).getByLabelText("1 for No")).toBeTruthy();
     fireEvent.click(within(card).getByRole("button", { name: "Yes" }));
     expect(sendMove).toHaveBeenCalledWith({ type: "vote", choice: 0 });

@@ -41,7 +41,7 @@ describe("building", () => {
     fireEvent.click(within(row).getByRole("button", { name: "Pledge" }));
     expect(sendMove).toHaveBeenCalledWith({ type: "pledge", project: "granary", give: { gold: 5 } });
     fireEvent.click(within(row).getByRole("button", { name: "Propose the Commons pay" }));
-    expect(sendMove).toHaveBeenCalledWith({ type: "propose", project: "granary" });
+    expect(sendMove).toHaveBeenCalledWith({ type: "propose", project: "granary", host: 0 });
   });
 
   it("offers no buttons once sealed", () => {
@@ -67,5 +67,20 @@ describe("the Altar of Offerings (Josh 2026-11-03: sacrifice small stuff for an 
     if (!r.ok) throw new Error(r.error);
     rerender(<Works view={g.view(r.state, "p1")} sendMove={sendMove} canAct />);
     expect(within(screen.getByRole("region", { name: "The Altar of Offerings" })).getByText(/Every battle opens with 15 TP/)).toBeTruthy();
+  });
+});
+
+describe("the Commons Council (Josh 2026-11-03: debated by the players)", () => {
+  it("proposes the Commons pay for a project sited in a chosen House's district, and moves a levy", () => {
+    const s = town();
+    const sendMove = vi.fn();
+    render(<Works view={g.view(s, "p1")} sendMove={sendMove} canAct />);
+    const row = screen.getByText(GRANARY.name).closest("li")!;
+    expect(within(row).getByText(new RegExp(`Host's perk: ${GRANARY.host!.text.replace(/[+]/g, "\\+")}`))).toBeTruthy();
+    fireEvent.change(within(row).getByLabelText("Site it in"), { target: { value: "1" } });
+    fireEvent.click(within(row).getByRole("button", { name: "Propose the Commons pay" }));
+    expect(sendMove).toHaveBeenCalledWith({ type: "propose", project: "granary", host: 1 });
+    fireEvent.click(screen.getByRole("button", { name: /Move a levy/ }));
+    expect(sendMove).toHaveBeenCalledWith({ type: "levy" });
   });
 });

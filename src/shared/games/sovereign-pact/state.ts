@@ -239,6 +239,8 @@ export interface ProjectFund {
   paid: Partial<Record<string, number>>;
   /** Units pledged by each House (index), for Renown. */
   by: number[];
+  /** Where the Houses voted to site it (the Commons Council); else the biggest pledger hosts it. */
+  host?: number;
 }
 
 export interface Commons {
@@ -248,6 +250,8 @@ export interface Commons {
   built: Partial<Record<string, number>>;
   /** Shared projects being paid for, by id. */
   funds: Partial<Record<string, ProjectFund>>;
+  /** Project id → the House whose district it stands in (the Commons Council): set when it first stands. */
+  hosts?: Partial<Record<string, number>>;
   /** Shop stock tiers above 1, raised by expedition finds (§8.6). */
   shopTiers?: Partial<Record<string, number>>;
 }
@@ -401,8 +405,10 @@ export type NodeKind = "encounter" | "event" | "camp" | "cache" | "boss" | "gate
  */
 
 export interface Vote {
-  /** What it decides: "spend" (the Commons' stock on a project); events add their own kinds. */
-  kind: "spend" | "event";
+  /** What it decides: "spend" (the Commons' stock on a project), "levy" (a Gold levy on every House into the Commons); events add their own kinds. */
+  kind: "spend" | "event" | "levy";
+  /** A spend's proposed site: the House whose district the project would stand in. */
+  host?: number;
   /** The project (or event) it is about. */
   subject: string;
   /** Option ids, in order; "yes" and "no" for a spend. */
@@ -668,7 +674,8 @@ export type SovMove =
   /** Give in to the Crisis's private temptation. */
   | { type: "tempt" }
   /** Propose spending the Commons' stock on a shared project (a vote of the Houses, §8.1). */
-  | { type: "propose"; project: string }
+  | { type: "propose"; project: string; host?: number }
+  | { type: "levy" }
   /** Vote on the open question: an index into its options. */
   | { type: "vote"; choice: number }
   /** Ready a Scion in town (§12.1, §13.1): buy an ability, change Job, set the secondary set, a passive, gear. */

@@ -22,7 +22,12 @@ export function commonsCanGive(s: SovState, project: string): number {
  */
 export function owed(s: SovState, house: number): string | null {
   if (s.vote && s.vote.by[house] === null) {
-    const what = s.vote.kind === "spend" ? `spending the Commons on the ${PROJECT_BY_ID.get(s.vote.subject)?.name ?? s.vote.subject}` : (TOWN_EVENT_BY_ID.get(s.vote.subject)?.title ?? s.vote.subject);
+    const what =
+      s.vote.kind === "spend"
+        ? `spending the Commons on the ${PROJECT_BY_ID.get(s.vote.subject)?.name ?? s.vote.subject}`
+        : s.vote.kind === "levy"
+          ? "the levy"
+          : (TOWN_EVENT_BY_ID.get(s.vote.subject)?.title ?? s.vote.subject);
     return `Vote first: ${what}.`;
   }
   const pe = s.events.find((e) => e.deciders.includes(house) && e.choices[house] === null);
@@ -38,13 +43,36 @@ export function cannotPropose(s: SovState, project: string): string | null {
   return null;
 }
 
-export function propose(s: SovState, house: number, project: string): void {
-  s.vote = { kind: "spend", subject: project, options: ["yes", "no"], by: s.houses.map(() => null), proposer: house };
-  log(s, `House ${s.houses[house]!.name} proposes spending the Commons on the ${PROJECT_BY_ID.get(project)!.name}.`);
+/** Why a project cannot be sited in House `host`'s district: it already stands somewhere, or there is no such House. */
+export function cannotSite(s: SovState, project: string, host: number): string | null {
+  if (!Number.isInteger(host) || !s.houses[host]) return "There is no such House.";
+  const at = s.commons.hosts?.[project] ?? s.commons.funds[project]?.host;
+  if (at !== undefined && at !== host) return `The ${PROJECT_BY_ID.get(project)?.name ?? project} is already sited in House ${s.houses[at]!.name}'s district.`;
+  return null;
+}
+
+export function propose(s: SovState, house: number, project: string, host: number = house): void {
+  const at = s.commons.hosts?.[project] ?? s.commons.funds[project]?.host ?? host;
+  s.vote = { kind: "spend", subject: project, options: ["yes", "no"], by: s.houses.map(() => null), proposer: house, host: at };
+  const site = s.houses.length > 1 ? `, sited in House ${s.houses[at]!.name}'s district` : "";
+  log(s, `House ${s.houses[house]!.name} proposes spending the Commons on the ${PROJECT_BY_ID.get(project)!.name}${site}.`);
   // A sealed House is called back to vote: nobody seals past a question put to them.
   s.houses.forEach((h, i) => i !== house && (h.sealed = false));
   // Solo, the proposal is the decision.
   if (s.houses.length === 1) castVote(s, house, 0);
+}
+
+/** A levy (the Commons Council): every House pays `TUNING.commons.levyGold` (or what it has) into the Commons if it passes. */
+export function cannotLevy(s: SovState): string | null {
+  if (s.vote) return "A vote is already open.";
+  if (s.houses.length === 1) return "With one House there is nobody to levy.";
+  return null;
+}
+
+export function proposeLevy(s: SovState, house: number): void {
+  s.vote = { kind: "levy", subject: "levy", options: ["yes", "no"], by: s.houses.map(() => null), proposer: house };
+  log(s, `House ${s.houses[house]!.name} moves a levy of ${TUNING.commons.levyGold} Gold on every House, for the Commons.`);
+  s.houses.forEach((h, i) => i !== house && (h.sealed = false));
 }
 
 export function cannotVote(s: SovState, house: number, choice: number): string | null {
@@ -109,8 +137,23 @@ export function settleVote(s: SovState): void {
   }
   if (s.houses.length > 1) vote.by.forEach((c, h) => c === choice && (s.houses[h]!.score.renown += TUNING.tracks.voteWonRenown));
   if (vote.kind === "event") settleEventVote(s, vote.subject, choice);
+  if (vote.kind === "levy") {
+    if (vote.options[choice] !== "yes") return void log(s, "The Houses refuse the levy.");
+    let raised = 0;
+    for (const h of s.houses) {
+      const n = Math.min(Math.max(0, h.gold), TUNING.commons.levyGold);
+      h.gold -= n;
+      raised += n;
+    }
+    s.commons.gold += raised;
+    log(s, `The levy passes: ${raised} Gold goes into the Commons.`);
+  }
   if (vote.kind === "spend") {
     const name = PROJECT_BY_ID.get(vote.subject)!.name;
+    if (vote.options[choice] === "yes" && vote.host !== undefined) {
+      const f = (s.commons.funds[vote.subject] ??= { paid: {}, by: s.houses.map(() => 0) });
+      f.host ??= vote.host;
+    }
     if (vote.options[choice] === "yes") log(s, `The Commons gives ${spendCommons(s, vote.subject)} to the ${name}.`);
     else log(s, `The Houses refuse to spend the Commons on the ${name}.`);
   }
