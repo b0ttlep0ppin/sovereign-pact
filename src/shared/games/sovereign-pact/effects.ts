@@ -116,7 +116,11 @@ function bestow(s: SovState, e: TownEffect, i: number): void {
     }
   }
   if (e.raise) {
-    const up = e.raise === "any" ? withRng(s, (rng) => rng.pick(Object.keys(h.buildings).filter((b) => (h.buildings[b] ?? 0) > 0 && h.buildings[b]! < 3)) as string | undefined) : e.raise;
+    // "any": one of the House's buildings below the top; with none standing, a new one (The Night Mason).
+    const grow = Object.keys(h.buildings).filter((b) => (h.buildings[b] ?? 0) > 0 && h.buildings[b]! < 3);
+    const fresh = [...BUILDING_BY_ID.keys()].filter((b) => !(h.buildings[b] ?? 0));
+    const from = grow.length ? grow : fresh;
+    const up = e.raise === "any" ? (from.length ? withRng(s, (rng) => rng.pick(from)) : undefined) : e.raise;
     if (up && BUILDING_BY_ID.has(up) && (h.buildings[up] ?? 0) < 3) {
       h.buildings[up] = (h.buildings[up] ?? 0) + 1;
       log(s, `House ${h.name}'s ${BUILDING_BY_ID.get(up)!.name} rises to level ${h.buildings[up]}.`);

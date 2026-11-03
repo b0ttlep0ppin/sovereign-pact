@@ -14,6 +14,7 @@ import { cannotUseItem, itemAbility } from "./combat/items.ts";
 import { hasRoom } from "./combat/summons.ts";
 import { canShift } from "./combat/forms.ts";
 import { cellOf, isSingle, singleTargets, targetSide } from "./combat/targets.ts";
+import { hitChance } from "./combat/damage.ts";
 import { COLS, ROWS, type AbilityDef, type Battle, type Cell, type Combatant, type Side } from "./combat/types.ts";
 import { concluded } from "./journey.ts";
 import type { LiveFight, SovState } from "./state.ts";
@@ -177,7 +178,8 @@ function throwsFirst(b: Battle, u: Combatant, a: Action): a is Extract<Action, {
 
 /** How a choice is aimed: at the Scion themself, at one of `targets`, or at any cell of `side` (an area). */
 /** `shape`: an area choice's shape, so the screen can show what it will cover (`areaCells`). */
-export type Aim = { aim: "self" } | { aim: "unit"; targets: Cell[] } | { aim: "area"; side: Side; shape: string };
+/** `hit`: for each foe in `targets`, the chance in % to land on them (Josh 2026-11-03: "see hit chance when selecting a target"). */
+export type Aim = { aim: "self" } | { aim: "unit"; targets: Cell[]; hit?: number[] } | { aim: "area"; side: Side; shape: string };
 
 /** One thing the Scion may do this turn, or could if not for `why`. */
 export interface Choice {
@@ -246,7 +248,11 @@ const NO_AIM = new Set(["self", "all", "line", "nearest", "random", "front_each_
 
 function aimOf(b: Battle, u: Combatant, ab: AbilityDef): Aim {
   if (ab.side === "self" || ab.summon || ab.form || ab.revert || ab.raise || ab.call || ab.devour || ab.song || NO_AIM.has(ab.shape.split(":")[0]!)) return { aim: "self" };
-  if (isSingle(ab)) return { aim: "unit", targets: singleTargets(b, u, ab).map(cellOf) };
+  if (isSingle(ab)) {
+    const ts = singleTargets(b, u, ab);
+    const foes = ts.some((t) => t.side !== u.side);
+    return { aim: "unit", targets: ts.map(cellOf), ...(foes ? { hit: ts.map((t) => (t.side === u.side ? 100 : hitChance(u, t, ab, b))) } : {}) };
+  }
   return { aim: "area", side: targetSide(u, ab), shape: ab.shape };
 }
 

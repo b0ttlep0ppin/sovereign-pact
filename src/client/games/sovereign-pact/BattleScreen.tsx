@@ -293,6 +293,7 @@ export default function BattleScreen({ replay, view, onClose, waiting = 0, fullL
             ? "chant"
             : "idle";
     const aimed = aimOn(u);
+    const odds = aimed && aiming?.hit ? aiming.hit[aiming.cells.findIndex((c) => same(c, aimed))] : undefined;
     const cursor = !!aimed && !!aiming && (aiming.covers ? splash.some((c) => c.side === u.side && c.col >= vit.get(u.id)![5] && c.col < vit.get(u.id)![5] + u.size[0] && c.row >= vit.get(u.id)![6] && c.row < vit.get(u.id)![6] + u.size[1]) : same(aimed, aiming.cells[aiming.cursor]!));
     return (
       <div
@@ -328,6 +329,10 @@ export default function BattleScreen({ replay, view, onClose, waiting = 0, fullL
             {u.name} <small>{hp}/{u.maxHp}</small>
             {u.read ? <small className="sp-unit__read">{readOf(u)}</small> : null}
           </span>
+        ) : null}
+        {odds !== undefined && odds < 100 ? (
+          // The chance to land on this foe (Josh 2026-11-03).
+          <span className="sp-unit__hit" title={`${odds}% to hit`}>{odds}%</span>
         ) : null}
         {actor === u.id && !(flags & FLAG.dead) ? <span className="sp-unit__marker" aria-hidden="true" /> : null}
         {marks.length ? (

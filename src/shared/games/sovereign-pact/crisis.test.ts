@@ -138,4 +138,14 @@ describe("town effects", () => {
     expect(s.flags).toContain("seen");
     expect(s.timeline.at(-1)).toEqual({ year: s.year + 2, id: "hungry_winter" });
   });
+
+  it("raises a new building when a House has none to raise (The Night Mason never jams the Year)", () => {
+    const s = calm(campaign(2));
+    s.houses[0]!.buildings = {};
+    expect(() => applyEffects(s, [{ raise: "any" }], 0)).not.toThrow();
+    expect(Object.values(s.houses[0]!.buildings)).toEqual([1]);
+    s.houses[1]!.buildings = { forge: 3 };
+    applyEffects(s, [{ raise: "any" }], 1);
+    expect(Object.values(s.houses[1]!.buildings).sort()).toEqual([1, 3]);
+  });
 });

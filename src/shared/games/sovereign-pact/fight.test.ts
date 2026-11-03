@@ -162,6 +162,12 @@ describe("a battle by hand", () => {
     expect({ ...theirs, turn: null }).toEqual({ ...mine, turn: null });
     expect(mine.turn!.unit).toBe(f.unit);
     expect(mine.turn!.abilities[0]).toMatchObject({ id: "attack", name: "Attack", aim: "unit" });
+    // Each foe in reach carries the chance to land on them (Josh 2026-11-03).
+    const attack = mine.turn!.abilities[0]!;
+    if (attack.aim === "unit") {
+      expect(attack.hit?.length).toBe(attack.targets.length);
+      for (const n of attack.hit ?? []) expect(n >= 0 && n <= 100).toBe(true);
+    }
     expect(JSON.stringify(mine)).not.toContain("gambits");
   });
 

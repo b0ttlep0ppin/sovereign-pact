@@ -444,3 +444,11 @@ button.sp-injury__die.is-waiting:hover, button.sp-injury__die.is-waiting:focus-v
   padding: 6px 9px; white-space: normal; text-align: left; font-size: 0.78rem; line-height: 1.4; color: #e2d4ba;
   background: #120d10; border: 1px solid rgba(215, 180, 90, 0.45); border-radius: 3px; box-shadow: 0 6px 18px rgba(0, 0, 0, 0.8);
 }
+
+/* The chance to land on each foe while aiming (Josh 2026-11-03). */
+.sp-unit__hit {
+  position: absolute; left: 50%; bottom: 14%; transform: translateX(-50%); z-index: 4;
+  padding: 0 5px; border-radius: 3px; background: rgba(20, 14, 12, 0.85); border: 1px solid rgba(215, 180, 90, 0.55);
+  color: #ecdcc0; font-size: 11px; font-weight: 600; pointer-events: none; white-space: nowrap;
+}
+.sp-command__hit { color: #e8c66a; font-weight: 600; }
