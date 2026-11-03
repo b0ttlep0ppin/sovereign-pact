@@ -2,6 +2,14 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-03 (implementation, Milestone 8ca): no restore wasted; still tabards; a log that keeps its place
+
+Josh's playtest: the Hollow Oak's "Let them be" (HP +10% to a party already whole) showed **"Nothing you can see has changed"**; **"something on my units chests is blinking in and out of existence"**; **"there should be a limit to the combat log, it seems to be growing window size"**.
+- **No restore wasted (rules).** 107 event outcomes only restore HP, MP or Sanity, and do nothing to a party already whole. Now a restore that finds a Scion whole carries into their next battle instead: HP as Regen, MP as MP Regen, Sanity (a steady mind) as TP Regen. The outcome card says so ("already whole: it waits for the next battle as Regen"). Only on the road, not at home. Reading: the pillar that every event does something, taken as the smallest change that keeps each outcome's meaning.
+- **Still tabards.** The idle rows borrow their second frame from the walk; a tabard or sash mid-stride is a different shape, so the chest flickered between two looks every 400 ms. `tools/cut-scions.py` now holds the first frame (risen 1 px with the body) for tabards and belts, as it already did for weapons, and the shipped sheets were patched the same way.
+- **Tower shield in House colors.** The generator's scutum comes only in its white cloth ramp and names no material, so it stood bone-white; it is now recolored as cloth like the heater.
+- **The log keeps its place.** The middle column takes its height from the grids beside it (`contain: size`), so a long log scrolls instead of stretching the screen.
+
 ## 2026-11-03 (implementation, Milestone 8bz): the party waits for every House; why a battle is fought; the Gambler's dice in the open
 
 Josh's playtest: **"it didn't really explain why we had to instantly fight the willbound star after a battle"**, **"all the battles are one after another no time to do anything, or click next battle"**, **"it would be cool if gamblers on their turn you saw two dice roll, and it made dice roll sfx, and it showed you the number"**, **"it didn't seem like i was being asked if i wanted to double down"**, **"need a way to acknowledge the d20 injury roll screen"**, **"mousing over status effects should give a tooltip"**, **"hp tooltips are appearing behind enemy sprite"**, and **"mousing over an enemy target should highlight which enemy they are in the enemy list"**.

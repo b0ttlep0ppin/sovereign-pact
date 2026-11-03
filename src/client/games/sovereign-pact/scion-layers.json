@@ -2619,7 +2619,7 @@
    "option": "scutum",
    "sex": "m",
    "z": 2,
-   "material": null
+   "material": "cloth"
   },
   {
    "id": "shield_scutum_1_f",
@@ -2628,7 +2628,7 @@
    "option": "scutum",
    "sex": "f",
    "z": 2,
-   "material": null
+   "material": "cloth"
   },
   {
    "id": "shield_scutum_2_m",
@@ -2637,7 +2637,7 @@
    "option": "scutum",
    "sex": "m",
    "z": 110,
-   "material": null
+   "material": "cloth"
   },
   {
    "id": "shield_scutum_2_f",
@@ -2646,7 +2646,7 @@
    "option": "scutum",
    "sex": "f",
    "z": 110,
-   "material": null
+   "material": "cloth"
   },
   {
    "id": "weapon_spear_1_m",

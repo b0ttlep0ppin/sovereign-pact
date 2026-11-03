@@ -18,7 +18,8 @@
 .sp-battle__headline { margin: 0; min-height: 1.5em; text-align: center; font: 400 1.4rem/1.1 var(--display); color: var(--gold); letter-spacing: 0.02em; }
 .sp-battle__field { display: grid; grid-template-columns: minmax(150px, 220px) 1fr minmax(170px, 250px); gap: 12px; align-items: start; }
 .sp-battle__planes { position: relative; display: grid; grid-template-columns: 1fr clamp(170px, 16vw, 260px) 1fr; gap: 8px; align-items: center; perspective: 900px; min-width: 0; }
-.sp-battle__gap { align-self: stretch; display: grid; grid-template-rows: auto minmax(0, 1fr); min-width: 0; background: linear-gradient(90deg, transparent, rgba(120, 100, 140, 0.08), transparent); }
+/* Sized by the grids beside it, never by its own lines (Josh 2026-11-03: the log "seems to be growing window size"). */
+.sp-battle__gap { align-self: stretch; contain: size; display: grid; grid-template-rows: auto minmax(0, 1fr); min-width: 0; background: linear-gradient(90deg, transparent, rgba(120, 100, 140, 0.08), transparent); }
 .sp-battle__gap .sp-battle__log, .sp-battle__gap .sp-battle__log.is-full { grid-row: 2; max-height: none; min-height: 0; }
 /* The Gambler's dice, over the log in the middle (Josh 2026-11-03). */
 .sp-dicetray { grid-row: 1; display: grid; gap: 6px; margin-bottom: 6px; padding: 8px; background: rgba(12, 8, 10, 0.92); border: 1px solid rgba(215, 180, 90, 0.45); border-radius: 4px; text-align: center; animation: sp-fade-in 200ms ease-out; }
