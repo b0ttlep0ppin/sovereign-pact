@@ -2,7 +2,7 @@
 // Reckoning, so its benefit starts the next Year. Producers, the Shrine and the Vault pay out at the
 // Reckoning; the other buildings' effects are read by the systems they belong to (Insight, the
 // Infirmary, the Chapel…), each by its level in `House.buildings`.
-import { workers } from "./assign.ts";
+import { holders, workers } from "./assign.ts";
 import { built } from "./commons.ts";
 import { BUILDING_BY_ID, RARE_MATERIALS } from "./content.ts";
 import { byPct, econ } from "./houses.ts";
@@ -60,12 +60,19 @@ function pay(h: House, cost: Cost, sign: 1 | -1): void {
   }
 }
 
+/** Builds a House may start this Year: one, and one more for each Scion or Retired overseeing works. */
+export const buildsAllowed = (s: SovState, house: number): number =>
+  T.buildsPerYear + holders(s, house, "oversee").filter((p) => p.status === "scion" || p.status === "retired").length;
+
 /** Why House `house` cannot start `building` now, or null if it can. */
 export function cannotBuild(s: SovState, house: number, building: string): string | null {
   const h = s.houses[house]!;
   if (!BUILDING_BY_ID.has(building)) return "There is no such building.";
   if (h.works.includes(building)) return "That building is already going up this Year.";
-  if (h.works.length >= T.buildsPerYear) return "Your masons are busy until the Year ends.";
+  if (h.works.length >= buildsAllowed(s, house))
+    return holders(s, house, "oversee").length < TUNING.assignments.overseeSlots
+      ? "Your masons are busy. Put a Scion on Oversee works to start another build this Year."
+      : "Your masons are busy until the Year ends.";
   const cost = buildCost(building, levelOf(h, building) + 1);
   if (!cost) return "That building is already at its highest level.";
   if (!has(h, cost)) return "You cannot pay for it.";

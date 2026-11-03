@@ -58,6 +58,28 @@ describe("House buildings (§8.3–8.4)", () => {
     expect(s.houses[0]!.works).toEqual([]);
   });
 
+  it("lets a House start one more build for each Scion overseeing works (Josh 2026-11-03)", () => {
+    let s = calm(campaign(2, 3));
+    const h0 = s.houses[0]!;
+    h0.gold = 500;
+    h0.stores.timber = 200;
+    h0.stores.stone = 100;
+    const [a, b] = s.people.filter((p) => p.host === 0 && p.status === "scion");
+    s = move(s, "p1", { type: "build", building: "farm" });
+    expect(error(s, "p1", { type: "build", building: "quarry" })).toMatch(/Oversee works/);
+    s = move(s, "p1", { type: "assign", person: a!.id, to: "oversee" });
+    s = move(s, "p1", { type: "build", building: "quarry" });
+    s = move(s, "p1", { type: "assign", person: b!.id, to: "oversee" });
+    s = move(s, "p1", { type: "build", building: "lumber_camp" });
+    expect(s.houses[0]!.works).toEqual(["farm", "quarry", "lumber_camp"]);
+    // An overseer stays while their build is going up.
+    expect(error(s, "p1", { type: "assign", person: a!.id, to: "rest" })).toMatch(/overseeing/);
+    s = move(s, "p1", { type: "unbuild", building: "lumber_camp" });
+    s = move(s, "p1", { type: "assign", person: a!.id, to: "rest" });
+    s = sealAll(s);
+    expect(s.houses[0]!.buildings).toMatchObject({ farm: 1, quarry: 1 });
+  });
+
   it("refunds a build taken back the same Year", () => {
     const s = calm(campaign(2, 3));
     const t = move(move(s, "p1", { type: "build", building: "farm" }), "p1", { type: "unbuild", building: "farm" });

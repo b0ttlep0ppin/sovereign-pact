@@ -2,6 +2,13 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-03 (implementation, Milestone 8cc): overseers, no sealing with a question open, bots that come round
+
+Josh: **"there are so many buildings you would never be able to build them all, let people construct multiple buildings if they have a scion to oversee extras"**; **"make sure events that require everyone's input are addressed prior to seal year"**; **"in bot games they pick options before I even read them, meaning it's always accord loss if I disagree, there should be a chance they decide to agree with you instead so accord is preserved since they want to survive as well, at least to some extent"**.
+- **Oversee works.** A new Year assignment, the Masons' yard in each House's district: each Scion or Retired on it lets the House start one more build or upgrade that Year (up to 3, `assignments.overseeSlots`). An overseer cannot be moved while the build they allow is going up; take the build back first. Reading: overseers on the expedition still count (they set the works going before they leave).
+- **No sealing with a question open.** A House cannot seal the Year while a vote or a town event it decides waits on its answer; the Seal button says which. A new proposal to spend the Commons unseals the other Houses so they can vote. The cautious option at the seal stays only as a safety net.
+- **Bots come round.** The state now knows which seats bots play (a bot's moves are marked; a person's move clears the mark). When a vote or the Rift Gate card vote is settled and the people at the table agree on one choice, each bot that voted otherwise switches to it at 60%, +1 for each point of Accord below 50, up to 90% (`tracks.botAgreePct`, `botAgreeMax`). People never have their votes changed, and when the people are split, bots keep theirs.
+
 ## 2026-11-03 (implementation, Milestone 8cb): a restore on a whole party just says so
 
 Josh, on 8ca's carry-over: **"It doesn't have to carry into the next event, it just has to say they are healed (full hp)."** The carry-over is gone: a restore that finds a Scion already whole does nothing more, and the outcome card says so ("The party is already at full HP.", or "Cecily is already at full HP and MP." when only some are). Supersedes 8ca's first bullet.

@@ -496,7 +496,7 @@ describe("the content and the bot", () => {
     for (const d of TRIP_EVENTS) if (d.options.length > 1) for (const o of d.options) expect(o.tags?.length, `${d.id}.${o.id}`).toBeGreaterThan(0);
     const s = underway(1);
     s.expedition!.event = { id: "the_toll", votes: [null] };
-    expect(g.botMove!(s, "p1", undefined as never)).toEqual({ type: "decide", option: 0 });
+    expect(g.botMove!(s, "p1", undefined as never)).toEqual({ type: "decide", option: 0, bot: true });
   });
 
   it("never lets an outcome do nothing (Josh 2026-11-03: 'something answers, nothing happens. Why?')", () => {

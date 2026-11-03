@@ -117,7 +117,7 @@ describe("founding the Houses (§5.1)", () => {
     const taken = s.houses[0]!.colors[0];
     s = move(s, "p2", { type: "design", house: { colors: [taken, taken === "crimson" ? "moss" : "crimson"] } });
     expect(error(s, "p2", { type: "swear", ambition: 0 })).toMatch(/sworn under that color/);
-    expect(g.botMove!(s, "p2", undefined as never)).toEqual({ type: "random_house", step: "colors" });
+    expect(g.botMove!(s, "p2", undefined as never)).toEqual({ type: "random_house", step: "colors", bot: true });
   });
 
   it("gives Debt-Ridden its debt when the campaign begins", () => {

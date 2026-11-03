@@ -174,7 +174,7 @@ describe("the draft (Josh, 2026-11-02: one pool of shares, a random House order)
     expect(s.houses[first!]!.stores.essence).toBe(had + 1);
     // The bot takes the Masterwork over the Fine item and the other Essence.
     const mw = s.expedition!.pool!.find((x) => x.item?.tier === 4)!;
-    expect(g.botMove!(s, `p${second! + 1}`, undefined as never)).toEqual({ type: "draft", share: mw.id });
+    expect(g.botMove!(s, `p${second! + 1}`, undefined as never)).toEqual({ type: "draft", share: mw.id, bot: true });
     for (let i = 0; i < 3; i++) s = move(s, g.activePlayers(s)[0]!, g.botMove!(s, g.activePlayers(s)[0]!, undefined as never));
     expect(s.expedition).toBeUndefined();
     expect(s.items.find((i) => i.id === mw.id)!.house).toBe(second);

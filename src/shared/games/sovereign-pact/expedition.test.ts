@@ -4,7 +4,7 @@ import { describe, expect, it } from "vitest";
 import { able, muster, share } from "./expedition.ts";
 import { sovereignPact, type SovMove, type SovState } from "./index.ts";
 import type { ExpeditionCard } from "./state.ts";
-import { calm, campaign, sealYear } from "./testing.ts";
+import { answerOwed, calm, campaign, sealYear } from "./testing.ts";
 import { TUNING } from "./tuning.ts";
 import { view } from "./view.ts";
 
@@ -137,6 +137,7 @@ describe("the bots and the whole Year", () => {
   it("bots field their highest levels and vote their own best; a sealed Year runs to the next", () => {
     let s = campaign(3, 5);
     s.people.find((p) => p.host === 0 && p.status === "scion")!.level = 7;
+    s = [0, 1, 2].reduce((x, i) => answerOwed(x, i), s);
     s = move(move(move(s, "p1", { type: "seal" }), "p2", { type: "seal" }), "p3", { type: "seal" });
     if (s.phase === "expedition") {
       const field = g.botMove!(s, "p1", undefined as never) as { type: "field"; people: number[] };

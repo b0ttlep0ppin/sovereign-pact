@@ -144,7 +144,7 @@ export const TUNING = {
       standard: [{ timber: 20, gold: 20 }, { timber: 30, stone: 20, gold: 40 }, { stone: 40, iron: 20, gold: 80 }],
       expensive: [{ timber: 30, stone: 10, gold: 40 }, { timber: 40, stone: 30, gold: 80 }, { stone: 60, iron: 30, essence: 10, gold: 150 }],
     } as Record<"cheap" | "standard" | "expensive", readonly Partial<Record<"gold" | Material, number>>[]>,
-    /** Builds or upgrades a House may start in a Year (§8.3; Masons' Guild 2, when traits exist). */
+    /** Builds or upgrades a House may start in a Year (§8.3), and one more for each Scion overseeing works. */
     buildsPerYear: 1,
     /** Producer output per Year by level (§8.4). */
     produce: [8, 16, 24],
@@ -178,6 +178,8 @@ export const TUNING = {
     guardPct: 25,
     /** One Sortie a House a Year, up to 4 Scions not on the expedition (§6.11). */
     sortieSlots: 4,
+    /** Oversee works (Josh 2026-11-03: "let people construct multiple buildings if they have a scion to oversee extras"): each Scion on it lets the House start one more build this Year. */
+    overseeSlots: 3,
     studySlots: 1,
     /** Sanity recovered in a Year, % of max: idle, Rest; the Chapel building adds its own for all in town (§8.4). */
     idleSanityPct: 10,
@@ -335,6 +337,12 @@ export const TUNING = {
     doomPerYear: 2,
     /** Every vote's tie costs this much Accord [DECIDED]. */
     tieCost: 3,
+    /**
+     * A bot that votes against the people at the table comes round to their choice at this %, +1 for each
+     * point of Accord below 50, up to `botAgreeMax` (Josh 2026-11-03: "they want to survive as well").
+     */
+    botAgreePct: 60,
+    botAgreeMax: 90,
     /** Renown for each House on a vote's winning side (§3.4 "votes won"), first pass. */
     voteWonRenown: 1,
   },

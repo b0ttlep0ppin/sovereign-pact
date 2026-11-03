@@ -340,6 +340,14 @@ export default function SovereignPact({ view, isMyTurn, sendMove, lastError }: P
                   Back
                 </button>
               </span>
+            ) : view.mine?.owed ? (
+              // Nobody seals with a question open to them (Josh 2026-11-03).
+              <span className="sp-seal-owed">
+                <button type="button" className="sp-button" disabled title={view.mine.owed}>
+                  Seal the Year
+                </button>
+                <small>{view.mine.owed}</small>
+              </span>
             ) : (
               <button type="button" className="sp-button" onClick={() => (idle.length ? setSealAsk(true) : sendMove({ type: "seal" }))}>
                 Seal the Year

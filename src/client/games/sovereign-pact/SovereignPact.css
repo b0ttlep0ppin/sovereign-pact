@@ -523,3 +523,7 @@
 }
 .sp-button--quiet { background: var(--sp-leather), linear-gradient(#1f2023, #121315); background-size: 120px 120px, auto; }
 .sp-button--quiet::after { border-color: rgba(190, 190, 200, 0.14); }
+
+/* The Seal button held back by an open question (Josh 2026-11-03). */
+.sp-seal-owed { display: inline-flex; align-items: center; gap: 6px; }
+.sp-seal-owed small { color: var(--warn, #c9a35a); max-width: 22em; }

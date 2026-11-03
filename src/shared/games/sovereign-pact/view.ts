@@ -42,7 +42,7 @@ import { kitOf, type Kit } from "./outfit.ts";
 import { BUILDINGS, PROJECTS, TRIP_EVENT_BY_ID } from "./content.ts";
 import { built, projectCost, stillNeeded } from "./commons.ts";
 import { buildCost, cannotBuild, levelOf } from "./town.ts";
-import { cannotPropose } from "./votes.ts";
+import { cannotPropose, owed } from "./votes.ts";
 import { cannotOpen } from "./satchel.ts";
 import { ceremonies } from "./promotion.ts";
 import { cureOf, mends } from "./cures.ts";
@@ -103,6 +103,8 @@ export interface PrivateHouse {
   /** The Scriptorium's level: how much of a recruit shows (§6.4). */
   insight: number;
   /** This House's own Crisis pledge, and whether it gave in to the temptation. */
+  /** What the House must answer before it may seal: a vote or a town event (Josh 2026-11-03). */
+  owed: string | null;
   crisis: { pledge: Partial<Record<string, number>>; tempted: boolean } | null;
   /** This House's Year assignments, by person id (§8.3). */
   assign: Record<number, Assignment>;
@@ -397,6 +399,7 @@ export function view(s: SovState, playerId: PlayerId): SovView {
             tarot: s.people.filter((p) => !cannotDrawTarot(s, me, p.id)).map((p) => p.id),
             draught: s.people.filter((p) => !cannotDrinkDraught(s, me, p.id)).map((p) => p.id),
             insight,
+            owed: owed(s, me),
             crisis: s.crisis ? { pledge: s.crisis.pledges[me]!, tempted: s.crisis.tempted[me]! } : null,
             notes: s.notes[me] ?? [],
             // Dark Bargains offered to this House alone (§14.7a).

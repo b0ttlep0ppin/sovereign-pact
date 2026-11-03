@@ -215,7 +215,7 @@ export interface TimelineEntry {
 }
 
 /** What a person does with the Year (§8.3). Expedition, Sortie and Special come with Milestone 6 and events. */
-export const ASSIGNMENTS = ["rest", "chapel", "infirmary", "train", "teach", "study", "work", "guard", "sortie"] as const;
+export const ASSIGNMENTS = ["rest", "chapel", "infirmary", "train", "teach", "study", "work", "guard", "sortie", "oversee"] as const;
 export type AssignmentKind = (typeof ASSIGNMENTS)[number];
 export interface Assignment {
   to: AssignmentKind;
@@ -555,6 +555,8 @@ export interface SovState {
   muster?: Muster;
   /** Houses that proposed a vote this Year: one proposal each a Year. */
   proposers: number[];
+  /** Houses whose last move a bot made (Josh 2026-11-03): their votes may come round to the people's. */
+  botSeats?: number[];
   /** Year assignments by person id; kept from Year to Year until changed. Unassigned people idle. */
   assign: Record<number, Assignment>;
   /** Campaign-wide flags set by events, by id. */

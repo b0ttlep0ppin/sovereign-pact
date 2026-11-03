@@ -6,6 +6,7 @@ import { arcanaHuntFor } from "./arcana.ts";
 import { idolFor } from "./idols.ts";
 import { quarryFor } from "./hunt.ts";
 import { loseAccord } from "./commons.ts";
+import { goAlong } from "./votes.ts";
 import { ARCANA_BY_TAROT, BOSS_BY_ID, IDOL_BY_ID, POOL_BY_ID, POOLS, TOWN_EVENT_BY_ID, TOWN_EVENTS } from "./content.ts";
 import { year20 } from "./crisis.ts";
 import type { ExpeditionCard, SovState } from "./state.ts";
@@ -133,6 +134,7 @@ export const pick = (s: SovState, house: number, card: number): void => void (s.
 export function chosenCard(s: SovState): ExpeditionCard | undefined {
   const gate = s.gate;
   if (!gate?.cards.length) return undefined;
+  goAlong(s, gate.votes);
   const tally = gate.cards.map((_, i) => gate.votes.filter((v) => v === i).length);
   const top = Math.max(...tally);
   if (top === 0) return gate.cards[0];

@@ -1,6 +1,8 @@
 // Helpers for this game's tests and the simulator: seeded campaigns and bot play-throughs.
 import { createRng } from "../../rng.ts";
-import { sovereignPact, type SovState } from "./index.ts";
+import { TOWN_EVENT_BY_ID } from "./content.ts";
+import { sovereignPact, type SovMove, type SovState } from "./index.ts";
+import { cautious } from "./omens.ts";
 
 export const seats = (n: number): string[] => Array.from({ length: n }, (_, i) => `p${i + 1}`);
 
@@ -77,10 +79,31 @@ export function playOut(start: SovState, each?: (s: SovState) => void, maxMoves 
 }
 
 /** Every House seals the Year; bots then field the party and vote its Leader, as far as the next Year. */
+/** Answers what House `i` owes before it may seal (Josh 2026-11-03): each of its town events cautiously, a vote with its last option. */
+export function answerOwed(start: SovState, i: number): SovState {
+  let s = start;
+  const p = s.players[i]!;
+  const send = (m: SovMove) => {
+    const r = sovereignPact.applyMove(s, p, m);
+    if (!r.ok) throw new Error(r.error);
+    s = r.state;
+  };
+  for (let n = 0; n < 8; n++) {
+    if (s.vote && s.vote.by[i] === null) send({ type: "vote", choice: s.vote.options.length - 1 });
+    else {
+      const pe = s.events.find((e) => e.deciders.includes(i) && e.choices[i] === null);
+      if (!pe) break;
+      send({ type: "choose", event: pe.key, option: cautious(TOWN_EVENT_BY_ID.get(pe.id)!) });
+    }
+  }
+  return s;
+}
+
 export function sealYear(start: SovState): SovState {
   let s = start;
   for (const [i, p] of s.players.entries()) {
     if (s.phase !== "settlement" || s.houses[i]!.sealed) continue;
+    s = answerOwed(s, i);
     const r = sovereignPact.applyMove(s, p, { type: "seal" });
     if (!r.ok) throw new Error(r.error);
     s = r.state;

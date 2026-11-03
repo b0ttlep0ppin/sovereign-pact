@@ -42,7 +42,7 @@ describe("checkpoint", () => {
     const s = campaign(2);
     const save = g.checkpoint!(s);
     expect(save).not.toBeNull();
-    const moved = g.applyMove(s, "p1", { type: "seal" });
+    const moved = g.applyMove(s, "p1", { type: "assign", person: s.people.find((p) => p.host === 0 && p.status === "scion")!.id, to: "rest" });
     expect(moved.ok && g.checkpoint!(moved.state)).toBeNull();
     expect(g.checkpoint!(sealAll(s))!.campaign.year).toBe(2);
   });

@@ -6,7 +6,7 @@ import { PROJECT_BY_ID, TOWN_EVENT_BY_ID } from "./content.ts";
 import { cautious, settleEventVote } from "./omens.ts";
 import type { SovState, Vote } from "./state.ts";
 import { TUNING } from "./tuning.ts";
-import { log } from "./year.ts";
+import { log, withRng } from "./year.ts";
 
 /** What the Commons could give a project now, in units. */
 export function commonsCanGive(s: SovState, project: string): number {
@@ -14,6 +14,19 @@ export function commonsCanGive(s: SovState, project: string): number {
     (sum, [k, n]) => sum + Math.min(n ?? 0, k === "gold" ? s.commons.gold : (s.commons.stores[k] ?? 0)),
     0,
   );
+}
+
+/**
+ * What House `house` still owes an answer before it may seal the Year (Josh 2026-11-03: "make sure
+ * events that require everyone's input are addressed prior to seal year"): a vote, or a town event it decides.
+ */
+export function owed(s: SovState, house: number): string | null {
+  if (s.vote && s.vote.by[house] === null) {
+    const what = s.vote.kind === "spend" ? `spending the Commons on the ${PROJECT_BY_ID.get(s.vote.subject)?.name ?? s.vote.subject}` : (TOWN_EVENT_BY_ID.get(s.vote.subject)?.title ?? s.vote.subject);
+    return `Vote first: ${what}.`;
+  }
+  const pe = s.events.find((e) => e.deciders.includes(house) && e.choices[house] === null);
+  return pe ? `Choose first: ${TOWN_EVENT_BY_ID.get(pe.id)?.title ?? pe.id}.` : null;
 }
 
 /** Why `house` cannot propose spending the Commons on `project`, or null. */
@@ -28,6 +41,8 @@ export function cannotPropose(s: SovState, project: string): string | null {
 export function propose(s: SovState, house: number, project: string): void {
   s.vote = { kind: "spend", subject: project, options: ["yes", "no"], by: s.houses.map(() => null), proposer: house };
   log(s, `House ${s.houses[house]!.name} proposes spending the Commons on the ${PROJECT_BY_ID.get(project)!.name}.`);
+  // A sealed House is called back to vote: nobody seals past a question put to them.
+  s.houses.forEach((h, i) => i !== house && (h.sealed = false));
   // Solo, the proposal is the decision.
   if (s.houses.length === 1) castVote(s, house, 0);
 }
@@ -57,11 +72,35 @@ export function tally(s: SovState, vote: Vote): { choice: number; tie: boolean }
   return { choice: vote.by[breaker]!, tie: true };
 }
 
+/**
+ * Bots that voted against the people at the table may come round to them (Josh 2026-11-03: "there should
+ * be a chance they decide to agree with you instead so accord is preserved"). Only when the people agree
+ * on one choice; the chance grows as Accord falls. Changes `votes` in place.
+ */
+export function goAlong(s: SovState, votes: (number | null)[]): void {
+  const bots = new Set(s.botSeats ?? []);
+  const theirs = votes.filter((c, h) => c !== null && !bots.has(h)) as number[];
+  const counts = new Map<number, number>();
+  for (const c of theirs) counts.set(c, (counts.get(c) ?? 0) + 1);
+  const most = Math.max(0, ...counts.values());
+  const lead = [...counts].filter(([, n]) => n === most);
+  if (lead.length !== 1) return;
+  const [want] = lead[0]!;
+  const t = TUNING.tracks;
+  const pct = Math.min(t.botAgreeMax, t.botAgreePct + Math.max(0, 50 - s.accord));
+  votes.forEach((c, h) => {
+    if (!bots.has(h) || c === null || c === want || withRng(s, (rng) => rng.int(100)) >= pct) return;
+    votes[h] = want;
+    log(s, `House ${s.houses[h]!.name} comes round to the others, for the city's sake.`);
+  });
+}
+
 /** Settles the open vote: the tie's cost, Renown for the winning side, and what the vote decided. */
 export function settleVote(s: SovState): void {
   const vote = s.vote;
   if (!vote) return;
   delete s.vote;
+  goAlong(s, vote.by);
   const nobody = vote.by.every((c) => c === null);
   const { choice, tie } = vote.kind === "event" && nobody ? { choice: cautious(TOWN_EVENT_BY_ID.get(vote.subject)!), tie: false } : tally(s, vote);
   if (tie) {

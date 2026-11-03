@@ -86,9 +86,9 @@ describe("deals between Houses (§8.9)", () => {
   it("is answered by the bot: it takes a fair or better trade and refuses a bad one", () => {
     let s = table(2);
     s = move(s, "p1", { type: "offer", to: 1, give: { gold: 10 }, get: { stores: { timber: 10 } } });
-    expect(g.botMove!(s, "p2", undefined as never)).toEqual({ type: "accept", deal: s.deals[0]!.id });
+    expect(g.botMove!(s, "p2", undefined as never)).toEqual({ type: "accept", deal: s.deals[0]!.id, bot: true });
     s = move(s, "p1", { type: "decline", deal: s.deals[0]!.id });
     s = move(s, "p1", { type: "offer", to: 1, give: { gold: 1 }, get: { stores: { timber: 10 } } });
-    expect(g.botMove!(s, "p2", undefined as never)).toEqual({ type: "decline", deal: s.deals[0]!.id });
+    expect(g.botMove!(s, "p2", undefined as never)).toEqual({ type: "decline", deal: s.deals[0]!.id, bot: true });
   });
 });
