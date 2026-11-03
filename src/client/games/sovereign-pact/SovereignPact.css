@@ -435,3 +435,23 @@
 .sp-event-vote__option { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
 .sp-event-vote__who { color: #a89480; font-size: 0.88em; }
 .sp-event-vote__who select { margin-left: 4px; background: #120d0b; color: #d8c8b0; border: 1px solid rgba(150, 110, 90, 0.4); }
+
+/* Readying (Readying.tsx): the Jobs as icons, and the gear on a paper doll. */
+.sp-jobs { list-style: none; margin: 0 0 8px; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(78px, 1fr)); gap: 6px; }
+.sp-jobs__job { display: grid; justify-items: center; gap: 2px; width: 100%; padding: 6px 4px; font: inherit; color: var(--text); background: rgba(0, 0, 0, 0.3); border: 1px solid var(--line); border-radius: 3px; cursor: pointer; }
+.sp-jobs__job span { font-size: 0.74rem; text-align: center; line-height: 1.1; }
+.sp-jobs__job small { font-size: 0.66rem; color: var(--muted); }
+.sp-jobs__job.is-current { border-color: var(--gold, #d7b45a); }
+.sp-jobs__job.is-mastered small { color: var(--gold, #d7b45a); }
+.sp-jobs__job.is-locked { opacity: 0.45; }
+.sp-jobs__job.is-shown { background: rgba(120, 30, 30, 0.35); box-shadow: inset 0 0 0 1px var(--gold, #d7b45a); opacity: 1; }
+.sp-jobs__job:hover { background: rgba(255, 255, 255, 0.05); }
+.sp-jobs__detail { padding: 4px 0 0; }
+.sp-doll { display: grid; grid-template-columns: minmax(0, 1fr) 230px minmax(0, 1fr); gap: 10px; align-items: center; }
+.sp-doll__figure { display: grid; place-items: center; min-height: 220px; background: radial-gradient(ellipse at 50% 70%, rgba(190, 120, 50, 0.16), transparent 65%); border-bottom: 1px solid var(--line); }
+.sp-doll__slots { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.sp-doll__slot { display: grid; gap: 3px; padding: 6px 8px; border: 1px solid var(--line); background: rgba(0, 0, 0, 0.3); border-radius: 3px; min-width: 0; }
+.sp-doll__slot.is-empty { border-style: dashed; }
+.sp-doll__slot > small { color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.66rem; }
+.sp-doll__slot select { max-width: 100%; }
+.sp-doll__slot .sp-button { padding: 3px 10px; font-size: 0.72rem; }
