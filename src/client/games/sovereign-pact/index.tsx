@@ -2,12 +2,13 @@
 // same props Vibe Pulse's room gives a game). Milestone 0 is a plain read-out of the campaign so the
 // rules can be watched in play; Milestone 8 gives it screens: founding, the town, the expedition, battle.
 import type { GameClientProps } from "@vibepulse/shared";
-import { Content, TIER_NAMES, type SovMove, type SovView } from "@vibepulse/shared/games/sovereign-pact";
+import { Content, nominable, TIER_NAMES, type SovMove, type SovView } from "@vibepulse/shared/games/sovereign-pact";
 import { useState, type ReactNode } from "react";
 import AccessPanel, { accessAttrs, useAccess } from "./Access";
 import BattleScreen from "./BattleScreen";
 import Homecoming, { useHomecoming } from "./Homecoming";
 import CampScene, { useCamp } from "./CampScene";
+import EventOutcome, { useTold } from "./EventOutcome";
 import Credits from "./Credits";
 import MusicPanel, { useMusic, useMusicSettings } from "./Music";
 import { battleTrack, sceneTrack } from "./music";
@@ -138,6 +139,7 @@ export default function SovereignPact({ view, isMyTurn, sendMove, lastError }: P
   if (hidden && !fight) setHidden(false);
   const homecoming = useHomecoming(view);
   const camp = useCamp(view);
+  const told = useTold(view);
   const [access, setAccess] = useAccess();
   const [music, setMusic] = useMusicSettings();
   const track = battles.watching ? battleTrack(battles.watching) : fight && !hidden ? battleTrack(fight.replay) : sceneTrack(view);
@@ -400,7 +402,7 @@ export default function SovereignPact({ view, isMyTurn, sendMove, lastError }: P
           </aside>
         </div>
       )}
-      {battle ?? (homecoming.open ? <Homecoming view={view} onClose={homecoming.close} /> : camp.open ? <CampScene key={view.expedition?.talked?.length} view={view} onClose={camp.close} /> : null)}
+      {battle ?? (homecoming.open ? <Homecoming view={view} onClose={homecoming.close} /> : camp.open ? <CampScene key={view.expedition?.talked?.length} view={view} onClose={camp.close} /> : told.open ? <EventOutcome view={view} onClose={told.close} /> : null)}
     </div>
   );
 }
@@ -647,14 +649,8 @@ function Muster({ view, sendMove, chosen, setChosen, openBattle }: { view: SovVi
               </div>
             );
           })()
-        ) : mine === null ? (
-          <div className="sp-actions">
-            {ev?.options.map((o, i) => (
-              <button key={o.id} type="button" className="sp-button" onClick={() => sendMove({ type: "decide", option: i })}>
-                {o.label}
-              </button>
-            ))}
-          </div>
+        ) : mine === null && ev ? (
+          <EventVote view={view} sendMove={sendMove} />
         ) : (
           <p>{mine === -1 ? "Your House has no one in the party." : "You have chosen. Waiting for the other Houses."}</p>
         )}
@@ -775,6 +771,50 @@ function Muster({ view, sendMove, chosen, setChosen, openBattle }: { view: SovVi
           {chosen.length ? `Send ${chosen.length} Scion${chosen.length === 1 ? "" : "s"} on the expedition` : "Decline the seats"}
         </button>
       </div>
+    </div>
+  );
+}
+
+/**
+ * A party vote on an event (§9.4). Where a choice asks someone to step up, the House may name one of its
+ * own Scions (Josh, 2026-11-02); left alone, the rule picks, and the card says whom.
+ */
+function EventVote({ view, sendMove }: { view: SovView; sendMove: (m: SovMove) => void }) {
+  const e = view.expedition!;
+  const me = view.me!;
+  const ev = Content.TRIP_EVENT_BY_ID.get(e.event!.id)!;
+  const [named, setNamed] = useState<Record<number, number | undefined>>({});
+  const name = (id: number) => view.people.find((p) => p.id === id)?.name ?? `#${id}`;
+  const mine = e.party.flatMap((x) => x ?? []).filter((id) => !e.out.includes(id) && view.people.some((p) => p.id === id && p.host === me && p.status === "scion"));
+  return (
+    <div className="sp-event-vote">
+      {ev.options.map((o, i) => {
+        const auto = e.ahead?.[i] ?? null;
+        const can = nominable(o.rule) && mine.length > 0;
+        const who = named[i];
+        return (
+          <div key={o.id} className="sp-event-vote__option">
+            <button type="button" className="sp-button" onClick={() => sendMove({ type: "decide", option: i, ...(can && who !== undefined ? { person: who } : {}) })}>
+              {o.label}
+            </button>
+            {can ? (
+              <label className="sp-event-vote__who">
+                Who steps up:{" "}
+                <select value={who ?? ""} onChange={(x) => setNamed({ ...named, [i]: x.target.value === "" ? undefined : Number(x.target.value) })}>
+                  <option value="">{auto === null ? "leave it to chance" : `leave it to the rule (${name(auto)})`}</option>
+                  {mine.map((id) => (
+                    <option key={id} value={id}>
+                      {name(id)}
+                    </option>
+                  ))}
+                </select>
+              </label>
+            ) : auto !== null ? (
+              <span className="sp-event-vote__who">Falls on {name(auto)}.</span>
+            ) : null}
+          </div>
+        );
+      })}
     </div>
   );
 }
