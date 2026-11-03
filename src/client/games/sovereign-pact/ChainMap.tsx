@@ -1,7 +1,7 @@
 // The expedition's chain (SPEC §9.3, §15.2): the places passed shown for what they were, the rest face
 // down until reached, the boss waiting at the end. Beside it the party, its Leader, the satchel and
 // the haul so far. A 2×4 card shows each party's road.
-import { Content, type SovMove, type SovView } from "@vibepulse/shared/games/sovereign-pact";
+import { Content, itemName, type SovMove, type SovView } from "@vibepulse/shared/games/sovereign-pact";
 import { useState } from "react";
 import { CARD_TYPES, quarryOf } from "./RiftGate";
 import { HERALDRY_COLORS } from "./Emblem";
@@ -74,34 +74,76 @@ export default function ChainMap({ view, sendMove }: { view: SovView; sendMove?:
       ) : (
         <Road passed={e.chain} length={e.length} here end="boss" />
       )}
-      <div className="sp-expedition__party">
-        <ul aria-label="The party">
-          {party.map((id) => {
-            const p = person(id);
-            if (!p) return null;
-            const color = HERALDRY_COLORS.get(view.houses[p.house]?.colors[0] ?? "");
-            return (
-              <li key={id} style={{ borderColor: color }} className={e.out.includes(id) ? "is-out" : undefined}>
-                {id === e.leader ? <span title="Leader">♛ </span> : null}
-                {p.name} <small>L{p.level}</small>
-                {e.out.includes(id) ? <small> out of the fight</small> : null}
-              </li>
-            );
-          })}
-        </ul>
-        <p>
-          <strong>Satchel:</strong> {satchel.length ? satchel.map(([id, n]) => `${n > 1 ? `${n} ` : ""}${Content.CONSUMABLE_BY_ID.get(id)?.name ?? id}`).join(", ") : "empty"}
-        </p>
-        {sendMove && view.opens.length ? (
-          <div className="sp-actions sp-satchel" aria-label="Open the satchel">
-            {view.opens.map((o) => (
-              <Open key={o.id} open={o} view={view} sendMove={sendMove} />
-            ))}
-          </div>
-        ) : null}
-        <p>
-          <strong>Haul:</strong> {haul ? `${e.haul!.items.length} item${e.haul!.items.length === 1 ? "" : "s"}${Object.keys(e.haul!.stores).length ? " and materials" : ""}, lost if the party falls` : "nothing yet"}
-        </p>
+      <div className="sp-expedition__columns">
+        <section className="sp-expedition__col" aria-label="The party">
+          <h3>The party</h3>
+          <ul className="sp-expedition__party">
+            {party.map((id) => {
+              const p = person(id);
+              if (!p) return null;
+              const color = HERALDRY_COLORS.get(view.houses[p.house]?.colors[0] ?? "");
+              const [hp, max] = p.hp ?? [1, 1];
+              return (
+                <li key={id} style={{ borderColor: color }} className={e.out.includes(id) ? "is-out" : undefined}>
+                  <span className="sp-expedition__who">
+                    {id === e.leader ? <span title="Leader">♛ </span> : null}
+                    {p.name} <small>L{p.level}</small>
+                    {p.hp ? <small> · HP {hp}/{max}</small> : null}
+                    {e.out.includes(id) ? <small> out of the fight</small> : null}
+                  </span>
+                  <span className="sp-expedition__hp" title={p.hp ? `HP ${hp} of ${max}` : "Unhurt"}>
+                    <span style={{ width: `${Math.round((100 * hp) / Math.max(1, max))}%` }} />
+                  </span>
+                </li>
+              );
+            })}
+          </ul>
+        </section>
+        <section className="sp-expedition__col" aria-label="The satchel">
+          <h3>Satchel</h3>
+          {satchel.length ? (
+            <ul className="sp-expedition__list">
+              {satchel.map(([id, n]) => {
+                const def = Content.CONSUMABLE_BY_ID.get(id);
+                return (
+                  <li key={id} title={def?.text}>
+                    {def?.name ?? id}
+                    {n > 1 ? <small> ×{n}</small> : null}
+                  </li>
+                );
+              })}
+            </ul>
+          ) : (
+            <p className="sp-expedition__empty">Empty.</p>
+          )}
+          {sendMove && view.opens.length ? (
+            <div className="sp-actions sp-satchel" aria-label="Open the satchel">
+              {view.opens.map((o) => (
+                <Open key={o.id} open={o} view={view} sendMove={sendMove} />
+              ))}
+            </div>
+          ) : null}
+        </section>
+        <section className="sp-expedition__col" aria-label="The haul">
+          <h3>Haul</h3>
+          {haul ? (
+            <ul className="sp-expedition__list">
+              {e.haul!.items.map((i) => (
+                <li key={i.id}>{itemName(i)}</li>
+              ))}
+              {Object.entries(e.haul!.stores)
+                .filter(([, n]) => (n ?? 0) > 0)
+                .map(([k, n]) => (
+                  <li key={k}>
+                    {k.replace(/_/g, " ").replace(/^\w/, (c) => c.toUpperCase())} <small>×{n}</small>
+                  </li>
+                ))}
+            </ul>
+          ) : (
+            <p className="sp-expedition__empty">Nothing yet.</p>
+          )}
+          <p className="sp-expedition__note">Lost if the party falls.</p>
+        </section>
       </div>
     </section>
   );

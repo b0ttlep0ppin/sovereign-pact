@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, render, screen, within } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 import { sovereignPact as g, type SovState } from "@vibepulse/shared/games/sovereign-pact";
 import { calm, campaign } from "../../../shared/games/sovereign-pact/testing.ts";
@@ -40,5 +40,23 @@ describe("the satchel on the road (§13.7)", () => {
     s.expedition!.at = 2;
     render(<ChainMap view={g.view(s, "p1")} sendMove={() => {}} />);
     expect(screen.queryByRole("button", { name: /^Use / })).toBeNull();
+  });
+});
+
+describe("the expedition's columns (Josh's playtest)", () => {
+  it("lists the party with its wounds, the satchel and the haul side by side", () => {
+    const s = camped();
+    const e = s.expedition!;
+    const hurt = e.party[0]![0]!;
+    e.carry[hurt] = { ...e.carry[hurt]!, hurt: 9, hpMax: 30 };
+    e.haul = { items: [{ id: 9001, base: "sword", tier: 3, ilvl: 2, house: -1 }], stores: { iron: 4 } };
+    render(<ChainMap view={g.view(s, "p1")} />);
+    const party = screen.getByRole("region", { name: "The party" });
+    expect(party.textContent).toContain("HP 21/30");
+    const satchel = screen.getByRole("region", { name: "The satchel" });
+    expect(within(satchel).getByText("Pilgrim's Bread")).toBeTruthy();
+    const haul = screen.getByRole("region", { name: "The haul" });
+    expect(haul.textContent).toContain("Fine Sword");
+    expect(haul.textContent).toContain("Iron ×4");
   });
 });

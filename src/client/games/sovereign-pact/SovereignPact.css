@@ -100,12 +100,18 @@
 .sp-node.is-passed { opacity: 0.7; }
 .sp-node.is-next { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent); opacity: 1; }
 .sp-node--boss, .sp-node--rally { border-color: var(--blood, #7a1c1c); }
-.sp-expedition__party { display: grid; gap: 6px; font-size: 0.9rem; }
-.sp-expedition__party ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
-.sp-expedition__party li { padding: 4px 8px; border-left: 3px solid var(--line); background: var(--bg); border-radius: 3px; }
+.sp-expedition__columns { display: grid; grid-template-columns: minmax(200px, 1.3fr) minmax(160px, 1fr) minmax(160px, 1fr); gap: 12px; font-size: 0.9rem; }
+.sp-expedition__col { display: grid; align-content: start; gap: 6px; padding: 8px 10px; border: 1px solid var(--line); background: var(--bg); border-radius: 3px; min-width: 0; }
+.sp-expedition__col h3 { margin: 0; font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+.sp-expedition__party { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+.sp-expedition__party li { display: grid; gap: 3px; padding: 4px 8px; border-left: 3px solid var(--line); background: rgba(0, 0, 0, 0.25); border-radius: 2px; }
 .sp-expedition__party li.is-out { opacity: 0.5; }
-.sp-expedition__party small { color: var(--muted); }
-.sp-expedition__party p { margin: 0; }
+.sp-expedition__party small, .sp-expedition__list small { color: var(--muted); }
+.sp-expedition__hp { display: block; height: 4px; background: rgba(0, 0, 0, 0.6); border-radius: 2px; overflow: hidden; }
+.sp-expedition__hp > span { display: block; height: 100%; background: #5f9f5a; }
+.sp-expedition__list { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+.sp-expedition__list li { padding: 2px 0; border-bottom: 1px dotted rgba(150, 110, 90, 0.2); }
+.sp-expedition__empty, .sp-expedition__note { margin: 0; color: var(--muted); font-size: 0.82rem; font-style: italic; }
 /* Decisions of the Settlement Phase (§15.2, §15.7). */
 .sp-decisions { display: grid; gap: 12px; }
 .sp-decisions h2 { margin-bottom: 0; }
@@ -342,7 +348,8 @@
 .sp-field__card.is-chosen { border-color: var(--gold); color: var(--text); box-shadow: 0 0 0 1px var(--gold-dim), 0 0 14px rgba(220, 181, 94, 0.3); }
 .sp-field__card.is-chosen .sp-field__mark { background: linear-gradient(var(--blood-hi), var(--blood)); color: var(--gold); border-top-color: var(--gold); }
 .sp-field__card.is-chosen .sp-field__mark::before { content: "✓ "; }
-.sp-stage__pair { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 16px; align-items: start; }
+.sp-stage__pair { display: grid; grid-template-columns: minmax(0, 1fr) minmax(250px, 290px); gap: 16px; align-items: start; }
+@media (max-width: 1000px) { .sp-stage__pair { grid-template-columns: 1fr; } }
 
 /* Seats in the House designer (DECISIONS 8ah): the silhouette, the flavor, the advantage and the drawback. */
 .sp-seat-pick { display: grid !important; grid-template-columns: auto 1fr auto; gap: 12px; align-items: center; }

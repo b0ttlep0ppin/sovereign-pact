@@ -3,6 +3,7 @@
 // the party panel on the right, the turn and the log beneath. Damage numbers pop from the struck
 // cell, colored by kind; an injury roll gets its own moment. Tokens are drawn in CSS until the sprite
 // pipeline exists (HANDOFF §8). Space plays and pauses, the arrows step, Escape closes.
+import { backdrop } from "./backdrop";
 import { Content, FLAG, replayLine, type Cell, type Command, type Replay, type ReplayUnit, type SovView, type TurnView, type Vitals } from "@vibepulse/shared/games/sovereign-pact";
 import { useEffect, useMemo, useRef, useState, type CSSProperties, type KeyboardEvent } from "react";
 import BattleFx, { landsAt, ScreenFx, strikesOf } from "./BattleFx";
@@ -357,7 +358,11 @@ export default function BattleScreen({ replay, view, onClose, waiting = 0, fullL
   };
 
   return (
-    <div className={`sp-battle${aiming ? " is-aiming" : ""}`} role="dialog" aria-modal="true" aria-label={`Battle: ${replay.title}`} tabIndex={-1} ref={root} onKeyDown={keys}>
+    <div className={`sp-battle${aiming ? " is-aiming" : ""}`} style={backdrop(replay.pool)} role="dialog" aria-modal="true" aria-label={`Battle: ${replay.title}`} tabIndex={-1} ref={root} onKeyDown={keys}>
+      <div className="sp-battle__backdrop" aria-hidden="true">
+        <span className="sp-battle__sky" />
+        <span className="sp-battle__ground" />
+      </div>
       <ScreenFx strikes={strikes} turn={at} speed={speed} />
       <header className="sp-battle__top">
         <strong>{replay.title}</strong>
@@ -487,17 +492,20 @@ function Panel({ title, units, vit, actor, color }: { title: string; units: Repl
           return (
             <li key={u.id} className={`${actor === u.id ? "is-acting" : ""}${flags & FLAG.dead ? " is-dead" : ""}`} style={color?.(u) ? { borderColor: color(u) } : undefined}>
               <strong>{u.name}</strong>
-              <small>{flags & FLAG.dead ? (flags & FLAG.fled ? "Fled" : "Dead") : flags & FLAG.down ? "Down" : flags & FLAG.lastStand ? "Last Stand" : `${hp}/${u.maxHp}`}</small>
-              <Bar kind="hp" value={hp} max={u.maxHp} />
+              <small>{flags & FLAG.dead ? (flags & FLAG.fled ? "Fled" : "Dead") : flags & FLAG.down ? "Down" : flags & FLAG.lastStand ? "Last Stand" : null}</small>
+              <Bar kind="hp" label="HP" tip="Hit points: at 0 they fall" value={hp} max={u.maxHp} />
               {u.person !== undefined ? (
                 <>
-                  <Bar kind="mp" value={mp} max={u.maxMp} />
-                  <Bar kind="tp" value={tp} max={100} />
-                  <Bar kind="sanity" value={sanity} max={u.maxSanity} />
-                  <span className="sp-dur" aria-label="Durability">
-                    {dur.map((d, i) => (
-                      <span key={i} title={`${LOCS[i]}: ${d < 0 ? "Broken" : `${d}/${u.maxDur?.[i] ?? 0}`}`} className={d < 0 ? "is-broken" : d < (u.maxDur?.[i] ?? 0) / 2 ? "is-cracked" : undefined} />
-                    ))}
+                  <Bar kind="mp" label="MP" tip="Magic points, spent on spells and arts" value={mp} max={u.maxMp} />
+                  <Bar kind="tp" label="TP" tip="Tension, built by striking and being struck; spent on techniques. It resets each battle." value={tp} max={100} />
+                  <Bar kind="sanity" label="San" tip="Sanity: at 0 the mind breaks" value={sanity} max={u.maxSanity} />
+                  <span className="sp-stat sp-stat--dur" title="Durability of the armor at head, body, arms and legs: at 0 that place is Broken">
+                    <span className="sp-stat__label">Dur</span>
+                    <span className="sp-dur" aria-label="Durability">
+                      {dur.map((d, i) => (
+                        <span key={i} title={`${LOCS[i]}: ${d < 0 ? "Broken" : `${d}/${u.maxDur?.[i] ?? 0}`}`} className={d < 0 ? "is-broken" : d < (u.maxDur?.[i] ?? 0) / 2 ? "is-cracked" : undefined} />
+                      ))}
+                    </span>
                   </span>
                 </>
               ) : null}
@@ -510,10 +518,15 @@ function Panel({ title, units, vit, actor, color }: { title: string; units: Repl
   );
 }
 
-function Bar({ kind, value, max }: { kind: string; value: number; max: number }) {
+/** One labelled bar: what it measures, how full, and the numbers. */
+function Bar({ kind, label, tip, value, max }: { kind: string; label: string; tip: string; value: number; max: number }) {
   return (
-    <span className={`sp-bar sp-bar--${kind}`} role="meter" aria-label={kind.toUpperCase()} aria-valuemin={0} aria-valuemax={max} aria-valuenow={value}>
-      <span style={{ width: `${pct(value, max)}%` }} />
+    <span className={`sp-stat sp-stat--${kind}`} title={tip}>
+      <span className="sp-stat__label">{label}</span>
+      <span className={`sp-bar sp-bar--${kind}`} role="meter" aria-label={label} aria-valuemin={0} aria-valuemax={max} aria-valuenow={value}>
+        <span style={{ width: `${pct(value, max)}%` }} />
+      </span>
+      <span className="sp-stat__value">{kind === "tp" ? value : `${Math.max(0, value)}/${max}`}</span>
     </span>
   );
 }
