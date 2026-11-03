@@ -37,6 +37,7 @@ describe("the menus' sounds (Josh 2026-11-03)", () => {
       <>
         <Game>
           <button data-sfx="job">Take Job</button>
+          <button data-sfx="learn learn_choir">Learn</button>
           <button disabled>Seal the Year</button>
         </Game>
         <button>Elsewhere</button>
@@ -46,6 +47,9 @@ describe("the menus' sounds (Josh 2026-11-03)", () => {
     fireEvent.click(getByText("Seal the Year"));
     fireEvent.click(getByText("Elsewhere"));
     expect(played).toEqual([["job", 0.4]]);
+    fireEvent.click(getByText("Learn"));
+    expect(played.slice(1).map(([c]) => c)).toEqual(["learn", "learn_choir"]);
+    played.splice(1);
     rerender(
       <Game vol={0}>
         <button data-sfx="job">Take Job</button>
@@ -77,7 +81,7 @@ describe("the menus' sounds (Josh 2026-11-03)", () => {
     const dir = __dirname;
     const named = readdirSync(dir)
       .filter((f) => /\.tsx?$/.test(f) && !f.includes(".test."))
-      .flatMap((f) => [...readFileSync(join(dir, f), "utf8").matchAll(/(?:data-sfx=\{?[^}>]*?|uiSound\(|: )"((?:ui|equip)_[a-z]+|job|learn)"/g)].map((m) => m[1]!));
+      .flatMap((f) => [...readFileSync(join(dir, f), "utf8").matchAll(/(?:data-sfx=\{?[^}>]*?|uiSound\(|: )"((?:(?:ui|equip)_[a-z]+|job|learn(?:_[a-z]+)?)(?: [a-z_]+)*)"/g)].flatMap((m) => m[1]!.split(" ")));
     expect(named.length).toBeGreaterThan(15);
     for (const cue of new Set(named)) expect(Content.SFX_BY_ID.has(cue), cue).toBe(true);
   });

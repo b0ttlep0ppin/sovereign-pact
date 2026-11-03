@@ -183,7 +183,7 @@ function Jobs({ p, send, canAct }: { p: Person; send: (m: SovMove) => void; canA
                   {has ? (
                     <small>Known</small>
                   ) : job.id === p.job ? (
-                    <button type="button" className="sp-button sp-button--quiet" data-sfx="learn" disabled={!canAct || a.jp > jpHere} onClick={() => send({ type: "learn", person: p.id, ability: a.id })}>
+                    <button type="button" className="sp-button sp-button--quiet" data-sfx="learn learn_choir" disabled={!canAct || a.jp > jpHere} onClick={() => send({ type: "learn", person: p.id, ability: a.id })}>
                       Learn, {a.jp} JP
                     </button>
                   ) : (
