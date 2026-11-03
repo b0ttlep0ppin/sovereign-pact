@@ -2,6 +2,11 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-03 (implementation, Milestone 8bg): the camp, with banter
+
+- Built (Josh's playtest: "the party at a fire, with banter"): at a Camp node the party sits around a fire and talks before it rests. A scene is drawn from `content/banter.json` (75 to start) whose conditions fit: one Scion alone, a hurt or shaken speaker, the fallen or the Lost of this expedition named, the boss next, the first camp, two Houses at odds or one House together, a mandatory road, the speaker's Job, age or years of service, and the region. Scenes with more conditions are likelier; none repeats within an expedition. The lines play one at a time over the fire; the camp's rest (unchanged) follows.
+- Reading: the talk is public, like the log. Speakers are drawn from the Scions still marching; the House a speaker is "of" is the House fielding them.
+
 ## 2026-11-03 (implementation, Milestone 8bf): slain bosses stay dead; nine bosses for the early regions
 
 - Built (Josh's playtest: the Tree King twice, the only boss he had met): a pool boss killed once (it is in the bestiary's kills) is never drawn again; one that fled may come back. Nine new bosses fill the early levels of nine regions: the Pale Sire (Beast Lands 3–4), the Blight-Cap (Hollow Wood 4–5), the Sahagin Chief (Drowned Marches 2–3), the Wight King (Barrows 2–3), the Rime Queen (Deep Cold 3–4), the Foundry Warden (Forge Ruins 3–4), the Hallway Giant (Faceless City 3–4), the Apostate Bishop (Apostate Court 2–3) and the Chained Marquis (Pit 4–5). Every one of those regions now has a boss within reach of its first level.

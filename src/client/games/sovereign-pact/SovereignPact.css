@@ -386,3 +386,26 @@
 .sp-homecoming__sub { margin: 0; text-align: center; color: #cfc2a8; }
 .sp-homecoming .sp-button { justify-self: center; }
 [data-motion="reduced"] .sp-homecoming { animation: none; }
+/* The camp: the party around a fire, talking one line at a time. */
+.sp-camp { position: fixed; inset: 0; z-index: 24; display: grid; place-items: center; padding: 16px; overflow-y: auto; background: radial-gradient(ellipse at 50% 45%, rgba(60, 24, 6, 0.55), rgba(0, 0, 0, 0.96) 70%); animation: sp-fade-in 600ms ease-out; }
+.sp-camp__card { display: grid; gap: 12px; width: min(760px, 100%); padding: 22px 28px; border: 1px solid rgba(190, 120, 50, 0.35); background: linear-gradient(#140c09, #070504); box-shadow: 0 0 80px rgba(0, 0, 0, 0.95); }
+.sp-camp__where { margin: 0; text-align: center; color: #b8a080; text-transform: uppercase; letter-spacing: 0.16em; font-size: 0.78rem; }
+.sp-camp__scene { position: relative; display: grid; grid-template-columns: 1fr 120px 1fr; align-items: end; min-height: 180px; padding: 8px 0 18px; background: radial-gradient(ellipse at 50% 85%, rgba(255, 140, 40, 0.28), transparent 55%); }
+.sp-camp__side { display: flex; justify-content: flex-end; align-items: flex-end; gap: 0; }
+.sp-camp__side.is-facing { justify-content: flex-start; transform: scaleX(-1); flex-direction: row-reverse; }
+.sp-camp__scion { display: block; margin: 0 -18px; filter: brightness(0.55) sepia(0.4) saturate(1.1); transition: filter 300ms; }
+.sp-camp__scion.is-speaking { filter: brightness(1.05) sepia(0.15) drop-shadow(0 0 6px rgba(255, 160, 60, 0.6)); }
+.sp-camp__fire { position: relative; justify-self: center; width: 70px; height: 90px; }
+.sp-camp__logs { position: absolute; left: 6px; right: 6px; bottom: 4px; height: 12px; background: linear-gradient(#3a2414, #1a0f08); border-radius: 3px; box-shadow: 0 -2px 6px rgba(255, 120, 30, 0.5); transform: rotate(-6deg); }
+.sp-camp__logs::after { content: ""; position: absolute; inset: 0; background: inherit; border-radius: inherit; transform: rotate(14deg); }
+.sp-camp__flame { position: absolute; left: 50%; bottom: 10px; width: 34px; height: 60px; margin-left: -17px; border-radius: 50% 50% 35% 35% / 65% 65% 35% 35%; background: radial-gradient(ellipse at 50% 80%, #fff3b0 0%, #ffb53a 35%, #e0521c 65%, rgba(140, 20, 10, 0) 75%); filter: blur(1px); transform-origin: 50% 100%; animation: sp-flame 900ms ease-in-out infinite alternate; mix-blend-mode: screen; }
+.sp-camp__flame--b { width: 24px; height: 44px; margin-left: -20px; animation-duration: 700ms; animation-delay: -200ms; }
+.sp-camp__flame--c { width: 22px; height: 40px; margin-left: -2px; animation-duration: 1100ms; animation-delay: -500ms; }
+@keyframes sp-flame { from { transform: scale(1, 1) skewX(-3deg); opacity: 0.9; } to { transform: scale(0.85, 1.15) skewX(4deg); opacity: 1; } }
+.sp-camp__talk { display: grid; gap: 6px; margin: 0; padding: 0; list-style: none; min-height: 4em; }
+.sp-camp__talk li { color: #e8dcc4; line-height: 1.45; animation: sp-fade-in 400ms ease-out; }
+.sp-camp__talk li strong { color: var(--gold); font-weight: 600; }
+.sp-camp__talk li.is-fire em { color: #c8a878; }
+.sp-camp__rest { margin: 0; color: #a89878; font-size: 0.9rem; text-align: center; }
+.sp-camp__buttons { display: flex; justify-content: center; gap: 8px; }
+[data-motion="reduced"] .sp-camp, [data-motion="reduced"] .sp-camp__flame, [data-motion="reduced"] .sp-camp__talk li { animation: none; }

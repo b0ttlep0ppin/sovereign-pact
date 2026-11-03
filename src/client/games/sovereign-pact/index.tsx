@@ -7,6 +7,7 @@ import { useState, type ReactNode } from "react";
 import AccessPanel, { accessAttrs, useAccess } from "./Access";
 import BattleScreen from "./BattleScreen";
 import Homecoming, { useHomecoming } from "./Homecoming";
+import CampScene, { useCamp } from "./CampScene";
 import Credits from "./Credits";
 import MusicPanel, { useMusic, useMusicSettings } from "./Music";
 import { battleTrack, sceneTrack } from "./music";
@@ -136,6 +137,7 @@ export default function SovereignPact({ view, isMyTurn, sendMove, lastError }: P
   const [hidden, setHidden] = useState(false);
   if (hidden && !fight) setHidden(false);
   const homecoming = useHomecoming(view);
+  const camp = useCamp(view);
   const [access, setAccess] = useAccess();
   const [music, setMusic] = useMusicSettings();
   const track = battles.watching ? battleTrack(battles.watching) : fight && !hidden ? battleTrack(fight.replay) : sceneTrack(view);
@@ -398,7 +400,7 @@ export default function SovereignPact({ view, isMyTurn, sendMove, lastError }: P
           </aside>
         </div>
       )}
-      {battle ?? (homecoming.open ? <Homecoming view={view} onClose={homecoming.close} /> : null)}
+      {battle ?? (homecoming.open ? <Homecoming view={view} onClose={homecoming.close} /> : camp.open ? <CampScene key={view.expedition?.talked?.length} view={view} onClose={camp.close} /> : null)}
     </div>
   );
 }

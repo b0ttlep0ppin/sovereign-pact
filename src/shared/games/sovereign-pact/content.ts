@@ -41,6 +41,7 @@ import jobsJson from "./content/jobs.json" with { type: "json" };
 import namesJson from "./content/names.json" with { type: "json" };
 import poolsJson from "./content/pools.json" with { type: "json" };
 import sortiesJson from "./content/sorties.json" with { type: "json" };
+import banterJson from "./content/banter.json" with { type: "json" };
 import propertiesJson from "./content/properties.json" with { type: "json" };
 import seatsJson from "./content/seats.json" with { type: "json" };
 import tarotJson from "./content/tarot.json" with { type: "json" };
@@ -795,6 +796,14 @@ export interface SortieDef {
   score?: Partial<Record<ScoreCategory, number>>;
 }
 export const SORTIES = sortiesJson.sorties as readonly SortieDef[];
+
+/** A Camp's talk at the fire (banter.ts): content/banter.json. */
+export interface BanterScene {
+  id: string;
+  when?: string[];
+  lines: { who: "a" | "b" | "c" | "fire"; text: string }[];
+}
+export const BANTER = banterJson.scenes as readonly BanterScene[];
 export const SORTIE_BY_ID = byId(SORTIES);
 
 /**

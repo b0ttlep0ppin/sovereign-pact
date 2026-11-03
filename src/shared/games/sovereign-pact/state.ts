@@ -314,6 +314,10 @@ export interface Expedition {
   fight?: LiveFight;
   /** Each Scion as they set out, for the homecoming's account (homecoming.ts): name, House, total XP, total JP and injury ids. */
   start?: Record<number, { name: string; house: number; xp: number; jp: number; level: number; injuries: string[] }>;
+  /** The last Camp's talk at the fire (banter.ts): `at` is the node after it; a line's `who` is a person id, or null for the fire. */
+  camp?: { at: number; lines: { who: number | null; text: string }[] };
+  /** Banter scenes already told this expedition. */
+  talked?: string[];
   /** What each House took home from the haul, in the order it was claimed. */
   claims?: { house: number; text: string }[];
 }

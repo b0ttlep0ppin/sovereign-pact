@@ -28,6 +28,7 @@ import { offerReflection } from "./bargains.ts";
 import { ARC, arcDoom, arcResult, arcStep, withReflection, bastionFallBack, bastionShields, withRaid } from "./arc.ts";
 import { divided, gate, partyGone, rally } from "./split.ts";
 import { endCampaign, log, mandatoryYears, withRng } from "./year.ts";
+import { campTalk } from "./banter.ts";
 
 const J = TUNING.journey;
 const P = TUNING.progression;
@@ -167,6 +168,8 @@ function settle(s: SovState, b: Battle, cause: string): void {
 /** A Camp (§9.3): the party rests, HP and each location back by a share, Sanity a little. */
 function camp(s: SovState): void {
   const e = s.expedition!;
+  // They talk before they rest: who is hurt and who is shaken is how they arrived.
+  campTalk(s, marching(s));
   for (const u of party(s)) {
     const p = person(s, u.person!);
     const c = e.carry[p.id];
