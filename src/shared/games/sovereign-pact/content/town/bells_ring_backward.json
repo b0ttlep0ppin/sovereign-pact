@@ -1,0 +1,123 @@
+{
+  "id": "bells_ring_backward",
+  "scope": "settlement",
+  "weight": 2,
+  "years": [
+    1,
+    20
+  ],
+  "title": "The Bells Ring Backward",
+  "text": "At midnight every bell in the city rings at once, and the peals run backward, the last note first. Those who listened too long remember things that have not happened yet.",
+  "rule": "vote",
+  "options": [
+    {
+      "id": "silence",
+      "label": "Cut the bell ropes.",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "The towers stand mute. The quiet is worse than the bells, but it is only quiet.",
+          "effects": [
+            {
+              "accord": -2
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "The ropes are cut. The bells ring anyway, slower, as if something else is pulling.",
+          "effects": [
+            {
+              "to": "all",
+              "sanity": -5
+            },
+            {
+              "doom": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "listen",
+      "label": "Gather the scholars and write down what the bells say.",
+      "tags": [
+        "clever",
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "The ink runs out before the bells stop. The pages name next winter's dead, and the Houses read them by candlelight.",
+          "effects": [
+            {
+              "to": "all",
+              "score": {
+                "lore": 2
+              }
+            },
+            {
+              "doom": 2
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "The scholar who wrote longest walks into the river at dawn, still writing. A Scion who sat beside him has not slept since.",
+          "effects": [
+            {
+              "to": "all",
+              "score": {
+                "lore": 1
+              }
+            },
+            {
+              "to": "random",
+              "scion": {
+                "who": "sanest",
+                "injury": "sanity"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ring_forward",
+      "label": "Climb the towers and ring them forward again, by hand, until dawn.",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "The ringers' hands bleed, but the peals turn the right way round. The city sleeps.",
+          "effects": [
+            {
+              "accord": 3
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "One tower rings the wrong way to the end. The Scion who climbed it comes down at dawn with white hair and a grandfather's hands.",
+          "effects": [
+            {
+              "accord": 1
+            },
+            {
+              "to": "random",
+              "scion": {
+                "who": "youngest",
+                "age": 25
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

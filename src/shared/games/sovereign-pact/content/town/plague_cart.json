@@ -19,7 +19,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The smoke is black and smells of honey. Nothing comes of it.",
+          "text": "The smoke is black and smells of honey. For a week the bees of the city swarm toward the ashes.",
           "effects": []
         }
       ]
@@ -33,7 +33,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "It rots in a field, watched by nervous guards.",
+          "text": "It rots in a field, watched by nervous guards. Nothing grows there after.",
           "effects": [
             {
               "accord": -2
@@ -42,7 +42,7 @@
         },
         {
           "w": 30,
-          "text": "Something crawls from it in the night and is never found.",
+          "text": "Something crawls from it in the night and is never found. Sometimes, in the lower town, a door is found open in the morning.",
           "effects": [
             {
               "doom": 3
@@ -60,7 +60,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "The physicians learn much, and the Apothecary's shelves fill with new tinctures.",
+          "text": "The physicians learn much, and the Apothecary's shelves fill with new tinctures, some of which move.",
           "effects": [
             {
               "flag": "plague_studied"
@@ -75,7 +75,7 @@
         },
         {
           "w": 40,
-          "text": "The physicians learn much, and two of them die of it. The fever spreads to a House.",
+          "text": "The physicians learn much, and two of them die of it, smiling. The fever spreads to a House.",
           "effects": [
             {
               "flag": "plague_studied"

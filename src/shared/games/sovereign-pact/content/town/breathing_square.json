@@ -1,0 +1,148 @@
+{
+  "id": "breathing_square",
+  "scope": "settlement",
+  "weight": 1,
+  "years": [
+    7,
+    20
+  ],
+  "title": "The Breathing Square",
+  "text": "The paving stones of the market square rise and fall at night, slow as a sleeper's chest. In the morning the cobbles are warm to the touch.",
+  "rule": "vote",
+  "options": [
+    {
+      "id": "dig",
+      "label": "Dig it up.",
+      "tags": [
+        "bold",
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 40,
+          "text": "Under the stones lies an eye the size of a cart, closed. It does not open. You fill it in, quickly.",
+          "effects": [
+            {
+              "to": "all",
+              "score": {
+                "lore": 2
+              }
+            },
+            {
+              "doom": 2
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "Under the stones, a vault of the old city, sealed before the Pact was sworn.",
+          "effects": [
+            {
+              "to": "all",
+              "score": {
+                "relics": 2
+              }
+            },
+            {
+              "to": "all",
+              "resources": {
+                "gold": 20
+              }
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "The eye opens.",
+          "effects": [
+            {
+              "doom": 6
+            },
+            {
+              "to": "all",
+              "sanity": -15
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pave",
+      "label": "Pave over it with fresh stone.",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 80,
+          "text": "The breathing slows, and stops. Probably.",
+          "effects": [
+            {
+              "to": "all",
+              "resources": {
+                "stone": -4
+              }
+            }
+          ]
+        },
+        {
+          "w": 20,
+          "text": "The new stones crack within a month. The breathing is faster now.",
+          "effects": [
+            {
+              "to": "all",
+              "resources": {
+                "stone": -4
+              }
+            },
+            {
+              "doom": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "shrine",
+      "label": "Raise a shrine over it, and pray it sleeps.",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "The city prays. The breathing slows to a crawl.",
+          "effects": [
+            {
+              "to": "commons",
+              "resources": {
+                "gold": -20
+              }
+            },
+            {
+              "accord": 3
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "The prayers are answered. Not by any god the priests know.",
+          "effects": [
+            {
+              "to": "commons",
+              "resources": {
+                "gold": -20
+              }
+            },
+            {
+              "accord": 1
+            },
+            {
+              "doom": 3
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

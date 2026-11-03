@@ -1,0 +1,127 @@
+{
+  "id": "rift_tide",
+  "scope": "settlement",
+  "weight": 2,
+  "years": [
+    5,
+    20
+  ],
+  "title": "The Rift Tide",
+  "text": "The Rift Gate breathes out. A grey tide rolls through the lower streets, and what it touches it changes: rats with men's hands, a well that sings, a cobbler who will not stop growing.",
+  "rule": "vote",
+  "options": [
+    {
+      "id": "burn",
+      "label": "Burn the lower streets before it spreads.",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The fire stops it. The lower town will not forgive you, and does not forget who gave the order.",
+          "effects": [
+            {
+              "accord": -6
+            },
+            {
+              "doom": -4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wall",
+      "label": "Raise walls and wait for the tide to ebb.",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "It ebbs in a week, leaving salt and shells that whisper when held to the ear.",
+          "effects": [
+            {
+              "to": "all",
+              "resources": {
+                "stone": -5
+              }
+            },
+            {
+              "doom": 2
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "It ebbs, but not all of it. In one House the tide stayed in someone.",
+          "effects": [
+            {
+              "doom": 3
+            },
+            {
+              "to": "random",
+              "scion": {
+                "curse": true
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bottle",
+      "label": "Send the Houses' alchemists to bottle it.",
+      "tags": [
+        "clever",
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "Glass jars of grey tide line the shelves. It is worth a fortune to the right buyer, and there are always right buyers.",
+          "effects": [
+            {
+              "to": "all",
+              "resources": {
+                "essence": 4
+              }
+            },
+            {
+              "doom": 3
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "The jars crack in the night. The tide gets out and goes back home, slowly, through the Houses.",
+          "effects": [
+            {
+              "to": "all",
+              "sanity": -10
+            },
+            {
+              "doom": 4
+            }
+          ]
+        },
+        {
+          "w": 20,
+          "text": "The jars crack. The Scion asleep beside them wakes with webbed hands and a taste for the marsh.",
+          "effects": [
+            {
+              "to": "random",
+              "scion": {
+                "change": "marsh_thing"
+              }
+            },
+            {
+              "doom": 2
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -2,16 +2,64 @@
   "id": "hungry_winter",
   "scope": "settlement",
   "weight": 3,
-  "years": [1, 20],
+  "years": [
+    1,
+    20
+  ],
   "title": "The Hungry Winter",
   "text": "The snow came early and stayed. The granaries of the lower town are scraped bare, and the poor queue at every House's kitchen door.",
   "rule": "pledges",
   "crisis": {
-    "need": { "grain": 40 },
-    "temptation": { "label": "Sell your surplus to the speculators instead.", "text": "The grain merchants pay well, and ask no questions about who goes without.", "penalty": 15, "effects": [{ "resources": { "gold": 30 } }] },
-    "triumph": { "text": "No one starves. The common folk remember whose wagons came.", "effects": [{ "accord": 3 }] },
-    "holds": { "text": "A hard winter, but the city holds.", "effects": [] },
-    "falters": { "text": "The old and the very young die in the night shelters.", "effects": [{ "accord": -5 }, { "recruits_lost": 1, "to": "random" }] },
-    "calamity": { "text": "Famine. The recruit halls empty as the hungry flee, and the Houses are cursed in the streets.", "effects": [{ "accord": -15 }, { "recruits_lost": 1, "to": "all" }] }
+    "need": {
+      "grain": 40
+    },
+    "temptation": {
+      "label": "Sell your surplus to the speculators instead.",
+      "text": "The grain merchants pay well, and ask no questions about who goes without.",
+      "penalty": 15,
+      "effects": [
+        {
+          "resources": {
+            "gold": 30
+          }
+        }
+      ]
+    },
+    "triumph": {
+      "text": "No one starves. The common folk remember whose wagons came.",
+      "effects": [
+        {
+          "accord": 3
+        }
+      ]
+    },
+    "holds": {
+      "text": "A hard winter, but the city holds. Some of the night shelters are quieter than they should be.",
+      "effects": []
+    },
+    "falters": {
+      "text": "The old and the very young die in the night shelters, and the gravediggers find the ground already open.",
+      "effects": [
+        {
+          "accord": -5
+        },
+        {
+          "recruits_lost": 1,
+          "to": "random"
+        }
+      ]
+    },
+    "calamity": {
+      "text": "Famine. The recruit halls empty as the hungry flee, and in the lower town the Houses are cursed, and worse is eaten.",
+      "effects": [
+        {
+          "accord": -15
+        },
+        {
+          "recruits_lost": 1,
+          "to": "all"
+        }
+      ]
+    }
   }
 }

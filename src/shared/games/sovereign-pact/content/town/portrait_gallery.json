@@ -7,7 +7,7 @@
     20
   ],
   "title": "Portrait Gallery",
-  "text": "The painter sets up in the long gallery, and one of the House refuses to sit.",
+  "text": "The painter sets up in the long gallery, and one of the House refuses to sit. The painter says it does not matter; he has painted them before, long ago.",
   "rule": "house",
   "options": [
     {
@@ -19,18 +19,24 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "The portrait shows something the sitter did not mean to show.",
+          "text": "The portrait shows something the sitter did not mean to show, standing just behind them.",
           "effects": [
             {
               "score": {
                 "lore": 2
+              }
+            },
+            {
+              "scion": {
+                "who": "random",
+                "sanity": -15
               }
             }
           ]
         },
         {
           "w": 40,
-          "text": "The painter leaves in the night. The portrait's eyes are scratched out.",
+          "text": "The painter leaves in the night. The portrait's eyes are scratched out from the inside of the canvas.",
           "effects": [
             {
               "sanity": -10
@@ -48,7 +54,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The painter paints the hound instead.",
+          "text": "The painter paints the hound instead. The hound will not go into the gallery again.",
           "effects": []
         }
       ]

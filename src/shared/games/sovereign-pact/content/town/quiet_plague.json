@@ -1,0 +1,130 @@
+{
+  "id": "quiet_plague",
+  "scope": "settlement",
+  "weight": 2,
+  "years": [
+    3,
+    20
+  ],
+  "title": "The Quiet Plague",
+  "text": "A sickness that makes no sound. Its victims stop speaking, then stop blinking, then stand at their windows facing the Rift Gate, smiling.",
+  "rule": "vote",
+  "options": [
+    {
+      "id": "quarantine",
+      "label": "Seal the quarter.",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "The quarter is sealed. The smiling faces at the windows go dark, one by one.",
+          "effects": [
+            {
+              "accord": -3
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "The seal holds, but one of the Houses' own was inside it, and comes out smiling.",
+          "effects": [
+            {
+              "accord": -3
+            },
+            {
+              "to": "random",
+              "scion": {
+                "injury": "sanity"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cure",
+      "label": "Pay the physicians from the Commons to find a cure.",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "A bitter tea of grave moss breaks it. The city remembers who paid.",
+          "effects": [
+            {
+              "to": "commons",
+              "resources": {
+                "gold": -30
+              }
+            },
+            {
+              "accord": 4
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "The physicians catch it too. Now they smile at the Gate with the rest.",
+          "effects": [
+            {
+              "to": "commons",
+              "resources": {
+                "gold": -30
+              }
+            },
+            {
+              "accord": -2
+            },
+            {
+              "doom": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ask",
+      "label": "Ask the smiling ones what they see.",
+      "tags": [
+        "reckless",
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "One of them whispers the shape of a danger to come, and dies with her mouth still moving.",
+          "effects": [
+            {
+              "to": "all",
+              "score": {
+                "lore": 2
+              }
+            },
+            {
+              "doom": 1
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "The question is answered, in a voice from very far below. Everyone who heard it dreams of the same door.",
+          "effects": [
+            {
+              "to": "all",
+              "sanity": -10
+            },
+            {
+              "to": "all",
+              "score": {
+                "lore": 1
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

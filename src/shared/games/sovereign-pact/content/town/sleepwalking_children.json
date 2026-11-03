@@ -1,0 +1,118 @@
+{
+  "id": "sleepwalking_children",
+  "scope": "settlement",
+  "weight": 2,
+  "years": [
+    6,
+    20
+  ],
+  "title": "The Sleepwalking Children",
+  "text": "Children of the lower town walk at night, eyes shut, in perfect step. They gather at the foot of the Rift Gate and sing a song none of them were taught.",
+  "rule": "vote",
+  "options": [
+    {
+      "id": "lock",
+      "label": "Lock the children in at night.",
+      "tags": [
+        "cautious",
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "The doors are barred. The singing comes through the walls anyway, quieter.",
+          "effects": [
+            {
+              "accord": -2
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "Barred doors are no use. At dawn one bed is empty, and the song has one voice fewer.",
+          "effects": [
+            {
+              "accord": -4
+            },
+            {
+              "doom": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "walk",
+      "label": "Send a Scion to walk with them.",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "The Scion learns the song, and the song is a map of the dark beyond the Gate.",
+          "effects": [
+            {
+              "to": "random",
+              "scion": {
+                "who": "sanest",
+                "xp": 60,
+                "blessing": {
+                  "trait": "omen_watcher",
+                  "years": 3
+                }
+              }
+            },
+            {
+              "to": "all",
+              "score": {
+                "lore": 1
+              }
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "The Scion learns the song, and cannot stop humming it, even asleep.",
+          "effects": [
+            {
+              "to": "random",
+              "scion": {
+                "who": "sanest",
+                "sanity": -20,
+                "trait": "+nightmares"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wake",
+      "label": "Wake them all at once, with the bells.",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "They wake screaming, and remember nothing. The song stops.",
+          "effects": [
+            {
+              "accord": 2
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "They wake, and something far off wakes with them. The Gate's light changes color.",
+          "effects": [
+            {
+              "doom": 5
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,104 @@
+{
+  "id": "sleeping_street",
+  "scope": "settlement",
+  "weight": 2,
+  "years": [
+    3,
+    20
+  ],
+  "title": "The Street That Fell Asleep",
+  "text": "A whole street fell asleep at noon and has not woken. Their breath frosts in the summer air. Under their lids their eyes all move together, in the same direction.",
+  "rule": "vote",
+  "options": [
+    {
+      "id": "dream",
+      "label": "Send a Scion into the dream after them.",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "The Scion walks out of the dream with the sleepers behind, and comes back steadier than they went.",
+          "effects": [
+            {
+              "accord": 4
+            },
+            {
+              "to": "random",
+              "scion": {
+                "who": "sanest",
+                "xp": 80,
+                "blessing": {
+                  "trait": "iron_willed",
+                  "years": 2
+                }
+              }
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "The sleepers wake. The Scion does not, for three days, and is not the same when they do.",
+          "effects": [
+            {
+              "accord": 3
+            },
+            {
+              "to": "random",
+              "scion": {
+                "who": "sanest",
+                "sanity": -30,
+                "trait": "+brittle_mind"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wall",
+      "label": "Wall up the street.",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The breathing behind the wall stops in a month. The masons do not come back to work.",
+          "effects": [
+            {
+              "accord": -5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wait",
+      "label": "Wait.",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "They wake on the ninth day, starving, unable to say where they were.",
+          "effects": []
+        },
+        {
+          "w": 50,
+          "text": "On the ninth day the street is empty. The beds are still warm.",
+          "effects": [
+            {
+              "accord": -3
+            },
+            {
+              "doom": 3
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -7,7 +7,7 @@
     20
   ],
   "title": "The Rebellious Commons",
-  "text": "The guilds have shut the gates and will not open them until the Houses hear their grievances.",
+  "text": "The guilds have shut the gates and will not open them until the Houses hear their grievances. Their spokesman is a woman nobody can remember electing, who speaks of the Gate as if she had been through it.",
   "rule": "vote",
   "options": [
     {
@@ -19,7 +19,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The gates open. The people do not look the Houses in the eye.",
+          "text": "The gates open. The spokesman laughs on the gallows, and the people do not look the Houses in the eye.",
           "effects": [
             {
               "accord": -10
@@ -43,7 +43,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "The grievances are fair, and the Houses answer them.",
+          "text": "The grievances are fair, and the Houses answer them. The spokesman is gone the next morning.",
           "effects": [
             {
               "accord": 5
@@ -58,7 +58,7 @@
         },
         {
           "w": 30,
-          "text": "The hearing becomes a riot.",
+          "text": "The hearing becomes a riot. In the crush, the spokesman is seen walking calmly toward the Gate.",
           "effects": [
             {
               "accord": -5
@@ -76,7 +76,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Coin opens gates.",
+          "text": "Coin opens gates. It does not open faces.",
           "effects": [
             {
               "resources": {

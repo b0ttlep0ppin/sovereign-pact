@@ -1,0 +1,96 @@
+{
+  "id": "lamplighters_dread",
+  "scope": "settlement",
+  "weight": 2,
+  "years": [
+    2,
+    20
+  ],
+  "title": "The Lamplighters' Dread",
+  "text": "The lamplighters refuse to work. Something follows them on their rounds, they say, and at the end of each night there is one more lamp lit than there are posts.",
+  "rule": "least_gold",
+  "options": [
+    {
+      "id": "pay",
+      "label": "Pay them double for the winter.",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The lamps burn. The extra one burns too, somewhere, every night.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -20
+              }
+            },
+            {
+              "accord": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "escort",
+      "label": "Send your Scions out with them.",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "The Scions see nothing, but the lamplighters walk taller.",
+          "effects": [
+            {
+              "accord": 2
+            },
+            {
+              "score": {
+                "renown": 2
+              }
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "Your Scion comes back from the last round with burns on one arm, shaped like long fingers.",
+          "effects": [
+            {
+              "accord": 2
+            },
+            {
+              "scion": {
+                "injury": "arms"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dark",
+      "label": "Let the streets go dark.",
+      "tags": [
+        "cautious",
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The city goes dark for a season. Doors stay barred, and the nights belong to something else.",
+          "effects": [
+            {
+              "accord": -4
+            },
+            {
+              "doom": 2
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -7,7 +7,7 @@
     20
   ],
   "title": "Bread and Circuses",
-  "text": "The people are restless. A festival would quiet them, if someone pays for it.",
+  "text": "The lower town is restless, and the Gate has been loud. Old men say the last time the city went this hungry for distraction, it found one in a burning.",
   "rule": "secret",
   "options": [
     {
@@ -19,7 +19,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Your name is cheered in the streets.",
+          "text": "Your House pays for masks, wine and a pageant of the Pact. Your name is cheered in the streets, and the masks are worn for weeks after.",
           "effects": [
             {
               "resources": {
@@ -44,7 +44,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "You keep your purse closed.",
+          "text": "You keep your purse closed, and watch who pays.",
           "effects": []
         }
       ]

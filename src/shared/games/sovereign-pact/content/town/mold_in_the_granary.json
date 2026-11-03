@@ -7,7 +7,7 @@
     20
   ],
   "title": "The Mold in the Granary",
-  "text": "Black mold in the poorest House's granary, spreading by the day.",
+  "text": "Black mold blooms in the poorest House's granary, in patterns. The granary cats will not go in. The mold has begun to grow toward the house.",
   "rule": "least_grain",
   "options": [
     {
@@ -19,7 +19,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The mold is gone, and so is the grain.",
+          "text": "The stock burns with a smell like singed hair. The mold is gone, and so is the grain.",
           "effects": [
             {
               "resources": {
@@ -39,7 +39,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "Most of it is saved.",
+          "text": "Most of it is saved. The scrapers' hands are black for a month.",
           "effects": [
             {
               "resources": {
@@ -50,7 +50,7 @@
         },
         {
           "w": 40,
-          "text": "The mold comes back, worse.",
+          "text": "The mold comes back, worse, in the shape of handprints.",
           "effects": [
             {
               "resources": {
@@ -70,12 +70,12 @@
       "outcomes": [
         {
           "w": 40,
-          "text": "It dies off in the cold.",
+          "text": "It dies off in the cold, curled like something that was listening.",
           "effects": []
         },
         {
           "w": 60,
-          "text": "It spreads to the next Year's harvest.",
+          "text": "It spreads to next Year's seed. The bread from it tastes of cellars.",
           "effects": [
             {
               "resources": {
