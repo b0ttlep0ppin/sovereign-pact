@@ -56,7 +56,8 @@ export function bossFor(s: SovState): string | undefined {
   const card = s.expedition!.card;
   if (card.boss) return card.boss;
   const near = (b: (typeof BOSSES)[number]) => (card.level < b.levels[0] ? b.levels[0] - card.level : Math.max(0, card.level - b.levels[1]));
-  const fits = BOSSES.filter((b) => b.pool === card.pool && !b.tags.includes("arc") && !b.tags.includes("arcana") && !b.tags.includes("idol") && !b.id.match(/_(risen|ascendant|final)$/) && near(b) <= J.bossReach);
+  // A slain boss stays dead (Josh, 2026-11-02): one that fled may be met again.
+  const fits = BOSSES.filter((b) => b.pool === card.pool && !b.tags.includes("arc") && !b.tags.includes("arcana") && !b.tags.includes("idol") && !b.id.match(/_(risen|ascendant|final)$/) && !s.bestiary.kills[b.id] && near(b) <= J.bossReach);
   if (!fits.length) return undefined;
   const best = Math.min(...fits.map(near));
   return withRng(s, (rng) => rng.pick(fits.filter((b) => near(b) === best)).id);

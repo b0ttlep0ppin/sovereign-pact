@@ -1,0 +1,43 @@
+{
+  "id": "chained_marquis",
+  "name": "The Chained Marquis",
+  "pool": "pit",
+  "tags": ["demon", "armored", "royal"],
+  "role": "boss",
+  "size": [1, 1],
+  "at": "E2",
+  "levels": [4, 5],
+  "stats": {"speed": 12, "hp": 6, "atk": 1.2, "def": 1.2},
+  "affinity": {"holy": -75, "fire": 75, "dark": 50, "water": -25},
+  "immune": ["fear", "burn", "charm"],
+  "abilities": [
+    {"id": "chain_lash", "shape": "line:2", "side": "player", "power": 1.1, "reach": "reach", "statuses": [{"id": "bleed", "chance": 40, "ticks": 300}]},
+    {"id": "collar", "shape": "single", "side": "player", "power": 0.8, "reach": "ranged", "pull": 2, "statuses": [{"id": "stop", "chance": 25, "ticks": 100}]},
+    {"id": "brand", "shape": "single", "side": "player", "power": 1.0, "kind": "magic", "element": "fire", "statuses": [{"id": "marked", "chance": 100, "ticks": 300}, {"id": "burn", "chance": 60, "ticks": 300}]},
+    {"id": "hellfire", "shape": "burst:3x3", "side": "player", "power": 1.2, "kind": "magic", "element": "fire", "charge": 80, "telegraph": true, "cooldown": 2, "statuses": [{"id": "burn", "chance": 50, "ticks": 300}]},
+    {"id": "break_the_chains", "shape": "all", "side": "player", "power": 1.3, "charge": 120, "telegraph": true, "cooldown": 3, "statuses": [{"id": "knockdown", "chance": 40, "ticks": 100}]}
+  ],
+  "gambits": [
+    {"if": "!foe.marked", "do": "brand", "target": "highest_might"},
+    {"if": "turn%3==0", "do": "collar", "target": "back_random"},
+    {"if": "foe.marked && turn%3==1", "do": "chain_lash", "target": "marked"},
+    {"do": "chain_lash", "target": "column_weighted"}
+  ],
+  "adds": [
+    {"spawn": ["pit_demon_recruit"], "count": 2, "at": "E1"},
+    {"spawn": ["pit_imp"], "count": 2, "at": "E3"}
+  ],
+  "phases": [
+    {"at": "hp<=0.6", "name": "Hellfire", "speed": 13, "say": "Do you know what they chained me for? Let me show you.", "gambits": [{"if": "turn%3==0", "do": "hellfire", "target": "densest_cluster"}, {"if": "!foe.marked", "do": "brand", "target": "highest_might"}, {"if": "turn%3==1", "do": "collar", "target": "back_random"}, {"do": "chain_lash", "target": "marked"}]},
+    {"at": "hp<=0.25", "name": "Unchained", "speed": 15, "clear": ["slow", "stop", "blind", "silence", "stun", "hex", "poison", "bleed", "rooted", "knockdown", "disarmed", "might_down", "confusion", "sleep"], "say": "(The last link parts with a sound like a bell. He stands up straight for the first time in a thousand years.)", "gambits": [{"if": "turn%2==0", "do": "break_the_chains"}, {"if": "turn%3==1", "do": "hellfire", "target": "densest_cluster"}, {"do": "chain_lash", "target": "lowest_hp"}]}
+  ],
+  "say": {
+    "open": "Visitors! It has been so long. Come closer, I cannot reach you from here. Yet.",
+    "death": "Back... in chains... again..."
+  },
+  "bestiary": {
+    "lore": "A lord of the Pit bound in his own iron by something worse. Every chain he swings is one he wore.",
+    "weakness": "Holy, and he cannot burn. Keep the branded Scion out of reach of his chains.",
+    "pattern": "Brands the strongest Scion (Mark, Burn) and lashes the branded one; collars a Back Scion and drags them two columns forward. At 60% he throws hellfire on the densest cluster every third turn; at 25% he breaks his chains, shaking off every ailment, and swings them across the whole party every other turn."
+  }
+}

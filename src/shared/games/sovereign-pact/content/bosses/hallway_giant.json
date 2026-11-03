@@ -1,0 +1,41 @@
+{
+  "id": "hallway_giant",
+  "name": "The Hallway Giant",
+  "pool": "faceless_city",
+  "tags": ["faceless", "giant", "cursed"],
+  "role": "boss",
+  "size": [2, 3],
+  "at": "E1",
+  "levels": [3, 4],
+  "stats": {"speed": 10, "hp": 11, "atk": 1.45, "sanityTouch": 1},
+  "affinity": {"holy": -50, "dark": 50},
+  "immune": ["fear", "blind", "charm", "confusion"],
+  "abilities": [
+    {"id": "long_arms", "shape": "single", "side": "player", "power": 1.2, "reach": "ranged", "pull": 1},
+    {"id": "embrace", "shape": "single", "side": "player", "power": 1.0, "sanity": 10, "statuses": [{"id": "stun", "chance": 40, "ticks": 100}]},
+    {"id": "the_stare", "shape": "all", "side": "player", "power": 0, "kind": "magic", "sanity": 12, "charge": 60, "telegraph": true, "cooldown": 3, "statuses": [{"id": "fear", "chance": 30, "ticks": 200}]},
+    {"id": "footsteps", "shape": "band:3", "side": "player", "power": 1.1, "charge": 100, "telegraph": true, "cooldown": 2, "statuses": [{"id": "knockdown", "chance": 40, "ticks": 100}]},
+    {"id": "no_face", "shape": "all", "side": "player", "power": 0.8, "kind": "magic", "element": "dark", "sanity": 14, "charge": 120, "telegraph": true, "cooldown": 3, "statuses": [{"id": "madness", "chance": 20, "ticks": 200}]}
+  ],
+  "gambits": [
+    {"if": "turn%4==0", "do": "the_stare"},
+    {"if": "turn%3==1", "do": "long_arms", "target": "back_random"},
+    {"do": "embrace", "target": "lowest_sanity"}
+  ],
+  "adds": [
+    {"spawn": ["city_faceless_woman"], "count": 2, "at": "E3"}
+  ],
+  "phases": [
+    {"at": "hp<=0.6", "name": "The Doors Open", "speed": 9, "adds": {"spawn": ["city_faceless_man", "city_faceless_farmer"], "count": 2, "at": "E3"}, "say": "(Every door in the hall opens at once. There is someone standing in each of them.)", "gambits": [{"if": "turn%3==0", "do": "footsteps", "target": "densest_row"}, {"if": "turn%4==1", "do": "the_stare"}, {"if": "turn%3==2", "do": "long_arms", "target": "back_random"}, {"do": "embrace", "target": "lowest_sanity"}]},
+    {"at": "hp<=0.3", "name": "No Face At All", "speed": 11, "say": "(It bends down until its blank face is level with yours. It has been smiling the whole time. You can tell.)", "gambits": [{"if": "turn%2==0", "do": "no_face"}, {"if": "turn%3==1", "do": "footsteps", "target": "densest_row"}, {"do": "embrace", "target": "lowest_sanity"}]}
+  ],
+  "say": {
+    "open": "(At the end of a corridor that was not there yesterday, something stoops under the ceiling. It has been waiting for you to look up.)",
+    "death": "(It folds down into the floorboards like a coat dropped on a chair. The hall is shorter now.)"
+  },
+  "bestiary": {
+    "lore": "Children in the Faceless City are told never to walk the long hall alone. The ones who did are the ones in the doorways.",
+    "weakness": "Holy. It cannot be frightened or blinded; protect the Scions with the least Sanity, it goes for them.",
+    "pattern": "Stares at the whole party every fourth turn (Fear, Sanity), drags a Back Scion forward with its long arms, and embraces the most shaken. At 60% the doors open and two more faceless join; its footsteps shake three rows. At 30% it shows you its face every other turn (Madness, heavy Sanity)."
+  }
+}

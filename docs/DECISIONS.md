@@ -2,6 +2,12 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-03 (implementation, Milestone 8bf): slain bosses stay dead; nine bosses for the early regions
+
+- Built (Josh's playtest: the Tree King twice, the only boss he had met): a pool boss killed once (it is in the bestiary's kills) is never drawn again; one that fled may come back. Nine new bosses fill the early levels of nine regions: the Pale Sire (Beast Lands 3–4), the Blight-Cap (Hollow Wood 4–5), the Sahagin Chief (Drowned Marches 2–3), the Wight King (Barrows 2–3), the Rime Queen (Deep Cold 3–4), the Foundry Warden (Forge Ruins 3–4), the Hallway Giant (Faceless City 3–4), the Apostate Bishop (Apostate Court 2–3) and the Chained Marquis (Pit 4–5). Every one of those regions now has a boss within reach of its first level.
+- Reading: with every boss near a card's level slain, the card ends as before, in a fight a level above the card's.
+- Tuning: against bots at party level 3L, fresh, they win 3–10 fights in 12, the same spread as the Tree King, Scylla and the Vampire Queen. Sprites are Pixel Material Studio cuts like the rest (the pack's credit line covers them).
+
 ## 2026-11-03 (implementation, Milestone 8be): the homecoming
 
 - Built (Josh's playtest: a lone House saw no treasure, XP or JP after beating the Tree King): when the party is home, a card shows each Scion who went with their level before and after, the XP and JP the expedition gave (battles, events and the homecoming award together), new injuries, and who fell or was Lost; then what each House took from the haul. The haul was always claimed; it was only never shown.

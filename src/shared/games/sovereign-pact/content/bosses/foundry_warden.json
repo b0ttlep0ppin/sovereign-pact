@@ -1,0 +1,42 @@
+{
+  "id": "foundry_warden",
+  "name": "The Foundry Warden",
+  "pool": "forge_ruins",
+  "tags": ["construct", "armored"],
+  "role": "boss",
+  "size": [2, 2],
+  "at": "E1",
+  "levels": [3, 4],
+  "stats": {"speed": 9, "hp": 7, "def": 1.1},
+  "affinity": {"wind": -50, "water": -25, "fire": 50, "earth": 25},
+  "immune": ["poison", "sleep", "fear", "charm", "confusion", "bleed"],
+  "abilities": [
+    {"id": "piston_fist", "shape": "single", "side": "player", "power": 1.4, "statuses": [{"id": "knockdown", "chance": 35, "ticks": 100}]},
+    {"id": "steam_vent", "shape": "row", "side": "player", "power": 0.8, "cooldown": 2, "statuses": [{"id": "blind", "chance": 40, "ticks": 200}]},
+    {"id": "slag_spray", "shape": "burst:3x3", "side": "player", "power": 1.1, "kind": "magic", "element": "fire", "charge": 80, "telegraph": true, "cooldown": 2, "statuses": [{"id": "burn", "chance": 50, "ticks": 300}]},
+    {"id": "overclock", "shape": "self", "side": "self", "power": 0, "kind": "support", "statuses": [{"id": "haste", "chance": 100, "ticks": 200}, {"id": "might_up", "chance": 100, "ticks": 300, "value": 25}], "cooldown": 5},
+    {"id": "meltdown", "shape": "all", "side": "player", "power": 1.2, "kind": "magic", "element": "fire", "charge": 150, "telegraph": true, "cooldown": 3, "statuses": [{"id": "burn", "chance": 40, "ticks": 300}]}
+  ],
+  "gambits": [
+    {"if": "turn%3==0", "do": "slag_spray", "target": "densest_cluster"},
+    {"if": "turn%3==1", "do": "steam_vent", "target": "densest_row"},
+    {"do": "piston_fist", "target": "column_weighted"}
+  ],
+  "adds": [
+    {"spawn": ["forge_toy_soldier"], "count": 2, "at": "E3"},
+    {"spawn": ["forge_repair_construct"], "count": 1, "at": "E3"}
+  ],
+  "phases": [
+    {"at": "hp<=0.6", "name": "Overpressure", "speed": 11, "say": "(Every gauge on its chest swings into the red. It does not slow down.)", "gambits": [{"if": "turn%5==1", "do": "overclock"}, {"if": "turn%3==0", "do": "slag_spray", "target": "densest_cluster"}, {"if": "turn%3==2", "do": "steam_vent", "target": "densest_row"}, {"do": "piston_fist", "target": "lowest_durability"}]},
+    {"at": "hp<=0.25", "name": "Meltdown", "speed": 13, "say": "(The furnace door bursts. It glows white from the inside out.)", "gambits": [{"if": "turn%2==0", "do": "meltdown"}, {"do": "piston_fist", "target": "lowest_hp"}]}
+  ],
+  "say": {
+    "open": "(Rust flakes from a hundred joints at once. The furnace in its chest catches, and roars.)",
+    "death": "(The fire in its chest gutters, flares once, and goes out.)"
+  },
+  "bestiary": {
+    "lore": "It was built to keep the forge workers at their anvils. It kept them there long after they died.",
+    "weakness": "Wind, and water. Its armor turns blows: break the repair construct first or it is patched as fast as you hurt it.",
+    "pattern": "Sprays slag on the densest cluster every third turn and vents steam across a row (Blind). At 60% it overclocks itself every few turns (Haste, Might); at 25% it melts down over the whole party every other turn."
+  }
+}

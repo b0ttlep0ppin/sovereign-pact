@@ -2,6 +2,7 @@
 import { describe, expect, it } from "vitest";
 import { able, muster } from "./expedition.ts";
 import { sovereignPact, type SovMove, type SovState } from "./index.ts";
+import { POOL_BY_ID } from "./content.ts";
 import { bossFor, rollChain } from "./journey.ts";
 import { levelUp } from "./progression.ts";
 import type { ExpeditionCard } from "./state.ts";
@@ -62,7 +63,28 @@ describe("the chain (§9.3)", () => {
     s.expedition!.card = card(1);
     expect(bossFor(s)).toBe("goblin_lord");
     s.expedition!.card = card(5, "resource", "deep_cold");
+    expect(bossFor(s)).toBe("rime_queen");
+    s.expedition!.card = card(6, "resource", "outer_dark");
     expect(bossFor(s)).toBeUndefined();
+  });
+
+  it("never brings back a boss once slain (Josh, 2026-11-02); the next nearest waits instead", () => {
+    const s = underway(card(1));
+    s.expedition!.card = card(3, "resource", "hollow_wood");
+    expect(bossFor(s)).toBe("tree_king");
+    s.bestiary.kills.tree_king = 1;
+    expect(bossFor(s)).toBe("blight_cap");
+    s.bestiary.kills.blight_cap = 1;
+    expect(bossFor(s)).toBeUndefined();
+  });
+
+  it("gives every early region a boss within reach of its first levels", () => {
+    const s = underway(card(1));
+    for (const pool of ["beast_lands", "hollow_wood", "drowned_marches", "barrows", "deep_cold", "forge_ruins", "faceless_city", "apostate_court", "pit"]) {
+      const first = POOL_BY_ID.get(pool)!.levels[0];
+      s.expedition!.card = card(first, "resource", pool);
+      expect(bossFor(s), pool).toBeDefined();
+    }
   });
 
   it("shows only the nodes passed, and the chain's length", () => {
