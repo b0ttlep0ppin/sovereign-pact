@@ -275,7 +275,13 @@
 .sp-jobpick.is-picked { border-color: var(--gold); background: linear-gradient(var(--blood-hi), var(--blood)); }
 .sp-jobpick:focus-visible { outline: 2px solid var(--text); outline-offset: 2px; }
 .sp-person__growth { font-size: 0.68rem; color: #9fc58a; }
-.sp-muster__pool .sp-person__stats { grid-template-columns: repeat(6, 1fr); }
+.sp-muster__pool .sp-person__stats { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+/* A volunteer's card: portrait beside the name, then the stats, affinities and traits across the whole card,
+   so nothing spills into the next card (Josh: "unit cards overflowing"). */
+.sp-muster__pool .sp-person { min-width: 0; }
+.sp-muster__pool .sp-person--portrait > .sp-person__stats, .sp-muster__pool .sp-person--portrait > .sp-affinity, .sp-muster__pool .sp-person--portrait > .sp-person__meta { grid-column: 1 / -1; }
+.sp-muster__pool .sp-person--portrait > header { align-self: center; }
+.sp-muster__pool .sp-person--portrait > .sp-person__portrait { grid-row: 1; }
 
 .sp-person--portrait { grid-template-columns: auto 1fr; column-gap: 12px; }
 .sp-person--portrait > :not(.sp-person__portrait) { grid-column: 2; }
