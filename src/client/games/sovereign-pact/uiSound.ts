@@ -1,7 +1,7 @@
 // The menus' sounds (Josh 2026-11-03: "menu and confirmation sfx for equipping gear, changing jobs, learning
 // abilities and selecting moves in battle, or general when making selections"). One listener on the page
 // hears every button, tab, box and list in the game: each plays the cue it (or a parent) names in
-// `data-sfx`, or by default a latch for a choice, a cloth whoosh for Back and a page for a tab ("none"
+// `data-sfx` (two at once, split by a space), or by default a latch for a choice, a cloth whoosh for Back and a page for a tab ("none"
 // keeps one quiet). Pointing at a command or a Job ticks. The cues are cut from BOOM's construction kits.
 import { useEffect } from "react";
 import { canPlay, playCue } from "./sfx";
@@ -14,9 +14,13 @@ const GAP = 45;
 let volume = 0;
 const played = new Map<string, number>();
 
-/** Plays a menu cue now, at the sound effects volume. */
-export function uiSound(cue: string): void {
-  if (cue === "none" || volume <= 0 || !canPlay()) return;
+/** Plays a menu cue now, at the sound effects volume; several, split by spaces, play together. */
+export function uiSound(cues: string): void {
+  for (const cue of cues.split(" ")) play(cue);
+}
+
+function play(cue: string): void {
+  if (!cue || cue === "none" || volume <= 0 || !canPlay()) return;
   const now = performance.now();
   if (now - (played.get(cue) ?? -Infinity) < GAP) return;
   played.set(cue, now);
