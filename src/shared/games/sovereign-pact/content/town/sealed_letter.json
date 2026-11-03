@@ -1,0 +1,89 @@
+{
+  "id": "sealed_letter",
+  "scope": "house",
+  "weight": 2,
+  "years": [
+    3,
+    20
+  ],
+  "title": "The Sealed Letter",
+  "text": "An unsigned letter, sealed in black wax, offers your House a rival's secrets: their debts, their dead, the name of the Scion they fear to lose. The price is a lock of hair from one of your own.",
+  "rule": "house",
+  "options": [
+    {
+      "id": "pay",
+      "label": "Send the hair.",
+      "tags": [
+        "cruel",
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "The secrets are true, every one of them.",
+          "effects": [
+            {
+              "score": {
+                "intrigue": 4
+              }
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "The secrets are true. And the Scion whose hair you sent has woken every night since with the feeling of a hand on their head.",
+          "effects": [
+            {
+              "score": {
+                "intrigue": 4
+              }
+            },
+            {
+              "scion": {
+                "curse": true
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "burn",
+      "label": "Burn it unread.",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The wax will not burn. You bury it instead, under the chapel floor.",
+          "effects": []
+        }
+      ]
+    },
+    {
+      "id": "expose",
+      "label": "Carry it to the rival House, unopened.",
+      "tags": [
+        "kind",
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The rival is shaken, and grateful, and now owes you. The city hears of it.",
+          "effects": [
+            {
+              "score": {
+                "renown": 3
+              }
+            },
+            {
+              "accord": 2
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

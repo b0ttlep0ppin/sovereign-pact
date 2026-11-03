@@ -1,0 +1,113 @@
+{
+  "id": "founders_creditor",
+  "scope": "house",
+  "weight": 2,
+  "years": [
+    2,
+    20
+  ],
+  "title": "The Founder's Creditor",
+  "text": "A man in grave-clothes waits in the hall with a ledger. On the last page, in your founder's own hand, is a debt: payable this Year, in Gold or in blood, at the creditor's choosing. He has chosen to let you choose.",
+  "rule": "house",
+  "options": [
+    {
+      "id": "gold",
+      "label": "Pay in Gold.",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "He counts every coin twice, bows, and leaves no footprints in the snow.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -50
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "blood",
+      "label": "Pay in blood.",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "The eldest of the House opens a vein over the ledger. The page drinks, and is clean.",
+          "effects": [
+            {
+              "scion": {
+                "who": "eldest",
+                "injury": "arms"
+              }
+            },
+            {
+              "score": {
+                "lineage": 2
+              }
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "The page drinks too deeply. The eldest is a long time recovering, and never warm again.",
+          "effects": [
+            {
+              "scion": {
+                "who": "eldest",
+                "injury": "body",
+                "trait": "+frail"
+              }
+            },
+            {
+              "score": {
+                "lineage": 2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "refuse",
+      "label": "Refuse him, and burn the ledger.",
+      "tags": [
+        "bold",
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 40,
+          "text": "The ledger burns green. He smiles, and goes.",
+          "effects": [
+            {
+              "score": {
+                "renown": 1
+              }
+            }
+          ]
+        },
+        {
+          "w": 60,
+          "text": "The ledger burns green. Over the next weeks, things the House owns begin to go missing, one by one: a horse, a ring, a wing of the Seat.",
+          "effects": [
+            {
+              "ruin": 1
+            },
+            {
+              "resources": {
+                "gold": -20
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

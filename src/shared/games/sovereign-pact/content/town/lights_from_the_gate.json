@@ -1,0 +1,99 @@
+{
+  "id": "lights_from_the_gate",
+  "scope": "house",
+  "weight": 2,
+  "years": [
+    4,
+    20
+  ],
+  "requires": [
+    "building:watchtower"
+  ],
+  "title": "Lights from the Gate",
+  "text": "Your watchtower's keeper reports a line of lanterns coming from the Rift Gate across the fields every night, toward the city. They never arrive. Each night they are a little nearer.",
+  "rule": "house",
+  "options": [
+    {
+      "id": "ride_out",
+      "label": "Ride out to meet them.",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "The lanterns are carried by nobody. The Scion who rode out brings one back, and it shows the way through dark places.",
+          "effects": [
+            {
+              "scion": {
+                "who": "highest:speed",
+                "xp": 50,
+                "blessing": {
+                  "trait": "keen_eyed",
+                  "years": 3
+                }
+              }
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "The lanterns close around the rider, and the rider comes back at dawn with their hair gone white and nothing to say.",
+          "effects": [
+            {
+              "scion": {
+                "who": "highest:speed",
+                "age": 15,
+                "sanity": -20
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "warn",
+      "label": "Warn the city.",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The city bars its doors at dusk. The lanterns stop at the edge of the fields, as if disappointed.",
+          "effects": [
+            {
+              "accord": 2
+            },
+            {
+              "doom": -2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "watch",
+      "label": "Keep watching, and say nothing.",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The keeper writes down every night's count. The numbers are rising.",
+          "effects": [
+            {
+              "score": {
+                "lore": 2
+              }
+            },
+            {
+              "doom": 2
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,109 @@
+{
+  "id": "grain_screams",
+  "scope": "house",
+  "weight": 2,
+  "years": [
+    2,
+    20
+  ],
+  "requires": [
+    "building:farm"
+  ],
+  "title": "The Grain That Screams",
+  "text": "Your farm's harvest screams when it is cut. Not loudly. The reapers have started wearing wax in their ears, and some of them have started to scream back.",
+  "rule": "house",
+  "options": [
+    {
+      "id": "burn",
+      "label": "Burn the field.",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The field burns quietly. Next Year's seed is bought from far away.",
+          "effects": [
+            {
+              "resources": {
+                "grain": -8,
+                "gold": -10
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "harvest",
+      "label": "Bring it in anyway.",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "The bread is fine. Nobody eats it in silence, though.",
+          "effects": [
+            {
+              "resources": {
+                "grain": 10
+              }
+            },
+            {
+              "sanity": -8
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "The bread is fine. One reaper does not stop screaming, and has to be sent away.",
+          "effects": [
+            {
+              "resources": {
+                "grain": 10
+              }
+            },
+            {
+              "recruits_lost": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ask",
+      "label": "Ask it what it wants.",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "It wants to be planted at the Gate. It grows there into something tall, and the Gate's light dims around it.",
+          "effects": [
+            {
+              "doom": -3
+            },
+            {
+              "resources": {
+                "grain": -6
+              }
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "It wants the one who asked. The Scion sleeps in the field for three nights, and comes back with straw in their lungs.",
+          "effects": [
+            {
+              "scion": {
+                "injury": "body"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

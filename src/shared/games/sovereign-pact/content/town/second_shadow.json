@@ -1,0 +1,101 @@
+{
+  "id": "second_shadow",
+  "scope": "house",
+  "weight": 2,
+  "years": [
+    2,
+    20
+  ],
+  "title": "The Second Shadow",
+  "text": "One of your Scions casts two shadows. The second moves a moment after the first, and once, in the chapel, it did not move at all when they knelt.",
+  "rule": "house",
+  "options": [
+    {
+      "id": "cut",
+      "label": "Have the Apothecary cut it away.",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "It comes away like wet paper, and the Scion sleeps for two days. The wound on their heel never quite closes.",
+          "effects": [
+            {
+              "scion": {
+                "injury": "legs"
+              }
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "It comes away clean. Folded in a box, it still moves at night.",
+          "effects": [
+            {
+              "score": {
+                "relics": 2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "listen",
+      "label": "Sit with it in the dark, and learn what it knows.",
+      "tags": [
+        "clever",
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "It knows the way through places that are not on any map.",
+          "effects": [
+            {
+              "scion": {
+                "xp": 60,
+                "jp": 30,
+                "blessing": {
+                  "trait": "sure_footed",
+                  "years": 3
+                }
+              }
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "It knows things about the Scion that the Scion did not, and tells them.",
+          "effects": [
+            {
+              "scion": {
+                "sanity": -25,
+                "trait": "+nightmares"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hide",
+      "label": "Keep them out of the light.",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Lamps are moved. Curtains are drawn. The House learns to live in dim rooms.",
+          "effects": [
+            {
+              "sanity": -5
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,108 @@
+{
+  "id": "patient_who_wont_die",
+  "scope": "house",
+  "weight": 2,
+  "years": [
+    3,
+    20
+  ],
+  "requires": [
+    "building:infirmary"
+  ],
+  "title": "The Patient Who Will Not Die",
+  "text": "A pilgrim brought to your infirmary with a broken spine has not died in forty days. He does not eat. He does not sleep. He asks, politely, every hour, to be allowed to go.",
+  "rule": "house",
+  "options": [
+    {
+      "id": "release",
+      "label": "Grant him a merciful end.",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "He thanks the Scion who does it, and closes his eyes. The Scion does not sleep that night.",
+          "effects": [
+            {
+              "scion": {
+                "sanity": -10,
+                "xp": 40
+              }
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "It does not take. He thanks the Scion anyway. The Scion asks to be moved to another wing.",
+          "effects": [
+            {
+              "scion": {
+                "sanity": -25
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "study",
+      "label": "Study him.",
+      "tags": [
+        "clever",
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "The surgeons learn more from him than from a hundred corpses.",
+          "effects": [
+            {
+              "scion": {
+                "who": "random",
+                "mend": true
+              }
+            },
+            {
+              "score": {
+                "lore": 2
+              }
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "The surgeons learn too much. One of them takes up his bed when he is gone.",
+          "effects": [
+            {
+              "score": {
+                "lore": 2
+              }
+            },
+            {
+              "sanity": -10
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "turn_out",
+      "label": "Carry him out of the gate.",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "He is carried to the Rift Gate. He walks through it on his own.",
+          "effects": [
+            {
+              "doom": 1
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

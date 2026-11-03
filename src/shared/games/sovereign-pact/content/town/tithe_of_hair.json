@@ -1,0 +1,98 @@
+{
+  "id": "tithe_of_hair",
+  "scope": "house",
+  "weight": 2,
+  "years": [
+    2,
+    20
+  ],
+  "title": "The Tithe of Hair",
+  "text": "Each morning one of your Scions wakes with a lock of hair cut away. The doors are barred. The cut is clean, and very close to the throat.",
+  "rule": "house",
+  "options": [
+    {
+      "id": "watch",
+      "label": "Set a watch through the night.",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "The watch sees a child-sized shadow at the bedside, and chases it into a wall. The cutting stops.",
+          "effects": [
+            {
+              "score": {
+                "valor": 1
+              }
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "The watch falls asleep at the stroke of three, every time. In the morning it is the watcher's hair that is cut.",
+          "effects": [
+            {
+              "scion": {
+                "who": "highest:resilience",
+                "sanity": -15
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "leave_offering",
+      "label": "Leave a lock out each night, willingly.",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "The offering is taken, and the House's luck holds that Year.",
+          "effects": [
+            {
+              "scion": {
+                "blessing": {
+                  "trait": "lucky",
+                  "years": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "The offering is taken. The next week, two locks.",
+          "effects": [
+            {
+              "sanity": -8
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "shear",
+      "label": "Shave every head in the House.",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The House goes shorn, and the town laughs, and the cutting stops.",
+          "effects": [
+            {
+              "score": {
+                "renown": -1
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

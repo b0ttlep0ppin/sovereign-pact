@@ -1,0 +1,100 @@
+{
+  "id": "self_writing_book",
+  "scope": "house",
+  "weight": 2,
+  "years": [
+    3,
+    20
+  ],
+  "requires": [
+    "building:scriptorium"
+  ],
+  "title": "The Book That Writes Itself",
+  "text": "In your scriptorium a blank book is filling, a page a night, in a hand none of the scribes own. It is a history of your House. It has reached this Year, and it has not stopped.",
+  "rule": "house",
+  "options": [
+    {
+      "id": "read_ahead",
+      "label": "Read the pages yet to come.",
+      "tags": [
+        "reckless",
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "The House's future is there, and it is not all bad. The reader is never quite at ease again.",
+          "effects": [
+            {
+              "score": {
+                "lore": 4
+              }
+            },
+            {
+              "scion": {
+                "who": "highest:sagacity",
+                "sanity": -20
+              }
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "The last page written describes the reader's death, in a year not far off.",
+          "effects": [
+            {
+              "score": {
+                "lore": 3
+              }
+            },
+            {
+              "scion": {
+                "who": "highest:sagacity",
+                "trait": "+doomed"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "burn",
+      "label": "Burn it.",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It burns slowly, and the scribes swear the last page curled to cover itself.",
+          "effects": []
+        }
+      ]
+    },
+    {
+      "id": "sell",
+      "label": "Sell it to the Apostate traders.",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "They pay in pale coin and leave smiling. Somewhere, a stranger reads your House's future.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 50
+              }
+            },
+            {
+              "score": {
+                "intrigue": -2
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
