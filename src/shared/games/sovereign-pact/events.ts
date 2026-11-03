@@ -20,7 +20,7 @@ import { GEAR_SLOTS, LOCATIONS, STATS, type HistKey, type NodeKind, type Person,
 import { TUNING } from "./tuning.ts";
 import { log, note, withRng } from "./year.ts";
 import { change, unchange } from "./change.ts";
-import { snap, tell, type Snap } from "./told.ts";
+import { effectLines, snap, tell, type Snap } from "./told.ts";
 
 const flagged = (s: SovState, req: string): boolean => (req.startsWith("!") ? !s.flags.includes(req.slice(6)) : s.flags.includes(req.slice(5)));
 
@@ -224,10 +224,11 @@ function land(s: SovState, option: TripOption, { scions, house }: Subjects, othe
   const who = option.rule === "vote" ? "" : option.rule === "secret" ? `House ${s.houses[house!]!.name}: ` : `${scions.map((id) => person(s, id).name).join(" and ")}: `;
   log(s, `${option.label} ${who}${outcome.text}`);
   const before = look(s);
+  const said = effectLines(s, outcome.effects, scions, marching(s), option.rule === "vote" ? null : house);
   const done = effects(s, outcome.effects, scions, option.rule === "vote" ? null : house);
   const e = s.expedition!;
   if (e.told?.n !== e.seen.length) e.told = { id: e.seen.at(-1) ?? "", n: e.seen.length, parts: [] };
-  e.told.parts.push({ label: option.label, who: who.replace(/: $/, ""), text: outcome.text, lines: tell(s, before) });
+  e.told.parts.push({ label: option.label, who: who.replace(/: $/, ""), text: outcome.text, lines: [...said, ...tell(s, before)] });
   return done;
 }
 

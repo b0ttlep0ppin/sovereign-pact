@@ -74,8 +74,6 @@ export function cannotAssign(s: SovState, house: number, m: AssignMove): string 
   if (m.to === "sortie") {
     if (p.status !== "scion" && p.status !== "retired") return "Only Scions and the Retired go on Sorties.";
     if (!SORTIE_BY_ID.has(m.at ?? "")) return "Choose one of the Sorties.";
-    const other = holders(s, house, "sortie").find((x) => x.id !== p.id && s.assign[x.id]!.at !== m.at);
-    if (other) return `Your House's Sortie this Year is ${SORTIE_BY_ID.get(s.assign[other.id]!.at!)!.name}.`;
   }
   if (m.to === "teach" && !mayTeach(p)) return "Only the Retired, or a Scion who has mastered a Job, can teach.";
   if (m.to === "train" && m.mentor !== undefined) {
@@ -96,6 +94,11 @@ export function assign(s: SovState, m: AssignMove): void {
     if (m.to === "work" || m.to === "sortie") a.at = m.at;
     if (m.to === "train" && m.mentor !== undefined) Object.assign(a, { mentor: m.mentor, job: m.job });
     s.assign[m.person] = a;
+    // One Sortie a House a Year (§6.11): choosing another sends everyone on it there instead.
+    if (m.to === "sortie") {
+      const house = s.people.find((p) => p.id === m.person)!.host;
+      for (const p of holders(s, house, "sortie")) s.assign[p.id] = { to: "sortie", at: m.at };
+    }
   }
   // A Mentor who stops teaching leaves their students training alone.
   for (const [id, x] of Object.entries(s.assign)) if (x.mentor !== undefined && s.assign[x.mentor]?.to !== "teach") s.assign[Number(id)] = { to: "train" };

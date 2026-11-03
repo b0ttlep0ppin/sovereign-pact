@@ -2,7 +2,7 @@
 // before an outcome's effects and just after, told as plain lines for the outcome card. Each line names
 // the House it concerns and whether every House may read it: wounds, injuries, deaths and the haul are
 // open; Sanity, XP, JP, traits, growth and a House's own stores are its own business (view.ts filters).
-import { CHANGE_BY_ID, INJURY_BY_ID, TRAIT_BY_ID } from "./content.ts";
+import { CHANGE_BY_ID, INJURY_BY_ID, TRAIT_BY_ID, type TripEffect } from "./content.ts";
 import { itemName } from "./loot.ts";
 import { STATS, type SovState, type Stores, type Told } from "./state.ts";
 import { TUNING } from "./tuning.ts";
@@ -130,5 +130,37 @@ export function tell(s: SovState, before: Snap): Told[] {
   const haul = s.expedition?.haul;
   for (const item of (haul?.items ?? []).filter((i) => !before.haul.items.includes(i.id))) say(`The party carries the ${itemName(item)}.`, null, true);
   for (const line of amounts(before.haul.stores, haul?.stores ?? {})) say(`The haul: ${line}.`, null, true);
+  return out;
+}
+
+const PLACES: Record<string, string> = { encounter: "a fight", event: "something strange", camp: "a camp", cache: "a cache", rally: "a rally", raid: "a raid", lair: "a lair", gate: "the Gate" };
+
+/**
+ * What an outcome does that a before-and-after cannot see (Josh's playtest, 2026-11-03: "something
+ * answers, nothing happens … is this even an event?"): the fight it starts, the way it shortens or
+ * changes, what the next battle starts with, armor worn down, score, Doom and Accord. Read up to the
+ * first fight; what follows a won fight is told after it.
+ */
+export function effectLines(s: SovState, effects: readonly TripEffect[], scions: number[], party: number[], house: number | null): Told[] {
+  const out: Told[] = [];
+  const names = (ids: number[]) => ids.map((id) => s.people.find((p) => p.id === id)?.name).filter(Boolean).join(", ");
+  for (const fx of effects) {
+    const ids = fx.to === "party" ? party : scions;
+    const who = fx.to === "party" ? "The party" : names(ids) || "The party";
+    const of = house ?? (ids.length ? (s.people.find((p) => p.id === ids[0])?.host ?? null) : null);
+    if (fx.status) out.push({ text: `${who} ${fx.to !== "party" && ids.length > 1 ? "start" : "starts"} the next battle with ${word(fx.status)}.`, of, open: true });
+    if (fx.durability) out.push({ text: `${who}: ${fx.loc ? `${fx.loc} armor` : "armor"} ${fx.durability > 0 ? "mended" : "worn down"} (${signed(fx.durability)}% Durability).`, of, open: true });
+    for (const [k, n] of Object.entries(fx.score ?? {})) if (n) out.push({ text: `${house === null ? "Every House present" : `House ${s.houses[house]?.name}`}: ${signed(n)} ${word(k)}.`, of: house, open: false });
+    if (fx.doom) out.push({ text: `Doom ${signed(fx.doom)}.`, of: null, open: true });
+    if (fx.accord) out.push({ text: `Accord ${signed(fx.accord)}.`, of: null, open: true });
+    if (fx.skip) out.push({ text: `A shorter way: the next ${fx.skip === 1 ? "place" : `${fx.skip} places`} on the road ${fx.skip === 1 ? "is" : "are"} passed by.`, of: null, open: true });
+    if (fx.fork) out.push({ text: `The way ahead changes${fx.fork.drop ? `: ${fx.fork.drop} ${fx.fork.drop === 1 ? "place" : "places"} passed by` : ""}${fx.fork.add?.length ? `${fx.fork.drop ? "," : ":"} ${fx.fork.add.map((k) => PLACES[k] ?? word(k)).join(" and ")} ahead` : ""}.`, of: null, open: true });
+    if (fx.retreat) out.push({ text: "The party turns back for home.", of: null, open: true });
+    if (fx.encounter) {
+      const how = fx.encounter.modifier === "ambush" ? "It falls on you from ambush: a battle." : fx.encounter.modifier === "surprise" ? "You fall on it before it is ready: a battle." : "It comes to a fight.";
+      out.push({ text: how, of: null, open: true });
+      break;
+    }
+  }
   return out;
 }

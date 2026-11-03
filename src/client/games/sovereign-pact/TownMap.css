@@ -78,3 +78,11 @@
 .sp-map__idle { position: relative; z-index: 2; display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px; margin: -40px 0 10px; padding: 6px 10px; border: 1px dashed #8a6a3a; border-radius: 2px; background: rgba(20, 14, 10, 0.85); }
 .sp-map__idle small { color: var(--muted); }
 .sp-map__idle[data-over="yes"] { border-style: solid; border-color: var(--gold, #d7b45a); }
+
+/* What the Gate and the walls are for, said on the map (Josh 2026-11-03). */
+.sp-map__about { display: grid; gap: 4px; max-width: 34ch; margin: 2px auto; font-size: 0.78rem; line-height: 1.35; color: var(--muted); text-align: center; }
+.sp-map__gate .sp-map__about small { color: #c9b8d6; }
+.sp-map__sortie { display: inline-flex; gap: 6px; align-items: center; justify-content: center; font-size: 0.8rem; color: var(--text); }
+.sp-map__sortie select { max-width: 18ch; padding: 2px 4px; font: inherit; }
+.sp-map__sortie-text { font-style: italic; }
+.sp-map__walls .sp-map__about { color: #b9ad97; }

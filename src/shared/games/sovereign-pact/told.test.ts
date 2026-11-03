@@ -36,6 +36,16 @@ const meetChapel = (s: SovState) => {
 };
 
 describe("the outcome card (told.ts)", () => {
+  it("tells what no before-and-after shows: the fight it starts, a shorter way, the next battle's start (Josh: 'something answers, nothing happens')", () => {
+    const s = underway(1);
+    resolve(s, option("leader", { skip: 1 }, { to: "party", status: "protect" }, { encounter: {} }));
+    const lines = s.expedition!.told!.parts.at(-1)!.lines.map((l) => l.text);
+    expect(lines).toContain("A shorter way: the next place on the road is passed by.");
+    expect(lines).toContain("The party starts the next battle with Protect.");
+    expect(lines).toContain("It comes to a fight.");
+  });
+
+
   it("tells what an outcome did: wounds to all, Sanity and a House's stores to that House alone", () => {
     const s = underway(2);
     s.expedition!.seen.push("collapsed_chapel");

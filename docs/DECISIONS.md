@@ -2,6 +2,13 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-03 (implementation, Milestone 8bu): Guard does something; the Gate and the walls say what they do
+
+Josh's playtest: **"Its still not clear what sorties at the rift gate or walls do."**
+- **Guard** (§8.3, "theft, haunting and sabotage events against the House are weakened") was an assignment the rules never read. PROPOSED reading: each Scion or Retired on Guard (2 places) turns aside 25% (`assignments.guardPct`) of the harm an Omen aims at its House: losses of stores, gold and Sanity shrink by that share, and each building ruined or recruit lost is saved at that chance a guard. Harm that falls on every House alike (`to: "all"`) is not stopped at the walls, and nor is a Dark Bargain's bane or a Crisis temptation the House chose itself. The outcome is logged ("House X's guards on the walls turn aside some of the harm"). §11.8's trauma incidents (Knife and Sabotage downgraded by a Guard) are not built yet; they will read the same assignment.
+- **The Town Map** now says on the Gate and the walls what each does, not only on hover, and the Gate has a **Sortie picker** (the four Sorties, each with its text, its battles and region, and what it pays). Before, every Sortie was the first on the list.
+- **One Sortie a House:** choosing another Sortie for anyone going sends everyone going there, instead of refusing with "Your House's Sortie this Year is …".
+
 ## 2026-11-03 (implementation, Milestone 8bt): XP slowed, weapons drawn as themselves, injury dice, a battle that only plays forward, Sprouts that serve their King
 
 Josh's playtest:

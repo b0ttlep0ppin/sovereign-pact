@@ -82,7 +82,7 @@ const ilvlFor = (s: SovState, house: number): number => Math.max(1, Math.min(10,
 /** Applies a bargain's effect to one House. */
 function apply(s: SovState, e: BargainEffect, house: number): void {
   const { resources, sanity, score, ruin, recruits_lost, recruit_gain } = e;
-  applyEffects(s, [{ to: "house", resources, sanity, score, ruin, recruits_lost, recruit_gain }], house);
+  applyEffects(s, [{ to: "house", resources, sanity, score, ruin, recruits_lost, recruit_gain }], house, false);
   withRng(s, (rng) => {
     const base = () => rng.pick(ITEM_BASES).id;
     if (e.item) mint(s, base(), house, e.item as ItemTier, ilvlFor(s, house));
