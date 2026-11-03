@@ -10,6 +10,7 @@ import Homecoming, { useHomecoming } from "./Homecoming";
 import CampScene, { useCamp } from "./CampScene";
 import EventOutcome, { useTold } from "./EventOutcome";
 import Resolved, { useResolved } from "./Resolved";
+import { ChronicleLine } from "./LogIcons";
 import Credits from "./Credits";
 import MusicPanel, { useMusic, useMusicSettings } from "./Music";
 import { battleTrack, sceneTrack } from "./music";
@@ -202,7 +203,9 @@ export default function SovereignPact({ view, isMyTurn, sendMove, lastError }: P
       <h2>What happened</h2>
       <ol className="sp-log">
         {view.log.slice(-12).map((line, i) => (
-          <li key={i}>{line}</li>
+          <li key={i} className="sp-logline">
+            <ChronicleLine line={line} view={view} />
+          </li>
         ))}
       </ol>
     </section>

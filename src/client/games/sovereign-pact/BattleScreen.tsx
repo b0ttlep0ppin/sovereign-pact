@@ -11,6 +11,7 @@ import CommandBar, { type Aiming } from "./CommandBar";
 import { Emblem, HERALDRY_COLORS } from "./Emblem";
 import ScionSprite, { animFor, lookOf, type Anim } from "./ScionSprite";
 import { spriteOf } from "./sprites";
+import { BattleLine } from "./LogIcons";
 import { statusAbout, statusLook, tintOf } from "./statusLook";
 import { injuryCue, playSounds, soundsOf } from "./sfx";
 import "./BattleScreen.css";
@@ -79,6 +80,12 @@ interface Pop {
 const statusText = (s: string) => {
   const [id, ticks] = s.split("@");
   return ticks ? `${words(id!)} (${ticks})` : words(id!);
+};
+
+/** What a turn used, so its hits can show what kind of harm they did. */
+const usedIn = (ev: Replay["frames"][number]["ev"] | undefined): string | undefined => {
+  const use = ev?.find((x) => x.t === "use");
+  return use?.t === "use" ? use.ability : undefined;
 };
 
 /** What Commune read on a foe (§12.9): its weak point and the elements it fears or shrugs off. */
@@ -478,9 +485,15 @@ export default function BattleScreen({ replay, view, onClose, waiting = 0, fullL
             <DiceTray key={at} ev={ev} name={name} speed={speed} />
             <ol className={`sp-battle__log${fullLog ? " is-full" : ""}`} aria-label="Battle log" ref={log}>
               {lines.map(([turn, e], i) => (
-                <li key={`${turn}:${i}`} className={turn === at ? "is-now" : undefined}>
+                <li key={`${turn}:${i}`} className={`sp-logline${turn === at ? " is-now" : ""}`}>
                   <small>{turn + 1}. </small>
-                  {replayLine(replay, e).replace(/\b(uses|begins) ([a-z_:]+)/, (_, v: string, id: string) => `${v} ${abilityName(id)}`)}
+                  <BattleLine
+                    e={e}
+                    text={replayLine(replay, e).replace(/\b(uses|begins) ([a-z_:]+)/, (_, v: string, id: string) => `${v} ${abilityName(id)}`)}
+                    replay={replay}
+                    view={view}
+                    ability={usedIn(replay.frames[turn]?.ev)}
+                  />
                 </li>
               ))}
             </ol>
