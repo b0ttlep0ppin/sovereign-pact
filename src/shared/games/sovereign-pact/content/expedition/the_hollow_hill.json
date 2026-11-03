@@ -96,6 +96,29 @@
           ]
         }
       ]
+    },
+    {
+      "id": "play_at_the_door",
+      "label": "The one with an instrument plays at the door.",
+      "rule": "scion:wields:instrument",
+      "only": true,
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The music inside stops to listen. When it starts again it is your tune, and the small figure brings the player a gift for it.",
+          "effects": [
+            {
+              "item": {
+                "tier": 2
+              },
+              "sanity": 10
+            }
+          ]
+        }
+      ]
     }
   ]
 }

@@ -79,6 +79,28 @@
           ]
         }
       ]
+    },
+    {
+      "id": "taste_it",
+      "label": "The Ravager tastes the blood.",
+      "rule": "scion:job:ravager",
+      "only": true,
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The monks scream. The Ravager does not care: the blood is holy and it burns going down, like a war-cry.",
+          "effects": [
+            {
+              "tp": 100,
+              "status": "might_up",
+              "sanity": -8
+            }
+          ]
+        }
+      ]
     }
   ]
 }

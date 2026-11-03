@@ -94,6 +94,42 @@
           ]
         }
       ]
+    },
+    {
+      "id": "wade_in",
+      "label": "The one in plate wades in for an ingot.",
+      "rule": "scion:wears:plate",
+      "only": true,
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "The plate glows red and holds, and comes out with an ingot in its fist.",
+          "effects": [
+            {
+              "resources": {
+                "iron": 6
+              },
+              "durability": -40,
+              "loc": "body"
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "The plate holds. The one inside it is another matter.",
+          "effects": [
+            {
+              "resources": {
+                "iron": 6
+              },
+              "hp": -30
+            }
+          ]
+        }
+      ]
     }
   ]
 }

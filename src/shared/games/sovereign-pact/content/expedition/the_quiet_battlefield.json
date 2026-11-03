@@ -81,6 +81,37 @@
           ]
         }
       ]
+    },
+    {
+      "id": "answer",
+      "label": "The Sword Saint answers the voice.",
+      "rule": "scion:job:sword_saint",
+      "only": true,
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "The sword in the ring comes out of the ground for them. It wants to fight again.",
+          "effects": [
+            {
+              "item": {
+                "tier": 3
+              }
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "The sword comes out of the ground, and the field's dead come with it, to see if the answer was true.",
+          "effects": [
+            {
+              "encounter": {}
+            }
+          ]
+        }
+      ]
     }
   ]
 }

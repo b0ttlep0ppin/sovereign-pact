@@ -96,6 +96,32 @@
           ]
         }
       ]
+    },
+    {
+      "id": "pay_the_toll",
+      "label": "The Knight wakes the troll and pays the toll honestly.",
+      "rule": "scion:job:knight",
+      "only": true,
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The troll is so astonished it gives the coin back, and tells everyone it meets about the honest knight.",
+          "effects": [
+            {
+              "score": {
+                "renown": 1
+              }
+            },
+            {
+              "to": "party",
+              "hp": 5
+            }
+          ]
+        }
+      ]
     }
   ]
 }

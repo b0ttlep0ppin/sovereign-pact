@@ -89,6 +89,30 @@
           ]
         }
       ]
+    },
+    {
+      "id": "warded_shelf",
+      "label": "The Abjurer reads the warded shelf.",
+      "rule": "scion:job:abjurer",
+      "only": true,
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The wards are old, and the Abjurer learns how they were made by taking them apart, and wears what is left.",
+          "effects": [
+            {
+              "jp": 60,
+              "gear": {
+                "on": "armor",
+                "add": "warded_dark"
+              }
+            }
+          ]
+        }
+      ]
     }
   ]
 }

@@ -88,6 +88,30 @@
           ]
         }
       ]
+    },
+    {
+      "id": "stare_back",
+      "label": "The keen-eyed one stares back.",
+      "rule": "scion:trait:keen_eyed",
+      "only": true,
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Eye to eye with the jar, and the jar blinks first. Whatever it was looking for, it will not find it in them again.",
+          "effects": [
+            {
+              "gear": {
+                "on": "armor",
+                "add": "resist_blind"
+              },
+              "jp": 20
+            }
+          ]
+        }
+      ]
     }
   ]
 }

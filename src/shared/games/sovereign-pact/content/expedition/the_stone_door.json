@@ -83,6 +83,37 @@
           ]
         }
       ]
+    },
+    {
+      "id": "sharp_eyes",
+      "label": "The sharpest of you works the tiles.",
+      "rule": "scion:trait:sharp",
+      "only": true,
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 80,
+          "text": "The pattern is plain to sharp eyes. Inside, a dry room and an old House's coffer.",
+          "effects": [
+            {
+              "item": {
+                "tier": 2
+              }
+            }
+          ]
+        },
+        {
+          "w": 20,
+          "text": "The pattern is plain to sharp eyes, and it was a lock on something that wanted locking.",
+          "effects": [
+            {
+              "encounter": {}
+            }
+          ]
+        }
+      ]
     }
   ]
 }

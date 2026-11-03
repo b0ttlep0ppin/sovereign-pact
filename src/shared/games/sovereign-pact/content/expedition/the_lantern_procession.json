@@ -74,6 +74,27 @@
           ]
         }
       ]
+    },
+    {
+      "id": "pray_for_it",
+      "label": "The devout one prays for the lantern that came close.",
+      "rule": "scion:trait:devout",
+      "only": true,
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It brightens, and goes on lighter, and its thanks sits in the devout one's hands as warmth.",
+          "effects": [
+            {
+              "status": "regen",
+              "sanity": 10
+            }
+          ]
+        }
+      ]
     }
   ]
 }
