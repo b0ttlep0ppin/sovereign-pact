@@ -7,7 +7,7 @@ import type { Replay } from "./combat/replay.ts";
 import { dealsFor } from "./deals.ts";
 import { eachScion, foresee, secretEvent } from "./events.ts";
 import { fightView, type FightView } from "./fight.ts";
-import { marketFor, priceFor } from "./market.ts";
+import { canSell, marketFor, priceFor, sellPrice } from "./market.ts";
 import { cannotDrawTarot, cannotDrinkDraught, consumablePrice, forSale } from "./consumables.ts";
 import { eventsFor } from "./omens.ts";
 import { fallen } from "./lifecycle.ts";
@@ -84,6 +84,8 @@ export interface PrivateHouse {
   consumables: Partial<Record<string, number>>;
   /** The consumables this House can buy now, at its price (§13.7). */
   shop: { id: string; price: number }[];
+  /** What the shops would pay for each item in its stash, by item id (null: there is no market to sell in). */
+  sells: Record<number, number> | null;
   /** Each building it could raise: the next level, what it costs (null at the top), and why it cannot, if so (§8.2). */
   builds: { id: string; level: number; cost: Partial<Record<string, number>> | null; why: string | null }[];
   /** The Commons' projects open now: the next level, what it still needs, and why this House cannot propose spending on it, if so (§8.5, §8.1). */
@@ -368,6 +370,7 @@ export function view(s: SovState, playerId: PlayerId): SovView {
             stores: own.stores,
             consumables: own.consumables ?? {},
             shop: forSale(s, me).map((d) => ({ id: d.id, price: consumablePrice(s, me, d) })),
+            sells: canSell(s) ? Object.fromEntries(stash(s, me).map((i) => [i.id, sellPrice(s, i)])) : null,
             builds: BUILDINGS.map((b) => {
               const level = levelOf(own, b.id) + 1;
               return { id: b.id, level, cost: buildCost(b.id, level, own), why: own.works.includes(b.id) ? null : cannotBuild(s, me, b.id) };

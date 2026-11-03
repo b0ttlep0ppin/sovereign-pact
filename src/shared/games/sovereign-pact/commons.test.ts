@@ -24,6 +24,8 @@ const sealAll = sealYear;
 /** A campaign whose Houses can pay for anything. */
 const rich = (H: number): SovState => {
   const s = campaign(H, 4);
+  // From nothing: the shops that stand from Year 1 (TUNING.shops.openAtStart) are taken down.
+  s.commons.built = {};
   for (const h of s.houses) Object.assign(h, { gold: 5000, stores: { grain: 500, timber: 500, stone: 500, iron: 500, essence: 500 } });
   return s;
 };
@@ -31,6 +33,7 @@ const rich = (H: number): SovState => {
 describe("shared projects (§8.5)", () => {
   it("prices each level at 1.3× a House building of its tier", () => {
     const s = calm(campaign(2, 4));
+    s.commons.built = {};
     for (const p of PROJECTS.filter((x) => !x.requires && !x.unlockedBy)) {
       const base = TUNING.town.costs[p.cost][p.tiers[0]! - 1]!;
       expect(projectCost(s, p.id), p.id).toEqual(Object.fromEntries(Object.entries(base).map(([k, n]) => [k, Math.round(n! * C.costMult)])));
@@ -83,6 +86,7 @@ describe("shared projects (§8.5)", () => {
 describe("what shared projects do", () => {
   it("Great Market: Gold for every House; Granary: less Grain upkeep", () => {
     const s = calm(campaign(2, 4));
+    s.commons.built = {};
     const a = sealAll(s);
     s.commons.built = { great_market: 1, granary: 1 };
     const b = sealAll(s);

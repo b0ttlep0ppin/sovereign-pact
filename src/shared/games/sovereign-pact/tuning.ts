@@ -280,6 +280,13 @@ export const TUNING = {
     curioTier: 3,
     /** Properties that send any item to auction (§13.4a: Quickening, Multi-hit, Massive crits). */
     rareProps: ["quickening", "multi_hit", "massive_crits"] as readonly string[],
+    /** Shops standing from Year 1 (Josh's playtest, 2026-11-02: "not enough chances to spend money"); the rest, and the Great Market's own Gold, are still Commons projects. */
+    openAtStart: ["armorer", "weaponsmith", "apothecary"] as readonly string[],
+    /** What the shops pay for a House's item, % of its list price; with a Fence built, more. */
+    sellPct: 35,
+    fenceSellPct: 50,
+    /** A bot buys gear that betters what a Scion wears while it keeps this much Gold. */
+    botReserve: 15,
   },
 
   /** §13.7 consumables, first pass: the most bought at once, and what a bot keeps at home (with Gold it never spends below). */

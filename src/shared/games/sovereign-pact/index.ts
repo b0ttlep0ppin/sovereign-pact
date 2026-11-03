@@ -14,7 +14,7 @@ import { BASE_JOBS, type CampaignOptions, type House, type SovMove, type SovStat
 import { assign, cannotAssign } from "./assign.ts";
 import { cannotPledge, pledge } from "./commons.ts";
 import { cannotChoose, choose } from "./omens.ts";
-import { bid, buy, cannotAuction, cannotBid, cannotBuy, putUp } from "./market.ts";
+import { bid, botSell, botShop, buy, cannotAuction, cannotBid, cannotBuy, cannotSell, putUp, sell } from "./market.ts";
 import { accept, cannotAccept, cannotDecline, cannotOffer, decline, offer } from "./deals.ts";
 import { cannotCrisisPledge, cannotTempt, crisisPledge, tempt } from "./crisis.ts";
 import { cannotPropose, cannotVote, castVote, propose } from "./votes.ts";
@@ -110,7 +110,7 @@ export function newCampaign(players: readonly PlayerId[], rng: Rng, opts: Campai
     people: [],
     items: [],
     nextId: 1,
-    commons: { gold: 0, stores: {}, built: {}, funds: {} },
+    commons: { gold: 0, stores: {}, built: Object.fromEntries(TUNING.shops.openAtStart.map((id) => [id, 1])), funds: {} },
     accord: TUNING.tracks.accordStart,
     doom: TUNING.tracks.doomStart,
     timeline: [],
@@ -385,6 +385,15 @@ export function applyMove(state: SovState, playerId: PlayerId, move: SovMove): M
       s.phaseMoves += 1;
       return { ok: true, state: s };
     }
+    case "sell": {
+      if (s.phase !== "settlement") return fail("The shops open in the Settlement Phase.");
+      if (h.sealed) return fail("Unseal the Year first.");
+      const why = cannotSell(s, house, move.item);
+      if (why) return fail(why);
+      sell(s, house, move.item);
+      s.phaseMoves += 1;
+      return { ok: true, state: s };
+    }
     case "offer": {
       if (s.phase !== "settlement") return fail("Deals are made in the Settlement Phase.");
       if (h.sealed) return fail("Unseal the Year first.");
@@ -576,6 +585,10 @@ export function botMove(s: SovState, playerId: PlayerId): SovMove {
     if (ready) return ready;
     const stock = botBuyConsumable(s, house);
     if (stock) return stock;
+    const gear = botShop(s, house);
+    if (gear !== null) return { type: "buy", item: gear };
+    const junk = botSell(s, house);
+    if (junk !== null) return { type: "sell", item: junk };
     const job = botAssign(s, house);
     if (job) return { type: "assign", ...job };
     const next = botBuild(s, house);

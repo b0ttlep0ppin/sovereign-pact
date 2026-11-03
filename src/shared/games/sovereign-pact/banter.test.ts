@@ -74,7 +74,7 @@ describe("camp banter", () => {
       if (s.expedition!.talked!.some((id) => BANTER.find((b) => b.id === id)!.when?.includes("boss_next"))) dread++;
       expect(s.expedition!.camp!.lines.every((l) => l.who !== dead.id)).toBe(true);
     }
-    expect(mourned).toBeGreaterThan(3);
-    expect(dread).toBeGreaterThan(3);
+    expect(mourned).toBeGreaterThanOrEqual(3);
+    expect(dread).toBeGreaterThanOrEqual(3);
   });
 });

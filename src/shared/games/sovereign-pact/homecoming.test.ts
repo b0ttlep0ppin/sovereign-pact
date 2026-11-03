@@ -33,7 +33,8 @@ describe("the homecoming", () => {
         expect(h.claims.every((c) => c.house === 0)).toBe(true);
         expect(h.people.filter((p) => !p.fate).every((p) => p.xp > 0 && p.jp > 0)).toBe(true);
       }
-      if (h.result === "wiped") expect(h.claims).toEqual([]);
+      // A wipe loses the haul; only what events gave a House along the way (an item each) went home.
+      if (h.result === "wiped") expect(h.claims.every((c) => c.text.startsWith("the "))).toBe(true);
     }
   });
 

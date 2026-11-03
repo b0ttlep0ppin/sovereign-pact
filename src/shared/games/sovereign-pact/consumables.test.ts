@@ -39,6 +39,7 @@ describe("the consumables' content", () => {
 describe("buying consumables", () => {
   it("needs a shop or building that sells them", () => {
     const s = town();
+    s.commons.built = {};
     expect(g.applyMove(s, s.players[0]!, { type: "buy_consumable", id: "tonic" })).toMatchObject({ ok: false, error: expect.stringMatching(/No shop/) });
   });
 
