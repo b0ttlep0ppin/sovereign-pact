@@ -527,3 +527,7 @@
 /* The Seal button held back by an open question (Josh 2026-11-03). */
 .sp-seal-owed { display: inline-flex; align-items: center; gap: 6px; }
 .sp-seal-owed small { color: var(--warn, #c9a35a); max-width: 22em; }
+
+/* A town event's price and the House it names (Josh 2026-11-03: trade-offs). */
+.sp-event__price { color: var(--muted, #a99f8c); }
+.sp-event__target { display: flex; gap: 6px; align-items: center; width: 100%; }

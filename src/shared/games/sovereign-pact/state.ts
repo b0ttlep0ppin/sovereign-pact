@@ -421,6 +421,8 @@ export interface PendingEvent {
   house?: number;
   deciders: number[];
   choices: (number | null)[];
+  /** The House each decider named, for an option that names one. */
+  targets?: (number | null)[];
 }
 
 /** What one town event did (told.ts), for the Omens' account: what was chosen, by whom, what came of it.
@@ -645,7 +647,7 @@ export type SovMove =
   | { type: "accept"; deal: number }
   | { type: "decline"; deal: number }
   /** Choose an option of a town event this House decides (`key` as in the view). */
-  | { type: "choose"; event: string; option: number }
+  | { type: "choose"; event: string; option: number; target?: number }
   /** Answer a Dark Bargain (§14.7a); a bane names its victim. */
   | { type: "bargain"; id: string; accept: boolean; target?: number }
   /** Spend a cure item on one of the House's own (§11.2): the injury it names, else the oldest it mends. */

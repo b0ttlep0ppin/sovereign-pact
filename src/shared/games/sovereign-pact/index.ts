@@ -4,6 +4,7 @@
 import { cannotPost, post } from "./formation.ts";
 import { cannotRestyle, restyle } from "./style.ts";
 import type { GameDefinition, GameResult, MoveResult, PlayerId } from "../../game.ts";
+import { TOWN_EVENT_BY_ID } from "./content.ts";
 import type { Rng } from "../../rng.ts";
 import type { TableOption, TableOptions } from "../../table-options.ts";
 import { botFounding, cannotDesign, cannotSwear, design, draftHouse, reroll, swear } from "./founding.ts";
@@ -18,7 +19,7 @@ import { bid, botSell, botShop, buy, cannotAuction, cannotBid, cannotBuy, cannot
 import { accept, cannotAccept, cannotDecline, cannotOffer, decline, offer } from "./deals.ts";
 import { cannotCrisisPledge, cannotTempt, crisisPledge, tempt } from "./crisis.ts";
 import { cannotPropose, cannotVote, castVote, owed, propose } from "./votes.ts";
-import { botDeal, botAssign, botPromote, botBuild, botChoice, botCrisis, botPledge, botPropose, botVote } from "./bot.ts";
+import { botDeal, botAssign, botPromote, botBuild, botChoice, botCrisis, botPledge, botPropose, botTarget, botVote } from "./bot.ts";
 import { build, cannotBuild, unbuild } from "./town.ts";
 import { cannotPromote, promoteRecruit } from "./promotion.ts";
 import { botOutfit, cannotOutfit, outfit } from "./outfit.ts";
@@ -439,9 +440,9 @@ export function applyMove(state: SovState, playerId: PlayerId, move: SovMove): M
     }
     case "choose": {
       if (s.phase !== "settlement") return fail("There is nothing to choose now.");
-      const why = cannotChoose(s, house, move.event, move.option);
+      const why = cannotChoose(s, house, move.event, move.option, move.target);
       if (why) return fail(why);
-      choose(s, house, move.event, move.option);
+      choose(s, house, move.event, move.option, move.target);
       s.phaseMoves += 1;
       return { ok: true, state: s };
     }
@@ -596,7 +597,11 @@ function chooseBotMove(s: SovState, playerId: PlayerId): SovMove {
   const mend = house >= 0 && s.phase === "settlement" && !s.houses[house]!.sealed ? botCure(s, house) : null;
   if (mend) return mend;
   const pick = house >= 0 && s.phase === "settlement" ? s.events.find((e) => e.deciders.includes(house) && e.choices[house] === null) : undefined;
-  if (pick) return { type: "choose", event: pick.key, option: botChoice(s, house, pick.id) };
+  if (pick) {
+    const option = botChoice(s, house, pick.id);
+    const named = TOWN_EVENT_BY_ID.get(pick.id)!.options![option]!.target ? botTarget(s, house) : null;
+    return { type: "choose", event: pick.key, option, ...(named === null ? {} : { target: named }) };
+  }
   if (house >= 0 && s.phase === "settlement" && !s.houses[house]!.sealed) {
     const help = botCrisis(s, house);
     if (help) return { type: "crisis_pledge", give: help };

@@ -4,10 +4,12 @@
 // for itself, openly or in secret. Choices are made in the Settlement Phase; whoever has not chosen when
 // the Year is sealed takes the cautious option.
 import type { Rng } from "../../rng.ts";
-import { TOWN_EVENT_BY_ID, TOWN_EVENTS, type TownEventDef, type TownOption } from "./content.ts";
+import { CONSUMABLE_BY_ID, HOUSE_TRAIT_BY_ID, TOWN_EVENT_BY_ID, TOWN_EVENTS, type TownEventDef, type TownOption } from "./content.ts";
+import { itemName } from "./loot.ts";
 import { eligible, openCrisis } from "./crisis.ts";
 import { applyEffects } from "./effects.ts";
 import { econ } from "./houses.ts";
+import { fallen } from "./lifecycle.ts";
 import { dueEvents } from "./timeline.ts";
 import type { PendingEvent, SovState, Told } from "./state.ts";
 import { snap, tell } from "./told.ts";
@@ -99,22 +101,53 @@ export function cautious(ev: TownEventDef): number {
   return i >= 0 ? i : ev.options!.length - 1;
 }
 
-export function cannotChoose(s: SovState, house: number, key: string, option: number): string | null {
-  const pe = s.events.find((e) => e.key === key);
-  if (!pe || !pe.deciders.includes(house)) return "That choice is not yours to make.";
-  if (pe.choices[house] !== null) return "You have already chosen.";
-  if (!Number.isInteger(option) || option < 0 || option >= TOWN_EVENT_BY_ID.get(pe.id)!.options!.length) return "That is not one of the choices.";
+/** Why House `house` cannot pay an option's price (Josh 2026-11-03: trade-offs), or null. */
+export function cannotAfford(s: SovState, house: number, opt: TownOption): string | null {
+  const h = s.houses[house]!;
+  for (const [k, n] of Object.entries(opt.cost?.resources ?? {})) {
+    if ((k === "gold" ? h.gold : (h.stores[k] ?? 0)) < (n ?? 0)) return `That asks ${n} ${k[0]!.toUpperCase()}${k.slice(1)}, and you have not got it.`;
+  }
+  const recruits = s.people.filter((p) => p.host === house && p.status === "recruit").length;
+  if ((opt.cost?.recruits ?? 0) > recruits) return `That asks ${opt.cost!.recruits} recruit${opt.cost!.recruits! > 1 ? "s" : ""}, and you have not got them.`;
   return null;
 }
 
-export function choose(s: SovState, house: number, key: string, option: number): void {
+export function cannotChoose(s: SovState, house: number, key: string, option: number, target?: number): string | null {
+  const pe = s.events.find((e) => e.key === key);
+  if (!pe || !pe.deciders.includes(house)) return "That choice is not yours to make.";
+  if (pe.choices[house] !== null) return "You have already chosen.";
+  const opt = Number.isInteger(option) ? TOWN_EVENT_BY_ID.get(pe.id)!.options![option] : undefined;
+  if (!opt) return "That is not one of the choices.";
+  if (opt.target && (!Number.isInteger(target) || target === house || !s.houses[target!] || fallen(s, target!))) return "Name another House.";
+  return cannotAfford(s, house, opt);
+}
+
+/** The price is paid as the choice is made: the recruits walk away with it, last sworn first. */
+function pay(s: SovState, house: number, opt: TownOption): void {
+  const h = s.houses[house]!;
+  for (const [k, n] of Object.entries(opt.cost?.resources ?? {})) {
+    if (k === "gold") h.gold -= n ?? 0;
+    else h.stores[k] = (h.stores[k] ?? 0) - (n ?? 0);
+  }
+  for (let n = 0; n < (opt.cost?.recruits ?? 0); n++) {
+    const gone = s.people.filter((p) => p.host === house && p.status === "recruit").at(-1);
+    if (!gone) break;
+    s.people = s.people.filter((p) => p !== gone);
+    delete s.assign[gone.id];
+  }
+}
+
+export function choose(s: SovState, house: number, key: string, option: number, target?: number): void {
   const pe = s.events.find((e) => e.key === key)!;
+  const opt = TOWN_EVENT_BY_ID.get(pe.id)!.options![option]!;
+  pay(s, house, opt);
   pe.choices[house] = option;
+  if (opt.target) (pe.targets ??= s.houses.map(() => null))[house] = target!;
   if (pe.deciders.every((d) => pe.choices[d] !== null)) settleEvent(s, pe);
 }
 
 /** Draws one outcome of an option and applies it; a House event's outcome only its House reads. */
-export function outcome(s: SovState, ev: TownEventDef, opt: TownOption, subject: number | null, home?: number): void {
+export function outcome(s: SovState, ev: TownEventDef, opt: TownOption, subject: number | null, home?: number, target?: number): void {
   const total = opt.outcomes.reduce((n, o) => n + o.w, 0);
   const out = withRng(s, (rng) => {
     let roll = rng.int(total);
@@ -122,7 +155,8 @@ export function outcome(s: SovState, ev: TownEventDef, opt: TownOption, subject:
   });
   if (home !== undefined) note(s, home, `${ev.title}: ${opt.label} ${out.text}`);
   else log(s, `${ev.title}: ${subject === null ? "" : `House ${s.houses[subject]!.name} — `}${opt.label} ${out.text}`);
-  recordOmen(s, ev.id, home, subject, opt.label, out.text, () => applyEffects(s, out.effects, subject));
+  const named = target === undefined ? "" : ` (House ${s.houses[target]!.name})`;
+  recordOmen(s, ev.id, home, subject, opt.label + named, out.text, () => applyEffects(s, out.effects, subject, true, target));
 }
 
 /** Runs an outcome's effects and keeps the account of what they changed, for the Omens' card (Josh's
@@ -131,7 +165,15 @@ export function outcome(s: SovState, ev: TownEventDef, opt: TownOption, subject:
 export function recordOmen(s: SovState, id: string, house: number | undefined, by: number | null, label: string, text: string, run: () => void): void {
   const all = s.houses.map((_, i) => i);
   const before = snap(s, s.people.filter((p) => p.status === "scion" || p.status === "retired").map((p) => p.id), all);
-  const was = { accord: s.accord, doom: s.doom, buildings: s.houses.map((h) => ({ ...h.buildings })), recruits: all.map((i) => recruits(s, i)) };
+  const was = {
+    accord: s.accord,
+    doom: s.doom,
+    buildings: s.houses.map((h) => ({ ...h.buildings })),
+    recruits: all.map((i) => recruits(s, i)),
+    traits: s.houses.map((h) => [...h.traits]),
+    items: new Set(s.items.map((i) => i.id)),
+    consumables: s.houses.map((h) => ({ ...(h.consumables ?? {}) })),
+  };
   run();
   const lines: Told[] = [];
   const signed = (n: number) => (n > 0 ? `+${n}` : `−${-n}`);
@@ -143,6 +185,13 @@ export function recordOmen(s: SovState, id: string, house: number | undefined, b
       const to = h.buildings[b] ?? 0;
       const name = b.replace(/_/g, " ");
       if (to < from) lines.push({ text: to ? `House ${h.name}'s ${name} is damaged (level ${from} → ${to}).` : `House ${h.name}'s ${name} is destroyed.`, of: i, open: true });
+    }
+    for (const t of h.traits.filter((t) => !was.traits[i]!.includes(t))) lines.push({ text: `House ${h.name} is marked: ${HOUSE_TRAIT_BY_ID.get(t)?.name ?? t}.`, of: i, open: true });
+    for (const t of was.traits[i]!.filter((t) => !h.traits.includes(t))) lines.push({ text: `House ${h.name} is free of ${HOUSE_TRAIT_BY_ID.get(t)?.name ?? t}.`, of: i, open: true });
+    for (const it of s.items.filter((x) => x.house === i && !was.items.has(x.id))) lines.push({ text: `House ${h.name} gains ${it.named ? itemName(it) : `a ${itemName(it)}`}.`, of: i, open: true });
+    for (const [c, n] of Object.entries(h.consumables ?? {})) {
+      const more = (n ?? 0) - (was.consumables[i]![c] ?? 0);
+      if (more > 0) lines.push({ text: `House ${h.name}: ${CONSUMABLE_BY_ID.get(c)?.name ?? c} ×${more}.`, of: i, open: false });
     }
     const d = recruits(s, i) - was.recruits[i]!;
     if (d) lines.push({ text: `House ${h.name}: ${d > 0 ? `${d} new recruit${d > 1 ? "s" : ""}` : `${-d} recruit${d < -1 ? "s" : ""} gone`}.`, of: i, open: false });
@@ -156,7 +205,7 @@ const recruits = (s: SovState, house: number) => s.people.filter((p) => p.host =
 function settleEvent(s: SovState, pe: PendingEvent): void {
   s.events = s.events.filter((e) => e !== pe);
   const ev = TOWN_EVENT_BY_ID.get(pe.id)!;
-  for (const d of pe.deciders) outcome(s, ev, ev.options![pe.choices[d]!]!, d, pe.house);
+  for (const d of pe.deciders) outcome(s, ev, ev.options![pe.choices[d]!]!, d, pe.house, pe.targets?.[d] ?? undefined);
   for (const t of ev.together ?? []) {
     const i = ev.options!.findIndex((o) => o.id === t.option);
     const picked = pe.deciders.filter((d) => pe.choices[d] === i).length;

@@ -5,7 +5,8 @@ import { cannotAssign, slots, type AssignMove } from "./assign.ts";
 import { cannotPledge, projectCost, stillNeeded } from "./commons.ts";
 import { cannotPropose } from "./votes.ts";
 import { BUILDING_BY_ID, SORTIES, TOWN_EVENT_BY_ID } from "./content.ts";
-import { cautious } from "./omens.ts";
+import { cannotAfford, cautious } from "./omens.ts";
+import { fallen } from "./lifecycle.ts";
 import { caps } from "./combat/build.ts";
 import { barred } from "./change.ts";
 import { cannotAccept } from "./deals.ts";
@@ -195,12 +196,18 @@ export function botVote(s: SovState, house: number): number {
   return PROJECT_PLAN.includes(v.subject) ? v.options.indexOf("yes") : v.options.indexOf("no");
 }
 
+/** The House a bot names when an option asks for one: the most renowned other House still standing. */
+export function botTarget(s: SovState, house: number): number | null {
+  const others = s.houses.map((_, i) => i).filter((i) => i !== house && !fallen(s, i));
+  return others.length ? others.reduce((a, b) => (s.houses[b]!.score.renown > s.houses[a]!.score.renown ? b : a)) : null;
+}
+
 /** A town event's option for the bot: a kind one it can afford (it is co-operative), else the cautious one. */
 export function botChoice(s: SovState, house: number, id: string): number {
   const ev = TOWN_EVENT_BY_ID.get(id)!;
   const h = s.houses[house]!;
   const cost = (i: number) => -Math.min(0, ...ev.options![i]!.outcomes.flatMap((o) => o.effects.map((e) => (e.to ?? "house") === "house" ? (e.resources?.gold ?? 0) : 0)));
-  const kind = ev.options!.findIndex((o, i) => o.tags?.includes("kind") && h.gold - cost(i) >= 2 * upkeepGold(s, house));
+  const kind = ev.options!.findIndex((o, i) => o.tags?.includes("kind") && !cannotAfford(s, house, o) && (!o.target || botTarget(s, house) !== null) && h.gold - cost(i) - (o.cost?.resources?.gold ?? 0) >= 2 * upkeepGold(s, house));
   return kind >= 0 ? kind : cautious(ev);
 }
 

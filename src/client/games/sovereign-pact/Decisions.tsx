@@ -50,13 +50,7 @@ export default function Decisions({ view, sendMove, canAct }: Props) {
             {pe.house !== undefined ? <p className="sp-private">Only your House sees this.</p> : null}
             <p>{ev.text}</p>
             {deciding && (chosen === null || chosen === undefined) ? (
-              <div className="sp-actions">
-                {ev.options?.map((o, i) => (
-                  <button key={o.id} type="button" className="sp-button" onClick={() => sendMove({ type: "choose", event: pe.key, option: i })}>
-                    {o.label}
-                  </button>
-                ))}
-              </div>
+              <EventOptions view={view} event={pe.key} options={ev.options ?? []} sendMove={sendMove} />
             ) : (
               <p className="sp-event__status">
                 {deciding ? `You chose: ${ev.options?.[chosen!]?.label ?? "?"}.` : "Not yours to decide."}
@@ -72,6 +66,58 @@ export default function Decisions({ view, sendMove, canAct }: Props) {
       ))}
       {omens.length ? <OmensTold view={view} /> : null}
     </section>
+  );
+}
+
+type Option = NonNullable<ReturnType<typeof Content.TOWN_EVENT_BY_ID.get>>["options"] & object;
+
+/** Why the viewer cannot pay an option's price, or null (the rules check it again). */
+export function priceShort(view: SovView, o: Option[number]): string | null {
+  const mine = view.mine!;
+  for (const [k, n] of Object.entries(o.cost?.resources ?? {})) if ((k === "gold" ? mine.gold : (mine.stores[k] ?? 0)) < (n ?? 0)) return `You have not got ${n} ${word(k)}.`;
+  const recruits = view.people.filter((p) => p.host === view.me && p.status === "recruit").length;
+  if ((o.cost?.recruits ?? 0) > recruits) return `You have not got ${o.cost!.recruits} recruits to give.`;
+  return null;
+}
+
+/** A town event's options (Josh 2026-11-03: trade-offs): each with its price, and a House to name where it asks for one. */
+function EventOptions({ view, event, options, sendMove }: { view: SovView; event: string; options: Option; sendMove: Props["sendMove"] }) {
+  const others = view.houses.filter((h) => h.index !== view.me && !h.fallen);
+  const [target, setTarget] = useState<number | null>(others[0]?.index ?? null);
+  const asks = options.some((o) => o.target);
+  return (
+    <div className="sp-actions">
+      {asks && others.length ? (
+        <label className="sp-event__target">
+          <span>Name a House</span>
+          <select value={target ?? ""} onChange={(e) => setTarget(Number(e.target.value))}>
+            {others.map((h) => (
+              <option key={h.index} value={h.index}>
+                House {h.name}
+              </option>
+            ))}
+          </select>
+        </label>
+      ) : null}
+      {options.map((o, i) => {
+        const short = priceShort(view, o) ?? (o.target && target === null ? "There is no other House to name." : null);
+        const price = [o.cost?.resources ? amounts(o.cost.resources) : "", o.cost?.recruits ? `${o.cost.recruits} recruit${o.cost.recruits > 1 ? "s" : ""}` : ""].filter(Boolean).join(", ");
+        return (
+          <button
+            key={o.id}
+            type="button"
+            className="sp-button"
+            disabled={short !== null}
+            title={short ?? undefined}
+            onClick={() => sendMove({ type: "choose", event, option: i, ...(o.target && target !== null ? { target } : {}) })}
+          >
+            {o.label}
+            {price ? <small className="sp-event__price">{` (costs ${price})`}</small> : null}
+            {o.target && target !== null ? <small className="sp-event__price">{` (House ${view.houses[target]?.name})`}</small> : null}
+          </button>
+        );
+      })}
+    </div>
   );
 }
 

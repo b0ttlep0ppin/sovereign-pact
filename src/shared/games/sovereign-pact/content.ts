@@ -504,8 +504,8 @@ export const PROJECTS = projectsJson.projects as readonly ProjectDef[];
 export const PROJECT_BY_ID = byId(PROJECTS);
 /** One effect of a town event (§9.4's catalogue, the parts that touch the town). */
 export interface TownEffect {
-  /** The subject House (default), each House, one random House, or the Commons (resources only). */
-  to?: "house" | "all" | "random" | "commons";
+  /** The subject House (default), each House, one random House, the Commons (resources only), or the House the chooser named. */
+  to?: "house" | "all" | "random" | "commons" | "target";
   accord?: number;
   doom?: number;
   resources?: Partial<Record<string, number>>;
@@ -519,6 +519,20 @@ export interface TownEffect {
   /** One Scion (or Retired) of each House touched, picked by `who`, and what befalls them (Josh's playtest,
    *  2026-11-02: town events need real consequences). */
   scion?: TownScionEffect;
+  /** Something found or given (Josh 2026-11-03: "powerful artifacts up for grabs"): a rolled item of a tier, or a named one if it is not yet made. */
+  item?: { tier?: 2 | 3 | 4 | 5; named?: string };
+  /** Consumables into the House's stores. */
+  consumable?: { id: string; n?: number };
+  /** "+id" marks the House with a House trait, "-id" lifts one (Josh: "it might apply some traits to your house"). */
+  house_trait?: string;
+  /** A building torn down entirely: by id, or "best" (the House's highest). */
+  raze?: string;
+  /** A building raised a level, or built at level 1: by id, or "any" (one standing below level 3). */
+  raise?: string;
+  /** A level of a building (by id, or "best") passes from the subject House to the House the chooser named. */
+  gift?: string;
+  /** The subject House and the House the chooser named exchange Wards: each gives its youngest Scion (Josh: "like a marriage pact"). */
+  ward_swap?: true;
 }
 /** What befalls one Scion at home: the expedition effects that change a person, and age. */
 export type TownScionEffect = Pick<TripEffect, "sanity" | "xp" | "jp" | "injury" | "stat" | "growth" | "trait" | "curse" | "tarot" | "blessing" | "change" | "mend"> & {
@@ -526,12 +540,18 @@ export type TownScionEffect = Pick<TripEffect, "sanity" | "xp" | "jp" | "injury"
   who?: string;
   /** Years added (or taken away). */
   age?: number;
+  /** How many of the House's own it falls on, each picked in turn (default 1). */
+  count?: number;
 };
 /** An option of a town event: who picks it is the event's rule; its outcome is drawn by weight. */
 export interface TownOption {
   id: string;
   label: string;
   tags?: string[];
+  /** Paid in full when the option is chosen, and only then offered (Josh 2026-11-03: "trade offs"): stores, Gold, recruits. */
+  cost?: { resources?: Partial<Record<string, number>>; recruits?: number };
+  /** The chooser names another House, whom `to: "target"` effects touch. */
+  target?: true;
   outcomes: { w: number; text: string; effects: TownEffect[] }[];
 }
 export interface TownBand {
@@ -765,7 +785,8 @@ export const FORM_BY_ID = byId(FORMS);
 export interface HouseTraitDef {
   id: string;
   name: string;
-  kind: "major" | "minor" | "major_flaw" | "minor_flaw" | "bloodline";
+  /** A mark is never dealt at founding: only events lay it on a House (Josh 2026-11-03). */
+  kind: "major" | "minor" | "major_flaw" | "minor_flaw" | "bloodline" | "mark";
   flavor: string;
   crunch: string;
   /** Battle mods every person of the House carries. */

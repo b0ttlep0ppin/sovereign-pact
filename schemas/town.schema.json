@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "A town event, drawn in the Omens step: settlement-wide or for one House; a Crisis is one decided by pledges (SPEC §3.5, §8.8)",
+  "title": "A town event, drawn in the Omens step: settlement-wide or for one House; a Crisis is one decided by pledges (SPEC \u00a73.5, \u00a78.8)",
   "type": "object",
   "additionalProperties": false,
   "required": [
@@ -145,7 +145,7 @@
                 "kind"
               ]
             },
-            "description": "For balancing the pool by script (SPEC §9.5); the cautious bot prefers cautious options."
+            "description": "For balancing the pool by script (SPEC \u00a79.5); the cautious bot prefers cautious options."
           },
           "outcomes": {
             "type": "array",
@@ -172,6 +172,25 @@
                 }
               }
             }
+          },
+          "cost": {
+            "type": "object",
+            "additionalProperties": false,
+            "minProperties": 1,
+            "properties": {
+              "resources": {
+                "$ref": "#/definitions/resources"
+              },
+              "recruits": {
+                "type": "integer",
+                "minimum": 1
+              }
+            },
+            "description": "Paid in full when chosen; the option is offered only to a House that can pay."
+          },
+          "target": {
+            "const": true,
+            "description": "The chooser names another House, whom to:target, gift and ward_swap effects touch."
           }
         }
       }
@@ -226,7 +245,7 @@
           ]
         }
       },
-      "description": "A forcing event (SPEC §3.2): it comes only from the timeline, foreshadowed a Year ahead, and the Rift Gate then offers only its card, a forced expedition at the Year's band."
+      "description": "A forcing event (SPEC \u00a73.2): it comes only from the timeline, foreshadowed a Year ahead, and the Rift Gate then offers only its card, a forced expedition at the Year's band."
     }
   },
   "definitions": {
@@ -269,9 +288,10 @@
               "house",
               "all",
               "random",
-              "commons"
+              "commons",
+              "target"
             ],
-            "description": "Whom it touches: the subject House (default), each House, one random House, or the Commons (resources only)."
+            "description": "Whom it touches: the subject House (default), each House, one random House, the Commons (resources only), or the House the chooser named (an option with target)."
           },
           "accord": {
             "type": "integer"
@@ -378,8 +398,73 @@
               },
               "mend": {
                 "$ref": "expedition.schema.json#/definitions/effect/properties/mend"
+              },
+              "count": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 4,
+                "description": "How many of the House's own it falls on."
               }
             }
+          },
+          "item": {
+            "type": "object",
+            "additionalProperties": false,
+            "minProperties": 1,
+            "properties": {
+              "tier": {
+                "enum": [
+                  2,
+                  3,
+                  4,
+                  5
+                ]
+              },
+              "named": {
+                "$ref": "defs.schema.json#/definitions/id"
+              }
+            },
+            "description": "An item for the House: a named one if not yet made this campaign, else one rolled at the tier (default 3)."
+          },
+          "consumable": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "id"
+            ],
+            "properties": {
+              "id": {
+                "$ref": "defs.schema.json#/definitions/id"
+              },
+              "n": {
+                "type": "integer",
+                "minimum": 1
+              }
+            }
+          },
+          "house_trait": {
+            "type": "string",
+            "pattern": "^[+-][a-z][a-z0-9_]*$",
+            "description": "+id marks the House with a House trait (usually a mark), -id lifts one."
+          },
+          "raze": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*$",
+            "description": "A building torn down entirely: by id, or best (the House's highest)."
+          },
+          "raise": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*$",
+            "description": "A building raised a level, or built at level 1: by id, or any."
+          },
+          "gift": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*$",
+            "description": "A level of a building (by id, or best) passes from the subject House to the named House."
+          },
+          "ward_swap": {
+            "const": true,
+            "description": "The subject House and the named House exchange their youngest Scions as Wards."
           }
         }
       }

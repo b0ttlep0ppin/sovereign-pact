@@ -18,7 +18,7 @@
         "properties": {
           "id": { "$ref": "defs.schema.json#/definitions/id" },
           "name": { "type": "string", "minLength": 1, "maxLength": 32 },
-          "kind": { "enum": ["major", "minor", "major_flaw", "minor_flaw", "bloodline"] },
+          "kind": { "enum": ["major", "minor", "major_flaw", "minor_flaw", "bloodline", "mark"] },
           "flavor": { "type": "string", "minLength": 1, "description": "Shown in Flavor Mode (§5.2)" },
           "crunch": { "type": "string", "minLength": 1, "description": "The exact effect, shown in Crunch Mode" },
           "mods": { "$ref": "#/definitions/numbers", "description": "Battle mods every person of the House carries (combat/build.ts keys)" },
