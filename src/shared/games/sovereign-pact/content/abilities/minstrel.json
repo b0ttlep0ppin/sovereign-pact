@@ -15,9 +15,9 @@
     {"id": "plague_chant", "name": "Plague Chant", "jp": 200, "text": "Enemies are Poisoned every 100 ticks.", "shape": "all", "side": "foe", "power": 0, "kind": "support", "mp": 20, "song": {"layer": "chorus", "mods": {"poisonPer100": 1}}}
   ],
   "passives": [
-    {"id": "carrying_voice", "name": "Carrying Voice", "points": 1, "jp": 100, "text": "Songs also reach Deaf allies at half effect.", "later": true},
-    {"id": "crescendo", "name": "Crescendo", "points": 2, "jp": 200, "text": "Each layer that has lasted 300 ticks is 50% stronger.", "later": true},
+    {"id": "carrying_voice", "name": "Carrying Voice", "points": 1, "jp": 100, "text": "Songs also reach Deaf allies at half effect.", "mods": {"carryingVoice": 1}},
+    {"id": "crescendo", "name": "Crescendo", "points": 2, "jp": 200, "text": "Each layer that has played 300 ticks swells 50% stronger, once.", "mods": {"crescendo": 1}},
     {"id": "heartstring", "name": "Heartstring", "points": 2, "jp": 200, "text": "Replacing a layer restores 5% Sanity to every ally.", "mods": {"heartstring": 5}},
-    {"id": "finale", "name": "Finale", "points": 3, "jp": 300, "text": "Dropping all three layers at once deals 2.0× Sagacity damage to every enemy.", "later": true}
+    {"id": "finale", "name": "Finale", "points": 3, "jp": 300, "text": "With all three layers playing, the Finale: drop them all at once for 2.0x Sagacity damage to every enemy.", "mods": {"finale": 1}}
   ]
 }

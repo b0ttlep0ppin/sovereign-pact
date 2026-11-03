@@ -85,6 +85,7 @@ export function partyOf(s: SovState, ids: number[], carried: Expedition["carry"]
     const c = carried[id];
     // HP lost in earlier battles stays lost until a Camp, a draught or the road home mends it (Josh 2026-11-02).
     if (c?.hurt) u.hp = Math.max(1, u.maxHp - c.hurt);
+    if (c?.part && u.mods.packRat) u.parts = [...(u.parts ?? []), c.part];
     if (c && u.dur && u.maxDur) {
       for (const loc of LOCATIONS) u.dur[loc] = Math.min(u.maxDur[loc], c.dur[loc] ?? u.maxDur[loc]);
       u.broken = c.broken.filter((l) => u.dur![l] === 0);
@@ -153,7 +154,9 @@ function settle(s: SovState, b: Battle, cause: string): void {
     p.mp = u.mp;
     const hurt = Math.max(0, u.maxHp - Math.max(1, u.hp));
     const shrugged = e.carry[p.id]?.shrugged;
-    e.carry[p.id] = { dur: { ...u.dur! }, broken: [...u.broken], ...(Object.keys(mods).length ? { mods } : {}), ...(hurt ? { hurt, hpMax: u.maxHp } : {}), ...(shrugged ? { shrugged } : {}) };
+    // Pack Rat (§12.16): one Component kept for the next battle.
+    const part = u.mods.packRat ? u.parts?.[0] : undefined;
+    e.carry[p.id] = { dur: { ...u.dur! }, broken: [...u.broken], ...(Object.keys(mods).length ? { mods } : {}), ...(hurt ? { hurt, hpMax: u.maxHp } : {}), ...(shrugged ? { shrugged } : {}), ...(part ? { part } : {}) };
     if (u.catatonic && !e.out.includes(p.id)) e.out.push(p.id);
     if (won) p = gainJp(gainXp(p, xpAt(p, P.battleXp, e.card.level)), P.battleJp);
     s.people[s.people.findIndex((x) => x.id === p.id)] = p;

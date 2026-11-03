@@ -86,7 +86,7 @@ describe("abilities in battle", () => {
     const weapon = ab.requires?.find((w) => w !== "shield");
     if (weapon) u.weapon = { ...u.weapon, kind: weapon };
     if (ab.requires?.includes("shield")) u.offhand = "shield";
-    u.parts = [...(ab.parts ?? [])];
+    u.parts = [...(ab.parts ?? []), ...(ab.rig ? ["spring", "gear", "wire"] : [])];
     if (ab.revert || ab.graft) shift(b, u, "werewolf");
     // Finishers are only played at the end of a combo (combos.test.ts).
     expect(cannotUse(u, ab)).toBe(ab.move?.finisher ? "finisher" : null);

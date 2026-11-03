@@ -288,8 +288,8 @@ export interface Expedition {
   chain: NodeKind[];
   /** The next node's index. */
   at: number;
-  /** What each Scion carries from battle to battle: Durability, Broken locations, this expedition's injury mods, an ailment for the next battle (`id` or `id:ticks`), and whether a Veteran's shrug is spent. */
-  carry: Record<number, { dur: Partial<Record<Location, number>>; broken: Location[]; mods?: Record<string, number>; start?: string[]; hurt?: number; hpMax?: number; shrugged?: boolean }>;
+  /** What each Scion carries from battle to battle: Durability, Broken locations, this expedition's injury mods, an ailment for the next battle (`id` or `id:ticks`), whether a Veteran's shrug is spent, and a Pack Rat's kept Component. */
+  carry: Record<number, { dur: Partial<Record<Location, number>>; broken: Location[]; mods?: Record<string, number>; start?: string[]; hurt?: number; hpMax?: number; shrugged?: boolean; part?: string }>;
   /** Scions out of the fight for the rest of the expedition (Catatonic). */
   out: number[];
   /** Events met this expedition: none comes twice. */

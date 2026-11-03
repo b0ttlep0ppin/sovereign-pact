@@ -8,6 +8,7 @@ import { gearTotals, UNARMED, type GearTotals } from "../items.ts";
 import { battleActives, freePassives, passiveMods, tarotMods } from "../progression.ts";
 import { ELEMENTS, LOCATIONS, type Element, type House, type Location, type Person, type SovState } from "../state.ts";
 import { TUNING } from "../tuning.ts";
+import { FINALE } from "./songs.ts";
 import { meta } from "./status.ts";
 import type { AbilityDef, Battle, Combatant, GambitRule, Weapon } from "./types.ts";
 
@@ -167,7 +168,8 @@ export function scionCombatant(p: Person, opts: ScionOpts): Combatant {
     guard: (o.armor?.guard ?? 0) + (mods.guard ?? 0),
     counter: (mods.counter ?? 0) + (bare ? (mods.unarmedCounter ?? 0) : 0),
     steps: 0,
-    abilities: o.abilities ?? battleActives(p),
+    // Finale (§12.11) is an action the passive brings.
+    abilities: [...(o.abilities ?? battleActives(p)), ...(mods.finale ? [FINALE] : [])],
     gambits: o.gambits ?? [],
     cooldowns: {},
     // Slow to Wake (§5.7): a House's people may start behind the clock.

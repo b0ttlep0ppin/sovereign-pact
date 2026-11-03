@@ -199,8 +199,14 @@ export function endSongs(b: Battle, u: Combatant, layer?: keyof NonNullable<Comb
     if (!id) continue;
     for (const t of b.units) if (t.statuses.some((s) => s.id === id && s.src === u.id)) removeStatus(b, t, id);
   }
-  if (layer && u.songs) delete u.songs[layer];
-  else delete u.songs;
+  if (layer && u.songs) {
+    delete u.songs[layer];
+    if (u.songSince) delete u.songSince[layer];
+  } else {
+    delete u.songs;
+    delete u.songSince;
+    delete u.swelled;
+  }
 }
 
 export function removeStatus(b: Battle, u: Combatant, id: string): void {

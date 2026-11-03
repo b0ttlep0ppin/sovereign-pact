@@ -2,6 +2,16 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-03 (implementation, Milestone 8bd): the Minstrel's and Tinkerer's last abilities
+
+- Built: Carrying Voice, Crescendo, Finale; Shrapnel Mine, Jury-Rig and Pack Rat. With them no ability in any Job is left unbuilt.
+- Reading: Carrying Voice's "songs reach the Deaf" lets a song reach a Deaf ally at half strength, not full: deafness still costs something.
+- Reading: Crescendo swells each layer once, by half again (`tuning.combat.minstrel`), after it has played 300 ticks; a new song in that layer starts the count again.
+- Reading: Finale is an action the passive grants while all three layers sound: 100 TP, a power-2 magic blow on every foe that scales with Sagacity, and it ends the songs.
+- Reading: Shrapnel Mine is aimed at a foe; it bursts in a 3×3 around the first foe to take a turn after it is laid.
+- Reading: Jury-Rig's "magic consumable" is one of the battle consumables listed in `tuning.combat.tinkerer.rigItems`, made from 3 Components into the satchel and kept after the battle like a stolen one.
+- Reading: Pack Rat keeps one Component across the expedition's battles: the first one a Tinkerer still holds when a battle ends.
+
 ## 2026-11-03 (implementation, Milestone 8bc): Siphon, Nova, Elemental Mastery, Second Breath, Hybrid, Ward-Sense
 
 - Built: Siphon (20% of max HP paid, 1.5 MP back per HP), Nova, Elemental Mastery, Second Breath, Hybrid and Ward-Sense. Bots Siphon only above 60% HP with under 20 MP.

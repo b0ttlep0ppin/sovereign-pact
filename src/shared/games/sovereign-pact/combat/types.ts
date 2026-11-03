@@ -187,6 +187,12 @@ export interface AbilityDef {
   graft?: boolean;
   /** Calls a summon from summons.json (§12.15). */
   summon?: string;
+  /** Finale: needs every song layer playing, scales with Sagacity, and ends the songs after. */
+  finale?: boolean;
+  /** Shrapnel Mine: laid instead of striking; bursts on the next foe to act. */
+  mine?: boolean;
+  /** Jury-Rig: three Components, any, become a magic consumable. */
+  rig?: boolean;
   /** Siphon: MP gained per HP paid (`hpCost`). */
   mpFromHp?: number;
   /** Nova: takes the element that hurts its targets most. */
@@ -338,8 +344,10 @@ export interface Combatant {
   /** A Tinkerer's Components: held, and offered this turn (§12.2). */
   parts?: string[];
   offer?: string[];
-  /** The songs a Minstrel is playing, by layer. */
+  /** The songs a Minstrel is playing, by layer; the tick each began, and the layers Crescendo has swelled. */
   songs?: Partial<Record<SongLayer, string>>;
+  songSince?: Partial<Record<SongLayer, number>>;
+  swelled?: SongLayer[];
   defending?: boolean;
   down: boolean;
   dead: boolean;
@@ -409,6 +417,8 @@ export interface Battle {
   field?: FieldHazard[];
   /** The party satchel's consumables (§13.7), one a slot, and those used this battle. */
   satchel?: string[];
+  /** Shrapnel Mines laid and waiting: whose, and the blast. */
+  mines?: { by: number; ability: AbilityDef }[];
   /** Consumables stolen or made this battle (Steal, Jury-Rig); the expedition's satchel keeps them. */
   stolen?: string[];
   used?: string[];
