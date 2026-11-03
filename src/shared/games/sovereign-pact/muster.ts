@@ -4,7 +4,7 @@
 // House chooses. When the last pick is made, Year 1 opens. The rest of each House's recruits are born
 // with its own blood, as before.
 import { caps } from "./combat/build.ts";
-import { promote, rollRecruit } from "./generate.ts";
+import { namesTaken, promote, rollRecruit } from "./generate.ts";
 import { equipStarter } from "./items.ts";
 import { snake } from "./loot.ts";
 import { bestJob } from "./promotion.ts";
@@ -28,7 +28,8 @@ export function openMuster(s: SovState): void {
   const picks = forHouses(TUNING.houses.startScions, H);
   const size = H * (picks + TUNING.founding.musterExtra);
   // The city's volunteers carry no House's blood.
-  const pool = withRng(s, (rng) => Array.from({ length: size }, () => rollRecruit(rng, s.nextId++, -1)));
+  const taken = namesTaken(s);
+  const pool = withRng(s, (rng) => Array.from({ length: size }, () => rollRecruit(rng, s.nextId++, -1, undefined, taken)));
   s.muster = { pool, order: snake(s, s.houses.map((_, i) => i), H * picks), at: 0 };
   log(s, "The city's volunteers gather before the Houses.");
 }

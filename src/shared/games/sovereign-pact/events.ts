@@ -5,7 +5,7 @@
 // catalogue; transformation and secret events come later).
 import { loseAccord } from "./commons.ts";
 import { caps, scionCombatant } from "./combat/build.ts";
-import { rollRecruit } from "./generate.ts";
+import { namesTaken, rollRecruit } from "./generate.ts";
 import { addProperty, baseOf, gearTotals, itemById, liftProperty } from "./items.ts";
 import { SHOPS, stockTier } from "./market.ts";
 import { found } from "./loot.ts";
@@ -511,7 +511,7 @@ function improve(s: SovState, kind: "recruit" | "building" | "shop", h: number):
   const H = s.houses[h]!;
   if (kind === "recruit") {
     const id = s.nextId++;
-    s.people.push(withRng(s, (rng) => rollRecruit(rng, id, h, H)));
+    s.people.push(withRng(s, (rng) => rollRecruit(rng, id, h, H, namesTaken(s))));
     return log(s, `House ${H.name} gains a recruit.`);
   }
   if (kind === "building") {

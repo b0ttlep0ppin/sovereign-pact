@@ -5,7 +5,7 @@
 // volunteers (muster.ts), and Year 1 opens.
 import type { Rng } from "../../rng.ts";
 import { HERALDRY, HOUSE_TRAIT_BY_ID, HOUSE_TRAITS, SEAT_BY_ID, SEATS, type HouseTraitDef } from "./content.ts";
-import { dealAmbition, randomHouse, rollRecruit } from "./generate.ts";
+import { dealAmbition, namesTaken, randomHouse, rollRecruit } from "./generate.ts";
 import { econ } from "./houses.ts";
 import { openMuster } from "./muster.ts";
 import { ELEMENTS, type Ambition, type Element, type House, type SovMove, type SovState } from "./state.ts";
@@ -155,7 +155,8 @@ function begin(s: SovState): void {
       const seat = SEAT_BY_ID.get(h.seat);
       for (const [b, level] of Object.entries(seat?.start?.buildings ?? {})) h.buildings[b] = Math.max(h.buildings[b] ?? 0, level);
       const recruits = forHouses(TUNING.houses.startRecruits, H) + (seat?.start?.recruits ?? 0);
-      for (let n = 0; n < recruits; n++) s.people.push(rollRecruit(rng, s.nextId++, i, h));
+      const taken = namesTaken(s);
+      for (let n = 0; n < recruits; n++) s.people.push(rollRecruit(rng, s.nextId++, i, h, taken));
     });
   });
   openMuster(s);

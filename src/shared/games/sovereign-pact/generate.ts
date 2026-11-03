@@ -15,6 +15,7 @@ import {
   type PotentialTier,
   type Score,
   type Six,
+  type SovState,
 } from "./state.ts";
 import { forHouses, TUNING } from "./tuning.ts";
 
@@ -69,8 +70,10 @@ export function dealAmbition(rng: Rng): Ambition {
  * A new recruit for House `house` (§6.3). Speed starts at its baseline and barely grows (§7.1). The
  * House's traits scale each rolled growth rate by their % (§5.3), after the roll, so the draws match.
  */
-export function rollRecruit(rng: Rng, id: number, house: number, blood?: Pick<House, "traits" | "element" | "bane">): Person {
+export function rollRecruit(rng: Rng, id: number, house: number, blood?: Pick<House, "traits" | "element" | "bane">, taken?: Set<string>): Person {
   const sex = rng.int(2) === 0 ? "f" : "m";
+  // No two living people share a given name while the list lasts (Josh saw two Ursulas in one muster).
+  const free = NAMES.given[sex].filter((x) => !taken?.has(x));
   const [lo, hi] = TUNING.recruits.baseRoll;
   const potential = rollPotential(rng);
   const [glo, ghi] = TUNING.recruits.potential[potential].growth;
@@ -83,7 +86,7 @@ export function rollRecruit(rng: Rng, id: number, house: number, blood?: Pick<Ho
     status: "recruit",
     house,
     host: house,
-    name: rng.pick(NAMES.given[sex]),
+    name: rng.pick(free.length ? free : NAMES.given[sex]),
     sex,
     look: [],
     age: between(rng, TUNING.recruits.age[0], TUNING.recruits.age[1]),
@@ -111,6 +114,7 @@ export function rollRecruit(rng: Rng, id: number, house: number, blood?: Pick<Ho
   if (reversed && rng.int(100) < reversed) person.reversed = true;
   person.sanity = maxSanity(person);
   person.mp = maxMp(person);
+  taken?.add(person.name);
   return person;
 }
 
@@ -159,3 +163,6 @@ export function randomHouse(rng: Rng, takenNames: readonly string[], takenColors
     sealed: false,
   };
 }
+
+/** Every given name in use: the living, and the muster's volunteers. */
+export const namesTaken = (s: Pick<SovState, "people"> & Partial<Pick<SovState, "muster">>): Set<string> => new Set([...s.people, ...(s.muster?.pool ?? [])].map((p) => p.name));
