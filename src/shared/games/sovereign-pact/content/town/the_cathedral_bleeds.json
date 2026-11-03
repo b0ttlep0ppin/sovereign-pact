@@ -1,0 +1,77 @@
+{
+  "id": "the_cathedral_bleeds",
+  "scope": "settlement",
+  "weight": 2,
+  "years": [
+    1,
+    20
+  ],
+  "title": "The Cathedral Bleeds",
+  "text": "The great cathedral's walls have begun to bleed from the joints of the stones, and the nave is ankle-deep. The bishop says the building is dying and will take the city's faith with it. The masons say it is the mortar, and want stone and gold to rebuild the north wall before it falls on the congregation.",
+  "rule": "pledges",
+  "crisis": {
+    "need": {
+      "stone": 25,
+      "gold": 25
+    },
+    "temptation": {
+      "label": "Bottle the blood and sell it as a relic.",
+      "text": "The pilgrims pay anything for a vial. The bishop will preach against whoever is selling it, if he finds out.",
+      "penalty": 15,
+      "effects": [
+        {
+          "resources": {
+            "gold": 25
+          }
+        },
+        {
+          "consumable": {
+            "id": "saints_tooth",
+            "n": 1
+          }
+        }
+      ]
+    },
+    "triumph": {
+      "text": "The north wall is rebuilt and the bleeding stops. On the first Sunday the whole city fills the nave and sings, and for an hour the Rift is silent.",
+      "effects": [
+        {
+          "accord": 4
+        },
+        {
+          "doom": -3
+        }
+      ]
+    },
+    "holds": {
+      "text": "The wall stands, patched. The blood dries brown in the joints and nobody washes it off.",
+      "effects": []
+    },
+    "falters": {
+      "text": "The north wall comes down during the evening office. The bishop is pulled from the rubble alive, and has not stopped praying since.",
+      "effects": [
+        {
+          "accord": -6
+        },
+        {
+          "doom": 2
+        }
+      ]
+    },
+    "calamity": {
+      "text": "The cathedral falls. The bells are found the next morning in the square, upright, ringing on their own, and the city's prayers go unanswered for a long time.",
+      "effects": [
+        {
+          "accord": -12
+        },
+        {
+          "doom": 5
+        },
+        {
+          "to": "all",
+          "sanity": -15
+        }
+      ]
+    }
+  }
+}

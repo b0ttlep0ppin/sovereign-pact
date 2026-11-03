@@ -1,0 +1,112 @@
+{
+  "id": "the_beast_calls",
+  "scope": "settlement",
+  "weight": 1,
+  "years": [
+    1,
+    20
+  ],
+  "title": "The Beast Calls",
+  "text": "The thing that walked the walls has started calling at night: a long low note, like a horn blown underground, that sets the dogs bleeding from their noses. It is calling to something inside the city, and every House would like to know what.",
+  "rule": "each_house",
+  "chained": true,
+  "options": [
+    {
+      "id": "watch",
+      "label": "Put a Scion on the walls to answer it.",
+      "tags": [
+        "bold"
+      ],
+      "champion": {
+        "stat": "sagacity",
+        "dc": 12
+      },
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "Your Scion stands the wall all night and blows a horn back at it. The calling stops for a week. Your Scion's hands shake for longer.",
+          "effects": [
+            {
+              "scion": {
+                "who": "champion",
+                "xp": 60,
+                "trait": "+brave"
+              }
+            },
+            {
+              "accord": 1
+            }
+          ],
+          "when": "pass"
+        },
+        {
+          "w": 1,
+          "text": "Your Scion stands the wall all night. In the morning they will not come down, and have to be carried, staring at the hills.",
+          "effects": [
+            {
+              "scion": {
+                "who": "champion",
+                "sanity": -35
+              }
+            }
+          ],
+          "when": "fail"
+        }
+      ]
+    },
+    {
+      "id": "feed",
+      "label": "Leave it a recruit outside the walls.",
+      "tags": [
+        "cruel"
+      ],
+      "cost": {
+        "recruits": 1
+      },
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "The calling stops at once. In the morning there is nothing outside the gate but a single neat footprint in the snow.",
+          "effects": [
+            {
+              "doom": -3
+            },
+            {
+              "sanity": -15
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "shutters",
+      "label": "Shutters and wax in every ear.",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "Your Seat hears nothing. Your dogs are found in the morning standing at the gate, facing out, in a row.",
+          "effects": [
+            {
+              "sanity": -5
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "together": [
+    {
+      "when": "none",
+      "option": "watch",
+      "text": "Nobody answers. The calling goes on all winter, and the thing in the hills learns that the city is afraid of it.",
+      "effects": [
+        {
+          "doom": 3
+        }
+      ]
+    }
+  ]
+}

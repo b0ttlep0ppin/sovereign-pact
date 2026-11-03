@@ -1,0 +1,77 @@
+{
+  "id": "the_ossuary_collapse",
+  "scope": "settlement",
+  "weight": 2,
+  "years": [
+    1,
+    20
+  ],
+  "title": "The Ossuary Collapse",
+  "text": "The catacombs under the cathedral have given way. Ten generations of the city's dead have come up through the floor in a slope of bone, and they are still moving, very slowly, uphill. The masons need stone to seal it and iron to pin it shut.",
+  "rule": "pledges",
+  "crisis": {
+    "need": {
+      "stone": 30,
+      "iron": 10
+    },
+    "temptation": {
+      "label": "Send your servants to pick over the bones for rings.",
+      "text": "The dead were buried with their jewellery. They will not miss it. They will remember who took it.",
+      "penalty": 15,
+      "effects": [
+        {
+          "resources": {
+            "gold": 25
+          }
+        },
+        {
+          "sanity": -10
+        }
+      ]
+    },
+    "triumph": {
+      "text": "The ossuary is sealed with a new vault, and the bishop reads the name of every dead soul over it. It takes a month. The dead lie still.",
+      "effects": [
+        {
+          "accord": 3
+        },
+        {
+          "doom": -2
+        }
+      ]
+    },
+    "holds": {
+      "text": "Sealed, roughly. On quiet nights the floor of the cathedral creaks as if something underneath is turning over.",
+      "effects": []
+    },
+    "falters": {
+      "text": "The seal cracks within a week. The dead walk the lower town at night, looking for their own houses, and the living move out of them.",
+      "effects": [
+        {
+          "accord": -5
+        },
+        {
+          "ruin": 1
+        }
+      ]
+    },
+    "calamity": {
+      "text": "The bone slope reaches the street. The dead walk into every Seat and lie down in the beds, and they will not be moved without a fight.",
+      "effects": [
+        {
+          "accord": -12
+        },
+        {
+          "doom": 3
+        },
+        {
+          "ruin": 2
+        },
+        {
+          "to": "all",
+          "sanity": -15
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,154 @@
+{
+  "id": "the_kings_tax",
+  "scope": "settlement",
+  "weight": 2,
+  "years": [
+    6,
+    9
+  ],
+  "title": "The Drowned King's Tax",
+  "text": "A tax-collector in drowned livery stands at the gate of the richest Seat with river water pouring from his sleeves. He carries a ledger three hundred Years old and the old King's seal, and he says the House owes. He is very polite. He will not leave.",
+  "rule": "most_gold",
+  "options": [
+    {
+      "id": "pay",
+      "label": "Pay what he asks.",
+      "tags": [
+        "kind"
+      ],
+      "cost": {
+        "resources": {
+          "gold": 30
+        }
+      },
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "He counts the coin twice and writes your House's name in the ledger in fresh ink. 'The King will remember,' he says, and walks into the river.",
+          "effects": [
+            {
+              "timeline": {
+                "event": "the_kings_favour",
+                "years": 2,
+                "hidden": true
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "throw_out",
+      "label": "Have a Scion throw him in the river.",
+      "tags": [
+        "bold"
+      ],
+      "champion": {
+        "stat": "might",
+        "dc": 13
+      },
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "Your Scion throws him in. He comes apart in the water like wet paper, and the ledger floats to the bank. It names debts owed by every House in the city.",
+          "effects": [
+            {
+              "scion": {
+                "who": "champion",
+                "xp": 60
+              }
+            },
+            {
+              "score": {
+                "intrigue": 3
+              }
+            },
+            {
+              "item": {
+                "tier": 3
+              }
+            }
+          ],
+          "when": "pass"
+        },
+        {
+          "w": 1,
+          "text": "Your Scion lays hands on him and he holds on. When they pull free, their arm is grey to the elbow and wet, and it will not dry.",
+          "effects": [
+            {
+              "scion": {
+                "who": "champion",
+                "injury": "arms",
+                "curse": true
+              }
+            },
+            {
+              "doom": 1
+            }
+          ],
+          "when": "fail"
+        }
+      ]
+    },
+    {
+      "id": "false_coin",
+      "label": "Pay him in lead painted gold.",
+      "tags": [
+        "clever"
+      ],
+      "cost": {
+        "resources": {
+          "gold": 5
+        }
+      },
+      "outcomes": [
+        {
+          "w": 2,
+          "text": "He takes it without looking. Weeks later, every coin in the House's vault has turned to lead for an afternoon, then back.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -10
+              }
+            },
+            {
+              "score": {
+                "intrigue": 2
+              }
+            }
+          ]
+        },
+        {
+          "w": 1,
+          "text": "He bites the first coin and smiles with black teeth. That night the House's bell tolls once at the third hour, and goes on tolling, every night.",
+          "effects": [
+            {
+              "house_trait": "+the_bell_tolls_for_them"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bar",
+      "label": "Bar the gate and let him stand there.",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "He stands at your gate for a month. The gateposts rot black where the river water runs off him, and your household uses the back door.",
+          "effects": [
+            {
+              "sanity": -10
+            },
+            {
+              "doom": 1
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

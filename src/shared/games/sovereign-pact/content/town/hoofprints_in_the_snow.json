@@ -1,0 +1,114 @@
+{
+  "id": "hoofprints_in_the_snow",
+  "scope": "settlement",
+  "weight": 2,
+  "years": [
+    2,
+    4
+  ],
+  "title": "Hoofprints in the Snow",
+  "text": "Every morning this winter there are tracks in the snow outside the walls: cloven, each print the size of a wagon wheel, circling the whole city once in the night and going back towards the Gate. The hunters will not follow them. The children have started drawing them.",
+  "rule": "random_house",
+  "options": [
+    {
+      "id": "follow",
+      "label": "Send a Scion to follow the tracks.",
+      "tags": [
+        "bold"
+      ],
+      "champion": {
+        "stat": "acuity",
+        "dc": 11
+      },
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "Your Scion follows them to a scar in the hills where the snow has melted in a circle, and comes back with a shed horn as long as a lance and a clear idea of how big it is.",
+          "effects": [
+            {
+              "scion": {
+                "who": "champion",
+                "xp": 80
+              }
+            },
+            {
+              "item": {
+                "tier": 3
+              }
+            },
+            {
+              "doom": -1
+            }
+          ],
+          "when": "pass"
+        },
+        {
+          "w": 1,
+          "text": "Your Scion follows them too far. They are found at dawn at the bottom of a print, one leg broken under them, babbling about a smell like a forge.",
+          "effects": [
+            {
+              "scion": {
+                "who": "champion",
+                "injury": "legs",
+                "sanity": -20
+              }
+            }
+          ],
+          "when": "fail"
+        }
+      ]
+    },
+    {
+      "id": "salt",
+      "label": "Salt and iron along the whole wall.",
+      "tags": [
+        "kind"
+      ],
+      "cost": {
+        "resources": {
+          "stone": 10,
+          "iron": 5
+        }
+      },
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "The masons line the wall with salt and old nails. The tracks keep their distance after that, and the city sleeps.",
+          "effects": [
+            {
+              "accord": 2
+            },
+            {
+              "doom": -2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hush",
+      "label": "Tell the children to stop drawing them.",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "The children stop drawing the tracks. They start drawing the thing that made them, and they all draw it the same.",
+          "effects": [
+            {
+              "sanity": -5
+            },
+            {
+              "timeline": {
+                "event": "the_beast_calls",
+                "years": 1,
+                "hidden": true
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

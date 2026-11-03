@@ -1,0 +1,85 @@
+{
+  "id": "the_wolf_winter",
+  "scope": "settlement",
+  "weight": 2,
+  "years": [
+    1,
+    6
+  ],
+  "title": "The Wolf Winter",
+  "text": "Wolves came down from the Rift side of the hills with the first snow. They are too big, they walk upright when they think nobody is looking, and last night they took the watchman off the north wall without a sound. The walls want iron. The garrisons want feeding.",
+  "rule": "pledges",
+  "crisis": {
+    "need": {
+      "iron": 15,
+      "grain": 25
+    },
+    "temptation": {
+      "label": "Sell your iron to the trappers, at trappers' prices.",
+      "text": "The pelts they bring back are worth a fortune. Some of them have hands.",
+      "penalty": 15,
+      "effects": [
+        {
+          "resources": {
+            "gold": 30
+          }
+        }
+      ]
+    },
+    "triumph": {
+      "text": "Spears and fires hold the walls all winter. In the thaw the hunters bring back a skull the size of a cart, and the city hangs it over the gate.",
+      "effects": [
+        {
+          "accord": 3
+        },
+        {
+          "doom": -2
+        }
+      ]
+    },
+    "holds": {
+      "text": "The walls hold. The outlying farms do not, and nobody goes to see what is left of them.",
+      "effects": [
+        {
+          "resources": {
+            "grain": -5
+          },
+          "to": "all"
+        }
+      ]
+    },
+    "falters": {
+      "text": "They come over the wall on the longest night. By morning the snow in the lower town is pink, and one of your recruits is gone with the rest.",
+      "effects": [
+        {
+          "accord": -5
+        },
+        {
+          "recruits_lost": 1,
+          "to": "random"
+        }
+      ]
+    },
+    "calamity": {
+      "text": "The wolves winter inside the walls. They learn the Seats' doors, and the Scions who fight them are never quite warm again.",
+      "effects": [
+        {
+          "accord": -12
+        },
+        {
+          "doom": 3
+        },
+        {
+          "to": "all",
+          "scion": {
+            "injury": "arms"
+          }
+        },
+        {
+          "recruits_lost": 1,
+          "to": "all"
+        }
+      ]
+    }
+  }
+}

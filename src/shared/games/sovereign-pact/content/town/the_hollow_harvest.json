@@ -1,0 +1,84 @@
+{
+  "id": "the_hollow_harvest",
+  "scope": "settlement",
+  "weight": 2,
+  "years": [
+    10,
+    15
+  ],
+  "title": "The Hollow Harvest",
+  "text": "Every ear of wheat in the city's fields has come up hollow, and inside each one is a pale seed, soft, warm, the size of a fingernail. The bakers will not touch it. The city needs grain bought in from the far valleys before the winter, and iron to burn the fields clean.",
+  "rule": "pledges",
+  "crisis": {
+    "need": {
+      "grain": 40,
+      "iron": 10
+    },
+    "temptation": {
+      "label": "Grind the pale seeds into flour and sell it to the poor.",
+      "text": "The bread is fine. Better than fine. The poor who eat it sleep well and dream of a mother none of them have met.",
+      "penalty": 20,
+      "effects": [
+        {
+          "resources": {
+            "gold": 30
+          }
+        },
+        {
+          "house_trait": "+the_mothers_mark"
+        }
+      ]
+    },
+    "triumph": {
+      "text": "The fields are burned, the seeds with them, and the bought grain gets the city through. The smoke smells of milk for a week.",
+      "effects": [
+        {
+          "accord": 3
+        },
+        {
+          "doom": -3
+        }
+      ]
+    },
+    "holds": {
+      "text": "Enough grain comes in. Nobody can say for certain every pale seed was burned.",
+      "effects": [
+        {
+          "doom": 1
+        }
+      ]
+    },
+    "falters": {
+      "text": "Not enough grain, and not enough fire. The hungry eat the seeds. They are very calm afterwards, and very hungry.",
+      "effects": [
+        {
+          "accord": -5
+        },
+        {
+          "doom": 3
+        },
+        {
+          "recruits_lost": 1,
+          "to": "random"
+        }
+      ]
+    },
+    "calamity": {
+      "text": "The pale seeds sprout in the granaries, in the gutters, in the mouths of the dead. Something in the far dark has found the city's soil to its liking.",
+      "effects": [
+        {
+          "accord": -12
+        },
+        {
+          "doom": 6
+        },
+        {
+          "resources": {
+            "grain": -20
+          },
+          "to": "all"
+        }
+      ]
+    }
+  }
+}

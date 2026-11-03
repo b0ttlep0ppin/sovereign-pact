@@ -1,0 +1,126 @@
+{
+  "id": "seeds_in_the_granary",
+  "scope": "settlement",
+  "weight": 2,
+  "years": [
+    11,
+    14
+  ],
+  "title": "Seeds in the Granary",
+  "text": "Every House's granary has filled overnight with pale seeds, mixed in with the grain, soft as skin and faintly warm. Put to the ear, they hum. The farmers say that planted, they would feed the city twice over. The priests say to burn them, and the grain with them.",
+  "rule": "each_house",
+  "options": [
+    {
+      "id": "plant",
+      "label": "Plant them.",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "The fields come up green in a week and gold in a month. The harvest is enormous. In the furrows at night something hums a lullaby, and your youngest have started humming it too.",
+          "effects": [
+            {
+              "resources": {
+                "grain": 40
+              }
+            },
+            {
+              "house_trait": "+the_mothers_mark"
+            },
+            {
+              "doom": 2
+            },
+            {
+              "timeline": {
+                "event": "the_fields_sing",
+                "years": 2,
+                "hidden": true
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "burn",
+      "label": "Burn your grain, seeds and all.",
+      "tags": [
+        "kind"
+      ],
+      "cost": {
+        "resources": {
+          "grain": 15
+        }
+      },
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "The granary burns with a sound like a crowd sighing. Your House goes hungry, but nothing hums in your Seat at night.",
+          "effects": [
+            {
+              "doom": -2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sell",
+      "label": "Sell the mixed grain on to the other Houses.",
+      "tags": [
+        "cruel",
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "They pay well, not knowing. You keep your conscience in the vault with the gold.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 30
+              }
+            },
+            {
+              "accord": -3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sift",
+      "label": "Sift out what seeds you can.",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "The servants sift for a week. They miss some, and the grain that is left tastes of milk.",
+          "effects": [
+            {
+              "resources": {
+                "grain": -5
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "together": [
+    {
+      "when": "none",
+      "option": "burn",
+      "text": "No House burns its granary. The city's bread hums faintly in the oven, and the Rift is warm to the touch.",
+      "effects": [
+        {
+          "doom": 3
+        }
+      ]
+    }
+  ]
+}
