@@ -48,4 +48,18 @@ describe("the market (§8.6, §13.4a)", () => {
     fireEvent.click(within(row).getByRole("button", { name: `Buy, ${first.price} Gold` }));
     expect(sendMove).toHaveBeenCalledWith({ type: "buy_consumable", id: first.id });
   });
+
+  it("buys back the House's spare gear at a fraction of its worth", () => {
+    const { s } = town();
+    const base = Content.ITEM_BASES.find((b) => b.slot === "head")!.id;
+    s.items.push({ id: 9950, base, tier: 3, ilvl: 1, house: 0 });
+    const view = g.view(s, s.players[0]!);
+    const price = view.mine!.sells![9950]!;
+    expect(price).toBeGreaterThan(0);
+    const sendMove = vi.fn();
+    render(<Market view={view} sendMove={sendMove} canAct />);
+    const row = screen.getByRole("button", { name: `Sell, ${price} Gold` }).closest("li")!;
+    fireEvent.click(within(row).getByRole("button", { name: `Sell, ${price} Gold` }));
+    expect(sendMove).toHaveBeenCalledWith({ type: "sell", item: 9950 });
+  });
 });

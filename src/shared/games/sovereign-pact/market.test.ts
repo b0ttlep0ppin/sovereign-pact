@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { sovereignPact, type SovMove, type SovState } from "./index.ts";
 import { mint } from "./items.ts";
-import { auctioned, listPrice, restock } from "./market.ts";
+import { auctioned, botSell, botShop, listPrice, restock, sellPrice } from "./market.ts";
 import type { Item } from "./state.ts";
 import { calm, campaign } from "./testing.ts";
 import { TUNING } from "./tuning.ts";
@@ -32,6 +32,7 @@ function shop(H: number, tier: Item["tier"], props?: Item["props"]): { s: SovSta
 describe("shops (§8.6)", () => {
   it("stock only once built, a few lots a Year by stock tier, refreshed each Year", () => {
     const s = calm(campaign(2, 5));
+    s.commons.built = {};
     restock(s);
     expect(s.market).toEqual([]);
     s.commons.built = { great_market: 1, armorer: 1, weaponsmith: 1, curio_dealer: 1 };
@@ -58,6 +59,48 @@ describe("shops (§8.6)", () => {
   it("prices by tier and item level", () => {
     expect(listPrice({ tier: 2, ilvl: 1 })).toBe(TUNING.shops.price[1]);
     expect(listPrice({ tier: 4, ilvl: 6 })).toBe(Math.round(TUNING.shops.price[3]! * (1 + 5 * TUNING.shops.perLevel)));
+  });
+});
+
+describe("spending from Year 1 (Josh's playtest, 2026-11-02: \"not enough chances to spend money\")", () => {
+  it("opens the Armorer, the Weaponsmith and the Apothecary from the start", () => {
+    const s = calm(campaign(2, 5));
+    for (const id of TUNING.shops.openAtStart) expect(s.commons.built[id]).toBe(1);
+    expect(s.market.some((l) => l.shop === "armorer")).toBe(true);
+    expect(s.market.some((l) => l.shop === "weaponsmith")).toBe(true);
+    expect(view(s, "p1").mine!.shop.length).toBeGreaterThan(0);
+  });
+
+  it("buys a House's spare gear for a share of its list price, more with a Fence; never what a Scion wears", () => {
+    let s = calm(campaign(1, 5));
+    const item = mint(s, "sword", 0, 3);
+    const spare = item.id;
+    const gold = s.houses[0]!.gold;
+    const price = Math.round((listPrice(item) * TUNING.shops.sellPct) / 100);
+    expect(sellPrice(s, item)).toBe(price);
+    s.commons.built.fence = 1;
+    expect(sellPrice(s, item)).toBe(Math.round((listPrice(item) * TUNING.shops.fenceSellPct) / 100));
+    delete s.commons.built.fence;
+    expect(view(s, "p1").mine!.sells![spare]).toBe(price);
+    const worn = Object.values(s.people.find((p) => p.host === 0 && p.status === "scion")!.gear)[0]!;
+    expect(error(s, "p1", { type: "sell", item: worn })).toMatch(/stash/);
+    s = move(s, "p1", { type: "sell", item: spare });
+    expect(s.houses[0]!.gold).toBe(gold + price);
+    expect(s.items.some((i) => i.id === spare)).toBe(false);
+  });
+
+  it("has bots buy gear that betters a Scion's and sell what nobody would wear", () => {
+    const s = calm(campaign(1, 5));
+    s.houses[0]!.gold = 200;
+    const p = s.people.find((x) => x.host === 0 && x.status === "scion")!;
+    const base = s.items.find((i) => i.id === p.gear.main)!.base;
+    const better: Item = { id: s.nextId++, base, tier: 4, ilvl: 3, house: -1 };
+    s.market = [{ item: better, shop: "weaponsmith", price: listPrice(better), auction: false, bids: [null] }];
+    expect(botShop(s, 0)).toBe(better.id);
+    s.houses[0]!.gold = listPrice(better) + TUNING.shops.botReserve - 1;
+    expect(botShop(s, 0)).toBeNull();
+    const junk = mint(s, base, 0, 1).id;
+    expect(botSell(s, 0)).toBe(junk);
   });
 });
 

@@ -7,8 +7,8 @@ import { ITEM_BASES, type ItemBase } from "./content.ts";
 import { built, loseAccord } from "./commons.ts";
 import { year20 } from "./crisis.ts";
 import { byPct, econ } from "./houses.ts";
-import { baseOf, rollProps, stock } from "./items.ts";
-import type { Item, ItemTier, Lot, SovState } from "./state.ts";
+import { baseOf, cannotEquip, itemById, rollProps, stash, stock } from "./items.ts";
+import { GEAR_SLOTS, type Item, type ItemTier, type Lot, type SovState } from "./state.ts";
 import { TUNING } from "./tuning.ts";
 import { log, withRng } from "./year.ts";
 
@@ -130,3 +130,49 @@ export function settleAuctions(s: SovState): void {
 /** The market as a House sees it: every lot, its own bids only. */
 export const marketFor = (s: SovState, viewer: number | null): Lot[] =>
   s.market.map((l) => ({ ...l, bids: l.bids.map((b, h) => (h === viewer ? b : null)) }));
+
+/**
+ * What the shops pay `house` for an item of its stash (§8.4: Gold from "selling loot"; Josh's playtest,
+ * 2026-11-02): a share of its list price, a better one with a Fence built. Cursed things sell for nothing.
+ */
+/** Whether any shop stands to buy a House's gear. */
+export const canSell = (s: SovState): boolean => [...SHOPS, "fence"].some((x) => built(s, x));
+
+export const sellPrice = (s: SovState, item: Item): number => (item.cursed ? 0 : Math.max(1, Math.round((listPrice(item) * (built(s, "fence") ? T.fenceSellPct : T.sellPct)) / 100)));
+
+export function cannotSell(s: SovState, house: number, id: number): string | null {
+  const item = stash(s, house).find((i) => i.id === id);
+  if (!item) return "Only an item in your stash can be sold.";
+  if (!canSell(s)) return "There is no shop to sell to.";
+  return null;
+}
+
+export function sell(s: SovState, house: number, id: number): void {
+  const item = s.items.find((i) => i.id === id)!;
+  const gold = sellPrice(s, item);
+  s.items = s.items.filter((i) => i !== item);
+  s.houses[house]!.gold += gold;
+  log(s, `House ${s.houses[house]!.name} sells a ${baseOf(item).name} for ${gold} Gold.`);
+}
+
+const worth = (it: Item | undefined): number => (it ? it.tier * 100 + it.ilvl : -1);
+const slotsFor = (item: Item) => GEAR_SLOTS.filter((k) => (baseOf(item).slot === "acc" ? k.startsWith("acc") : k === baseOf(item).slot || (k === "off" && baseOf(item).slot === "main" && (baseOf(item).hands ?? 1) === 1)));
+
+/** Whether one of the House's Scions would wear `item` over what they wear now. */
+function betters(s: SovState, house: number, item: Item): boolean {
+  const mine = { ...item, house };
+  return s.people.some((p) => p.host === house && p.status === "scion" && slotsFor(mine).some((k) => !cannotEquip(s, p, mine, k) && worth(itemById(s, p.gear[k])) < worth(mine)));
+}
+
+/** A bot buys the best piece in the shops that betters a Scion's gear, while it keeps a little Gold back. */
+export function botShop(s: SovState, house: number): number | null {
+  const gold = s.houses[house]!.gold;
+  const lots = s.market.filter((l) => l.shop !== null && !l.auction && gold - priceFor(s, house, l) >= T.botReserve && betters(s, house, l.item));
+  return lots.sort((a, b) => worth(b.item) - worth(a.item) || a.item.id - b.item.id)[0]?.item.id ?? null;
+}
+
+/** A bot sells what no Scion of its House would wear over their own gear. */
+export function botSell(s: SovState, house: number): number | null {
+  if (!canSell(s)) return null;
+  return stash(s, house).find((i) => !i.named && !i.cursed && !betters(s, house, i))?.id ?? null;
+}

@@ -7,7 +7,7 @@ import { calm, campaign } from "../../../shared/games/sovereign-pact/testing.ts"
 import SovereignPact from "./index";
 
 function atCamp(): SovState {
-  let s = calm(campaign(1, 3));
+  let s = calm(campaign(1, 4));
   s.phase = "expedition";
   muster(s, { type: "delve", pool: "barrows", level: 2, size: 4 });
   const r = g.applyMove(s, "p1", { type: "field", people: able(s, 0).slice(0, 4).map((p) => p.id) });

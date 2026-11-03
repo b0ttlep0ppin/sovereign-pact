@@ -108,19 +108,27 @@ export default function Market({ view, sendMove, canAct }: Props) {
           </ul>
         </>
       ) : null}
-      {stash.length && canAct && view.houses.length > 1 ? (
+      {stash.length && canAct && (mine.sells || view.houses.length > 1) ? (
         <>
           <h3>Your stash</h3>
+          <p className="sp-event__status">Gear nobody wears. The shops buy it for a fraction of its worth{view.houses.length > 1 ? "; another House may pay more at sealed bids" : ""}.</p>
           <ul className="sp-lots">
             {stash.map((i) => (
               <li key={i.id}>
                 <ItemLine item={i} />
-                <span className="sp-bid">
-                  <Amount label={`Reserve for ${itemName(i)}`} step={5} value={reserve[i.id] ?? 0} onChange={(n) => setReserve({ ...reserve, [i.id]: n })} />
-                  <button type="button" className="sp-button sp-button--quiet" onClick={() => sendMove({ type: "auction", item: i.id, reserve: reserve[i.id] ?? 0 })}>
-                    Put up for bids
+                {mine.sells?.[i.id] !== undefined ? (
+                  <button type="button" className="sp-button sp-button--quiet" onClick={() => sendMove({ type: "sell", item: i.id })}>
+                    Sell, {mine.sells[i.id]} Gold
                   </button>
-                </span>
+                ) : null}
+                {view.houses.length > 1 ? (
+                  <span className="sp-bid">
+                    <Amount label={`Reserve for ${itemName(i)}`} step={5} value={reserve[i.id] ?? 0} onChange={(n) => setReserve({ ...reserve, [i.id]: n })} />
+                    <button type="button" className="sp-button sp-button--quiet" onClick={() => sendMove({ type: "auction", item: i.id, reserve: reserve[i.id] ?? 0 })}>
+                      Put up for bids
+                    </button>
+                  </span>
+                ) : null}
               </li>
             ))}
           </ul>

@@ -612,6 +612,7 @@ export type SovMove =
   | { type: "drink_draught"; person: number }
   /** Put a stashed item up for sealed bids, with a reserve. */
   | { type: "auction"; item: number; reserve: number }
+  | { type: "sell"; item: number }
   /** Offer a deal to another House; `open` makes it public (§8.9). */
   | { type: "offer"; to: number; give: DealSide; get: DealSide; open?: boolean }
   /** Accept or decline a deal offered to you, or withdraw your own. */

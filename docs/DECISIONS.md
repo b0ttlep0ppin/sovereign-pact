@@ -2,6 +2,13 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-03 (implementation, Milestone 8bi): the market opens in Year 1, and Houses can sell
+
+- Found (Josh's playtest: "not enough chances to spend money, buy gear, consumables etc, very little decision making"): in a bot campaign no shop was ever built. The shops were all Commons projects behind the Great Market, and the Commons' tithe never paid for one, so for 20 Years Gold had nothing to buy but promotions and buildings.
+- Changed (SPEC §8.6 said every shop is a Commons project): the Armorer, the Weaponsmith and the Apothecary stand from Year 1 at stock tier 1 (`TUNING.shops.openAtStart`). The Great Market (and its +10 Gold a Year), the Curio Dealer, the Beastmonger and the Fence are still projects, and stock tiers still rise only through expedition finds. So a House can buy Common and Fine gear and the basic tonics, salves and draughts from the first Settlement.
+- Built (SPEC §8.4 lists "selling loot" as a Gold source but no rule existed): a House may sell any item in its stash to the shops for 35% of its list price, or 50% with a Fence built. Cursed things fetch nothing. The other way to sell, a House's own sealed-bid lot, is unchanged.
+- Bots now buy the best shop piece that betters one of their Scions' gear while they keep 15 Gold, and they sell stash gear no Scion would wear. All of these numbers are first pass, in `tuning.ts`.
+
 ## 2026-11-03 (implementation, Milestone 8bh): the outcome card, and naming your own Scion
 
 - Built (Josh's playtest: "these events feel like nothing, did he actually become younger?"): once an event lands, every House gets an outcome card. It shows the choice, who it fell on, the outcome's text, and each change it made: HP, injuries, deaths, the Changed, levels, Sanity, MP, XP, JP, age, traits, growth, Gold, stores, consumables, items and the haul. An outcome that starts a battle finishes its card after the battle.
