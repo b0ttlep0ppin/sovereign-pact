@@ -97,6 +97,8 @@ function powerOf(b: Battle, u: Combatant, t: Combatant, ab: AbilityDef): number 
   let power = ab.power;
   if (ab.powerIfAllyDown && b.units.some((o) => o.side === u.side && o.down && !o.dead)) power = ab.powerIfAllyDown;
   if (ab.powerIfMarked && hasStatus(t, "marked")) power = ab.powerIfMarked;
+  // Last Chip (§12.7): the lower the user's HP, the harder it lands.
+  if (ab.desperate) power *= 1 + (1 - Math.max(0, u.hp) / u.maxHp) * ab.desperate;
   return power;
 }
 
@@ -199,6 +201,7 @@ export function strike(b: Battle, rng: Rng, u: Combatant, t: Combatant, ab: Abil
   // Draw Cut: crit up on the first turn. Executioner: always a crit on the Marked.
   if (!crit && ab.critFirstTurn && u.turns <= 1) crit = rng.int(100) < ab.critFirstTurn;
   if (ab.critIfMarked && hasStatus(t, "marked")) crit = true;
+  if (ab.critOnTwelve && u.flags.includes("lots_twelve")) crit = true;
   if (primed >= 0) {
     crit = true;
     u.flags.splice(primed, 1);
@@ -388,6 +391,14 @@ function applyHit(b: Battle, rng: Rng, u: Combatant, t: Combatant, ab: AbilityDe
     t.flags.push("second_wind");
     t.hp = 1;
   }
+  // Lifeline (§12.9): a Soothsayer within 2 cells may hold a falling ally at 1 HP, once a battle.
+  if (t.hp <= 0 && !wasDown && t.side === "party") {
+    const keeper = b.units.find((o) => o.id !== t.id && o.side === t.side && o.mods.lifeline && !o.dead && !o.down && !o.flags.includes("lifeline_used") && Math.abs(o.col - t.col) + Math.abs(o.row - t.row) <= 2);
+    if (keeper && rng.int(100) < C.soothsayer.lifelinePct) {
+      keeper.flags.push("lifeline_used");
+      t.hp = 1;
+    }
+  }
   if (loc && t.dur) t.dur[loc] = Math.max(0, t.dur[loc] - left);
   if (left > 0 && hasStatus(t, "sleep")) removeStatus(b, t, "sleep");
 
@@ -402,7 +413,9 @@ function applyHit(b: Battle, rng: Rng, u: Combatant, t: Combatant, ab: AbilityDe
   if (!t.dead) gainTp(t, t.mods.tpWhenHit ?? 0, t.mods.tpWhenHitPct ?? 0);
   // The Village Evil God's hits cost a Sanity more for each of its living adds (§14.6).
   const thralls = ab.sanityPerAdd ? ab.sanityPerAdd * b.units.filter((x) => !x.dead && x.side === u.side && x.tags.includes("add")).length : 0;
-  const sanity = Math.round(((ab.sanity ?? 0) + thralls + (ab.power > 0 ? u.sanityTouch : 0)) * pct(t.mods.sanityTakenPct ?? 0));
+  // Calming Presence (§12.9): a Soothsayer beside the target softens the blow to the mind.
+  const calm = b.units.some((o) => o.id !== t.id && o.side === t.side && o.mods.calmingPresence && !o.dead && !o.down && Math.abs(o.col - t.col) + Math.abs(o.row - t.row) === 1);
+  const sanity = Math.round(((ab.sanity ?? 0) + thralls + (ab.power > 0 ? u.sanityTouch : 0)) * pct(t.mods.sanityTakenPct ?? 0) * (calm ? pct(-C.soothsayer.calmPct) : 1));
   const sanityBefore = t.sanity;
   if (sanity > 0 && t.maxSanity > 0) {
     t.sanity = Math.max(0, t.sanity - sanity);
@@ -499,6 +512,7 @@ function supportEffects(b: Battle, rng: Rng, u: Combatant, t: Combatant, ab: Abi
   if (ab.mpPct && t.maxMp) t.mp = Math.min(t.maxMp, t.mp + Math.round((t.maxMp * ab.mpPct) / 100));
   if (ab.flag && !t.flags.includes(ab.flag)) t.flags.push(ab.flag);
   if (ab.interpose && t.id !== u.id) addStatus(b, u, "interposing", 0, { value: t.id });
+  if (ab.commune) for (const x of b.units) if (x.side !== u.side && !x.dead && !x.hazard) addStatus(b, x, "communed");
   // Barrier and Bulwark (§12.14), stronger from an Aegis caster; the Shield Drone only tops up.
   if (ab.shieldPct) {
     const size = Math.round(((t.maxHp * ab.shieldPct) / 100) * pct(u.mods.shieldCastPct ?? 0));

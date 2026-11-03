@@ -476,6 +476,19 @@
           "type": "boolean",
           "description": "Removes an enemy summon or add"
         },
+        "desperate": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Power x (1 + share of HP lost x this) (Last Chip)"
+        },
+        "critOnTwelve": {
+          "type": "boolean",
+          "description": "Always a crit after a Cast Lots of 12 this turn (Last Chip)"
+        },
+        "commune": {
+          "type": "boolean",
+          "description": "Every enemy is read for the battle (Commune)"
+        },
         "pick": {
           "type": "array",
           "minItems": 2,

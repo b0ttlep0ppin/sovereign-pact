@@ -190,7 +190,10 @@ function land(s: SovState, option: TripOption, { scions, house }: Subjects, othe
   // Outcomes that turn on the other Houses' secret picks; with none of them fitting, the plain ones.
   const fits = option.outcomes.filter((o) => !o.when || (o.when.any ? others.includes(o.when.any) : !others.includes(o.when.none!)));
   const pool = fits.length ? fits : option.outcomes.filter((o) => !o.when);
+  // Fortune Favors (§12.7): a subject Gambler may tip it toward the outcome best for them.
+  const lucky = scions.some((id) => passiveMods(person(s, id)).some((m) => m.fortuneFavors));
   const outcome = withRng(s, (rng) => {
+    if (lucky && pool.length > 1 && rng.int(100) < TUNING.combat.gambler.fortunePct) return [...pool].sort((x, y) => goodness(y.effects) - goodness(x.effects))[0]!;
     let r = rng.int(pool.reduce((n, o) => n + o.w, 0));
     return pool.find((o) => (r -= o.w) < 0)!;
   });
@@ -310,6 +313,19 @@ function apply(s: SovState, fx: TripEffect, ids: number[], house: number | null,
     log(s, "The party kneels, and the Idol lets it go home.");
     home(s, "won");
   }
+}
+
+/** How well an outcome goes for its subjects, roughly: gains count up, harms down, the worst ones most. */
+function goodness(list: readonly TripEffect[]): number {
+  let n = 0;
+  for (const fx of list) {
+    n += Math.sign(fx.hp ?? 0) + Math.sign(fx.sanity ?? 0) + Math.sign(fx.mp ?? 0) + Math.sign(fx.durability ?? 0) + (fx.xp ? 1 : 0) + (fx.jp ? 1 : 0) + (fx.item ? 1 : 0) + Math.sign(fx.resources?.gold ?? 0);
+    n += Object.values(fx.stat ?? {}).reduce((a, v) => a + Math.sign(v!), 0) + Object.values(fx.growth ?? {}).reduce((a, v) => a + Math.sign(v!), 0);
+    if (fx.injury || fx.curse) n -= 3;
+    if (fx.scion_lost) n -= 5;
+    if (fx.blessing) n += 2;
+  }
+  return n;
 }
 
 /** Whether an effect does a Scion harm: wounds, lost Sanity, MP or Durability, an injury, a Curse, a stat lost, being Lost. */

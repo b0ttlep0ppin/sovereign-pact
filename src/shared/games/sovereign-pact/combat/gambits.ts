@@ -95,6 +95,8 @@ export function aim(b: Battle, rng: Rng, u: Combatant, ab: AbilityDef, rule = de
   if ((ab.form && (u.form || !canShift(b, u, ab.form))) || ab.revert) return undefined;
   if (ab.shape === "self" || ab.side === "self") {
     // A stance or self-ward already up is not cast again.
+    // Commune once: the read lasts the battle.
+    if (ab.commune && foes(b, u).every((x) => hasStatus(x, "communed"))) return undefined;
     const wards = ab.statuses ?? ab.self?.statuses;
     if (ab.kind === "support" && wards?.length && wards.every((x) => hasStatus(u, x.id))) return undefined;
     return { do: "ability", ability: ab.id, target: cellOf(u) };

@@ -2,6 +2,12 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-02 (implementation, Milestone 8bb): the Soothsayer's and Gambler's last abilities
+
+- Built: Ancestor's Shield, Commune, Lifeline (rolled each time an ally within 2 cells falls, until it works once), Calming Presence; Cheat Death (every injury roll twice, the better kept), Last Chip (power ×(1 + 1.5 × the share of HP lost), so up to 2.5×) and Fortune Favors.
+- Reading: Commune's reveal is a battle-long "read" on every enemy: hovering or aiming at one shows its weak point and the elements it resists or fears, and every charge it begins is shown as telegraphed (its target cells light up). Enemy HP was already shown.
+- Reading: Fortune Favors' "lean 10% toward the best outcome" is a 10% chance (`tuning.combat.gambler.fortunePct`) that an expedition event with a Gambler among its subjects takes the outcome best for them (gains count up, harms down, injuries, Curses and being Lost most) instead of rolling.
+
 ## 2026-11-02 (implementation, Milestone 8ba): the Vagabond's last seven abilities
 
 - Built: Steal, Shadow Lunge, Dirty Trick (Stun, Blind, Disarm or 30 Readiness damage, one at random, never missing but resisted as usual), Vanish, Pickpocket the Reaper, Knife Flurry and Sixth Sense.

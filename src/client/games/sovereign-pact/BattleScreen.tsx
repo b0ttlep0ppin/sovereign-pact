@@ -66,6 +66,14 @@ interface Pop {
   tag?: string;
 }
 
+/** What Commune read on a foe (§12.9): its weak point and the elements it fears or shrugs off. */
+function readOf(u: ReplayUnit): string {
+  const r = u.read!;
+  const weak = r.weak ? `Weak point: ${words(r.weak.location)} ×${r.weak.mult}.` : "No weak point.";
+  const aff = Object.entries(r.affinity).map(([el, n]) => `${words(el)} ${n! > 0 ? `resists ${n}` : `weak ${-n!}`}`);
+  return [weak, ...(aff.length ? [aff.join(", ") + "."] : [])].join(" ");
+}
+
 /** The numbers a frame pops over its targets. */
 function popsOf(ev: Event[], frame: number, units: Map<number, ReplayUnit>): Pop[] {
   const out: Pop[] = [];
@@ -244,7 +252,7 @@ export default function BattleScreen({ replay, view, onClose, waiting = 0, fullL
         onMouseEnter={aimed && aiming ? () => setAiming({ ...aiming, cursor: aiming.cells.findIndex((c) => same(c, aimed)) }) : undefined}
         className={`sp-unit sp-unit--${u.side}${aimed ? " is-targetable" : ""}${cursor ? " is-cursor" : ""}${u.boss ? " is-boss" : ""}${u.hazard ? " is-hazard" : ""}${actor === u.id ? " is-acting" : ""}${flags & FLAG.charging ? " is-charging" : ""}${state}`}
         style={style}
-        title={`${u.name}: ${hp}/${u.maxHp} HP`}
+        title={`${u.name}: ${hp}/${u.maxHp} HP${u.read ? `\n${readOf(u)}` : ""}`}
       >
         {scion ? (
           <ScionSprite
@@ -264,6 +272,7 @@ export default function BattleScreen({ replay, view, onClose, waiting = 0, fullL
           // Whom the choice will strike, by name, with what they have left.
           <span className="sp-unit__aim">
             {u.name} <small>{hp}/{u.maxHp}</small>
+            {u.read ? <small className="sp-unit__read">{readOf(u)}</small> : null}
           </span>
         ) : null}
         {actor === u.id && !(flags & FLAG.dead) ? <span className="sp-unit__marker" aria-hidden="true" /> : null}
