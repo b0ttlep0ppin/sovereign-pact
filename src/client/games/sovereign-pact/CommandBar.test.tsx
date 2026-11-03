@@ -45,12 +45,13 @@ describe("commanding a turn (§15.5)", () => {
     expect(screen.queryByRole("button", { name: /^Firestorm/ })).toBe(null);
   });
 
-  it("keeps the waiting turn a click away while you watch the battle back", () => {
+  it("only plays a fight being fought forward: no stepping back off the waiting turn (Josh's playtest)", () => {
     setup(turnOf);
     fireEvent.keyDown(screen.getByRole("dialog"), { key: "ArrowLeft" });
-    expect(screen.queryByRole("group", { name: /'s turn$/ })).toBe(null);
-    fireEvent.click(screen.getByRole("button", { name: /^Back to .*'s turn$/ }));
+    fireEvent.keyDown(screen.getByRole("dialog"), { key: " " });
     expect(screen.getByRole("group", { name: /'s turn$/ })).toBeTruthy();
+    expect(screen.queryByRole("button", { name: "Previous turn" })).toBe(null);
+    expect(screen.queryByRole("slider", { name: "Turn" })).toBe(null);
   });
 
   it("aims at a target by keyboard: arrows, then Enter", () => {
