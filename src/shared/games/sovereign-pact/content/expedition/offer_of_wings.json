@@ -81,6 +81,27 @@
           ]
         }
       ]
+    },
+    {
+      "id": "haggle",
+      "label": "The Vagabond haggles it down to a single feather.",
+      "rule": "scion:job:vagabond",
+      "only": true,
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It is so charmed by the cheek of it that it pays the Vagabond for the pleasure of being haggled with: one feather, and the light step that goes with it.",
+          "effects": [
+            {
+              "status": "haste",
+              "tp": 50
+            }
+          ]
+        }
+      ]
     }
   ]
 }

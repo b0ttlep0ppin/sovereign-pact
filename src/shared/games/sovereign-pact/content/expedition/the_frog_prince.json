@@ -89,6 +89,37 @@
           ]
         }
       ]
+    },
+    {
+      "id": "kiss_him",
+      "label": "The kindly one kisses him.",
+      "rule": "scion:trait:kindly",
+      "only": true,
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "He is a prince, briefly, long enough to press a ring into their hand, and then a frog again, weeping.",
+          "effects": [
+            {
+              "item": {
+                "tier": 2
+              }
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "Nothing happens at all, except the taste, which lasts.",
+          "effects": [
+            {
+              "sanity": -5
+            }
+          ]
+        }
+      ]
     }
   ]
 }

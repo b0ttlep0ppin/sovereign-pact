@@ -101,6 +101,38 @@
           ]
         }
       ]
+    },
+    {
+      "id": "ward_and_dive",
+      "label": "The Abjurer wards their breath and dives for the altar.",
+      "rule": "scion:job:abjurer",
+      "only": true,
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "They come up with a candle that does not go out under water.",
+          "effects": [
+            {
+              "item": {
+                "tier": 2
+              },
+              "mp": 20
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "They come up after a long time, with nothing, and something of the chapel in their eyes.",
+          "effects": [
+            {
+              "sanity": -15
+            }
+          ]
+        }
+      ]
     }
   ]
 }

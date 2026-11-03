@@ -73,6 +73,29 @@
           ]
         }
       ]
+    },
+    {
+      "id": "read_for_her",
+      "label": "The Soothsayer reads for her instead.",
+      "rule": "scion:job:soothsayer",
+      "only": true,
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "She goes white at the third card, and pays them to stop.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 25
+              },
+              "jp": 30
+            }
+          ]
+        }
+      ]
     }
   ]
 }

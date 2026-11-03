@@ -90,6 +90,30 @@
           ]
         }
       ]
+    },
+    {
+      "id": "lies_for_fare",
+      "label": "The Gambler pays the fare in a story, mostly lies.",
+      "rule": "scion:job:gambler",
+      "only": true,
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The dead love a liar. The caravan carries you a long way in one night, and you wake rested.",
+          "effects": [
+            {
+              "skip": 1
+            },
+            {
+              "to": "party",
+              "hp": 10
+            }
+          ]
+        }
+      ]
     }
   ]
 }

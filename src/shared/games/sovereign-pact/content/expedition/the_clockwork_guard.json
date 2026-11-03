@@ -88,6 +88,38 @@
           ]
         }
       ]
+    },
+    {
+      "id": "open_its_back",
+      "label": "The Tinkerer opens its back while it walks.",
+      "rule": "scion:job:tinkerer",
+      "only": true,
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "One wire pulled, and it stops mid-step, forever. Its insides are worth carrying home.",
+          "effects": [
+            {
+              "resources": {
+                "iron": 6
+              },
+              "jp": 20
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "One wire pulled, and it turns its head all the way round.",
+          "effects": [
+            {
+              "encounter": {}
+            }
+          ]
+        }
+      ]
     }
   ]
 }

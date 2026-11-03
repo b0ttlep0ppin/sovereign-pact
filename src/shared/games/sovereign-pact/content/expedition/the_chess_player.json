@@ -90,6 +90,37 @@
           ]
         }
       ]
+    },
+    {
+      "id": "see_the_trick",
+      "label": "The Tinkerer studies how the pieces move.",
+      "rule": "scion:job:tinkerer",
+      "only": true,
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "The pieces are clockwork, and the Tinkerer sees the trick in them. Nine moves, and the board is theirs.",
+          "effects": [
+            {
+              "item": {
+                "tier": 3
+              }
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "The pieces are clockwork, and so, the Tinkerer sees too late, is the player. It takes a finger for the insult.",
+          "effects": [
+            {
+              "injury": "arms"
+            }
+          ]
+        }
+      ]
     }
   ]
 }

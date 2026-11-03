@@ -91,6 +91,37 @@
           ]
         }
       ]
+    },
+    {
+      "id": "drink_the_light",
+      "label": "The Conjurer drinks from its light.",
+      "rule": "scion:job:conjurer",
+      "only": true,
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "It pours into them like a river, and goes on pouring for days.",
+          "effects": [
+            {
+              "mp": 100,
+              "status": "mp_regen"
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "It pours in, and keeps pouring, and burns all the way down.",
+          "effects": [
+            {
+              "mp": 100,
+              "hp": -35
+            }
+          ]
+        }
+      ]
     }
   ]
 }
