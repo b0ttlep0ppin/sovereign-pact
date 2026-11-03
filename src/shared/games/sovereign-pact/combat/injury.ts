@@ -84,8 +84,15 @@ export function injure(b: Battle, rng: Rng, u: Combatant, table: InjuryTableId, 
     const again = carriedRoll(rng, table, baseSteps(u, table) + steps);
     if (again.total > r.total) r = { ...again, rerolled: r.roll };
   }
-  const result = r.tooth ? r.result : capped(b, table, r.result, r.total);
-  b.events.push({ t: "injury", target: u.id, table: r.table, roll: r.roll, total: r.total, result: result.id, ...(r.rerolled ? { rerolled: r.rerolled } : {}), ...(r.tooth ? { tooth: true as const } : {}) });
+  let result = r.tooth ? r.result : capped(b, table, r.result, r.total);
+  // The Last Rite (a Commons project): once in a Scion's life, a killing blow maims instead.
+  const rite = table !== "sanity" && (result.death || result.mortal) && !!u.mods.lastRite && !u.flags.includes("last_rite");
+  if (rite) {
+    u.flags.push("last_rite");
+    result = INJURY_BY_ID.get(TUNING.consumables.uses.toothResult)!;
+    r = { ...r, table: "arms" };
+  }
+  b.events.push({ t: "injury", target: u.id, table: r.table, roll: r.roll, total: r.total, result: result.id, ...(r.rerolled ? { rerolled: r.rerolled } : {}), ...(r.tooth ? { tooth: true as const } : {}), ...(rite ? { rite: true as const } : {}) });
   u.injuries.push(result.id);
   apply(b, u, result, r.table);
   return result;

@@ -8,6 +8,7 @@ import { present } from "./events.ts";
 import { battle } from "./journey.ts";
 import type { GearSlot, Item, ItemTier, Share, SovState, Stores } from "./state.ts";
 import { TUNING } from "./tuning.ts";
+import { built } from "./commons.ts";
 import { log, withRng } from "./year.ts";
 import { claimed } from "./homecoming.ts";
 
@@ -39,6 +40,8 @@ export function gather(s: SovState, times = 1): void {
 
 /** A found item for the haul: any base, at the card's level, its properties rolled (and maybe a bad one). Fine or better is now and then a named item of the pool. */
 export function find(s: SovState, tier: ItemTier): Item {
+  // The Rift Assayers (a Commons project): now and then a find is one tier finer.
+  if (tier < 4 && built(s, "rift_assayers") && chance(s, TUNING.commons.assayPct * built(s, "rift_assayers"))) tier = (tier + 1) as ItemTier;
   const named = tier >= 3 && chance(s, L.namedPct) ? namedFor(s) : undefined;
   if (named) return carryNamed(s, named);
   const item = withRng(s, (rng) => rollProps(rng, { id: s.nextId++, base: rng.pick(ITEM_BASES).id, tier, ilvl: s.expedition!.card.level, house: -1 }, { negativeChance: L.negativePct }));

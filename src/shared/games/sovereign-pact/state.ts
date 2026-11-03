@@ -124,6 +124,10 @@ export interface Person {
   lost?: { year: number; pool: string; level: number };
   /** A Change (§9.6) and the body it replaced, kept so an event can give it back. */
   change?: { id: string; was: Body };
+  /** One of the Foretold, answering the Bell of Saviours (a Commons project). */
+  foretold?: true;
+  /** The Last Rite (a Commons project) has already turned a killing blow on them into a maiming. */
+  rite?: true;
   /** Wards only: 0–100, hidden from both Houses (§6.9). */
   loyalty?: number;
   /** Wards only: the Year the host took them in (no giving back within 3 Years). */

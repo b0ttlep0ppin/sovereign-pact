@@ -157,6 +157,8 @@ export interface PersonView {
   aff?: number[];
   affFrom?: string[][];
   potential?: Person["potential"];
+  /** One of the Foretold (the Bell of Saviours): shown to their own House. */
+  foretold?: true;
   /** Insight 2+ for recruits; always for the viewer's own Scions. */
   growth?: Six;
   /** Face-up once promoted (§6.5); Insight 3 for recruits. */
@@ -278,6 +280,7 @@ function personView(p: Person, viewer: number | null, insight: number): PersonVi
   };
   if (p.change) v.change = p.change.id;
   if (p.post) v.post = p.post;
+  if (own && p.foretold) v.foretold = true;
   if (p.status !== "recruit" || insight >= 1) {
     v.sanity = p.sanity;
     v.mp = p.mp;

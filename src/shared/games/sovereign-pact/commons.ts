@@ -84,6 +84,16 @@ export function spendCommons(s: SovState, project: string): number {
   return units;
 }
 
+/** What the Commons' standing projects give every Scion in battle: each project's mods once per level. */
+export function commonsMods(s: Pick<SovState, "commons">): Record<string, number> {
+  const mods: Record<string, number> = {};
+  for (const def of PROJECTS) {
+    const level = s.commons.built[def.id] ?? 0;
+    if (level) for (const [k, v] of Object.entries(def.mods ?? {})) mods[k] = (mods[k] ?? 0) + v * level;
+  }
+  return mods;
+}
+
 /** §8.10 step 2, the Commons' part: fully paid projects stand. */
 export function completeProjects(s: SovState): void {
   for (const def of PROJECTS) {

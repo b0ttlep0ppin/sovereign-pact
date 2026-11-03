@@ -5,6 +5,7 @@
 import { BOSS_BY_ID, BOSSES, INJURY_BY_ID, type TripEffect } from "./content.ts";
 import { bossBattle } from "./combat/bosses.ts";
 import { scionCombatant } from "./combat/build.ts";
+import { commonsMods } from "./commons.ts";
 import { encounterBattle } from "./combat/encounter.ts";
 import { deploy } from "./formation.ts";
 import { begun, closed } from "./combat/replay.ts";
@@ -83,7 +84,7 @@ export function partyOf(s: SovState, ids: number[], carried: Expedition["carry"]
   return ids.map((id, i) => {
     const p = person(s, id);
     const [col, row] = cells[i]!;
-    const u = scionCombatant(p, { id: i + 1, col, row, gear: gearTotals(s, p), house: s.houses[p.house] });
+    const u = scionCombatant(p, { id: i + 1, col, row, gear: gearTotals(s, p), house: s.houses[p.house], commons: commonsMods(s) });
     const c = carried[id];
     // HP lost in earlier battles stays lost until a Camp, a draught or the road home mends it (Josh 2026-11-02).
     if (c?.hurt) u.hp = Math.max(1, u.maxHp - c.hurt);
@@ -150,6 +151,7 @@ function settle(s: SovState, b: Battle, cause: string): void {
       if (ev.t !== "injury" || ev.target !== u.id) continue;
       const res = INJURY_BY_ID.get(ev.result);
       if (res?.lasting) p.injuries.push({ id: res.id, years: res.lasting.years });
+      if (ev.rite) p.rite = true;
       for (const [k, v] of Object.entries(res?.expedition ?? {})) mods[k] = (mods[k] ?? 0) + v;
     }
     if (u.dead) {

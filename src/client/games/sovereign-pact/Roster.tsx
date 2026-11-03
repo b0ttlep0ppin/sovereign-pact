@@ -121,8 +121,10 @@ function Card({ p, view, sendMove, canAct }: Props & { p: Person }) {
         />
       ) : null}
       {p.aff ? <AffinityRow aff={p.aff} from={p.affFrom} /> : null}
-      {p.potential || p.loyalty !== undefined ? (
+      {p.potential || p.loyalty !== undefined || p.foretold ? (
         <p className="sp-person__meta">
+          {p.foretold ? "One of the Foretold" : ""}
+          {p.foretold && (p.potential || p.loyalty !== undefined) ? " · " : ""}
           {p.potential ? `${p.potential[0]!.toUpperCase()}${p.potential.slice(1)} potential` : ""}
           {p.potential && p.loyalty !== undefined ? " · " : ""}
           {p.loyalty !== undefined ? `Loyalty ${p.loyalty}` : ""}

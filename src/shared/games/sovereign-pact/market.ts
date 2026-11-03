@@ -48,6 +48,8 @@ export function restock(s: SovState): void {
         let q = odds.findIndex((w) => (roll -= w) < 0);
         // The Curio Dealer's one magic item a Year (§8.6).
         if (shop === "curio_dealer" && n === lots - 1) q = Math.max(q, T.curioTier - 2);
+        // The Rift Assayers (a Commons project): now and then a lot is one tier finer.
+        if (q + 2 < 4 && built(s, "rift_assayers") && rng.int(100) < TUNING.commons.assayPct * built(s, "rift_assayers")) q++;
         const item: Item = rollProps(rng, { id: s.nextId++, base: rng.pick(bases).id, tier: (q + 2) as ItemTier, ilvl, house: -1 });
         s.market.push({ item, shop, price: listPrice(item), auction: auctioned(item), bids: s.houses.map(() => null) });
       }

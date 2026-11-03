@@ -204,6 +204,14 @@ export const TUNING = {
 
   /** §8.5 shared projects, first pass. */
   commons: {
+    /**
+     * The Commons tech tree's Fortune branch (Josh 2026-11-03), first pass. Rift Assayers: per level, % that a
+     * find or a shop lot comes one tier finer (never past Masterwork). Bell of Saviours: per level, % that an
+     * arrival is one of the Foretold, a prodigy with `saviorStat` more of every stat but Speed.
+     */
+    assayPct: 15,
+    saviorPct: 6,
+    saviorStat: 4,
     /** A project costs about 1.3× a House building of the same tier (§8.5 PROPOSED). */
     costMult: 1.3,
     /** Renown per this many units (Gold or materials) pledged. */

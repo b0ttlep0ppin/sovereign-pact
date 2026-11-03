@@ -373,7 +373,7 @@ export type BattleEvent =
   | { t: "heal"; unit: number; target: number; amount: number }
   | { t: "sanity"; target: number; amount: number }
   | { t: "status"; target: number; status: string; on: boolean }
-  | { t: "injury"; target: number; table: string; roll: number; total: number; result: string; rerolled?: number; tooth?: true }
+  | { t: "injury"; target: number; table: string; roll: number; total: number; result: string; rerolled?: number; tooth?: true; rite?: true }
   | { t: "steeled"; target: number; loc: Location | "sanity" }
   | { t: "down"; target: number }
   /** Dice thrown: `dice` as they landed (a total can differ: Weighted, House Rules); `cast` for Cast Lots; `double` for the nth Double Down. */
