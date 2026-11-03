@@ -516,7 +516,17 @@ export interface TownEffect {
   flag?: string;
   timeline?: { event: string; years: number; hidden?: boolean };
   recruit_gain?: number;
+  /** One Scion (or Retired) of each House touched, picked by `who`, and what befalls them (Josh's playtest,
+   *  2026-11-02: town events need real consequences). */
+  scion?: TownScionEffect;
 }
+/** What befalls one Scion at home: the expedition effects that change a person, and age. */
+export type TownScionEffect = Pick<TripEffect, "sanity" | "xp" | "jp" | "injury" | "stat" | "growth" | "trait" | "curse" | "tarot" | "blessing" | "change" | "mend"> & {
+  /** Whom it falls on: random (default), eldest, youngest, veteran (highest level), greenest, sanest, maddest, highest:<stat>, lowest:<stat>. */
+  who?: string;
+  /** Years added (or taken away). */
+  age?: number;
+};
 /** An option of a town event: who picks it is the event's rule; its outcome is drawn by weight. */
 export interface TownOption {
   id: string;

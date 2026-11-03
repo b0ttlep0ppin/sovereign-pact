@@ -32,7 +32,8 @@ export default function Decisions({ view, sendMove, canAct }: Props) {
   const vote = view.vote;
   const events = view.events;
   const bargains = mine.bargains;
-  if (!vote && !events.length && !view.crisis && !bargains.length) return null;
+  const omens = view.omens ?? [];
+  if (!vote && !events.length && !view.crisis && !bargains.length && !omens.length) return null;
   return (
     <section className="sp-panel sp-decisions" aria-label="Decisions">
       <h2>Decisions</h2>
@@ -69,6 +70,46 @@ export default function Decisions({ view, sendMove, canAct }: Props) {
       {bargains.map((id) => (
         <BargainCard key={id} id={id} view={view} sendMove={sendMove} />
       ))}
+      {omens.length ? <OmensTold view={view} /> : null}
+    </section>
+  );
+}
+
+/** What the Omens' events did (Josh's playtest: "explain what it did"), newest first: who chose what, what
+ *  came of it, and every change this House may see. */
+function OmensTold({ view }: { view: SovView }) {
+  const told = [...view.omens].reverse();
+  return (
+    <section className="sp-omens-told" aria-label="What came of the Omens">
+      <h3>What came of the Omens</h3>
+      {told.map((o, i) => {
+        const ev = Content.TOWN_EVENT_BY_ID.get(o.id);
+        return (
+          <article key={i} className={`sp-told__part${o.house !== undefined ? " is-private" : ""}`} aria-label={`${ev?.title ?? o.id}, Year ${o.year}`}>
+            <p className="sp-told__where">
+              {ev?.title ?? o.id} <small>Year {o.year}</small>
+            </p>
+            {o.label ? (
+              <p className="sp-told__choice">
+                {o.by !== null && o.house === undefined && view.houses.length > 1 ? `House ${view.houses[o.by]?.name}: ` : ""}
+                {o.label}
+              </p>
+            ) : null}
+            <p className="sp-told__text">{o.text}</p>
+            {o.lines.length ? (
+              <ul className="sp-told__lines">
+                {o.lines.map((l, j) => (
+                  <li key={j} className={l.open ? undefined : "is-private"}>
+                    {l.text}
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p className="sp-told__none">Nothing you can see has changed.</p>
+            )}
+          </article>
+        );
+      })}
     </section>
   );
 }

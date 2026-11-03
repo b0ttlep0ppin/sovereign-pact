@@ -419,6 +419,20 @@ export interface PendingEvent {
   choices: (number | null)[];
 }
 
+/** What one town event did (told.ts), for the Omens' account: what was chosen, by whom, what came of it.
+ *  A House event's account only its House reads (Q89). */
+export interface OmenTold {
+  year: number;
+  id: string;
+  /** The House it concerns, for a House event. */
+  house?: number;
+  /** The House that chose (null: the settlement's vote, or what fell out of everyone's choices). */
+  by: number | null;
+  label: string;
+  text: string;
+  lines: Told[];
+}
+
 /** One side of a deal: Gold, materials and stashed items (by id). */
 export interface DealSide {
   gold?: number;
@@ -521,6 +535,10 @@ export interface SovState {
   deals: Deal[];
   /** Town events drawn in the Omens and waiting on choices. */
   events: PendingEvent[];
+  /** Town events drawn lately, by key ("<id>" or "<id>@<House>") and Year: the Omens pass them by for a while. */
+  omensSeen?: { key: string; year: number }[];
+  /** What this Year's and last Year's town events did (told.ts). Not saved. */
+  omensTold?: OmenTold[];
   /** This Year's Crisis, open through the Settlement Phase. */
   crisis?: Crisis;
   /** The vote now open, if any. */

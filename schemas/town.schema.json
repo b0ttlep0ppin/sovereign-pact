@@ -328,6 +328,58 @@
             "type": "integer",
             "minimum": 1,
             "description": "New recruits for the target House."
+          },
+          "scion": {
+            "type": "object",
+            "additionalProperties": false,
+            "minProperties": 1,
+            "description": "One Scion (or Retired) of each House touched, and what befalls them.",
+            "properties": {
+              "who": {
+                "type": "string",
+                "pattern": "^(random|eldest|youngest|veteran|greenest|sanest|maddest|(highest|lowest):(might|resilience|guile|acuity|sagacity|speed))$"
+              },
+              "age": {
+                "type": "integer",
+                "description": "Years added, or taken away."
+              },
+              "sanity": {
+                "$ref": "expedition.schema.json#/definitions/effect/properties/sanity"
+              },
+              "xp": {
+                "$ref": "expedition.schema.json#/definitions/effect/properties/xp"
+              },
+              "jp": {
+                "$ref": "expedition.schema.json#/definitions/effect/properties/jp"
+              },
+              "injury": {
+                "$ref": "expedition.schema.json#/definitions/effect/properties/injury"
+              },
+              "stat": {
+                "$ref": "expedition.schema.json#/definitions/effect/properties/stat"
+              },
+              "growth": {
+                "$ref": "expedition.schema.json#/definitions/effect/properties/growth"
+              },
+              "trait": {
+                "$ref": "expedition.schema.json#/definitions/effect/properties/trait"
+              },
+              "curse": {
+                "$ref": "expedition.schema.json#/definitions/effect/properties/curse"
+              },
+              "tarot": {
+                "$ref": "expedition.schema.json#/definitions/effect/properties/tarot"
+              },
+              "blessing": {
+                "$ref": "expedition.schema.json#/definitions/effect/properties/blessing"
+              },
+              "change": {
+                "$ref": "expedition.schema.json#/definitions/effect/properties/change"
+              },
+              "mend": {
+                "$ref": "expedition.schema.json#/definitions/effect/properties/mend"
+              }
+            }
           }
         }
       }

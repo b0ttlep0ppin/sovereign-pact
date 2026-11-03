@@ -29,6 +29,7 @@ import type {
   Lot,
   Person,
   PersonStatus,
+  OmenTold,
   PendingEvent,
   Phase,
   Score,
@@ -210,6 +211,8 @@ export interface SovView {
   expedition: ExpeditionView | null;
   /** Town events waiting on choices; a secret one shows others' choices only as made (-1) or not. */
   events: PendingEvent[];
+  /** What this Year's and last Year's town events did: another House's own events not at all, and of the rest only what the viewer may read. */
+  omens: OmenTold[];
   /** The open vote, cast in the open (§8.1). */
   vote: SovState["vote"] | null;
   /** Hidden entries show only their Year, unless a Watchtower or the Observatory reveals them. */
@@ -340,6 +343,7 @@ export function view(s: SovState, playerId: PlayerId): SovView {
     commons: s.commons,
     vote: s.vote ?? null,
     events: eventsFor(s, me),
+    omens: (s.omensTold ?? []).filter((o) => o.house === undefined || o.house === me).map((o) => ({ ...o, lines: o.lines.filter((l) => l.open || l.of === me) })),
     // The Gate's cards and votes are open: the Houses argue over them in public (§9.1).
     gate: s.gate ?? null,
     // §9.3: the chain's shape is unknown until walked.
