@@ -6,7 +6,7 @@
 import { loseAccord } from "./commons.ts";
 import { caps, scionCombatant } from "./combat/build.ts";
 import { rollRecruit } from "./generate.ts";
-import { gearTotals } from "./items.ts";
+import { addProperty, baseOf, gearTotals, itemById, liftProperty } from "./items.ts";
 import { SHOPS, stockTier } from "./market.ts";
 import { found } from "./loot.ts";
 import { isWard } from "./wards.ts";
@@ -63,12 +63,21 @@ export function meet(s: SovState, id?: string): void {
   log(s, `${def.title}: ${def.text}`);
 }
 
+/**
+ * Whether an option is on offer: one marked `only` is there only when someone in the party fits its
+ * rule's first choice (a Magus to read the runes, a Scion in plate to wade in), so it is never a dud.
+ */
+export function offered(s: SovState, o: TripOption): boolean {
+  return !o.only || subjectOf(s, o.rule.split("|")[0]!) !== null;
+}
+
 export function cannotDecide(s: SovState, house: number, option: unknown, who?: unknown): string | null {
   const ev = s.expedition?.event;
   if (!ev) return "No event waits on the party.";
   if (ev.votes[house] !== null) return ev.votes[house] === -1 ? "Your House has no one in the party." : "Your House has already chosen.";
   const def = TRIP_EVENT_BY_ID.get(ev.id)!;
   if (!(Number.isInteger(option) && (option as number) >= 0 && (option as number) < def.options.length)) return "That is not one of the choices.";
+  if (!offered(s, def.options[option as number]!)) return "No one in the party can do that.";
   if (!ev.picks) {
     if (who === undefined) return null;
     if (!nominable(def.options[option as number]!.rule)) return "That choice does not fall on a Scion you can name.";
@@ -168,6 +177,14 @@ function subjectOf(s: SovState, rule: string): Subjects | null {
   // Ties go to the first fielded.
   const find = (test: (p: Person) => boolean) => one(ids.find((id) => test(person(s, id))));
   if (a === "tarot") return find((p) => p.tarot === b);
+  // The Job they are in, what they carry and wear (Josh 2026-11-03: "really engage with all the traits
+  // all the gear the jobs"): an item's base id or kind ("shield"), and anyone in cursed gear.
+  if (a === "job") return find((p) => p.job === b);
+  const worn = (p: Person, slots: readonly string[]) => slots.flatMap((k) => itemById(s, p.gear[k as keyof Person["gear"]]) ?? []);
+  const fits = (item: { base: string }) => item.base === b || baseOf(item).type === b;
+  if (a === "wields") return find((p) => worn(p, ["main", "off"]).some(fits));
+  if (a === "wears") return find((p) => worn(p, ["head", "body", "arms", "legs"]).some(fits));
+  if (a === "cursed") return find((p) => worn(p, GEAR_SLOTS).some((i) => i.cursed));
   if (a === "trait") return find((p) => tagged(b!, p.traits, TRAIT_BY_ID));
   if (a === "retired_once") return find((p) => (p.hist.retired ?? 0) > 0);
   // A Changed Scion is one of a kind to the things out there (§9.6).
@@ -282,6 +299,10 @@ function apply(s: SovState, fx: TripEffect, ids: number[], house: number | null,
       if (hurt) Object.assign(c, { hurt, hpMax: max });
       else delete c.hurt;
     }
+    if (fx.tp) {
+      const c = (e.carry[id] ??= { dur: {}, broken: [] });
+      c.tp = Math.max(c.tp ?? 0, Math.min(100, fx.tp));
+    }
     if (fx.durability) {
       const c = (e.carry[id] ??= { dur: {}, broken: [] });
       const max = fullDurability(s, id);
@@ -357,17 +378,44 @@ export function befall(s: SovState, at: number, fx: TripEffect, where = "in the 
   }
   const healed = fx.mend ? p.injuries.findIndex((x) => INJURY_BY_ID.get(x.id)?.band === "moderate") : -1;
   if (healed >= 0) log(s, `${p.name}'s ${INJURY_BY_ID.get(p.injuries.splice(healed, 1)[0]!.id)!.name.toLowerCase()} is mended.`);
+  if (fx.gear) alterGear(s, p, fx.gear);
+}
+
+/** An event's mark on one piece of the subject's gear (TripEffect `gear`); nothing if they wear nothing that fits. */
+function alterGear(s: SovState, p: Person, g: NonNullable<TripEffect["gear"]>): void {
+  const slots = g.on === "weapon" ? (["main", "off"] as const) : g.on === "armor" ? (["head", "body", "arms", "legs"] as const) : GEAR_SLOTS;
+  let pieces = slots.flatMap((k) => {
+    const item = itemById(s, p.gear[k]);
+    return item && (g.on !== "weapon" || baseOf(item).slot === "main" || baseOf(item).hands) ? [item] : [];
+  });
+  // A lifting reaches for what needs it.
+  if (g.lift === "curse") pieces = pieces.filter((i) => i.cursed);
+  if (g.mend) pieces = pieces.filter((i) => i.dented);
+  if (!pieces.length) return;
+  const item = withRng(s, (rng) => rng.pick(pieces));
+  if (g.lost) {
+    s.items = s.items.filter((i) => i.id !== item.id);
+    for (const k of GEAR_SLOTS) if (p.gear[k] === item.id) delete p.gear[k];
+    return;
+  }
+  if (g.dent) item.dented = Math.min(item.tier - 1, (item.dented ?? 0) + g.dent);
+  if (g.mend) delete item.dented;
+  if (g.better && item.tier < 5) item.tier = (item.tier + 1) as typeof item.tier;
+  if (g.add) withRng(s, (rng) => addProperty(rng, item, g.add!));
+  if (g.lift) withRng(s, (rng) => liftProperty(rng, item, g.lift!));
 }
 
 /** How well an outcome goes for its subjects, roughly: gains count up, harms down, the worst ones most. */
 function goodness(list: readonly TripEffect[]): number {
   let n = 0;
   for (const fx of list) {
-    n += Math.sign(fx.hp ?? 0) + Math.sign(fx.sanity ?? 0) + Math.sign(fx.mp ?? 0) + Math.sign(fx.durability ?? 0) + (fx.xp ? 1 : 0) + (fx.jp ? 1 : 0) + (fx.item ? 1 : 0) + Math.sign(fx.resources?.gold ?? 0);
+    n += Math.sign(fx.hp ?? 0) + Math.sign(fx.sanity ?? 0) + Math.sign(fx.mp ?? 0) + Math.sign(fx.tp ?? 0) + Math.sign(fx.durability ?? 0) + (fx.xp ? 1 : 0) + (fx.jp ? 1 : 0) + (fx.item ? 1 : 0) + Math.sign(fx.resources?.gold ?? 0);
     n += Object.values(fx.stat ?? {}).reduce((a, v) => a + Math.sign(v!), 0) + Object.values(fx.growth ?? {}).reduce((a, v) => a + Math.sign(v!), 0);
     if (fx.injury || fx.curse) n -= 3;
     if (fx.scion_lost) n -= 5;
     if (fx.blessing) n += 2;
+    const g = fx.gear;
+    if (g) n += (g.add ? (g.add === "bad" || g.add === "curse" ? -2 : 1) : 0) + (g.lift ? 1 : 0) + (g.dent ? -1 : 0) + (g.mend ? 1 : 0) + (g.better ? 2 : 0) + (g.lost ? -2 : 0);
   }
   return n;
 }
@@ -482,6 +530,6 @@ export const botPicksFor = (s: SovState, house: number): number | undefined =>
 /** The bot's choice: a cautious option if there is one, else the first. */
 export function botDecide(s: SovState): number {
   const def = TRIP_EVENT_BY_ID.get(s.expedition!.event!.id)!;
-  const safe = def.options.findIndex((o) => o.tags?.includes("cautious"));
-  return safe >= 0 ? safe : 0;
+  const safe = def.options.findIndex((o) => o.tags?.includes("cautious") && offered(s, o));
+  return safe >= 0 ? safe : def.options.findIndex((o) => offered(s, o));
 }

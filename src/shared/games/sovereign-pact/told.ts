@@ -2,9 +2,9 @@
 // before an outcome's effects and just after, told as plain lines for the outcome card. Each line names
 // the House it concerns and whether every House may read it: wounds, injuries, deaths and the haul are
 // open; Sanity, XP, JP, traits, growth and a House's own stores are its own business (view.ts filters).
-import { CHANGE_BY_ID, INJURY_BY_ID, TRAIT_BY_ID, type TripEffect } from "./content.ts";
+import { CHANGE_BY_ID, INJURY_BY_ID, PROPERTY_BY_ID, TRAIT_BY_ID, type TripEffect } from "./content.ts";
 import { itemName } from "./loot.ts";
-import { STATS, type SovState, type Stores, type Told } from "./state.ts";
+import { GEAR_SLOTS, STATS, type SovState, type Stores, type Told } from "./state.ts";
 import { TUNING } from "./tuning.ts";
 
 export type { Told };
@@ -24,6 +24,8 @@ interface PersonSnap {
   traits: string[];
   growth: number[];
   change?: string;
+  /** What they wear: each piece's name, properties, curse, dents and tier. */
+  gear: { id: number; name: string; props: string[]; cursed: boolean; dented: number; tier: number }[];
 }
 
 export interface Snap {
@@ -56,6 +58,10 @@ export function snap(s: SovState, ids: number[], houses: number[]): Snap {
       traits: [...p.traits, ...(p.blessed ?? []).map((b) => b.id)],
       growth: [...p.growth],
       ...(p.change ? { change: p.change.id } : {}),
+      gear: GEAR_SLOTS.flatMap((k) => {
+        const item = s.items.find((i) => i.id === p.gear[k]);
+        return item ? [{ id: item.id, name: itemName(item), props: (item.props ?? []).map(([x]) => x), cursed: !!item.cursed, dented: item.dented ?? 0, tier: item.tier }] : [];
+      }),
     };
   }
   const out: Snap["houses"] = {};
@@ -113,6 +119,23 @@ export function tell(s: SovState, before: Snap): Told[] {
     const traits = [...p.traits, ...(p.blessed ?? []).map((b) => b.id)];
     for (const t of less(traits, was.traits)) say(`${n} gains ${TRAIT_BY_ID.get(t)?.name ?? word(t)}.`, of, false);
     for (const t of less(was.traits, traits)) say(`${n} loses ${TRAIT_BY_ID.get(t)?.name ?? word(t)}.`, of, false);
+    // Their gear: a piece lost, a property gained or lost, a curse, a dent, a better make.
+    for (const was of p ? before.people[id]!.gear : []) {
+      const item = s.items.find((i) => i.id === was.id);
+      if (!item) {
+        say(`${n} loses the ${was.name}.`, of, true);
+        continue;
+      }
+      const props = (item.props ?? []).map(([x]) => x);
+      const prop = (x: string) => PROPERTY_BY_ID.get(x)?.name ?? word(x);
+      for (const x of less(props, was.props)) say(`${n}'s ${was.name} gains ${prop(x)}${PROPERTY_BY_ID.get(x)?.text ? ` (${PROPERTY_BY_ID.get(x)!.text.toLowerCase()})` : ""}.`, of, true);
+      for (const x of less(was.props, props)) say(`${n}'s ${was.name} loses ${prop(x)}.`, of, true);
+      if (item.cursed && !was.cursed) say(`${n}'s ${was.name} is cursed.`, of, true);
+      if (!item.cursed && was.cursed) say(`The curse on ${n}'s ${was.name} is lifted.`, of, true);
+      if ((item.dented ?? 0) > was.dented) say(`${n}'s ${was.name} is dented: it fights a tier worse until a Forge mends it.`, of, true);
+      if ((item.dented ?? 0) < was.dented) say(`${n}'s ${was.name} is mended.`, of, true);
+      if (item.tier > was.tier) say(`${n}'s ${was.name} is made better: now the ${itemName(item)}.`, of, true);
+    }
     STATS.forEach((stat, i) => {
       const d = p.growth[i]! - was.growth[i]!;
       if (d) say(`${n}'s ${STAT_NAMES[stat]} grows ${d > 0 ? "faster" : "slower"} (${signed(d)}% a level).`, of, false);
@@ -149,6 +172,7 @@ export function effectLines(s: SovState, effects: readonly TripEffect[], scions:
     const who = fx.to === "party" ? "The party" : names(ids) || "The party";
     const of = house ?? (ids.length ? (s.people.find((p) => p.id === ids[0])?.host ?? null) : null);
     if (fx.status) out.push({ text: `${who} ${fx.to !== "party" && ids.length > 1 ? "start" : "starts"} the next battle with ${word(fx.status)}.`, of, open: true });
+    if (fx.tp) out.push({ text: `${who} ${fx.to !== "party" && ids.length > 1 ? "start" : "starts"} the next battle with ${fx.tp >= 100 ? "full" : `${fx.tp}%`} TP.`, of, open: true });
     if (fx.durability) out.push({ text: `${who}: ${fx.loc ? `${fx.loc} armor` : "armor"} ${fx.durability > 0 ? "mended" : "worn down"} (${signed(fx.durability)}% Durability).`, of, open: true });
     for (const [k, n] of Object.entries(fx.score ?? {})) if (n) out.push({ text: `${house === null ? "Every House present" : `House ${s.houses[house]?.name}`}: ${signed(n)} ${word(k)}.`, of: house, open: false });
     if (fx.doom) out.push({ text: `Doom ${signed(fx.doom)}.`, of: null, open: true });

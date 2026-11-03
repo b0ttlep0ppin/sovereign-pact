@@ -444,6 +444,7 @@
 .sp-event-vote { display: grid; gap: 8px; }
 .sp-event-vote__option { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
 .sp-event-vote__who { color: #a89480; font-size: 0.88em; }
+.sp-event-vote__only { color: var(--gold); font-size: 0.82em; font-style: italic; }
 .sp-event-vote__who select { margin-left: 4px; background: #120d0b; color: #d8c8b0; border: 1px solid rgba(150, 110, 90, 0.4); }
 
 /* Readying (Readying.tsx): the Jobs as icons, and the gear on a paper doll. */

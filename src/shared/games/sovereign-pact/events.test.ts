@@ -1,9 +1,9 @@
 // Expedition events (§9.4): drawing them, the party's vote, the rules' subjects, and the effects.
 import { describe, expect, it } from "vitest";
-import { HOUSE_TRAITS, TAROT_BY_ID, TOWN_EVENT_BY_ID, TRAIT_BY_ID, TRAITS, TRIP_EVENT_BY_ID, TRIP_EVENTS, type TripEffect, type TripOption } from "./content.ts";
+import { HOUSE_TRAITS, ITEM_BASES, JOB_BY_ID, PROPERTY_BY_ID, TAROT_BY_ID, TOWN_EVENT_BY_ID, TRAIT_BY_ID, TRAITS, TRIP_EVENT_BY_ID, TRIP_EVENTS, type TripEffect, type TripOption } from "./content.ts";
 import { STATUSES } from "./combat/status.ts";
 import { battle } from "./journey.ts";
-import { drawEvent, eligible, resolve, subjects } from "./events.ts";
+import { botDecide, cannotDecide, drawEvent, eligible, offered, resolve, subjects } from "./events.ts";
 import { able, muster } from "./expedition.ts";
 import { sovereignPact, type SovMove, type SovState } from "./index.ts";
 import { mint } from "./items.ts";
@@ -297,6 +297,73 @@ describe("the lasting effects (§9.4)", () => {
   });
 });
 
+describe("Jobs, gear and the next battle (Josh 2026-11-03: 'really engage with all the traits all the gear the jobs')", () => {
+  it("finds a Scion by Job, by what they carry or wear, or in cursed gear; an `only` option is offered only when one is there", () => {
+    const s = underway(2);
+    const party = [...ofHouse(s, 0), ...ofHouse(s, 1)];
+    const p = (i: number) => s.people.find((x) => x.id === party[i])!;
+    for (const x of party) s.people.find((y) => y.id === x)!.job = "soldier";
+    p(2).job = "magus";
+    expect(subjects(s, "scion:job:magus").scions).toEqual([party[2]]);
+    const gated: TripOption = { ...option("scion:job:soothsayer"), only: true };
+    expect(offered(s, gated)).toBe(false);
+    p(3).job = "soothsayer";
+    expect(offered(s, gated)).toBe(true);
+    for (const x of party) s.people.find((y) => y.id === x)!.gear = {};
+    p(1).gear.main = mint(s, "bow", 0, 2).id;
+    p(0).gear.off = mint(s, "tower_shield", 0, 2).id;
+    expect(subjects(s, "scion:wields:bow").scions).toEqual([party[1]]);
+    expect(subjects(s, "scion:wields:shield").scions).toEqual([party[0]]);
+    p(3).gear.body = mint(s, "plate", 0, 2).id;
+    expect(subjects(s, "scion:wears:plate").scions).toEqual([party[3]]);
+    expect(subjects(s, "scion:cursed").house).toBeNull();
+    s.items.find((i) => i.id === p(3).gear.body)!.cursed = true;
+    expect(subjects(s, "scion:cursed").scions).toEqual([party[3]]);
+  });
+
+  it("refuses a vote for an option no one can take, and the bot never picks one", () => {
+    const s = underway(1);
+    s.expedition!.seen.push("the_ruined_watchtower");
+    s.expedition!.event = { id: "the_ruined_watchtower", votes: [null] };
+    expect(cannotDecide(s, 0, 0)).toBeNull();
+    const def = TRIP_EVENT_BY_ID.get("the_ruined_watchtower")!;
+    const was = def.options[0]!;
+    (def.options as TripOption[])[0] = { ...was, rule: "scion:job:nobody_has_this", only: true };
+    try {
+      expect(cannotDecide(s, 0, 0)).toMatch(/No one in the party/);
+      expect(botDecide(s)).not.toBe(0);
+    } finally {
+      (def.options as TripOption[])[0] = was;
+    }
+  });
+
+  it("marks the subject's gear: a property gained, a curse lifted, a dent, a mend, a better make, a loss; and full TP for the next battle", () => {
+    const s = underway(1);
+    const a = s.expedition!.leader!;
+    const me = s.people.find((x) => x.id === a)!;
+    const sword = mint(s, "sword", 0, 2);
+    me.gear = { main: sword.id };
+    resolve(s, option("leader", { gear: { on: "weapon", add: "keen" } }));
+    expect(sword.props?.map(([x]) => x)).toContain("keen");
+    expect(s.expedition!.told!.parts.at(-1)!.lines.map((l) => l.text).join(" ")).toMatch(/gains Keen/);
+    resolve(s, option("leader", { gear: { on: "weapon", add: "curse" } }));
+    expect(sword.cursed).toBe(true);
+    resolve(s, option("leader", { gear: { lift: "curse" } }));
+    expect(sword.cursed).toBeUndefined();
+    resolve(s, option("leader", { gear: { on: "weapon", dent: 1 } }));
+    expect(sword.dented).toBe(1);
+    resolve(s, option("leader", { gear: { mend: true } }));
+    expect(sword.dented).toBeUndefined();
+    resolve(s, option("leader", { gear: { on: "weapon", better: true } }));
+    expect(sword.tier).toBe(3);
+    resolve(s, option("leader", { tp: 100 }));
+    expect(s.expedition!.carry[a]!.tp).toBe(100);
+    resolve(s, option("leader", { gear: { on: "weapon", lost: true } }));
+    expect(me.gear.main).toBeUndefined();
+    expect(s.items.some((i) => i.id === sword.id)).toBe(false);
+  });
+});
+
 describe("each Scion's own choice and Forks (§9.3, §9.4)", () => {
   it("puts an each_scion event to every Scion: their House picks for each, and each meets their own outcome", () => {
     let s = underway(2);
@@ -409,6 +476,8 @@ describe("the content and the bot", () => {
           const [kind, a, b] = r.split(":");
           if (a === "tarot") expect(TAROT_BY_ID.has(b!), `${d.id}: ${r}`).toBe(true);
           if (a === "trait") expect((kind === "house" ? houseTags : tags).has(b!), `${d.id}: ${r}`).toBe(true);
+          if (a === "job") expect(JOB_BY_ID.has(b as never), `${d.id}: ${r}`).toBe(true);
+          if (a === "wields" || a === "wears") expect(ITEM_BASES.some((x) => x.id === b || x.type === b), `${d.id}: ${r}`).toBe(true);
         }
         for (const w of o.outcomes.flatMap((x) => (x.when ? [x.when.any ?? x.when.none] : []))) expect(d.options.map((x) => x.id), `${d.id}: when ${w}`).toContain(w);
         for (const fx of o.outcomes.flatMap((x) => x.effects)) {
@@ -416,6 +485,8 @@ describe("the content and the bot", () => {
           if (fx.blessing) expect(TRAIT_BY_ID.has(fx.blessing.trait), `${d.id}: ${fx.blessing.trait}`).toBe(true);
           if (fx.status) expect(STATUSES[fx.status], `${d.id}: ${fx.status}`).toBeDefined();
           if (fx.timeline) expect(TOWN_EVENT_BY_ID.has(fx.timeline.id), `${d.id}: ${fx.timeline.id}`).toBe(true);
+          const add = fx.gear?.add;
+          if (add && !["good", "bad", "curse"].includes(add)) expect(PROPERTY_BY_ID.has(add), `${d.id}: ${add}`).toBe(true);
         }
       }
   });

@@ -648,11 +648,13 @@ function Muster({ view, sendMove, chosen, setChosen, openBattle }: { view: SovVi
             return (
               <div className="sp-actions">
                 <span>For {name(+next!)}:</span>
-                {ev?.options.map((o, i) => (
-                  <button key={o.id} type="button" className="sp-button" onClick={() => sendMove({ type: "decide", option: i, person: +next! })}>
-                    {o.label}
-                  </button>
-                ))}
+                {ev?.options.map((o, i) =>
+                  e.closed?.includes(i) ? null : (
+                    <button key={o.id} type="button" className="sp-button" onClick={() => sendMove({ type: "decide", option: i, person: +next! })}>
+                      {o.label}
+                    </button>
+                  ),
+                )}
               </div>
             );
           })()
@@ -782,6 +784,21 @@ function Muster({ view, sendMove, chosen, setChosen, openBattle }: { view: SovVi
   );
 }
 
+/** Why an option only some can take is on offer: the Job, trait, gear or Tarot it asks for. */
+function onlyBecause(rule: string): string {
+  const words = (x: string) => x.replace(/_/g, " ");
+  const [, kind, id = ""] = rule.split("|")[0]!.split(":");
+  const job = Content.JOB_BY_ID.get(id as never)?.name;
+  if (kind === "job") return `Because a ${job ?? words(id)} is with you`;
+  if (kind === "trait") return `Because someone is ${Content.TRAIT_BY_ID.get(id)?.name ?? words(id)}`;
+  if (kind === "wields") return `Because someone carries a ${Content.ITEM_BASE_BY_ID.get(id)?.name ?? words(id)}`;
+  if (kind === "wears") return `Because someone wears ${Content.ITEM_BASE_BY_ID.get(id)?.name ?? words(id)}`;
+  if (kind === "cursed") return "Because someone wears cursed gear";
+  if (kind === "tarot") return `Because ${Content.TAROT_BY_ID.get(id)?.name ?? words(id)} walks with you`;
+  if (kind === "changed" || kind === "change") return "Because one of you is Changed";
+  return "Only for some";
+}
+
 /**
  * A party vote on an event (§9.4). Where a choice asks someone to step up, the House may name one of its
  * own Scions (Josh, 2026-11-02); left alone, the rule picks, and the card says whom.
@@ -796,6 +813,8 @@ function EventVote({ view, sendMove }: { view: SovView; sendMove: (m: SovMove) =
   return (
     <div className="sp-event-vote">
       {ev.options.map((o, i) => {
+        // An option only some can take shows only when one of them is in the party, and says why it is there.
+        if (e.closed?.includes(i)) return null;
         const auto = e.ahead?.[i] ?? null;
         const can = nominable(o.rule) && mine.length > 0;
         const who = named[i];
@@ -804,6 +823,7 @@ function EventVote({ view, sendMove }: { view: SovView; sendMove: (m: SovMove) =
             <button type="button" className="sp-button" onClick={() => sendMove({ type: "decide", option: i, ...(can && who !== undefined ? { person: who } : {}) })}>
               {o.label}
             </button>
+            {o.only ? <span className="sp-event-vote__only">{onlyBecause(o.rule)}</span> : null}
             {can ? (
               <label className="sp-event-vote__who">
                 Who steps up:{" "}

@@ -576,6 +576,8 @@ export interface TripEffect {
   /** % of max HP, carried to the next battle (Josh 2026-11-02); never below 1. */
   hp?: number;
   mp?: number;
+  /** % of the most TP a Scion can hold, to start the next battle with (Josh 2026-11-03). */
+  tp?: number;
   xp?: number;
   jp?: number;
   injury?: InjuryTableId;
@@ -622,12 +624,20 @@ export interface TripEffect {
   change?: string;
   /** A Changed subject's old body comes back (§9.6: some events can reverse a Change). */
   unchange?: true;
+  /**
+   * The subject's gear (Josh 2026-11-03): a piece they wear (`on`: their weapon, their armor, or any)
+   * gains a property (good, bad, a curse, or one by id), loses a bad one or its curse, is dented or
+   * mended, made a tier better, or lost.
+   */
+  gear?: { on?: "weapon" | "armor" | "any"; add?: string; lift?: "bad" | "curse"; dent?: number; mend?: true; better?: true; lost?: true };
 }
 /** An option of an expedition event: the party votes for it; its rule names its subject (§9.4). */
 export interface TripOption {
   id: string;
   label: string;
   rule: string;
+  /** Offered only when someone in the party fits the rule's first choice (events.ts `open`). */
+  only?: true;
   tags?: string[];
   /** `when` (secret events): another House picked option `any`, or no other House picked `none`. */
   outcomes: { w: number; text: string; effects: TripEffect[]; when?: { any?: string; none?: string } }[];

@@ -5,7 +5,7 @@ import { recruitsAtWork } from "./assign.ts";
 import type { PlayerId } from "../../game.ts";
 import type { Replay } from "./combat/replay.ts";
 import { dealsFor } from "./deals.ts";
-import { eachScion, foresee, secretEvent } from "./events.ts";
+import { eachScion, foresee, offered, secretEvent } from "./events.ts";
 import { fightView, type FightView } from "./fight.ts";
 import { canSell, marketFor, priceFor, sellPrice } from "./market.ts";
 import { cannotDrawTarot, cannotDrinkDraught, consumablePrice, forSale } from "./consumables.ts";
@@ -437,6 +437,8 @@ export type ExpeditionView = Omit<Expedition, "fight"> & {
   fight: FightView | null;
   /** For the event waiting: who each option falls on if nobody is named (null: the party, a House, or chance). */
   ahead?: (number | null)[];
+  /** The event's options no one in the party can take (an `only` option with nobody fitting), by index. */
+  closed?: number[];
 };
 
 function expeditionView(s: SovState, e: Expedition, me: number | null): ExpeditionView {
@@ -448,6 +450,10 @@ function expeditionView(s: SovState, e: Expedition, me: number | null): Expediti
   // A secret event's picks stay hidden until all are in (§9.4): another House's shows only as chosen (-2).
   if (e.event && secretEvent(e.event.id)) v.event = { ...e.event, votes: e.event.votes.map((x, h) => (x === null || x === -1 || h === me ? x : -2)) };
   if (e.event && !secretEvent(e.event.id) && !eachScion(e.event.id)) v.ahead = TRIP_EVENT_BY_ID.get(e.event.id)!.options.map((o) => foresee(s, o.rule));
+  if (e.event) {
+    const closed = TRIP_EVENT_BY_ID.get(e.event.id)!.options.flatMap((o, i) => (offered(s, o) ? [] : [i]));
+    if (closed.length) v.closed = closed;
+  }
   // What an event did: wounds, deaths and the haul for all; Sanity, XP, a House's stores for their own House.
   if (e.told) v.told = { ...e.told, parts: e.told.parts.map((p) => ({ ...p, lines: p.lines.filter((l) => l.open || l.of === me) })) };
   const blind = (i: Item): Item => {

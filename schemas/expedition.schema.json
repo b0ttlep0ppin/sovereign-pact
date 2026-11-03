@@ -40,9 +40,10 @@
           "label": { "type": "string", "minLength": 1 },
           "rule": {
             "type": "string",
-            "pattern": "^(each_scion|secret|(vote|leader|scion:random|scion:(most|fewest)_(expeditions|kills|healing|targeted)|scion:(highest|lowest):(might|resilience|guile|acuity|sagacity|speed|sanity)|scion:heaviest_gear|scion:most_open_slots|scion:tarot:[a-z_]+|scion:trait:[a-z_]+|scion:injured:(head|body|arms|legs|sanity|any)|scion:retired_once|scion:changed|scion:change:[a-z_]+|house:(lowest|highest)_standing|house:random|house:trait:[a-z_]+)(\\|(vote|leader|scion:random|scion:(most|fewest)_(expeditions|kills|healing|targeted)|scion:(highest|lowest):(might|resilience|guile|acuity|sagacity|speed|sanity)|scion:heaviest_gear|scion:most_open_slots|scion:tarot:[a-z_]+|scion:trait:[a-z_]+|scion:injured:(head|body|arms|legs|sanity|any)|scion:retired_once|scion:changed|scion:change:[a-z_]+|house:(lowest|highest)_standing|house:random|house:trait:[a-z_]+))*)$",
-            "description": "Who the option happens to (SPEC §9.4's rules): vote is the whole party, leader the Leader, scion:… one Scion, house:… one House present. `a|b` falls back to b when nobody fits a; when nobody fits any, the whole party."
+            "pattern": "^(each_scion|secret|(vote|leader|scion:random|scion:(most|fewest)_(expeditions|kills|healing|targeted)|scion:(highest|lowest):(might|resilience|guile|acuity|sagacity|speed|sanity)|scion:heaviest_gear|scion:most_open_slots|scion:tarot:[a-z_]+|scion:job:[a-z_]+|scion:wields:[a-z_]+|scion:wears:[a-z_]+|scion:cursed|scion:trait:[a-z_]+|scion:injured:(head|body|arms|legs|sanity|any)|scion:retired_once|scion:changed|scion:change:[a-z_]+|house:(lowest|highest)_standing|house:random|house:trait:[a-z_]+)(\\|(vote|leader|scion:random|scion:(most|fewest)_(expeditions|kills|healing|targeted)|scion:(highest|lowest):(might|resilience|guile|acuity|sagacity|speed|sanity)|scion:heaviest_gear|scion:most_open_slots|scion:tarot:[a-z_]+|scion:job:[a-z_]+|scion:wields:[a-z_]+|scion:wears:[a-z_]+|scion:cursed|scion:trait:[a-z_]+|scion:injured:(head|body|arms|legs|sanity|any)|scion:retired_once|scion:changed|scion:change:[a-z_]+|house:(lowest|highest)_standing|house:random|house:trait:[a-z_]+))*)$",
+            "description": "Who the option happens to (SPEC §9.4's rules): vote is the whole party, leader the Leader, scion:… one Scion, house:… one House present; scion:job:<job> a Scion in that Job, scion:wields:<base or kind> and scion:wears:<base or kind> one carrying or wearing it, scion:cursed one in cursed gear. `a|b` falls back to b when nobody fits a; when nobody fits any, the whole party."
           },
+          "only": { "const": true, "description": "Offered only when someone in the party fits the rule's first choice (a Job, a trait, a weapon), so it is never a dud." },
           "tags": {
             "type": "array",
             "items": { "enum": ["bold", "cautious", "clever", "reckless", "cruel", "kind"] },
@@ -86,6 +87,7 @@
         "loc": { "enum": ["head", "body", "arms", "legs"] },
         "hp": { "type": "integer", "description": "% of max HP, + or −; carried to the next battle, never below 1." },
         "mp": { "type": "integer", "description": "% of max MP." },
+        "tp": { "type": "integer", "minimum": 1, "maximum": 100, "description": "% of max TP the subject starts the next battle with." },
         "xp": { "type": "integer", "minimum": 0 },
         "jp": { "type": "integer", "minimum": 0 },
         "injury": { "enum": ["head", "body", "arms", "legs", "sanity"], "description": "A forced roll on that table, for each Scion touched." },
@@ -132,6 +134,7 @@
         "scion_lost": { "const": true, "description": "The subject is Lost in the otherworld." },
         "change": { "$ref": "defs.schema.json#/definitions/id", "description": "The subject is Changed (SPEC §9.6): a Change id from content/changes.json." },
         "unchange": { "const": true, "description": "A Changed subject gets their own body back." },
+        "gear": { "type": "object", "additionalProperties": false, "minProperties": 1, "properties": { "on": { "enum": ["weapon", "armor", "any"] }, "add": { "type": "string", "pattern": "^(good|bad|curse|[a-z][a-z0-9_]*)$" }, "lift": { "enum": ["bad", "curse"] }, "dent": { "type": "integer", "minimum": 1, "maximum": 3 }, "mend": { "const": true }, "better": { "const": true }, "lost": { "const": true } }, "description": "A piece of the subject's gear (their weapon, armor or anything worn) gains a property (good, bad, a curse or one by id), loses a bad one or its curse, is dented or mended, made a tier better, or lost." },
         "item": { "type": "object", "additionalProperties": false, "required": ["tier"], "properties": { "tier": { "enum": [2, 3, 4] } }, "description": "A found item: to the subject's House, or to the draft when the party chose together." },
         "timeline": { "type": "object", "additionalProperties": false, "required": ["id", "years"], "properties": { "id": { "$ref": "defs.schema.json#/definitions/id" }, "years": { "type": "integer", "minimum": 1, "maximum": 10 } }, "description": "A town event queued on the timeline." }
       }
