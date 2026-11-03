@@ -2,6 +2,14 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-03 (implementation, Milestone 8cm): what was decided, under the chooser's sigil
+
+Josh: **"there should be a moment where when decisions are resolved be it expeditions or events or anything else, there is another modal or prompt where people can see what the effects are"**, and **"Maybe even an house sigil flare"**.
+- **A "What was decided" card** opens in the Settlement Phase whenever something new has been resolved since this seat last looked. It covers every town event, Crisis, Council vote (spend or levy), Year order and Altar offering. Each account sits under the sigil of the House that chose it, and the sigil flares as the card opens; what the whole city decided sits under the city's mark. Each seat sees each account once; the client remembers what it has read.
+- Expeditions keep their own cards (an event's outcome, the camp, the homecoming).
+- **Council votes and Year orders now leave an account** in the same record as the Omens. A vote's account gives the hands for and against, whether a tie was broken, and what moved. An order is told only to its own House. An offering is told to all, since the altar stands in the Commons.
+- "What came of the Omens" in Decisions lists these too, with titles for the Council, orders and the altar.
+
 ## 2026-11-03 (implementation, Milestone 8cl): Year orders on every building
 
 Josh: buildings **"don't do much and the resources don't really matter other than gold"**. He ruled out upkeep on the decision card: **"No, only Year orders"**.

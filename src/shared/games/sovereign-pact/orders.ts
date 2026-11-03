@@ -3,6 +3,7 @@
 // orders, which spends materials (rare ones at level 3) for what the order makes. Content: buildings.json.
 import { BUILDING_BY_ID, type BuildingOrder } from "./content.ts";
 import { applyEffects } from "./effects.ts";
+import { recordOmen } from "./omens.ts";
 import type { SovState } from "./state.ts";
 
 const word = (k: string) => (k === "gold" ? "Gold" : k.split("_").map((w) => w[0]!.toUpperCase() + w.slice(1)).join(" "));
@@ -35,7 +36,8 @@ export function giveOrder(s: SovState, house: number, building: string, order: s
     else h.stores[k] = (h.stores[k] ?? 0) - (n ?? 0);
   }
   (h.ordered ??= []).push(building);
-  applyEffects(s, o.effects, house, false, undefined, person);
-  // Private: a House's orders are its own business, like its builds' purposes.
+  // Private: a House's orders are its own business, told only to it, as its own events are.
+  const who = o.person ? s.people.find((p) => p.id === person)?.name : undefined;
+  recordOmen(s, `order:${building}`, house, house, `${o.name}${who ? `, for ${who}` : ""}.`, o.text, () => applyEffects(s, o.effects, house, false, undefined, person));
   (s.notes[house] ??= []).push(`${o.name} (${BUILDING_BY_ID.get(building)!.name}): ${o.text}`);
 }

@@ -9,6 +9,7 @@ import BattleScreen from "./BattleScreen";
 import Homecoming, { useHomecoming } from "./Homecoming";
 import CampScene, { useCamp } from "./CampScene";
 import EventOutcome, { useTold } from "./EventOutcome";
+import Resolved, { useResolved } from "./Resolved";
 import Credits from "./Credits";
 import MusicPanel, { useMusic, useMusicSettings } from "./Music";
 import { battleTrack, sceneTrack } from "./music";
@@ -143,6 +144,7 @@ export default function SovereignPact({ view, isMyTurn, sendMove, lastError }: P
   const homecoming = useHomecoming(view);
   const camp = useCamp(view);
   const told = useTold(view);
+  const resolved = useResolved(view);
   // The party waits for each House to take in a battle's end or an event's outcome (Josh 2026-11-03: "all
   // the battles are one after another"): once nothing is left on this screen to read, this House goes on.
   const halted = view.me !== null && !!view.expedition?.halt?.includes(view.me) && !fight && !battles.watching && !told.open;
@@ -428,7 +430,7 @@ export default function SovereignPact({ view, isMyTurn, sendMove, lastError }: P
           </aside>
         </div>
       )}
-      {told.open && (told.fight || battles.watching) ? <EventOutcome view={view} onClose={told.close} toArms /> : battle ?? (homecoming.open ? <Homecoming view={view} onClose={homecoming.close} /> : camp.open ? <CampScene key={view.expedition?.talked?.length} view={view} onClose={camp.close} /> : told.open ? <EventOutcome view={view} onClose={told.close} /> : null)}
+      {told.open && (told.fight || battles.watching) ? <EventOutcome view={view} onClose={told.close} toArms /> : battle ?? (homecoming.open ? <Homecoming view={view} onClose={homecoming.close} /> : camp.open ? <CampScene key={view.expedition?.talked?.length} view={view} onClose={camp.close} /> : told.open ? <EventOutcome view={view} onClose={told.close} /> : resolved.open && view.phase === "settlement" ? <Resolved view={view} fresh={resolved.fresh} onClose={resolved.close} /> : null)}
     </div>
   );
 }

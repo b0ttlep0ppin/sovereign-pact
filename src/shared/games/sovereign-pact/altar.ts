@@ -2,6 +2,7 @@
 // expedition bonus"): once a Year, before the Rift Gate opens, a House lays something on the altar, and its
 // Scions carry what the altar gives back on that Year's expedition. The offering is gone at the Reckoning.
 import { built } from "./commons.ts";
+import { recordOmen } from "./omens.ts";
 import type { Offering, SovState } from "./state.ts";
 import { TUNING } from "./tuning.ts";
 import { log } from "./year.ts";
@@ -25,6 +26,15 @@ export function cannotLay(s: SovState, house: number, gift: string): string | nu
 export function lay(s: SovState, house: number, gift: Offering): void {
   const h = s.houses[house]!;
   const o = A[gift];
+  recordOmen(s, "altar:offering", undefined, house, `Lays ${o.told} on the Altar of Offerings.`, `Its Scions carry the altar's gift on this Year's expedition: ${o.text}`, () => pay(s, house, gift));
+  h.offering = gift;
+  // Public: the altar stands in the Commons, and everyone sees what is laid on it.
+  log(s, `House ${h.name} lays ${o.told} on the Altar of Offerings.`);
+}
+
+function pay(s: SovState, house: number, gift: Offering): void {
+  const h = s.houses[house]!;
+  const o = A[gift];
   if ("grain" in o) h.stores.grain = (h.stores.grain ?? 0) - o.grain;
   if ("recruits" in o) {
     const gone = s.people.filter((p) => p.host === house && p.status === "recruit").at(-1)!;
@@ -32,9 +42,6 @@ export function lay(s: SovState, house: number, gift: Offering): void {
     delete s.assign[gone.id];
   }
   if ("sanity" in o) for (const p of s.people) if (p.host === house && p.status === "scion") p.sanity = Math.max(0, p.sanity - o.sanity);
-  h.offering = gift;
-  // Public: the altar stands in the Commons, and everyone sees what is laid on it.
-  log(s, `House ${h.name} lays ${o.told} on the Altar of Offerings.`);
 }
 
 /** What the altar gives a House's Scions this Year, for the battle mods. */
