@@ -73,6 +73,17 @@
 .sp-bar--mp > span { background: linear-gradient(#55739e, #3b5476); }
 .sp-bar--tp > span { background: linear-gradient(#a8844c, #7a5f34); }
 .sp-bar--sanity > span { background: linear-gradient(#8e4f86, #663a60); }
+.sp-durability { grid-column: 1 / -1; display: flex; align-items: center; gap: 8px; margin-top: 2px; }
+.sp-durability__doll { flex: none; }
+.sp-durability__doll .is-whole { fill: #8a9a78; }
+.sp-durability__doll .is-worn { fill: #b99a4e; }
+.sp-durability__doll .is-cracked { fill: #a8513d; }
+.sp-durability__doll .is-broken { fill: #141414; stroke: #8a1a14; stroke-width: 0.6; }
+.sp-durability__nums { display: grid; grid-template-columns: 1fr 1fr; gap: 0 10px; font-size: 0.68rem; font-variant-numeric: tabular-nums; color: #b8ad9c; }
+.sp-durability__nums b { font-weight: 400; color: #8f8578; letter-spacing: 0.04em; }
+.sp-durability__nums .is-worn { color: #c9a95a; }
+.sp-durability__nums .is-cracked { color: #c86a52; }
+.sp-durability__nums .is-broken { color: #d0443a; }
 .sp-dur { display: flex; gap: 3px; }
 .sp-dur span { width: 12px; height: 6px; background: #b9b1a0; border-radius: 1px; }
 .sp-dur span.is-cracked { background: linear-gradient(135deg, #b9b1a0 45%, #333 45% 55%, #b9b1a0 55%); }
@@ -95,7 +106,13 @@
 .sp-battle__controls input[type="range"] { flex: 1 1 200px; max-width: 420px; }
 .sp-battle__speeds { display: inline-flex; gap: 4px; }
 .sp-battle__speeds .is-on { border-color: var(--accent); color: var(--accent); }
-.sp-battle__log { margin: 0; padding: 8px 12px 8px 2em; max-height: 7.5em; overflow: auto; background: rgba(0, 0, 0, 0.35); border-radius: 4px; font-size: 0.82rem; display: grid; gap: 2px; align-content: start; }
+/* The enemies' cards, and the log filling the column beneath them. */
+.sp-battle__side { display: flex; flex-direction: column; gap: 10px; min-width: 0; align-self: stretch; }
+.sp-battle__log { flex: 1 1 auto; min-height: 8em; max-height: min(52vh, 480px); margin: 0; padding: 8px 10px; list-style: none; overflow: auto; background: rgba(0, 0, 0, 0.45); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 3px; font-size: 0.78rem; line-height: 1.35; display: grid; gap: 3px; align-content: start; }
+.sp-battle__log li { color: var(--muted); }
+.sp-battle__log li.is-now { color: var(--text); }
+.sp-battle__log small { opacity: 0.6; font-variant-numeric: tabular-nums; }
+.sp-battle__badge { display: inline-flex; vertical-align: -4px; margin-right: 5px; }
 
 @media (prefers-reduced-motion: reduce) {
   .sp-unit, .sp-unit__hp span, .sp-bar > span { transition: none; }
@@ -127,7 +144,7 @@
 [data-palette="cb"] .sp-pop--heal::before { content: "+ "; }
 [data-palette="cb"] .sp-pop--crit::before { content: "✦ "; }
 [data-palette="cb"] .sp-pop--sanity::before { content: "◉ "; }
-.sp-battle__log.is-full { max-height: 14em; }
+.sp-battle__log.is-full { max-height: min(70vh, 640px); }
 
 /* Commanding a turn (§15.5): the choices, and the cells a choice may be aimed at. */
 .sp-command { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; margin: 0; padding: 8px 10px; border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 8px; background: rgba(0, 0, 0, 0.35); }
@@ -172,8 +189,11 @@
 .sp-fx__orb {
   width: 22px; height: 22px; margin: -11px 0 0 -11px; border-radius: 50%;
   background: radial-gradient(circle, #fff 0 20%, var(--core) 35%, var(--glow) 70%, transparent 72%);
-  box-shadow: 0 0 18px 6px var(--glow), -14px 0 18px 2px var(--glow); animation-name: sp-fx-fly; animation-timing-function: cubic-bezier(.5, 0, .9, .6);
+  box-shadow: 0 0 18px 6px var(--glow), -14px 0 18px 2px var(--glow); animation-name: sp-fx-fly; animation-timing-function: cubic-bezier(.45, .05, .75, .7);
+  will-change: translate, opacity;
 }
+.sp-fx__orb.is-ghost { box-shadow: 0 0 12px 3px var(--glow); scale: var(--ghost, 0.6); filter: saturate(1.4) blur(1px); animation-name: sp-fx-fly-ghost; }
+@keyframes sp-fx-fly-ghost { 0% { opacity: 0; translate: 0 0; } 10% { opacity: calc(var(--ghost, 0.6) * 0.8); } 90% { opacity: calc(var(--ghost, 0.6) * 0.8); } 100% { opacity: 0; translate: var(--dx) var(--dy); } }
 .sp-fx__orb--water { border-radius: 2px; rotate: 45deg; }
 .sp-fx__orb--earth { border-radius: 30%; width: 26px; height: 26px; }
 .sp-fx__orb--dark { background: radial-gradient(circle, #000 0 30%, var(--glow) 55%, transparent 72%); }
@@ -343,3 +363,28 @@
 @keyframes sp-fade-in { from { opacity: 0; } }
 @keyframes sp-victory { from { opacity: 0; scale: 2.2; letter-spacing: 0.4em; filter: blur(6px); } }
 [data-motion="reduced"] .sp-intro, [data-motion="reduced"] .sp-ending, [data-motion="reduced"] .sp-ending h2, [data-motion="reduced"] .sp-intro__omen { animation: none; }
+
+/* The injury's die (Josh 2026-11-03): it waits to be thrown, tumbles, and lands. */
+.sp-injury__die { border: 0; font-family: inherit; }
+button.sp-injury__die { cursor: pointer; }
+.sp-injury__die.is-waiting { font-size: 0.95rem; letter-spacing: 0.05em; background: #cfc6b4; animation: sp-die-wait 1.2s ease-in-out infinite; }
+button.sp-injury__die.is-waiting:hover, button.sp-injury__die.is-waiting:focus-visible { background: #f1e6cc; outline: none; filter: drop-shadow(0 0 8px rgba(196, 164, 92, 0.8)); }
+.sp-injury__die.is-rolling { animation: sp-die-tumble 280ms linear infinite; }
+.sp-injury__die.is-landed { animation: sp-die-land 360ms cubic-bezier(0.2, 1.6, 0.4, 1); }
+.sp-injury--pending strong { color: var(--muted); }
+.sp-injury.is-dire { animation: sp-injury-dire 700ms ease-out; border-color: #7a1c1c; box-shadow: 0 0 0 1px #7a1c1c, 0 10px 60px rgba(120, 10, 10, 0.75); }
+@keyframes sp-die-wait { 50% { transform: translateY(-3px) rotate(-4deg); } }
+@keyframes sp-die-tumble { 0% { transform: rotate(0) scale(1); } 25% { transform: rotate(90deg) scale(0.9) translateY(-6px); } 50% { transform: rotate(180deg) scale(1.05); } 75% { transform: rotate(270deg) scale(0.92) translateY(-4px); } 100% { transform: rotate(360deg) scale(1); } }
+@keyframes sp-die-land { from { transform: scale(1.5); } }
+@keyframes sp-injury-dire { 0%, 100% { translate: 0 0; } 10% { translate: -6px 2px; background: rgba(90, 8, 8, 0.95); } 25% { translate: 5px -2px; } 40% { translate: -4px 1px; } 60% { translate: 2px 0; } }
+[data-motion="reduced"] .sp-injury__die, [data-motion="reduced"] .sp-injury.is-dire { animation: none; }
+@media (prefers-reduced-motion: reduce) { .sp-injury__die, .sp-injury.is-dire { animation: none; } }
+
+/* An injury on the ending card says what it does on hover or focus. */
+.sp-ending__injury { position: relative; cursor: help; border-bottom: 1px dotted currentColor; }
+.sp-ending__injury + .sp-ending__injury { margin-left: 0.5em; }
+.sp-ending__injury[data-tip]:hover::after, .sp-ending__injury[data-tip]:focus-visible::after {
+  content: attr(data-tip); position: absolute; right: 0; bottom: calc(100% + 6px); z-index: 5; width: max-content; max-width: 260px;
+  padding: 6px 9px; background: #0d0e10; border: 1px solid var(--line-hi, #46474c); border-radius: 4px; box-shadow: 0 6px 20px rgba(0, 0, 0, 0.7);
+  color: var(--text, #d2c7ad); font-style: normal; font-size: 0.8rem; line-height: 1.35; text-align: left; white-space: normal;
+}

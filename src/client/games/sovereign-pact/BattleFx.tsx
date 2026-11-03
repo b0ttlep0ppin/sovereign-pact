@@ -6,7 +6,7 @@
 // turn land one after another (waves). `strikesOf` is pure; the motion is CSS and the Web Animations API,
 // skipped when motion is reduced.
 import { Content, type Replay, type ReplayUnit } from "@vibepulse/shared/games/sovereign-pact";
-import { useEffect, useState, type CSSProperties, type RefObject } from "react";
+import { useEffect, useRef, useState, type CSSProperties, type RefObject } from "react";
 
 type Event = Replay["frames"][number]["ev"][number];
 
@@ -24,13 +24,17 @@ export interface Strike {
 }
 
 /** Milliseconds at 1× from the start of its wave to the moment each kind of strike lands. */
-export const IMPACT_MS: Record<StrikeKind, number> = { melee: 320, shot: 460, spell: 560, heal: 420, mind: 520 };
+export const IMPACT_MS: Record<StrikeKind, number> = { melee: 320, shot: 460, spell: 680, heal: 420, mind: 520 };
+/** How long a spell's bolt is in the air, at 1×. */
+const FLIGHT_MS = 420;
 /** Milliseconds at 1× between one action of a turn and the next. */
 export const WAVE_MS = 650;
 /** When a strike lands, at 1×, from the start of the turn. */
 export const landsAt = (s: Strike): number => s.wave * WAVE_MS + IMPACT_MS[s.kind];
 
 /** The strikes a turn's events make, one per target touched. */
+const RANGED = new Set(["bow", "crossbow"]);
+
 export function strikesOf(ev: Event[], units: Map<number, ReplayUnit>): Strike[] {
   const out: Strike[] = [];
   let used: string | undefined;
@@ -63,7 +67,8 @@ export function strikesOf(ev: Event[], units: Map<number, ReplayUnit>): Strike[]
     let kind: StrikeKind;
     if (e.t === "heal") kind = "heal";
     else if (act?.kind === "magic" || act?.kind === "support") kind = "spell";
-    else if (act?.reach === "ranged") kind = "shot";
+    // A ranged ability, or any blow from a bow or crossbow: an arrow or bolt flies from where they stand.
+    else if (act?.reach === "ranged" || RANGED.has(units.get(e.unit)?.weapon ?? "")) kind = "shot";
     else if (e.t === "hit" && e.element) kind = "spell";
     else kind = "melee";
     const element = (e.t === "hit" ? e.element : undefined) ?? act?.element ?? (e.t === "heal" ? "holy" : undefined);
@@ -102,12 +107,17 @@ const leads = <T extends { wave: number }>(xs: T[]): T[] => xs.filter((x, i) => 
 /** The layer over the two planes that draws a turn's strikes. `turn` changes once per turn shown. */
 export default function BattleFx({ planes, strikes, turn, speed }: { planes: RefObject<HTMLDivElement | null>; strikes: Strike[]; turn: number; speed: number }) {
   const [drawn, setDrawn] = useState<{ turn: number; at: { from: Pt; to: Pt; s: Strike }[] } | null>(null);
+  // Each turn is acted out once: in a live fight a new turn arriving rebuilds the strikes of the turn on
+  // screen, and acting them again made Scions lurch at their foe with no sound (Josh's playtest).
+  const played = useRef(-1);
   useEffect(() => {
+    if (played.current === turn) return;
     const root = planes.current;
     // Nothing to draw: the render shows nothing, since what was drawn belongs to another turn.
     if (!root || !strikes.length || motionOff(root)) return;
     // Measured on the next frame, once the turn's positions are laid out.
     const raf = requestAnimationFrame(() => {
+      played.current = turn;
       const box = root.getBoundingClientRect();
       const node = (id: number) => root.querySelector<HTMLElement>(`[data-unit="${id}"]`);
       const centre = (id: number): Pt | null => {
@@ -230,8 +240,15 @@ function StrikeFx({ from, to, s, i, ms }: { from: Pt; to: Pt; s: Strike; i: numb
         <span className="sp-fx__bolt" style={at(from, { rotate: `${angle}deg`, ["--dx" as string]: `${dx}px`, ["--dy" as string]: `${dy}px`, animationDelay: ms(impact - 240), animationDuration: ms(240) })} />
       ) : s.kind === "spell" || s.kind === "mind" ? (
         <>
-          <span className="sp-fx__sigil" style={at(from, { animationDelay: ms(start), animationDuration: ms(impact - start - 200) })} />
-          <span className={`sp-fx__orb sp-fx__orb--${s.element ?? "none"}`} style={at(from, { ["--dx" as string]: `${dx}px`, ["--dy" as string]: `${dy}px`, animationDelay: ms(impact - 280), animationDuration: ms(280) })} />
+          <span className="sp-fx__sigil" style={at(from, { animationDelay: ms(start), animationDuration: ms(impact - start - FLIGHT_MS + 80) })} />
+          {/* The bolt itself and a tail of afterimages, so its flight reads as one smooth streak (Josh: "frame loss shooting the fireball for Ember"). */}
+          {[3, 2, 1, 0].map((j) => (
+            <span
+              key={j}
+              className={`sp-fx__orb sp-fx__orb--${s.element ?? "none"}${j ? " is-ghost" : ""}`}
+              style={at(from, { ["--dx" as string]: `${dx}px`, ["--dy" as string]: `${dy}px`, ["--ghost" as string]: 1 - j * 0.22, animationDelay: ms(impact - FLIGHT_MS - j * 28), animationDuration: ms(FLIGHT_MS) })}
+            />
+          ))}
         </>
       ) : null}
       {s.miss || s.kind === "heal" ? null : <span className={`sp-fx__flash${s.crit ? " is-crit" : ""}`} style={at(to, { animationDelay: ms(impact), animationDuration: ms(260) })} />}

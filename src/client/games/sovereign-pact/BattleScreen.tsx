@@ -11,7 +11,7 @@ import CommandBar, { type Aiming } from "./CommandBar";
 import { Emblem, HERALDRY_COLORS } from "./Emblem";
 import ScionSprite, { animFor, lookOf, type Anim } from "./ScionSprite";
 import { spriteOf } from "./sprites";
-import { playSounds, soundsOf } from "./sfx";
+import { injuryCue, playSounds, soundsOf } from "./sfx";
 import "./BattleScreen.css";
 
 type Event = Replay["frames"][number]["ev"][number];
@@ -25,6 +25,10 @@ const TURN_MS = 1300;
 const ACT_MS = 700;
 /** Milliseconds the pause before a battle lasts unless dismissed. */
 const INTRO_MS = 5000;
+/** How long an injury's die tumbles, how long another House's die waits to be thrown, and how long the result holds. */
+const ROLL_MS = 1500;
+const AUTO_ROLL_MS = 1000;
+const INJURY_READ_MS = 3600;
 export const SPEEDS = [1, 2, 4] as const;
 
 const words = (id: string) => id.replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
@@ -112,6 +116,8 @@ interface Props {
   live?: Live;
   /** Open on the battle's last turn, for its ending (a battle just fought on screen). */
   ending?: boolean;
+  /** A fight being fought, opened again after it was hidden: it starts at the turn being fought. */
+  resume?: boolean;
 }
 
 export interface Live {
@@ -126,13 +132,17 @@ export interface Live {
 const NONE: Event[] = [];
 const same = (a: Cell, b: Cell) => a.side === b.side && a.col === b.col && a.row === b.row;
 
-export default function BattleScreen({ replay, view, onClose, waiting = 0, fullLog = false, sound = 0, live, ending = false }: Props) {
+/** How many turns the log keeps in view when it is not the full log. */
+const LOG_TURNS = 6;
+
+export default function BattleScreen({ replay, view, onClose, waiting = 0, fullLog = false, sound = 0, live, ending = false, resume = false }: Props) {
   const states = useMemo(() => framesOf(replay), [replay]);
   const units = useMemo(() => new Map(replay.units.map((u) => [u.id, u])), [replay]);
-  const [at, setAt] = useState(ending ? replay.frames.length : 0);
+  // A fight opened again while it is being fought picks up where it stands, not from its first turn.
+  const [at, setAt] = useState(ending || resume ? replay.frames.length : 0);
   const [playing, setPlaying] = useState(!ending);
   // A pause before the fight (Josh 2026-11-02): where it is, an omen, and what waits.
-  const [intro, setIntro] = useState(!ending && (!live || replay.frames.length <= 1));
+  const [intro, setIntro] = useState(!ending && !resume && (!live || replay.frames.length <= 1));
   useEffect(() => {
     if (!intro) return;
     const t = setTimeout(() => setIntro(false), INTRO_MS);
@@ -166,14 +176,27 @@ export default function BattleScreen({ replay, view, onClose, waiting = 0, fullL
     return () => clearTimeout(t);
   }, [at, speed]);
   const log = useRef<HTMLOListElement>(null);
-  // The full log (§15.8): every turn so far, to read instead of watch; else this turn's lines.
-  const lines = (fullLog ? replay.frames.slice(0, at).flatMap((f, i) => f.ev.map((e) => [i + 1, e] as const)) : ev.map((e) => [at, e] as const)).filter(([, e]) => e.t !== "turn");
+  // The log (§15.8) sits in the column under the enemies (Josh: "the combat log can use some of the dead
+  // space"): the last few turns, newest at the foot; the full log keeps every turn so far.
+  const from = fullLog ? 0 : Math.max(0, at - LOG_TURNS);
+  const lines = replay.frames
+    .slice(from, at + 1)
+    .flatMap((f, i) => f.ev.map((e) => [from + i, e] as const))
+    .filter(([, e]) => e.t !== "turn");
 
+  // An injury roll waits on its die (Josh 2026-11-03: "the player should have to click the dice … so
+  // theres more drama"): the owner's click throws it, anyone else's rolls on its own; once it lands the
+  // result holds the screen long enough to read.
+  const [rolledAt, setRolledAt] = useState(-1);
+  const held = !!injury && rolledAt !== at;
+  const mine = injury?.t === "injury" && units.get(injury.target)?.house === (view.me ?? 0);
   useEffect(() => {
-    if (!playing || at >= last || intro) return;
-    const t = setTimeout(() => setAt((i) => Math.min(last, i + 1)), (turnMs * (injury ? 4 : 1)) / speed);
+    // A fight being fought only plays forward (Josh 2026-11-03: "I don't know if we need all this replay
+    // old turn stuff"); stepping and pausing are for watching a battle back.
+    if ((!playing && !live) || at >= last || intro || held) return;
+    const t = setTimeout(() => setAt((i) => Math.min(last, i + 1)), (injury ? INJURY_READ_MS : turnMs) / speed);
     return () => clearTimeout(t);
-  }, [playing, at, last, speed, injury, turnMs, intro]);
+  }, [playing, live, at, last, speed, injury, turnMs, intro, held]);
   // A command aimed at a cell; it is dropped once the battle moves on.
   const [aiming, setAiming] = useState<Aiming | null>(null);
   const [aimedAt, setAimedAt] = useState(last);
@@ -195,19 +218,26 @@ export default function BattleScreen({ replay, view, onClose, waiting = 0, fullL
     live.send(aiming.send(c));
     setAiming(null);
   };
-  // Each turn sounds as it comes on screen, stepping forward; stepping back is silent.
+  // Each turn sounds as it comes on screen, stepping forward; stepping back is silent. A new turn arriving
+  // in a live fight (a new replay object) neither cuts the sounds of the turn on screen nor replays them.
   const heard = useRef(0);
+  const hush = useRef<() => void>(() => undefined);
   useEffect(() => {
+    if (at === heard.current) return;
     const forward = at === heard.current + 1;
     heard.current = at;
+    hush.current();
+    hush.current = () => undefined;
     if (!forward || !sound) return;
-    return playSounds(soundsOf(replay.frames[at - 1]!.ev, units), sound, speed);
+    // The injury's own sound waits for its die to land.
+    hush.current = playSounds(soundsOf(replay.frames[at - 1]!.ev, units).filter((x) => x.cue !== "injury" && x.cue !== "dread"), sound, speed);
   }, [at, replay, units, sound, speed]);
+  useEffect(() => () => hush.current(), []);
   // The keys go to the screen: on opening, and when a choice asks for its cell (its button is gone).
   const aimingNow = aiming !== null;
   useEffect(() => root.current?.focus(), [aimingNow]);
   useEffect(() => {
-    if (fullLog && log.current) log.current.scrollTop = log.current.scrollHeight;
+    if (log.current) log.current.scrollTop = log.current.scrollHeight;
   }, [fullLog, at]);
 
   const color = (u: ReplayUnit) => (u.house !== undefined ? HERALDRY_COLORS.get(view.houses[u.house]?.colors[0] ?? "") : undefined);
@@ -348,6 +378,11 @@ export default function BattleScreen({ replay, view, onClose, waiting = 0, fullL
       e.preventDefault();
       return;
     }
+    // A focused button or slider keeps its own keys: Space on a command must not pause the fight.
+    const own = e.target instanceof HTMLElement && e.target !== e.currentTarget && /^(BUTTON|INPUT|SELECT|TEXTAREA)$/.test(e.target.tagName);
+    if (own && e.key !== "Escape") return;
+    // A fight being fought only goes forward: End catches up to the turn being fought.
+    if (live && e.key !== "Escape" && e.key !== "End") return;
     if (e.key === " ") setPlaying((p) => !p);
     else if (e.key === "ArrowRight") step(1);
     else if (e.key === "ArrowLeft") step(-1);
@@ -403,54 +438,84 @@ export default function BattleScreen({ replay, view, onClose, waiting = 0, fullL
         </ol>
       ) : null}
       <div className="sp-battle__field">
-        <Panel title="Enemies" units={side("enemy").filter((u) => !u.hazard)} vit={vit} actor={actor} />
+        <div className="sp-battle__side">
+          <Panel title="Enemies" units={side("enemy").filter((u) => !u.hazard)} vit={vit} actor={actor} />
+          <ol className={`sp-battle__log${fullLog ? " is-full" : ""}`} aria-label="Battle log" ref={log}>
+            {lines.map(([turn, e], i) => (
+              <li key={`${turn}:${i}`} className={turn === at ? "is-now" : undefined}>
+                <small>{turn + 1}. </small>
+                {replayLine(replay, e).replace(/\b(uses|begins) ([a-z_:]+)/, (_, v: string, id: string) => `${v} ${abilityName(id)}`)}
+              </li>
+            ))}
+          </ol>
+        </div>
         <div className="sp-battle__planes" ref={planes}>
           {grid("enemy")}
           <div className="sp-battle__gap" aria-hidden="true" />
           {grid("party")}
           <BattleFx planes={planes} strikes={strikes} turn={at} speed={speed} />
-          {injury && injury.t === "injury" ? <Injury e={injury} name={name(injury.target)} /> : null}
+          {injury && injury.t === "injury" ? <Injury key={at} e={injury} name={name(injury.target)} mine={mine} rolled={rolledAt === at} onRolled={() => setRolledAt(at)} sound={sound} /> : null}
         </div>
-        <Panel title="The party" units={side("party")} vit={vit} actor={actor} color={color} />
+        <Panel
+          title="The party"
+          units={side("party")}
+          vit={vit}
+          actor={actor}
+          color={color}
+          badge={(u) => (u.house !== undefined && view.houses[u.house] ? <Emblem emblem={view.houses[u.house]!.emblem} colors={view.houses[u.house]!.colors} size={18} /> : null)}
+        />
       </div>
       {intro ? <Intro replay={replay} onGo={() => setIntro(false)} /> : null}
       {!live && at >= last && end ? <Ending replay={replay} vit={vit} end={end} onClose={onClose} again={() => { setAt(0); setPlaying(true); }} waiting={waiting} /> : null}
-      <div className="sp-battle__controls" title="Watch the battle back: step through its turns, play it again, or change how fast it plays.">
-        <span className="sp-battle__controls-label">{live ? "Watch back" : "Playback"}</span>
-        <button type="button" className="sp-button sp-button--quiet" onClick={() => step(-1)} aria-label="Previous turn" title="Back one turn">
-          ◀
-        </button>
-        <button type="button" className="sp-button sp-button--quiet" title={at >= last ? "Play the whole battle again from the start" : playing ? "Pause the playback" : "Play on"} onClick={() => {
-            if (at < last) return setPlaying((p) => !p);
-            setAt(0);
-            setPlaying(true);
-          }}>
-          {at >= last ? "Replay" : playing ? "Pause" : "Play"}
-        </button>
-        <button type="button" className="sp-button sp-button--quiet" onClick={() => step(1)} aria-label="Next turn" title="Forward one turn">
-          ▶
-        </button>
-        <span className="sp-battle__speeds" role="group" aria-label="Speed" title="How fast turns play">
-          {SPEEDS.map((x) => (
-            <button key={x} type="button" aria-pressed={speed === x} className={`sp-button sp-button--quiet${speed === x ? " is-on" : ""}`} onClick={() => setSpeed(x)}>
-              {x}×
+      {live ? (
+        <div className="sp-battle__controls">
+          {at < last - 1 ? (
+            <button type="button" className="sp-button sp-button--quiet" onClick={() => setAt(last)} title="Jump to the turn being fought now">
+              Skip to now
             </button>
-          ))}
-        </span>
-        <button type="button" className="sp-button sp-button--quiet" onClick={() => setAt(last)} title={live ? "Jump to the turn being fought now" : "Jump to how the battle ended"}>
-          {live ? "Skip to now" : "Skip to the end"}
-        </button>
-        <input type="range" min={0} max={last} value={at} aria-label="Turn" onChange={(e) => step(Number(e.target.value) - at)} />
-      </div>
-      {live && at < last && live.turn ? (
-        // Watching back over the battle: their turn still waits, a click away (scrubbing pauses the replay).
-        <p className="sp-command" role="status">
-          {name(live.turn.unit)}'s turn is waiting.{" "}
-          <button type="button" className="sp-button" onClick={() => setAt(last)}>
-            Back to {name(live.turn.unit)}'s turn
+          ) : null}
+          <span className="sp-battle__speeds" role="group" aria-label="Speed" title="How fast turns play">
+            {SPEEDS.map((x) => (
+              <button key={x} type="button" aria-pressed={speed === x} className={`sp-button sp-button--quiet${speed === x ? " is-on" : ""}`} onClick={() => setSpeed(x)}>
+                {x}×
+              </button>
+            ))}
+          </span>
+        </div>
+      ) : (
+        <div className="sp-battle__controls" title="Watch the battle back: step through its turns, play it again, or change how fast it plays.">
+          <span className="sp-battle__controls-label">Playback</span>
+          <button type="button" className="sp-button sp-button--quiet" onClick={() => step(-1)} aria-label="Previous turn" title="Back one turn">
+            ◀
           </button>
-        </p>
-      ) : null}
+          <button
+            type="button"
+            className="sp-button sp-button--quiet"
+            title={at >= last ? "Play the whole battle again from the start" : playing ? "Pause the playback" : "Play on"}
+            onClick={() => {
+              if (at < last) return setPlaying((p) => !p);
+              setAt(0);
+              setPlaying(true);
+            }}
+          >
+            {at >= last ? "Replay" : playing ? "Pause" : "Play"}
+          </button>
+          <button type="button" className="sp-button sp-button--quiet" onClick={() => step(1)} aria-label="Next turn" title="Forward one turn">
+            ▶
+          </button>
+          <span className="sp-battle__speeds" role="group" aria-label="Speed" title="How fast turns play">
+            {SPEEDS.map((x) => (
+              <button key={x} type="button" aria-pressed={speed === x} className={`sp-button sp-button--quiet${speed === x ? " is-on" : ""}`} onClick={() => setSpeed(x)}>
+                {x}×
+              </button>
+            ))}
+          </span>
+          <button type="button" className="sp-button sp-button--quiet" onClick={() => setAt(last)} title="Jump to how the battle ended">
+            Skip to the end
+          </button>
+          <input type="range" min={0} max={last} value={at} aria-label="Turn" onChange={(e) => step(Number(e.target.value) - at)} />
+        </div>
+      )}
       {live && at >= last ? (
         commanding ? (
           <CommandBar
@@ -470,28 +535,23 @@ export default function BattleScreen({ replay, view, onClose, waiting = 0, fullL
           </p>
         )
       ) : null}
-      <ol className={`sp-battle__log${fullLog ? " is-full" : ""}`} aria-label="Battle log" ref={log}>
-        {lines.map(([turn, e], i) => (
-          <li key={`${turn}:${i}`}>
-            {fullLog ? <small>{turn}. </small> : null}
-            {replayLine(replay, e).replace(/\b(uses|begins) ([a-z_:]+)/, (_, v: string, id: string) => `${v} ${abilityName(id)}`)}
-          </li>
-        ))}
-      </ol>
     </div>
   );
 }
 
-function Panel({ title, units, vit, actor, color }: { title: string; units: ReplayUnit[]; vit: Map<number, Vitals>; actor?: number; color?: (u: ReplayUnit) => string | undefined }) {
+/** One side's cards. The title is for screen readers only (Josh: "'The Party' kinda hard to read, you can just remove that text"). */
+function Panel({ title, units, vit, actor, color, badge }: { title: string; units: ReplayUnit[]; vit: Map<number, Vitals>; actor?: number; color?: (u: ReplayUnit) => string | undefined; badge?: (u: ReplayUnit) => React.ReactNode }) {
   return (
     <section className="sp-battle__panel" aria-label={title}>
-      <h3>{title}</h3>
       <ul>
         {units.map((u) => {
           const [, hp, mp, tp, sanity, , , flags, dur, statuses] = vit.get(u.id)!;
           return (
             <li key={u.id} className={`${actor === u.id ? "is-acting" : ""}${flags & FLAG.dead ? " is-dead" : ""}`} style={color?.(u) ? { borderColor: color(u) } : undefined}>
-              <strong>{u.name}</strong>
+              <strong>
+                {badge ? <span className="sp-battle__badge">{badge(u)}</span> : null}
+                {u.name}
+              </strong>
               <small>{flags & FLAG.dead ? (flags & FLAG.fled ? "Fled" : "Dead") : flags & FLAG.down ? "Down" : flags & FLAG.lastStand ? "Last Stand" : null}</small>
               <Bar kind="hp" label="HP" tip="Hit points: at 0 they fall" value={hp} max={u.maxHp} />
               {u.person !== undefined ? (
@@ -499,14 +559,7 @@ function Panel({ title, units, vit, actor, color }: { title: string; units: Repl
                   <Bar kind="mp" label="MP" tip="Magic points, spent on spells and arts" value={mp} max={u.maxMp} />
                   <Bar kind="tp" label="TP" tip="Tension, built by striking and being struck; spent on techniques. It resets each battle." value={tp} max={100} />
                   <Bar kind="sanity" label="San" tip="Sanity: at 0 the mind breaks" value={sanity} max={u.maxSanity} />
-                  <span className="sp-stat sp-stat--dur" title="Durability of the armor at head, body, arms and legs: at 0 that place is Broken">
-                    <span className="sp-stat__label">Dur</span>
-                    <span className="sp-dur" aria-label="Durability">
-                      {dur.map((d, i) => (
-                        <span key={i} title={`${LOCS[i]}: ${d < 0 ? "Broken" : `${d}/${u.maxDur?.[i] ?? 0}`}`} className={d < 0 ? "is-broken" : d < (u.maxDur?.[i] ?? 0) / 2 ? "is-cracked" : undefined} />
-                      ))}
-                    </span>
-                  </span>
+                  <Durability dur={dur} max={u.maxDur ?? []} />
                 </>
               ) : null}
               {statuses.length ? <span className="sp-statuses">{[...new Set(statuses)].map(statusText).join(", ")}</span> : null}
@@ -515,6 +568,37 @@ function Panel({ title, units, vit, actor, color }: { title: string; units: Repl
         })}
       </ul>
     </section>
+  );
+}
+
+/** How whole a place's armor is: full, worn, cracked, broken. */
+const durTone = (d: number, max: number): string => (d < 0 ? "is-broken" : max <= 0 || d / max >= 0.66 ? "is-whole" : d / max >= 0.33 ? "is-worn" : "is-cracked");
+
+/**
+ * Durability by hit location (§11.1), at a glance: a little figure whose head, body, arms and legs take the
+ * color of their armor's state, beside each place's numbers (Josh: "cleanly display hit location durability").
+ */
+function Durability({ dur, max }: { dur: readonly number[]; max: readonly number[] }) {
+  const tone = (i: number) => durTone(dur[i] ?? 0, max[i] ?? 0);
+  const tip = (i: number) => `${LOCS[i]}: ${(dur[i] ?? 0) < 0 ? "Broken" : `${dur[i]}/${max[i] ?? 0}`}`;
+  return (
+    <span className="sp-durability" title="Armor Durability by hit location: at 0 that place is Broken, and blows there land harder">
+      <svg className="sp-durability__doll" viewBox="0 0 12 21" width="14" height="25" aria-hidden="true">
+        <circle cx="6" cy="2.8" r="2.4" className={tone(0)}><title>{tip(0)}</title></circle>
+        <rect x="3.6" y="5.8" width="4.8" height="7" rx="0.8" className={tone(1)}><title>{tip(1)}</title></rect>
+        <rect x="1" y="6" width="2" height="6.5" rx="0.8" className={tone(2)}><title>{tip(2)}</title></rect>
+        <rect x="9" y="6" width="2" height="6.5" rx="0.8" className={tone(2)} />
+        <rect x="3.6" y="13.3" width="2.1" height="7.2" rx="0.8" className={tone(3)}><title>{tip(3)}</title></rect>
+        <rect x="6.3" y="13.3" width="2.1" height="7.2" rx="0.8" className={tone(3)} />
+      </svg>
+      <span className="sp-durability__nums" aria-label="Durability">
+        {LOCS.map((l, i) => (
+          <span key={l} className={tone(i)} title={tip(i)}>
+            <b>{l}</b> {(dur[i] ?? 0) < 0 ? "Broken" : `${dur[i]}/${max[i] ?? 0}`}
+          </span>
+        ))}
+      </span>
+    </span>
   );
 }
 
@@ -531,37 +615,89 @@ function Bar({ kind, label, tip, value, max }: { kind: string; label: string; ti
   );
 }
 
-/** The injury roll's moment (§15.4): the d20, the total, and the result in its band's color. */
-function Injury({ e, name }: { e: Extract<Event, { t: "injury" }>; name: string }) {
+/**
+ * The injury roll's moment (§15.4): the table it is rolled on, worst to best, then the d20. The owner
+ * throws it with a click (Josh 2026-11-03: "the player should have to click the dice"); it tumbles, lands,
+ * and only then shows the total and what it does. Another House's Scion's die is thrown for them.
+ */
+function Injury({ e, name, mine, rolled, onRolled, sound }: { e: Extract<Event, { t: "injury" }>; name: string; mine: boolean; rolled: boolean; onRolled: () => void; sound: number }) {
   const res = Content.INJURY_BY_ID.get(e.result);
   const table = Content.INJURY_TABLES.find((x) => x.id === e.table);
   const where = e.table === "sanity" ? "mind" : e.table;
   const bonus = e.total - e.roll;
+  const [phase, setPhase] = useState<"await" | "rolling" | "landed">(rolled ? "landed" : "await");
+  const [face, setFace] = useState(e.roll);
+  useEffect(() => {
+    if (phase !== "await" || mine) return;
+    const t = setTimeout(() => setPhase("rolling"), AUTO_ROLL_MS);
+    return () => clearTimeout(t);
+  }, [phase, mine]);
+  useEffect(() => {
+    if (phase !== "rolling") return;
+    let k = 0;
+    // The faces it shows while it tumbles: a fixed run, so a replay tumbles the same.
+    const spin = setInterval(() => setFace(((e.roll * 7 + ++k * 13) % 20) + 1), 70);
+    const land = setTimeout(() => {
+      clearInterval(spin);
+      setFace(e.roll);
+      setPhase("landed");
+      onRolled();
+      playSounds([{ cue: injuryCue(e.result), at: 0 }], sound);
+    }, ROLL_MS);
+    return () => {
+      clearInterval(spin);
+      clearTimeout(land);
+    };
+    // onRolled and sound are read once, when the die lands.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [phase, e]);
+  const landed = phase === "landed";
+  const dire = landed && (res?.death || res?.band === "devastating");
   return (
-    <div className={`sp-injury sp-injury--${res?.band ?? "mild"}`} role="status">
+    <div className={`sp-injury sp-injury--${landed ? (res?.band ?? "mild") : "pending"}${dire ? " is-dire" : ""}`} role="status">
       <small className="sp-injury__why">{e.table === "sanity" ? `${name}'s mind is breaking` : `${name}'s ${where} ${where === "legs" || where === "arms" ? "give" : "gives"} way`}: a roll for injury</small>
-      <span className="sp-injury__die">{e.roll}</span>
-      <span className="sp-injury__sum">
-        d20 rolled {e.roll}
-        {e.rerolled !== undefined ? ` (the Dice of the Marches rerolled a ${e.rerolled})` : ""}
-        {bonus ? `, ${bonus > 0 ? "+" : ""}${bonus} from Resilience${e.table === "sanity" ? " and Sagacity" : ""}, traits and how they were struck` : ""} = <b>{e.total}</b>
-      </span>
       {table ? (
-        // The whole table, worst to best, with where this roll fell.
+        // The whole table, worst to best, with where this roll fell once it lands.
         <ol className="sp-injury__ladder" aria-label={`${words(e.table)} injury table`}>
           {table.results.map((r, i) => {
             const from = i ? table.results[i - 1]!.max + 1 : 1;
             return (
-              <li key={r.id} className={`sp-injury__rung sp-injury__rung--${r.band}${r.id === e.result ? " is-hit" : ""}`} title={`${r.max >= 99 ? `${from}+` : from === r.max ? from : `${from}–${r.max}`}: ${r.name}. ${r.text}`}>
+              <li key={r.id} className={`sp-injury__rung sp-injury__rung--${r.band}${landed && r.id === e.result ? " is-hit" : ""}`} title={`${r.max >= 99 ? `${from}+` : from === r.max ? from : `${from}–${r.max}`}: ${r.name}. ${r.text}`}>
                 <small>{r.max >= 99 ? `${from}+` : from === r.max ? from : `${from}–${r.max}`}</small>
               </li>
             );
           })}
         </ol>
       ) : null}
-      <strong>{res?.name ?? words(e.result)}</strong>
-      {res?.text ? <p className="sp-injury__text">{res.text}</p> : null}
-      {e.tooth ? <p className="sp-injury__text">The Saint's Tooth turned a mortal wound into this.</p> : null}
+      {phase === "await" ? (
+        mine ? (
+          <button type="button" className="sp-injury__die is-waiting" autoFocus onClick={() => setPhase("rolling")} aria-label={`Roll the d20 for ${name}`}>
+            d20
+          </button>
+        ) : (
+          <span className="sp-injury__die is-waiting" aria-hidden="true">
+            d20
+          </span>
+        )
+      ) : (
+        <span className={`sp-injury__die${phase === "rolling" ? " is-rolling" : " is-landed"}`} aria-live="off">
+          {face}
+        </span>
+      )}
+      {phase === "await" ? <p className="sp-injury__text">{mine ? "Click the die to roll. Low is worse." : "The die is cast for them…"}</p> : null}
+      {phase === "rolling" ? <p className="sp-injury__text">The die tumbles…</p> : null}
+      {landed ? (
+        <>
+          <span className="sp-injury__sum">
+            d20 rolled {e.roll}
+            {e.rerolled !== undefined ? ` (the Dice of the Marches rerolled a ${e.rerolled})` : ""}
+            {bonus ? `, ${bonus > 0 ? "+" : ""}${bonus} from Resilience${e.table === "sanity" ? " and Sagacity" : ""}, traits and how they were struck` : ""} = <b>{e.total}</b>
+          </span>
+          <strong>{res?.name ?? words(e.result)}</strong>
+          {res?.text ? <p className="sp-injury__text">{res.text}</p> : null}
+          {e.tooth ? <p className="sp-injury__text">The Saint's Tooth turned a mortal wound into this.</p> : null}
+        </>
+      ) : null}
     </div>
   );
 }
@@ -602,8 +738,14 @@ function Ending({ replay, vit, end, onClose, again, waiting }: { replay: Replay;
   if (end.t !== "end") return null;
   const won = end.outcome === "victory";
   const slain = replay.units.filter((u) => u.side === "enemy" && u.partOf === undefined && !u.hazard && (vit.get(u.id)?.[7] ?? 0) & FLAG.dead).length;
-  const injuries = new Map<number, string[]>();
-  for (const f of replay.frames) for (const e of f.ev) if (e.t === "injury") injuries.set(e.target, [...(injuries.get(e.target) ?? []), Content.INJURY_BY_ID.get(e.result)?.name ?? words(e.result)]);
+  // Each injury with what it does, shown on hover or focus (Josh 2026-11-03).
+  const injuries = new Map<number, { id: string; name: string; text: string }[]>();
+  for (const f of replay.frames)
+    for (const e of f.ev) {
+      if (e.t !== "injury") continue;
+      const r = Content.INJURY_BY_ID.get(e.result);
+      injuries.set(e.target, [...(injuries.get(e.target) ?? []), { id: e.result, name: r?.name ?? words(e.result), text: r?.text ?? "" }]);
+    }
   const party = replay.units.filter((u) => u.side === "party" && u.person !== undefined && u.owner === undefined);
   return (
     <section className={`sp-ending ${won ? "is-won" : "is-lost"}`} aria-label={won ? "Victory" : "Defeat"}>
@@ -618,7 +760,15 @@ function Ending({ replay, vit, end, onClose, again, waiting }: { replay: Replay;
               <li key={u.id} className={flags & FLAG.dead ? "is-dead" : flags & FLAG.down ? "is-down" : undefined}>
                 <strong>{u.name}</strong>
                 <small>{flags & FLAG.dead ? "Dead" : flags & FLAG.down ? "Down" : `${v?.[1] ?? 0}/${u.maxHp} HP`}</small>
-                {injuries.get(u.id)?.length ? <em>{injuries.get(u.id)!.join(", ")}</em> : null}
+                {injuries.get(u.id)?.length ? (
+                  <em>
+                    {injuries.get(u.id)!.map((x, i) => (
+                      <span key={`${x.id}${i}`} className="sp-ending__injury" tabIndex={0} data-tip={x.text || undefined} aria-label={x.text ? `${x.name}: ${x.text}` : x.name}>
+                        {x.name}
+                      </span>
+                    ))}
+                  </em>
+                ) : null}
               </li>
             );
           })}

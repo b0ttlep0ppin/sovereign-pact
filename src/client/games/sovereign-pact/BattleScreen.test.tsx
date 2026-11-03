@@ -1,6 +1,6 @@
 import { act, fireEvent, render, screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
-import { sovereignPact as g } from "@vibepulse/shared/games/sovereign-pact";
+import { Content, sovereignPact as g } from "@vibepulse/shared/games/sovereign-pact";
 import { warbandBattle } from "../../../shared/games/sovereign-pact/combat/fixtures.ts";
 import { recorded } from "../../../shared/games/sovereign-pact/combat/replay.ts";
 import { found, campaign } from "../../../shared/games/sovereign-pact/testing.ts";
@@ -67,6 +67,35 @@ describe("the battle screen (§15.5)", () => {
     expect(screen.getByText(`Turn ${replay.frames.length - 1} of ${replay.frames.length}`)).toBeTruthy();
     fireEvent.keyDown(dialog, { key: "Escape" });
     expect(onClose).toHaveBeenCalled();
+    vi.useRealTimers();
+  });
+
+  it("waits on its owner to throw an injury's die, then shows where it landed and what it does (Josh's playtest)", () => {
+    vi.useFakeTimers();
+    const { view, replay } = setup();
+    const scion = replay.units.find((u) => u.side === "party" && u.partOf === undefined)!;
+    const head = Content.INJURY_TABLES.find((x) => x.id === "head")!;
+    const hit = head.results.find((r) => r.band === "moderate")!;
+    const frames = replay.frames.map((f, i) => (i === 0 ? { ...f, ev: [...f.ev, { t: "injury" as const, target: scion.id, table: "head", roll: hit.max, total: hit.max, result: hit.id }] } : f));
+    const owned = { ...replay, frames, units: replay.units.map((u) => (u.side === "party" ? { ...u, house: 0 } : u)) };
+    render(<BattleScreen replay={owned} view={view} onClose={() => {}} />);
+    act(() => void vi.advanceTimersByTime(5000));
+    act(() => void vi.advanceTimersByTime(3000));
+    const die = screen.getByRole("button", { name: `Roll the d20 for ${scion.name}` });
+    // It holds there until the die is thrown.
+    act(() => void vi.advanceTimersByTime(20000));
+    expect(screen.getByText(`Turn 1 of ${frames.length}`)).toBeTruthy();
+    expect(screen.queryByText(hit.name)).toBe(null);
+    fireEvent.click(die);
+    expect(screen.getByText("The die tumbles…")).toBeTruthy();
+    act(() => void vi.advanceTimersByTime(1600));
+    expect(screen.getByText(hit.name)).toBeTruthy();
+    expect(screen.getByText(hit.text)).toBeTruthy();
+    act(() => void vi.advanceTimersByTime(4000));
+    expect(screen.getByText(`Turn 2 of ${frames.length}`)).toBeTruthy();
+    // The ending names it, and says what it does on hover.
+    fireEvent.keyDown(screen.getByRole("dialog"), { key: "End" });
+    expect(screen.getByLabelText(`${hit.name}: ${hit.text}`).getAttribute("data-tip")).toBe(hit.text);
     vi.useRealTimers();
   });
 

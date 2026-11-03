@@ -137,6 +137,9 @@ export default function SovereignPact({ view, isMyTurn, sendMove, lastError }: P
   const battles = useBattles(view.battles, wasLive);
   const [hidden, setHidden] = useState(false);
   if (hidden && !fight) setHidden(false);
+  // A fight hidden and opened again picks up at the turn being fought.
+  const [resumed, setResumed] = useState(false);
+  if (resumed && !fight) setResumed(false);
   const homecoming = useHomecoming(view);
   const camp = useCamp(view);
   const told = useTold(view);
@@ -264,7 +267,11 @@ export default function SovereignPact({ view, isMyTurn, sendMove, lastError }: P
       key="live"
       replay={fight.replay}
       view={view}
-      onClose={() => setHidden(true)}
+      onClose={() => {
+        setHidden(true);
+        setResumed(true);
+      }}
+      resume={resumed}
       fullLog={access.log}
       sound={music.sfx ? music.sfxVolume : 0}
       live={{

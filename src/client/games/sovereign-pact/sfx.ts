@@ -99,10 +99,13 @@ export function soundsOf(ev: readonly Event[], units: ReadonlyMap<number, Replay
     else if (e.t === "phase") add("phase", 0);
     else if (e.t === "sanity" && e.amount < 0) add("sanity", 320);
     else if (e.t === "down" || e.t === "dead") add("fall", 560);
-    else if (e.t === "injury") add(DREADFUL.has(e.result) ? "dread" : "injury", 680);
+    else if (e.t === "injury") add(injuryCue(e.result), 680);
   }
   return out.sort((a, b) => a.at - b.at);
 }
+
+/** The sound of an injury landing: a scream for a devastating one, a crack for the rest. */
+export const injuryCue = (result: string): string => (DREADFUL.has(result) ? "dread" : "injury");
 
 export const sfxUrl = (cue: string, take: number): string => `${import.meta.env.BASE_URL ?? "./"}sfx/sovereign-pact/${cue}-${take}.ogg`;
 
@@ -115,11 +118,17 @@ export function playSounds(sounds: readonly Sound[], volume: number, speed = 1):
   const timers = sounds.map(({ cue, at }) =>
     setTimeout(() => {
       const takes = Content.SFX_BY_ID.get(cue)?.takes ?? 1;
-      const audio = new Audio(sfxUrl(cue, 1 + Math.floor(Math.random() * takes)));
-      audio.volume = volume;
-      audio.preservesPitch = false;
-      audio.playbackRate = 0.95 + Math.random() * 0.1;
-      audio.play().catch(() => undefined);
+      const play = (take: number) => {
+        const audio = new Audio(sfxUrl(cue, take));
+        audio.volume = volume;
+        audio.preservesPitch = false;
+        audio.playbackRate = 0.95 + Math.random() * 0.1;
+        // A build that ships only each cue's first take (the playable artifact) falls back to it, so a
+        // miss or a monster's blow is never silent (Josh: "need miss sound effects", "when enemies hit us").
+        if (take > 1) audio.addEventListener("error", () => play(1), { once: true });
+        audio.play().catch(() => undefined);
+      };
+      play(1 + Math.floor(Math.random() * takes));
     }, at / speed),
   );
   return () => timers.forEach(clearTimeout);
