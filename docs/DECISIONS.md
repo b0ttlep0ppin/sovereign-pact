@@ -2,6 +2,13 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-03 (implementation, Milestone 8ch): Houses against Houses, and trouble at home
+
+Josh: **"Maybe the events force you to exchange wards with another house due to rising tensions, like a marriage pact"**, **"buildings can be destroyed or gifted"**, and **"drama amongst the houses"**.
+- **Five settlement events** that set the Houses against each other: *The Hostage Peace* (the House with most Scions must swap Wards with a House it names, or bribe or refuse), *The Stolen Reliquary* (an accusation, or buy the relic back quietly), *The Gallows Bargain*, *The Feast of Mending* (feed the table or poison a named rival's cup; everyone giving raises Accord by 6), *The Gilded Coffin* (a sealed bid in iron).
+- **Six House events**: *The Old Debt* (pay gold, or give a building to a House you name), *The Ancestor Returns*, *The Night Mason* (a building raised overnight for teeth, years of life or a recruit), *The Ward Who Will Not Eat*, *The Heir at the Window*, *The Knife in the Bed* (strike back at a named House, or send a champion after the truth).
+- With batches 1 and 2 that makes 47 new town events and Crises.
+
 ## 2026-11-03 (implementation, Milestone 8cg): eight Crises, and omens of the four arc bosses
 
 Josh: **"Some of these can also be ominous fore shadowing of events to come later in the time line"**, and **"some events that have a chance to increase accord or reduce doom"**.

@@ -1,0 +1,103 @@
+{
+  "id": "the_knife_in_the_bed",
+  "scope": "house",
+  "weight": 2,
+  "years": [
+    1,
+    20
+  ],
+  "title": "The Knife in the Bed",
+  "text": "Your steward found a knife under your heir's pillow this morning, blade up. It carries another Great House's arms on the pommel. That is either the stupidest assassin in the city, or someone who very much wants you to blame that House.",
+  "rule": "house",
+  "options": [
+    {
+      "id": "retaliate",
+      "label": "Name the House on the pommel, and repay them in kind.",
+      "tags": [
+        "cruel"
+      ],
+      "target": true,
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "Your people return the knife to the named House the same way, under a pillow, blade up. They know you know. Whether they did it, nobody will ever say.",
+          "effects": [
+            {
+              "to": "target",
+              "sanity": -15
+            },
+            {
+              "score": {
+                "intrigue": 2
+              }
+            },
+            {
+              "accord": -3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "investigate",
+      "label": "Put a Scion on the trail.",
+      "tags": [
+        "clever"
+      ],
+      "champion": {
+        "stat": "acuity",
+        "dc": 12
+      },
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "Your Scion follows the knife back to the smith who forged it, and the smith back to a cellar where someone has been forging every House's arms. You burn the cellar. The Houses are spared a war.",
+          "effects": [
+            {
+              "scion": {
+                "who": "champion",
+                "xp": 70
+              }
+            },
+            {
+              "accord": 3
+            },
+            {
+              "score": {
+                "intrigue": 2
+              }
+            }
+          ],
+          "when": "pass"
+        },
+        {
+          "w": 1,
+          "text": "Your Scion follows the trail into the lower town and is found two days later in a ditch, alive, with the knife's twin in their side.",
+          "effects": [
+            {
+              "scion": {
+                "who": "champion",
+                "injury": "body"
+              }
+            }
+          ],
+          "when": "fail"
+        }
+      ]
+    },
+    {
+      "id": "burn_it",
+      "label": "Melt the knife and say nothing.",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "The knife melts. You double the guard and say nothing. Your heir sleeps badly for a season.",
+          "effects": []
+        }
+      ]
+    }
+  ]
+}

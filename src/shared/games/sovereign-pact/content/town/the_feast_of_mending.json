@@ -1,0 +1,110 @@
+{
+  "id": "the_feast_of_mending",
+  "scope": "settlement",
+  "weight": 2,
+  "years": [
+    1,
+    20
+  ],
+  "title": "The Feast of Mending",
+  "text": "The Commons has called a feast to mend the quarrels between the Great Houses: one long table in the square, every House's lord at it, every House's cooks feeding it. The old women say a feast like this once ended a war. They also say it once started one.",
+  "rule": "secret",
+  "options": [
+    {
+      "id": "give",
+      "label": "Send your best food and your best manners.",
+      "tags": [
+        "kind"
+      ],
+      "cost": {
+        "resources": {
+          "grain": 15
+        }
+      },
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "Your dishes are praised, your toasts are drunk, and for one evening nobody at the table is reaching for a knife.",
+          "effects": [
+            {
+              "accord": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "poison",
+      "label": "Name a rival House, and see to its cup.",
+      "tags": [
+        "cruel"
+      ],
+      "target": true,
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "Nobody dies. Nobody can prove anything. But one House's Scion is carried home green and shaking, and your House's name is whispered with a new respect.",
+          "effects": [
+            {
+              "to": "target",
+              "scion": {
+                "injury": "body",
+                "sanity": -15
+              }
+            },
+            {
+              "score": {
+                "intrigue": 3
+              }
+            },
+            {
+              "accord": -3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "stay_home",
+      "label": "Plead illness, and stay at home.",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "Your chair is empty. It is noticed.",
+          "effects": []
+        }
+      ]
+    }
+  ],
+  "together": [
+    {
+      "when": "all",
+      "option": "give",
+      "text": "Every House brings its best. The feast runs till dawn, the old quarrels are toasted away, and the Rift is quiet all night.",
+      "effects": [
+        {
+          "accord": 6
+        },
+        {
+          "doom": -2
+        }
+      ]
+    },
+    {
+      "when": "none",
+      "option": "give",
+      "text": "Nobody brings food. The long table stands in the square all night with nothing on it, and in the morning the poor say the dead sat down at it.",
+      "effects": [
+        {
+          "accord": -3
+        },
+        {
+          "doom": 1
+        }
+      ]
+    }
+  ]
+}

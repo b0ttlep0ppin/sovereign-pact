@@ -1,0 +1,83 @@
+{
+  "id": "the_hostage_peace",
+  "scope": "settlement",
+  "weight": 2,
+  "years": [
+    2,
+    20
+  ],
+  "title": "The Hostage Peace",
+  "text": "After a winter of knives in the dark, the magistrates have had enough. The House with the most Scions must send a Ward to a rival Seat, and take one back, as the old Houses did when the city was young. The magistrates call it a peace. Everyone else calls it hostages.",
+  "rule": "most_scions",
+  "options": [
+    {
+      "id": "exchange",
+      "label": "Name the House you will exchange with.",
+      "tags": [
+        "kind"
+      ],
+      "target": true,
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "The Wards change Seats in a closed carriage at midnight. Each House has someone at the other's table now, and each table is a little more careful.",
+          "effects": [
+            {
+              "to": "target",
+              "ward_swap": true
+            },
+            {
+              "accord": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bribe",
+      "label": "Bribe the magistrates to look elsewhere.",
+      "tags": [
+        "clever"
+      ],
+      "cost": {
+        "resources": {
+          "gold": 25
+        }
+      },
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "The magistrates find another way to keep the peace. It involves gibbets.",
+          "effects": [
+            {
+              "accord": -1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "refuse",
+      "label": "Refuse. No child of this House sleeps under another roof.",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "The magistrates write your refusal into the record. The other Houses read it aloud at dinner.",
+          "effects": [
+            {
+              "accord": -3
+            },
+            {
+              "score": {
+                "renown": -1
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,103 @@
+{
+  "id": "the_heir_at_the_window",
+  "scope": "house",
+  "weight": 2,
+  "years": [
+    1,
+    20
+  ],
+  "title": "The Heir at the Window",
+  "text": "Every night at the third hour, a figure stands at your Seat's high window wearing your heir's face, your heir's clothes, your heir's smile. Your heir is asleep in bed each time. The servants have started calling them by both names.",
+  "rule": "house",
+  "options": [
+    {
+      "id": "confront",
+      "label": "Send a Scion up to meet it.",
+      "tags": [
+        "bold"
+      ],
+      "champion": {
+        "stat": "guile",
+        "dc": 13
+      },
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "Your Scion meets it at the window and does not blink first. It bows, steps back into the glass, and leaves behind a gift wrapped in your heir's own handwriting.",
+          "effects": [
+            {
+              "scion": {
+                "who": "champion",
+                "xp": 80,
+                "stat": {
+                  "guile": 1
+                }
+              }
+            },
+            {
+              "item": {
+                "tier": 4
+              }
+            }
+          ],
+          "when": "pass"
+        },
+        {
+          "w": 1,
+          "text": "Your Scion meets it at the window, and blinks. In the morning nobody can be quite sure which of them came down the stairs.",
+          "effects": [
+            {
+              "scion": {
+                "who": "champion",
+                "sanity": -30,
+                "curse": true
+              }
+            }
+          ],
+          "when": "fail"
+        }
+      ]
+    },
+    {
+      "id": "board",
+      "label": "Board up the window.",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "The window is boarded. The figure appears at the next window along, and the next, a little nearer the heir's room each night, and then it stops.",
+          "effects": [
+            {
+              "sanity": -10
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mirror",
+      "label": "Hang a saint's mirror across from it.",
+      "tags": [
+        "kind"
+      ],
+      "cost": {
+        "resources": {
+          "gold": 15
+        }
+      },
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "The figure sees itself in the saint's mirror and screams with your heir's voice. It is gone. Your heir wakes with a nosebleed and a sense of loss.",
+          "effects": [
+            {
+              "doom": -1
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

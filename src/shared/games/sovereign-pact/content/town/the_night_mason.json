@@ -1,0 +1,80 @@
+{
+  "id": "the_night_mason",
+  "scope": "house",
+  "weight": 2,
+  "years": [
+    1,
+    20
+  ],
+  "title": "The Night Mason",
+  "text": "A mason knocks at your gate after midnight. He will raise a new building for your House before the cock crows, he says, and his price is small: a lock of hair and a tooth from everyone who lives under your roof. He has the pliers with him.",
+  "rule": "house",
+  "options": [
+    {
+      "id": "agree",
+      "label": "Agree to his price.",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "In the morning the building stands, perfect, with no mortar in its joints. Everyone in your House has a gap in their smile, and the eldest have aged overnight.",
+          "effects": [
+            {
+              "raise": "any"
+            },
+            {
+              "scion": {
+                "who": "eldest",
+                "age": 5,
+                "count": 2
+              }
+            },
+            {
+              "sanity": -10
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "haggle",
+      "label": "Offer him a recruit instead.",
+      "tags": [
+        "cruel"
+      ],
+      "cost": {
+        "recruits": 1
+      },
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "He looks the recruit over, nods, and takes them by the hand. The building is up by dawn. The recruit is in the mortar, somewhere.",
+          "effects": [
+            {
+              "raise": "any"
+            },
+            {
+              "sanity": -15
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "send_away",
+      "label": "Send him away.",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "He tips his cap and goes to the next Seat along. You hear the pliers through the wall.",
+          "effects": []
+        }
+      ]
+    }
+  ]
+}

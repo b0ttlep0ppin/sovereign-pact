@@ -1,0 +1,90 @@
+{
+  "id": "the_rivals_debt",
+  "scope": "house",
+  "weight": 2,
+  "years": [
+    2,
+    20
+  ],
+  "title": "The Old Debt",
+  "text": "A notary arrives with your grandfather's signature on a debt to another Great House: a whole wing of your Seat, pledged against a loan that was never repaid. The other House has not asked for it. The notary says it must be settled before Midwinter, one way or another.",
+  "rule": "house",
+  "options": [
+    {
+      "id": "pay_gold",
+      "label": "Pay it off in gold.",
+      "tags": [
+        "kind"
+      ],
+      "cost": {
+        "resources": {
+          "gold": 40
+        }
+      },
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "The debt is cleared. Your vault is lighter, your grandfather's name is cleaner, and you sleep well.",
+          "effects": [
+            {
+              "score": {
+                "renown": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "give_wing",
+      "label": "Hand over a building to the House you name.",
+      "tags": [
+        "bold"
+      ],
+      "target": true,
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "Your masons hand the keys to theirs. The other House is gracious about it in public, and the city calls you a House that keeps its word.",
+          "effects": [
+            {
+              "to": "target",
+              "gift": "best"
+            },
+            {
+              "accord": 3
+            },
+            {
+              "score": {
+                "renown": 2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "default",
+      "label": "Let the debt ride.",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "Midwinter comes and goes. The notary posts the debt on the Commons door, and the city reads it.",
+          "effects": [
+            {
+              "score": {
+                "renown": -2
+              }
+            },
+            {
+              "accord": -2
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
