@@ -221,19 +221,75 @@
   box-shadow: 0 0 18px 6px var(--glow), -14px 0 18px 2px var(--glow); animation-name: sp-fx-fly; animation-timing-function: cubic-bezier(.45, .05, .75, .7);
   will-change: translate, opacity;
 }
-.sp-fx__orb.is-ghost { box-shadow: 0 0 12px 3px var(--glow); scale: var(--ghost, 0.6); filter: saturate(1.4) blur(1px); animation-name: sp-fx-fly-ghost; }
+.sp-fx__orb { animation-name: sp-fx-conjure; animation-timing-function: ease-in-out; }
+.sp-fx__orb.is-ghost { box-shadow: 0 0 12px 3px var(--glow); scale: var(--ghost, 0.6); filter: saturate(1.4) blur(1px); animation-name: sp-fx-conjure-ghost; }
+/* A spell rises out of the ground beside its caster, swells, turns, and arcs across to seek its foe. */
+@keyframes sp-fx-conjure {
+  0% { opacity: 0; translate: var(--side) 34px; transform: scale(0.2); }
+  8% { opacity: 1; }
+  32% { translate: var(--side) -46px; transform: scale(1); }
+  42% { translate: calc(var(--side) * 1.15) -54px; transform: scale(1.3); }
+  52% { translate: var(--side) -46px; transform: scale(1); }
+  78% { translate: calc(var(--dx) * 0.55) calc(var(--dy) * 0.55 - 48px); transform: scale(1.1); }
+  97% { opacity: 1; translate: var(--dx) var(--dy); transform: scale(1.2); }
+  100% { opacity: 0; translate: var(--dx) var(--dy); transform: scale(1.2); }
+}
+@keyframes sp-fx-conjure-ghost {
+  0% { opacity: 0; translate: var(--side) 34px; transform: scale(0.2); }
+  32% { opacity: calc(var(--ghost, 0.6) * 0.5); translate: var(--side) -46px; transform: scale(1); }
+  52% { translate: var(--side) -46px; }
+  78% { opacity: calc(var(--ghost, 0.6) * 0.8); translate: calc(var(--dx) * 0.55) calc(var(--dy) * 0.55 - 48px); }
+  97% { opacity: calc(var(--ghost, 0.6) * 0.8); translate: var(--dx) var(--dy); }
+  100% { opacity: 0; translate: var(--dx) var(--dy); }
+}
+.sp-fx__aura {
+  width: 76px; height: 120px; margin: -88px 0 0 -38px; border-radius: 50% 50% 45% 45%;
+  background: radial-gradient(ellipse at 50% 70%, color-mix(in srgb, var(--glow) 70%, transparent), color-mix(in srgb, var(--glow) 30%, transparent) 45%, transparent 70%);
+  mix-blend-mode: screen; filter: blur(2px); animation-name: sp-fx-aura;
+}
+.sp-fx__aura--dark { mix-blend-mode: normal; background: radial-gradient(ellipse at 50% 70%, rgba(70, 0, 110, 0.7), rgba(20, 0, 30, 0.4) 45%, transparent 70%); }
+@keyframes sp-fx-aura { 0% { opacity: 0; scale: 0.6 0.3; } 20% { opacity: 1; scale: 1 1; } 35% { scale: 1.08 0.95; } 50% { scale: 0.95 1.1; } 65% { opacity: 0.9; scale: 1.06 1; } 100% { opacity: 0; scale: 0.8 1.2; } }
+.sp-fx__updraft { width: 5px; height: 12px; margin: 30px 0 0 -2.5px; border-radius: 50%; background: var(--core); box-shadow: 0 0 8px var(--glow); animation-name: sp-fx-updraft; }
+@keyframes sp-fx-updraft { 0% { opacity: 0; translate: var(--x) 0; } 25% { opacity: 1; } 100% { opacity: 0; translate: calc(var(--x) * 0.4) -90px; scale: 0.4; } }
+/* A thrust: a shaft of light drives straight through and bursts at the point (the wrapper turns it to face along the blow). */
+.sp-fx__aim { width: 0; height: 0; }
+.sp-fx__aim > * { position: absolute; animation-fill-mode: both; animation-timing-function: cubic-bezier(.2, .9, .3, 1); }
+.sp-fx__thrust {
+  left: -170px; top: -4px; width: 210px; height: 8px; transform-origin: 0 50%; border-radius: 0 3px 3px 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2) 35%, var(--core) 80%, #fff 96%, transparent);
+  box-shadow: 0 0 10px var(--glow); clip-path: polygon(0 35%, 88% 0, 100% 50%, 88% 100%, 0 65%);
+  animation-name: sp-fx-thrust;
+}
+.sp-fx__thrust.is-crit { height: 12px; top: -6px; width: 260px; left: -210px; box-shadow: 0 0 14px #ff3020; }
+@keyframes sp-fx-thrust { 0% { opacity: 0; scale: 0 1; } 15% { opacity: 1; } 55% { opacity: 1; scale: 1 1; } 100% { opacity: 0; scale: 1 0.3; translate: 18px 0; } }
+.sp-fx__pierce {
+  left: -6px; top: -16px; width: 44px; height: 32px;
+  background: radial-gradient(ellipse at 15% 50%, #fff 0 12%, var(--core) 25%, color-mix(in srgb, var(--glow) 60%, transparent) 45%, transparent 70%);
+  clip-path: polygon(0 50%, 100% 0, 70% 50%, 100% 100%); animation-name: sp-fx-pierce;
+}
+.sp-fx__pierce.is-crit { width: 70px; height: 50px; top: -25px; }
+@keyframes sp-fx-pierce { 0% { opacity: 0; scale: 0.2 0.6; } 20% { opacity: 1; scale: 1.2 1; } 100% { opacity: 0; scale: 1.6 0.4; translate: 12px 0; } }
+/* A cure: white, blue and green motes wrapping round and spiralling up (left and right across the body, smaller behind it). */
+.sp-fx__helix { width: 8px; height: 8px; margin: -4px 0 0 -4px; border-radius: 50%; animation-name: sp-fx-helix; animation-timing-function: linear; }
+.sp-fx__helix--0 { background: #ffffff; box-shadow: 0 0 8px #e8f4ff; }
+.sp-fx__helix--1 { background: #bfe4ff; box-shadow: 0 0 8px #5fb0ff; }
+.sp-fx__helix--2 { background: #c8ffd0; box-shadow: 0 0 8px #6fe08a; }
+@keyframes sp-fx-helix {
+  0% { opacity: 0; translate: 0 36px; scale: 0.6; }
+  10% { opacity: 1; translate: var(--r) 26px; scale: 1; }
+  22% { translate: 0 14px; scale: 0.6; }
+  34% { translate: calc(var(--r) * -1) 2px; scale: 1; }
+  46% { translate: 0 -10px; scale: 0.6; }
+  58% { translate: calc(var(--r) * 0.8) -22px; scale: 1; }
+  70% { translate: 0 -34px; scale: 0.6; }
+  82% { opacity: 1; translate: calc(var(--r) * -0.6) -46px; scale: 0.9; }
+  100% { opacity: 0; translate: 0 -64px; scale: 0.3; }
+}
 @keyframes sp-fx-fly-ghost { 0% { opacity: 0; translate: 0 0; } 10% { opacity: calc(var(--ghost, 0.6) * 0.8); } 90% { opacity: calc(var(--ghost, 0.6) * 0.8); } 100% { opacity: 0; translate: var(--dx) var(--dy); } }
 .sp-fx__orb--water { border-radius: 2px; rotate: 45deg; }
 .sp-fx__orb--earth { border-radius: 30%; width: 26px; height: 26px; }
 .sp-fx__orb--dark { background: radial-gradient(circle, #000 0 30%, var(--glow) 55%, transparent 72%); }
 @keyframes sp-fx-fly { 0% { opacity: 0; translate: 0 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { opacity: 0; translate: var(--dx) var(--dy); } }
-.sp-fx__sigil {
-  width: 64px; height: 64px; margin: -32px 0 0 -32px; border-radius: 50%; border: 2px solid var(--glow);
-  box-shadow: 0 0 14px var(--glow), inset 0 0 14px var(--glow);
-  background: repeating-conic-gradient(from 0deg, transparent 0 20deg, color-mix(in srgb, var(--glow) 45%, transparent) 20deg 24deg);
-  animation-name: sp-fx-sigil;
-}
-@keyframes sp-fx-sigil { 0% { opacity: 0; scale: 0.3; rotate: 0deg; } 40% { opacity: 1; } 100% { opacity: 0; scale: 1.25; rotate: 160deg; } }
 .sp-fx__slash { width: 150px; height: 150px; margin: -75px 0 0 -75px; overflow: visible; filter: drop-shadow(0 0 6px var(--glow)) drop-shadow(0 0 2px #fff); animation-name: sp-fx-slash; }
 .sp-fx__slash path { fill: var(--core); }
 .sp-fx__slash path + path { fill: #fff; }
@@ -452,3 +508,43 @@ button.sp-injury__die.is-waiting:hover, button.sp-injury__die.is-waiting:focus-v
   color: #ecdcc0; font-size: 11px; font-weight: 600; pointer-events: none; white-space: nowrap;
 }
 .sp-command__hit { color: #e8c66a; font-weight: 600; }
+
+/* Heals, blessings and curses (Josh 2026-11-03: they "feel kinda flat"). `--c` is the status's colour. */
+.sp-fx__channel {
+  width: 70px; height: 26px; margin: 26px 0 0 -35px; border-radius: 50%; border: 2px solid var(--c);
+  box-shadow: 0 0 14px var(--c), inset 0 0 12px var(--c);
+  background: repeating-conic-gradient(from 0deg, transparent 0 22deg, color-mix(in srgb, var(--c) 50%, transparent) 22deg 26deg);
+  animation-name: sp-fx-channel;
+}
+@keyframes sp-fx-channel { 0% { opacity: 0; scale: 0.3; } 25% { opacity: 1; scale: 1; } 55% { scale: 1.12; } 85% { opacity: 0.9; scale: 1; } 100% { opacity: 0; scale: 1.4; } }
+.sp-fx__wisp { width: 10px; height: 10px; margin: -5px 0 0 -5px; border-radius: 50%; background: radial-gradient(circle, #fff 0 30%, var(--c) 60%, transparent 72%); box-shadow: 0 0 12px var(--c); animation-name: sp-fx-wisp; animation-timing-function: linear; }
+@keyframes sp-fx-wisp {
+  0% { opacity: 0; translate: 0 0; }
+  15% { opacity: 1; }
+  50% { translate: calc(var(--dx) * 0.5) calc(var(--dy) * 0.5 + var(--lift)); }
+  100% { opacity: 1; translate: var(--dx) var(--dy); }
+}
+.sp-fx__pillar {
+  width: 46px; height: 150px; margin: -120px 0 0 -23px; transform-origin: 50% 0;
+  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--c) 55%, transparent) 30%, rgba(255, 255, 240, 0.85) 50%, color-mix(in srgb, var(--c) 55%, transparent) 70%, transparent);
+  -webkit-mask-image: linear-gradient(transparent, #000 25%, #000 75%, transparent); mask-image: linear-gradient(transparent, #000 25%, #000 75%, transparent);
+  mix-blend-mode: screen; animation-name: sp-fx-pillar;
+}
+@keyframes sp-fx-pillar { 0% { opacity: 0; scale: 0.3 0; } 20% { opacity: 1; scale: 1 1; } 60% { opacity: 0.8; scale: 0.7 1; } 100% { opacity: 0; scale: 0.2 1; } }
+.sp-fx__rune { width: 64px; height: 20px; margin: 22px 0 0 -32px; border-radius: 50%; border: 2px solid var(--c); box-shadow: 0 0 12px var(--c), inset 0 0 8px var(--c); animation-name: sp-fx-rune; }
+@keyframes sp-fx-rune { 0% { opacity: 0; scale: 0.4; translate: 0 0; } 20% { opacity: 1; scale: 1.1; } 100% { opacity: 0; scale: 0.8; translate: 0 -64px; } }
+.sp-fx__rune.is-bane { animation-name: sp-fx-bind; }
+@keyframes sp-fx-bind { 0% { opacity: 0; scale: 2; translate: 0 -30px; } 30% { opacity: 1; } 100% { opacity: 0; scale: 0.4; translate: 0 -10px; } }
+.sp-fx__glyph {
+  margin: -34px 0 0 0; translate: -50% 0; font-size: 34px; font-weight: 700; line-height: 1; color: var(--c);
+  text-shadow: 0 0 8px var(--c), 0 0 2px #000, 0 1px 0 #000; animation-name: sp-fx-glyph; white-space: nowrap;
+}
+@keyframes sp-fx-glyph { 0% { opacity: 0; scale: 0.4; transform: translateY(10px); } 20% { opacity: 1; scale: 1.35; } 40% { scale: 1; } 100% { opacity: 0; transform: translateY(-46px); } }
+.sp-fx__glyph.is-bane { animation-name: sp-fx-glyph-sink; }
+@keyframes sp-fx-glyph-sink { 0% { opacity: 0; transform: translateY(-40px); scale: 1.4; } 25% { opacity: 1; scale: 1; } 100% { opacity: 0; transform: translateY(14px); scale: 0.8; } }
+.sp-fx__spark--boon { width: 5px; height: 5px; margin: -2.5px 0 0 -2.5px; background: #fffbe8; box-shadow: 0 0 6px var(--c), 0 0 2px var(--c); animation-name: sp-fx-rise; }
+@keyframes sp-fx-rise { 0% { opacity: 0; transform: rotate(var(--a)) translateX(var(--d)) translateY(30px); } 20% { opacity: 1; } 100% { opacity: 0; transform: rotate(var(--a)) translateX(calc(var(--d) * 0.4)) translateY(-40px) rotate(calc(-1 * var(--a))) translateY(-30px); } }
+.sp-fx__spark--bane { background: var(--c); box-shadow: 0 0 6px #000; animation-name: sp-fx-fall; }
+@keyframes sp-fx-fall { 0% { opacity: 0; transform: rotate(var(--a)) translateX(calc(var(--d) * 2)); } 25% { opacity: 1; } 100% { opacity: 0; transform: rotate(var(--a)) translateX(2px) translateY(20px); } }
+.sp-screenfx__tint--heal { background: radial-gradient(ellipse at 50% 100%, rgba(150, 230, 140, 0.22), rgba(255, 230, 160, 0.12) 50%, transparent 80%); }
+.sp-screenfx__tint--boon { background: radial-gradient(ellipse at 50% 100%, color-mix(in srgb, var(--c) 16%, transparent), transparent 70%); }

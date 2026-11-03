@@ -2,6 +2,16 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-03 (implementation, Milestone 8cp): heals, blessings, conjured spells and thrusts
+
+Josh: heals and buffs **"feel kinda flat"**; spells should be **"conjured up around them, like fire ball comes up out of the ground as they are wreathed in red magic, then turns and seeks out the foe"**; **"Cures are like white or blue or green particles enveloping someone and spiraling upwards"**; the spear's pierce looked like a slash, and should be **"a line poking forward and impacting"**.
+- **Blessings and curses are drawn.** A buff laid on an ally, a cure, or Sanity restored is a boon. A debuff that comes with no blow is a bane. Before, only hits, misses and heals were drawn.
+- **A heal or a boon:** the caster rises a little in a ring of its colour while motes arc across to the target. At the target a shaft of light falls, a rune ring climbs them, and they lift and glow. A boon shows the status's own glyph in its colour (Haste, Protect, and so on) and gives the screen a faint wash.
+- **A cure** wraps the target in white, blue and green motes that spiral up. Restored Sanity does the same in its blue.
+- **A bane** runs the other way: its ring closes in, its glyph sinks, and the target dims and shudders.
+- **A spell** begins with a circle on the ground and the caster wreathed in its element. The bolt rises out of the ground beside them, swells, then turns and arcs across to seek its foe. Spells now land about a fifth of a second later than before, and their impact sound moved with them.
+- **Spears and knives stab.** A shaft of light drives straight through the target, a point of light bursts where it goes in, and sparks spray out the far side. They have no slash and no rush streak.
+
 ## 2026-11-03 (implementation, Milestone 8co): pictures in the logs
 
 Josh: **"I wouldn't mind some symbology in the what's happened and combat logs, using sprite face icons and house sigils, or spear or sword icon for damage type or fire icon for fire damage or poison icon when someone gets poisoned"**.

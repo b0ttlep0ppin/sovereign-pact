@@ -88,7 +88,8 @@ export function soundsOf(ev: readonly Event[], units: ReadonlyMap<number, Replay
     else if (swing) add(swing, 0);
   }
   hits.slice(0, 3).forEach((h, i) => {
-    const at = (spell ? 380 : 170) + i * 90;
+    // A spell lands once it has risen beside its caster and crossed the field (BattleFx's IMPACT_MS).
+    const at = (spell ? 860 : 170) + i * 90;
     add(h.element ? `impact_${h.element}` : spell ? `impact_${element ?? "arcane"}` : blow, at);
     if (h.crit) add("crit", at + 30);
   });
