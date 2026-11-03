@@ -1,0 +1,43 @@
+{
+  "id": "apostate_bishop",
+  "name": "The Apostate Bishop",
+  "pool": "apostate_court",
+  "tags": ["humanoid", "cultist"],
+  "role": "boss",
+  "size": [1, 1],
+  "at": "E3",
+  "levels": [2, 3],
+  "stats": {"speed": 12, "hp": 5, "atk": 1.15},
+  "affinity": {"holy": -25, "dark": 50},
+  "immune": ["fear", "charm"],
+  "abilities": [
+    {"id": "censure", "shape": "single", "side": "player", "power": 1.2, "kind": "magic", "element": "dark", "reach": "ranged", "statuses": [{"id": "silence", "chance": 40, "ticks": 200}]},
+    {"id": "anathema", "shape": "single", "side": "player", "power": 0.5, "kind": "magic", "reach": "ranged", "sanity": 6, "cooldown": 2, "statuses": [{"id": "marked", "chance": 100, "ticks": 300}, {"id": "hex", "chance": 50, "ticks": 300}]},
+    {"id": "black_sacrament", "shape": "all", "side": "ally", "power": 0.8, "kind": "heal", "cooldown": 3},
+    {"id": "tithe_of_blood", "shape": "single", "side": "player", "power": 1.3, "kind": "magic", "element": "dark", "drain": 50, "reach": "ranged"},
+    {"id": "last_rites", "shape": "row", "side": "player", "power": 1.3, "kind": "magic", "element": "dark", "sanity": 8, "charge": 100, "telegraph": true, "cooldown": 2}
+  ],
+  "gambits": [
+    {"if": "ally.hp<0.5", "do": "black_sacrament"},
+    {"if": "!foe.marked", "do": "anathema", "target": "highest_might"},
+    {"if": "foe.marked", "do": "censure", "target": "marked"},
+    {"do": "censure", "target": "back_random"}
+  ],
+  "adds": [
+    {"spawn": ["court_heavy_brute"], "count": 2, "at": "E1"},
+    {"spawn": ["court_corrupt_cleric"], "count": 1, "at": "E2"}
+  ],
+  "phases": [
+    {"at": "adds<=1 || hp<=0.5", "name": "Excommunication", "speed": 13, "dispel": true, "say": "I unmake your blessings. I unmake your names. Kneel to nothing.", "gambits": [{"if": "ally.hp<0.5", "do": "black_sacrament"}, {"if": "turn%3==0", "do": "last_rites", "target": "densest_row"}, {"if": "foe.marked", "do": "tithe_of_blood", "target": "marked"}, {"do": "anathema", "target": "highest_might"}]},
+    {"at": "hp<=0.25", "name": "Last Rites", "speed": 15, "say": "Then I will say the rites over you myself.", "gambits": [{"if": "turn%2==0", "do": "last_rites", "target": "densest_row"}, {"do": "tithe_of_blood", "target": "lowest_hp"}]}
+  ],
+  "say": {
+    "open": "Pilgrims! Welcome to the true church. The collection plate is your veins.",
+    "death": "No god... there was never... any god..."
+  },
+  "bestiary": {
+    "lore": "He sold the sacrament for gold, then for blood, then for something that answered when he prayed.",
+    "weakness": "Kill his brutes and he is in the open; he is frail. Anathema marks one Scion: his censures follow it.",
+    "pattern": "Marks the strongest Scion with anathema (Hex) and censures the marked one (Silence); heals his flock when one is hurt. With one guard left, or at half, he strips the party's buffs, drinks blood from the marked and reads the last rites over a row; at 25% the rites come every other turn."
+  }
+}

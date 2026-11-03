@@ -1,0 +1,41 @@
+{
+  "id": "pale_sire",
+  "name": "The Pale Sire",
+  "pool": "beast_lands",
+  "tags": ["beast", "giant"],
+  "role": "boss",
+  "size": [2, 2],
+  "at": "E1",
+  "levels": [3, 4],
+  "stats": {"speed": 13, "hp": 10, "atk": 1.5},
+  "affinity": {"fire": -50, "earth": 25},
+  "immune": ["fear", "charm"],
+  "abilities": [
+    {"id": "gore", "shape": "single", "side": "player", "power": 1.3, "locationBias": "body", "statuses": [{"id": "bleed", "chance": 50, "ticks": 300}]},
+    {"id": "trample", "shape": "row", "side": "player", "power": 1.1, "charge": 80, "telegraph": true, "cooldown": 2, "statuses": [{"id": "knockdown", "chance": 40, "ticks": 100}]},
+    {"id": "wallow", "shape": "self", "side": "self", "power": 0, "kind": "support", "statuses": [{"id": "regen", "chance": 100, "ticks": 300}, {"id": "guard_up", "chance": 100, "ticks": 300, "value": 25}], "cooldown": 4},
+    {"id": "herd_call", "shape": "all", "side": "ally", "power": 0, "kind": "support", "statuses": [{"id": "might_up", "chance": 100, "ticks": 300, "value": 20}], "cooldown": 4},
+    {"id": "stampede", "shape": "band:3", "side": "player", "power": 1.4, "charge": 120, "telegraph": true, "cooldown": 2, "statuses": [{"id": "knockdown", "chance": 50, "ticks": 100}]}
+  ],
+  "gambits": [
+    {"if": "turn%3==0", "do": "trample", "target": "densest_row"},
+    {"if": "turn%4==1", "do": "herd_call"},
+    {"do": "gore", "target": "column_weighted"}
+  ],
+  "adds": [
+    {"spawn": ["beast_wild_boar"], "count": 2, "at": "E2"}
+  ],
+  "phases": [
+    {"at": "hp<=0.6", "name": "Farrowing", "speed": 12, "adds": {"spawn": ["beast_wild_boar"], "count": 2, "at": "E2"}, "say": "(He screams. Something in the brush screams back, and comes.)", "gambits": [{"if": "turn%3==0", "do": "trample", "target": "densest_row"}, {"if": "turn%4==1", "do": "wallow"}, {"if": "turn%4==3", "do": "herd_call"}, {"do": "gore", "target": "lowest_hp"}]},
+    {"at": "hp<=0.25", "name": "The Last Run", "speed": 15, "say": "(Foam and blood at the tusks. He lowers his head and does not stop again.)", "gambits": [{"if": "turn%2==0", "do": "stampede", "target": "densest_row"}, {"do": "gore", "target": "lowest_hp"}]}
+  ],
+  "say": {
+    "open": "(A boar the size of a cart, white as a drowned thing, rises from the wallow. His get are all around you.)",
+    "death": "(He goes down slowly. The young boars nose at him for a long time.)"
+  },
+  "bestiary": {
+    "lore": "Every boar in the Beast Lands is his get, the hunters say, and every one of them was fed on something that walked upright.",
+    "weakness": "Fire. Kill his young and he cannot call the herd's strength.",
+    "pattern": "Tramples a row every third turn with warning and rallies his young every few turns. At 60% two more boars break from the brush and he wallows to heal; at 25% he stampedes three rows every other turn."
+  }
+}

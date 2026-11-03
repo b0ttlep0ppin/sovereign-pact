@@ -1,0 +1,42 @@
+{
+  "id": "sahagin_chief",
+  "name": "The Sahagin Chief",
+  "pool": "drowned_marches",
+  "tags": ["aquatic", "humanoid"],
+  "role": "boss",
+  "size": [1, 1],
+  "at": "E2",
+  "levels": [2, 3],
+  "stats": {"speed": 13, "hp": 7, "atk": 1.3},
+  "affinity": {"water": 75, "fire": 25, "wind": -50},
+  "immune": ["fear"],
+  "abilities": [
+    {"id": "trident", "shape": "single", "side": "player", "power": 1.3, "reach": "reach", "statuses": [{"id": "bleed", "chance": 30, "ticks": 300}]},
+    {"id": "harpoon", "shape": "single", "side": "player", "power": 0.9, "reach": "ranged", "pull": 1, "cooldown": 2},
+    {"id": "war_conch", "shape": "all", "side": "ally", "power": 0, "kind": "support", "statuses": [{"id": "haste", "chance": 100, "ticks": 200}], "cooldown": 4},
+    {"id": "tide_call", "shape": "row", "side": "player", "power": 1.0, "kind": "magic", "element": "water", "charge": 80, "telegraph": true, "cooldown": 2, "statuses": [{"id": "slow", "chance": 40, "ticks": 200}]},
+    {"id": "drowning_rite", "shape": "single", "side": "player", "power": 1.6, "kind": "magic", "element": "water", "sanity": 8, "charge": 100, "telegraph": true, "cooldown": 2}
+  ],
+  "gambits": [
+    {"if": "turn%4==1", "do": "war_conch"},
+    {"if": "turn%3==0", "do": "harpoon", "target": "back_random"},
+    {"do": "trident", "target": "column_weighted"}
+  ],
+  "adds": [
+    {"spawn": ["marsh_sahagin"], "count": 3, "at": "E1"},
+    {"spawn": ["marsh_siren"], "count": 1, "at": "E3"}
+  ],
+  "phases": [
+    {"at": "adds<=1 || hp<=0.5", "name": "The Undertow", "speed": 14, "say": "Into the water with them. The water keeps what it is given.", "gambits": [{"if": "turn%3==0", "do": "tide_call", "target": "densest_row"}, {"if": "turn%3==1", "do": "harpoon", "target": "back_random"}, {"do": "trident", "target": "lowest_hp"}]},
+    {"at": "hp<=0.25", "name": "Drowning Rite", "speed": 15, "say": "Hold them under. Hold them. Hold.", "gambits": [{"if": "turn%2==0", "do": "drowning_rite", "target": "lowest_hp"}, {"do": "trident", "target": "lowest_hp"}]}
+  ],
+  "say": {
+    "open": "Land-meat. You walked into the deep part of the marsh. Everyone does, once.",
+    "death": "The water... will remember my name..."
+  },
+  "bestiary": {
+    "lore": "The chief of the drowned folk wears a crown of finger bones, and every finger was a fisher's.",
+    "weakness": "Wind. Kill his warriors and he comes into the open.",
+    "pattern": "Blows the war conch to haste his warriors every few turns and harpoons a Back Scion forward. With one warrior left, or at half, he calls the tide across a row; at 25% he holds the weakest Scion under, a telegraphed blow that also takes Sanity."
+  }
+}

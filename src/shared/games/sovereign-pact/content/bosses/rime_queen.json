@@ -1,0 +1,43 @@
+{
+  "id": "rime_queen",
+  "name": "The Rime Queen",
+  "pool": "deep_cold",
+  "tags": ["ice", "spirit", "royal"],
+  "role": "boss",
+  "size": [1, 1],
+  "at": "E3",
+  "levels": [3, 4],
+  "stats": {"speed": 12, "hp": 6, "atk": 1.15},
+  "affinity": {"fire": -75, "water": 75, "wind": 50},
+  "immune": ["frozen", "slow", "fear"],
+  "abilities": [
+    {"id": "frost_kiss", "shape": "single", "side": "player", "power": 1.3, "kind": "magic", "element": "water", "reach": "ranged", "statuses": [{"id": "frozen", "chance": 25, "ticks": 100}]},
+    {"id": "hoarfrost", "shape": "column:F", "side": "player", "power": 0.9, "kind": "magic", "element": "water", "cooldown": 2, "statuses": [{"id": "slow", "chance": 50, "ticks": 200}]},
+    {"id": "mirror_of_ice", "shape": "self", "side": "self", "power": 0, "kind": "support", "statuses": [{"id": "reflect", "chance": 100, "ticks": 0}, {"id": "shell", "chance": 100, "ticks": 300}], "cooldown": 5},
+    {"id": "blizzard", "shape": "band:3", "side": "player", "power": 1.2, "kind": "magic", "element": "water", "charge": 100, "telegraph": true, "cooldown": 3, "statuses": [{"id": "frozen", "chance": 25, "ticks": 100}]},
+    {"id": "white_silence", "shape": "all", "side": "player", "power": 1.0, "kind": "magic", "element": "water", "sanity": 10, "charge": 150, "telegraph": true, "cooldown": 3, "statuses": [{"id": "silence", "chance": 40, "ticks": 200}]}
+  ],
+  "gambits": [
+    {"if": "turn==1", "do": "mirror_of_ice"},
+    {"if": "turn%3==0", "do": "blizzard", "target": "densest_row"},
+    {"if": "turn%3==1", "do": "hoarfrost"},
+    {"do": "frost_kiss", "target": "highest_might"}
+  ],
+  "adds": [
+    {"spawn": ["cold_frost_slime"], "count": 2, "at": "E1"},
+    {"spawn": ["cold_winter_fairy"], "count": 1, "at": "E2"}
+  ],
+  "phases": [
+    {"at": "hp<=0.6", "name": "The Long Night", "speed": 13, "dispel": true, "say": "Your little fires go out. All of them. One by one.", "gambits": [{"if": "turn%4==2", "do": "mirror_of_ice"}, {"if": "turn%3==0", "do": "blizzard", "target": "densest_row"}, {"if": "turn%3==1", "do": "hoarfrost"}, {"do": "frost_kiss", "target": "lowest_hp"}]},
+    {"at": "hp<=0.3", "name": "White Silence", "speed": 15, "say": "Hush. Sleep. The snow will cover you kindly.", "gambits": [{"if": "turn%2==0", "do": "white_silence"}, {"if": "turn%3==1", "do": "blizzard", "target": "densest_row"}, {"do": "frost_kiss", "target": "lowest_hp"}]}
+  ],
+  "say": {
+    "open": "So warm. So loud. Come here and let me quiet you.",
+    "death": "Spring... I had forgotten... spring..."
+  },
+  "bestiary": {
+    "lore": "A bride who walked into the snow on her wedding night rather than marry. The snow married her instead.",
+    "weakness": "Fire, and only fire. Her mirror turns the next spell back: break it with a blow first.",
+    "pattern": "Raises a mirror of ice on her first turn (Reflect, Shell), a blizzard across three rows every third turn, hoarfrost on the Front. At 60% she strips the party's buffs; at 30% a white silence falls on everyone every other turn (Silence, Sanity)."
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "id": "wight_king",
+  "name": "The Wight King",
+  "pool": "barrows",
+  "tags": ["undead", "humanoid", "royal"],
+  "role": "boss",
+  "size": [1, 1],
+  "at": "E2",
+  "levels": [2, 3],
+  "stats": {"speed": 11, "hp": 6, "atk": 1.1, "sanityTouch": 1},
+  "affinity": {"holy": -75, "fire": -25, "dark": 75},
+  "immune": ["poison", "fear", "bleed", "sleep"],
+  "abilities": [
+    {"id": "grave_blade", "shape": "single", "side": "player", "power": 1.3, "sanity": 4},
+    {"id": "chill_touch", "shape": "single", "side": "player", "power": 1.0, "kind": "magic", "element": "dark", "reach": "ranged", "drain": 30, "statuses": [{"id": "slow", "chance": 50, "ticks": 200}]},
+    {"id": "crown_of_dread", "shape": "all", "side": "player", "power": 0, "kind": "magic", "sanity": 10, "cooldown": 3, "statuses": [{"id": "fear", "chance": 30, "ticks": 200}]},
+    {"id": "raise_the_fallen", "shape": "single", "side": "ally", "power": 0, "kind": "support", "raise": 50, "cooldown": 3},
+    {"id": "cold_court", "shape": "band:3", "side": "player", "power": 1.2, "kind": "magic", "element": "dark", "charge": 100, "telegraph": true, "cooldown": 2, "statuses": [{"id": "slow", "chance": 40, "ticks": 200}]}
+  ],
+  "gambits": [
+    {"if": "fallen>=1 && turn%3==2", "do": "raise_the_fallen"},
+    {"if": "turn%4==0", "do": "crown_of_dread"},
+    {"if": "turn%3==1", "do": "chill_touch", "target": "lowest_hp"},
+    {"do": "grave_blade", "target": "column_weighted"}
+  ],
+  "adds": [
+    {"spawn": ["barrow_skeleton"], "count": 2, "at": "E1"},
+    {"spawn": ["barrow_cursed_archer"], "count": 1, "at": "E3"}
+  ],
+  "phases": [
+    {"at": "hp<=0.6", "name": "The Dead Rise", "speed": 12, "adds": {"spawn": ["barrow_zombie"], "count": 2, "at": "E1"}, "say": "Rise. Your king has need of you again. He always will.", "gambits": [{"if": "fallen>=1 && turn%3==2", "do": "raise_the_fallen"}, {"if": "turn%3==0", "do": "cold_court", "target": "densest_row"}, {"if": "turn%4==1", "do": "crown_of_dread"}, {"do": "grave_blade", "target": "lowest_hp"}]},
+    {"at": "hp<=0.3", "name": "The Cold Crown", "speed": 14, "say": "Kneel. Kneel and be my court forever.", "gambits": [{"if": "turn%2==0", "do": "cold_court", "target": "densest_row"}, {"if": "turn%3==1", "do": "crown_of_dread"}, {"do": "chill_touch", "target": "lowest_hp"}]}
+  ],
+  "say": {
+    "open": "Who comes to my hall without kneeling? Ah. More subjects.",
+    "death": "My crown... someone... take up my crown..."
+  },
+  "bestiary": {
+    "lore": "A king buried with his household, alive, so they could serve him below. They still do.",
+    "weakness": "Holy, and fire. Break the dead for good before he raises them.",
+    "pattern": "Raises a fallen skeleton or zombie every third turn while any lie broken, and wears the crown of dread (Fear, Sanity) every fourth. At 60% two zombies claw up from the floor and a cold band of dark falls across three rows; at 30% it falls every other turn."
+  }
+}
