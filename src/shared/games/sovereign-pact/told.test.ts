@@ -46,13 +46,12 @@ describe("the outcome card (told.ts)", () => {
   });
 
 
-  it("never wastes a restore on a party already whole: it waits for the next battle (Josh: 'Nothing you can see has changed')", () => {
+  it("says when a restore finds the party already whole (Josh: 'it just has to say they are healed (full hp)')", () => {
     const s = underway(1);
     for (const c of Object.values(s.expedition!.carry)) delete c.hurt;
     resolve(s, option("leader", { to: "party", hp: 10 }));
     const lines = s.expedition!.told!.parts.at(-1)!.lines.map((l) => l.text);
-    expect(lines).toContain("The party, already whole: it waits for the next battle as Regen (HP back each moment).");
-    for (const id of s.expedition!.party.flatMap((x) => x ?? [])) expect(s.expedition!.carry[id]?.start).toContain("regen");
+    expect(lines).toContain("The party is already at full HP.");
   });
 
   it("tells what an outcome did: wounds to all, Sanity and a House's stores to that House alone", () => {
