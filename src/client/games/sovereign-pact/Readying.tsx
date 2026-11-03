@@ -25,6 +25,8 @@ export const SLOT_NAMES: Record<Slot, string> = {
   acc1: "Accessory",
   acc2: "Accessory",
 };
+/** What putting something on sounds like, by where it goes. */
+const SLOT_SOUNDS: Record<Slot, string> = { main: "equip_blade", off: "equip_blade", head: "equip_helm", body: "equip_mail", arms: "equip_mail", legs: "equip_mail", acc1: "equip_trinket", acc2: "equip_trinket" };
 /** The paper doll: armor down the left, hands and trinkets down the right. */
 const LEFT: Slot[] = ["head", "body", "arms", "legs"];
 const RIGHT: Slot[] = ["main", "off", "acc1", "acc2"];
@@ -142,7 +144,7 @@ function Jobs({ p, send, canAct }: { p: Person; send: (m: SovMove) => void; canA
           const st = state(j.id);
           return (
             <li key={j.id}>
-              <button type="button" className={`sp-jobs__job is-${st}${shown === j.id ? " is-shown" : ""}`} aria-pressed={shown === j.id} title={`${j.name}: ${st === "locked" ? "not open yet" : st}`} onClick={() => setShown(j.id)}>
+              <button type="button" className={`sp-jobs__job is-${st}${shown === j.id ? " is-shown" : ""}`} data-sfx={st === "locked" ? "ui_deny" : "ui_page"} aria-pressed={shown === j.id} title={`${j.name}: ${st === "locked" ? "not open yet" : st}`} onClick={() => setShown(j.id)}>
                 <PixelArt rows={JOB_ICONS[j.id]} size={30} color={st === "current" ? GILT : BONE} />
                 <span>{j.name}</span>
                 <small>{st === "mastered" ? "Mastered" : st === "locked" ? "Locked" : `${kit.jp[j.id] ?? 0} JP`}</small>
@@ -164,7 +166,7 @@ function Jobs({ p, send, canAct }: { p: Person; send: (m: SovMove) => void; canA
             </small>
           </h3>
           {canAct && (state(job.id) === "open" || (state(job.id) === "mastered" && job.id !== p.job && open.has(job.id))) ? (
-            <button type="button" className="sp-button sp-button--quiet" onClick={() => send({ type: "take_job", person: p.id, job: job.id })}>
+            <button type="button" className="sp-button sp-button--quiet" data-sfx="job" onClick={() => send({ type: "take_job", person: p.id, job: job.id })}>
               Take Job
             </button>
           ) : null}
@@ -181,7 +183,7 @@ function Jobs({ p, send, canAct }: { p: Person; send: (m: SovMove) => void; canA
                   {has ? (
                     <small>Known</small>
                   ) : job.id === p.job ? (
-                    <button type="button" className="sp-button sp-button--quiet" disabled={!canAct || a.jp > jpHere} onClick={() => send({ type: "learn", person: p.id, ability: a.id })}>
+                    <button type="button" className="sp-button sp-button--quiet" data-sfx="learn" disabled={!canAct || a.jp > jpHere} onClick={() => send({ type: "learn", person: p.id, ability: a.id })}>
                       Learn, {a.jp} JP
                     </button>
                   ) : (
@@ -208,12 +210,12 @@ function GearSlot({ slot, p, view, send, canAct }: { slot: Slot; p: Person; view
       {worn ? <ItemLine item={worn} /> : <span className="sp-event__status">empty</span>}
       <span className="sp-bid">
         {worn && canAct && !worn.cursed ? (
-          <button type="button" className="sp-button sp-button--quiet" onClick={() => send({ type: "unequip", person: p.id, slot })}>
+          <button type="button" className="sp-button sp-button--quiet" data-sfx="equip_doff" onClick={() => send({ type: "unequip", person: p.id, slot })}>
             Take off
           </button>
         ) : null}
         {fits.length && canAct ? (
-          <select value="" aria-label={`Wear in ${SLOT_NAMES[slot]}`} onChange={(e) => e.target.value && send({ type: "equip", person: p.id, item: Number(e.target.value), slot })}>
+          <select value="" data-sfx={SLOT_SOUNDS[slot]} aria-label={`Wear in ${SLOT_NAMES[slot]}`} onChange={(e) => e.target.value && send({ type: "equip", person: p.id, item: Number(e.target.value), slot })}>
             <option value="">Wear…</option>
             {fits.map((i) => (
               <option key={i.id} value={i.id}>

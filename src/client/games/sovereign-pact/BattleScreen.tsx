@@ -14,6 +14,7 @@ import { spriteOf } from "./sprites";
 import { BattleLine } from "./LogIcons";
 import { statusAbout, statusLook, tintOf } from "./statusLook";
 import { injuryCue, playSounds, soundsOf } from "./sfx";
+import { uiSound } from "./uiSound";
 import "./BattleScreen.css";
 
 type Event = Replay["frames"][number]["ev"][number];
@@ -230,8 +231,15 @@ export default function BattleScreen({ replay, view, onClose, waiting = 0, fullL
     const [, , , , , col, row] = vit.get(u.id)!;
     return aiming?.cells.find((c) => c.side === u.side && c.col >= col && c.col < col + u.size[0] && c.row >= row && c.row < row + u.size[1]);
   };
+  // The aim's cursor steps from target to target with a tick.
+  const moveCursor = (k: number) => {
+    if (!aiming || k < 0 || k === aiming.cursor) return;
+    uiSound("ui_move");
+    setAiming({ ...aiming, cursor: k });
+  };
   const fire = (c: Cell) => {
     if (!aiming || !live) return;
+    uiSound("ui_confirm");
     live.send(aiming.send(c));
     setAiming(null);
   };
@@ -309,7 +317,7 @@ export default function BattleScreen({ replay, view, onClose, waiting = 0, fullL
         onClick={aimed ? () => fire(aimed) : undefined}
         onMouseEnter={() => {
           setHover(u.id);
-          if (aimed && aiming) setAiming({ ...aiming, cursor: aiming.cells.findIndex((c) => same(c, aimed)) });
+          if (aimed && aiming) moveCursor(aiming.cells.findIndex((c) => same(c, aimed)));
         }}
         onMouseLeave={() => setHover((h) => (h === u.id ? null : h))}
         className={`sp-unit sp-unit--${u.side}${aimed ? " is-targetable" : ""}${cursor ? " is-cursor" : ""}${hover === u.id ? " is-hovered" : ""}${u.boss ? " is-boss" : ""}${u.hazard ? " is-hazard" : ""}${actor === u.id ? " is-acting" : ""}${flags & FLAG.charging ? " is-charging" : ""}${tint ? " is-tinted" : ""}${state}`}
@@ -384,7 +392,7 @@ export default function BattleScreen({ replay, view, onClose, waiting = 0, fullL
             className={cls}
             style={{ gridColumn: x + 1, gridRow: row + 1 }}
             onClick={k >= 0 ? () => fire({ side: s, col, row }) : undefined}
-            onMouseEnter={k >= 0 && aiming && k !== aiming.cursor ? () => setAiming({ ...aiming, cursor: k }) : undefined}
+            onMouseEnter={k >= 0 && aiming && k !== aiming.cursor ? () => moveCursor(k) : undefined}
           />
         );
       })}
@@ -407,11 +415,13 @@ export default function BattleScreen({ replay, view, onClose, waiting = 0, fullL
     }
     if (aiming) {
       const n = aiming.cells.length;
-      if (e.key === "ArrowRight" || e.key === "ArrowDown") setAiming({ ...aiming, cursor: (aiming.cursor + 1) % n });
-      else if (e.key === "ArrowLeft" || e.key === "ArrowUp") setAiming({ ...aiming, cursor: (aiming.cursor + n - 1) % n });
+      if (e.key === "ArrowRight" || e.key === "ArrowDown") moveCursor((aiming.cursor + 1) % n);
+      else if (e.key === "ArrowLeft" || e.key === "ArrowUp") moveCursor((aiming.cursor + n - 1) % n);
       else if (e.key === "Enter") fire(aiming.cells[aiming.cursor]!);
-      else if (e.key === "Escape") setAiming(null);
-      else return;
+      else if (e.key === "Escape") {
+        uiSound("ui_back");
+        setAiming(null);
+      } else return;
       e.preventDefault();
       return;
     }

@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Sound cues: which BOOM Library file each battle cue's takes are cut from (SPEC §16.1, §17)",
+  "title": "Sound cues: which BOOM Library file each battle or menu cue's takes are cut from (SPEC §16.1, §17)",
   "type": "object",
   "additionalProperties": false,
   "required": ["cues"],
@@ -16,7 +16,8 @@
           "id": { "$ref": "defs.schema.json#/definitions/id" },
           "source": { "type": "string", "pattern": "^((Medieval Weapons|Close Combat|Creature Foley|Magic|Magic - Arcane Forces|Free Sounds - Death Whistle)( - (Designed|Construction Kit))?/.+\\.wav|synth:dice)$" },
           "takes": { "type": "integer", "minimum": 1, "maximum": 4 },
-          "max": { "type": "number", "exclusiveMinimum": 0, "maximum": 4 }
+          "max": { "type": "number", "exclusiveMinimum": 0, "maximum": 4 },
+          "peak": { "description": "A menu cue's takes are matched by their loudest point to this many dBFS, not by loudness (a click is too short to measure); absent, battle cues are matched to -16 LUFS.", "type": "number", "minimum": -30, "maximum": -1 }
         }
       }
     }

@@ -330,12 +330,14 @@ export interface SpriteDef {
 export const SPRITES = spritesJson.sprites as readonly SpriteDef[];
 export const SPRITE_BY_ID: ReadonlyMap<string, SpriteDef> = new Map(SPRITES.map((s) => [s.id, s]));
 
-/** A battle sound cue (§16.1): content/audio/sfx.json, the BOOM file its takes are cut from (tools/cut-sfx.py). */
+/** A battle or menu sound cue (§16.1): content/audio/sfx.json, the BOOM file its takes are cut from (tools/cut-sfx.py). */
 export interface SfxCue {
   id: string;
   source: string;
   takes: number;
   max: number;
+  /** A menu cue's loudest point in dBFS: its takes are matched by peak, not by loudness (-16 LUFS when absent). */
+  peak?: number;
 }
 export const SFX = sfxJson.cues as readonly SfxCue[];
 export const SFX_BY_ID: ReadonlyMap<string, SfxCue> = new Map(SFX.map((c) => [c.id, c]));

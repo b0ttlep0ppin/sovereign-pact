@@ -115,26 +115,27 @@ export const injuryCue = (result: string): string => (DREADFUL.has(result) ? "dr
 export const sfxUrl = (cue: string, take: number): string => `${import.meta.env.BASE_URL ?? "./"}sfx/sovereign-pact/${cue}-${take}.ogg`;
 
 /** Test runners and browsers without media playback get no sound. */
-const canPlay = (): boolean => typeof Audio !== "undefined" && !globalThis.navigator?.userAgent?.includes("jsdom");
+export const canPlay = (): boolean => typeof Audio !== "undefined" && !globalThis.navigator?.userAgent?.includes("jsdom");
 
-/** Plays the turn's sounds: a random take of each cue, its pitch nudged ±5% so repeats differ (§16.1). Returns a cancel. */
+/** Plays a random take of `cue`, its pitch nudged ±5% so repeats differ (§16.1). */
+export function playCue(cue: string, volume: number): void {
+  const takes = Content.SFX_BY_ID.get(cue)?.takes ?? 1;
+  const play = (take: number) => {
+    const audio = new Audio(sfxUrl(cue, take));
+    audio.volume = Math.min(1, volume);
+    audio.preservesPitch = false;
+    audio.playbackRate = 0.95 + Math.random() * 0.1;
+    // A build that ships only each cue's first take (the playable artifact) falls back to it, so a
+    // miss or a monster's blow is never silent (Josh: "need miss sound effects", "when enemies hit us").
+    if (take > 1) audio.addEventListener("error", () => play(1), { once: true });
+    audio.play().catch(() => undefined);
+  };
+  play(1 + Math.floor(Math.random() * takes));
+}
+
+/** Plays the turn's sounds, each at its time. Returns a cancel. */
 export function playSounds(sounds: readonly Sound[], volume: number, speed = 1): () => void {
   if (!canPlay() || volume <= 0) return () => undefined;
-  const timers = sounds.map(({ cue, at }) =>
-    setTimeout(() => {
-      const takes = Content.SFX_BY_ID.get(cue)?.takes ?? 1;
-      const play = (take: number) => {
-        const audio = new Audio(sfxUrl(cue, take));
-        audio.volume = volume;
-        audio.preservesPitch = false;
-        audio.playbackRate = 0.95 + Math.random() * 0.1;
-        // A build that ships only each cue's first take (the playable artifact) falls back to it, so a
-        // miss or a monster's blow is never silent (Josh: "need miss sound effects", "when enemies hit us").
-        if (take > 1) audio.addEventListener("error", () => play(1), { once: true });
-        audio.play().catch(() => undefined);
-      };
-      play(1 + Math.floor(Math.random() * takes));
-    }, at / speed),
-  );
+  const timers = sounds.map(({ cue, at }) => setTimeout(() => playCue(cue, volume), at / speed));
   return () => timers.forEach(clearTimeout);
 }

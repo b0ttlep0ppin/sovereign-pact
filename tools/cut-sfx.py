@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""Cuts the battle sound cues the game ships from the BOOM Library packs (SPEC §16.1).
+"""Cuts the battle and menu sound cues the game ships from the BOOM Library packs (SPEC §16.1).
 
 Reads content/audio/sfx.json (each cue's id, source file, number of takes and longest length). A BOOM
 "Designed" file holds several variations of one sound with silence between them: this finds them, keeps
 the first `takes`, trims each to `max` seconds with a short fade, folds it to mono at 44.1 kHz, matches
-loudness to -16 LUFS and writes public/sfx/sovereign-pact/<id>-<n>.ogg (Vorbis, q4). The packs
+loudness to -16 LUFS (a menu cue, too short to measure, has its loudest point set to its `peak` dBFS instead) and writes public/sfx/sovereign-pact/<id>-<n>.ogg (Vorbis, q4). The packs
 themselves never go in the repo (their license forbids redistributing the sounds as they are).
 
 A cue whose source is "synth:<name>" is made here instead (the BOOM packs have no dice): see synth().
@@ -49,6 +49,12 @@ def variations(path: Path) -> list[tuple[float, float]]:
         if end - start > 0.08:
             spans.append((start, end))
     return spans
+
+
+def peak_of(path: Path, at: float, length: float, chain: str) -> float:
+    """The loudest point, in dBFS, of a stretch of the file after `chain`."""
+    r = subprocess.run(["ffmpeg", "-nostdin", "-hide_banner", "-ss", f"{at:.3f}", "-t", f"{length:.3f}", "-i", str(path), "-af", f"{chain},volumedetect", "-f", "null", "-"], capture_output=True, text=True)
+    return float(re.search(r"max_volume: (-?[0-9.]+) dB", r.stderr).group(1))
 
 
 def synth(name: str, take: int, wav: Path) -> None:
@@ -101,10 +107,16 @@ for cue in manifest["cues"]:
     for n, (a, b) in enumerate(spans, 1):
         a = max(0.0, a - 0.01)
         length = min(b - a, cue["max"])
-        fade = f"afade=t=out:st={max(0.0, length - FADE):.3f}:d={FADE}"
+        # A click is shorter than the usual fade: it fades over its last third.
+        tail = min(FADE, length / 3) if "peak" in cue else FADE
+        fade = f"afade=t=out:st={max(0.0, length - tail):.3f}:d={tail:.3f},pan=mono|c0=0.5*c0+0.5*c1,aresample=44100"
+        if "peak" in cue:
+            loud = f"volume={cue['peak'] - peak_of(src, a, length, fade):.2f}dB"
+        else:
+            loud = "loudnorm=I=-16:TP=-1.5:LRA=11"
         subprocess.run(
             ["ffmpeg", "-nostdin", "-v", "error", "-y", "-ss", f"{a:.3f}", "-t", f"{length:.3f}", "-i", str(src),
-             "-af", f"{fade},pan=mono|c0=0.5*c0+0.5*c1,loudnorm=I=-16:TP=-1.5:LRA=11", "-ar", "44100",
+             "-af", f"{fade},{loud}", "-ar", "44100",
              "-c:a", "libvorbis", "-q:a", "4", str(out / f"{cue['id']}-{n}.ogg")],
             check=True,
         )
