@@ -2,6 +2,14 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-03 (implementation, Milestone 8cg): eight Crises, and omens of the four arc bosses
+
+Josh: **"Some of these can also be ominous fore shadowing of events to come later in the time line"**, and **"some events that have a chance to increase accord or reduce doom"**.
+- **Eight new Crises**, two of them only in their arc's run-up: the Wolf Winter (Years 1–6, before the Siege Beast), the Debt of the Crown (6–10, the Cursed King's drowned collectors), the Hollow Harvest (10–15, the Unknown Mother's pale seeds), the Rift Storm (12–20); and the Ossuary Collapse, the Drowning Flood, the Sleeping Sickness and the Cathedral Bleeds at any time. Each Triumph cuts Doom or raises Accord; each Calamity costs Scions, buildings or Doom. Most have a private temptation.
+- **Eleven arc omens**, each in the Years before its boss. Siege Beast: *Hoofprints in the Snow* (chains *The Beast Calls*). Cursed King: *The Drowned King's Tax* (paying chains *The King's Favour* for that House), *Dreams of a Drowned Crown*. Unknown Mother: *Seeds in the Granary* (planting chains *The Fields Sing*), *The Midwives' Ledger* (an accusation). End Ruler: *The Empty Throne*, *The Pact's Ink Runs* (a vote), *Voices from the Gate*. They foreshadow in text and in what they leave behind (marks, curses, Doom); none changes the boss fights yet.
+- A chained follow-up meant for one House is a House event, since a settlement event drawn from the timeline is opened for everyone.
+- Bot campaigns (sim, 2 Houses, 6 seeds) still lose every time; Accord now collapses first in 3 of 6 rather than 1, which the Commons Council work should give players the levers to answer.
+
 ## 2026-11-03 (implementation, Milestone 8cf): the first macabre batch, omens that come back, relics found only in town
 
 Josh: **"Some of these can also be ominous fore shadowing of events to come later in the time line"**, **"powerful artifacts up for grabs"**, and settlement events **"repeat constantly"**.

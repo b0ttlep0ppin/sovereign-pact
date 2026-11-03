@@ -1,0 +1,86 @@
+{
+  "id": "crown_dreams",
+  "scope": "settlement",
+  "weight": 2,
+  "years": [
+    7,
+    9
+  ],
+  "title": "Dreams of a Drowned Crown",
+  "text": "In every Seat on the same night, someone dreams of the same palace: green water in the throne room, courtiers with their eyes eaten, and on the throne a King with his crown nailed on. He beckons. In the morning, the dreamers' pillows are wet.",
+  "rule": "each_house",
+  "options": [
+    {
+      "id": "listen",
+      "label": "Let them dream it again, and write it down.",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "Night after night they walk the drowned palace and map it. They come to know its every door. They come to know its King, too, and he them.",
+          "effects": [
+            {
+              "scion": {
+                "who": "eldest",
+                "xp": 80,
+                "jp": 80,
+                "sanity": -20
+              }
+            },
+            {
+              "score": {
+                "lore": 2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "chapel",
+      "label": "Have the chapel keep a vigil over the dreamer.",
+      "tags": [
+        "kind"
+      ],
+      "cost": {
+        "resources": {
+          "gold": 10
+        }
+      },
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "The priests sit by the bed and sing. The dreamer sleeps without dreams, and the King's face on the throne turns to look for someone else.",
+          "effects": [
+            {
+              "doom": -1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wake",
+      "label": "Wake them every hour until it stops.",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "It stops. The dreamer is short-tempered for a month and will not go near water.",
+          "effects": [
+            {
+              "scion": {
+                "who": "eldest",
+                "sanity": -5
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

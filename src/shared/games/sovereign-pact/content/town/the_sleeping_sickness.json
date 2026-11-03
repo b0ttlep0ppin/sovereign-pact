@@ -1,0 +1,78 @@
+{
+  "id": "the_sleeping_sickness",
+  "scope": "settlement",
+  "weight": 2,
+  "years": [
+    1,
+    20
+  ],
+  "title": "The Sleeping Sickness",
+  "text": "Half the city went to bed three nights ago and has not woken. They breathe, they turn over, they smile, and their eyes move under the lids as though they are watching something together. The physicians want gold for their tinctures and grain to keep the wakers fed while they tend the sleepers.",
+  "rule": "pledges",
+  "crisis": {
+    "need": {
+      "gold": 30,
+      "grain": 20
+    },
+    "temptation": {
+      "label": "Hire the sleepers out to the dream-readers.",
+      "text": "The readers pay well to sit by the beds and write down what the sleepers say. What they say is the same for all of them.",
+      "penalty": 15,
+      "effects": [
+        {
+          "resources": {
+            "gold": 25
+          }
+        },
+        {
+          "doom": 1
+        }
+      ]
+    },
+    "triumph": {
+      "text": "The physicians wake them one by one. Every one of them, waking, says the same word, and none of them remember it after.",
+      "effects": [
+        {
+          "accord": 3
+        },
+        {
+          "doom": -1
+        }
+      ]
+    },
+    "holds": {
+      "text": "Most wake within the month. A few never do, and their families keep them in the attic and listen to them laugh.",
+      "effects": []
+    },
+    "falters": {
+      "text": "The sickness reaches the Seats. One House's Scion sleeps for a season, and wakes knowing things they should not.",
+      "effects": [
+        {
+          "accord": -5
+        },
+        {
+          "to": "random",
+          "scion": {
+            "sanity": -30,
+            "trait": "+veiled_sight"
+          }
+        }
+      ]
+    },
+    "calamity": {
+      "text": "The city sleeps through a whole season. The ones who stay awake keep the fires lit and do not look at the sleepers' faces, which are all turned the same way: towards the Gate.",
+      "effects": [
+        {
+          "accord": -12
+        },
+        {
+          "doom": 4
+        },
+        {
+          "to": "all",
+          "sanity": -20
+        }
+      ]
+    }
+  }
+}

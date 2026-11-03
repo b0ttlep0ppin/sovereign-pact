@@ -1,0 +1,87 @@
+{
+  "id": "the_drowning_flood",
+  "scope": "settlement",
+  "weight": 2,
+  "years": [
+    1,
+    20
+  ],
+  "title": "The Drowning Flood",
+  "text": "The river has risen over the low town in a single night, and it is not giving the low town back. People who wade in to help come up gasping and swear something held their ankles. Timber for the levees, stone for the weirs, and quickly.",
+  "rule": "pledges",
+  "crisis": {
+    "need": {
+      "timber": 25,
+      "stone": 20
+    },
+    "temptation": {
+      "label": "Buy up the drowned quarter's deeds for a song.",
+      "text": "The owners are dead or desperate. In a year, when the water goes down, you will own half the low town.",
+      "penalty": 15,
+      "effects": [
+        {
+          "resources": {
+            "gold": 20
+          }
+        },
+        {
+          "score": {
+            "holdings": 2
+          }
+        }
+      ]
+    },
+    "triumph": {
+      "text": "The levees hold and the river goes back into its bed. On the mud it leaves are a thousand footprints, all walking back into the water.",
+      "effects": [
+        {
+          "accord": 3
+        }
+      ]
+    },
+    "holds": {
+      "text": "The water goes down in its own time. The low town smells of it for a year.",
+      "effects": [
+        {
+          "resources": {
+            "grain": -5
+          },
+          "to": "all"
+        }
+      ]
+    },
+    "falters": {
+      "text": "The low town is lost to the water for a season. The drowned float at the windows of their own houses and knock to be let in.",
+      "effects": [
+        {
+          "accord": -5
+        },
+        {
+          "resources": {
+            "grain": -10,
+            "timber": -5
+          },
+          "to": "all"
+        }
+      ]
+    },
+    "calamity": {
+      "text": "The river takes the low town and keeps it. Its new bells ring under the water every evening, and some of the Scions who heard them walk into the river after them.",
+      "effects": [
+        {
+          "accord": -12
+        },
+        {
+          "doom": 2
+        },
+        {
+          "ruin": 1
+        },
+        {
+          "recruits_lost": 1,
+          "to": "all"
+        }
+      ]
+    }
+  }
+}

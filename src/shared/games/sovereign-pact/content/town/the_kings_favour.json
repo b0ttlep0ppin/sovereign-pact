@@ -1,0 +1,85 @@
+{
+  "id": "the_kings_favour",
+  "scope": "house",
+  "weight": 1,
+  "years": [
+    1,
+    20
+  ],
+  "title": "The King's Favour",
+  "text": "A letter arrives sealed in black wax that is still wet. The old King thanks your House for its loyalty in the matter of the tax, and sends a token of his favour: a ring, river-cold, with a drowned crown on it. He writes that he will see you in the Barrows soon.",
+  "rule": "house",
+  "chained": true,
+  "options": [
+    {
+      "id": "wear",
+      "label": "Wear the King's ring.",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "It fits every finger it is tried on. Whoever wears it is obeyed a little faster than they should be, and dreams of a throne under water.",
+          "effects": [
+            {
+              "item": {
+                "tier": 4
+              }
+            },
+            {
+              "house_trait": "+wed_to_the_grave"
+            },
+            {
+              "doom": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bishop",
+      "label": "Carry the letter to the bishop.",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "The bishop burns it on the altar. The flame is black and smells of the river. He blesses your Seat himself, and the city hears of it.",
+          "effects": [
+            {
+              "accord": 3
+            },
+            {
+              "doom": -2
+            },
+            {
+              "score": {
+                "renown": 2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "burn",
+      "label": "Burn it unread, and never speak of it.",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "It burns slowly. For a week afterwards your Seat's fires burn black for a moment before they catch.",
+          "effects": [
+            {
+              "sanity": -5
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

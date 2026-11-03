@@ -1,0 +1,83 @@
+{
+  "id": "the_debt_of_the_crown",
+  "scope": "settlement",
+  "weight": 2,
+  "years": [
+    6,
+    10
+  ],
+  "title": "The Debt of the Crown",
+  "text": "Collectors in drowned livery have come up the river road with a writ sealed in black wax: the old King's debts, which the city never paid, with three hundred Years of interest. They do not eat or sleep. They stand in the square and wait for gold, and the longer they wait, the more of the square is under water.",
+  "rule": "pledges",
+  "crisis": {
+    "need": {
+      "gold": 60
+    },
+    "temptation": {
+      "label": "Pay your share in the King's own coin, from the vault you should not have.",
+      "text": "The drowned collectors take it with a bow. They will tell the King who had his coin.",
+      "penalty": 20,
+      "effects": [
+        {
+          "resources": {
+            "gold": 20
+          }
+        },
+        {
+          "house_trait": "+ash_crowned"
+        }
+      ]
+    },
+    "triumph": {
+      "text": "The debt is paid in full. The collectors walk back into the river, and the King's black seal on the writ crumbles to wet ash. Somewhere far away, something is disappointed.",
+      "effects": [
+        {
+          "accord": 4
+        },
+        {
+          "doom": -3
+        }
+      ]
+    },
+    "holds": {
+      "text": "Paid, near enough. The collectors bow and go, but they take the toll-keeper with them, and nobody saw him agree to it.",
+      "effects": [
+        {
+          "doom": 1
+        }
+      ]
+    },
+    "falters": {
+      "text": "Short. The collectors take the balance in kind: a recruit from one House, walking into the river with a smile.",
+      "effects": [
+        {
+          "accord": -5
+        },
+        {
+          "doom": 2
+        },
+        {
+          "recruits_lost": 1,
+          "to": "random"
+        }
+      ]
+    },
+    "calamity": {
+      "text": "Defaulted. The collectors stay, and the square drowns, and every House's ledger turns black in a night. In the Barrows, the old King's drowned court starts to wake.",
+      "effects": [
+        {
+          "accord": -10
+        },
+        {
+          "doom": 5
+        },
+        {
+          "resources": {
+            "gold": -20
+          },
+          "to": "all"
+        }
+      ]
+    }
+  }
+}

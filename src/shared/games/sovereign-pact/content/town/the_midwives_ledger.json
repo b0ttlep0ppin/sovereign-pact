@@ -1,0 +1,84 @@
+{
+  "id": "the_midwives_ledger",
+  "scope": "settlement",
+  "weight": 2,
+  "years": [
+    12,
+    14
+  ],
+  "title": "The Midwives' Ledger",
+  "text": "The midwives' guild has kept a ledger for a hundred Years, and in the last ten its pages have filled with births marked in ash: children who are born with a thumbprint on the brow and never cry. The guild says the mark runs in one Great House's blood, and will name it if the Houses ask.",
+  "rule": "secret",
+  "options": [
+    {
+      "id": "name",
+      "label": "Ask the guild, and name the House to the magistrates.",
+      "tags": [
+        "cruel"
+      ],
+      "accuse": true,
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "You give the magistrates a name. Whether it was the one written in the ledger, only you and the midwives know.",
+          "effects": []
+        }
+      ]
+    },
+    {
+      "id": "burn",
+      "label": "Pay the guild to burn the ledger.",
+      "tags": [
+        "clever"
+      ],
+      "cost": {
+        "resources": {
+          "gold": 15
+        }
+      },
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "The ledger burns in the guildhall stove. The midwives are paid, and silent, and they keep a second copy.",
+          "effects": [
+            {
+              "score": {
+                "intrigue": 2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "leave",
+      "label": "Leave the midwives to their work.",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "You let it lie. The marked children grow up quiet and watchful, and they all sit together at the Commons.",
+          "effects": []
+        }
+      ]
+    }
+  ],
+  "blamed": {
+    "text": "The magistrates read the name aloud in the square. The named House's children are watched in the street, and its blood is spoken of in whispers that never stop.",
+    "effects": [
+      {
+        "house_trait": "+the_mothers_mark"
+      },
+      {
+        "score": {
+          "renown": -3
+        }
+      },
+      {
+        "accord": 2
+      }
+    ]
+  }
+}

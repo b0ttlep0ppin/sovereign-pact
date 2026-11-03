@@ -1,0 +1,84 @@
+{
+  "id": "the_pacts_ink",
+  "scope": "settlement",
+  "weight": 2,
+  "years": [
+    15,
+    19
+  ],
+  "title": "The Pact's Ink Runs",
+  "text": "In the Commons archive, the Sovereign Pact itself has begun to weep. The ink of the founding signatures is running down the vellum in thin black lines, and the clerks say that if the names wash away, so does the oath that has held the city together. The Houses must decide what to do with it.",
+  "rule": "vote",
+  "options": [
+    {
+      "id": "blood",
+      "label": "Every House signs again, in blood.",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "Each House sends a Scion to the archive and signs with a cut thumb. The ink stops running. The new signatures are a little too red, and they never quite dry.",
+          "effects": [
+            {
+              "to": "all",
+              "scion": {
+                "sanity": -15,
+                "xp": 40
+              }
+            },
+            {
+              "accord": 6
+            },
+            {
+              "doom": -3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "copy",
+      "label": "Have the clerks make a fair copy.",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "The clerks copy it word for word. The copy holds, mostly. Every few nights a clerk finds a word in it that was not in the original.",
+          "effects": [
+            {
+              "accord": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "let_fade",
+      "label": "Let the old names fade. The Houses are their own now.",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "The founding names wash away. The Houses feel lighter, freer, and much less inclined to keep their word.",
+          "effects": [
+            {
+              "accord": -5
+            },
+            {
+              "score": {
+                "intrigue": 2
+              },
+              "to": "all"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

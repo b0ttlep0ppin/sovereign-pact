@@ -1,0 +1,86 @@
+{
+  "id": "the_rift_storm",
+  "scope": "settlement",
+  "weight": 2,
+  "years": [
+    12,
+    20
+  ],
+  "title": "The Rift Storm",
+  "text": "The Gate is weeping light. A storm has come out of it that rains glass and lightning and the smell of the far side, and the roofs are going one by one. The city needs timber for the roofs and iron for the lightning rods, and it needs them before the storm learns the streets.",
+  "rule": "pledges",
+  "crisis": {
+    "need": {
+      "timber": 30,
+      "iron": 20
+    },
+    "temptation": {
+      "label": "Send your servants out to gather the fallen glass.",
+      "text": "Rift glass sells for its weight in gold to the wrong people. Some of the servants come home.",
+      "penalty": 20,
+      "effects": [
+        {
+          "resources": {
+            "gold": 30
+          }
+        },
+        {
+          "doom": 2
+        }
+      ]
+    },
+    "triumph": {
+      "text": "The rods catch the lightning and the roofs hold. When the storm ends, the Gate is dark and quiet, as if it has spent itself for a while.",
+      "effects": [
+        {
+          "accord": 3
+        },
+        {
+          "doom": -4
+        }
+      ]
+    },
+    "holds": {
+      "text": "The worst of it is kept off. The glass in the gutters hums for a month.",
+      "effects": [
+        {
+          "doom": 1
+        }
+      ]
+    },
+    "falters": {
+      "text": "The storm takes the roofs of the poor quarter and one House's best building. The people under them are found standing upright, glassy-eyed, and they do not lie down again.",
+      "effects": [
+        {
+          "accord": -5
+        },
+        {
+          "doom": 3
+        },
+        {
+          "ruin": 1
+        }
+      ]
+    },
+    "calamity": {
+      "text": "The storm stays a season. Every House loses someone to the glass, and the Gate is a little wider at the end of it.",
+      "effects": [
+        {
+          "accord": -12
+        },
+        {
+          "doom": 6
+        },
+        {
+          "ruin": 2
+        },
+        {
+          "to": "all",
+          "scion": {
+            "injury": "head"
+          }
+        }
+      ]
+    }
+  }
+}

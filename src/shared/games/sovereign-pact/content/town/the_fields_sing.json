@@ -1,0 +1,90 @@
+{
+  "id": "the_fields_sing",
+  "scope": "house",
+  "weight": 1,
+  "years": [
+    1,
+    20
+  ],
+  "title": "The Fields Sing",
+  "text": "The fields you planted with pale seed have begun to sing at night, and your Seat's youngest have started sleepwalking out to them. They lie down in the furrows and smile at the sky. The harvest is due, and it has never been heavier.",
+  "rule": "house",
+  "chained": true,
+  "options": [
+    {
+      "id": "harvest",
+      "label": "Bring in the harvest.",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "The harvest is the greatest in the city's memory. Your youngest Scion sleeps through it in the furrows, and wakes with soil under their tongue and a new calm in their eyes.",
+          "effects": [
+            {
+              "resources": {
+                "grain": 60
+              }
+            },
+            {
+              "scion": {
+                "who": "youngest",
+                "sanity": -30,
+                "trait": "+touched_by_the_deep"
+              }
+            },
+            {
+              "doom": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "burn",
+      "label": "Burn the fields and the farm with them.",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "The fields scream as they burn. Your House loses its farm and its harvest, but the youngest sleep in their beds again.",
+          "effects": [
+            {
+              "raze": "farm"
+            },
+            {
+              "doom": -3
+            },
+            {
+              "house_trait": "-the_mothers_mark"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lock",
+      "label": "Lock the youngest in at night and leave the fields be.",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "They scratch at the doors all night. In the morning the fields are a little closer to the house.",
+          "effects": [
+            {
+              "doom": 2
+            },
+            {
+              "sanity": -10
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
