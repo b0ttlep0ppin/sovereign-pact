@@ -9,7 +9,7 @@ export const PROLOGUE: string[] = [
   "The sky split above the palace. The city, its walls and the Great Houses within them fell through, into a country with no map that does not want them.",
   "The King was not found. His throne waits in a hall that grows colder every Year, and no one has seen the crown since.",
   "What is left of the court is the Houses: old, proud, and owed a great deal. None of them can hold the city alone. So they swear a pact, to share the walls, the grain and the dead, and to go out through the Rift Gate together.",
-  "Every House will keep its oath. Every House also has its eye on the throne. If the city endures, one of them will sit on it.",
+  "Every House will keep its oath and its ambitions both. If the city endures, one of them will sit on that empty throne.",
 ];
 
 const STEP_MS = 2200;
