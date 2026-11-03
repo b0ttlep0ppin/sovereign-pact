@@ -19,7 +19,9 @@ export function useTold(view: SovView) {
   const e = view.expedition;
   const told = e?.told;
   const key = told ? `${view.year}:${e.card.pool}:${told.n}:${told.parts.length}:${told.parts.reduce((n, p) => n + p.lines.length, 0)}` : null;
-  const open = !!told && !e.fight && !e.event && key !== seen;
+  // Also open while the fight it started is on: the card comes first, so the outcome can be read before
+  // steel is drawn (Josh 2026-11-03: "it's still not letting me process what happens in events").
+  const open = !!told && !e.event && key !== seen;
   const close = () => {
     if (!key) return;
     setSeen(key);
@@ -29,10 +31,10 @@ export function useTold(view: SovView) {
       // Storage blocked: closed for this visit.
     }
   };
-  return { open, close };
+  return { open, close, fight: !!e?.fight };
 }
 
-export default function EventOutcome({ view, onClose }: { view: SovView; onClose: () => void }) {
+export default function EventOutcome({ view, onClose, toArms = false }: { view: SovView; onClose: () => void; toArms?: boolean }) {
   const told = view.expedition!.told!;
   const def = Content.TRIP_EVENT_BY_ID.get(told.id);
   return (
@@ -60,8 +62,9 @@ export default function EventOutcome({ view, onClose }: { view: SovView; onClose
           </section>
         ))}
         <div className="sp-told__buttons">
+          {toArms ? <p className="sp-told__arms">Steel is drawn. The fight is upon you.</p> : null}
           <button type="button" className="sp-button" onClick={onClose} autoFocus>
-            Go on
+            {toArms ? "To arms" : "Go on"}
           </button>
         </div>
       </div>

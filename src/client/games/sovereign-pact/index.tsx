@@ -409,7 +409,7 @@ export default function SovereignPact({ view, isMyTurn, sendMove, lastError }: P
           </aside>
         </div>
       )}
-      {battle ?? (homecoming.open ? <Homecoming view={view} onClose={homecoming.close} /> : camp.open ? <CampScene key={view.expedition?.talked?.length} view={view} onClose={camp.close} /> : told.open ? <EventOutcome view={view} onClose={told.close} /> : null)}
+      {told.open && (told.fight || battles.watching) ? <EventOutcome view={view} onClose={told.close} toArms /> : battle ?? (homecoming.open ? <Homecoming view={view} onClose={homecoming.close} /> : camp.open ? <CampScene key={view.expedition?.talked?.length} view={view} onClose={camp.close} /> : told.open ? <EventOutcome view={view} onClose={told.close} /> : null)}
     </div>
   );
 }

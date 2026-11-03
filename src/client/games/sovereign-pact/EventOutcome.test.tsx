@@ -39,4 +39,18 @@ describe("events (Josh's playtest: name your own Scion; then see what it did)", 
     fireEvent.click(screen.getByRole("button", { name: "Go on" }));
     expect(screen.queryByRole("dialog", { name: "What happened" })).toBeNull();
   });
+
+  it("when the outcome starts a fight, tells it first and opens the battle on 'To arms' (Josh 2026-11-03)", () => {
+    let s = atChapel();
+    s.expedition!.seen.push("the_toll");
+    s.expedition!.event = { id: "the_toll", votes: [null] };
+    const r = g.applyMove(s, "p1", { type: "decide", option: 1 });
+    if (!r.ok) throw new Error(r.error);
+    s = r.state;
+    render(<SovereignPact me="p1" players={[]} isMyTurn sendMove={() => {}} lastError={null} view={g.view(s, "p1")} />);
+    expect(screen.getByRole("dialog", { name: "What happened" }).textContent).toContain("The Toll");
+    fireEvent.click(screen.getByRole("button", { name: "To arms" }));
+    expect(screen.queryByRole("dialog", { name: "What happened" })).toBeNull();
+    expect(screen.getByLabelText("Battle log")).toBeTruthy();
+  });
 });
