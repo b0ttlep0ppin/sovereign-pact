@@ -462,37 +462,40 @@
 .sp-omens-told .sp-told__where small { color: #6e6880; letter-spacing: 0.06em; margin-left: 6px; }
 .sp-omens-told .is-private { border-left: 2px solid rgba(110, 90, 140, 0.45); padding-left: 10px; }
 
-/* Texture (Josh's playtest: "more texture to the brown canvasses and red buttons"). Drawn, not shipped:
-   SVG noise in data URIs. Panels are dark oak with a grain that runs across, a fine grit, burnt edges and
-   an iron stud by each bracket; buttons are oxblood leather, pebbled, with a stitched inner seam. */
+/* Texture (Josh's playtest: "more texture to the brown canvasses and red buttons", then "the oak is a bit
+   too far… more of a slate gray look with some mild texture, maybe mute the red a bit"). Drawn, not
+   shipped: SVG noise in data URIs. Panels are slate, softly mottled and gritted, with darkened edges and an
+   iron stud by each bracket; buttons are a muted oxblood leather with a stitched inner seam. */
 .sp {
-  --sp-wood: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='420' height='420'%3E%3Cfilter id='w' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.004 0.16' numOctaves='4' stitchTiles='stitch' seed='11'/%3E%3CfeColorMatrix values='0 0 0 0 0.34 0 0 0 0 0.23 0 0 0 0 0.14 0 0 0 1.2 -0.52'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23w)'/%3E%3C/svg%3E");
-  --sp-knots: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='520' height='360'%3E%3Cfilter id='k' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.02 0.06' numOctaves='2' stitchTiles='stitch' seed='3'/%3E%3CfeColorMatrix values='0 0 0 0 0.03 0 0 0 0 0.02 0 0 0 0 0.01 0 0 0 2.4 -1.3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23k)'/%3E%3C/svg%3E");
-  --sp-grit: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='g' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch' seed='5'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.9 -0.32'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
-  --sp-leather: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='l' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='turbulence' baseFrequency='0.34' numOctaves='2' stitchTiles='stitch' seed='9'/%3E%3CfeColorMatrix values='0 0 0 0 0.05 0 0 0 0 0.01 0 0 0 0 0 0 0 0 1.5 -0.5'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23l)'/%3E%3C/svg%3E");
+  --panel: #1a1b1e; --panel-hi: #24262a; --line: #34363b; --line-hi: #575a61;
+  --blood: #3f1a18; --blood-hi: #642824;
+  --sp-slate: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='360' height='360'%3E%3Cfilter id='s' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.012 0.02' numOctaves='4' stitchTiles='stitch' seed='4'/%3E%3CfeColorMatrix values='0 0 0 0 0.5 0 0 0 0 0.52 0 0 0 0 0.56 0 0 0 0.55 -0.24'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23s)'/%3E%3C/svg%3E");
+  --sp-grit: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='g' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch' seed='5'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.7 -0.28'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+  --sp-leather: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='l' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='turbulence' baseFrequency='0.34' numOctaves='2' stitchTiles='stitch' seed='9'/%3E%3CfeColorMatrix values='0 0 0 0 0.04 0 0 0 0 0.02 0 0 0 0 0.02 0 0 0 1.3 -0.5'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23l)'/%3E%3C/svg%3E");
 }
 .sp-panel {
   background:
-    radial-gradient(120% 90% at 50% 40%, transparent 55%, rgba(0, 0, 0, 0.42) 100%),
-    var(--sp-grit), var(--sp-knots), var(--sp-wood),
-    linear-gradient(var(--panel-hi), var(--panel) 40%);
-  background-size: auto, 160px 160px, 520px 360px, 420px 420px, auto;
+    radial-gradient(120% 90% at 50% 40%, transparent 60%, rgba(0, 0, 0, 0.35) 100%),
+    var(--sp-grit), var(--sp-slate),
+    linear-gradient(var(--panel-hi), var(--panel) 45%);
+  background-size: auto, 160px 160px, 360px 360px, auto;
+  box-shadow: inset 0 0 0 3px var(--panel), inset 0 0 0 4px rgba(184, 140, 62, 0.12), inset 0 0 40px rgba(0, 0, 0, 0.4), 0 6px 18px rgba(0, 0, 0, 0.55);
 }
 .sp-panel::before {
   content: ""; position: absolute; inset: 0; pointer-events: none;
-  --stud: radial-gradient(circle at 35% 35%, #8d7a5c 0, #4a3c2a 1.6px, #15100b 3px, transparent 3.6px);
+  --stud: radial-gradient(circle at 35% 35%, #8a8c90 0, #44464b 1.6px, #101114 3px, transparent 3.6px);
   background: var(--stud) 6px 6px / 8px 8px no-repeat, var(--stud) calc(100% - 6px) 6px / 8px 8px no-repeat,
     var(--stud) 6px calc(100% - 6px) / 8px 8px no-repeat, var(--stud) calc(100% - 6px) calc(100% - 6px) / 8px 8px no-repeat;
 }
 .sp-button {
   position: relative;
-  background: var(--sp-leather), radial-gradient(130% 120% at 50% 0%, var(--blood-hi), var(--blood) 70%, #2a0907);
+  background: var(--sp-leather), radial-gradient(130% 120% at 50% 0%, var(--blood-hi), var(--blood) 70%, #1e0d0c);
   background-size: 120px 120px, auto;
-  box-shadow: inset 0 1px 0 rgba(255, 210, 150, 0.2), inset 0 -2px 4px rgba(0, 0, 0, 0.55), 0 0 0 1px #000, 0 3px 8px rgba(0, 0, 0, 0.55);
+  box-shadow: inset 0 1px 0 rgba(255, 220, 190, 0.14), inset 0 -2px 4px rgba(0, 0, 0, 0.5), 0 0 0 1px #000, 0 3px 8px rgba(0, 0, 0, 0.55);
 }
 .sp-button::after {
   content: ""; position: absolute; inset: 3px; pointer-events: none;
-  border: 1px dashed rgba(236, 196, 132, 0.3); border-radius: 1px;
+  border: 1px dashed rgba(220, 190, 150, 0.24); border-radius: 1px;
 }
-.sp-button--quiet { background: var(--sp-leather), linear-gradient(#241c16, #120e0b); background-size: 120px 120px, auto; }
-.sp-button--quiet::after { border-color: rgba(200, 170, 120, 0.16); }
+.sp-button--quiet { background: var(--sp-leather), linear-gradient(#2a2c30, #17181b); background-size: 120px 120px, auto; }
+.sp-button--quiet::after { border-color: rgba(190, 190, 200, 0.14); }

@@ -2,9 +2,9 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
-## 2026-11-03 (implementation, Milestone 8bp): wood and leather
+## 2026-11-03 (implementation, Milestone 8bp): slate and leather
 
-- Built (Josh's playtest: "more texture to the brown canvasses and red buttons"): every panel is dark oak, with a grain running across it, darker knots, a fine grit, burnt edges and an iron stud at each corner. Every button is pebbled leather (oxblood, or dark hide for the quiet ones) with a stitched seam inside its edge. The textures are SVG noise drawn in the stylesheet, so nothing new ships and nothing needs a credit.
+- Built (Josh's playtest: "more texture to the brown canvasses and red buttons"; then, after an oak grain, "a bit too far to the other extreme, how bout more of a slate gray look with some mild texture, maybe mute the red a bit"): every panel is slate gray, softly mottled with a fine grit, darkened at the edges, with an iron stud at each corner. The game's panel and line colors move from brown to slate within `.sp`. The red is muted to a darker oxblood (`--blood`, `--blood-hi`), and buttons are pebbled leather with a stitched seam just inside the edge. The textures are SVG noise drawn in the stylesheet, so nothing new ships and nothing needs a credit.
 
 ## 2026-11-03 (implementation, Milestone 8bo): darker House events
 
