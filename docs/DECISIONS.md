@@ -2,6 +2,19 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-03 (implementation, Milestone 8bk): battle backdrops, a quieter palette, labelled bars
+
+- Built (Josh's playtest: "backgrounds needed (scene looks flat)", "still too vibrant", "label character bars"):
+  - Every battle stands under 32 Gothic's moonlit sky, tinted to its region: a blood moon over the Pit, a sickly green one over the Hollow Wood, a pale one over the Deep Cold. Under the two planes lies the region's ground, a floor strip from Ultimate Fantasy's terrain (grass, grave dirt, swamp water, lava, flagstones, sand and so on), laid in perspective and darkened under a haze.
+  - `tools/cut-backdrops.py` cuts these from the Oryx megapack into `public/sprites/sovereign-pact/backdrops/`. Only the 13 cuts ship, never the sheets (credited already in CREDITS.md and on the Credits screen).
+- Bars: each one in the side panels now has its label (HP, MP, TP, San, Dur), its numbers, and a hover line saying what it measures. HP, MP, TP and Sanity are muted to darker greens, blues, ambers and plums; the purple glow between the planes is nearly gone.
+- Reading: a battle with no region (a Sortie, a settlement fight) takes the Barrows' plain night sky and no ground.
+
+## 2026-11-03 (implementation, Milestone 8bj): the expedition in columns
+
+- Fixed (Josh's playtest: the satchel and the haul as columns): on the expedition screen the road's panel shared a row with the formation grid, which took the whole width and squeezed the road into a sliver. The formation now keeps to a narrow column on the right.
+- The road's panel shows three columns under the chain: the party (Leader's crown, level, an HP bar, and "HP now/max" once hurt), the satchel (each consumable with its count, its use on hover, and the buttons to open what may be opened), and the haul (each item by its blind name, each material with its amount, "lost if the party falls").
+
 ## 2026-11-03 (implementation, Milestone 8bi): the market opens in Year 1, and Houses can sell
 
 - Found (Josh's playtest: "not enough chances to spend money, buy gear, consumables etc, very little decision making"): in a bot campaign no shop was ever built. The shops were all Commons projects behind the Great Market, and the Commons' tithe never paid for one, so for 20 Years Gold had nothing to buy but promotions and buildings.

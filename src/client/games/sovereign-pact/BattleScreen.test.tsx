@@ -23,6 +23,18 @@ describe("the battle screen (§15.5)", () => {
     expect(screen.getByText(`Turn 0 of ${replay.frames.length}`)).toBeTruthy();
   });
 
+  it("stands the battle under its region's sky and on its ground, with every bar labelled (Josh's playtest)", () => {
+    const { view, replay } = setup();
+    render(<BattleScreen replay={{ ...replay, pool: "pit" }} view={view} onClose={() => {}} />);
+    const root = screen.getByRole("dialog", { name: "Battle: An Encounter" });
+    expect(root.style.getPropertyValue("--sp-ground")).toContain("ground-pit.webp");
+    expect(root.style.getPropertyValue("--sp-sky")).toContain("sky.webp");
+    const party = screen.getByRole("region", { name: "The party" });
+    for (const label of ["HP", "MP", "TP", "San"]) expect(party.querySelectorAll(`[role="meter"][aria-label="${label}"]`).length).toBeGreaterThan(0);
+    const first = replay.units.find((u) => u.side === "party")!;
+    expect(party.textContent).toContain(`${first.maxHp}/${first.maxHp}`);
+  });
+
   it("marks each Scion with their House's arms in miniature", () => {
     const { view, replay } = setup();
     const owned = { ...replay, units: replay.units.map((u) => (u.side === "party" ? { ...u, house: 0 } : u)) };
