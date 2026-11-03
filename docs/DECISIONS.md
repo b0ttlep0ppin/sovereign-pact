@@ -2,6 +2,27 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-03 (implementation, Milestone 8cl): Year orders on every building
+
+Josh: buildings **"don't do much and the resources don't really matter other than gold"**. He ruled out upkeep on the decision card: **"No, only Year orders"**.
+- **Every building has Year orders** (`orders` in buildings.json, orders.ts): 20 across the 16 buildings. Once a Year each standing building may be given one order its level allows. The order spends materials, and rare ones at level 3. What it makes uses the town-effect vocabulary, so it is data:
+  - Forge: a Common piece; a Fine piece at level 2; a Masterwork with Wyrmbone at level 3.
+  - Workshop: Firebombs; Caltrops and a Net at level 2; Lanterns and Signal Flares with Voidglass at level 3.
+  - Training Ground: drill one Scion (+120 XP, +60 JP).
+  - Infirmary: surgery that mends one Scion's oldest Moderate injury.
+  - Shrine: one Scion Devout for a Year.
+  - Kennels: a hound, one Scion Keen-Eyed for a Year.
+  - Chapel: a vigil for Doom −1 and Sanity.
+  - Crypt (level 3, Hollow Ivory): ask the dead for JP and Lore.
+  - Scriptorium: Lore.
+  - Hall of Petitions: a recruit for Grain.
+  - Vault (level 2): Intrigue for Gold.
+  - Watchtower: Accord for Timber.
+  - Producers: Gold for a night shift's extra output.
+- An order is private: it goes in the House's own notes, as a build's purpose does.
+- The Forge's and Workshop's level texts now say what their orders make, in place of the crafting text that never did anything.
+- Bots don't give orders yet.
+
 ## 2026-11-03 (implementation, Milestone 8ck): the Commons Council, first part: districts, host perks, the levy
 
 Josh: **"There is very little interaction on the commons projects, these things should be debated by the players."**

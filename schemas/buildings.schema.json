@@ -17,7 +17,25 @@
           "name": { "type": "string", "minLength": 1 },
           "cost": { "enum": ["cheap", "standard", "expensive"], "description": "The cost table in tuning.ts (town.costs) this building pays by level." },
           "produces": { "enum": ["grain", "timber", "stone", "iron"], "description": "A producer: its yearly output by level is tuning.ts town.produce." },
-          "levels": { "type": "array", "minItems": 3, "maxItems": 3, "items": { "type": "string", "minLength": 1 } }
+          "levels": { "type": "array", "minItems": 3, "maxItems": 3, "items": { "type": "string", "minLength": 1 } },
+          "orders": {
+            "type": "array",
+            "description": "Once-a-Year orders (orders.ts): each spends materials for what it makes.",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["id", "level", "name", "cost", "text", "effects"],
+              "properties": {
+                "id": { "$ref": "defs.schema.json#/definitions/id" },
+                "level": { "enum": [1, 2, 3], "description": "The building level it needs." },
+                "name": { "type": "string", "minLength": 1 },
+                "cost": { "type": "object", "minProperties": 1, "additionalProperties": { "type": "integer", "minimum": 1 } },
+                "person": { "const": true, "description": "The House names one of its Scions, on whom champion effects fall." },
+                "text": { "type": "string", "minLength": 1 },
+                "effects": { "$ref": "town.schema.json#/definitions/effects" }
+              }
+            }
+          }
         }
       }
     },

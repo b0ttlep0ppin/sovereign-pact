@@ -84,3 +84,23 @@ describe("the Commons Council (Josh 2026-11-03: debated by the players)", () => 
     expect(sendMove).toHaveBeenCalledWith({ type: "levy" });
   });
 });
+
+describe("Year orders (Josh 2026-11-03: only Year orders)", () => {
+  it("lists a standing building's orders with their price, and gives one for a chosen Scion", () => {
+    const s = town();
+    s.houses[0]!.buildings = { training_ground: 1, forge: 1 };
+    s.houses[0]!.stores = { ...s.houses[0]!.stores, iron: 30 };
+    const sendMove = vi.fn();
+    render(<Works view={g.view(s, "p1")} sendMove={sendMove} canAct />);
+    const forge = screen.getByRole("list", { name: "Forge orders" });
+    expect(within(forge).getByText(/Craft a Common piece/)).toBeTruthy();
+    expect(within(forge).queryByText(/Craft a Fine piece/)).toBeNull();
+    fireEvent.click(within(forge).getByRole("button", { name: "Order" }));
+    expect(sendMove).toHaveBeenCalledWith({ type: "order", building: "forge", order: "craft" });
+    const drill = screen.getByRole("list", { name: "Training Ground orders" });
+    const mine = s.people.filter((p) => p.host === 0 && p.status === "scion");
+    fireEvent.change(within(drill).getByLabelText("For"), { target: { value: String(mine[1]!.id) } });
+    fireEvent.click(within(drill).getByRole("button", { name: "Order" }));
+    expect(sendMove).toHaveBeenCalledWith({ type: "order", building: "training_ground", order: "drill", person: mine[1]!.id });
+  });
+});

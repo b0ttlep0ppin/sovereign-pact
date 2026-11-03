@@ -42,6 +42,7 @@ import { kitOf, type Kit } from "./outfit.ts";
 import { BUILDINGS, PROJECTS, TRIP_EVENT_BY_ID } from "./content.ts";
 import { built, projectCost, stillNeeded } from "./commons.ts";
 import { cannotLay, OFFERINGS } from "./altar.ts";
+import { cannotOrder } from "./orders.ts";
 import { buildCost, cannotBuild, levelOf } from "./town.ts";
 import { cannotLevy, cannotPropose, owed } from "./votes.ts";
 import { cannotOpen } from "./satchel.ts";
@@ -91,7 +92,7 @@ export interface PrivateHouse {
   /** What the shops would pay for each item in its stash, by item id (null: there is no market to sell in). */
   sells: Record<number, number> | null;
   /** Each building it could raise: the next level, what it costs (null at the top), and why it cannot, if so (§8.2). */
-  builds: { id: string; level: number; cost: Partial<Record<string, number>> | null; why: string | null }[];
+  builds: { id: string; level: number; cost: Partial<Record<string, number>> | null; why: string | null; orders: { id: string; why: string | null }[] }[];
   /** The Commons' projects open now: the next level, what it still needs, and why this House cannot propose spending on it, if so (§8.5, §8.1). */
   projects: { id: string; level: number; need: Partial<Record<string, number>>; propose: string | null }[];
   /** Why this House cannot move a levy now (the Commons Council), or null. */
@@ -390,7 +391,9 @@ export function view(s: SovState, playerId: PlayerId): SovView {
             sells: canSell(s) ? Object.fromEntries(stash(s, me).map((i) => [i.id, sellPrice(s, i)])) : null,
             builds: BUILDINGS.map((b) => {
               const level = levelOf(own, b.id) + 1;
-              return { id: b.id, level, cost: buildCost(b.id, level, own), why: own.works.includes(b.id) ? null : cannotBuild(s, me, b.id) };
+              // A Year order's own Scion check waits for the Scion: here, only what the House can give at all.
+              const orders = (b.orders ?? []).filter((o) => (own.buildings[b.id] ?? 0) >= o.level).map((o) => ({ id: o.id, why: cannotOrder(s, me, b.id, o.id, o.person ? -1 : undefined) }));
+              return { id: b.id, level, cost: buildCost(b.id, level, own), why: own.works.includes(b.id) ? null : cannotBuild(s, me, b.id), orders: orders.map((o) => ({ ...o, why: o.why === "Choose one of your own Scions." ? null : o.why })) };
             }),
             projects: PROJECTS.filter((x) => projectCost(s, x.id)).map((x) => ({
               id: x.id,

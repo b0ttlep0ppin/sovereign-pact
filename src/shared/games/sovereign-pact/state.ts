@@ -204,6 +204,8 @@ export interface House {
   sealed: boolean;
   /** Recruits promoted this Year (§6.5). */
   promotions?: number;
+  /** Buildings already set their Year order this Year (orders.ts), cleared when the next Year opens. */
+  ordered?: string[];
   /** What the House laid on the Altar of Offerings this Year (cleared at the Reckoning). */
   offering?: Offering;
   /** Expeditions it has sent Scions on: spare seats go to the fewest first (§9.2). */
@@ -655,6 +657,7 @@ export type SovMove =
   /** Spends a Tarot Token in town (§13.7): one Scion draws a new Tarot, once in their life. */
   | { type: "draw_tarot"; person: number }
   | { type: "altar"; gift: Offering }
+  | { type: "order"; building: string; order: string; person?: number }
   /** Gives one Scion a Passive Draught in town (§13.7): passive budget +1 until the Reckoning. */
   | { type: "drink_draught"; person: number }
   /** Put a stashed item up for sealed bids, with a reserve. */

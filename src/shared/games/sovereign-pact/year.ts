@@ -74,6 +74,7 @@ export function openYear(s: SovState): void {
     h.sealed = false;
     delete h.promotions;
     delete h.offering;
+    delete h.ordered;
   }
 }
 
