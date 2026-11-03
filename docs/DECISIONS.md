@@ -7,6 +7,7 @@ Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md
 Josh: **"I would also like to be able to see hit chance when selecting a target"**.
 - **Each foe a single-target choice can reach now carries its chance to hit** (`hit` on the turn's `unit` aim, from the same `hitChance` the battle rolls against, so the shown number is the real one). Allies are not given a number: help always lands.
 - **While aiming**, every foe in reach wears a small "N%" badge, and the command bar reads "N% to hit." for the one under the cursor. A sure hit (100%) shows nothing, to keep the field clean.
+- Fixed along the way: The Night Mason (and any "raise a building" effect) crashed for a House with no building left to raise, so the choice never took and the Year could not be sealed. It now raises a new building, as its text says.
 - Areas show no chance yet: each cell they cover rolls on its own, and a list of numbers over a blast would clutter more than it tells.
 
 ## 2026-11-03 (implementation, Milestone 8cm): what was decided, under the chooser's sigil
