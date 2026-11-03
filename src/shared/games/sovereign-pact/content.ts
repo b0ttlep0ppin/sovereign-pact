@@ -552,7 +552,13 @@ export interface TownOption {
   cost?: { resources?: Partial<Record<string, number>>; recruits?: number };
   /** The chooser names another House, whom `to: "target"` effects touch. */
   target?: true;
-  outcomes: { w: number; text: string; effects: TownEffect[] }[];
+  /** The House names it as the one it blames (Josh: "real chances for drama amongst the houses"): the event's `blamed` falls on the House most named. */
+  accuse?: true;
+  /** The House puts a Scion forward, who is tested on `stat` (+ half their level) against `dc`; outcomes say `when` they fall. */
+  champion?: { stat: Stat; dc: number };
+  /** A sealed bid of `resource` (at least `min`), paid whether or not it wins; the highest wins the event's `prize`. */
+  bid?: { resource: string; min?: number };
+  outcomes: { w: number; text: string; effects: TownEffect[]; when?: "pass" | "fail" }[];
 }
 export interface TownBand {
   text: string;
@@ -581,6 +587,10 @@ export interface TownEventDef {
   options?: TownOption[];
   /** Secret choices: what follows when no House, or every House, picks `option`. */
   together?: { when: "none" | "all"; option: string; text: string; effects: TownEffect[] }[];
+  /** What the highest bid wins (options with `bid`). */
+  prize?: TownBand;
+  /** What falls on the House most named by options with `accuse` (none on a tie). */
+  blamed?: TownBand;
   /** A forcing event (§3.2): it comes only from the timeline, and makes the Year's expedition its one card. */
   forces?: { pool: string; size?: 4 | 8 };
 }

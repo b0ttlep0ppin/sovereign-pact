@@ -227,6 +227,12 @@ export const TUNING = {
   omens: { houseEventPct: 50, fresh: 6 },
 
   /**
+   * A champion put forward in a town event (Josh 2026-11-03), first pass: passes at `base`% plus `perPoint`%
+   * for each point of the stat (+ half the level) over the event's `dc`, never below `min` or above `max`.
+   */
+  champion: { base: 50, perPoint: 5, min: 10, max: 90 },
+
+  /**
    * §14.9 Hunts, first pass. A Hunt card's quarry is `levelUp` levels above the fight with `hpPct`% HP;
    * Enrage starts it enraged for `enrageTicks`, Call the Pack adds `pack` to its kin, Ambush opens the
    * Lair with an ambush. Its trophy is in its content; the first kill of any enemy adds `lorePerEntry`

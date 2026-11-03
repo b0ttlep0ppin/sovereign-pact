@@ -41,7 +41,7 @@ export function guarded(s: SovState, house: number): number {
  * Applies a town event's effects. Harm aimed at one House (not at every House alike) is softened by its
  * guards, unless `guard` is false: a bargain or a temptation the House chose is not fought off at the walls.
  */
-export function applyEffects(s: SovState, effects: readonly TownEffect[], subject: number | null, guard = true, named?: number): void {
+export function applyEffects(s: SovState, effects: readonly TownEffect[], subject: number | null, guard = true, named?: number, champion?: number): void {
   for (const e of effects) {
     if (e.accord) {
       if (e.accord < 0) loseAccord(s, -e.accord);
@@ -59,6 +59,15 @@ export function applyEffects(s: SovState, effects: readonly TownEffect[], subjec
     const gives = e.item || e.consumable || e.house_trait || e.raze || e.raise;
     const hit = e.resources || e.ruin || e.recruits_lost || e.sanity || e.score || e.recruit_gain || e.scion || gives ? targets(s, e, subject, named) : [];
     for (const i of hit) touch(s, e, i, guard && (e.to ?? (subject === null ? "random" : "house")) !== "all" ? guarded(s, i) : 0);
+    // The champion a House put forward (Josh 2026-11-03: "their scions should be imperiled at times").
+    if (e.scion?.who === "champion") {
+      const at = s.people.findIndex((p) => p.id === champion && p.status !== "lost");
+      if (at >= 0) {
+        if (e.scion.age) s.people[at]!.age = Math.max(14, s.people[at]!.age + e.scion.age);
+        befall(s, at, e.scion, "at home");
+      }
+      continue;
+    }
     for (const i of e.scion ? hit : []) {
       const done: number[] = [];
       for (let n = 0; n < (e.scion!.count ?? 1); n++) {

@@ -30,7 +30,6 @@ import type {
   Person,
   PersonStatus,
   OmenTold,
-  PendingEvent,
   Phase,
   Score,
   Six,
@@ -214,7 +213,7 @@ export interface SovView {
   /** The Year's party: seats, who each House fielded, the Leader vote (all open); of the chain, only the nodes passed and its length. */
   expedition: ExpeditionView | null;
   /** Town events waiting on choices; a secret one shows others' choices only as made (-1) or not. */
-  events: PendingEvent[];
+  events: ReturnType<typeof eventsFor>;
   /** What this Year's and last Year's town events did: another House's own events not at all, and of the rest only what the viewer may read. */
   omens: OmenTold[];
   /** The open vote, cast in the open (§8.1). */

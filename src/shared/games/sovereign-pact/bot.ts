@@ -10,7 +10,8 @@ import { fallen } from "./lifecycle.ts";
 import { caps } from "./combat/build.ts";
 import { barred } from "./change.ts";
 import { cannotAccept } from "./deals.ts";
-import { type BASE_JOBS, type Assignment, type Deal, type Person, type SovMove, type SovState } from "./state.ts";
+import { type BASE_JOBS, type Assignment, type Deal, type Person, type SovMove, type SovState, type Stat } from "./state.ts";
+import { jobStat } from "./formulas.ts";
 import { bestJob, cannotPromote } from "./promotion.ts";
 import { buildCost, cannotBuild, levelOf, upkeepDue } from "./town.ts";
 import { forHouses, TUNING } from "./tuning.ts";
@@ -202,12 +203,23 @@ export function botTarget(s: SovState, house: number): number | null {
   return others.length ? others.reduce((a, b) => (s.houses[b]!.score.renown > s.houses[a]!.score.renown ? b : a)) : null;
 }
 
+/** The Scion a bot puts forward: its best at the stat tested. */
+export function botChampion(s: SovState, house: number, stat: Stat): number | undefined {
+  const mine = s.people.filter((p) => p.host === house && p.status === "scion");
+  return mine.length ? mine.reduce((a, b) => (jobStat(b, stat) > jobStat(a, stat) ? b : a)).id : undefined;
+}
+
 /** A town event's option for the bot: a kind one it can afford (it is co-operative), else the cautious one. */
 export function botChoice(s: SovState, house: number, id: string): number {
   const ev = TOWN_EVENT_BY_ID.get(id)!;
   const h = s.houses[house]!;
   const cost = (i: number) => -Math.min(0, ...ev.options![i]!.outcomes.flatMap((o) => o.effects.map((e) => (e.to ?? "house") === "house" ? (e.resources?.gold ?? 0) : 0)));
-  const kind = ev.options!.findIndex((o, i) => o.tags?.includes("kind") && !cannotAfford(s, house, o) && (!o.target || botTarget(s, house) !== null) && h.gold - cost(i) - (o.cost?.resources?.gold ?? 0) >= 2 * upkeepGold(s, house));
+  const usable = (o: (typeof ev.options & object)[number]) =>
+    !cannotAfford(s, house, o) &&
+    (!(o.target || o.accuse) || botTarget(s, house) !== null) &&
+    (!o.champion || botChampion(s, house, o.champion.stat) !== undefined) &&
+    (!o.bid || (o.bid.resource === "gold" ? h.gold : (h.stores[o.bid.resource] ?? 0)) >= Math.max(1, o.bid.min ?? 1));
+  const kind = ev.options!.findIndex((o, i) => o.tags?.includes("kind") && usable(o) && h.gold - cost(i) - (o.cost?.resources?.gold ?? 0) >= 2 * upkeepGold(s, house));
   return kind >= 0 ? kind : cautious(ev);
 }
 

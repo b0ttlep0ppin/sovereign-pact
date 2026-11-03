@@ -104,6 +104,104 @@ describe("town events as trades (Josh 2026-11-03)", () => {
   });
 });
 
+describe("champions, sealed bids and accusations (Josh 2026-11-03: drama amongst the Houses)", () => {
+  const champ: TownOption = {
+    id: "go",
+    label: "Send your best.",
+    champion: { stat: "might", dc: 12 },
+    outcomes: [
+      { w: 1, when: "pass", text: "They come back with it.", effects: [{ scion: { who: "champion", xp: 50 } }, { item: { tier: 3 } }] },
+      { w: 1, when: "fail", text: "They come back wrong.", effects: [{ scion: { who: "champion", sanity: -40 } }] },
+    ],
+  };
+
+  it("tests the champion a House puts forward, and what follows falls on them alone", () => {
+    let pass = 0;
+    for (let seed = 1; seed <= 30; seed++) {
+      let s = trade(2, [champ, refuse]);
+      s.rng = seed;
+      const p = s.people.find((x) => x.host === 0 && x.status === "scion")!;
+      const others = s.people.filter((x) => x.id !== p.id).map((x) => ({ id: x.id, sanity: x.sanity, xp: x.xp }));
+      expect(error(s, "p1", { type: "choose", event: "test_trade", option: 0 })).toMatch(/Put forward/);
+      s = move(s, "p1", { type: "choose", event: "test_trade", option: 0, person: p.id });
+      const after = s.people.find((x) => x.id === p.id)!;
+      const told = s.omensTold!.at(-1)!.text;
+      if (told.startsWith(`${p.name} comes through.`)) {
+        pass++;
+        expect(after.xp).toBeGreaterThan(p.xp);
+      } else {
+        expect(told.startsWith(`${p.name} fails.`)).toBe(true);
+        expect(after.sanity).toBeLessThan(p.sanity);
+      }
+      for (const o of others) expect(s.people.find((x) => x.id === o.id)).toMatchObject(o);
+    }
+    expect(pass).toBeGreaterThan(3);
+    expect(pass).toBeLessThan(27);
+  });
+
+  it("takes every sealed bid and gives the prize to the highest", () => {
+    events.set("test_trade", {
+      id: "test_trade",
+      scope: "settlement",
+      weight: 1,
+      years: [1, 20],
+      title: "The Auction of Hands",
+      text: "…",
+      rule: "secret",
+      options: [{ id: "bid", label: "Bid.", bid: { resource: "gold", min: 5 }, outcomes: [{ w: 1, text: "You bid.", effects: [] }] }, refuse],
+      prize: { text: "It is yours. It moves when no one looks.", effects: [{ item: { tier: 4 } }] },
+    });
+    let s = calm(campaign(3, 3));
+    for (const h of s.houses) h.gold = 100;
+    s.events = [{ key: "test_trade", id: "test_trade", deciders: [0, 1, 2], choices: [null, null, null] }];
+    expect(error(s, "p1", { type: "choose", event: "test_trade", option: 0, amount: 4 })).toMatch(/at least 5/);
+    expect(error(s, "p1", { type: "choose", event: "test_trade", option: 0, amount: 101 })).toMatch(/more than you have/);
+    s = move(s, "p1", { type: "choose", event: "test_trade", option: 0, amount: 20 });
+    s = move(s, "p2", { type: "choose", event: "test_trade", option: 0, amount: 35 });
+    s = move(s, "p3", { type: "choose", event: "test_trade", option: 1 });
+    expect(s.houses.map((h) => h.gold)).toEqual([80, 65, 100]);
+    expect(s.items.filter((i) => i.house === 1 && i.tier === 4)).toHaveLength(1);
+    expect(s.items.filter((i) => i.house === 0 && i.tier === 4)).toHaveLength(0);
+    expect(s.omensTold!.at(-1)!.label).toBe(`House ${s.houses[1]!.name} wins with 35.`);
+  });
+
+  it("lays the blame on the House most named, and on nobody when the fingers are split", () => {
+    const accuse: TownOption = { id: "name", label: "Name the guilty House.", accuse: true, outcomes: [{ w: 1, text: "You point.", effects: [] }] };
+    const def = (): TownEventDef => ({
+      id: "test_trade",
+      scope: "settlement",
+      weight: 1,
+      years: [1, 20],
+      title: "The Flayed Steward",
+      text: "…",
+      rule: "secret",
+      options: [accuse, refuse],
+      blamed: { text: "The mob comes for them.", effects: [{ raze: "best" }, { accord: 2 }] },
+    });
+    events.set("test_trade", def());
+    const open = () => {
+      const s = calm(campaign(3, 3));
+      for (const h of s.houses) h.buildings = { farm: 2 };
+      s.events = [{ key: "test_trade", id: "test_trade", deciders: [0, 1, 2], choices: [null, null, null] }];
+      return s;
+    };
+    let s = open();
+    s = move(s, "p1", { type: "choose", event: "test_trade", option: 0, target: 2 });
+    s = move(s, "p2", { type: "choose", event: "test_trade", option: 0, target: 2 });
+    s = move(s, "p3", { type: "choose", event: "test_trade", option: 0, target: 0 });
+    expect(s.houses[2]!.buildings.farm).toBeUndefined();
+    expect(s.houses[0]!.buildings.farm).toBe(2);
+    expect(s.omensTold!.at(-1)!.label).toBe(`House ${s.houses[2]!.name} is blamed.`);
+    let split = open();
+    const accord = split.accord;
+    split = move(split, "p1", { type: "choose", event: "test_trade", option: 0, target: 1 });
+    split = move(split, "p2", { type: "choose", event: "test_trade", option: 0, target: 2 });
+    split = move(split, "p3", { type: "choose", event: "test_trade", option: 0, target: 0 });
+    expect(split.houses.every((h) => h.buildings.farm === 2)).toBe(true);
+    expect(split.accord).toBeLessThan(accord);
+  });
+});
+
 describe("the town content's trades", () => {
   it("keeps the cautious way out free, names Houses only where one House chooses, and names only what exists", () => {
     for (const e of TOWN_EVENTS) {
@@ -112,7 +210,10 @@ describe("the town content's trades", () => {
       expect(out.cost, `${e.id}: the cautious option costs nothing`).toBeUndefined();
       expect(out.target, `${e.id}: the cautious option names no House`).toBeUndefined();
       for (const o of e.options) {
-        if (o.target) expect(e.rule, `${e.id}.${o.id}`).not.toBe("vote");
+        if (o.target || o.accuse || o.champion || o.bid) expect(e.rule, `${e.id}.${o.id}`).not.toBe("vote");
+        if (o.bid) expect(e.prize, `${e.id} has a prize`).toBeDefined();
+        if (o.accuse) expect(e.blamed, `${e.id} says what blame brings`).toBeDefined();
+        if (o.champion) expect(new Set(o.outcomes.map((x) => x.when)), `${e.id}.${o.id} says what follows a pass and a fail`).toEqual(new Set(["pass", "fail"]));
         for (const out of o.outcomes)
           for (const fx of out.effects) {
             if (fx.to === "target" || fx.gift || fx.ward_swap) expect(o.target, `${e.id}.${o.id} names a House`).toBe(true);
