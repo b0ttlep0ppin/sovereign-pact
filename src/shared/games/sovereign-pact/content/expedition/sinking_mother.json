@@ -83,6 +83,37 @@
           ]
         }
       ]
+    },
+    {
+      "id": "hum_back",
+      "label": "The Minstrel hums her tune back to her.",
+      "rule": "scion:job:minstrel",
+      "only": true,
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "She stops, and listens, and sinks out of sight smiling. The tune is the Minstrel's now, and it has power in it.",
+          "effects": [
+            {
+              "jp": 40,
+              "mp": 30
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "She stops, and listens, and takes the Minstrel's voice down into the water with her.",
+          "effects": [
+            {
+              "status": "silence",
+              "sanity": -10
+            }
+          ]
+        }
+      ]
     }
   ]
 }

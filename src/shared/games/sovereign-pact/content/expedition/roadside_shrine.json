@@ -75,6 +75,27 @@
           ]
         }
       ]
+    },
+    {
+      "id": "vigil",
+      "label": "The Knight keeps vigil at it through the night.",
+      "rule": "scion:job:knight",
+      "only": true,
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "No saint answers. The vigil is its own answer, and the Knight rises from it hard as the shrine's stones.",
+          "effects": [
+            {
+              "status": "protect",
+              "sanity": 15
+            }
+          ]
+        }
+      ]
     }
   ]
 }

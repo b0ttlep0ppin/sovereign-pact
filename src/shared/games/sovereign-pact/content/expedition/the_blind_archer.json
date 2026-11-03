@@ -95,6 +95,39 @@
           ]
         }
       ]
+    },
+    {
+      "id": "match_him",
+      "label": "Whoever carries a bow shoots against him.",
+      "rule": "scion:wields:bow",
+      "only": true,
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 40,
+          "text": "They lose, as everyone does, but by so little that he restrings their bow with his own string.",
+          "effects": [
+            {
+              "gear": {
+                "on": "weapon",
+                "add": "massive_crits"
+              },
+              "xp": 20
+            }
+          ]
+        },
+        {
+          "w": 60,
+          "text": "They lose by a mile. He laughs, and shows them why.",
+          "effects": [
+            {
+              "jp": 50
+            }
+          ]
+        }
+      ]
     }
   ]
 }

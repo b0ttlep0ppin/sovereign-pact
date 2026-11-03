@@ -789,9 +789,10 @@ function onlyBecause(rule: string): string {
   const words = (x: string) => x.replace(/_/g, " ");
   const [, kind, id = ""] = rule.split("|")[0]!.split(":");
   const job = Content.JOB_BY_ID.get(id as never)?.name;
-  if (kind === "job") return `Because a ${job ?? words(id)} is with you`;
+  const a = (x: string) => `${/^[aeiou]/i.test(x) ? "an" : "a"} ${x}`;
+  if (kind === "job") return `Because ${a(job ?? words(id))} is with you`;
   if (kind === "trait") return `Because someone is ${Content.TRAIT_BY_ID.get(id)?.name ?? words(id)}`;
-  if (kind === "wields") return `Because someone carries a ${Content.ITEM_BASE_BY_ID.get(id)?.name ?? words(id)}`;
+  if (kind === "wields") return `Because someone carries ${a(Content.ITEM_BASE_BY_ID.get(id)?.name ?? words(id))}`;
   if (kind === "wears") return `Because someone wears ${Content.ITEM_BASE_BY_ID.get(id)?.name ?? words(id)}`;
   if (kind === "cursed") return "Because someone wears cursed gear";
   if (kind === "tarot") return `Because ${Content.TAROT_BY_ID.get(id)?.name ?? words(id)} walks with you`;

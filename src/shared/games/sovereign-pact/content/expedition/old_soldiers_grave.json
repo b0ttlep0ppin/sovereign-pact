@@ -77,6 +77,30 @@
           ]
         }
       ]
+    },
+    {
+      "id": "sword_down",
+      "label": "The Soldier lays their sword on the cairn, and takes it up again.",
+      "rule": "scion:job:soldier",
+      "only": true,
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The words were meant for them. The helm nods, and the blade comes away from the cairn truer than it went down.",
+          "effects": [
+            {
+              "gear": {
+                "on": "weapon",
+                "add": "keen"
+              },
+              "xp": 20
+            }
+          ]
+        }
+      ]
     }
   ]
 }

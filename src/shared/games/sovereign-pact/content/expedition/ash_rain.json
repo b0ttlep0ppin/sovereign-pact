@@ -60,6 +60,27 @@
           ]
         }
       ]
+    },
+    {
+      "id": "war_paint",
+      "label": "The Ravager paints their face with it.",
+      "rule": "scion:job:ravager",
+      "only": true,
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Grey as a corpse, and grinning. The ash is war-paint now, and the Ravager carries it into the next fight.",
+          "effects": [
+            {
+              "tp": 60,
+              "status": "might_up"
+            }
+          ]
+        }
+      ]
     }
   ]
 }

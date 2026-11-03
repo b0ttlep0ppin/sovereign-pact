@@ -69,6 +69,37 @@
           ]
         }
       ]
+    },
+    {
+      "id": "ask_the_cards",
+      "label": "The Soothsayer asks him what the cards would not say.",
+      "rule": "scion:job:soothsayer",
+      "only": true,
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "He answers in the Soothsayer's own voice. It was the right question after all, and the answer is a number: how high their House stands.",
+          "effects": [
+            {
+              "foresee": true,
+              "jp": 30
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "He answers, and the answer is about the Soothsayer's own death. They will not say what he told them.",
+          "effects": [
+            {
+              "sanity": -15,
+              "jp": 50
+            }
+          ]
+        }
+      ]
     }
   ]
 }

@@ -83,6 +83,36 @@
           ]
         }
       ]
+    },
+    {
+      "id": "a_spark",
+      "label": "The one with a staff feeds it a spark.",
+      "rule": "scion:wields:staff",
+      "only": true,
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "It eats the spark and purrs smoke, and rides their shoulder into the next fight, where it is a great help until it gets bored.",
+          "effects": [
+            {
+              "tp": 100
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "It eats the spark and wants more, and takes it.",
+          "effects": [
+            {
+              "hp": -15,
+              "mp": -30
+            }
+          ]
+        }
+      ]
     }
   ]
 }

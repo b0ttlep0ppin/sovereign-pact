@@ -89,6 +89,40 @@
           ]
         }
       ]
+    },
+    {
+      "id": "rifle",
+      "label": "The Vagabond goes through the packs, quickly.",
+      "rule": "scion:job:vagabond",
+      "only": true,
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "Quick hands, full pockets. Whoever comes back for these packs will find them light.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 30
+              }
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "Quick hands, and in the last pack a letter addressed to the Vagabond, by name, in their own writing.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 15
+              },
+              "sanity": -12
+            }
+          ]
+        }
+      ]
     }
   ]
 }

@@ -2,6 +2,13 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-03 (implementation, Milestone 8bx): options only some parties have
+
+Josh's playtest: **"really engage with all the traits all the gear the jobs"**. Following 8bv's `only` rules:
+- **41 events gain a fourth option** offered only when someone in the party fits: a Job (all 14, e.g. the Gambler takes the bone dice's cup, the Tinkerer stops the clockwork guard, the Abjurer wards their breath and dives for the drowned altar), a trait (Sharp, Keen-eyed, Kindly, Devout), a weapon (bow, staff, instrument), armor (plate, a hood), or cursed gear (the thirsting banner's curse and yours cancel). The vote card says why it is there ("Because a Gambler is with you").
+- **They are better, not safe.** Most pay more than the event's other options (an item, a property on the subject's gear, a permanent +1, a blessing, full TP), and about half carry a real risk (a fight, an injury roll, a ruined voice). Their outcomes are written to the Job's or the gear's nature, so a party learns what its people are good for.
+- `npm run events` lists these rules as "few"; it is a report, not a budget, and more will come with later content.
+
 ## 2026-11-03 (implementation, Milestone 8bw): every event outcome does something; small clothes
 
 Josh's playtest: **"Light the old beacon: something answers, nothing happens. Why? Is this even an event? Nothing happened."** and **"this recruit seems nude, may be worth having some small clothes under there."**

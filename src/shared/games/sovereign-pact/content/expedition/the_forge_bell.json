@@ -87,6 +87,30 @@
           ]
         }
       ]
+    },
+    {
+      "id": "ring_it",
+      "label": "The one in plate rings it.",
+      "rule": "scion:wears:plate",
+      "only": true,
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The bell's voice goes through the halls and through the plate, and every hammer in the dark answers. By morning the plate is better than its maker left it.",
+          "effects": [
+            {
+              "gear": {
+                "on": "armor",
+                "better": true
+              },
+              "sanity": -5
+            }
+          ]
+        }
+      ]
     }
   ]
 }

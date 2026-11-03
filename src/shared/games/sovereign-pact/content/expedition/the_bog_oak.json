@@ -98,6 +98,30 @@
           ]
         }
       ]
+    },
+    {
+      "id": "new_stave",
+      "label": "The one with a bow cuts a new stave from it.",
+      "rule": "scion:wields:bow",
+      "only": true,
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It takes all night and the bog does not like it, but the new limbs are black and hard as iron.",
+          "effects": [
+            {
+              "gear": {
+                "on": "weapon",
+                "add": "breaker"
+              },
+              "sanity": -5
+            }
+          ]
+        }
+      ]
     }
   ]
 }

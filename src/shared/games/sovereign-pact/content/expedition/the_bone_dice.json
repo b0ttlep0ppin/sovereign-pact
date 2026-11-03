@@ -99,6 +99,39 @@
           ]
         }
       ]
+    },
+    {
+      "id": "take_the_cup",
+      "label": "The Gambler takes the cup.",
+      "rule": "scion:job:gambler",
+      "only": true,
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 55,
+          "text": "Sixes. The skeleton's jaw falls off. It pays in old gold, and the Gambler walks away with luck humming in their fingers.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 40
+              },
+              "tp": 100
+            }
+          ]
+        },
+        {
+          "w": 45,
+          "text": "Ones. It laughs until its ribs rattle, and takes its winnings out of the Gambler's blood.",
+          "effects": [
+            {
+              "hp": -30,
+              "status": "marked"
+            }
+          ]
+        }
+      ]
     }
   ]
 }

@@ -83,6 +83,38 @@
           ]
         }
       ]
+    },
+    {
+      "id": "one_note",
+      "label": "The Minstrel sings one note to the crystals.",
+      "rule": "scion:job:minstrel",
+      "only": true,
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "The cave sings it back a hundredfold, and the sound fills every one of you like wine.",
+          "effects": [
+            {
+              "to": "party",
+              "tp": 50,
+              "sanity": 5
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "The cave sings it back a hundredfold, and the roof comes down.",
+          "effects": [
+            {
+              "to": "party",
+              "hp": -20
+            }
+          ]
+        }
+      ]
     }
   ]
 }
