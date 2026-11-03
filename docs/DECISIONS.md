@@ -2,6 +2,12 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-03 (implementation, Milestone 8cs): status lines in words, no shared first names
+
+Josh approved two fixes spotted in the screenshots ("Jocelin is sleep"; two recruits both named Ursula).
+- **The battle log reads a status as English.** A state reads "is asleep / is poisoned / is knocked down" and "is no longer …" when it ends; a buff reads "gains Protect" and "'s Protect fades"; any other harm reads "suffers Hex" and "is free of Hex" (`statusLine` in `combat/render.ts`).
+- **No two people in play share a first name.** A new recruit's given name is drawn from the names no living person and no muster volunteer already has (`namesTaken`); only if every name of that sex is taken may one repeat. The dead's names come free again.
+
 ## 2026-11-03 (implementation, Milestone 8cr): gear choices shown with their numbers
 
 Josh: **"the exact stats of gear and their effects are kinda hard to understand from a drop down menu"**.

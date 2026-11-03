@@ -7,7 +7,7 @@ import type { TownEffect, TownScionEffect } from "./content.ts";
 import { caps } from "./combat/build.ts";
 import { befall } from "./events.ts";
 import { jobStat } from "./formulas.ts";
-import { rollRecruit } from "./generate.ts";
+import { namesTaken, rollRecruit } from "./generate.ts";
 import { year20 } from "./crisis.ts";
 import { give } from "./consumables.ts";
 import { BUILDING_BY_ID, HOUSE_TRAIT_BY_ID, ITEM_BASES } from "./content.ts";
@@ -195,7 +195,7 @@ function touch(s: SovState, e: TownEffect, i: number, guard = 0): void {
   }
   for (let n = 0; n < (e.recruit_gain ?? 0); n++) {
     const id = s.nextId++;
-    s.people.push(withRng(s, (rng) => rollRecruit(rng, id, i, s.houses[i])));
+    s.people.push(withRng(s, (rng) => rollRecruit(rng, id, i, s.houses[i], namesTaken(s))));
   }
   if (e.sanity) {
     const pct = soften(e.sanity);

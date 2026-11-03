@@ -2,6 +2,7 @@
 // simulator, tests and debugging before the battle screen exists.
 import { BOSS_BY_ID, CONSUMABLE_BY_ID, INJURY_BY_ID } from "../content.ts";
 import { covers } from "./grid.ts";
+import { meta } from "./status.ts";
 import { COLS, ROWS, type Battle, type BattleEvent, type Combatant } from "./types.ts";
 
 /** A boss's phase name or line, from its content. */
@@ -75,7 +76,7 @@ export function describeEvent(b: Battle, e: BattleEvent): string {
     case "sanity":
       return `${n(e.target)} loses ${e.amount} Sanity`;
     case "status":
-      return `${n(e.target)} ${e.on ? "is" : "is no longer"} ${e.status}`;
+      return statusLine(n(e.target), e.status, e.on);
     case "injury":
       return `${n(e.target)} rolls ${e.roll} (total ${e.total}) on ${e.table}: ${INJURY_BY_ID.get(e.result)?.name ?? e.result}`;
     case "steeled":
@@ -126,3 +127,22 @@ export function describeEvent(b: Battle, e: BattleEvent): string {
 }
 
 export const renderLog = (b: Battle, from = 0): string => b.events.slice(from).map((e) => describeEvent(b, e)).join("\n");
+
+/** Ailments read as states ("Jocelin is asleep"); other statuses are gained or suffered by name. */
+const STATES: Record<string, string> = {
+  poison: "poisoned", bleed: "bleeding", stun: "stunned", knockdown: "knocked down", slow: "slowed", haste: "hasted", quickened: "quickened",
+  stop: "stopped", blind: "blinded", burn: "burning", frozen: "frozen", disease: "diseased", disarmed: "disarmed", berserk: "berserk",
+  confusion: "confused", sleep: "asleep", charm: "charmed", fear: "afraid", silence: "silenced", deaf: "deafened", madness: "mad",
+  provoke: "provoked", hidden: "hidden", enrage: "enraged", marked: "marked", exposed: "exposed", rooted: "rooted", tipsy: "tipsy",
+  turned: "turned", veiled: "veiled", submerged: "submerged", guarded: "guarded", hex: "hexed", exhausted: "exhausted", anchored: "anchored",
+  braced: "braced", oathbound: "oathbound", edged: "edged", communed: "communed", interposing: "interposing",
+};
+const SPELLED: Record<string, string> = { mp_regen: "MP Regen", tp_regen: "TP Regen", skip_turn: "a lost turn" };
+export const statusName = (id: string): string => SPELLED[id] ?? id.split("_").map((w) => w[0]!.toUpperCase() + w.slice(1)).join(" ");
+
+export function statusLine(who: string, id: string, on: boolean): string {
+  const state = STATES[id];
+  if (state) return `${who} ${on ? "is" : "is no longer"} ${state}`;
+  if (meta(id).kind === "buff") return on ? `${who} gains ${statusName(id)}` : `${who}'s ${statusName(id)} fades`;
+  return on ? `${who} suffers ${statusName(id)}` : `${who} is free of ${statusName(id)}`;
+}
