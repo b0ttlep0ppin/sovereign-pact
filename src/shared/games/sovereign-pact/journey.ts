@@ -92,6 +92,8 @@ export function partyOf(s: SovState, ids: number[], carried: Expedition["carry"]
       for (const loc of LOCATIONS) u.dur[loc] = Math.min(u.maxDur[loc], c.dur[loc] ?? u.maxDur[loc]);
       u.broken = c.broken.filter((l) => u.dur![l] === 0);
       for (const [k, v] of Object.entries(c.mods ?? {})) u.mods[k] = (u.mods[k] ?? 0) + v;
+      // An event's TP, % of the most a Scion can hold, for this battle only.
+      if (c.tp) u.tp = Math.max(u.tp, Math.round((TUNING.combat.tp.max * c.tp) / 100));
       // An event's ailment, for this battle only.
       for (const x of c.start ?? []) {
         const [id, ticks] = x.split(":") as [string, string?];

@@ -2,6 +2,15 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-03 (implementation, Milestone 8bv): events that reach Jobs, gear and the next battle
+
+Josh's playtest: **"Too many events don't do much, they need more boons and banes, more interesting effects. Really engage with all the traits all the gear the jobs"**, and **"other potential event effects can be minor, full heal, take a little damage, restore mp, start next battle full tp, start next battle with a status ailment, start next battle with a buff"**.
+- **New subjects** (§9.4 rules): `scion:job:<job>` (a Scion in that Job), `scion:wields:<base or kind>` and `scion:wears:<base or kind>` (carrying a bow, a shield; wearing plate), `scion:cursed` (in cursed gear). Ties go to the first fielded, as before.
+- **Options only some can take** (`only: true`): offered only when someone in the party fits the rule's first choice, so a Magus can read the runes and a Scion in plate can wade in, and nobody is shown a choice that falls on no one. The vote card says why it is there ("Because a Magus is with you"). The rules refuse a vote for a closed option and the bot never picks one.
+- **Gear effects** (`gear`): a piece the subject wears (their weapon, their armor, or any) gains a property (a good one, a bad one, a curse, or one by id, never a duplicate or a second of its group), loses a bad property or its curse, is dented (a tier worse until a Forge) or mended, made a tier better, or lost. The outcome card tells each change by the item's name.
+- **The next battle:** `tp` starts the subject with that % of full TP (beside the existing `status`, which already takes buffs as well as ailments, `hp` for a heal or a wound, `mp`). Reading: these last one battle, like `status`.
+- **The outcome card** (8bu) also tells TP, statuses and gear; an outcome that starts a fight now says so.
+
 ## 2026-11-03 (implementation, Milestone 8bu): Guard does something; the Gate and the walls say what they do
 
 Josh's playtest: **"Its still not clear what sorties at the rift gate or walls do."**

@@ -236,3 +236,41 @@ export function rollProps(rng: Rng, item: Item, opts: RollOpts = {}): Item {
   if (opts.cursed) item.cursed = true;
   return item;
 }
+
+/**
+ * One property more on `item` (an event's mark on gear, Josh 2026-11-03): a good one, a bad one, a
+ * curse (which also marks it cursed), or a property by id. Only what fits the piece and is not already
+ * there (nor another of its group); returns the property's id, or null if nothing fits.
+ */
+export function addProperty(rng: Rng, item: Item, kind: string): string | null {
+  const kinds = propertyKinds(item);
+  const props = item.props ?? [];
+  const pool = PROPERTIES.filter((x) =>
+    (kind === "good" ? !x.negative && !x.curse : kind === "bad" ? x.negative : kind === "curse" ? x.curse : x.id === kind) &&
+    x.on.some((k) => kinds.includes(k)) &&
+    !props.some(([id]) => id === x.id || (x.group && PROPERTY_BY_ID.get(id)?.group === x.group)),
+  );
+  if (!pool.length) return null;
+  let roll = rng.int(pool.reduce((n, x) => n + (x.weight ?? 10), 0));
+  const pick = pool.find((x) => (roll -= x.weight ?? 10) < 0)!;
+  item.props = [...props, [pick.id, pick.roll ? pick.roll[0] + rng.int(pick.roll[1] - pick.roll[0] + 1) : 1]];
+  if (pick.curse) item.cursed = true;
+  return pick.id;
+}
+
+/** Takes one bad property or curse off `item`; a piece with no curse left is no longer cursed. */
+export function liftProperty(rng: Rng, item: Item, kind: "bad" | "curse"): string | null {
+  const ids = (item.props ?? []).filter(([id]) => (kind === "curse" ? PROPERTY_BY_ID.get(id)?.curse : PROPERTY_BY_ID.get(id)?.negative));
+  if (!ids.length) {
+    if (kind === "curse" && item.cursed) {
+      delete item.cursed;
+      return "curse";
+    }
+    return null;
+  }
+  const [gone] = rng.pick(ids);
+  item.props = item.props!.filter(([id]) => id !== gone);
+  if (!item.props.length) delete item.props;
+  if (!(item.props ?? []).some(([id]) => PROPERTY_BY_ID.get(id)?.curse)) delete item.cursed;
+  return gone;
+}
