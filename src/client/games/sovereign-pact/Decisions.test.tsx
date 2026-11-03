@@ -31,6 +31,18 @@ describe("the Settlement Phase's decisions", () => {
     expect(sendMove).toHaveBeenCalledWith({ type: "vote", choice: 0 });
   });
 
+  it("tells the Omen put to a vote, not only its options", () => {
+    const s = found(campaign(2, 4));
+    s.events = [];
+    delete s.crisis;
+    s.vote = { kind: "event", subject: EVENT.id, options: EVENT.options!.map((o) => o.id), by: [null, null], proposer: -1 };
+    render(<Decisions view={g.view(s, s.players[0]!)} sendMove={() => {}} canAct />);
+    const card = screen.getByLabelText("The open vote");
+    expect(within(card).getByText(EVENT.text)).toBeTruthy();
+    expect(within(card).queryByText(/Proposed by House \./)).toBeNull();
+    expect(within(card).getByText(/every House votes/)).toBeTruthy();
+  });
+
   it("chooses a town event's option", () => {
     const { view } = town();
     const sendMove = vi.fn();

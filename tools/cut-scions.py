@@ -59,8 +59,10 @@ PICK = {
     "armor": {
         "chainmail": "torso/torso_chainmail.json",
         "plate": "torso/armour/torso_armour_plate.json",
-        "leather": "torso/armour/torso_armour_leather.json",
         "legion": "torso/armour/torso_armour_legion.json",
+        # Light armor is clothing (Josh 2026-11-03): a buttoned doublet and an open gambeson, dyed leather.
+        "doublet": "torso/shirts/longsleeve/torso_clothes_longsleeve2_buttoned.json",
+        "gambeson": "torso/shirts/longsleeve/torso_clothes_longsleeve2_cardigan.json",
     },
     "tabard": {"tabard": "torso/jacket/torso_jacket_tabard.json"},
     "belt": {
@@ -217,6 +219,14 @@ for slot, opts in PICK.items():
                         drawn = True
                     if not drawn:
                         continue
+                    if slot == "weapon":
+                        # The idle rows borrow their second frame from the walk, where a weapon swings
+                        # level or drops out of the hand (Josh 2026-11-03: a staff "goes from pointed up to
+                        # pointed forward"). Hold the first frame's weapon instead, risen 1 px with the body.
+                        for r in (0, 1):
+                            first = sheet.crop((0, r * CELL, CELL, (r + 1) * CELL))
+                            sheet.paste((0, 0, 0, 0), (CELL, r * CELL, 2 * CELL, (r + 1) * CELL))
+                            sheet.alpha_composite(first.crop((0, 1, CELL, CELL)), (CELL, r * CELL))
                     tag = f"{lk[6:]}{'abcdefgh'[part] if part else ''}"
                     lid = f"{slot}_{oid}_{tag}_{sex[0]}"
                     # Same art for both bodies: keep one file.
@@ -232,6 +242,72 @@ for slot, opts in PICK.items():
                     continue
                 seen_credits.add(key)
                 manifest["credits"].append({"file": key, "authors": c["authors"], "licenses": [l for l in c["licenses"] if l.startswith(BY)], "urls": c.get("urls", [])})
+
+
+def spearhead(sheet: Image.Image) -> Image.Image:
+    """The staff with its crook and gem cut away and a steel spearhead in their place.
+
+    The generator's spears are share-alike only, so the game's spear is its simple staff with a head
+    painted on (Josh 2026-11-03: "crude spear very clearly appears to be a staff"). In each frame the
+    shaft's line is fitted through its pixels; the end nearer the gem is the head end. Frames that show
+    no gem (the staff's far end only) are left as they are.
+    """
+    out = sheet.copy()
+    px = out.load()
+    steel = [(0x2a, 0x2c, 0x33, 255), (0x8e, 0x95, 0x9e, 255), (0xd4, 0xd9, 0xde, 255)]
+    for r in range(len(ROWS)):
+        for c in range(COLS):
+            x0, y0 = c * CELL, r * CELL
+            pts = [(x, y) for y in range(y0, y0 + CELL) for x in range(x0, x0 + CELL) if px[x, y][3] > 100]
+            gem = [(x, y) for x, y in pts if px[x, y][2] > px[x, y][0] + 30]
+            if not gem or len(pts) < 10:
+                continue
+            mx = sum(x for x, _ in pts) / len(pts)
+            my = sum(y for _, y in pts) / len(pts)
+            sxx = sum((x - mx) ** 2 for x, _ in pts)
+            syy = sum((y - my) ** 2 for _, y in pts)
+            sxy = sum((x - mx) * (y - my) for x, y in pts)
+            # The principal axis of the shaft's pixels.
+            import math
+            ang = 0.5 * math.atan2(2 * sxy, sxx - syy)
+            dx, dy = math.cos(ang), math.sin(ang)
+            gx = sum(x for x, _ in gem) / len(gem)
+            gy = sum(y for _, y in gem) / len(gem)
+            if (gx - mx) * dx + (gy - my) * dy < 0:
+                dx, dy = -dx, -dy
+            along = lambda x, y: (x - mx) * dx + (y - my) * dy
+            across = lambda x, y: -(x - mx) * dy + (y - my) * dx
+            # The shaft's own offset from the fitted line, read from its lower half.
+            low = [across(x, y) for x, y in pts if along(x, y) < 0]
+            mid = sorted(low)[len(low) // 2] if low else 0.0
+            end = max(along(x, y) for x, y in pts)
+            head = end - 8
+            # Cut away the crook and gem: everything near the head end off the shaft's line.
+            for x, y in pts:
+                if along(x, y) > head and (abs(across(x, y) - mid) > 1.2 or (x, y) in gem):
+                    px[x, y] = (0, 0, 0, 0)
+            # The shaft runs on to the socket; the blade goes on past the old end.
+            base, tip = head, end + 3
+            for y in range(y0, y0 + CELL):
+                for x in range(x0, x0 + CELL):
+                    a, t = along(x, y), across(x, y) - mid
+                    if base - 2 <= a < base and abs(t) <= 1.4:
+                        px[x, y] = steel[0]
+                    elif base <= a <= tip:
+                        k = (a - base) / (tip - base)
+                        half = 2.3 * (1 - k) + 0.4 if k > 0.3 else 1.2 + 3.7 * k
+                        if abs(t) <= half:
+                            edge = abs(t) > half - 1.0 or a > tip - 1
+                            px[x, y] = steel[0] if edge else (steel[2] if t < 0 else steel[1])
+    return out
+
+
+# The spear (DECISIONS 8bs): the staff with a painted spearhead, credited as the staff.
+for layer in [l for l in manifest["layers"] if l["slot"] == "weapon" and l["option"] == "staff"]:
+    lid = layer["id"].replace("staff", "spear")
+    if layer["file"] == layer["id"]:
+        spearhead(Image.open(out / f"{layer['file']}.webp").convert("RGBA")).save(out / f"{lid}.webp", "WEBP", lossless=True, method=6)
+    manifest["layers"].append({**layer, "id": lid, "file": layer["file"].replace("staff", "spear"), "option": "spear"})
 
 for material in ["body", "hair", "cloth", "eye", "metal"]:
     meta = json.loads((gen / "palette_definitions" / material / f"meta_{material}.json").read_text())

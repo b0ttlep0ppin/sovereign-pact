@@ -120,7 +120,11 @@ function VoteCard({ view, vote, sendMove }: { view: SovView; vote: NonNullable<S
   return (
     <article className="sp-event sp-event--vote" aria-label="The open vote">
       <h3>A vote: {question}</h3>
-      <p className="sp-event__status">Proposed by House {view.houses[vote.proposer]?.name}. A tie costs Accord.</p>
+      {vote.kind === "event" ? <p>{Content.TOWN_EVENT_BY_ID.get(vote.subject)?.text}</p> : null}
+      <p className="sp-event__status">
+        {/* An Omen put to the vote has no proposer (omens.ts): every House answers it together. */}
+        {view.houses[vote.proposer] ? `Proposed by House ${view.houses[vote.proposer]!.name}.` : "The Omen falls on the whole city; every House votes."} A tie costs Accord.
+      </p>
       <ul className="sp-hands">
         {options.map((label, i) => (
           <li key={i}>

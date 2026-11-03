@@ -20,6 +20,15 @@ describe("founding a House (§5.1)", () => {
     expect(sendMove).toHaveBeenCalledWith({ type: "design", house: { name: "Vellacourt", motto: view.houses[0]!.motto } });
   });
 
+  it("keeps a typed name and motto when the field is left, without the button", () => {
+    const { view } = founding();
+    const sendMove = vi.fn();
+    render(<HouseDesigner view={view} sendMove={sendMove} />);
+    fireEvent.change(screen.getByLabelText("Motto"), { target: { value: "We remember." } });
+    fireEvent.blur(screen.getByLabelText("Motto"));
+    expect(sendMove).toHaveBeenCalledWith({ type: "design", house: { name: view.houses[0]!.name, motto: "We remember." } });
+  });
+
   it("picks a color and a Seat, and rerolls a step with the dice", () => {
     const { view } = founding();
     const h = view.houses[0]!;

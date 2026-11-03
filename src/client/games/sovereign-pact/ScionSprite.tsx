@@ -68,7 +68,7 @@ const OUTFIT: Record<string, Partial<Record<Slot, string | readonly string[]>>> 
     face: ["", "", "halfmoon"],
     weapon: "staff",
   },
-  vagabond: { armor: "leather", hat: "hood", belt: ["double", "leather"], wrists: "bracers", face: ["", "", "", "eyepatch"], cape: ["tattered", ""], weapon: "bow" },
+  vagabond: { armor: "gambeson", hat: "hood", belt: ["double", "leather"], wrists: "bracers", face: ["", "", "", "eyepatch"], cape: ["tattered", ""], weapon: "bow" },
   pugilist: { shirt: "sleeveless", hat: ["kerchief", "bandana", "thick", "tied"], wrists: ["cuffs", "bracers"], belt: ["sash", "obi", "waistband"] },
   minstrel: { shirt: "tshirt", hat: ["cavalier", "bonnie", "leather_cap"], neck: ["cravat", "jabot", "capetie"], belt: "sash", weapon: "dagger", cape: "solid" },
   gambler: { shirt: "longsleeve", hat: ["tricorne", "tricorne_stitched", "tricorne_captain", "bicorne"], neck: ["jabot", "cravat", ""], shoulders: ["", "epaulets"], face: ["", "", "eyepatch"], belt: "leather", weapon: "crossbow" },
@@ -85,7 +85,7 @@ const OUTFIT: Record<string, Partial<Record<Slot, string | readonly string[]>>> 
   sword_saint: { shirt: "longsleeve", hat: ["tied", "hairtie", "thick", ""], belt: "obi", shoulders: ["mantal", ""], wrists: "cuffs", weapon: "sword", cape: "solid" },
   abjurer: { shirt: "longsleeve", hat: "hood", shoulders: "mantal", neck: ["amulet_cross", "capeclip"], belt: "robe", weapon: "staff", cape: "solid", capetrim: "trim" },
   conjurer: { shirt: "longsleeve", hat: ["wizard_moon", "wizard_trim"], neck: ["necklace_beaded_small", "amulet_star"], belt: "sash", weapon: "staff" },
-  tinkerer: { armor: "leather", hat: ["leather_cap", ""], face: ["glasses", "glasses", ""], gloves: "gloves", belt: "double", weapon: "crossbow" },
+  tinkerer: { armor: "doublet", hat: ["leather_cap", ""], face: ["glasses", "glasses", ""], gloves: "gloves", belt: "double", weapon: "crossbow" },
   alterer: { shirt: "tshirt", hat: ["sack_hood", "sack_hood", "thick_rune"], face: ["mask", ""], neck: "charm_star", belt: "waistband", weapon: "staff" },
 };
 /** The metal each Job's armor is worked in, one per Scion (the generator's metal palette). */
@@ -129,6 +129,11 @@ export interface ScionLook {
   bare?: boolean;
 }
 
+/** Light armor drawn as clothing, dyed leather brown, rather than worked metal: a buttoned doublet, or an
+ * open gambeson (Josh 2026-11-03: "the leather jerkins kinda look like shit, maybe use like coat or other
+ * clothing types"; the generator's coats are share-alike only). */
+const LEATHERN = new Set(["doublet", "gambeson"]);
+
 /** The sprite piece each item base is drawn with (DECISIONS 8aj); the LPC set has no attribution-only axe or spear. */
 const KIT: Record<string, ["weapon" | "shield" | "hat" | "armor", string]> = {
   sword: ["weapon", "sword"],
@@ -151,7 +156,7 @@ const KIT: Record<string, ["weapon" | "shield" | "hat" | "armor", string]> = {
   hood: ["hat", "hood"],
   coif: ["hat", "mail"],
   helm: ["hat", "nasal"],
-  jerkin: ["armor", "leather"],
+  jerkin: ["armor", "doublet"],
   hauberk: ["armor", "chainmail"],
   plate: ["armor", "plate"],
 };
@@ -224,6 +229,8 @@ const outfitOf = (look: ScionLook): Partial<Record<Slot, string>> => {
     // wizard hat, a Gambler's tricorne); a Coif or Helm on a bare or cloth head is drawn as it is.
     else if (slot === "hat" && piece === "nasal" && out.hat && HELMS.has(out.hat)) continue;
     else if (slot === "hat" && piece === "hood" && out.hat && !HELMS.has(out.hat)) continue;
+    // A Jerkin keeps the leathers the Job already wears (a Vagabond's open gambeson).
+    else if (slot === "armor" && LEATHERN.has(piece) && jobArmor && LEATHERN.has(jobArmor)) continue;
     else if (piece) out[slot] = piece;
     // Bare-handed or unarmored: no weapon or armor; a helmless head keeps its Job's hat.
     else if (slot === "weapon" || slot === "armor") delete out[slot];
@@ -287,6 +294,7 @@ interface Piece {
 }
 
 /** Every piece of a Scion's sprite, back to front. */
+
 export function piecesOf(look: ScionLook): Piece[] {
   const outfit = outfitOf(look);
   const palettes = LAYERS.palettes as Record<string, { base: string; colors: Record<string, string[]> }>;
@@ -301,7 +309,8 @@ export function piecesOf(look: ScionLook): Piece[] {
     ["legs", "pants", cloth.charcoal],
     ["feet", "boots", cloth.leather],
     ["shirt", outfit.shirt, second],
-    ["armor", outfit.armor, metal],
+    // Leather and cloth armor is dyed leather brown; mail and plate are worked in their Job's metal.
+    ["armor", outfit.armor, LEATHERN.has(outfit.armor ?? "") ? cloth.leather : metal],
     ["tabard", outfit.tabard, main],
     ["belt", outfit.belt, outfit.belt === "leather" || outfit.belt === "double" ? cloth.leather : main],
     ["shoulders", outfit.shoulders, outfit.shoulders === "legion" ? metal : main],

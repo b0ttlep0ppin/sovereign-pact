@@ -524,24 +524,6 @@
    "material": "metal"
   },
   {
-   "id": "armor_leather_1_m",
-   "file": "armor_leather_1_m",
-   "slot": "armor",
-   "option": "leather",
-   "sex": "m",
-   "z": 60,
-   "material": "cloth"
-  },
-  {
-   "id": "armor_leather_1_f",
-   "file": "armor_leather_1_f",
-   "slot": "armor",
-   "option": "leather",
-   "sex": "f",
-   "z": 60,
-   "material": "cloth"
-  },
-  {
    "id": "armor_legion_1_m",
    "file": "armor_legion_1_m",
    "slot": "armor",
@@ -558,6 +540,42 @@
    "sex": "f",
    "z": 60,
    "material": "metal"
+  },
+  {
+   "id": "armor_doublet_1_m",
+   "file": "armor_doublet_1_m",
+   "slot": "armor",
+   "option": "doublet",
+   "sex": "m",
+   "z": 35,
+   "material": "cloth"
+  },
+  {
+   "id": "armor_doublet_1_f",
+   "file": "armor_doublet_1_f",
+   "slot": "armor",
+   "option": "doublet",
+   "sex": "f",
+   "z": 35,
+   "material": "cloth"
+  },
+  {
+   "id": "armor_gambeson_1_m",
+   "file": "armor_gambeson_1_m",
+   "slot": "armor",
+   "option": "gambeson",
+   "sex": "m",
+   "z": 35,
+   "material": "cloth"
+  },
+  {
+   "id": "armor_gambeson_1_f",
+   "file": "armor_gambeson_1_f",
+   "slot": "armor",
+   "option": "gambeson",
+   "sex": "f",
+   "z": 35,
+   "material": "cloth"
   },
   {
    "id": "tabard_tabard_1_m",
@@ -2629,6 +2647,42 @@
    "sex": "f",
    "z": 110,
    "material": null
+  },
+  {
+   "id": "weapon_spear_1_m",
+   "file": "weapon_spear_1_m",
+   "slot": "weapon",
+   "option": "spear",
+   "sex": "m",
+   "z": 140,
+   "material": null
+  },
+  {
+   "id": "weapon_spear_1_f",
+   "file": "weapon_spear_1_m",
+   "slot": "weapon",
+   "option": "spear",
+   "sex": "f",
+   "z": 140,
+   "material": null
+  },
+  {
+   "id": "weapon_spear_2_m",
+   "file": "weapon_spear_2_m",
+   "slot": "weapon",
+   "option": "spear",
+   "sex": "m",
+   "z": 9,
+   "material": null
+  },
+  {
+   "id": "weapon_spear_2_f",
+   "file": "weapon_spear_2_m",
+   "slot": "weapon",
+   "option": "spear",
+   "sex": "f",
+   "z": 9,
+   "material": null
   }
  ],
  "palettes": {
@@ -3859,41 +3913,6 @@
    ]
   },
   {
-   "file": "torso/armour/leather",
-   "authors": [
-    "Johannes Sj\u00f6lund (wulax)",
-    "bluecarrot16",
-    "JaidynReiman"
-   ],
-   "licenses": [
-    "OGA-BY 3.0"
-   ],
-   "urls": [
-    "https://opengameart.org/content/lpc-medieval-fantasy-character-sprites",
-    "https://opengameart.org/content/lpc-clothing-updates",
-    "https://opengameart.org/content/lpc-expanded-armor"
-   ]
-  },
-  {
-   "file": "torso/armour/leather/female",
-   "authors": [
-    "Michael Whitlock (bigbeargames)",
-    "Matthew Krohn (makrohn)",
-    "Johannes Sj\u00f6lund (wulax)",
-    "bluecarrot16",
-    "JaidynReiman"
-   ],
-   "licenses": [
-    "OGA-BY 3.0"
-   ],
-   "urls": [
-    "https://opengameart.org/content/lpc-medieval-fantasy-character-sprites",
-    "https://opengameart.org/content/lpc-combat-armor-for-women",
-    "https://opengameart.org/content/lpc-clothing-updates",
-    "https://opengameart.org/content/lpc-expanded-armor"
-   ]
-  },
-  {
    "file": "torso/armour/legion",
    "authors": [
     "Napsio (Vitruvian Studio)",
@@ -3906,6 +3925,42 @@
    ],
    "urls": [
     "https://opengameart.org/content/lpc-roman-armor"
+   ]
+  },
+  {
+   "file": "torso/clothes/longsleeve/longsleeve2_buttoned",
+   "authors": [
+    "ElizaWy",
+    "JaidynReiman",
+    "Stephen Challener (Redshrike)",
+    "Johannes Sj\u00f6lund (wulax)"
+   ],
+   "licenses": [
+    "OGA-BY 3.0"
+   ],
+   "urls": [
+    "http://opengameart.org/content/lpc-revised-character-basics",
+    "https://github.com/ElizaWy/LPC/tree/main/Characters/Clothing",
+    "https://opengameart.org/content/lpc-expanded-sit-run-jump-more",
+    "https://opengameart.org/content/lpc-expanded-simple-shirts"
+   ]
+  },
+  {
+   "file": "torso/clothes/longsleeve/longsleeve2_cardigan",
+   "authors": [
+    "ElizaWy",
+    "JaidynReiman",
+    "Stephen Challener (Redshrike)",
+    "Johannes Sj\u00f6lund (wulax)"
+   ],
+   "licenses": [
+    "OGA-BY 3.0"
+   ],
+   "urls": [
+    "http://opengameart.org/content/lpc-revised-character-basics",
+    "https://github.com/ElizaWy/LPC/tree/main/Characters/Clothing",
+    "https://opengameart.org/content/lpc-expanded-sit-run-jump-more",
+    "https://opengameart.org/content/lpc-expanded-simple-shirts"
    ]
   },
   {
