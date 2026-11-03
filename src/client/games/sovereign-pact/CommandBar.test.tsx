@@ -64,6 +64,13 @@ describe("commanding a turn (§15.5)", () => {
     expect(send).toHaveBeenCalledWith({ action: { do: "ability", ability: "attack", target: foe } });
   });
 
+  it("shows the chance to hit the foe being aimed at (Josh 2026-11-03)", () => {
+    setup((unit, foe) => ({ ...turnOf(unit, foe), abilities: [{ id: "attack", name: "Attack", mp: 0, tp: 0, why: null, aim: "unit", targets: [foe], hit: [72] }] }));
+    fireEvent.click(screen.getByRole("button", { name: "Attack" }));
+    expect(screen.getByRole("group", { name: "Choose a target" }).textContent).toContain("72% to hit.");
+    expect(document.querySelector(".sp-unit__hit")?.textContent).toBe("72%");
+  });
+
   it("aims by clicking the cell, and backs out with Escape", () => {
     const { send } = setup(turnOf);
     fireEvent.click(screen.getByRole("button", { name: "Move" }));
