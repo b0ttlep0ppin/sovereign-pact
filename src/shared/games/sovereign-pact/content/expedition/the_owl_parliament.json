@@ -55,8 +55,13 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They lose interest, and talk among themselves.",
-          "effects": []
+          "text": "They lose interest, and talk among themselves. You learn a great deal from what they say about you.",
+          "effects": [
+            {
+              "to": "party",
+              "jp": 25
+            }
+          ]
         }
       ]
     },

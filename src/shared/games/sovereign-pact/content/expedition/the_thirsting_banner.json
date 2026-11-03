@@ -71,8 +71,13 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Somebody will. Somebody always does.",
-          "effects": []
+          "text": "Somebody will. Somebody always does. A mile on you find that somebody's leavings, and the Leader learns which battle it loses.",
+          "effects": [
+            {
+              "sanity": -5,
+              "jp": 20
+            }
+          ]
         }
       ]
     }

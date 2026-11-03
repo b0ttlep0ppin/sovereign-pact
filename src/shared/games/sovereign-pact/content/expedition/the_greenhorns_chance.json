@@ -62,9 +62,26 @@
       ],
       "outcomes": [
         {
-          "w": 100,
-          "text": "It watches you go.",
-          "effects": []
+          "w": 50,
+          "text": "It watches you go. Later it follows, healed enough to be angry.",
+          "effects": [
+            {
+              "fork": {
+                "add": [
+                  "encounter"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "It watches you go, and the Leader knows they should have let it be finished. It sits badly.",
+          "effects": [
+            {
+              "sanity": -5
+            }
+          ]
         }
       ]
     }

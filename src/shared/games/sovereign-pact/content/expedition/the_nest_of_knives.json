@@ -75,8 +75,14 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Something with iron feathers watches you go.",
-          "effects": []
+          "text": "Something with iron feathers watches you go, and drops one point-down in the earth beside you. Good iron.",
+          "effects": [
+            {
+              "resources": {
+                "iron": 2
+              }
+            }
+          ]
         }
       ]
     }

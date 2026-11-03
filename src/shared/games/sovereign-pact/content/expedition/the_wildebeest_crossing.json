@@ -21,8 +21,14 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Hours, and then a calm river.",
-          "effects": []
+          "text": "Hours, and then a calm river. The crocodiles are fat and lazy, and you cross rested by the wait.",
+          "effects": [
+            {
+              "to": "party",
+              "hp": 10,
+              "mp": 10
+            }
+          ]
         }
       ]
     },

@@ -67,8 +67,12 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He walks on, chains dragging.",
-          "effects": []
+          "text": "He walks on, chains dragging, and kneels to pray for the Leader anyway. It helps.",
+          "effects": [
+            {
+              "status": "protect"
+            }
+          ]
         }
       ]
     }

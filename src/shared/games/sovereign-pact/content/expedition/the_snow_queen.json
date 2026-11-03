@@ -53,9 +53,27 @@
       ],
       "outcomes": [
         {
-          "w": 100,
-          "text": "She laughs and is gone.",
-          "effects": []
+          "w": 50,
+          "text": "She laughs and is gone. Her wolves stay, keeping pace at the edge of sight.",
+          "effects": [
+            {
+              "fork": {
+                "add": [
+                  "encounter"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "She laughs and is gone, and the cold of her stays in your fingers.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -5
+            }
+          ]
         }
       ]
     },

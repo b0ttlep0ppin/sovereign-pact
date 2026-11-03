@@ -75,8 +75,14 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Some doors are best left.",
-          "effects": []
+          "text": "Some doors are best left. The crest stays in the Leader's mind, and when they meet that House again they will know a thing about them.",
+          "effects": [
+            {
+              "score": {
+                "intrigue": 1
+              }
+            }
+          ]
         }
       ]
     }

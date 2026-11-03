@@ -64,8 +64,14 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They pass, and the night is darker after.",
-          "effects": []
+          "text": "They pass, and the night is darker after, but the one that flickered toward you leaves a little warmth behind in every chest.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 5,
+              "mp": 10
+            }
+          ]
         }
       ]
     }

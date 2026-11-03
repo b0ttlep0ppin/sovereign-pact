@@ -74,8 +74,13 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He sulks into the reeds.",
-          "effects": []
+          "text": "He sulks into the reeds. His leeches do not: at dusk you find them on your legs, fat and sleepy.",
+          "effects": [
+            {
+              "to": "party",
+              "hp": -8
+            }
+          ]
         }
       ]
     }

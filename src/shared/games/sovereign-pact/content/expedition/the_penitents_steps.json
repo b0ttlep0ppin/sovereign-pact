@@ -46,8 +46,14 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Faster, and the priests at the top look at you sideways.",
-          "effects": []
+          "text": "Faster, and the priests at the top look at you sideways, and say so in their letters home.",
+          "effects": [
+            {
+              "score": {
+                "renown": -1
+              }
+            }
+          ]
         }
       ]
     },

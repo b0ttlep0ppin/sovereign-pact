@@ -43,8 +43,14 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "She shrugs and is gone in the snow.",
-          "effects": []
+          "text": "She shrugs and is gone in the snow, and her parting breath frosts every buckle in the party brittle.",
+          "effects": [
+            {
+              "to": "party",
+              "durability": -15,
+              "loc": "body"
+            }
+          ]
         }
       ]
     },

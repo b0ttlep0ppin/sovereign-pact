@@ -98,8 +98,14 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A hundred eyes follow you out. None follow further.",
-          "effects": []
+          "text": "A hundred eyes follow you out. None follow further, but a hand did while you were watching the eyes, and a purse is gone.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -15
+              }
+            }
+          ]
         }
       ]
     }

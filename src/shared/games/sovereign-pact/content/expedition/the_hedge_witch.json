@@ -71,8 +71,13 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It stands up anyway, and watches you go.",
-          "effects": []
+          "text": "It stands up anyway, and watches you go, and the witch throws a pinch of something after you that sets every eye streaming.",
+          "effects": [
+            {
+              "to": "party",
+              "status": "blind"
+            }
+          ]
         }
       ]
     }

@@ -21,8 +21,14 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "Across, and the troll snores on.",
-          "effects": []
+          "text": "Across, and the troll snores on. On the far side its toll box sits unattended.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 15
+              }
+            }
+          ]
         },
         {
           "w": 30,

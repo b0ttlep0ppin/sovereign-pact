@@ -46,8 +46,13 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The bleeding stops at the town's edge.",
-          "effects": []
+          "text": "The bleeding stops at the town's edge. The monks bless every one of you as you go, and the blessing turns spells aside.",
+          "effects": [
+            {
+              "to": "party",
+              "status": "shell"
+            }
+          ]
         }
       ]
     },

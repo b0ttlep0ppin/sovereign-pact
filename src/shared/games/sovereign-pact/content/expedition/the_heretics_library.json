@@ -80,8 +80,13 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He smiles in his sleep.",
-          "effects": []
+          "text": "He smiles in his sleep. On the step outside a single page has blown free, and the Leader reads it before they can stop themself.",
+          "effects": [
+            {
+              "jp": 40,
+              "sanity": -6
+            }
+          ]
         }
       ]
     }

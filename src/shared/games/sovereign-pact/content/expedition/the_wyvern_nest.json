@@ -80,8 +80,13 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "She circles overhead as you go, and does not dive.",
-          "effects": []
+          "text": "She circles overhead as you go, and does not dive. Her shadow crosses you again and again until nobody can stop flinching.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -6
+            }
+          ]
         }
       ]
     }

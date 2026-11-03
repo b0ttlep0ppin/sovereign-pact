@@ -21,8 +21,13 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "Past.",
-          "effects": []
+          "text": "Past, at a dead run, with its hot breath on your necks. Everyone's heart is going like a drum when the next fight comes.",
+          "effects": [
+            {
+              "to": "party",
+              "tp": 30
+            }
+          ]
         },
         {
           "w": 30,

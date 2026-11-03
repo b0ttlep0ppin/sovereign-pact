@@ -21,8 +21,14 @@
       "outcomes": [
         {
           "w": 75,
-          "text": "It snores on.",
-          "effects": []
+          "text": "It snores on. You come out the far side mud to the knee, and the mud dries on your greaves hard as stone.",
+          "effects": [
+            {
+              "to": "party",
+              "durability": 15,
+              "loc": "legs"
+            }
+          ]
         },
         {
           "w": 25,

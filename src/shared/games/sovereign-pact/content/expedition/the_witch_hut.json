@@ -73,9 +73,24 @@
       ],
       "outcomes": [
         {
-          "w": 100,
-          "text": "The hut follows a while, then loses interest.",
-          "effects": []
+          "w": 50,
+          "text": "The hut follows a while, then loses interest. Where its claws scratched the path it left a bundle of good herbs.",
+          "effects": [
+            {
+              "to": "party",
+              "hp": 10
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "The hut follows a while, then loses interest, and the witch leans out and spits after you.",
+          "effects": [
+            {
+              "to": "party",
+              "status": "disease"
+            }
+          ]
         }
       ]
     }

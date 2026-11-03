@@ -497,4 +497,11 @@ describe("the content and the bot", () => {
     s.expedition!.event = { id: "the_toll", votes: [null] };
     expect(g.botMove!(s, "p1", undefined as never)).toEqual({ type: "decide", option: 0 });
   });
+
+  it("never lets an outcome do nothing (Josh 2026-11-03: 'something answers, nothing happens. Why?')", () => {
+    // Kept empty on purpose: an Idol's fight follows a refusal, a secret pick, and climbing together.
+    const kept = new Set(["informers_offer.refuse", "last_stair.together"]);
+    const empty = TRIP_EVENTS.flatMap((d) => d.options.flatMap((o) => o.outcomes.filter((x) => !x.effects.length).map(() => `${d.id}.${o.id}`)));
+    expect(empty.filter((k) => !kept.has(k) && !/^idol_.*_offer\.defy$/.test(k))).toEqual([]);
+  });
 });

@@ -74,8 +74,13 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Some doors are best left.",
-          "effects": []
+          "text": "Some doors are best left. The puzzle stays in your heads, though, and working it in the dark sharpens you.",
+          "effects": [
+            {
+              "to": "party",
+              "jp": 20
+            }
+          ]
         }
       ]
     }

@@ -44,9 +44,24 @@
       ],
       "outcomes": [
         {
-          "w": 100,
-          "text": "He laughs, a sound like wind.",
-          "effects": []
+          "w": 50,
+          "text": "He laughs, a sound like wind, and green buds break out along every scabbard. It is a joke, or a gift.",
+          "effects": [
+            {
+              "to": "party",
+              "status": "regen"
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "He laughs, a sound like wind, and the forest is colder to you after.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -5
+            }
+          ]
         }
       ]
     },

@@ -21,8 +21,13 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The loser limps away. The winner bellows at you, and goes.",
-          "effects": []
+          "text": "The loser limps away. The winner bellows at you, and goes, and its challenge stays in your blood.",
+          "effects": [
+            {
+              "to": "party",
+              "tp": 20
+            }
+          ]
         }
       ]
     },

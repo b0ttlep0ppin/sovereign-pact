@@ -73,8 +73,13 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Round it is a long way too.",
-          "effects": []
+          "text": "Round it is a long way too, and its slowness gets into you.",
+          "effects": [
+            {
+              "to": "party",
+              "status": "slow"
+            }
+          ]
         }
       ]
     }

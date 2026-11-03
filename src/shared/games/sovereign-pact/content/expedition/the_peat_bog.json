@@ -67,8 +67,13 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Bogs swallow people.",
-          "effects": []
+          "text": "Bogs swallow people. Not you, though it takes the Leader's boot to the knee and the greave with it.",
+          "effects": [
+            {
+              "durability": -30,
+              "loc": "legs"
+            }
+          ]
         }
       ]
     }

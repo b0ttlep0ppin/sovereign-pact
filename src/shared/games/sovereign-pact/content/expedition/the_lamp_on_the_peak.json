@@ -78,8 +78,13 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The lamp goes out as you leave.",
-          "effects": []
+          "text": "The lamp goes out as you leave, and the dark it leaves is deeper than before. It takes a long while to see by.",
+          "effects": [
+            {
+              "to": "party",
+              "status": "blind"
+            }
+          ]
         }
       ]
     }

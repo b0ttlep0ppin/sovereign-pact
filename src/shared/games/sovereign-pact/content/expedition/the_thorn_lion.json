@@ -54,9 +54,27 @@
       ],
       "outcomes": [
         {
-          "w": 100,
-          "text": "A long way round.",
-          "effects": []
+          "w": 60,
+          "text": "A long way round, and it limps after you, growling, so nobody rests.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -4
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "A long way round, and it follows, and the thorn has made it mean.",
+          "effects": [
+            {
+              "fork": {
+                "add": [
+                  "encounter"
+                ]
+              }
+            }
+          ]
         }
       ]
     },

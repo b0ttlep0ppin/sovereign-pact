@@ -75,8 +75,13 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Eyes in the knot follow you.",
-          "effects": []
+          "text": "Eyes in the knot follow you, and a small voice wishes you well. It sounds as if it means it, and the road is gentle after.",
+          "effects": [
+            {
+              "to": "party",
+              "hp": 10
+            }
+          ]
         }
       ]
     }

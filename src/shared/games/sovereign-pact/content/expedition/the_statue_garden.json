@@ -75,8 +75,13 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Out, without one more statue.",
-          "effects": []
+          "text": "Out, without one more statue. But the stone dust has got into everyone's joints.",
+          "effects": [
+            {
+              "to": "party",
+              "status": "slow"
+            }
+          ]
         }
       ]
     }
