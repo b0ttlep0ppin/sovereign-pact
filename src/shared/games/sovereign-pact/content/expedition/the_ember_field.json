@@ -80,9 +80,26 @@
       ],
       "outcomes": [
         {
-          "w": 100,
-          "text": "The long way, under a hot wind.",
-          "effects": []
+          "w": 70,
+          "text": "The long way, under a hot wind. Your armour comes out of it baked dry and cracking.",
+          "effects": [
+            {
+              "to": "party",
+              "durability": -15,
+              "loc": "body"
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "The long way, under a hot wind, and at the field's edge a dragon scale has blown clear of the embers.",
+          "effects": [
+            {
+              "resources": {
+                "wyrmbone": 1
+              }
+            }
+          ]
         }
       ]
     }

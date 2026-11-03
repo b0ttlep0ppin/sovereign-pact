@@ -54,8 +54,12 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He does not look up.",
-          "effects": []
+          "text": "He does not look up. Where you step past him the water turns cold as a grave, and the Leader's feet will not warm all day.",
+          "effects": [
+            {
+              "status": "slow"
+            }
+          ]
         }
       ]
     },

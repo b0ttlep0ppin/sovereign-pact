@@ -83,8 +83,12 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It goes on turning, as it has for a thousand years.",
-          "effects": []
+          "text": "It goes on turning, as it has for a thousand years. Its heat stays in the Leader's bones, and their hands are quick at the next fight.",
+          "effects": [
+            {
+              "tp": 30
+            }
+          ]
         }
       ]
     }

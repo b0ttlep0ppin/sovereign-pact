@@ -82,8 +82,12 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It shrugs and sets the pieces up again.",
-          "effects": []
+          "text": "It shrugs and sets the pieces up again. The Leader finds themself playing the game in their head all day, and cannot stop, and grows sharper for it.",
+          "effects": [
+            {
+              "jp": 40
+            }
+          ]
         }
       ]
     }

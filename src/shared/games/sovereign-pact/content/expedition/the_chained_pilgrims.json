@@ -46,8 +46,13 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They walk on.",
-          "effects": []
+          "text": "They walk on, and the one who begged spits at the Leader's feet. The rest bless you for leaving them their pain, a cold, hard blessing.",
+          "effects": [
+            {
+              "sanity": -5,
+              "status": "protect"
+            }
+          ]
         }
       ]
     },

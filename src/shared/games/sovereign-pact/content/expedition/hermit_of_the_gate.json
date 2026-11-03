@@ -60,8 +60,13 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He nods as if that was the right answer, too.",
-          "effects": []
+          "text": "He nods as if that was the right answer, too, and touches the Leader's brow as they pass. Their head is clearer than it has been in days.",
+          "effects": [
+            {
+              "mp": 40,
+              "sanity": 5
+            }
+          ]
         }
       ]
     }

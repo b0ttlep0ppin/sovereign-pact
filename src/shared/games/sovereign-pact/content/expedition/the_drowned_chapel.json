@@ -83,9 +83,22 @@
       ],
       "outcomes": [
         {
-          "w": 100,
-          "text": "The candles watch you go.",
-          "effects": []
+          "w": 60,
+          "text": "The candles watch you go. One goes out as you turn away, and the Leader feels it go out in them too.",
+          "effects": [
+            {
+              "sanity": -10
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "The candles watch you go, and their light lies on the Leader's face all the next day like a hand of blessing.",
+          "effects": [
+            {
+              "status": "shell"
+            }
+          ]
         }
       ]
     }

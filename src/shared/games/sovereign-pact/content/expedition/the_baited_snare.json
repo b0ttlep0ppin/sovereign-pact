@@ -67,8 +67,14 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The quarry knows you were careful. It is careful too.",
-          "effects": []
+          "text": "The quarry knows you were careful. It is careful too, and has strung more of its bone snares along the long way round.",
+          "effects": [
+            {
+              "to": "party",
+              "durability": -20,
+              "loc": "legs"
+            }
+          ]
         }
       ]
     }

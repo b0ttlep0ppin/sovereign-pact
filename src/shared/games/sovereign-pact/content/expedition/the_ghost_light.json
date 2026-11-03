@@ -53,8 +53,16 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It sulks, and dims.",
-          "effects": []
+          "text": "It sulks, and dims, and somewhere behind you it brightens again, leading something else your way.",
+          "effects": [
+            {
+              "fork": {
+                "add": [
+                  "encounter"
+                ]
+              }
+            }
+          ]
         }
       ]
     },

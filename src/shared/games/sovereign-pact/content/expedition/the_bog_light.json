@@ -84,8 +84,12 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It sulks off over the water.",
-          "effects": []
+          "text": "It sulks off over the water, and the mist it leaves behind is the kind that settles in the lungs.",
+          "effects": [
+            {
+              "status": "disease"
+            }
+          ]
         }
       ]
     }

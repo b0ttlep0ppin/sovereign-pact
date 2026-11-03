@@ -82,8 +82,12 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The prisoner laughs at your backs, and keeps calling the name.",
-          "effects": []
+          "text": "The prisoner laughs at your backs, and keeps calling the name. The Leader hears it all that night, and the next.",
+          "effects": [
+            {
+              "sanity": -10
+            }
+          ]
         }
       ]
     }

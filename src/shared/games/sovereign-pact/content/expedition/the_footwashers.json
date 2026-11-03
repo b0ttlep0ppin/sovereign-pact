@@ -64,8 +64,12 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They bless you anyway.",
-          "effects": []
+          "text": "They bless you anyway, and it is a real blessing: the Leader's feet do not ache, and their scrapes close as they walk.",
+          "effects": [
+            {
+              "status": "regen"
+            }
+          ]
         }
       ]
     }

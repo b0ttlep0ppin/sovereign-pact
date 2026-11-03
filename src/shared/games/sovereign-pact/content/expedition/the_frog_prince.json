@@ -80,8 +80,13 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He croaks after you.",
-          "effects": []
+          "text": "He croaks after you, a very small curse, and that night every waterskin in the party tastes of pond.",
+          "effects": [
+            {
+              "to": "party",
+              "mp": -10
+            }
+          ]
         }
       ]
     }

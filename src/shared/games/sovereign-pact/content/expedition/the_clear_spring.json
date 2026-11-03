@@ -74,9 +74,24 @@
       ],
       "outcomes": [
         {
-          "w": 100,
-          "text": "The bones watch you go, not unkindly.",
-          "effects": []
+          "w": 60,
+          "text": "The bones watch you go, not unkindly. The spring's chill is on you anyway, and your wounds close in it.",
+          "effects": [
+            {
+              "to": "party",
+              "hp": 15
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "The bones watch you go. That night everyone dreams of drinking, and wakes thirsty.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -5
+            }
+          ]
         }
       ]
     }

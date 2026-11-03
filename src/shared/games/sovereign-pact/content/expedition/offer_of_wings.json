@@ -62,8 +62,12 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "It shrugs, all its feathers at once, and is gone.",
-          "effects": []
+          "text": "It shrugs, all its feathers at once, and is gone. One feather stays caught on the Leader's collar, and they are light on their feet for the next fight.",
+          "effects": [
+            {
+              "status": "haste"
+            }
+          ]
         },
         {
           "w": 30,

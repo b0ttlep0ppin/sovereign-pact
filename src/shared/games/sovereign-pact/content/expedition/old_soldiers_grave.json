@@ -57,9 +57,24 @@
       ],
       "outcomes": [
         {
-          "w": 100,
-          "text": "The helm turns to watch you go.",
-          "effects": []
+          "w": 60,
+          "text": "The helm turns to watch you go, and every hand on a sword feels heavier for not stopping.",
+          "effects": [
+            {
+              "to": "party",
+              "status": "might_down"
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "The helm turns to watch you go, and nods once. Some old soldier is satisfied, and you march the straighter for it.",
+          "effects": [
+            {
+              "to": "party",
+              "tp": 25
+            }
+          ]
         }
       ]
     }

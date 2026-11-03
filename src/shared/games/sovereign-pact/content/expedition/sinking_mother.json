@@ -64,8 +64,13 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "The humming follows you a while and then stops.",
-          "effects": []
+          "text": "The humming follows you a while and then stops. The Leader does not stop hearing it, and walks into the next fight half in a dream.",
+          "effects": [
+            {
+              "sanity": -6,
+              "status": "slow"
+            }
+          ]
         },
         {
           "w": 30,

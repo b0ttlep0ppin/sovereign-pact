@@ -55,8 +55,13 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He nods and walks on.",
-          "effects": []
+          "text": "He nods and walks on, and as he passes he runs a cold thumb over every buckle and rivet you wear. They are tighter after.",
+          "effects": [
+            {
+              "to": "party",
+              "durability": 25
+            }
+          ]
         }
       ]
     },

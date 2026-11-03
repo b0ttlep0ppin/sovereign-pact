@@ -69,9 +69,25 @@
       ],
       "outcomes": [
         {
-          "w": 100,
-          "text": "The last camel looks back at you.",
-          "effects": []
+          "w": 40,
+          "text": "The last camel looks back at you. Its rider drops something as it passes, and when you pick it up it is cold and very old.",
+          "effects": [
+            {
+              "item": {
+                "tier": 2
+              }
+            }
+          ]
+        },
+        {
+          "w": 60,
+          "text": "The last camel looks back at you, and in its eyes you see your own road, longer than you thought.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -6
+            }
+          ]
         }
       ]
     }

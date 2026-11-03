@@ -51,8 +51,12 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It sulks off, smoking.",
-          "effects": []
+          "text": "It sulks off, smoking, and sets the brush alight behind the Leader out of spite.",
+          "effects": [
+            {
+              "hp": -15
+            }
+          ]
         }
       ]
     },

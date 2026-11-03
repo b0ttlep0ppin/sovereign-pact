@@ -57,8 +57,12 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "When you look back the door is gone, and the paint is on your hands.",
-          "effects": []
+          "text": "When you look back the door is gone, and the paint is on your hands. It will not wash off, and the next thing you fight can smell it.",
+          "effects": [
+            {
+              "status": "marked"
+            }
+          ]
         }
       ]
     }

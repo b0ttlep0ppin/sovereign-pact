@@ -64,8 +64,13 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "She laughs, and shuffles, and waits.",
-          "effects": []
+          "text": "She laughs, and shuffles, and lays one card face up on the rock as you go: the Tower. You all walk faster after that.",
+          "effects": [
+            {
+              "to": "party",
+              "status": "haste"
+            }
+          ]
         }
       ]
     }

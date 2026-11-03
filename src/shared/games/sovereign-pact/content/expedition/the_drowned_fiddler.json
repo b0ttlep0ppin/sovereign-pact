@@ -78,8 +78,13 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The jig follows you for a mile.",
-          "effects": []
+          "text": "The jig follows you for a mile, and your feet keep time with it whether you want them to or not. Everyone is footsore by dark.",
+          "effects": [
+            {
+              "to": "party",
+              "hp": -8
+            }
+          ]
         }
       ]
     }

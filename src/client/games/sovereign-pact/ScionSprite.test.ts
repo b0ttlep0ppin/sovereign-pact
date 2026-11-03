@@ -150,5 +150,9 @@ describe("Scion sprites", () => {
     expect(option("armor")).toBeUndefined();
     expect(option("hat")).toMatch(/^wizard/);
     expect(attackOf(magus)).toBe("shoot");
+    // A Soldier out of their armor is in small clothes, not bare (Josh's playtest).
+    const soldier = lookOf({ ...person(9, { job: "soldier" }), gear: { main: 6 } } as never, undefined, [{ id: 6, base: "sword" }]);
+    expect(piecesOf(soldier).find((p) => p.layer.slot === "armor")).toBeUndefined();
+    expect(piecesOf(soldier).find((p) => p.layer.slot === "shirt")?.layer.option).toBe("tshirt");
   });
 });

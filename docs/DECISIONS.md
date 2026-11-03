@@ -2,6 +2,13 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-03 (implementation, Milestone 8bw): every event outcome does something; small clothes
+
+Josh's playtest: **"Light the old beacon: something answers, nothing happens. Why? Is this even an event? Nothing happened."** and **"this recruit seems nude, may be worth having some small clothes under there."**
+- **No empty outcomes.** 110 of the 118 expedition outcomes that had no effects now do something, small and in keeping with the text: a little Sanity lost or eased, a status for the next battle (Haste, Protect, Shell, Regen; Slow, Blind, Marked, Poison, Disease), TP to start the next fight with, HP or MP, a dent or a mend, a little coin or iron, Renown, or a battle that follows you (`fork: {add: [encounter]}`). Walking away stays the safe choice on average, but it is never nothing. Where an outcome split in two, the new weights add up to the old one, so the option's odds against its siblings are unchanged. The text says why the effect happened.
+- **Left empty on purpose (8):** the six Idols' "Refuse it" (the Idol's fight follows at once), *Informers' Offer*'s "Send him away" (a secret pick, where nothing happening is the point), and *Last Stair*'s "Go up together" (no one takes the first blow alone). A content test fails on any other empty outcome.
+- **Small clothes.** A Scion with no body armor and no shirt is drawn in a plain undershirt (the LPC `tshirt` layer), so nobody walks the Town Map bare.
+
 ## 2026-11-03 (implementation, Milestone 8bv): events that reach Jobs, gear and the next battle
 
 Josh's playtest: **"Too many events don't do much, they need more boons and banes, more interesting effects. Really engage with all the traits all the gear the jobs"**, and **"other potential event effects can be minor, full heal, take a little damage, restore mp, start next battle full tp, start next battle with a status ailment, start next battle with a buff"**.

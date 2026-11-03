@@ -55,8 +55,12 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The vines sway as you pass, disappointed.",
-          "effects": []
+          "text": "The vines sway as you pass, disappointed. The smell stays with the Leader, and in it a summer they will dream of, sweetly, for days.",
+          "effects": [
+            {
+              "sanity": 12
+            }
+          ]
         }
       ]
     }

@@ -21,8 +21,13 @@
       "outcomes": [
         {
           "w": 80,
-          "text": "Across.",
-          "effects": []
+          "text": "Across, and the old spine hums under your feet with a strength that stays in the legs.",
+          "effects": [
+            {
+              "to": "party",
+              "tp": 20
+            }
+          ]
         },
         {
           "w": 20,

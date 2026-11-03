@@ -61,8 +61,16 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The humming stops as you leave, as if it had been listening.",
-          "effects": []
+          "text": "The humming stops as you leave, as if it had been listening. It starts again behind you, nearer, and keeps pace.",
+          "effects": [
+            {
+              "fork": {
+                "add": [
+                  "encounter"
+                ]
+              }
+            }
+          ]
         }
       ]
     }

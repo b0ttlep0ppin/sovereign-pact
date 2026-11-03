@@ -55,9 +55,26 @@
       ],
       "outcomes": [
         {
-          "w": 80,
-          "text": "You move on.",
-          "effects": []
+          "w": 40,
+          "text": "You move on. Whoever left it comes back that night and finds the ground disturbed, and follows your tracks.",
+          "effects": [
+            {
+              "fork": {
+                "add": [
+                  "encounter"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "You move on, and an hour later hear screaming from the direction of the camp. Whatever they ran from caught them, and not you.",
+          "effects": [
+            {
+              "sanity": -8
+            }
+          ]
         },
         {
           "w": 20,

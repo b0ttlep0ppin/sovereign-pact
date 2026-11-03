@@ -20,9 +20,24 @@
       ],
       "outcomes": [
         {
-          "w": 100,
-          "text": "Silent and slow.",
-          "effects": []
+          "w": 50,
+          "text": "Silent and slow. Something deep in the crystals rings anyway, one long note, and it sets everyone's teeth on edge.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -6
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "Silent and slow. The crystals hold their tongues, and in the hush everyone's head clears.",
+          "effects": [
+            {
+              "to": "party",
+              "mp": 20
+            }
+          ]
         }
       ]
     },

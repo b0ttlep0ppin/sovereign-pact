@@ -86,8 +86,13 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He nods. Most people do.",
-          "effects": []
+          "text": "He nods. Most people do. \"Then a lesson for free,\" he says, and shows the Leader how he listens for where a thing will be.",
+          "effects": [
+            {
+              "xp": 15,
+              "jp": 30
+            }
+          ]
         }
       ]
     }

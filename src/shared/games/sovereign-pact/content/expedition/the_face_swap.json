@@ -83,8 +83,12 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "She laughs behind her hand.",
-          "effects": []
+          "text": "She laughs behind her hand, and for a day the Leader keeps hearing her laugh come out of their own mouth.",
+          "effects": [
+            {
+              "sanity": -8
+            }
+          ]
         }
       ]
     }

@@ -52,8 +52,12 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He shrugs, and goes on smiling.",
-          "effects": []
+          "text": "He shrugs, and goes on smiling, and wipes a blade on his apron as you pass. The Leader keeps seeing that blade when they close their eyes.",
+          "effects": [
+            {
+              "sanity": -5
+            }
+          ]
         }
       ]
     }

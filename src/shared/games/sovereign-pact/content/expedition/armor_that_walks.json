@@ -101,9 +101,27 @@
       ],
       "outcomes": [
         {
-          "w": 100,
-          "text": "It watches you go. It is still standing there when you look back.",
-          "effects": []
+          "w": 60,
+          "text": "It watches you go. That night it is standing at the edge of the firelight, helm turned toward the camp, and nobody sleeps well.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -8
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "It watches you go, and then it is not where you left it. You hear plate on stone behind you for the rest of the day.",
+          "effects": [
+            {
+              "fork": {
+                "add": [
+                  "encounter"
+                ]
+              }
+            }
+          ]
         }
       ]
     }

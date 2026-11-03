@@ -65,8 +65,13 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Their eyes follow you out of the clearing.",
-          "effects": []
+          "text": "Their eyes follow you out of the clearing, and their smoke follows you further. Everyone is coughing by dusk.",
+          "effects": [
+            {
+              "to": "party",
+              "mp": -15
+            }
+          ]
         }
       ]
     }
