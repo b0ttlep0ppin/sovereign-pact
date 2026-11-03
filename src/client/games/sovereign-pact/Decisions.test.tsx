@@ -141,4 +141,43 @@ describe("the Settlement Phase's decisions", () => {
       events.delete("test_price");
     }
   });
+
+  it("puts a champion forward with their chances shown, and bids an amount (Josh 2026-11-03)", () => {
+    const events = Content.TOWN_EVENT_BY_ID as Map<string, (typeof Content.TOWN_EVENTS)[number]>;
+    events.set("test_champ", {
+      id: "test_champ",
+      scope: "settlement",
+      weight: 1,
+      years: [1, 20],
+      title: "A Trial",
+      text: "…",
+      rule: "random_house",
+      options: [
+        { id: "go", label: "Send one.", champion: { stat: "might", dc: 10 }, outcomes: [{ w: 1, when: "pass", text: ".", effects: [] }, { w: 1, when: "fail", text: ".", effects: [] }] },
+        { id: "bid", label: "Bid.", bid: { resource: "gold", min: 5 }, outcomes: [{ w: 1, text: ".", effects: [] }] },
+        { id: "no", label: "Refuse.", tags: ["cautious"], outcomes: [{ w: 1, text: ".", effects: [] }] },
+      ],
+      prize: { text: ".", effects: [] },
+    });
+    try {
+      const s = found(campaign(2, 4));
+      s.events = [{ key: "test_champ", id: "test_champ", deciders: [0], choices: [null, null] }];
+      delete s.crisis;
+      delete s.vote;
+      s.houses[0]!.gold = 50;
+      const view = g.view(s, s.players[0]!);
+      const first = view.people.find((p) => p.host === 0 && p.status === "scion")!;
+      const sendMove = vi.fn();
+      render(<Decisions view={view} sendMove={sendMove} canAct />);
+      const card = screen.getByLabelText("A Trial");
+      expect(within(card).getByRole("option", { name: new RegExp(`${first.name}.*% to come through`) })).toBeTruthy();
+      fireEvent.click(within(card).getByRole("button", { name: /^Send one/ }));
+      expect(sendMove).toHaveBeenCalledWith({ type: "choose", event: "test_champ", option: 0, person: first.id });
+      fireEvent.click(within(card).getByRole("button", { name: "More Bid in Gold" }));
+      fireEvent.click(within(card).getByRole("button", { name: /^Bid\./ }));
+      expect(sendMove).toHaveBeenLastCalledWith({ type: "choose", event: "test_champ", option: 1, amount: 6 });
+    } finally {
+      events.delete("test_champ");
+    }
+  });
 });

@@ -50,7 +50,7 @@ export default function Decisions({ view, sendMove, canAct }: Props) {
             {pe.house !== undefined ? <p className="sp-private">Only your House sees this.</p> : null}
             <p>{ev.text}</p>
             {deciding && (chosen === null || chosen === undefined) ? (
-              <EventOptions view={view} event={pe.key} options={ev.options ?? []} sendMove={sendMove} />
+              <EventOptions view={view} event={pe.key} options={ev.options ?? []} odds={pe.odds} sendMove={sendMove} />
             ) : (
               <p className="sp-event__status">
                 {deciding ? `You chose: ${ev.options?.[chosen!]?.label ?? "?"}.` : "Not yours to decide."}
@@ -81,12 +81,39 @@ export function priceShort(view: SovView, o: Option[number]): string | null {
 }
 
 /** A town event's options (Josh 2026-11-03: trade-offs): each with its price, and a House to name where it asks for one. */
-function EventOptions({ view, event, options, sendMove }: { view: SovView; event: string; options: Option; sendMove: Props["sendMove"] }) {
+function EventOptions({ view, event, options, odds, sendMove }: { view: SovView; event: string; options: Option; odds?: Record<number, Record<number, number>>; sendMove: Props["sendMove"] }) {
   const others = view.houses.filter((h) => h.index !== view.me && !h.fallen);
   const [target, setTarget] = useState<number | null>(others[0]?.index ?? null);
-  const asks = options.some((o) => o.target);
+  const asks = options.some((o) => o.target || o.accuse);
+  // A champion to put forward, and the chances of each (Josh 2026-11-03: Scions imperiled, "see hit chance").
+  const scions = view.people.filter((p) => p.host === view.me && p.status === "scion");
+  const [champion, setChampion] = useState<number | null>(scions[0]?.id ?? null);
+  const tested = options.findIndex((o) => o.champion);
+  const bidding = options.find((o) => o.bid);
+  const have = bidding ? (bidding.bid!.resource === "gold" ? (view.mine?.gold ?? 0) : (view.mine?.stores[bidding.bid!.resource] ?? 0)) : 0;
+  const floor = Math.max(1, bidding?.bid?.min ?? 1);
+  const [amount, setAmount] = useState(floor);
   return (
     <div className="sp-actions">
+      {tested >= 0 && scions.length ? (
+        <label className="sp-event__target">
+          <span>Put forward ({options[tested]!.champion!.stat[0]!.toUpperCase() + options[tested]!.champion!.stat.slice(1)})</span>
+          <select value={champion ?? ""} onChange={(e) => setChampion(Number(e.target.value))}>
+            {scions.map((p) => (
+              <option key={p.id} value={p.id}>
+                {p.name}, level {p.level}
+                {odds?.[tested]?.[p.id] !== undefined ? ` (${odds[tested]![p.id]}% to come through)` : ""}
+              </option>
+            ))}
+          </select>
+        </label>
+      ) : null}
+      {bidding ? (
+        <span className="sp-event__target">
+          <span>Your sealed bid ({word(bidding.bid!.resource)}; paid win or lose)</span>
+          <Amount label={`Bid in ${word(bidding.bid!.resource)}`} value={amount} onChange={setAmount} min={floor} max={Math.max(floor, have)} />
+        </span>
+      ) : null}
       {asks && others.length ? (
         <label className="sp-event__target">
           <span>Name a House</span>
@@ -100,7 +127,11 @@ function EventOptions({ view, event, options, sendMove }: { view: SovView; event
         </label>
       ) : null}
       {options.map((o, i) => {
-        const short = priceShort(view, o) ?? (o.target && target === null ? "There is no other House to name." : null);
+        const short =
+          priceShort(view, o) ??
+          ((o.target || o.accuse) && target === null ? "There is no other House to name." : null) ??
+          (o.champion && champion === null ? "You have no Scion to put forward." : null) ??
+          (o.bid && have < floor ? `You have not got ${floor} ${word(o.bid.resource)} to bid.` : null);
         const price = [o.cost?.resources ? amounts(o.cost.resources) : "", o.cost?.recruits ? `${o.cost.recruits} recruit${o.cost.recruits > 1 ? "s" : ""}` : ""].filter(Boolean).join(", ");
         return (
           <button
@@ -109,11 +140,21 @@ function EventOptions({ view, event, options, sendMove }: { view: SovView; event
             className="sp-button"
             disabled={short !== null}
             title={short ?? undefined}
-            onClick={() => sendMove({ type: "choose", event, option: i, ...(o.target && target !== null ? { target } : {}) })}
+            onClick={() =>
+              sendMove({
+                type: "choose",
+                event,
+                option: i,
+                ...((o.target || o.accuse) && target !== null ? { target } : {}),
+                ...(o.champion && champion !== null ? { person: champion } : {}),
+                ...(o.bid ? { amount } : {}),
+              })
+            }
           >
             {o.label}
             {price ? <small className="sp-event__price">{` (costs ${price})`}</small> : null}
-            {o.target && target !== null ? <small className="sp-event__price">{` (House ${view.houses[target]?.name})`}</small> : null}
+            {(o.target || o.accuse) && target !== null ? <small className="sp-event__price">{` (House ${view.houses[target]?.name})`}</small> : null}
+            {o.bid ? <small className="sp-event__price">{` (${amount} ${word(o.bid.resource)})`}</small> : null}
           </button>
         );
       })}

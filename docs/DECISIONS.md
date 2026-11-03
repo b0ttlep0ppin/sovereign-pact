@@ -2,6 +2,14 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-03 (implementation, Milestone 8ce): champions, sealed bids and accusations
+
+Josh: **"There should be some real chances for drama amongst the houses... their scions should be imperiled at times, there should be powerful artifacts up for grabs"**, and **"I would also like to be able to see hit chance"**.
+- **Champions.** An option with `champion` asks its House to put one of its Scions forward. The Scion passes at 50% + 5% for each point of the stat (plus half their level) over the event's mark, between 10% and 90% (`TUNING.champion`); the chooser sees each Scion's chance before choosing. Outcomes say whether they follow a pass or a fail, and `scion: { who: "champion" }` falls on the champion alone. The account opens "X comes through." or "X fails."
+- **Sealed bids.** An option with `bid` takes an amount of a resource, paid as it is made and gone whether it wins or not (to whatever sold it). The highest bid wins the event's `prize`; a level top bid goes to the higher Renown and costs Accord as a tied vote does. Other Houses never see a bid. Bots bid the least they may.
+- **Accusations.** An option with `accuse` names a House; the event's `blamed` falls on the House most named. When the most named are level, nobody is blamed, and the bickering costs Accord as a tied vote does. Under the secret rule, who named whom stays hidden until the end.
+- All three are offered only where Houses decide for themselves, never in a vote.
+
 ## 2026-11-03 (implementation, Milestone 8cd): town events as trades
 
 Josh: **"These should involve potential trade offs as well. It might want some recruits in exchange for items or consumables or resources, it might apply some traits to your house or some of your scions, but they should generally be like macabre and spooky"**; buildings **"can be destroyed or gifted"**; **"Maybe the events force you to exchange wards with another house due to rising tensions, like a marriage pact"**.

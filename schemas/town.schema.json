@@ -169,6 +169,13 @@
                 },
                 "effects": {
                   "$ref": "#/definitions/effects"
+                },
+                "when": {
+                  "enum": [
+                    "pass",
+                    "fail"
+                  ],
+                  "description": "For a champion's option: whether this outcome follows a pass or a fail."
                 }
               }
             }
@@ -191,6 +198,53 @@
           "target": {
             "const": true,
             "description": "The chooser names another House, whom to:target, gift and ward_swap effects touch."
+          },
+          "accuse": {
+            "const": true,
+            "description": "The chooser names the House it blames; the event's blamed band falls on the House most named (none on a tie)."
+          },
+          "champion": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "stat",
+              "dc"
+            ],
+            "properties": {
+              "stat": {
+                "enum": [
+                  "might",
+                  "resilience",
+                  "guile",
+                  "acuity",
+                  "sagacity",
+                  "speed"
+                ]
+              },
+              "dc": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 60
+              }
+            },
+            "description": "The House puts a Scion forward, tested on the stat plus half their level against dc; outcomes with when pass or fail."
+          },
+          "bid": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "resource"
+            ],
+            "properties": {
+              "resource": {
+                "$ref": "defs.schema.json#/definitions/id"
+              },
+              "min": {
+                "type": "integer",
+                "minimum": 1
+              }
+            },
+            "description": "A sealed bid, paid whether or not it wins; the highest wins the event's prize."
           }
         }
       }
@@ -246,6 +300,14 @@
         }
       },
       "description": "A forcing event (SPEC \u00a73.2): it comes only from the timeline, foreshadowed a Year ahead, and the Rift Gate then offers only its card, a forced expedition at the Year's band."
+    },
+    "prize": {
+      "$ref": "#/definitions/band",
+      "description": "What the highest bid wins."
+    },
+    "blamed": {
+      "$ref": "#/definitions/band",
+      "description": "What falls on the House most named by accusing options."
     }
   },
   "definitions": {
@@ -357,7 +419,7 @@
             "properties": {
               "who": {
                 "type": "string",
-                "pattern": "^(random|eldest|youngest|veteran|greenest|sanest|maddest|(highest|lowest):(might|resilience|guile|acuity|sagacity|speed))$"
+                "pattern": "^(champion|random|eldest|youngest|veteran|greenest|sanest|maddest|(highest|lowest):(might|resilience|guile|acuity|sagacity|speed))$"
               },
               "age": {
                 "type": "integer",

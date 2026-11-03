@@ -8,10 +8,12 @@ import { CONSUMABLE_BY_ID, HOUSE_TRAIT_BY_ID, TOWN_EVENT_BY_ID, TOWN_EVENTS, typ
 import { itemName } from "./loot.ts";
 import { eligible, openCrisis } from "./crisis.ts";
 import { applyEffects } from "./effects.ts";
+import { loseAccord } from "./commons.ts";
+import { jobStat } from "./formulas.ts";
 import { econ } from "./houses.ts";
 import { fallen } from "./lifecycle.ts";
 import { dueEvents } from "./timeline.ts";
-import type { PendingEvent, SovState, Told } from "./state.ts";
+import type { PendingEvent, SovState, Stat, Told } from "./state.ts";
 import { snap, tell } from "./told.ts";
 import { TUNING } from "./tuning.ts";
 import { log, note, trackName, withRng } from "./year.ts";
@@ -112,13 +114,32 @@ export function cannotAfford(s: SovState, house: number, opt: TownOption): strin
   return null;
 }
 
-export function cannotChoose(s: SovState, house: number, key: string, option: number, target?: number): string | null {
+/** What a choice may carry beyond its option: the House named, the champion put forward, the bid. */
+export interface ChoiceExtra {
+  target?: number;
+  person?: number;
+  amount?: number;
+}
+
+export function cannotChoose(s: SovState, house: number, key: string, option: number, x: ChoiceExtra = {}): string | null {
   const pe = s.events.find((e) => e.key === key);
   if (!pe || !pe.deciders.includes(house)) return "That choice is not yours to make.";
   if (pe.choices[house] !== null) return "You have already chosen.";
   const opt = Number.isInteger(option) ? TOWN_EVENT_BY_ID.get(pe.id)!.options![option] : undefined;
   if (!opt) return "That is not one of the choices.";
-  if (opt.target && (!Number.isInteger(target) || target === house || !s.houses[target!] || fallen(s, target!))) return "Name another House.";
+  const t = x.target;
+  if ((opt.target || opt.accuse) && (!Number.isInteger(t) || t === house || !s.houses[t!] || fallen(s, t!))) return "Name another House.";
+  if (opt.champion) {
+    const p = s.people.find((q) => q.id === x.person);
+    if (!p || p.host !== house || p.status !== "scion") return "Put forward one of your own Scions.";
+  }
+  if (opt.bid) {
+    const h = s.houses[house]!;
+    const have = opt.bid.resource === "gold" ? h.gold : (h.stores[opt.bid.resource] ?? 0);
+    const n = x.amount;
+    if (!Number.isInteger(n) || n! < Math.max(1, opt.bid.min ?? 1)) return `Bid at least ${Math.max(1, opt.bid.min ?? 1)}.`;
+    if (n! > have) return "You cannot bid more than you have.";
+  }
   return cannotAfford(s, house, opt);
 }
 
@@ -137,26 +158,53 @@ function pay(s: SovState, house: number, opt: TownOption): void {
   }
 }
 
-export function choose(s: SovState, house: number, key: string, option: number, target?: number): void {
+export function choose(s: SovState, house: number, key: string, option: number, x: ChoiceExtra = {}): void {
   const pe = s.events.find((e) => e.key === key)!;
   const opt = TOWN_EVENT_BY_ID.get(pe.id)!.options![option]!;
   pay(s, house, opt);
   pe.choices[house] = option;
-  if (opt.target) (pe.targets ??= s.houses.map(() => null))[house] = target!;
+  const none = () => s.houses.map(() => null);
+  if (opt.target || opt.accuse) (pe.targets ??= none())[house] = x.target!;
+  if (opt.champion) (pe.champions ??= none())[house] = x.person!;
+  if (opt.bid) {
+    // A sealed bid is paid as it is made, and is gone whether or not it wins.
+    const h = s.houses[house]!;
+    if (opt.bid.resource === "gold") h.gold -= x.amount!;
+    else h.stores[opt.bid.resource] = (h.stores[opt.bid.resource] ?? 0) - x.amount!;
+    (pe.bids ??= none())[house] = x.amount!;
+  }
   if (pe.deciders.every((d) => pe.choices[d] !== null)) settleEvent(s, pe);
 }
 
+/** Whether a champion passes their test (TUNING.champion): the stat and half their level against the event's mark. */
+export function championPct(s: SovState, person: number, test: { stat: Stat; dc: number }): number {
+  const p = s.people.find((q) => q.id === person);
+  if (!p) return 0;
+  const C = TUNING.champion;
+  return Math.max(C.min, Math.min(C.max, C.base + C.perPoint * (jobStat(p, test.stat) + Math.floor(p.level / 2) - test.dc)));
+}
+
 /** Draws one outcome of an option and applies it; a House event's outcome only its House reads. */
-export function outcome(s: SovState, ev: TownEventDef, opt: TownOption, subject: number | null, home?: number, target?: number): void {
-  const total = opt.outcomes.reduce((n, o) => n + o.w, 0);
+export function outcome(s: SovState, ev: TownEventDef, opt: TownOption, subject: number | null, home?: number, target?: number, champion?: number): void {
+  // A champion's test picks which outcomes may fall: those for a pass, or those for a fall.
+  let pool = opt.outcomes;
+  let tested = "";
+  if (opt.champion && champion !== undefined) {
+    const pass = withRng(s, (rng) => rng.int(100)) < championPct(s, champion, opt.champion);
+    const name = s.people.find((p) => p.id === champion)?.name ?? "Their champion";
+    tested = pass ? ` ${name} comes through.` : ` ${name} fails.`;
+    pool = opt.outcomes.filter((o) => (o.when ?? (pass ? "pass" : "fail")) === (pass ? "pass" : "fail"));
+    if (!pool.length) pool = opt.outcomes;
+  }
+  const total = pool.reduce((n, o) => n + o.w, 0);
   const out = withRng(s, (rng) => {
     let roll = rng.int(total);
-    return opt.outcomes.find((o) => (roll -= o.w) < 0)!;
+    return pool.find((o) => (roll -= o.w) < 0)!;
   });
   if (home !== undefined) note(s, home, `${ev.title}: ${opt.label} ${out.text}`);
   else log(s, `${ev.title}: ${subject === null ? "" : `House ${s.houses[subject]!.name} — `}${opt.label} ${out.text}`);
   const named = target === undefined ? "" : ` (House ${s.houses[target]!.name})`;
-  recordOmen(s, ev.id, home, subject, opt.label + named, out.text, () => applyEffects(s, out.effects, subject, true, target));
+  recordOmen(s, ev.id, home, subject, opt.label + named, (tested ? tested.trim() + " " : "") + out.text, () => applyEffects(s, out.effects, subject, true, target, champion));
 }
 
 /** Runs an outcome's effects and keeps the account of what they changed, for the Omens' card (Josh's
@@ -205,7 +253,9 @@ const recruits = (s: SovState, house: number) => s.people.filter((p) => p.host =
 function settleEvent(s: SovState, pe: PendingEvent): void {
   s.events = s.events.filter((e) => e !== pe);
   const ev = TOWN_EVENT_BY_ID.get(pe.id)!;
-  for (const d of pe.deciders) outcome(s, ev, ev.options![pe.choices[d]!]!, d, pe.house, pe.targets?.[d] ?? undefined);
+  for (const d of pe.deciders) outcome(s, ev, ev.options![pe.choices[d]!]!, d, pe.house, pe.targets?.[d] ?? undefined, pe.champions?.[d] ?? undefined);
+  settleBids(s, ev, pe);
+  settleBlame(s, ev, pe);
   for (const t of ev.together ?? []) {
     const i = ev.options!.findIndex((o) => o.id === t.option);
     const picked = pe.deciders.filter((d) => pe.choices[d] === i).length;
@@ -214,6 +264,39 @@ function settleEvent(s: SovState, pe: PendingEvent): void {
       recordOmen(s, ev.id, pe.house, null, "", t.text, () => applyEffects(s, t.effects, null));
     }
   }
+}
+
+/** The highest sealed bid wins the prize; a tie goes to the higher Renown and frays trust (as a vote's does). */
+function settleBids(s: SovState, ev: TownEventDef, pe: PendingEvent): void {
+  if (!ev.prize || !pe.bids) return;
+  const bids = pe.bids.flatMap((n, h) => (n ? [{ h, n }] : []));
+  if (!bids.length) return;
+  const top = Math.max(...bids.map((b) => b.n));
+  const tied = bids.filter((b) => b.n === top).map((b) => b.h);
+  const won = tied.reduce((a, b) => (s.houses[b]!.score.renown > s.houses[a]!.score.renown ? b : a));
+  if (tied.length > 1) loseAccord(s, TUNING.tracks.tieCost);
+  const label = `House ${s.houses[won]!.name} wins with ${top}.`;
+  log(s, `${ev.title}: ${label}`);
+  recordOmen(s, ev.id, pe.house, won, label, (tied.length > 1 ? "The bids were level, and the Houses bristle. " : "") + ev.prize.text, () => applyEffects(s, ev.prize!.effects, won));
+}
+
+/** The House most named by the accusers bears the blame; when the fingers are split, nobody does, and trust frays. */
+function settleBlame(s: SovState, ev: TownEventDef, pe: PendingEvent): void {
+  if (!ev.blamed) return;
+  const named = pe.deciders.flatMap((d) => (ev.options![pe.choices[d]!]?.accuse && pe.targets?.[d] != null ? [pe.targets[d]!] : []));
+  if (!named.length) return;
+  const counts = s.houses.map((_, i) => named.filter((t) => t === i).length);
+  const most = Math.max(...counts);
+  const blamed = counts.flatMap((n, i) => (n === most ? [i] : []));
+  if (blamed.length > 1) {
+    loseAccord(s, TUNING.tracks.tieCost);
+    const text = "The Houses point at each other, and nobody hangs. Trust frays.";
+    log(s, `${ev.title}: ${text}`);
+    return recordOmen(s, ev.id, pe.house, null, "", text, () => undefined);
+  }
+  const label = `House ${s.houses[blamed[0]!]!.name} is blamed.`;
+  log(s, `${ev.title}: ${label}`);
+  recordOmen(s, ev.id, pe.house, blamed[0]!, label, ev.blamed.text, () => applyEffects(s, ev.blamed!.effects, blamed[0]!));
 }
 
 /** A vote on an event settled: the chosen option's outcome falls on the settlement. */
@@ -232,8 +315,24 @@ export function closeEvents(s: SovState): void {
 }
 
 /** What the viewer may see of pending events: another House's own events not at all (Q89), secret choices only their own. */
-export function eventsFor(s: SovState, viewer: number | null): PendingEvent[] {
+export function eventsFor(s: SovState, viewer: number | null): (PendingEvent & { odds?: Record<number, Record<number, number>> })[] {
   return s.events
     .filter((pe) => pe.house === undefined || pe.house === viewer)
-    .map((pe) => (TOWN_EVENT_BY_ID.get(pe.id)!.rule === "secret" ? { ...pe, choices: pe.choices.map((c, i) => (i === viewer ? c : c === null ? null : -1)) } : pe));
+    .map((pe) => {
+      const ev = TOWN_EVENT_BY_ID.get(pe.id)!;
+      // Another House's bid, champion and the House it named stay its own until the event is settled.
+      const secret = ev.rule === "secret";
+      const own = <T>(xs: T[] | undefined) => xs?.map((x, i) => (i === viewer ? x : null));
+      const shown: PendingEvent = secret
+        ? { ...pe, choices: pe.choices.map((c, i) => (i === viewer ? c : c === null ? null : -1)), ...(pe.targets ? { targets: own(pe.targets) } : {}), ...(pe.bids ? { bids: own(pe.bids) } : {}), ...(pe.champions ? { champions: own(pe.champions) } : {}) }
+        : { ...pe, ...(pe.bids ? { bids: own(pe.bids) } : {}) };
+      // A champion's chances, for the viewer's own Scions (Josh: "see hit chance").
+      const odds: Record<number, Record<number, number>> = {};
+      if (viewer !== null && pe.deciders.includes(viewer))
+        ev.options!.forEach((o, i) => {
+          if (!o.champion) return;
+          odds[i] = Object.fromEntries(s.people.filter((p) => p.host === viewer && p.status === "scion").map((p) => [p.id, championPct(s, p.id, o.champion!)]));
+        });
+      return Object.keys(odds).length ? { ...shown, odds } : shown;
+    });
 }
