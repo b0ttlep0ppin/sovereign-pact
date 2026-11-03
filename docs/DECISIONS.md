@@ -2,6 +2,10 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-03 (implementation, Milestone 8bp): wood and leather
+
+- Built (Josh's playtest: "more texture to the brown canvasses and red buttons"): every panel is dark oak, with a grain running across it, darker knots, a fine grit, burnt edges and an iron stud at each corner. Every button is pebbled leather (oxblood, or dark hide for the quiet ones) with a stitched seam inside its edge. The textures are SVG noise drawn in the stylesheet, so nothing new ships and nothing needs a credit.
+
 ## 2026-11-03 (implementation, Milestone 8bo): darker House events
 
 - Built (Josh's playtest, as 8bn): 14 new House events (pool 7 → 21), each its House's own (Q89). Six need no building: the Founder's Creditor (pay in Gold or in the eldest's blood), the Second Shadow, the Sealed Letter, the Midnight Wedding (a contract with a groom from beyond the Gate), the Tithe of Hair and the Drowned Cousin. Eight come only to a House that has the building they haunt: the Crypt Door, Open (crypt), the Bleeding Altar (chapel), What the Hounds Dug Up (kennels), the Book That Writes Itself (scriptorium), the Patient Who Will Not Die (infirmary), the Knocking Below (mine), Lights from the Gate (watchtower) and the Grain That Screams (farm). So a House's buildings now shape what haunts it.
