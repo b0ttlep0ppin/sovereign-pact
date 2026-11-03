@@ -1,5 +1,6 @@
 {
   "cues": [
+    {"id": "dice", "source": "synth:dice", "takes": 3, "max": 1.0},
     {"id": "swing_blade", "source": "Medieval Weapons - Designed/Whoosh Sword Medium.wav", "takes": 3, "max": 1.0},
     {"id": "swing_heavy", "source": "Medieval Weapons - Designed/Whoosh Axe Large.wav", "takes": 3, "max": 1.2},
     {"id": "swing_blunt", "source": "Medieval Weapons - Designed/Whoosh Hammer Medium.wav", "takes": 3, "max": 1.0},

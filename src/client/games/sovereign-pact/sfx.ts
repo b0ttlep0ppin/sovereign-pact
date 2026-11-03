@@ -100,6 +100,7 @@ export function soundsOf(ev: readonly Event[], units: ReadonlyMap<number, Replay
     else if (e.t === "sanity" && e.amount < 0) add("sanity", 320);
     else if (e.t === "down" || e.t === "dead") add("fall", 560);
     else if (e.t === "injury") add(injuryCue(e.result), 680);
+    else if (e.t === "lots" || e.t === "fizzle") add("dice", 0);
   }
   return out.sort((a, b) => a.at - b.at);
 }

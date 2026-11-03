@@ -14,7 +14,7 @@
         "required": ["id", "source", "takes", "max"],
         "properties": {
           "id": { "$ref": "defs.schema.json#/definitions/id" },
-          "source": { "type": "string", "pattern": "^(Medieval Weapons|Close Combat|Creature Foley|Magic|Magic - Arcane Forces|Free Sounds - Death Whistle)( - (Designed|Construction Kit))?/.+\\.wav$" },
+          "source": { "type": "string", "pattern": "^((Medieval Weapons|Close Combat|Creature Foley|Magic|Magic - Arcane Forces|Free Sounds - Death Whistle)( - (Designed|Construction Kit))?/.+\\.wav|synth:dice)$" },
           "takes": { "type": "integer", "minimum": 1, "maximum": 4 },
           "max": { "type": "number", "exclusiveMinimum": 0, "maximum": 4 }
         }

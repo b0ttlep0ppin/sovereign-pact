@@ -21,7 +21,7 @@ import { devastate } from "./timeline.ts";
 import { TUNING } from "./tuning.ts";
 import { creditWard } from "./wards.ts";
 import { lairOf, slay, tally, withLair } from "./hunt.ts";
-import { arcanaBoss, arcanaFor, arcanaWon, huntArcana, withArcana } from "./arcana.ts";
+import { arcanaBoss, arcanaFor, arcanaWhy, arcanaWon, huntArcana, withArcana } from "./arcana.ts";
 import { idolEvent, idolSlain, withIdol } from "./idols.ts";
 import { coreSpoils } from "./cures.ts";
 import { offerReflection } from "./bargains.ts";
@@ -209,7 +209,19 @@ function fight(s: SovState, boss: boolean, o: FightOpts): LiveFight {
   // The party satchel goes into the fight; what is used there is gone (§13.7).
   if (s.expedition!.satchel?.length) b.satchel = s.expedition!.satchel.map((x) => x.id);
   const title = id ? (BOSS_BY_ID.get(id)?.name ?? "The boss") : o.raid ? "A raid" : o.lair ? "The quarry's lair" : "An Encounter";
-  return { b, title, boss, o, replay: begun(b, title), seen: b.events.length, turns: 0 };
+  return { b, title, boss, o, replay: begun(b, title, whyFight(s, boss, o, lit)), seen: b.events.length, turns: 0 };
+}
+
+/** Why this battle is fought, said on the card before it (Josh 2026-11-03: the Arcana came without a word). */
+function whyFight(s: SovState, boss: boolean, o: FightOpts, lit: boolean): string {
+  if (boss) return s.expedition!.card.arcana ? arcanaWhy(s, marching(s)) : "The end of the road. What rules this place stands between the party and the way home; beat it and the haul goes home with them.";
+  if (o.arcana) return arcanaWhy(s, marching(s));
+  if (o.raid) return "The Cursed King's knights ride the party down. There is no outrunning them.";
+  if (o.lair) return "The quarry's lair: what the party came hunting is at home.";
+  if (lit) return "The Lantern's light finds them first. The party strikes before it is seen.";
+  if (o.modifier === "ambush") return "It was waiting for them. The party is caught unready.";
+  if (o.modifier === "surprise") return "The party sees it first and strikes before it is ready.";
+  return "Something in the dark has found the party, and it will not let them pass.";
 }
 
 /**
@@ -241,6 +253,7 @@ export function concluded(s: SovState): void {
     if (o.arcana) arcanaWon(s, marching(s));
     encounterLoot(s);
     succeed(s);
+    halt(s);
     if (then && "cache" in then) openCache(s);
     else if (then) carryOn(s, then);
     return;
@@ -286,6 +299,17 @@ export function succeed(s: SovState): void {
   e.leader = left.reduce((a, b) => (runs(b) > runs(a) ? b : a));
   const p = person(s, e.leader);
   log(s, `${p.name} of House ${s.houses[p.host]!.name} takes command.`);
+}
+
+/**
+ * The party pauses on what just happened: every House walking with it reads it and says "onward" before
+ * the Leader may press on (Josh 2026-11-03: a bot Leader went straight into the next battle).
+ */
+export function halt(s: SovState): void {
+  const e = s.expedition!;
+  if (e.result || e.leader === undefined) return;
+  const houses = new Set([...marching(s).map((id) => person(s, id).host), person(s, e.leader).host]);
+  e.halt = [...houses].sort((a, b) => a - b);
 }
 
 /** Why the Leader's House cannot turn back now, or null. */

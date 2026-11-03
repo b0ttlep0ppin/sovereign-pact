@@ -442,6 +442,7 @@ describe("blessings and House improvements (§9.4)", () => {
     resolve(s, option("leader", { blessing: { trait: "lucky", years: 1 } }));
     expect(p().traits).toEqual(["lucky"]);
     s.expedition!.chain = ["event", "boss"];
+    delete s.expedition!.halt;
     s = move(s, "p1", { type: "retreat" });
     expect([s.year, p().traits]).toEqual([2, ["lucky"]]);
     s = sealYear(s);

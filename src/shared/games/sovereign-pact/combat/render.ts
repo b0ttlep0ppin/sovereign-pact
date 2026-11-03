@@ -85,9 +85,9 @@ export function describeEvent(b: Battle, e: BattleEvent): string {
     case "dead":
       return `${n(e.target)} dies`;
     case "lots":
-      return `${n(e.unit)} rolls ${e.total}`;
+      return `${n(e.unit)} ${e.cast ? "casts lots" : e.double ? "doubles down" : "rolls"}${e.dice ? `: ${e.dice[0]} and ${e.dice[1]}` : ""}${e.dice && e.dice[0] + e.dice[1] !== e.total ? `, made ${e.total}` : `, ${e.total}`}`;
     case "fizzle":
-      return `${n(e.unit)} doubles down, rolls ${e.total} and fizzles`;
+      return `${n(e.unit)} doubles down, rolls ${e.dice ? `${e.dice[0]} and ${e.dice[1]}, ` : ""}${e.total}, and fizzles`;
     case "reflect":
       return `${n(e.unit)}'s Reflect turns the spell back on ${n(e.target)}`;
     case "counterspell":

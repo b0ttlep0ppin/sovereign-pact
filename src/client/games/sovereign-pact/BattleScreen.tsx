@@ -4,14 +4,14 @@
 // cell, colored by kind; an injury roll gets its own moment. Tokens are drawn in CSS until the sprite
 // pipeline exists (HANDOFF §8). Space plays and pauses, the arrows step, Escape closes.
 import { backdrop } from "./backdrop";
-import { Content, FLAG, replayLine, type Cell, type Command, type Replay, type ReplayUnit, type SovView, type TurnView, type Vitals } from "@vibepulse/shared/games/sovereign-pact";
+import { Content, FLAG, replayLine, TUNING, type Cell, type Command, type Replay, type ReplayUnit, type SovView, type TurnView, type Vitals } from "@vibepulse/shared/games/sovereign-pact";
 import { useEffect, useMemo, useRef, useState, type CSSProperties, type KeyboardEvent } from "react";
 import BattleFx, { landsAt, ScreenFx, strikesOf } from "./BattleFx";
 import CommandBar, { type Aiming } from "./CommandBar";
 import { Emblem, HERALDRY_COLORS } from "./Emblem";
 import ScionSprite, { animFor, lookOf, type Anim } from "./ScionSprite";
 import { spriteOf } from "./sprites";
-import { statusLook, tintOf } from "./statusLook";
+import { statusAbout, statusLook, tintOf } from "./statusLook";
 import { injuryCue, playSounds, soundsOf } from "./sfx";
 import "./BattleScreen.css";
 
@@ -26,6 +26,9 @@ const TURN_MS = 1300;
 const ACT_MS = 700;
 /** Milliseconds the pause before a battle lasts unless dismissed. */
 const INTRO_MS = 5000;
+/** How long thrown dice tumble, and how long a turn with dice in it stays on screen. */
+const DICE_ROLL_MS = 650;
+const DICE_READ_MS = 2000;
 /** How long an injury's die tumbles, how long another House's die waits to be thrown, and how long the result holds. */
 const ROLL_MS = 1500;
 const AUTO_ROLL_MS = 1000;
@@ -143,7 +146,8 @@ export default function BattleScreen({ replay, view, onClose, waiting = 0, fullL
   const [at, setAt] = useState(ending || resume ? replay.frames.length : 0);
   const [playing, setPlaying] = useState(!ending);
   // A pause before the fight (Josh 2026-11-02): where it is, an omen, and what waits.
-  const [intro, setIntro] = useState(!ending && !resume && (!live || replay.frames.length <= 1));
+  // A live battle opens on its card even when the foes have already moved: they play out after it.
+  const [intro, setIntro] = useState(!ending && !resume);
   useEffect(() => {
     if (!intro) return;
     const t = setTimeout(() => setIntro(false), INTRO_MS);
@@ -167,7 +171,8 @@ export default function BattleScreen({ replay, view, onClose, waiting = 0, fullL
   // A number pops as the blow that made it lands; the turn lasts until the last blow has been read.
   const landed = new Map<number, number>();
   for (const s of strikes) if (!landed.has(s.to)) landed.set(s.to, landsAt(s));
-  const turnMs = Math.max(TURN_MS, ...strikes.map((s) => landsAt(s) + 900));
+  // Thrown dice hold the turn until they have landed and been read.
+  const turnMs = Math.max(TURN_MS, ...strikes.map((s) => landsAt(s) + 900), ev.some((e) => e.t === "lots" || e.t === "fizzle") ? DICE_READ_MS : 0);
   const root = useRef<HTMLDivElement>(null);
   const planes = useRef<HTMLDivElement>(null);
   // A Scion swings once and is back at the ready, not frozen on the swing's last frame.
@@ -189,6 +194,8 @@ export default function BattleScreen({ replay, view, onClose, waiting = 0, fullL
   // theres more drama"): the owner's click throws it, anyone else's rolls on its own; once it lands the
   // result holds the screen long enough to read.
   const [rolledAt, setRolledAt] = useState(-1);
+  // Its card stays until it is put away (Josh 2026-11-03: it stayed "til someone else takes a turn").
+  const [doneAt, setDoneAt] = useState(-1);
   const held = !!injury && rolledAt !== at;
   const mine = injury?.t === "injury" && units.get(injury.target)?.house === (view.me ?? 0);
   useEffect(() => {
@@ -200,6 +207,8 @@ export default function BattleScreen({ replay, view, onClose, waiting = 0, fullL
   }, [playing, live, at, last, speed, injury, turnMs, intro, held]);
   // A command aimed at a cell; it is dropped once the battle moves on.
   const [aiming, setAiming] = useState<Aiming | null>(null);
+  // The combatant under the mouse, on the field or in a list: both light up (Josh 2026-11-03).
+  const [hover, setHover] = useState<number | null>(null);
   const [aimedAt, setAimedAt] = useState(last);
   if (aimedAt !== last) {
     setAimedAt(last);
@@ -290,8 +299,12 @@ export default function BattleScreen({ replay, view, onClose, waiting = 0, fullL
         key={u.id}
         data-unit={u.id}
         onClick={aimed ? () => fire(aimed) : undefined}
-        onMouseEnter={aimed && aiming ? () => setAiming({ ...aiming, cursor: aiming.cells.findIndex((c) => same(c, aimed)) }) : undefined}
-        className={`sp-unit sp-unit--${u.side}${aimed ? " is-targetable" : ""}${cursor ? " is-cursor" : ""}${u.boss ? " is-boss" : ""}${u.hazard ? " is-hazard" : ""}${actor === u.id ? " is-acting" : ""}${flags & FLAG.charging ? " is-charging" : ""}${tint ? " is-tinted" : ""}${state}`}
+        onMouseEnter={() => {
+          setHover(u.id);
+          if (aimed && aiming) setAiming({ ...aiming, cursor: aiming.cells.findIndex((c) => same(c, aimed)) });
+        }}
+        onMouseLeave={() => setHover((h) => (h === u.id ? null : h))}
+        className={`sp-unit sp-unit--${u.side}${aimed ? " is-targetable" : ""}${cursor ? " is-cursor" : ""}${hover === u.id ? " is-hovered" : ""}${u.boss ? " is-boss" : ""}${u.hazard ? " is-hazard" : ""}${actor === u.id ? " is-acting" : ""}${flags & FLAG.charging ? " is-charging" : ""}${tint ? " is-tinted" : ""}${state}`}
         style={style}
         title={`${u.name}: ${hp}/${u.maxHp} HP${u.read ? `\n${readOf(u)}` : ""}`}
       >
@@ -318,7 +331,7 @@ export default function BattleScreen({ replay, view, onClose, waiting = 0, fullL
         ) : null}
         {actor === u.id && !(flags & FLAG.dead) ? <span className="sp-unit__marker" aria-hidden="true" /> : null}
         {marks.length ? (
-          <span className="sp-unit__marks" title={marks.map(statusText).join(", ")}>
+          <span className="sp-unit__marks" title={marks.map((m) => `${statusText(m)}: ${statusAbout(m)}`).join("\n")}>
             {marks.slice(0, 4).map((m) => (
               <i key={m} style={{ ["--c" as string]: statusLook(m).color }}>{statusLook(m).glyph}</i>
             ))}
@@ -451,12 +464,13 @@ export default function BattleScreen({ replay, view, onClose, waiting = 0, fullL
       ) : null}
       <div className="sp-battle__field">
         <div className="sp-battle__side">
-          <Panel title="Enemies" units={side("enemy").filter((u) => !u.hazard)} vit={vit} actor={actor} />
+          <Panel title="Enemies" units={side("enemy").filter((u) => !u.hazard)} vit={vit} actor={actor} hover={hover} onHover={setHover} />
         </div>
         <div className="sp-battle__planes" ref={planes}>
           {grid("enemy")}
           {/* The log between the two sides (Josh: "it should be in the middle of the two battle sides"). */}
           <div className="sp-battle__gap">
+            <DiceTray key={at} ev={ev} name={name} speed={speed} />
             <ol className={`sp-battle__log${fullLog ? " is-full" : ""}`} aria-label="Battle log" ref={log}>
               {lines.map(([turn, e], i) => (
                 <li key={`${turn}:${i}`} className={turn === at ? "is-now" : undefined}>
@@ -468,13 +482,29 @@ export default function BattleScreen({ replay, view, onClose, waiting = 0, fullL
           </div>
           {grid("party")}
           <BattleFx planes={planes} strikes={strikes} turn={at} speed={speed} />
-          {injury && injury.t === "injury" ? <Injury key={at} e={injury} name={name(injury.target)} mine={mine} rolled={rolledAt === at} onRolled={() => setRolledAt(at)} sound={sound} /> : null}
+          {injury && injury.t === "injury" && doneAt !== at ? (
+            <Injury
+              key={at}
+              e={injury}
+              name={name(injury.target)}
+              mine={mine}
+              rolled={rolledAt === at}
+              onRolled={() => setRolledAt(at)}
+              onDone={() => {
+                setDoneAt(at);
+                if (at < last) setAt(at + 1);
+              }}
+              sound={sound}
+            />
+          ) : null}
         </div>
         <Panel
           title="The party"
           units={side("party")}
           vit={vit}
           actor={actor}
+          hover={hover}
+          onHover={setHover}
           color={color}
           badge={(u) => (u.house !== undefined && view.houses[u.house] ? <Emblem emblem={view.houses[u.house]!.emblem} colors={view.houses[u.house]!.colors} size={18} /> : null)}
         />
@@ -556,14 +586,20 @@ export default function BattleScreen({ replay, view, onClose, waiting = 0, fullL
 }
 
 /** One side's cards. The title is for screen readers only (Josh: "'The Party' kinda hard to read, you can just remove that text"). */
-function Panel({ title, units, vit, actor, color, badge }: { title: string; units: ReplayUnit[]; vit: Map<number, Vitals>; actor?: number; color?: (u: ReplayUnit) => string | undefined; badge?: (u: ReplayUnit) => React.ReactNode }) {
+function Panel({ title, units, vit, actor, hover, onHover, color, badge }: { title: string; units: ReplayUnit[]; vit: Map<number, Vitals>; actor?: number; hover: number | null; onHover: (id: number | null) => void; color?: (u: ReplayUnit) => string | undefined; badge?: (u: ReplayUnit) => React.ReactNode }) {
   return (
     <section className="sp-battle__panel" aria-label={title}>
       <ul>
         {units.map((u) => {
           const [, hp, mp, tp, sanity, , , flags, dur, statuses] = vit.get(u.id)!;
           return (
-            <li key={u.id} className={`${actor === u.id ? "is-acting" : ""}${flags & FLAG.dead ? " is-dead" : ""}`} style={color?.(u) ? { borderColor: color(u) } : undefined}>
+            <li
+              key={u.id}
+              className={`${actor === u.id ? "is-acting" : ""}${flags & FLAG.dead ? " is-dead" : ""}${hover === u.id ? " is-hovered" : ""}`}
+              style={color?.(u) ? { borderColor: color(u) } : undefined}
+              onMouseEnter={() => onHover(u.id)}
+              onMouseLeave={() => onHover(null)}
+            >
               <strong>
                 {badge ? <span className="sp-battle__badge">{badge(u)}</span> : null}
                 {u.name}
@@ -581,7 +617,7 @@ function Panel({ title, units, vit, actor, color, badge }: { title: string; unit
               {statuses.length ? (
                 <span className="sp-statuses">
                   {[...new Set(statuses)].map((x) => (
-                    <span key={x} className="sp-statuses__one" style={{ ["--c" as string]: statusLook(x).color }}>
+                    <span key={x} className="sp-statuses__one" tabIndex={0} data-tip={`${statusText(x)}: ${statusAbout(x)}`} aria-label={`${statusText(x)}: ${statusAbout(x)}`} style={{ ["--c" as string]: statusLook(x).color }}>
                       <i aria-hidden="true">{statusLook(x).glyph}</i> {statusText(x)}
                     </span>
                   ))}
@@ -644,7 +680,7 @@ function Bar({ kind, label, tip, value, max }: { kind: string; label: string; ti
  * throws it with a click (Josh 2026-11-03: "the player should have to click the dice"); it tumbles, lands,
  * and only then shows the total and what it does. Another House's Scion's die is thrown for them.
  */
-function Injury({ e, name, mine, rolled, onRolled, sound }: { e: Extract<Event, { t: "injury" }>; name: string; mine: boolean; rolled: boolean; onRolled: () => void; sound: number }) {
+function Injury({ e, name, mine, rolled, onRolled, onDone, sound }: { e: Extract<Event, { t: "injury" }>; name: string; mine: boolean; rolled: boolean; onRolled: () => void; onDone: () => void; sound: number }) {
   const res = Content.INJURY_BY_ID.get(e.result);
   const table = Content.INJURY_TABLES.find((x) => x.id === e.table);
   const where = e.table === "sanity" ? "mind" : e.table;
@@ -720,6 +756,9 @@ function Injury({ e, name, mine, rolled, onRolled, sound }: { e: Extract<Event, 
           <strong>{res?.name ?? words(e.result)}</strong>
           {res?.text ? <p className="sp-injury__text">{res.text}</p> : null}
           {e.tooth ? <p className="sp-injury__text">The Saint's Tooth turned a mortal wound into this.</p> : null}
+          <button type="button" className="sp-button sp-injury__done" autoFocus onClick={onDone}>
+            So be it
+          </button>
         </>
       ) : null}
     </div>
@@ -733,6 +772,83 @@ const initials = (n: string) =>
     .slice(0, 2)
     .map((w) => w[0])
     .join("");
+
+/** What each Cast Lots total does (§12.7), for the dice tray. */
+function lotsText(total: number): string {
+  const D = TUNING.combat.dice;
+  if (total <= 2) return `Snake eyes: the next action comes ${D.snakeEyesCt} CT later.`;
+  if (total <= 4) return `TP −${D.tp}.`;
+  if (total === 5) return "Nothing happens.";
+  if (total === 6) return `Evasion +${D.evasion}% until the next turn.`;
+  if (total === 7) return `HP +${D.restorePct}%.`;
+  if (total === 8) return `MP +${D.restorePct}%.`;
+  if (total === 9) return `TP +${D.tp}.`;
+  if (total === 10) return `Accuracy +${D.accuracy}% until the next turn.`;
+  if (total === 11) return "The next hit cannot miss.";
+  return "The next action is a sure critical hit.";
+}
+
+const PIPS: Record<number, number[]> = { 1: [4], 2: [0, 8], 3: [0, 4, 8], 4: [0, 2, 6, 8], 5: [0, 2, 4, 6, 8], 6: [0, 2, 3, 5, 6, 8] };
+
+/** One die: tumbling through faces, then landed on `face`. */
+function Die({ face, rolling }: { face: number; rolling: boolean }) {
+  return (
+    <span className={`sp-die${rolling ? " is-rolling" : ""}`} aria-label={rolling ? "a die tumbling" : `a ${face}`}>
+      {Array.from({ length: 9 }, (_, i) => (
+        <i key={i} className={PIPS[face]?.includes(i) ? "is-pip" : undefined} />
+      ))}
+    </span>
+  );
+}
+
+/**
+ * The Gambler's dice (Josh 2026-11-03: "on their turn you saw two dice roll … and it showed you the
+ * number"): every throw in the turn on screen tumbles, lands on its faces, and says what it made.
+ */
+function DiceTray({ ev, name, speed }: { ev: Event[]; name: (id: number) => string; speed: number }) {
+  const throws = ev.filter((e): e is Extract<Event, { t: "lots" | "fizzle" }> => (e.t === "lots" || e.t === "fizzle") && !!e.dice);
+  const [rolling, setRolling] = useState(true);
+  const [spin, setSpin] = useState(0);
+  useEffect(() => {
+    if (!throws.length) return;
+    const tick = setInterval(() => setSpin((k) => k + 1), 80);
+    const land = setTimeout(() => {
+      clearInterval(tick);
+      setRolling(false);
+    }, DICE_ROLL_MS / speed);
+    return () => {
+      clearInterval(tick);
+      clearTimeout(land);
+    };
+    // A tray is keyed by its turn: it rolls once.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  if (!throws.length) return null;
+  return (
+    <div className="sp-dicetray" role="status">
+      {throws.map((e, i) => {
+        const made = e.dice![0] + e.dice![1];
+        return (
+          <div key={i} className={`sp-dicetray__throw${e.t === "fizzle" && !rolling ? " is-fizzle" : ""}`}>
+            <small>
+              {name(e.unit)} {e.cast ? "casts lots" : e.t === "fizzle" || e.double ? "doubles down" : "rolls for the move"}
+            </small>
+            <span className="sp-dicetray__dice">
+              <Die face={rolling ? ((spin * 5 + i * 3) % 6) + 1 : e.dice![0]} rolling={rolling} />
+              <Die face={rolling ? ((spin * 7 + i * 2 + 3) % 6) + 1 : e.dice![1]} rolling={rolling} />
+              {rolling ? null : <b>{e.total}</b>}
+            </span>
+            {rolling ? null : (
+              <small className="sp-dicetray__what">
+                {e.t === "fizzle" ? "Too low: the move fizzles." : e.cast ? `${made !== e.total ? `Made ${e.total}. ` : ""}${lotsText(e.total)}` : made !== e.total ? `Made ${e.total}.` : null}
+              </small>
+            )}
+          </div>
+        );
+      })}
+    </div>
+  );
+}
 
 /** The pause before a battle: the region, what waits, and an omen chosen by the battle's seed. */
 function Intro({ replay, onGo }: { replay: Replay; onGo: () => void }) {
@@ -748,6 +864,7 @@ function Intro({ replay, onGo }: { replay: Replay; onGo: () => void }) {
         {pool ? <small className="sp-intro__where">{pool.name}</small> : null}
         <h2>{boss ? boss.name : replay.title}</h2>
         {omen ? <p className="sp-intro__omen">{omen}</p> : null}
+        {replay.why ? <p className="sp-intro__why">{replay.why}</p> : null}
         <p className="sp-intro__foes">{[...foes].map(([n, k]) => (k > 1 ? `${n} ×${k}` : n)).join(" · ")}</p>
         <button type="button" className="sp-button" autoFocus onClick={onGo}>
           To arms

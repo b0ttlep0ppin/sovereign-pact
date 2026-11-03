@@ -2,7 +2,9 @@
 // turns, then stops on a Scion's and waits for the Scion's House to say what they do. A House can hand
 // a turn, or the rest of the battle, to the Scion's gambits; a bot or a player who is away does that
 // every turn, so the gambit engine is the bot. A table that chose "gambits" never stops at all.
-import { act, advance, ATTACK, cannotMove, cannotUse, move, mpCost, tpCost, unit, type Action } from "./combat/battle.ts";
+import { abilityOf, act, advance, ATTACK, cannotMove, cannotUse, move, mpCost, tpCost, unit, type Action } from "./combat/battle.ts";
+import { fizzleMargin, throwDice } from "./combat/dice.ts";
+import { unitAt } from "./combat/grid.ts";
 import { CONSUMABLE_BY_ID } from "./content.ts";
 import { frame, unitOf, vitalsOf, type Replay, type Vitals } from "./combat/replay.ts";
 import { autoAct, withRng } from "./combat/sim.ts";
@@ -25,7 +27,11 @@ export interface Command {
   move?: [col: number, row: number];
   action?: Action;
   auto?: "turn" | "battle";
+  /** A Gambler's dice on the table: keep the total, or Double Down and throw again (§12.2). */
+  dice?: "keep" | "double";
 }
+
+const MAX_DOUBLE = TUNING.combat.dice.maxDoubleDown;
 
 /** The House that commands a Scion in battle: the one they fight for (a Ward's host). */
 export const commander = (s: SovState, u: Combatant): number => s.people.find((p) => p.id === u.person)!.host;
@@ -49,6 +55,8 @@ export function play(s: SovState): void {
     if (!u) break;
     if (waitsOn(s, f, u)) {
       f.unit = u.id;
+      // The turn's start (Cast Lots, a pulse of poison) shows before the House chooses.
+      framed(f);
       return;
     }
     withRng(b, (rng) => autoAct(b, rng, u));
@@ -84,6 +92,12 @@ export function cannotCommand(s: SovState, house: number, c: Command): string | 
   if (!f || f.unit === undefined) return "No battle waits on a command.";
   if (awaited(s) !== house) return "Another House commands this Scion.";
   if (c.auto) return c.auto === "turn" || c.auto === "battle" ? null : "Hand the turn or the battle to the gambits.";
+  if (f.dice) {
+    if (c.dice === "keep") return null;
+    if (c.dice === "double") return f.dice.rolls.length > MAX_DOUBLE ? `Double Down only ${MAX_DOUBLE} times.` : null;
+    return "The dice are on the table: keep them or Double Down.";
+  }
+  if (c.dice) return "No dice are on the table.";
   if (!c.action && !c.move) return "Choose what the Scion does.";
   if (c.move && f.b.moved) return "They have already moved this turn.";
   return null;
@@ -97,16 +111,48 @@ export function command(s: SovState, house: number, c: Command): string | null {
   const b = f.b;
   const u = unit(b, f.unit!);
   if (c.auto === "battle") (f.auto ??= []).push(house);
+  let thrown = false;
   try {
     withRng(b, (rng) => {
+      // Dice on the table: handing the turn over keeps them, as does Keep; Double Down throws again.
+      if (f.dice) {
+        const { action, rolls } = f.dice;
+        if (c.dice === "double") {
+          const dice = throwDice(rng);
+          const total = dice[0] + dice[1];
+          if (rolls.at(-1)!.total - total >= fizzleMargin(u)) {
+            b.events.push({ t: "fizzle", unit: u.id, total, dice });
+            delete f.dice;
+            return act(b, rng, u, { ...action, rolled: null });
+          }
+          b.events.push({ t: "lots", unit: u.id, total, dice, double: rolls.length });
+          rolls.push({ dice, total });
+          thrown = true;
+          return;
+        }
+        delete f.dice;
+        return act(b, rng, u, { ...action, rolled: rolls.at(-1)!.total });
+      }
       if (c.auto) return autoAct(b, rng, u);
       if (c.move) move(b, u, c.move[0], c.move[1]);
+      const a = c.action;
+      if (a && throwsFirst(b, u, a)) {
+        // Tried on a copy first, so a choice the battle would refuse is refused before any die is thrown.
+        const copy = JSON.parse(JSON.stringify(b)) as Battle;
+        withRng(copy, (r) => act(copy, r, unit(copy, u.id), { ...a, rolled: 7 }));
+        const dice = throwDice(rng);
+        const total = dice[0] + dice[1];
+        b.events.push({ t: "lots", unit: u.id, total, dice });
+        f.dice = { action: { do: "ability", ability: a.ability, target: a.target }, rolls: [{ dice, total }] };
+        thrown = true;
+        return;
+      }
       if (c.action) act(b, rng, u, c.action);
     });
   } catch (e) {
     return `That cannot be done: ${(e as Error).message}.`;
   }
-  if (!c.auto && !c.action) {
+  if (thrown || (!c.auto && !c.action && !c.dice)) {
     framed(f);
     return null;
   }
@@ -114,6 +160,19 @@ export function command(s: SovState, house: number, c: Command): string | null {
   turned(f);
   play(s);
   return null;
+}
+
+/**
+ * Whether a commanded ability throws its dice in the open first, so its House sees the total and chooses
+ * to keep it or Double Down (Josh 2026-11-03: "it didn't seem like I was being asked"). A Marked Card's
+ * target is an 11 already, and a charged ability rolls when it lands.
+ */
+function throwsFirst(b: Battle, u: Combatant, a: Action): a is Extract<Action, { do: "ability" }> {
+  if (a.do !== "ability" || a.rolled !== undefined || a.doubleDown) return false;
+  const ab = abilityOf(u, a.ability);
+  if (!ab?.dice?.doubleDown || ab.charge) return false;
+  const t = unitAt(b, a.target);
+  return !(t && hasStatus(t, "loaded_card"));
 }
 
 /** How a choice is aimed: at the Scion themself, at one of `targets`, or at any cell of `side` (an area). */
@@ -139,6 +198,8 @@ export interface TurnView {
   items: (Choice & Aim & { left: number })[];
   /** A Pugilist's moves to chain into a combo (§12.2), with the TP to spend and the foes the chain can strike. */
   combo?: ComboView;
+  /** A Gambler's dice on the table: the ability, each throw, how many Double Downs are left, and how much lower a throw must come to fizzle. */
+  dice?: { ability: string; name: string; rolls: { dice: [number, number]; total: number }[]; left: number; margin: number };
 }
 
 /** One move a combo may chain: its tag, its TP before repeats, and for a finisher the pattern it ends. */
@@ -234,6 +295,11 @@ function turnView(b: Battle, u: Combatant): TurnView {
   return { unit: u.id, moved: !!b.moved, moves, abilities, items, ...(combo ? { combo } : {}) };
 }
 
+function diceView(d: NonNullable<LiveFight["dice"]>, u: Combatant): NonNullable<TurnView["dice"]> {
+  const ab = abilityOf(u, d.action.ability);
+  return { ability: d.action.ability, name: ab?.name ?? d.action.ability, rolls: d.rolls, left: MAX_DOUBLE + 1 - d.rolls.length, margin: fizzleMargin(u) };
+}
+
 /** The battle for `me`'s screen, or null when none is under way. */
 export function fightView(s: SovState, me: number | null): FightView | null {
   const f = s.expedition?.fight;
@@ -248,7 +314,7 @@ export function fightView(s: SovState, me: number | null): FightView | null {
     // Summons that came since the start are on the replay's roll too.
     replay: { ...f.replay, units: f.b.units.map(unitOf) },
     now: f.b.units.map(vitalsOf),
-    turn: u && me !== null && me === house ? turnView(f.b, u) : null,
+    turn: u && me !== null && me === house ? { ...turnView(f.b, u), ...(f.dice ? { dice: diceView(f.dice, u) } : {}) } : null,
     order: [...(u ? [{ unit: u.id }] : []), ...forecast(f.b, 8)].slice(0, 8),
   };
 }

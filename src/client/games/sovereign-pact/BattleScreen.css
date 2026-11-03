@@ -18,8 +18,25 @@
 .sp-battle__headline { margin: 0; min-height: 1.5em; text-align: center; font: 400 1.4rem/1.1 var(--display); color: var(--gold); letter-spacing: 0.02em; }
 .sp-battle__field { display: grid; grid-template-columns: minmax(150px, 220px) 1fr minmax(170px, 250px); gap: 12px; align-items: start; }
 .sp-battle__planes { position: relative; display: grid; grid-template-columns: 1fr clamp(170px, 16vw, 260px) 1fr; gap: 8px; align-items: center; perspective: 900px; min-width: 0; }
-.sp-battle__gap { align-self: stretch; display: grid; grid-template-rows: minmax(0, 1fr); min-width: 0; background: linear-gradient(90deg, transparent, rgba(120, 100, 140, 0.08), transparent); }
-.sp-battle__gap .sp-battle__log, .sp-battle__gap .sp-battle__log.is-full { max-height: none; min-height: 0; }
+.sp-battle__gap { align-self: stretch; display: grid; grid-template-rows: auto minmax(0, 1fr); min-width: 0; background: linear-gradient(90deg, transparent, rgba(120, 100, 140, 0.08), transparent); }
+.sp-battle__gap .sp-battle__log, .sp-battle__gap .sp-battle__log.is-full { grid-row: 2; max-height: none; min-height: 0; }
+/* The Gambler's dice, over the log in the middle (Josh 2026-11-03). */
+.sp-dicetray { grid-row: 1; display: grid; gap: 6px; margin-bottom: 6px; padding: 8px; background: rgba(12, 8, 10, 0.92); border: 1px solid rgba(215, 180, 90, 0.45); border-radius: 4px; text-align: center; animation: sp-fade-in 200ms ease-out; }
+.sp-dicetray__throw { display: grid; justify-items: center; gap: 4px; }
+.sp-dicetray__throw small { color: #cbbfa8; font-size: 0.72rem; }
+.sp-dicetray__dice { display: flex; align-items: center; gap: 8px; }
+.sp-dicetray__dice b { min-width: 1.6em; font: 400 1.7rem/1 var(--display, serif); color: var(--gold, #d7b45a); text-shadow: 0 0 10px rgba(215, 180, 90, 0.4); animation: sp-fade-in 250ms ease-out; }
+.sp-dicetray__what { color: #e2d4ba !important; }
+.sp-dicetray__throw.is-fizzle b, .sp-dicetray__throw.is-fizzle .sp-dicetray__what { color: #e0705a !important; }
+.sp-die { display: grid; grid-template: repeat(3, 1fr) / repeat(3, 1fr); gap: 2px; width: 30px; height: 30px; padding: 4px; box-sizing: border-box; border-radius: 6px; background: linear-gradient(145deg, #efe4cc, #b9a888); box-shadow: inset -2px -3px 0 rgba(0, 0, 0, 0.25), 0 3px 6px rgba(0, 0, 0, 0.7); }
+.sp-die i { border-radius: 50%; }
+.sp-die i.is-pip { background: #2a1214; box-shadow: inset 0 1px 0 rgba(0, 0, 0, 0.5); }
+.sp-die.is-rolling { animation: sp-die-tumble 160ms linear infinite; }
+.sp-die:not(.is-rolling) { animation: sp-die-land 260ms ease-out; }
+@keyframes sp-die-tumble { 0% { transform: translateY(-3px) rotate(0deg); } 50% { transform: translateY(2px) rotate(180deg); } 100% { transform: translateY(-3px) rotate(360deg); } }
+@keyframes sp-die-land { 0% { transform: scale(1.25) rotate(-12deg); } 60% { transform: scale(0.95) rotate(3deg); } 100% { transform: none; } }
+@media (prefers-reduced-motion: reduce) { .sp-die, .sp-die.is-rolling, .sp-dicetray { animation: none; } }
+[data-motion="reduced"] .sp-die, [data-motion="reduced"] .sp-die.is-rolling, [data-motion="reduced"] .sp-dicetray { animation: none; }
 
 .sp-grid { position: relative; display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(8, 1fr); aspect-ratio: 3 / 8; height: clamp(300px, calc(100vh - 330px), 600px); width: auto; max-width: 100%; justify-self: center; }
 .sp-grid--enemy { transform: rotateY(14deg); }
@@ -64,6 +81,11 @@
 .sp-battle__panel li { display: grid; grid-template-columns: 1fr auto; gap: 2px 6px; padding: 5px 7px; border-left: 3px solid var(--line); background: rgba(8, 6, 10, 0.72); border-radius: 3px; font-size: 0.78rem; }
 .sp-battle__panel li.is-acting { outline: 1px solid var(--gold, #d7b45a); }
 .sp-battle__panel li.is-dead { opacity: 0.45; }
+.sp-battle__panel li.is-hovered { background: rgba(40, 30, 26, 0.9); box-shadow: inset 0 0 0 1px rgba(215, 180, 90, 0.55); }
+/* The one under the mouse or the aim draws over its neighbours, so its name and HP are never behind a sprite. */
+.sp-unit.is-hovered { z-index: 4; }
+.sp-unit.is-cursor { z-index: 5; }
+.sp-unit.is-hovered:not(.is-dead) .sp-unit__sprite, .sp-unit.is-hovered:not(.is-dead) .sp-unit__scion { filter: brightness(1.18) drop-shadow(0 0 3px rgba(215, 180, 90, 0.7)); }
 .sp-battle__panel li > .sp-bar, .sp-battle__panel li > .sp-stat, .sp-battle__panel li > .sp-dur, .sp-battle__panel li > .sp-statuses { grid-column: 1 / -1; }
 .sp-battle__panel small { color: var(--muted); font-variant-numeric: tabular-nums; }
 .sp-battle__panel .sp-stat { display: grid; grid-template-columns: 2.2em 1fr auto; align-items: center; gap: 6px; }
@@ -357,6 +379,7 @@
 .sp-intro__where { color: #b8a080; text-transform: uppercase; letter-spacing: 0.18em; font-size: 0.8rem; }
 .sp-intro h2, .sp-ending h2 { margin: 0; font: 400 2.4rem/1 var(--display, serif); color: var(--gold, #d7b45a); text-shadow: 0 2px 0 #000, 0 0 18px rgba(215, 180, 90, 0.3); }
 .sp-intro__omen { margin: 4px 0; font-style: italic; font-size: 1.1rem; line-height: 1.5; color: #e2d4ba; animation: sp-fade-in 1.4s ease-out both; animation-delay: 300ms; }
+.sp-intro__why { margin: 0; max-width: 46ch; color: #cbbfa8; font-size: 0.95rem; line-height: 1.5; }
 .sp-intro__foes { margin: 0; color: #c8786a; font-size: 0.9rem; }
 .sp-ending.is-won h2 { font-size: 3.4rem; animation: sp-victory 900ms cubic-bezier(.2, 1.4, .4, 1) both; }
 .sp-ending.is-won .sp-ending__card { border-color: rgba(232, 198, 106, 0.8); background: radial-gradient(ellipse at 50% 0%, rgba(232, 198, 106, 0.22), transparent 60%), linear-gradient(#1c1410, #0c080a); }
@@ -412,3 +435,11 @@ button.sp-injury__die.is-waiting:hover, button.sp-injury__die.is-waiting:focus-v
 @keyframes sp-unit-fall { 0% { opacity: 1; filter: none; } 20% { opacity: 1; filter: brightness(2.2) saturate(0); } 55% { opacity: 0.7; filter: grayscale(1) brightness(0.6); } 100% { opacity: 0; filter: grayscale(1) brightness(0.3); transform: translateY(14px); } }
 @media (prefers-reduced-motion: reduce) { .sp-unit.is-dead:not(.sp-unit--party) { animation: none; opacity: 0; } }
 [data-motion="reduced"] .sp-unit.is-dead:not(.sp-unit--party) { animation: none; opacity: 0; }
+/* A status's tooltip, on hover or focus (Josh 2026-11-03). */
+.sp-battle__panel[aria-label="Enemies"] .sp-statuses__one[data-tip]::after { right: auto; left: 0; }
+.sp-statuses__one { position: relative; cursor: help; }
+.sp-statuses__one[data-tip]:hover::after, .sp-statuses__one[data-tip]:focus-visible::after {
+  content: attr(data-tip); position: absolute; right: 0; bottom: calc(100% + 6px); z-index: 8; width: max-content; max-width: 240px;
+  padding: 6px 9px; white-space: normal; text-align: left; font-size: 0.78rem; line-height: 1.4; color: #e2d4ba;
+  background: #120d10; border: 1px solid rgba(215, 180, 90, 0.45); border-radius: 3px; box-shadow: 0 6px 18px rgba(0, 0, 0, 0.8);
+}

@@ -6,7 +6,7 @@ import type { PlayerId } from "../../game.ts";
 import type { FoundingStep, HouseDesign } from "./founding.ts";
 import type { Muster } from "./muster.ts";
 import type { Replay } from "./combat/replay.ts";
-import type { Battle } from "./combat/types.ts";
+import type { Battle, Cell } from "./combat/types.ts";
 import type { TripEffect } from "./content.ts";
 import type { Command } from "./fight.ts";
 
@@ -282,6 +282,8 @@ export interface Expedition {
   votes?: (number | null)[];
   /** The Leader's person id, once the party departs; a fallen Leader's successor after. */
   leader?: number;
+  /** Houses still reading what just happened (a battle's end, an event's outcome); the Leader waits on them before pressing on. */
+  halt?: number[];
   /** The Arcana met on this chain (§14.9), by Tarot id: its node is a face-down card until reached. */
   arcana?: string;
   /** The chain (§9.3), rolled at departure; only the nodes passed are shown. */
@@ -360,6 +362,8 @@ export interface LiveFight {
   unit?: number;
   /** Houses whose Scions fight by gambits for the rest of this battle. */
   auto?: number[];
+  /** A Gambler's dice thrown in the open, waiting on Keep or Double Down (fight.ts): the ability and each throw so far. */
+  dice?: { action: { do: "ability"; ability: string; target: Cell }; rolls: { dice: [number, number]; total: number }[] };
 }
 
 /** Where one of a 2×4 card's parties is: on its way, at the meeting place, or gone home. */
@@ -592,6 +596,8 @@ export type SovMove =
   | { type: "lead"; person: number }
   /** The Leader's House: on to the next node, or home (§9.9). */
   | { type: "press_on" }
+  /** This House has read the battle's end or the event's outcome: the party may go on. */
+  | { type: "onward" }
   /** The Scion whose turn it is in battle (fight.ts): a move and an action, or their gambits for the turn or the battle. */
   | ({ type: "command" } & Command)
   /** A House's vote on the waiting event's option (§9.4). */

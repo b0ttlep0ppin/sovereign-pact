@@ -2,7 +2,7 @@
 // card in an expedition's chain, far likelier when a Scion of that Tarot walks with the party. Killing it
 // gives that Scion (if they still stand) the Arcana's trait for good, and drops its Relic into the haul.
 import type { Rng } from "../../rng.ts";
-import { ARCANA, ARCANA_BY_TAROT, BOSS_BY_ID, TRAIT_BY_ID } from "./content.ts";
+import { ARCANA, ARCANA_BY_TAROT, BOSS_BY_ID, NAMED_BY_ID, TAROT_BY_ID, TRAIT_BY_ID } from "./content.ts";
 import { madeNamed } from "./items.ts";
 import { carryNamed } from "./loot.ts";
 import type { ExpeditionCard, NodeKind, Person, SovState } from "./state.ts";
@@ -46,6 +46,17 @@ export function huntArcana(s: SovState): void {
 
 /** The boss the Arcana node fights. */
 export const arcanaBoss = (s: SovState): string => ARCANA_BY_TAROT.get(s.expedition!.arcana!)!.boss;
+
+/** Why the party must fight the Arcana, for the card before the battle: what it is, and what beating it gives. */
+export function arcanaWhy(s: SovState, marching: readonly number[]): string {
+  const def = ARCANA_BY_TAROT.get(s.expedition!.arcana!)!;
+  const card = TAROT_BY_ID.get(def.tarot)?.name ?? "A Major Arcana";
+  const born = s.people.filter((p) => marching.includes(p.id) && p.tarot === def.tarot).map((p) => p.name);
+  const trait = TRAIT_BY_ID.get(def.trait)?.name ?? def.trait;
+  const relic = NAMED_BY_ID.get(def.relic)?.name ?? "its Relic";
+  const mark = born.length ? `${born.join(" and ")}, born under ${card}, will be marked ${trait}` : `any Scion born under ${card} would be marked ${trait}`;
+  return `${card} turns face up on the road, and its keeper steps out to bar the way. There is no going around a Major Arcana. Beat it and it leaves ${relic} in the haul, and ${mark}.`;
+}
 
 /** The Arcana falls: its bearers in the party gain its trait, and its Relic is carried home. */
 export function arcanaWon(s: SovState, marching: readonly number[]): void {

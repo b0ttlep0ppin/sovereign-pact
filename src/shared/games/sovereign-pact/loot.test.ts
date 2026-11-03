@@ -53,7 +53,11 @@ describe("drop tables (§9.8)", () => {
     for (const p of s.people) while (p.status === "scion" && p.level < 15) Object.assign(p, levelUp(p));
     s.expedition!.chain = ["encounter", "encounter", "encounter", "boss"];
     const grain = s.houses[0]!.stores.grain ?? 0;
-    for (let i = 0; i < 3; i++) s = move(s, "p1", { type: "press_on" });
+    // Each House reads the battle's end before the party goes on.
+    for (let i = 0; i < 3; i++) {
+      for (const h of s.expedition!.halt ?? []) s = move(s, s.players[h]!, { type: "onward" });
+      s = move(s, "p1", { type: "press_on" });
+    }
     expect(s.log.filter((l) => l.includes("wins a battle")).length).toBe(3);
     expect(s.expedition!.haul!.stores.grain).toBeGreaterThan(0);
     expect(s.houses[0]!.stores.grain ?? 0).toBe(grain);
