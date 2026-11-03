@@ -1576,6 +1576,75 @@
       "cure": {
         "band": "moderate"
       }
+    },
+    {
+      "id": "hand_of_the_last_bishop",
+      "name": "Hand of the Last Bishop",
+      "base": "charm",
+      "tier": 5,
+      "props": [
+        ["holy_symbol", 1],
+        ["warded_holy", 25],
+        ["resist_fear", 40]
+      ],
+      "text": "A withered hand in a silver cage. It still makes the sign of blessing, very slowly, over whoever carries it.",
+      "town": true,
+      "artifact": {
+        "category": "relics",
+        "points": 6
+      }
+    },
+    {
+      "id": "iron_saints_crown",
+      "name": "The Iron Saint's Crown",
+      "base": "helm",
+      "tier": 5,
+      "props": [
+        ["fortified", 25],
+        ["visored", 1],
+        ["second_wind", 1],
+        ["warded_dark", 20]
+      ],
+      "text": "Nailed, not worn. The saint's skull is gone but the crown remembers the shape of it.",
+      "town": true,
+      "artifact": {
+        "category": "lineage",
+        "points": 6
+      }
+    },
+    {
+      "id": "foundation_stone_heart",
+      "name": "The Foundation's Heart",
+      "base": "amulet",
+      "tier": 4,
+      "props": [
+        ["stat_resilience", 4],
+        ["mourning", 1],
+        ["warded_earth", 20]
+      ],
+      "text": "A red stone found in the mortar, warm, and beating slowly against the skin.",
+      "town": true,
+      "artifact": {
+        "category": "holdings",
+        "points": 4
+      }
+    },
+    {
+      "id": "twelfth_house_signet",
+      "name": "Signet of the Twelfth House",
+      "base": "ring",
+      "tier": 4,
+      "props": [
+        ["stat_guile", 4],
+        ["noble_signet", 1],
+        ["curse_whispers", 1]
+      ],
+      "text": "The arms of a House no herald has heard of. In wax it leaves a face instead of a crest.",
+      "town": true,
+      "artifact": {
+        "category": "intrigue",
+        "points": 5
+      }
     }
   ]
 }

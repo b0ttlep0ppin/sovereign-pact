@@ -1,0 +1,87 @@
+{
+  "id": "hanged_mens_testimony",
+  "scope": "settlement",
+  "weight": 2,
+  "years": [
+    1,
+    20
+  ],
+  "title": "The Hanged Men's Testimony",
+  "text": "The three thieves hanged on the Commons gibbet have started talking. At dusk, with their eyes pecked out and their tongues black, they accuse one of the Great Houses of poisoning the Commons' wells. They will not say which until they are asked properly.",
+  "rule": "secret",
+  "options": [
+    {
+      "id": "ask",
+      "label": "Ask them which House, and name it to the magistrates.",
+      "tags": [
+        "cruel"
+      ],
+      "accuse": true,
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "You listen to the dead men, and you give the magistrates the name you heard. Or the name you wanted to hear.",
+          "effects": []
+        }
+      ]
+    },
+    {
+      "id": "cut_down",
+      "label": "Pay the hangman to cut them down and burn them.",
+      "tags": [
+        "clever"
+      ],
+      "cost": {
+        "resources": {
+          "gold": 15
+        }
+      },
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "The bodies burn green. The last thing they say is your House's name, but nobody is close enough to hear.",
+          "effects": [
+            {
+              "score": {
+                "intrigue": 2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ignore",
+      "label": "Stop up your ears and walk past.",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "You walk past. The dead men laugh at your back.",
+          "effects": []
+        }
+      ]
+    }
+  ],
+  "blamed": {
+    "text": "The magistrates seize the named House's stores and pour them into the poisoned wells to sweeten them. The city is satisfied. The dead men stop talking.",
+    "effects": [
+      {
+        "resources": {
+          "grain": -20,
+          "gold": -20
+        }
+      },
+      {
+        "score": {
+          "renown": -3
+        }
+      },
+      {
+        "accord": 3
+      }
+    ]
+  }
+}

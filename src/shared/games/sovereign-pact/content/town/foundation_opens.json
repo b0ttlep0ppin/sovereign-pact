@@ -1,0 +1,84 @@
+{
+  "id": "foundation_opens",
+  "scope": "house",
+  "weight": 1,
+  "years": [
+    1,
+    20
+  ],
+  "title": "What the Foundation Held",
+  "text": "The building you painted over has stopped weeping. It has started breathing. Last night the floor of the cellar opened like a mouth, and there are steps going down that were never built.",
+  "rule": "house",
+  "chained": true,
+  "options": [
+    {
+      "id": "descend",
+      "label": "Send a Scion down the steps.",
+      "tags": [
+        "bold"
+      ],
+      "champion": {
+        "stat": "might",
+        "dc": 14
+      },
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "They come back up with something in their arms that was buried before the city was founded, and will not say what else they saw.",
+          "effects": [
+            {
+              "item": {
+                "tier": 5
+              }
+            },
+            {
+              "scion": {
+                "who": "champion",
+                "xp": 120,
+                "sanity": -15
+              }
+            }
+          ],
+          "when": "pass"
+        },
+        {
+          "w": 1,
+          "text": "They come back up a day later, on all fours, and the steps close behind them. They are mostly still themselves.",
+          "effects": [
+            {
+              "scion": {
+                "who": "champion",
+                "injury": "legs",
+                "curse": true
+              }
+            }
+          ],
+          "when": "fail"
+        }
+      ]
+    },
+    {
+      "id": "seal",
+      "label": "Pour the cellar full of lead.",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "It takes every scrap of iron in the stores. The breathing stops. The building is never quite level again.",
+          "effects": [
+            {
+              "resources": {
+                "iron": -20
+              }
+            },
+            {
+              "ruin": 1
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

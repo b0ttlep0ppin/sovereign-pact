@@ -1,0 +1,108 @@
+{
+  "id": "pale_physicians_wager",
+  "scope": "settlement",
+  "weight": 2,
+  "years": [
+    1,
+    20
+  ],
+  "title": "The Pale Physician's Wager",
+  "text": "A plague doctor in a bone-white beak arrives with the fever close behind him. He offers a wager to one House: send someone to sit the night with the dying, and if they are still themselves at dawn, he will drive the fever out. If not, he keeps them.",
+  "rule": "random_house",
+  "options": [
+    {
+      "id": "sit",
+      "label": "Send a Scion to sit with the dying.",
+      "tags": [
+        "bold",
+        "kind"
+      ],
+      "champion": {
+        "stat": "sagacity",
+        "dc": 12
+      },
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "Your Scion is still themselves at dawn, gaunt and grey but themselves. The doctor bows, and the fever leaves with him.",
+          "effects": [
+            {
+              "accord": 6
+            },
+            {
+              "scion": {
+                "who": "champion",
+                "trait": "+pious_hands",
+                "xp": 80
+              }
+            }
+          ],
+          "when": "pass"
+        },
+        {
+          "w": 1,
+          "text": "At dawn your Scion is not quite themselves. The doctor touches his beak to them, fondly, and leaves the fever behind as a gift.",
+          "effects": [
+            {
+              "scion": {
+                "who": "champion",
+                "injury": "body",
+                "sanity": -35
+              }
+            },
+            {
+              "to": "all",
+              "recruits_lost": 1
+            }
+          ],
+          "when": "fail"
+        }
+      ]
+    },
+    {
+      "id": "pay",
+      "label": "Pay him to take the fever somewhere else.",
+      "tags": [
+        "clever"
+      ],
+      "cost": {
+        "resources": {
+          "gold": 25
+        }
+      },
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "He takes the gold and the fever both, and goes to the next town over. You hear nothing from that town again.",
+          "effects": [
+            {
+              "accord": -1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lock",
+      "label": "Lock the gates against him.",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "He waits outside the gates for three days. The fever doesn't.",
+          "effects": [
+            {
+              "to": "all",
+              "recruits_lost": 1
+            },
+            {
+              "accord": -4
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

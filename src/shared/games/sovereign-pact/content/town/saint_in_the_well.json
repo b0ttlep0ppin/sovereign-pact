@@ -1,0 +1,86 @@
+{
+  "id": "saint_in_the_well",
+  "scope": "settlement",
+  "weight": 2,
+  "years": [
+    1,
+    20
+  ],
+  "title": "The Saint in the Well",
+  "text": "The hungriest House's well has a saint in it. She floats face-up at the bottom, uncorrupted, smiling, and since she arrived the water makes the grain grow as fast as weeds. The priests want her back. The House wants to eat.",
+  "rule": "least_grain",
+  "options": [
+    {
+      "id": "drink",
+      "label": "Keep her, and water the fields.",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "The harvest is enormous. The bread tastes faintly of incense, and the House's name goes into a ledger kept under the cathedral.",
+          "effects": [
+            {
+              "resources": {
+                "grain": 40
+              }
+            },
+            {
+              "house_trait": "+tithe_bound"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bury",
+      "label": "Haul her out and give her a proper grave.",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "The priests bury her with honours. The well runs foul for a season, and the House goes hungry, but the city remembers who did right.",
+          "effects": [
+            {
+              "doom": -3
+            },
+            {
+              "accord": 4
+            },
+            {
+              "resources": {
+                "grain": -10
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sell",
+      "label": "Sell the water by the bucket.",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "Every House in the city buys. The priests preach against you by name, which is good for business.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 50
+              }
+            },
+            {
+              "accord": -5
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

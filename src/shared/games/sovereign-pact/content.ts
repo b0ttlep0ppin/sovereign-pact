@@ -587,6 +587,8 @@ export interface TownEventDef {
   options?: TownOption[];
   /** Secret choices: what follows when no House, or every House, picks `option`. */
   together?: { when: "none" | "all"; option: string; text: string; effects: TownEffect[] }[];
+  /** Comes only from the timeline, as what an earlier event set going (an omen's payoff); never drawn. */
+  chained?: true;
   /** What the highest bid wins (options with `bid`). */
   prize?: TownBand;
   /** What falls on the House most named by options with `accuse` (none on a tie). */
@@ -893,6 +895,8 @@ export interface NamedDef {
   pools?: string[];
   minLevel?: number;
   artifact?: { category: ScoreCategory; points: number };
+  /** Found only through town events (Josh 2026-11-03: "powerful artifacts up for grabs"), never in a haul. */
+  town?: true;
   /** A cure item (§11.2): one use, mending these injury results or any lasting one of a band; it may leave a look. */
   cure?: { injuries?: string[]; band?: "moderate"; look?: string };
 }

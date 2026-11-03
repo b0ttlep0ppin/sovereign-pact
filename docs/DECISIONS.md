@@ -2,6 +2,15 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-03 (implementation, Milestone 8cf): the first macabre batch, omens that come back, relics found only in town
+
+Josh: **"Some of these can also be ominous fore shadowing of events to come later in the time line"**, **"powerful artifacts up for grabs"**, and settlement events **"repeat constantly"**.
+- **17 new town events**, all with a price or a risk on every side: a bone auction and an iron crown sold by sealed bid, a flayed steward and hanged men's testimony that ask each House to name the guilty, a marriage of crows that swaps Wards with a named House, a surgeon and a hollow table that take recruits or test a champion, a tithe of teeth and a vigil of candles that can cut Doom, a saint in the well that leaves a mark on the House.
+- **Chained events.** An event marked `chained` is never drawn; it comes only when an earlier one put it on the timeline (hidden, so it shows as "?" until a Watchtower reads it). The first two: paint over the weeping foundation and, two Years on, *What the Foundation Held* opens under that House; take the Twelfth House's gifts and, three Years on, *The Twelfth House Collects*.
+- **Town relics.** A named item marked `town` is found only through a town event (a prize, a gift, a thing dug up), never in a haul, and each is an artifact. Four so far: the Hand of the Last Bishop, the Iron Saint's Crown, the Foundation's Heart, the Signet of the Twelfth House.
+- **No repeats for 10 Years** (was 6) while any other event is eligible.
+- **Crises stay at about 40% of Years** (§8.8) however large the pool grows: the Omens roll Crisis or not first (`TUNING.crises.pct`), then draw by weight within that side.
+
 ## 2026-11-03 (implementation, Milestone 8ce): champions, sealed bids and accusations
 
 Josh: **"There should be some real chances for drama amongst the houses... their scions should be imperiled at times, there should be powerful artifacts up for grabs"**, and **"I would also like to be able to see hit chance"**.

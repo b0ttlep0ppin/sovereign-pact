@@ -2,8 +2,9 @@
 // resources... traits to your house or some of your scions", buildings "destroyed or gifted", Wards
 // exchanged "like a marriage pact"): option prices, a named House, and what an outcome can give or take.
 import { afterEach, describe, expect, it } from "vitest";
-import { BUILDING_BY_ID, CONSUMABLE_BY_ID, HOUSE_TRAIT_BY_ID, NAMED_BY_ID, TOWN_EVENT_BY_ID, TOWN_EVENTS, type TownEventDef, type TownOption } from "./content.ts";
+import { BUILDING_BY_ID, CONSUMABLE_BY_ID, HOUSE_TRAIT_BY_ID, NAMED, NAMED_BY_ID, TOWN_EVENT_BY_ID, TOWN_EVENTS, type TownEventDef, type TownOption } from "./content.ts";
 import { sovereignPact, type SovMove, type SovState } from "./index.ts";
+import { eligible } from "./crisis.ts";
 import { cautious } from "./omens.ts";
 import { calm, campaign } from "./testing.ts";
 
@@ -224,5 +225,24 @@ describe("the town content's trades", () => {
           }
       }
     }
+  });
+});
+
+describe("the first macabre batch (Josh 2026-11-03: drama, artifacts, omens of what is coming)", () => {
+  it("draws a chained event only from the timeline an earlier event set going", () => {
+    const chained = TOWN_EVENTS.filter((e) => e.chained);
+    expect(chained.length).toBeGreaterThan(0);
+    const s = calm(campaign(2, 3));
+    for (const e of chained) expect(eligible(s, e, 0), e.id).toBe(false);
+    for (const e of chained) {
+      const from = TOWN_EVENTS.filter((x) => JSON.stringify(x).includes(`"event":"${e.id}"`));
+      expect(from.length, `${e.id} is set going by some event`).toBeGreaterThan(0);
+    }
+  });
+
+  it("puts each town relic up for grabs in some event", () => {
+    const relics = NAMED.filter((n) => n.town);
+    expect(relics.length).toBeGreaterThanOrEqual(4);
+    for (const n of relics) expect(n.artifact, `${n.id} is an artifact`).toBeTruthy();
   });
 });

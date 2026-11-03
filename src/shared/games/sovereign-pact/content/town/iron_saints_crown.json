@@ -1,0 +1,68 @@
+{
+  "id": "iron_saints_crown",
+  "scope": "settlement",
+  "weight": 2,
+  "years": [
+    3,
+    20
+  ],
+  "title": "A Crown in the Ashes",
+  "text": "When the old foundry on the river finally burns out, the ashes give up a crown: iron, nailed together, with a saint's name stamped inside it. Every smith in the city wants it melted. Every House wants it worn. The foundry-master will sell it for iron, not gold.",
+  "rule": "secret",
+  "options": [
+    {
+      "id": "bid",
+      "label": "Send a sealed bid of iron.",
+      "tags": [
+        "bold"
+      ],
+      "bid": {
+        "resource": "iron",
+        "min": 5
+      },
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "Your iron is carted to the ruin. The foundry-master weighs it on a scale with a skull on the other pan.",
+          "effects": []
+        }
+      ]
+    },
+    {
+      "id": "leave",
+      "label": "Let someone else wear it.",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "You keep your iron.",
+          "effects": []
+        }
+      ]
+    }
+  ],
+  "together": [
+    {
+      "when": "none",
+      "option": "bid",
+      "text": "Nobody bids. The foundry-master puts the crown on his own head, walks into the river, and is not seen again.",
+      "effects": [
+        {
+          "doom": 2
+        }
+      ]
+    }
+  ],
+  "prize": {
+    "text": "The crown is yours. Whoever wears it hears the iron saint's last sermon every night, word for word, and stands a little straighter in the morning.",
+    "effects": [
+      {
+        "item": {
+          "named": "iron_saints_crown"
+        }
+      }
+    ]
+  }
+}

@@ -36,7 +36,19 @@ export function drawOmens(s: SovState): void {
   // Consequences come due first, and take the draws they stand in for (§8.7).
   const queued = dueEvents(s).map((t) => ({ ev: TOWN_EVENT_BY_ID.get(t.id)!, house: t.house ?? 0 }));
   const fromTimeline = queued.find((q) => q.ev.scope !== "house")?.ev;
-  const settlement = fromTimeline ?? withRng(s, (rng) => draw(s, rng, TOWN_EVENTS.filter((e) => e.scope === "settlement" && eligible(s, e))));
+  // About 40% of Years bring a Crisis (§8.8), however many ordinary events the pool holds.
+  const settlement =
+    fromTimeline ??
+    withRng(s, (rng) => {
+      const pool = TOWN_EVENTS.filter((e) => e.scope === "settlement" && eligible(s, e));
+      const crisis = rng.int(100) < TUNING.crises.pct;
+      // A side with nothing fresh left gives way to the other, so the 10-Year window still holds.
+      const stale = new Set((s.omensSeen ?? []).map((x) => x.key));
+      const fresh = (side: TownEventDef[]) => side.some((e) => !stale.has(e.id));
+      const want = pool.filter((e) => !!e.crisis === crisis);
+      const other = pool.filter((e) => !!e.crisis !== crisis);
+      return draw(s, rng, want.length && (fresh(want) || !fresh(other)) ? want : other.length ? other : pool);
+    });
   const seen = (key: string) => s.omensSeen!.push({ key, year: s.year });
   if (settlement) seen(settlement.id);
   if (settlement?.crisis) openCrisis(s, settlement);

@@ -1,0 +1,92 @@
+{
+  "id": "gifts_of_the_twelfth_house",
+  "scope": "settlement",
+  "weight": 2,
+  "years": [
+    2,
+    15
+  ],
+  "title": "Gifts of the Twelfth House",
+  "text": "Carts arrive at every Seat bearing gifts from the Twelfth House: fine blades, good wine, a signet for each lord. There have only ever been eleven Houses in this city, and none of them was ever numbered.",
+  "rule": "vote",
+  "options": [
+    {
+      "id": "accept",
+      "label": "Accept the gifts with thanks.",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "Every House is richer by a fine thing. The carts leave empty, and the drivers have no faces under their hoods.",
+          "effects": [
+            {
+              "to": "all",
+              "item": {
+                "tier": 3
+              }
+            },
+            {
+              "timeline": {
+                "event": "twelfth_house_collects",
+                "years": 3,
+                "hidden": true
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "burn",
+      "label": "Burn the gifts in the square, carts and all.",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "The blades scream in the fire. The city is poorer, and the night is very quiet.",
+          "effects": [
+            {
+              "doom": -3
+            },
+            {
+              "to": "all",
+              "sanity": -5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "commons",
+      "label": "Give it all to the Commons, unopened.",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "The Commons' stores swell. In the vault, at night, the wine casks can be heard talking among themselves.",
+          "effects": [
+            {
+              "to": "commons",
+              "resources": {
+                "gold": 60
+              }
+            },
+            {
+              "timeline": {
+                "event": "twelfth_house_collects",
+                "years": 3,
+                "hidden": true
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

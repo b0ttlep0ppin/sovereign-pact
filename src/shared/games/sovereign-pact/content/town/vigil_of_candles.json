@@ -1,0 +1,96 @@
+{
+  "id": "vigil_of_candles",
+  "scope": "settlement",
+  "weight": 2,
+  "years": [
+    1,
+    20
+  ],
+  "title": "The Vigil of a Hundred Candles",
+  "text": "The bishop calls a vigil against the Rift. For one night every House is asked to keep candles burning in the cathedral, and to give something to the dark so that it takes nothing else.",
+  "rule": "each_house",
+  "options": [
+    {
+      "id": "candles",
+      "label": "Buy candles and keep the vigil.",
+      "tags": [
+        "kind"
+      ],
+      "cost": {
+        "resources": {
+          "gold": 10
+        }
+      },
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "Your candles burn all night. In the morning one of them is still lit, and will not go out.",
+          "effects": [
+            {
+              "doom": -2
+            },
+            {
+              "consumable": {
+                "id": "saints_candle",
+                "n": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "vow",
+      "label": "Give a recruit to the vow of silence.",
+      "tags": [
+        "cruel"
+      ],
+      "cost": {
+        "recruits": 1
+      },
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "Your recruit is walled into the cathedral's undercroft with bread, water and a candle. You can hear them praying through the stone. The Rift is very quiet.",
+          "effects": [
+            {
+              "doom": -4
+            },
+            {
+              "accord": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "abstain",
+      "label": "Stay at home and keep your own lamps lit.",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "Your lamps burn down at the usual time.",
+          "effects": []
+        }
+      ]
+    }
+  ],
+  "together": [
+    {
+      "when": "all",
+      "option": "candles",
+      "text": "Every House keeps the vigil. At dawn the cathedral is warm as a hearth, and the Rift's light is dimmer than anyone can remember.",
+      "effects": [
+        {
+          "doom": -3
+        },
+        {
+          "accord": 4
+        }
+      ]
+    }
+  ]
+}

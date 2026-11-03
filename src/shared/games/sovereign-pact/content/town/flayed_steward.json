@@ -1,0 +1,98 @@
+{
+  "id": "flayed_steward",
+  "scope": "settlement",
+  "weight": 2,
+  "years": [
+    1,
+    20
+  ],
+  "title": "The Flayed Steward",
+  "text": "The Commons' steward is found nailed to the door of the Hall of Accounts, his skin folded neatly on the step beside him like a coat. The ledgers he kept are missing. The city wants a name, and every House has one to give.",
+  "rule": "secret",
+  "options": [
+    {
+      "id": "accuse",
+      "label": "Name the House that did it.",
+      "tags": [
+        "cruel"
+      ],
+      "accuse": true,
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "You give your name to the magistrates in a sealed letter.",
+          "effects": []
+        }
+      ]
+    },
+    {
+      "id": "confess",
+      "label": "Let one of your servants confess, to end it.",
+      "tags": [
+        "kind"
+      ],
+      "cost": {
+        "recruits": 1
+      },
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "Your servant hangs at dawn, and the city breathes out. Nobody believes it, and everybody is grateful.",
+          "effects": [
+            {
+              "accord": 5
+            },
+            {
+              "score": {
+                "renown": -2,
+                "intrigue": 3
+              }
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "Your servant hangs, and on the gibbet he names the real killers in a voice that is not his. The crowd goes home very quiet.",
+          "effects": [
+            {
+              "accord": 2
+            },
+            {
+              "doom": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "silence",
+      "label": "Say nothing. Lock the ledgers you still have.",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "You keep your counsel. The steward's skin is gone from the step by morning.",
+          "effects": []
+        }
+      ]
+    }
+  ],
+  "blamed": {
+    "text": "The mob gathers at their gates with torches and the steward's empty face held up on a pole. By morning their finest building is ash, and the city sleeps easier.",
+    "effects": [
+      {
+        "raze": "best"
+      },
+      {
+        "score": {
+          "renown": -4
+        }
+      },
+      {
+        "accord": 3
+      }
+    ]
+  }
+}
