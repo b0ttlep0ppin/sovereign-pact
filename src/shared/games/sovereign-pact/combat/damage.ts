@@ -77,7 +77,7 @@ export function baseDamage(u: Combatant, ab: AbilityDef): number {
   // Two-Handed Mastery (§12.12).
   if (kind === "physical" && ab.base === undefined && u.weapon.hands === 2) power *= pct(u.mods.twoHandPct ?? 0);
   if (u.enemyScale !== undefined) return power * u.enemyScale;
-  if (kind === "magic") return power * (1 + u.acuity / C.acuityDivisor) * (1 + (u.mods.spellPct ?? 0) / 100);
+  if (kind === "magic") return power * (1 + u.acuity / C.acuityDivisor) * (1 + ((u.mods.spellPct ?? 0) + (ab.element ? (u.mods[`spellPct.${ab.element}`] ?? 0) : 0)) / 100);
   if (kind === "heal") return power * (1 + u.sagacity / C.sagacityDivisor);
   // Spellbound weapons swing with Acuity when it is higher (§13.4).
   // Skullsplitter (§12.5): Might counts half again with an axe.
@@ -512,6 +512,8 @@ function supportEffects(b: Battle, rng: Rng, u: Combatant, t: Combatant, ab: Abi
   if (ab.mpPct && t.maxMp) t.mp = Math.min(t.maxMp, t.mp + Math.round((t.maxMp * ab.mpPct) / 100));
   if (ab.flag && !t.flags.includes(ab.flag)) t.flags.push(ab.flag);
   if (ab.interpose && t.id !== u.id) addStatus(b, u, "interposing", 0, { value: t.id });
+  // Second Breath (§12.10): Breath also clears the head.
+  if (ab.id === "breath" && t.mods.secondBreath) for (const id of ["fear", "confusion"]) removeStatus(b, t, id);
   if (ab.commune) for (const x of b.units) if (x.side !== u.side && !x.dead && !x.hazard) addStatus(b, x, "communed");
   // Barrier and Bulwark (§12.14), stronger from an Aegis caster; the Shield Drone only tops up.
   if (ab.shieldPct) {

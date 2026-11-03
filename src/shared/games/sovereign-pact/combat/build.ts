@@ -6,7 +6,7 @@ import { jobStat, maxHp, maxMp, maxSanity } from "../formulas.ts";
 import { houseEffects } from "../houses.ts";
 import { gearTotals, UNARMED, type GearTotals } from "../items.ts";
 import { battleActives, freePassives, passiveMods, tarotMods } from "../progression.ts";
-import { ELEMENTS, LOCATIONS, type House, type Location, type Person, type SovState } from "../state.ts";
+import { ELEMENTS, LOCATIONS, type Element, type House, type Location, type Person, type SovState } from "../state.ts";
 import { TUNING } from "../tuning.ts";
 import { meta } from "./status.ts";
 import type { AbilityDef, Battle, Combatant, GambitRule, Weapon } from "./types.ts";
@@ -66,7 +66,21 @@ export function carriedMods(p: Person, house?: ScionOpts["house"]): Record<strin
   }
   for (const passive of freePassives(p)) add(passive.mods);
   for (const m of passiveMods(p)) add(m);
+  // Elemental Mastery (§12.8): the element is the Magus's birth House's, else the one most of their own spells carry.
+  if (mods.elementalMastery) {
+    const el = house?.element ?? masteredElement(p);
+    mods[`spellPct.${el}`] = (mods[`spellPct.${el}`] ?? 0) + mods.elementalMastery;
+    mods[`spellMp.${el}`] = (mods[`spellMp.${el}`] ?? 0) - TUNING.combat.magus.masteryMpPct;
+    delete mods.elementalMastery;
+  }
   return mods;
+}
+
+/** The element most of a Scion's own spells carry (Fire when none do). */
+function masteredElement(p: Person): Element {
+  const n = new Map<Element, number>();
+  for (const a of battleActives(p)) if (a.element) n.set(a.element, (n.get(a.element) ?? 0) + 1);
+  return [...n].sort((x, y) => y[1] - x[1])[0]?.[0] ?? "fire";
 }
 
 const pctMod = (n: number, mods: Record<string, number>, key: string) => Math.max(1, Math.floor(n * (1 + (mods[key] ?? 0) / 100)));

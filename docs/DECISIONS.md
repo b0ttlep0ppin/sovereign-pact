@@ -2,6 +2,14 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-03 (implementation, Milestone 8bc): Siphon, Nova, Elemental Mastery, Second Breath, Hybrid, Ward-Sense
+
+- Built: Siphon (20% of max HP paid, 1.5 MP back per HP), Nova, Elemental Mastery, Second Breath, Hybrid and Ward-Sense. Bots Siphon only above 60% HP with under 20 MP.
+- Reading: Nova's "element of choice" is chosen for the caster when it lands: the element its targets fear most (the battle screen has no element picker, and a Magus would pick that one).
+- Reading: Elemental Mastery's "pick an element" is the Magus's birth House element (§5.3), or, for a House without one, the element most of their own spells carry.
+- Reading: Hybrid's "Form aura" is the Form's passive, as Graft gives it to an ally; it stays on the Alterer for 100 ticks after Revert.
+- Reading: Ward-Sense shows the ticks left on each enemy's timed buffs, next to the buff's name on the battle screen.
+
 ## 2026-11-02 (implementation, Milestone 8bb): the Soothsayer's and Gambler's last abilities
 
 - Built: Ancestor's Shield, Commune, Lifeline (rolled each time an ally within 2 cells falls, until it works once), Calming Presence; Cheat Death (every injury roll twice, the better kept), Last Chip (power ×(1 + 1.5 × the share of HP lost), so up to 2.5×) and Fortune Favors.

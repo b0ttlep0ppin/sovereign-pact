@@ -356,7 +356,9 @@ export const TUNING = {
     dualWield: { offPower: 50, mastery: 80 },
     /** Conjurer summons (§12.2): two bound at once (+1 with Legion), and their accuracy. */
     summons: { cap: 2, accuracy: 90 },
-    jobs: { healCapPct: 50, lowHpBelow: 30, mirrorTp: 20, oneCutMult: 2, stillWaterPct: 20, graftTicks: 200 },
+    jobs: { healCapPct: 50, lowHpBelow: 30, mirrorTp: 20, oneCutMult: 2, stillWaterPct: 20, graftTicks: 200, hybridTicks: 100 },
+    /** The Magus (§12.8): Elemental Mastery's MP cut, %. */
+    magus: { masteryMpPct: 10 },
     /** The Knight's passives (§12.4): Commanding Presence lends Sagacity/5 % accuracy, Shieldbearer adds Resilience/4 % guard, Bodyguard shifts 30% of single-target weight. */
     knight: { presenceDiv: 5, shieldbearerDiv: 4, bodyguardPct: 30 },
     /** The Soldier's passives (§12.5): Grizzled's step per 20 Might on the body's injury tables. */

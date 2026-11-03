@@ -187,6 +187,10 @@ export interface AbilityDef {
   graft?: boolean;
   /** Calls a summon from summons.json (§12.15). */
   summon?: string;
+  /** Siphon: MP gained per HP paid (`hpCost`). */
+  mpFromHp?: number;
+  /** Nova: takes the element that hurts its targets most. */
+  bestElement?: boolean;
   /** Last Chip: power × (1 + share of HP lost × this). */
   desperate?: number;
   /** Last Chip: always a crit after a Cast Lots of 12 this turn. */
