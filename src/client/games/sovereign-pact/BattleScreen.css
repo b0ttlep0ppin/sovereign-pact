@@ -271,6 +271,7 @@
   border: 1px solid #a8322a; border-radius: 2px; background: rgba(20, 6, 6, 0.92); color: #f3e3c8; font-size: 0.8rem; font-weight: 700; pointer-events: none;
 }
 .sp-unit__aim small { color: #e08a7a; font-weight: 400; }
+.sp-unit__aim .sp-unit__read { display: block; color: #c8b98a; font-size: 0.85em; white-space: normal; max-width: 16em; }
 /* The command bar stays in view at the bottom of the screen. */
 .sp-battle > .sp-command { position: sticky; bottom: 0; z-index: 6; background: rgba(14, 8, 10, 0.96); border-color: rgba(215, 180, 90, 0.45); box-shadow: 0 -6px 18px rgba(0, 0, 0, 0.6); }
 @media (prefers-reduced-motion: reduce) { .sp-unit__marker, .sp-unit.is-acting::after, .sp-unit.is-targetable { animation: none; } }

@@ -229,7 +229,8 @@ export function act(b: Battle, rng: Rng, u: Combatant, action: Action): void {
       // Quick Rites: summons come sooner (§12.15).
       const ticks = Math.round(chargeTicks(u, ab.charge) * (ab.summon ? 1 + (u.mods.summonChargePct ?? 0) / 100 : 1));
       u.charge = { ability: ab, target: action.target, homingOn, ticks };
-      b.events.push({ t: "charge", unit: u.id, ability: ab.id, target: action.target, ticks, telegraph: !!ab.telegraph });
+      // A read enemy's charge shows, telegraphed or not (Commune, §12.9).
+      b.events.push({ t: "charge", unit: u.id, ability: ab.id, target: action.target, ticks, telegraph: !!ab.telegraph || hasStatus(u, "communed") });
     } else {
       if (ab.charge) u.flags.splice(instant, 1);
       resolve(b, rng, u, ab, action.target, homingOn, action.doubleDown);

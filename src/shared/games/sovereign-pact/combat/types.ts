@@ -187,6 +187,12 @@ export interface AbilityDef {
   graft?: boolean;
   /** Calls a summon from summons.json (§12.15). */
   summon?: string;
+  /** Last Chip: power × (1 + share of HP lost × this). */
+  desperate?: number;
+  /** Last Chip: always a crit after a Cast Lots of 12 this turn. */
+  critOnTwelve?: boolean;
+  /** Commune: every enemy is read (its weak point and affinities show, its charges are telegraphed). */
+  commune?: boolean;
   /** Dirty Trick: one of these, at random, is what it does (statuses, Readiness damage). */
   pick?: Pick<AbilityDef, "statuses" | "readiness">[];
   /** Steal: takes a buff from the target, or failing that (a Guile % chance, once a foe) a consumable into the satchel. */

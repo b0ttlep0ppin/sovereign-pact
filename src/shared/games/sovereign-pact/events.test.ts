@@ -135,6 +135,23 @@ describe("the effects (§9.4)", () => {
     expect(s.expedition!.carry[id]!.broken).toEqual([]);
   });
 
+  it("tips an event toward the outcome best for a Gambler with Fortune Favors", () => {
+    const s = underway(1);
+    const id = s.expedition!.leader!;
+    const twoWays: TripOption = { id: "x", label: "Test.", rule: "leader", outcomes: [{ w: 1000, text: "Ill.", effects: [{ sanity: -1 }] }, { w: 1, text: "Well.", effects: [{ xp: 1 }] }] };
+    const wells = () => {
+      let n = 0;
+      for (let i = 0; i < 100; i++) {
+        resolve(s, twoWays);
+        if (s.log.at(-1)!.endsWith("Well.")) n++;
+      }
+      return n;
+    };
+    expect(wells()).toBeLessThan(3);
+    s.people.find((x) => x.id === id)!.passives = ["fortune_favors"];
+    expect(wells()).toBeGreaterThan(3);
+  });
+
   it("lets a Veteran shrug off one harm an expedition, on a Guile roll", () => {
     const s = underway(1);
     const id = s.expedition!.leader!;

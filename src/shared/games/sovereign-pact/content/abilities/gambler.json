@@ -9,13 +9,13 @@
     {"id": "all_in", "name": "All In", "jp": 300, "text": "2d6: 10 or more, triple damage to the burst; 4 or under, it hits you.", "shape": "burst:3x3", "side": "foe", "power": 1, "tp": 50, "reach": "ranged", "dice": {"high": 10, "highPower": 3, "low": 4, "lowHitsSelf": true}},
     {"id": "marked_card", "name": "Marked Card", "jp": 150, "text": "Marked; the next 2d6 rolled against it count as 11.", "shape": "single", "side": "foe", "power": 0, "kind": "support", "mp": 20, "statuses": [{"id": "marked", "chance": 100, "ticks": 300}, {"id": "loaded_card", "chance": 100, "ticks": 0}]},
     {"id": "house_rules", "name": "House Rules", "jp": 200, "text": "Every ally's next Cast Lots roll is 7 or more.", "shape": "all", "side": "ally", "power": 0, "kind": "support", "mp": 30, "flag": "lots_floor7"},
-    {"id": "cheat_death", "name": "Cheat Death", "jp": 250, "text": "For 300 ticks the ally's injury rolls get a lucky reroll.", "shape": "single", "side": "ally", "power": 0, "kind": "support", "mp": 40, "later": true},
-    {"id": "last_chip", "name": "Last Chip", "jp": 300, "text": "Damage grows as your HP falls; a crit if Cast Lots was 12 this turn.", "shape": "single", "side": "foe", "power": 1, "tp": 60, "later": true}
+    {"id": "cheat_death", "name": "Cheat Death", "jp": 250, "text": "For 300 ticks the ally rolls every injury twice and keeps the better.", "shape": "single", "side": "ally", "power": 0, "kind": "support", "mp": 40, "statuses": [{"id": "cheat_death", "chance": 100, "ticks": 300}]},
+    {"id": "last_chip", "name": "Last Chip", "jp": 300, "text": "Damage up to 2.5x as your HP falls; a crit if Cast Lots was 12 this turn.", "shape": "single", "side": "foe", "power": 1, "tp": 60, "desperate": 1.5, "critOnTwelve": true}
   ],
   "passives": [
     {"id": "lucky_streak", "name": "Lucky Streak", "points": 2, "jp": 200, "text": "Each 7+ Cast Lots roll in a row adds +2% crit (resets on 6 or less).", "mods": {"luckyStreak": 2}},
     {"id": "weighted", "name": "Weighted", "points": 2, "jp": 200, "text": "Cast Lots rolls of 2 become 3.", "mods": {"weighted": 1}},
     {"id": "risk_taker", "name": "Risk Taker", "points": 1, "jp": 100, "text": "Double Down fizzles one point later.", "mods": {"fizzleAt": 1}},
-    {"id": "fortune_favors", "name": "Fortune Favors", "points": 3, "jp": 300, "text": "Event outcomes lean 10% toward the best one for this Scion.", "later": true}
+    {"id": "fortune_favors", "name": "Fortune Favors", "points": 3, "jp": 300, "text": "A 10% chance that an event this Scion is caught in goes the way best for them.", "mods": {"fortuneFavors": 1}}
   ]
 }

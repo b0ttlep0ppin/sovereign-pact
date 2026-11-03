@@ -363,6 +363,10 @@ export const TUNING = {
     soldier: { grizzledPer: 20 },
     /** The Vagabond (§12.6): Vanish's Backstab +50%, Knife Flurry's chance Guile/4 %. */
     vagabond: { vanishPct: 50, flurryDiv: 4 },
+    /** The Soothsayer (§12.9): Ancestor's Shield's steps, Lifeline's chance, Calming Presence's Sanity cut. */
+    soothsayer: { shieldSteps: 2, lifelinePct: 25, calmPct: 20 },
+    /** The Gambler (§12.7): Fortune Favors' chance that an event takes the outcome best for the Scion. */
+    gambler: { fortunePct: 10 },
     /** §7.3: 20 CT a cell, −1 per 5 Guile, at least 10; up to 2 cells a turn (§10.4). */
     move: { perCell: 20, guilePer: 5, min: 10, maxCells: 2 },
     hitClamp: [5, 95] as const,

@@ -10,15 +10,15 @@
     {"id": "ward_of_thorns", "name": "Ward of Thorns", "jp": 150, "text": "Attackers of the ally take 30% of their damage back for 200 ticks.", "shape": "single", "power": 0, "kind": "support", "mp": 20, "statuses": [{"id": "thorns", "chance": 100, "ticks": 200, "value": 30}], "side": "ally"},
     {"id": "spirit_lamp", "name": "Spirit Lamp", "jp": 150, "text": "Sanity +15% to allies in the burst (Fear immunity comes later).", "shape": "burst:3x3", "power": 0, "kind": "support", "mp": 25, "sanityPct": 15, "side": "ally"},
     {"id": "breath_of_life", "name": "Breath of Life", "jp": 250, "text": "Revive at 20% HP.", "shape": "single", "power": 0, "kind": "support", "mp": 50, "charge": 200, "revive": 20, "side": "ally"},
-    {"id": "ancestors_shield", "name": "Ancestor's Shield", "jp": 150, "text": "The ally's next injury roll +2 steps.", "shape": "single", "power": 0, "kind": "support", "mp": 30, "later": true, "side": "ally"},
+    {"id": "ancestors_shield", "name": "Ancestor's Shield", "jp": 150, "text": "The ally's next injury roll +2 steps.", "shape": "single", "power": 0, "kind": "support", "mp": 30, "side": "ally", "flag": "ancestors_shield"},
     {"id": "hex", "name": "Hex", "jp": 150, "text": "Damage taken +15% for 300 ticks.", "shape": "single", "power": 0, "kind": "support", "mp": 15, "side": "foe", "statuses": [{"id": "hex", "chance": 100, "ticks": 300, "value": 15}]},
-    {"id": "commune", "name": "Commune", "jp": 100, "text": "Reveal every enemy's HP, weaknesses and the boss's next telegraph.", "shape": "self", "side": "self", "power": 0, "kind": "support", "mp": 20, "cost": 60, "later": true}
+    {"id": "commune", "name": "Commune", "jp": 100, "text": "Read every enemy for the battle: its weak point and affinities show, and every charge it begins is telegraphed.", "shape": "self", "side": "self", "power": 0, "kind": "support", "mp": 20, "cost": 60, "commune": true}
   ],
   "passives": [
     {"id": "wellspring", "name": "Wellspring", "points": 2, "jp": 200, "text": "MP +5 per 100 ticks.", "mods": {"mpPer100": 5}},
     {"id": "gentle_hands", "name": "Gentle Hands", "points": 2, "jp": 200, "text": "Healing dealt +15%.", "mods": {"healingDealtPct": 15}},
-    {"id": "lifeline", "name": "Lifeline", "points": 3, "jp": 300, "text": "When an ally within 2 cells hits 0 HP, 25% chance they stay at 1 HP (once a battle).", "later": true},
-    {"id": "calming_presence", "name": "Calming Presence", "points": 1, "jp": 100, "text": "Adjacent allies lose 20% less Sanity.", "later": true},
+    {"id": "lifeline", "name": "Lifeline", "points": 3, "jp": 300, "text": "When an ally within 2 cells hits 0 HP, 25% chance they stay at 1 HP (once a battle).", "mods": {"lifeline": 1}},
+    {"id": "calming_presence", "name": "Calming Presence", "points": 1, "jp": 100, "text": "Adjacent allies lose 20% less Sanity.", "mods": {"calmingPresence": 1}},
     {"id": "herb_lore", "name": "Herb Lore", "points": 1, "jp": 100, "text": "Consumables you use heal +30%.", "mods": {"itemHealPct": 30}}
   ]
 }

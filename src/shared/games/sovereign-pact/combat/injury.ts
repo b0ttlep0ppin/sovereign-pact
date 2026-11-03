@@ -6,6 +6,7 @@ import type { Location } from "../state.ts";
 import { TUNING } from "../tuning.ts";
 import { partBroken } from "./enemyparts.ts";
 import { spendItem } from "./items.ts";
+import { hasStatus } from "./grid.ts";
 import { addStatus, endSongs, removeStatus } from "./status.ts";
 import type { Battle, Combatant } from "./types.ts";
 
@@ -71,7 +72,18 @@ export function carriedRoll(rng: Rng, table: InjuryTableId, steps: number, c?: C
 export function injure(b: Battle, rng: Rng, u: Combatant, table: InjuryTableId, steps: number): InjuryResult {
   // A Scion's rolls answer to what the satchel carries.
   const c: Carried | undefined = u.side === "party" && u.person !== undefined && u.owner === undefined ? { has: (id) => !!b.satchel?.includes(id), spend: (id) => spendItem(b, id) } : undefined;
-  const r = carriedRoll(rng, table, baseSteps(u, table) + steps, c);
+  // Ancestor's Shield (§12.9): this one roll +2 steps.
+  const shield = u.flags.indexOf("ancestors_shield");
+  if (shield >= 0) {
+    u.flags.splice(shield, 1);
+    steps += TUNING.combat.soothsayer.shieldSteps;
+  }
+  let r = carriedRoll(rng, table, baseSteps(u, table) + steps, c);
+  // Cheat Death (§12.7): a lucky reroll, the better of the two.
+  if (hasStatus(u, "cheat_death") && !r.tooth) {
+    const again = carriedRoll(rng, table, baseSteps(u, table) + steps);
+    if (again.total > r.total) r = { ...again, rerolled: r.roll };
+  }
   const result = r.tooth ? r.result : capped(b, table, r.result, r.total);
   b.events.push({ t: "injury", target: u.id, table: r.table, roll: r.roll, total: r.total, result: result.id, ...(r.rerolled ? { rerolled: r.rerolled } : {}), ...(r.tooth ? { tooth: true as const } : {}) });
   u.injuries.push(result.id);

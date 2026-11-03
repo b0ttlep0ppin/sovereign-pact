@@ -32,6 +32,8 @@ export interface ReplayUnit {
   maxSanity: number;
   /** Durability maxima, Head/Body/Arms/Legs (Scions). */
   maxDur?: number[];
+  /** What a Soothsayer's Commune read: its weak point and its elemental affinities (only once read). */
+  read?: { weak?: { location: string; mult: number }; affinity: Partial<Record<string, number>> };
 }
 
 /** One combatant's vitals: id, HP, MP, TP, Sanity, col, row, state bits (see `FLAG`), Durability (H/B/A/L) and status ids. */
@@ -91,6 +93,7 @@ export const unitOf = (u: Combatant): ReplayUnit => ({
   maxMp: u.maxMp,
   maxSanity: u.maxSanity,
   ...(u.maxDur ? { maxDur: LOCATIONS.map((l) => u.maxDur![l]) } : {}),
+  ...(u.statuses.some((x) => x.id === "communed") ? { read: { ...(u.weak ? { weak: { location: u.weak.location, mult: u.weak.mult } } : {}), affinity: Object.fromEntries(Object.entries(u.affinity).filter(([, n]) => n)) } } : {}),
 });
 
 const memo = new WeakMap<Replay, Map<number, string>>();

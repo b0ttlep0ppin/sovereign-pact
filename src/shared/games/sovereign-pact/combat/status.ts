@@ -114,6 +114,10 @@ export const STATUSES: Record<string, StatusMeta> = {
   // The Soldier (§12.5): Brace holds until the next turn; Last Stand's damage and no-healing ride in its mods.
   braced: { kind: "buff", ticks: 0, endsOnTurn: true },
   last_stand: { kind: "buff", ticks: 300 },
+  // The Gambler's Cheat Death (§12.7): injury rolls are rolled twice, the better kept.
+  cheat_death: { kind: "buff", ticks: 300 },
+  // The Soothsayer's Commune (§12.9): the enemy is read for the rest of the battle.
+  communed: { kind: "debuff", ticks: 0, fixed: true },
 };
 
 // A Form's mods ride on a status of its own, which only Revert removes.
