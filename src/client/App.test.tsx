@@ -2,6 +2,10 @@ import { act, fireEvent, render, screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 import { App } from "./App";
 
+/** The Year in the header ("Year 2 of 20"); the log's "Year 2 of 20." can scroll out under the bots' sales. */
+const shown = (n: number) => screen.queryByText((_, el) => el?.tagName === "STRONG" && el.textContent === `Year ${n} of 20`);
+const year = (n: number) => shown(n) ?? screen.getByText(`Year ${n} of 20`);
+
 /** Lets the bots move a few times: each move schedules the next after the render. */
 const letBotsMove = () => {
   for (let i = 0; i < 60; i++) act(() => vi.advanceTimersByTime(400));
@@ -31,7 +35,7 @@ const sendTheParty = () => {
   for (let i = 0; i < 200; i++) {
     const on = screen.queryByRole("button", { name: /^(Press on|Face the boss|Let the gambits fight the rest)$/ }) ?? document.querySelector<HTMLButtonElement>('[aria-label="An event"] button, [aria-label="The draft"] button:not([disabled])');
     // Nothing of ours to click: the bots are still moving (their Scions' battle turns), unless the Year is over.
-    if (!on && screen.queryByText(/^Year 2 of/)) break;
+    if (!on && shown(2)) break;
     if (on) fireEvent.click(on);
     letBotsMove();
   }
@@ -55,11 +59,11 @@ describe("the standalone host", () => {
       fireEvent.click(screen.getByRole("button", { name: "Swear the Pact" }));
       letBotsMove();
       draft();
-      expect(screen.getByText("Year 1 of 20.")).toBeTruthy();
+      expect(year(1)).toBeTruthy();
       seal();
       letBotsMove();
       sendTheParty();
-      expect(screen.getByText("Year 2 of 20.")).toBeTruthy();
+      expect(year(2)).toBeTruthy();
       expect(localStorage.getItem("sovereign-pact:save")).toContain('"year":2');
     } finally {
       vi.useRealTimers();
