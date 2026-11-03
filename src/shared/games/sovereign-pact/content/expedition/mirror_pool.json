@@ -57,8 +57,12 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "You keep your eyes on the far bank until it is behind you.",
-          "effects": []
+          "text": "You keep your eyes on the far bank until it is behind you, and you are still yourself when you get there. That is worth something here.",
+          "effects": [
+            {
+              "sanity": 6
+            }
+          ]
         }
       ]
     }

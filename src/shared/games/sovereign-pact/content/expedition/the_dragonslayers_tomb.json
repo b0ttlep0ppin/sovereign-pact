@@ -79,8 +79,14 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The dragon opens one eye, and closes it.",
-          "effects": []
+          "text": "The dragon opens one eye, and closes it. Its breath as you pass is hot enough to cook the leather off your boots.",
+          "effects": [
+            {
+              "to": "party",
+              "durability": -20,
+              "loc": "legs"
+            }
+          ]
         }
       ]
     }

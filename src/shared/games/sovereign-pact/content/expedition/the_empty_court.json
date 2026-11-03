@@ -82,8 +82,16 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The herald announces your departure too.",
-          "effects": []
+          "text": "The herald announces your departure too, and every empty helm turns to watch you out. It is an honour, of a kind, and word of it will get home.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -4,
+              "score": {
+                "renown": 1
+              }
+            }
+          ]
         }
       ]
     }

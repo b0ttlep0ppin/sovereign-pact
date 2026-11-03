@@ -65,9 +65,28 @@
       ],
       "outcomes": [
         {
-          "w": 100,
-          "text": "He sings of you anyway, badly.",
-          "effects": []
+          "w": 60,
+          "text": "He sings of you anyway, badly, and the song travels home ahead of you. People will hum it at the Leader's House.",
+          "effects": [
+            {
+              "score": {
+                "renown": 1
+              }
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "He sings of you anyway, loudly, and the kind of thing that lives in these hills hears it.",
+          "effects": [
+            {
+              "fork": {
+                "add": [
+                  "encounter"
+                ]
+              }
+            }
+          ]
         }
       ]
     }

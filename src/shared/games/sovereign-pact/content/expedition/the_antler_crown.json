@@ -58,8 +58,13 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The birds start singing again.",
-          "effects": []
+          "text": "The birds start singing again, and the wood lets you through as a friend. Nothing stalks you that night, and you sleep.",
+          "effects": [
+            {
+              "to": "party",
+              "hp": 15
+            }
+          ]
         }
       ]
     },

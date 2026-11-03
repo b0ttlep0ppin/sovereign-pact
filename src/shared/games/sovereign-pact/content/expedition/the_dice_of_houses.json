@@ -73,8 +73,13 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The stones hum, disappointed.",
-          "effects": []
+          "text": "The stones hum, disappointed, and as you leave one die rolls over on its own. Every hand in the party itches to throw it for a day after.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -5
+            }
+          ]
         }
       ]
     }

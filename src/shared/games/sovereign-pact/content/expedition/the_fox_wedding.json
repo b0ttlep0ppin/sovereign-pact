@@ -20,9 +20,25 @@
       ],
       "outcomes": [
         {
-          "w": 100,
-          "text": "They pass. The rain stops.",
-          "effects": []
+          "w": 70,
+          "text": "They pass. The rain stops. Where the procession walked you find a dropped wedding gift: a silk purse, heavy.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 25
+              }
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "They pass. The rain stops. One fox turns back, looks right at your hiding place, and smiles.",
+          "effects": [
+            {
+              "to": "party",
+              "status": "marked"
+            }
+          ]
         }
       ]
     },

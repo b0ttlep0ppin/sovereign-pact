@@ -76,8 +76,15 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The rope sways as you pass.",
-          "effects": []
+          "text": "The rope sways as you pass. Somewhere deep in the halls a hammer starts up anyway, and the Leader's armour rings in answer. By morning its dents are gone.",
+          "effects": [
+            {
+              "gear": {
+                "on": "armor",
+                "mend": true
+              }
+            }
+          ]
         }
       ]
     }

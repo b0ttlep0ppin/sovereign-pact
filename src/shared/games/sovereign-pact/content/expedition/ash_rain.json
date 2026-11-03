@@ -41,8 +41,12 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "It is only ash, after all.",
-          "effects": []
+          "text": "It is only ash, after all, though the Leader coughs grey all the next day and the cough steals the breath their spells need.",
+          "effects": [
+            {
+              "mp": -25
+            }
+          ]
         },
         {
           "w": 50,

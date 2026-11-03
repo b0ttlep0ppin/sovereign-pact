@@ -77,9 +77,25 @@
       ],
       "outcomes": [
         {
-          "w": 100,
-          "text": "It has waited this long.",
-          "effects": []
+          "w": 50,
+          "text": "It has waited this long. As you turn, the peat sighs and gives up a small thing it was keeping: a sliver of black wood, hard as iron, that the Leader binds to their weapon.",
+          "effects": [
+            {
+              "gear": {
+                "on": "weapon",
+                "add": "keen"
+              }
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "It has waited this long. It will wait for you too, the bog seems to say, and the Leader dreams of black water.",
+          "effects": [
+            {
+              "sanity": -6
+            }
+          ]
         }
       ]
     }

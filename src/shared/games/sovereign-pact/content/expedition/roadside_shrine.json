@@ -35,8 +35,13 @@
         },
         {
           "w": 40,
-          "text": "Nothing answers.",
-          "effects": []
+          "text": "Nothing answers. But kneeling there among the fresh flowers your legs rest, and your wounds stop their aching.",
+          "effects": [
+            {
+              "to": "party",
+              "hp": 12
+            }
+          ]
         }
       ]
     },

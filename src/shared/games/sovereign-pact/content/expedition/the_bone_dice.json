@@ -91,8 +91,12 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It shrugs, a long rattle, and waits for the next ones.",
-          "effects": []
+          "text": "It shrugs, a long rattle, and throws anyway, for you. You hear the dice come up bad as you walk away.",
+          "effects": [
+            {
+              "status": "marked"
+            }
+          ]
         }
       ]
     }

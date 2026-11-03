@@ -59,9 +59,27 @@
       ],
       "outcomes": [
         {
-          "w": 60,
-          "text": "You find it, eventually.",
-          "effects": []
+          "w": 36,
+          "text": "You find it, eventually, after a night of walking in circles past the same dead tree.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -8
+            }
+          ]
+        },
+        {
+          "w": 24,
+          "text": "You find it, and find her waiting at the end of it, her lantern out, and something in the dark behind her.",
+          "effects": [
+            {
+              "fork": {
+                "add": [
+                  "encounter"
+                ]
+              }
+            }
+          ]
         },
         {
           "w": 40,

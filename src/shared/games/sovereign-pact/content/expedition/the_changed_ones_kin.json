@@ -84,8 +84,12 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They pass, calling a name.",
-          "effects": []
+          "text": "They pass, calling a name. It is the Leader's, and the Leader hears it in every quiet after.",
+          "effects": [
+            {
+              "sanity": -12
+            }
+          ]
         }
       ]
     }

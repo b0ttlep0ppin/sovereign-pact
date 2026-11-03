@@ -86,9 +86,22 @@
       ],
       "outcomes": [
         {
-          "w": 100,
-          "text": "You go around. The light follows you a while from under the ground.",
-          "effects": []
+          "w": 50,
+          "text": "You go around. The light follows you a while from under the ground, and where it passes beneath the Leader their wounds knit.",
+          "effects": [
+            {
+              "hp": 25
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "You go around. The light follows you, and that night it presses up through the ground under the Leader like a face. They wake with it burned into their eyes.",
+          "effects": [
+            {
+              "status": "blind"
+            }
+          ]
         }
       ]
     }

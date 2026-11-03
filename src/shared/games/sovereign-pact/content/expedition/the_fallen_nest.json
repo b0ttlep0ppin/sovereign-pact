@@ -77,9 +77,27 @@
       ],
       "outcomes": [
         {
-          "w": 100,
-          "text": "It will be what it will be.",
-          "effects": []
+          "w": 60,
+          "text": "It will be what it will be. The canopy, which was watching, lets you pass unharmed and the road is easy.",
+          "effects": [
+            {
+              "to": "party",
+              "hp": 10
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "It will be what it will be. At dusk you hear the mother looking for it, and then you hear her find your trail.",
+          "effects": [
+            {
+              "fork": {
+                "add": [
+                  "encounter"
+                ]
+              }
+            }
+          ]
         }
       ]
     }

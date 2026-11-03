@@ -21,8 +21,14 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It passes, and you slip by.",
-          "effects": []
+          "text": "It passes, and you slip by. Where it turned, a cog has worked loose from it over the centuries; good iron, if you have the pack room.",
+          "effects": [
+            {
+              "resources": {
+                "iron": 3
+              }
+            }
+          ]
         }
       ]
     },

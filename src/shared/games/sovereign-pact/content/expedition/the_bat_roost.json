@@ -20,9 +20,25 @@
       ],
       "outcomes": [
         {
-          "w": 80,
-          "text": "They sleep.",
-          "effects": []
+          "w": 48,
+          "text": "They sleep. Under the droppings you find the bones of the last party that tried, and a little of what they carried.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 20
+              }
+            }
+          ]
+        },
+        {
+          "w": 32,
+          "text": "They sleep. The droppings are another matter: by evening every scratch in the party is red and hot.",
+          "effects": [
+            {
+              "to": "party",
+              "status": "poison"
+            }
+          ]
         },
         {
           "w": 20,

@@ -78,8 +78,13 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The candles go out behind you, one by one.",
-          "effects": []
+          "text": "The candles go out behind you, one by one. The smell of the food follows you for a day, and your own bread tastes of ash beside it.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -6
+            }
+          ]
         }
       ]
     }

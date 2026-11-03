@@ -243,6 +243,9 @@ const outfitOf = (look: ScionLook): Partial<Record<Slot, string>> => {
       if (out.shoulders === "legion") delete out.shoulders;
     }
   }
+  // Out of armor and with no shirt of their Job's, they wear their small clothes (Josh 2026-11-03:
+  // "this recruit seems nude lol").
+  if (!out.armor && !out.shirt) out.shirt = "tshirt";
   // A caster in mail wears their House's vestment over it.
   if (out.armor === "chainmail" && VESTED.has(look.job)) out.tabard = "tabard";
   if (look.bare) delete out.hat;

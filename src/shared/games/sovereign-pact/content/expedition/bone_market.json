@@ -71,9 +71,25 @@
       ],
       "outcomes": [
         {
-          "w": 70,
-          "text": "You look. They let you.",
-          "effects": []
+          "w": 42,
+          "text": "You look. They let you. One stall sells only the sound of your own names, and you hear them all the way out.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -6
+            }
+          ]
+        },
+        {
+          "w": 28,
+          "text": "You look, and learn how the faceless haggle: never speak first. It is a lesson that stays with you.",
+          "effects": [
+            {
+              "to": "party",
+              "xp": 10,
+              "jp": 25
+            }
+          ]
         },
         {
           "w": 30,

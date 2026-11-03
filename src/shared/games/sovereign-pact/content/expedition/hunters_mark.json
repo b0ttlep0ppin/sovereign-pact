@@ -51,8 +51,12 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Slower, and safer.",
-          "effects": []
+          "text": "Slower, and safer. When you do come on the quarry you come from cover, and the Leader is ready before it is.",
+          "effects": [
+            {
+              "tp": 50
+            }
+          ]
         }
       ]
     }
