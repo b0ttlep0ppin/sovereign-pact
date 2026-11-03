@@ -73,6 +73,7 @@ export function openYear(s: SovState): void {
   for (const h of s.houses) {
     h.sealed = false;
     delete h.promotions;
+    delete h.offering;
   }
 }
 

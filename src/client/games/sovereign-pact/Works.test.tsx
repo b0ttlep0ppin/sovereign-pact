@@ -51,3 +51,21 @@ describe("building", () => {
     expect(screen.queryByRole("button", { name: "Pledge" })).toBeNull();
   });
 });
+
+describe("the Altar of Offerings (Josh 2026-11-03: sacrifice small stuff for an expedition bonus)", () => {
+  it("offers Grain, a recruit or blood once the altar stands, and then says what was laid", () => {
+    const s = town();
+    s.houses[0]!.stores.grain = 40;
+    expect(g.view(s, "p1").mine!.altar).toBeNull();
+    s.commons.built.altar_of_offerings = 1;
+    const sendMove = vi.fn();
+    const { rerender } = render(<Works view={g.view(s, "p1")} sendMove={sendMove} canAct />);
+    const altar = screen.getByRole("region", { name: "The Altar of Offerings" });
+    fireEvent.click(within(within(altar).getByText("Lay Grain").closest("li")!).getByRole("button", { name: "Offer" }));
+    expect(sendMove).toHaveBeenCalledWith({ type: "altar", gift: "grain" });
+    const r = g.applyMove(s, "p1", { type: "altar", gift: "grain" });
+    if (!r.ok) throw new Error(r.error);
+    rerender(<Works view={g.view(r.state, "p1")} sendMove={sendMove} canAct />);
+    expect(within(screen.getByRole("region", { name: "The Altar of Offerings" })).getByText(/Every battle opens with 15 TP/)).toBeTruthy();
+  });
+});

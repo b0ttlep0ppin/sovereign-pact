@@ -212,6 +212,12 @@ export const TUNING = {
     assayPct: 15,
     saviorPct: 6,
     saviorStat: 4,
+    /** The Altar of Offerings, first pass: what each offering costs, and what the House's Scions carry on that Year's expedition. */
+    altar: {
+      grain: { grain: 15, told: "a sheaf of Grain", mods: { tpStart: 15 }, text: "Every battle opens with 15 TP." },
+      recruit: { recruits: 1, told: "a recruit, bound", mods: { maxHpPct: 10, crit: 5 }, text: "Max HP +10% and crit +5%." },
+      blood: { sanity: 15, told: "its Scions' blood", mods: { accuracy: 5, injurySteps: 1 }, text: "Accuracy +5 and injury rolls +1 step." },
+    },
     /** A project costs about 1.3× a House building of the same tier (§8.5 PROPOSED). */
     costMult: 1.3,
     /** Renown per this many units (Gold or materials) pledged. */

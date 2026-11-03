@@ -2,6 +2,16 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-03 (implementation, Milestone 8cj): the Altar of Offerings; the tree shown in the Commons
+
+Josh: **"some let you sacrifice small stuff for an expedition bonus"**.
+- **The Altar of Offerings** is a Commons project with no prerequisite. Once it stands, each House may lay one offering a Year in the Settlement Phase, and its Scions carry the boon on that Year's expedition (first pass, `TUNING.commons.altar`):
+  - 15 Grain: every battle opens with 15 TP.
+  - Its last-sworn recruit: max HP +10% and crit +5%.
+  - 15 Sanity from each of its Scions: Accuracy +5 and injury rolls +1 step.
+- The offering is public: the altar stands in the Commons, and the log says what was laid. It is cleared when the next Year opens.
+- **The Commons panel** now lists what stands (with levels) and which projects wait on another, so the tech tree can be read before it can be built.
+
 ## 2026-11-03 (implementation, Milestone 8ci): the Commons tech tree, Flesh and Fortune
 
 Josh: **"make some commons only buildings have tech tree effects, that can broadly help outcomes in the settlements. Maybe 1 provides a small bonus to durability of body parts, some make better items more likely to appear... some add a chance for extremely potent "savior" recruits to appear in pools"**, and **"Some might give a small bonus to injury roll, or like a 1 time get maimed instead of die thing"**.

@@ -2,7 +2,7 @@
 // next level does and costs, a Build button (or why not) and Cancel for this Year's works; then the
 // Commons' projects, what each still needs, a pledge (public and final), and the House's one proposal a Year to
 // spend the Commons' stock on it.
-import { Content, type SovMove, type SovView } from "@vibepulse/shared/games/sovereign-pact";
+import { Content, TUNING, type SovMove, type SovView } from "@vibepulse/shared/games/sovereign-pact";
 import { useState } from "react";
 import Amount from "./Amount";
 
@@ -62,6 +62,68 @@ export default function Works({ view, sendMove, canAct }: Props) {
         </ul>
       ) : (
         <p className="sp-event__status">No project is open.</p>
+      )}
+      <Standing view={view} open={mine.projects.map((p) => p.id)} />
+      {mine.altar ? <Altar altar={mine.altar} sendMove={sendMove} canAct={canAct} /> : null}
+    </section>
+  );
+}
+
+/** What stands in the Commons, and what waits on another project first (the tech tree). */
+function Standing({ view, open }: { view: SovView; open: string[] }) {
+  const built = view.commons.built;
+  const name = (id: string) => Content.PROJECT_BY_ID.get(id)?.name ?? id;
+  const standing = Content.PROJECTS.filter((p) => built[p.id]);
+  const waiting = Content.PROJECTS.filter((p) => !built[p.id] && !open.includes(p.id) && p.requires && !p.unlockedBy);
+  if (!standing.length && !waiting.length) return null;
+  return (
+    <div className="sp-standing">
+      {standing.length ? (
+        <p className="sp-event__status">
+          Standing: {standing.map((p) => `${p.name}${p.tiers.length > 1 ? ` (level ${built[p.id]})` : ""}`).join(", ")}.
+        </p>
+      ) : null}
+      {waiting.length ? (
+        <p className="sp-event__status">
+          Waiting on another: {waiting.map((p) => `${p.name} (needs the ${name(p.requires!)})`).join(", ")}.
+        </p>
+      ) : null}
+    </div>
+  );
+}
+
+const OFFER_LABEL = { grain: "Lay Grain", recruit: "Lay a recruit", blood: "Bleed your Scions" } as const;
+const offerCost = (gift: keyof typeof OFFER_LABEL) => {
+  const o = TUNING.commons.altar[gift];
+  return "grain" in o ? `${o.grain} Grain` : "recruits" in o ? "your last-sworn recruit" : `${o.sanity} Sanity from each Scion`;
+};
+
+/** The Altar of Offerings: one offering a Year, for what the House's Scions carry on the expedition. */
+function Altar({ altar, sendMove, canAct }: { altar: NonNullable<Mine["altar"]>; sendMove: Props["sendMove"]; canAct: boolean }) {
+  return (
+    <section className="sp-altar" aria-label="The Altar of Offerings">
+      <h3>The Altar of Offerings</h3>
+      {altar.laid ? (
+        <p className="sp-event__status">
+          Your House has laid {TUNING.commons.altar[altar.laid].told} on the altar. On this Year's expedition: {TUNING.commons.altar[altar.laid].text}
+        </p>
+      ) : (
+        <>
+          <p className="sp-event__status">Once a Year, before the Gate opens. What you lay down is gone; your Scions carry what the altar gives back on this Year's expedition.</p>
+          <ul className="sp-lots sp-abilities">
+            {altar.offers.map((o) => (
+              <li key={o.gift}>
+                <span>
+                  <strong>{OFFER_LABEL[o.gift]}</strong> <small>costs {offerCost(o.gift)}</small>
+                  <span className="sp-ability__text">{TUNING.commons.altar[o.gift].text}</span>
+                </span>
+                <button type="button" className="sp-button sp-button--quiet" disabled={!canAct || !!o.why} title={o.why ?? undefined} onClick={() => sendMove({ type: "altar", gift: o.gift })}>
+                  Offer
+                </button>
+              </li>
+            ))}
+          </ul>
+        </>
       )}
     </section>
   );

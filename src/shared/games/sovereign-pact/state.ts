@@ -19,6 +19,8 @@ export const STATS = ["might", "resilience", "guile", "acuity", "sagacity", "spe
 export type Stat = (typeof STATS)[number];
 /** One number per core stat, in {@link STATS} order. */
 export type Six = [number, number, number, number, number, number];
+/** What a House may lay on the Altar of Offerings (altar.ts). */
+export type Offering = "grain" | "recruit" | "blood";
 
 export const LOCATIONS = ["head", "body", "arms", "legs"] as const;
 /** Hit locations; "hands" is Arms (§7.4). */
@@ -202,6 +204,8 @@ export interface House {
   sealed: boolean;
   /** Recruits promoted this Year (§6.5). */
   promotions?: number;
+  /** What the House laid on the Altar of Offerings this Year (cleared at the Reckoning). */
+  offering?: Offering;
   /** Expeditions it has sent Scions on: spare seats go to the fewest first (§9.2). */
   attended?: number;
   /** Consumables held at home, by id → count (§13.7). */
@@ -644,6 +648,7 @@ export type SovMove =
   | { type: "use_item"; id: string; person?: number }
   /** Spends a Tarot Token in town (§13.7): one Scion draws a new Tarot, once in their life. */
   | { type: "draw_tarot"; person: number }
+  | { type: "altar"; gift: Offering }
   /** Gives one Scion a Passive Draught in town (§13.7): passive budget +1 until the Reckoning. */
   | { type: "drink_draught"; person: number }
   /** Put a stashed item up for sealed bids, with a reserve. */

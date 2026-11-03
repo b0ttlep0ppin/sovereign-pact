@@ -5,6 +5,7 @@
 import { BOSS_BY_ID, BOSSES, INJURY_BY_ID, type TripEffect } from "./content.ts";
 import { bossBattle } from "./combat/bosses.ts";
 import { scionCombatant } from "./combat/build.ts";
+import { offeringMods } from "./altar.ts";
 import { commonsMods } from "./commons.ts";
 import { encounterBattle } from "./combat/encounter.ts";
 import { deploy } from "./formation.ts";
@@ -84,7 +85,7 @@ export function partyOf(s: SovState, ids: number[], carried: Expedition["carry"]
   return ids.map((id, i) => {
     const p = person(s, id);
     const [col, row] = cells[i]!;
-    const u = scionCombatant(p, { id: i + 1, col, row, gear: gearTotals(s, p), house: s.houses[p.house], commons: commonsMods(s) });
+    const u = scionCombatant(p, { id: i + 1, col, row, gear: gearTotals(s, p), house: s.houses[p.house], commons: sumMods(commonsMods(s), offeringMods(s, p.host)) });
     const c = carried[id];
     // HP lost in earlier battles stays lost until a Camp, a draught or the road home mends it (Josh 2026-11-02).
     if (c?.hurt) u.hp = Math.max(1, u.maxHp - c.hurt);
@@ -131,6 +132,12 @@ export function lostClock(s: SovState): void {
     log(s, `${p.name} of House ${s.houses[p.house]!.name} was never found. The Chronicle counts them among the dead.`);
   }
 }
+
+const sumMods = (a: Record<string, number>, b: Record<string, number>) => {
+  const out = { ...a };
+  for (const [k, v] of Object.entries(b)) out[k] = (out[k] ?? 0) + v;
+  return out;
+};
 
 /** What a battle leaves on the people: HP, Sanity, MP and Durability carry; injuries last; the dead die; victory pays. */
 function settle(s: SovState, b: Battle, cause: string): void {
