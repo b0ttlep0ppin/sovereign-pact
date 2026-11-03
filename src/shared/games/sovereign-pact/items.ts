@@ -274,3 +274,49 @@ export function liftProperty(rng: Rng, item: Item, kind: "bad" | "curse"): strin
   if (!(item.props ?? []).some(([id]) => PROPERTY_BY_ID.get(id)?.curse)) delete item.cursed;
   return gone;
 }
+
+/** One number on an item's sheet: higher is better unless `low`. */
+export interface ItemStat {
+  key: string;
+  label: string;
+  value: number;
+  unit?: "%";
+  low?: true;
+}
+
+/** An item's own numbers and what it does (Josh 2026-11-03: gear's stats are "hard to understand from a drop down menu"). */
+export function itemSheet(item: Item): { stats: ItemStat[]; notes: string[]; props: { name: string; value?: number; text: string; bad: boolean }[] } {
+  const b = baseOf(item);
+  const stats: ItemStat[] = [];
+  const notes: string[] = [];
+  if (b.power !== undefined) {
+    const w = weaponOf(item);
+    stats.push({ key: "power", label: "Power", value: w.power }, { key: "acc", label: "Accuracy", value: w.acc, unit: "%" }, { key: "crit", label: "Crit", value: w.crit, unit: "%" });
+    notes.push(`${w.hands === 2 ? "Two-handed" : "One-handed"}, ${w.reach === "ranged" ? "ranged: hits any foe from any rank" : w.reach === "reach" ? "reach: strikes even from the back rank" : "melee"}`);
+    if (w.armorPierce) notes.push(`Ignores ${w.armorPierce}% of armor`);
+    if (w.tpGain) notes.push(`+${w.tpGain} TP on each hit`);
+    if (w.attackCost) notes.push(`Attacks take ${w.attackCost - TUNING.combat.cost.action}% longer`);
+    if (w.critStatus) notes.push(`Crits inflict ${w.critStatus[0]!.toUpperCase()}${w.critStatus.slice(1)}`);
+    if (w.aims?.length) notes.push(`Aims for the ${w.aims.join(" and ")}`);
+  }
+  if (b.type === "shield") stats.push({ key: "guard", label: "Guard", value: b.guard ?? 0 });
+  if (b.armor && b.slot !== "main" && b.slot !== "off" && b.slot !== "acc") {
+    const loc = b.slot as Location;
+    stats.push(
+      { key: "defense", label: "Defense", value: Math.round(T.armorDefense[b.armor] * T.slotShare[loc] * block("defense", item.ilvl) * quality(item) * 10) / 10 },
+      { key: "durability", label: `${loc[0]!.toUpperCase()}${loc.slice(1)} Durability`, value: T.armorDurabilityPct[b.armor], unit: "%" },
+      { key: "evasion", label: "Evasion", value: T.armorEvasion[b.armor] },
+    );
+    notes.push(`${b.armor[0]!.toUpperCase()}${b.armor.slice(1)} armor`);
+  }
+  if (b.spellPct) stats.push({ key: "spell", label: "Spell damage", value: b.spellPct, unit: "%" });
+  if (b.mpPct) stats.push({ key: "mp", label: "Max MP", value: b.mpPct, unit: "%" });
+  const weight = b.armor && b.slot !== "main" && b.slot !== "off" && b.slot !== "acc" ? T.armorWeight[b.armor] : b.type === "shield" ? (b.weight ?? 0) : b.power !== undefined ? T.weaponWeight[(b.hands ?? 1) - 1]! : 0;
+  if (weight) stats.push({ key: "weight", label: "Weight", value: weight, low: true });
+  if (item.dented) notes.push(`Dented ${item.dented}× (a Forge repairs it)`);
+  const props = (item.props ?? []).flatMap(([id, v]) => {
+    const d = PROPERTY_BY_ID.get(id);
+    return d ? [{ name: d.name, ...(d.roll ? { value: v } : {}), text: d.text, bad: !!(d.negative || d.curse) }] : [];
+  });
+  return { stats, notes, props };
+}

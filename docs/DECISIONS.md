@@ -2,6 +2,20 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-03 (implementation, Milestone 8cr): gear choices shown with their numbers
+
+Josh: **"the exact stats of gear and their effects are kinda hard to understand from a drop down menu"**.
+- **Each slot on the paper doll shows the worn piece's numbers** under its name. A weapon shows Power, Accuracy, Crit and Weight. Armor shows Defense, the Durability it adds to its location, Evasion and Weight. A shield shows Guard. A staff or focus shows its spell and MP bonuses.
+- **"Wear…" is no longer a dropdown.** The slot's Wear or Change button opens a panel of cards under the doll, one for each piece of the House's that fits. Each card shows:
+  - the piece's tier and item level;
+  - every number, with the change against what is worn now: better in green, worse in red, and anything that would be lost spelled out;
+  - how it fights: one- or two-handed, melee, reach or ranged, armor it ignores, TP on hits, slower attacks, what its crits inflict, where it aims;
+  - each property with its rolled value and what it does, bad ones and curses in red.
+  
+  A cursed piece warns that it cannot be taken off. Wear on a card puts the piece on and closes the panel.
+- **Where the numbers come from:** `itemSheet()` in `items.ts` reads them from the same formulas battle uses (`weaponOf`, and the armor block of `gearTotals`), so the screen cannot drift from the rules.
+- The market's item names show the same numbers when you hover over them.
+
 ## 2026-11-03 (implementation, Milestone 8cq): menu and confirmation sounds
 
 Josh: **"Could use menu and confirmation sfx for equipping gear, changing jobs, learning abilities and selecting moves in battle, or general when making selections"**.
