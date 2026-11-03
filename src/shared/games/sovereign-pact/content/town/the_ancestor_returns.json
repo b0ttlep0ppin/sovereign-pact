@@ -1,0 +1,106 @@
+{
+  "id": "the_ancestor_returns",
+  "scope": "house",
+  "weight": 2,
+  "years": [
+    1,
+    20
+  ],
+  "title": "The Ancestor Returns",
+  "text": "The crypt door was open this morning, and an ancestor of your House is sitting at the head of your table in her burial clothes. She asks for wine. She knows every servant's name. She wants her old room back, and she says she has come to help.",
+  "rule": "house",
+  "options": [
+    {
+      "id": "welcome",
+      "label": "Welcome her home.",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "She takes up her old room and sits in on the House's councils. Her advice is excellent. She does not eat, she does not sleep, and the House's younger ones will not go past her door.",
+          "effects": [
+            {
+              "recruit_gain": 1
+            },
+            {
+              "house_trait": "+wed_to_the_grave"
+            },
+            {
+              "score": {
+                "lineage": 2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "return",
+      "label": "Have a Scion walk her back to the crypt.",
+      "tags": [
+        "kind"
+      ],
+      "champion": {
+        "stat": "sagacity",
+        "dc": 12
+      },
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "Your Scion takes her arm and walks her down, talking of old times. She lies back down with a sigh, and leaves them a ring and a blessing.",
+          "effects": [
+            {
+              "scion": {
+                "who": "champion",
+                "xp": 60
+              }
+            },
+            {
+              "item": {
+                "tier": 3
+              }
+            },
+            {
+              "doom": -1
+            }
+          ],
+          "when": "pass"
+        },
+        {
+          "w": 1,
+          "text": "She does not want to go back. It takes your Scion all night, and they come up the crypt stairs with her fingerprints bruised black into their arm.",
+          "effects": [
+            {
+              "scion": {
+                "who": "champion",
+                "injury": "arms",
+                "sanity": -20
+              }
+            }
+          ],
+          "when": "fail"
+        }
+      ]
+    },
+    {
+      "id": "lock",
+      "label": "Lock the doors and wait for her to leave.",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "She knocks on every door in the Seat, politely, all night. In the morning she is gone. The crypt door is still open.",
+          "effects": [
+            {
+              "sanity": -10
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -62,26 +62,37 @@ import sleeping_street from "./sleeping_street.json" with { type: "json" };
 import sleepwalking_children from "./sleepwalking_children.json" with { type: "json" };
 import stranger_at_the_gate from "./stranger_at_the_gate.json" with { type: "json" };
 import surgeon_of_saint_wend from "./surgeon_of_saint_wend.json" with { type: "json" };
+import the_ancestor_returns from "./the_ancestor_returns.json" with { type: "json" };
 import the_beast_calls from "./the_beast_calls.json" with { type: "json" };
 import the_cathedral_bleeds from "./the_cathedral_bleeds.json" with { type: "json" };
 import the_debt_of_the_crown from "./the_debt_of_the_crown.json" with { type: "json" };
 import the_drowning_flood from "./the_drowning_flood.json" with { type: "json" };
 import the_eclipse from "./the_eclipse.json" with { type: "json" };
 import the_empty_throne from "./the_empty_throne.json" with { type: "json" };
+import the_feast_of_mending from "./the_feast_of_mending.json" with { type: "json" };
 import the_fields_sing from "./the_fields_sing.json" with { type: "json" };
+import the_gallows_bargain from "./the_gallows_bargain.json" with { type: "json" };
+import the_gilded_coffin from "./the_gilded_coffin.json" with { type: "json" };
+import the_heir_at_the_window from "./the_heir_at_the_window.json" with { type: "json" };
 import the_hollow_harvest from "./the_hollow_harvest.json" with { type: "json" };
+import the_hostage_peace from "./the_hostage_peace.json" with { type: "json" };
 import the_kings_favour from "./the_kings_favour.json" with { type: "json" };
 import the_kings_tax from "./the_kings_tax.json" with { type: "json" };
+import the_knife_in_the_bed from "./the_knife_in_the_bed.json" with { type: "json" };
 import the_midwives_ledger from "./the_midwives_ledger.json" with { type: "json" };
 import the_name_answers from "./the_name_answers.json" with { type: "json" };
+import the_night_mason from "./the_night_mason.json" with { type: "json" };
 import the_ossuary_collapse from "./the_ossuary_collapse.json" with { type: "json" };
 import the_pacts_ink from "./the_pacts_ink.json" with { type: "json" };
 import the_raiders_nest from "./the_raiders_nest.json" with { type: "json" };
 import the_rift_storm from "./the_rift_storm.json" with { type: "json" };
+import the_rivals_debt from "./the_rivals_debt.json" with { type: "json" };
 import the_sick_well from "./the_sick_well.json" with { type: "json" };
 import the_sleeping_sickness from "./the_sleeping_sickness.json" with { type: "json" };
+import the_stolen_reliquary from "./the_stolen_reliquary.json" with { type: "json" };
 import the_suitor from "./the_suitor.json" with { type: "json" };
 import the_taken_child from "./the_taken_child.json" with { type: "json" };
+import the_ward_who_will_not_eat from "./the_ward_who_will_not_eat.json" with { type: "json" };
 import the_wolf_winter from "./the_wolf_winter.json" with { type: "json" };
 import tithe_of_hair from "./tithe_of_hair.json" with { type: "json" };
 import tithe_of_teeth from "./tithe_of_teeth.json" with { type: "json" };
@@ -156,26 +167,37 @@ export default [
   sleepwalking_children,
   stranger_at_the_gate,
   surgeon_of_saint_wend,
+  the_ancestor_returns,
   the_beast_calls,
   the_cathedral_bleeds,
   the_debt_of_the_crown,
   the_drowning_flood,
   the_eclipse,
   the_empty_throne,
+  the_feast_of_mending,
   the_fields_sing,
+  the_gallows_bargain,
+  the_gilded_coffin,
+  the_heir_at_the_window,
   the_hollow_harvest,
+  the_hostage_peace,
   the_kings_favour,
   the_kings_tax,
+  the_knife_in_the_bed,
   the_midwives_ledger,
   the_name_answers,
+  the_night_mason,
   the_ossuary_collapse,
   the_pacts_ink,
   the_raiders_nest,
   the_rift_storm,
+  the_rivals_debt,
   the_sick_well,
   the_sleeping_sickness,
+  the_stolen_reliquary,
   the_suitor,
   the_taken_child,
+  the_ward_who_will_not_eat,
   the_wolf_winter,
   tithe_of_hair,
   tithe_of_teeth,

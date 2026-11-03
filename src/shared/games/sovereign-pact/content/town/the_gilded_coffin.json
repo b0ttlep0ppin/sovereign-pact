@@ -1,0 +1,79 @@
+{
+  "id": "the_gilded_coffin",
+  "scope": "settlement",
+  "weight": 2,
+  "years": [
+    4,
+    20
+  ],
+  "title": "The Gilded Coffin",
+  "text": "A coffin of beaten gold has been left on the Commons steps, addressed in a fine hand to 'the greatest of the Houses'. It is heavy. It is locked. Something inside it turns over now and then. The Commons will give it to whichever House pays the most iron for the honour.",
+  "rule": "secret",
+  "options": [
+    {
+      "id": "bid",
+      "label": "Send a sealed bid of iron.",
+      "tags": [
+        "bold"
+      ],
+      "bid": {
+        "resource": "iron",
+        "min": 5
+      },
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "Your iron is weighed and recorded. The coffin seems to settle a little, as if listening.",
+          "effects": []
+        }
+      ]
+    },
+    {
+      "id": "let_it_be",
+      "label": "Let the greatest House have it.",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "You keep your iron and your nerves.",
+          "effects": []
+        }
+      ]
+    }
+  ],
+  "together": [
+    {
+      "when": "none",
+      "option": "bid",
+      "text": "No House bids. The coffin is gone in the morning. A golden coffin is seen in the Rift's light that night, floating towards the Gate.",
+      "effects": [
+        {
+          "doom": 2
+        }
+      ]
+    }
+  ],
+  "prize": {
+    "text": "The coffin is yours. Opened, it holds a fortune in grave-goods and a corpse in fine clothes that smiles at the youngest of your House, and has to be buried three times before it stays down.",
+    "effects": [
+      {
+        "item": {
+          "tier": 5
+        }
+      },
+      {
+        "resources": {
+          "gold": 30
+        }
+      },
+      {
+        "scion": {
+          "who": "youngest",
+          "sanity": -20
+        }
+      }
+    ]
+  }
+}

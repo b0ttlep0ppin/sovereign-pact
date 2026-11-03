@@ -1,0 +1,95 @@
+{
+  "id": "the_ward_who_will_not_eat",
+  "scope": "house",
+  "weight": 2,
+  "years": [
+    1,
+    20
+  ],
+  "title": "The Ward Who Will Not Eat",
+  "text": "Your youngest has stopped eating. They sit at the window facing the Gate, and when they speak it is in a language nobody in the Seat knows, though the dogs seem to. The priest says something is speaking through them. The scholar says to let it finish.",
+  "rule": "house",
+  "options": [
+    {
+      "id": "exorcise",
+      "label": "Pay the priest to drive it out.",
+      "tags": [
+        "kind"
+      ],
+      "cost": {
+        "resources": {
+          "gold": 20
+        }
+      },
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "The priest prays for three days. On the fourth, your youngest asks for bread, and eats it, and cries. They remember nothing.",
+          "effects": [
+            {
+              "scion": {
+                "who": "youngest",
+                "sanity": 30
+              }
+            },
+            {
+              "doom": -1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "listen",
+      "label": "Let it finish, and have the scholar write it down.",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "It speaks for a week and then stops. Your youngest wakes thin and strange and full of words that open doors in other languages.",
+          "effects": [
+            {
+              "scion": {
+                "who": "youngest",
+                "jp": 120,
+                "sanity": -25,
+                "trait": "+veiled_sight"
+              }
+            },
+            {
+              "score": {
+                "lore": 3
+              }
+            },
+            {
+              "doom": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wait",
+      "label": "Feed them by spoon, and wait it out.",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "It leaves in its own time. Your youngest eats again. They still face the Gate when they sleep.",
+          "effects": [
+            {
+              "scion": {
+                "who": "youngest",
+                "sanity": -10
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

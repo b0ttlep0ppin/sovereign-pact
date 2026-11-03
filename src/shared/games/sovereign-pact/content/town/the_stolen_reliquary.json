@@ -1,0 +1,110 @@
+{
+  "id": "the_stolen_reliquary",
+  "scope": "settlement",
+  "weight": 2,
+  "years": [
+    1,
+    20
+  ],
+  "title": "The Stolen Reliquary",
+  "text": "The reliquary of Saint Wend, a gold box holding her blackened heart, has gone from the cathedral. The bishop has preached for three days that a Great House took it, and that the city will burn until it is returned. Every House has a theory. Every House has an enemy.",
+  "rule": "secret",
+  "options": [
+    {
+      "id": "accuse",
+      "label": "Name the House you suspect.",
+      "tags": [
+        "cruel"
+      ],
+      "accuse": true,
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "You give the bishop a name. He thanks you with a look that says he will remember who gave it.",
+          "effects": []
+        }
+      ]
+    },
+    {
+      "id": "return",
+      "label": "Buy it back from the fences, and return it quietly.",
+      "tags": [
+        "kind"
+      ],
+      "cost": {
+        "resources": {
+          "gold": 20
+        }
+      },
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "Your agents find it in a pawnshop under the bridge and bring it back without a word. The bishop finds it on the altar at dawn and weeps.",
+          "effects": [
+            {
+              "accord": 3
+            },
+            {
+              "doom": -1
+            },
+            {
+              "score": {
+                "renown": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "keep_quiet",
+      "label": "Keep your head down until it blows over.",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "It does not blow over, but it blows past your door.",
+          "effects": []
+        }
+      ]
+    }
+  ],
+  "together": [
+    {
+      "when": "all",
+      "option": "accuse",
+      "text": "Every House accuses another. The bishop curses them all from the altar, and nobody returns the heart. It is heard beating under the city for years.",
+      "effects": [
+        {
+          "accord": -4
+        },
+        {
+          "doom": 2
+        }
+      ]
+    }
+  ],
+  "blamed": {
+    "text": "The bishop names the House from the pulpit. Its people are spat on in the street, its recruits leave it, and its stores pay for a new reliquary.",
+    "effects": [
+      {
+        "resources": {
+          "gold": -30
+        }
+      },
+      {
+        "recruits_lost": 1
+      },
+      {
+        "score": {
+          "renown": -2
+        }
+      },
+      {
+        "accord": 2
+      }
+    ]
+  }
+}
