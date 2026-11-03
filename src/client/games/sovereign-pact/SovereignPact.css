@@ -24,12 +24,12 @@
 .sp-top__year span, .sp-top__commons { color: var(--muted); font-size: 0.85rem; }
 .sp-track { display: flex; align-items: center; gap: 8px; min-width: 200px; }
 .sp-track__label { width: 4.5em; color: var(--muted); font-size: 0.85rem; }
-.sp-track__bar { position: relative; flex: 1; height: 10px; background: #0a0807; border: 1px solid var(--line); border-radius: 1px; overflow: hidden; box-shadow: inset 0 1px 3px #000; }
+.sp-track__bar { position: relative; flex: 1; height: 10px; background: #0b0c0d; border: 1px solid var(--line); border-radius: 1px; overflow: hidden; box-shadow: inset 0 1px 3px #000; }
 .sp-track__fill { position: absolute; inset: 0 auto 0 0; background: linear-gradient(#e7c46c, #8a6526); }
 .sp-track__fill--danger { background: linear-gradient(#d9573f, #6d1611); }
 .sp-track__value { width: 2em; text-align: right; font-variant-numeric: tabular-nums; }
 .sp-timeline { display: grid; grid-template-columns: repeat(auto-fit, minmax(30px, 1fr)); gap: 3px; list-style: none; margin: 0; padding: 0; }
-.sp-timeline__year { display: grid; place-items: center; min-height: 34px; background: #0e0b09; border: 1px solid var(--line); border-radius: 1px; font-size: 0.8rem; color: var(--muted); box-shadow: inset 0 1px 2px #000; }
+.sp-timeline__year { display: grid; place-items: center; min-height: 34px; background: #0f1012; border: 1px solid var(--line); border-radius: 1px; font-size: 0.8rem; color: var(--muted); box-shadow: inset 0 1px 2px #000; }
 .sp-timeline__year.is-past { opacity: 0.45; }
 .sp-timeline__year.is-now { border-color: var(--gold); color: var(--gold); font-weight: 700; box-shadow: 0 0 8px rgba(220, 181, 94, 0.45), inset 0 0 6px rgba(220, 181, 94, 0.2); }
 .sp-timeline__year.is-mandatory { background: linear-gradient(var(--blood-hi), var(--blood)); border-color: #2a0806; color: var(--text); }
@@ -131,7 +131,7 @@
 .sp-market h3 { margin: 12px 0 6px; font-size: 0.85rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
 .sp-market__purse { margin: 0; }
 .sp-lots { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
-.sp-lots li { display: grid; grid-template-columns: 1fr auto auto; gap: 4px 12px; align-items: center; padding: 6px 8px; background: var(--bg); border-radius: 4px; }
+.sp-lots li { display: grid; grid-template-columns: 1fr auto auto; gap: 4px 12px; align-items: center; padding: 6px 8px; background: rgba(0, 0, 0, 0.3); border-radius: 4px; }
 .sp-lots li > small { color: var(--muted); text-transform: capitalize; }
 .sp-item small { color: var(--muted); }
 .sp-item__curse { color: var(--danger) !important; }
@@ -290,7 +290,7 @@
 .sp-head__phase { color: var(--muted); font-size: 0.9rem; }
 
 /* Your stores (Josh 2026-11-02): one band under the header, always in view. */
-.sp-stores { list-style: none; margin: 0; padding: 6px 12px; display: flex; flex-wrap: wrap; gap: 6px 20px; border: 1px solid var(--line); border-radius: 2px; background: linear-gradient(#1c1510, #0e0b09); box-shadow: inset 0 1px 3px #000; }
+.sp-stores { list-style: none; margin: 0; padding: 6px 12px; display: flex; flex-wrap: wrap; gap: 6px 20px; border: 1px solid var(--line); border-radius: 2px; background: linear-gradient(#1a1b1e, #0f1012); box-shadow: inset 0 1px 3px #000; }
 .sp-stores__item { display: flex; align-items: center; gap: 6px; color: var(--muted); font-variant: small-caps; letter-spacing: 0.04em; }
 .sp-stores__item strong { color: var(--text); font: 400 1.25rem/1 var(--display); font-variant: normal; }
 .sp-stores__item small { color: var(--blood-hi); }
@@ -321,9 +321,9 @@
 /* The formation (DECISIONS 8ag): the party's 3×8 grid, the foe to the left. */
 .sp-formation__grid { display: grid; grid-template-columns: repeat(3, 64px); gap: 4px; justify-content: start; }
 .sp-formation__col { text-align: center; font-variant: small-caps; color: var(--muted); font-size: 0.8rem; }
-.sp-formation__cell { position: relative; display: grid; place-items: center; height: 64px; padding: 0; background: #0e0b09; border: 1px solid var(--line); border-radius: 2px; color: var(--muted); cursor: pointer; box-shadow: inset 0 1px 3px #000; }
+.sp-formation__cell { position: relative; display: grid; place-items: center; height: 64px; padding: 0; background: #0f1012; border: 1px solid var(--line); border-radius: 2px; color: var(--muted); cursor: pointer; box-shadow: inset 0 1px 3px #000; }
 .sp-formation__cell:disabled { cursor: default; }
-.sp-formation__cell.is-taken { border-width: 2px; background: linear-gradient(#1c1510, #0e0b09); }
+.sp-formation__cell.is-taken { border-width: 2px; background: linear-gradient(#1a1b1e, #0f1012); }
 .sp-formation__cell:not(.is-mine).is-taken { opacity: 0.7; }
 .sp-formation__cell.is-picked { outline: 2px solid var(--gold); box-shadow: 0 0 10px rgba(220, 181, 94, 0.5); }
 .sp-formation__cell:not(:disabled):not(.is-taken):hover { border-color: var(--gold); }
@@ -338,7 +338,7 @@
 .sp-field__count { margin: 0; }
 .sp-field__count strong { font: 400 1.4rem/1 var(--display); color: var(--gold); }
 .sp-field__cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(112px, 1fr)); gap: 8px; }
-.sp-field__card { font: inherit; display: grid; justify-items: center; gap: 2px; padding: 6px 6px 0; overflow: hidden; border: 1px solid var(--line); border-radius: 2px; background: linear-gradient(#1c1510, #0e0b09); color: var(--muted); cursor: pointer; box-shadow: inset 0 1px 3px #000; transition: border-color 0.12s, box-shadow 0.12s, opacity 0.12s; }
+.sp-field__card { font: inherit; display: grid; justify-items: center; gap: 2px; padding: 6px 6px 0; overflow: hidden; border: 1px solid var(--line); border-radius: 2px; background: linear-gradient(#1a1b1e, #0f1012); color: var(--muted); cursor: pointer; box-shadow: inset 0 1px 3px #000; transition: border-color 0.12s, box-shadow 0.12s, opacity 0.12s; }
 .sp-field__card:not(:disabled):hover { border-color: var(--gold); }
 .sp-field__card:disabled { opacity: 0.45; cursor: default; }
 .sp-field__card .sp-scion { margin: -6px 0 -10px; }
@@ -465,16 +465,15 @@
 /* Texture (Josh's playtest: "more texture to the brown canvasses and red buttons", then "the oak is a bit
    too far… more of a slate gray look with some mild texture, maybe mute the red a bit"). Drawn, not
    shipped: SVG noise in data URIs. Panels are slate, softly mottled and gritted, with darkened edges and an
-   iron stud by each bracket; buttons are a muted oxblood leather with a stitched inner seam. */
-.sp {
-  --panel: #1a1b1e; --panel-hi: #24262a; --line: #34363b; --line-hi: #575a61;
-  --blood: #3f1a18; --blood-hi: #642824;
-  --sp-slate: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='s' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.07' numOctaves='5' stitchTiles='stitch' seed='4'/%3E%3CfeColorMatrix values='0 0 0 0 0.5 0 0 0 0 0.52 0 0 0 0 0.56 0 0 0 0.24 -0.1'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url%28%23s%29'/%3E%3C/svg%3E");
+   iron stud by each bracket; buttons are a muted oxblood leather with a stitched inner seam. The palette
+   itself is app.css's :root, so the host's own screens match. */
+:root {
+  --sp-slate: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='s' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.07' numOctaves='5' stitchTiles='stitch' seed='4'/%3E%3CfeColorMatrix values='0 0 0 0 0.42 0 0 0 0 0.43 0 0 0 0 0.45 0 0 0 0.16 -0.07'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url%28%23s%29'/%3E%3C/svg%3E");
   --sp-chip-t: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='9'%3E%3Cdefs%3E%3ClinearGradient id='f' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='white'/%3E%3Cstop offset='0.5' stop-color='white' stop-opacity='0.8'/%3E%3Cstop offset='1' stop-color='white' stop-opacity='0'/%3E%3C/linearGradient%3E%3Cmask id='m'%3E%3Crect width='100%25' height='100%25' fill='url%28%23f%29'/%3E%3C/mask%3E%3Cfilter id='c' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.28' numOctaves='2' stitchTiles='stitch' seed='21'/%3E%3CfeColorMatrix values='0 0 0 0 0.043 0 0 0 0 0.035 0 0 0 0 0.035 0 0 0 10 -5.4'/%3E%3C/filter%3E%3C/defs%3E%3Crect width='100%25' height='100%25' filter='url%28%23c%29' mask='url%28%23m%29'/%3E%3C/svg%3E");
   --sp-chip-b: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='9'%3E%3Cdefs%3E%3ClinearGradient id='f' x1='0' y1='1' x2='0' y2='0'%3E%3Cstop offset='0' stop-color='white'/%3E%3Cstop offset='0.5' stop-color='white' stop-opacity='0.8'/%3E%3Cstop offset='1' stop-color='white' stop-opacity='0'/%3E%3C/linearGradient%3E%3Cmask id='m'%3E%3Crect width='100%25' height='100%25' fill='url%28%23f%29'/%3E%3C/mask%3E%3Cfilter id='c' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.28' numOctaves='2' stitchTiles='stitch' seed='22'/%3E%3CfeColorMatrix values='0 0 0 0 0.043 0 0 0 0 0.035 0 0 0 0 0.035 0 0 0 10 -5.4'/%3E%3C/filter%3E%3C/defs%3E%3Crect width='100%25' height='100%25' filter='url%28%23c%29' mask='url%28%23m%29'/%3E%3C/svg%3E");
   --sp-chip-l: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='9' height='180'%3E%3Cdefs%3E%3ClinearGradient id='f' x1='0' y1='0' x2='1' y2='0'%3E%3Cstop offset='0' stop-color='white'/%3E%3Cstop offset='0.5' stop-color='white' stop-opacity='0.8'/%3E%3Cstop offset='1' stop-color='white' stop-opacity='0'/%3E%3C/linearGradient%3E%3Cmask id='m'%3E%3Crect width='100%25' height='100%25' fill='url%28%23f%29'/%3E%3C/mask%3E%3Cfilter id='c' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.28' numOctaves='2' stitchTiles='stitch' seed='23'/%3E%3CfeColorMatrix values='0 0 0 0 0.043 0 0 0 0 0.035 0 0 0 0 0.035 0 0 0 10 -5.4'/%3E%3C/filter%3E%3C/defs%3E%3Crect width='100%25' height='100%25' filter='url%28%23c%29' mask='url%28%23m%29'/%3E%3C/svg%3E");
   --sp-chip-r: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='9' height='180'%3E%3Cdefs%3E%3ClinearGradient id='f' x1='1' y1='0' x2='0' y2='0'%3E%3Cstop offset='0' stop-color='white'/%3E%3Cstop offset='0.5' stop-color='white' stop-opacity='0.8'/%3E%3Cstop offset='1' stop-color='white' stop-opacity='0'/%3E%3C/linearGradient%3E%3Cmask id='m'%3E%3Crect width='100%25' height='100%25' fill='url%28%23f%29'/%3E%3C/mask%3E%3Cfilter id='c' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.28' numOctaves='2' stitchTiles='stitch' seed='24'/%3E%3CfeColorMatrix values='0 0 0 0 0.043 0 0 0 0 0.035 0 0 0 0 0.035 0 0 0 10 -5.4'/%3E%3C/filter%3E%3C/defs%3E%3Crect width='100%25' height='100%25' filter='url%28%23c%29' mask='url%28%23m%29'/%3E%3C/svg%3E");
-  --sp-grit: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='g' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch' seed='5'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.7 -0.28'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+  --sp-grit: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='g' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch' seed='5'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.5 -0.22'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
   --sp-leather: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='l' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='turbulence' baseFrequency='0.34' numOctaves='2' stitchTiles='stitch' seed='9'/%3E%3CfeColorMatrix values='0 0 0 0 0.04 0 0 0 0 0.02 0 0 0 0 0.02 0 0 0 1.3 -0.5'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23l)'/%3E%3C/svg%3E");
 }
 .sp-panel {
@@ -496,6 +495,7 @@
 .sp-button {
   position: relative;
   background: var(--sp-leather), radial-gradient(130% 120% at 50% 0%, var(--blood-hi), var(--blood) 70%, #1e0d0c);
+  color: var(--text);
   background-size: 120px 120px, auto;
   box-shadow: inset 0 1px 0 rgba(255, 220, 190, 0.14), inset 0 -2px 4px rgba(0, 0, 0, 0.5), 0 0 0 1px #000, 0 3px 8px rgba(0, 0, 0, 0.55);
 }
@@ -503,5 +503,5 @@
   content: ""; position: absolute; inset: 3px; pointer-events: none;
   border: 1px dashed rgba(220, 190, 150, 0.24); border-radius: 1px;
 }
-.sp-button--quiet { background: var(--sp-leather), linear-gradient(#2a2c30, #17181b); background-size: 120px 120px, auto; }
+.sp-button--quiet { background: var(--sp-leather), linear-gradient(#1f2023, #121315); background-size: 120px 120px, auto; }
 .sp-button--quiet::after { border-color: rgba(190, 190, 200, 0.14); }

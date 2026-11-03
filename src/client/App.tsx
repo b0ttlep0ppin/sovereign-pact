@@ -180,15 +180,15 @@ function NewCampaign({ onStart }: { onStart: (t: Table) => void }) {
   return (
     <div className="app__new">
       {stored ? (
-        <section className="app__card">
+        <section className="app__card sp-panel">
           <h2>Continue</h2>
           <p>{g.describeSave!(stored.save)}</p>
-          <button type="button" className="app__button app__button--primary" onClick={() => onStart(startTable(stored.bots, {}, stored.save))}>
+          <button type="button" className="sp-button" onClick={() => onStart(startTable(stored.bots, {}, stored.save))}>
             Continue the campaign
           </button>
         </section>
       ) : null}
-      <section className="app__card">
+      <section className="app__card sp-panel">
         <h2>New campaign</h2>
         <label>
           Great Houses{" "}
@@ -224,11 +224,11 @@ function NewCampaign({ onStart }: { onStart: (t: Table) => void }) {
             </select>
           </label>
         ))}
-        <button type="button" className="app__button app__button--primary" onClick={() => onStart(startTable(seated, { display, length }))}>
+        <button type="button" className="sp-button" onClick={() => onStart(startTable(seated, { display, length }))}>
           Swear the Pact
         </button>
       </section>
-      <section className="app__card">
+      <section className="app__card sp-panel">
         <h2>Import a save</h2>
         <input type="file" accept="application/json,.json" aria-label="Save file" onChange={(e) => e.target.files?.[0] && importFile(e.target.files[0])} />
         {importError ? <p role="alert">{importError}</p> : null}
