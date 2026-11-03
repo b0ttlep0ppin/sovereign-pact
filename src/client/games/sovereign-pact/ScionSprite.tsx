@@ -96,7 +96,7 @@ const METALS: Record<string, readonly string[]> = {
   tinkerer: ["brass", "copper"],
 };
 /** The attack a Job's weapon swings with. */
-const ATTACK: Record<string, Anim> = { sword: "slash", longsword: "slash", mace: "slash", dagger: "slash", staff: "spellcast", bow: "shoot", crossbow: "shoot" };
+const ATTACK: Record<string, Anim> = { sword: "slash", longsword: "slash", mace: "slash", axe: "slash", greataxe: "slash", maul: "slash", dagger: "slash", spear: "thrust", staff: "spellcast", bow: "shoot", crossbow: "shoot" };
 
 const SKINS = ["light", "amber", "olive", "taupe", "bronze", "brown", "black"];
 /** The colors a young Scion is born with; the old go gray or white. */
@@ -134,15 +134,18 @@ export interface ScionLook {
  * clothing types"; the generator's coats are share-alike only). */
 const LEATHERN = new Set(["doublet", "gambeson"]);
 
-/** The sprite piece each item base is drawn with (DECISIONS 8aj); the LPC set has no attribution-only axe or spear. */
-const KIT: Record<string, ["weapon" | "shield" | "hat" | "armor", string]> = {
+/**
+ * The sprite piece each item base is drawn with (DECISIONS 8aj, 8bt). The LPC set's axes, spears and
+ * hammers are share-alike only, so the cutter paints them onto the staff and mace (tools/cut-scions.py).
+ */
+export const KIT: Record<string, ["weapon" | "shield" | "hat" | "armor", string]> = {
   sword: ["weapon", "sword"],
   greatsword: ["weapon", "longsword"],
-  greataxe: ["weapon", "longsword"],
-  axe: ["weapon", "mace"],
+  greataxe: ["weapon", "greataxe"],
+  axe: ["weapon", "axe"],
   mace: ["weapon", "mace"],
-  maul: ["weapon", "mace"],
-  spear: ["weapon", "staff"],
+  maul: ["weapon", "maul"],
+  spear: ["weapon", "spear"],
   staff: ["weapon", "staff"],
   knife: ["weapon", "dagger"],
   throwing_knives: ["weapon", "dagger"],
@@ -266,8 +269,10 @@ export function animFor(look: ScionLook, action: Action | undefined): Anim {
   const weapon = outfitOf(look).weapon;
   if (!action) return attackOf(look);
   if (action.kind === "magic" || action.kind === "heal" || action.kind === "support") return "spellcast";
-  if (action.reach === "ranged") return weapon === "bow" || weapon === "crossbow" ? "shoot" : "thrust";
-  if (weapon === "staff" || weapon === "bow" || weapon === "crossbow" || !weapon) return "thrust";
+  // A bow or crossbow shoots whatever the blow (its plain Attack too), from where they stand.
+  if (weapon === "bow" || weapon === "crossbow") return "shoot";
+  if (action.reach === "ranged") return "thrust";
+  if (weapon === "staff" || weapon === "spear" || !weapon) return "thrust";
   return "slash";
 }
 

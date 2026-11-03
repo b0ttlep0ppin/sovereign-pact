@@ -39,11 +39,15 @@ describe("new Scions", () => {
 });
 
 describe("catch-up XP", () => {
-  it("pays more to a Scion below the level's mark of 3L, never less at or above it", () => {
-    expect(xpAt({ level: 3 }, 100, 1)).toBe(100);
-    expect(xpAt({ level: 9 }, 100, 1)).toBe(100);
-    expect(xpAt({ level: 1 }, 100, 1)).toBe(Math.round(100 * (1 + (2 * P.catchUpPct) / 100)));
-    expect(xpAt({ level: 1 }, 100, 3)).toBeGreaterThan(xpAt({ level: 1 }, 100, 1));
+  it("pays more to a Scion below the most seasoned one who marched, up to a cap, never less", () => {
+    expect(xpAt({ level: 3 }, 100, 3)).toBe(100);
+    expect(xpAt({ level: 9 }, 100, 3)).toBe(100);
+    expect(xpAt({ level: 1 }, 100, 3)).toBe(Math.round(100 * (1 + (2 * P.catchUpPct) / 100)));
+    expect(xpAt({ level: 1 }, 100, 20)).toBe(Math.round(100 * (1 + (P.catchUpLevels * P.catchUpPct) / 100)));
+  });
+  it("pays a fresh party about a level and a half for a five-battle expedition", () => {
+    expect(5 * P.battleXp + P.expeditionXp).toBe(150);
+    expect(5 * P.battleJp + P.expeditionJp).toBe(250);
   });
 });
 

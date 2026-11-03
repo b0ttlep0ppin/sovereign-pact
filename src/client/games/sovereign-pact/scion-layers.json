@@ -2683,6 +2683,150 @@
    "sex": "f",
    "z": 9,
    "material": null
+  },
+  {
+   "id": "weapon_greataxe_1_m",
+   "file": "weapon_greataxe_1_m",
+   "slot": "weapon",
+   "option": "greataxe",
+   "sex": "m",
+   "z": 140,
+   "material": null
+  },
+  {
+   "id": "weapon_greataxe_1_f",
+   "file": "weapon_greataxe_1_m",
+   "slot": "weapon",
+   "option": "greataxe",
+   "sex": "f",
+   "z": 140,
+   "material": null
+  },
+  {
+   "id": "weapon_greataxe_2_m",
+   "file": "weapon_greataxe_2_m",
+   "slot": "weapon",
+   "option": "greataxe",
+   "sex": "m",
+   "z": 9,
+   "material": null
+  },
+  {
+   "id": "weapon_greataxe_2_f",
+   "file": "weapon_greataxe_2_m",
+   "slot": "weapon",
+   "option": "greataxe",
+   "sex": "f",
+   "z": 9,
+   "material": null
+  },
+  {
+   "id": "weapon_maul_1_m",
+   "file": "weapon_maul_1_m",
+   "slot": "weapon",
+   "option": "maul",
+   "sex": "m",
+   "z": 140,
+   "material": null
+  },
+  {
+   "id": "weapon_maul_1_f",
+   "file": "weapon_maul_1_m",
+   "slot": "weapon",
+   "option": "maul",
+   "sex": "f",
+   "z": 140,
+   "material": null
+  },
+  {
+   "id": "weapon_maul_2_m",
+   "file": "weapon_maul_2_m",
+   "slot": "weapon",
+   "option": "maul",
+   "sex": "m",
+   "z": 9,
+   "material": null
+  },
+  {
+   "id": "weapon_maul_2_f",
+   "file": "weapon_maul_2_m",
+   "slot": "weapon",
+   "option": "maul",
+   "sex": "f",
+   "z": 9,
+   "material": null
+  },
+  {
+   "id": "weapon_axe_1_m",
+   "file": "weapon_axe_1_m",
+   "slot": "weapon",
+   "option": "axe",
+   "sex": "m",
+   "z": 140,
+   "material": null
+  },
+  {
+   "id": "weapon_axe_1_f",
+   "file": "weapon_axe_1_m",
+   "slot": "weapon",
+   "option": "axe",
+   "sex": "f",
+   "z": 140,
+   "material": null
+  },
+  {
+   "id": "weapon_axe_2_m",
+   "file": "weapon_axe_2_m",
+   "slot": "weapon",
+   "option": "axe",
+   "sex": "m",
+   "z": 9,
+   "material": null
+  },
+  {
+   "id": "weapon_axe_2_f",
+   "file": "weapon_axe_2_m",
+   "slot": "weapon",
+   "option": "axe",
+   "sex": "f",
+   "z": 9,
+   "material": null
+  },
+  {
+   "id": "weapon_axe_3_m",
+   "file": "weapon_axe_3_m",
+   "slot": "weapon",
+   "option": "axe",
+   "sex": "m",
+   "z": 9,
+   "material": null
+  },
+  {
+   "id": "weapon_axe_3_f",
+   "file": "weapon_axe_3_m",
+   "slot": "weapon",
+   "option": "axe",
+   "sex": "f",
+   "z": 9,
+   "material": null
+  },
+  {
+   "id": "weapon_axe_4_m",
+   "file": "weapon_axe_4_m",
+   "slot": "weapon",
+   "option": "axe",
+   "sex": "m",
+   "z": 150,
+   "material": null
+  },
+  {
+   "id": "weapon_axe_4_f",
+   "file": "weapon_axe_4_m",
+   "slot": "weapon",
+   "option": "axe",
+   "sex": "f",
+   "z": 150,
+   "material": null
   }
  ],
  "palettes": {

@@ -52,6 +52,9 @@ describe("founding a House (§5.1)", () => {
     render(<HouseDesigner view={view} sendMove={sendMove} />);
     fireEvent.click(screen.getByRole("tab", { name: "Theme" }));
     expect(screen.queryByRole("button", { name: /Reroll/ })).toBeNull();
+    // Battle music is never a House's theme (Josh 2026-11-03).
+    expect(screen.queryByRole("button", { name: "Anime Battle Music" })).toBeNull();
+    expect(screen.queryByRole("button", { name: "Japanese Gaming Boss Battle Music" })).toBeNull();
     fireEvent.click(screen.getByRole("button", { name: "Winter Sky" }));
     expect(sendMove).toHaveBeenCalledWith({ type: "design", house: { theme: "winter-sky" } });
   });

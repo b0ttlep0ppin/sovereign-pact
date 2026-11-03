@@ -178,7 +178,7 @@ export const TUNING = {
     restSanityPct: 25,
     chapelBuildingSanityPct: 25,
     /** §6.6: "a normal expedition's XP" (the finish plus ~5 battles), and training's share of it. */
-    expeditionXpRef: 135,
+    expeditionXpRef: 150,
     mentorXpPct: 60,
     aloneXpPct: 30,
     /** Without a Mentor, training stops this many levels below the House's highest Scion; never past 20. */
@@ -455,13 +455,18 @@ export const TUNING = {
   progression: {
     levelCap: 30,
     xpPerLevel: 100,
-    /** XP and JP per battle won and per expedition finished (§6.6, §12.1; JP halved by Josh 2026-11-02: "700 jp for one mission" was too much). */
-    battleXp: 40,
-    expeditionXp: 150,
-    battleJp: 50,
-    expeditionJp: 150,
-    /** Battle and expedition XP +this % per level a Scion stands below the reference 3L (progression.ts xpAt). */
+    /**
+     * XP and JP per battle won and per expedition finished (§6.6, §12.1). Josh 2026-11-03: "maybe like 250 JP
+     * 150 xp for such an early mission … 1 mission getting 4 levels is too much", so a five-battle
+     * expedition pays 150 XP (a level and a half) and 250 JP.
+     */
+    battleXp: 20,
+    expeditionXp: 50,
+    battleJp: 40,
+    expeditionJp: 50,
+    /** Battle and expedition XP +this % per level a Scion stands below the highest level that marched with them, up to `catchUpLevels` levels (progression.ts xpAt). */
     catchUpPct: 50,
+    catchUpLevels: 3,
     /** JP a new Scion starts with in their first Job, enough for a first ability or two (tuning pass, 2026-11-02). */
     startJp: 150,
     sortieJp: 25,
