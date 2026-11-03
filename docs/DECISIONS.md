@@ -2,6 +2,26 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-03 (implementation, Milestone 8cq): menu and confirmation sounds
+
+Josh: **"Could use menu and confirmation sfx for equipping gear, changing jobs, learning abilities and selecting moves in battle, or general when making selections"**.
+- **Every choice in the game makes a sound.** Buttons, tabs, lists, boxes and the settings all click. One listener on the page plays each control's own cue, so a new screen has sound without any extra work.
+- **The default sounds:**
+  - a small siege latch for choosing;
+  - a soft cloth whoosh for Back, Cancel, Undo, Decline, Withdraw and unticking a box;
+  - a turned page for a tab, and for opening the settings.
+- **Pointing at a battle command or a Job icon** ticks with a crossbow latch. Moving the target cursor ticks the same way, by mouse or by arrow keys.
+- **Committing a turn** clunks with a heavier latch. That covers an action that goes at once (Defend, the gambits, a self-cast), Confirm on a target, clicking the target itself, Strike in a combo, and Keep on the dice. A choice that still needs a target only clicks.
+- **Readying:**
+  - Taking a Job rustles leather.
+  - Learning an ability rings a glockenspiel.
+  - A locked Job knocks dully on wood.
+  - Putting on gear sounds like the slot: a sword's handling for either hand, a helmet's visor for the head, chain mail for body, hands and legs, a dagger's small metal for an accessory.
+  - Taking something off rustles leather.
+- **Sealing the Year and swearing the Pact** strike a soft gong.
+- **Where the sounds come from:** 14 cues, cut from BOOM's Medieval Weapons and Magic construction kits on Josh's PC. Their source files are listed in `content/audio/sfx.json`. Each cue is matched to a set loudest point; a click is too short to measure for loudness the way the battle cues are. They play at 80% of the sound effects volume, and the same Sound effects switch turns them off.
+- **Reading taken:** body armour always sounds like mail, even a robe. Choosing a sound by what an item is made of can come later.
+
 ## 2026-11-03 (implementation, Milestone 8cp): heals, blessings, conjured spells and thrusts
 
 Josh: heals and buffs **"feel kinda flat"**; spells should be **"conjured up around them, like fire ball comes up out of the ground as they are wreathed in red magic, then turns and seeks out the foe"**; **"Cures are like white or blue or green particles enveloping someone and spiraling upwards"**; the spear's pierce looked like a slash, and should be **"a line poking forward and impacting"**.

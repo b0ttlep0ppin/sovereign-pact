@@ -46,6 +46,20 @@
     {"id": "fall", "source": "Close Combat - Designed/CC-DS Body Fall Generic Medium 01.wav", "takes": 3, "max": 1.2},
     {"id": "injury", "source": "Close Combat - Designed/CC-DS Bone Break Medium 01.wav", "takes": 3, "max": 1.0},
     {"id": "dread", "source": "Free Sounds - Death Whistle/CREAEthr_Aztec Death Whistle Designed Wraith Scream Short_B00M_MBDW.wav", "takes": 3, "max": 3.0},
-    {"id": "sanity", "source": "Free Sounds - Death Whistle/CREASrce_Aztec Death Whistle Dry Scream High Very Short Distant_B00M_MBDW.wav", "takes": 3, "max": 1.5}
+    {"id": "sanity", "source": "Free Sounds - Death Whistle/CREASrce_Aztec Death Whistle Dry Scream High Very Short Distant_B00M_MBDW.wav", "takes": 3, "max": 1.5},
+    {"id": "ui_move", "source": "Medieval Weapons - Construction Kit/Crossbow Latch Small 02.wav", "takes": 3, "max": 0.2, "peak": -14},
+    {"id": "ui_select", "source": "Medieval Weapons - Construction Kit/Siege Latch Small 01.wav", "takes": 3, "max": 0.35, "peak": -9},
+    {"id": "ui_confirm", "source": "Medieval Weapons - Construction Kit/Siege Latch Medium 02.wav", "takes": 3, "max": 0.6, "peak": -6},
+    {"id": "ui_back", "source": "Magic - Construction Kit/MACK Whoosh Cotton Blanket Soft.wav", "takes": 3, "max": 0.5, "peak": -9},
+    {"id": "ui_deny", "source": "Medieval Weapons - Construction Kit/Shield Wood Impact Medium 01.wav", "takes": 3, "max": 0.25, "peak": -9},
+    {"id": "ui_page", "source": "Magic - Construction Kit/MACK Whoosh Paper Rustle Hard.wav", "takes": 3, "max": 0.45, "peak": -12},
+    {"id": "ui_seal", "source": "Magic - Construction Kit/MACK Metal Gong Small Soft.wav", "takes": 2, "max": 2.2, "peak": -4},
+    {"id": "equip_blade", "source": "Medieval Weapons - Construction Kit/Sword Handling Small 02.wav", "takes": 3, "max": 0.7, "peak": -5},
+    {"id": "equip_mail", "source": "Medieval Weapons - Construction Kit/Armour Chain Mail Foley Short 02.wav", "takes": 3, "max": 0.9, "peak": -5},
+    {"id": "equip_helm", "source": "Medieval Weapons - Construction Kit/Armour Helmet Visor Close 01.wav", "takes": 3, "max": 0.5, "peak": -6},
+    {"id": "equip_trinket", "source": "Medieval Weapons - Construction Kit/Dagger Handling Small 01.wav", "takes": 3, "max": 0.45, "peak": -8},
+    {"id": "equip_doff", "source": "Medieval Weapons - Construction Kit/Armour Leather Foley Short 03.wav", "takes": 3, "max": 0.8, "peak": -8},
+    {"id": "job", "source": "Medieval Weapons - Construction Kit/Armour Leather Foley Short 01.wav", "takes": 3, "max": 1.0, "peak": -5},
+    {"id": "learn", "source": "Magic - Construction Kit/MACK Metal High Glockenspiel Single.wav", "takes": 3, "max": 1.8, "peak": -6}
   ]
 }

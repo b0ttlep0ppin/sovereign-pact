@@ -14,6 +14,7 @@ import { ChronicleLine } from "./LogIcons";
 import Credits from "./Credits";
 import MusicPanel, { useMusic, useMusicSettings } from "./Music";
 import { battleTrack, sceneTrack } from "./music";
+import { useUiSounds } from "./uiSound";
 import ChainMap from "./ChainMap";
 import Deals from "./Deals";
 import Formation from "./Formation";
@@ -161,6 +162,7 @@ export default function SovereignPact({ view, isMyTurn, sendMove, lastError }: P
   const [music, setMusic] = useMusicSettings();
   const track = battles.watching ? battleTrack(battles.watching) : fight && !hidden ? battleTrack(fight.replay) : sceneTrack(view);
   useMusic(track, music);
+  useUiSounds(music.sfx ? music.sfxVolume : 0);
   const mine = view.me === null ? null : view.houses[view.me]!;
   const others = view.people.filter((p) => p.host !== view.me);
   const open = view.phase === "settlement" && !!mine && !mine.sealed;
@@ -338,7 +340,7 @@ export default function SovereignPact({ view, isMyTurn, sendMove, lastError }: P
                 <span>
                   {idle.map((p) => p.name).join(", ")} {idle.length === 1 ? "has" : "have"} no assignment and will idle (Sanity +10% only).
                 </span>
-                <button type="button" className="sp-button" onClick={() => (setSealAsk(false), sendMove({ type: "seal" }))}>
+                <button type="button" className="sp-button" data-sfx="ui_seal" onClick={() => (setSealAsk(false), sendMove({ type: "seal" }))}>
                   Seal anyway
                 </button>
                 <button type="button" className="sp-button sp-button--quiet" onClick={() => setSealAsk(false)}>
@@ -354,7 +356,7 @@ export default function SovereignPact({ view, isMyTurn, sendMove, lastError }: P
                 <small>{view.mine.owed}</small>
               </span>
             ) : (
-              <button type="button" className="sp-button" onClick={() => (idle.length ? setSealAsk(true) : sendMove({ type: "seal" }))}>
+              <button type="button" className="sp-button" data-sfx={idle.length ? "ui_select" : "ui_seal"} onClick={() => (idle.length ? setSealAsk(true) : sendMove({ type: "seal" }))}>
                 Seal the Year
               </button>
             )
@@ -592,7 +594,7 @@ function Oath({ dealt, swear }: { dealt: NonNullable<NonNullable<SovView["mine"]
           </span>
         </label>
       ))}
-      <button type="button" className="sp-button" disabled={choice === null} onClick={() => choice !== null && swear(choice)}>
+      <button type="button" className="sp-button" data-sfx="ui_seal" disabled={choice === null} onClick={() => choice !== null && swear(choice)}>
         {choice === null ? "Choose an Ambition to swear" : "Swear the Pact"}
       </button>
       <p className="sp-event__status">The first Year begins once every House has sworn. Until then you can take the oath back and change anything.</p>
@@ -801,7 +803,7 @@ function Muster({ view, sendMove, chosen, setChosen, openBattle }: { view: SovVi
         })}
       </div>
       <div className="sp-actions">
-        <button type="button" className="sp-button" onClick={() => sendMove({ type: "field", people: chosen })}>
+        <button type="button" className="sp-button" data-sfx={chosen.length ? "ui_confirm" : "ui_back"} onClick={() => sendMove({ type: "field", people: chosen })}>
           {chosen.length ? `Send ${chosen.length} Scion${chosen.length === 1 ? "" : "s"} on the expedition` : "Decline the seats"}
         </button>
       </div>

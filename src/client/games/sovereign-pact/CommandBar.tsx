@@ -67,7 +67,7 @@ export default function CommandBar({ turn, name, at, aiming, aim, send }: Props)
   }
   const abilityButton = (c: (typeof turn.abilities)[number]) => (
     <li key={c.id}>
-      <button type="button" className="sp-button sp-command__choice" disabled={!!c.why} title={[aboutOf(c.id), c.why ? `Cannot: ${c.why}` : ""].filter(Boolean).join("\n") || undefined} {...tell(c.name, c.id, { why: c.why, cost: cost(c) })} onClick={() => pick(c, (target) => ({ action: { do: "ability", ability: c.id, target } }))}>
+      <button type="button" className="sp-button sp-command__choice" data-sfx={cellsOf(c) ? "ui_select" : "ui_confirm"} disabled={!!c.why} title={[aboutOf(c.id), c.why ? `Cannot: ${c.why}` : ""].filter(Boolean).join("\n") || undefined} {...tell(c.name, c.id, { why: c.why, cost: cost(c) })} onClick={() => pick(c, (target) => ({ action: { do: "ability", ability: c.id, target } }))}>
         {c.name}
         {cost(c) ? <small> {cost(c)}</small> : null}
       </button>
@@ -97,7 +97,7 @@ export default function CommandBar({ turn, name, at, aiming, aim, send }: Props)
           {now.total - d.margin >= 2 ? `unless it is ${now.total - d.margin} or less: then the move fizzles and the turn is lost.` : "and from here it cannot fizzle."}
         </span>
         <span className="sp-actions">
-          <button type="button" className="sp-button" autoFocus onClick={() => send({ dice: "keep" })}>
+          <button type="button" className="sp-button" data-sfx="ui_confirm" autoFocus onClick={() => send({ dice: "keep" })}>
             Keep {now.total}
           </button>
           <button type="button" className="sp-button sp-button--quiet" disabled={d.left <= 0} title={d.left <= 0 ? "No more Double Downs" : undefined} onClick={() => send({ dice: "double" })}>
@@ -114,7 +114,7 @@ export default function CommandBar({ turn, name, at, aiming, aim, send }: Props)
           <strong>{aiming.label}</strong>: choose {aiming.cells.length === 1 ? "the" : "a"} target. Click one, or pick with the arrows and press Enter.
           {aiming.hit?.[aiming.cursor] !== undefined && aiming.hit[aiming.cursor]! < 100 ? <b className="sp-command__hit"> {aiming.hit[aiming.cursor]}% to hit.</b> : null}
         </span>
-        <button type="button" className="sp-button" onClick={() => send(aiming.send(aiming.cells[aiming.cursor]!))}>
+        <button type="button" className="sp-button" data-sfx="ui_confirm" onClick={() => send(aiming.send(aiming.cells[aiming.cursor]!))}>
           Confirm
         </button>
         <button type="button" className="sp-button sp-button--quiet" onClick={() => aim(null)}>
@@ -171,7 +171,7 @@ export default function CommandBar({ turn, name, at, aiming, aim, send }: Props)
             {menu === "Items"
               ? turn.items.map((c) => (
                   <li key={`item:${c.id}`}>
-                    <button type="button" className="sp-button sp-command__choice is-item" disabled={!!c.why} title={[aboutOf(c.id), c.why ? `Cannot: ${c.why}` : ""].filter(Boolean).join("\n") || undefined} {...tell(c.name, c.id, { why: c.why, cost: `${c.left} left` })} onClick={() => pick(c, (target) => ({ action: { do: "item", item: c.id, target } }))}>
+                    <button type="button" className="sp-button sp-command__choice is-item" data-sfx={cellsOf(c) ? "ui_select" : "ui_confirm"} disabled={!!c.why} title={[aboutOf(c.id), c.why ? `Cannot: ${c.why}` : ""].filter(Boolean).join("\n") || undefined} {...tell(c.name, c.id, { why: c.why, cost: `${c.left} left` })} onClick={() => pick(c, (target) => ({ action: { do: "item", item: c.id, target } }))}>
                       {c.name}
                       <small> ×{c.left}</small>
                     </button>
@@ -192,13 +192,13 @@ export default function CommandBar({ turn, name, at, aiming, aim, send }: Props)
             Move
           </button>
         ) : null}
-        <button type="button" className="sp-button sp-command__choice is-plain" {...tell("Defend", "defend")} onClick={() => send({ action: { do: "defend" } })}>
+        <button type="button" className="sp-button sp-command__choice is-plain" data-sfx="ui_confirm" {...tell("Defend", "defend")} onClick={() => send({ action: { do: "defend" } })}>
           Defend
         </button>
-        <button type="button" className="sp-button sp-command__choice is-plain" {...tell("Gambits: this turn", "gambits_turn")} onClick={() => send({ auto: "turn" })}>
+        <button type="button" className="sp-button sp-command__choice is-plain" data-sfx="ui_confirm" {...tell("Gambits: this turn", "gambits_turn")} onClick={() => send({ auto: "turn" })}>
           Gambits: this turn
         </button>
-        <button type="button" className="sp-button sp-command__choice is-plain" {...tell("Gambits: the rest of the battle", "gambits_battle")} onClick={() => send({ auto: "battle" })}>
+        <button type="button" className="sp-button sp-command__choice is-plain" data-sfx="ui_confirm" {...tell("Gambits: the rest of the battle", "gambits_battle")} onClick={() => send({ auto: "battle" })}>
           Gambits: the rest of the battle
         </button>
       </span>
@@ -281,7 +281,7 @@ function Combo({ combo, name, chain, set, strike }: { combo: ComboView; name: st
         </ul>
       ) : null}
       <span className="sp-actions">
-        <button type="button" className="sp-button" disabled={!chain.length} onClick={() => strike(chain)}>
+        <button type="button" className="sp-button" data-sfx="ui_confirm" disabled={!chain.length} onClick={() => strike(chain)}>
           Strike{chain.length ? ` (${chain.length} move${chain.length === 1 ? "" : "s"})` : ""}
         </button>
         <button type="button" className="sp-button sp-button--quiet" disabled={!chain.length} onClick={() => set(chain.slice(0, -1))}>
