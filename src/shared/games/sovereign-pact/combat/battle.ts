@@ -26,10 +26,10 @@ const C = TUNING.combat;
 /** Every combatant can make a plain attack with its weapon. */
 export const ATTACK: AbilityDef = { id: "attack", name: "Attack", shape: "single", side: "foe", power: 1 };
 
-/** `doubleDown`: how many times a Gambler rolls an ability's dice again (§12.2). */
+/** `doubleDown`: how many times a Gambler rolls an ability's dice again (§12.2); `rolled`: its total already thrown in the open (null: it fizzled). */
 /** `keep`: the Components a Tinkerer keeps from this turn's offer (the bots' pick when missing, §12.2). */
 export type Action = (
-  | { do: "ability"; ability: string; target: Cell; doubleDown?: number }
+  | { do: "ability"; ability: string; target: Cell; doubleDown?: number; rolled?: number | null }
   /** A Pugilist's sequence of moves on one target (§12.2). */
   | { do: "combo"; moves: string[]; target: Cell }
   | { do: "wait" }
@@ -249,7 +249,7 @@ export function act(b: Battle, rng: Rng, u: Combatant, action: Action): void {
       b.events.push({ t: "charge", unit: u.id, ability: ab.id, target: action.target, ticks, telegraph: !!ab.telegraph || hasStatus(u, "communed") });
     } else {
       if (ab.charge) u.flags.splice(instant, 1);
-      resolve(b, rng, u, ab, action.target, homingOn, action.doubleDown);
+      resolve(b, rng, u, ab, action.target, homingOn, action.doubleDown, action.rolled);
     }
   }
   if (u.mods.nextActionCt) {
@@ -309,7 +309,7 @@ function resolveCharge(b: Battle, rng: Rng, u: Combatant): void {
 }
 
 /** An ability lands: every target, every hit (§10.6). */
-export function resolve(b: Battle, rng: Rng, u: Combatant, ab: AbilityDef, at: Cell, homingOn?: number, doubleDown = 0): void {
+export function resolve(b: Battle, rng: Rng, u: Combatant, ab: AbilityDef, at: Cell, homingOn?: number, doubleDown = 0, thrown?: number | null): void {
   if (ab.song) return playSong(b, rng, u, ab);
   if (ab.summon || ab.form || ab.revert || ab.raise || ab.devour || ab.call) {
     b.events.push({ t: "use", unit: u.id, ability: ab.id, target: at });
@@ -336,7 +336,7 @@ export function resolve(b: Battle, rng: Rng, u: Combatant, ab: AbilityDef, at: C
   let targets = resolveTargets(b, rng, u, ab, at, homingOn);
   if (counterspelled(b, rng, u, ab, targets)) return;
   if (ab.dice) {
-    const total = abilityDice(b, rng, u, targets[0], ab.dice.doubleDown ? doubleDown : 0);
+    const total = abilityDice(b, rng, u, targets[0], ab.dice.doubleDown ? doubleDown : 0, ab.dice.doubleDown ? thrown : undefined);
     if (total === null) {
       b.events.push({ t: "use", unit: u.id, ability: ab.id, target: at });
       return;

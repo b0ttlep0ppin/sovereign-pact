@@ -51,6 +51,8 @@ export interface ReplayFrame {
 export interface Replay {
   /** What the battle was: "An Encounter", the boss's name, a Sortie's name. */
   title: string;
+  /** Why the party fights it, for the card before the battle. */
+  why?: string;
   /** The battle's RNG state as it began: with the Year, it tells one battle from another. */
   seed: number;
   pool?: string;
@@ -112,9 +114,9 @@ function shown(r: Replay): Map<number, string> {
 }
 
 /** A replay begun, for a battle fought turn by turn (fight.ts): frames follow, and `closed` finishes it. */
-export function begun(b: Battle, title: string): Replay {
+export function begun(b: Battle, title: string, why?: string): Replay {
   // The outcome is a placeholder until the end.
-  return { title, seed: b.rng, ...(b.pool ? { pool: b.pool } : {}), outcome: "retreat", units: b.units.map(unitOf), start: b.units.map(vitalsOf), frames: [] };
+  return { title, ...(why ? { why } : {}), seed: b.rng, ...(b.pool ? { pool: b.pool } : {}), outcome: "retreat", units: b.units.map(unitOf), start: b.units.map(vitalsOf), frames: [] };
 }
 
 /** The turn just played as a frame of `r`: the events after `seen`, and the vitals that changed. Returns the new `seen`. */

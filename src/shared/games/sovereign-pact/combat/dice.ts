@@ -8,18 +8,23 @@ import type { AbilityDef, Battle, Combatant } from "./types.ts";
 
 const D = TUNING.combat.dice;
 
-export const roll2d6 = (rng: Rng): number => 2 + rng.int(6) + rng.int(6);
+/** Two six-sided dice, as they land (the same draws as a 2d6 total). */
+export const throwDice = (rng: Rng): [number, number] => [1 + rng.int(6), 1 + rng.int(6)];
+
+/** How much lower a Double Down roll must come to fizzle the ability (House Edge, Risk Taker). */
+export const fizzleMargin = (u: Combatant): number => D.fizzleMargin + (u.mods.fizzleAt ?? 0);
 
 /** Cast Lots: 2d6 at the start of a Gambler's turn and the total's effect (§12.7). */
 export function castLots(b: Battle, rng: Rng, u: Combatant): number {
-  let total = roll2d6(rng);
+  const dice = throwDice(rng);
+  let total = dice[0] + dice[1];
   if (total === 2 && u.mods.weighted) total = 3;
   const floor = u.flags.indexOf("lots_floor7");
   if (floor >= 0) {
     total = Math.max(total, 7);
     u.flags.splice(floor, 1);
   }
-  b.events.push({ t: "lots", unit: u.id, total });
+  b.events.push({ t: "lots", unit: u.id, total, dice, cast: true });
   // Lucky Streak: each 7+ in a row adds crit; a 6 or lower resets it.
   u.mods.lotsStreak = total >= 7 ? (u.mods.lotsStreak ?? 0) + 1 : 0;
   const pctOf = (max: number, p: number) => Math.round((max * p) / 100);
@@ -38,23 +43,28 @@ export function castLots(b: Battle, rng: Rng, u: Combatant): number {
 /**
  * An ability's own 2d6, Doubled Down `times` (at most 3): each new roll replaces the total unless it is
  * lower by the fizzle margin or more, which fizzles the ability (null). Marked Card makes it 11.
+ * `rolled` is a roll already made in the open (fight.ts: the commander saw each throw and chose to stop),
+ * its throws already in the events.
  */
-export function abilityDice(b: Battle, rng: Rng, u: Combatant, target: Combatant | undefined, times = 0): number | null {
+export function abilityDice(b: Battle, rng: Rng, u: Combatant, target: Combatant | undefined, times = 0, rolled?: number | null): number | null {
   if (target && hasStatus(target, "loaded_card")) {
     removeStatus(b, target, "loaded_card");
     return 11;
   }
-  let total = roll2d6(rng);
-  const margin = D.fizzleMargin + (u.mods.fizzleAt ?? 0);
+  if (rolled !== undefined) return rolled;
+  let dice = throwDice(rng);
+  let total = dice[0] + dice[1];
+  const margin = fizzleMargin(u);
   for (let i = 0; i < Math.min(times, D.maxDoubleDown); i++) {
-    const next = roll2d6(rng);
-    if (total - next >= margin) {
-      b.events.push({ t: "fizzle", unit: u.id, total: next });
+    const next = throwDice(rng);
+    if (total - next[0] - next[1] >= margin) {
+      b.events.push({ t: "fizzle", unit: u.id, total: next[0] + next[1], dice: next });
       return null;
     }
-    total = next;
+    dice = next;
+    total = next[0] + next[1];
   }
-  b.events.push({ t: "lots", unit: u.id, total });
+  b.events.push({ t: "lots", unit: u.id, total, dice });
   return total;
 }
 

@@ -80,6 +80,31 @@ export default function CommandBar({ turn, name, at, aiming, aim, send }: Props)
     if (!cells) send(act(at));
     else aim({ label: c.name, cells, cursor: 0, send: act, ...(c.aim === "area" ? { covers: (at: Cell) => areaCells(c.shape, at) } : {}) });
   };
+  if (turn.dice) {
+    // The Gambler's dice are down (§12.2): keep the total, or throw again and risk it.
+    const d = turn.dice;
+    const now = d.rolls.at(-1)!;
+    return (
+      <div className="sp-command sp-dice-choice" role="group" aria-label={`${name}'s dice`}>
+        <span>
+          <strong>{d.name}</strong>: {d.rolls.length > 1 ? `Doubled down ${d.rolls.length - 1} ${d.rolls.length === 2 ? "time" : "times"}; now ` : "rolled "}
+          <b className="sp-dice-choice__total">
+            {now.dice[0]} + {now.dice[1]} = {now.total}
+          </b>
+          . Double Down throws again and the new total stands,{" "}
+          {now.total - d.margin >= 2 ? `unless it is ${now.total - d.margin} or less: then the move fizzles and the turn is lost.` : "and from here it cannot fizzle."}
+        </span>
+        <span className="sp-actions">
+          <button type="button" className="sp-button" autoFocus onClick={() => send({ dice: "keep" })}>
+            Keep {now.total}
+          </button>
+          <button type="button" className="sp-button sp-button--quiet" disabled={d.left <= 0} title={d.left <= 0 ? "No more Double Downs" : undefined} onClick={() => send({ dice: "double" })}>
+            Double Down{d.left > 0 ? ` (${d.left} left)` : ""}
+          </button>
+        </span>
+      </div>
+    );
+  }
   if (aiming)
     return (
       <div className="sp-command" role="group" aria-label="Choose a target">

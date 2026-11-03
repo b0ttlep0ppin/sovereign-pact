@@ -3,7 +3,7 @@
 // rules can be watched in play; Milestone 8 gives it screens: founding, the town, the expedition, battle.
 import type { GameClientProps } from "@vibepulse/shared";
 import { Content, nominable, TIER_NAMES, type SovMove, type SovView } from "@vibepulse/shared/games/sovereign-pact";
-import { useState, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import AccessPanel, { accessAttrs, useAccess } from "./Access";
 import BattleScreen from "./BattleScreen";
 import Homecoming, { useHomecoming } from "./Homecoming";
@@ -143,6 +143,17 @@ export default function SovereignPact({ view, isMyTurn, sendMove, lastError }: P
   const homecoming = useHomecoming(view);
   const camp = useCamp(view);
   const told = useTold(view);
+  // The party waits for each House to take in a battle's end or an event's outcome (Josh 2026-11-03: "all
+  // the battles are one after another"): once nothing is left on this screen to read, this House goes on.
+  const halted = view.me !== null && !!view.expedition?.halt?.includes(view.me) && !fight && !battles.watching && !told.open;
+  const onward = useRef(false);
+  useEffect(() => {
+    if (!halted) onward.current = false;
+    else if (!onward.current) {
+      onward.current = true;
+      sendMove({ type: "onward" });
+    }
+  }, [halted, sendMove]);
   const [access, setAccess] = useAccess();
   const [music, setMusic] = useMusicSettings();
   const track = battles.watching ? battleTrack(battles.watching) : fight && !hidden ? battleTrack(fight.replay) : sceneTrack(view);
@@ -705,9 +716,10 @@ function Muster({ view, sendMove, chosen, setChosen, openBattle }: { view: SovVi
             {{ walking: "waits its turn", rallied: "waits at the meeting place", retreated: "has turned back", wiped: "is gone" }[e.split.state[1 - e.split.turn]!]}.
           </p>
         ) : null}
+        {e.halt?.some((h) => h !== me) ? <p>Waiting for {e.halt.filter((h) => h !== me).map((h) => `House ${view.houses[h]?.name}`).join(" and ")} to take in what happened.</p> : null}
         {leads ? (
           <div className="sp-actions">
-            <button type="button" className="sp-button" onClick={() => sendMove({ type: "press_on" })}>
+            <button type="button" className="sp-button" disabled={!!e.halt?.length} onClick={() => sendMove({ type: "press_on" })}>
               {e.at === e.length - 1 ? (e.split && !e.split.united ? "Go to the meeting place" : "Face the boss") : "Press on"}
             </button>
             {e.at < e.length - 1 ? (

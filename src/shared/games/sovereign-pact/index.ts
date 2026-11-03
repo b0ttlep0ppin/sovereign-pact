@@ -46,6 +46,7 @@ export { itemName, TIER_NAMES } from "./loot.ts";
 export { nominable } from "./events.ts";
 export { FLAG, replayLine, type Replay, type ReplayUnit, type Vitals } from "./combat/replay.ts";
 export { meta as statusMeta } from "./combat/status.ts";
+export { TUNING } from "./tuning.ts";
 export type { Aim, Choice, ComboMove, ComboView, Command, FightView, TurnView } from "./fight.ts";
 export { fitsPattern } from "./combat/combos.ts";
 export type { Cell } from "./combat/types.ts";
@@ -259,11 +260,19 @@ export function applyMove(state: SovState, playerId: PlayerId, move: SovMove): M
     }
     case "command": {
       if (s.phase !== "expedition") return fail("No battle is being fought.");
-      const c = { ...(move.move ? { move: move.move } : {}), ...(move.action ? { action: move.action } : {}), ...(move.auto ? { auto: move.auto } : {}) };
+      const c = { ...(move.move ? { move: move.move } : {}), ...(move.action ? { action: move.action } : {}), ...(move.auto ? { auto: move.auto } : {}), ...(move.dice ? { dice: move.dice } : {}) };
       const why = cannotCommand(s, house, c) ?? command(s, house, c);
       if (why) return fail(why);
       s.phaseMoves += 1;
       if (!waiting(s).length) closeExpedition(s);
+      return { ok: true, state: s };
+    }
+    case "onward": {
+      const e = s.expedition;
+      if (s.phase !== "expedition" || !e?.halt?.includes(house)) return fail("Nothing waits on you to go on.");
+      e.halt = e.halt.filter((h) => h !== house);
+      if (!e.halt.length) delete e.halt;
+      s.phaseMoves += 1;
       return { ok: true, state: s };
     }
     case "press_on":
@@ -271,6 +280,7 @@ export function applyMove(state: SovState, playerId: PlayerId, move: SovMove): M
       const e = s.expedition;
       if (s.phase !== "expedition" || e?.leader === undefined || e.result) return fail("No expedition is underway.");
       if (e.event) return fail("The party must decide what to do first.");
+      if (e.halt?.length) return fail(`The party waits for ${e.halt.map((h) => `House ${s.houses[h]!.name}`).join(" and ")} to take in what happened.`);
       if (s.bargains.pending.length) return fail("The party waits while each House looks into the Gate.");
       if (s.people.find((p) => p.id === e.leader)!.host !== house) return fail("The Leader's House decides the way.");
       if (move.type === "retreat") {
@@ -557,6 +567,7 @@ export function botMove(s: SovState, playerId: PlayerId): SovMove {
   if (s.phase === "founding") return house >= 0 && !s.houses[house]!.sealed ? botFounding(s, house) : { type: "swear", ambition: 0 };
   // In battle, the Scion's gambits: the same engine plays a bot's turn and an absent player's (§6.11).
   if (s.phase === "expedition" && house >= 0 && s.expedition?.fight) return { type: "command", auto: "turn" };
+  if (s.phase === "expedition" && house >= 0 && s.expedition?.halt?.includes(house)) return { type: "onward" };
   if (s.phase === "expedition" && house >= 0)
     return botBargain(s, house) ?? (s.expedition?.draft?.length
       ? { type: "draft", share: botDraft(s, house) }

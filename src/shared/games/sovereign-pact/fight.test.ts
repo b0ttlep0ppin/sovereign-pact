@@ -2,6 +2,7 @@
 // gambit engine plays any turn a House hands it, a bot's and an absent player's alike.
 import { describe, expect, it } from "vitest";
 import { ABILITY_SET_BY_JOB, TRIP_EVENTS } from "./content.ts";
+import { TUNING } from "./tuning.ts";
 import { resolve } from "./events.ts";
 import { able, muster } from "./expedition.ts";
 import { awaited } from "./fight.ts";
@@ -96,6 +97,54 @@ describe("a battle by hand", () => {
     s = move(s, s.players[house]!, { type: "command", action: { do: "combo", moves: ["jab", "jab"], target: combo.targets[0]! } });
     const shown = s.expedition!.fight?.replay ?? s.battles![0]!;
     expect(shown.frames.some((x) => x.ev.filter((e) => e.t === "use" && e.unit === u.id && e.ability === "jab").length >= 1)).toBe(true);
+  });
+
+  it("throws a Gambler's dice in the open, then keeps them or Doubles Down as the House chooses", () => {
+    let s = underway();
+    s.expedition!.chain = ["encounter", "boss"];
+    s = move(s, "p2", { type: "press_on" });
+    const f = s.expedition!.fight!;
+    const u = f.b.units.find((x) => x.id === f.unit)!;
+    const house = s.people.find((p) => p.id === u.person)!.host;
+    const who = s.players[house]!;
+    u.abilities = [...ABILITY_SET_BY_JOB.get("gambler")!.actives];
+    u.tp = 100;
+    const toss = view(s, who).expedition!.fight!.turn!.abilities.find((a) => a.id === "knife_toss")!;
+    if (toss.why || toss.aim !== "unit") return;
+    expect(error(s, who, { type: "command", dice: "keep" })).toMatch(/No dice/);
+    s = move(s, who, { type: "command", action: { do: "ability", ability: "knife_toss", target: toss.targets[0]! } });
+    // The turn still waits: the dice are on the table, shown to the commander with what is at stake.
+    const dice = view(s, who).expedition!.fight!.turn!.dice!;
+    expect(dice).toMatchObject({ ability: "knife_toss", left: TUNING.combat.dice.maxDoubleDown, margin: TUNING.combat.dice.fizzleMargin });
+    expect(dice.rolls[0]!.total).toBe(dice.rolls[0]!.dice[0] + dice.rolls[0]!.dice[1]);
+    expect(error(s, who, { type: "command", action: { do: "defend" } })).toMatch(/keep them or Double Down/);
+    const thrown = s.expedition!.fight!.replay.frames.at(-1)!.ev.find((e) => e.t === "lots");
+    expect(thrown).toMatchObject({ unit: u.id, dice: dice.rolls[0]!.dice });
+    s = move(s, who, { type: "command", dice: "double" });
+    const after = s.expedition!.fight;
+    const ev = (after?.replay ?? s.battles!.at(-1)!).frames.flatMap((x) => x.ev);
+    if (after?.dice) {
+      // Still on the table: the new throw stands; keeping it lets the knife fly and the turn pass.
+      expect(after.dice.rolls.length).toBe(2);
+      s = move(s, who, { type: "command", dice: "keep" });
+      const all = (s.expedition!.fight?.replay ?? s.battles!.at(-1)!).frames.flatMap((x) => x.ev);
+      expect(all.some((e) => e.t === "use" && e.unit === u.id && e.ability === "knife_toss")).toBe(true);
+    } else expect(ev.some((e) => e.t === "fizzle" && e.unit === u.id)).toBe(true);
+  });
+
+  it("waits after a won battle until every House walking with the party has taken it in", () => {
+    let s = underway();
+    s.expedition!.chain = ["encounter", "encounter", "boss"];
+    s = fightOut(move(s, "p2", { type: "press_on" }));
+    if (s.expedition?.result) return;
+    expect(s.expedition!.halt).toEqual([0, 1]);
+    expect(g.activePlayers(s)).toEqual(["p1", "p2"]);
+    expect(error(s, "p2", { type: "press_on" })).toMatch(/waits for House/);
+    s = move(s, "p1", { type: "onward" });
+    expect(error(s, "p1", { type: "onward" })).toMatch(/Nothing waits/);
+    s = move(s, "p2", { type: "onward" });
+    expect(s.expedition!.halt).toBeUndefined();
+    expect(g.activePlayers(s)).toEqual(["p2"]);
   });
 
   it("shows every House the battle and whose turn it is; only the commander sees the choices", () => {

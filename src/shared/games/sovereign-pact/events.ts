@@ -12,7 +12,7 @@ import { found } from "./loot.ts";
 import { isWard } from "./wards.ts";
 import { carriedRoll } from "./combat/injury.ts";
 import { BUILDING_BY_ID, HOUSE_TRAIT_BY_ID, INJURY_BY_ID, INJURY_TABLE_BY_ID, TAROT, TAROT_BY_ID, TRAIT_BY_ID, TRAITS, TRIP_EVENT_BY_ID, TRIP_EVENTS, type InjuryTableId, type TripEffect, type TripEventDef, type TripOption } from "./content.ts";
-import { battle, die, home, lose, marching, person, succeed } from "./journey.ts";
+import { battle, die, halt, home, lose, marching, person, succeed } from "./journey.ts";
 import { gainJp, gainXp, jobStats, passiveBudget, passiveMods, passivePoints } from "./progression.ts";
 import { jobStat } from "./formulas.ts";
 import { ascendancy } from "./score.ts";
@@ -246,6 +246,7 @@ function land(s: SovState, option: TripOption, { scions, house }: Subjects, othe
   const e = s.expedition!;
   if (e.told?.n !== e.seen.length) e.told = { id: e.seen.at(-1) ?? "", n: e.seen.length, parts: [] };
   e.told.parts.push({ label: option.label, who: who.replace(/: $/, ""), text: outcome.text, lines: [...said, ...tell(s, before)] });
+  halt(s);
   return done;
 }
 

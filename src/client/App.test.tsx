@@ -33,7 +33,9 @@ const sendTheParty = () => {
   if (lead) fireEvent.click(lead);
   letBotsMove();
   for (let i = 0; i < 200; i++) {
-    const on = screen.queryByRole("button", { name: /^(Press on|Face the boss|Let the gambits fight the rest)$/ }) ?? document.querySelector<HTMLButtonElement>('[aria-label="An event"] button, [aria-label="The draft"] button:not([disabled])');
+    // What happened is read first: a battle's end, an event's outcome (the party waits on it).
+    const read = screen.queryAllByRole("button", { name: /^(Go on|To arms|Continue|Next battle \(\d+ more\)|So be it)$/ })[0];
+    const on = read ?? screen.queryByRole("button", { name: /^(Press on|Face the boss|Let the gambits fight the rest)$/ }) ?? document.querySelector<HTMLButtonElement>('[aria-label="An event"] button, [aria-label="The draft"] button:not([disabled])');
     // Nothing of ours to click: the bots are still moving (their Scions' battle turns), unless the Year is over.
     if (!on && shown(2)) break;
     if (on) fireEvent.click(on);
