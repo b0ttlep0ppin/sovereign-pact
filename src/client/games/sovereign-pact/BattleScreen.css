@@ -6,7 +6,9 @@
 /* The backdrop (backdrop.ts): the region's sky, its ground under the planes, and a haze over both. */
 .sp-battle__backdrop { position: fixed; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; }
 .sp-battle__sky { position: absolute; inset: 0 0 30% 0; background: var(--sp-sky) center 30% / cover no-repeat; filter: var(--sp-sky-filter); opacity: 0.85; }
-.sp-battle__ground { position: absolute; inset: 52% -10% 0 -10%; background: var(--sp-ground, none) 0 0 / 384px 96px repeat; image-rendering: pixelated; transform: perspective(500px) rotateX(58deg); transform-origin: 50% 0; filter: brightness(0.55) saturate(0.65); }
+.sp-battle__ground { position: absolute; inset: 52% -10% 0 -10%; background: var(--sp-ground, none) 0 0 / 384px 96px repeat; image-rendering: pixelated; transform: perspective(500px) rotateX(58deg); transform-origin: 50% 0; }
+/* Darkened by a veil, not a filter: a filter on this tilted, tiled plane was redrawn with every effect above it. */
+.sp-battle__ground::after { content: ""; position: absolute; inset: 0; background: rgba(14, 12, 18, 0.5); }
 .sp-battle__backdrop::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(4, 3, 8, 0.15) 0%, var(--sp-haze, rgba(10, 8, 14, 0.5)) 52%, rgba(4, 3, 8, 0.35) 62%, rgba(4, 3, 8, 0.85) 100%), radial-gradient(ellipse at 50% 45%, transparent 40%, rgba(0, 0, 0, 0.7) 100%); }
 .sp-battle:focus { outline: none; }
 .sp-battle__top { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; }
@@ -15,10 +17,11 @@
 .sp-battle__turn { margin-left: auto; font-variant-numeric: tabular-nums; }
 .sp-battle__headline { margin: 0; min-height: 1.5em; text-align: center; font: 400 1.4rem/1.1 var(--display); color: var(--gold); letter-spacing: 0.02em; }
 .sp-battle__field { display: grid; grid-template-columns: minmax(150px, 220px) 1fr minmax(170px, 250px); gap: 12px; align-items: start; }
-.sp-battle__planes { position: relative; display: grid; grid-template-columns: 1fr 48px 1fr; align-items: center; perspective: 900px; min-width: 0; }
-.sp-battle__gap { align-self: stretch; background: linear-gradient(90deg, transparent, rgba(120, 100, 140, 0.08), transparent); }
+.sp-battle__planes { position: relative; display: grid; grid-template-columns: 1fr clamp(170px, 16vw, 260px) 1fr; gap: 8px; align-items: center; perspective: 900px; min-width: 0; }
+.sp-battle__gap { align-self: stretch; display: grid; grid-template-rows: minmax(0, 1fr); min-width: 0; background: linear-gradient(90deg, transparent, rgba(120, 100, 140, 0.08), transparent); }
+.sp-battle__gap .sp-battle__log, .sp-battle__gap .sp-battle__log.is-full { max-height: none; min-height: 0; }
 
-.sp-grid { position: relative; display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(8, 1fr); aspect-ratio: 3 / 8; height: min(62vh, 600px); width: auto; max-width: 100%; justify-self: center; }
+.sp-grid { position: relative; display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(8, 1fr); aspect-ratio: 3 / 8; height: clamp(300px, calc(100vh - 330px), 600px); width: auto; max-width: 100%; justify-self: center; }
 .sp-grid--enemy { transform: rotateY(14deg); }
 .sp-grid--party { transform: rotateY(-14deg); }
 .sp-cell { border: 1px solid rgba(255, 255, 255, 0.08); background: rgba(6, 5, 8, 0.28); }
@@ -88,7 +91,9 @@
 .sp-dur span { width: 12px; height: 6px; background: #b9b1a0; border-radius: 1px; }
 .sp-dur span.is-cracked { background: linear-gradient(135deg, #b9b1a0 45%, #333 45% 55%, #b9b1a0 55%); }
 .sp-dur span.is-broken { background: #2a2a2a; outline: 1px solid #7a1010; }
-.sp-statuses { color: #c9b6e0; font-size: 0.72rem; }
+.sp-statuses { display: flex; flex-wrap: wrap; gap: 3px 8px; color: #c9b6e0; font-size: 0.72rem; }
+.sp-statuses__one { color: var(--c); }
+.sp-statuses__one i { font-style: normal; }
 
 .sp-injury {
   position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); display: grid; justify-items: center; gap: 6px; padding: 14px 22px;
@@ -102,10 +107,11 @@
 .sp-injury--shrug strong { color: #8fd08a; }
 @keyframes sp-injury { from { opacity: 0; scale: 0.8; } }
 
-.sp-battle__controls { position: sticky; bottom: 0; z-index: 3; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; justify-content: center; padding: 6px 0; background: rgba(13, 10, 16, 0.92); }
+.sp-battle__controls { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; justify-content: center; padding: 6px 0; background: rgba(13, 10, 16, 0.92); }
 .sp-battle__controls input[type="range"] { flex: 1 1 200px; max-width: 420px; }
 .sp-battle__speeds { display: inline-flex; gap: 4px; }
-.sp-battle__speeds .is-on { border-color: var(--accent); color: var(--accent); }
+.sp-battle__speeds .sp-button { min-width: 3.2em; }
+.sp-battle__speeds .sp-button.is-on { border-color: var(--gold, #d7b45a); color: var(--gold, #d7b45a); background: rgba(215, 180, 90, 0.12); }
 /* The enemies' cards, and the log filling the column beneath them. */
 .sp-battle__side { display: flex; flex-direction: column; gap: 10px; min-width: 0; align-self: stretch; }
 .sp-battle__log { flex: 1 1 auto; min-height: 8em; max-height: min(52vh, 480px); margin: 0; padding: 8px 10px; list-style: none; overflow: auto; background: rgba(0, 0, 0, 0.45); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 3px; font-size: 0.78rem; line-height: 1.35; display: grid; gap: 3px; align-content: start; }
@@ -209,14 +215,14 @@
 .sp-fx__slash path { fill: var(--core); }
 .sp-fx__slash path + path { fill: #fff; }
 /* The blow itself: a white flash where it lands. */
-.sp-fx__flash { width: 80px; height: 80px; margin: -40px 0 0 -40px; border-radius: 50%; background: radial-gradient(circle, #fff 0 25%, rgba(255, 240, 200, 0.6) 45%, transparent 70%); mix-blend-mode: screen; animation-name: sp-fx-flash; }
+.sp-fx__flash { width: 80px; height: 80px; margin: -40px 0 0 -40px; border-radius: 50%; background: radial-gradient(circle, #fff 0 25%, rgba(255, 240, 200, 0.6) 45%, transparent 70%); animation-name: sp-fx-flash; }
 .sp-fx__flash.is-crit { width: 140px; height: 140px; margin: -70px 0 0 -70px; }
 @keyframes sp-fx-flash { 0% { opacity: 0; scale: 0.3; } 12% { opacity: 1; scale: 1; } 100% { opacity: 0; scale: 1.6; } }
 .sp-fx__slash.is-crit { width: 220px; height: 220px; margin: -110px 0 0 -110px; filter: drop-shadow(0 0 10px #ff3020) drop-shadow(0 0 3px #fff); }
 @keyframes sp-fx-slash { 0% { opacity: 0; scale: 0.4 0.2; } 20% { opacity: 1; scale: 1.1 1; } 100% { opacity: 0; scale: 1.25 0.6; } }
 .sp-fx__burst {
   width: 30px; height: 30px; margin: -15px 0 0 -15px; border-radius: 50%;
-  background: radial-gradient(circle, #fff 0 15%, var(--core) 30%, var(--glow) 55%, transparent 70%); mix-blend-mode: screen;
+  background: radial-gradient(circle, #fff 0 15%, var(--core) 30%, var(--glow) 55%, transparent 70%);
   animation-name: sp-fx-burst;
 }
 .sp-fx__burst.is-crit { width: 44px; height: 44px; margin: -22px 0 0 -22px; }
@@ -225,7 +231,7 @@
 @keyframes sp-fx-burst { 0% { opacity: 0; scale: 0.2; } 15% { opacity: 1; scale: 2.4; } 100% { opacity: 0; scale: 4.2; } }
 .sp-fx__burst::after { content: ""; position: absolute; inset: -10px; border-radius: 50%; border: 3px solid var(--core); box-shadow: 0 0 10px var(--glow); animation: inherit; animation-name: sp-fx-ring; }
 @keyframes sp-fx-ring { 0% { opacity: 1; scale: 0.4; } 100% { opacity: 0; scale: 2.2; } }
-.sp-fx__halo { width: 50px; height: 70px; margin: -45px 0 0 -25px; border-radius: 50%; background: radial-gradient(ellipse, rgba(255, 245, 190, 0.7), rgba(120, 220, 130, 0.35) 50%, transparent 70%); animation-name: sp-fx-halo; mix-blend-mode: screen; }
+.sp-fx__halo { width: 50px; height: 70px; margin: -45px 0 0 -25px; border-radius: 50%; background: radial-gradient(ellipse, rgba(255, 245, 190, 0.7), rgba(120, 220, 130, 0.35) 50%, transparent 70%); animation-name: sp-fx-halo; }
 @keyframes sp-fx-halo { 0% { opacity: 0; scale: 0.6 0.2; } 30% { opacity: 1; scale: 1 1; } 100% { opacity: 0; scale: 1.1 1.4; translate: 0 -10px; } }
 .sp-fx__spark { width: 7px; height: 7px; margin: -3.5px 0 0 -3.5px; border-radius: 50%; background: var(--core); box-shadow: 0 0 6px var(--glow); animation-name: sp-fx-spark; }
 .sp-fx__spark--steel { width: 16px; height: 3px; border-radius: 1px; background: #fff; box-shadow: 0 0 4px #ffd890; }
@@ -242,16 +248,18 @@
 /* The screen's color shifts as a spell lands (ScreenFx): fire scorches, water chills, dark inverts, holy blinds. */
 .sp-screenfx { position: fixed; inset: 0; z-index: 30; pointer-events: none; }
 .sp-screenfx > * { position: absolute; inset: 0; opacity: 0; animation-fill-mode: both; animation-timing-function: ease-out; }
-.sp-screenfx__tint { animation-name: sp-fx-tint; mix-blend-mode: overlay; }
-.sp-screenfx__tint--fire { background: radial-gradient(ellipse at 50% 55%, rgba(255, 150, 40, 0.85), rgba(170, 30, 0, 0.75) 60%, rgba(60, 0, 0, 0.9)); backdrop-filter: sepia(0.6) saturate(2.6) hue-rotate(-15deg); }
-.sp-screenfx__tint--water { background: radial-gradient(ellipse at 50% 55%, rgba(170, 230, 255, 0.7), rgba(20, 90, 200, 0.8)); backdrop-filter: hue-rotate(165deg) saturate(1.5) brightness(1.1); }
-.sp-screenfx__tint--wind { background: radial-gradient(ellipse at 50% 55%, rgba(200, 255, 230, 0.6), rgba(40, 160, 110, 0.7)); backdrop-filter: blur(1.5px) saturate(1.4); }
-.sp-screenfx__tint--earth { background: radial-gradient(ellipse at 50% 60%, rgba(200, 150, 70, 0.7), rgba(80, 45, 10, 0.9)); backdrop-filter: sepia(1) contrast(1.35); }
-.sp-screenfx__tint--holy { background: radial-gradient(ellipse at 50% 50%, rgba(255, 255, 240, 1), rgba(255, 220, 140, 0.6)); mix-blend-mode: screen; backdrop-filter: brightness(1.7) saturate(0.3); }
-.sp-screenfx__tint--dark { background: radial-gradient(ellipse at 50% 50%, rgba(120, 30, 170, 0.35), rgba(20, 0, 30, 0.85)); mix-blend-mode: normal; backdrop-filter: invert(0.9) hue-rotate(180deg) contrast(1.5); }
-.sp-screenfx__tint--none { background: radial-gradient(ellipse at 50% 50%, rgba(220, 200, 255, 0.5), rgba(60, 40, 90, 0.7)); backdrop-filter: contrast(1.35); }
+/* Plain washes of color, faded by opacity alone: a backdrop-filter or blend over the whole screen redrew
+   every pixel each frame, and spells stuttered (Josh: frame loss on Ember and the Sprouts' bursts). */
+.sp-screenfx__tint { animation-name: sp-fx-tint; will-change: opacity; }
+.sp-screenfx__tint--fire { background: radial-gradient(ellipse at 50% 55%, rgba(255, 150, 40, 0.32), rgba(170, 30, 0, 0.42) 60%, rgba(60, 0, 0, 0.62)); }
+.sp-screenfx__tint--water { background: radial-gradient(ellipse at 50% 55%, rgba(170, 230, 255, 0.26), rgba(20, 90, 200, 0.46)); }
+.sp-screenfx__tint--wind { background: radial-gradient(ellipse at 50% 55%, rgba(200, 255, 230, 0.22), rgba(40, 160, 110, 0.4)); }
+.sp-screenfx__tint--earth { background: radial-gradient(ellipse at 50% 60%, rgba(200, 150, 70, 0.28), rgba(80, 45, 10, 0.6)); }
+.sp-screenfx__tint--holy { background: radial-gradient(ellipse at 50% 50%, rgba(255, 255, 240, 0.7), rgba(255, 220, 140, 0.3)); }
+.sp-screenfx__tint--dark { background: radial-gradient(ellipse at 50% 50%, rgba(120, 30, 170, 0.3), rgba(20, 0, 30, 0.78)); }
+.sp-screenfx__tint--none { background: radial-gradient(ellipse at 50% 50%, rgba(220, 200, 255, 0.22), rgba(60, 40, 90, 0.45)); }
 @keyframes sp-fx-tint { 0% { opacity: 0; } 10% { opacity: 1; } 28% { opacity: 0.3; } 42% { opacity: 0.85; } 100% { opacity: 0; } }
-.sp-screenfx__crit { background: radial-gradient(ellipse at center, transparent 50%, rgba(170, 10, 10, 0.8)); animation-name: sp-fx-crit; }
+.sp-screenfx__crit { background: radial-gradient(ellipse at center, transparent 50%, rgba(170, 10, 10, 0.8)); animation-name: sp-fx-crit; will-change: opacity; }
 @keyframes sp-fx-crit { 0% { opacity: 0; } 12% { opacity: 1; } 100% { opacity: 0; } }
 [data-motion="reduced"] .sp-screenfx { display: none; }
 @media (prefers-reduced-motion: reduce) { .sp-screenfx { display: none; } }
@@ -300,7 +308,9 @@
 .sp-unit__aim small { color: #e08a7a; font-weight: 400; }
 .sp-unit__aim .sp-unit__read { display: block; color: #c8b98a; font-size: 0.85em; white-space: normal; max-width: 16em; }
 /* The command bar stays in view at the bottom of the screen. */
-.sp-battle > .sp-command { position: sticky; bottom: 0; z-index: 6; background: rgba(14, 8, 10, 0.96); border-color: rgba(215, 180, 90, 0.45); box-shadow: 0 -6px 18px rgba(0, 0, 0, 0.6); }
+/* The speed buttons and the orders share one footer pinned to the bottom, so neither covers the other. */
+.sp-battle__foot { position: sticky; bottom: 0; z-index: 6; display: grid; gap: 6px; margin: 0 -16px -12px; padding: 4px 16px 12px; background: rgba(7, 6, 10, 0.94); }
+.sp-battle__foot > .sp-command { background: rgba(14, 8, 10, 0.96); border-color: rgba(215, 180, 90, 0.45); box-shadow: 0 -6px 18px rgba(0, 0, 0, 0.6); }
 @media (prefers-reduced-motion: reduce) { .sp-unit__marker, .sp-unit.is-acting::after, .sp-unit.is-targetable { animation: none; } }
 [data-motion="reduced"] .sp-unit__marker, [data-motion="reduced"] .sp-unit.is-acting::after, [data-motion="reduced"] .sp-unit.is-targetable { animation: none; }
 /* An area choice: the cells it will cover from the cursor, in red. */
@@ -388,3 +398,17 @@ button.sp-injury__die.is-waiting:hover, button.sp-injury__die.is-waiting:focus-v
   padding: 6px 9px; background: #0d0e10; border: 1px solid var(--line-hi, #46474c); border-radius: 4px; box-shadow: 0 6px 20px rgba(0, 0, 0, 0.7);
   color: var(--text, #d2c7ad); font-style: normal; font-size: 0.8rem; line-height: 1.35; text-align: left; white-space: normal;
 }
+
+/* Statuses on the field (Josh 2026-11-03): a badge for each above the HP bar, and an outline in the color
+   of the worst ailment. The outline is static, so it costs nothing per frame. */
+.sp-unit__marks { position: absolute; top: -6px; left: 0; z-index: 2; display: flex; gap: 2px; pointer-events: auto; }
+.sp-unit__marks i { display: grid; place-items: center; width: 19px; height: 19px; border-radius: 50%; font: 700 12px/1 system-ui, sans-serif; font-style: normal; color: var(--c); background: rgba(8, 6, 10, 0.88); border: 1px solid var(--c); box-shadow: 0 0 4px var(--c); }
+.sp-unit__marks i.is-more { width: auto; padding: 0 4px; border-radius: 8px; color: #ddd; border-color: #777; box-shadow: none; }
+.sp-unit.is-tinted .sp-unit__sprite, .sp-unit.is-tinted .sp-unit__scion { filter: drop-shadow(1px 0 0 var(--tint)) drop-shadow(-1px 0 0 var(--tint)) drop-shadow(0 1px 0 var(--tint)) drop-shadow(0 -1px 0 var(--tint)) drop-shadow(0 0 5px var(--tint)); }
+
+/* A foe that falls is struck white, then greys and sinks away on the same turn, not after the next one
+   (Josh: "enemies are persisting on the map when they have 0 hp, greyed out til another scion acts"). */
+.sp-unit.is-dead:not(.sp-unit--party) { opacity: 1; filter: none; pointer-events: none; animation: sp-unit-fall 900ms 280ms ease-in both; }
+@keyframes sp-unit-fall { 0% { opacity: 1; filter: none; } 20% { opacity: 1; filter: brightness(2.2) saturate(0); } 55% { opacity: 0.7; filter: grayscale(1) brightness(0.6); } 100% { opacity: 0; filter: grayscale(1) brightness(0.3); transform: translateY(14px); } }
+@media (prefers-reduced-motion: reduce) { .sp-unit.is-dead:not(.sp-unit--party) { animation: none; opacity: 0; } }
+[data-motion="reduced"] .sp-unit.is-dead:not(.sp-unit--party) { animation: none; opacity: 0; }

@@ -11,6 +11,7 @@ import CommandBar, { type Aiming } from "./CommandBar";
 import { Emblem, HERALDRY_COLORS } from "./Emblem";
 import ScionSprite, { animFor, lookOf, type Anim } from "./ScionSprite";
 import { spriteOf } from "./sprites";
+import { statusLook, tintOf } from "./statusLook";
 import { injuryCue, playSounds, soundsOf } from "./sfx";
 import "./BattleScreen.css";
 
@@ -254,6 +255,8 @@ export default function BattleScreen({ replay, view, onClose, waiting = 0, fullL
   const token = (u: ReplayUnit) => {
     const v = vit.get(u.id)!;
     const [, hp, , , , col, row, flags] = v;
+    const marks = flags & FLAG.dead ? [] : [...new Set(v[9].map((x) => x.split("@")[0]!))];
+    const tint = tintOf(marks);
     const x = u.side === "enemy" ? COLS - col - u.size[0] : col;
     const style: CSSProperties = {
       left: `${(x / COLS) * 100}%`,
@@ -261,6 +264,7 @@ export default function BattleScreen({ replay, view, onClose, waiting = 0, fullL
       width: `${(u.size[0] / COLS) * 100}%`,
       height: `${(u.size[1] / ROWS) * 100}%`,
       ...(color(u) ? { ["--ring" as string]: color(u) } : {}),
+      ...(tint ? { ["--tint" as string]: tint } : {}),
     };
     const state = flags & FLAG.dead ? " is-dead" : flags & FLAG.down ? " is-down" : flags & FLAG.lastStand ? " is-last-stand" : "";
     const mine = pops.filter((p) => p.target === u.id);
@@ -287,7 +291,7 @@ export default function BattleScreen({ replay, view, onClose, waiting = 0, fullL
         data-unit={u.id}
         onClick={aimed ? () => fire(aimed) : undefined}
         onMouseEnter={aimed && aiming ? () => setAiming({ ...aiming, cursor: aiming.cells.findIndex((c) => same(c, aimed)) }) : undefined}
-        className={`sp-unit sp-unit--${u.side}${aimed ? " is-targetable" : ""}${cursor ? " is-cursor" : ""}${u.boss ? " is-boss" : ""}${u.hazard ? " is-hazard" : ""}${actor === u.id ? " is-acting" : ""}${flags & FLAG.charging ? " is-charging" : ""}${state}`}
+        className={`sp-unit sp-unit--${u.side}${aimed ? " is-targetable" : ""}${cursor ? " is-cursor" : ""}${u.boss ? " is-boss" : ""}${u.hazard ? " is-hazard" : ""}${actor === u.id ? " is-acting" : ""}${flags & FLAG.charging ? " is-charging" : ""}${tint ? " is-tinted" : ""}${state}`}
         style={style}
         title={`${u.name}: ${hp}/${u.maxHp} HP${u.read ? `\n${readOf(u)}` : ""}`}
       >
@@ -313,6 +317,14 @@ export default function BattleScreen({ replay, view, onClose, waiting = 0, fullL
           </span>
         ) : null}
         {actor === u.id && !(flags & FLAG.dead) ? <span className="sp-unit__marker" aria-hidden="true" /> : null}
+        {marks.length ? (
+          <span className="sp-unit__marks" title={marks.map(statusText).join(", ")}>
+            {marks.slice(0, 4).map((m) => (
+              <i key={m} style={{ ["--c" as string]: statusLook(m).color }}>{statusLook(m).glyph}</i>
+            ))}
+            {marks.length > 4 ? <i className="is-more">+{marks.length - 4}</i> : null}
+          </span>
+        ) : null}
         <span className="sp-unit__hp" aria-hidden="true">
           <span style={{ width: `${pct(hp, u.maxHp)}%` }} />
         </span>
@@ -440,18 +452,20 @@ export default function BattleScreen({ replay, view, onClose, waiting = 0, fullL
       <div className="sp-battle__field">
         <div className="sp-battle__side">
           <Panel title="Enemies" units={side("enemy").filter((u) => !u.hazard)} vit={vit} actor={actor} />
-          <ol className={`sp-battle__log${fullLog ? " is-full" : ""}`} aria-label="Battle log" ref={log}>
-            {lines.map(([turn, e], i) => (
-              <li key={`${turn}:${i}`} className={turn === at ? "is-now" : undefined}>
-                <small>{turn + 1}. </small>
-                {replayLine(replay, e).replace(/\b(uses|begins) ([a-z_:]+)/, (_, v: string, id: string) => `${v} ${abilityName(id)}`)}
-              </li>
-            ))}
-          </ol>
         </div>
         <div className="sp-battle__planes" ref={planes}>
           {grid("enemy")}
-          <div className="sp-battle__gap" aria-hidden="true" />
+          {/* The log between the two sides (Josh: "it should be in the middle of the two battle sides"). */}
+          <div className="sp-battle__gap">
+            <ol className={`sp-battle__log${fullLog ? " is-full" : ""}`} aria-label="Battle log" ref={log}>
+              {lines.map(([turn, e], i) => (
+                <li key={`${turn}:${i}`} className={turn === at ? "is-now" : undefined}>
+                  <small>{turn + 1}. </small>
+                  {replayLine(replay, e).replace(/\b(uses|begins) ([a-z_:]+)/, (_, v: string, id: string) => `${v} ${abilityName(id)}`)}
+                </li>
+              ))}
+            </ol>
+          </div>
           {grid("party")}
           <BattleFx planes={planes} strikes={strikes} turn={at} speed={speed} />
           {injury && injury.t === "injury" ? <Injury key={at} e={injury} name={name(injury.target)} mine={mine} rolled={rolledAt === at} onRolled={() => setRolledAt(at)} sound={sound} /> : null}
@@ -467,6 +481,7 @@ export default function BattleScreen({ replay, view, onClose, waiting = 0, fullL
       </div>
       {intro ? <Intro replay={replay} onGo={() => setIntro(false)} /> : null}
       {!live && at >= last && end ? <Ending replay={replay} vit={vit} end={end} onClose={onClose} again={() => { setAt(0); setPlaying(true); }} waiting={waiting} /> : null}
+      <div className="sp-battle__foot">
       {live ? (
         <div className="sp-battle__controls">
           {at < last - 1 ? (
@@ -535,6 +550,7 @@ export default function BattleScreen({ replay, view, onClose, waiting = 0, fullL
           </p>
         )
       ) : null}
+      </div>
     </div>
   );
 }
@@ -562,7 +578,15 @@ function Panel({ title, units, vit, actor, color, badge }: { title: string; unit
                   <Durability dur={dur} max={u.maxDur ?? []} />
                 </>
               ) : null}
-              {statuses.length ? <span className="sp-statuses">{[...new Set(statuses)].map(statusText).join(", ")}</span> : null}
+              {statuses.length ? (
+                <span className="sp-statuses">
+                  {[...new Set(statuses)].map((x) => (
+                    <span key={x} className="sp-statuses__one" style={{ ["--c" as string]: statusLook(x).color }}>
+                      <i aria-hidden="true">{statusLook(x).glyph}</i> {statusText(x)}
+                    </span>
+                  ))}
+                </span>
+              ) : null}
             </li>
           );
         })}

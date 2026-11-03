@@ -2,6 +2,15 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-03 (implementation, Milestone 8by): a battle screen that fits and keeps its frames; read the event before the fight
+
+Josh's playtest: **"the actions and 1 2 4 speed toggles are still kinda clipping"**, **"the combat log is on the left, it should be in the middle of the two battle sides"**, **"enemies are persisting on the map when they have 0 hp, greyed out til another scion acts"**, **"there should be more visible status ailment icons, and in some cases outline tinting for sprites"**, **"sprout particle explosion attack also causes frame loss, similar to ember ... investigate it for all particles like that"**, and **"it's still not letting me process what happens in events, just putting me straight into combat"**.
+- **Frame loss, measured.** A headless 20-second Tree King fight at 1x counted frames over 50 ms while switching effects off one at a time. The cost was not the particles: it was the spell's full-screen wash (`backdrop-filter` with a blend mode, which re-filters every pixel of the screen each frame) and the `filter` on the tilted, tiled battle floor, redrawn whenever anything moved above it. Washes are now plain color gradients faded by opacity, the floor is darkened by a veil instead of a filter, and the bursts and flashes lost their blend modes. Long frames: 30 → 1. Every spell (Ember, the Sprouts' Creeping Root, Holy) used the same wash, so all are fixed together.
+- **Layout.** The log sits between the two grids. The speed buttons and the orders share one footer pinned to the bottom (two separately pinned bars covered each other when the screen scrolled), and the grids size to the window's height so nothing scrolls on a desktop screen. The selected speed reads gold on dark.
+- **The fallen.** A foe that dies flashes white, greys and sinks away on the turn it dies (it still leaves the grid a turn later, as before, but is invisible by then). A fallen Scion stays, faded.
+- **Statuses.** Each sprite carries a badge per status (glyph and color in `statusLook.ts`, names on hover); ailments you must notice (poison, bleeding, burning, frozen, stopped, stunned, asleep, slowed, rooted, afraid, mad, confused, charmed, berserk, hexed, marked) also outline the sprite in their color. The outline is static, so it costs nothing per frame. The side panels list statuses with the same glyphs.
+- **Events before fights.** When an event's outcome starts a battle, the outcome card now comes first, ending "Steel is drawn" with a **To arms** button; the battle opens after it.
+
 ## 2026-11-03 (implementation, Milestone 8bx): options only some parties have
 
 Josh's playtest: **"really engage with all the traits all the gear the jobs"**. Following 8bv's `only` rules:

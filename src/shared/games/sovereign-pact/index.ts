@@ -45,6 +45,7 @@ export * as Content from "./content.ts";
 export { itemName, TIER_NAMES } from "./loot.ts";
 export { nominable } from "./events.ts";
 export { FLAG, replayLine, type Replay, type ReplayUnit, type Vitals } from "./combat/replay.ts";
+export { meta as statusMeta } from "./combat/status.ts";
 export type { Aim, Choice, ComboMove, ComboView, Command, FightView, TurnView } from "./fight.ts";
 export { fitsPattern } from "./combat/combos.ts";
 export type { Cell } from "./combat/types.ts";
