@@ -37,6 +37,16 @@ describe("founding a House (§5.1)", () => {
     expect(sendMove).toHaveBeenCalledWith({ type: "design", house: { seat: seat.id } });
   });
 
+  it("chooses a Settlement theme from the game's music", () => {
+    const { view } = founding();
+    const sendMove = vi.fn();
+    render(<HouseDesigner view={view} sendMove={sendMove} />);
+    fireEvent.click(screen.getByRole("tab", { name: "Theme" }));
+    expect(screen.queryByRole("button", { name: /Reroll/ })).toBeNull();
+    fireEvent.click(screen.getByRole("button", { name: "Winter Sky" }));
+    expect(sendMove).toHaveBeenCalledWith({ type: "design", house: { theme: "winter-sky" } });
+  });
+
   it("keeps a set of traits only when it has a shape §5.7 allows, and the rules agree", () => {
     const { s, view } = founding();
     const h = view.houses[0]!;

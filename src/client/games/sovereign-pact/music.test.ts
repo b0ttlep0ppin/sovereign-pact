@@ -37,6 +37,11 @@ describe("the music", () => {
     expect(sceneTrack(g.view(s, "p1"))).toBe(SETTLEMENT_THEMES[0]);
     expect(sceneTrack(g.view(s, "p2"))).toBe(SETTLEMENT_THEMES[1]);
     expect(sceneTrack(g.view({ ...s, phase: "founding" }, "p1"))).toBe("the-faded-rose");
+    // A theme chosen at founding (§5.9) plays in town, and at founding once chosen.
+    s.houses[1]!.theme = "winter-sky";
+    expect(sceneTrack(g.view(s, "p2"))).toBe("winter-sky");
+    expect(sceneTrack(g.view({ ...s, phase: "founding" }, "p2"))).toBe("winter-sky");
+    expect(sceneTrack(g.view(s, "p1"))).toBe(SETTLEMENT_THEMES[0]);
     for (const id of new Set(Object.keys(TRACKS))) expect(existsSync(join(DIR, `${id}.ogg`))).toBe(true);
   });
 });

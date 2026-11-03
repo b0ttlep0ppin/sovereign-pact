@@ -1,17 +1,18 @@
 :root {
-  /* Soot, old bronze, parchment and dried blood (SPEC §15.1: the background is the darkest thing). */
+  /* Soot, slate, old bronze, worn parchment and dried blood, all muted (SPEC §15.1: the background is the
+     darkest thing; Josh's playtest: "a bit darker and less contrast between the colors, more muted overall"). */
   --bg: #0b0909;
-  --panel: #15110e;
-  --panel-hi: #1d1712;
-  --line: #3b2f24;
-  --line-hi: #6a5236;
-  --text: #e4d7b9;
-  --muted: #a08f76;
-  --accent: #b88c3e;
-  --gold: #dcb55e;
-  --gold-dim: #4a3818;
-  --blood: #5a1512;
-  --blood-hi: #8e241d;
+  --panel: #131416;
+  --panel-hi: #18191c;
+  --line: #2a2b2f;
+  --line-hi: #46474c;
+  --text: #d2c7ad;
+  --muted: #8f8370;
+  --accent: #9c7a3e;
+  --gold: #c4a45c;
+  --gold-dim: #3d3018;
+  --blood: #331816;
+  --blood-hi: #4e2420;
   --danger: #cf4a3c;
   --display: "Jacquard 12", "Pixelify Sans", Georgia, serif;
   --body: "Alegreya Sans", "Gill Sans", "Segoe UI", sans-serif;
@@ -23,8 +24,8 @@ body {
   color: var(--text);
   font: 16px/1.45 var(--body);
   background:
-    radial-gradient(ellipse 120% 60% at 50% -10%, rgba(120, 70, 30, 0.22), transparent 60%),
-    radial-gradient(ellipse 100% 50% at 50% 110%, rgba(110, 20, 16, 0.25), transparent 60%),
+    radial-gradient(ellipse 120% 60% at 50% -10%, rgba(90, 80, 70, 0.12), transparent 60%),
+    radial-gradient(ellipse 100% 50% at 50% 110%, rgba(80, 20, 16, 0.14), transparent 60%),
     repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.012) 0 1px, transparent 1px 3px),
     var(--bg);
   background-attachment: fixed;
@@ -37,13 +38,13 @@ body {
 .app__main { max-width: 1200px; margin: 0 auto; padding: 16px; }
 .app__button { font: inherit; font-variant: small-caps; letter-spacing: 0.04em; padding: 8px 14px; min-height: 40px; border-radius: 2px; border: 1px solid var(--line-hi); background: linear-gradient(var(--panel-hi), var(--panel)); color: var(--text); cursor: pointer; }
 .app__button:hover { border-color: var(--accent); }
-.app__button--primary { background: linear-gradient(var(--blood-hi), var(--blood)); border-color: var(--accent); color: var(--text); font-weight: 700; box-shadow: inset 0 1px 0 rgba(255, 210, 150, 0.15), 0 0 0 1px #000; }
 .app__button:focus-visible, select:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-select, input { font: inherit; background: #0e0b09; color: var(--text); border: 1px solid var(--line); border-radius: 2px; padding: 6px 8px; box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.7); }
+select, input { font: inherit; background: #0d0e10; color: var(--text); border: 1px solid var(--line); border-radius: 2px; padding: 6px 8px; box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.7); }
 input[type="checkbox"], input[type="radio"], input[type="range"] { accent-color: var(--accent); box-shadow: none; }
 input[type="range"] { padding: 0; background: transparent; border: none; }
 .app__new { display: grid; gap: 16px; max-width: 560px; margin: 24px auto; }
-.app__card { display: grid; gap: 12px; background: linear-gradient(var(--panel-hi), var(--panel)); border: 1px solid var(--line); border-radius: 2px; padding: 18px; box-shadow: inset 0 0 0 3px var(--panel), inset 0 0 0 4px rgba(184, 140, 62, 0.18), 0 6px 20px rgba(0, 0, 0, 0.6); }
+/* A card on the host's own screens wears the game's slate panel (.sp-panel). */
+.app__card { display: grid; gap: 12px; }
 .app__card h2 { margin: 0; font: 400 1.7rem/1 var(--display); color: var(--gold); }
 .app__card p { margin: 0; color: var(--muted); }
 .app__card fieldset { display: grid; gap: 8px; border: 1px solid var(--line); border-radius: 2px; padding: 10px; }
