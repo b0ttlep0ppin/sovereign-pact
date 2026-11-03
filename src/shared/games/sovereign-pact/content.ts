@@ -486,6 +486,19 @@ export interface BuildingDef {
   produces?: Exclude<Material, "essence">;
   /** What each level does, as shown in Crunch. */
   levels: string[];
+  /** Once-a-Year orders (Josh 2026-11-03: "only Year orders"), each from a building level up. */
+  orders?: BuildingOrder[];
+}
+/** A Year order: what it costs (materials, rare ones too), whether it falls on a chosen Scion, and what it does. */
+export interface BuildingOrder {
+  id: string;
+  level: 1 | 2 | 3;
+  name: string;
+  cost: Partial<Record<string, number>>;
+  /** The House names one of its Scions, on whom `scion: { who: "champion" }` effects fall. */
+  person?: true;
+  text: string;
+  effects: TownEffect[];
 }
 export const BUILDINGS = buildingsJson.buildings as readonly BuildingDef[];
 export const BUILDING_BY_ID = byId(BUILDINGS);

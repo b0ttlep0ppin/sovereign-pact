@@ -36,6 +36,7 @@ import { botPress, cannotRetreat, home, pressOn } from "./journey.ts";
 import { cannotCommand, command } from "./fight.ts";
 import { botDecide, botPicksFor, cannotDecide, decide } from "./events.ts";
 import { cannotLay, lay } from "./altar.ts";
+import { cannotOrder, giveOrder } from "./orders.ts";
 import { botDraft, cannotDraft, draftPick } from "./loot.ts";
 import { botField, botLeader, cannotField, cannotLead, field, voteLeader, waiting } from "./expedition.ts";
 
@@ -350,6 +351,15 @@ export function applyMove(state: SovState, playerId: PlayerId, move: SovMove): M
       const why = cannotBuy(s, house, move.item);
       if (why) return fail(why);
       buy(s, house, move.item);
+      s.phaseMoves += 1;
+      return { ok: true, state: s };
+    }
+    case "order": {
+      if (s.phase !== "settlement") return fail("Orders are given in the Settlement Phase.");
+      if (h.sealed) return fail("Unseal the Year first.");
+      const why = cannotOrder(s, house, move.building, move.order, move.person);
+      if (why) return fail(why);
+      giveOrder(s, house, move.building, move.order, move.person);
       s.phaseMoves += 1;
       return { ok: true, state: s };
     }

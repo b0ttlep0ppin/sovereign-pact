@@ -28,7 +28,7 @@ describe("House buildings (§8.3–8.4)", () => {
     s.commons.gold = 100;
     s = move(s, "p1", { type: "build", building: "farm" });
     const builds = view(s, "p1").mine!.builds;
-    expect(builds.find((b) => b.id === "farm")).toEqual({ id: "farm", level: 1, cost: buildCost("farm", 1), why: null });
+    expect(builds.find((b) => b.id === "farm")).toEqual({ id: "farm", level: 1, cost: buildCost("farm", 1), why: null, orders: [] });
     expect(builds.find((b) => b.id === "quarry")!.why).toMatch(/busy/);
     const open = view(s, "p1").mine!.projects;
     expect(open.find((p) => p.id === "granary")).toMatchObject({ level: 1, propose: null });

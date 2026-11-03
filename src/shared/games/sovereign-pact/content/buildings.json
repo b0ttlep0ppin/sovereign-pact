@@ -4,101 +4,153 @@
       "id": "training_ground",
       "name": "Training Ground",
       "cost": "standard",
-      "levels": ["1 Mentor seat (2 students).", "2 Mentor seats; students +50% JP.", "3 Mentor seats; trained recruits promote at level 5."]
+      "levels": ["1 Mentor seat (2 students).", "2 Mentor seats; students +50% JP.", "3 Mentor seats; trained recruits promote at level 5."],
+      "orders": [
+        {"id": "drill", "level": 1, "name": "Drill a Scion hard", "cost": {"iron": 8}, "person": true, "text": "One Scion trains with real blades all Year: +120 XP and +60 JP.", "effects": [{"scion": {"who": "champion", "xp": 120, "jp": 60}}]}
+      ]
     },
     {
       "id": "scriptorium",
       "name": "Scriptorium",
       "cost": "standard",
-      "levels": ["Insight 1.", "Insight 2.", "Insight 3; once a Year, peek one expedition event."]
+      "levels": ["Insight 1.", "Insight 2.", "Insight 3; once a Year, peek one expedition event."],
+      "orders": [
+        {"id": "copy", "level": 1, "name": "Copy the bestiary", "cost": {"timber": 10}, "text": "The scribes copy out what the expeditions saw: +2 Lore.", "effects": [{"score": {"lore": 2}}]}
+      ]
     },
     {
       "id": "infirmary",
       "name": "Infirmary",
       "cost": "standard",
-      "levels": ["Moderate injuries heal 1 Year sooner.", "2 Scions treated per Year; disease immunity in town.", "A Devastating injury may be downgraded once per campaign."]
+      "levels": ["Moderate injuries heal 1 Year sooner.", "2 Scions treated per Year; disease immunity in town.", "A Devastating injury may be downgraded once per campaign."],
+      "orders": [
+        {"id": "surgery", "level": 1, "name": "Surgery", "cost": {"essence": 2, "gold": 15}, "person": true, "text": "The surgeons reopen an old wound to set it right: one Scion's oldest lasting Moderate injury mends, and Sanity +10.", "effects": [{"scion": {"who": "champion", "mend": true, "sanity": 10}}]}
+      ]
     },
     {
       "id": "chapel",
       "name": "Chapel",
       "cost": "standard",
-      "levels": ["Sanity +25% per Year in town; a 2nd promotion slot.", "Mental ailment resist +10% for House Scions.", "Resurrection and redemption events become possible."]
+      "levels": ["Sanity +25% per Year in town; a 2nd promotion slot.", "Mental ailment resist +10% for House Scions.", "Resurrection and redemption events become possible."],
+      "orders": [
+        {"id": "vigil", "level": 1, "name": "Keep a vigil", "cost": {"grain": 10, "essence": 2}, "text": "A night of prayer against the Rift: Doom −1, and up to four of your Scions Sanity +15.", "effects": [{"doom": -1}, {"scion": {"sanity": 15, "count": 4, "who": "maddest"}}]}
+      ]
     },
     {
       "id": "forge",
       "name": "Forge",
       "cost": "standard",
-      "levels": ["Craft tier 1 weapons and armor; repair.", "Tier 2; reforge (reroll one gear property).", "Tier 3; rare-material recipes."]
+      "levels": ["Year order: craft a Common weapon or piece of armour.", "Year order: craft a Fine piece.", "Year order: forge a Masterwork with Wyrmbone."],
+      "orders": [
+        {"id": "craft", "level": 1, "name": "Craft a Common piece", "cost": {"iron": 15, "timber": 5}, "text": "A Common weapon or piece of armour, its properties rolled.", "effects": [{"item": {"tier": 2}}]},
+        {"id": "masterwork", "level": 2, "name": "Craft a Fine piece", "cost": {"iron": 30, "stone": 10}, "text": "A Fine weapon or piece of armour, its properties rolled.", "effects": [{"item": {"tier": 3}}]},
+        {"id": "wyrmforge", "level": 3, "name": "Forge with Wyrmbone", "cost": {"iron": 30, "wyrmbone": 1}, "text": "A Masterwork, quenched in dragon marrow.", "effects": [{"item": {"tier": 4}}]}
+      ]
     },
     {
       "id": "workshop",
       "name": "Workshop",
       "cost": "standard",
-      "levels": ["Consumables; Tinkerers start with +1 Component.", "Thrown weapons, traps, prosthetics.", "Constructs can be pre-built for battle."]
+      "levels": ["Tinkerers start with +1 Component; Year order: pack Firebombs.", "Year order: build Caltrops and a Net.", "Year order: grind Voidglass into Lanterns and Signal Flares."],
+      "orders": [
+        {"id": "bombs", "level": 1, "name": "Pack firebombs", "cost": {"timber": 10, "iron": 5}, "text": "Two Firebombs for the stores.", "effects": [{"consumable": {"id": "firebomb", "n": 2}}]},
+        {"id": "traps", "level": 2, "name": "Build traps", "cost": {"timber": 10, "iron": 10}, "text": "Two sets of Caltrops and a Net.", "effects": [{"consumable": {"id": "caltrops", "n": 2}}, {"consumable": {"id": "net", "n": 1}}]},
+        {"id": "voidlamps", "level": 3, "name": "Grind Voidglass lenses", "cost": {"iron": 10, "voidglass": 1}, "text": "Two Lanterns and two Signal Flares that burn in any dark.", "effects": [{"consumable": {"id": "lantern", "n": 2}}, {"consumable": {"id": "signal_flare", "n": 2}}]}
+      ]
     },
     {
       "id": "hall_of_petitions",
       "name": "Hall of Petitions",
       "cost": "standard",
-      "levels": ["Recruit arrival +25%.", "Choose between 2 arriving recruits.", "Recruits arrive with Insight 1 revealed."]
+      "levels": ["Recruit arrival +25%.", "Choose between 2 arriving recruits.", "Recruits arrive with Insight 1 revealed."],
+      "orders": [
+        {"id": "feast", "level": 1, "name": "Feast the petitioners", "cost": {"grain": 20}, "text": "Word spreads of your table: a recruit joins your pool.", "effects": [{"recruit_gain": 1}]}
+      ]
     },
     {
       "id": "vault",
       "name": "Vault",
       "cost": "expensive",
-      "levels": ["Treasury score +10%; immune to theft events.", "Treasury score +20%; 5% interest a Year on Gold.", "Treasury score +30%; Relics score +10%."]
+      "levels": ["Treasury score +10%; immune to theft events.", "Treasury score +20%; 5% interest a Year on Gold.", "Treasury score +30%; Relics score +10%."],
+      "orders": [
+        {"id": "silence", "level": 2, "name": "Buy silence", "cost": {"gold": 30}, "text": "Debts quietly bought, mouths quietly shut: +2 Intrigue.", "effects": [{"score": {"intrigue": 2}}]}
+      ]
     },
     {
       "id": "shrine",
       "name": "Shrine",
       "cost": "expensive",
-      "levels": ["Essence +2 per Year; affinity +5% for House Scions.", "Element spells −10% MP.", "Once per expedition, one Scion is immune to the House's element for a battle."]
+      "levels": ["Essence +2 per Year; affinity +5% for House Scions.", "Element spells −10% MP.", "Once per expedition, one Scion is immune to the House's element for a battle."],
+      "orders": [
+        {"id": "bless", "level": 1, "name": "Bless a Scion", "cost": {"essence": 3}, "person": true, "text": "The House's saint walks with one Scion: Devout for a Year.", "effects": [{"scion": {"who": "champion", "blessing": {"trait": "devout", "years": 1}}}]}
+      ]
     },
     {
       "id": "crypt",
       "name": "Crypt",
       "cost": "expensive",
-      "levels": ["A Chronicle; Sanity loss from a Scion's death −50%.", "Haunting events can be bargained with.", "The dead can be asked one question per Year."]
+      "levels": ["A Chronicle; Sanity loss from a Scion's death −50%.", "Haunting events can be bargained with.", "The dead can be asked one question per Year."],
+      "orders": [
+        {"id": "ask", "level": 3, "name": "Ask the dead", "cost": {"essence": 3, "hollow_ivory": 1}, "person": true, "text": "The dead teach one Scion what they learned too late: +150 JP and +2 Lore, Sanity −10.", "effects": [{"scion": {"who": "champion", "jp": 150, "sanity": -10}}, {"score": {"lore": 2}}]}
+      ]
     },
     {
       "id": "farm",
       "name": "Farm",
       "cost": "cheap",
       "produces": "grain",
-      "levels": ["+8 Grain per Year.", "+16 Grain per Year.", "+24 Grain per Year."]
+      "levels": ["+8 Grain per Year.", "+16 Grain per Year.", "+24 Grain per Year."],
+      "orders": [
+        {"id": "farm_nightshift", "level": 1, "name": "Work through the night", "cost": {"gold": 10}, "text": "Lamps in the fields till dawn: +10 Grain.", "effects": [{"resources": {"grain": 10}}]}
+      ]
     },
     {
       "id": "lumber_camp",
       "name": "Lumber Camp",
       "cost": "cheap",
       "produces": "timber",
-      "levels": ["+8 Timber per Year.", "+16 Timber per Year.", "+24 Timber per Year."]
+      "levels": ["+8 Timber per Year.", "+16 Timber per Year.", "+24 Timber per Year."],
+      "orders": [
+        {"id": "lumber_camp_nightshift", "level": 1, "name": "Work through the night", "cost": {"gold": 10}, "text": "Axes by torchlight: +10 Timber.", "effects": [{"resources": {"timber": 10}}]}
+      ]
     },
     {
       "id": "quarry",
       "name": "Quarry",
       "cost": "cheap",
       "produces": "stone",
-      "levels": ["+8 Stone per Year.", "+16 Stone per Year.", "+24 Stone per Year."]
+      "levels": ["+8 Stone per Year.", "+16 Stone per Year.", "+24 Stone per Year."],
+      "orders": [
+        {"id": "quarry_nightshift", "level": 1, "name": "Work through the night", "cost": {"gold": 10}, "text": "The quarry never sleeps: +10 Stone.", "effects": [{"resources": {"stone": 10}}]}
+      ]
     },
     {
       "id": "mine",
       "name": "Mine",
       "cost": "cheap",
       "produces": "iron",
-      "levels": ["+8 Iron per Year.", "+16 Iron per Year.", "+24 Iron per Year; one random rare material every 3 Years."]
+      "levels": ["+8 Iron per Year.", "+16 Iron per Year.", "+24 Iron per Year; one random rare material every 3 Years."],
+      "orders": [
+        {"id": "mine_nightshift", "level": 1, "name": "Work through the night", "cost": {"gold": 12}, "text": "Deeper and longer: +10 Iron.", "effects": [{"resources": {"iron": 10}}]}
+      ]
     },
     {
       "id": "kennels",
       "name": "Kennels",
       "cost": "standard",
-      "levels": ["Beast companions in Sorties.", "Conjurer beast summons +15% HP.", "Alterer beast forms last longer."]
+      "levels": ["Beast companions in Sorties.", "Conjurer beast summons +15% HP.", "Alterer beast forms last longer."],
+      "orders": [
+        {"id": "hound", "level": 1, "name": "Give a Scion a hound", "cost": {"grain": 15}, "person": true, "text": "A war-hound runs at one Scion's heel: Keen-Eyed for a Year.", "effects": [{"scion": {"who": "champion", "blessing": {"trait": "keen_eyed", "years": 1}}}]}
+      ]
     },
     {
       "id": "watchtower",
       "name": "Watchtower",
       "cost": "standard",
-      "levels": ["Preview next Year's settlement event category.", "Ambush events on expeditions: your Scions act first.", "Preview the exact event."]
+      "levels": ["Preview next Year's settlement event category.", "Ambush events on expeditions: your Scions act first.", "Preview the exact event."],
+      "orders": [
+        {"id": "fires", "level": 1, "name": "Light the signal fires", "cost": {"timber": 15}, "text": "Your tower burns all night over the city: Accord +2.", "effects": [{"accord": 2}]}
+      ]
     }
   ],
   "rareMaterials": [

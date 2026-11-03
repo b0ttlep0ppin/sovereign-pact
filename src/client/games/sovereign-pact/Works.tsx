@@ -46,6 +46,7 @@ export default function Works({ view, sendMove, canAct }: Props) {
                   Build, {costText(b.cost)}
                 </button>
               ) : null}
+              {b.orders.length ? <Orders building={b.id} orders={b.orders} view={view} sendMove={sendMove} canAct={canAct} /> : null}
             </li>
           );
         })}
@@ -74,6 +75,50 @@ export default function Works({ view, sendMove, canAct }: Props) {
       <Standing view={view} open={mine.projects.map((p) => p.id)} />
       {mine.altar ? <Altar altar={mine.altar} sendMove={sendMove} canAct={canAct} /> : null}
     </section>
+  );
+}
+
+/** A building's Year orders (once a Year each building; Josh 2026-11-03: "only Year orders"). */
+function Orders({ building, orders, view, sendMove, canAct }: { building: string; orders: Mine["builds"][number]["orders"]; view: SovView; sendMove: Props["sendMove"]; canAct: boolean }) {
+  const defs = Content.BUILDING_BY_ID.get(building)?.orders ?? [];
+  const scions = view.people.filter((p) => p.host === view.me && (p.status === "scion" || p.status === "retired"));
+  const [who, setWho] = useState<number | undefined>(scions[0]?.id);
+  return (
+    <ul className="sp-orders" aria-label={`${Content.BUILDING_BY_ID.get(building)?.name ?? building} orders`}>
+      {orders.map((o) => {
+        const def = defs.find((d) => d.id === o.id);
+        if (!def) return null;
+        return (
+          <li key={o.id}>
+            <span>
+              <strong>{def.name}</strong> <small>Year order · {costText(def.cost)}</small>
+              <span className="sp-ability__text">{def.text}</span>
+            </span>
+            {def.person ? (
+              <label className="sp-amount-row">
+                <span>For</span>
+                <select value={who ?? ""} onChange={(e) => setWho(Number(e.target.value))}>
+                  {scions.map((p) => (
+                    <option key={p.id} value={p.id}>
+                      {p.name}
+                    </option>
+                  ))}
+                </select>
+              </label>
+            ) : null}
+            <button
+              type="button"
+              className="sp-button sp-button--quiet"
+              disabled={!canAct || !!o.why || (def.person && who === undefined)}
+              title={o.why ?? undefined}
+              onClick={() => sendMove(def.person ? { type: "order", building, order: o.id, person: who! } : { type: "order", building, order: o.id })}
+            >
+              Order
+            </button>
+          </li>
+        );
+      })}
+    </ul>
   );
 }
 
