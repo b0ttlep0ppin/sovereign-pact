@@ -21,6 +21,6 @@
     {"id": "lasting_wards", "name": "Lasting Wards", "points": 2, "jp": 200, "text": "Buffs you cast last +100 ticks.", "mods": {"buffTicks": 100}},
     {"id": "counterspell", "name": "Counterspell", "points": 3, "jp": 300, "text": "When an adjacent ally is targeted by a spell, a 25% chance to Dispel it.", "mods": {"counterspell": 25}},
     {"id": "thick_skin", "name": "Thick Skin", "points": 1, "jp": 100, "text": "Shell on self at battle start.", "mods": {"start.shell": 1}},
-    {"id": "ward_sense", "name": "Ward-Sense", "points": 1, "jp": 100, "text": "Enemy buffs are shown with their remaining ticks.", "later": true}
+    {"id": "ward_sense", "name": "Ward-Sense", "points": 1, "jp": 100, "text": "Enemy buffs are shown with their remaining ticks.", "mods": {"wardSense": 1}}
   ]
 }

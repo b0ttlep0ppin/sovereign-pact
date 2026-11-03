@@ -476,6 +476,15 @@
           "type": "boolean",
           "description": "Removes an enemy summon or add"
         },
+        "mpFromHp": {
+          "type": "number",
+          "minimum": 0,
+          "description": "MP gained per HP paid (Siphon)"
+        },
+        "bestElement": {
+          "type": "boolean",
+          "description": "Takes the element that hurts its targets most (Nova)"
+        },
         "desperate": {
           "type": "number",
           "minimum": 0,

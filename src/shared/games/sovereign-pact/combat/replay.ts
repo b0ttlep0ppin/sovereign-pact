@@ -4,6 +4,7 @@
 // screen never has to re-derive the rules. It lives on the state for the Year it was fought in and
 // never goes into a save (save.ts drops it).
 import { describeEvent } from "./render.ts";
+import { meta } from "./status.ts";
 import { simulate, type BattleSummary } from "./sim.ts";
 import { LOCATIONS } from "../state.ts";
 import type { Battle, BattleEvent, BattleOutcome, Combatant } from "./types.ts";
@@ -73,7 +74,8 @@ export const vitalsOf = (u: Combatant): Vitals => [
   u.row,
   flagsOf(u),
   u.dur ? LOCATIONS.map((l) => (u.broken.includes(l) ? -1 : u.dur![l])) : [],
-  u.statuses.map((s) => s.id),
+  // A Ward-Sensed foe's timed buffs carry their ticks left ("haste@120").
+  u.statuses.map((s) => (u.mods.sensed && s.ticks > 0 && meta(s.id).kind === "buff" ? `${s.id}@${s.ticks}` : s.id)),
 ];
 
 export const unitOf = (u: Combatant): ReplayUnit => ({

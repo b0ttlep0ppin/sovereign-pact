@@ -18,6 +18,6 @@
     {"id": "rising_spirit", "name": "Rising Spirit", "points": 2, "jp": 200, "text": "TP +20 at battle start.", "mods": {"tpStart": 20}},
     {"id": "counterpunch", "name": "Counterpunch", "points": 2, "jp": 200, "text": "Counter chance +25% unarmed.", "mods": {"unarmedCounter": 25}},
     {"id": "iron_fists", "name": "Iron Fists", "points": 1, "jp": 150, "text": "Unarmed weapon power = level × 2.", "mods": {"ironFists": 2}},
-    {"id": "second_breath", "name": "Second Breath", "points": 2, "jp": 200, "text": "Breath also cures Fear and Confusion.", "later": true}
+    {"id": "second_breath", "name": "Second Breath", "points": 2, "jp": 200, "text": "Breath also cures Fear and Confusion.", "mods": {"secondBreath": 1}}
   ]
 }

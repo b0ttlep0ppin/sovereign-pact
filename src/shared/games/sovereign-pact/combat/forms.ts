@@ -2,6 +2,7 @@
 // the Form's, its mods ride on a status, and Revert puts everything back with the Form's price.
 import type { Rng } from "../../../rng.ts";
 import { FORM_BY_ID, type FormDef } from "../content.ts";
+import { TUNING } from "../tuning.ts";
 import { isFree } from "./grid.ts";
 import { addStatus, extraOf, removeStatus } from "./status.ts";
 import type { AbilityDef, Battle, Combatant } from "./types.ts";
@@ -64,6 +65,8 @@ export function revert(b: Battle, u: Combatant): void {
     const mods = s.mods && Object.fromEntries(Object.entries(s.mods).map(([k, v]) => [k, Math.round(v * half)]));
     addStatus(b, u, s.id, Math.round(s.ticks * half), extraOf(undefined, mods));
   }
+  // Hybrid (§12.17): the Form's passive lingers a while.
+  if (u.mods.hybrid && def.graft) addStatus(b, u, "graft", TUNING.combat.jobs.hybridTicks, { mods: { ...def.graft } });
   if (r?.sanityPct && u.maxSanity) u.sanity = Math.max(0, u.sanity + Math.round((u.maxSanity * r.sanityPct * half) / 100));
   if (r?.durability && u.dur && u.maxDur) {
     const { loc, pct } = r.durability;

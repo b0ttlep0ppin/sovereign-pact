@@ -2,7 +2,7 @@
 // charging and resolving, and the end. Plain functions over a mutable `Battle`; callers clone first.
 import type { Rng } from "../../../rng.ts";
 import { TUNING } from "../tuning.ts";
-import { LOCATIONS } from "../state.ts";
+import { ELEMENTS, LOCATIONS, type Element } from "../state.ts";
 import { bossPhases, spawnAdds } from "./bosses.ts";
 import { fights, hazardStruck, springTrap } from "./hazards.ts";
 import { chargeTicks, moveCost, nextActor, step } from "./clock.ts";
@@ -12,7 +12,7 @@ import { canShift, feralPick, graft, revert, shift } from "./forms.ts";
 import { keepParts, missingParts, offerParts, spendParts } from "./parts.ts";
 import { playSong } from "./songs.ts";
 import { atCap, deathThroes, devour, hasRoom, openingSummons, raise, sacrifice, summon } from "./summons.ts";
-import { offHandStrike, strike } from "./damage.ts";
+import { affinityMult, offHandStrike, strike } from "./damage.ts";
 import { hasStatus, isFree, standing } from "./grid.ts";
 import { kill } from "./injury.ts";
 import { cannotUseItem, itemAbility, spendItem } from "./items.ts";
@@ -90,6 +90,8 @@ export function advance(b: Battle, rng: Rng): Combatant | undefined {
   if (!b.begun) {
     b.begun = true;
     openingSummons(b);
+    // Ward-Sense (§12.14): the foes' buffs show with the ticks they have left.
+    for (const side of ["party", "enemy"] as const) if (b.units.some((x) => x.side === side && x.mods.wardSense)) for (const x of b.units) if (x.side !== side) x.mods.sensed = 1;
   }
   while (!b.outcome) {
     const actor = nextActor(b, rng);
@@ -220,7 +222,10 @@ export function act(b: Battle, rng: Rng, u: Combatant, action: Action): void {
     const tp = tpCost(u, ab);
     if (ab.tp && !tp) u.flags.push("iaijutsu_used");
     u.tp -= tp;
-    u.hp -= hpCost(u, ab);
+    const paid = hpCost(u, ab);
+    u.hp -= paid;
+    // Siphon (§12.8): the blood paid comes back as MP.
+    if (ab.mpFromHp) u.mp = Math.min(u.maxMp, u.mp + Math.round(paid * ab.mpFromHp));
     if (ab.cooldown) u.cooldowns[ab.id] = ab.cooldown + 1;
     // Frenzy: attacks cost less.
     cost = ab.cost ?? (ab.song ? (u.mods.songCt ?? C.cost.song) : ab.id === "attack" ? (u.weapon.attackCost ?? C.cost.action) + (u.mods.attackCt ?? 0) : C.cost.action);
@@ -329,6 +334,8 @@ export function resolve(b: Battle, rng: Rng, u: Combatant, ab: AbilityDef, at: C
     ab = rolled.ab;
     if (rolled.self) targets = [u];
   }
+  // Nova (§12.8): the element that hurts what it covers most.
+  if (ab.bestElement && targets.length) ab = { ...ab, element: [...ELEMENTS].sort((x, y) => sumMult(targets, y) - sumMult(targets, x))[0]! };
   // Dirty Trick: one trick of several.
   if (ab.pick?.length) ab = { ...ab, ...rng.pick(ab.pick) };
   b.events.push({ t: "use", unit: u.id, ability: ab.id, target: homingOn !== undefined && targets[0] ? cellOf(targets[0]) : at });
@@ -395,6 +402,8 @@ export function resolve(b: Battle, rng: Rng, u: Combatant, ab: AbilityDef, at: C
   }
   checkEnd(b);
 }
+
+const sumMult = (ts: Combatant[], el: Element) => ts.reduce((n, t) => n + affinityMult(t, el), 0);
 
 /** Steal (§12.6): the target's newest buff moves to the thief; with none, a Guile % chance (once a foe) to lift a consumable. */
 function steal(b: Battle, rng: Rng, u: Combatant, t: Combatant): void {

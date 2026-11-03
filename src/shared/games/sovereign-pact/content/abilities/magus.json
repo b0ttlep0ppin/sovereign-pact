@@ -12,12 +12,12 @@
     {"id": "earthen_maw", "name": "Earthen Maw", "jp": 250, "text": "Earth 1.5× to a burst; targets cannot Move for 200 ticks.", "shape": "burst:3x3", "side": "foe", "power": 1.5, "kind": "magic", "element": "earth", "mp": 40, "charge": 200, "statuses": [{"id": "rooted", "chance": 100, "ticks": 200}], "homing": false},
     {"id": "dusk_needle", "name": "Dusk Needle", "jp": 100, "text": "Dark 1.1×, Blind chance.", "shape": "single", "side": "foe", "power": 1.1, "kind": "magic", "element": "dark", "mp": 10, "charge": 0, "statuses": [{"id": "blind", "chance": 30, "ticks": 0}]},
     {"id": "radiant_lance", "name": "Radiant Lance", "jp": 150, "text": "Holy 1.3×; ×2 against undead.", "shape": "single", "side": "foe", "power": 1.3, "kind": "magic", "element": "holy", "mp": 12, "charge": 50, "vs": {"undead": 2}},
-    {"id": "siphon", "name": "Siphon", "jp": 100, "text": "Convert 20% of max HP into MP (1 HP : 1.5 MP).", "shape": "self", "side": "self", "power": 0, "kind": "support", "later": true},
+    {"id": "siphon", "name": "Siphon", "jp": 100, "text": "Convert 20% of max HP into MP (1 HP : 1.5 MP).", "shape": "self", "side": "self", "power": 0, "kind": "support", "hpCost": 20, "mpFromHp": 1.5},
     {"id": "mind_blight", "name": "Mind Blight", "jp": 150, "text": "Sanity damage; Confusion chance.", "shape": "single", "side": "foe", "power": 0, "kind": "magic", "element": null, "mp": 20, "charge": 100, "sanity": 15, "statuses": [{"id": "confusion", "chance": 40, "ticks": 0}]},
-    {"id": "nova", "name": "Nova", "jp": 400, "text": "An element of choice 2.5× to a 5×5 burst; the caster is Stunned after.", "shape": "burst:5x5", "side": "foe", "power": 2.5, "kind": "magic", "element": null, "mp": 80, "charge": 400, "tp": 50, "later": true}
+    {"id": "nova", "name": "Nova", "jp": 400, "text": "2.5x to a 5x5 burst, in the element its targets fear most; the caster is Stunned after.", "shape": "burst:5x5", "side": "foe", "power": 2.5, "kind": "magic", "element": null, "mp": 80, "charge": 400, "tp": 50, "bestElement": true, "self": {"statuses": [{"id": "stun", "ticks": 100}]}}
   ],
   "passives": [
-    {"id": "elemental_mastery", "name": "Elemental Mastery", "points": 2, "jp": 200, "text": "Pick an element: its spells +15%, cost −10%.", "later": true},
+    {"id": "elemental_mastery", "name": "Elemental Mastery", "points": 2, "jp": 200, "text": "Spells of the birth House element (else the element most of your spells carry): +15%, cost -10%.", "mods": {"elementalMastery": 15}},
     {"id": "quickcast", "name": "Quickcast", "points": 3, "jp": 300, "text": "Charge times −25%.", "mods": {"chargePct": -25}},
     {"id": "glass_cannon", "name": "Glass Cannon", "points": 1, "jp": 150, "text": "Spell damage +15%; Head Durability −20%.", "mods": {"spellPct": 15, "headDurabilityPct": -20}},
     {"id": "mana_font", "name": "Mana Font", "points": 2, "jp": 200, "text": "MP +2 per 100 ticks.", "mods": {"mpPer100": 2}}

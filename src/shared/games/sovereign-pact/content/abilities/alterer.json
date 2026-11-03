@@ -14,7 +14,7 @@
   "passives": [
     {"id": "stable_flesh", "name": "Stable Flesh", "points": 2, "jp": 200, "text": "Revert debuffs halved.", "mods": {"stableFlesh": 1}},
     {"id": "long_shift", "name": "Long Shift", "points": 2, "jp": 200, "text": "Forms +150 ticks.", "mods": {"formTicks": 150}},
-    {"id": "hybrid", "name": "Hybrid", "points": 3, "jp": 300, "text": "Keep one Form aura for 100 ticks after Revert.", "later": true},
+    {"id": "hybrid", "name": "Hybrid", "points": 3, "jp": 300, "text": "After Revert, the Form's passive (as Graft gives it) stays on you for 100 ticks.", "mods": {"hybrid": 1}},
     {"id": "wild_blood", "name": "Wild Blood", "points": 1, "jp": 100, "text": "Feral Forms: a 50% chance each turn to choose the ability yourself.", "mods": {"wildBlood": 50}}
   ]
 }

@@ -66,6 +66,12 @@ interface Pop {
   tag?: string;
 }
 
+/** A status by name; a Ward-Sensed foe's buff with its ticks left ("haste@120" → "Haste (120)"). */
+const statusText = (s: string) => {
+  const [id, ticks] = s.split("@");
+  return ticks ? `${words(id!)} (${ticks})` : words(id!);
+};
+
 /** What Commune read on a foe (§12.9): its weak point and the elements it fears or shrugs off. */
 function readOf(u: ReplayUnit): string {
   const r = u.read!;
@@ -495,7 +501,7 @@ function Panel({ title, units, vit, actor, color }: { title: string; units: Repl
                   </span>
                 </>
               ) : null}
-              {statuses.length ? <span className="sp-statuses">{[...new Set(statuses)].map(words).join(", ")}</span> : null}
+              {statuses.length ? <span className="sp-statuses">{[...new Set(statuses)].map(statusText).join(", ")}</span> : null}
             </li>
           );
         })}

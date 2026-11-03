@@ -208,6 +208,8 @@ export function defaultGambits(u: Combatant): GambitRule[] {
   for (const ab of u.abilities) {
     // Heals, Interpose and Rescue wait for an ally in trouble.
     if (ab.kind === "heal" || ab.interpose || ab.swap) out.push({ if: "ally.hp<0.5", do: ab.id, target: "ally_lowest_hp" });
+    // Siphon only when MP runs low and HP can spare it.
+    else if (ab.mpFromHp) out.push({ if: "self.hp>0.6&&self.mp<20", do: ab.id });
     // Brace and Last Stand wait until the user is badly hurt.
     else if (ab.defend || ab.self?.statuses?.some((x) => x.mods?.noHeal)) out.push({ if: "self.hp<0.5", do: ab.id });
     else out.push({ do: ab.id });
