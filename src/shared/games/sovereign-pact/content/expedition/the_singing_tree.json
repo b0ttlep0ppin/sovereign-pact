@@ -82,8 +82,12 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The note follows you a little way, and then it lets you go.",
-          "effects": []
+          "text": "The note follows you a little way, and then it lets you go. It stays in the Leader's head as a calm under everything.",
+          "effects": [
+            {
+              "mp": 25
+            }
+          ]
         }
       ]
     }

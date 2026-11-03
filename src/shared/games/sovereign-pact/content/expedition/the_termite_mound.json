@@ -76,8 +76,13 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The humming follows you a while.",
-          "effects": []
+          "text": "The humming follows you a while. So do the termites; by morning they have eaten into every strap.",
+          "effects": [
+            {
+              "to": "party",
+              "durability": -15
+            }
+          ]
         }
       ]
     }

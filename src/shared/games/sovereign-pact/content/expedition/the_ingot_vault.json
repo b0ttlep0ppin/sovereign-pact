@@ -74,8 +74,13 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Probably.",
-          "effects": []
+          "text": "Probably. As you go a rat runs across the scorched circle, and the circle flares white, and there is no rat. You will know the next one.",
+          "effects": [
+            {
+              "to": "party",
+              "xp": 10
+            }
+          ]
         }
       ]
     }

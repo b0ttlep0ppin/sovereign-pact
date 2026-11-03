@@ -76,8 +76,12 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The music follows you to the edge of the ruin.",
-          "effects": []
+          "text": "The music follows you to the edge of the ruin, and the Leader keeps wondering what the dance would have been.",
+          "effects": [
+            {
+              "sanity": -6
+            }
+          ]
         }
       ]
     }

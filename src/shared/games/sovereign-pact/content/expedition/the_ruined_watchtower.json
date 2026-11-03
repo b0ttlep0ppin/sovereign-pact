@@ -85,8 +85,16 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The tower watches you go.",
-          "effects": []
+          "text": "The tower watches you go. Without its view you walk straight into what you would have seen.",
+          "effects": [
+            {
+              "fork": {
+                "add": [
+                  "encounter"
+                ]
+              }
+            }
+          ]
         }
       ]
     }

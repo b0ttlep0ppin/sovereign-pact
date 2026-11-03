@@ -80,8 +80,12 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They keep looking, through the cloth.",
-          "effects": []
+          "text": "They keep looking, through the cloth. The Leader feels them on the back of the neck all through the next fight, and so do the things they fight.",
+          "effects": [
+            {
+              "status": "exposed"
+            }
+          ]
         }
       ]
     }

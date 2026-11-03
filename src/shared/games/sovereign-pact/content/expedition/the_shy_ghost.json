@@ -74,8 +74,13 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It follows for a while and then is gone.",
-          "effects": []
+          "text": "It follows for a while and then is gone. In the morning everyone's boots have been cleaned and their buckles mended.",
+          "effects": [
+            {
+              "to": "party",
+              "durability": 10
+            }
+          ]
         }
       ]
     }

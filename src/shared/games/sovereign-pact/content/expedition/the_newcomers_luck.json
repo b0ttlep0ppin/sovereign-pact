@@ -79,8 +79,13 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Maybe it was.",
-          "effects": []
+          "text": "Maybe it was. The youngest of you thinks about it all day, and looks harder at the next stream.",
+          "effects": [
+            {
+              "to": "party",
+              "xp": 10
+            }
+          ]
         }
       ]
     }

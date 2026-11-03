@@ -55,8 +55,13 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Out, gasping, all of you.",
-          "effects": []
+          "text": "Out, gasping, all of you. The one who led spent everything on it, and comes out with their blood up.",
+          "effects": [
+            {
+              "hp": -10,
+              "tp": 40
+            }
+          ]
         }
       ]
     },

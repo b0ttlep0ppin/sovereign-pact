@@ -84,8 +84,12 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They follow you to the door, humming.",
-          "effects": []
+          "text": "They follow you to the door, humming. One stings the Leader, gently, almost fondly, and the arm swells stiff.",
+          "effects": [
+            {
+              "status": "might_down"
+            }
+          ]
         }
       ]
     }

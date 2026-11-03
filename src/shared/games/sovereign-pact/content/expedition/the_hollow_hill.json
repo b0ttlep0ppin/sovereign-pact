@@ -87,8 +87,13 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The door closes. The music stops.",
-          "effects": []
+          "text": "The door closes. The music stops. Nobody says so, but everyone hums the tune for a day after, and is cheered by it.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 6
+            }
+          ]
         }
       ]
     }

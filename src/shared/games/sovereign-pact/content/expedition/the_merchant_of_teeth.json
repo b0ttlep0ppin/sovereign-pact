@@ -86,8 +86,13 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It shrugs and trundles off, still smiling.",
-          "effects": []
+          "text": "It shrugs and trundles off, still smiling. In the morning the Leader has a loose tooth that was not loose before.",
+          "effects": [
+            {
+              "hp": -5,
+              "sanity": -5
+            }
+          ]
         }
       ]
     }

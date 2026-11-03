@@ -78,8 +78,13 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The music follows you a while.",
-          "effects": []
+          "text": "The music follows you a while, and your feet keep wanting to dance. You are quicker on them for it.",
+          "effects": [
+            {
+              "to": "party",
+              "status": "haste"
+            }
+          ]
         }
       ]
     }

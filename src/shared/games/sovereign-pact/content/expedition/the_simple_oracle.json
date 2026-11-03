@@ -76,8 +76,12 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It waves.",
-          "effects": []
+          "text": "It waves. \"You'll be back,\" it says, and the Leader, oddly, is comforted.",
+          "effects": [
+            {
+              "sanity": 8
+            }
+          ]
         }
       ]
     }

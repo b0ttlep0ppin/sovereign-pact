@@ -77,8 +77,12 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "You close the door softly.",
-          "effects": []
+          "text": "You close the door softly. Her dream slips out with you, and the Leader sleeps it that night: a queen's sleep, deep and whole.",
+          "effects": [
+            {
+              "sanity": 12
+            }
+          ]
         }
       ]
     }

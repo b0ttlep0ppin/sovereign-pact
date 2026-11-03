@@ -79,9 +79,27 @@
       ],
       "outcomes": [
         {
-          "w": 100,
-          "text": "It closes very easily. Too easily.",
-          "effects": []
+          "w": 60,
+          "text": "It closes very easily. Too easily. That night a cold draught blows into the camp from nowhere, and nobody sleeps.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -6
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "It closes very easily. Too easily. Behind you, from the night side, something knocks.",
+          "effects": [
+            {
+              "fork": {
+                "add": [
+                  "encounter"
+                ]
+              }
+            }
+          ]
         }
       ]
     }

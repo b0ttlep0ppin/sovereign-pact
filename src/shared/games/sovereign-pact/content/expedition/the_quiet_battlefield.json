@@ -72,8 +72,13 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The wind waits a long time, and then gives up.",
-          "effects": []
+          "text": "The wind waits a long time, and then gives up. The field's dead walk behind you a while, like an honour guard.",
+          "effects": [
+            {
+              "to": "party",
+              "status": "protect"
+            }
+          ]
         }
       ]
     }

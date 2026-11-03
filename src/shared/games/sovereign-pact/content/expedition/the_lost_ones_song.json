@@ -63,8 +63,12 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "It is not.",
-          "effects": []
+          "text": "It is not. It was one of yours, lost here, and by the time the Leader knows the voice the singing has stopped.",
+          "effects": [
+            {
+              "sanity": -12
+            }
+          ]
         },
         {
           "w": 50,

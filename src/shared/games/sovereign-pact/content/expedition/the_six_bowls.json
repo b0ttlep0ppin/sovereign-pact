@@ -94,8 +94,13 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The water does not ripple as you pass.",
-          "effects": []
+          "text": "The water does not ripple as you pass. The god of the dry bowl notices that you did not fill it.",
+          "effects": [
+            {
+              "sanity": -6,
+              "status": "marked"
+            }
+          ]
         }
       ]
     }

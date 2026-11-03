@@ -78,9 +78,24 @@
       ],
       "outcomes": [
         {
-          "w": 100,
-          "text": "Behind you, the stones begin to hum.",
-          "effects": []
+          "w": 50,
+          "text": "Behind you, the stones begin to hum, and the hum fills you up like a drink.",
+          "effects": [
+            {
+              "to": "party",
+              "mp": 25
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "Behind you, the stones begin to hum, and it is in the ground under your camp all night.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -6
+            }
+          ]
         }
       ]
     }

@@ -73,8 +73,13 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Some things are better not known.",
-          "effects": []
+          "text": "Some things are better not known. Walking on, you all feel that somewhere, someone approves.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": 5
+            }
+          ]
         }
       ]
     }

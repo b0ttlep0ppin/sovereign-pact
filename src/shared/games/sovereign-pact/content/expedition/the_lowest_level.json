@@ -75,8 +75,12 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Some places are not for you.",
-          "effects": []
+          "text": "Some places are not for you. The smell of warm rain stays in the Leader's clothes; it is a comfort, and it should not be.",
+          "effects": [
+            {
+              "sanity": 8
+            }
+          ]
         }
       ]
     }

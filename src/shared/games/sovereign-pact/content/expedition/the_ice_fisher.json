@@ -78,8 +78,12 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "She waves without looking up.",
-          "effects": []
+          "text": "She waves without looking up, and calls after you to keep your feet dry. The Leader doesn't, and the cold gets in.",
+          "effects": [
+            {
+              "hp": -10
+            }
+          ]
         }
       ]
     }

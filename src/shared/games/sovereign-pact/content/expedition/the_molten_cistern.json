@@ -84,8 +84,14 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It bubbles at you.",
-          "effects": []
+          "text": "It bubbles at you, and one bubble bursts across the Leader's sleeve.",
+          "effects": [
+            {
+              "hp": -10,
+              "durability": -20,
+              "loc": "arms"
+            }
+          ]
         }
       ]
     }

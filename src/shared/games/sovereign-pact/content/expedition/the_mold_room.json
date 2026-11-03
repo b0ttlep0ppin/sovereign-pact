@@ -50,9 +50,27 @@
       ],
       "outcomes": [
         {
-          "w": 100,
-          "text": "Some things should stay in the mold.",
-          "effects": []
+          "w": 60,
+          "text": "Some things should stay in the mold. Something inside it knocks, twice, as you go, and you all hear it in your sleep.",
+          "effects": [
+            {
+              "to": "party",
+              "sanity": -5
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "Some things should stay in the mold. Behind you, it cracks.",
+          "effects": [
+            {
+              "fork": {
+                "add": [
+                  "encounter"
+                ]
+              }
+            }
+          ]
         }
       ]
     },
