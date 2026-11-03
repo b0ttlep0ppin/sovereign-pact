@@ -1,0 +1,116 @@
+{
+  "id": "carrion_market",
+  "scope": "settlement",
+  "weight": 2,
+  "years": [
+    3,
+    20
+  ],
+  "title": "The Carrion Market",
+  "text": "A market opens at night in the boneyard. Its stalls sell teeth, hours, the second halves of letters, a mother's voice in a bottle. They take Gold. They would rather take something else.",
+  "rule": "each_house",
+  "options": [
+    {
+      "id": "gold",
+      "label": "Pay in Gold.",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "A stoppered bottle the Apothecary cannot name, and a book with the last page torn out.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -25,
+                "essence": 3
+              }
+            },
+            {
+              "score": {
+                "lore": 1
+              }
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "What you bought is gone when you get home. The receipt is in your own handwriting.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -25
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "years",
+      "label": "Pay in years, as they prefer.",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "The Scion who paid wakes a decade older. The bargain was a good one: a sliver of moonlight in a jar, real enough to forge.",
+          "effects": [
+            {
+              "scion": {
+                "who": "youngest",
+                "age": 10
+              }
+            },
+            {
+              "resources": {
+                "moonsilver": 1
+              }
+            },
+            {
+              "score": {
+                "relics": 2
+              }
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "The Scion who paid comes home older, and forgetting. Whatever they knew of fighting, they will have to learn again.",
+          "effects": [
+            {
+              "scion": {
+                "who": "veteran",
+                "age": 10,
+                "growth": {
+                  "all": -5
+                }
+              }
+            },
+            {
+              "resources": {
+                "moonsilver": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "stay",
+      "label": "Keep the House at home.",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Your House stays in. The music from the boneyard goes on until the dawn bell.",
+          "effects": []
+        }
+      ]
+    }
+  ]
+}

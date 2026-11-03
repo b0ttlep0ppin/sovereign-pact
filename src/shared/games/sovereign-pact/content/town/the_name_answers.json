@@ -1,0 +1,116 @@
+{
+  "id": "the_name_answers",
+  "scope": "house",
+  "weight": 1,
+  "years": [
+    5,
+    20
+  ],
+  "title": "The Name Answers",
+  "text": "The name your House claimed has a face now. It sits at the end of the long table at supper, in House colors, and the servants set a place for it without being told. It has begun to ask for things.",
+  "rule": "house",
+  "options": [
+    {
+      "id": "feed",
+      "label": "Give it what it asks: a seat, a share, a room.",
+      "tags": [
+        "kind",
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "It is courteous, and it is grateful. Gold appears in the strongroom that nobody put there.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 50
+              }
+            },
+            {
+              "score": {
+                "lineage": 2
+              }
+            },
+            {
+              "sanity": -10
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "It asks, at last, for one of your own, and takes them by the hand into the room behind the wall. They come back a day later and do not speak of it.",
+          "effects": [
+            {
+              "scion": {
+                "who": "youngest",
+                "curse": true,
+                "sanity": -25
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exorcise",
+      "label": "Bring the priests and the salt.",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "It goes screaming up the chimney. The ledger's page is blank again, and the House's claim with it.",
+          "effects": [
+            {
+              "score": {
+                "lineage": -3
+              }
+            },
+            {
+              "resources": {
+                "gold": -20
+              }
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "It goes, and takes the one who held the salt by the throat on its way out.",
+          "effects": [
+            {
+              "scion": {
+                "who": "veteran",
+                "injury": "head"
+              }
+            },
+            {
+              "score": {
+                "lineage": -3
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ignore",
+      "label": "Do not look at the end of the table.",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "It eats nothing. It watches everyone. The House learns to eat quickly.",
+          "effects": [
+            {
+              "sanity": -10
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,96 @@
+{
+  "id": "late_mirror",
+  "scope": "settlement",
+  "weight": 2,
+  "years": [
+    1,
+    20
+  ],
+  "title": "The Mirror That Runs Late",
+  "text": "A merchant in a veil sells mirrors that show a room a moment later than it is. He offers one to a single House, free, and will not say why.",
+  "rule": "random_house",
+  "options": [
+    {
+      "id": "accept",
+      "label": "Hang it in the hall.",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "The mirror shows a knife before it is drawn. The House sleeps safer, and trusts its servants less.",
+          "effects": [
+            {
+              "score": {
+                "intrigue": 3
+              }
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "One evening the mirror shows a Scion's chair empty and bloodied. Three days later the chair is empty, and the Scion is with the surgeon.",
+          "effects": [
+            {
+              "scion": {
+                "injury": "body"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "break",
+      "label": "Break it.",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "It breaks into seven shards, each one still a moment late.",
+          "effects": []
+        },
+        {
+          "w": 30,
+          "text": "Bad luck is only a saying, people tell the Scion who swung the hammer. They do not believe it either.",
+          "effects": [
+            {
+              "scion": {
+                "trait": "+doomed"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pass_on",
+      "label": "Take it, and sell it to a rival.",
+      "tags": [
+        "cruel",
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A rival pays handsomely. You never ask what it shows them.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 40
+              }
+            },
+            {
+              "score": {
+                "intrigue": 1
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

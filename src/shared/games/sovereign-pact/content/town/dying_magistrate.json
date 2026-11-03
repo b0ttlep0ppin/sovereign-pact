@@ -1,0 +1,100 @@
+{
+  "id": "dying_magistrate",
+  "scope": "settlement",
+  "weight": 2,
+  "years": [
+    4,
+    20
+  ],
+  "title": "The Dying Magistrate",
+  "text": "The old Magistrate is dying, without an heir. His physicians whisper that a House could have its own name read into the will, for the right gift and the right silence.",
+  "rule": "secret",
+  "options": [
+    {
+      "id": "bribe",
+      "label": "Send a gift, and say nothing.",
+      "tags": [
+        "cruel",
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "The will is read. Your House's name is in it, beside a mill and three streets.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -40
+              }
+            },
+            {
+              "score": {
+                "holdings": 4,
+                "intrigue": 2
+              }
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "The physicians took everyone's gift and buried the will with him.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -40
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "abstain",
+      "label": "Send flowers, and nothing else.",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Your House mourns him in public, which is more than most do.",
+          "effects": [
+            {
+              "score": {
+                "renown": 1
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "together": [
+    {
+      "when": "none",
+      "option": "bribe",
+      "text": "No House bought the will. It leaves his coffers to the city itself.",
+      "effects": [
+        {
+          "to": "commons",
+          "resources": {
+            "gold": 60
+          }
+        },
+        {
+          "accord": 3
+        }
+      ]
+    },
+    {
+      "when": "all",
+      "option": "bribe",
+      "text": "Every House bribed a dying man. The whole city knows it by supper.",
+      "effects": [
+        {
+          "accord": -8
+        }
+      ]
+    }
+  ]
+}

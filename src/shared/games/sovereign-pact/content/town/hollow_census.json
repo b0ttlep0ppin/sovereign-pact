@@ -1,0 +1,123 @@
+{
+  "id": "hollow_census",
+  "scope": "settlement",
+  "weight": 2,
+  "years": [
+    4,
+    20
+  ],
+  "title": "The Hollow Census",
+  "text": "The census-takers come back with one more name than there are people in the city. The extra name is written in your House's ledger, in your House's own hand.",
+  "rule": "most_scions",
+  "options": [
+    {
+      "id": "search",
+      "label": "Search the Seat for the one who isn't there.",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "Behind a wall that should be solid, a room furnished for someone small. The bed is still warm. You brick it up again.",
+          "effects": [
+            {
+              "sanity": -10
+            },
+            {
+              "score": {
+                "intrigue": 2
+              }
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "You find them. They sit at table with the recruits, and soon nobody can remember who sat in that chair before.",
+          "effects": [
+            {
+              "recruits_lost": 1
+            },
+            {
+              "recruit_gain": 1
+            },
+            {
+              "sanity": -5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "strike",
+      "label": "Strike the name out.",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 80,
+          "text": "The ink comes back each morning. In time you stop checking.",
+          "effects": [
+            {
+              "sanity": -3
+            }
+          ]
+        },
+        {
+          "w": 20,
+          "text": "The name stays struck. At dawn a recruit's bed is empty, and nobody can remember their face.",
+          "effects": [
+            {
+              "recruits_lost": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "claim",
+      "label": "Claim the name as a child of the House before anyone asks.",
+      "tags": [
+        "clever",
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "A name in the ledger is a claim at court, and the court is too frightened to argue.",
+          "effects": [
+            {
+              "score": {
+                "lineage": 3,
+                "intrigue": 1
+              }
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "The name answers to being called. Something walks your halls at night in House colors.",
+          "effects": [
+            {
+              "score": {
+                "lineage": 3
+              }
+            },
+            {
+              "sanity": -15
+            },
+            {
+              "flag": "name_answers",
+              "timeline": {
+                "event": "the_name_answers",
+                "years": 2,
+                "hidden": true
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

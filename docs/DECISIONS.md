@@ -2,6 +2,12 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-03 (implementation, Milestone 8bn): darker, stranger town events
+
+- Built (Josh's playtest: "events are too BLAND… dark/sinister/twisted (evil rift)… more mystique, intrigue, horror, strange"; "settlement events repeat far too much"): 16 new settlement events and one follow-up, among them the Bells Ring Backward, the Drowned Procession, the Weeping Wax Saint, the Hollow Census (whose claimed name comes back two Years later as the House event "The Name Answers"), the Rift Tide, the Quiet Plague, the Carrion Market (pay in Gold, or in years of a Scion's life), the Dying Magistrate (secret bribes), the Sleepwalking Children, the Mirror That Runs Late, the Breathing Square, the Red Snow, the Hooded Confessor, the Street That Fell Asleep, the Lamplighters' Dread and the Unmarked Seat. The settlement pool goes from 19 to 35.
+- Many of their outcomes fall on one Scion at home (8bm): a Curse, nightmares, doom, a wound, white hair and years of age, a blessing for the brave, and once in a while a Change.
+- The first 14 events keep their choices and effects but their texts are rewritten darker (the stranger casts no breath; the bridge's divers find the river bed full of hands); four outcomes gain a mark on a Scion (the cousin's duel can maim, the suitor's match chills the youngest).
+
 ## 2026-11-03 (implementation, Milestone 8bm): town events that do not repeat, tell what they did, and can hurt one Scion
 
 - Built (Josh's playtest: "settlement events repeat far too much (stranger at the gate, bridge collapse)", "real consequences", "after an event option resolves, EXPLAIN what it did"):

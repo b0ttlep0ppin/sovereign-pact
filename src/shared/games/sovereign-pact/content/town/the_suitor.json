@@ -7,7 +7,7 @@
     20
   ],
   "title": "The Suitor",
-  "text": "A noble of a fallen line proposes a match: their blood and their grudges for your name.",
+  "text": "A noble of a fallen line proposes a match: their blood and their grudges for your name. Their family died out a century ago. They have brought the papers to prove they did not.",
   "rule": "house",
   "options": [
     {
@@ -19,13 +19,19 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A new face at table, and new enemies at court.",
+          "text": "A new face at table, and new enemies at court. The servants say the newcomer's room smells of turned earth, and the young Scion who stood at the altar grows colder by the month.",
           "effects": [
             {
               "recruit_gain": 1
             },
             {
               "accord": -3
+            },
+            {
+              "scion": {
+                "who": "youngest",
+                "trait": "+cold_blooded"
+              }
             }
           ]
         }
@@ -40,7 +46,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The suitor bows and leaves.",
+          "text": "The suitor bows and leaves. The flowers they brought are dead by evening.",
           "effects": []
         }
       ]

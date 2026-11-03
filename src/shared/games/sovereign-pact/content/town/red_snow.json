@@ -1,0 +1,110 @@
+{
+  "id": "red_snow",
+  "scope": "settlement",
+  "weight": 2,
+  "years": [
+    4,
+    20
+  ],
+  "title": "The Red Snow",
+  "text": "Snow falls red over the city for a night and a day. It tastes of iron. Where it melts, the winter grain sprouts black and grows an inch an hour.",
+  "rule": "each_house",
+  "options": [
+    {
+      "id": "burn",
+      "label": "Burn the black grain.",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "A hungry winter, but a clean one.",
+          "effects": [
+            {
+              "resources": {
+                "grain": -8
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "eat",
+      "label": "Bring it in. Grain is grain.",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "It feeds the House, and nothing happens. Nothing you notice.",
+          "effects": [
+            {
+              "resources": {
+                "grain": 6
+              }
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "Those who ate first dream of the Gate, and wake with grave dirt under their nails.",
+          "effects": [
+            {
+              "resources": {
+                "grain": 6
+              }
+            },
+            {
+              "scion": {
+                "curse": true
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sell",
+      "label": "Sell it cheap in the lower town.",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "The lower town eats it gratefully. You do not ask after them.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 30
+              }
+            },
+            {
+              "accord": -2
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "The lower town eats it. By midwinter there are strange births, and the midwives talk.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 30
+              }
+            },
+            {
+              "accord": -6
+            },
+            {
+              "doom": 2
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -7,7 +7,7 @@
     20
   ],
   "title": "A Saint's Bones",
-  "text": "Diggers in the old crypts have found a saint's bones in a lead box, still smelling of myrrh.",
+  "text": "Diggers in the old crypts have found a saint's bones in a lead box, still smelling of myrrh. The box was nailed shut from the inside.",
   "rule": "vote",
   "options": [
     {
@@ -19,7 +19,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Pilgrims come, and the city sleeps easier.",
+          "text": "Pilgrims come, and the city sleeps easier. The priests do not say that the bones are in a different order each morning.",
           "effects": [
             {
               "sanity": 10,
@@ -41,7 +41,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The Commons grows richer.",
+          "text": "The church across the river pays well. Their bell has not rung since.",
           "effects": [
             {
               "resources": {
@@ -62,7 +62,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "One House's chapel holds them, and the others mutter.",
+          "text": "One House's chapel holds them, and the others mutter. At night the box is warm.",
           "effects": [
             {
               "score": {

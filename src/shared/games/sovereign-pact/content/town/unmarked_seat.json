@@ -1,0 +1,117 @@
+{
+  "id": "unmarked_seat",
+  "scope": "settlement",
+  "weight": 1,
+  "years": [
+    8,
+    20
+  ],
+  "title": "The Unmarked Seat",
+  "text": "A new Seat stands on the hill where there was only grass. Its banners bear no device. Its windows are lit. Nobody goes in or out.",
+  "rule": "vote",
+  "options": [
+    {
+      "id": "envoy",
+      "label": "Send an envoy.",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 40,
+          "text": "The envoy comes back with a gift and a message: \"We are patient.\"",
+          "effects": [
+            {
+              "to": "all",
+              "score": {
+                "relics": 2
+              }
+            },
+            {
+              "doom": 3
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "The envoy comes back with a gift, and without a shadow.",
+          "effects": [
+            {
+              "to": "random",
+              "scion": {
+                "curse": true
+              }
+            },
+            {
+              "to": "all",
+              "score": {
+                "relics": 2
+              }
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "The envoy comes back days later, unable to speak of it and unable to sleep.",
+          "effects": [
+            {
+              "to": "random",
+              "scion": {
+                "injury": "sanity"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "burn",
+      "label": "Set it alight.",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "It burns all night with a light like noon. In the morning the hill is grass again.",
+          "effects": [
+            {
+              "accord": 2
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "It burns. In the morning it stands untouched, and one of the Houses' own halls is ash.",
+          "effects": [
+            {
+              "to": "random",
+              "ruin": 1
+            },
+            {
+              "doom": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ignore",
+      "label": "Do nothing, and tell the children not to look.",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The windows stay lit. Some nights there are more of them.",
+          "effects": [
+            {
+              "doom": 2
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

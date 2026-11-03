@@ -1,0 +1,115 @@
+{
+  "id": "drowned_procession",
+  "scope": "settlement",
+  "weight": 2,
+  "years": [
+    2,
+    20
+  ],
+  "title": "The Drowned Procession",
+  "text": "Out of the river walk the drowned, in their Sunday clothes, in a slow procession toward the Rift Gate. They knock at every House's door as they pass, asking for the ones they lost.",
+  "rule": "each_house",
+  "options": [
+    {
+      "id": "open",
+      "label": "Open the door and hear the names they ask for.",
+      "tags": [
+        "kind",
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "They name an ancestor of the House, long dead, and bow to the hall. The water they leave behind is clean.",
+          "effects": [
+            {
+              "score": {
+                "lineage": 2
+              }
+            },
+            {
+              "sanity": 5
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "They name one of your living, and wait. They go at last, but that Scion has dreamed of deep water every night since.",
+          "effects": [
+            {
+              "scion": {
+                "trait": "+nightmares"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bar",
+      "label": "Bar the door and wait for dawn.",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "Wet handprints dry on the door. They are still there in spring, no matter how it is scrubbed.",
+          "effects": [
+            {
+              "sanity": -3
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "The knocking goes on all night. Everyone inside hears their mother's voice in it.",
+          "effects": [
+            {
+              "sanity": -10
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "follow",
+      "label": "Follow them to the Gate.",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 40,
+          "text": "At the Gate they turn and give back what the river took: coins, rings, a sword green with weed.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 40
+              }
+            },
+            {
+              "score": {
+                "relics": 2
+              }
+            }
+          ]
+        },
+        {
+          "w": 60,
+          "text": "A Scion walked with them too far, and came back coughing up river silt for a month.",
+          "effects": [
+            {
+              "scion": {
+                "injury": "body"
+              }
+            },
+            {
+              "sanity": -5
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -7,7 +7,7 @@
     20
   ],
   "title": "The Cousin's Claim",
-  "text": "A cousin from a branch long thought dead arrives with papers and a claim on the House's name.",
+  "text": "A cousin from a branch thought dead these thirty years arrives with papers, a claim on the House's name, and the founder's own eyes.",
   "rule": "house",
   "options": [
     {
@@ -19,7 +19,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They leave with a purse and a smile.",
+          "text": "They take the purse and smile with too many teeth. They do not go far.",
           "effects": [
             {
               "resources": {
@@ -39,7 +39,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "Honor is satisfied and the claim is torn up.",
+          "text": "Steel settles it at dawn. The claim is torn up and the cousin is buried in the family plot, where they say they belonged all along.",
           "effects": [
             {
               "score": {
@@ -50,10 +50,16 @@
         },
         {
           "w": 40,
-          "text": "Honor is satisfied, at the cost of a scar and a bad Year.",
+          "text": "Honor is satisfied, at the cost of a scar and a bad Year. The cousin laughs as they bleed, and the laugh is the founder's.",
           "effects": [
             {
               "sanity": -10
+            },
+            {
+              "scion": {
+                "who": "highest:might",
+                "injury": "arms"
+              }
             }
           ]
         }
@@ -68,7 +74,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The cousin joins the household, bad blood and all.",
+          "text": "The cousin joins the household with their papers and their grudges, and the old portraits seem to turn toward them.",
           "effects": [
             {
               "recruit_gain": 1

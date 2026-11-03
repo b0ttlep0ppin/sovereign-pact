@@ -2,7 +2,7 @@
 // consequences", "explain what it did"): the Omens pass by what they drew lately, an outcome can fall on
 // one Scion at home, and each outcome leaves an account of what it changed.
 import { describe, expect, it } from "vitest";
-import { TOWN_EVENT_BY_ID, TOWN_EVENTS } from "./content.ts";
+import { CHANGE_BY_ID, TOWN_EVENT_BY_ID, TOWN_EVENTS, TRAIT_BY_ID, type TownEffect } from "./content.ts";
 import { eligible } from "./crisis.ts";
 import { applyEffects, pickAtHome } from "./effects.ts";
 import { jobStat } from "./formulas.ts";
@@ -63,6 +63,22 @@ describe("fresh Omens", () => {
 });
 
 describe("harm at home", () => {
+  it("names only traits and Changes that exist, and follow-ups that do", () => {
+    const all = (e: (typeof TOWN_EVENTS)[number]): TownEffect[] => [
+      ...(e.options ?? []).flatMap((o) => o.outcomes.flatMap((x) => x.effects)),
+      ...(e.together ?? []).flatMap((t) => t.effects),
+      ...(e.crisis ? [e.crisis.triumph, e.crisis.holds, e.crisis.falters, e.crisis.calamity].flatMap((b) => b.effects) : []),
+    ];
+    for (const e of TOWN_EVENTS)
+      for (const fx of all(e)) {
+        const sc = fx.scion;
+        if (sc?.trait) expect(TRAIT_BY_ID.has(sc.trait.slice(1)), `${e.id}: ${sc.trait}`).toBe(true);
+        if (sc?.blessing) expect(TRAIT_BY_ID.has(sc.blessing.trait), `${e.id}: ${sc.blessing.trait}`).toBe(true);
+        if (sc?.change) expect(CHANGE_BY_ID.has(sc.change), `${e.id}: ${sc.change}`).toBe(true);
+        if (fx.timeline) expect(TOWN_EVENT_BY_ID.has(fx.timeline.event), `${e.id}: ${fx.timeline.event}`).toBe(true);
+      }
+  });
+
   it("falls on the Scion the effect names", () => {
     const s = calm(campaign(2, 4));
     const ours = home(s, 0);

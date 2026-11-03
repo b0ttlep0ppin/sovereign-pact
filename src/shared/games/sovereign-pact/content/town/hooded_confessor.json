@@ -1,0 +1,100 @@
+{
+  "id": "hooded_confessor",
+  "scope": "settlement",
+  "weight": 2,
+  "years": [
+    2,
+    20
+  ],
+  "title": "The Hooded Confessor",
+  "text": "A hooded confessor sits in the cathedral and hears the city's sins for nothing. He remembers every one. He has begun to write them down.",
+  "rule": "vote",
+  "options": [
+    {
+      "id": "welcome",
+      "label": "Let him hear the city.",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "The city sleeps easier, unburdened.",
+          "effects": [
+            {
+              "accord": 3
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "Pages of his book turn up nailed to doors. One carries a House's name, and a sin the House thought buried.",
+          "effects": [
+            {
+              "accord": -2
+            },
+            {
+              "to": "random",
+              "score": {
+                "renown": -3
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "seize",
+      "label": "Seize his book.",
+      "tags": [
+        "bold",
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "The book is a ledger of every House's secrets. Each House takes its own page, and reads the others'.",
+          "effects": [
+            {
+              "to": "all",
+              "score": {
+                "intrigue": 3
+              }
+            },
+            {
+              "accord": -3
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "There is no book. There was never a confessor. The booth smells of wet earth, and every House's sins are whispered in its halls that night.",
+          "effects": [
+            {
+              "to": "all",
+              "sanity": -8
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ignore",
+      "label": "Leave him be.",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "He leaves in spring, heavy with secrets, by the road toward the Gate.",
+          "effects": [
+            {
+              "doom": 1
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

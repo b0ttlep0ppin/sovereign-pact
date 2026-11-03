@@ -7,7 +7,7 @@
     20
   ],
   "title": "The Fever Wards",
-  "text": "A grey fever runs through the tanners' quarter. The physicians want coin for herbs and bread for the sick.",
+  "text": "A grey fever runs through the tanners' quarter. The sick sweat ink, and the physicians say the stains on their sheets make the same shape, again and again: a door.",
   "rule": "pledges",
   "crisis": {
     "need": {
@@ -16,7 +16,7 @@
     },
     "temptation": {
       "label": "Sell the physicians' herbs to the highest bidder.",
-      "text": "Your steward knows a buyer upriver who pays in silver.",
+      "text": "Your steward knows a buyer upriver who pays in silver for the herbs, and who wants the sheets as well.",
       "penalty": 15,
       "effects": [
         {
@@ -27,7 +27,7 @@
       ]
     },
     "triumph": {
-      "text": "The fever breaks within the month.",
+      "text": "The fever breaks within the month. The ink-stained sheets are burned in the square.",
       "effects": [
         {
           "accord": 3
@@ -35,11 +35,11 @@
       ]
     },
     "holds": {
-      "text": "The quarter is quarantined and the fever starves.",
+      "text": "The quarter is quarantined and the fever starves behind the barricades. So do some of the healthy.",
       "effects": []
     },
     "falters": {
-      "text": "The fever reaches the Houses' halls.",
+      "text": "The fever reaches the Houses' halls. Doors are drawn on every pillow.",
       "effects": [
         {
           "accord": -5
@@ -51,7 +51,7 @@
       ]
     },
     "calamity": {
-      "text": "The dead are burned in the squares for a season.",
+      "text": "The dead are burned in the squares for a season. The smoke draws doors in the sky.",
       "effects": [
         {
           "accord": -12

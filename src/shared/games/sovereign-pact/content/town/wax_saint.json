@@ -1,0 +1,115 @@
+{
+  "id": "wax_saint",
+  "scope": "settlement",
+  "weight": 2,
+  "years": [
+    2,
+    20
+  ],
+  "title": "The Weeping Wax Saint",
+  "text": "One morning a saint of wax stands in the square, weeping real tears. Pilgrims come from three valleys. So do the flies, and the flies are wrong: each has a tiny human face.",
+  "rule": "vote",
+  "options": [
+    {
+      "id": "worship",
+      "label": "Let the pilgrims come, and take their coin.",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "Candles and coin fill the square. The saint weeps on, and the flies stay close to it.",
+          "effects": [
+            {
+              "to": "commons",
+              "resources": {
+                "gold": 30
+              }
+            },
+            {
+              "accord": 2
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "The saint's face softens a little each day. One morning it wears the face of a Scion of the city, who has felt watched ever since.",
+          "effects": [
+            {
+              "accord": 1
+            },
+            {
+              "to": "random",
+              "scion": {
+                "trait": "+doomed"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "melt",
+      "label": "Melt it down.",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "The wax screams as it runs. In the pool at the bottom is a human skull, old and gilded. The faithful do not forgive it.",
+          "effects": [
+            {
+              "accord": -3
+            },
+            {
+              "to": "all",
+              "score": {
+                "relics": 1
+              }
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "The wax will not melt. The fire under it does not go out for three days, and takes a House's outbuilding with it.",
+          "effects": [
+            {
+              "accord": -2
+            },
+            {
+              "to": "random",
+              "ruin": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sell",
+      "label": "Sell it to the Apostate traders, who have asked twice.",
+      "tags": [
+        "cruel",
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "They pay well and ask nothing. The flies follow the cart out of the city, and then, one by one, come back.",
+          "effects": [
+            {
+              "to": "all",
+              "resources": {
+                "gold": 25
+              }
+            },
+            {
+              "doom": 3
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
