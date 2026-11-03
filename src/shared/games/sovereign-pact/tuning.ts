@@ -170,6 +170,12 @@ export const TUNING = {
     studentsPerSeat: 2,
     /** Guard slots per House; Study slots from Scriptorium L1 (University: unlimited, with shared projects). */
     guardSlots: 2,
+    /**
+     * Each Scion on Guard (§8.3, PROPOSED reading, DECISIONS 8bu) softens a town event's harm aimed at the
+     * House by this %: losses of stores and gold and of Sanity shrink, and each building ruined or recruit
+     * lost is averted at this % a guard. Harm that falls on every House alike is not stopped at the walls.
+     */
+    guardPct: 25,
     /** One Sortie a House a Year, up to 4 Scions not on the expedition (§6.11). */
     sortieSlots: 4,
     studySlots: 1,

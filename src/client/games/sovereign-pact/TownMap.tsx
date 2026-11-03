@@ -26,8 +26,8 @@ export type Place = { kind: "idle" } | { kind: "rest" } | { kind: "guard" } | { 
 const PLACE_TEXT: Record<string, string> = {
   idle: "Not assigned: they idle this Year and recover only 10% Sanity. Drag each one to a place.",
   rest: "Rest: recover 25% Sanity; injuries heal at the usual pace. Room for everyone.",
-  guard: "Guard the walls: theft, hauntings and sabotage aimed at your House are weakened. 2 places.",
-  sortie: "Sortie through the Rift Gate: a short fight by gambits for XP and JP, and a chance of loot. They can be hurt. 4 places.",
+  guard: "Guard the walls: each guard turns aside a quarter of the harm an Omen aims at your House (lost stores, gold and Sanity; a building ruined or a recruit lost may be saved). 2 places.",
+  sortie: "Sortie through the Rift Gate: up to 4 Scions not on the expedition fight 1–2 battles on their own (by their gambits) as the expedition comes home, a level easier than the Year's. XP for each battle won, JP if they come through, finds for your House. Injuries no worse than Moderate.",
   chapel: "Chapel: Sanity fully restored and mental ailments cured. 2, 4 or 6 places by its level.",
   infirmary: "Infirmary: one injury heals a Year sooner, and disease is cured. 1, 2 or 4 places by its level.",
   scriptorium: "Study: JP in their current Job without a Mentor (slower than training).",
@@ -51,14 +51,13 @@ const BUILDING_TASK: Record<string, "chapel" | "infirmary" | "study" | "train" |
 
 /** Short marks for buildings and projects until their tiles exist. */
 /** The move that puts `p` at `place`, or null if it takes no one. */
-export function moveFor(view: SovView, p: Person, place: Place): SovMove | null {
+export function moveFor(view: SovView, p: Person, place: Place, sortie?: string): SovMove | null {
   if (place.kind === "idle") return { type: "assign", person: p.id, to: "idle" };
   if (place.kind === "rest") return { type: "assign", person: p.id, to: "rest" };
   if (place.kind === "guard") return { type: "assign", person: p.id, to: "guard" };
   if (place.kind === "sortie") {
-    // The House's Sortie this Year if it has one, else the first on offer.
-    const current = Object.values(view.mine?.assign ?? {}).find((a) => a.to === "sortie")?.at;
-    return { type: "assign", person: p.id, to: "sortie", at: current ?? Content.SORTIES[0]!.id };
+    // The Sortie chosen at the Gate, else the House's this Year, else the first on offer.
+    return { type: "assign", person: p.id, to: "sortie", at: sortie ?? sortieOf(view) };
   }
   const task = BUILDING_TASK[place.id];
   if (!task) return null;
@@ -66,6 +65,9 @@ export function moveFor(view: SovView, p: Person, place: Place): SovMove | null 
   if (task === "train") return { type: "assign", person: p.id, to: p.status === "retired" ? "teach" : "train" };
   return { type: "assign", person: p.id, to: task };
 }
+
+/** The House's Sortie this Year if it has one, else the first on offer. */
+const sortieOf = (view: SovView): string => Object.values(view.mine?.assign ?? {}).find((a) => a.to === "sortie")?.at ?? Content.SORTIES[0]!.id;
 
 /** Where a person's chit stands, from their assignment. */
 export function placeOf(a: Assignment | undefined): Place {
@@ -104,8 +106,17 @@ export default function TownMap({ view, sendMove, canAssign }: Props) {
   const assign = view.mine?.assign ?? {};
   const at = (place: Place) => mine.filter((p) => samePlace(placeOf(assign[p.id]), place));
 
+  // The Sortie the Gate is set to (Josh: "its still not clear what sorties at the rift gate or walls do").
+  const [sortie, setSortie] = useState<string | null>(null);
+  const going = at({ kind: "sortie" });
+  const chosen = Content.SORTIE_BY_ID.get(going.length ? sortieOf(view) : (sortie ?? sortieOf(view)))!;
+  const choose = (id: string) => {
+    setSortie(id);
+    // One Sortie a House: moving one of those going moves them all.
+    if (going.length) sendMove({ type: "assign", person: going[0]!.id, to: "sortie", at: id });
+  };
   const send = (p: Person | undefined, place: Place) => {
-    const m = p ? moveFor(view, p, place) : null;
+    const m = p ? moveFor(view, p, place, chosen.id) : null;
     if (m) sendMove(m);
     setPicked(null);
   };
@@ -168,7 +179,28 @@ export default function TownMap({ view, sendMove, canAssign }: Props) {
         <section {...target("gate", { kind: "sortie" }, true)} className="sp-map__gate" aria-label="The Rift Gate">
           <span className="sp-map__gate-tear" aria-hidden="true" />
           <strong>The Rift Gate</strong>
-          <small>{canAssign ? "Sorties" : view.gate?.cards.length ? `${view.gate.cards.length} cards` : ""}</small>
+          {canAssign ? (
+            <div className="sp-map__about" onClick={(e) => e.stopPropagation()}>
+              <small>Send up to 4 Scions not on the expedition on a Sortie. They fight 1–2 battles on their own, by their gambits, as the expedition comes home.</small>
+              <label className="sp-map__sortie">
+                <span>Sortie</span>
+                <select value={chosen.id} onChange={(e) => choose(e.target.value)}>
+                  {Content.SORTIES.map((x) => (
+                    <option key={x.id} value={x.id}>
+                      {x.name}
+                    </option>
+                  ))}
+                </select>
+              </label>
+              <small className="sp-map__sortie-text">
+                {chosen.text} {chosen.battles === 1 ? "One battle" : `${chosen.battles} battles`} in {Content.POOL_BY_ID.get(chosen.pool)?.name ?? chosen.pool}, a level easier than the Year's: {chosen.xp} XP for each won, {chosen.jp} JP if they come through
+                {chosen.rolls ? ", finds for your House" : ""}
+                {chosen.gold ? `, ${chosen.gold} Gold` : ""}. Injuries no worse than Moderate.
+              </small>
+            </div>
+          ) : (
+            <small>{view.gate?.cards.length ? `${view.gate.cards.length} cards` : ""}</small>
+          )}
           <div className="sp-chits">{chits({ kind: "sortie" })}</div>
         </section>
 
@@ -237,6 +269,7 @@ export default function TownMap({ view, sendMove, canAssign }: Props) {
 
         <section {...target("walls", { kind: "guard" }, true)} className="sp-map__walls" aria-label="The walls">
           <strong>The walls</strong>
+          {canAssign ? <small className="sp-map__about">Up to 2 guards. Each turns aside a quarter of the harm an Omen aims at your House: lost stores, gold and Sanity, and a building ruined or a recruit lost may be saved.</small> : null}
           <div className="sp-chits">{chits({ kind: "guard" })}</div>
         </section>
       </div>

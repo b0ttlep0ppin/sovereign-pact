@@ -29,7 +29,9 @@ describe("the Sortie assignment (§6.11)", () => {
     const [a, b] = scions(s);
     expect(error(s, "p1", { type: "assign", person: a!.id, to: "sortie", at: "nowhere" })).toMatch(/one of the Sorties/);
     s = move(s, "p1", { type: "assign", person: a!.id, to: "sortie", at: "hunt_the_marsh" });
-    expect(error(s, "p1", { type: "assign", person: b!.id, to: "sortie", at: "patrol_the_walls" })).toMatch(/Sortie this Year is Hunt the marsh/);
+    // Choosing another Sortie sends everyone on it there instead (8bu).
+    s = move(s, "p1", { type: "assign", person: b!.id, to: "sortie", at: "patrol_the_walls" });
+    expect([s.assign[a!.id], s.assign[b!.id]]).toEqual([{ to: "sortie", at: "patrol_the_walls" }, { to: "sortie", at: "patrol_the_walls" }]);
     const recruit = s.people.find((p) => p.host === 0 && p.status === "recruit")!;
     expect(error(s, "p1", { type: "assign", person: recruit.id, to: "sortie", at: "hunt_the_marsh" })).toMatch(/recruit/);
   });

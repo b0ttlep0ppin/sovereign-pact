@@ -3,6 +3,7 @@ import { botAssign } from "./bot.ts";
 import { caps } from "./combat/build.ts";
 import { sovereignPact, type SovMove, type SovState } from "./index.ts";
 import type { Person } from "./state.ts";
+import { applyEffects, guarded } from "./effects.ts";
 import { calm, campaign, playOut } from "./testing.ts";
 import { TUNING } from "./tuning.ts";
 
@@ -37,6 +38,29 @@ describe("Year assignments (§8.3)", () => {
     person(s, b!.id).sanity = 0;
     s = seal(s);
     expect(person(s, b!.id).sanity).toBe(Math.ceil((caps(s, b!).sanity * (A.idleSanityPct + A.chapelBuildingSanityPct)) / 100));
+  });
+
+  it("guards the walls: harm aimed at the House shrinks by a quarter a guard, harm on every House does not (8bu)", () => {
+    let s = calm(campaign(1, 5));
+    const [a, b] = scions(s);
+    const loss = () => {
+      const t = structuredClone(s);
+      t.houses[0]!.gold = 100;
+      applyEffects(t, [{ to: "house", resources: { gold: -40 } }], 0);
+      return 100 - t.houses[0]!.gold;
+    };
+    expect(loss()).toBe(40);
+    s = move(s, "p1", { type: "assign", person: a!.id, to: "guard" });
+    expect(guarded(s, 0)).toBe(A.guardPct / 100);
+    expect(loss()).toBe(Math.round(40 * (1 - A.guardPct / 100)));
+    s = move(s, "p1", { type: "assign", person: b!.id, to: "guard" });
+    expect(loss()).toBe(Math.round(40 * (1 - (2 * A.guardPct) / 100)));
+    // A bargain the House chose, and a blow that falls on every House, get past the walls.
+    const t = structuredClone(s);
+    t.houses[0]!.gold = 100;
+    applyEffects(t, [{ to: "house", resources: { gold: -40 } }], 0, false);
+    applyEffects(t, [{ to: "all", resources: { gold: -10 } }], null);
+    expect(t.houses[0]!.gold).toBe(50);
   });
 
   it("keeps an assignment from Year to Year until changed", () => {

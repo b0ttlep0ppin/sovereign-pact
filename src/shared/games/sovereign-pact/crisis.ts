@@ -75,7 +75,7 @@ export function cannotTempt(s: SovState, house: number): string | null {
 /** Gives in to the temptation: the House gains, the Crisis result loses its penalty. Nobody else knows. */
 export function tempt(s: SovState, house: number): void {
   s.crisis!.tempted[house] = true;
-  applyEffects(s, TOWN_EVENT_BY_ID.get(s.crisis!.id)!.crisis!.temptation!.effects, house);
+  applyEffects(s, TOWN_EVENT_BY_ID.get(s.crisis!.id)!.crisis!.temptation!.effects, house, false);
 }
 
 /** The Crisis's result in points before the swing: the pledged share of the Need, less the temptations. */
