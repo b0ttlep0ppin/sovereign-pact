@@ -1,0 +1,113 @@
+{
+  "id": "knocking_below",
+  "scope": "house",
+  "weight": 2,
+  "years": [
+    2,
+    20
+  ],
+  "requires": [
+    "building:mine"
+  ],
+  "title": "The Knocking Below",
+  "text": "The miners have stopped work. Behind the deepest face of your mine something is knocking back, three and three, the way the miners knock to say they are alive.",
+  "rule": "house",
+  "options": [
+    {
+      "id": "break_through",
+      "label": "Break through.",
+      "tags": [
+        "bold",
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 40,
+          "text": "Beyond the wall, a lost seam of iron, and the bones of an old crew who knocked until they could not.",
+          "effects": [
+            {
+              "resources": {
+                "iron": 15
+              }
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "Beyond the wall, a cave of black glass, singing faintly.",
+          "effects": [
+            {
+              "resources": {
+                "voidglass": 1
+              }
+            },
+            {
+              "sanity": -10
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "The wall comes down on the Scion who led the dig.",
+          "effects": [
+            {
+              "scion": {
+                "who": "highest:might",
+                "injury": "body"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "answer",
+      "label": "Knock back, and wait.",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "The knocking stops. The seam beyond it gives freely for a while.",
+          "effects": [
+            {
+              "resources": {
+                "iron": 6
+              }
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "It knocks back, closer. Then it knocks under the Seat's cellar floor.",
+          "effects": [
+            {
+              "sanity": -12
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "seal",
+      "label": "Collapse the gallery.",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The gallery comes down. The mine yields less this Year.",
+          "effects": [
+            {
+              "resources": {
+                "iron": -6
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

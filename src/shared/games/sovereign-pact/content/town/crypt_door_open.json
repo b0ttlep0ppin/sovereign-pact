@@ -1,0 +1,108 @@
+{
+  "id": "crypt_door_open",
+  "scope": "house",
+  "weight": 2,
+  "years": [
+    3,
+    20
+  ],
+  "requires": [
+    "building:crypt"
+  ],
+  "title": "The Crypt Door, Open",
+  "text": "The crypt door is found open in the morning. It was barred from outside. It has been opened from within.",
+  "rule": "house",
+  "options": [
+    {
+      "id": "count",
+      "label": "Go down and count the dead.",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "All the dead are where they were laid. One of them has turned to face the door.",
+          "effects": [
+            {
+              "sanity": -8
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "One coffin is empty. The name on it is your founder's.",
+          "effects": [
+            {
+              "sanity": -12
+            },
+            {
+              "score": {
+                "lineage": 1
+              }
+            },
+            {
+              "flag": "founder_walks"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "seal",
+      "label": "Seal it with iron and salt.",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The bars hold. Something taps on them, now and then, politely.",
+          "effects": [
+            {
+              "resources": {
+                "iron": -4
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "leave_open",
+      "label": "Leave it open, and set a place at table.",
+      "tags": [
+        "kind",
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "The House's dead are grateful. Old skills come back to the living in dreams.",
+          "effects": [
+            {
+              "scion": {
+                "who": "greenest",
+                "xp": 80
+              }
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "The House's dead are hungry. The larder is bare by morning, and the dogs will not come inside.",
+          "effects": [
+            {
+              "resources": {
+                "grain": -10
+              }
+            },
+            {
+              "sanity": -5
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

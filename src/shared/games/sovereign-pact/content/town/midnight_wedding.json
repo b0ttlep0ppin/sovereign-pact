@@ -1,0 +1,130 @@
+{
+  "id": "midnight_wedding",
+  "scope": "house",
+  "weight": 1,
+  "years": [
+    4,
+    20
+  ],
+  "title": "The Midnight Wedding",
+  "text": "A contract surfaces, signed by your House three generations ago: one of its children to be wed, at midnight, to a groom from beyond the Gate. The groom has arrived. He is very tall, and he waits in the courtyard without moving.",
+  "rule": "house",
+  "options": [
+    {
+      "id": "honor",
+      "label": "Honor the contract.",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "The vows are spoken in a language none of you know. The Scion returns at dawn with a ring of black iron and a stranger's patience.",
+          "effects": [
+            {
+              "scion": {
+                "who": "youngest",
+                "trait": "+cold_blooded",
+                "sanity": -20
+              }
+            },
+            {
+              "score": {
+                "lineage": 4,
+                "relics": 2
+              }
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "The vows are spoken. The Scion returns at dawn, and in the night they talk in their sleep in his voice.",
+          "effects": [
+            {
+              "scion": {
+                "who": "youngest",
+                "curse": true
+              }
+            },
+            {
+              "score": {
+                "lineage": 4
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "substitute",
+      "label": "Dress a recruit in the bridal veil.",
+      "tags": [
+        "cruel",
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "He takes the recruit's hand without looking under the veil. They are not seen again.",
+          "effects": [
+            {
+              "recruits_lost": 1
+            },
+            {
+              "score": {
+                "intrigue": 2
+              }
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "He lifts the veil, looks for a long time, and leaves. The courtyard stones are frozen where he stood.",
+          "effects": [
+            {
+              "recruits_lost": 1
+            },
+            {
+              "doom": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "break",
+      "label": "Tear the contract up in front of him.",
+      "tags": [
+        "bold",
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "He bows, very low, and goes back the way he came. The House's name is a little lighter in old mouths.",
+          "effects": [
+            {
+              "score": {
+                "renown": -2
+              }
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "He goes. The next morning every mirror in the Seat is cracked.",
+          "effects": [
+            {
+              "score": {
+                "renown": -2
+              }
+            },
+            {
+              "sanity": -10
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

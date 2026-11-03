@@ -1,0 +1,102 @@
+{
+  "id": "drowned_cousin",
+  "scope": "house",
+  "weight": 2,
+  "years": [
+    3,
+    20
+  ],
+  "title": "The Drowned Cousin",
+  "text": "A cousin of the House, drowned ten years ago and buried with honor, is at the gate this morning, dripping, asking to come home. They remember everything. They are a little too cold.",
+  "rule": "house",
+  "options": [
+    {
+      "id": "welcome",
+      "label": "Welcome them home.",
+      "tags": [
+        "kind",
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "They take up their old room and their old sword, and train harder than any of the recruits.",
+          "effects": [
+            {
+              "recruit_gain": 1
+            },
+            {
+              "sanity": -5
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "They take up their old room. Within a month the well water tastes of the river, and the House's eldest sleeps in a chair by the fire.",
+          "effects": [
+            {
+              "recruit_gain": 1
+            },
+            {
+              "scion": {
+                "who": "eldest",
+                "trait": "+light_sleeper",
+                "sanity": -15
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "test",
+      "label": "Test them with silver and salt.",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "They hold the silver without flinching. They are only cold. They stay.",
+          "effects": [
+            {
+              "recruit_gain": 1
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "The silver burns them. They go back to the river without a word, and the House mourns them twice.",
+          "effects": [
+            {
+              "sanity": -10
+            },
+            {
+              "score": {
+                "lineage": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "refuse",
+      "label": "Turn them away.",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "They stand at the gate until dark, and then they are not there. The family plot is wet for a year.",
+          "effects": [
+            {
+              "sanity": -5
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

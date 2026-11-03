@@ -1,0 +1,115 @@
+{
+  "id": "bleeding_altar",
+  "scope": "house",
+  "weight": 2,
+  "years": [
+    3,
+    20
+  ],
+  "requires": [
+    "building:chapel"
+  ],
+  "title": "The Bleeding Altar",
+  "text": "The altar in your chapel bleeds at the hour of matins. The blood is warm, and it runs uphill, toward the window that faces the Rift Gate.",
+  "rule": "house",
+  "options": [
+    {
+      "id": "consecrate",
+      "label": "Have it consecrated again.",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "The bleeding stops. The priest who did it leaves the city.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -15
+              }
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "The bleeding stops. Then the font starts.",
+          "effects": [
+            {
+              "resources": {
+                "gold": -15
+              }
+            },
+            {
+              "sanity": -8
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "collect",
+      "label": "Collect it.",
+      "tags": [
+        "clever",
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "The blood dries to a fine red ash that the Apothecary pays well for.",
+          "effects": [
+            {
+              "resources": {
+                "saints_ash": 1
+              }
+            },
+            {
+              "score": {
+                "relics": 1
+              }
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "The Scion who held the bowl has bled from the eyes at matins ever since.",
+          "effects": [
+            {
+              "resources": {
+                "saints_ash": 1
+              }
+            },
+            {
+              "scion": {
+                "injury": "head"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pray",
+      "label": "Kneel and pray with it.",
+      "tags": [
+        "kind"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "Whatever is praying through the altar is glad of company. The House's most devout is changed by it.",
+          "effects": [
+            {
+              "scion": {
+                "who": "maddest",
+                "sanity": 30,
+                "trait": "+devout"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

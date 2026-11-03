@@ -2,6 +2,11 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-03 (implementation, Milestone 8bo): darker House events
+
+- Built (Josh's playtest, as 8bn): 14 new House events (pool 7 → 21), each its House's own (Q89). Six need no building: the Founder's Creditor (pay in Gold or in the eldest's blood), the Second Shadow, the Sealed Letter, the Midnight Wedding (a contract with a groom from beyond the Gate), the Tithe of Hair and the Drowned Cousin. Eight come only to a House that has the building they haunt: the Crypt Door, Open (crypt), the Bleeding Altar (chapel), What the Hounds Dug Up (kennels), the Book That Writes Itself (scriptorium), the Patient Who Will Not Die (infirmary), the Knocking Below (mine), Lights from the Gate (watchtower) and the Grain That Screams (farm). So a House's buildings now shape what haunts it.
+- Their outcomes mostly fall on one named Scion: the eldest pays the creditor, the youngest is wed, the cleverest reads the book, the strongest breaks through the mine wall, the fastest rides out to the lanterns.
+
 ## 2026-11-03 (implementation, Milestone 8bn): darker, stranger town events
 
 - Built (Josh's playtest: "events are too BLAND… dark/sinister/twisted (evil rift)… more mystique, intrigue, horror, strange"; "settlement events repeat far too much"): 16 new settlement events and one follow-up, among them the Bells Ring Backward, the Drowned Procession, the Weeping Wax Saint, the Hollow Census (whose claimed name comes back two Years later as the House event "The Name Answers"), the Rift Tide, the Quiet Plague, the Carrion Market (pay in Gold, or in years of a Scion's life), the Dying Magistrate (secret bribes), the Sleepwalking Children, the Mirror That Runs Late, the Breathing Square, the Red Snow, the Hooded Confessor, the Street That Fell Asleep, the Lamplighters' Dread and the Unmarked Seat. The settlement pool goes from 19 to 35.

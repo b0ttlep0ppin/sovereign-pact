@@ -1,0 +1,97 @@
+{
+  "id": "hounds_dig",
+  "scope": "house",
+  "weight": 2,
+  "years": [
+    2,
+    20
+  ],
+  "requires": [
+    "building:kennels"
+  ],
+  "title": "What the Hounds Dug Up",
+  "text": "The kennel hounds have been digging all night under the east wall. They have found something, and they will not let anyone near it, and they will not stop whining.",
+  "rule": "house",
+  "options": [
+    {
+      "id": "look",
+      "label": "Drive them off and look.",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 50,
+          "text": "A child's skeleton, wearing your House's colors, centuries old. Nobody knows her name.",
+          "effects": [
+            {
+              "sanity": -8
+            },
+            {
+              "score": {
+                "lineage": 1
+              }
+            }
+          ]
+        },
+        {
+          "w": 50,
+          "text": "A chest of old coin, and a hand still holding the key.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 45
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fill",
+      "label": "Fill the hole and chain the hounds.",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 100,
+          "text": "The hounds whine for a week, then stop. The old hound never eats again.",
+          "effects": []
+        }
+      ]
+    },
+    {
+      "id": "let_them",
+      "label": "Let the hounds have it.",
+      "tags": [
+        "reckless"
+      ],
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "They eat whatever it was. Afterwards they are bigger, and quieter, and they watch the Scions.",
+          "effects": [
+            {
+              "score": {
+                "valor": 1
+              }
+            },
+            {
+              "sanity": -5
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "They eat it, and turn on the kennel master's apprentice in the night.",
+          "effects": [
+            {
+              "recruits_lost": 1
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
