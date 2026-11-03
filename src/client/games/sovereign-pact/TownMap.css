@@ -86,3 +86,8 @@
 .sp-map__sortie select { max-width: 18ch; padding: 2px 4px; font: inherit; }
 .sp-map__sortie-text { font-style: italic; }
 .sp-map__walls .sp-map__about { color: #b9ad97; }
+
+/* The Masons' yard: Scions overseeing extra builds (Josh 2026-11-03). */
+.sp-map__yard { margin-top: 6px; padding: 4px 6px; border: 1px dashed #5a5248; background: rgba(40, 36, 32, 0.6); color: #b9ad97; }
+.sp-map__yard small { display: block; }
+.sp-map__yard[data-over="yes"] { border-style: solid; border-color: #9b8a6a; }

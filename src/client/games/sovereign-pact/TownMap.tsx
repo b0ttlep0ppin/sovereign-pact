@@ -20,13 +20,14 @@ type Person = SovView["people"][number];
 type Assignment = NonNullable<SovView["mine"]>["assign"][number];
 
 /** A place a chit can be dropped. */
-export type Place = { kind: "idle" } | { kind: "rest" } | { kind: "guard" } | { kind: "sortie" } | { kind: "building"; id: string };
+export type Place = { kind: "idle" } | { kind: "rest" } | { kind: "guard" } | { kind: "sortie" } | { kind: "oversee" } | { kind: "building"; id: string };
 
 /** What a Year at each place does (§8.3), shown on hover. */
 const PLACE_TEXT: Record<string, string> = {
   idle: "Not assigned: they idle this Year and recover only 10% Sanity. Drag each one to a place.",
   rest: "Rest: recover 25% Sanity; injuries heal at the usual pace. Room for everyone.",
   guard: "Guard the walls: each guard turns aside a quarter of the harm an Omen aims at your House (lost stores, gold and Sanity; a building ruined or a recruit lost may be saved). 2 places.",
+  oversee: "Oversee works: each Scion here lets your House start one more building or upgrade this Year, on top of the one your masons manage. Up to 3. They stay until the Year's works stand.",
   sortie: "Sortie through the Rift Gate: up to 4 Scions not on the expedition fight 1–2 battles on their own (by their gambits) as the expedition comes home, a level easier than the Year's. XP for each battle won, JP if they come through, finds for your House. Injuries no worse than Moderate.",
   chapel: "Chapel: Sanity fully restored and mental ailments cured. 2, 4 or 6 places by its level.",
   infirmary: "Infirmary: one injury heals a Year sooner, and disease is cured. 1, 2 or 4 places by its level.",
@@ -55,6 +56,7 @@ export function moveFor(view: SovView, p: Person, place: Place, sortie?: string)
   if (place.kind === "idle") return { type: "assign", person: p.id, to: "idle" };
   if (place.kind === "rest") return { type: "assign", person: p.id, to: "rest" };
   if (place.kind === "guard") return { type: "assign", person: p.id, to: "guard" };
+  if (place.kind === "oversee") return { type: "assign", person: p.id, to: "oversee" };
   if (place.kind === "sortie") {
     // The Sortie chosen at the Gate, else the House's this Year, else the first on offer.
     return { type: "assign", person: p.id, to: "sortie", at: sortie ?? sortieOf(view) };
@@ -76,6 +78,7 @@ export function placeOf(a: Assignment | undefined): Place {
   if (a.to === "rest") return { kind: "rest" };
   if (a.to === "guard") return { kind: "guard" };
   if (a.to === "sortie") return { kind: "sortie" };
+  if (a.to === "oversee") return { kind: "oversee" };
   if (a.to === "work") return { kind: "building", id: a.at ?? "" };
   if (a.to === "study") return { kind: "building", id: "scriptorium" };
   if (a.to === "train" || a.to === "teach") return { kind: "building", id: "training_ground" };
@@ -263,6 +266,13 @@ export default function TownMap({ view, sendMove, canAssign }: Props) {
                   );
                 }}
               />
+              {own ? (
+                <div {...target(`yard${h.index}`, { kind: "oversee" }, true)} className="sp-map__yard">
+                  <strong>Masons' yard</strong>
+                  {canAssign ? <small>Each Scion here oversees one more build this Year (up to 3).</small> : null}
+                  <div className="sp-chits">{chits({ kind: "oversee" })}</div>
+                </div>
+              ) : null}
             </section>
           );
         })}

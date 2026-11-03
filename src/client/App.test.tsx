@@ -45,6 +45,12 @@ const sendTheParty = () => {
 
 /** Seals the Year, past the prompt about Scions given no post (they idle). */
 const seal = () => {
+  // Answer every event and vote first: the Year cannot be sealed with one open (Josh 2026-11-03).
+  for (let n = 0; n < 8 && (screen.getByRole("button", { name: "Seal the Year" }) as HTMLButtonElement).disabled; n++) {
+    const panel = screen.getByRole("region", { name: "Decisions" });
+    const option = [...panel.querySelectorAll<HTMLButtonElement>(".sp-actions button, .sp-hands button")].find((b) => !b.disabled);
+    if (option) fireEvent.click(option);
+  }
   fireEvent.click(screen.getByRole("button", { name: "Seal the Year" }));
   const anyway = screen.queryByRole("button", { name: "Seal anyway" });
   if (anyway) fireEvent.click(anyway);

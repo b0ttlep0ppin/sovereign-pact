@@ -33,6 +33,8 @@ export function checkpoint(s: SovState): SovSave | null {
   delete campaign.battles;
   delete campaign.homecoming;
   delete campaign.omensTold;
+  // Who sits down to the saved campaign is not known yet.
+  delete campaign.botSeats;
   delete campaign.people;
   delete campaign.items;
   const rest = campaign as Omit<SovState, "players" | "log" | "notes" | "people" | "items">;

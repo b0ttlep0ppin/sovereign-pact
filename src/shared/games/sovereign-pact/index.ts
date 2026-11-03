@@ -17,7 +17,7 @@ import { cannotChoose, choose } from "./omens.ts";
 import { bid, botSell, botShop, buy, cannotAuction, cannotBid, cannotBuy, cannotSell, putUp, sell } from "./market.ts";
 import { accept, cannotAccept, cannotDecline, cannotOffer, decline, offer } from "./deals.ts";
 import { cannotCrisisPledge, cannotTempt, crisisPledge, tempt } from "./crisis.ts";
-import { cannotPropose, cannotVote, castVote, propose } from "./votes.ts";
+import { cannotPropose, cannotVote, castVote, owed, propose } from "./votes.ts";
 import { botDeal, botAssign, botPromote, botBuild, botChoice, botCrisis, botPledge, botPropose, botVote } from "./bot.ts";
 import { build, cannotBuild, unbuild } from "./town.ts";
 import { cannotPromote, promoteRecruit } from "./promotion.ts";
@@ -155,6 +155,11 @@ export function applyMove(state: SovState, playerId: PlayerId, move: SovMove): M
   // The last move's battle replays are the screen's to keep, not the state's (they are large).
   const s = clone({ ...state, battles: undefined });
   const h = s.houses[house]!;
+  // Who is playing a seat, a bot or a person, is told by the move itself (botMove marks its own).
+  const seats = new Set(s.botSeats ?? []);
+  if ((move as { bot?: true }).bot) seats.add(house);
+  else seats.delete(house);
+  s.botSeats = [...seats].sort();
   if (s.phase === "founding" && !["design", "random_house", "swear", "unseal", "muster"].includes(move.type)) return fail("Found your House first.");
   if (s.expedition?.fight && move.type !== "command") return fail("A battle is being fought.");
   switch (move.type) {
@@ -190,6 +195,8 @@ export function applyMove(state: SovState, playerId: PlayerId, move: SovMove): M
     case "seal": {
       if (s.phase !== "settlement") return fail("Only the Settlement Phase can be sealed.");
       if (h.sealed) return fail("You have already sealed the Year.");
+      const due = owed(s, house);
+      if (due) return fail(due);
       h.sealed = true;
       s.phaseMoves += 1;
       if (s.houses.every((x) => x.sealed)) closeSettlement(s);
@@ -560,7 +567,10 @@ function botFieldMove(s: SovState, house: number): SovMove {
   return { type: "field", people, ...(kit ? { pack: kit } : {}) };
 }
 
-export function botMove(s: SovState, playerId: PlayerId): SovMove {
+/** A bot's move, marked as a bot's so the state knows which seats people hold. */
+export const botMove = (s: SovState, playerId: PlayerId): SovMove => ({ ...chooseBotMove(s, playerId), bot: true }) as unknown as SovMove;
+
+function chooseBotMove(s: SovState, playerId: PlayerId): SovMove {
   const house = houseOf(s, playerId);
   // A bot founds the Random House it was dealt, keeping the first Ambition (§5.1).
   if (s.muster && musterTurn(s) === house) return { type: "muster", ...botMuster(s) };

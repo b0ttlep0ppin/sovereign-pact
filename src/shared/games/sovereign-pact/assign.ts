@@ -43,6 +43,8 @@ export function slots(s: SovState, house: number, to: AssignmentKind, where?: st
       return A.guardSlots;
     case "sortie":
       return A.sortieSlots;
+    case "oversee":
+      return A.overseeSlots;
     case "work":
       return where && BUILDING_BY_ID.get(where)?.produces && lvl(s, house, where) ? 1 : 0;
   }
@@ -65,10 +67,13 @@ const mayTeach = (p: Person) => p.status !== "recruit" && p.status !== "lost" &&
 export function cannotAssign(s: SovState, house: number, m: AssignMove): string | null {
   const p = s.people.find((x) => x.id === m.person);
   if (!p || p.host !== house || p.status === "lost") return "That person is not yours to assign.";
+  // An overseer stays at the works they let the House start (Josh 2026-11-03).
+  const current = s.assign[p.id];
+  if (current?.to === "oversee" && m.to !== "oversee" && s.houses[house]!.works.length > TUNING.town.buildsPerYear + holders(s, house, "oversee").length - 1)
+    return `${p.name} is overseeing a build going up this Year.`;
   if (m.to === "idle") return null;
   if (p.status === "recruit" && !["rest", "train", "work"].includes(m.to)) return "A recruit can only rest, train or work.";
   if (barred(p, m.to)) return `A ${changeOf(p)!.name} cannot take that assignment.`;
-  const current = s.assign[p.id];
   const same = (x: Assignment | undefined) => x?.to === m.to && (m.to !== "work" || x.at === m.at);
   if (!same(current) && holders(s, house, m.to, m.at).length >= slots(s, house, m.to, m.at)) return "There is no free slot for that.";
   if (m.to === "sortie") {

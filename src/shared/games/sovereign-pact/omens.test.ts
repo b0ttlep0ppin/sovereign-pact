@@ -97,11 +97,14 @@ describe("the Omens (§8.8)", () => {
     expect(withEvent(1, "plague_cart").events[0]!.deciders).toEqual([0]);
   });
 
-  it("lets each House choose for itself, and the cautious option falls to those who do not by the seal", () => {
+  it("lets each House choose for itself, and no House seals before it has chosen (Josh 2026-11-03)", () => {
     let s = withEvent(2, "night_of_open_doors");
     s = move(s, "p1", { type: "choose", event: "night_of_open_doors", option: opt("night_of_open_doors", "guard") });
     expect(s.events[0]!.choices).toEqual([0, null]);
-    s = move(move(s, "p1", { type: "seal" }), "p2", { type: "seal" });
+    s = move(s, "p1", { type: "seal" });
+    expect(error(s, "p2", { type: "seal" })).toBe("Choose first: The Night of Open Doors.");
+    expect(view(s, "p2").mine!.owed).toBe("Choose first: The Night of Open Doors.");
+    s = move(move(s, "p2", { type: "choose", event: "night_of_open_doors", option: cautious(TOWN_EVENT_BY_ID.get("night_of_open_doors")!) }), "p2", { type: "seal" });
     expect(s.log.some((l) => /Night of Open Doors: House .* Hide the stores/.test(l))).toBe(true);
     expect(cautious(TOWN_EVENT_BY_ID.get("night_of_open_doors")!)).toBe(opt("night_of_open_doors", "hide"));
   });

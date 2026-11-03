@@ -1,10 +1,12 @@
 import { describe, expect, it } from "vitest";
 import { createRng } from "../../rng.ts";
 import { sovereignPact, type SovState } from "./index.ts";
-import { ashore, calm, campaign, playOut, sealYear, seats } from "./testing.ts";
+import { answerOwed, ashore, calm, campaign, playOut, sealYear, seats } from "./testing.ts";
 import { TUNING } from "./tuning.ts";
 
 const g = sovereignPact;
+/** Every House answers its town events and votes, so it may seal (Josh 2026-11-03). */
+const answered = (s: SovState): SovState => s.houses.reduce((x, _, i) => answerOwed(x, i), s);
 
 const move = (s: SovState, player: string, m: Parameters<typeof g.applyMove>[2]): SovState => {
   const r = g.applyMove(s, player, m);
@@ -46,7 +48,7 @@ describe("setup", () => {
 
 describe("the Settlement Phase", () => {
   it("waits for every House to seal, then runs the Year and opens the next", () => {
-    let s = campaign(3);
+    let s = answered(campaign(3));
     expect(g.activePlayers(s)).toEqual(seats(3));
     s = move(s, "p2", { type: "seal" });
     expect(g.activePlayers(s)).toEqual(["p1", "p3"]);
@@ -63,7 +65,7 @@ describe("the Settlement Phase", () => {
   });
 
   it("refuses moves out of turn, from strangers, and malformed ones, without throwing", () => {
-    const s = campaign(2);
+    const s = answered(campaign(2));
     expect(g.applyMove(s, "stranger", { type: "seal" }).ok).toBe(false);
     expect(g.applyMove(s, "p1", { type: "unseal" }).ok).toBe(false);
     expect(g.applyMove(s, "p1", { type: "nonsense" } as never).ok).toBe(false);
@@ -73,7 +75,7 @@ describe("the Settlement Phase", () => {
   });
 
   it("never changes the state it is given", () => {
-    const s = campaign(2);
+    const s = answered(campaign(2));
     const before = JSON.stringify(s);
     move(move(s, "p1", { type: "seal" }), "p2", { type: "seal" });
     expect(JSON.stringify(s)).toBe(before);

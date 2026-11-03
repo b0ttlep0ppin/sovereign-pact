@@ -121,6 +121,6 @@ describe("the vote on the card (§9.1)", () => {
       { type: "resource", pool: "hollow_wood", level: 3, size: 4 },
       { type: "resource", pool: "beast_lands", level: 1, size: 4 },
     ];
-    expect(g.botMove!(s, "p2", undefined as never)).toEqual({ type: "pick_card", card: 1 });
+    expect(g.botMove!(s, "p2", undefined as never)).toEqual({ type: "pick_card", card: 1, bot: true });
   });
 });
