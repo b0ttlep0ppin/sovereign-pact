@@ -4,6 +4,7 @@
 import { Content, TUNING, type SovMove, type SovView } from "@vibepulse/shared/games/sovereign-pact";
 import { useState } from "react";
 import { Emblem } from "./Emblem";
+import { toldTitle } from "./Resolved";
 import Amount from "./Amount";
 
 type Props = { view: SovView; sendMove: (m: SovMove) => void; canAct: boolean };
@@ -174,11 +175,11 @@ function OmensTold({ view }: { view: SovView }) {
     <section className="sp-omens-told" aria-label="What came of the Omens">
       <h3>What came of the Omens</h3>
       {told.map((o, i) => {
-        const ev = Content.TOWN_EVENT_BY_ID.get(o.id);
+        const title = toldTitle(o.id);
         return (
-          <article key={i} className={`sp-told__part${o.house !== undefined ? " is-private" : ""}`} aria-label={`${ev?.title ?? o.id}, Year ${o.year}`}>
+          <article key={i} className={`sp-told__part${o.house !== undefined ? " is-private" : ""}`} aria-label={`${title}, Year ${o.year}`}>
             <p className="sp-told__where">
-              {ev?.title ?? o.id} <small>Year {o.year}</small>
+              {title} <small>Year {o.year}</small>
             </p>
             {o.label ? (
               <p className="sp-told__choice">

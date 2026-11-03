@@ -3,7 +3,7 @@
 // among those who voted for a tied option [DECIDED]. With one House there is no vote: it decides.
 import { built, loseAccord, spendCommons, stillNeeded } from "./commons.ts";
 import { PROJECT_BY_ID, TOWN_EVENT_BY_ID } from "./content.ts";
-import { cautious, settleEventVote } from "./omens.ts";
+import { cautious, recordOmen, settleEventVote } from "./omens.ts";
 import type { SovState, Vote } from "./state.ts";
 import { TUNING } from "./tuning.ts";
 import { log, withRng } from "./year.ts";
@@ -137,24 +137,35 @@ export function settleVote(s: SovState): void {
   }
   if (s.houses.length > 1) vote.by.forEach((c, h) => c === choice && (s.houses[h]!.score.renown += TUNING.tracks.voteWonRenown));
   if (vote.kind === "event") settleEventVote(s, vote.subject, choice);
+  // What the Council decided goes in the account of the Year, as an Omen's outcome does (Josh 2026-11-03:
+  // "when decisions are resolved... there is another modal or prompt where people can see what the effects are").
+  const hands = (i: number) => vote.by.filter((c) => c === i).length;
+  const counted = s.houses.length > 1 ? ` (${hands(0)} for, ${hands(1)} against${tie ? "; a tie, broken" : ""})` : "";
   if (vote.kind === "levy") {
-    if (vote.options[choice] !== "yes") return void log(s, "The Houses refuse the levy.");
+    const yes = vote.options[choice] === "yes";
     let raised = 0;
-    for (const h of s.houses) {
-      const n = Math.min(Math.max(0, h.gold), TUNING.commons.levyGold);
-      h.gold -= n;
-      raised += n;
-    }
-    s.commons.gold += raised;
-    log(s, `The levy passes: ${raised} Gold goes into the Commons.`);
+    recordOmen(s, "council:levy", undefined, null, `${yes ? "The levy passes" : "The levy fails"}${counted}.`, yes ? "Every House pays its share into the Commons." : "The Houses keep their Gold.", () => {
+      if (!yes) return;
+      for (const h of s.houses) {
+        const n = Math.min(Math.max(0, h.gold), TUNING.commons.levyGold);
+        h.gold -= n;
+        raised += n;
+      }
+      s.commons.gold += raised;
+    });
+    log(s, yes ? `The levy passes: ${raised} Gold goes into the Commons.` : "The Houses refuse the levy.");
   }
   if (vote.kind === "spend") {
     const name = PROJECT_BY_ID.get(vote.subject)!.name;
-    if (vote.options[choice] === "yes" && vote.host !== undefined) {
-      const f = (s.commons.funds[vote.subject] ??= { paid: {}, by: s.houses.map(() => 0) });
-      f.host ??= vote.host;
-    }
-    if (vote.options[choice] === "yes") log(s, `The Commons gives ${spendCommons(s, vote.subject)} to the ${name}.`);
-    else log(s, `The Houses refuse to spend the Commons on the ${name}.`);
+    const yes = vote.options[choice] === "yes";
+    let gave = 0;
+    const site = yes && vote.host !== undefined && s.houses.length > 1 ? ` It will stand in House ${s.houses[vote.host]!.name}'s district.` : "";
+    recordOmen(s, `council:${vote.subject}`, undefined, null, `${yes ? "The motion passes" : "The motion fails"}${counted}.`, "", () => {
+      if (!yes) return;
+      if (vote.host !== undefined) (s.commons.funds[vote.subject] ??= { paid: {}, by: s.houses.map(() => 0) }).host ??= vote.host;
+      gave = spendCommons(s, vote.subject);
+    });
+    s.omensTold!.at(-1)!.text = yes ? `The Commons gives ${gave} to the ${name}.${site}` : `The Commons' stock stays where it is; the ${name} waits.`;
+    log(s, yes ? `The Commons gives ${gave} to the ${name}.` : `The Houses refuse to spend the Commons on the ${name}.`);
   }
 }

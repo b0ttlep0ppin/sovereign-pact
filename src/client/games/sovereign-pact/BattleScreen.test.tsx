@@ -1,4 +1,4 @@
-import { act, fireEvent, render, screen } from "@testing-library/react";
+import { act, fireEvent, render, screen, within } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 import { Content, sovereignPact as g } from "@vibepulse/shared/games/sovereign-pact";
 import { warbandBattle } from "../../../shared/games/sovereign-pact/combat/fixtures.ts";
@@ -119,6 +119,9 @@ describe("battles in the campaign screen", () => {
     const { view, replay } = setup();
     const props = { me: "p1", players: [], isMyTurn: false, sendMove: () => {}, lastError: null };
     const { rerender } = render(<SovereignPact {...props} view={view} />);
+    // What the Omens decided is told first; put it away.
+    const decided = screen.queryByRole("dialog", { name: "What was decided" });
+    if (decided) fireEvent.click(within(decided).getByRole("button", { name: "Go on" }));
     expect(screen.queryByRole("dialog")).toBe(null);
     rerender(<SovereignPact {...props} view={{ ...view, battles: [{ ...replay, key: "1:9:0" }] }} />);
     expect(screen.getByRole("dialog", { name: "Battle: An Encounter" })).toBeTruthy();
