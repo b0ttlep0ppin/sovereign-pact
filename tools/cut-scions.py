@@ -182,6 +182,10 @@ for slot, opts in PICK.items():
                 prefer, material = "white", "cloth"
             elif not prefer and not material and "steel" in variants:
                 prefer, material = "steel", "metal"
+            # The tower shield ships only in the generator's white cloth ramp and names no material:
+            # recolor it as cloth, so it takes its House's color instead of standing bone-white.
+            if slot == "shield" and oid == "scutum" and not material:
+                material = "cloth"
             tone = {"tone": spec["tone"]} if "tone" in spec else {}
             for lk in sorted(k for k in d if k.startswith("layer_")):
                 layer = d[lk]
@@ -219,10 +223,11 @@ for slot, opts in PICK.items():
                         drawn = True
                     if not drawn:
                         continue
-                    if slot == "weapon":
+                    if slot in ("weapon", "tabard", "belt"):
                         # The idle rows borrow their second frame from the walk, where a weapon swings
                         # level or drops out of the hand (Josh 2026-11-03: a staff "goes from pointed up to
-                        # pointed forward"). Hold the first frame's weapon instead, risen 1 px with the body.
+                        # pointed forward") and a tabard or sash flaps mid-stride, so the chest blinked
+                        # between two looks. Hold the first frame instead, risen 1 px with the body.
                         for r in (0, 1):
                             first = sheet.crop((0, r * CELL, CELL, (r + 1) * CELL))
                             sheet.paste((0, 0, 0, 0), (CELL, r * CELL, 2 * CELL, (r + 1) * CELL))

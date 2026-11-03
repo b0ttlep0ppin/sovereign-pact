@@ -14,6 +14,8 @@ interface PersonSnap {
   host: number;
   status: string;
   hurt: number;
+  /** Statuses they will start the next battle with. */
+  start: string[];
   sanity: number;
   mp: number;
   xp: number;
@@ -48,6 +50,7 @@ export function snap(s: SovState, ids: number[], houses: number[]): Snap {
       host: p.host,
       status: p.status,
       hurt: e?.carry[id]?.hurt ?? 0,
+      start: [...(e?.carry[id]?.start ?? [])],
       sanity: p.sanity,
       mp: p.mp,
       xp: p.level * TUNING.progression.xpPerLevel + p.xp,
@@ -89,7 +92,7 @@ const amounts = (was: Partial<Record<string, number>>, now: Partial<Record<strin
   });
 
 /** Every change between `before` and now, in plain words. */
-export function tell(s: SovState, before: Snap): Told[] {
+export function tell(s: SovState, before: Snap, said: ReadonlySet<string> = new Set()): Told[] {
   const out: Told[] = [];
   const say = (text: string, of: number | null, open: boolean) => out.push({ text, of, open });
   for (const [key, was] of Object.entries(before.people)) {
@@ -141,6 +144,24 @@ export function tell(s: SovState, before: Snap): Told[] {
       if (d) say(`${n}'s ${STAT_NAMES[stat]} grows ${d > 0 ? "faster" : "slower"} (${signed(d)}% a level).`, of, false);
     });
   }
+  // What the next battle starts with, the whole party at once when it is all of them.
+  const starts = new Map<string, { names: string[]; of: number }>();
+  for (const [key, was] of Object.entries(before.people)) {
+    const now = s.expedition?.carry[Number(key)]?.start ?? [];
+    for (const x of less(now, was.start)) {
+      const id = x.split(":")[0]!;
+      if (said.has(id)) continue;
+      const at = starts.get(id) ?? { names: [], of: was.host };
+      at.names.push(was.name);
+      starts.set(id, at);
+    }
+  }
+  const walking = Object.values(before.people).filter((p) => s.people.some((x) => x.name === p.name && x.status === "scion")).length;
+  for (const [id, { names, of }] of starts) {
+    const all = names.length > 1 && names.length >= walking;
+    const whole = STATUS_WHY[id] ? `, already whole: it waits for the next battle as ${STATUS_NAMES[id] ?? word(id)} (${STATUS_WHY[id]})` : ` starts the next battle with ${STATUS_NAMES[id] ?? word(id)}`;
+    say(`${all ? "The party" : names.join(" and ")}${whole}.`, all ? null : of, true);
+  }
   for (const [key, was] of Object.entries(before.houses)) {
     const h = Number(key);
     const house = s.houses[h]!;
@@ -155,6 +176,10 @@ export function tell(s: SovState, before: Snap): Told[] {
   for (const line of amounts(before.haul.stores, haul?.stores ?? {})) say(`The haul: ${line}.`, null, true);
   return out;
 }
+
+const STATUS_NAMES: Record<string, string> = { mp_regen: "MP Regen", tp_regen: "TP Regen" };
+/** Why a restore became a status: it found them already whole. */
+const STATUS_WHY: Record<string, string> = { regen: "HP back each moment", mp_regen: "MP back each moment", tp_regen: "TP built each moment" };
 
 const PLACES: Record<string, string> = { encounter: "a fight", event: "something strange", camp: "a camp", cache: "a cache", rally: "a rally", raid: "a raid", lair: "a lair", gate: "the Gate" };
 

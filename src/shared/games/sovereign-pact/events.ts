@@ -245,7 +245,7 @@ function land(s: SovState, option: TripOption, { scions, house }: Subjects, othe
   const done = effects(s, outcome.effects, scions, option.rule === "vote" ? null : house);
   const e = s.expedition!;
   if (e.told?.n !== e.seen.length) e.told = { id: e.seen.at(-1) ?? "", n: e.seen.length, parts: [] };
-  e.told.parts.push({ label: option.label, who: who.replace(/: $/, ""), text: outcome.text, lines: [...said, ...tell(s, before)] });
+  e.told.parts.push({ label: option.label, who: who.replace(/: $/, ""), text: outcome.text, lines: [...said, ...tell(s, before, new Set(outcome.effects.flatMap((x) => (x.status ? [x.status.split(":")[0]!] : []))))] });
   halt(s);
   return done;
 }
@@ -295,6 +295,7 @@ function apply(s: SovState, fx: TripEffect, ids: number[], house: number | null,
     if (shrugs(s, p, fx)) continue;
     if (fx.hp) {
       const c = (e.carry[id] ??= { dur: {}, broken: [] });
+      if (fx.hp > 0 && !c.hurt) spill(s, id, "regen");
       const max = full(s, id).maxHp;
       const hurt = Math.max(0, Math.min(max - 1, (c.hurt ?? 0) - pctOf(max, fx.hp)));
       if (hurt) Object.assign(c, { hurt, hpMax: max });
@@ -358,11 +359,22 @@ function apply(s: SovState, fx: TripEffect, ids: number[], house: number | null,
   }
 }
 
+/**
+ * A restore that finds them already whole is not lost (Josh 2026-11-03: "Nothing you can see has changed"):
+ * they carry it into the next battle as Regen (HP), MP Regen (MP) or TP Regen (a steady mind, Sanity).
+ */
+function spill(s: SovState, id: number, status: string): void {
+  const c = (s.expedition!.carry[id] ??= { dur: {}, broken: [] });
+  if (!(c.start ?? []).includes(status)) c.start = [...(c.start ?? []), status];
+}
+
 /** What changes a person wherever they stand, on the road or at home (effects.ts): Sanity, MP, XP, JP,
  *  the lasting changes, an injury roll and a mending. `at` is the person's index in `s.people`. */
 export function befall(s: SovState, at: number, fx: TripEffect, where = "in the otherworld"): void {
   let p = s.people[at]!;
   const cap = caps(s, p);
+  if (where === "in the otherworld" && (fx.sanity ?? 0) > 0 && p.sanity >= cap.sanity) spill(s, p.id, "tp_regen");
+  if (where === "in the otherworld" && (fx.mp ?? 0) > 0 && p.mp >= cap.mp) spill(s, p.id, "mp_regen");
   if (fx.sanity) p.sanity = Math.max(0, Math.min(cap.sanity, p.sanity + pctOf(cap.sanity, fx.sanity)));
   if (fx.mp) p.mp = Math.max(0, Math.min(cap.mp, p.mp + pctOf(cap.mp, fx.mp)));
   if (fx.xp) p = gainXp(p, fx.xp);
