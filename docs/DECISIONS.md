@@ -2,6 +2,15 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-03 (implementation, Milestone 8bs): spear, light armor, steady idles, names kept, Omens told on votes
+
+Josh's playtest:
+- **"Crude spear very clearly appears to be a staff":** the generator's spears are share-alike only, so the spear stays the simple staff, now with its crook and gem cut away and a steel spearhead painted on (`tools/cut-scions.py`, `spearhead`), frame by frame along the shaft. It is credited as the staff it is made from.
+- **"The leather jerkins kinda look like shit, maybe use like coat or other clothing types":** the generator's coats (frock, trench, collared) are share-alike only, so light armor is drawn as clothing: a buttoned long-sleeved **doublet** (the Jerkin, and the Tinkerer's own) or an open **gambeson** (the Vagabond's), both dyed leather brown. The sleeveless leather armor sheet is gone. Before this, leather armor was also tinted with the Job's metal; leathern armor now always takes the leather dye. A Jerkin on a Job already in leathers keeps the Job's.
+- **Staff idles "go from pointed up to pointed forward":** the idle rows borrow their second frame from the walk, where a weapon swings level (or, for the mace and dagger, leaves the hand). Every weapon now holds its first idle frame, risen 1 px with the body.
+- **"My names and mottos aren't being saved":** a typed name or motto was kept only by the "Keep this name" button, so moving to another tab lost it. It is now kept as soon as the field is left. (A reload during founding still starts founding over: the autosave is per Year.)
+- **"I didn't get to see what the plague cart event text was":** a settlement Omen put to the vote now shows its text on the vote card, and says every House votes on it instead of "Proposed by House ." (it has no proposer).
+
 ## 2026-11-03 (implementation, Milestone 8br): volunteer cards that hold their stats
 
 - Fixed (Josh's playtest: "unit cards overflowing", on the muster): the battle screen's style for its own stat lines was written for every `.sp-stat` in the game, so once a battle had loaded, each stat box on a person's card (muster, Roster, Readying) turned into a wide row and spilled out of its card. That style now applies only inside the battle panel. A volunteer's card also lays out as portrait beside the name, then the stats, affinities and traits across the whole card, and its six stat boxes may shrink, so nothing spills into the next card at any width.

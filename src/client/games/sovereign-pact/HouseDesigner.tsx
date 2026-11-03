@@ -80,21 +80,27 @@ function NameStep({ h, design }: StepProps) {
   const [name, setName] = useState(h.name);
   const [motto, setMotto] = useState(h.motto);
   const ok = name.trim().length >= 2 && name.trim().length <= 24 && motto.length <= 60;
+  const changed = name.trim() !== h.name || motto !== h.motto;
+  // Kept as soon as a field is left (another tab, Enter, anywhere else), not only by the button
+  // (Josh: "my names and mottos aren't being saved").
+  const keep = () => {
+    if (ok && changed) design({ name: name.trim(), motto });
+  };
   return (
     <form
       className="sp-offer"
       onSubmit={(e) => {
         e.preventDefault();
-        if (ok) design({ name: name.trim(), motto });
+        keep();
       }}
     >
       <label>
-        House <input value={name} maxLength={24} aria-label="House name" onChange={(e) => setName(e.target.value)} />
+        House <input value={name} maxLength={24} aria-label="House name" onChange={(e) => setName(e.target.value)} onBlur={keep} />
       </label>
       <label>
-        Motto <input value={motto} maxLength={60} aria-label="Motto" onChange={(e) => setMotto(e.target.value)} />
+        Motto <input value={motto} maxLength={60} aria-label="Motto" onChange={(e) => setMotto(e.target.value)} onBlur={keep} />
       </label>
-      <button type="submit" className="sp-button sp-button--quiet" disabled={!ok || (name.trim() === h.name && motto === h.motto)}>
+      <button type="submit" className="sp-button sp-button--quiet" disabled={!ok || !changed}>
         Keep this name
       </button>
     </form>

@@ -129,7 +129,7 @@ describe("Scion sprites", () => {
       { id: 3, base: "helm" },
       { id: 4, base: "jerkin" },
     ];
-    expect(kitOf({ main: 1, off: 2, head: 3, body: 4 }, items)).toEqual({ weapon: "longsword", shield: "scutum", hat: "nasal", armor: "leather" });
+    expect(kitOf({ main: 1, off: 2, head: 3, body: 4 }, items)).toEqual({ weapon: "longsword", shield: "scutum", hat: "nasal", armor: "doublet" });
     // A Magus who took up a bow and wears nothing on their body shoots, unarmored, in their wizard's hat.
     const magus = lookOf({ ...person(9, { job: "magus" }), gear: { main: 5 } } as never, undefined, [{ id: 5, base: "bow" }]);
     const option = (slot: string) => piecesOf(magus).find((p) => p.layer.slot === slot)?.layer.option;
