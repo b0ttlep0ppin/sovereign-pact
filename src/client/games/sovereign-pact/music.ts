@@ -68,7 +68,8 @@ export function battleTrack(r: Pick<Replay, "title" | "pool" | "units">): TrackI
 
 /** The track for what the view shows, when no battle is on screen. */
 export function sceneTrack(view: SovView): TrackId {
-  if (view.phase === "founding") return "the-faded-rose";
+  // Founding plays the House's theme once one is chosen, so choosing it is hearing it.
+  if (view.phase === "founding") return view.houses[view.me ?? 0]?.theme ? houseTheme(view, view.me ?? 0) : "the-faded-rose";
   if (view.phase === "over") return view.outcome?.won ? "kingsfall" : "dark-fantasy-ambient";
   const e = view.expedition;
   if (view.phase === "expedition" && e) {
@@ -77,7 +78,13 @@ export function sceneTrack(view: SovView): TrackId {
     if (e.result || e.draft?.length) return "lost-city-of-atlantis";
     return "dark-fantasy-ambient";
   }
-  return SETTLEMENT_THEMES[(view.me ?? 0) % SETTLEMENT_THEMES.length]!;
+  return houseTheme(view, view.me ?? 0);
+}
+
+/** The Settlement theme a House chose at founding (§5.9), or its seat's until it has chosen one. */
+export function houseTheme(view: SovView, house: number): TrackId {
+  const chosen = view.houses[house]?.theme;
+  return chosen && chosen in TRACKS ? (chosen as TrackId) : SETTLEMENT_THEMES[house % SETTLEMENT_THEMES.length]!;
 }
 
 export const trackUrl = (id: TrackId): string => `${import.meta.env.BASE_URL ?? "./"}music/sovereign-pact/${id}.ogg`;

@@ -352,10 +352,14 @@
 @media (max-width: 1000px) { .sp-stage__pair { grid-template-columns: 1fr; } }
 
 /* Seats in the House designer (DECISIONS 8ah): the silhouette, the flavor, the advantage and the drawback. */
-.sp-seat-pick { display: grid !important; grid-template-columns: auto 1fr auto; gap: 12px; align-items: center; }
-.sp-seat-pick > span { display: grid; gap: 2px; }
-.sp-seat-pick__pro { color: #8fc48a; font-size: 0.85rem; }
-.sp-seat-pick__con { color: #d48a7a; font-size: 0.85rem; }
+/* The founding Seat step: a grid of cards across the panel, the icon beside the text, the button beneath. */
+.sp-seats { list-style: none; margin: 0; padding: 0; width: 100%; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 10px; }
+.sp-seat-pick { display: grid; grid-template-columns: auto 1fr; grid-template-rows: 1fr auto; gap: 8px 14px; align-items: start; padding: 12px; background: rgba(0, 0, 0, 0.3); border: 1px solid var(--line); border-radius: 2px; }
+.sp-seat-pick > span { display: grid; gap: 3px; }
+.sp-seat-pick > .sp-button { grid-column: 1 / -1; min-height: 36px; padding: 6px 12px; }
+.sp-seat-pick.is-known { border-color: var(--accent); background: color-mix(in srgb, var(--gold-dim) 40%, rgba(0, 0, 0, 0.3)); }
+.sp-seat-pick__pro { color: #8ea582; font-size: 0.85rem; }
+.sp-seat-pick__con { color: #b98478; font-size: 0.85rem; }
 
 /* Character cards (8at): stat icons, bonuses shown in color, Tarot badges, elemental affinity. */
 .sp-person__stats dt { display: flex; align-items: center; gap: 2px; }
@@ -461,6 +465,12 @@
 .sp-omens-told .sp-told__where { text-align: left; }
 .sp-omens-told .sp-told__where small { color: #6e6880; letter-spacing: 0.06em; margin-left: 6px; }
 .sp-omens-told .is-private { border-left: 2px solid rgba(110, 90, 140, 0.45); padding-left: 10px; }
+
+/* The founding Theme step: every track as a button, its author beneath. */
+.sp-themes { list-style: none; margin: 0 0 10px; padding: 0; width: 100%; display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 8px; }
+.sp-themes li { display: grid; gap: 2px; }
+.sp-themes .sp-button { min-height: 40px; padding: 6px 10px; font-size: 0.85rem; }
+.sp-themes small { color: var(--muted); font-size: 0.75rem; padding-left: 4px; }
 
 /* Texture (Josh's playtest: "more texture to the brown canvasses and red buttons", then "the oak is a bit
    too far… more of a slate gray look with some mild texture, maybe mute the red a bit"). Drawn, not

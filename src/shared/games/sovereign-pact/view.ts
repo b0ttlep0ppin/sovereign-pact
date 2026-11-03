@@ -60,6 +60,8 @@ export interface PublicHouse {
   emblem: Emblem;
   seat: string;
   element: Element | null;
+  /** The House's chosen Settlement theme (§5.9): a music track id, or "" until one is chosen. */
+  theme: string;
   traits: string[];
   buildings: House["buildings"];
   /** Buildings going up this Year: scaffolding on the Town Map is public. */
@@ -243,6 +245,7 @@ function publicHouse(s: SovState, h: House, index: number): PublicHouse {
     emblem: h.emblem,
     seat: h.seat,
     element: h.element,
+    theme: h.theme,
     traits: h.traits,
     buildings: h.buildings,
     works: h.works,
