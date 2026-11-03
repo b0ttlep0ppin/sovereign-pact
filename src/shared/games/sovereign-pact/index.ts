@@ -43,6 +43,7 @@ export type { SovView } from "./view.ts";
 export { restore, type SovSave } from "./save.ts";
 export * as Content from "./content.ts";
 export { itemName, TIER_NAMES } from "./loot.ts";
+export { nominable } from "./events.ts";
 export { FLAG, replayLine, type Replay, type ReplayUnit, type Vitals } from "./combat/replay.ts";
 export type { Aim, Choice, ComboMove, ComboView, Command, FightView, TurnView } from "./fight.ts";
 export { fitsPattern } from "./combat/combos.ts";

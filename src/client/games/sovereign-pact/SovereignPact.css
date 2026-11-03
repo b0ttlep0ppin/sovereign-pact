@@ -409,3 +409,22 @@
 .sp-camp__rest { margin: 0; color: #a89878; font-size: 0.9rem; text-align: center; }
 .sp-camp__buttons { display: flex; justify-content: center; gap: 8px; }
 [data-motion="reduced"] .sp-camp, [data-motion="reduced"] .sp-camp__flame, [data-motion="reduced"] .sp-camp__talk li { animation: none; }
+
+/* The outcome card: what an event did (EventOutcome.tsx). */
+.sp-told { position: fixed; inset: 0; z-index: 24; display: grid; place-items: center; padding: 16px; overflow-y: auto; background: radial-gradient(ellipse at 50% 40%, rgba(40, 10, 14, 0.6), rgba(0, 0, 0, 0.95) 70%); animation: sp-fade-in 400ms ease-out; }
+.sp-told__card { display: grid; gap: 14px; width: min(640px, 100%); padding: 22px 28px; border: 1px solid rgba(150, 60, 50, 0.35); background: linear-gradient(#120a0b, #060405); box-shadow: 0 0 80px rgba(0, 0, 0, 0.95); }
+.sp-told__where { margin: 0; text-align: center; color: #b89a86; text-transform: uppercase; letter-spacing: 0.16em; font-size: 0.78rem; }
+.sp-told__part { display: grid; gap: 6px; padding-top: 10px; border-top: 1px solid rgba(150, 110, 90, 0.18); }
+.sp-told__choice { margin: 0; color: #d8c8b0; font-weight: 600; }
+.sp-told__who { color: #a89480; font-weight: 400; }
+.sp-told__text { margin: 0; color: #c9b7a2; font-style: italic; }
+.sp-told__lines { margin: 0; padding-left: 18px; display: grid; gap: 2px; color: #e2d4bc; }
+.sp-told__lines li::marker { color: #8a3a30; }
+.sp-told__lines li.is-private { color: #b8b0c8; }
+.sp-told__lines li.is-private::after { content: " (only your House sees this)"; color: #6e6880; font-size: 0.8em; }
+.sp-told__none { margin: 0; color: #7f7466; font-size: 0.9em; }
+.sp-told__buttons { display: flex; justify-content: center; }
+.sp-event-vote { display: grid; gap: 8px; }
+.sp-event-vote__option { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.sp-event-vote__who { color: #a89480; font-size: 0.88em; }
+.sp-event-vote__who select { margin-left: 4px; background: #120d0b; color: #d8c8b0; border: 1px solid rgba(150, 110, 90, 0.4); }

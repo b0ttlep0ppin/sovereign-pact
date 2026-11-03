@@ -2,6 +2,13 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-03 (implementation, Milestone 8bh): the outcome card, and naming your own Scion
+
+- Built (Josh's playtest: "these events feel like nothing, did he actually become younger?"): once an event lands, every House gets an outcome card. It shows the choice, who it fell on, the outcome's text, and each change it made: HP, injuries, deaths, the Changed, levels, Sanity, MP, XP, JP, age, traits, growth, Gold, stores, consumables, items and the haul. An outcome that starts a battle finishes its card after the battle.
+- Reading (hidden information, SPEC §15.7): wounds, injuries, deaths, Changes, levels and the haul are open to every House, as the battle and the log already show them. Sanity, MP, XP, JP, age, traits, growth and a House's own Gold, stores, consumables and items are told only to that House (view.ts filters them). This follows the existing rule that a House's purse and its Scions' inner workings are its own.
+- Built (Josh: "by default we should just be able to per player nominate our pawns, and if we don't choose, the game should auto resolve it"): when a choice asks someone to step up (`scion:highest:…`, `scion:random`), each House voting for it may name one of its own marching Scions. The Leader's House's nominee goes first if it voted for the winning choice, then the first other House's that did. With nobody named, the rule decides, and the vote shows whom it will fall on.
+- Reading: where the otherworld itself singles someone out (the most laden Scion in a cave-in, the Changed, the one who has killed least, a Tarot or a trait, the injured), the rule stands and nobody can be named. This is Josh's own cave-in example, and it keeps the event rules logical (his ruling of 2026-11-02). `leader` options fall on the Leader. `each_scion` and secret events already let each House pick for its own.
+
 ## 2026-11-03 (implementation, Milestone 8bg): the camp, with banter
 
 - Built (Josh's playtest: "the party at a fire, with banter"): at a Camp node the party sits around a fire and talks before it rests. A scene is drawn from `content/banter.json` (75 to start) whose conditions fit: one Scion alone, a hurt or shaken speaker, the fallen or the Lost of this expedition named, the boss next, the first camp, two Houses at odds or one House together, a mandatory road, the speaker's Job, age or years of service, and the region. Scenes with more conditions are likelier; none repeats within an expedition. The lines play one at a time over the fire; the camp's rest (unchanged) follows.

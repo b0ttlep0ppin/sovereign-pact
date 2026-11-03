@@ -5,7 +5,7 @@ import { recruitsAtWork } from "./assign.ts";
 import type { PlayerId } from "../../game.ts";
 import type { Replay } from "./combat/replay.ts";
 import { dealsFor } from "./deals.ts";
-import { secretEvent } from "./events.ts";
+import { eachScion, foresee, secretEvent } from "./events.ts";
 import { fightView, type FightView } from "./fight.ts";
 import { marketFor, priceFor } from "./market.ts";
 import { cannotDrawTarot, cannotDrinkDraught, consumablePrice, forSale } from "./consumables.ts";
@@ -38,7 +38,7 @@ import type {
   Stores,
 } from "./state.ts";
 import { kitOf, type Kit } from "./outfit.ts";
-import { BUILDINGS, PROJECTS } from "./content.ts";
+import { BUILDINGS, PROJECTS, TRIP_EVENT_BY_ID } from "./content.ts";
 import { built, projectCost, stillNeeded } from "./commons.ts";
 import { buildCost, cannotBuild, levelOf } from "./town.ts";
 import { cannotPropose } from "./votes.ts";
@@ -422,7 +422,12 @@ function opensFor(s: SovState, me: number): SovView["opens"] {
   });
 }
 
-export type ExpeditionView = Omit<Expedition, "fight"> & { length: number; fight: FightView | null };
+export type ExpeditionView = Omit<Expedition, "fight"> & {
+  length: number;
+  fight: FightView | null;
+  /** For the event waiting: who each option falls on if nobody is named (null: the party, a House, or chance). */
+  ahead?: (number | null)[];
+};
 
 function expeditionView(s: SovState, e: Expedition, me: number | null): ExpeditionView {
   const rest: Omit<Expedition, "fight"> = { ...e };
@@ -432,6 +437,9 @@ function expeditionView(s: SovState, e: Expedition, me: number | null): Expediti
   if (e.split) v.split = { ...e.split, chains: e.split.chains.map((c, i) => c.slice(0, e.split!.at[i])) as typeof e.split.chains };
   // A secret event's picks stay hidden until all are in (§9.4): another House's shows only as chosen (-2).
   if (e.event && secretEvent(e.event.id)) v.event = { ...e.event, votes: e.event.votes.map((x, h) => (x === null || x === -1 || h === me ? x : -2)) };
+  if (e.event && !secretEvent(e.event.id) && !eachScion(e.event.id)) v.ahead = TRIP_EVENT_BY_ID.get(e.event.id)!.options.map((o) => foresee(s, o.rule));
+  // What an event did: wounds, deaths and the haul for all; Sanity, XP, a House's stores for their own House.
+  if (e.told) v.told = { ...e.told, parts: e.told.parts.map((p) => ({ ...p, lines: p.lines.filter((l) => l.open || l.of === me) })) };
   const blind = (i: Item): Item => {
     const seen = { ...i };
     delete seen.props;

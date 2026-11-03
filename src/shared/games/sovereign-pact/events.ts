@@ -20,6 +20,7 @@ import { GEAR_SLOTS, LOCATIONS, STATS, type HistKey, type NodeKind, type Person,
 import { TUNING } from "./tuning.ts";
 import { log, note, withRng } from "./year.ts";
 import { change, unchange } from "./change.ts";
+import { snap, tell, type Snap } from "./told.ts";
 
 const flagged = (s: SovState, req: string): boolean => (req.startsWith("!") ? !s.flags.includes(req.slice(6)) : s.flags.includes(req.slice(5)));
 
@@ -68,7 +69,11 @@ export function cannotDecide(s: SovState, house: number, option: unknown, who?: 
   if (ev.votes[house] !== null) return ev.votes[house] === -1 ? "Your House has no one in the party." : "Your House has already chosen.";
   const def = TRIP_EVENT_BY_ID.get(ev.id)!;
   if (!(Number.isInteger(option) && (option as number) >= 0 && (option as number) < def.options.length)) return "That is not one of the choices.";
-  if (!ev.picks) return null;
+  if (!ev.picks) {
+    if (who === undefined) return null;
+    if (!nominable(def.options[option as number]!.rule)) return "That choice does not fall on a Scion you can name.";
+    return marching(s).includes(who as number) && person(s, who as number).host === house ? null : "Name one of your own Scions in the party.";
+  }
   const id = who as number;
   if (!(id in ev.picks) || person(s, id).host !== house) return "Choose for one of your own Scions in the party.";
   return ev.picks[id] === null ? null : "That Scion has already chosen.";
@@ -93,6 +98,7 @@ export function decide(s: SovState, house: number, option: number, who?: number)
     return after(s);
   }
   ev.votes[house] = option;
+  if (who !== undefined) (ev.nominees ??= {})[house] = who;
   if (ev.votes.some((v) => v === null)) return;
   if (secretEvent(ev.id)) return revealSecret(s);
   const tally = def.options.map((_, i) => ev.votes.filter((v) => v === i).length);
@@ -105,7 +111,25 @@ export function decide(s: SovState, house: number, option: number, who?: number)
     pick = tied.includes(lead) ? lead : pick;
   }
   delete e.event;
-  resolve(s, def.options[pick]!);
+  // Who steps up (Josh, 2026-11-02): the Leader's House's nominee if it voted for the choice, then the
+  // first other House's that did; with none, the option's rule decides.
+  const lead = e.leader === undefined ? -1 : person(s, e.leader).host;
+  const named = [lead, ...ev.votes.keys()].filter((h) => h >= 0 && ev.votes[h] === pick).map((h) => ev.nominees?.[h]).find((id) => id !== undefined && marching(s).includes(id));
+  resolve(s, def.options[pick]!, named);
+}
+
+/**
+ * Whether a House may name the Scion an option falls on (Josh, 2026-11-02, "per player nominate our
+ * pawns"): a choice that asks for someone to step up (the strongest, the quickest, anyone). Where the
+ * otherworld itself singles someone out (the most laden, the Changed, the one who killed least) the rule stands.
+ */
+export const nominable = (rule: string): boolean => /^scion:(highest:[a-z_]+|random)$/.test(rule.split("|")[0]!);
+
+/** The Scion an option will fall on if nobody is named, or null when it is the party, a House, or chance. */
+export function foresee(s: SovState, rule: string): number | null {
+  if (rule.includes("random") || !rule.startsWith("scion:") && rule !== "leader") return null;
+  const got = subjects(s, rule);
+  return got.house !== null && got.scions.length === 1 ? got.scions[0]! : null;
 }
 
 type Subjects = { scions: number[]; house: number | null };
@@ -182,8 +206,8 @@ function revealSecret(s: SovState): void {
 }
 
 /** The option is taken: its subject found, its outcome drawn, its effects applied in order. */
-export function resolve(s: SovState, option: TripOption): void {
-  if (land(s, option, subjects(s, option.rule))) after(s);
+export function resolve(s: SovState, option: TripOption, named?: number): void {
+  if (land(s, option, named === undefined ? subjects(s, option.rule) : { scions: [named], house: person(s, named).host })) after(s);
 }
 
 function land(s: SovState, option: TripOption, { scions, house }: Subjects, others: string[] = []): boolean {
@@ -199,8 +223,16 @@ function land(s: SovState, option: TripOption, { scions, house }: Subjects, othe
   });
   const who = option.rule === "vote" ? "" : option.rule === "secret" ? `House ${s.houses[house!]!.name}: ` : `${scions.map((id) => person(s, id).name).join(" and ")}: `;
   log(s, `${option.label} ${who}${outcome.text}`);
-  return effects(s, outcome.effects, scions, option.rule === "vote" ? null : house);
+  const before = look(s);
+  const done = effects(s, outcome.effects, scions, option.rule === "vote" ? null : house);
+  const e = s.expedition!;
+  if (e.told?.n !== e.seen.length) e.told = { id: e.seen.at(-1) ?? "", n: e.seen.length, parts: [] };
+  e.told.parts.push({ label: option.label, who: who.replace(/: $/, ""), text: outcome.text, lines: tell(s, before) });
+  return done;
 }
+
+/** Everyone the party set out with, and every House, as they stand now (for the outcome card). */
+const look = (s: SovState): Snap => snap(s, s.expedition!.party.flatMap((x) => x ?? []), s.houses.map((_, h) => h));
 
 /**
  * Effects in order. One that starts a battle takes the rest with it, to follow a victory (journey.ts
@@ -217,7 +249,11 @@ function effects(s: SovState, list: TripEffect[], scions: number[], house: numbe
 
 /** The rest of an outcome after the battle it started was won. */
 export function carryOn(s: SovState, then: Extract<Then, { effects: unknown }>): void {
-  if (effects(s, then.effects, then.scions, then.house)) after(s);
+  const before = look(s);
+  const done = effects(s, then.effects, then.scions, then.house);
+  const part = s.expedition!.told?.parts.at(-1);
+  if (part) part.lines.push(...tell(s, before));
+  if (done) after(s);
 }
 
 /** After an event: with no one left the party is gone; a dead Leader is replaced. */
