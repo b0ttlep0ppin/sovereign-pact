@@ -1,7 +1,7 @@
 // What the Settlement Phase asks of a House (SPEC §15.2, §15.7): the open vote (hands shown as they are
 // cast), the town events it decides, the Crisis and its private pledge, and Dark Bargains whispered to
 // it alone. Each is a panel the House answers from; others see only that a House is deciding.
-import { Content, type SovMove, type SovView } from "@vibepulse/shared/games/sovereign-pact";
+import { Content, TUNING, type SovMove, type SovView } from "@vibepulse/shared/games/sovereign-pact";
 import { useState } from "react";
 import { Emblem } from "./Emblem";
 import Amount from "./Amount";
@@ -16,10 +16,14 @@ const amounts = (r: Partial<Record<string, number>>) =>
     .join(", ");
 
 /** The open vote's question and its options' names. */
-export function voteText(vote: NonNullable<SovView["vote"]>): { question: string; options: string[] } {
+export function voteText(vote: NonNullable<SovView["vote"]>, houses?: SovView["houses"]): { question: string; options: string[] } {
+  const yesNo = vote.options.map((o) => (o === "yes" ? "Yes" : "No"));
+  if (vote.kind === "levy") return { question: `Levy ${TUNING.commons.levyGold} Gold on every House, for the Commons?`, options: yesNo };
   if (vote.kind === "spend") {
     const p = Content.PROJECT_BY_ID.get(vote.subject);
-    return { question: `Spend the Commons' stock on the ${p?.name ?? vote.subject}?`, options: vote.options.map((o) => (o === "yes" ? "Yes" : "No")) };
+    const host = vote.host !== undefined && houses && houses.length > 1 ? houses[vote.host] : undefined;
+    const site = host && p?.host ? ` It would stand in House ${host.name}'s district (${p.host.text})` : "";
+    return { question: `Spend the Commons' stock on the ${p?.name ?? vote.subject}?${site}`, options: yesNo };
   }
   const ev = Content.TOWN_EVENT_BY_ID.get(vote.subject);
   return { question: ev?.title ?? vote.subject, options: vote.options.map((id) => ev?.options?.find((o) => o.id === id)?.label ?? id) };
@@ -202,7 +206,7 @@ function OmensTold({ view }: { view: SovView }) {
 }
 
 function VoteCard({ view, vote, sendMove }: { view: SovView; vote: NonNullable<SovView["vote"]>; sendMove: Props["sendMove"] }) {
-  const { question, options } = voteText(vote);
+  const { question, options } = voteText(vote, view.houses);
   const mine = vote.by[view.me!];
   return (
     <article className="sp-event sp-event--vote" aria-label="The open vote">

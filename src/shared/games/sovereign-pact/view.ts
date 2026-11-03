@@ -43,7 +43,7 @@ import { BUILDINGS, PROJECTS, TRIP_EVENT_BY_ID } from "./content.ts";
 import { built, projectCost, stillNeeded } from "./commons.ts";
 import { cannotLay, OFFERINGS } from "./altar.ts";
 import { buildCost, cannotBuild, levelOf } from "./town.ts";
-import { cannotPropose, owed } from "./votes.ts";
+import { cannotLevy, cannotPropose, owed } from "./votes.ts";
 import { cannotOpen } from "./satchel.ts";
 import { ceremonies } from "./promotion.ts";
 import { cureOf, mends } from "./cures.ts";
@@ -94,6 +94,8 @@ export interface PrivateHouse {
   builds: { id: string; level: number; cost: Partial<Record<string, number>> | null; why: string | null }[];
   /** The Commons' projects open now: the next level, what it still needs, and why this House cannot propose spending on it, if so (§8.5, §8.1). */
   projects: { id: string; level: number; need: Partial<Record<string, number>>; propose: string | null }[];
+  /** Why this House cannot move a levy now (the Commons Council), or null. */
+  levy: string | null;
   /** The Altar of Offerings, once it stands: this Year's offering, and each one with why it cannot be laid. */
   altar: { laid: Offering | null; offers: { gift: Offering; why: string | null }[] } | null;
   /** Promotions this Year (§6.5): what one costs, and how many ceremonies are left. */
@@ -396,6 +398,7 @@ export function view(s: SovState, playerId: PlayerId): SovView {
               need: stillNeeded(s, x.id),
               propose: s.proposers.includes(me) ? "You have made your proposal for this Year." : cannotPropose(s, x.id),
             })),
+            levy: s.proposers.includes(me) ? "You have made your proposal for this Year." : cannotLevy(s),
             altar: built(s, "altar_of_offerings") ? { laid: own.offering ?? null, offers: OFFERINGS.map((gift) => ({ gift, why: cannotLay(s, me, gift) })) } : null,
             promotion: { gold: TUNING.promotion.gold, left: Math.max(0, ceremonies(s, me) - (own.promotions ?? 0)) },
             cures: stash(s, me).flatMap((it) =>

@@ -209,6 +209,8 @@ export const TUNING = {
      * find or a shop lot comes one tier finer (never past Masterwork). Bell of Saviours: per level, % that an
      * arrival is one of the Foretold, a prodigy with `saviorStat` more of every stat but Speed.
      */
+    /** The Commons Council's levy, first pass: Gold each House pays into the Commons when it passes. */
+    levyGold: 15,
     assayPct: 15,
     saviorPct: 6,
     saviorStat: 4,

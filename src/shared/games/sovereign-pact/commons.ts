@@ -94,13 +94,36 @@ export function commonsMods(s: Pick<SovState, "commons">): Record<string, number
   return mods;
 }
 
+/** The Reckoning: each House hosting a project takes what its district earns from it (the Commons Council). */
+export function hostPerks(s: SovState): void {
+  for (const [id, host] of Object.entries(s.commons.hosts ?? {})) {
+    const h = host === undefined ? undefined : s.houses[host];
+    const perk = PROJECT_BY_ID.get(id)?.host;
+    if (!h || !perk || !built(s, id)) continue;
+    for (const [k, n] of Object.entries(perk.resources ?? {})) {
+      if (k === "gold") h.gold += n ?? 0;
+      else h.stores[k] = (h.stores[k] ?? 0) + (n ?? 0);
+    }
+    for (const [k, n] of Object.entries(perk.score ?? {})) h.score[k as keyof typeof h.score] += n ?? 0;
+  }
+}
+
 /** §8.10 step 2, the Commons' part: fully paid projects stand. */
 export function completeProjects(s: SovState): void {
   for (const def of PROJECTS) {
     if (!s.commons.funds[def.id] || !projectCost(s, def.id) || Object.keys(stillNeeded(s, def.id)).length) continue;
+    const f = s.commons.funds[def.id]!;
     s.commons.built[def.id] = built(s, def.id) + 1;
     delete s.commons.funds[def.id];
-    log(s, `The ${def.name} stands in the Commons.`);
+    // The Commons Council: it stands where the Houses voted to site it, else in the biggest pledger's district.
+    const hosts = (s.commons.hosts ??= {});
+    if (hosts[def.id] === undefined) {
+      const top = f.by.reduce((best, n, i) => (n > (f.by[best] ?? 0) ? i : best), 0);
+      const host = f.host ?? ((f.by[top] ?? 0) > 0 ? top : undefined);
+      if (host !== undefined) hosts[def.id] = host;
+    }
+    const at = hosts[def.id];
+    log(s, at === undefined ? `The ${def.name} stands in the Commons.` : `The ${def.name} stands in the Commons, in House ${s.houses[at]!.name}'s district.`);
     if (def.id === "court_of_peers" && s.houses.length === 1) s.accord = Math.min(100, s.accord + C.courtUnrest);
   }
 }

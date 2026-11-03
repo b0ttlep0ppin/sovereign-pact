@@ -52,12 +52,20 @@ export default function Works({ view, sendMove, canAct }: Props) {
       </ul>
       <h3>The Commons</h3>
       <p className="sp-event__status">
-        Pledges are public and final, and earn Renown by share. The Commons holds {costText({ gold: view.commons.gold, ...view.commons.stores })}; spending it takes a vote.
+        Pledges are public and final, and earn Renown by share. The Commons holds {costText({ gold: view.commons.gold, ...view.commons.stores })}; spending it takes a vote. A project stands in
+        the district the Houses vote to site it in (else the biggest pledger's), and its host takes a perk every Year.
       </p>
+      {canAct && view.houses.length > 1 ? (
+        <p className="sp-levy">
+          <button type="button" className="sp-button sp-button--quiet" disabled={!!mine.levy} title={mine.levy ?? undefined} onClick={() => sendMove({ type: "levy" })}>
+            Move a levy of {TUNING.commons.levyGold} Gold on every House
+          </button>
+        </p>
+      ) : null}
       {mine.projects.length ? (
         <ul className="sp-lots sp-projects">
           {mine.projects.map((p) => (
-            <Project key={p.id} p={p} mine={mine} sendMove={sendMove} canAct={canAct} />
+            <Project key={p.id} p={p} view={view} mine={mine} sendMove={sendMove} canAct={canAct} />
           ))}
         </ul>
       ) : (
@@ -80,7 +88,15 @@ function Standing({ view, open }: { view: SovView; open: string[] }) {
     <div className="sp-standing">
       {standing.length ? (
         <p className="sp-event__status">
-          Standing: {standing.map((p) => `${p.name}${p.tiers.length > 1 ? ` (level ${built[p.id]})` : ""}`).join(", ")}.
+          Standing:{" "}
+          {standing
+            .map((p) => {
+              const at = view.commons.hosts?.[p.id];
+              const bits = [p.tiers.length > 1 ? `level ${built[p.id]}` : "", at !== undefined && view.houses.length > 1 ? `House ${view.houses[at]?.name}'s district` : ""].filter(Boolean);
+              return `${p.name}${bits.length ? ` (${bits.join(", ")})` : ""}`;
+            })
+            .join(", ")}
+          .
         </p>
       ) : null}
       {waiting.length ? (
@@ -129,9 +145,12 @@ function Altar({ altar, sendMove, canAct }: { altar: NonNullable<Mine["altar"]>;
   );
 }
 
-function Project({ p, mine, sendMove, canAct }: { p: Mine["projects"][number]; mine: Mine; sendMove: Props["sendMove"]; canAct: boolean }) {
+function Project({ p, view, mine, sendMove, canAct }: { p: Mine["projects"][number]; view: SovView; mine: Mine; sendMove: Props["sendMove"]; canAct: boolean }) {
   const def = Content.PROJECT_BY_ID.get(p.id);
   const [give, setGive] = useState<Record<string, number>>({});
+  const sited = view.commons.hosts?.[p.id] ?? view.commons.funds[p.id]?.host;
+  const [host, setHost] = useState<number>(sited ?? view.me ?? 0);
+  const many = view.houses.length > 1;
   const keys = Object.keys(p.need);
   const have = (k: string) => (k === "gold" ? mine.gold : (mine.stores[k] ?? 0));
   const any = keys.some((k) => (give[k] ?? 0) > 0);
@@ -141,6 +160,12 @@ function Project({ p, mine, sendMove, canAct }: { p: Mine["projects"][number]; m
         <strong>{def?.name ?? p.id}</strong> <small>level {p.level}</small>
         <span className="sp-ability__text">{def?.text}</span>
         <span className="sp-ability__text">Still needs {costText(p.need)}.</span>
+        {many && def?.host ? (
+          <span className="sp-ability__text">
+            Host's perk: {def.host.text}
+            {sited !== undefined ? ` Sited in House ${view.houses[sited]?.name}'s district.` : ""}
+          </span>
+        ) : null}
       </span>
       {canAct ? (
         <span className="sp-pledge">
@@ -161,7 +186,25 @@ function Project({ p, mine, sendMove, canAct }: { p: Mine["projects"][number]; m
           >
             Pledge
           </button>
-          <button type="button" className="sp-button sp-button--quiet" disabled={!!p.propose} title={p.propose ?? undefined} onClick={() => sendMove({ type: "propose", project: p.id })}>
+          {many && sited === undefined ? (
+            <label className="sp-amount-row">
+              <span>Site it in</span>
+              <select value={host} onChange={(e) => setHost(Number(e.target.value))}>
+                {view.houses.map((h, i) => (
+                  <option key={i} value={i}>
+                    House {h.name}
+                  </option>
+                ))}
+              </select>
+            </label>
+          ) : null}
+          <button
+            type="button"
+            className="sp-button sp-button--quiet"
+            disabled={!!p.propose}
+            title={p.propose ?? undefined}
+            onClick={() => sendMove(many && sited === undefined ? { type: "propose", project: p.id, host } : { type: "propose", project: p.id })}
+          >
             Propose the Commons pay
           </button>
         </span>

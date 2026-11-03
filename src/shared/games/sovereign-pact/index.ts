@@ -18,7 +18,7 @@ import { cannotChoose, choose } from "./omens.ts";
 import { bid, botSell, botShop, buy, cannotAuction, cannotBid, cannotBuy, cannotSell, putUp, sell } from "./market.ts";
 import { accept, cannotAccept, cannotDecline, cannotOffer, decline, offer } from "./deals.ts";
 import { cannotCrisisPledge, cannotTempt, crisisPledge, tempt } from "./crisis.ts";
-import { cannotPropose, cannotVote, castVote, owed, propose } from "./votes.ts";
+import { cannotLevy, cannotPropose, cannotSite, cannotVote, castVote, owed, propose, proposeLevy } from "./votes.ts";
 import { botDeal, botAssign, botPromote, botBuild, botChoice, botCrisis, botPledge, botPropose, botChampion, botTarget, botVote } from "./bot.ts";
 import { build, cannotBuild, unbuild } from "./town.ts";
 import { cannotPromote, promoteRecruit } from "./promotion.ts";
@@ -486,10 +486,21 @@ export function applyMove(state: SovState, playerId: PlayerId, move: SovMove): M
       if (s.phase !== "settlement") return fail("Proposals are made in the Settlement Phase.");
       if (h.sealed) return fail("Unseal the Year first.");
       if (s.proposers.includes(house)) return fail("You have made your proposal for this Year.");
-      const why = cannotPropose(s, move.project);
+      const why = cannotPropose(s, move.project) ?? (move.host === undefined ? null : cannotSite(s, move.project, move.host));
       if (why) return fail(why);
       s.proposers.push(house);
-      propose(s, house, move.project);
+      propose(s, house, move.project, move.host ?? house);
+      s.phaseMoves += 1;
+      return { ok: true, state: s };
+    }
+    case "levy": {
+      if (s.phase !== "settlement") return fail("Motions are made in the Settlement Phase.");
+      if (h.sealed) return fail("Unseal the Year first.");
+      if (s.proposers.includes(house)) return fail("You have made your proposal for this Year.");
+      const why = cannotLevy(s);
+      if (why) return fail(why);
+      s.proposers.push(house);
+      proposeLevy(s, house);
       s.phaseMoves += 1;
       return { ok: true, state: s };
     }

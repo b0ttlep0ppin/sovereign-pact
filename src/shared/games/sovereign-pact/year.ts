@@ -9,7 +9,7 @@ import { rollRecruit } from "./generate.ts";
 import { setRecruitsToWork, yearOfAssignments } from "./assign.ts";
 import { caps } from "./combat/build.ts";
 import type { House, Person, SovState } from "./state.ts";
-import { built, completeProjects } from "./commons.ts";
+import { built, completeProjects, hostPerks } from "./commons.ts";
 import { completeWorks, produce, upkeepDue } from "./town.ts";
 import { byPct, econ } from "./houses.ts";
 import { wardYear } from "./wards.ts";
@@ -162,6 +162,7 @@ export function reckoning(s: SovState): void {
   });
   completeWorks(s);
   completeProjects(s);
+  hostPerks(s);
   // Injuries tick down, everyone recovers and grows by assignment, and MP refills (§8.3, §8.10).
   yearOfAssignments(s);
   for (const id of pitchedIn) delete s.assign[id];

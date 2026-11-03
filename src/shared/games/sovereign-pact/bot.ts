@@ -194,6 +194,8 @@ export function botPropose(s: SovState, house: number): string | null {
 export function botVote(s: SovState, house: number): number {
   const v = s.vote!;
   if (v.kind === "event") return botChoice(s, house, v.subject);
+  // A levy: a House with Gold to spare pays for the city it has to live in.
+  if (v.kind === "levy") return v.options.indexOf(s.houses[house]!.gold >= 3 * TUNING.commons.levyGold ? "yes" : "no");
   return PROJECT_PLAN.includes(v.subject) ? v.options.indexOf("yes") : v.options.indexOf("no");
 }
 

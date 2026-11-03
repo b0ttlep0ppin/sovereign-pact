@@ -2,6 +2,14 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-03 (implementation, Milestone 8ck): the Commons Council, first part: districts, host perks, the levy
+
+Josh: **"There is very little interaction on the commons projects, these things should be debated by the players."**
+- **Districts.** A proposal to spend the Commons names the House whose district the project would stand in (the proposer's by default). The vote decides both at once. A project paid for by pledges alone stands in its biggest pledger's district. Once sited, a project stays where it is, and later levels and proposals keep it there.
+- **Host perks.** Every project now gives its host a small perk each Year at the Reckoning (`host` in projects.json): resources or score, such as the Granary's +10 Grain, market tolls and shop rents in Gold, the Cathedral's Essence and Renown, the Court of Peers' Intrigue. So where a project stands is worth arguing over.
+- **The levy.** A House may use its one proposal of the Year to move a levy instead. If it passes, every House pays 15 Gold (or what it has) into the Commons, whatever it voted. Bots vote for it when they have three times the levy to spare. There is no levy with one House.
+- Still to come: a Council vote on which branch of the tech tree grows next, and seizing a defaulter's pledge.
+
 ## 2026-11-03 (implementation, Milestone 8cj): the Altar of Offerings; the tree shown in the Commons
 
 Josh: **"some let you sacrifice small stuff for an expedition bonus"**.
