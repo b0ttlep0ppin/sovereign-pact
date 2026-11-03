@@ -32,7 +32,9 @@ describe("readying Scions", () => {
     const { s, p, spear } = town();
     const sendMove = vi.fn();
     render(<Readying view={g.view(s, "p1")} sendMove={sendMove} canAct />);
-    fireEvent.change(screen.getByLabelText("Take a Job"), { target: { value: "magus" } });
+    // The Job icons: Magus shows its abilities, and the Scion may take it.
+    fireEvent.click(within(screen.getByRole("list", { name: "Jobs" })).getByRole("button", { name: /Magus/ }));
+    expect(screen.getByLabelText("Magus abilities").textContent).toContain("must take this Job to learn here");
     fireEvent.click(screen.getByRole("button", { name: "Take Job" }));
     expect(sendMove).toHaveBeenCalledWith({ type: "take_job", person: p.id, job: "magus" });
     fireEvent.change(screen.getByLabelText("Wear in Main hand"), { target: { value: String(spear.id) } });
@@ -45,9 +47,23 @@ describe("readying Scions", () => {
     const { s } = town();
     const sendMove = vi.fn();
     render(<Readying view={g.view(s, "p1")} sendMove={sendMove} canAct={false} />);
-    expect(screen.queryByLabelText("Take a Job")).toBeNull();
+    expect(screen.queryByRole("button", { name: "Take Job" })).toBeNull();
     expect((within(screen.getByText("Heavy Blow").closest("li")!).getByRole("button") as HTMLButtonElement).disabled).toBe(true);
     const spectator = render(<Readying view={g.view(s, "nobody")} sendMove={sendMove} canAct />);
     expect(spectator.container.innerHTML).toBe("");
+  });
+
+  it("shows a locked Job's abilities and what opens it, and wears gear on a paper doll", () => {
+    const { s, p } = town();
+    render(<Readying view={g.view(s, "p1")} sendMove={vi.fn()} canAct />);
+    fireEvent.click(within(screen.getByRole("list", { name: "Jobs" })).getByRole("button", { name: /Sword Saint/ }));
+    const detail = screen.getByLabelText("Sword Saint abilities");
+    expect(detail.textContent).toContain("Opens with 400 JP as a Soldier and 400 JP as a Knight");
+    expect(within(detail).queryByRole("button", { name: /Learn/ })).toBeNull();
+    expect(screen.queryByRole("button", { name: "Take Job" })).toBeNull();
+    const armor = screen.getByRole("list", { name: "Armor" });
+    expect(within(armor).getByText("Head")).toBeTruthy();
+    expect(within(screen.getByRole("list", { name: "Arms and trinkets" })).getByText("Main hand")).toBeTruthy();
+    expect(p.id).toBeDefined();
   });
 });

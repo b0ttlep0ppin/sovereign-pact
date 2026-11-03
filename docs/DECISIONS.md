@@ -2,6 +2,13 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-03 (implementation, Milestone 8bl): Job icons and the paper doll in Readying
+
+- Built (Josh's playtest: "clickable per-Job icons for ability learning", "paper doll gear screen"):
+  - Readying shows every Job as its icon, with the Scion's JP in it, "Mastered", or "Locked". Clicking one lists that Job's actives and passives, what each does and costs, and which are known.
+  - In the current Job, abilities are bought there as before. Any other Job the Scion may take offers "Take Job" (learning stays in the primary Job, as §12 has it). A locked one says what opens it ("400 JP as a Soldier and 400 JP as a Knight"). This replaces the Job dropdown.
+  - Gear is a paper doll: the Scion drawn large, wearing what they wear, with head, body, hands and legs down the left and main hand, off hand and two accessories down the right. Each slot keeps its "Take off" and "Wear…" controls.
+
 ## 2026-11-03 (implementation, Milestone 8bk): battle backdrops, a quieter palette, labelled bars
 
 - Built (Josh's playtest: "backgrounds needed (scene looks flat)", "still too vibrant", "label character bars"):
