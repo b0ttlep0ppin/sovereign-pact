@@ -5,12 +5,14 @@
 // the field and reddens its edges, and a spell tints the whole screen for a beat. Several actions in one
 // turn land one after another (waves). `strikesOf` is pure; the motion is CSS and the Web Animations API,
 // skipped when motion is reduced.
-import { Content, type Replay, type ReplayUnit } from "@vibepulse/shared/games/sovereign-pact";
+import { Content, statusMeta, type Replay, type ReplayUnit } from "@vibepulse/shared/games/sovereign-pact";
+import { statusLook } from "./statusLook";
 import { useEffect, useRef, useState, type CSSProperties, type RefObject } from "react";
 
 type Event = Replay["frames"][number]["ev"][number];
 
-export type StrikeKind = "melee" | "shot" | "spell" | "heal" | "mind";
+/** `boon`: a blessing laid on an ally (a buff, a cure, Sanity restored); `bane`: a curse with no blow. */
+export type StrikeKind = "melee" | "shot" | "spell" | "heal" | "mind" | "boon" | "bane";
 
 export interface Strike {
   from: number;
@@ -21,12 +23,19 @@ export interface Strike {
   element?: string;
   crit?: boolean;
   miss?: boolean;
+  /** A boon's or bane's status id (drawn in its own glyph and colour); a cure is "cure". */
+  status?: string;
+  /** A spear's or knife's blow: a straight stab, not a slash. */
+  thrust?: boolean;
 }
 
+/** Weapons that stab rather than cut. */
+const THRUSTS = new Set(["spear", "knife"]);
+
 /** Milliseconds at 1× from the start of its wave to the moment each kind of strike lands. */
-export const IMPACT_MS: Record<StrikeKind, number> = { melee: 320, shot: 460, spell: 680, heal: 420, mind: 520 };
-/** How long a spell's bolt is in the air, at 1×. */
-const FLIGHT_MS = 420;
+export const IMPACT_MS: Record<StrikeKind, number> = { melee: 320, shot: 460, spell: 900, heal: 560, mind: 760, boon: 560, bane: 520 };
+/** How long a spell takes to rise out of the ground beside its caster, at 1×, before it seeks its foe. */
+const CONJURE_MS = 420;
 /** Milliseconds at 1× between one action of a turn and the next. */
 export const WAVE_MS = 650;
 /** When a strike lands, at 1×, from the start of the turn. */
@@ -56,6 +65,17 @@ export function strikesOf(ev: Event[], units: Map<number, ReplayUnit>): Strike[]
       }
       continue;
     }
+    // Blessings and curses that come with no blow (Josh 2026-11-03: heals and buffs "feel kinda flat").
+    if ((e.t === "status" || e.t === "sanity") && user !== undefined && used && units.has(user) && units.has(e.target)) {
+      const id = e.t === "status" ? e.status.split("@")[0]! : "";
+      const cured = e.t === "status" && !e.on && !!Content.ACTIVE_BY_ID.get(used)?.cure;
+      const good = e.t === "sanity" ? e.amount > 0 : e.on ? statusMeta(id).kind === "buff" : cured;
+      const bad = e.t === "status" && e.on && statusMeta(id).kind !== "buff";
+      if ((good || bad) && !out.some((s) => s.wave === wave && s.to === e.target)) {
+        out.push({ from: user, to: e.target, kind: good ? "boon" : "bane", wave, status: e.t === "sanity" ? "sanity" : cured ? "cure" : id });
+      }
+      continue;
+    }
     if (e.t !== "hit" && e.t !== "miss" && e.t !== "heal") continue;
     if (!units.has(e.unit) || !units.has(e.target)) continue;
     if (user !== e.unit) {
@@ -71,8 +91,11 @@ export function strikesOf(ev: Event[], units: Map<number, ReplayUnit>): Strike[]
     else if (act?.reach === "ranged" || RANGED.has(units.get(e.unit)?.weapon ?? "")) kind = "shot";
     else if (e.t === "hit" && e.element) kind = "spell";
     else kind = "melee";
+    // A heal that also blesses (Regen) is drawn once, as the heal.
+    if (kind === "heal") for (let k = out.length - 1; k >= 0; k--) if (out[k]!.wave === wave && out[k]!.to === e.target && out[k]!.kind === "boon") out.splice(k, 1);
     const element = (e.t === "hit" ? e.element : undefined) ?? act?.element ?? (e.t === "heal" ? "holy" : undefined);
-    out.push({ from: e.unit, to: e.target, kind, wave, ...(element ? { element } : {}), ...(e.t === "hit" && e.crit ? { crit: true } : {}), ...(e.t === "miss" ? { miss: true } : {}) });
+    const thrust = kind === "melee" && THRUSTS.has(units.get(e.unit)?.weapon ?? "");
+    out.push({ from: e.unit, to: e.target, kind, wave, ...(element ? { element } : {}), ...(e.t === "hit" && e.crit ? { crit: true } : {}), ...(e.t === "miss" ? { miss: true } : {}), ...(thrust ? { thrust: true } : {}) });
   }
   return out;
 }
@@ -87,6 +110,18 @@ export const FX_COLORS: Record<string, [string, string]> = {
   dark: ["#e0c8ff", "#5a1a9a"],
   none: ["#ffffff", "#c8b8a0"],
 };
+
+/** What a blessing or curse is drawn in: its status's colour and glyph (a cure is pale, Sanity a calm blue). */
+export function boonLook(s: Pick<Strike, "kind" | "status">): { color: string; glyph: string } {
+  if (s.kind === "heal") return { color: "#8fe89a", glyph: "✚" };
+  if (s.status === "cure") return { color: "#dff4ff", glyph: "✧" };
+  if (s.status === "sanity") return { color: "#9ab8ff", glyph: "◉" };
+  const l = statusLook(s.status ?? "");
+  return { color: l.color, glyph: l.glyph };
+}
+
+/** Strikes that bless or curse rather than strike: no lunge, no blow. */
+const kindly = (k: StrikeKind) => k === "heal" || k === "boon" || k === "bane";
 
 interface Pt {
   x: number;
@@ -136,10 +171,32 @@ export default function BattleFx({ planes, strikes, turn, speed }: { planes: Ref
       const k = 1 / speed;
       // Each wave's attacker: a wind-up away from the foe, then a dash toward it (melee deep into the gap).
       for (const { s, from, to } of leads(at.map((x) => ({ ...x, wave: x.s.wave })))) {
-        if (s.kind === "heal") continue;
+        if (kindly(s.kind)) {
+          // The caster gathers it: rises a little, lit in its colour, and settles as it lands.
+          const c = boonLook(s).color;
+          animate(node(s.from), [
+            { translate: "0 0", filter: "none" },
+            { translate: "0 -7px", filter: `brightness(1.5) drop-shadow(0 0 10px ${c})`, offset: 0.5 },
+            { translate: "0 -7px", filter: `brightness(1.3) drop-shadow(0 0 6px ${c})`, offset: 0.8 },
+            { translate: "0 0", filter: "none" },
+          ], { duration: IMPACT_MS[s.kind] * 1.3 * k, delay: s.wave * WAVE_MS * k, easing: "ease-in-out" });
+          continue;
+        }
         const dx = to.x - from.x;
         const dy = to.y - from.y;
-        const reach = s.kind === "melee" ? 0.42 : 0.08;
+        if (s.kind === "spell" || s.kind === "mind") {
+          // The caster is wreathed in the spell's colour while it rises beside them, then thrusts it on.
+          const g = FX_COLORS[s.element ?? "none"]![1];
+          animate(node(s.from), [
+            { translate: "0 0", filter: "none" },
+            { translate: "0 -4px", filter: `brightness(1.4) saturate(1.6) drop-shadow(0 0 10px ${g}) drop-shadow(0 0 3px ${g})`, offset: 0.3 },
+            { translate: "0 -4px", filter: `brightness(1.7) saturate(1.8) drop-shadow(0 0 16px ${g}) drop-shadow(0 0 4px ${g})`, offset: 0.55 },
+            { translate: `${dx * 0.05}px 0`, filter: `brightness(1.3) drop-shadow(0 0 8px ${g})`, offset: 0.7 },
+            { translate: "0 0", filter: "none" },
+          ], { duration: IMPACT_MS[s.kind] * k, delay: s.wave * WAVE_MS * k, easing: "ease-in-out" });
+          continue;
+        }
+        const reach = s.kind === "melee" ? (s.thrust ? 0.5 : 0.42) : 0.08;
         animate(node(s.from), [
           { translate: "0 0", offset: 0 },
           { translate: `${-dx * 0.06}px ${-dy * 0.06 - 4}px`, offset: 0.35, easing: "ease-in" },
@@ -155,8 +212,27 @@ export default function BattleFx({ planes, strikes, turn, speed }: { planes: Ref
           animate(node(s.to), [{ translate: "0 0" }, { translate: `${Math.sign(to.x - from.x) * 14}px -6px` }, { translate: "0 0" }], { duration: 360 * k, delay, easing: "ease-out" });
           continue;
         }
-        if (s.kind === "heal") {
-          animate(node(s.to), [{ filter: "brightness(1)" }, { filter: "brightness(1.8) drop-shadow(0 0 8px #9fe8a0)" }, { filter: "brightness(1)" }], { duration: 600 * k, delay });
+        if (s.kind === "heal" || s.kind === "boon") {
+          // Lifted and lit: a heal raises them a step, a blessing swells them for a beat.
+          const c = boonLook(s).color;
+          animate(node(s.to), [
+            { translate: "0 0", scale: "1", filter: "brightness(1)" },
+            { translate: "0 -8px", scale: s.kind === "boon" ? "1.08" : "1.03", filter: `brightness(2) drop-shadow(0 0 12px ${c})`, offset: 0.25 },
+            { translate: "0 -5px", scale: "1.02", filter: `brightness(1.5) drop-shadow(0 0 8px ${c})`, offset: 0.6 },
+            { translate: "0 0", scale: "1", filter: "brightness(1)" },
+          ], { duration: 900 * k, delay, easing: "ease-out" });
+          continue;
+        }
+        if (s.kind === "bane") {
+          // Wrung by it: dimmed, drained of colour, a shudder.
+          const c = boonLook(s).color;
+          animate(node(s.to), [
+            { translate: "0 0", filter: "none" },
+            { translate: "-4px 2px", filter: `brightness(0.5) saturate(0.3) drop-shadow(0 0 10px ${c})`, offset: 0.2 },
+            { translate: "4px 2px", filter: `brightness(0.6) saturate(0.4) drop-shadow(0 0 8px ${c})`, offset: 0.4 },
+            { translate: "-2px 0", filter: `brightness(0.8) drop-shadow(0 0 6px ${c})`, offset: 0.65 },
+            { translate: "0 0", filter: "none" },
+          ], { duration: 760 * k, delay, easing: "ease-out" });
           continue;
         }
         const push = Math.sign(to.x - from.x || 1) * (s.crit ? 14 : 8);
@@ -206,11 +282,15 @@ export function ScreenFx({ strikes, turn, speed }: { strikes: Strike[]; turn: nu
   const ms = (n: number) => `${Math.round(n / speed)}ms`;
   const spells = leads(strikes.filter((s) => (s.kind === "spell" || s.kind === "mind") && !s.miss));
   const crits = leads(strikes.filter((s) => s.crit));
-  if (!spells.length && !crits.length) return null;
+  const boons = leads(strikes.filter((s) => s.kind === "heal" || s.kind === "boon"));
+  if (!spells.length && !crits.length && !boons.length) return null;
   return (
     <div className="sp-screenfx" aria-hidden="true" key={turn}>
       {spells.map((s) => (
         <span key={`s${s.wave}`} className={`sp-screenfx__tint sp-screenfx__tint--${s.element ?? "none"}`} style={{ animationDelay: ms(landsAt(s) - 40), animationDuration: ms(560) }} />
+      ))}
+      {boons.map((s) => (
+        <span key={`b${s.wave}`} className={`sp-screenfx__tint sp-screenfx__tint--${s.kind === "heal" ? "heal" : "boon"}`} style={{ animationDelay: ms(landsAt(s) - 80), animationDuration: ms(900), ["--c" as string]: boonLook(s).color }} />
       ))}
       {crits.map((s) => (
         <span key={`c${s.wave}`} className="sp-screenfx__crit" style={{ animationDelay: ms(landsAt(s)), animationDuration: ms(520) }} />
@@ -228,31 +308,55 @@ function StrikeFx({ from, to, s, i, ms }: { from: Pt; to: Pt; s: Strike; i: numb
   const angle = (Math.atan2(dy, dx) * 180) / Math.PI;
   const start = s.wave * WAVE_MS;
   const impact = landsAt(s);
-  const vars = { ["--core" as string]: core, ["--glow" as string]: glow } as CSSProperties;
+  const kind = kindly(s.kind) ? boonLook(s) : null;
+  const vars = (kind ? { ["--core" as string]: "#fffbe8", ["--glow" as string]: kind.color, ["--c" as string]: kind.color } : { ["--core" as string]: core, ["--glow" as string]: glow }) as CSSProperties;
   const at = (p: Pt, extra: CSSProperties = {}): CSSProperties => ({ ...vars, left: p.x, top: p.y, ...extra });
-  const sparks = s.miss ? 0 : s.kind === "spell" ? 18 : s.kind === "heal" ? 10 : s.crit ? 16 : 11;
+  const sparks = s.miss ? 0 : s.kind === "spell" ? 18 : s.kind === "heal" ? 18 : s.kind === "boon" ? 14 : s.kind === "bane" ? 10 : s.crit ? 16 : 11;
+  if (kind) return <BoonFx from={from} to={to} s={s} glyph={kind.glyph} sparks={sparks} vars={vars} ms={ms} />;
   return (
     <>
-      {s.kind === "melee" ? (
+      {s.kind === "melee" && !s.thrust ? (
         // The rush: speed lines from the attacker through the gap to the foe.
         <span className="sp-fx__streak" style={at(from, { width: len, rotate: `${angle}deg`, animationDelay: ms(impact - 150), animationDuration: ms(300) })} />
       ) : s.kind === "shot" ? (
         <span className="sp-fx__bolt" style={at(from, { rotate: `${angle}deg`, ["--dx" as string]: `${dx}px`, ["--dy" as string]: `${dy}px`, animationDelay: ms(impact - 240), animationDuration: ms(240) })} />
       ) : s.kind === "spell" || s.kind === "mind" ? (
         <>
-          <span className="sp-fx__sigil" style={at(from, { animationDelay: ms(start), animationDuration: ms(impact - start - FLIGHT_MS + 80) })} />
-          {/* The bolt itself and a tail of afterimages, so its flight reads as one smooth streak (Josh: "frame loss shooting the fireball for Ember"). */}
+          {/* Conjured (Josh 2026-11-03: "comes up out of the ground as they are wreathed in red magic, then turns and seeks out the foe"):
+              a circle on the ground, the caster's aura, and the bolt rising beside them before it flies. */}
+          <span className="sp-fx__channel" style={at(from, { ["--c" as string]: glow, animationDelay: ms(start), animationDuration: ms(CONJURE_MS + 300) })} />
+          <span className={`sp-fx__aura sp-fx__aura--${s.element ?? "none"}`} style={at(from, { animationDelay: ms(start), animationDuration: ms(impact - start) })} />
+          {Array.from({ length: 8 }, (_, j) => (
+            <span key={`u${j}`} className="sp-fx__updraft" style={at(from, { ["--x" as string]: `${((j * 23) % 50) - 25}px`, animationDelay: ms(start + j * 45), animationDuration: ms(CONJURE_MS) })} />
+          ))}
+          {/* The bolt and a tail of afterimages, so its flight reads as one smooth streak (Josh: "frame loss shooting the fireball for Ember"). */}
           {[3, 2, 1, 0].map((j) => (
             <span
               key={j}
               className={`sp-fx__orb sp-fx__orb--${s.element ?? "none"}${j ? " is-ghost" : ""}`}
-              style={at(from, { ["--dx" as string]: `${dx}px`, ["--dy" as string]: `${dy}px`, ["--ghost" as string]: 1 - j * 0.22, animationDelay: ms(impact - FLIGHT_MS - j * 28), animationDuration: ms(FLIGHT_MS) })}
+              style={at(from, {
+                ["--dx" as string]: `${dx}px`,
+                ["--dy" as string]: `${dy}px`,
+                ["--side" as string]: `${Math.sign(dx || 1) * 26}px`,
+                ["--ghost" as string]: 1 - j * 0.22,
+                animationDelay: ms(start + 60 + j * 26),
+                animationDuration: ms(impact - start - 60),
+              })}
             />
           ))}
         </>
       ) : null}
       {s.miss || s.kind === "heal" ? null : <span className={`sp-fx__flash${s.crit ? " is-crit" : ""}`} style={at(to, { animationDelay: ms(impact), animationDuration: ms(260) })} />}
-      {s.miss ? null : s.kind === "melee" ? (
+      {s.thrust ? (
+        // A stab (Josh 2026-11-03: "a line poking forward and impacting"): a shaft of light drives through them and a point of light bursts where it goes in.
+        <>
+          <span className="sp-fx__aim" style={at(to, { rotate: `${angle}deg` })}>
+            <span className={`sp-fx__thrust${s.crit ? " is-crit" : ""}`} style={{ animationDelay: ms(impact - 90), animationDuration: ms(s.crit ? 380 : 300) }} />
+            {s.miss ? null : <span className={`sp-fx__pierce${s.crit ? " is-crit" : ""}`} style={{ animationDelay: ms(impact), animationDuration: ms(340) }} />}
+          </span>
+        </>
+      ) : null}
+      {s.miss || s.thrust ? null : s.kind === "melee" ? (
         <svg className={`sp-fx__slash${s.crit ? " is-crit" : ""}`} style={at(to, { rotate: `${((i * 47) % 70) - 35 + (dx < 0 ? 180 : 0)}deg`, animationDelay: ms(impact), animationDuration: ms(s.crit ? 420 : 340) })} viewBox="-50 -50 100 100">
           <path d="M-46 22 Q -4 -60 46 -16 Q 0 -38 -46 22 Z" />
           <path d="M-40 18 Q -2 -48 40 -14 Q 0 -32 -40 18 Z" />
@@ -267,10 +371,66 @@ function StrikeFx({ from, to, s, i, ms }: { from: Pt; to: Pt; s: Strike; i: numb
           key={j}
           className={`sp-fx__spark sp-fx__spark--${s.kind === "heal" ? "heal" : s.kind === "melee" || s.kind === "shot" ? "steel" : (s.element ?? "none")}`}
           style={at(to, {
-            ["--a" as string]: `${(j * 360) / sparks + ((i * 37) % 30)}deg`,
+            // A stab sprays forward, out the far side; everything else bursts all round.
+            ["--a" as string]: s.thrust ? `${angle + ((j * 53) % 70) - 35}deg` : `${(j * 360) / sparks + ((i * 37) % 30)}deg`,
             ["--d" as string]: `${(s.kind === "spell" ? 70 : 48) + ((j * 13) % 30)}px`,
             animationDelay: ms(impact + ((j * 17) % 50)),
             animationDuration: ms(s.kind === "heal" ? 800 : 520),
+          })}
+        />
+      ))}
+    </>
+  );
+}
+
+/**
+ * A heal, a blessing or a curse (Josh 2026-11-03: heals and buffs "feel kinda flat"): a circle of light
+ * under the caster, motes that arc across to the target (none on oneself), then at the target a shaft of
+ * light, a ring that climbs them, the status's own glyph rising, and motes drifting up. A curse runs the
+ * other way: its ring closes in, its glyph sinks and its motes fall.
+ */
+function BoonFx({ from, to, s, glyph, sparks, vars, ms }: { from: Pt; to: Pt; s: Strike; glyph: string; sparks: number; vars: CSSProperties; ms: (n: number) => string }) {
+  const start = s.wave * WAVE_MS;
+  const impact = landsAt(s);
+  const at = (p: Pt, extra: CSSProperties = {}): CSSProperties => ({ ...vars, left: p.x, top: p.y, ...extra });
+  const bane = s.kind === "bane";
+  const travel = s.from !== s.to;
+  const spiral = s.status === "cure" || s.status === "sanity";
+  const dx = to.x - from.x;
+  const dy = to.y - from.y;
+  return (
+    <>
+      <span className="sp-fx__channel" style={at(from, { animationDelay: ms(start), animationDuration: ms(impact - start + 200) })} />
+      {travel
+        ? [0, 1, 2].map((j) => (
+            <span key={`w${j}`} className="sp-fx__wisp" style={at(from, { ["--dx" as string]: `${dx}px`, ["--dy" as string]: `${dy}px`, ["--lift" as string]: `${-40 - j * 14}px`, animationDelay: ms(impact - 320 + j * 40), animationDuration: ms(320) })} />
+          ))
+        : null}
+      {bane ? null : <span className="sp-fx__pillar" style={at(to, { animationDelay: ms(impact - 60), animationDuration: ms(820) })} />}
+      <span className={`sp-fx__rune${bane ? " is-bane" : ""}`} style={at(to, { animationDelay: ms(impact), animationDuration: ms(bane ? 640 : 900) })} />
+      {s.kind === "heal" ? <span className="sp-fx__halo" style={at(to, { animationDelay: ms(impact), animationDuration: ms(900) })} /> : null}
+      <span className={`sp-fx__glyph${bane ? " is-bane" : ""}`} style={at(to, { animationDelay: ms(impact + 60), animationDuration: ms(1000) })}>
+        {glyph}
+      </span>
+      {spiral
+        ? // A cure (Josh 2026-11-03): white, blue and green motes wrap round them and spiral up.
+          Array.from({ length: 24 }, (_, j) => (
+            <span
+              key={`h${j}`}
+              className={`sp-fx__helix sp-fx__helix--${j % 3}`}
+              style={at(to, { ["--r" as string]: `${(j % 2 ? -1 : 1) * (22 + ((j * 7) % 12))}px`, animationDelay: ms(impact - 60 + j * 40), animationDuration: ms(1100) })}
+            />
+          ))
+        : null}
+      {Array.from({ length: spiral ? 0 : sparks }, (_, j) => (
+        <span
+          key={j}
+          className={`sp-fx__spark sp-fx__spark--${bane ? "bane" : "boon"}`}
+          style={at(to, {
+            ["--a" as string]: `${(j * 360) / sparks}deg`,
+            ["--d" as string]: `${18 + ((j * 13) % 22)}px`,
+            animationDelay: ms(impact + ((j * 37) % 260)),
+            animationDuration: ms(bane ? 620 : 1000),
           })}
         />
       ))}

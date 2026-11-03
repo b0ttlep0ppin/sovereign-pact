@@ -28,4 +28,24 @@ describe("strikesOf", () => {
   it("draws a heal as a heal", () => {
     expect(strikesOf([{ t: "heal", unit: 1, target: 2, amount: 5 }], units)[0]!.kind).toBe("heal");
   });
+
+  it("draws a blessing on an ally, a cure and a curse with no blow (Josh 2026-11-03: heals and buffs felt flat)", () => {
+    const use = (ability: string) => ({ t: "use" as const, unit: 1, ability, target: { side: "party" as const, col: 0, row: 0 } });
+    expect(strikesOf([use("attack"), { t: "status", target: 2, status: "haste@100", on: true }], units)).toEqual([{ from: 1, to: 2, kind: "boon", wave: 0, status: "haste" }]);
+    expect(strikesOf([use("attack"), { t: "status", target: 3, status: "poison", on: true }], units)[0]).toMatchObject({ kind: "bane", status: "poison" });
+    expect(strikesOf([use("attack"), { t: "sanity", target: 2, amount: 10 }], units)[0]).toMatchObject({ kind: "boon", status: "sanity" });
+    // A status that only runs out is not drawn; nor is a blessing with no one acting.
+    expect(strikesOf([use("attack"), { t: "status", target: 2, status: "haste", on: false }], units)).toEqual([]);
+    expect(strikesOf([{ t: "status", target: 2, status: "haste", on: true }], units)).toEqual([]);
+    // A blow's own poison rides the blow; a heal that also blesses is drawn once, as the heal.
+    expect(strikesOf([use("attack"), { t: "hit", unit: 1, target: 3, damage: 4 }, { t: "status", target: 3, status: "poison", on: true }], units).map((x) => x.kind)).toEqual(["melee"]);
+    expect(strikesOf([use("attack"), { t: "status", target: 2, status: "regen", on: true }, { t: "heal", unit: 1, target: 2, amount: 5 }], units).map((x) => x.kind)).toEqual(["heal"]);
+  });
+
+  it("draws a spear's blow as a thrust", () => {
+    const spear = new Map(units);
+    spear.set(2, { ...units.get(2)!, weapon: "spear" });
+    expect(strikesOf([{ t: "use", unit: 2, ability: "attack", target: { side: "enemy", col: 0, row: 0 } }, { t: "hit", unit: 2, target: 3, damage: 9 }], spear)[0]).toMatchObject({ kind: "melee", thrust: true });
+  });
 });
+
