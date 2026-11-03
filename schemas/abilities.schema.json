@@ -476,6 +476,14 @@
           "type": "boolean",
           "description": "Removes an enemy summon or add"
         },
+        "mine": {
+          "type": "boolean",
+          "description": "Laid instead of striking; bursts on the next foe to act (Shrapnel Mine)"
+        },
+        "rig": {
+          "type": "boolean",
+          "description": "Three Components, any, become a magic consumable (Jury-Rig)"
+        },
         "mpFromHp": {
           "type": "number",
           "minimum": 0,

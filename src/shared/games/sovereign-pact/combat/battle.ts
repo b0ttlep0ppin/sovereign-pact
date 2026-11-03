@@ -10,13 +10,13 @@ import { cannotCombo, comboCt, comboTp } from "./combos.ts";
 import { abilityDice, castLots, rolledAbility } from "./dice.ts";
 import { canShift, feralPick, graft, revert, shift } from "./forms.ts";
 import { keepParts, missingParts, offerParts, spendParts } from "./parts.ts";
-import { playSong } from "./songs.ts";
+import { crescendo, playSong } from "./songs.ts";
 import { atCap, deathThroes, devour, hasRoom, openingSummons, raise, sacrifice, summon } from "./summons.ts";
 import { affinityMult, offHandStrike, strike } from "./damage.ts";
 import { hasStatus, isFree, standing } from "./grid.ts";
 import { kill } from "./injury.ts";
 import { cannotUseItem, itemAbility, spendItem } from "./items.ts";
-import { addStatus, extraOf, meta, removeStatus, statusValue } from "./status.ts";
+import { addStatus, endSongs, extraOf, meta, removeStatus, statusValue } from "./status.ts";
 import { CONSUMABLES } from "../content.ts";
 import { cellOf, isSingle, resolveTargets, rushCol, singleTargets } from "./targets.ts";
 import type { AbilityDef, Battle, Cell, Combatant } from "./types.ts";
@@ -79,6 +79,8 @@ export function cannotUse(u: Combatant, ab: AbilityDef): string | null {
   if (u.feral && ab.id !== u.feral) return "feral";
   if ((ab.revert || ab.graft) && !u.form) return "no form";
   if (missingParts(u, ab).length) return "parts";
+  if (ab.rig && (u.parts?.length ?? 0) < C.tinkerer.rigParts) return "parts";
+  if (ab.finale && Object.values(u.songs ?? {}).filter(Boolean).length < 3) return "needs three songs";
   if (mpCost(u, ab) > u.mp) return "mp";
   if (tpCost(u, ab) > u.tp) return "tp";
   if (ab.hpCost && hpCost(u, ab) >= u.hp) return "hp";
@@ -133,6 +135,15 @@ function beginTurn(b: Battle, rng: Rng, u: Combatant): boolean {
     if (meta(lost.id).oneTurn) removeStatus(b, u, lost.id);
     u.ct = Math.max(0, u.ct - C.cost.action);
     return false;
+  }
+  crescendo(b, u);
+  // A Shrapnel Mine bursts on the first foe of its layer to act (§12.16).
+  const mine = b.mines?.findIndex((m) => b.units.find((x) => x.id === m.by)?.side !== u.side) ?? -1;
+  if (mine >= 0) {
+    const m = b.mines!.splice(mine, 1)[0]!;
+    const by = b.units.find((x) => x.id === m.by)!;
+    if (!by.dead) resolve(b, rng, by, { ...m.ability, mine: undefined, parts: undefined, shape: "burst:3x3" }, cellOf(u));
+    if (u.dead || u.down || b.outcome) return false;
   }
   if (u.mods.castLots) castLots(b, rng, u);
   offerParts(rng, u);
@@ -334,6 +345,22 @@ export function resolve(b: Battle, rng: Rng, u: Combatant, ab: AbilityDef, at: C
     ab = rolled.ab;
     if (rolled.self) targets = [u];
   }
+  // Shrapnel Mine: laid now, to burst later.
+  if (ab.mine) {
+    b.events.push({ t: "use", unit: u.id, ability: ab.id, target: at });
+    (b.mines ??= []).push({ by: u.id, ability: ab });
+    return;
+  }
+  // Jury-Rig: three Components into a magic consumable.
+  if (ab.rig) {
+    b.events.push({ t: "use", unit: u.id, ability: ab.id, target: at });
+    u.parts!.splice(0, C.tinkerer.rigParts);
+    const id = rng.pick(C.tinkerer.rigItems);
+    (b.satchel ??= []).push(id);
+    (b.stolen ??= []).push(id);
+    b.events.push({ t: "pocket", unit: u.id, item: id });
+    return;
+  }
   // Nova (§12.8): the element that hurts what it covers most.
   if (ab.bestElement && targets.length) ab = { ...ab, element: [...ELEMENTS].sort((x, y) => sumMult(targets, y) - sumMult(targets, x))[0]! };
   // Dirty Trick: one trick of several.
@@ -390,6 +417,7 @@ export function resolve(b: Battle, rng: Rng, u: Combatant, ab: AbilityDef, at: C
   // Acting ends Hiding, unless the act was hiding (Vanish).
   if (hasStatus(u, "hidden") && !ab.statuses?.some((x) => x.id === "hidden")) removeStatus(b, u, "hidden");
   if (ab.leap && !u.dead) addStatus(b, u, "exposed");
+  if (ab.finale) endSongs(b, u);
   if (ab.self?.tp) u.tp = Math.min(C.tp.max, u.tp + ab.self.tp);
   for (const x of ab.self?.statuses ?? []) addStatus(b, u, x.id, x.ticks, extraOf(x.value, x.mods));
   for (const [k, v] of Object.entries(ab.self?.mods ?? {})) u.mods[k] = (u.mods[k] ?? 0) + v;

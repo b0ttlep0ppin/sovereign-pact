@@ -359,6 +359,10 @@ export const TUNING = {
     jobs: { healCapPct: 50, lowHpBelow: 30, mirrorTp: 20, oneCutMult: 2, stillWaterPct: 20, graftTicks: 200, hybridTicks: 100 },
     /** The Magus (§12.8): Elemental Mastery's MP cut, %. */
     magus: { masteryMpPct: 10 },
+    /** The Minstrel (§12.11): Crescendo swells a layer +50% once it has played 300 ticks. */
+    minstrel: { crescendoTicks: 300, crescendoPct: 50 },
+    /** The Tinkerer (§12.16): Jury-Rig's three Components make one of these, at random. */
+    tinkerer: { rigParts: 3, rigItems: ["ether", "mana_crystal", "oil_of_haste", "firebomb", "frost_flask", "shock_jar", "scroll_of_firestorm", "scroll_of_glacier", "scroll_of_tempest", "scroll_of_mending_rain", "mirror_shard", "ember_oil", "brine", "stormwax"] as readonly string[] },
     /** The Knight's passives (§12.4): Commanding Presence lends Sagacity/5 % accuracy, Shieldbearer adds Resilience/4 % guard, Bodyguard shifts 30% of single-target weight. */
     knight: { presenceDiv: 5, shieldbearerDiv: 4, bodyguardPct: 30 },
     /** The Soldier's passives (§12.5): Grizzled's step per 20 Might on the body's injury tables. */

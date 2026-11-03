@@ -28,6 +28,7 @@ const ABOUT: Record<string, string> = {
   combo: "Chain moves into one strike, paying TP for each; a finisher ends it.",
   gambits_turn: "Let their gambits choose this one turn for them.",
   gambits_battle: "Hand the rest of this battle to the gambits: it plays out on its own.",
+  finale: "With all three songs playing: end them all at once in a blow of Sagacity to every enemy.",
 };
 export const aboutOf = (id: string): string => ABOUT[id] ?? Content.ACTIVE_BY_ID.get(id)?.text ?? Content.CONSUMABLE_BY_ID.get(id)?.text ?? "";
 
