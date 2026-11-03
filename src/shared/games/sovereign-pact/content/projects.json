@@ -17,6 +17,11 @@
     { "id": "apothecary", "name": "Apothecary", "cost": "standard", "tiers": [1], "requires": "great_market", "text": "A shop: consumables and cures." },
     { "id": "curio_dealer", "name": "Curio Dealer", "cost": "standard", "tiers": [1], "requires": "great_market", "text": "A shop: accessories, Tarot-linked trinkets, one random magic item per Year." },
     { "id": "beastmonger", "name": "Beastmonger", "cost": "standard", "tiers": [1], "requires": "great_market", "text": "A shop: summon upgrades and pets." },
-    { "id": "fence", "name": "Fence", "cost": "standard", "tiers": [1], "requires": "great_market", "text": "A shop: buys loot; sells stolen goods at a discount." }
+    { "id": "fence", "name": "Fence", "cost": "standard", "tiers": [1], "requires": "great_market", "text": "A shop: buys loot; sells stolen goods at a discount." },
+    { "id": "armour_of_the_pact", "name": "Armour of the Pact", "cost": "standard", "tiers": [1, 2], "mods": { "headDurabilityPct": 10, "bodyDurabilityPct": 10, "armsDurabilityPct": 10, "legsDurabilityPct": 10 }, "text": "The Pact's armourers fit every Scion in the city. Every Scion's Durability +10% at every location, per level." },
+    { "id": "bonesetters_hall", "name": "Bonesetters' Hall", "cost": "standard", "tiers": [2], "requires": "armour_of_the_pact", "mods": { "injurySteps": 1 }, "text": "Surgeons who have seen everything the Rift does to a body. Every Scion's injury rolls +1 step." },
+    { "id": "the_last_rite", "name": "The Last Rite", "cost": "expensive", "tiers": [3], "requires": "bonesetters_hall", "mods": { "lastRite": 1 }, "text": "A rite said over every Scion before they go. Once in each Scion's life, a blow that would kill them, or leave them a Mortal wound, takes an arm instead." },
+    { "id": "rift_assayers", "name": "Rift Assayers", "cost": "standard", "tiers": [1, 2], "requires": "great_market", "text": "Assayers who can read what the Rift leaves in a blade. Per level, a 15% chance that each find, and each shop lot, comes one tier finer (never past Masterwork)." },
+    { "id": "bell_of_saviours", "name": "Bell of Saviours", "cost": "expensive", "tiers": [2, 3], "requires": "rift_assayers", "text": "A bell cast from the Rift's own glass, rung once a Year at the Reckoning. Per level, a 6% chance that each recruit who arrives is one of the Foretold: a prodigy, stronger in every stat but Speed." }
   ]
 }

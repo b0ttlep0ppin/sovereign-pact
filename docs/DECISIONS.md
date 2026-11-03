@@ -2,6 +2,14 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-03 (implementation, Milestone 8ci): the Commons tech tree, Flesh and Fortune
+
+Josh: **"make some commons only buildings have tech tree effects, that can broadly help outcomes in the settlements. Maybe 1 provides a small bonus to durability of body parts, some make better items more likely to appear... some add a chance for extremely potent "savior" recruits to appear in pools"**, and **"Some might give a small bonus to injury roll, or like a 1 time get maimed instead of die thing"**.
+- **Projects can carry battle mods** (`mods` in projects.json), which every Scion carries once per level standing.
+- **The Flesh branch:** *Armour of the Pact* (2 levels: Durability +10% at every location per level) → *Bonesetters' Hall* (injury rolls +1 step) → *The Last Rite* (once in each Scion's life, a roll that would kill them or leave a Mortal wound takes an arm instead; the Scion remembers it was spent).
+- **The Fortune branch:** *Rift Assayers* (needs the Great Market; 2 levels: each find and each shop lot has 15% per level to come a tier finer, never past Masterwork) → *Bell of Saviours* (2 levels: each arrival has 6% per level to be one of the Foretold, a prodigy with +4 to every stat but Speed). Only their own House sees that a recruit is Foretold.
+- Still to come on this tree: the Altar of Offerings (a small sacrifice before an expedition for a bonus on the road), and Council votes on which branch grows next.
+
 ## 2026-11-03 (implementation, Milestone 8ch): Houses against Houses, and trouble at home
 
 Josh: **"Maybe the events force you to exchange wards with another house due to rising tensions, like a marriage pact"**, **"buildings can be destroyed or gifted"**, and **"drama amongst the houses"**.

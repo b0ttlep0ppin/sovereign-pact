@@ -8,7 +8,7 @@ import { createRng, type Rng } from "../../rng.ts";
 import { rollRecruit } from "./generate.ts";
 import { setRecruitsToWork, yearOfAssignments } from "./assign.ts";
 import { caps } from "./combat/build.ts";
-import type { House, SovState } from "./state.ts";
+import type { House, Person, SovState } from "./state.ts";
 import { built, completeProjects } from "./commons.ts";
 import { completeWorks, produce, upkeepDue } from "./town.ts";
 import { byPct, econ } from "./houses.ts";
@@ -199,10 +199,22 @@ function arrivals(s: SovState): void {
         if (rng.int(100) >= chance) continue;
         const pool = s.people.filter((p) => p.host === i && p.status === "recruit").length;
         if (pool >= TUNING.houses.recruitPoolCap + econ(h, "pool")) return;
-        s.people.push(rollRecruit(rng, s.nextId++, i, h));
+        const p = rollRecruit(rng, s.nextId++, i, h);
+        // The Bell of Saviours (a Commons project): now and then one of the Foretold answers it.
+        if (built(s, "bell_of_saviours") && rng.int(100) < TUNING.commons.saviorPct * built(s, "bell_of_saviours")) foretell(p);
+        s.people.push(p);
       }
     });
   });
+}
+
+/** One of the Foretold (the Bell of Saviours): a prodigy, every stat but Speed raised. */
+export function foretell(p: Person): void {
+  p.potential = "prodigy";
+  p.foretold = true;
+  for (let i = 0; i < 5; i++) p.base[i] = p.base[i]! + TUNING.commons.saviorStat;
+  const [lo, hi] = TUNING.recruits.potential.prodigy.growth;
+  for (let i = 0; i < 5; i++) p.growth[i] = Math.max(p.growth[i]!, Math.round((lo + hi) / 2));
 }
 
 export function endCampaign(s: SovState, won: boolean, reason: string): void {

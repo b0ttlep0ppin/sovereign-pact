@@ -19,6 +19,7 @@
           "tiers": { "type": "array", "minItems": 1, "maxItems": 3, "items": { "enum": [1, 2, 3] }, "description": "One entry per level: the building tier each level is priced as." },
           "requires": { "$ref": "defs.schema.json#/definitions/id", "description": "A project that must stand first (the shops need the Great Market)." },
           "unlockedBy": { "$ref": "defs.schema.json#/definitions/id", "description": "A campaign flag that must be set first (the Bastion of the Gate waits on the Year 5 assault, arc.ts)." },
+          "mods": { "type": "object", "additionalProperties": { "type": "number" }, "description": "Battle mods every Scion carries, once per level standing (the Commons tech tree)." },
           "text": { "type": "string", "minLength": 1 }
         }
       }

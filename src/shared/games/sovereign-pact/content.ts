@@ -498,6 +498,8 @@ export interface ProjectDef {
   requires?: string;
   /** A campaign flag that must be set first (the Bastion of the Gate, arc.ts). */
   unlockedBy?: string;
+  /** Battle mods every Scion carries for each level standing (the Commons tech tree, Josh 2026-11-03). */
+  mods?: Record<string, number>;
   text: string;
 }
 export const PROJECTS = projectsJson.projects as readonly ProjectDef[];

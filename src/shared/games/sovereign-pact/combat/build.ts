@@ -32,6 +32,8 @@ export interface ScionOpts {
   ct?: number;
   /** The House the Scion was born to: its traits and element ride into battle (§5.3). */
   house?: Pick<House, "traits" | "element" | "bane">;
+  /** What the Commons' standing projects give every Scion (commons.ts `commonsMods`). */
+  commons?: Record<string, number>;
 }
 
 export interface Armor {
@@ -107,6 +109,9 @@ export function scionCombatant(p: Person, opts: ScionOpts): Combatant {
   if (bare && mods.ironFists) weapon = { ...weapon, power: Math.max(weapon.power, mods.ironFists * p.level) };
   for (const [k, v] of Object.entries(o.gear?.mods ?? {})) mods[k] = (mods[k] ?? 0) + v;
   if (o.gear?.spellPct) mods.spellPct = (mods.spellPct ?? 0) + o.gear.spellPct;
+  for (const [k, v] of Object.entries(o.commons ?? {})) mods[k] = (mods[k] ?? 0) + v;
+  // The Last Rite saves a Scion once.
+  if (p.rite) delete mods.lastRite;
   const s = (k: Parameters<typeof jobStat>[1]) => pctMod(jobStat(p, k) + (mods[`${k}Flat`] ?? 0), mods, `${k}Pct`);
   // Might's percent (injuries, Forms, passives) is applied where damage is dealt, with the statuses' (damage.ts), not twice.
   const might = Math.max(1, jobStat(p, "might") + (mods.mightFlat ?? 0));
