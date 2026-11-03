@@ -6,6 +6,7 @@ import { Content, TIER_NAMES, type SovMove, type SovView } from "@vibepulse/shar
 import { useState, type ReactNode } from "react";
 import AccessPanel, { accessAttrs, useAccess } from "./Access";
 import BattleScreen from "./BattleScreen";
+import Homecoming, { useHomecoming } from "./Homecoming";
 import Credits from "./Credits";
 import MusicPanel, { useMusic, useMusicSettings } from "./Music";
 import { battleTrack, sceneTrack } from "./music";
@@ -134,6 +135,7 @@ export default function SovereignPact({ view, isMyTurn, sendMove, lastError }: P
   const battles = useBattles(view.battles, wasLive);
   const [hidden, setHidden] = useState(false);
   if (hidden && !fight) setHidden(false);
+  const homecoming = useHomecoming(view);
   const [access, setAccess] = useAccess();
   const [music, setMusic] = useMusicSettings();
   const track = battles.watching ? battleTrack(battles.watching) : fight && !hidden ? battleTrack(fight.replay) : sceneTrack(view);
@@ -396,7 +398,7 @@ export default function SovereignPact({ view, isMyTurn, sendMove, lastError }: P
           </aside>
         </div>
       )}
-      {battle}
+      {battle ?? (homecoming.open ? <Homecoming view={view} onClose={homecoming.close} /> : null)}
     </div>
   );
 }

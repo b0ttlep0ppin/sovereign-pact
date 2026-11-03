@@ -8,6 +8,7 @@ import { bossFor, home, rollChain } from "./journey.ts";
 import { log, mandatoryYears } from "./year.ts";
 import { divide } from "./split.ts";
 import { awaited } from "./fight.ts";
+import { setOut } from "./homecoming.ts";
 
 export const seatsOf = (card: ExpeditionCard): number => (card.size === 4 ? 4 : 8);
 
@@ -159,6 +160,7 @@ function depart(s: SovState, leader: number): void {
   e.party.forEach((p, h) => {
     if (p?.length) s.houses[h]!.attended = (s.houses[h]!.attended ?? 0) + 1;
   });
+  setOut(s, roster(s));
   e.chain = rollChain(s);
   e.at = 0;
   // A 2×4 card's eight walk as two parties of four (§9.3).

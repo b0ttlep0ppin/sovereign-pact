@@ -362,3 +362,27 @@
 .sp-affinity li.is-up small { color: #8fd48a; }
 .sp-affinity li.is-down small { color: #e07a6a; }
 .sp-seal-ask { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; max-width: 560px; padding: 6px 10px; border: 1px solid var(--blood-hi, #a33); border-radius: 2px; background: #1a0f0c; font-size: 0.88rem; }
+/* The homecoming: the account of an expedition once the party is home. */
+.sp-homecoming { position: fixed; inset: 0; z-index: 24; display: grid; place-items: center; padding: 16px; overflow-y: auto; background: radial-gradient(ellipse at center, rgba(10, 4, 8, 0.72), rgba(0, 0, 0, 0.94)); animation: sp-fade-in 500ms ease-out; }
+.sp-homecoming__card { display: grid; gap: 12px; width: min(680px, 100%); padding: 24px 30px; border: 1px solid rgba(215, 180, 90, 0.4); background: linear-gradient(#1a1014, #0c080a); box-shadow: 0 0 60px rgba(0, 0, 0, 0.9); }
+.sp-homecoming__where { margin: 0; color: #b8a080; text-transform: uppercase; letter-spacing: 0.16em; font-size: 0.78rem; text-align: center; }
+.sp-homecoming h2 { margin: 0; padding: 0; background: none; text-align: center; font-size: 2.4rem; }
+.sp-homecoming.is-wiped h2 { color: #c03a32; }
+.sp-homecoming.is-won .sp-homecoming__card { border-color: rgba(232, 198, 106, 0.75); background: radial-gradient(ellipse at 50% 0%, rgba(232, 198, 106, 0.18), transparent 60%), linear-gradient(#1c1410, #0c080a); }
+.sp-homecoming__boss { margin: 0; text-align: center; font-style: italic; color: #e2d4ba; }
+.sp-homecoming__party { display: grid; gap: 4px; margin: 0; padding: 0; list-style: none; }
+.sp-homecoming__party li { display: grid; grid-template-columns: 44px 11em 1fr; gap: 10px; align-items: center; padding: 4px 10px; background: rgba(255, 255, 255, 0.04); }
+.sp-homecoming__face { display: grid; place-items: center; width: 44px; height: 44px; color: #8a7a64; font-size: 1.4rem; }
+.sp-homecoming__who { display: grid; }
+.sp-homecoming__who small { color: var(--muted); }
+.sp-homecoming__gain { display: flex; flex-wrap: wrap; gap: 4px 12px; align-items: baseline; font-variant-numeric: tabular-nums; }
+.sp-homecoming__gain em { color: #e08a7a; font-style: normal; font-size: 0.88rem; }
+.sp-homecoming__level { color: var(--gold); }
+.sp-homecoming__party li.is-fell strong { color: #c03a32; text-decoration: line-through; }
+.sp-homecoming__party li.is-lost strong { color: #b8a080; }
+.sp-homecoming__fate { color: #c8786a; font-style: italic; }
+.sp-homecoming__haul h3 { margin: 4px 0 6px; }
+.sp-homecoming__haul p { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin: 0 0 4px; }
+.sp-homecoming__sub { margin: 0; text-align: center; color: #cfc2a8; }
+.sp-homecoming .sp-button { justify-self: center; }
+[data-motion="reduced"] .sp-homecoming { animation: none; }

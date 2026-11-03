@@ -312,6 +312,19 @@ export interface Expedition {
   lit?: number;
   /** The battle being fought, turn by turn (fight.ts). */
   fight?: LiveFight;
+  /** Each Scion as they set out, for the homecoming's account (homecoming.ts): name, House, total XP, total JP and injury ids. */
+  start?: Record<number, { name: string; house: number; xp: number; jp: number; level: number; injuries: string[] }>;
+  /** What each House took home from the haul, in the order it was claimed. */
+  claims?: { house: number; text: string }[];
+}
+
+/** The account of the last expedition (homecoming.ts), shown once when the party is home. Not saved. */
+export interface Homecoming {
+  year: number;
+  card: ExpeditionCard;
+  result: NonNullable<Expedition["result"]>;
+  people: { id: number; name: string; house: number; levelFrom: number; levelTo: number; xp: number; jp: number; injuries: string[]; fate?: "fell" | "lost" }[];
+  claims: { house: number; text: string }[];
 }
 
 /** What a battle's victory carries on with: a trapped Cache opened, or the rest of an event's outcome. */
@@ -515,6 +528,8 @@ export interface SovState {
   log: string[];
   /** The battles the last move fought, recorded for the battle screen (§15.5); the next move clears them. Not saved. */
   battles?: Replay[];
+  /** The last expedition's account, until the next comes home (homecoming.ts). Not saved. */
+  homecoming?: Homecoming;
   /** Hidden: each House's own recent happenings at home (its House events, Q89), newest last. Not saved. */
   notes: string[][];
   /** Set when the campaign ends. */

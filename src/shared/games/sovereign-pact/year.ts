@@ -23,6 +23,7 @@ import { closeEvents, drawOmens } from "./omens.ts";
 import { closeBargains, offerOmenBargains } from "./bargains.ts";
 import { restock, settleAuctions } from "./market.ts";
 import { unpack } from "./consumables.ts";
+import { comeHome } from "./homecoming.ts";
 import { foreshadow } from "./timeline.ts";
 import { forHouses, TUNING } from "./tuning.ts";
 
@@ -100,6 +101,7 @@ export function closeExpedition(s: SovState): void {
   // Seats were offered and nobody could take one.
   if (e && !e.result && e.leader === undefined) home(s, "unanswered");
   unpack(s);
+  comeHome(s);
   if (s.phase !== "over") runSorties(s);
   delete s.expedition;
   if (s.phase === "over") return;
