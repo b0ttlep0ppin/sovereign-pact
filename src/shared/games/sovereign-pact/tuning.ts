@@ -224,7 +224,7 @@ export const TUNING = {
 
   /** §8.8 town events [DECIDED cadence]: one settlement event a Year; each House's own event at this % chance. */
   /** `fresh`: Years a drawn town event is passed by (Josh's playtest: "settlement events repeat far too much"). */
-  omens: { houseEventPct: 50, fresh: 6 },
+  omens: { houseEventPct: 50, fresh: 10 },
 
   /**
    * A champion put forward in a town event (Josh 2026-11-03), first pass: passes at `base`% plus `perPoint`%
@@ -324,6 +324,8 @@ export const TUNING = {
 
   /** §3.5 Crises [DECIDED resolution, numbers to tune]. */
   crises: {
+    /** % of Years whose settlement event is a Crisis (§8.8 "about 40%"). */
+    pct: 40,
     /** The hidden swing, ± this many points. */
     swing: 20,
     /** Result thresholds: Triumph, Holds, Falters; under the last, Calamity. */

@@ -23,7 +23,7 @@ export function yearBand(s: SovState): keyof typeof C.needScale {
 export function eligible(s: SovState, ev: TownEventDef, house?: number): boolean {
   const y = year20(s);
   // A forcing event comes only from the timeline, a Year after it is foreshadowed (§3.2).
-  if (ev.forces || y < ev.years[0] || y > ev.years[1]) return false;
+  if (ev.forces || ev.chained || y < ev.years[0] || y > ev.years[1]) return false;
   return (ev.requires ?? []).every((r) => {
     const not = r.startsWith("!");
     const [kind, id] = r.replace(/^!/, "").split(":") as [string, string];

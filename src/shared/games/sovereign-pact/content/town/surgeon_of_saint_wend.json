@@ -1,0 +1,118 @@
+{
+  "id": "surgeon_of_saint_wend",
+  "scope": "settlement",
+  "weight": 2,
+  "years": [
+    2,
+    20
+  ],
+  "title": "The Surgeon of Saint Wend",
+  "text": "A surgeon in a leather apron arrives with a cart of jars and a letter from a saint nobody has heard of. He offers his art to every House. He does not want gold. He wants material.",
+  "rule": "each_house",
+  "options": [
+    {
+      "id": "give_recruit",
+      "label": "Give him a recruit to work with.",
+      "tags": [
+        "cruel"
+      ],
+      "cost": {
+        "recruits": 1
+      },
+      "outcomes": [
+        {
+          "w": 60,
+          "text": "He returns the recruit at dawn, stitched, smiling, and unable to remember their own name. He leaves salves by the dozen.",
+          "effects": [
+            {
+              "consumable": {
+                "id": "whole_salve",
+                "n": 2
+              }
+            },
+            {
+              "consumable": {
+                "id": "bone_salve",
+                "n": 2
+              }
+            }
+          ]
+        },
+        {
+          "w": 40,
+          "text": "He does not return the recruit. He leaves a jar instead, and something in it knocks when you ask it questions.",
+          "effects": [
+            {
+              "consumable": {
+                "id": "vital_draught",
+                "n": 3
+              }
+            },
+            {
+              "score": {
+                "lore": 2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "graft",
+      "label": "Let him improve one of your Scions.",
+      "tags": [
+        "bold"
+      ],
+      "champion": {
+        "stat": "resilience",
+        "dc": 12
+      },
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "The grafting takes. The new arm is stronger than the old one, and only twitches at night.",
+          "effects": [
+            {
+              "scion": {
+                "who": "champion",
+                "trait": "+grafted",
+                "stat": {
+                  "might": 2
+                }
+              }
+            }
+          ],
+          "when": "pass"
+        },
+        {
+          "w": 1,
+          "text": "The graft takes badly. Your Scion screams for three days and comes out of it changed in the eyes.",
+          "effects": [
+            {
+              "scion": {
+                "who": "champion",
+                "injury": "arms",
+                "sanity": -30
+              }
+            }
+          ],
+          "when": "fail"
+        }
+      ]
+    },
+    {
+      "id": "bar",
+      "label": "Bar the door against him.",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "He leaves a single jar on your step. Inside is an eye that follows you around the room.",
+          "effects": []
+        }
+      ]
+    }
+  ]
+}

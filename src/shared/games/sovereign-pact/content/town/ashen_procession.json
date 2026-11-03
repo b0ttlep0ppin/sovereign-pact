@@ -1,0 +1,113 @@
+{
+  "id": "ashen_procession",
+  "scope": "settlement",
+  "weight": 2,
+  "years": [
+    1,
+    20
+  ],
+  "title": "The Ashen Procession",
+  "text": "Pilgrims with ash-white faces file through the city towards the Rift Gate, singing a hymn with no words. At each Seat they stop and wait. They want someone to walk with them to the Gate and back. They have done this every hundred Years, and it has always kept the Gate shut.",
+  "rule": "each_house",
+  "options": [
+    {
+      "id": "walk",
+      "label": "Send a Scion to walk with them.",
+      "tags": [
+        "bold"
+      ],
+      "champion": {
+        "stat": "sagacity",
+        "dc": 11
+      },
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "Your Scion walks to the Gate and back in silence and comes home lighter, as if they left something heavy at the edge of the world.",
+          "effects": [
+            {
+              "scion": {
+                "who": "champion",
+                "xp": 100,
+                "blessing": {
+                  "trait": "omen_watcher",
+                  "years": 3
+                }
+              }
+            },
+            {
+              "doom": -3
+            }
+          ],
+          "when": "pass"
+        },
+        {
+          "w": 1,
+          "text": "Your Scion walks to the Gate and back. They have not slept since. They hum the hymn under their breath.",
+          "effects": [
+            {
+              "scion": {
+                "who": "champion",
+                "sanity": -40,
+                "trait": "+nightmares"
+              }
+            },
+            {
+              "doom": -1
+            }
+          ],
+          "when": "fail"
+        }
+      ]
+    },
+    {
+      "id": "alms",
+      "label": "Give them bread for the road.",
+      "tags": [
+        "kind"
+      ],
+      "cost": {
+        "resources": {
+          "grain": 10
+        }
+      },
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "They take the bread and do not eat it. One of them touches your door, and it is warm for a week.",
+          "effects": [
+            {
+              "accord": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "doors",
+      "label": "Keep your doors shut until they pass.",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "They wait at your door until midnight, then file on, singing.",
+          "effects": []
+        }
+      ]
+    }
+  ],
+  "together": [
+    {
+      "when": "none",
+      "option": "walk",
+      "text": "Nobody walks with them. The pilgrims reach the Gate alone and do not come back, and the Gate is a little wider in the morning.",
+      "effects": [
+        {
+          "doom": 4
+        }
+      ]
+    }
+  ]
+}

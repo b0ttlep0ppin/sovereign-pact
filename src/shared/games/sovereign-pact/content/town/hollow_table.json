@@ -1,0 +1,114 @@
+{
+  "id": "hollow_table",
+  "scope": "settlement",
+  "weight": 2,
+  "years": [
+    2,
+    20
+  ],
+  "title": "The Feast at the Hollow Table",
+  "text": "Every House receives the same invitation, written in a dead lord's hand: a feast at his Seat, which burned a hundred years ago. The ruins are lit tonight. The table is laid. There is a chair with each House's arms on it.",
+  "rule": "each_house",
+  "options": [
+    {
+      "id": "attend",
+      "label": "Send your sharpest Scion to dine.",
+      "tags": [
+        "bold"
+      ],
+      "champion": {
+        "stat": "guile",
+        "dc": 12
+      },
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "Your Scion eats nothing, says the right things, and leaves with a gift from the host: something old, wrapped in a shroud.",
+          "effects": [
+            {
+              "item": {
+                "tier": 4
+              }
+            },
+            {
+              "score": {
+                "lore": 2
+              }
+            }
+          ],
+          "when": "pass"
+        },
+        {
+          "w": 1,
+          "text": "Your Scion ate. They came home before dawn and have not been warm since.",
+          "effects": [
+            {
+              "scion": {
+                "who": "champion",
+                "curse": true,
+                "sanity": -20
+              }
+            }
+          ],
+          "when": "fail"
+        }
+      ]
+    },
+    {
+      "id": "proxy",
+      "label": "Send a recruit in your place, in your colours.",
+      "tags": [
+        "cruel",
+        "clever"
+      ],
+      "cost": {
+        "recruits": 1
+      },
+      "outcomes": [
+        {
+          "w": 70,
+          "text": "The recruit comes home with a purse of old coin and no shadow. They do not seem to mind.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 45
+              }
+            }
+          ]
+        },
+        {
+          "w": 30,
+          "text": "The recruit does not come home. A purse arrives the next day, with their teeth in it.",
+          "effects": [
+            {
+              "resources": {
+                "gold": 60
+              }
+            },
+            {
+              "sanity": -10
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "decline",
+      "label": "Send your regrets.",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "Your chair stays empty. The dead lord's laughter carries all the way across the river.",
+          "effects": [
+            {
+              "sanity": -5
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,92 @@
+{
+  "id": "tithe_of_teeth",
+  "scope": "settlement",
+  "weight": 2,
+  "years": [
+    1,
+    20
+  ],
+  "title": "The Tithe of Teeth",
+  "text": "Under the cathedral, behind a door of rib-bones, something is owed a tithe, and this Year it has written down what it wants: teeth. Lots of them. The letter is addressed to the richest House in the city.",
+  "rule": "most_gold",
+  "options": [
+    {
+      "id": "gold",
+      "label": "Pay it in gold teeth.",
+      "tags": [
+        "kind"
+      ],
+      "cost": {
+        "resources": {
+          "gold": 30
+        }
+      },
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "You melt down a strongbox and cast a jawful of golden teeth. The door of rib-bones closes a little, satisfied.",
+          "effects": [
+            {
+              "doom": -3
+            },
+            {
+              "accord": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "recruits",
+      "label": "Pay it in real teeth.",
+      "tags": [
+        "cruel"
+      ],
+      "cost": {
+        "recruits": 2
+      },
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "Two of your recruits go down the steps with a pair of pliers and come back up with closed mouths. The thing below is very pleased. It sends gifts.",
+          "effects": [
+            {
+              "doom": -6
+            },
+            {
+              "consumable": {
+                "id": "saints_tooth",
+                "n": 2
+              }
+            },
+            {
+              "accord": -2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "refuse",
+      "label": "Refuse, and brick up the door.",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "The bricks hold. In the morning every House in the city finds its children's milk teeth gone from their keepsake boxes.",
+          "effects": [
+            {
+              "doom": 4
+            },
+            {
+              "to": "all",
+              "sanity": -5
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

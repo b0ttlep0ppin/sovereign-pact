@@ -4,7 +4,7 @@ import { Content, sovereignPact as g } from "@vibepulse/shared/games/sovereign-p
 import { found, campaign } from "../../../shared/games/sovereign-pact/testing.ts";
 import Decisions, { voteText } from "./Decisions";
 
-const EVENT = Content.TOWN_EVENTS.find((e) => e.scope === "settlement" && (e.options?.length ?? 0) >= 2 && !e.crisis)!;
+const EVENT = Content.TOWN_EVENTS.find((e) => e.scope === "settlement" && (e.options?.length ?? 0) >= 2 && !e.crisis && e.options!.every((o) => !o.champion && !o.bid && !o.target && !o.cost && !o.accuse))!;
 const CRISIS = Content.TOWN_EVENTS.find((e) => e.crisis?.temptation)!;
 const BANE = Content.BARGAINS.find((b) => b.bane)!;
 const PROJECT = Content.PROJECTS[0]!;

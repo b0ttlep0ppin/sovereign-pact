@@ -1,0 +1,93 @@
+{
+  "id": "marriage_of_crows",
+  "scope": "settlement",
+  "weight": 2,
+  "years": [
+    3,
+    20
+  ],
+  "title": "The Marriage of Crows",
+  "text": "The quarrels between the Houses have grown teeth. The Court of the Pact sends black-feathered heralds to every Seat with the same demand: bind yourselves by blood, or be bound. They have chosen which House must answer first.",
+  "rule": "random_house",
+  "options": [
+    {
+      "id": "wed",
+      "label": "Agree to a marriage pact with another House.",
+      "tags": [
+        "kind",
+        "bold"
+      ],
+      "target": true,
+      "outcomes": [
+        {
+          "w": 80,
+          "text": "The vows are said in the cathedral at midnight, as the old law wants. The crows sit on every pew and watch.",
+          "effects": [
+            {
+              "ward_swap": true
+            },
+            {
+              "accord": 8
+            }
+          ]
+        },
+        {
+          "w": 20,
+          "text": "The vows are said, and in the morning both brides wake with a thumbprint of ash on their brows.",
+          "effects": [
+            {
+              "ward_swap": true
+            },
+            {
+              "accord": 5
+            },
+            {
+              "house_trait": "+the_mothers_mark"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dowry",
+      "label": "Pay the Court a dowry in place of a bride.",
+      "tags": [
+        "clever"
+      ],
+      "cost": {
+        "resources": {
+          "gold": 40
+        }
+      },
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "The heralds count the coin twice and leave a black feather on your table.",
+          "effects": [
+            {
+              "accord": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "refuse",
+      "label": "Refuse the Court.",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "The heralds leave without a word. In every Seat, someone starts sharpening something.",
+          "effects": [
+            {
+              "accord": -6
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

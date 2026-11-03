@@ -1,0 +1,79 @@
+{
+  "id": "bone_auction",
+  "scope": "settlement",
+  "weight": 2,
+  "years": [
+    2,
+    18
+  ],
+  "title": "The Bone Auction",
+  "text": "A hooded auctioneer sets up on the cathedral steps at midnight and rings a handbell made of a jawbone. One lot only: the right hand of the last bishop, still warm, still blessing. Bids are sealed, and he keeps them all.",
+  "rule": "secret",
+  "options": [
+    {
+      "id": "bid",
+      "label": "Send a sealed bid.",
+      "tags": [
+        "bold"
+      ],
+      "bid": {
+        "resource": "gold",
+        "min": 10
+      },
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "Your bid is folded into the auctioneer's sleeve. He does not count it.",
+          "effects": []
+        }
+      ]
+    },
+    {
+      "id": "stay_away",
+      "label": "Keep your people indoors until dawn.",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "Your doors stay shut. Something taps on them, politely, until the bell stops.",
+          "effects": [
+            {
+              "scion": {
+                "sanity": -5
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "together": [
+    {
+      "when": "none",
+      "option": "bid",
+      "text": "Nobody bids. The auctioneer bows to the empty square and burns the lot on the steps; the smoke smells of incense and hair, and the cathedral bell cracks.",
+      "effects": [
+        {
+          "doom": 3
+        }
+      ]
+    }
+  ],
+  "prize": {
+    "text": "The hand is delivered in a silver cage before sunrise. It is blessing the servant who carries it, and the servant is weeping.",
+    "effects": [
+      {
+        "item": {
+          "named": "hand_of_the_last_bishop"
+        }
+      },
+      {
+        "score": {
+          "renown": 2
+        }
+      }
+    ]
+  }
+}

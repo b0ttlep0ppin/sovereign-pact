@@ -39,7 +39,7 @@ describe("the homecoming", () => {
   });
 
   it("lists every House's claims after a draft, and shows the same account to everyone", () => {
-    const all = accounts(3, 4);
+    const all = accounts(3, 5);
     const won = all.find(([h]) => h.result === "won");
     expect(won).toBeDefined();
     const [h, s] = won!;

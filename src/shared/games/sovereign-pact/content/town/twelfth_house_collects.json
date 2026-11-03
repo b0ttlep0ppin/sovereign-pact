@@ -1,0 +1,92 @@
+{
+  "id": "twelfth_house_collects",
+  "scope": "settlement",
+  "weight": 1,
+  "years": [
+    1,
+    20
+  ],
+  "title": "The Twelfth House Collects",
+  "text": "The carts come back, three Years to the night, and this time the drivers have faces: yours. They have come to collect what the Twelfth House is owed. They are polite about it. They will not leave until they are paid.",
+  "rule": "vote",
+  "chained": true,
+  "options": [
+    {
+      "id": "pay",
+      "label": "Pay them in gold.",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "Every House pays. The carts leave heavy. A signet ring is left behind on the Commons table.",
+          "effects": [
+            {
+              "to": "all",
+              "resources": {
+                "gold": -35
+              }
+            },
+            {
+              "to": "random",
+              "item": {
+                "named": "twelfth_house_signet"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "recruits",
+      "label": "Pay them in people.",
+      "tags": [
+        "cruel"
+      ],
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "Each House sends a recruit to ride on the carts. They wave as they go. The Twelfth House is satisfied for a generation.",
+          "effects": [
+            {
+              "to": "all",
+              "recruits_lost": 1
+            },
+            {
+              "doom": -4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fight",
+      "label": "Drive them out with steel.",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "Every House's Scions take to the streets. The drivers die like men and rise again like something else, and it is dawn before the last cart burns.",
+          "effects": [
+            {
+              "to": "all",
+              "scion": {
+                "injury": "body",
+                "xp": 60
+              }
+            },
+            {
+              "accord": 6
+            },
+            {
+              "doom": -2
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

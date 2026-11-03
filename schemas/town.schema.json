@@ -308,6 +308,10 @@
     "blamed": {
       "$ref": "#/definitions/band",
       "description": "What falls on the House most named by accusing options."
+    },
+    "chained": {
+      "const": true,
+      "description": "Comes only from the timeline, set going by an earlier event; never drawn."
     }
   },
   "definitions": {

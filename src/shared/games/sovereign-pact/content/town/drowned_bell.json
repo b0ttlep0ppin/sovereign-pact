@@ -1,0 +1,82 @@
+{
+  "id": "drowned_bell",
+  "scope": "settlement",
+  "weight": 2,
+  "years": [
+    1,
+    20
+  ],
+  "title": "The Drowned Bell",
+  "text": "A bell rises out of the river at dusk, green with weed, and rings once by itself. The fishermen say it is the bell of the old cathedral that sank with its congregation still praying. It is very large, and very heavy, and it wants to be hung.",
+  "rule": "vote",
+  "options": [
+    {
+      "id": "hang",
+      "label": "Hang it in the Commons.",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "It rings at the third hour every night. The drowned congregation stands in the square to listen, and the city has never felt so safe.",
+          "effects": [
+            {
+              "accord": 6
+            },
+            {
+              "doom": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sink",
+      "label": "Row it out and sink it again.",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "It goes down ringing. That night every House dreams of water filling its lungs, and wakes coughing up weed.",
+          "effects": [
+            {
+              "doom": -3
+            },
+            {
+              "to": "all",
+              "sanity": -10
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "melt",
+      "label": "Melt it down in the Commons forge.",
+      "tags": [
+        "clever"
+      ],
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "The metal pours like any other, and the Commons is richer for it. Every blade forged from it sings a hymn when it is drawn.",
+          "effects": [
+            {
+              "to": "commons",
+              "resources": {
+                "iron": 25
+              }
+            },
+            {
+              "to": "all",
+              "sanity": -5
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

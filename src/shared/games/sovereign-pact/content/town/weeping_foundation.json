@@ -1,0 +1,92 @@
+{
+  "id": "weeping_foundation",
+  "scope": "settlement",
+  "weight": 2,
+  "years": [
+    2,
+    18
+  ],
+  "title": "The Weeping Foundation",
+  "text": "The mortar of one House's finest building has begun to weep. Not water: something thicker, warm, that runs down the walls in the night and pools in the shape of handprints. The masons will not go near it.",
+  "rule": "random_house",
+  "options": [
+    {
+      "id": "raze",
+      "label": "Tear the building down to its footings.",
+      "tags": [
+        "bold"
+      ],
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "The walls come down and the weeping stops. Under the footings, in the wet mortar, you find a heart of red stone, still beating.",
+          "effects": [
+            {
+              "raze": "best"
+            },
+            {
+              "item": {
+                "named": "foundation_stone_heart"
+              }
+            },
+            {
+              "doom": -2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sanctify",
+      "label": "Have it sanctified, whatever it costs.",
+      "tags": [
+        "kind"
+      ],
+      "cost": {
+        "resources": {
+          "gold": 30,
+          "essence": 3
+        }
+      },
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "The priests sing for three nights. The weeping stops, the stones dry, and the building stands taller than before.",
+          "effects": [
+            {
+              "raise": "any"
+            },
+            {
+              "accord": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "leave",
+      "label": "Paint over it and carry on.",
+      "tags": [
+        "cautious"
+      ],
+      "outcomes": [
+        {
+          "w": 1,
+          "text": "The paint holds, mostly. You stop letting the children play in that wing.",
+          "effects": [
+            {
+              "sanity": -10
+            },
+            {
+              "timeline": {
+                "event": "foundation_opens",
+                "years": 2,
+                "hidden": true
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
