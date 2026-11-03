@@ -8,13 +8,20 @@ import { caps } from "./combat/build.ts";
 import { befall } from "./events.ts";
 import { jobStat } from "./formulas.ts";
 import { rollRecruit } from "./generate.ts";
-import { STATS, type Person, type ScoreCategory, type SovState, type Stat } from "./state.ts";
+import { year20 } from "./crisis.ts";
+import { give } from "./consumables.ts";
+import { BUILDING_BY_ID, HOUSE_TRAIT_BY_ID, ITEM_BASES } from "./content.ts";
+import { madeNamed, mintNamed, rollProps, stock } from "./items.ts";
+import { itemName } from "./loot.ts";
+import { STATS, type House, type Person, type ScoreCategory, type SovState, type Stat } from "./state.ts";
+import { giveWard } from "./wards.ts";
 import { TUNING } from "./tuning.ts";
 import { log, withRng } from "./year.ts";
 
 /** The Houses an effect touches. */
-function targets(s: SovState, e: TownEffect, subject: number | null): number[] {
+function targets(s: SovState, e: TownEffect, subject: number | null, named?: number): number[] {
   const to = e.to ?? (subject === null ? "random" : "house");
+  if (to === "target") return named === undefined ? [] : [named];
   if (to === "all") return s.houses.map((_, i) => i);
   if (to === "house" && subject !== null) return [subject];
   if (to === "commons") return [];
@@ -34,7 +41,7 @@ export function guarded(s: SovState, house: number): number {
  * Applies a town event's effects. Harm aimed at one House (not at every House alike) is softened by its
  * guards, unless `guard` is false: a bargain or a temptation the House chose is not fought off at the walls.
  */
-export function applyEffects(s: SovState, effects: readonly TownEffect[], subject: number | null, guard = true): void {
+export function applyEffects(s: SovState, effects: readonly TownEffect[], subject: number | null, guard = true, named?: number): void {
   for (const e of effects) {
     if (e.accord) {
       if (e.accord < 0) loseAccord(s, -e.accord);
@@ -49,10 +56,89 @@ export function applyEffects(s: SovState, effects: readonly TownEffect[], subjec
         else s.commons.stores[k] = Math.max(0, (s.commons.stores[k] ?? 0) + (n ?? 0));
       }
     }
-    const hit = e.resources || e.ruin || e.recruits_lost || e.sanity || e.score || e.recruit_gain || e.scion ? targets(s, e, subject) : [];
+    const gives = e.item || e.consumable || e.house_trait || e.raze || e.raise;
+    const hit = e.resources || e.ruin || e.recruits_lost || e.sanity || e.score || e.recruit_gain || e.scion || gives ? targets(s, e, subject, named) : [];
     for (const i of hit) touch(s, e, i, guard && (e.to ?? (subject === null ? "random" : "house")) !== "all" ? guarded(s, i) : 0);
-    for (const i of e.scion ? hit : []) befallAtHome(s, e.scion!, i);
+    for (const i of e.scion ? hit : []) {
+      const done: number[] = [];
+      for (let n = 0; n < (e.scion!.count ?? 1); n++) {
+        const id = befallAtHome(s, e.scion!, i, done);
+        if (id === undefined) break;
+        done.push(id);
+      }
+    }
+    for (const i of gives ? hit : []) bestow(s, e, i);
+    // Between two Houses: the subject and the one its chooser named.
+    const from = subject ?? undefined;
+    if (e.gift && from !== undefined && named !== undefined) giftBuilding(s, from, named, e.gift);
+    if (e.ward_swap && from !== undefined && named !== undefined) swapWards(s, from, named);
   }
+}
+
+/** What an event gives a House or takes from it outright: an item, consumables, a mark on the line, a building torn down or raised. */
+function bestow(s: SovState, e: TownEffect, i: number): void {
+  const h = s.houses[i]!;
+  if (e.item) {
+    const named = e.item.named && !madeNamed(s, e.item.named) ? e.item.named : undefined;
+    const ilvl = Math.max(1, Math.ceil(year20(s) / 2));
+    const item = named
+      ? mintNamed(s, named, i, ilvl)
+      : withRng(s, (rng) => rollProps(rng, { id: s.nextId++, base: rng.pick(ITEM_BASES).id, tier: e.item!.tier ?? 3, ilvl, house: i }, { negativeChance: TUNING.loot.negativePct }));
+    stock(s, item);
+    log(s, `House ${h.name} comes by ${named ? itemName(item) : `a ${itemName(item)}`}.`);
+  }
+  if (e.consumable) give(h, e.consumable.id, e.consumable.n ?? 1);
+  if (e.house_trait) {
+    const id = e.house_trait.slice(1);
+    const has = h.traits.includes(id);
+    if (e.house_trait[0] === "+" && !has && HOUSE_TRAIT_BY_ID.has(id)) {
+      h.traits.push(id);
+      log(s, `House ${h.name} is marked: ${HOUSE_TRAIT_BY_ID.get(id)!.name}.`);
+    } else if (e.house_trait[0] === "-" && has) {
+      h.traits = h.traits.filter((t) => t !== id);
+      log(s, `House ${h.name} is free of ${HOUSE_TRAIT_BY_ID.get(id)?.name ?? id}.`);
+    }
+  }
+  if (e.raze) {
+    const b = pickBuilding(h, e.raze);
+    if (b) {
+      delete h.buildings[b];
+      log(s, `House ${h.name}'s ${BUILDING_BY_ID.get(b)?.name ?? b} is torn down.`);
+    }
+  }
+  if (e.raise) {
+    const up = e.raise === "any" ? withRng(s, (rng) => rng.pick(Object.keys(h.buildings).filter((b) => (h.buildings[b] ?? 0) > 0 && h.buildings[b]! < 3)) as string | undefined) : e.raise;
+    if (up && BUILDING_BY_ID.has(up) && (h.buildings[up] ?? 0) < 3) {
+      h.buildings[up] = (h.buildings[up] ?? 0) + 1;
+      log(s, `House ${h.name}'s ${BUILDING_BY_ID.get(up)!.name} rises to level ${h.buildings[up]}.`);
+    }
+  }
+}
+
+/** A standing building of the House: `id` if it stands, or its highest ("best"; the first built breaks ties). */
+function pickBuilding(h: House, id: string): string | undefined {
+  const standing = Object.keys(h.buildings).filter((b) => (h.buildings[b] ?? 0) > 0);
+  if (id !== "best") return standing.includes(id) ? id : undefined;
+  return standing.reduce<string | undefined>((best, b) => (best === undefined || h.buildings[b]! > h.buildings[best]! ? b : best), undefined);
+}
+
+/** A level of a building passes between Houses: the giver's drops one, the receiver's rises one (never past 3). */
+function giftBuilding(s: SovState, from: number, to: number, id: string): void {
+  const b = pickBuilding(s.houses[from]!, id);
+  if (!b || (s.houses[to]!.buildings[b] ?? 0) >= 3) return;
+  damage(s, from, b);
+  s.houses[to]!.buildings[b] = (s.houses[to]!.buildings[b] ?? 0) + 1;
+  log(s, `House ${s.houses[to]!.name}'s ${BUILDING_BY_ID.get(b)?.name ?? b} rises to level ${s.houses[to]!.buildings[b]}, a gift of House ${s.houses[from]!.name}.`);
+}
+
+/** Two Houses give each other their youngest Scion as Wards (a marriage pact, hostages for a peace). */
+function swapWards(s: SovState, a: number, b: number): void {
+  const young = (h: number) => s.people.filter((p) => p.host === h && p.house === h && p.status === "scion").sort((x, y) => x.age - y.age || x.id - y.id)[0];
+  const [pa, pb] = [young(a), young(b)];
+  if (!pa || !pb) return;
+  giveWard(s, a, b, pa.id);
+  giveWard(s, b, a, pb.id);
+  log(s, `Houses ${s.houses[a]!.name} and ${s.houses[b]!.name} exchange Wards: ${pa.name} and ${pb.name}.`);
 }
 
 /** A House building loses a level; at 0 it is gone. */
@@ -111,8 +197,8 @@ function touch(s: SovState, e: TownEffect, i: number, guard = 0): void {
 }
 
 /** The Scion (or Retired) of House `house` that `who` names; ties go to the earliest sworn. */
-export function pickAtHome(s: SovState, house: number, who = "random"): Person | undefined {
-  const pool = s.people.filter((p) => p.host === house && (p.status === "scion" || p.status === "retired"));
+export function pickAtHome(s: SovState, house: number, who = "random", except: readonly number[] = []): Person | undefined {
+  const pool = s.people.filter((p) => p.host === house && (p.status === "scion" || p.status === "retired") && !except.includes(p.id));
   if (!pool.length) return undefined;
   if (who === "random") return withRng(s, (rng) => rng.pick(pool));
   const [how, stat] = who.split(":") as [string, Stat | undefined];
@@ -130,9 +216,12 @@ export function pickAtHome(s: SovState, house: number, who = "random"): Person |
 }
 
 /** What befalls one of a House's own at home: picked by the effect's `who`, then changed as on the road. */
-function befallAtHome(s: SovState, fx: TownScionEffect, house: number): void {
-  const p = pickAtHome(s, house, fx.who);
-  if (!p) return;
+function befallAtHome(s: SovState, fx: TownScionEffect, house: number, except: number[] = []): number | undefined {
+  // Each of `count` is the next one `who` names, never the same Scion twice.
+  const p = pickAtHome(s, house, fx.who, except);
+  if (!p) return undefined;
+  const id = p.id;
   if (fx.age) p.age = Math.max(14, p.age + fx.age);
   befall(s, s.people.indexOf(p), fx, "at home");
+  return id;
 }

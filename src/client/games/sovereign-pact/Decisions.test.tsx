@@ -109,4 +109,36 @@ describe("the Settlement Phase's decisions", () => {
     expect(within(told).getByText("Accord −3.")).toBeTruthy();
     expect(within(told).queryByText("House B: −20 Gold.")).toBeNull();
   });
+
+  it("shows an option's price, holds back what the House cannot pay, and names a House where asked (Josh 2026-11-03)", () => {
+    const events = Content.TOWN_EVENT_BY_ID as Map<string, (typeof Content.TOWN_EVENTS)[number]>;
+    events.set("test_price", {
+      id: "test_price",
+      scope: "settlement",
+      weight: 1,
+      years: [1, 20],
+      title: "A Price",
+      text: "…",
+      rule: "random_house",
+      options: [
+        { id: "dear", label: "Pay dearly.", cost: { resources: { gold: 999 } }, outcomes: [{ w: 1, text: ".", effects: [] }] },
+        { id: "name", label: "Name them.", target: true, outcomes: [{ w: 1, text: ".", effects: [] }] },
+        { id: "no", label: "Refuse.", tags: ["cautious"], outcomes: [{ w: 1, text: ".", effects: [] }] },
+      ],
+    });
+    try {
+      const s = found(campaign(2, 4));
+      s.events = [{ key: "test_price", id: "test_price", deciders: [0], choices: [null, null] }];
+      delete s.crisis;
+      delete s.vote;
+      const sendMove = vi.fn();
+      render(<Decisions view={g.view(s, s.players[0]!)} sendMove={sendMove} canAct />);
+      const card = screen.getByLabelText("A Price");
+      expect((within(card).getByRole("button", { name: /Pay dearly\.\s*\(costs 999 Gold\)/ }) as HTMLButtonElement).disabled).toBe(true);
+      fireEvent.click(within(card).getByRole("button", { name: /Name them/ }));
+      expect(sendMove).toHaveBeenCalledWith({ type: "choose", event: "test_price", option: 1, target: 1 });
+    } finally {
+      events.delete("test_price");
+    }
+  });
 });

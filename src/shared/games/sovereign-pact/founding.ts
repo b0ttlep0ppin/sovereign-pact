@@ -82,6 +82,7 @@ const text = (v: unknown, lo: number, hi: number) => typeof v === "string" && v.
 export function cannotTraits(traits: unknown, bane: unknown): string | null {
   if (!Array.isArray(traits) || traits.some((t) => typeof t !== "string" || !HOUSE_TRAIT_BY_ID.has(t))) return "Choose traits from the list.";
   if (new Set(traits).size !== traits.length) return "A House cannot take a trait twice.";
+  if (traits.some((t) => HOUSE_TRAIT_BY_ID.get(t as string)!.kind === "mark")) return "A mark is laid on a House by what befalls it, never chosen.";
   const defs = traits.map((t) => HOUSE_TRAIT_BY_ID.get(t as string)!) as HouseTraitDef[];
   const count = (kind: Kind) => defs.filter((d) => d.kind === kind).length;
   if (!SHAPES.some((shape) => KINDS.every((k) => count(k) === shape[k])))

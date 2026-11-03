@@ -2,6 +2,14 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-03 (implementation, Milestone 8cd): town events as trades
+
+Josh: **"These should involve potential trade offs as well. It might want some recruits in exchange for items or consumables or resources, it might apply some traits to your house or some of your scions, but they should generally be like macabre and spooky"**; buildings **"can be destroyed or gifted"**; **"Maybe the events force you to exchange wards with another house due to rising tensions, like a marriage pact"**.
+- **A price on an option.** `cost` (stores, Gold, recruits) is paid in full when the option is chosen, and the option is offered only to a House that can pay. Recruits handed over are the last sworn first. The cautious way out never has a price (a content test holds it).
+- **Naming a House.** An option with `target` asks its chooser to name another standing House. Effects `to: "target"` touch that House; `gift` passes a level of one of the subject's buildings to it; `ward_swap` has the two Houses exchange their youngest Scions as Wards (the usual Ward rules then apply). Only an event one House decides may ask this, never a vote. Bots name the most renowned other House.
+- **What an outcome can give.** An item (a named artifact if it is not yet made, else one rolled at a tier), consumables, a House **mark** (`house_trait`), a building torn down (`raze`) or raised a level (`raise`), and a Scion effect on several Scions at once (`count`). The outcome card says each of them.
+- **Marks.** A new House trait kind, `mark`, laid only by events and never chosen at founding: eight to start (Wed to the Grave, Ash-Crowned, The Bell Tolls for Them, Blood Price Paid, Tithe-Bound, Watched by the Rift, Salted Thresholds, The Mother's Mark), each a boon with a bane. Reading: placeholder names in the game's voice; Josh may rename.
+
 ## 2026-11-03 (implementation, Milestone 8cc): overseers, no sealing with a question open, bots that come round
 
 Josh: **"there are so many buildings you would never be able to build them all, let people construct multiple buildings if they have a scion to oversee extras"**; **"make sure events that require everyone's input are addressed prior to seal year"**; **"in bot games they pick options before I even read them, meaning it's always accord loss if I disagree, there should be a chance they decide to agree with you instead so accord is preserved since they want to survive as well, at least to some extent"**.
