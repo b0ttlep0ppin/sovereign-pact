@@ -3,7 +3,7 @@
 // whether the Scion may take it. Then the secondary set, passives within the budget, and the gear on a
 // paper doll: the Scion as they will stand, each slot beside them. All of it reads the view's `kit`,
 // which only the host House gets.
-import { Content, itemName, type SovMove, type SovView } from "@vibepulse/shared/games/sovereign-pact";
+import { Content, itemName, itemSheet, TIER_NAMES, type ItemStat, type SovMove, type SovView } from "@vibepulse/shared/games/sovereign-pact";
 import { useState } from "react";
 import { ItemLine } from "./Market";
 import { BONE, GILT, PixelArt } from "./PixelArt";
@@ -14,6 +14,7 @@ type Props = { view: SovView; sendMove: (m: SovMove) => void; canAct: boolean };
 type Person = SovView["people"][number];
 type Slot = SovMove & { type: "equip" } extends { slot: infer S } ? S : never;
 type JobId = NonNullable<Person["job"]>;
+type Item = SovView["items"][number];
 
 export const SLOT_NAMES: Record<Slot, string> = {
   main: "Main hand",
@@ -62,6 +63,9 @@ function Scion({ p, view, sendMove, canAct }: Props & { p: Person }) {
     return d ? [d] : [];
   });
   const send = (m: SovMove) => canAct && sendMove(m);
+  // The slot whose choices are open below the paper doll.
+  const [choosing, setChoosing] = useState<Slot | null>(null);
+  const choose = (slot: Slot) => setChoosing((c) => (c === slot ? null : slot));
   return (
     <div className="sp-ready__scion" role="tabpanel" aria-label={p.name}>
       <Jobs p={p} send={send} canAct={canAct} />
@@ -105,7 +109,7 @@ function Scion({ p, view, sendMove, canAct }: Props & { p: Person }) {
       <div className="sp-doll">
         <ul className="sp-doll__slots" aria-label="Armor">
           {LEFT.map((slot) => (
-            <GearSlot key={slot} slot={slot} p={p} view={view} send={send} canAct={canAct} />
+            <GearSlot key={slot} slot={slot} p={p} view={view} send={send} canAct={canAct} open={choosing === slot} choose={choose} />
           ))}
         </ul>
         <div className="sp-doll__figure" aria-hidden="true">
@@ -113,10 +117,11 @@ function Scion({ p, view, sendMove, canAct }: Props & { p: Person }) {
         </div>
         <ul className="sp-doll__slots" aria-label="Arms and trinkets">
           {RIGHT.map((slot) => (
-            <GearSlot key={slot} slot={slot} p={p} view={view} send={send} canAct={canAct} />
+            <GearSlot key={slot} slot={slot} p={p} view={view} send={send} canAct={canAct} open={choosing === slot} choose={choose} />
           ))}
         </ul>
       </div>
+      {choosing ? <GearChoices slot={choosing} p={p} view={view} send={send} close={() => setChoosing(null)} /> : null}
     </div>
   );
 }
@@ -199,33 +204,113 @@ function Jobs({ p, send, canAct }: { p: Person; send: (m: SovMove) => void; canA
   );
 }
 
-/** One slot on the paper doll: what is worn there, and what of the House's could be. */
-function GearSlot({ slot, p, view, send, canAct }: { slot: Slot; p: Person; view: SovView; send: (m: SovMove) => void; canAct: boolean }) {
+/** One slot on the paper doll: what is worn there, its numbers, and a button that opens the House's other choices. */
+function GearSlot({ slot, p, view, send, canAct, open, choose }: { slot: Slot; p: Person; view: SovView; send: (m: SovMove) => void; canAct: boolean; open: boolean; choose: (s: Slot) => void }) {
   const kit = p.kit!;
   const worn = view.items.find((i) => i.id === p.gear?.[slot]);
-  const fits = kit.fits.filter(([, s]) => s === slot).map(([id]) => view.items.find((i) => i.id === id)!).filter(Boolean);
+  const fits = kit.fits.filter(([, s]) => s === slot).length;
   return (
-    <li className={`sp-doll__slot${worn ? "" : " is-empty"}`}>
+    <li className={`sp-doll__slot${worn ? "" : " is-empty"}${open ? " is-open" : ""}`}>
       <small>{SLOT_NAMES[slot]}</small>
-      {worn ? <ItemLine item={worn} /> : <span className="sp-event__status">empty</span>}
+      {worn ? (
+        <>
+          <ItemLine item={worn} />
+          <span className="sp-doll__stats">{itemSheet(worn).stats.map(statText).join(" · ")}</span>
+        </>
+      ) : (
+        <span className="sp-event__status">empty</span>
+      )}
       <span className="sp-bid">
         {worn && canAct && !worn.cursed ? (
           <button type="button" className="sp-button sp-button--quiet" data-sfx="equip_doff" onClick={() => send({ type: "unequip", person: p.id, slot })}>
             Take off
           </button>
         ) : null}
-        {fits.length && canAct ? (
-          <select value="" data-sfx={SLOT_SOUNDS[slot]} aria-label={`Wear in ${SLOT_NAMES[slot]}`} onChange={(e) => e.target.value && send({ type: "equip", person: p.id, item: Number(e.target.value), slot })}>
-            <option value="">Wear…</option>
-            {fits.map((i) => (
-              <option key={i.id} value={i.id}>
-                {itemName(i)} (ilvl {i.ilvl})
-              </option>
-            ))}
-          </select>
+        {fits && canAct ? (
+          <button type="button" className="sp-button sp-button--quiet" aria-expanded={open} onClick={() => choose(slot)}>
+            {worn ? "Change" : "Wear"} <small>({fits})</small>
+          </button>
         ) : null}
       </span>
     </li>
   );
 }
 
+const statText = (s: ItemStat) => `${s.label} ${s.value > 0 && s.key === "evasion" ? "+" : ""}${s.value}${s.unit ?? ""}`;
+
+/** The House's pieces that fit a slot, each with its numbers next to what is worn now (Josh 2026-11-03). */
+function GearChoices({ slot, p, view, send, close }: { slot: Slot; p: Person; view: SovView; send: (m: SovMove) => void; close: () => void }) {
+  const worn = view.items.find((i) => i.id === p.gear?.[slot]);
+  const now = worn ? itemSheet(worn).stats : [];
+  const fits = p.kit!.fits.filter(([, s]) => s === slot).flatMap(([id]) => view.items.filter((i) => i.id === id));
+  return (
+    <section className="sp-gearpick" aria-label={`Choose for ${SLOT_NAMES[slot]}`}>
+      <h3>
+        {SLOT_NAMES[slot]}: {worn ? <>instead of {itemName(worn)}</> : "choose what to wear"}
+        <button type="button" className="sp-button sp-button--quiet" onClick={close}>
+          Close
+        </button>
+      </h3>
+      <ul className="sp-gearpick__list">
+        {fits.map((item) => (
+          <GearCard key={item.id} item={item} now={now} wear={() => (send({ type: "equip", person: p.id, item: item.id, slot }), close())} sound={SLOT_SOUNDS[slot]} />
+        ))}
+      </ul>
+    </section>
+  );
+}
+
+function GearCard({ item, now, wear, sound }: { item: Item; now: readonly ItemStat[]; wear: () => void; sound: string }) {
+  const sheet = itemSheet(item);
+  const lost = now.filter((w) => !sheet.stats.some((s) => s.key === w.key));
+  return (
+    <li className="sp-gearpick__item">
+      <strong>{itemName(item)}</strong>
+      <small>
+        {TIER_NAMES[item.tier - 1]} · item level {item.ilvl}
+        {item.cursed ? <b className="sp-item__curse"> · cursed: it cannot be taken off</b> : null}
+      </small>
+      <dl className="sp-gearpick__stats">
+        {sheet.stats.map((st) => {
+          const was = now.find((w) => w.key === st.key);
+          const d = was ? Math.round((st.value - was.value) * 10) / 10 : null;
+          const better = d === null || d === 0 ? "" : (d > 0) !== !!st.low ? " is-better" : " is-worse";
+          return (
+            <div key={st.key}>
+              <dt>{st.label}</dt>
+              <dd>
+                {statText(st).slice(st.label.length + 1)}
+                {d ? <small className={`sp-gearpick__delta${better}`}> {d > 0 ? "+" : "−"}{Math.abs(d)}{st.unit ?? ""}</small> : null}
+              </dd>
+            </div>
+          );
+        })}
+        {lost.map((w) => (
+          <div key={w.key} className="is-lost">
+            <dt>{w.label}</dt>
+            <dd>
+              <small className={`sp-gearpick__delta ${w.low ? "is-better" : "is-worse"}`}>loses {statText(w).slice(w.label.length + 1)}</small>
+            </dd>
+          </div>
+        ))}
+      </dl>
+      {sheet.notes.length ? <p className="sp-gearpick__notes">{sheet.notes.join(". ")}.</p> : null}
+      {sheet.props.length ? (
+        <ul className="sp-gearpick__props">
+          {sheet.props.map((pr) => (
+            <li key={pr.name} className={pr.bad ? "is-bad" : undefined}>
+              <strong>
+                {pr.name}
+                {pr.value !== undefined ? ` ${pr.value}` : ""}
+              </strong>
+              : {pr.text}
+            </li>
+          ))}
+        </ul>
+      ) : null}
+      <button type="button" className="sp-button" data-sfx={sound} onClick={wear}>
+        Wear
+      </button>
+    </li>
+  );
+}

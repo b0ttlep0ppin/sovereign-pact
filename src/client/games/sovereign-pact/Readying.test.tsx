@@ -37,10 +37,34 @@ describe("readying Scions", () => {
     expect(screen.getByLabelText("Magus abilities").textContent).toContain("must take this Job to learn here");
     fireEvent.click(screen.getByRole("button", { name: "Take Job" }));
     expect(sendMove).toHaveBeenCalledWith({ type: "take_job", person: p.id, job: "magus" });
-    fireEvent.change(screen.getByLabelText("Wear in Main hand"), { target: { value: String(spear.id) } });
+    const main = within(screen.getByRole("list", { name: "Arms and trinkets" })).getByText("Main hand").closest("li")!;
+    fireEvent.click(within(main).getByRole("button", { name: /Wear/ }));
+    const choices = screen.getByRole("region", { name: "Choose for Main hand" });
+    const card = within(choices).getByText("Fine Spear").closest("li")!;
+    expect(card.textContent).toMatch(/Power\d+/);
+    expect(card.textContent).toContain("Accuracy");
+    fireEvent.click(within(card).getByRole("button", { name: "Wear" }));
     expect(sendMove).toHaveBeenCalledWith({ type: "equip", person: p.id, item: spear.id, slot: "main" });
-    const head = screen.queryByLabelText("Wear in Head");
-    expect(head ? within(head).queryByRole("option", { name: /Spear/ }) : null).toBeNull();
+    expect(screen.queryByRole("region", { name: "Choose for Main hand" })).toBeNull();
+    const head = within(screen.getByRole("list", { name: "Armor" })).getByText("Head").closest("li")!;
+    const other = within(head).queryByRole("button", { name: /Wear|Change/ });
+    if (other) fireEvent.click(other);
+    expect(screen.queryByRole("region", { name: "Choose for Head" })?.textContent ?? "").not.toContain("Spear");
+  });
+
+  it("sets each choice's numbers beside what is worn, and its properties out in words", () => {
+    const { s, p, spear } = town();
+    const sword = mint(s, "sword", 0, 2);
+    s.people.find((x) => x.id === p.id)!.gear = { main: sword.id };
+    spear.props = [["keen", 12]];
+    render(<Readying view={g.view(s, "p1")} sendMove={vi.fn()} canAct />);
+    const main = within(screen.getByRole("list", { name: "Arms and trinkets" })).getByText("Main hand").closest("li")!;
+    expect(main.textContent).toMatch(/Power \d+ · Accuracy \d+% · Crit \d+%/);
+    fireEvent.click(within(main).getByRole("button", { name: /Change/ }));
+    const card = within(screen.getByRole("region", { name: "Choose for Main hand" })).getByText("Fine Spear").closest("li")!;
+    expect(card.querySelector(".sp-gearpick__delta")).not.toBeNull();
+    expect(card.textContent).toContain("Keen 12: Crit chance up");
+    expect(card.textContent).toMatch(/One-handed|Two-handed/);
   });
 
   it("offers nothing once sealed, and shows a spectator nothing", () => {

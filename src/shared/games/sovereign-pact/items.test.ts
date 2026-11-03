@@ -3,7 +3,8 @@ import { createRng } from "../../rng.ts";
 import { scionCombatant } from "./combat/build.ts";
 import { promote, rollRecruit } from "./generate.ts";
 import { sovereignPact } from "./index.ts";
-import { baseOf, cannotEquip, carry, equip, equipStarter, gearTotals, mint, stash, weaponOf } from "./items.ts";
+import { baseOf, cannotEquip, carry, equip, equipStarter, gearTotals, itemSheet, mint, stash, weaponOf } from "./items.ts";
+import { ITEM_BASES } from "./content.ts";
 import type { BASE_JOBS, Person, SovState } from "./state.ts";
 import { campaign } from "./testing.ts";
 
@@ -105,5 +106,27 @@ describe("starting kit", () => {
     const a = sovereignPact.setup(players, createRng(5), {});
     const b = sovereignPact.setup(players, createRng(5), {});
     expect(a.items).toEqual(b.items);
+  });
+});
+
+describe("an item's sheet (Josh 2026-11-03: gear stats from a dropdown are hard to read)", () => {
+  it("gives a weapon's power, accuracy and crit as combat reads them, an armor piece its defense, and properties in words", () => {
+    const s = campaign(1, 1);
+    const sword = mint(s, "sword", 0, 3, 4);
+    const sheet = itemSheet(sword);
+    const w = weaponOf(sword);
+    expect(sheet.stats.find((x) => x.key === "power")?.value).toBe(w.power);
+    expect(sheet.stats.find((x) => x.key === "acc")?.value).toBe(w.acc);
+    expect(sheet.stats.find((x) => x.key === "weight")?.low).toBe(true);
+    const helm = mint(s, ITEM_BASES.find((b) => b.slot === "head" && b.armor === "heavy")!.id, 0, 2, 3);
+    const h = itemSheet(helm);
+    expect(h.stats.find((x) => x.key === "defense")!.value).toBeGreaterThan(0);
+    expect(h.stats.find((x) => x.key === "durability")).toMatchObject({ label: "Head Durability", unit: "%" });
+    expect(h.notes).toContain("Heavy armor");
+    sword.props = [["keen", 9], ["massive_crits", 1]];
+    expect(itemSheet(sword).props).toEqual([
+      { name: "Keen", value: 9, text: "Crit chance up", bad: false },
+      { name: "Massive crits", text: "Crits deal ×2.5 instead of ×1.5", bad: false },
+    ]);
   });
 });

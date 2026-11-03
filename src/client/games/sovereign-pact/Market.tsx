@@ -1,7 +1,7 @@
 // The Commons' market in the Settlement Phase (SPEC §8.6, §13.4a, §13.7): the shops' goods at the
 // House's price (first come), the lots that go to sealed bids (the viewer sees only its own bid), the
 // consumables the House can buy, and its stash to put up for bids with a reserve.
-import { Content, itemName, type SovMove, type SovView } from "@vibepulse/shared/games/sovereign-pact";
+import { Content, itemName, itemSheet, type SovMove, type SovView } from "@vibepulse/shared/games/sovereign-pact";
 import { useState } from "react";
 import Amount from "./Amount";
 
@@ -14,7 +14,7 @@ const shopName = (id: string | null) => (id ? (Content.PROJECT_BY_ID.get(id)?.na
 export function ItemLine({ item }: { item: Item }) {
   const props = (item.props ?? []).map(([id]) => Content.PROPERTY_BY_ID.get(id)).filter((p) => !!p);
   return (
-    <span className="sp-item" title={props.map((p) => `${p.name}: ${p.text}`).join("\n") || undefined}>
+    <span className="sp-item" title={[itemSheet(item).stats.map((x) => `${x.label} ${x.value}${x.unit ?? ""}`).join(" · "), ...props.map((p) => `${p.name}: ${p.text}`)].filter(Boolean).join("\n") || undefined}>
       <strong>{itemName(item)}</strong> <small>ilvl {item.ilvl}</small>
       {item.cursed ? <small className="sp-item__curse"> cursed</small> : null}
       {props.length ? <small> · {props.map((p) => p.name).join(", ")}</small> : null}
