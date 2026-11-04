@@ -37,7 +37,7 @@ describe("the menus' sounds (Josh 2026-11-03)", () => {
       <>
         <Game>
           <button data-sfx="job">Take Job</button>
-          <button data-sfx="learn learn_choir">Learn</button>
+          <button data-sfx="learn learn_whisper">Learn</button>
           <button disabled>Seal the Year</button>
         </Game>
         <button>Elsewhere</button>
@@ -48,7 +48,7 @@ describe("the menus' sounds (Josh 2026-11-03)", () => {
     fireEvent.click(getByText("Elsewhere"));
     expect(played).toEqual([["job", 0.4]]);
     fireEvent.click(getByText("Learn"));
-    expect(played.slice(1).map(([c]) => c)).toEqual(["learn", "learn_choir"]);
+    expect(played.slice(1).map(([c]) => c)).toEqual(["learn", "learn_whisper"]);
     played.splice(1);
     rerender(
       <Game vol={0}>

@@ -17,7 +17,9 @@
           "source": { "type": "string", "pattern": "^((Medieval Weapons|Close Combat|Creature Foley|Magic|Magic - Arcane Forces|Free Sounds - Death Whistle)( - (Designed|Construction Kit))?/.+\\.wav|synth:dice)$" },
           "takes": { "type": "integer", "minimum": 1, "maximum": 4 },
           "max": { "type": "number", "exclusiveMinimum": 0, "maximum": 4 },
-          "peak": { "description": "A menu cue's takes are matched by their loudest point to this many dBFS, not by loudness (a click is too short to measure); absent, battle cues are matched to -16 LUFS.", "type": "number", "minimum": -30, "maximum": -1 }
+          "peak": { "description": "A menu cue's takes are matched by their loudest point to this many dBFS, not by loudness (a click is too short to measure); absent, battle cues are matched to -16 LUFS.", "type": "number", "minimum": -30, "maximum": -1 },
+          "pitch": { "description": "Shifts the take this many semitones (it also slows or quickens): a darker, lower cue from a bright source.", "type": "number", "minimum": -12, "maximum": 12 },
+          "lowpass": { "description": "Cuts everything above this many Hz, for a muffled, distant cue.", "type": "number", "minimum": 200, "maximum": 20000 }
         }
       }
     }
