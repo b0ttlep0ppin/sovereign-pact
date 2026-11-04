@@ -2,6 +2,12 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-04 (implementation, Milestone 8ct): learning an ability sounds dark, not bright
+
+Josh: **"the bell / chime stuff ain't it for the learning abilities, sounds really weird"**.
+- **No bells or chimes.** Learning an ability now plays a deep wooden boom, like a heavy tome shutting (Magic Construction Kit "Effect Impact Wood"), with a low whisper rising under it (Arcane Forces "Whispering Death", slowed five semitones and muffled above 3.5 kHz). Knowledge in this world is forbidden and costly; it should sound that way.
+- `tools/cut-sfx.py` gained two optional cue fields, `pitch` (semitones) and `lowpass` (Hz), so a cue can be cut darker than its source. The whisper is also the battle's `cast_dark` source, but slowed and muffled it no longer sounds like it, and learning happens only in town.
+
 ## 2026-11-03 (implementation, Milestone 8cs): status lines in words, no shared first names
 
 Josh approved two fixes spotted in the screenshots ("Jocelin is sleep"; two recruits both named Ursula).
@@ -34,7 +40,7 @@ Josh: **"Could use menu and confirmation sfx for equipping gear, changing jobs, 
 - **Committing a turn** clunks with a heavier latch. That covers an action that goes at once (Defend, the gambits, a self-cast), Confirm on a target, clicking the target itself, Strike in a combo, and Keep on the dice. A choice that still needs a target only clicks.
 - **Readying:**
   - Taking a Job rustles leather.
-  - Learning an ability plays a rising glockenspiel run with a soft women's choir under it. The first cut was a single glockenspiel note, and Josh found it **"a bit too subtle"**. A control's `data-sfx` can name two cues, split by a space, to play together.
+  - Learning an ability: see 8ct (the glockenspiel and choir were replaced). A control's `data-sfx` can name two cues, split by a space, to play together.
   - A locked Job knocks dully on wood.
   - Putting on gear sounds like the slot: a sword's handling for either hand, a helmet's visor for the head, chain mail for body, hands and legs, a dagger's small metal for an accessory.
   - Taking something off rustles leather.

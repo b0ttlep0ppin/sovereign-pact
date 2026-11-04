@@ -338,6 +338,9 @@ export interface SfxCue {
   max: number;
   /** A menu cue's loudest point in dBFS: its takes are matched by peak, not by loudness (-16 LUFS when absent). */
   peak?: number;
+  /** Semitones the takes were shifted, and the Hz above which they were cut, when cut darker than the source. */
+  pitch?: number;
+  lowpass?: number;
 }
 export const SFX = sfxJson.cues as readonly SfxCue[];
 export const SFX_BY_ID: ReadonlyMap<string, SfxCue> = new Map(SFX.map((c) => [c.id, c]));

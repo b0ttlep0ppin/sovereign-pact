@@ -60,7 +60,7 @@
     {"id": "equip_trinket", "source": "Medieval Weapons - Construction Kit/Dagger Handling Small 01.wav", "takes": 3, "max": 0.45, "peak": -8},
     {"id": "equip_doff", "source": "Medieval Weapons - Construction Kit/Armour Leather Foley Short 03.wav", "takes": 3, "max": 0.8, "peak": -8},
     {"id": "job", "source": "Medieval Weapons - Construction Kit/Armour Leather Foley Short 01.wav", "takes": 3, "max": 1.0, "peak": -5},
-    {"id": "learn", "source": "Magic - Construction Kit/MACK Metal High Glockenspiel Up.wav", "takes": 3, "max": 2.2, "peak": -2},
-    {"id": "learn_choir", "source": "Magic - Construction Kit/MACK Voice Choir Female Aaah.wav", "takes": 3, "max": 2.2, "peak": -8}
+    {"id": "learn", "source": "Magic - Construction Kit/MACK Effect Impact Wood.wav", "takes": 3, "max": 1.2, "peak": -6},
+    {"id": "learn_whisper", "source": "Magic - Arcane Forces - Designed/MAFDS WHOOSH CURSED SMALL Whispering Death.wav", "takes": 3, "max": 1.4, "peak": -8, "pitch": -5, "lowpass": 3500}
   ]
 }

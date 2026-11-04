@@ -4,7 +4,7 @@
 Reads content/audio/sfx.json (each cue's id, source file, number of takes and longest length). A BOOM
 "Designed" file holds several variations of one sound with silence between them: this finds them, keeps
 the first `takes`, trims each to `max` seconds with a short fade, folds it to mono at 44.1 kHz, matches
-loudness to -16 LUFS (a menu cue, too short to measure, has its loudest point set to its `peak` dBFS instead) and writes public/sfx/sovereign-pact/<id>-<n>.ogg (Vorbis, q4). The packs
+loudness to -16 LUFS (a menu cue, too short to measure, has its loudest point set to its `peak` dBFS instead; `pitch` semitones and a `lowpass` Hz may darken it) and writes public/sfx/sovereign-pact/<id>-<n>.ogg (Vorbis, q4). The packs
 themselves never go in the repo (their license forbids redistributing the sounds as they are).
 
 A cue whose source is "synth:<name>" is made here instead (the BOOM packs have no dice): see synth().
@@ -110,6 +110,10 @@ for cue in manifest["cues"]:
         # A click is shorter than the usual fade: it fades over its last third.
         tail = min(FADE, length / 3) if "peak" in cue else FADE
         fade = f"afade=t=out:st={max(0.0, length - tail):.3f}:d={tail:.3f},pan=mono|c0=0.5*c0+0.5*c1,aresample=44100"
+        if "pitch" in cue:
+            fade += f",asetrate={44100 * 2 ** (cue['pitch'] / 12):.0f},aresample=44100"
+        if "lowpass" in cue:
+            fade += f",lowpass=f={cue['lowpass']:.0f}"
         if "peak" in cue:
             loud = f"volume={cue['peak'] - peak_of(src, a, length, fade):.2f}dB"
         else:
