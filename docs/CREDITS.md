@@ -22,6 +22,9 @@ Author handle taken from each file name. These are Pixabay uploads (same naming 
 |---|---|---|
 | hitslab-irish-celtic-medieval-music-486074.mp3 | HitsLab | Irish Celtic Medieval Music |
 | kang_saif-night-market-in-old-town-488416.mp3 | kang_saif | Night Market in Old Town |
+| leberch-dark-cinematic-626823.mp3 | Leberch | Dark Cinematic (626823) |
+| leberch-dark-cinematic-628051.mp3 | Leberch | Dark Cinematic (628051) |
+| leberch-dark-cinematic-628203.mp3 | Leberch | Dark Cinematic (628203) |
 | lux_aeterna_2026-dark-fantasy-ambient-558008.mp3 | lux_aeterna_2026 | Dark Fantasy Ambient |
 | lux-aeterna-dark-fantasy-music-567686.mp3 | Lux Aeterna | Dark Fantasy Music |
 | menieldm-shadows-beneath-the-keep-495833.mp3 | MenielDM | Shadows Beneath the Keep |
@@ -39,7 +42,7 @@ Author handle taken from each file name. These are Pixabay uploads (same naming 
 | phatphrogstudio-samurai-spirit-cursed-oni-…-502868.mp3 | PhatPhrogStudio | Samurai Spirit: Cursed Oni |
 | welc0mei0-bgm006-dark-fantasy-lo-fi-retro-game-148338.mp3 | welc0me.i0 | BGM006 Dark Fantasy Lo-fi |
 
-Shipped (2026-11-02, Milestone 8r): all 18, encoded by `tools/encode-music.sh` into `public/music/sovereign-pact/<name>.ogg` (Opus 48 kb/s, −16 LUFS, cut to 3 minutes at most with a 4 s fade). The credit lines are in `src/client/games/sovereign-pact/credits.ts`, shown on the Credits panel.
+Shipped (2026-11-02, Milestone 8r): all 18 then in the folder, encoded by `tools/encode-music.sh` into `public/music/sovereign-pact/<name>.ogg` (Opus 48 kb/s, −16 LUFS, cut to 3 minutes at most with a 4 s fade). The credit lines are in `src/client/games/sovereign-pact/credits.ts`, shown on the Credits panel. 2026-11-05 (Milestone 8cu): the three Leberch tracks added as the Settlement music, and the six old Settlement themes (HitsLab, kang_saif, MenielDM, nojisuma's Winter Sky and On the Way Home, welc0me.i0) no longer ship, so they are off the Credits panel; 15 tracks ship.
 
 ## Sound effects — `BoomLibrary Commercial SFX\`
 - **BOOM Library** (commercial license; the folder zip is ~43 GB). Libraries present: Close Combat (Construction Kit, Designed), Creature Foley (Designed), Free Sounds – Death Whistle, Magic – Arcane Forces (Construction Kit, Designed), Magic (Construction Kit, Designed), Medieval Weapons (Construction Kit, Designed).

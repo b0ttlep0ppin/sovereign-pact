@@ -46,17 +46,10 @@ describe("founding a House (§5.1)", () => {
     expect(sendMove).toHaveBeenCalledWith({ type: "design", house: { seat: seat.id } });
   });
 
-  it("chooses a Settlement theme from the game's music", () => {
+  it("offers no theme step for now (Josh 2026-11-05: the town plays the Settlement music)", () => {
     const { view } = founding();
-    const sendMove = vi.fn();
-    render(<HouseDesigner view={view} sendMove={sendMove} />);
-    fireEvent.click(screen.getByRole("tab", { name: "Theme" }));
-    expect(screen.queryByRole("button", { name: /Reroll/ })).toBeNull();
-    // Battle music is never a House's theme (Josh 2026-11-03).
-    expect(screen.queryByRole("button", { name: "Anime Battle Music" })).toBeNull();
-    expect(screen.queryByRole("button", { name: "Japanese Gaming Boss Battle Music" })).toBeNull();
-    fireEvent.click(screen.getByRole("button", { name: "Winter Sky" }));
-    expect(sendMove).toHaveBeenCalledWith({ type: "design", house: { theme: "winter-sky" } });
+    render(<HouseDesigner view={view} sendMove={vi.fn()} />);
+    expect(screen.queryByRole("tab", { name: "Theme" })).toBeNull();
   });
 
   it("keeps a set of traits only when it has a shape §5.7 allows, and the rules agree", () => {

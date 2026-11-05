@@ -327,7 +327,7 @@ Using the LPC Universal Spritesheet Character Generator layers:
 
 ### 5.9 Theme song
 
-Pick any track from the Sovereign Pact music folder as the House's Settlement theme. When several Houses share the Town Map, the music plays the theme of the House whose screen each player is looking at (each player hears their own; the shared Town Map view plays the host's or rotates per Year). Two Houses may pick the same track.
+[DECIDED, 2026-11-05] **Set aside for now**: Josh removed the theme choice until he finds songs that suit it; the Settlement plays its own music (§16.2). As first written: pick any track from the Sovereign Pact music folder as the House's Settlement theme. When several Houses share the Town Map, the music plays the theme of the House whose screen each player is looking at (each player hears their own; the shared Town Map view plays the host's or rotates per Year). Two Houses may pick the same track.
 
 ## 6. Recruits, Scions, Wards and the Retired
 
@@ -2132,7 +2132,7 @@ Every ability, item, hazard and UI action names a **cue**; cues map to processed
 |---|---|---|
 | Title and campaign load | Kingsfall (Alexander Nakarada) | The fallen crown |
 | House creation | The Faded Rose (Ob-Lix) | Intimate, heraldic |
-| Settlement themes (each House picks one at creation; the Town Map plays the current viewer's choice, and the Commons' vote screens play Night Market) | Irish Celtic Medieval Music (HitsLab); Night Market in Old Town (kang_saif); Shadows Beneath the Keep (MenielDM); Winter Sky (nojisuma); On the Way Home (nojisuma); BGM006 Dark Fantasy Lo-fi (welc0me.i0) | Six moods: festive, market, brooding, cold, homely, retro |
+| Settlement music ([DECIDED, 2026-11-05] Josh replaced the six House themes; the three take turns, one a Year, for every House) | Dark Cinematic 626823, 628051 and 628203 (Leberch) | Dark, cinematic |
 | Rift Gate and the chain map | Dark Fantasy Ambient (lux_aeterna_2026) | Dread, no beat |
 | Events on an expedition | Light Blocking (nojisuma) under the prose; silence for Camp | Lets the text lead |
 | Normal battles | Anime Battle Music (PhatPhrogStudio); Crimson Horizon (mroneilovealot); Dark Epic (nastelbom), chosen by pool: beasts and courts get the first, Pit and Outer Dark the second, undead and horror the third | Three battle colors |

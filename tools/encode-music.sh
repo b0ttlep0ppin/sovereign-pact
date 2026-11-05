@@ -16,22 +16,19 @@ while read -r name file; do
   ffmpeg -nostdin -v error -y -i "$in" -t "$cut" -af "loudnorm=I=-16:TP=-1.5:LRA=11,afade=t=out:st=$fade:d=4" -ar 48000 -c:a libopus -b:a 48k -vbr on -map_metadata -1 "$out/$name.ogg"
   echo "$name $(du -k "$out/$name.ogg" | cut -f1) KB"
 done <<'LIST'
-celtic-medieval hitslab-irish-celtic-medieval-music
-night-market kang_saif-night-market-in-old-town
+dark-cinematic-626823 leberch-dark-cinematic-626823
+dark-cinematic-628051 leberch-dark-cinematic-628051
+dark-cinematic-628203 leberch-dark-cinematic-628203
 dark-fantasy-ambient lux_aeterna_2026-dark-fantasy-ambient
 dark-fantasy-music lux-aeterna-dark-fantasy-music
-shadows-beneath-the-keep menieldm-shadows-beneath-the-keep
 crimson-horizon mroneilovealot-crimson-horizon
 kingsfall nakaradaalexander-kingsfall
 dark-epic nastelbom-dark-epic
 light-blocking nojisuma-light_blocking
-on-the-way-home nojisuma-on_the_way_home
-winter-sky nojisuma-winter_sky
 the-faded-rose ob-lix-the-faded-rose
 the-spell ob-lix-the-spell
 lost-city-of-atlantis onecinematicstudio-the-lost-city-of-atlantis
 boss-battle openmindaudio-japanese-gaming-boss-battle-music
 anime-battle phatphrogstudio-phatphrogstudiocom-anime-battle-music
 cursed-oni phatphrogstudio-samurai-spirit-cursed-oni
-dark-fantasy-lofi welc0mei0-bgm006-dark-fantasy-lo-fi-retro-game
 LIST

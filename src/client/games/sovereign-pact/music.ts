@@ -1,4 +1,4 @@
-// The game's recorded music (SPEC §16.2): eighteen Pixabay tracks, encoded by tools/encode-music.sh into
+// The game's recorded music (SPEC §16.2): fifteen Pixabay tracks, encoded by tools/encode-music.sh into
 // public/music/sovereign-pact/, and which one each screen plays. The rules never know about music: the
 // track follows from the view and from the battle being watched.
 import type { Replay, SovView } from "@vibepulse/shared/games/sovereign-pact";
@@ -13,12 +13,9 @@ export interface TrackInfo {
 export const TRACKS = {
   kingsfall: { title: "Kingsfall", author: "Alexander Nakarada", handle: "nakaradaalexander" },
   "the-faded-rose": { title: "The Faded Rose", author: "Ob-Lix", handle: "ob-lix" },
-  "celtic-medieval": { title: "Irish Celtic Medieval Music", author: "HitsLab", handle: "hitslab" },
-  "night-market": { title: "Night Market in Old Town", author: "kang_saif", handle: "kang_saif" },
-  "shadows-beneath-the-keep": { title: "Shadows Beneath the Keep", author: "MenielDM", handle: "menieldm" },
-  "winter-sky": { title: "Winter Sky", author: "nojisuma", handle: "nojisuma" },
-  "on-the-way-home": { title: "On the Way Home", author: "nojisuma", handle: "nojisuma" },
-  "dark-fantasy-lofi": { title: "BGM006 Dark Fantasy Lo-fi", author: "welc0me.i0", handle: "welc0mei0" },
+  "dark-cinematic-626823": { title: "Dark Cinematic (626823)", author: "Leberch", handle: "leberch" },
+  "dark-cinematic-628051": { title: "Dark Cinematic (628051)", author: "Leberch", handle: "leberch" },
+  "dark-cinematic-628203": { title: "Dark Cinematic (628203)", author: "Leberch", handle: "leberch" },
   "dark-fantasy-ambient": { title: "Dark Fantasy Ambient", author: "lux_aeterna_2026", handle: "lux_aeterna_2026" },
   "light-blocking": { title: "Light Blocking", author: "nojisuma", handle: "nojisuma" },
   "anime-battle": { title: "Anime Battle Music", author: "PhatPhrogStudio", handle: "phatphrogstudio" },
@@ -33,8 +30,11 @@ export const TRACKS = {
 
 export type TrackId = keyof typeof TRACKS;
 
-/** The six Settlement themes, one a House (§16.2). Reading: until a House picks at creation, its seat picks. */
-export const SETTLEMENT_THEMES: TrackId[] = ["celtic-medieval", "night-market", "shadows-beneath-the-keep", "winter-sky", "on-the-way-home", "dark-fantasy-lofi"];
+/**
+ * The Settlement music, one a Year in turn (Josh 2026-11-05: "replace the ambience music with those"). House
+ * themes are set aside until he finds songs for them; a House's `theme` is kept in the rules but not played.
+ */
+export const SETTLEMENT_TRACKS: TrackId[] = ["dark-cinematic-626823", "dark-cinematic-628051", "dark-cinematic-628203"];
 
 /** Normal battles by pool: beasts and courts, the Pit and the Outer Dark, undead and horror (§16.2). */
 const BATTLE_BY_POOL: Record<string, TrackId> = {
@@ -55,12 +55,6 @@ const BATTLE_BY_POOL: Record<string, TrackId> = {
 /** The mandatory arc's bosses have their own themes; the End Ruler the last one. */
 const ARC_BOSSES: Record<string, TrackId> = { siege_beast: "the-spell", cursed_king: "the-spell", unknown_mother: "the-spell", end_ruler: "dark-fantasy-music" };
 
-/** Every track a battle plays: never a House's theme (Josh 2026-11-03: "don't let houses select the battle songs"). */
-export const BATTLE_TRACKS: ReadonlySet<TrackId> = new Set<TrackId>([...Object.values(BATTLE_BY_POOL), ...Object.values(ARC_BOSSES), "cursed-oni", "boss-battle"]);
-
-/** The tracks a House may take as its theme: the Settlement themes first, then the rest that are not battle music. */
-export const HOUSE_THEMES: TrackId[] = [...SETTLEMENT_THEMES, ...(Object.keys(TRACKS) as TrackId[]).filter((id) => !SETTLEMENT_THEMES.includes(id) && !BATTLE_TRACKS.has(id))];
-
 /** The track for a battle being watched or fought. */
 export function battleTrack(r: Pick<Replay, "title" | "pool" | "units">): TrackId {
   const boss = r.units.find((u) => u.boss && u.side === "enemy");
@@ -74,8 +68,7 @@ export function battleTrack(r: Pick<Replay, "title" | "pool" | "units">): TrackI
 
 /** The track for what the view shows, when no battle is on screen. */
 export function sceneTrack(view: SovView): TrackId {
-  // Founding plays the House's theme once one is chosen, so choosing it is hearing it.
-  if (view.phase === "founding") return view.houses[view.me ?? 0]?.theme ? houseTheme(view, view.me ?? 0) : "the-faded-rose";
+  if (view.phase === "founding") return "the-faded-rose";
   if (view.phase === "over") return view.outcome?.won ? "kingsfall" : "dark-fantasy-ambient";
   const e = view.expedition;
   if (view.phase === "expedition" && e) {
@@ -84,14 +77,11 @@ export function sceneTrack(view: SovView): TrackId {
     if (e.result || e.draft?.length) return "lost-city-of-atlantis";
     return "dark-fantasy-ambient";
   }
-  return houseTheme(view, view.me ?? 0);
+  return settlementTrack(view.year);
 }
 
-/** The Settlement theme a House chose at founding (§5.9), or its seat's until it has chosen one. */
-export function houseTheme(view: SovView, house: number): TrackId {
-  const chosen = view.houses[house]?.theme;
-  return chosen && chosen in TRACKS && !BATTLE_TRACKS.has(chosen as TrackId) ? (chosen as TrackId) : SETTLEMENT_THEMES[house % SETTLEMENT_THEMES.length]!;
-}
+/** The Settlement track for a Year: the three take turns. */
+export const settlementTrack = (year: number): TrackId => SETTLEMENT_TRACKS[(Math.max(1, year) - 1) % SETTLEMENT_TRACKS.length]!;
 
 export const trackUrl = (id: TrackId): string => `${import.meta.env.BASE_URL ?? "./"}music/sovereign-pact/${id}.ogg`;
 
