@@ -2,6 +2,13 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-05 (implementation, Milestone 8cu): new Settlement music, no House themes for now
+
+Josh: **"I added some more music, replace the ambience music with those. Remove the theme selection for now for the house, i may add it back later if I find appropriate songs"**.
+- **Reading:** "the ambience music" is the town's background music, the six Settlement themes a House chose from. The expedition's road music (Dark Fantasy Ambient) and every battle track stay as they were.
+- **The town plays the three new Leberch tracks** ("Dark Cinematic" 626823, 628051 and 628203), one a Year in turn, the same for every House. The six old Settlement themes no longer ship (git keeps them if a House theme comes back).
+- **Founding has no Theme step.** The founding screen always plays The Faded Rose. A House's `theme` field stays in the rules, unused, so saves and a later theme picker need no change.
+
 ## 2026-11-04 (implementation, Milestone 8ct): learning an ability sounds dark, not bright
 
 Josh: **"the bell / chime stuff ain't it for the learning abilities, sounds really weird"**.

@@ -5,7 +5,7 @@ import { describe, expect, it } from "vitest";
 import { Content, sovereignPact as g } from "@vibepulse/shared/games/sovereign-pact";
 import { campaign } from "../../../shared/games/sovereign-pact/testing.ts";
 import { CREDITS } from "./credits";
-import { battleTrack, sceneTrack, SETTLEMENT_THEMES, TRACKS, type TrackId } from "./music";
+import { battleTrack, sceneTrack, SETTLEMENT_TRACKS, TRACKS, type TrackId } from "./music";
 
 const DIR = join(__dirname, "../../../../public/music/sovereign-pact");
 
@@ -32,16 +32,16 @@ describe("the music", () => {
     expect(boss("arcana_fool")).toBe("cursed-oni");
   });
 
-  it("plays the House's Settlement theme in town, and the founding theme before", () => {
+  it("plays the Settlement music in town, a new track each Year, and the founding theme before", () => {
     const s = campaign(2, 3);
-    expect(sceneTrack(g.view(s, "p1"))).toBe(SETTLEMENT_THEMES[0]);
-    expect(sceneTrack(g.view(s, "p2"))).toBe(SETTLEMENT_THEMES[1]);
-    expect(sceneTrack(g.view({ ...s, phase: "founding" }, "p1"))).toBe("the-faded-rose");
-    // A theme chosen at founding (§5.9) plays in town, and at founding once chosen.
-    s.houses[1]!.theme = "winter-sky";
-    expect(sceneTrack(g.view(s, "p2"))).toBe("winter-sky");
-    expect(sceneTrack(g.view({ ...s, phase: "founding" }, "p2"))).toBe("winter-sky");
-    expect(sceneTrack(g.view(s, "p1"))).toBe(SETTLEMENT_THEMES[0]);
+    expect(sceneTrack(g.view(s, "p1"))).toBe(SETTLEMENT_TRACKS[0]);
+    // Every House hears the same Settlement music; a House's old theme choice is not played.
+    s.houses[1]!.theme = "kingsfall";
+    expect(sceneTrack(g.view(s, "p2"))).toBe(SETTLEMENT_TRACKS[0]);
+    expect(sceneTrack(g.view({ ...s, year: 2 }, "p1"))).toBe(SETTLEMENT_TRACKS[1]);
+    expect(sceneTrack(g.view({ ...s, year: 4 }, "p1"))).toBe(SETTLEMENT_TRACKS[0]);
+    expect(sceneTrack(g.view({ ...s, phase: "founding" }, "p2"))).toBe("the-faded-rose");
     for (const id of new Set(Object.keys(TRACKS))) expect(existsSync(join(DIR, `${id}.ogg`))).toBe(true);
   });
+
 });

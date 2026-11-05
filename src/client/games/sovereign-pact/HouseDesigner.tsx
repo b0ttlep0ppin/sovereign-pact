@@ -5,12 +5,11 @@ import { Content, ELEMENTS, type SovMove, type SovView } from "@vibepulse/shared
 import { useState } from "react";
 import { Emblem, inkOf } from "./Emblem";
 import { SEAT_ART } from "./icons";
-import { HOUSE_THEMES, houseTheme, TRACKS } from "./music";
 import { BONE, PixelArt } from "./PixelArt";
 
 type Props = { view: SovView; sendMove: (m: SovMove) => void };
 type House = SovView["houses"][number];
-type Step = "name" | "colors" | "emblem" | "seat" | "traits" | "theme";
+type Step = "name" | "colors" | "emblem" | "seat" | "traits";
 type Kind = "major" | "minor" | "major_flaw" | "minor_flaw" | "bloodline";
 
 const STEPS: { id: Step; label: string }[] = [
@@ -19,7 +18,6 @@ const STEPS: { id: Step; label: string }[] = [
   { id: "emblem", label: "Emblem" },
   { id: "seat", label: "Seat" },
   { id: "traits", label: "Traits" },
-  { id: "theme", label: "Theme" },
 ];
 const KIND_NAMES: Record<Kind, string> = { major: "Major Traits", minor: "Minor Traits", major_flaw: "Major Flaw", minor_flaw: "Minor Flaw", bloodline: "Bloodline" };
 const KINDS = Object.keys(KIND_NAMES) as Kind[];
@@ -63,12 +61,9 @@ export default function HouseDesigner({ view, sendMove }: Props) {
         {step === "emblem" ? <EmblemStep h={h} design={design} /> : null}
         {step === "seat" ? <SeatStep h={h} design={design} /> : null}
         {step === "traits" ? <TraitsStep key={h.traits.join()} h={h} bane={view.mine?.bane ?? null} crunch={view.display === "crunch"} design={design} /> : null}
-        {step === "theme" ? <ThemeStep view={view} h={h} design={design} /> : null}
-        {step === "theme" ? null : (
-          <button type="button" className="sp-button sp-button--quiet" onClick={() => sendMove({ type: "random_house", step })}>
-            🎲 Reroll {STEPS.find((x) => x.id === step)!.label.toLowerCase()}
-          </button>
-        )}
+        <button type="button" className="sp-button sp-button--quiet" onClick={() => sendMove({ type: "random_house", step })}>
+          🎲 Reroll {STEPS.find((x) => x.id === step)!.label.toLowerCase()}
+        </button>
       </div>
     </div>
   );
@@ -292,29 +287,5 @@ function TraitsStep({ h, bane, crunch, design }: StepProps & { bane: string | nu
         {missing || "A full set: your House keeps these traits."}
       </p>
     </div>
-  );
-}
-
-/** The Settlement theme (§5.9): any track of the game's music; the founding screen plays it once chosen. */
-function ThemeStep({ view, h, design }: StepProps & { view: SovView }) {
-  const now = houseTheme(view, h.index);
-  const ids = HOUSE_THEMES;
-  return (
-    <>
-      <p className="sp-event__status">
-        Your House&apos;s theme plays while you look over your district in the Settlement. Choose one and it plays now. Two Houses may share a theme.
-        {h.theme ? null : ` Until you choose, yours is ${TRACKS[now].title}.`}
-      </p>
-      <ul className="sp-themes" aria-label="Themes">
-        {ids.map((id) => (
-          <li key={id}>
-            <button type="button" aria-pressed={id === h.theme} className={`sp-button${id === h.theme ? "" : " sp-button--quiet"}`} onClick={() => design({ theme: id })}>
-              {TRACKS[id].title}
-            </button>
-            <small>{TRACKS[id].author}</small>
-          </li>
-        ))}
-      </ul>
-    </>
   );
 }
