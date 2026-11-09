@@ -7,7 +7,7 @@
     20
   ],
   "title": "The Debt Collector",
-  "text": "A grey man with a ledger arrives to collect the kingdom's old debt from its richest House, and will not leave until he is paid or refused.",
+  "text": "A grey man with a ledger arrives to collect the kingdom's old debt from its richest House. He sits in the hall with his hat on his knees and does not eat or drink or sleep. He will not leave until he is paid or refused. The dogs will not go near him.",
   "rule": "most_gold",
   "options": [
     {

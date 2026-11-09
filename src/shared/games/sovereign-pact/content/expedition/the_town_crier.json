@@ -9,7 +9,7 @@
     9
   ],
   "title": "The Town Crier",
-  "text": "A faceless crier rings his bell in an empty square, calling out news of your own House.",
+  "text": "A faceless crier rings his bell in an empty square, the sound echoing off blank walls. He calls out news of your own House, things no one should know, in a clear and cheerful voice. Shutters creak open to listen.",
   "options": [
     {
       "id": "listen",

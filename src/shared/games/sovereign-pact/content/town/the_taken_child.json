@@ -7,7 +7,7 @@
     19
   ],
   "title": "The Taken Child",
-  "text": "A recruit sleeping in the barracks was gone at dawn, and a trail of black leaves leads to the Rift Gate. The Hollow Wood has taken one of ours. Someone must go and bring them back.",
+  "text": "A recruit sleeping in the barracks was gone at dawn, the blankets still warm, the door still barred. A trail of black leaves leads across the yard and through the streets to the Rift Gate. The Hollow Wood has taken one of ours. Someone must go and bring them back.",
   "rule": "vote",
   "forces": {
     "pool": "hollow_wood"
