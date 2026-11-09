@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "help",
-      "label": "Help him out of the armor.",
+      "label": "Pry him out of the fused armor.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He will live. He gives you his sword.",
+          "text": "It takes hours, and what comes out is raw and red. He will live. He gives you his sword.",
           "effects": [
             {
               "item": {
@@ -39,7 +39,7 @@
     },
     {
       "id": "ask",
-      "label": "The wisest asks about the dragon.",
+      "label": "The wisest asks him about the dragon.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -47,7 +47,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Where it sleeps, and which side it favors.",
+          "text": "Where it sleeps, and which side it favors, rasped through the visor slit.",
           "effects": [
             {
               "foresee": true
@@ -58,7 +58,7 @@
     },
     {
       "id": "armor",
-      "label": "Take his armor; he will not need it.",
+      "label": "The Leader takes his armor. He will not need it.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -66,7 +66,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Good steel. He curses you as you go.",
+          "text": "Good steel, cut off him piece by piece. He curses you as you go, and he means every word.",
           "effects": [
             {
               "resources": {

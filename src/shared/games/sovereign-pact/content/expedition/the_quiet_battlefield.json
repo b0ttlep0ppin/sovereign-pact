@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "killer",
-      "label": "The one with most kills steps up.",
+      "label": "The one with the most kills steps up.",
       "rule": "scion:most_kills",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The sword comes free in their hand, and the wind sighs.",
+          "text": "The sword comes free in their hand, and the wind sighs, satisfied.",
           "effects": [
             {
               "item": {
@@ -39,7 +39,7 @@
     },
     {
       "id": "healer",
-      "label": "The one who has saved most lives steps up.",
+      "label": "The one who has saved the most lives steps up.",
       "rule": "scion:most_healing",
       "tags": [
         "kind"
@@ -47,7 +47,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The sword stays put. The wind says this was the right answer anyway.",
+          "text": "The sword stays put. The wind says this was the right answer anyway, and something settles in them.",
           "effects": [
             {
               "to": "party",
@@ -64,7 +64,7 @@
     },
     {
       "id": "nobody",
-      "label": "Nobody answers.",
+      "label": "Say nothing.",
       "rule": "vote",
       "tags": [
         "cautious"

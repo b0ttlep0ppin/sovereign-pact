@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "It is real.",
+          "text": "It is real. He did not know.",
           "effects": [
             {
               "resources": {
@@ -37,7 +37,7 @@
         },
         {
           "w": 50,
-          "text": "It is not.",
+          "text": "It is not. He knew.",
           "effects": [
             {
               "resources": {
@@ -58,7 +58,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They take his stall apart, and thank you.",
+          "text": "They take his stall apart, and him with it, and thank you.",
           "effects": [
             {
               "score": {
@@ -79,7 +79,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Pilgrims are easy marks.",
+          "text": "Pilgrims are easy marks, and the gold is heavy, and so is the feeling.",
           "effects": [
             {
               "resources": {

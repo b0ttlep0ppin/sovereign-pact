@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "buy",
-      "label": "Buy one.",
+      "label": "Buy one of his saints.",
       "rule": "vote",
       "tags": [
         "clever"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It will fool almost anyone.",
+          "text": "It will fool almost anyone, and almost anyone is enough.",
           "effects": [
             {
               "resources": {
@@ -47,7 +47,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The Court thanks you. He does not.",
+          "text": "The Court thanks you. He does not, and neither do the friends who bought from him.",
           "effects": [
             {
               "score": {
@@ -73,7 +73,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A real relic, from his private collection.",
+          "text": "A real relic, from his private collection, and a man who now hates you.",
           "effects": [
             {
               "score": {

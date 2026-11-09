@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Already cut.",
+          "text": "Already cut, and waiting, as if for you.",
           "effects": [
             {
               "resources": {
@@ -34,7 +34,7 @@
     },
     {
       "id": "dive",
-      "label": "The toughest dives for what sank.",
+      "label": "The toughest dives along the taut ropes.",
       "rule": "scion:highest:resilience",
       "tags": [
         "reckless"
@@ -42,7 +42,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A drowned quarryman's tools and coin.",
+          "text": "A drowned quarryman's tools and coin, and the quarryman, still holding on.",
           "effects": [
             {
               "resources": {
@@ -56,7 +56,7 @@
     },
     {
       "id": "claim",
-      "label": "Claim it for the House.",
+      "label": "Claim the quarry for the House.",
       "rule": "leader",
       "tags": [
         "bold"
@@ -64,7 +64,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A rival House has a claim too.",
+          "text": "A rival House has a claim too, and now a grudge.",
           "effects": [
             {
               "resources": {

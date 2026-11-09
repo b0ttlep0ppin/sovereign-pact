@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "loot",
-      "label": "Take the best of it.",
+      "label": "The Leader takes the best of the armor.",
       "rule": "leader",
       "tags": [
         "clever"
@@ -37,7 +37,7 @@
         },
         {
           "w": 35,
-          "text": "As you take it, the ranks close.",
+          "text": "As you take it, the ranks close around you.",
           "effects": [
             {
               "encounter": {

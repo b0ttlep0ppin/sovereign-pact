@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "Across, with a few dents.",
+          "text": "Across, with a few dents in the helms.",
           "effects": [
             {
               "to": "party",
@@ -32,7 +32,7 @@
         },
         {
           "w": 30,
-          "text": "A big gust.",
+          "text": "A big gust, and iron hail, and ringing heads.",
           "effects": [
             {
               "to": "party",
@@ -45,7 +45,7 @@
     },
     {
       "id": "time",
-      "label": "The sharpest times the wind.",
+      "label": "The sharpest eye times the wind.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -74,7 +74,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It rings like a bell all the way across.",
+          "text": "It rings like a bell all the way across, and their arms ring with it.",
           "effects": [
             {
               "durability": -15,

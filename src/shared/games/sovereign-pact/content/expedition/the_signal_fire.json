@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "run",
-      "label": "Run for the hill.",
+      "label": "Run for the far hill.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Closer.",
+          "text": "Closer, over broken ground, on battered legs.",
           "effects": [
             {
               "skip": 1
@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "The smoke changes: they saw.",
+          "text": "The smoke changes. They saw.",
           "effects": [
             {
               "to": "party",
@@ -74,7 +74,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A safe path to the hill.",
+          "text": "A safe path to the hill, if you are quick.",
           "effects": [
             {
               "skip": 1

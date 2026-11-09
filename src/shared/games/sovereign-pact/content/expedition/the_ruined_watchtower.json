@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "climb",
-      "label": "The quickest climbs.",
+      "label": "The quickest climbs the broken stair.",
       "rule": "scion:highest:speed",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 75,
-          "text": "They see it all: the way, the danger, and a shortcut.",
+          "text": "They see it all from the top: the way, the danger, and a shortcut.",
           "effects": [
             {
               "skip": 1
@@ -33,7 +33,7 @@
         },
         {
           "w": 25,
-          "text": "The stair gives at the top.",
+          "text": "The stair gives at the top, and they come down faster than they went up.",
           "effects": [
             {
               "injury": "legs"

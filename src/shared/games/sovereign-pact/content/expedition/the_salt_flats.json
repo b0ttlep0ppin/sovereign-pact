@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "mirage",
-      "label": "Make for the lake.",
+      "label": "Make for the shimmering lake.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -34,7 +34,7 @@
         },
         {
           "w": 60,
-          "text": "There is no lake.",
+          "text": "There is no lake. There never was. Only more bones, and the glare.",
           "effects": [
             {
               "to": "party",
@@ -80,7 +80,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Slow, blind, and safe.",
+          "text": "Slow, blind, and safe, though the salt gets into everything.",
           "effects": [
             {
               "to": "party",

@@ -59,7 +59,7 @@
     },
     {
       "id": "smoke",
-      "label": "The cleverest smokes them out with a fire.",
+      "label": "The cleverest smokes them off with a fire.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -67,7 +67,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Sleepy moths, and their dust is worth something.",
+          "text": "Sleepy moths, drifting down like ash, and their dust is worth something.",
           "effects": [
             {
               "resources": {

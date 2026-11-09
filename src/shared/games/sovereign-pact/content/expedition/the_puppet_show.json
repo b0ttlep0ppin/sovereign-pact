@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "watch",
-      "label": "Watch the end of the show.",
+      "label": "Watch the show to its end.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "It ends happily. It is a comfort.",
+          "text": "It ends happily, against all odds. It is a comfort, and you do not ask why.",
           "effects": [
             {
               "to": "party",
@@ -31,7 +31,7 @@
         },
         {
           "w": 50,
-          "text": "It ends as such shows do.",
+          "text": "It ends as such shows do, with every little wooden you lying still, and the crows applauding.",
           "effects": [
             {
               "to": "party",
@@ -43,7 +43,7 @@
     },
     {
       "id": "strings",
-      "label": "The sharpest looks for the strings.",
+      "label": "The sharpest eye looks for the strings.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -51,7 +51,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "There are none, and then there are, and they lead somewhere.",
+          "text": "There are none, and then there are, and they lead off into the trees to something hidden.",
           "effects": [
             {
               "fork": {
@@ -74,7 +74,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The puppets scream in your voices.",
+          "text": "The puppets scream in your voices as they burn.",
           "effects": [
             {
               "to": "party",

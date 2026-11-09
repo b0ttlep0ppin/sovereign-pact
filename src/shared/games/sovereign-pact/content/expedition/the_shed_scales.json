@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "gather",
-      "label": "Gather them.",
+      "label": "Gather the sharp scales.",
       "rule": "vote",
       "tags": [
         "clever"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Good for armor.",
+          "text": "Good for armor, and every hand cut gathering them.",
           "effects": [
             {
               "resources": {
@@ -46,7 +46,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "To the quarry, molting and weak.",
+          "text": "To the quarry, molting and weak, and too slow to run.",
           "effects": [
             {
               "encounter": {
@@ -67,7 +67,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Its weak point, under the left wing.",
+          "text": "Its weak point, under the left wing, where the scales grow thin.",
           "effects": [
             {
               "to": "party",

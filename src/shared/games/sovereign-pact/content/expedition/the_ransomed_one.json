@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "buy",
-      "label": "Buy it and read the note.",
+      "label": "Buy the cloak and read the note.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A map, in their hand.",
+          "text": "A map, in their hand, and the hand was shaking.",
           "effects": [
             {
               "resources": {
@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He found it near a cave. He points.",
+          "text": "He found it near a cave, he says, and he did not go in. He points.",
           "effects": [
             {
               "skip": 1
@@ -56,7 +56,7 @@
     },
     {
       "id": "take",
-      "label": "Take it.",
+      "label": "Take the cloak by force.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -64,7 +64,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The market turns on you.",
+          "text": "The whole market turns on you.",
           "effects": [
             {
               "encounter": {}

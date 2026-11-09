@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "crown",
-      "label": "Take the crown.",
+      "label": "Take the crown from her head.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 40,
-          "text": "She sleeps on.",
+          "text": "She sleeps on. Her eyes move faster under the lids.",
           "effects": [
             {
               "item": {

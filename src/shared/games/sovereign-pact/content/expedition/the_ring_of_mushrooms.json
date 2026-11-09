@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "dance",
-      "label": "The boldest steps in.",
+      "label": "The boldest steps into the ring.",
       "rule": "scion:trait:brave|scion:random",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "They dance for a night, and come out laughing and younger in the eyes.",
+          "text": "They dance for a night, and come out laughing, and younger in the eyes.",
           "effects": [
             {
               "sanity": 25
@@ -35,7 +35,7 @@
         },
         {
           "w": 40,
-          "text": "They dance for longer than a night.",
+          "text": "They dance for longer than a night, and sleep where they fall.",
           "effects": [
             {
               "sanity": -20
@@ -49,7 +49,7 @@
     },
     {
       "id": "pick",
-      "label": "Pick the mushrooms.",
+      "label": "The Leader picks the white mushrooms.",
       "rule": "leader",
       "tags": [
         "clever"
@@ -57,7 +57,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The music stops. The mushrooms are worth a great deal to the right apothecary.",
+          "text": "The music stops, all at once. The mushrooms are worth a great deal to the right apothecary.",
           "effects": [
             {
               "resources": {
@@ -70,7 +70,7 @@
     },
     {
       "id": "around",
-      "label": "Walk well round it.",
+      "label": "Walk well round the ring.",
       "rule": "vote",
       "tags": [
         "cautious"

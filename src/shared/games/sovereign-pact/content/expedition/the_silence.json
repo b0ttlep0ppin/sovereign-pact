@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They come through, shaking.",
+          "text": "They come through, shaking, and holding them steadies the rest of you.",
           "effects": [
             {
               "sanity": -10
@@ -57,7 +57,7 @@
     },
     {
       "id": "listen",
-      "label": "Listen to the silence.",
+      "label": "The wisest listens to the silence.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -65,7 +65,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "In it, the shape of the way out.",
+          "text": "In it, the shape of the way out, and the shape of what is listening.",
           "effects": [
             {
               "foresee": true

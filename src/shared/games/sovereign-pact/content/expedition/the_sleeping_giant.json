@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "sneak",
-      "label": "Sneak past, everyone together.",
+      "label": "Sneak past, all together.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -44,7 +44,7 @@
     },
     {
       "id": "steal",
-      "label": "The quickest goes for the purse.",
+      "label": "The quickest goes for the giant's purse.",
       "rule": "scion:highest:speed",
       "tags": [
         "clever"

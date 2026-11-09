@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "tiptoe",
-      "label": "Tiptoe past.",
+      "label": "Tiptoe past the horn.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -53,7 +53,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Past before it stirs.",
+          "text": "Past before it stirs, and only the flies notice.",
           "effects": [
             {
               "xp": 30
@@ -72,7 +72,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Filthy, and unseen by anything for a day.",
+          "text": "Filthy, and stinking, and unseen by anything for a day.",
           "effects": [
             {
               "to": "party",

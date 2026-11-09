@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "tear",
-      "label": "Tear the seventh down.",
+      "label": "The strongest tears the seventh altar down.",
       "rule": "scion:highest:might",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The bones come apart easily. The Six are pleased.",
+          "text": "The bones come apart easily, as if relieved. The Six are pleased.",
           "effects": [
             {
               "to": "party",
@@ -38,7 +38,7 @@
     },
     {
       "id": "offer",
-      "label": "Leave an offering on the seventh.",
+      "label": "The Leader leaves an offering on the seventh.",
       "rule": "leader",
       "tags": [
         "reckless"
@@ -46,7 +46,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "Something takes it gratefully, and gives back.",
+          "text": "Something takes it gratefully, and gives back. The seventh altar is a little more finished.",
           "effects": [
             {
               "growth": {
@@ -60,7 +60,7 @@
         },
         {
           "w": 50,
-          "text": "Something takes it, and the leader.",
+          "text": "Something takes it, and then takes hold of the Leader.",
           "effects": [
             {
               "curse": true

@@ -50,7 +50,7 @@
     },
     {
       "id": "drink",
-      "label": "The most devout drinks from all five.",
+      "label": "The most devout drinks from all five full bowls.",
       "rule": "scion:trait:devout|scion:trait:pious_hands|scion:highest:sagacity",
       "tags": [
         "reckless"

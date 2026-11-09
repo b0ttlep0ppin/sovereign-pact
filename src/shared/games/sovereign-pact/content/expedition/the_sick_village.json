@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "help",
-      "label": "The best healer goes in.",
+      "label": "The best healer goes in among the sick.",
       "rule": "scion:most_healing",
       "tags": [
         "kind"
@@ -35,7 +35,7 @@
         },
         {
           "w": 30,
-          "text": "They help a great many, and bring a little of it out.",
+          "text": "They help a great many, and bring a little of it out with them, under the skin.",
           "effects": [
             {
               "score": {
@@ -51,7 +51,7 @@
     },
     {
       "id": "supplies",
-      "label": "Leave supplies at the edge.",
+      "label": "Leave supplies at the edge of the village.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -59,7 +59,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They wave from the distance.",
+          "text": "They wave from the distance with stiff wooden hands.",
           "effects": [
             {
               "to": "party",
@@ -84,7 +84,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It is the safe thing.",
+          "text": "It is the safe thing. The child with leaves does not run.",
           "effects": [
             {
               "to": "party",

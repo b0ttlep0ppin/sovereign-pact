@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "leave",
-      "label": "Each leaves their shoes.",
+      "label": "Leave your shoes on the beams.",
       "rule": "each_scion",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Blessed, and barefoot.",
+          "text": "Blessed, and barefoot, and the road is very hard.",
           "effects": [
             {
               "sanity": 8
@@ -36,7 +36,7 @@
     },
     {
       "id": "keep",
-      "label": "Each keeps their shoes.",
+      "label": "Keep your shoes.",
       "rule": "each_scion",
       "tags": [
         "cautious"
@@ -44,7 +44,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The monks shake their heads.",
+          "text": "The monks shake their heads, and a thousand shoes creak overhead.",
           "effects": [
             {
               "sanity": -2

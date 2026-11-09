@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "take",
-      "label": "Take it.",
+      "label": "Take the bloody antler.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Wyrmbone, or near enough.",
+          "text": "Wyrmbone, or near enough, and still warm at the root.",
           "effects": [
             {
               "resources": {
@@ -42,7 +42,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The quarry comes back for it.",
+          "text": "The quarry comes back for it, and finds you waiting.",
           "effects": [
             {
               "encounter": {
@@ -63,7 +63,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Close now.",
+          "text": "Close now. You can hear it.",
           "effects": [
             {
               "skip": 1

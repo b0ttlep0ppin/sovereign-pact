@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A week's lessons in a night.",
+          "text": "A week's lessons in a night, and a head too full to sleep.",
           "effects": [
             {
               "jp": 120
@@ -37,7 +37,7 @@
     },
     {
       "id": "news",
-      "label": "Tell him everything; he is lonely.",
+      "label": "Tell him everything. He is lonely.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -61,7 +61,7 @@
     },
     {
       "id": "books",
-      "label": "Take the rarest books.",
+      "label": "The Leader takes the rarest books.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -69,7 +69,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He weeps, and does not stop you.",
+          "text": "He weeps, and does not stop you, and you can hear him for a long way.",
           "effects": [
             {
               "score": {

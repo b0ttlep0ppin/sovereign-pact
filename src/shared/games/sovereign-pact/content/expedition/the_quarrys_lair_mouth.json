@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "smoke",
-      "label": "Smoke it out.",
+      "label": "Smoke it out of the lair.",
       "rule": "vote",
       "tags": [
         "clever"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It comes out angry.",
+          "text": "It comes out angry, and blind with smoke, and you are ready.",
           "effects": [
             {
               "encounter": {
@@ -34,7 +34,7 @@
     },
     {
       "id": "enter",
-      "label": "Go in after it.",
+      "label": "The Leader goes in after it.",
       "rule": "leader",
       "tags": [
         "bold"
@@ -42,7 +42,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "In its own den.",
+          "text": "Into its own den, in the dark, where it knows every stone. Brave, and foolish.",
           "effects": [
             {
               "encounter": {
@@ -68,7 +68,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A good bow, and the quarry wakes.",
+          "text": "A good bow from a dead hand, and behind you, the quarry wakes.",
           "effects": [
             {
               "item": {

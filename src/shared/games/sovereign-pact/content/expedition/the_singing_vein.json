@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "mine",
-      "label": "Mine it.",
+      "label": "Mine the singing crystal.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "Crystal that holds essence.",
+          "text": "Crystal that holds essence, ringing in the sack.",
           "effects": [
             {
               "resources": {
@@ -51,7 +51,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It echoes the shape of the tunnels ahead.",
+          "text": "It echoes the shape of the tunnels ahead, and you know the way.",
           "effects": [
             {
               "skip": 1
@@ -70,7 +70,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The hum follows you a while, soothing.",
+          "text": "The hum follows you a while, soothing, until the deeper hum takes over.",
           "effects": [
             {
               "to": "party",

@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It passes. Hours lost.",
+          "text": "It passes. Hours lost, under the smell of smoke.",
           "effects": [
             {
               "to": "party",
@@ -33,7 +33,7 @@
     },
     {
       "id": "watch",
-      "label": "The sharpest watches where it lands.",
+      "label": "The sharpest eye watches where it lands.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -52,7 +52,7 @@
     },
     {
       "id": "signal",
-      "label": "Signal it, and see what it wants.",
+      "label": "The Leader signals it, to see what it wants.",
       "rule": "leader",
       "tags": [
         "reckless"

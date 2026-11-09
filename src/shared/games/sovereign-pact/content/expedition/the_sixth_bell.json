@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "ring",
-      "label": "Ring it.",
+      "label": "Ring the last whole bell.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The note goes on for a long time.",
+          "text": "The note goes on for a long time, and fills you.",
           "effects": [
             {
               "to": "party",
@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The monks tell them, and the price is fair.",
+          "text": "The monks tell them, and the price is fair, and they pay it.",
           "effects": [
             {
               "blessing": {
@@ -64,7 +64,7 @@
     },
     {
       "id": "take",
-      "label": "Take it down. A whole bell is worth a fortune.",
+      "label": "The Leader takes it down. A whole bell is worth a fortune.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -72,7 +72,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Heavy, and the monks curse you.",
+          "text": "Heavy, and the monks curse you, every one, in turn.",
           "effects": [
             {
               "resources": {

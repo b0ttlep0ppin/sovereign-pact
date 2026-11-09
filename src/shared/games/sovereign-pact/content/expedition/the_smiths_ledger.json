@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "read",
-      "label": "The wisest reads it.",
+      "label": "The wisest reads the soot-black ledger.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -73,7 +73,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "No one is coming back.",
+          "text": "No one is coming back. The last entries say why.",
           "effects": [
             {
               "to": "party",

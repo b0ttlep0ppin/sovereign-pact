@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "kneel",
-      "label": "Kneel.",
+      "label": "Kneel as it passes.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The hand blesses you, after a fashion.",
+          "text": "The hand blesses you, after a fashion. One finger points.",
           "effects": [
             {
               "to": "party",
@@ -33,7 +33,7 @@
     },
     {
       "id": "steal",
-      "label": "The deftest hands steal it.",
+      "label": "The deftest hands steal the hand.",
       "rule": "scion:highest:guile",
       "tags": [
         "cruel"
@@ -41,7 +41,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "A true relic.",
+          "text": "A true relic, and it twitches in the sack.",
           "effects": [
             {
               "score": {
@@ -55,7 +55,7 @@
         },
         {
           "w": 50,
-          "text": "The procession turns.",
+          "text": "The whole procession turns, censers swinging.",
           "effects": [
             {
               "encounter": {
@@ -76,7 +76,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It is warm.",
+          "text": "It is warm, and where it touches, the hurt closes.",
           "effects": [
             {
               "mend": true

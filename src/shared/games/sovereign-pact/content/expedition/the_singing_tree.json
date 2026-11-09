@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "touch",
-      "label": "The wisest presses the knot.",
+      "label": "The wisest presses the worn knot.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "kind"
@@ -35,7 +35,7 @@
         },
         {
           "w": 40,
-          "text": "The note changes to match their heartbeat, and then it stops.",
+          "text": "The note changes to match their heartbeat, and then it stops, and so do they, for a while.",
           "effects": [
             {
               "sanity": -20
@@ -49,7 +49,7 @@
     },
     {
       "id": "cut",
-      "label": "Cut it for timber.",
+      "label": "Cut the oak for timber.",
       "rule": "leader",
       "tags": [
         "cruel"

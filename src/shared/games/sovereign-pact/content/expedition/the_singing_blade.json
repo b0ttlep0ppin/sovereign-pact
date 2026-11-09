@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "take",
-      "label": "The strongest takes it up.",
+      "label": "The strongest takes up the singing blade.",
       "rule": "scion:highest:might",
       "tags": [
         "bold"
@@ -32,7 +32,7 @@
         },
         {
           "w": 40,
-          "text": "It sings through every fight, and every night.",
+          "text": "It sings through every fight, and every night, and will not stop.",
           "effects": [
             {
               "item": {
@@ -56,7 +56,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It sings under the earth for a long time.",
+          "text": "It sings under the earth for a long time, and it is not a hymn any more.",
           "effects": [
             {
               "to": "party",

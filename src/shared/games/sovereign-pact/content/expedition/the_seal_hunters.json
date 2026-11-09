@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "share",
-      "label": "Share their fire.",
+      "label": "Share their fire in the ring of bones.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Warm, fed, and full of their stories.",
+          "text": "Warm, fed, and full of their stories, and none of you look at the dark either.",
           "effects": [
             {
               "to": "party",
@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Good furs, warm for the road.",
+          "text": "Good furs, thick and warm, that turn the cold like armor.",
           "effects": [
             {
               "resources": {
@@ -62,7 +62,7 @@
     },
     {
       "id": "ask",
-      "label": "Ask what else hunts the ice.",
+      "label": "The Leader asks what else hunts the ice.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -70,7 +70,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They tell you, and where.",
+          "text": "They tell you, and where, and they stop glancing at the dark only when they are done.",
           "effects": [
             {
               "foresee": true

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "seventh",
-      "label": "Go through the seventh.",
+      "label": "Go through the seventh door.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "A god no one prays to, glad of visitors.",
+          "text": "A god no one prays to, glad of visitors, and its gifts are strange.",
           "effects": [
             {
               "growth": {
@@ -57,7 +57,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The right one.",
+          "text": "The right one, and warm light behind it.",
           "effects": [
             {
               "to": "party",
@@ -74,7 +74,7 @@
     },
     {
       "id": "shut",
-      "label": "Shut the seventh.",
+      "label": "Shut the seventh door.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -82,7 +82,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It does not want to shut.",
+          "text": "It does not want to shut. It takes all of you, and arms that ache for days.",
           "effects": [
             {
               "to": "party",

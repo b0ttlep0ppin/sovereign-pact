@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "dip",
-      "label": "Dip your weapons.",
+      "label": "Dip your weapons and armor in the black water.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "Harder, sharper.",
+          "text": "Harder, sharper, and faintly warm for days.",
           "effects": [
             {
               "to": "party",
@@ -31,7 +31,7 @@
         },
         {
           "w": 30,
-          "text": "Brittle.",
+          "text": "Brittle, and it cracks at the first strain.",
           "effects": [
             {
               "to": "party",
@@ -44,7 +44,7 @@
     },
     {
       "id": "drink",
-      "label": "The toughest drinks.",
+      "label": "The toughest drinks the quench water.",
       "rule": "scion:highest:resilience",
       "tags": [
         "reckless"
@@ -52,7 +52,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "Iron in the blood.",
+          "text": "Iron in the blood, and in the bones after.",
           "effects": [
             {
               "growth": {
@@ -63,7 +63,7 @@
         },
         {
           "w": 50,
-          "text": "Iron in the gut.",
+          "text": "Iron in the gut, and it does not want to stay there.",
           "effects": [
             {
               "status": "poison"
@@ -85,7 +85,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They will know what to do.",
+          "text": "They will know what to do with it. They will not ask about the hand.",
           "effects": [
             {
               "resources": {

@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It takes all day, and the day is gone.",
+          "text": "It takes all day, and the day is gone, and the red stays in the creases of your hands.",
           "effects": [
             {
               "to": "party",
@@ -41,7 +41,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It thickens in the flask to something precious.",
+          "text": "It thickens in the flask to something precious, and something that still feels warm.",
           "effects": [
             {
               "resources": {
@@ -62,7 +62,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "It burns going down, and the next fight comes fast.",
+          "text": "It burns going down, and their blood runs fast, and the next fight comes faster.",
           "effects": [
             {
               "status": "haste"
@@ -74,7 +74,7 @@
         },
         {
           "w": 40,
-          "text": "It burns going down, and keeps burning.",
+          "text": "It burns going down, and keeps burning, and keeps on.",
           "effects": [
             {
               "status": "burn"

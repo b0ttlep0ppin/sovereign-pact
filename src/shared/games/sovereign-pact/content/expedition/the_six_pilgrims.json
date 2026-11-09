@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "one",
-      "label": "Name one god.",
+      "label": "The Leader names one god.",
       "rule": "leader",
       "tags": [
         "bold"
@@ -48,7 +48,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They grumble, and share the water, and share their food.",
+          "text": "They grumble, and share the water, and then they share their food.",
           "effects": [
             {
               "to": "party",
@@ -64,7 +64,7 @@
     },
     {
       "id": "mine",
-      "label": "Say it belongs to you.",
+      "label": "Say the well belongs to you.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -72,7 +72,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "All six turn on you.",
+          "text": "All six turn on you, and for once they agree.",
           "effects": [
             {
               "encounter": {}

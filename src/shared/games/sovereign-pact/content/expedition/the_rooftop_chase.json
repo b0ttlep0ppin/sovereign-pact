@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "chase",
-      "label": "The fastest gives chase.",
+      "label": "The fastest goes over the rooftops after them.",
       "rule": "scion:highest:speed",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "Caught, and it is yours again.",
+          "text": "Caught at the edge of a gutter, and it is yours again.",
           "effects": [
             {
               "item": {
@@ -37,7 +37,7 @@
         },
         {
           "w": 40,
-          "text": "A fall.",
+          "text": "A slick tile, a fall, and a bad landing.",
           "effects": [
             {
               "injury": "legs"
@@ -48,7 +48,7 @@
     },
     {
       "id": "street",
-      "label": "Follow from the street.",
+      "label": "Follow from the street below.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -56,7 +56,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Lost among the masks.",
+          "text": "Lost among the masks, and a purse lost with them.",
           "effects": [
             {
               "resources": {
@@ -69,7 +69,7 @@
     },
     {
       "id": "ahead",
-      "label": "The cleverest guesses where they go.",
+      "label": "The cleverest guesses where they will come down.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -77,7 +77,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Waiting when they land.",
+          "text": "Waiting when they land, and they did not expect it.",
           "effects": [
             {
               "encounter": {

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "tap",
-      "label": "Tap them.",
+      "label": "Tap the trees for sap.",
       "rule": "vote",
       "tags": [
         "clever"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Jars of it.",
+          "text": "Jars of it, warm and golden, and the trees shiver for each one.",
           "effects": [
             {
               "resources": {
@@ -34,7 +34,7 @@
     },
     {
       "id": "fell",
-      "label": "Fell them.",
+      "label": "Fell the pale trees.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -42,7 +42,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Timber and sap both.",
+          "text": "Timber and sap both, and a sound from each trunk as it falls.",
           "effects": [
             {
               "resources": {
@@ -67,7 +67,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A grove, in time.",
+          "text": "A grove, in time, that bleeds gold.",
           "effects": [
             {
               "house_improvement": "building"

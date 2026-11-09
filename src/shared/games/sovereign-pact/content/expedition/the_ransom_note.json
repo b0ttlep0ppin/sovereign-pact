@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "pay",
-      "label": "Pay it.",
+      "label": "Pay the ransom at the hollow oak.",
       "rule": "house:lowest_standing|vote",
       "tags": [
         "cautious"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "The gold is taken, and a path is marked in chalk.",
+          "text": "The gold is taken, and a path is marked in chalk on the trees.",
           "effects": [
             {
               "resources": {
@@ -35,7 +35,7 @@
         },
         {
           "w": 30,
-          "text": "The gold is taken. Nothing else happens.",
+          "text": "The gold is taken. Nothing else happens. Nothing at all.",
           "effects": [
             {
               "resources": {
@@ -60,7 +60,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The kidnappers come for their gold.",
+          "text": "The kidnappers come for their gold, and find you instead.",
           "effects": [
             {
               "encounter": {
@@ -86,7 +86,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Whoever wrote it is watching now.",
+          "text": "Whoever wrote it is watching now, and you can feel where from.",
           "effects": [
             {
               "to": "party",

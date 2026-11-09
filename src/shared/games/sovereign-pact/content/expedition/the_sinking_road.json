@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "Everyone across, muddy to the knees.",
+          "text": "Everyone across, muddy to the knees, and something in the water just behind.",
           "effects": [
             {
               "to": "party",
@@ -31,7 +31,7 @@
         },
         {
           "w": 30,
-          "text": "The slowest are caught.",
+          "text": "The slowest are caught by the water, and by what moves in it.",
           "effects": [
             {
               "to": "party",
@@ -52,7 +52,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They make it. The last one through swims.",
+          "text": "They make it. The last one through swims, and everyone is chilled to a crawl.",
           "effects": [
             {
               "to": "party",
@@ -64,7 +64,7 @@
     },
     {
       "id": "wait",
-      "label": "Camp and wait for the tide.",
+      "label": "Camp and wait for the tide to turn.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -72,7 +72,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A long cold night.",
+          "text": "A long cold night, listening to things move in the water.",
           "effects": [
             {
               "to": "party",
