@@ -9,7 +9,7 @@
     9
   ],
   "title": "The Inquisitor",
-  "text": "An inquisitor of the Court stops the party, and wants to know which of you is the heretic.",
+  "text": "An inquisitor of the Court stops the party in the road, his face hidden behind a mask of white porcelain, his guards spreading out to block the way. One of you is a heretic, he says, mildly. He wants to know which. He has all day.",
   "options": [
     {
       "id": "accuse",
