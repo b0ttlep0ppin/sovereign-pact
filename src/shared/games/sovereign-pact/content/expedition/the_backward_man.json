@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "ask",
-      "label": "The wisest asks what is ahead.",
+      "label": "The wisest asks him what lies ahead, though they may not like the answer.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "He tells it, backward, word by word. It only makes sense later, when it is happening.",
+          "text": "He tells it, backward, word by word. It only makes sense later, when it is already happening.",
           "effects": [
             {
               "foresee": true
@@ -33,7 +33,7 @@
         },
         {
           "w": 30,
-          "text": "He answers with your own scream, a breath before you make it.",
+          "text": "He answers with your own scream, a breath before you make it, and you spend the rest of the day waiting to make it.",
           "effects": [
             {
               "sanity": -20
@@ -44,7 +44,7 @@
     },
     {
       "id": "follow",
-      "label": "Walk backward with him.",
+      "label": "Walk backward with him, and trust he knows the way he came.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -52,7 +52,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The way behind becomes the way ahead, and the ground forgets which is which.",
+          "text": "The way behind becomes the way ahead, and the ground forgets which is which. So, for a while, do you.",
           "effects": [
             {
               "fork": {
@@ -72,7 +72,7 @@
     },
     {
       "id": "changed",
-      "label": "The Changed one meets his eyes.",
+      "label": "The Changed one meets his eyes, one stranger to another.",
       "rule": "scion:changed|leader",
       "tags": [
         "bold"

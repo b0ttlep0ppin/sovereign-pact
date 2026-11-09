@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "weak",
-      "label": "Shelter the frailest behind a shield.",
+      "label": "Shelter the frailest behind a shield, and brace against the blasts.",
       "rule": "scion:lowest:resilience|scion:random",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They come through, red-faced and gasping. The shield does not.",
+          "text": "They come through, red-faced and gasping. The shield does not, and neither does the arm that held it.",
           "effects": [
             {
               "durability": -30,
@@ -33,7 +33,7 @@
     },
     {
       "id": "stop",
-      "label": "The strongest jams the bellows shut.",
+      "label": "The strongest jams the bellows shut, and silences the giant's breathing.",
       "rule": "scion:highest:might",
       "tags": [
         "bold"
@@ -41,7 +41,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "The forge falls quiet, and the tunnels go cold and still.",
+          "text": "The forge falls quiet, and the tunnels go cold and still, and very dark.",
           "effects": [
             {
               "score": {
@@ -55,7 +55,7 @@
         },
         {
           "w": 40,
-          "text": "The forge's keeper notices that its breath has stopped.",
+          "text": "The forge's keeper notices that its breath has stopped, and comes to see why.",
           "effects": [
             {
               "encounter": {}
@@ -66,7 +66,7 @@
     },
     {
       "id": "time",
-      "label": "Count the blasts, and run between them.",
+      "label": "Count the blasts, and run between them, trusting your timing.",
       "rule": "scion:highest:acuity|vote",
       "tags": [
         "clever"

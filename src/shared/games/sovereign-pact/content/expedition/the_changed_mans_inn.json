@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "changed",
-      "label": "One of you who has been Changed asks for a room.",
+      "label": "One of you who has been Changed asks for a room, for themselves and their friends.",
       "rule": "scion:changed|vote",
       "tags": [
         "clever"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They are welcome, and so are their friends, and the fire is warm and strange.",
+          "text": "They are welcome, and so are their friends, and the fire is warm and strange, and nobody asks too many questions.",
           "effects": [
             {
               "to": "party",
@@ -37,7 +37,7 @@
     },
     {
       "id": "pretend",
-      "label": "The shrewdest pretends to be Changed.",
+      "label": "The shrewdest pretends to be Changed, hoping the keeper cannot tell.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"
@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 55,
-          "text": "A convincing limp, a glass eye, a growl. The keeper nods you in.",
+          "text": "A convincing limp, a glass eye, a growl. The keeper nods you in, and the fire is warm.",
           "effects": [
             {
               "to": "party",
@@ -55,7 +55,7 @@
         },
         {
           "w": 45,
-          "text": "The guests know. Every head turns, antlers and scales and all.",
+          "text": "The guests know. Every head turns, antlers and scales and all, and none of them are friendly.",
           "effects": [
             {
               "encounter": {
@@ -68,7 +68,7 @@
     },
     {
       "id": "leave",
-      "label": "Sleep outside in the cold.",
+      "label": "Sleep outside in the cold, rather than share a roof with what is inside.",
       "rule": "leader",
       "tags": [
         "cautious"

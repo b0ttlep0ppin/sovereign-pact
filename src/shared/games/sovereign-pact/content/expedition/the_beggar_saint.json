@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "give",
-      "label": "Give him your best.",
+      "label": "Give him your best, as the faithful do, in case the stories are true.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He blesses you with a sore-covered hand, and the light about him brightens for a moment.",
+          "text": "He blesses you with a sore-covered hand, and the light about him brightens for a moment. Your path feels lucky after.",
           "effects": [
             {
               "resources": {
@@ -40,7 +40,7 @@
     },
     {
       "id": "test",
-      "label": "The shrewdest tests whether he is a saint.",
+      "label": "The shrewdest tests whether he is truly a saint, and risks finding out.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"
@@ -62,7 +62,7 @@
         },
         {
           "w": 50,
-          "text": "He is not, but he is very clever, and he gives them a cut to go away.",
+          "text": "He is not, but he is very clever, and he gives them a cut of the takings to go away quietly.",
           "effects": [
             {
               "resources": {
@@ -75,7 +75,7 @@
     },
     {
       "id": "pass",
-      "label": "Pass him by.",
+      "label": "Pass him by. Saints do not sit in the dirt.",
       "rule": "leader",
       "tags": [
         "cruel"

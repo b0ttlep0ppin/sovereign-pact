@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "dig",
-      "label": "Everyone digs, in the dark.",
+      "label": "Everyone digs, in the dark, and nobody speaks of what is listening.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Hours of it, hands bleeding, in the silence, with something listening ahead.",
+          "text": "Hours of it, hands bleeding, in the silence, with something listening ahead and never coming closer.",
           "effects": [
             {
               "to": "party",
@@ -38,7 +38,7 @@
     },
     {
       "id": "strong",
-      "label": "The strongest clears the rubble.",
+      "label": "The strongest clears the rubble, stone by stubborn stone.",
       "rule": "scion:highest:might",
       "tags": [
         "bold"
@@ -46,7 +46,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Faster, and the stone fights them every inch.",
+          "text": "Faster, and the stone fights them every inch, as if it wants you to stay.",
           "effects": [
             {
               "durability": -30,
@@ -61,7 +61,7 @@
     },
     {
       "id": "forward",
-      "label": "Go forward. There is no back now.",
+      "label": "Go forward. There is no going back now, so meet whatever heard you.",
       "rule": "leader",
       "tags": [
         "reckless"

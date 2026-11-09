@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "help",
-      "label": "Help them tend the smoking mounds.",
+      "label": "Help them tend the smoking mounds, and earn a little of their trust.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Smoky, choking work, and at the end they share their supper, and their charcoal.",
+          "text": "Smoky, choking work, and at the end they share their supper, and their charcoal, and a little of their silence.",
           "effects": [
             {
               "to": "party",
@@ -38,7 +38,7 @@
     },
     {
       "id": "talk",
-      "label": "The best talker wins them over.",
+      "label": "The best talker wins them over, despite their dislike of nobles.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"
@@ -46,7 +46,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They tell you which paths the wood keeps, and which it lets go.",
+          "text": "They tell you which paths the wood keeps, and which it lets go, and which it never gives back.",
           "effects": [
             {
               "foresee": true
@@ -57,7 +57,7 @@
     },
     {
       "id": "pass",
-      "label": "Pass by their mounds.",
+      "label": "Pass by their mounds, and leave them to their axes and their smoke.",
       "rule": "leader",
       "tags": [
         "cautious"

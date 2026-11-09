@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "follow",
-      "label": "Follow fast, while it bleeds.",
+      "label": "Follow fast while it bleeds, before the other hunter claims it.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "You catch it while it is weak, and it is still very dangerous.",
+          "text": "You catch it while it is weak, and it is still very dangerous, and very afraid.",
           "effects": [
             {
               "encounter": {
@@ -39,7 +39,7 @@
     },
     {
       "id": "other",
-      "label": "The sharpest eye finds what wounded it first.",
+      "label": "The sharpest eye looks for what wounded it first, wary of a rival hunter.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -61,7 +61,7 @@
         },
         {
           "w": 40,
-          "text": "Something bigger, and it has been following the blood too, and now it has found you.",
+          "text": "Something bigger, and it has been following the blood too, and now it has found you instead.",
           "effects": [
             {
               "encounter": {
@@ -75,7 +75,7 @@
     },
     {
       "id": "wait",
-      "label": "Let it bleed out in its own time.",
+      "label": "Let it bleed out in its own time. The woods will do your work for you.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -83,7 +83,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It goes to ground, weaker, and angrier. You hear it moaning at night.",
+          "text": "It goes to ground, weaker, and angrier. You hear it moaning at night, and the sound gets into your dreams.",
           "effects": [
             {
               "to": "party",

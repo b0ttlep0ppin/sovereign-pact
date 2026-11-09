@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "play",
-      "label": "The leader plays it honestly.",
+      "label": "The Leader plays it honestly, and leaves the throw to fate.",
       "rule": "leader",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "Sixes. The skeleton pays out with a clatter and a bow.",
+          "text": "Sixes. The skeleton pays out with a clatter and a bow, and seems almost pleased to lose.",
           "effects": [
             {
               "resources": {
@@ -32,7 +32,7 @@
         },
         {
           "w": 50,
-          "text": "Ones. It takes its winnings, and a little of your nerve along with them.",
+          "text": "Ones. It takes its winnings, and a little of your nerve along with them, and stacks both neatly at its elbow.",
           "effects": [
             {
               "resources": {
@@ -48,7 +48,7 @@
     },
     {
       "id": "cheat",
-      "label": "The craftiest plays, and cheats.",
+      "label": "The craftiest plays, and cheats. A skull cannot watch your hands that closely.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"
@@ -72,7 +72,7 @@
         },
         {
           "w": 35,
-          "text": "It sees it. Its jaw stops clicking.",
+          "text": "It sees it. Its jaw stops clicking, and the silence is far worse.",
           "effects": [
             {
               "encounter": {}
@@ -83,7 +83,7 @@
     },
     {
       "id": "decline",
-      "label": "Decline its game.",
+      "label": "Decline its game. Some tables are better left empty.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -102,7 +102,7 @@
     },
     {
       "id": "take_the_cup",
-      "label": "The Gambler takes the cup.",
+      "label": "The Gambler takes the cup, unable to turn down a game like this.",
       "rule": "scion:job:gambler",
       "only": true,
       "tags": [

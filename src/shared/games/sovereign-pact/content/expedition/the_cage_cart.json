@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "follow",
-      "label": "Follow the cart's ruts to whoever took them.",
+      "label": "Follow the cart's ruts to whoever took them, and make them answer for it.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -35,7 +35,7 @@
     },
     {
       "id": "names",
-      "label": "The wisest reads all the names.",
+      "label": "The wisest reads all the names, so that none of them are forgotten.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "kind"
@@ -43,7 +43,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Where they were sold, and to whom, and for how little.",
+          "text": "Where they were sold, and to whom, and for how little. The numbers stay with you.",
           "effects": [
             {
               "foresee": true
@@ -58,7 +58,7 @@
     },
     {
       "id": "burn",
-      "label": "Burn the cart.",
+      "label": "Burn the cart, and let the slavers see the smoke.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -66,7 +66,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It burns high and black. The slavers will see the smoke, and know someone is coming.",
+          "text": "It burns high and black. The slavers will see the smoke, and know someone is coming for them.",
           "effects": [
             {
               "score": {

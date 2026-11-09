@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "dig",
-      "label": "The strongest digs down to whatever lies beneath.",
+      "label": "The strongest digs down to whatever lies beneath, hoping to find its heart.",
       "rule": "scion:highest:might",
       "tags": [
         "reckless"
@@ -35,7 +35,7 @@
         },
         {
           "w": 50,
-          "text": "It is still alive, a little, and it does not want to be dug up.",
+          "text": "It is still alive, a little, and it does not want to be dug up. It reaches up through the earth to say so.",
           "effects": [
             {
               "encounter": {
@@ -48,7 +48,7 @@
     },
     {
       "id": "cross",
-      "label": "Cross quickly, and don't look down.",
+      "label": "Cross quickly, and don't look down at what you are standing on.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -56,7 +56,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Red to the knees, and the warmth stays on your skin all day.",
+          "text": "Red to the knees, and the warmth stays on your skin all day, beating faintly.",
           "effects": [
             {
               "to": "party",
@@ -68,7 +68,7 @@
     },
     {
       "id": "bury",
-      "label": "The wisest says the rites for the dying thing.",
+      "label": "The wisest says the rites for the dying thing, so that it may finally rest.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "kind"

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "finish",
-      "label": "The strongest takes up the warm hammer.",
+      "label": "The strongest takes up the warm hammer, to finish what the smith began.",
       "rule": "scion:highest:might",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 55,
-          "text": "The bellows breathe in time with the hammer, as if someone guides it, and the blade comes out fine.",
+          "text": "The bellows breathe in time with the hammer, as if someone guides it, and the blade comes out fine. Someone was pleased.",
           "effects": [
             {
               "item": {
@@ -35,7 +35,7 @@
         },
         {
           "w": 45,
-          "text": "The coals flare white at the first stroke, angry that a stranger dared.",
+          "text": "The coals flare white at the first stroke, angry that a stranger dared to touch the smith's work.",
           "effects": [
             {
               "durability": -25,
@@ -50,7 +50,7 @@
     },
     {
       "id": "salvage",
-      "label": "Take the iron and the tools.",
+      "label": "Take the iron and the tools. The smith will not be coming back.",
       "rule": "leader",
       "tags": [
         "clever"
@@ -71,7 +71,7 @@
     },
     {
       "id": "bank",
-      "label": "Bank the fire, as a smith would.",
+      "label": "Bank the fire, as a smith would at the end of a long day.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -79,7 +79,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The bellows sigh to a stop, as if someone could rest at last.",
+          "text": "The bellows sigh to a stop, as if someone could rest at last. The coals fade, and the forge is only a forge.",
           "effects": [
             {
               "to": "party",

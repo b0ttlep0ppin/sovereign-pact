@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "take",
-      "label": "Take a half each, and keep them apart.",
+      "label": "Take a half each, and keep them well apart.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Heavy, and warm in the pack, leaning always toward the other half.",
+          "text": "Heavy, and warm in the pack, leaning always toward the other half, as if it is pining.",
           "effects": [
             {
               "to": "party",
@@ -38,7 +38,7 @@
     },
     {
       "id": "join",
-      "label": "The strongest pushes the halves together.",
+      "label": "The strongest pushes the halves together, to make the hammer whole again.",
       "rule": "scion:highest:might",
       "tags": [
         "reckless"
@@ -46,7 +46,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "They fuse with a ring like a great bell, and the hammer is whole.",
+          "text": "They fuse with a ring like a great bell, and the hammer is whole, and glad.",
           "effects": [
             {
               "item": {
@@ -57,7 +57,7 @@
         },
         {
           "w": 50,
-          "text": "They fuse with a blast that throws them across the forge.",
+          "text": "They fuse with a blast that throws them across the forge, arms first.",
           "effects": [
             {
               "injury": "arms"
@@ -68,7 +68,7 @@
     },
     {
       "id": "bury",
-      "label": "Bury the halves far apart.",
+      "label": "Bury the halves far apart, so they can never find each other again.",
       "rule": "leader",
       "tags": [
         "cautious"

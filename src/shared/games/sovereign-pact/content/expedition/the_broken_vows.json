@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "gather",
-      "label": "Gather up the vows and keep them safe.",
+      "label": "Gather up the vows and keep them safe, whatever the converts think.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The converts jeer and throw mud. Somewhere, the old saints are pleased.",
+          "text": "The converts jeer and throw mud. Somewhere, the old saints are pleased with you.",
           "effects": [
             {
               "to": "party",
@@ -38,7 +38,7 @@
     },
     {
       "id": "read",
-      "label": "The shrewdest reads whose vows they were.",
+      "label": "The shrewdest reads whose vows they were, and what they swore to give up.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"
@@ -46,7 +46,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Names worth knowing, and the secrets they swore off.",
+          "text": "Names worth knowing, and the secrets they swore off, and some they did not.",
           "effects": [
             {
               "score": {
@@ -59,7 +59,7 @@
     },
     {
       "id": "join",
-      "label": "Tear one of your own vows, to blend in.",
+      "label": "Tear one of your own vows to blend in, and pass through the Court unremarked.",
       "rule": "leader",
       "tags": [
         "cruel"

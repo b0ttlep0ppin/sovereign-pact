@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "ask",
-      "label": "Ask him the way through the dark.",
+      "label": "Ask him the way through the dark, since he has charted all of it.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He traces it on the globe with a cracked fingernail, hole by hole, and it is true.",
+          "text": "He traces it on the globe with a cracked fingernail, hole by hole, and it is true, every step.",
           "effects": [
             {
               "skip": 1
@@ -37,7 +37,7 @@
     },
     {
       "id": "study",
-      "label": "The sharpest studies his globe of holes.",
+      "label": "The sharpest studies his globe of holes, searching for what he has seen.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "One of the holes is new: a star that should not be there, and it is coming closer.",
+          "text": "One of the holes is new: a star that should not be there, and it is coming closer. They cannot stop looking for it in the sky.",
           "effects": [
             {
               "foresee": true
@@ -64,7 +64,7 @@
     },
     {
       "id": "globe",
-      "label": "Take the globe from him.",
+      "label": "Take the globe from him. A blind man has no need of stars.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -72,7 +72,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He weeps without eyes, and the stars overhead begin to go wrong.",
+          "text": "He weeps without eyes, and the stars overhead begin to go wrong, one by one, as you walk away.",
           "effects": [
             {
               "item": {

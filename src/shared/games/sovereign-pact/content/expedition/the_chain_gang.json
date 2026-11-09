@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "free",
-      "label": "The strongest breaks their chain.",
+      "label": "The strongest breaks their chain, whatever the Pit may think of it.",
       "rule": "scion:highest:might",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "They scatter like smoke, and the one who begged leaves you something it hid.",
+          "text": "They scatter like smoke, and the one who begged leaves you something it hid. Something below takes note of what you did.",
           "effects": [
             {
               "item": {
@@ -48,7 +48,7 @@
     },
     {
       "id": "bribe",
-      "label": "The shrewdest bribes the imp.",
+      "label": "The shrewdest bribes the imp to let the one who begged go free.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"
@@ -56,7 +56,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It lets the one go, with a sneer, and keeps your gold.",
+          "text": "It lets the one go, with a sneer, and keeps your gold. You hope the soul gets far.",
           "effects": [
             {
               "resources": {
@@ -74,7 +74,7 @@
     },
     {
       "id": "ignore",
-      "label": "Look away, and keep walking.",
+      "label": "Look away and keep walking. You cannot save every soul in the Pit.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -82,7 +82,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The voice follows you down, in your own House's tongue, begging.",
+          "text": "The voice follows you down, in your own House's tongue, begging, until you cannot tell it from your own thoughts.",
           "effects": [
             {
               "to": "party",

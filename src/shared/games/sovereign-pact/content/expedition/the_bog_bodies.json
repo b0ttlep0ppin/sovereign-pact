@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "take",
-      "label": "Take the gold from their throats.",
+      "label": "Take the gold from their throats. The bog has kept it long enough.",
       "rule": "vote",
       "tags": [
         "cruel"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "Old gold, cold and heavy, and the faces do not change.",
+          "text": "Old gold, cold and heavy, and the faces do not change. Not that you can see.",
           "effects": [
             {
               "resources": {
@@ -45,7 +45,7 @@
     },
     {
       "id": "study",
-      "label": "The wisest studies the marks on them.",
+      "label": "The wisest studies the marks cut into them, hoping to learn what was paid for.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -53,7 +53,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Marks of the old marsh gods, cut into the skin, and the god's names, and what each was given for.",
+          "text": "Marks of the old marsh gods, cut into the skin, and the gods' names, and what each body was given for. Some of the gifts are still owed.",
           "effects": [
             {
               "score": {
@@ -66,7 +66,7 @@
     },
     {
       "id": "rebury",
-      "label": "Push them gently back under.",
+      "label": "Push them gently back under, and leave the offerings to the bog.",
       "rule": "leader",
       "tags": [
         "kind"

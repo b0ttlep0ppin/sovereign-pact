@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "face",
-      "label": "The one it looks at meets its red eyes.",
+      "label": "The one it looks at meets its red eyes, and does not look away.",
       "rule": "scion:random",
       "tags": [
         "bold"
@@ -33,7 +33,7 @@
         },
         {
           "w": 50,
-          "text": "It was not only looking. It knows them now, and it will come again, at the end.",
+          "text": "It was not only looking. It knows them now, and it will come again, at the end, when they are alone.",
           "effects": [
             {
               "sanity": -20
@@ -47,7 +47,7 @@
     },
     {
       "id": "feed",
-      "label": "Feed it, and hope it leaves.",
+      "label": "Feed it, and hope that is all it came for.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -55,7 +55,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It eats with a crunch of bone, and goes, and does not come back for anyone.",
+          "text": "It eats with a crunch of bone, and goes, and does not come back for anyone. Not yet.",
           "effects": [
             {
               "to": "party",
@@ -71,7 +71,7 @@
     },
     {
       "id": "drive",
-      "label": "Drive it off with fire.",
+      "label": "Drive it off with fire. No dog that size means well.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -79,7 +79,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It goes, without hurry. It will be back, for someone, some day.",
+          "text": "It goes, without hurry. It will be back, for someone, some day, and it will not forget the fire.",
           "effects": [
             {
               "doom": 1

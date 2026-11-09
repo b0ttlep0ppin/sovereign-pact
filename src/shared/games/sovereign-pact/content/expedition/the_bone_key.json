@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "use",
-      "label": "Put the bone key in the mouth.",
+      "label": "Put the bone key in the mouth, and see what it swallows.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -37,7 +37,7 @@
         },
         {
           "w": 40,
-          "text": "The door opens on a tomb that was not quiet at all.",
+          "text": "The door opens on a tomb that was not quiet at all, and has been waiting for a key.",
           "effects": [
             {
               "encounter": {}
@@ -48,7 +48,7 @@
     },
     {
       "id": "study",
-      "label": "The wisest works out whose finger it was.",
+      "label": "The wisest works out whose finger it was, before anyone turns it.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -56,7 +56,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The barrow's maker. He did not want it opened, and he wrote down why.",
+          "text": "The barrow's maker. He did not want it opened, and he wrote down why, very carefully, in a hand that shook.",
           "effects": [
             {
               "score": {
@@ -72,7 +72,7 @@
     },
     {
       "id": "leave",
-      "label": "Leave it hanging.",
+      "label": "Leave it hanging. A key made of a finger is not an invitation.",
       "rule": "leader",
       "tags": [
         "cautious"

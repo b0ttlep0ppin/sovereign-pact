@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "hurry",
-      "label": "Hold your breath and hurry through.",
+      "label": "Hold your breath and hurry through, before the air takes hold of you.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "Lungs burning, vision going grey at the edges, everyone makes it.",
+          "text": "Lungs burning, vision going grey at the edges, everyone makes it. Barely.",
           "effects": [
             {
               "to": "party",
@@ -31,7 +31,7 @@
         },
         {
           "w": 30,
-          "text": "Someone breathes. The air gets inside their head and starts rearranging things.",
+          "text": "Someone breathes. The air gets inside their head and starts rearranging things, and it does not put them back.",
           "effects": [
             {
               "status": "confusion"
@@ -45,7 +45,7 @@
     },
     {
       "id": "vent",
-      "label": "The sharpest nose follows a draught.",
+      "label": "The sharpest nose follows a faint draught, hoping it leads to clean air.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -53,7 +53,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A side passage, clean air, and something someone hid there.",
+          "text": "A side passage, clean air, and something someone hid there, long ago, for a day like this.",
           "effects": [
             {
               "fork": {
@@ -68,7 +68,7 @@
     },
     {
       "id": "back",
-      "label": "Turn back and find another way.",
+      "label": "Turn back and find another way. Whatever killed those rats is still in the air.",
       "rule": "leader",
       "tags": [
         "cautious"

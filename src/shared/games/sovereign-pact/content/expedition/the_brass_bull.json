@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "open",
-      "label": "Open the brass bull.",
+      "label": "Open the brass bull, and free whatever sings inside it.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "A soul tumbles out, scorched and weeping and grateful.",
+          "text": "A soul tumbles out, scorched and weeping and grateful, and blesses you with what little it has left.",
           "effects": [
             {
               "blessing": {
@@ -33,7 +33,7 @@
         },
         {
           "w": 50,
-          "text": "A devil uncoils from inside, freed, grateful in its own way.",
+          "text": "A devil uncoils from inside, freed, grateful in its own way, which is no way you would want.",
           "effects": [
             {
               "encounter": {
@@ -46,7 +46,7 @@
     },
     {
       "id": "fire",
-      "label": "Kick out the fire beneath it.",
+      "label": "Kick out the fire beneath it, and end the song for good.",
       "rule": "leader",
       "tags": [
         "kind"
@@ -54,7 +54,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The singing stops, and something inside sighs.",
+          "text": "The singing stops, and something inside sighs, and does not sing again.",
           "effects": [
             {
               "to": "party",
@@ -66,7 +66,7 @@
     },
     {
       "id": "leave",
-      "label": "Leave it to its song.",
+      "label": "Leave it to its song. Whoever is in there was put there for a reason.",
       "rule": "vote",
       "tags": [
         "cruel"

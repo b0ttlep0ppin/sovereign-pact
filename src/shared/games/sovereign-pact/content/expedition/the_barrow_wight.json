@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "answer",
-      "label": "The wisest answers its riddles.",
+      "label": "The wisest answers its riddles, wagering their shadow on their wits.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "Right, every one. It hisses, and gives up a grave-good from the mound.",
+          "text": "Right, every one. It hisses, and gives up a grave-good from the mound, and will not look at them.",
           "effects": [
             {
               "item": {
@@ -37,7 +37,7 @@
         },
         {
           "w": 30,
-          "text": "Wrong. It reaches out and peels their shadow off the grass like a skin.",
+          "text": "Wrong. It reaches out and peels their shadow off the grass like a skin, and pins it down beside the others.",
           "effects": [
             {
               "sanity": -15
@@ -51,7 +51,7 @@
     },
     {
       "id": "trick",
-      "label": "The shrewdest answers with a riddle of their own.",
+      "label": "The shrewdest answers with a riddle of their own, and lets it puzzle.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"
@@ -59,7 +59,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It is still thinking when you leave, cold eyes narrowed, muttering.",
+          "text": "It is still thinking when you leave, cold eyes narrowed, muttering into the grass.",
           "effects": [
             {
               "skip": 1
@@ -70,7 +70,7 @@
     },
     {
       "id": "fight",
-      "label": "Say nothing at all.",
+      "label": "Say nothing at all. A thing that keeps shadows will not play fair.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -78,7 +78,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It unfolds from the mound, long and thin, and the shadows on the grass begin to move.",
+          "text": "It unfolds from the mound, long and thin, and the shadows on the grass begin to move with it.",
           "effects": [
             {
               "encounter": {}

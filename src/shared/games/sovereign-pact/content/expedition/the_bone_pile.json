@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "read",
-      "label": "The wisest reads what it eats.",
+      "label": "The wisest reads what it eats, hoping to learn what it fears.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Hunters, mostly. Lots of hunters. It is not afraid of you at all.",
+          "text": "Hunters, mostly. Lots of hunters. It is not afraid of you at all, and it never has been.",
           "effects": [
             {
               "foresee": true
@@ -36,7 +36,7 @@
     },
     {
       "id": "bait",
-      "label": "Use its own bones as bait.",
+      "label": "Use its own bones as bait, and draw it out to defend its larder.",
       "rule": "vote",
       "tags": [
         "clever"
@@ -44,7 +44,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It comes to defend its larder, roaring.",
+          "text": "It comes to defend its larder, roaring, and it is bigger than the bones made it seem.",
           "effects": [
             {
               "encounter": {
@@ -57,7 +57,7 @@
     },
     {
       "id": "search",
-      "label": "Search the bones for what the hunters carried.",
+      "label": "Search the bones for what the dead hunters carried. They will not mind.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -65,7 +65,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A good knife in a dead hand, and then the quarry's breath on your neck.",
+          "text": "A good knife in a dead hand, and then the quarry's breath, hot and wet, on your neck.",
           "effects": [
             {
               "item": {

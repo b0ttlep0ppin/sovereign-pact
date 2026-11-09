@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "buy",
-      "label": "Buy a pardon for the party.",
+      "label": "Buy a pardon for the party. It cannot hurt to be forgiven.",
       "rule": "vote",
       "tags": [
         "clever"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It does nothing at all, but you sleep better.",
+          "text": "It does nothing at all, but you sleep better, and perhaps that is what you paid for.",
           "effects": [
             {
               "resources": {
@@ -38,7 +38,7 @@
     },
     {
       "id": "forge",
-      "label": "The shrewdest forges the bishop's seal.",
+      "label": "The shrewdest forges the bishop's seal, and goes into the forgiveness trade.",
       "rule": "scion:highest:guile",
       "tags": [
         "reckless"
@@ -62,7 +62,7 @@
         },
         {
           "w": 40,
-          "text": "The pardoner knows his own work, and he knows the guards.",
+          "text": "The pardoner knows his own work, and he knows the guards, and the guards know him.",
           "effects": [
             {
               "encounter": {
@@ -75,7 +75,7 @@
     },
     {
       "id": "expose",
-      "label": "Expose him to the crowd.",
+      "label": "Expose him to the crowd, and let them see what their forgiveness is worth.",
       "rule": "leader",
       "tags": [
         "bold"

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "give",
-      "label": "The poorest House drops what it can into his cup.",
+      "label": "The poorest House drops what it can into his cup, knowing what it is to have little.",
       "rule": "house:lowest_standing",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "He blesses them in a voice that was once used to giving orders.",
+          "text": "He blesses them in a voice that was once used to giving orders, and for a moment the ruins stand tall.",
           "effects": [
             {
               "blessing": {
@@ -38,7 +38,7 @@
         },
         {
           "w": 40,
-          "text": "He takes it and laughs, and his crown is gold for a moment.",
+          "text": "He takes it and laughs, and his crown is gold for a moment, and so is what he gives back.",
           "effects": [
             {
               "resources": {
@@ -56,7 +56,7 @@
     },
     {
       "id": "mock",
-      "label": "The richest House laughs at his paper crown.",
+      "label": "The richest House laughs at his paper crown. A king of nothing deserves no bow.",
       "rule": "house:highest_standing",
       "tags": [
         "cruel"
@@ -80,7 +80,7 @@
     },
     {
       "id": "ask",
-      "label": "The wisest asks about his kingdom.",
+      "label": "The wisest asks about his kingdom, curious what could have brought it so low.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"

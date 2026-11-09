@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "trade",
-      "label": "Trade the toughest, who might escape later.",
+      "label": "Trade the toughest, who might break free later and find their way back.",
       "rule": "scion:highest:resilience",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "It works. The chief takes them, and they break their ropes in the night and come back bloody.",
+          "text": "It works. The chief takes them, and they break their ropes in the night and come back bloody, but whole.",
           "effects": [
             {
               "skip": 2
@@ -34,7 +34,7 @@
         },
         {
           "w": 40,
-          "text": "The chief is no fool. He was counting on you trying something.",
+          "text": "The chief is no fool. He was counting on you trying something, and so were his men.",
           "effects": [
             {
               "encounter": {}
@@ -45,7 +45,7 @@
     },
     {
       "id": "fight",
-      "label": "Draw steel, ropes or no ropes.",
+      "label": "Draw steel, ropes or no ropes. No one bargains with your people's lives.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -71,7 +71,7 @@
     },
     {
       "id": "pay",
-      "label": "Pay him in gold instead of flesh.",
+      "label": "Pay him in gold instead of flesh, and hope his greed outweighs his cruelty.",
       "rule": "house:highest_standing|leader",
       "tags": [
         "cautious"

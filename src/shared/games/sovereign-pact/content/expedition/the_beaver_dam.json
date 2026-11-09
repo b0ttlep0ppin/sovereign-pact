@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "take",
-      "label": "Pull timber from their dam.",
+      "label": "Pull timber from their dam, while they are busy watching the water.",
       "rule": "vote",
       "tags": [
         "cruel"
@@ -32,7 +32,7 @@
         },
         {
           "w": 40,
-          "text": "The beavers come, and they are the size of bears, and their teeth are made for felling trees.",
+          "text": "The beavers come, and they are the size of bears, and their teeth were made for felling far bigger things than trees.",
           "effects": [
             {
               "encounter": {
@@ -45,7 +45,7 @@
     },
     {
       "id": "trade",
-      "label": "The shrewdest trades with the beavers for their offcuts.",
+      "label": "The shrewdest trades with the beavers for their offcuts, and keeps the axes out of sight.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"
@@ -67,7 +67,7 @@
     },
     {
       "id": "watch",
-      "label": "Watch how they build.",
+      "label": "Watch how they build, and learn what you can from them.",
       "rule": "leader",
       "tags": [
         "kind"
@@ -75,7 +75,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Clever, terrible work. The House carpenters will want to hear of it.",
+          "text": "Clever, terrible work. The House carpenters will want to hear of it, and will not sleep well after.",
           "effects": [
             {
               "house_improvement": "building"

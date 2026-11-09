@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "return",
-      "label": "Return it to him.",
+      "label": "Return it to him, before his guards find someone to hang for it.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He thanks you, too warmly, and the Court treats you as its guests.",
+          "text": "He thanks you, too warmly, and the Court treats you as its guests. Being the Court's guests is its own kind of danger.",
           "effects": [
             {
               "skip": 1
@@ -37,7 +37,7 @@
     },
     {
       "id": "keep",
-      "label": "The shrewdest pockets it.",
+      "label": "The shrewdest pockets it, quick as a thought, while all eyes are elsewhere.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"
@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "A ring that opens doors, and no one saw.",
+          "text": "A ring that opens doors, and no one saw you take it.",
           "effects": [
             {
               "item": {
@@ -74,7 +74,7 @@
     },
     {
       "id": "crush",
-      "label": "Grind it under your heel.",
+      "label": "Grind it under your heel, and show the Court what you think of its bishops.",
       "rule": "leader",
       "tags": [
         "bold"
@@ -82,7 +82,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A small rebellion, and the Court does not forgive small rebellions.",
+          "text": "A small rebellion, and the Court does not forgive small rebellions. Its guards come quickly.",
           "effects": [
             {
               "score": {
