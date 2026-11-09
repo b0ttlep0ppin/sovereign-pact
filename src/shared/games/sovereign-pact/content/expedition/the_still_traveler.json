@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "talk",
-      "label": "The leader speaks to it.",
+      "label": "The Leader speaks to it.",
       "rule": "leader",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "It is the leader, a little older. It says one thing, and it is worth the trip.",
+          "text": "It is the Leader, a little older. It says one thing, and it is worth the trip.",
           "effects": [
             {
               "foresee": true
@@ -33,7 +33,7 @@
         },
         {
           "w": 50,
-          "text": "It is the leader, a little older, and it is not well.",
+          "text": "It is the Leader, a little older, and it is not well.",
           "effects": [
             {
               "sanity": -25
@@ -52,7 +52,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Its pack holds things you have not found yet.",
+          "text": "Its pack holds things you have not found yet, and some things you do not want to find.",
           "effects": [
             {
               "item": {
@@ -69,7 +69,7 @@
     },
     {
       "id": "dim",
-      "label": "Put out its lantern.",
+      "label": "The Leader puts out its lantern.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -77,7 +77,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It goes out. So does the traveler. The dark is darker.",
+          "text": "It goes out. So does the traveler. The dark is darker, and you understand it a little better.",
           "effects": [
             {
               "doom": 1

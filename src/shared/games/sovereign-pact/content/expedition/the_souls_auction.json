@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "bid",
-      "label": "Outbid them.",
+      "label": "Outbid the devils.",
       "rule": "house:highest_standing|vote",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The soul is yours, at a price.",
+          "text": "The soul is yours, at a price, and it weeps with relief.",
           "effects": [
             {
               "resources": {
@@ -38,7 +38,7 @@
     },
     {
       "id": "steal",
-      "label": "The shrewdest steals the lot.",
+      "label": "The shrewdest steals the lot from the stage.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"
@@ -46,7 +46,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "Out the back with it.",
+          "text": "Out the back with it, chains and all.",
           "effects": [
             {
               "score": {
@@ -61,7 +61,7 @@
         },
         {
           "w": 50,
-          "text": "Caught.",
+          "text": "Caught, with the lot in your arms.",
           "effects": [
             {
               "encounter": {
@@ -74,7 +74,7 @@
     },
     {
       "id": "leave",
-      "label": "Let it go.",
+      "label": "Let the gavel fall.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -82,7 +82,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The gavel falls.",
+          "text": "The gavel falls. The screaming goes on for a long time after you leave.",
           "effects": [
             {
               "doom": 1

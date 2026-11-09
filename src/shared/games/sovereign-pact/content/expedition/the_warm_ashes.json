@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "rest",
-      "label": "Rest by it while it lasts.",
+      "label": "Rest by the fire while it lasts.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "The warmth goes to the bone.",
+          "text": "The warmth goes to the bone, and nobody comes.",
           "effects": [
             {
               "to": "party",

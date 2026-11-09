@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "heal",
-      "label": "The healer tends it.",
+      "label": "The healer tends the hound.",
       "rule": "scion:most_healing|scion:highest:sagacity",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It leads you to them.",
+          "text": "It leads you to them, limping fast.",
           "effects": [
             {
               "skip": 2
@@ -51,7 +51,7 @@
     },
     {
       "id": "track",
-      "label": "Track its blood back.",
+      "label": "The sharpest eye tracks its blood back.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"

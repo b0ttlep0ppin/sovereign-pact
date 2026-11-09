@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "pull",
-      "label": "The strongest hauls it up.",
+      "label": "The strongest hauls the bell up.",
       "rule": "scion:highest:might",
       "tags": [
         "bold"
@@ -36,7 +36,7 @@
         },
         {
           "w": 45,
-          "text": "Something is holding the other end.",
+          "text": "Something is holding the other end, and it lets go only when it is out of the water.",
           "effects": [
             {
               "encounter": {
@@ -57,7 +57,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The bell stops. The marsh is very quiet after.",
+          "text": "The bell stops. The marsh is very quiet after, and something below is very angry.",
           "effects": [
             {
               "to": "party",

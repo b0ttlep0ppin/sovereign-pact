@@ -35,7 +35,7 @@
         },
         {
           "w": 60,
-          "text": "The arrow goes wide, and the stag looks at you for a long moment before it goes.",
+          "text": "The arrow goes wide, and the stag looks at them for a long moment before it goes.",
           "effects": [
             {
               "sanity": -10
@@ -65,7 +65,7 @@
     },
     {
       "id": "bow",
-      "label": "Bow to it.",
+      "label": "Bow to the stag.",
       "rule": "vote",
       "tags": [
         "kind"

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "trade",
-      "label": "The most wounded trades.",
+      "label": "The most wounded trades her a year.",
       "rule": "scion:injured:any|scion:lowest:sanity",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The wound closes. They feel older.",
+          "text": "The wound closes. They feel older, and they move like it.",
           "effects": [
             {
               "mend": true
@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "A month instead of a year.",
+          "text": "A month instead of a year, and the cure is good.",
           "effects": [
             {
               "to": "party",
@@ -55,7 +55,7 @@
         },
         {
           "w": 40,
-          "text": "She is insulted.",
+          "text": "She is insulted, and she is a witch.",
           "effects": [
             {
               "curse": true

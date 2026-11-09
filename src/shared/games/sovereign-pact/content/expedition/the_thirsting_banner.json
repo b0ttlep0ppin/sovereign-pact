@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "carry",
-      "label": "The bravest takes it up.",
+      "label": "The bravest takes up the banner.",
       "rule": "scion:trait:brave|scion:highest:might",
       "tags": [
         "bold"
@@ -38,7 +38,7 @@
     },
     {
       "id": "burn",
-      "label": "Burn it.",
+      "label": "Burn the banner.",
       "rule": "vote",
       "tags": [
         "cautious"

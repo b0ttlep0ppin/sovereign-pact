@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "pull",
-      "label": "The strongest pulls it out.",
+      "label": "The strongest pulls the axe from the tree.",
       "rule": "scion:highest:might",
       "tags": [
         "bold"
@@ -71,7 +71,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Good timber. The wood remembers.",
+          "text": "Good timber, and it bleeds as it falls. The wood remembers.",
           "effects": [
             {
               "resources": {

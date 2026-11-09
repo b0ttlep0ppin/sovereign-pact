@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "fast",
-      "label": "The fastest races.",
+      "label": "The fastest races the white stag.",
       "rule": "scion:highest:speed",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "Neck and neck, and the stag bows.",
+          "text": "Neck and neck, and the stag bows, and something of its speed stays with them.",
           "effects": [
             {
               "growth": {
@@ -35,7 +35,7 @@
         },
         {
           "w": 40,
-          "text": "The stag wins, and leaves them in a thicket.",
+          "text": "The stag wins, and leaves them in a thicket, bleeding from the legs.",
           "effects": [
             {
               "durability": -20,
@@ -47,7 +47,7 @@
     },
     {
       "id": "bow",
-      "label": "Bow to it.",
+      "label": "Bow to the stag.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -55,7 +55,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It leads you a stretch.",
+          "text": "It leads you a stretch through the mist.",
           "effects": [
             {
               "skip": 1
@@ -66,7 +66,7 @@
     },
     {
       "id": "shoot",
-      "label": "Shoot it.",
+      "label": "The Leader shoots it.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -74,7 +74,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The forest goes very quiet.",
+          "text": "The forest goes very quiet, and stays quiet.",
           "effects": [
             {
               "resources": {

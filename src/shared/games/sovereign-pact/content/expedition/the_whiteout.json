@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "dig",
-      "label": "Dig in and wait.",
+      "label": "Dig in and wait it out.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A cold night in a snow cave.",
+          "text": "A cold night in a snow cave, with the voices calling outside.",
           "effects": [
             {
               "to": "party",
@@ -54,7 +54,7 @@
         },
         {
           "w": 40,
-          "text": "In circles.",
+          "text": "In circles, and then over an edge.",
           "effects": [
             {
               "injury": "legs"
@@ -73,7 +73,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Something else calls back.",
+          "text": "Something else calls back, from close by.",
           "effects": [
             {
               "encounter": {

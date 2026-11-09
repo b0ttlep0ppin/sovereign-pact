@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "climb",
-      "label": "The quickest climbs to it.",
+      "label": "The quickest climbs to the low star.",
       "rule": "scion:highest:speed",
       "tags": [
         "reckless"
@@ -82,7 +82,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It is hard not to.",
+          "text": "It is hard not to, and it keeps turning toward you.",
           "effects": [
             {
               "to": "party",

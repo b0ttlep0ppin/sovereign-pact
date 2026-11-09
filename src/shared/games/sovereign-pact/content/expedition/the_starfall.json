@@ -56,7 +56,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Something, somewhere, hears.",
+          "text": "Something, somewhere, hears, and a falling face smiles.",
           "effects": [
             {
               "blessing": {
@@ -78,7 +78,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It does not stop for a long time.",
+          "text": "It does not stop for a long time, and the faces keep falling.",
           "effects": [
             {
               "to": "party",

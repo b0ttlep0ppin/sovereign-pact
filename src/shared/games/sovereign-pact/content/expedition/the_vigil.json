@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "join",
-      "label": "Each Scion keeps the vigil.",
+      "label": "Kneel and keep the vigil.",
       "rule": "each_scion",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A long night, a clear morning.",
+          "text": "A long night, a clear morning, and stiff legs that will not hurry.",
           "effects": [
             {
               "sanity": 10
@@ -35,7 +35,7 @@
     },
     {
       "id": "sleep",
-      "label": "Each Scion sleeps instead.",
+      "label": "Sleep instead.",
       "rule": "each_scion",
       "tags": [
         "cautious"
@@ -43,7 +43,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Rested.",
+          "text": "Rested, while the murmuring goes on all night around you.",
           "effects": [
             {
               "sanity": 3

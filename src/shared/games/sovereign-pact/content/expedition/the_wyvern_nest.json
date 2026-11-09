@@ -46,7 +46,7 @@
     },
     {
       "id": "wait",
-      "label": "Wait in ambush.",
+      "label": "Wait in ambush for the mother.",
       "rule": "vote",
       "tags": [
         "bold"

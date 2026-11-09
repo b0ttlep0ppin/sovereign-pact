@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "feed",
-      "label": "Feed it.",
+      "label": "Feed the wolf.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It eats, and lies down by the fire, and is gone in the morning. So is a tracker's worry.",
+          "text": "It eats, and lies down by the fire, and is gone in the morning. Its pack leads you a better way.",
           "effects": [
             {
               "to": "party",
@@ -36,7 +36,7 @@
     },
     {
       "id": "drive",
-      "label": "Drive it away.",
+      "label": "Drive it away from the fire.",
       "rule": "leader",
       "tags": [
         "cautious"

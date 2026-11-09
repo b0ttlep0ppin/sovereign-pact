@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "It purrs, and guards your camp that night.",
+          "text": "It purrs, a sound like rocks rolling, and guards your camp that night.",
           "effects": [
             {
               "to": "party",
@@ -80,7 +80,7 @@
     },
     {
       "id": "kill",
-      "label": "Put it out of its misery.",
+      "label": "The Leader puts it out of its misery.",
       "rule": "leader",
       "tags": [
         "cruel"

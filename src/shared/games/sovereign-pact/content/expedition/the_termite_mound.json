@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "dig",
-      "label": "The strongest breaks it open.",
+      "label": "The strongest breaks the mound open.",
       "rule": "scion:highest:might",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "Old coins the termites built around.",
+          "text": "Old coins the termites built around, and the hand still clutching them.",
           "effects": [
             {
               "resources": {
@@ -32,7 +32,7 @@
         },
         {
           "w": 40,
-          "text": "The termites answer.",
+          "text": "The termites answer, all of them.",
           "effects": [
             {
               "to": "party",
@@ -52,7 +52,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A quiet dig, and the coins.",
+          "text": "A quiet dig, and the coins, and a way through the plain they cleared.",
           "effects": [
             {
               "resources": {

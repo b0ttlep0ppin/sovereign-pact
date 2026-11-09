@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "bathe",
-      "label": "Bathe.",
+      "label": "Sink into the warm water.",
       "rule": "each_scion",
       "tags": [
         "reckless"
@@ -47,7 +47,7 @@
     },
     {
       "id": "watch",
-      "label": "Keep watch.",
+      "label": "Keep watch on the dark.",
       "rule": "each_scion",
       "tags": [
         "cautious"
@@ -55,7 +55,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Nothing comes. Someone has to watch anyway.",
+          "text": "Nothing comes. Someone has to watch anyway, and they learn a great deal about the dark.",
           "effects": [
             {
               "jp": 40

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "kneel",
-      "label": "Kneel.",
+      "label": "Kneel for his fire.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 80,
-          "text": "Warm, not burned.",
+          "text": "Warm, not burned, and the warmth stays like armor.",
           "effects": [
             {
               "to": "party",
@@ -51,7 +51,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Fire. They come out of it changed in small ways.",
+          "text": "Fire. They come out of it changed in small ways, and scarred in larger ones.",
           "effects": [
             {
               "growth": {
@@ -68,7 +68,7 @@
     },
     {
       "id": "refuse",
-      "label": "Refuse.",
+      "label": "Refuse his blessing.",
       "rule": "vote",
       "tags": [
         "bold"

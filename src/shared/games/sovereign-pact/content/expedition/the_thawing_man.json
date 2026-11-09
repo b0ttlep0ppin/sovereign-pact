@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "free",
-      "label": "Chip him out.",
+      "label": "Chip him out of the ice.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "A soldier of the last war, who tells you of the road and dies glad.",
+          "text": "A soldier of the last war, who tells you of the road, and dies glad.",
           "effects": [
             {
               "foresee": true
@@ -46,7 +46,7 @@
     },
     {
       "id": "read",
-      "label": "The sharpest reads his lips.",
+      "label": "The sharpest eye reads his lips.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -54,7 +54,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A warning, over and over.",
+          "text": "A warning, over and over, and it is about you.",
           "effects": [
             {
               "foresee": true
@@ -76,7 +76,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "His lips keep moving.",
+          "text": "His lips keep moving, all the way out of sight.",
           "effects": [
             {
               "to": "party",

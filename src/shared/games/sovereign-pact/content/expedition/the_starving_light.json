@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It drinks the flame and grows bright, and lights your way.",
+          "text": "It drinks the flame and grows bright, and goes ahead of you, lighting the way.",
           "effects": [
             {
               "skip": 1
@@ -44,7 +44,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "A jar of starlight.",
+          "text": "A jar of starlight, beating against the glass.",
           "effects": [
             {
               "resources": {
@@ -55,7 +55,7 @@
         },
         {
           "w": 40,
-          "text": "It eats the jar, and keeps eating.",
+          "text": "It eats the jar, and keeps eating, and it tastes like you.",
           "effects": [
             {
               "to": "party",
@@ -75,7 +75,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Utter dark, until it goes.",
+          "text": "Utter dark, until it goes, and it takes its time.",
           "effects": [
             {
               "to": "party",

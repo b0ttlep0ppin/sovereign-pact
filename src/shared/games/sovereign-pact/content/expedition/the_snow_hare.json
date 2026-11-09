@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "follow",
-      "label": "Follow it.",
+      "label": "Follow the hare with a man's eyes.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "To a hidden cave, warm and dry.",
+          "text": "To a hidden cave, warm and dry, and the hare gone.",
           "effects": [
             {
               "to": "party",
@@ -31,7 +31,7 @@
         },
         {
           "w": 40,
-          "text": "To a hunter's snare.",
+          "text": "To a hunter's snare, and the hare watching from the drift.",
           "effects": [
             {
               "injury": "legs"
@@ -50,7 +50,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A shapeshifter, who warns you of what is ahead.",
+          "text": "A shapeshifter, sad and tired, who warns you of what is ahead.",
           "effects": [
             {
               "foresee": true
@@ -61,7 +61,7 @@
     },
     {
       "id": "hunt",
-      "label": "Hunt it.",
+      "label": "Hunt the hare.",
       "rule": "leader",
       "tags": [
         "cruel"

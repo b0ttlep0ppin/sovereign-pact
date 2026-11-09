@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "marked",
-      "label": "The one they watch goes to meet them.",
+      "label": "The one they watch goes alone to meet them.",
       "rule": "scion:most_targeted",
       "tags": [
         "bold"
@@ -48,7 +48,7 @@
     },
     {
       "id": "ambush",
-      "label": "Set an ambush for them.",
+      "label": "The craftiest sets an ambush for them.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"

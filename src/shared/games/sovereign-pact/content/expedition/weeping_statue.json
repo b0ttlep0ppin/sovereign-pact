@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "drink",
-      "label": "The healer drinks the tears.",
+      "label": "The healer drinks the saint's tears.",
       "rule": "scion:most_healing",
       "tags": [
         "kind"

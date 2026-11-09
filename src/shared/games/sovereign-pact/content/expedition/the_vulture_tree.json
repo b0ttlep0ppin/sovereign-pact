@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "help",
-      "label": "The healer looks.",
+      "label": "The healer goes to see what is still breathing.",
       "rule": "scion:most_healing|scion:random",
       "tags": [
         "kind"
@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The birds lift as you pass, and settle behind.",
+          "text": "The birds lift as you pass, and settle behind, and the breathing stops.",
           "effects": [
             {
               "to": "party",

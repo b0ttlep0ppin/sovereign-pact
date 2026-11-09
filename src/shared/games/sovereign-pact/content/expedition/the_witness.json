@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "pay",
-      "label": "Pay him.",
+      "label": "Pay the shepherd.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He points.",
+          "text": "He points. The sheep watch you go.",
           "effects": [
             {
               "resources": {
@@ -67,7 +67,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He points the wrong way.",
+          "text": "He points the wrong way, and the sheep know it.",
           "effects": [
             {
               "to": "party",

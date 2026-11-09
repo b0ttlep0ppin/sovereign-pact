@@ -14,7 +14,7 @@
   "options": [
     {
       "id": "fight",
-      "label": "Drive them off.",
+      "label": "Drive them off with fire.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -41,7 +41,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The pack eats and goes. So does the night's rest.",
+          "text": "The pack eats and goes. So does the night's rest, and the food.",
           "effects": [
             {
               "to": "party",

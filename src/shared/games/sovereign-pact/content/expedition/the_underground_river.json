@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "boat",
-      "label": "Take the boat.",
+      "label": "Take the old boat.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "Fast, far, and out.",
+          "text": "Fast, far, and out into the light.",
           "effects": [
             {
               "skip": 2
@@ -30,7 +30,7 @@
         },
         {
           "w": 40,
-          "text": "Over a fall.",
+          "text": "Over a fall, in the dark, with the boat in pieces around you.",
           "effects": [
             {
               "to": "party",
@@ -54,7 +54,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A safe crossing.",
+          "text": "A safe crossing, and the one who swam it battered by the rocks.",
           "effects": [
             {
               "skip": 1

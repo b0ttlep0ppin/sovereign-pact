@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "solve",
-      "label": "The cleverest solves it.",
+      "label": "The cleverest works the puzzle.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "It rolls aside.",
+          "text": "It rolls aside, onto something hidden.",
           "effects": [
             {
               "fork": {
@@ -34,7 +34,7 @@
         },
         {
           "w": 30,
-          "text": "Wrong. Darts.",
+          "text": "Wrong. Darts, from holes you did not see.",
           "effects": [
             {
               "status": "poison"
@@ -45,7 +45,7 @@
     },
     {
       "id": "force",
-      "label": "The strongest forces it.",
+      "label": "The strongest forces the door.",
       "rule": "scion:highest:might",
       "tags": [
         "bold"
@@ -53,7 +53,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It cracks, and the noise travels.",
+          "text": "It cracks, and the noise travels, and something comes.",
           "effects": [
             {
               "encounter": {

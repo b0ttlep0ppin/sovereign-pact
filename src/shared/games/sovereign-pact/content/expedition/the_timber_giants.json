@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "fell",
-      "label": "The strongest fells one.",
+      "label": "The strongest fells one of the giants.",
       "rule": "scion:highest:might",
       "tags": [
         "cruel"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "It falls with a sound like a groan.",
+          "text": "It falls with a sound like a groan, and the others stir.",
           "effects": [
             {
               "resources": {
@@ -77,7 +77,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They give a branch of their oldest tree.",
+          "text": "They give a branch of their oldest tree, and it is still breathing.",
           "effects": [
             {
               "resources": {

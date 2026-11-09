@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "wait",
-      "label": "Wait for it to cross.",
+      "label": "Wait for the old tortoise to cross.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Hours. It looks at each of you as it passes, and nods.",
+          "text": "Hours. It looks at each of you as it passes, and nods, and you feel seen by something very old.",
           "effects": [
             {
               "to": "party",
@@ -33,7 +33,7 @@
     },
     {
       "id": "ride",
-      "label": "The boldest climbs on its shell.",
+      "label": "The boldest climbs onto its shell.",
       "rule": "scion:trait:brave|scion:random",
       "tags": [
         "reckless"
@@ -41,7 +41,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "It carries them, and the party walks alongside, the slow sure way.",
+          "text": "It carries them, and the party walks alongside, the slow sure way, and its patience gets into them.",
           "effects": [
             {
               "blessing": {
@@ -53,7 +53,7 @@
         },
         {
           "w": 40,
-          "text": "It shrugs them off.",
+          "text": "It shrugs them off, slowly, and the fall is not slow at all.",
           "effects": [
             {
               "durability": -15,

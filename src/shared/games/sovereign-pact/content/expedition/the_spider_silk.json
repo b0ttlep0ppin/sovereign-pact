@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "harvest",
-      "label": "Harvest silk.",
+      "label": "Harvest the silk.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "Bolts of it.",
+          "text": "Bolts of it, strong as steel, and you do not open the bundles.",
           "effects": [
             {
               "resources": {
@@ -53,7 +53,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The wood is clear, and the spiders are angry somewhere.",
+          "text": "The wood is clear, and somewhere the spiders are angry.",
           "effects": [
             {
               "skip": 1
@@ -64,7 +64,7 @@
     },
     {
       "id": "study",
-      "label": "The wisest studies their making.",
+      "label": "The wisest studies how it is spun.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -72,7 +72,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A weaver's trick.",
+          "text": "A weaver's trick, and the House's looms will learn it.",
           "effects": [
             {
               "house_improvement": "shop"

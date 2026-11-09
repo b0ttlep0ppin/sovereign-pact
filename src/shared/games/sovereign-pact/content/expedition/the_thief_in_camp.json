@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "chase",
-      "label": "The quickest gives chase.",
+      "label": "The quickest follows the small footprints.",
       "rule": "scion:highest:speed",
       "tags": [
         "bold"
@@ -58,7 +58,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Food, mostly. And a little of everyone's coin.",
+          "text": "Food, mostly. And a little of everyone's coin, and the straps cut neat.",
           "effects": [
             {
               "resources": {

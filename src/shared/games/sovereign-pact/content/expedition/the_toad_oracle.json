@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "listen",
-      "label": "The named Scion listens to it.",
+      "label": "The named Scion listens to the toad.",
       "rule": "scion:random",
       "tags": [
         "kind"
@@ -52,7 +52,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It croaks the way out of the marsh.",
+          "text": "It croaks the way out of the marsh, and what waits along it.",
           "effects": [
             {
               "foresee": true
@@ -63,7 +63,7 @@
     },
     {
       "id": "kick",
-      "label": "Kick it off its stone.",
+      "label": "The Leader kicks it off its stone.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -71,7 +71,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Every toad in the marsh hears.",
+          "text": "Every toad in the marsh hears, and every one of them is poisonous.",
           "effects": [
             {
               "to": "party",

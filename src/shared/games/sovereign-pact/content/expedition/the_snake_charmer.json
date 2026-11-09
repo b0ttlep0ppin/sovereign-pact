@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "learn",
-      "label": "The quickest fingers learn it.",
+      "label": "The quickest fingers learn her tune.",
       "rule": "scion:highest:speed",
       "tags": [
         "clever"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Snakes will not bite them now.",
+          "text": "Snakes will not bite them now, nor most other poisons. They hum it in their sleep.",
           "effects": [
             {
               "blessing": {
@@ -43,7 +43,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The snakes part.",
+          "text": "She plays, and the snakes part, every head turned to watch you pass.",
           "effects": [
             {
               "resources": {
@@ -59,7 +59,7 @@
     },
     {
       "id": "pipe",
-      "label": "Steal the pipe.",
+      "label": "The Leader steals her pipe.",
       "rule": "leader",
       "tags": [
         "cruel"

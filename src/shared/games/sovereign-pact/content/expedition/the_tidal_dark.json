@@ -32,7 +32,7 @@
         },
         {
           "w": 40,
-          "text": "The tide comes in early.",
+          "text": "The tide comes in early, and for a while you are under it.",
           "effects": [
             {
               "to": "party",
@@ -78,7 +78,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "You watch the tide take something that was walking toward you.",
+          "text": "You watch the tide take something that was walking toward you, and learn the shape of what lies ahead.",
           "effects": [
             {
               "foresee": true

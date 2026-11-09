@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "pull",
-      "label": "Pull it.",
+      "label": "The Leader pulls the thread.",
       "rule": "leader",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "The dark unravels a little. Light.",
+          "text": "The dark unravels a little, and there is light behind it.",
           "effects": [
             {
               "skip": 2
@@ -30,7 +30,7 @@
         },
         {
           "w": 50,
-          "text": "You unravel a little.",
+          "text": "You unravel a little, and the thread keeps coming.",
           "effects": [
             {
               "to": "party",
@@ -42,7 +42,7 @@
     },
     {
       "id": "cut",
-      "label": "Cut it.",
+      "label": "Cut the thread.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -50,7 +50,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It whips back, and the dark tightens.",
+          "text": "It whips back, and the dark tightens, and something in it is awake.",
           "effects": [
             {
               "encounter": {}
@@ -69,7 +69,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Tied. The dark holds still.",
+          "text": "Tied. The dark holds still, and you learn how it is made.",
           "effects": [
             {
               "score": {

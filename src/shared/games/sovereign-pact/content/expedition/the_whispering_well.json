@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "coin",
-      "label": "Throw down a coin and make a wish.",
+      "label": "The Leader throws down a coin and wishes.",
       "rule": "leader",
       "tags": [
         "kind"

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "weak",
-      "label": "The frailest is already nodding; they sit a moment and learn its trick.",
+      "label": "The frailest is already nodding. They sit a moment and learn its trick.",
       "rule": "scion:lowest:resilience|scion:random",
       "tags": [
         "reckless"
@@ -45,7 +45,7 @@
     },
     {
       "id": "cut",
-      "label": "Cut the sleepers free.",
+      "label": "The strongest cuts the sleepers free.",
       "rule": "scion:highest:might",
       "tags": [
         "kind"
@@ -53,7 +53,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Most wake. One gives you a ring.",
+          "text": "Most wake, weeping to be woken. One gives you a ring.",
           "effects": [
             {
               "item": {
@@ -71,7 +71,7 @@
     },
     {
       "id": "burn",
-      "label": "Burn it.",
+      "label": "Burn the willow.",
       "rule": "vote",
       "tags": [
         "cruel"
@@ -79,7 +79,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The sleepers scream as they wake.",
+          "text": "The sleepers scream as they wake, and some of them do not stop.",
           "effects": [
             {
               "to": "party",
