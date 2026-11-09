@@ -22,7 +22,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Every House gives up iron for spearheads.",
+          "text": "Every House gives up iron for spearheads, and the smiths work through the night.",
           "effects": [
             {
               "resources": {
@@ -43,7 +43,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "The beasts take the bait and the den is half empty.",
+          "text": "The beasts take the bait, and the den is half empty when the party comes.",
           "effects": [
             {
               "resources": {
@@ -79,7 +79,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The farmers sleep in the town square until it is done.",
+          "text": "The farmers sleep in the town square until it is done, and they do not sleep well.",
           "effects": [
             {
               "accord": -2

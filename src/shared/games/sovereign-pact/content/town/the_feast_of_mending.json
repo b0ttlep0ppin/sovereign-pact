@@ -73,7 +73,7 @@
       "outcomes": [
         {
           "w": 1,
-          "text": "Your chair is empty. It is noticed.",
+          "text": "Your chair is empty. It is noticed, and remembered.",
           "effects": []
         }
       ]

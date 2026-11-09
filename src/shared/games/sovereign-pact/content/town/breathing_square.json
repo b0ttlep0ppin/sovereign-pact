@@ -12,7 +12,7 @@
   "options": [
     {
       "id": "dig",
-      "label": "Dig it up.",
+      "label": "Dig up the square and see what breathes.",
       "tags": [
         "bold",
         "reckless"

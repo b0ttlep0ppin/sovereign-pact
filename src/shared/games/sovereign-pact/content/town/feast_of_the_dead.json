@@ -15,14 +15,14 @@
   "options": [
     {
       "id": "sit",
-      "label": "Sit with the dead.",
+      "label": "Take the empty chair and sit with the dead.",
       "tags": [
         "bold"
       ],
       "outcomes": [
         {
           "w": 60,
-          "text": "The dead are good company and have much to tell.",
+          "text": "The dead are good company, and have much to tell, and they keep refilling your glass.",
           "effects": [
             {
               "score": {
@@ -33,7 +33,7 @@
         },
         {
           "w": 40,
-          "text": "The dead are poor company.",
+          "text": "The dead are poor company. They stare, and do not eat, and do not let you leave until dawn.",
           "effects": [
             {
               "sanity": -15
@@ -44,14 +44,14 @@
     },
     {
       "id": "seal",
-      "label": "Seal the doors.",
+      "label": "Seal the crypt doors on the feast.",
       "tags": [
         "cautious"
       ],
       "outcomes": [
         {
           "w": 100,
-          "text": "The knocking stops by dawn.",
+          "text": "The knocking from below goes on until dawn, then stops all at once.",
           "effects": []
         }
       ]

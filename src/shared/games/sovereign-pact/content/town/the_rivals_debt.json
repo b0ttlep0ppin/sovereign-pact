@@ -12,7 +12,7 @@
   "options": [
     {
       "id": "pay_gold",
-      "label": "Pay it off in gold.",
+      "label": "Pay off your grandfather's debt in gold.",
       "tags": [
         "kind"
       ],

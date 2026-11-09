@@ -12,7 +12,7 @@
   "options": [
     {
       "id": "sit",
-      "label": "Send a Scion to sit with the dying.",
+      "label": "Send a Scion to sit the night with the dying.",
       "tags": [
         "bold",
         "kind"

@@ -12,7 +12,7 @@
   "options": [
     {
       "id": "drink",
-      "label": "Keep her, and water the fields.",
+      "label": "Keep the saint, and water the fields with her.",
       "tags": [
         "bold"
       ],
@@ -61,7 +61,7 @@
     },
     {
       "id": "sell",
-      "label": "Sell the water by the bucket.",
+      "label": "Sell the saint's water by the bucket.",
       "tags": [
         "cautious"
       ],

@@ -12,7 +12,7 @@
   "options": [
     {
       "id": "exchange",
-      "label": "Name the House you will exchange with.",
+      "label": "Name the House you will exchange Wards with.",
       "tags": [
         "kind"
       ],

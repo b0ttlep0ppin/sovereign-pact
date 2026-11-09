@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "harvest",
-      "label": "Bring in the harvest.",
+      "label": "Bring in the singing harvest.",
       "tags": [
         "bold"
       ],
@@ -43,7 +43,7 @@
     },
     {
       "id": "burn",
-      "label": "Burn the fields and the farm with them.",
+      "label": "Burn the fields, and the farm with them.",
       "tags": [
         "kind"
       ],

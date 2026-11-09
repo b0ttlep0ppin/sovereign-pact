@@ -50,7 +50,7 @@
     },
     {
       "id": "strike",
-      "label": "Strike the name out.",
+      "label": "Strike the extra name out.",
       "tags": [
         "cautious"
       ],

@@ -12,7 +12,7 @@
   "options": [
     {
       "id": "pay",
-      "label": "Pay them off (25 Gold).",
+      "label": "Pay the cousin to go away (25 Gold).",
       "tags": [
         "cautious"
       ],
@@ -32,7 +32,7 @@
     },
     {
       "id": "duel",
-      "label": "Settle it by duel.",
+      "label": "Settle the claim by duel at dawn.",
       "tags": [
         "bold"
       ],
@@ -67,7 +67,7 @@
     },
     {
       "id": "recognize",
-      "label": "Recognize the claim.",
+      "label": "Recognize the claim, and the face.",
       "tags": [
         "kind"
       ],

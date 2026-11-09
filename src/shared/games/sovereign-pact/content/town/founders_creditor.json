@@ -12,7 +12,7 @@
   "options": [
     {
       "id": "gold",
-      "label": "Pay in Gold.",
+      "label": "Pay the founder's debt in Gold.",
       "tags": [
         "cautious"
       ],
@@ -32,7 +32,7 @@
     },
     {
       "id": "blood",
-      "label": "Pay in blood.",
+      "label": "Pay it in blood.",
       "tags": [
         "cruel"
       ],

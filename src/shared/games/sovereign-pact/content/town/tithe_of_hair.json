@@ -12,7 +12,7 @@
   "options": [
     {
       "id": "watch",
-      "label": "Set a watch through the night.",
+      "label": "Set a watch at the bedside through the night.",
       "tags": [
         "bold"
       ],

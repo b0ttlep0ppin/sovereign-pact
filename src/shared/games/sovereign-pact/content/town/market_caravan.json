@@ -12,7 +12,7 @@
   "options": [
     {
       "id": "buy",
-      "label": "Buy rare materials (40 Gold).",
+      "label": "Buy rare materials from the veiled traders (40 Gold).",
       "tags": [
         "bold"
       ],
@@ -40,7 +40,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The caravan is gone by morning. So are its wheel ruts.",
+          "text": "The caravan is gone by morning. So are its wheel ruts, and the camels' tracks, and the memory of their faces.",
           "effects": []
         }
       ]

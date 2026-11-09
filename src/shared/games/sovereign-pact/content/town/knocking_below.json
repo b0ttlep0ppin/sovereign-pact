@@ -15,7 +15,7 @@
   "options": [
     {
       "id": "break_through",
-      "label": "Break through.",
+      "label": "Break through to whatever is knocking.",
       "tags": [
         "bold",
         "reckless"
@@ -62,7 +62,7 @@
     },
     {
       "id": "answer",
-      "label": "Knock back, and wait.",
+      "label": "Knock back, three and three, and wait.",
       "tags": [
         "clever"
       ],
@@ -98,7 +98,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The gallery comes down. The mine yields less this Year.",
+          "text": "The gallery comes down. The mine yields less this Year, and the miners swear they still hear it, fainter.",
           "effects": [
             {
               "resources": {

@@ -12,7 +12,7 @@
   "options": [
     {
       "id": "accept",
-      "label": "Accept the match.",
+      "label": "Accept the cold-handed suitor's match.",
       "tags": [
         "bold"
       ],
@@ -46,7 +46,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The suitor bows and leaves. The flowers they brought are dead by evening.",
+          "text": "The suitor bows and leaves. The flowers they brought are dead by evening, and the vase is cracked.",
           "effects": []
         }
       ]

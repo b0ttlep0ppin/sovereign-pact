@@ -15,7 +15,7 @@
   "options": [
     {
       "id": "look",
-      "label": "Drive them off and look.",
+      "label": "Drive the hounds off and look.",
       "tags": [
         "bold"
       ],
@@ -56,14 +56,14 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The hounds whine for a week, then stop. The old hound never eats again.",
+          "text": "The hounds whine for a week, then stop. The old hound never eats again, and lies by the east wall until it dies.",
           "effects": []
         }
       ]
     },
     {
       "id": "let_them",
-      "label": "Let the hounds have it.",
+      "label": "Let the hounds have what they found.",
       "tags": [
         "reckless"
       ],

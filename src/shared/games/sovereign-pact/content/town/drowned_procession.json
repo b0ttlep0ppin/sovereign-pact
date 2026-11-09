@@ -74,7 +74,7 @@
     },
     {
       "id": "follow",
-      "label": "Follow them to the Gate.",
+      "label": "Follow the drowned to the Gate.",
       "tags": [
         "reckless"
       ],

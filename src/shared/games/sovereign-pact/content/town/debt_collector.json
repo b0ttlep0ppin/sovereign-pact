@@ -12,14 +12,14 @@
   "options": [
     {
       "id": "pay",
-      "label": "Pay the old debt (50 Gold).",
+      "label": "Pay the kingdom's old debt (50 Gold).",
       "tags": [
         "kind"
       ],
       "outcomes": [
         {
           "w": 100,
-          "text": "He tips his hat and leaves the ledger closed.",
+          "text": "He tips his hat, closes the ledger, and leaves. The dogs come back into the hall.",
           "effects": [
             {
               "resources": {
@@ -40,14 +40,14 @@
     },
     {
       "id": "refuse",
-      "label": "Refuse.",
+      "label": "Refuse the grey man.",
       "tags": [
         "bold"
       ],
       "outcomes": [
         {
           "w": 100,
-          "text": "He writes something in the ledger and leaves. Trade turns cold.",
+          "text": "He writes something in the ledger and leaves. Trade turns cold for every House, and every House knows why.",
           "effects": [
             {
               "resources": {

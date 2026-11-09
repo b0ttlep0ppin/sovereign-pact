@@ -12,7 +12,7 @@
   "options": [
     {
       "id": "bribe",
-      "label": "Send a gift, and say nothing.",
+      "label": "Send the physicians a gift, and say nothing.",
       "tags": [
         "cruel",
         "clever"
@@ -57,7 +57,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Your House mourns him in public, which is more than most do.",
+          "text": "Your House mourns him in public, which is more than most do, and the city notices.",
           "effects": [
             {
               "score": {

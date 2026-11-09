@@ -19,7 +19,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "Shapes test the doors and move on.",
+          "text": "Shapes test the doors, one by one, and move on.",
           "effects": []
         },
         {
@@ -42,7 +42,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "The stores are safe.",
+          "text": "The stores are safe. In the morning there are muddy prints outside every inner door.",
           "effects": []
         },
         {

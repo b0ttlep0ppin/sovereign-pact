@@ -12,7 +12,7 @@
   "options": [
     {
       "id": "pay",
-      "label": "Send the hair.",
+      "label": "Send a lock of hair from one of your own.",
       "tags": [
         "cruel",
         "clever"
@@ -49,14 +49,14 @@
     },
     {
       "id": "burn",
-      "label": "Burn it unread.",
+      "label": "Burn the letter unread.",
       "tags": [
         "cautious"
       ],
       "outcomes": [
         {
           "w": 100,
-          "text": "The wax will not burn. You bury it instead, under the chapel floor.",
+          "text": "The wax will not burn. You bury it instead, under the chapel floor, and the floor is warm there.",
           "effects": []
         }
       ]

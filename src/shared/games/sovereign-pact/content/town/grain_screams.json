@@ -15,14 +15,14 @@
   "options": [
     {
       "id": "burn",
-      "label": "Burn the field.",
+      "label": "Burn the screaming field.",
       "tags": [
         "cautious"
       ],
       "outcomes": [
         {
           "w": 100,
-          "text": "The field burns quietly. Next Year's seed is bought from far away.",
+          "text": "The field burns quietly, which is worse. Next Year's seed is bought from far away.",
           "effects": [
             {
               "resources": {
@@ -36,7 +36,7 @@
     },
     {
       "id": "harvest",
-      "label": "Bring it in anyway.",
+      "label": "Bring the harvest in anyway.",
       "tags": [
         "reckless"
       ],
@@ -73,7 +73,7 @@
     },
     {
       "id": "ask",
-      "label": "Ask it what it wants.",
+      "label": "Ask the grain what it wants.",
       "tags": [
         "clever"
       ],

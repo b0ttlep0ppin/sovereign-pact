@@ -59,14 +59,14 @@
     },
     {
       "id": "burn",
-      "label": "Burn it.",
+      "label": "Burn the book.",
       "tags": [
         "cautious"
       ],
       "outcomes": [
         {
           "w": 100,
-          "text": "It burns slowly, and the scribes swear the last page curled to cover itself.",
+          "text": "It burns slowly, and the scribes swear the last page curled to cover itself, as if ashamed.",
           "effects": []
         }
       ]

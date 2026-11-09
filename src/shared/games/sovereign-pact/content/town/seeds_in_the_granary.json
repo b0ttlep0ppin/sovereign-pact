@@ -12,7 +12,7 @@
   "options": [
     {
       "id": "plant",
-      "label": "Plant them.",
+      "label": "Plant the pale seeds.",
       "tags": [
         "bold"
       ],
