@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "light",
-      "label": "Take the torch, and light it.",
+      "label": "Take the torch, and light it. When in the Court, do as the Court does.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "She does not scream. The Court approves, warmly. Something far off, beyond the Gate, approves too.",
+          "text": "She does not scream. The Court approves, warmly. Something far off, beyond the Gate, approves too, and it is hungry for more.",
           "effects": [
             {
               "score": {
@@ -37,7 +37,7 @@
     },
     {
       "id": "free",
-      "label": "Cut her loose.",
+      "label": "Cut her loose, before the flames can take her.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The priests stop smiling and call their guards. The crowd remembers your faces kindly.",
+          "text": "The priests stop smiling and call their guards. The crowd remembers your faces kindly, which may not save you.",
           "effects": [
             {
               "encounter": {}
@@ -61,7 +61,7 @@
     },
     {
       "id": "argue",
-      "label": "The wisest argues that she deserves a trial.",
+      "label": "The wisest argues that she deserves a trial, and buys her time with words.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -80,7 +80,7 @@
         },
         {
           "w": 40,
-          "text": "The priests listen politely, and then light it themselves, and make you watch.",
+          "text": "The priests listen politely, and then light it themselves, and make you watch until the end.",
           "effects": [
             {
               "to": "party",

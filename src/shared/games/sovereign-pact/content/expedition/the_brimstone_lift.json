@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "ride",
-      "label": "Ride the swaying cage down.",
+      "label": "Ride the swaying cage down, and try not to look at the imp's grin.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Fast, and very hot, and the imp is still grinning when you reach the bottom.",
+          "text": "Fast, and very hot, and the imp is still grinning when you reach the bottom. You do not want to know why.",
           "effects": [
             {
               "skip": 1
@@ -36,7 +36,7 @@
     },
     {
       "id": "slow",
-      "label": "The slowest takes the stairs alone.",
+      "label": "The slowest takes the stairs alone, rather than wait for the imp's next ride.",
       "rule": "scion:lowest:speed|scion:random",
       "tags": [
         "cautious"
@@ -59,7 +59,7 @@
     },
     {
       "id": "winch",
-      "label": "Throw the imp off its winch.",
+      "label": "Throw the imp off its winch. Nothing that grins like that can be trusted.",
       "rule": "scion:highest:might|leader",
       "tags": [
         "cruel"

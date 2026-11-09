@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "bathe",
-      "label": "The hardiest bathes in the scalding spring.",
+      "label": "The hardiest bathes in the scalding spring, hoping to come out harder.",
       "rule": "scion:highest:resilience",
       "tags": [
         "reckless"
@@ -36,7 +36,7 @@
         },
         {
           "w": 40,
-          "text": "It hurts more than anything ever has, and some of it does not stop.",
+          "text": "It hurts more than anything ever has, and some of it does not stop, and never will.",
           "effects": [
             {
               "injury": "body"
@@ -47,7 +47,7 @@
     },
     {
       "id": "bottle",
-      "label": "Bottle some to sell.",
+      "label": "Bottle some to sell. The apothecaries will pay for anything this vile.",
       "rule": "leader",
       "tags": [
         "clever"
@@ -69,7 +69,7 @@
     },
     {
       "id": "go",
-      "label": "Keep well away from it.",
+      "label": "Keep well away from it. Nothing that smells like that is a blessing.",
       "rule": "vote",
       "tags": [
         "cautious"

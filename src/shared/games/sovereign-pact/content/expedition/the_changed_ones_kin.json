@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "go",
-      "label": "The Changed among you goes to their kin.",
+      "label": "The Changed among you goes to their kin, drawn by the name they have not heard in so long.",
       "rule": "scion:changed|vote",
       "tags": [
         "bold"
@@ -51,7 +51,7 @@
     },
     {
       "id": "drive",
-      "label": "Drive them back into the mist.",
+      "label": "Drive them back into the mist. They are no kin of yours.",
       "rule": "vote",
       "tags": [
         "cruel"
@@ -76,7 +76,7 @@
     },
     {
       "id": "hide",
-      "label": "Hide until they pass.",
+      "label": "Hide until they pass, and do not answer to any name.",
       "rule": "leader",
       "tags": [
         "cautious"

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "sit",
-      "label": "The leader takes the empty place at the table.",
+      "label": "The Leader takes the empty place at the table, so as not to insult the dead.",
       "rule": "leader",
       "tags": [
         "reckless"
@@ -37,7 +37,7 @@
         },
         {
           "w": 55,
-          "text": "The place was set for someone who meant to stay. The leader's eyes grow heavy, and the dead lean closer.",
+          "text": "The place was set for someone who meant to stay. The Leader's eyes grow heavy, and the dead lean closer, smiling.",
           "effects": [
             {
               "sanity": -25
@@ -51,7 +51,7 @@
     },
     {
       "id": "toast",
-      "label": "Raise a cup from the doorway, and go.",
+      "label": "Raise a cup from the doorway, and go before anyone asks you to sit.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -59,7 +59,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They raise theirs back, all of them, with a creak of old bones.",
+          "text": "They raise theirs back, all of them, with a creak of old bones, and the door swings gently shut.",
           "effects": [
             {
               "to": "party",
@@ -76,7 +76,7 @@
     },
     {
       "id": "rob",
-      "label": "Take the silver off the table.",
+      "label": "Take the silver off the table. The dead have no use for it.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -84,7 +84,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The dead stand up, all at once, cups still in their hands.",
+          "text": "The dead stand up, all at once, cups still in their hands. They do use it, it seems.",
           "effects": [
             {
               "resources": {

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "cross",
-      "label": "Cross boldly, together.",
+      "label": "Cross boldly, together, and trust the stories to hold.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 75,
-          "text": "It holds, humming under your feet.",
+          "text": "It holds, humming under your feet, and you feel braver for it.",
           "effects": [
             {
               "skip": 1
@@ -34,7 +34,7 @@
         },
         {
           "w": 25,
-          "text": "It holds most of you.",
+          "text": "It holds most of you. It does not hold all of you, all the way.",
           "effects": [
             {
               "injury": "legs"
@@ -45,7 +45,7 @@
     },
     {
       "id": "first",
-      "label": "The bravest goes first and calls back.",
+      "label": "The bravest goes first and calls back, so the others know it holds.",
       "rule": "scion:trait:brave|scion:highest:resilience",
       "tags": [
         "kind"
@@ -69,7 +69,7 @@
     },
     {
       "id": "around",
-      "label": "Find another way.",
+      "label": "Find another way. You have no wish to learn what becomes of the rest.",
       "rule": "leader",
       "tags": [
         "cautious"

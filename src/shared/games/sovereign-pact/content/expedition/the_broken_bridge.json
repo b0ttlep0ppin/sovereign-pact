@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "rebuild",
-      "label": "Rebuild the bridge, with your backs to the thing pacing.",
+      "label": "Rebuild the bridge, with your backs to the thing pacing behind you.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Slow work, and whatever they fled is still here, and tired of waiting.",
+          "text": "Slow work, and whatever they fled is still here, and it has grown tired of waiting.",
           "effects": [
             {
               "encounter": {}
@@ -35,7 +35,7 @@
     },
     {
       "id": "climb",
-      "label": "The quickest climbs down and across the gorge.",
+      "label": "The quickest climbs down and across the gorge, to throw a rope back for the rest.",
       "rule": "scion:highest:speed",
       "tags": [
         "reckless"
@@ -58,7 +58,7 @@
     },
     {
       "id": "around",
-      "label": "Find another crossing.",
+      "label": "Find another crossing, rather than turn your backs on whatever paces there.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -66,7 +66,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A day lost, and the Lost are further away.",
+          "text": "A day lost, and the Lost are further away. Every hour counts against them.",
           "effects": [
             {
               "to": "party",

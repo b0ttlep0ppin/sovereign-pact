@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "disarm",
-      "label": "The cleverest hands disarm the ring of bones.",
+      "label": "The cleverest hands disarm the ring of bones, steady and slow.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A trinket the quarry stole from its last hunter, still with a finger in it.",
+          "text": "A trinket the quarry stole from its last hunter, still with a finger in it. You keep the trinket.",
           "effects": [
             {
               "item": {
@@ -34,7 +34,7 @@
     },
     {
       "id": "spring",
-      "label": "The one who draws danger springs it on purpose.",
+      "label": "The one who draws danger springs it on purpose, to bring the quarry to you.",
       "rule": "scion:most_targeted|scion:highest:resilience",
       "tags": [
         "bold"
@@ -42,7 +42,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It snaps shut on them, bone teeth in the leg, and the quarry comes to look.",
+          "text": "It snaps shut on them, bone teeth in the leg, and the quarry comes to look at what it caught.",
           "effects": [
             {
               "durability": -25,
@@ -59,7 +59,7 @@
     },
     {
       "id": "around",
-      "label": "Go the long way around it.",
+      "label": "Go the long way around it, and give the quarry nothing to laugh at.",
       "rule": "vote",
       "tags": [
         "cautious"

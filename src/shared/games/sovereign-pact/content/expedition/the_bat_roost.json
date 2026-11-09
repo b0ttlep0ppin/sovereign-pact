@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "quiet",
-      "label": "Creep under them, slow and silent.",
+      "label": "Creep under them, slow and silent, and do not wake the ceiling.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -58,7 +58,7 @@
     },
     {
       "id": "guano",
-      "label": "Gather the guano. Smiths pay for it.",
+      "label": "Gather the guano. It is foul work, but the smiths pay well for it.",
       "rule": "leader",
       "tags": [
         "clever"
@@ -83,7 +83,7 @@
     },
     {
       "id": "fire",
-      "label": "The strongest drives them out with a torch.",
+      "label": "The strongest drives them out with a torch, and clears the way by force.",
       "rule": "scion:highest:might",
       "tags": [
         "reckless"
@@ -91,7 +91,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They go in a black storm, and something big that eats them comes in after them.",
+          "text": "They go in a black storm, and something big that eats them comes in after them, and it is still hungry.",
           "effects": [
             {
               "encounter": {}

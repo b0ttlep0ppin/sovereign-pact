@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "give",
-      "label": "Each Scion decides: carve their own name into a plank.",
+      "label": "Each Scion decides whether to carve their own name into a plank, and give it to the bridge.",
       "rule": "each_scion",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Their name joins the others, and something of them stays behind with it.",
+          "text": "Their name joins the others, and something of them stays behind with it, and something of the others comes with them.",
           "effects": [
             {
               "sanity": -5
@@ -37,7 +37,7 @@
     },
     {
       "id": "lie",
-      "label": "Each Scion decides: cross on a dead stranger's name.",
+      "label": "Each Scion decides whether to cross on a dead stranger's name, and hope the bridge does not notice.",
       "rule": "each_scion",
       "tags": [
         "cruel"
@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "Nobody notices the lie. The dead name holds.",
+          "text": "Nobody notices the lie. The dead name holds, though it does not like it.",
           "effects": [
             {
               "xp": 40
@@ -54,7 +54,7 @@
         },
         {
           "w": 40,
-          "text": "The plank under them notices, and gives way.",
+          "text": "The plank under them notices, and gives way, and the dark between the planks is very deep.",
           "effects": [
             {
               "durability": -20,

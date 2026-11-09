@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "follow",
-      "label": "Follow the blue light.",
+      "label": "Follow the blue light, and trust it knows the way through.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 40,
-          "text": "It leads you through the marsh by a dry path no map shows, and winks out at the end.",
+          "text": "It leads you through the marsh by a dry path no map shows, and winks out at the end, satisfied.",
           "effects": [
             {
               "skip": 1
@@ -30,7 +30,7 @@
         },
         {
           "w": 60,
-          "text": "It leads you into the deep water, and waits, and watches who comes to see you drown.",
+          "text": "It leads you into the deep water, and waits, and watches to see who comes to watch you drown.",
           "effects": [
             {
               "to": "party",
@@ -46,7 +46,7 @@
     },
     {
       "id": "catch",
-      "label": "The quickest tries to catch it in a jar.",
+      "label": "The quickest tries to catch it in a jar, before it can lead anyone astray.",
       "rule": "scion:highest:speed",
       "tags": [
         "clever"
@@ -76,7 +76,7 @@
     },
     {
       "id": "ignore",
-      "label": "Keep to your own way, and ignore it.",
+      "label": "Keep to your own way, and ignore its soft invitation.",
       "rule": "leader",
       "tags": [
         "cautious"

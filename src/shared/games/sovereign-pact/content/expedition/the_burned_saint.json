@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "touch",
-      "label": "Creep in and touch it, with the pilgrims.",
+      "label": "Creep in and touch it with the pilgrims, under cover of the dark.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It is still warm under the soot, and the warmth goes into you like comfort.",
+          "text": "It is still warm under the soot, and the warmth goes into you like comfort. Your fingers stay black for days.",
           "effects": [
             {
               "to": "party",
@@ -33,7 +33,7 @@
     },
     {
       "id": "carry",
-      "label": "The strongest carries it out of the Court.",
+      "label": "The strongest carries it out of the Court, so that it may rest somewhere holy.",
       "rule": "scion:highest:might",
       "tags": [
         "bold"
@@ -57,7 +57,7 @@
     },
     {
       "id": "report",
-      "label": "Report the pilgrims to the Court.",
+      "label": "Report the pilgrims to the Court. Their faith is no concern of yours.",
       "rule": "leader",
       "tags": [
         "cruel"

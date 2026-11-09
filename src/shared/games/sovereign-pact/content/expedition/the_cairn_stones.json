@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "add",
-      "label": "Each of you adds a stone for the dead.",
+      "label": "Each of you adds a stone for the dead, as the custom asks.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The cairn grows, and the barrows around you seem to settle, quieter.",
+          "text": "The cairn grows, and the barrows around you seem to settle, quieter, content to be remembered.",
           "effects": [
             {
               "to": "party",
@@ -38,7 +38,7 @@
     },
     {
       "id": "take",
-      "label": "Take a stone instead, for luck.",
+      "label": "Take a stone instead, for luck. The dead have plenty.",
       "rule": "leader",
       "tags": [
         "reckless"
@@ -46,7 +46,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Bad luck. It is heavier than it should be, and it follows you home.",
+          "text": "Bad luck. It is heavier than it should be, and it follows you home, and it gets heavier still.",
           "effects": [
             {
               "curse": true
@@ -57,7 +57,7 @@
     },
     {
       "id": "dig",
-      "label": "The strongest digs under the cairn.",
+      "label": "The strongest digs under the cairn, to see who is so well remembered.",
       "rule": "scion:highest:might",
       "tags": [
         "cruel"

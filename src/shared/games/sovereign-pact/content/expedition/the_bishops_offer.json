@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "name",
-      "label": "Name a rival House as the worst sinner.",
+      "label": "Name a rival House as the worst sinner, and let the Court look elsewhere.",
       "rule": "house:random|vote",
       "tags": [
         "cruel"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He writes it down in purple ink. The Court will look into it, he says, and smiles.",
+          "text": "He writes it down in purple ink. The Court will look into it, he says, and smiles. You will have to live with that smile.",
           "effects": [
             {
               "score": {
@@ -37,7 +37,7 @@
     },
     {
       "id": "donate",
-      "label": "Donate, and name no one.",
+      "label": "Donate, and name no one. Some sins are best left unspoken.",
       "rule": "leader",
       "tags": [
         "kind"
@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Absolved, every one of you, with a wave of a ringed hand. It feels better than it should.",
+          "text": "Absolved, every one of you, with a wave of a ringed hand. It feels better than it should, and that worries you.",
           "effects": [
             {
               "resources": {
@@ -62,7 +62,7 @@
     },
     {
       "id": "expose",
-      "label": "The wisest names his sins instead.",
+      "label": "The wisest names his sins instead, and lets him hear how it feels.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "bold"
@@ -70,7 +70,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He goes white beneath his paint, and lets you go very quickly.",
+          "text": "He goes white beneath his paint, and lets you go very quickly, and will remember your faces.",
           "effects": [
             {
               "skip": 1

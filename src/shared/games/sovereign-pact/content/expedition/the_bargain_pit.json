@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "throw",
-      "label": "Throw a purse of gold into its breath.",
+      "label": "Throw a purse of gold into its breath, and trust the carving tells the truth.",
       "rule": "leader",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "It comes back up on a warm gust, a heavier purse, the coins slick and faintly warm.",
+          "text": "It comes back up on a warm gust, a heavier purse, the coins slick and faintly warm, as if they had been held in a mouth.",
           "effects": [
             {
               "resources": {
@@ -32,7 +32,7 @@
         },
         {
           "w": 50,
-          "text": "It does not come back. Far below, something swallows.",
+          "text": "It does not come back. Far below, something swallows, and breathes a little easier.",
           "effects": [
             {
               "resources": {
@@ -45,7 +45,7 @@
     },
     {
       "id": "blood",
-      "label": "The hardiest bleeds into the pit.",
+      "label": "The hardiest bleeds into the pit, offering more than gold.",
       "rule": "scion:highest:resilience",
       "tags": [
         "bold"
@@ -73,7 +73,7 @@
     },
     {
       "id": "seal",
-      "label": "Roll a stone over its mouth.",
+      "label": "Roll a stone over its mouth. No good comes from a hole that breathes.",
       "rule": "vote",
       "tags": [
         "cautious"

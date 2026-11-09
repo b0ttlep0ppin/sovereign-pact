@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "shoot",
-      "label": "The sharpest eye takes him on.",
+      "label": "The sharpest eye takes him on, eager to beat the unbeaten.",
       "rule": "scion:highest:acuity",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 35,
-          "text": "They beat him by a hair. He laughs and gives them his quiver.",
+          "text": "They beat him by a hair. He laughs and gives them his quiver, as if he had been waiting years for this.",
           "effects": [
             {
               "item": {
@@ -37,7 +37,7 @@
         },
         {
           "w": 65,
-          "text": "He wins, and gives them a lesson anyway.",
+          "text": "He wins, as he always does, and gives them a lesson anyway, out of kindness or pity.",
           "effects": [
             {
               "jp": 80
@@ -53,7 +53,7 @@
     },
     {
       "id": "cheat",
-      "label": "The craftiest moves his target when he isn't looking.",
+      "label": "The craftiest moves his target when he isn't looking. He cannot see, after all.",
       "rule": "scion:highest:guile",
       "tags": [
         "cruel"
@@ -78,7 +78,7 @@
     },
     {
       "id": "decline",
-      "label": "Decline his game, politely.",
+      "label": "Decline his game, politely. No one beats an archer who needs no eyes.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -98,7 +98,7 @@
     },
     {
       "id": "match_him",
-      "label": "Whoever carries a bow shoots against him.",
+      "label": "Whoever carries a bow shoots against him, and puts their own aim to the test.",
       "rule": "scion:wields:bow",
       "only": true,
       "tags": [

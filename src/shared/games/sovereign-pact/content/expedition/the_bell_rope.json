@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "ring",
-      "label": "Ring it once, for the party.",
+      "label": "Ring it once, for the party, and pray for safe passage.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "One clear note rolls out over the courtyard. The way ahead feels lighter.",
+          "text": "One clear note rolls out over the courtyard. The way ahead feels lighter, as if something has been listening kindly.",
           "effects": [
             {
               "to": "party",
@@ -33,7 +33,7 @@
     },
     {
       "id": "six",
-      "label": "The devout rings it six times, as the sign says.",
+      "label": "The devout rings it six times, as the sign says, and not once more.",
       "rule": "scion:trait:devout|scion:highest:sagacity",
       "tags": [
         "kind"
@@ -55,7 +55,7 @@
     },
     {
       "id": "seven",
-      "label": "Ring it a seventh time.",
+      "label": "Ring it a seventh time, to learn why someone dared to scratch that line.",
       "rule": "leader",
       "tags": [
         "reckless"
@@ -63,7 +63,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The seventh note does not sound. Something hears it anyway, and comes to see who rang.",
+          "text": "The seventh note does not sound. Something hears it anyway, and comes to see who rang, and it is not pleased.",
           "effects": [
             {
               "encounter": {

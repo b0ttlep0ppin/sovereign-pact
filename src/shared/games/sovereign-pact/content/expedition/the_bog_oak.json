@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "dig",
-      "label": "Dig the black trunk out of the peat.",
+      "label": "Dig the black trunk out of the peat, however long it takes.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -36,7 +36,7 @@
         },
         {
           "w": 30,
-          "text": "The bog wants it back, and you with it, and pulls.",
+          "text": "The bog wants it back, and you with it, and it pulls with all its patient strength.",
           "effects": [
             {
               "to": "party",
@@ -49,7 +49,7 @@
     },
     {
       "id": "carve",
-      "label": "The cleverest carves a bow from it on the spot.",
+      "label": "The cleverest carves a bow from it on the spot, before the bog can take it back.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -57,7 +57,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A fine black bow, and a long afternoon, and the peat bubbling the whole time.",
+          "text": "A fine black bow, and a long afternoon, and the peat bubbling and sighing the whole time.",
           "effects": [
             {
               "item": {
@@ -70,7 +70,7 @@
     },
     {
       "id": "leave",
-      "label": "Leave it to the bog.",
+      "label": "Leave it to the bog. It has kept the oak this long for a reason.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -101,7 +101,7 @@
     },
     {
       "id": "new_stave",
-      "label": "The one with a bow cuts a new stave from it.",
+      "label": "The one with a bow cuts a new stave from it, eager to see it sing.",
       "rule": "scion:wields:bow",
       "only": true,
       "tags": [

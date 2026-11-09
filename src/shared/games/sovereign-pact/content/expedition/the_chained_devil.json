@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "free",
-      "label": "Break its chains, and trust its word.",
+      "label": "Break its chains, and trust that even a devil can keep its word.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 40,
-          "text": "It keeps its word, to everyone's surprise, and shows the way out.",
+          "text": "It keeps its word, to everyone's surprise, and shows the way out. It does not say what it will do next.",
           "effects": [
             {
               "skip": 2
@@ -33,7 +33,7 @@
         },
         {
           "w": 60,
-          "text": "It keeps its word, in its own way, which is not your way.",
+          "text": "It keeps its word, in its own way, which is not your way, and you learn the difference the hard way.",
           "effects": [
             {
               "fork": {
@@ -52,7 +52,7 @@
     },
     {
       "id": "ask",
-      "label": "The shrewdest asks why it was chained.",
+      "label": "The shrewdest asks why it was chained, before anyone frees it.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"
@@ -60,7 +60,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It lied to the wrong devil. It tells you who, very gladly.",
+          "text": "It lied to the wrong devil. It tells you who, very gladly, and in great detail.",
           "effects": [
             {
               "score": {
@@ -73,7 +73,7 @@
     },
     {
       "id": "leave",
-      "label": "Leave it chained.",
+      "label": "Leave it chained. Whoever bound it here knew what it was.",
       "rule": "leader",
       "tags": [
         "cautious"

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "sneak",
-      "label": "Sneak past while the stokers work.",
+      "label": "Sneak past while the stokers work, and pray none of them looks up.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "Past, sweating, eyes stinging with ash.",
+          "text": "Past, sweating, eyes stinging with ash, and nobody looked up.",
           "effects": [
             {
               "to": "party",
@@ -44,7 +44,7 @@
     },
     {
       "id": "bribe",
-      "label": "The shrewdest bribes the stokers with gossip.",
+      "label": "The shrewdest bribes the stokers with gossip, the only coin the bored will take.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"
@@ -52,7 +52,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They love it, gasping at every rival's shame, and wave you through.",
+          "text": "They love it, gasping at every rival's shame, and wave you through, already retelling it to one another.",
           "effects": [
             {
               "skip": 1
@@ -68,7 +68,7 @@
     },
     {
       "id": "smash",
-      "label": "Smash the furnace.",
+      "label": "Smash the furnace, and let the Pit go cold for once.",
       "rule": "leader",
       "tags": [
         "reckless"
@@ -76,7 +76,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It goes out with a roar, and so do the devils who fed it.",
+          "text": "It goes out with a roar, and so do the devils who fed it, and they are not bored any more.",
           "effects": [
             {
               "encounter": {

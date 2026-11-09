@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "blow",
-      "label": "Blow the horn, full and loud.",
+      "label": "Blow the horn, full and loud, and let every beast come.",
       "rule": "leader",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Every beast for miles hears it, and all of them come.",
+          "text": "Every beast for miles hears it, and all of them come, and all of them are angry.",
           "effects": [
             {
               "encounter": {
@@ -35,7 +35,7 @@
     },
     {
       "id": "take",
-      "label": "Take it home, unblown.",
+      "label": "Take it home, unblown, for another day and another hunt.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -43,7 +43,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "For another day, and another hunt.",
+          "text": "For another day, and another hunt. The claw marks on the cairn are a reminder of what it calls.",
           "effects": [
             {
               "item": {
@@ -56,7 +56,7 @@
     },
     {
       "id": "quiet",
-      "label": "The quietest blows it, very softly.",
+      "label": "The quietest blows it, very softly, hoping only the quarry hears.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"
