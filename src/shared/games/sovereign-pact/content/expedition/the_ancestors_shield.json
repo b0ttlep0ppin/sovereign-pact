@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "It is yours. It always was.",
+          "text": "It comes down easily, as if it had been waiting. It is yours. It always was.",
           "effects": [
             {
               "item": {
@@ -37,7 +37,7 @@
         },
         {
           "w": 30,
-          "text": "The ancestor disagrees.",
+          "text": "The ancestor disagrees, and comes up out of the barrow to say so.",
           "effects": [
             {
               "encounter": {
@@ -50,7 +50,7 @@
     },
     {
       "id": "honor",
-      "label": "Kneel and honor the dead.",
+      "label": "Kneel and honor the dead below.",
       "rule": "leader",
       "tags": [
         "kind"
@@ -58,7 +58,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Something in the barrow is proud of you.",
+          "text": "The cold air warms a little. Something in the barrow is proud of you.",
           "effects": [
             {
               "to": "party",
@@ -84,7 +84,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A forgotten branch of the House.",
+          "text": "The runes name a forgotten branch of the House, and how it ended. Nobody tells the others how.",
           "effects": [
             {
               "score": {

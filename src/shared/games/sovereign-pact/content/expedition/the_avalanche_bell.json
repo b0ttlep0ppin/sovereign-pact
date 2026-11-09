@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "ring",
-      "label": "Ring it and run.",
+      "label": "Ring it, and run.",
       "rule": "leader",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The snow comes down behind you, and buries whatever was following.",
+          "text": "The snow comes down behind you like the end of the world, and buries whatever was following.",
           "effects": [
             {
               "skip": 1
@@ -37,7 +37,7 @@
     },
     {
       "id": "quiet",
-      "label": "Creep through in silence.",
+      "label": "Creep through in silence, under the leaning snow.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 75,
-          "text": "Not a flake falls.",
+          "text": "Not a flake falls. Not a breath is heard. You come out the other side shaking.",
           "effects": [
             {
               "to": "party",
@@ -55,7 +55,7 @@
         },
         {
           "w": 25,
-          "text": "Someone coughs.",
+          "text": "Someone coughs. The mountain answers.",
           "effects": [
             {
               "injury": "body"
@@ -66,7 +66,7 @@
     },
     {
       "id": "take",
-      "label": "Take the bell.",
+      "label": "The strongest cuts the bell down and takes it.",
       "rule": "scion:highest:might",
       "tags": [
         "clever"
@@ -74,7 +74,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Old bronze, very heavy, very valuable, and the pass has no warning now.",
+          "text": "Old bronze, very heavy, very valuable, and the pass has no warning now for whoever comes next.",
           "effects": [
             {
               "resources": {

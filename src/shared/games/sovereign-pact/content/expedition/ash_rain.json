@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "cover",
-      "label": "Cover your faces and wait it out.",
+      "label": "Cover your faces and wait for the grey to stop.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It takes the whole night. Nobody sleeps.",
+          "text": "It falls the whole night, soft as breath on the back of the neck. Nobody sleeps.",
           "effects": [
             {
               "to": "party",
@@ -33,7 +33,7 @@
     },
     {
       "id": "endure",
-      "label": "Walk through it.",
+      "label": "Walk on through it, mouths shut.",
       "rule": "leader",
       "tags": [
         "bold"
@@ -50,7 +50,7 @@
         },
         {
           "w": 50,
-          "text": "It gets into the eyes and the lungs and the joints of armour.",
+          "text": "It gets into the eyes and the lungs and the joints of armor, and grinds there like grave dirt.",
           "effects": [
             {
               "to": "party",

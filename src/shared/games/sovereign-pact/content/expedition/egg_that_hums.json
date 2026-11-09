@@ -52,7 +52,7 @@
     },
     {
       "id": "carry",
-      "label": "Carry it out, carefully.",
+      "label": "Wrap it up and carry it out, carefully.",
       "rule": "vote",
       "tags": [
         "clever"
@@ -60,7 +60,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "It goes quiet in the dark of a pack. The scholars will pay for it.",
+          "text": "It goes quiet in the dark of a pack, a warm weight against the spine. The scholars will pay for it.",
           "effects": [
             {
               "resources": {
@@ -76,7 +76,7 @@
         },
         {
           "w": 40,
-          "text": "Its mother wants it back.",
+          "text": "Its mother wants it back. You hear her coming long before you see her.",
           "effects": [
             {
               "encounter": {
@@ -89,7 +89,7 @@
     },
     {
       "id": "smash",
-      "label": "Smash it.",
+      "label": "Smash it before it hatches.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -108,7 +108,7 @@
         },
         {
           "w": 30,
-          "text": "Its mother heard.",
+          "text": "Its mother heard. The sky goes dark with her.",
           "effects": [
             {
               "encounter": {

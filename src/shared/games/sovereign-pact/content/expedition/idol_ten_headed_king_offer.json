@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "kneel",
-      "label": "Kneel, and pay what it asks.",
+      "label": "Kneel, and call him master.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -48,7 +48,7 @@
     },
     {
       "id": "defy",
-      "label": "Refuse it.",
+      "label": "Refuse him, all ten faces of him.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -63,7 +63,7 @@
     },
     {
       "id": "cheat",
-      "label": "Take the gift and refuse the price.",
+      "label": "Learn his cunning, and never bow.",
       "rule": "leader",
       "tags": [
         "clever",
@@ -83,7 +83,7 @@
         },
         {
           "w": 45,
-          "text": "One of the heads saw it coming. The trick goes the other way.",
+          "text": "One of the heads saw it coming. The trick turns in the leader's hands and goes into all of you instead.",
           "effects": [
             {
               "to": "party",

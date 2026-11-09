@@ -14,7 +14,7 @@
   "options": [
     {
       "id": "look",
-      "label": "Look.",
+      "label": "Look into the black water.",
       "rule": "each_scion",
       "tags": [
         "bold"
@@ -22,7 +22,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "The reflection nods, and something it knows passes over.",
+          "text": "The reflection nods, slowly, and something it knows passes over into you.",
           "effects": [
             {
               "stat": {
@@ -38,7 +38,7 @@
         },
         {
           "w": 50,
-          "text": "The reflection smiles first.",
+          "text": "The reflection smiles first. Then it keeps smiling after you look away.",
           "effects": [
             {
               "sanity": -30
@@ -49,7 +49,7 @@
     },
     {
       "id": "away",
-      "label": "Look away.",
+      "label": "Look away, and do not meet its eyes.",
       "rule": "each_scion",
       "tags": [
         "cautious"

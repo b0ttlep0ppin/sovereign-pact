@@ -14,7 +14,7 @@
   "options": [
     {
       "id": "take",
-      "label": "Take what they left.",
+      "label": "Take what they left behind.",
       "rule": "vote",
       "tags": [
         "cruel"
@@ -22,7 +22,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "Timber, iron, a little gold. Nobody comes back for it.",
+          "text": "Timber, iron, a little gold. Nobody comes back for it, and nobody calls out from the trees.",
           "effects": [
             {
               "resources": {
@@ -35,7 +35,7 @@
         },
         {
           "w": 40,
-          "text": "They come back for it.",
+          "text": "They come back for it. Not all of them are the people who left.",
           "effects": [
             {
               "encounter": {
@@ -48,7 +48,7 @@
     },
     {
       "id": "leave",
-      "label": "Leave it be.",
+      "label": "Leave it be, and walk softly.",
       "rule": "leader",
       "tags": [
         "kind"

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "kneel",
-      "label": "Kneel, and pay what it asks.",
+      "label": "Kneel, and let the serpents feed.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -49,7 +49,7 @@
     },
     {
       "id": "defy",
-      "label": "Refuse it.",
+      "label": "Refuse him, and watch the serpents.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -57,14 +57,14 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The serpents rise first. The King follows them.",
+          "text": "The serpents rise first, hissing. The King rises after them, still smiling.",
           "effects": []
         }
       ]
     },
     {
       "id": "cheat",
-      "label": "Take the gift and refuse the price.",
+      "label": "Take the long life, and feed them nothing.",
       "rule": "leader",
       "tags": [
         "clever",
@@ -85,7 +85,7 @@
         },
         {
           "w": 50,
-          "text": "The serpents are quicker than the leader. They eat anyway.",
+          "text": "The serpents are quicker than the leader. They feed anyway, deep, and take more than they were owed.",
           "effects": [
             {
               "sanity": -25

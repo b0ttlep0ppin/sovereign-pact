@@ -39,7 +39,7 @@
     },
     {
       "id": "fight",
-      "label": "Fight.",
+      "label": "Draw steel in her court.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -47,7 +47,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The courtiers stop bowing.",
+          "text": "The courtiers stop bowing. All their legs unfold at once.",
           "effects": [
             {
               "encounter": {
@@ -68,7 +68,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Gold for safe passage. She is pleased, and remembers your House's name.",
+          "text": "Gold for safe passage. She is pleased, and she will remember your House's name, which is not the same as a kindness.",
           "effects": [
             {
               "resources": {

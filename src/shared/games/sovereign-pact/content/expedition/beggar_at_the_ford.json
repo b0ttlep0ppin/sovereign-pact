@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "give",
-      "label": "Give him your bread.",
+      "label": "Give him your bread, and do not look at his shadow.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -65,7 +65,7 @@
     },
     {
       "id": "rob",
-      "label": "Take what he has.",
+      "label": "Take what he has. He cannot follow.",
       "rule": "leader",
       "tags": [
         "cruel"

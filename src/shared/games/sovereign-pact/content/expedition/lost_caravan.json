@@ -14,7 +14,7 @@
   "options": [
     {
       "id": "escort",
-      "label": "Walk them home.",
+      "label": "Walk them home through whatever is circling.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -45,7 +45,7 @@
     },
     {
       "id": "salvage",
-      "label": "The poorest House takes what is on the wagons.",
+      "label": "The poorest House helps itself to the wagons.",
       "rule": "house:lowest_standing",
       "tags": [
         "cruel"
@@ -53,7 +53,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They do not fight. They only watch.",
+          "text": "The drivers do not fight. They only watch from under the wagons, and remember your colors.",
           "effects": [
             {
               "resources": {

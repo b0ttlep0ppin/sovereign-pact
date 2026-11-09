@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "open",
-      "label": "Its House opens it.",
+      "label": "Its House opens the door it never built.",
       "rule": "house:random",
       "tags": [
         "bold"

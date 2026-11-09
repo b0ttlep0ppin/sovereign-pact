@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "climb",
-      "label": "Scramble up the sides.",
+      "label": "Scramble up the sliding sides.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "Out, sand in everything.",
+          "text": "Out, gasping, sand in everything, the mandibles clicking far below.",
           "effects": [
             {
               "to": "party",
@@ -31,7 +31,7 @@
         },
         {
           "w": 30,
-          "text": "It flicks sand at you, and you slide.",
+          "text": "It flicks sand up the slope, and you slide, and slide, down toward it.",
           "effects": [
             {
               "encounter": {
@@ -52,7 +52,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "One by one, and the mandibles snap shut on nothing.",
+          "text": "One by one, arms shaking, and the mandibles snap shut on nothing.",
           "effects": [
             {
               "durability": -10,
@@ -69,7 +69,7 @@
     },
     {
       "id": "kill",
-      "label": "Go down and kill it.",
+      "label": "Go down into the funnel and kill it.",
       "rule": "leader",
       "tags": [
         "reckless"
@@ -77,7 +77,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Its shell is worth something.",
+          "text": "It fights from the bottom of its pit, and when it dies its shell is worth something.",
           "effects": [
             {
               "encounter": {}

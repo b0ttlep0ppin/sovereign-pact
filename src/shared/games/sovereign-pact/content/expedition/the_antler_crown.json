@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "wear",
-      "label": "The boldest puts it on.",
+      "label": "The boldest puts on the crown of antlers.",
       "rule": "scion:trait:brave|scion:random",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "The wood bows to them.",
+          "text": "The wood bows to them, every branch at once, and the silence becomes something like welcome.",
           "effects": [
             {
               "blessing": {
@@ -37,7 +37,7 @@
         },
         {
           "w": 40,
-          "text": "The wood does not bow. It comes.",
+          "text": "The wood does not bow. It comes for them.",
           "effects": [
             {
               "encounter": {
@@ -70,7 +70,7 @@
     },
     {
       "id": "sell",
-      "label": "Take it to sell.",
+      "label": "Take it down to sell.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -78,7 +78,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A good price, and thorns in every step.",
+          "text": "It fetches a good price, and thorns find every step out of the wood.",
           "effects": [
             {
               "resources": {

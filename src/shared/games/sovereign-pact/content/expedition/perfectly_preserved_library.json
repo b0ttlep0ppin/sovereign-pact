@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "read",
-      "label": "The sharpest mind reads.",
+      "label": "The sharpest mind sits down at the open page.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -65,7 +65,7 @@
     },
     {
       "id": "burn",
-      "label": "Burn it.",
+      "label": "Burn it, every book.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -73,7 +73,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The books burn slowly, and something in the stacks screams once.",
+          "text": "The books burn slowly, page by curling page, and something in the stacks screams once.",
           "effects": [
             {
               "to": "party",
@@ -90,7 +90,7 @@
     },
     {
       "id": "carry",
-      "label": "Carry a book out.",
+      "label": "The lightest-laden carries one book out.",
       "rule": "scion:most_open_slots",
       "tags": [
         "cautious"
@@ -98,7 +98,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Only the lightest-laden can carry it. The book is heavier than it looks, and worth it.",
+          "text": "The book is heavier than it looks, and warm, and worth it. It does not like the light.",
           "effects": [
             {
               "score": {

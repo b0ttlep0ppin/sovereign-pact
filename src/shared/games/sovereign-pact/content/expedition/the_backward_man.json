@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "He tells it, backward. It makes sense later.",
+          "text": "He tells it, backward, word by word. It only makes sense later, when it is happening.",
           "effects": [
             {
               "foresee": true
@@ -33,7 +33,7 @@
         },
         {
           "w": 30,
-          "text": "He answers with your own scream.",
+          "text": "He answers with your own scream, a breath before you make it.",
           "effects": [
             {
               "sanity": -20
@@ -52,7 +52,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The way behind is the way ahead.",
+          "text": "The way behind becomes the way ahead, and the ground forgets which is which.",
           "effects": [
             {
               "fork": {
@@ -80,7 +80,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He sees they are already other, and steps aside.",
+          "text": "He sees they are already other, and steps aside, and does not look back.",
           "effects": [
             {
               "skip": 1

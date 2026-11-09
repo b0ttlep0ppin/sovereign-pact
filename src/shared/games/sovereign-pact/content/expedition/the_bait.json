@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "bait",
-      "label": "The hardiest plays the bait.",
+      "label": "The hardiest plays the bait, bleeding a little.",
       "rule": "scion:highest:resilience",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It comes, and the rest of you are waiting.",
+          "text": "It comes out of the dark for the warm one, and the rest of you are waiting.",
           "effects": [
             {
               "durability": -20,
@@ -46,7 +46,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It works, and the goat does not mind as much as you do.",
+          "text": "It works. The goat does not mind as much as you do, and you do not watch.",
           "effects": [
             {
               "resources": {
@@ -62,7 +62,7 @@
     },
     {
       "id": "patient",
-      "label": "Wait it out.",
+      "label": "Wait it out, however long it takes.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -70,7 +70,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Days pass. It comes, in its own time, and on its own terms.",
+          "text": "Days pass, and nights longer. It comes in its own time, on its own terms, when you are tired.",
           "effects": [
             {
               "to": "party",

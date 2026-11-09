@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "work",
-      "label": "Let him work on the one who needs it.",
+      "label": "Let him work on the one who needs it most.",
       "rule": "scion:injured:any",
       "tags": [
         "reckless"
@@ -44,7 +44,7 @@
     },
     {
       "id": "decline",
-      "label": "Decline.",
+      "label": "Decline, and keep your distance from the saws.",
       "rule": "leader",
       "tags": [
         "cautious"

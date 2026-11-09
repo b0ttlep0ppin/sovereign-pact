@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "kneel",
-      "label": "Kneel, and pay what it asks.",
+      "label": "Kneel among the dead, and pay his toll.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -49,7 +49,7 @@
     },
     {
       "id": "defy",
-      "label": "Refuse it.",
+      "label": "Refuse him, here at the seventh gate.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -57,14 +57,14 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It rises from its throne, and it is very much larger standing.",
+          "text": "He rises from his throne of the dead, and he is very much larger standing.",
           "effects": []
         }
       ]
     },
     {
       "id": "cheat",
-      "label": "Take the gift and refuse the price.",
+      "label": "Take his blessing, and leave the bowl empty.",
       "rule": "leader",
       "tags": [
         "clever",
@@ -85,7 +85,7 @@
         },
         {
           "w": 50,
-          "text": "The toll takes itself. The god stands anyway.",
+          "text": "The toll takes itself, quietly, from each of you. The god stands anyway, and his dead stand with him.",
           "effects": [
             {
               "to": "party",

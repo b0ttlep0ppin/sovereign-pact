@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "kneel",
-      "label": "Kneel, and pay what it asks.",
+      "label": "Kneel in the heat, and pay what he asks.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -53,7 +53,7 @@
     },
     {
       "id": "defy",
-      "label": "Refuse it.",
+      "label": "Refuse him, to his horned face.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -61,14 +61,14 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He stands. The mountain behind him burns higher.",
+          "text": "He stands, slow and enormous, and the mountain behind him roars higher.",
           "effects": []
         }
       ]
     },
     {
       "id": "cheat",
-      "label": "Take the gift and refuse the price.",
+      "label": "Take the gift, and keep your purses.",
       "rule": "leader",
       "tags": [
         "clever",

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "follow",
-      "label": "The best tracker follows the blood.",
+      "label": "The best tracker follows the blood, wherever it leads.",
       "rule": "scion:highest:acuity",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "A shortcut, straight to its lair.",
+          "text": "The blood runs straight and fresh, a shortcut through the rocks to the mouth of its lair.",
           "effects": [
             {
               "skip": 2
@@ -30,7 +30,7 @@
         },
         {
           "w": 40,
-          "text": "The blood was bait.",
+          "text": "The trail ends in a pool, and the pool was poured. The blood was bait, and the quarry is behind you.",
           "effects": [
             {
               "encounter": {
@@ -43,7 +43,7 @@
     },
     {
       "id": "careful",
-      "label": "Keep to the path.",
+      "label": "Keep to the path, and let it bleed.",
       "rule": "leader",
       "tags": [
         "cautious"

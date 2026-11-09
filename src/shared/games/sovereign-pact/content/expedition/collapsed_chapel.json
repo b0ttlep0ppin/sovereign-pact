@@ -22,7 +22,7 @@
       "outcomes": [
         {
           "w": 55,
-          "text": "Under the altar stone, a reliquary of grey ash that is warm to hold.",
+          "text": "Under the altar stone, a reliquary of grey ash that is warm to hold, like a hand that has only just let go.",
           "effects": [
             {
               "resources": {
@@ -38,7 +38,7 @@
         },
         {
           "w": 45,
-          "text": "The roof finishes falling.",
+          "text": "The roof finishes falling, and the light goes out under it.",
           "effects": [
             {
               "injury": "legs"
@@ -57,7 +57,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "The light goes out, gently, as if satisfied.",
+          "text": "The light dims, gently, as if satisfied, and the ruin falls very quiet.",
           "effects": [
             {
               "to": "party",
@@ -67,7 +67,7 @@
         },
         {
           "w": 30,
-          "text": "Nothing answers. That is worse.",
+          "text": "Nothing answers. The light keeps leaking out through the stones, steady, uninterested. That is worse.",
           "effects": [
             {
               "to": "party",

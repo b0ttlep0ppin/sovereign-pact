@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "refuse",
-      "label": "Send him away.",
+      "label": "Send him away into the dark.",
       "rule": "secret",
       "tags": [
         "cautious"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He shrugs and goes. Everyone sends him away, it seems. He looks tired.",
+          "text": "He shrugs and goes. Everyone sent him away, it seems. He looks tired, and a little disappointed in you all.",
           "effects": [],
           "when": {
             "none": "inform"
@@ -46,7 +46,7 @@
     },
     {
       "id": "inform",
-      "label": "Tell him what he wants.",
+      "label": "Tell him what he wants to hear.",
       "rule": "secret",
       "tags": [
         "cruel"
@@ -54,7 +54,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He pays in old silver. Nobody will ever know.",
+          "text": "He pays in old silver, warm from his hand. Nobody will ever know.",
           "effects": [
             {
               "resources": {

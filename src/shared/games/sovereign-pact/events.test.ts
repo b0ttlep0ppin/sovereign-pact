@@ -384,7 +384,8 @@ describe("each Scion's own choice and Forks (§9.3, §9.4)", () => {
     s = move(s, "p2", g.botMove!(s, "p2", undefined as never));
     s = move(s, "p2", g.botMove!(s, "p2", undefined as never));
     expect(s.expedition!.event).toBeUndefined();
-    expect(s.log.filter((l) => l.startsWith("Look away.")).length).toBe(4);
+    const away = TRIP_EVENTS.find((d) => d.id === "mirror_pool")!.options[1]!.label;
+    expect(s.log.filter((l) => l.startsWith(away)).length).toBe(4);
   });
 
   it("a Fork drops places ahead and puts others next, never the boss", () => {

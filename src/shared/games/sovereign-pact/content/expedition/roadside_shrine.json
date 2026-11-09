@@ -14,7 +14,7 @@
   "options": [
     {
       "id": "pray",
-      "label": "Kneel together and pray.",
+      "label": "Kneel together before the nameless saint.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -22,7 +22,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "Nothing answers, but you all stand up lucky.",
+          "text": "Nothing answers, but you all stand up lucky, and no one says it aloud.",
           "effects": [
             {
               "blessing": {

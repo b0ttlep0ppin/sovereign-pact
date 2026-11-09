@@ -48,7 +48,7 @@
     },
     {
       "id": "ignore",
-      "label": "Leave them be.",
+      "label": "Leave them be, and keep your own feet moving.",
       "rule": "leader",
       "tags": [
         "cautious"

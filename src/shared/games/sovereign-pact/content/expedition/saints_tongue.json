@@ -47,7 +47,7 @@
     },
     {
       "id": "leave",
-      "label": "Let it pray.",
+      "label": "Let it pray on.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -55,7 +55,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It prays for you as you go. You did not ask it to.",
+          "text": "It prays for you as you go, a little louder. You did not ask it to.",
           "effects": [
             {
               "sanity": 5

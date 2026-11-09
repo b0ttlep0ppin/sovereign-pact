@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "They draw every arrow and the rest cross clean.",
+          "text": "They draw every arrow, bristling like a hedgehog, and the rest cross clean.",
           "effects": [
             {
               "durability": -40,
@@ -36,7 +36,7 @@
         },
         {
           "w": 30,
-          "text": "Too many arrows.",
+          "text": "Too many arrows, too fast. One finds the gap.",
           "effects": [
             {
               "injury": "body"
@@ -47,7 +47,7 @@
     },
     {
       "id": "shield",
-      "label": "Walk under shields, slowly.",
+      "label": "Walk under shields, slowly, step by step.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -55,7 +55,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It takes all day, and dents every shield.",
+          "text": "It takes all day, arrows hammering overhead, and dents every shield.",
           "effects": [
             {
               "to": "party",
@@ -68,7 +68,7 @@
     },
     {
       "id": "source",
-      "label": "Find who is shooting.",
+      "label": "The sharpest eye looks for the archers.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -76,7 +76,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "A ghost archer company, still at war.",
+          "text": "A ghost archer company on the ridge, still at war, still shooting. They turn as one to face you.",
           "effects": [
             {
               "encounter": {}
@@ -85,7 +85,7 @@
         },
         {
           "w": 40,
-          "text": "No one. The arrows stop when you stop looking.",
+          "text": "No one there. The arrows stop when you stop looking for them, and nobody knows why that is worse.",
           "effects": [
             {
               "sanity": -10

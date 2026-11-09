@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A good haul from good work.",
+          "text": "A good haul. The wheel keeps turning the whole time, grinding nothing, faster when your backs are turned.",
           "effects": [
             {
               "resources": {
@@ -35,7 +35,7 @@
     },
     {
       "id": "search",
-      "label": "Search for the miller.",
+      "label": "Search the mill for the miller.",
       "rule": "scion:highest:acuity",
       "tags": [
         "kind"
@@ -43,7 +43,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "Hiding in the cellar. Grateful.",
+          "text": "Hiding in the cellar, white with flour and terror. Grateful, and very quick to pay you to go.",
           "effects": [
             {
               "resources": {
@@ -59,7 +59,7 @@
         },
         {
           "w": 50,
-          "text": "In the wheel.",
+          "text": "In the wheel. Going round, and round, and round.",
           "effects": [
             {
               "to": "party",
@@ -71,7 +71,7 @@
     },
     {
       "id": "rest",
-      "label": "Rest here a night.",
+      "label": "Rest here a night, and listen to the wheel.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -79,7 +79,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The wheel turns all night, like a heart.",
+          "text": "The wheel turns all night, steady as a heart, and nobody dreams.",
           "effects": [
             {
               "to": "party",

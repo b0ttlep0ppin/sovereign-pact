@@ -15,7 +15,7 @@
   "options": [
     {
       "id": "squeeze",
-      "label": "Squeeze through, gear and all.",
+      "label": "Squeeze through, gear and all, and pray nobody sticks.",
       "rule": "scion:heaviest_gear",
       "tags": [
         "bold"
@@ -23,7 +23,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "They scrape through, swearing, and the rest follow easily.",
+          "text": "They scrape through, swearing, leaving skin on the stone, and the rest follow easily.",
           "effects": [
             {
               "durability": -20,
@@ -33,7 +33,7 @@
         },
         {
           "w": 40,
-          "text": "They stick. Getting them out costs skin and an hour.",
+          "text": "They stick fast, and something far below breathes out. Getting them free costs skin and an hour of listening.",
           "effects": [
             {
               "durability": -40,
@@ -48,7 +48,7 @@
     },
     {
       "id": "around",
-      "label": "Look for another way.",
+      "label": "Look for another way round.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -56,7 +56,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "There is one. It is long.",
+          "text": "There is one. It is long, and dark, and full of the sound of dripping.",
           "effects": [
             {
               "sanity": -5
@@ -65,7 +65,7 @@
         },
         {
           "w": 50,
-          "text": "There is one, and something lives in it.",
+          "text": "There is one, and something lives in it, and it is awake.",
           "effects": [
             {
               "encounter": {}

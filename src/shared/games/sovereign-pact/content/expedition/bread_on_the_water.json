@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "eat",
-      "label": "Share it out.",
+      "label": "Share it out, and ask no questions.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Someone wanted you to live.",
+          "text": "It tastes of a kitchen none of you have ever stood in. Someone, somewhere, wanted you to live. For now.",
           "effects": [
             {
               "to": "party",
