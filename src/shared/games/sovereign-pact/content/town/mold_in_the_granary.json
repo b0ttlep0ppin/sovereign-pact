@@ -12,7 +12,7 @@
   "options": [
     {
       "id": "burn",
-      "label": "Burn the stock.",
+      "label": "Burn the stock, mold and all.",
       "tags": [
         "cautious"
       ],
@@ -32,7 +32,7 @@
     },
     {
       "id": "scrape",
-      "label": "Scrape what can be saved.",
+      "label": "Scrape away the mold and save what you can.",
       "tags": [
         "clever"
       ],
@@ -63,7 +63,7 @@
     },
     {
       "id": "ignore",
-      "label": "Ignore it.",
+      "label": "Leave it, and hope the cold kills it.",
       "tags": [
         "reckless"
       ],

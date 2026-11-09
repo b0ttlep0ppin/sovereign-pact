@@ -12,7 +12,7 @@
   "options": [
     {
       "id": "walk",
-      "label": "Send a Scion to walk with them.",
+      "label": "Send a Scion to walk with them to the Gate.",
       "tags": [
         "bold"
       ],
@@ -92,7 +92,7 @@
       "outcomes": [
         {
           "w": 1,
-          "text": "They wait at your door until midnight, then file on, singing.",
+          "text": "They wait at your door until midnight, singing without words, then file on.",
           "effects": []
         }
       ]

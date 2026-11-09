@@ -12,7 +12,7 @@
   "options": [
     {
       "id": "fund",
-      "label": "Fund the games (30 Gold).",
+      "label": "Fund the games, before the city finds its own (30 Gold).",
       "tags": [
         "kind"
       ],
@@ -37,14 +37,14 @@
     },
     {
       "id": "abstain",
-      "label": "Let others pay.",
+      "label": "Let the other Houses pay.",
       "tags": [
         "cautious"
       ],
       "outcomes": [
         {
           "w": 100,
-          "text": "You keep your purse closed, and watch who pays.",
+          "text": "You keep your purse closed, and watch who pays, and who does not.",
           "effects": []
         }
       ]

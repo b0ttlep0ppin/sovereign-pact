@@ -12,7 +12,7 @@
   "options": [
     {
       "id": "welcome",
-      "label": "Welcome them home.",
+      "label": "Welcome the drowned cousin home.",
       "tags": [
         "kind",
         "reckless"
@@ -82,7 +82,7 @@
     },
     {
       "id": "refuse",
-      "label": "Turn them away.",
+      "label": "Turn them away at the gate.",
       "tags": [
         "cautious"
       ],

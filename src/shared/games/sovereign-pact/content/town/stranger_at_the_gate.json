@@ -12,7 +12,7 @@
   "options": [
     {
       "id": "admit",
-      "label": "Admit them.",
+      "label": "Admit the stranger.",
       "tags": [
         "kind",
         "bold"
@@ -42,7 +42,7 @@
     },
     {
       "id": "interrogate",
-      "label": "Admit them, under guard, and ask questions.",
+      "label": "Admit them under guard, and ask questions.",
       "tags": [
         "clever"
       ],
@@ -71,7 +71,7 @@
     },
     {
       "id": "turn_away",
-      "label": "Turn them away.",
+      "label": "Turn them back into the sleet.",
       "tags": [
         "cautious"
       ],

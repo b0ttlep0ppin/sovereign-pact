@@ -12,7 +12,7 @@
   "options": [
     {
       "id": "envoy",
-      "label": "Send an envoy.",
+      "label": "Send an envoy to the Seat on the hill.",
       "tags": [
         "bold"
       ],

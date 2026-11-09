@@ -47,7 +47,7 @@
     },
     {
       "id": "study",
-      "label": "Study him.",
+      "label": "Let the surgeons study him.",
       "tags": [
         "clever",
         "cruel"
@@ -95,7 +95,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He is carried to the Rift Gate. He walks through it on his own.",
+          "text": "He is carried to the Rift Gate, and set down. He stands, and walks through it on his own, and does not look back.",
           "effects": [
             {
               "doom": 1

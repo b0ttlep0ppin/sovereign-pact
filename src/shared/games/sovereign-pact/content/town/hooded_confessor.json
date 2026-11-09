@@ -12,14 +12,14 @@
   "options": [
     {
       "id": "welcome",
-      "label": "Let him hear the city.",
+      "label": "Let him hear the city's sins.",
       "tags": [
         "kind"
       ],
       "outcomes": [
         {
           "w": 60,
-          "text": "The city sleeps easier, unburdened.",
+          "text": "The city sleeps easier, unburdened, and the black book grows.",
           "effects": [
             {
               "accord": 3
@@ -45,7 +45,7 @@
     },
     {
       "id": "seize",
-      "label": "Seize his book.",
+      "label": "Seize his black book.",
       "tags": [
         "bold",
         "cruel"
@@ -80,14 +80,14 @@
     },
     {
       "id": "ignore",
-      "label": "Leave him be.",
+      "label": "Leave him to his booth.",
       "tags": [
         "cautious"
       ],
       "outcomes": [
         {
           "w": 100,
-          "text": "He leaves in spring, heavy with secrets, by the road toward the Gate.",
+          "text": "He leaves in spring, heavy with secrets, by the road toward the Gate. Whatever waits there will read them.",
           "effects": [
             {
               "doom": 1

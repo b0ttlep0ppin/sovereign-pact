@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "pay",
-      "label": "Pay them in gold.",
+      "label": "Pay the Twelfth House in gold.",
       "tags": [
         "cautious"
       ],

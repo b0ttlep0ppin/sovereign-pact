@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "descend",
-      "label": "Send a Scion down the steps.",
+      "label": "Send a Scion down the steps that were never built.",
       "tags": [
         "bold"
       ],

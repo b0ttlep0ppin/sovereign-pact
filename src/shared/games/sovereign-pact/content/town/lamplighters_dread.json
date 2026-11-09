@@ -12,7 +12,7 @@
   "options": [
     {
       "id": "pay",
-      "label": "Pay them double for the winter.",
+      "label": "Pay the lamplighters double for the winter.",
       "tags": [
         "kind"
       ],
@@ -35,7 +35,7 @@
     },
     {
       "id": "escort",
-      "label": "Send your Scions out with them.",
+      "label": "Send your Scions out on the rounds with them.",
       "tags": [
         "bold"
       ],

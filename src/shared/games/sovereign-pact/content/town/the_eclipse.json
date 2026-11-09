@@ -19,7 +19,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The House waits it out on its knees.",
+          "text": "The House waits it out on its knees, candles burning blue, and the Gate's eye passes over you.",
           "effects": [
             {
               "sanity": 5
@@ -53,7 +53,7 @@
     },
     {
       "id": "go_out",
-      "label": "Go out under it.",
+      "label": "Walk out under the dead sun.",
       "tags": [
         "bold",
         "reckless"

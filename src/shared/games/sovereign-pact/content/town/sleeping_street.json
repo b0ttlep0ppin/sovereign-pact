@@ -76,14 +76,14 @@
     },
     {
       "id": "wait",
-      "label": "Wait.",
+      "label": "Wait, and watch the sleepers.",
       "tags": [
         "cautious"
       ],
       "outcomes": [
         {
           "w": 50,
-          "text": "They wake on the ninth day, starving, unable to say where they were.",
+          "text": "They wake on the ninth day, starving, unable to say where they were, all facing the same way.",
           "effects": []
         },
         {

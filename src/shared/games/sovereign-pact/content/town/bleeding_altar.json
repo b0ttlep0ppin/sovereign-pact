@@ -15,14 +15,14 @@
   "options": [
     {
       "id": "consecrate",
-      "label": "Have it consecrated again.",
+      "label": "Have the altar consecrated again.",
       "tags": [
         "cautious"
       ],
       "outcomes": [
         {
           "w": 70,
-          "text": "The bleeding stops. The priest who did it leaves the city.",
+          "text": "The bleeding stops. The priest who did it leaves the city that night, and does not say why.",
           "effects": [
             {
               "resources": {
@@ -49,7 +49,7 @@
     },
     {
       "id": "collect",
-      "label": "Collect it.",
+      "label": "Collect the blood in a bowl.",
       "tags": [
         "clever",
         "reckless"

@@ -22,7 +22,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "What comes off the anvil is beautiful and wrong.",
+          "text": "What comes off the anvil is beautiful and wrong, and the smith weeps to see it.",
           "effects": [
             {
               "score": {
@@ -36,7 +36,7 @@
         },
         {
           "w": 50,
-          "text": "The smith hammers for three days and nights and remembers none of it.",
+          "text": "The smith hammers for three days and nights and remembers none of it. The iron is gone, and so is the song.",
           "effects": [
             {
               "resources": {
@@ -56,7 +56,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The humming stops.",
+          "text": "The humming stops. The smith sleeps for two days, and wakes asking where she went.",
           "effects": [
             {
               "resources": {

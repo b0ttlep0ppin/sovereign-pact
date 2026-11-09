@@ -43,7 +43,7 @@
     },
     {
       "id": "walk",
-      "label": "Send a Scion to walk with them.",
+      "label": "Send a Scion to walk with them to the Gate.",
       "tags": [
         "bold"
       ],

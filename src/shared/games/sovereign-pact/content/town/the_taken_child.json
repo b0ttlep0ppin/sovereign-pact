@@ -22,7 +22,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Candles burn at the Gate every night. The town is with you.",
+          "text": "Candles burn at the Gate every night, and the town keeps them lit with you.",
           "effects": [
             {
               "accord": 3
@@ -70,14 +70,14 @@
     },
     {
       "id": "hush",
-      "label": "Keep it quiet; it is only a recruit.",
+      "label": "Keep it quiet. It is only a recruit.",
       "tags": [
         "cruel"
       ],
       "outcomes": [
         {
           "w": 100,
-          "text": "The barracks talk anyway.",
+          "text": "The barracks talk anyway, and so does the town.",
           "effects": [
             {
               "accord": -4

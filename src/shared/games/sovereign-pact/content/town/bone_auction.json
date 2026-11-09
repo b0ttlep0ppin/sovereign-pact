@@ -12,7 +12,7 @@
   "options": [
     {
       "id": "bid",
-      "label": "Send a sealed bid.",
+      "label": "Send a sealed bid to the cathedral steps.",
       "tags": [
         "bold"
       ],

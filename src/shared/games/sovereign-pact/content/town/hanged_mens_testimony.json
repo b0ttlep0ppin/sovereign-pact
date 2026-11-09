@@ -12,7 +12,7 @@
   "options": [
     {
       "id": "ask",
-      "label": "Ask them which House, and name it to the magistrates.",
+      "label": "Ask the hanged men which House, and name it to the magistrates.",
       "tags": [
         "cruel"
       ],

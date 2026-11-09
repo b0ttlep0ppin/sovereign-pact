@@ -12,7 +12,7 @@
   "options": [
     {
       "id": "cut",
-      "label": "Have the Apothecary cut it away.",
+      "label": "Have the Apothecary cut the second shadow away.",
       "tags": [
         "bold"
       ],

@@ -12,7 +12,7 @@
   "options": [
     {
       "id": "accept",
-      "label": "Hang it in the hall.",
+      "label": "Hang the late mirror in the hall.",
       "tags": [
         "bold"
       ],
@@ -50,7 +50,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "It breaks into seven shards, each one still a moment late.",
+          "text": "It breaks into seven shards, each one still a moment late. You bury them in seven places.",
           "effects": []
         },
         {

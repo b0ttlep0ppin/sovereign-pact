@@ -12,7 +12,7 @@
   "options": [
     {
       "id": "listen",
-      "label": "Send a Scion to listen at the Gate.",
+      "label": "Send a Scion to listen at the Gate to the end.",
       "tags": [
         "bold"
       ],
@@ -60,7 +60,7 @@
     },
     {
       "id": "answer",
-      "label": "Answer it, from the walls, with the Pact's words.",
+      "label": "Answer it from the walls, with the Pact's words.",
       "tags": [
         "kind"
       ],

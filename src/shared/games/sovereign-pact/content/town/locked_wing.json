@@ -12,7 +12,7 @@
   "options": [
     {
       "id": "enter",
-      "label": "Go in.",
+      "label": "Walk into the wing that was never built.",
       "tags": [
         "bold",
         "reckless"
@@ -20,7 +20,7 @@
       "outcomes": [
         {
           "w": 40,
-          "text": "A treasure room, dusty and real.",
+          "text": "A treasure room, dusty and real, and a portrait of you on the wall, older.",
           "effects": [
             {
               "score": {
@@ -61,7 +61,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The bricks are warm for a week.",
+          "text": "The bricks are warm for a week, and something on the other side breathes against them.",
           "effects": []
         }
       ]

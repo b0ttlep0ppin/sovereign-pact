@@ -12,7 +12,7 @@
   "options": [
     {
       "id": "pay",
-      "label": "Pay what he asks.",
+      "label": "Pay the drowned King what he asks.",
       "tags": [
         "kind"
       ],
@@ -39,7 +39,7 @@
     },
     {
       "id": "throw_out",
-      "label": "Have a Scion throw him in the river.",
+      "label": "Have a Scion throw the collector in the river.",
       "tags": [
         "bold"
       ],

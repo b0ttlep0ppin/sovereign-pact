@@ -15,14 +15,14 @@
   "options": [
     {
       "id": "seal",
-      "label": "Seal the well until it is done.",
+      "label": "Seal the well until it is cleansed.",
       "tags": [
         "cautious"
       ],
       "outcomes": [
         {
           "w": 100,
-          "text": "Water comes by cart from the river, dear and slow.",
+          "text": "Water comes by cart from the river, dear and slow, and the children stop dreaming.",
           "effects": [
             {
               "resources": {
@@ -48,7 +48,7 @@
         },
         {
           "w": 50,
-          "text": "The dreams spread.",
+          "text": "The dreams spread, house to house, and more children wake coughing weed.",
           "effects": [
             {
               "sanity": -10,
@@ -63,14 +63,14 @@
     },
     {
       "id": "pray",
-      "label": "Bless it at the Shrine.",
+      "label": "Have it blessed at the Shrine.",
       "tags": [
         "kind"
       ],
       "outcomes": [
         {
           "w": 100,
-          "text": "The priests sing over it every night. It helps the singers, at least.",
+          "text": "The priests sing over it every night. It helps the singers, at least, and the city sees them try.",
           "effects": [
             {
               "accord": 2
