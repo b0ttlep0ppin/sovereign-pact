@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A thirsty afternoon.",
+          "text": "A thirsty afternoon in the sun, while they take their time.",
           "effects": [
             {
               "to": "party",
@@ -41,7 +41,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "They go.",
+          "text": "They go, snarling, and you drink.",
           "effects": [
             {
               "to": "party",
@@ -51,7 +51,7 @@
         },
         {
           "w": 40,
-          "text": "They do not.",
+          "text": "They do not go.",
           "effects": [
             {
               "encounter": {
@@ -64,7 +64,7 @@
     },
     {
       "id": "sneak",
-      "label": "The quietest fills the skins.",
+      "label": "The quietest fills the skins under their noses.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"
@@ -72,7 +72,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Unseen.",
+          "text": "Unseen, though the old male's ear twitched once.",
           "effects": [
             {
               "to": "party",

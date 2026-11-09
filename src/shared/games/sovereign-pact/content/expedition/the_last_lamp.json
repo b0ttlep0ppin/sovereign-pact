@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "carry",
-      "label": "Carry it.",
+      "label": "Carry the little lamp.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The dark stays back as long as you have it.",
+          "text": "The dark stays back as long as you have it, pressing, listening.",
           "effects": [
             {
               "to": "party",
@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It burns brighter.",
+          "text": "It burns brighter, and each of you is missing something.",
           "effects": [
             {
               "to": "party",

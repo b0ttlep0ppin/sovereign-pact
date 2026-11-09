@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "fish",
-      "label": "The quickest hands catch him one.",
+      "label": "The quickest hands catch him a fish.",
       "rule": "scion:highest:speed",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He bows, and shows you a dry path.",
+          "text": "He swallows it whole, and bows, and shows you a dry path through the marsh.",
           "effects": [
             {
               "skip": 1
@@ -32,7 +32,7 @@
     },
     {
       "id": "refuse",
-      "label": "Refuse.",
+      "label": "Refuse him his fish.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -40,7 +40,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He stalks off, and the marsh is less friendly.",
+          "text": "He stalks off into the fog. The marsh is less friendly after, and it remembers.",
           "effects": [
             {
               "to": "party",
@@ -52,7 +52,7 @@
     },
     {
       "id": "crown",
-      "label": "Take the crown.",
+      "label": "Snatch his crown of reeds.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -60,7 +60,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Just reeds, and a curse.",
+          "text": "Just reeds, and a curse, and he will remember this slight forever.",
           "effects": [
             {
               "curse": true

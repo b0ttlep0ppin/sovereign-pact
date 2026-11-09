@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It walks again, and follows you, and kicks the first thing that attacks you.",
+          "text": "It walks again, and follows you, and kicks the first thing that comes at you.",
           "effects": [
             {
               "to": "party",
@@ -44,7 +44,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Fine tack, and a purse in the saddlebag.",
+          "text": "Fine tack, and a purse in the saddlebag, and blood in the purse.",
           "effects": [
             {
               "resources": {

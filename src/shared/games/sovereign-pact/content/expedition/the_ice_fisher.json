@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "She catches something with too many eyes, and gives it to you.",
+          "text": "She catches something with too many eyes, and gives it to you, and it is good to eat.",
           "effects": [
             {
               "to": "party",
@@ -35,7 +35,7 @@
         },
         {
           "w": 30,
-          "text": "Something catches her line, and pulls.",
+          "text": "Something catches her line, and pulls, and it is not her husband.",
           "effects": [
             {
               "encounter": {}
@@ -54,7 +54,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Her husband, she says. He fell through in the war.",
+          "text": "Her husband, she says. He fell through in the war. She is sure he will bite one day.",
           "effects": [
             {
               "score": {

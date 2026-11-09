@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "buy",
-      "label": "Buy one.",
+      "label": "Buy one of the eyes.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "It sees things you cannot.",
+          "text": "It sees things you cannot, and turns in its little box to show you.",
           "effects": [
             {
               "foresee": true
@@ -35,7 +35,7 @@
         },
         {
           "w": 40,
-          "text": "It sees you, and tells someone.",
+          "text": "It sees you, and tells someone what it saw.",
           "effects": [
             {
               "resources": {
@@ -59,7 +59,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Silence, and every faceless head turns your way.",
+          "text": "Oil and glass and eyes across the cobbles. Silence. Every faceless head in the street turns your way.",
           "effects": [
             {
               "encounter": {
@@ -72,7 +72,7 @@
     },
     {
       "id": "cover",
-      "label": "Cover the jar and walk on.",
+      "label": "Cover the jar, and walk on.",
       "rule": "leader",
       "tags": [
         "cautious"

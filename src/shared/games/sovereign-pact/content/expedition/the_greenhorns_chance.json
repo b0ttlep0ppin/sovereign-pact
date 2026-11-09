@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It is quick and ugly, and they will remember it.",
+          "text": "It is quick and ugly, and they will remember its eyes.",
           "effects": [
             {
               "xp": 120
@@ -35,7 +35,7 @@
     },
     {
       "id": "mend",
-      "label": "Bind its leg and let it go.",
+      "label": "The wisest binds its leg and lets it go.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "kind"
@@ -43,7 +43,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It limps off, and something in the wood is grateful.",
+          "text": "It limps off into the trees, and something in the wood is grateful.",
           "effects": [
             {
               "to": "party",
@@ -55,7 +55,7 @@
     },
     {
       "id": "leave",
-      "label": "Leave it.",
+      "label": "Leave it in its hollow.",
       "rule": "leader",
       "tags": [
         "cautious"

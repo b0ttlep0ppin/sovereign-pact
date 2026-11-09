@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "dance",
-      "label": "The most troubled takes the hand.",
+      "label": "The most troubled takes the ghost's hand.",
       "rule": "scion:lowest:sanity",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "One dance, slow, and they come out lighter.",
+          "text": "One dance, slow and cold, and they come out lighter.",
           "effects": [
             {
               "sanity": 25
@@ -30,7 +30,7 @@
         },
         {
           "w": 30,
-          "text": "One dance, and then another, and another.",
+          "text": "One dance, and then another, and another, and they cannot stop.",
           "effects": [
             {
               "sanity": -10
@@ -52,7 +52,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It is a very long night, and a good one.",
+          "text": "It is a very long night among the dead, and a good one, and your feet ache at dawn.",
           "effects": [
             {
               "to": "party",

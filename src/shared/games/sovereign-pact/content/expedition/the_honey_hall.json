@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "honey",
-      "label": "Gather honey.",
+      "label": "Gather honey from the rafters.",
       "rule": "leader",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "The bees allow it, this once.",
+          "text": "The bees allow it, this once, humming around your heads.",
           "effects": [
             {
               "to": "party",
@@ -59,7 +59,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Sleepy bees and a great deal of honey.",
+          "text": "Sleepy bees, slow as falling leaves, and a great deal of honey.",
           "effects": [
             {
               "resources": {
@@ -76,7 +76,7 @@
     },
     {
       "id": "leave",
-      "label": "Leave them to it.",
+      "label": "Leave them to their hall.",
       "rule": "vote",
       "tags": [
         "cautious"

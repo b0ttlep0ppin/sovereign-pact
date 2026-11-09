@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "read",
-      "label": "Read it.",
+      "label": "Break the seal and read it.",
       "rule": "vote",
       "tags": [
         "clever"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Where they are, and how long they can hold.",
+          "text": "Where they are, and how long they can hold, and how afraid they are.",
           "effects": [
             {
               "foresee": true
@@ -43,7 +43,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Honor kept.",
+          "text": "Honor kept, and the weight of not knowing.",
           "effects": [
             {
               "score": {
@@ -64,7 +64,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "In his pocket, a second letter.",
+          "text": "In his pocket, a second letter, and a way to find them sooner.",
           "effects": [
             {
               "skip": 1

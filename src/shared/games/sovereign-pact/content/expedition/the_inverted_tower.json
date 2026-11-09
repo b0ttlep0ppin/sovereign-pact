@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "climb",
-      "label": "Climb up into it.",
+      "label": "Climb up into the hanging tower.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "A library upside down, its books still readable.",
+          "text": "A library upside down, its books still readable if you hang by your knees.",
           "effects": [
             {
               "score": {
@@ -32,7 +32,7 @@
         },
         {
           "w": 50,
-          "text": "It falls up with you inside.",
+          "text": "It falls up with you inside, and keeps falling.",
           "effects": [
             {
               "to": "party",
@@ -52,7 +52,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Someone looks back, and points the way.",
+          "text": "Someone upside down looks back, and points the way, and waves.",
           "effects": [
             {
               "skip": 1
@@ -71,7 +71,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The tower turns to watch you go.",
+          "text": "The tower turns, slowly, to watch you go.",
           "effects": [
             {
               "to": "party",

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "knock",
-      "label": "Knock.",
+      "label": "Knock on the door with the wreath of teeth.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "An old hermit, glad of company. He feeds you.",
+          "text": "An old hermit, glad of company. He feeds you, and does not say whose teeth.",
           "effects": [
             {
               "to": "party",
@@ -46,7 +46,7 @@
     },
     {
       "id": "peek",
-      "label": "The quietest peeks in.",
+      "label": "The quietest peeks in through the knothole.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"
@@ -67,7 +67,7 @@
     },
     {
       "id": "pass",
-      "label": "Let them be.",
+      "label": "Let whoever lives there be.",
       "rule": "leader",
       "tags": [
         "cautious"

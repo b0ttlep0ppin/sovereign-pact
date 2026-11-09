@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "take",
-      "label": "Take her with you.",
+      "label": "Take her away with you.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The court sends hunters after you.",
+          "text": "She clings to your hand, and the Court sends its hunters after you.",
           "effects": [
             {
               "score": {
@@ -37,7 +37,7 @@
     },
     {
       "id": "hide",
-      "label": "The shrewdest hides her among pilgrims.",
+      "label": "The shrewdest hides her among the pilgrims.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"
@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "She gets away, and no one knows how.",
+          "text": "She gets away, and no one ever knows how.",
           "effects": [
             {
               "score": {
@@ -59,7 +59,7 @@
     },
     {
       "id": "refuse",
-      "label": "Refuse. It is not your place.",
+      "label": "Refuse her. It is not your place.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -67,7 +67,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "She watches you go.",
+          "text": "She watches you go, the bead in her fist. You will think of her when you smell smoke.",
           "effects": [
             {
               "to": "party",

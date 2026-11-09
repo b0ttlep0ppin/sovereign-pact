@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "strike",
-      "label": "The strongest strikes.",
+      "label": "The strongest takes his game, and strikes.",
       "rule": "scion:highest:might",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "His head rolls, and he picks it up. He says he will find you again.",
+          "text": "His head rolls in the moss, and he picks it up, and it smiles. He says he will find you again.",
           "effects": [
             {
               "score": {
@@ -37,7 +37,7 @@
     },
     {
       "id": "decline",
-      "label": "Decline the game.",
+      "label": "Decline his game.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -67,7 +67,7 @@
     },
     {
       "id": "trick",
-      "label": "The shrewdest offers a different game.",
+      "label": "The shrewdest offers him a different game.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"
@@ -75,7 +75,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He loses a riddle and gives up his belt.",
+          "text": "He loses a riddle, laughing, and gives up his belt of green.",
           "effects": [
             {
               "item": {

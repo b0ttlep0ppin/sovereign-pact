@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "pay",
-      "label": "Each pays a memory.",
+      "label": "Each pays the ferryman a memory.",
       "rule": "each_scion",
       "tags": [
         "cautious"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "A small one, gone.",
+          "text": "A small one, gone into his hand.",
           "effects": [
             {
               "sanity": -5
@@ -30,7 +30,7 @@
         },
         {
           "w": 30,
-          "text": "A big one.",
+          "text": "A big one, and he smiles as he takes it.",
           "effects": [
             {
               "sanity": -15
@@ -41,7 +41,7 @@
     },
     {
       "id": "swim",
-      "label": "Find another way.",
+      "label": "Each finds another way across.",
       "rule": "each_scion",
       "tags": [
         "reckless"
@@ -49,7 +49,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "Around the river, singed.",
+          "text": "Around the river, singed and choking.",
           "effects": [
             {
               "durability": -20,

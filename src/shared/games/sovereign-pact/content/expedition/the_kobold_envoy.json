@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "pay",
-      "label": "Pay the tribute.",
+      "label": "Pay the dragon's tribute.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The kobold bows, and the hills are quiet for you.",
+          "text": "The kobold bows until his crown falls off, and the hills are quiet for you.",
           "effects": [
             {
               "resources": {
@@ -80,7 +80,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A gilt crown, and his kin swarming out of the rocks.",
+          "text": "A gilt crown, and his kin swarming out of the rocks, shrieking.",
           "effects": [
             {
               "resources": {

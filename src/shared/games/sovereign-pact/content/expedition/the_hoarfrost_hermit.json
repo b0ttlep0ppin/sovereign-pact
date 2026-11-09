@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "shelter",
-      "label": "Shelter with him.",
+      "label": "Shelter with the half-frozen man.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 80,
-          "text": "A cold, safe night.",
+          "text": "A cold, safe night, and his heart beats slow in the dark.",
           "effects": [
             {
               "to": "party",
@@ -31,7 +31,7 @@
         },
         {
           "w": 20,
-          "text": "Colder than you thought.",
+          "text": "Colder than you thought. By morning, a little of the ice is in you too.",
           "effects": [
             {
               "to": "party",
@@ -51,7 +51,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A warning, and a way to keep warm.",
+          "text": "A warning, and a way to keep the cold from the heart.",
           "effects": [
             {
               "blessing": {
@@ -73,7 +73,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Through, and frostbitten.",
+          "text": "Through, and frostbitten, and toes that will not warm for days.",
           "effects": [
             {
               "to": "party",

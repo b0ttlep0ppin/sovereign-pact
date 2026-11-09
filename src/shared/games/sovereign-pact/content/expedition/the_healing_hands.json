@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "lay",
-      "label": "The most wounded lays their wound in the hands.",
+      "label": "The most wounded lays their wound in the stone hands.",
       "rule": "scion:injured:any|scion:lowest:sanity",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The hands close, warm, and open again.",
+          "text": "The hands close, warm as flesh, and open again, and the wound is gone.",
           "effects": [
             {
               "mend": true
@@ -43,7 +43,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A warmth that lasts.",
+          "text": "A warmth that spreads up the arm and lasts.",
           "effects": [
             {
               "to": "party",
@@ -67,7 +67,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The hands close on the thief's fingers.",
+          "text": "The stone hands close on the thief's fingers, slowly, and grind.",
           "effects": [
             {
               "resources": {

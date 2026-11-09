@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "run",
-      "label": "Run before it.",
+      "label": "Run before the fire.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "Out ahead of it, gasping.",
+          "text": "Out ahead of it, gasping, with ash in your hair.",
           "effects": [
             {
               "to": "party",
@@ -31,7 +31,7 @@
         },
         {
           "w": 30,
-          "text": "It catches you at the edge.",
+          "text": "It catches you at the edge, and the grass goes up under your feet.",
           "effects": [
             {
               "to": "party",
@@ -51,7 +51,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A burned patch to shelter in. The fire goes round.",
+          "text": "A black patch to shelter in, and the fire roars round you on both sides.",
           "effects": [
             {
               "score": {
@@ -72,7 +72,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Wet, and safe, and fleeing beasts all round you.",
+          "text": "Wet, and safe from the fire, and the fleeing beasts are all round you, and frightened.",
           "effects": [
             {
               "encounter": {}

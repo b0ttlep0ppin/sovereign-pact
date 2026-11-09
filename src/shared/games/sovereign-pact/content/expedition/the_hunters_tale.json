@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "drink",
-      "label": "Buy him the drink.",
+      "label": "Buy the old hunter his drink.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Where it hides, and what it fears.",
+          "text": "He tells you where it hides, and what it fears, and what it did to his arm.",
           "effects": [
             {
               "resources": {
@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He tells them the trick he never got to use.",
+          "text": "He tells them the trick he never got to use, and grips their wrist hard as he does.",
           "effects": [
             {
               "xp": 80
@@ -60,7 +60,7 @@
     },
     {
       "id": "scoff",
-      "label": "Scoff and go on.",
+      "label": "Scoff at him, and go on.",
       "rule": "leader",
       "tags": [
         "bold"
@@ -68,7 +68,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He calls after you the way he lost.",
+          "text": "He calls after you exactly how he lost, in detail, and you cannot stop hearing it.",
           "effects": [
             {
               "to": "party",

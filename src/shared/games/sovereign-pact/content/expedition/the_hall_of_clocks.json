@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "Time catches up all at once, and carries you ahead.",
+          "text": "Time catches up all at once, and carries you a long way ahead.",
           "effects": [
             {
               "skip": 2
@@ -30,7 +30,7 @@
         },
         {
           "w": 40,
-          "text": "Time catches up with you.",
+          "text": "Time catches up with you, and it has been waiting.",
           "effects": [
             {
               "to": "party",
@@ -54,7 +54,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It counts down to something.",
+          "text": "All thousand clocks are counting down to the same thing.",
           "effects": [
             {
               "foresee": true
@@ -76,7 +76,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Silence, and something that was waiting for it.",
+          "text": "Silence, at last, and something that was waiting for the silence.",
           "effects": [
             {
               "encounter": {

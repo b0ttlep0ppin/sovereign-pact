@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "fire",
-      "label": "Build the fire high.",
+      "label": "Build the fire high, and wait.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A sleepless night, but no visitors.",
+          "text": "A sleepless night of laughter in the dark, but no visitors.",
           "effects": [
             {
               "to": "party",
@@ -52,7 +52,7 @@
         },
         {
           "w": 30,
-          "text": "They do not scatter.",
+          "text": "They do not scatter. They laugh louder.",
           "effects": [
             {
               "encounter": {
@@ -73,7 +73,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They feast, and leave you be.",
+          "text": "They feast, giggling, and leave you be.",
           "effects": [
             {
               "resources": {

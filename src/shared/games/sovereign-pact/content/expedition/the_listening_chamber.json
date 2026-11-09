@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "Nothing hears.",
+          "text": "Nothing hears. Every heartbeat sounds like a drum.",
           "effects": [
             {
               "to": "party",
@@ -44,7 +44,7 @@
     },
     {
       "id": "shout",
-      "label": "Shout a challenge down.",
+      "label": "Shout a challenge down into the dark.",
       "rule": "leader",
       "tags": [
         "bold"
@@ -73,7 +73,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They hear it all: where it sleeps, where it eats, where it keeps things.",
+          "text": "They hear it all: where it sleeps, where it eats, where it keeps its things.",
           "effects": [
             {
               "fork": {

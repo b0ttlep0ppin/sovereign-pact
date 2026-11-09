@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "killer",
-      "label": "The most blooded steps forward.",
+      "label": "The most blooded steps forward to be judged.",
       "rule": "scion:most_kills|scion:highest:might",
       "tags": [
         "bold"
@@ -37,7 +37,7 @@
         },
         {
           "w": 50,
-          "text": "He judges them harshly.",
+          "text": "He judges them harshly, and the herd turns.",
           "effects": [
             {
               "encounter": {
@@ -58,7 +58,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He is satisfied, and the herd lets you pass.",
+          "text": "He is satisfied, and the herd parts to let you pass.",
           "effects": [
             {
               "skip": 1
@@ -77,7 +77,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The herd tramples your packs.",
+          "text": "The herd passes, a thousand elk, and tramples your packs.",
           "effects": [
             {
               "resources": {

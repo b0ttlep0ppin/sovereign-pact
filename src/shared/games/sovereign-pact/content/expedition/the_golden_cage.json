@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "free",
-      "label": "Open the cage.",
+      "label": "Open the golden cage.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "It flies, singing, and the singing stays with you.",
+          "text": "It flies, singing in your mother's voice, and the song stays with you, kind.",
           "effects": [
             {
               "to": "party",
@@ -31,7 +31,7 @@
         },
         {
           "w": 40,
-          "text": "It flies, and laughs in a voice that is not your mother's.",
+          "text": "It flies, and laughs, in a voice that is not your mother's at all.",
           "effects": [
             {
               "to": "party",
@@ -51,7 +51,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Very fine gold. The bird does not speak again.",
+          "text": "Very fine gold. The bird does not speak again, but it watches.",
           "effects": [
             {
               "resources": {
@@ -76,7 +76,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It says something only your mother knew.",
+          "text": "It says something only your mother knew, and then something she never told anyone.",
           "effects": [
             {
               "score": {

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "go",
-      "label": "Go for the hoard.",
+      "label": "Go for the dragon's hoard.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "The hour was right.",
+          "text": "The hour was right. The dragon sleeps, and you take what you can carry.",
           "effects": [
             {
               "resources": {
@@ -38,7 +38,7 @@
         },
         {
           "w": 50,
-          "text": "The hour was wrong.",
+          "text": "The hour was wrong. That is why he was laughing.",
           "effects": [
             {
               "encounter": {
@@ -59,7 +59,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A rival House pays well, and goes.",
+          "text": "A rival House pays well for it, and goes off into the hills. You do not hear from them.",
           "effects": [
             {
               "resources": {
@@ -77,7 +77,7 @@
     },
     {
       "id": "bury",
-      "label": "Bury the hunter, and the map with him.",
+      "label": "Bury the hunter, and his map with him.",
       "rule": "leader",
       "tags": [
         "kind"
@@ -85,7 +85,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He would have wanted to keep it.",
+          "text": "He would have wanted to keep it, and he is still grinning when the earth covers him.",
           "effects": [
             {
               "score": {

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "listen",
-      "label": "Stop and listen.",
+      "label": "Stop and listen to the frozen choir.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -50,7 +50,7 @@
     },
     {
       "id": "break",
-      "label": "Break the ring.",
+      "label": "Break their ring.",
       "rule": "leader",
       "tags": [
         "bold"
@@ -58,7 +58,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The figures shatter, and something under the ice is very angry about it.",
+          "text": "The figures shatter like glass, and something under the ice is very angry about it.",
           "effects": [
             {
               "encounter": {
@@ -71,7 +71,7 @@
     },
     {
       "id": "hurry",
-      "label": "Hurry past with ears covered.",
+      "label": "Hurry past with your ears covered.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -79,7 +79,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Nobody hears it. Nobody quite forgets it either.",
+          "text": "Nobody hears it. Nobody quite forgets it either, and the cold bites harder for the hurry.",
           "effects": [
             {
               "to": "party",

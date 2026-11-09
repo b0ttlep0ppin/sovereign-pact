@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A place to come back to.",
+          "text": "A place to come back to, and to build on.",
           "effects": [
             {
               "house_improvement": "building"
@@ -32,7 +32,7 @@
     },
     {
       "id": "drink",
-      "label": "Drink and rest.",
+      "label": "Drink and rest by the water.",
       "rule": "leader",
       "tags": [
         "kind"
@@ -40,7 +40,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Clean water, clean heads.",
+          "text": "Clean water, clean heads, and the deer come down to drink beside you.",
           "effects": [
             {
               "to": "party",
@@ -56,7 +56,7 @@
     },
     {
       "id": "poison",
-      "label": "The craftiest fouls it, so no rival can use it.",
+      "label": "The craftiest fouls the spring, so no rival can use it.",
       "rule": "scion:highest:guile",
       "tags": [
         "cruel"
@@ -64,7 +64,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Spiteful work.",
+          "text": "Spiteful work, and the deer stop coming.",
           "effects": [
             {
               "score": {

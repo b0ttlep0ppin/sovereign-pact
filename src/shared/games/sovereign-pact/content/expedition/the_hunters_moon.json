@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "hunt",
-      "label": "Hunt by moonlight.",
+      "label": "Hunt by the red moonlight.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "There it is.",
+          "text": "There it is, black against the red, and it cannot hide tonight. Neither can you.",
           "effects": [
             {
               "encounter": {
@@ -47,7 +47,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It moves in the night.",
+          "text": "It moves in the night, close by. You hear it pass the camp, slowly, and keep going.",
           "effects": [
             {
               "to": "party",
@@ -59,7 +59,7 @@
     },
     {
       "id": "pray",
-      "label": "The devout asks the moon for luck.",
+      "label": "The devout asks the red moon for luck.",
       "rule": "scion:trait:devout|scion:highest:sagacity",
       "tags": [
         "kind"
@@ -67,7 +67,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The moon answers.",
+          "text": "The moon answers, and the shadows lean your way.",
           "effects": [
             {
               "blessing": {

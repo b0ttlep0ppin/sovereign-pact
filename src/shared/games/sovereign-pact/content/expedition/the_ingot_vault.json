@@ -52,7 +52,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A pressure plate. You step around it.",
+          "text": "A pressure plate, worn smooth by the last ones who found it. You step around it, carefully.",
           "effects": [
             {
               "resources": {
@@ -66,7 +66,7 @@
     },
     {
       "id": "leave",
-      "label": "Too obvious a trap.",
+      "label": "Leave it. Too obvious a trap.",
       "rule": "vote",
       "tags": [
         "cautious"

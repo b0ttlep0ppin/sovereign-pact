@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "ask",
-      "label": "Ask who for.",
+      "label": "Ask him who the graves are for.",
       "rule": "vote",
       "tags": [
         "clever"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He names a rival House.",
+          "text": "He names a rival House, and keeps digging, and does not look up.",
           "effects": [
             {
               "score": {
@@ -42,7 +42,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He gives them a shovel blessed against the dead.",
+          "text": "He gives them his spare shovel, blessed against the dead. They will need it, he says.",
           "effects": [
             {
               "item": {
@@ -55,7 +55,7 @@
     },
     {
       "id": "fill",
-      "label": "Fill them in.",
+      "label": "Fill in his graves.",
       "rule": "leader",
       "tags": [
         "bold"
@@ -63,7 +63,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He weeps, and the barrows stir.",
+          "text": "He weeps, and the barrows stir, waiting for their beds.",
           "effects": [
             {
               "encounter": {}

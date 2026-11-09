@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "cut",
-      "label": "Cut one down and open it.",
+      "label": "The leader cuts one down and opens it.",
       "rule": "leader",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "Inside is a charm, old but strong.",
+          "text": "Inside is a charm, old but strong, wrapped around a tooth.",
           "effects": [
             {
               "item": {
@@ -32,7 +32,7 @@
         },
         {
           "w": 50,
-          "text": "Inside is a name, and it is the leader's.",
+          "text": "Inside is a name, and it is the leader's, and it is fresh.",
           "effects": [
             {
               "curse": true
@@ -54,7 +54,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The wood seems to settle around you.",
+          "text": "The wood seems to settle around you, as if you had answered a question correctly.",
           "effects": [
             {
               "to": "party",
@@ -72,7 +72,7 @@
     },
     {
       "id": "burn",
-      "label": "Burn a path through.",
+      "label": "Burn a path through the bundles.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -80,7 +80,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The wood burns screaming, and what comes out of it is not happy.",
+          "text": "The wood burns screaming, and what comes out of the smoke is not happy.",
           "effects": [
             {
               "encounter": {

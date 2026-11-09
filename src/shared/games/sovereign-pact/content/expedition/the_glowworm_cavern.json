@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "rest",
-      "label": "Rest here.",
+      "label": "Rest here, under the false stars.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A good rest under false stars.",
+          "text": "A good rest under false stars, warm and soft and smelling of rain.",
           "effects": [
             {
               "to": "party",
@@ -37,7 +37,7 @@
     },
     {
       "id": "gather",
-      "label": "Gather the worms for light.",
+      "label": "The sharpest gathers worms for light.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Jars of light, for the dark ahead.",
+          "text": "Jars of soft light for the dark ahead, and the dark keeps its distance.",
           "effects": [
             {
               "to": "party",
@@ -57,7 +57,7 @@
     },
     {
       "id": "deeper",
-      "label": "Follow the worms deeper.",
+      "label": "Follow the worms deeper in.",
       "rule": "leader",
       "tags": [
         "bold"
@@ -65,7 +65,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They lead to something that eats them.",
+          "text": "They lead to something that eats them, and it is still hungry.",
           "effects": [
             {
               "encounter": {

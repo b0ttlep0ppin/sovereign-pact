@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "pray",
-      "label": "The most blooded prays.",
+      "label": "The most blooded prays at the shrine of skulls.",
       "rule": "scion:most_kills|scion:highest:might",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The spirit answers.",
+          "text": "The hunt's spirit answers, a breath of musk and blood, and luck comes with it.",
           "effects": [
             {
               "blessing": {
@@ -35,7 +35,7 @@
     },
     {
       "id": "offer",
-      "label": "Leave an offering.",
+      "label": "Leave an offering on the bloody stone.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -43,7 +43,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A little luck.",
+          "text": "A little luck, and your feet are quick as deer's for a while.",
           "effects": [
             {
               "resources": {
@@ -60,7 +60,7 @@
     },
     {
       "id": "skull",
-      "label": "Take a skull.",
+      "label": "Take a skull from the pile.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -68,7 +68,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The spirit is displeased.",
+          "text": "The spirit is displeased, and the antler roof creaks, and something follows you out.",
           "effects": [
             {
               "curse": true

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "follow",
-      "label": "The most troubled follows the one that flickers toward them.",
+      "label": "The most troubled follows the lantern that turned to them.",
       "rule": "scion:lowest:sanity",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It is someone they knew, come to say goodbye.",
+          "text": "It is someone they knew, come to say goodbye, and they get to say it back.",
           "effects": [
             {
               "sanity": 20
@@ -40,7 +40,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It is very bright, and very sad.",
+          "text": "It is very bright, and very sad, and it never stops looking for the others.",
           "effects": [
             {
               "resources": {

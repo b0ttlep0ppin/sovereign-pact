@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "read",
-      "label": "The wisest reads while he sleeps.",
+      "label": "The wisest reads while the librarian sleeps.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "Things the Pact does not want known.",
+          "text": "Things the Pact does not want known, written very carefully.",
           "effects": [
             {
               "score": {
@@ -35,7 +35,7 @@
         },
         {
           "w": 30,
-          "text": "Something in the book reads back.",
+          "text": "Something in the book reads back, and finds them interesting.",
           "effects": [
             {
               "curse": true
@@ -54,7 +54,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It is worth a fortune, and they will come for it.",
+          "text": "It is worth a fortune, and it breathes in the pack, and they will come for it.",
           "effects": [
             {
               "item": {

@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 55,
-          "text": "The judges bow and unlock her. She was telling the truth.",
+          "text": "The judges bow and unlock her chains. She was telling the truth.",
           "effects": [
             {
               "score": {
@@ -36,7 +36,7 @@
         },
         {
           "w": 45,
-          "text": "The judges unlock her. She was not.",
+          "text": "The judges unlock her chains. She was not telling the truth.",
           "effects": [
             {
               "encounter": {
@@ -57,7 +57,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The court is pleased with you, in its way.",
+          "text": "The Court is pleased with you, in its way. You hear the pyre from the road.",
           "effects": [
             {
               "score": {
@@ -82,7 +82,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It is not a trial. It was never a trial. You learn a great deal about how the court thinks.",
+          "text": "It is not a trial. It was never a trial. You learn a great deal about how the Court thinks.",
           "effects": [
             {
               "score": {

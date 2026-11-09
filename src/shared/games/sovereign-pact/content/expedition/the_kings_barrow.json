@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "enter",
-      "label": "Go in.",
+      "label": "Go into the king's barrow.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Someone came before you, and woke what was inside.",
+          "text": "Someone came before you, and woke what was inside, and it is still awake.",
           "effects": [
             {
               "encounter": {
@@ -47,7 +47,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "To their camp, and the king's crown.",
+          "text": "To their camp, and the king's crown, and the robbers, who are not glad to see you.",
           "effects": [
             {
               "encounter": {}
@@ -63,7 +63,7 @@
     },
     {
       "id": "seal",
-      "label": "Reseal it.",
+      "label": "Reseal the king's door.",
       "rule": "leader",
       "tags": [
         "kind"
@@ -71,7 +71,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The king thanks you in a dream.",
+          "text": "The king thanks you in a dream, and his hand on your shoulder is cold and strong.",
           "effects": [
             {
               "blessing": {

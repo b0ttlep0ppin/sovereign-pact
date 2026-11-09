@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "It never wilts and never breaks.",
+          "text": "It never wilts and never breaks, and it chimes when no one is near.",
           "effects": [
             {
               "score": {
@@ -32,7 +32,7 @@
         },
         {
           "w": 50,
-          "text": "The gardener comes.",
+          "text": "The gardener comes, and it is not happy about its rose.",
           "effects": [
             {
               "encounter": {}
@@ -51,7 +51,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The chimes play a tune, and the way out is shorter than the way in.",
+          "text": "The flowers chime a little tune, and the way out is shorter than the way in.",
           "effects": [
             {
               "skip": 1
@@ -66,7 +66,7 @@
     },
     {
       "id": "walk",
-      "label": "Walk carefully round.",
+      "label": "Walk carefully round the beds.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -74,7 +74,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Not one petal touched.",
+          "text": "Not one petal touched, and you feel the garden relax behind you.",
           "effects": [
             {
               "to": "party",
