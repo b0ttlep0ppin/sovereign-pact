@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Hunters, mostly. It is not afraid of you.",
+          "text": "Hunters, mostly. Lots of hunters. It is not afraid of you at all.",
           "effects": [
             {
               "foresee": true
@@ -36,7 +36,7 @@
     },
     {
       "id": "bait",
-      "label": "Use the bones as bait.",
+      "label": "Use its own bones as bait.",
       "rule": "vote",
       "tags": [
         "clever"
@@ -44,7 +44,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It comes to defend its larder.",
+          "text": "It comes to defend its larder, roaring.",
           "effects": [
             {
               "encounter": {
@@ -65,7 +65,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A good knife, and the quarry's return.",
+          "text": "A good knife in a dead hand, and then the quarry's breath on your neck.",
           "effects": [
             {
               "item": {

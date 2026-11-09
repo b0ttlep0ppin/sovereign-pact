@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "quiet",
-      "label": "Creep under them.",
+      "label": "Creep under them, slow and silent.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -42,7 +42,7 @@
         },
         {
           "w": 20,
-          "text": "They wake.",
+          "text": "They wake. Ten thousand of them, screaming, in your hair and your eyes and your mouths.",
           "effects": [
             {
               "to": "party",
@@ -66,7 +66,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Foul, profitable.",
+          "text": "Foul work, and profitable. The smell will take a week to leave you.",
           "effects": [
             {
               "resources": {
@@ -83,7 +83,7 @@
     },
     {
       "id": "fire",
-      "label": "The strongest lights a torch and drives them out.",
+      "label": "The strongest drives them out with a torch.",
       "rule": "scion:highest:might",
       "tags": [
         "reckless"
@@ -91,7 +91,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They go, and something big that ate them comes in.",
+          "text": "They go in a black storm, and something big that eats them comes in after them.",
           "effects": [
             {
               "encounter": {}

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "sing",
-      "label": "The steadiest voice sings the part.",
+      "label": "The steadiest voice sings the missing part.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The dead are satisfied.",
+          "text": "The song closes over the gap like water, and the dead are satisfied, and fall silent.",
           "effects": [
             {
               "to": "party",
@@ -38,7 +38,7 @@
     },
     {
       "id": "fill",
-      "label": "Put a skull from outside into the niche.",
+      "label": "Put a skull from outside into the empty niche.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -46,7 +46,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The song changes key, and the dead stand up.",
+          "text": "The song changes key, and becomes a battle hymn, and the dead stand up.",
           "effects": [
             {
               "encounter": {}
@@ -57,7 +57,7 @@
     },
     {
       "id": "hush",
-      "label": "Walk on quietly.",
+      "label": "Walk on, very quietly.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -65,7 +65,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The song follows you for a mile.",
+          "text": "The song follows you for a mile, faltering at the gap, always at the gap.",
           "effects": [
             {
               "to": "party",

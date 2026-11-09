@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "take",
-      "label": "Take a half each.",
+      "label": "Take a half each, and keep them apart.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Heavy, and warm in the pack.",
+          "text": "Heavy, and warm in the pack, leaning always toward the other half.",
           "effects": [
             {
               "to": "party",
@@ -38,7 +38,7 @@
     },
     {
       "id": "join",
-      "label": "The strongest tries to join the halves.",
+      "label": "The strongest pushes the halves together.",
       "rule": "scion:highest:might",
       "tags": [
         "reckless"
@@ -46,7 +46,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "They fuse with a ring like a bell.",
+          "text": "They fuse with a ring like a great bell, and the hammer is whole.",
           "effects": [
             {
               "item": {
@@ -57,7 +57,7 @@
         },
         {
           "w": 50,
-          "text": "They fuse with a blast.",
+          "text": "They fuse with a blast that throws them across the forge.",
           "effects": [
             {
               "injury": "arms"
@@ -68,7 +68,7 @@
     },
     {
       "id": "bury",
-      "label": "Bury them apart.",
+      "label": "Bury the halves far apart.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -76,7 +76,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The humming stops.",
+          "text": "The humming stops, and something deep in the forge settles, like a sigh.",
           "effects": [
             {
               "doom": -1

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "take",
-      "label": "Take the jewelry.",
+      "label": "Take the gold from their throats.",
       "rule": "vote",
       "tags": [
         "cruel"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "Old gold.",
+          "text": "Old gold, cold and heavy, and the faces do not change.",
           "effects": [
             {
               "resources": {
@@ -32,7 +32,7 @@
         },
         {
           "w": 40,
-          "text": "The bodies sit up.",
+          "text": "The bodies sit up, peat sliding off their faces, and reach for what was theirs.",
           "effects": [
             {
               "encounter": {
@@ -45,7 +45,7 @@
     },
     {
       "id": "study",
-      "label": "The wisest studies them.",
+      "label": "The wisest studies the marks on them.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -53,7 +53,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Marks of the old marsh gods.",
+          "text": "Marks of the old marsh gods, cut into the skin, and the god's names, and what each was given for.",
           "effects": [
             {
               "score": {
@@ -66,7 +66,7 @@
     },
     {
       "id": "rebury",
-      "label": "Push them back under.",
+      "label": "Push them gently back under.",
       "rule": "leader",
       "tags": [
         "kind"
@@ -74,7 +74,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The marsh seems grateful.",
+          "text": "The peat closes over their calm faces. The marsh seems grateful, and opens a dry path ahead.",
           "effects": [
             {
               "to": "party",

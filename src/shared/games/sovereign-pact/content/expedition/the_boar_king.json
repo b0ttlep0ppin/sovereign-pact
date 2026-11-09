@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "crown",
-      "label": "The quickest snatches the crown.",
+      "label": "The quickest snatches the crown off its tusk.",
       "rule": "scion:highest:speed",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "Crown in hand, and the whole herd behind.",
+          "text": "Crown in hand, and the whole herd thundering behind, squealing murder.",
           "effects": [
             {
               "resources": {
@@ -37,7 +37,7 @@
         },
         {
           "w": 50,
-          "text": "Too slow.",
+          "text": "Too slow. A tusk opens the leg to the bone.",
           "effects": [
             {
               "durability": -40,
@@ -49,7 +49,7 @@
     },
     {
       "id": "feed",
-      "label": "Leave food and slip past.",
+      "label": "Leave food, and slip past while they eat.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -57,7 +57,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The herd is busy. You are not interesting.",
+          "text": "The herd is busy, grunting and tearing. You are not interesting, for now.",
           "effects": [
             {
               "resources": {
@@ -81,7 +81,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It is a king for a reason.",
+          "text": "It is a king for a reason, and its subjects come when it calls.",
           "effects": [
             {
               "encounter": {

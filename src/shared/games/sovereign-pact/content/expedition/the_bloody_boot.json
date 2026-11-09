@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "track",
-      "label": "The sharpest eye reads the ground.",
+      "label": "The sharpest eye reads the churned mud.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Barefoot tracks, limping. Alive.",
+          "text": "Under the beast-tracks, barefoot ones, limping. Alive. For now.",
           "effects": [
             {
               "skip": 1
@@ -32,7 +32,7 @@
     },
     {
       "id": "carry",
-      "label": "Carry it along for them.",
+      "label": "Carry the boot along for them.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -40,7 +40,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A small hope in the pack.",
+          "text": "A small, heavy hope in the pack.",
           "effects": [
             {
               "to": "party",
@@ -52,7 +52,7 @@
     },
     {
       "id": "fear",
-      "label": "The leader fears the worst and hurries.",
+      "label": "The leader fears the worst, and hurries.",
       "rule": "leader",
       "tags": [
         "reckless"
@@ -60,7 +60,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Faster, and careless.",
+          "text": "Faster, and careless, and something in the trees was hoping you would be.",
           "effects": [
             {
               "skip": 1

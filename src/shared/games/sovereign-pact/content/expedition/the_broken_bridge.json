@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "rebuild",
-      "label": "Rebuild it.",
+      "label": "Rebuild the bridge, with your backs to the thing pacing.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Slow, and whatever they fled is still here.",
+          "text": "Slow work, and whatever they fled is still here, and tired of waiting.",
           "effects": [
             {
               "encounter": {}
@@ -35,7 +35,7 @@
     },
     {
       "id": "climb",
-      "label": "The quickest climbs down and across.",
+      "label": "The quickest climbs down and across the gorge.",
       "rule": "scion:highest:speed",
       "tags": [
         "reckless"
@@ -43,7 +43,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Across, and a rope for the rest.",
+          "text": "Across, hands torn on the rock, and a rope down for the rest.",
           "effects": [
             {
               "skip": 1
@@ -66,7 +66,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A day lost.",
+          "text": "A day lost, and the Lost are further away.",
           "effects": [
             {
               "to": "party",

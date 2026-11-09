@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "take",
-      "label": "Take timber from the dam.",
+      "label": "Pull timber from their dam.",
       "rule": "vote",
       "tags": [
         "cruel"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "Fine timber.",
+          "text": "Fine timber, gnawed to points, as hard as bone.",
           "effects": [
             {
               "resources": {
@@ -32,7 +32,7 @@
         },
         {
           "w": 40,
-          "text": "The beavers.",
+          "text": "The beavers come, and they are the size of bears, and their teeth are made for felling trees.",
           "effects": [
             {
               "encounter": {
@@ -45,7 +45,7 @@
     },
     {
       "id": "trade",
-      "label": "Trade the beavers for their offcuts.",
+      "label": "The shrewdest trades with the beavers for their offcuts.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"
@@ -53,7 +53,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They drive a hard bargain.",
+          "text": "They drive a hard bargain, chattering, and do not take their eyes off your axes.",
           "effects": [
             {
               "resources": {
@@ -75,7 +75,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The House carpenters will want to hear of it.",
+          "text": "Clever, terrible work. The House carpenters will want to hear of it.",
           "effects": [
             {
               "house_improvement": "building"

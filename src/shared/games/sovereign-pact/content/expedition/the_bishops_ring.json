@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He thanks you, and the court treats you as guests.",
+          "text": "He thanks you, too warmly, and the Court treats you as its guests.",
           "effects": [
             {
               "skip": 1
@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "A ring that opens doors.",
+          "text": "A ring that opens doors, and no one saw.",
           "effects": [
             {
               "item": {
@@ -61,7 +61,7 @@
         },
         {
           "w": 30,
-          "text": "Seen.",
+          "text": "Seen. The guards were looking for someone to blame, and now they have one.",
           "effects": [
             {
               "encounter": {
@@ -74,7 +74,7 @@
     },
     {
       "id": "crush",
-      "label": "Crush it underfoot.",
+      "label": "Grind it under your heel.",
       "rule": "leader",
       "tags": [
         "bold"
@@ -82,7 +82,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A small rebellion.",
+          "text": "A small rebellion, and the Court does not forgive small rebellions.",
           "effects": [
             {
               "score": {

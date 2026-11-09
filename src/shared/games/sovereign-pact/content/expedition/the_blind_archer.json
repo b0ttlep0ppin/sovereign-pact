@@ -53,7 +53,7 @@
     },
     {
       "id": "cheat",
-      "label": "The craftiest moves his target while he isn't looking.",
+      "label": "The craftiest moves his target when he isn't looking.",
       "rule": "scion:highest:guile",
       "tags": [
         "cruel"
@@ -61,7 +61,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He hits it anyway, and does not offer a lesson.",
+          "text": "He hits it anyway, dead centre, and turns his white eyes on the cheat, and does not offer a lesson.",
           "effects": [
             {
               "to": "party",
@@ -78,7 +78,7 @@
     },
     {
       "id": "decline",
-      "label": "Decline politely.",
+      "label": "Decline his game, politely.",
       "rule": "leader",
       "tags": [
         "cautious"

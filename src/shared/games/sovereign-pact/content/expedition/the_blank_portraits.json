@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "watch",
-      "label": "Each Scion watches their portrait finish.",
+      "label": "Each Scion watches their own face appear.",
       "rule": "each_scion",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "A flattering likeness.",
+          "text": "A flattering likeness, kinder than the truth.",
           "effects": [
             {
               "sanity": 4
@@ -30,7 +30,7 @@
         },
         {
           "w": 40,
-          "text": "A true likeness.",
+          "text": "A true likeness. It shows what they will look like when they are dead.",
           "effects": [
             {
               "sanity": -12
@@ -49,7 +49,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Paint like blood on the floor.",
+          "text": "Paint runs like blood across the floor, and the unfinished faces keep their mouths open.",
           "effects": [
             {
               "sanity": -3

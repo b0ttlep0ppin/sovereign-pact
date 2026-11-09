@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "follow",
-      "label": "Follow fast.",
+      "label": "Follow fast, while it bleeds.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "You catch it while it is weak.",
+          "text": "You catch it while it is weak, and it is still very dangerous.",
           "effects": [
             {
               "encounter": {
@@ -39,7 +39,7 @@
     },
     {
       "id": "other",
-      "label": "Find what wounded it first.",
+      "label": "The sharpest eye finds what wounded it first.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -47,7 +47,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "A rival's arrow. You know who hunts your quarry now.",
+          "text": "A rival House's arrow, snapped off in the bark. You know who hunts your quarry now.",
           "effects": [
             {
               "score": {
@@ -61,7 +61,7 @@
         },
         {
           "w": 40,
-          "text": "Something bigger.",
+          "text": "Something bigger, and it has been following the blood too, and now it has found you.",
           "effects": [
             {
               "encounter": {
@@ -75,7 +75,7 @@
     },
     {
       "id": "wait",
-      "label": "Let it bleed.",
+      "label": "Let it bleed out in its own time.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -83,7 +83,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It goes to ground, weaker.",
+          "text": "It goes to ground, weaker, and angrier. You hear it moaning at night.",
           "effects": [
             {
               "to": "party",
