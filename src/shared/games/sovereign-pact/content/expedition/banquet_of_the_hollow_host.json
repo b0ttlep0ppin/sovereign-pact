@@ -13,7 +13,7 @@
     "!flag:banquet_seen"
   ],
   "title": "The Banquet",
-  "text": "A long table laid for exactly as many as you are. The candles are still warm. Nobody has touched the food.",
+  "text": "A long table laid for exactly as many as you are, down to the last cup. The candles are still warm and the wine is still breathing. Nobody has touched the food, and every chair has been pulled out a little, as if the guests only just stood up to greet you.",
   "options": [
     {
       "id": "eat",
