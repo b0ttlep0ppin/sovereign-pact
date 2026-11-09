@@ -14,7 +14,7 @@
   "options": [
     {
       "id": "bow",
-      "label": "The Leader bows.",
+      "label": "The Leader bows low, and shows her the courtesy she is owed.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -39,7 +39,7 @@
     },
     {
       "id": "fight",
-      "label": "Draw steel in her court.",
+      "label": "Draw steel in her court. You will not bow to a spider.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -47,7 +47,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The courtiers stop bowing. All their legs unfold at once.",
+          "text": "The courtiers stop bowing. All their legs unfold at once, and the cocoons in the rafters stop moving to listen.",
           "effects": [
             {
               "encounter": {
@@ -60,7 +60,7 @@
     },
     {
       "id": "tribute",
-      "label": "The richest House pays tribute.",
+      "label": "The richest House pays tribute in gold, for safe passage through her silk.",
       "rule": "house:highest_standing",
       "tags": [
         "clever"

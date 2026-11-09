@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "target",
-      "label": "The one the arrows always find runs ahead to draw them.",
+      "label": "The one the arrows always find runs ahead to draw them, so the rest may cross.",
       "rule": "scion:most_targeted|scion:highest:resilience",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "They draw every arrow, bristling like a hedgehog, and the rest cross clean.",
+          "text": "They draw every arrow, bristling like a hedgehog, and the rest cross clean behind them.",
           "effects": [
             {
               "durability": -40,
@@ -36,7 +36,7 @@
         },
         {
           "w": 30,
-          "text": "Too many arrows, too fast. One finds the gap.",
+          "text": "Too many arrows, too fast. One finds the gap, and it goes deep.",
           "effects": [
             {
               "injury": "body"
@@ -47,7 +47,7 @@
     },
     {
       "id": "shield",
-      "label": "Walk under shields, slowly, step by step.",
+      "label": "Walk under shields, slowly, step by step, and endure the hail.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -55,7 +55,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It takes all day, arrows hammering overhead, and dents every shield.",
+          "text": "It takes all day, arrows hammering overhead, and dents every shield. Arms ache for days from holding them up.",
           "effects": [
             {
               "to": "party",
@@ -68,7 +68,7 @@
     },
     {
       "id": "source",
-      "label": "The sharpest eye looks for the archers.",
+      "label": "The sharpest eye searches the ridges for the archers, determined to end the storm.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -76,7 +76,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "A ghost archer company on the ridge, still at war, still shooting. They turn as one to face you.",
+          "text": "A ghost archer company on the ridge, still at war, still shooting. They turn as one to face you, and nock.",
           "effects": [
             {
               "encounter": {}

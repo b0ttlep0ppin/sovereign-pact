@@ -14,7 +14,7 @@
   "options": [
     {
       "id": "rest",
-      "label": "Lie down among the flowers and rest.",
+      "label": "Lie down among the flowers and rest. Surely you have earned a moment of peace.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -22,7 +22,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "You sleep in the flowers and wake whole. There was no catch.",
+          "text": "You sleep in the flowers and wake whole and clear-headed. There was no catch. That is the hardest thing to believe.",
           "effects": [
             {
               "to": "party",
@@ -38,7 +38,7 @@
     },
     {
       "id": "press_on",
-      "label": "Don't trust it. Keep walking, eyes down.",
+      "label": "Don't trust it. Keep walking with your eyes down, and do not breathe too deeply.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -46,7 +46,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "You walk through quickly, eyes down. Afterwards, some of you wish you had stayed.",
+          "text": "You walk through quickly, eyes down. Afterwards, some of you wish you had stayed, and dream of the white petals for weeks.",
           "effects": [
             {
               "to": "party",

@@ -14,7 +14,7 @@
   "options": [
     {
       "id": "scatter",
-      "label": "Run at them, shouting, and scatter them.",
+      "label": "Run at them shouting and scatter them, before you learn what they are eating.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -22,7 +22,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "They rise like smoke, thousands of wings at once, and the air feels lighter after.",
+          "text": "They rise like smoke, thousands of wings at once, and the air feels lighter after, as if something has been driven off.",
           "effects": [
             {
               "doom": -2
@@ -31,7 +31,7 @@
         },
         {
           "w": 40,
-          "text": "They rise like smoke, and come down on you, beaks first.",
+          "text": "They rise like smoke, and then they come down on you, beaks first, for daring to interrupt.",
           "effects": [
             {
               "to": "party",
@@ -43,7 +43,7 @@
     },
     {
       "id": "read",
-      "label": "The wisest reads the omens in their rows.",
+      "label": "The wisest reads the omens in their rows, hoping to learn what the crows already know.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -51,7 +51,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "The pattern is a warning, written in black wings, and a useful one. The wisest remembers every line.",
+          "text": "The pattern is a warning, written in black wings, and a useful one. The wisest remembers every line of it.",
           "effects": [
             {
               "score": {
@@ -65,7 +65,7 @@
         },
         {
           "w": 50,
-          "text": "The pattern is your own face, picked out in crows, and then it opens its mouth.",
+          "text": "The pattern is your own face, picked out in crows, and then it opens its mouth to speak.",
           "effects": [
             {
               "injury": "sanity"

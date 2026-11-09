@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "first",
-      "label": "The hardiest goes up first, to meet its first blow.",
+      "label": "The hardiest goes up first, to take its first blow so the rest of you need not.",
       "rule": "scion:highest:resilience",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They take the first blow on their shield and their body, and the rest come up behind them whole.",
+          "text": "They take the first blow on their shield and their body, and stay standing. The rest come up behind them whole, and ready.",
           "effects": [
             {
               "durability": -25,
@@ -42,7 +42,7 @@
     },
     {
       "id": "together",
-      "label": "Go up together, shoulder to shoulder.",
+      "label": "Go up together, shoulder to shoulder, and let it choose who it strikes.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -50,7 +50,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Shoulder to shoulder, no one first, no one last, into the breathing dark.",
+          "text": "Shoulder to shoulder, no one first, no one last, up into the breathing dark.",
           "effects": []
         }
       ]

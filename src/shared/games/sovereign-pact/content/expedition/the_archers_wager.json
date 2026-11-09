@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "worst",
-      "label": "The one with the poorest eye takes the lessons.",
+      "label": "The one with the poorest eye takes his lessons, swallowing their pride.",
       "rule": "scion:lowest:acuity|scion:random",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "By dusk they are hitting the straw man without looking. The archer will not say who taught him.",
+          "text": "By dusk they are hitting the straw man without looking. The archer will not say who taught him, or what became of them.",
           "effects": [
             {
               "growth": {
@@ -37,7 +37,7 @@
     },
     {
       "id": "best",
-      "label": "The sharpest eye takes his contest.",
+      "label": "The sharpest eye takes up his contest, sure of their aim.",
       "rule": "scion:highest:acuity",
       "tags": [
         "bold"
@@ -56,7 +56,7 @@
         },
         {
           "w": 30,
-          "text": "The old archer wins without looking, and laughs, and keeps laughing.",
+          "text": "The old archer wins without looking, and laughs, and keeps laughing long after you have gone.",
           "effects": [
             {
               "sanity": -5
@@ -72,7 +72,7 @@
     },
     {
       "id": "rob",
-      "label": "Take his quiver while he sleeps.",
+      "label": "Take his quiver while he sleeps. A one-eyed man sees only half of what goes on.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -95,7 +95,7 @@
         },
         {
           "w": 50,
-          "text": "A full quiver, and his curses behind you, very specific ones.",
+          "text": "A full quiver, and his curses behind you, very specific ones, that you feel settle on your shoulders.",
           "effects": [
             {
               "resources": {

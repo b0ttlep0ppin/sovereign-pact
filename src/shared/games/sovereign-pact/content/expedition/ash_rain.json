@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "cover",
-      "label": "Cover your faces and wait for the grey to stop.",
+      "label": "Cover your faces and wait out the grey, hoping it ends before it gets inside you.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It falls the whole night, soft as breath on the back of the neck. Nobody sleeps.",
+          "text": "It falls the whole night, soft as breath on the back of the neck. Nobody sleeps, and in the morning everyone is grey.",
           "effects": [
             {
               "to": "party",
@@ -33,7 +33,7 @@
     },
     {
       "id": "endure",
-      "label": "Walk on through it, mouths shut.",
+      "label": "Walk on through it with your mouths shut. It is only ash, after all.",
       "rule": "leader",
       "tags": [
         "bold"
@@ -63,7 +63,7 @@
     },
     {
       "id": "war_paint",
-      "label": "The Ravager paints their face with it.",
+      "label": "The Ravager smears it across their face, welcoming the dead hearth's warmth.",
       "rule": "scion:job:ravager",
       "only": true,
       "tags": [
@@ -72,7 +72,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Grey as a corpse, and grinning. The ash is war-paint now, and the Ravager carries it into the next fight.",
+          "text": "Grey as a corpse, and grinning. The ash is war-paint now, and the Ravager carries its heat into the next fight.",
           "effects": [
             {
               "tp": 60,

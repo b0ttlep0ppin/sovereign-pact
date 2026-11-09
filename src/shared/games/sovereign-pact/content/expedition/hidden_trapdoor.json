@@ -15,12 +15,12 @@
   "options": [
     {
       "id": "fall",
-      "label": "Down you go.",
+      "label": "Down you go, after them, into whatever waits below.",
       "rule": "scion:heaviest_gear",
       "outcomes": [
         {
           "w": 100,
-          "text": "The fall is short and the way is shorter. Something lives down here.",
+          "text": "The fall is short and the way is shorter. Something lives down here, and it heard you land.",
           "effects": [
             {
               "durability": -20,

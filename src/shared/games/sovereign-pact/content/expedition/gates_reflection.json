@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "look",
-      "label": "Look into the Gate.",
+      "label": "Look into the Gate, and face whatever your House is to become.",
       "rule": "each_scion",
       "tags": [
         "bold"
@@ -36,7 +36,7 @@
         },
         {
           "w": 30,
-          "text": "The glass shows your House, and then it shows what the throne costs. You do not look away fast enough.",
+          "text": "The glass shows your House, and then it shows what the throne will cost. You do not look away fast enough.",
           "effects": [
             {
               "foresee": true
@@ -53,7 +53,7 @@
     },
     {
       "id": "look_away",
-      "label": "Look away. The future can wait.",
+      "label": "Look away. The future can wait until the fighting is done.",
       "rule": "each_scion",
       "tags": [
         "cautious"
@@ -61,7 +61,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Whatever was in the glass, it was not for now. The mind is clear for the fight.",
+          "text": "Whatever was in the glass, it was not for now. Your mind is clear for the fight ahead.",
           "effects": [
             {
               "sanity": 15

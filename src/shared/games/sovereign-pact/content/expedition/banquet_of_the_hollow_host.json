@@ -17,7 +17,7 @@
   "options": [
     {
       "id": "eat",
-      "label": "Sit down and eat what was laid for you.",
+      "label": "Sit down and eat what was laid for you. It would be rude to refuse such hospitality.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -25,7 +25,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "It is the best meal any of you have had since the rift opened. You sleep well, after.",
+          "text": "It is the best meal any of you have had since the rift opened. You sleep well after, and do not wonder who cooked it.",
           "effects": [
             {
               "to": "party",
@@ -39,7 +39,7 @@
         },
         {
           "w": 35,
-          "text": "The meat moves on the plate. The hosts arrive late, and hungry.",
+          "text": "The meat moves on the plate. The hosts arrive late, and they are hungry too.",
           "effects": [
             {
               "to": "party",
@@ -54,7 +54,7 @@
         },
         {
           "w": 15,
-          "text": "Under one plate, a ring that fits no finger twice.",
+          "text": "Under one plate lies a ring that fits no finger twice. It is warm, and it is yours now.",
           "effects": [
             {
               "to": "party",
@@ -71,7 +71,7 @@
     },
     {
       "id": "one_tastes",
-      "label": "The most seasoned of you tastes it first.",
+      "label": "The most seasoned of you tastes it first, while the rest watch their face.",
       "rule": "scion:most_expeditions",
       "tags": [
         "clever"
@@ -79,7 +79,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "The veteran chews, waits, and nods. It is only food. The rest eat.",
+          "text": "The veteran chews, waits, and nods. It is only food. The rest eat, and nobody mentions the empty chairs.",
           "effects": [
             {
               "to": "party",
@@ -93,7 +93,7 @@
         },
         {
           "w": 40,
-          "text": "The veteran goes grey and very still, and then laughs too long.",
+          "text": "The veteran goes grey and very still, and then laughs too long at something none of you can hear.",
           "effects": [
             {
               "injury": "sanity"
@@ -104,7 +104,7 @@
     },
     {
       "id": "leave",
-      "label": "Push in your chairs and leave the feast to its hosts.",
+      "label": "Push in your chairs and leave the feast to whoever it was truly laid for.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -112,7 +112,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "You leave the chairs pushed in. Something sighs as the door closes.",
+          "text": "You leave the chairs pushed in. Something sighs as the door closes, and the candles go out one by one behind you.",
           "effects": [
             {
               "to": "party",

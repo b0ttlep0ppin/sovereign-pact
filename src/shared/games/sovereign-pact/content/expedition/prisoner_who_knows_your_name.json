@@ -14,7 +14,7 @@
   "options": [
     {
       "id": "listen",
-      "label": "Listen to what they know.",
+      "label": "Listen to what they know. A secret like that is worth the risk.",
       "rule": "scion:random",
       "tags": [
         "clever"
@@ -22,7 +22,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "It is true, or near enough: a name, a meeting, a letter. Worth knowing. Worth keeping quiet.",
+          "text": "It is true, or near enough: a name, a meeting, a letter. Worth knowing. Worth keeping quiet about.",
           "effects": [
             {
               "score": {
@@ -33,7 +33,7 @@
         },
         {
           "w": 50,
-          "text": "It is a lie, told very well, and it settles into whoever heard it like a splinter.",
+          "text": "It is a lie, told very well, and it settles into whoever heard it like a splinter that will not work its way out.",
           "effects": [
             {
               "sanity": -15
@@ -44,7 +44,7 @@
     },
     {
       "id": "free",
-      "label": "Lower the cage and free them.",
+      "label": "Lower the cage and free them, whatever they have done.",
       "rule": "leader",
       "tags": [
         "kind"
@@ -52,7 +52,7 @@
       "outcomes": [
         {
           "w": 40,
-          "text": "They are grateful, in a cracked, starved voice, and they have nowhere else to go.",
+          "text": "They are grateful, in a cracked, starved voice, and they have nowhere else to go. They follow you home.",
           "effects": [
             {
               "house_improvement": "recruit"
@@ -61,7 +61,7 @@
         },
         {
           "w": 60,
-          "text": "The cage was bait. The ones who hung it were waiting.",
+          "text": "The cage was bait. The ones who hung it were waiting, and they are glad you came.",
           "effects": [
             {
               "encounter": {
@@ -74,7 +74,7 @@
     },
     {
       "id": "leave",
-      "label": "Walk on, and let them call.",
+      "label": "Walk on, and let them call after you. A caged tongue tells no truths.",
       "rule": "leader",
       "tags": [
         "cautious"

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "kneel",
-      "label": "Kneel, and let the serpents feed.",
+      "label": "Kneel, and let the serpents feed on what you know, for a life as long as his.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The serpents eat, politely. You walk out sound in body and a little emptier behind the eyes.",
+          "text": "The serpents eat, politely. You walk out sound in body and a little emptier behind the eyes, and you cannot remember what you lost.",
           "effects": [
             {
               "to": "party",
@@ -49,7 +49,7 @@
     },
     {
       "id": "defy",
-      "label": "Refuse him, and watch the serpents.",
+      "label": "Refuse him, and keep a close eye on the serpents.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -64,7 +64,7 @@
     },
     {
       "id": "cheat",
-      "label": "Take the long life, and feed them nothing.",
+      "label": "Take the long life and feed them nothing. Let them go hungry.",
       "rule": "leader",
       "tags": [
         "clever",
@@ -73,7 +73,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "The leader takes the gift and offers the serpents nothing. The King smiles with both of them.",
+          "text": "The Leader takes the gift and offers the serpents nothing. The King smiles with both of them, and lets you go. For now.",
           "effects": [
             {
               "growth": {
@@ -85,7 +85,7 @@
         },
         {
           "w": 50,
-          "text": "The serpents are quicker than the leader. They feed anyway, deep, and take more than they were owed.",
+          "text": "The serpents are quicker than the Leader. They feed anyway, deep, and take more than they were owed.",
           "effects": [
             {
               "sanity": -25

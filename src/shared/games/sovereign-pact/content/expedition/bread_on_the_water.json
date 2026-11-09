@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "eat",
-      "label": "Share it out, and ask no questions.",
+      "label": "Share it out among you, and ask no questions of a gift this strange.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It tastes of a kitchen none of you have ever stood in. Someone, somewhere, wanted you to live. For now.",
+          "text": "It tastes of a kitchen none of you have ever stood in. Someone, somewhere, wanted you to live. For now, at least.",
           "effects": [
             {
               "to": "party",

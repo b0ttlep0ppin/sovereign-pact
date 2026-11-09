@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "ask",
-      "label": "Ask about what waits at the end.",
+      "label": "Ask him what waits at the end of the road, and trust that he keeps his word.",
       "rule": "scion:tarot:hermit|vote",
       "tags": [
         "clever"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "He tells you how the master of this place fights, and you believe him.",
+          "text": "He tells you how the master of this place fights, and you believe him. He has watched it for a long time.",
           "effects": [
             {
               "to": "party",
@@ -36,7 +36,7 @@
         },
         {
           "w": 40,
-          "text": "He tells you something. It is not true.",
+          "text": "He tells you something. It is not true, and he smiles as he says it.",
           "effects": [
             {
               "to": "party",
@@ -52,7 +52,7 @@
     },
     {
       "id": "pass",
-      "label": "Thank him and go on.",
+      "label": "Thank him, and go on. Some answers cost more than they are worth.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -72,7 +72,7 @@
     },
     {
       "id": "ask_the_cards",
-      "label": "The Soothsayer asks him what the cards would not say.",
+      "label": "The Soothsayer asks him what the cards would not say, though they may regret hearing it.",
       "rule": "scion:job:soothsayer",
       "only": true,
       "tags": [

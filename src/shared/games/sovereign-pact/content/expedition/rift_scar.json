@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "cross",
-      "label": "Step through the humming light.",
+      "label": "Step through the humming light, and trust you come out the other side yourselves.",
       "rule": "leader",
       "tags": [
         "bold"
@@ -43,7 +43,7 @@
     },
     {
       "id": "around",
-      "label": "Go the long way around.",
+      "label": "Go the long way around. No path is worth walking through another world.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -51,7 +51,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The long way has its own dangers, and one of them has been waiting.",
+          "text": "The long way has its own dangers, and one of them has been waiting patiently for you.",
           "effects": [
             {
               "fork": {

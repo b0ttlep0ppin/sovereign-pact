@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "trade",
-      "label": "Let the most haunted trade her a memory for the light.",
+      "label": "Let the most haunted trade her a memory for the light, glad to be rid of it.",
       "rule": "scion:lowest:sanity",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "Afterwards they cannot remember their mother's face. The path is short and lit.",
+          "text": "Afterwards they cannot remember their mother's face. The path is short and lit, and they tell themselves it was worth it.",
           "effects": [
             {
               "sanity": -20
@@ -52,7 +52,7 @@
     },
     {
       "id": "refuse",
-      "label": "Refuse her, and find your own way in the dark.",
+      "label": "Refuse her and find your own way in the dark. Your memories are your own.",
       "rule": "leader",
       "tags": [
         "cautious"

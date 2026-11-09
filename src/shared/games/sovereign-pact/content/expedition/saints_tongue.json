@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "kiss",
-      "label": "The most devout kisses the glass.",
+      "label": "The most devout kisses the glass, hoping the saint's prayer passes into them.",
       "rule": "scion:trait:devout|scion:highest:sagacity",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 55,
-          "text": "Their hands are warm for days after, and wounds close under them.",
+          "text": "Their hands are warm for days after, and wounds close under them. The murmur never quite leaves their ears.",
           "effects": [
             {
               "trait": "+pious_hands"
@@ -33,7 +33,7 @@
         },
         {
           "w": 45,
-          "text": "The tongue stops, and so does theirs. They will find their voice again after a fight or two.",
+          "text": "The tongue stops, and so does theirs. They will find their voice again after a fight or two, if they are lucky.",
           "effects": [
             {
               "status": "silence"
@@ -47,7 +47,7 @@
     },
     {
       "id": "leave",
-      "label": "Let it pray on.",
+      "label": "Let it pray on. It has been at it longer than any of you have lived.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -55,7 +55,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It prays for you as you go, a little louder. You did not ask it to.",
+          "text": "It prays for you as you go, a little louder. You did not ask it to, and you are not sure what it is praying for.",
           "effects": [
             {
               "sanity": 5

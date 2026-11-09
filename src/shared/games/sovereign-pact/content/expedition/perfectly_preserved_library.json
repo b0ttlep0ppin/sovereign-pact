@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "read",
-      "label": "The sharpest mind sits down at the open page.",
+      "label": "The sharpest mind sits down at the open page, unable to resist what was left there for them.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -35,7 +35,7 @@
         },
         {
           "w": 30,
-          "text": "Some of what they read keeps reading them back.",
+          "text": "Some of what they read keeps reading them back, long after the book is closed.",
           "effects": [
             {
               "score": {
@@ -49,7 +49,7 @@
         },
         {
           "w": 20,
-          "text": "They read a recipe for something, and now they are always hungry for it.",
+          "text": "They read a recipe for something, and now they are always hungry for it. They do not say what it calls for.",
           "effects": [
             {
               "score": {
@@ -65,7 +65,7 @@
     },
     {
       "id": "burn",
-      "label": "Burn it, every book.",
+      "label": "Burn it, every book. Whoever reads down here does not deserve a library.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -73,7 +73,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The books burn slowly, page by curling page, and something in the stacks screams once.",
+          "text": "The books burn slowly, page by curling page, and something in the stacks screams once, and then is silent.",
           "effects": [
             {
               "to": "party",
@@ -90,7 +90,7 @@
     },
     {
       "id": "carry",
-      "label": "The lightest-laden carries one book out.",
+      "label": "The lightest-laden carries one book out, the one that seems to want to leave.",
       "rule": "scion:most_open_slots",
       "tags": [
         "cautious"

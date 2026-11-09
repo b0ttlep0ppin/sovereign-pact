@@ -14,7 +14,7 @@
   "options": [
     {
       "id": "eat",
-      "label": "Eat the fruit.",
+      "label": "Eat the golden fruit, and taste the summer it promises.",
       "rule": "scion:tarot:empress|vote",
       "tags": [
         "bold"
@@ -22,7 +22,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "It tastes of every good year. Something in them grows.",
+          "text": "It tastes of every good year. Something in them grows, slow and green and strong.",
           "effects": [
             {
               "sanity": 20
@@ -36,7 +36,7 @@
         },
         {
           "w": 40,
-          "text": "It tastes of sleep. They are still yawning when the next fight finds them.",
+          "text": "It tastes of sleep, and it is in no hurry to let them go. They are still yawning when the next fight finds them.",
           "effects": [
             {
               "status": "sleep"
@@ -47,7 +47,7 @@
     },
     {
       "id": "pass",
-      "label": "Pass under it without touching.",
+      "label": "Pass beneath it without touching. Fruit with no tree is no gift.",
       "rule": "leader",
       "tags": [
         "cautious"

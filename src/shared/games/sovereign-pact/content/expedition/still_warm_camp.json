@@ -14,7 +14,7 @@
   "options": [
     {
       "id": "take",
-      "label": "Take what they left behind.",
+      "label": "Take what they left behind. They will not be needing it.",
       "rule": "vote",
       "tags": [
         "cruel"
@@ -35,7 +35,7 @@
         },
         {
           "w": 40,
-          "text": "They come back for it. Not all of them are the people who left.",
+          "text": "They come back for it. Not all of them are the people who left, and not all of them are people.",
           "effects": [
             {
               "encounter": {
@@ -48,7 +48,7 @@
     },
     {
       "id": "leave",
-      "label": "Leave it be, and walk softly.",
+      "label": "Leave it be and walk softly. Whatever they fled may still be near.",
       "rule": "leader",
       "tags": [
         "kind"
@@ -78,7 +78,7 @@
         },
         {
           "w": 20,
-          "text": "Later, a cairn by the path: a gift from strangers.",
+          "text": "Later, a cairn by the path, stacked neatly: a gift from strangers, or a thank-you from the woods.",
           "effects": [
             {
               "resources": {
@@ -92,7 +92,7 @@
     },
     {
       "id": "rifle",
-      "label": "The Vagabond goes through the packs, quickly.",
+      "label": "The Vagabond goes through the packs, quickly and quietly, before anyone returns.",
       "rule": "scion:job:vagabond",
       "only": true,
       "tags": [

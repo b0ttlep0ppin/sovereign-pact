@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "name",
-      "label": "Name your fallen.",
+      "label": "Name your fallen, so they are not forgotten in whatever lies below.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "Every name is written. Something in the barrow is satisfied, and so are you.",
+          "text": "Every name is written down in his careful hand. Something in the barrow is satisfied, and so are you.",
           "effects": [
             {
               "score": {
@@ -36,7 +36,7 @@
         },
         {
           "w": 30,
-          "text": "One of the names you give him answers from inside the barrow, and walks out to join you.",
+          "text": "One of the names you give him answers from inside the barrow, and walks out to join you, blinking at the light.",
           "effects": [
             {
               "house_improvement": "recruit"
@@ -51,7 +51,7 @@
     },
     {
       "id": "refuse",
-      "label": "Refuse him your dead.",
+      "label": "Refuse him your dead. They are yours to remember, not his to count.",
       "rule": "leader",
       "tags": [
         "cautious"

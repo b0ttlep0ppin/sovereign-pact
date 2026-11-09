@@ -14,7 +14,7 @@
   "options": [
     {
       "id": "share",
-      "label": "Share it fairly.",
+      "label": "Share it fairly, as you swore you would.",
       "rule": "secret",
       "tags": [
         "kind"
@@ -22,7 +22,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Every House kept its word. The gold is shared, and so is a little trust.",
+          "text": "Every House kept its word. The gold is shared, and so is a little trust, which is rarer.",
           "effects": [
             {
               "resources": {
@@ -41,7 +41,7 @@
         },
         {
           "w": 100,
-          "text": "Your share is gone when you reach for it. Someone else did not keep their word.",
+          "text": "Your share is gone when you reach for it. Someone else did not keep their word, and the dead king grins on.",
           "effects": [
             {
               "sanity": -10
@@ -55,7 +55,7 @@
     },
     {
       "id": "take",
-      "label": "Take more than your share.",
+      "label": "Take more than your share. The dead king will hardly miss it.",
       "rule": "secret",
       "tags": [
         "cruel"
@@ -63,7 +63,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Nobody else thought of it. Your packs are heavy all the way home.",
+          "text": "Nobody else thought of it. Your packs are heavy all the way home, and so is your conscience, for a little while.",
           "effects": [
             {
               "resources": {
@@ -82,7 +82,7 @@
         },
         {
           "w": 100,
-          "text": "Others had the same idea. Knives come out over the coins before anyone thinks better of it.",
+          "text": "Others had the same idea. Knives come out over the coins before anyone thinks better of it, and the dead king grins at all of you.",
           "effects": [
             {
               "resources": {

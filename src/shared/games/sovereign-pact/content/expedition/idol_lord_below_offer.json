@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "kneel",
-      "label": "Kneel among the dead, and pay his toll.",
+      "label": "Kneel among the dead and pay his toll, for health against every plague.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The fevers of the world will pass you by. The god keeps a Year of each of you, folded up somewhere below.",
+          "text": "The fevers of the world will pass you by. The god keeps a Year of each of you, folded up somewhere below, and he will not give it back.",
           "effects": [
             {
               "to": "party",
@@ -49,7 +49,7 @@
     },
     {
       "id": "defy",
-      "label": "Refuse him, here at the seventh gate.",
+      "label": "Refuse him, here at the seventh gate, among his willing dead.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -64,7 +64,7 @@
     },
     {
       "id": "cheat",
-      "label": "Take his blessing, and leave the bowl empty.",
+      "label": "Take his blessing and leave the toll bowl empty, trusting the dead to look away.",
       "rule": "leader",
       "tags": [
         "clever",
@@ -73,7 +73,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "The leader takes the blessing and spits in the toll bowl. The god stands, smiling.",
+          "text": "The Leader takes the blessing and spits in the toll bowl. The god stands, smiling, as if he expected nothing less.",
           "effects": [
             {
               "blessing": {

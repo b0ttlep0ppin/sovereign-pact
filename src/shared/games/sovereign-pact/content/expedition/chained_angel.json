@@ -14,7 +14,7 @@
   "options": [
     {
       "id": "free",
-      "label": "The most devout frees it.",
+      "label": "The most devout breaks its chains, believing nothing holy should be bound like a beast.",
       "rule": "scion:trait:devout|scion:trait:pious_hands|vote",
       "tags": [
         "kind"
@@ -22,7 +22,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "The chains break. It follows you home, and no one knows what it will become.",
+          "text": "The chains break. It follows you home on its ruined wings, and no one knows what it will become.",
           "effects": [
             {
               "house_improvement": "recruit"
@@ -39,7 +39,7 @@
         },
         {
           "w": 40,
-          "text": "The chains break, and it is gone in a burst of light. Something else, very far off, has noticed.",
+          "text": "The chains break, and it is gone in a burst of light. Something else, very far off, has noticed what you did.",
           "effects": [
             {
               "doom": 5
@@ -54,7 +54,7 @@
     },
     {
       "id": "kill",
-      "label": "End it, while it still asks for nothing.",
+      "label": "End it, while it still asks for nothing and before it can ask for something.",
       "rule": "vote",
       "tags": [
         "cruel"
@@ -62,7 +62,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It does not fight. What is left of it is ash, and the ash is holy.",
+          "text": "It does not fight. What is left of it is ash, and the ash is holy, and nobody can meet the others' eyes.",
           "effects": [
             {
               "resources": {
@@ -84,7 +84,7 @@
     },
     {
       "id": "leave",
-      "label": "Leave it chained, and leave quickly.",
+      "label": "Leave it chained, and leave quickly. Someone bound it here for a reason.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -92,7 +92,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It watches you go. It does not ask then either.",
+          "text": "It watches you go. It does not ask then, either, and somehow that is the hardest part.",
           "effects": [
             {
               "to": "party",
