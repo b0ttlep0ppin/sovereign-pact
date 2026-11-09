@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "net",
-      "label": "Net the glowing moths.",
+      "label": "Net the glowing moths, and take the essence they have drunk.",
       "rule": "vote",
       "tags": [
         "clever"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Wings full of essence, beating softly against the net until they stop.",
+          "text": "Wings full of essence, beating softly against the net until they stop. It feels like a small cruelty.",
           "effects": [
             {
               "resources": {
@@ -34,7 +34,7 @@
     },
     {
       "id": "pool",
-      "label": "The hardiest drinks from the pool before the moths do.",
+      "label": "The hardiest drinks from the pool before the moths do, hungry for its light.",
       "rule": "scion:highest:resilience",
       "tags": [
         "reckless"
@@ -42,7 +42,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Bright, burning, strong, and a hunger behind it like the moths'.",
+          "text": "Bright, burning, strong, and a hunger behind it like the moths', that does not go away.",
           "effects": [
             {
               "mp": 40
@@ -56,7 +56,7 @@
     },
     {
       "id": "leave",
-      "label": "Leave them their pool.",
+      "label": "Leave them their pool. They have so little else.",
       "rule": "leader",
       "tags": [
         "kind"

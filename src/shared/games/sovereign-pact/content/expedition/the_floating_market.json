@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "buy",
-      "label": "Buy something the marsh took.",
+      "label": "Buy something the marsh took, and give it a second life.",
       "rule": "vote",
       "tags": [
         "clever"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A drowned soldier's gear, cleaned, still smelling of the deep.",
+          "text": "A drowned soldier's gear, cleaned, still smelling of the deep. It never quite dries.",
           "effects": [
             {
               "resources": {
@@ -39,7 +39,7 @@
     },
     {
       "id": "haggle",
-      "label": "The shrewdest haggles with the drowned.",
+      "label": "The shrewdest haggles with the drowned, who have all the time in the world.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"
@@ -70,7 +70,7 @@
     },
     {
       "id": "weak",
-      "label": "The weakest swimmer stays on the shore.",
+      "label": "The weakest swimmer stays on the shore, rather than risk the rafts.",
       "rule": "scion:lowest:resilience|scion:random",
       "tags": [
         "cautious"

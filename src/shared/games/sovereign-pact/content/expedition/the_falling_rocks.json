@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "dodge",
-      "label": "Everyone scatters, and hopes.",
+      "label": "Everyone scatters, and hopes the mountain misses.",
       "rule": "scion:random",
       "tags": [
         "cautious"
@@ -42,7 +42,7 @@
     },
     {
       "id": "catch",
-      "label": "The quickest drags the slowest clear.",
+      "label": "The quickest drags the slowest clear, with no time to think.",
       "rule": "scion:highest:speed",
       "tags": [
         "kind"
@@ -66,7 +66,7 @@
     },
     {
       "id": "brace",
-      "label": "The hardiest braces the overhang with their body.",
+      "label": "The hardiest braces the overhang with their body, so the rest can get clear.",
       "rule": "scion:highest:resilience",
       "tags": [
         "bold"
@@ -89,7 +89,7 @@
         },
         {
           "w": 45,
-          "text": "It does not hold.",
+          "text": "It does not hold, and neither do they.",
           "effects": [
             {
               "injury": "arms"

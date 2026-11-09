@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "cross",
-      "label": "Cross carefully over the city.",
+      "label": "Cross carefully over the city, and do not meet the eyes looking up.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 80,
-          "text": "It holds, and the city's people watch every step.",
+          "text": "It holds, and the city's people watch every step, and none of them blink.",
           "effects": [
             {
               "to": "party",
@@ -42,7 +42,7 @@
     },
     {
       "id": "run",
-      "label": "Run across together.",
+      "label": "Run across together, before the glass can think better of holding you.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -61,7 +61,7 @@
     },
     {
       "id": "look",
-      "label": "The wisest studies the city below.",
+      "label": "The wisest studies the city below, though it looks back.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"

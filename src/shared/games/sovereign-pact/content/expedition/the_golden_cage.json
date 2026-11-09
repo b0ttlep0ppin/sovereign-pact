@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "free",
-      "label": "Open the golden cage.",
+      "label": "Open the golden cage, and set your mother's voice free.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -31,7 +31,7 @@
         },
         {
           "w": 40,
-          "text": "It flies, and laughs, in a voice that is not your mother's at all.",
+          "text": "It flies, and laughs, in a voice that is not your mother's at all, and never was.",
           "effects": [
             {
               "to": "party",
@@ -43,7 +43,7 @@
     },
     {
       "id": "take",
-      "label": "Take the cage, bird and all.",
+      "label": "Take the cage, bird and all. Gold is gold.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -51,7 +51,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Very fine gold. The bird does not speak again, but it watches.",
+          "text": "Very fine gold. The bird does not speak again, but it watches, and it waits.",
           "effects": [
             {
               "resources": {
@@ -68,7 +68,7 @@
     },
     {
       "id": "listen",
-      "label": "The wisest listens to what it says.",
+      "label": "The wisest listens to what it says, though it hurts to hear.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -76,7 +76,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It says something only your mother knew, and then something she never told anyone.",
+          "text": "It says something only your mother knew, and then something she never told anyone, and should not have.",
           "effects": [
             {
               "score": {

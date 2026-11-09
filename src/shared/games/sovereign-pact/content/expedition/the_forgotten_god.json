@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "worship",
-      "label": "Leave the little god an offering.",
+      "label": "Leave the little god an offering, so that it is not quite forgotten.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -39,7 +39,7 @@
     },
     {
       "id": "bargain",
-      "label": "The cleverest strikes a bargain with it.",
+      "label": "The cleverest strikes a bargain with it, for whatever it has left to give.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"
@@ -47,7 +47,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It gives far more than it should, for a promise of remembrance. Do not forget.",
+          "text": "It gives far more than it should, for a promise of remembrance. Do not forget. It will know.",
           "effects": [
             {
               "growth": {
@@ -65,7 +65,7 @@
     },
     {
       "id": "break",
-      "label": "Break its shrine.",
+      "label": "Break its shrine. A god that small can do no harm.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -73,7 +73,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A very small voice, cursing, and the curse is not small.",
+          "text": "A very small voice, cursing, and the curse is not small at all.",
           "effects": [
             {
               "curse": true

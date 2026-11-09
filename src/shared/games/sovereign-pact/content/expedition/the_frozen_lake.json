@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "marked",
-      "label": "The one enemies always find goes first, to draw it.",
+      "label": "The one enemies always find goes first, to draw it away from the others.",
       "rule": "scion:most_targeted|scion:highest:resilience",
       "tags": [
         "bold"
@@ -34,7 +34,7 @@
         },
         {
           "w": 35,
-          "text": "It breaks the ice beneath them.",
+          "text": "It breaks the ice beneath them, and the water is black and very cold.",
           "effects": [
             {
               "injury": "legs"
@@ -48,7 +48,7 @@
     },
     {
       "id": "spread",
-      "label": "Spread out and walk light.",
+      "label": "Spread out and walk light, and hope it cannot follow you all.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -68,7 +68,7 @@
     },
     {
       "id": "fish",
-      "label": "Cut a hole and bait it.",
+      "label": "Cut a hole and bait it, and see what rises.",
       "rule": "leader",
       "tags": [
         "reckless"
@@ -76,7 +76,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It bites.",
+          "text": "It bites, and it is much bigger than the hole.",
           "effects": [
             {
               "encounter": {

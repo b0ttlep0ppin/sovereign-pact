@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "ask",
-      "label": "The wisest asks it what it saw.",
+      "label": "The wisest asks it what it saw, before it fades.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It points the way, and fades, and you all feel how long it waited.",
+          "text": "It points the way, and fades, and you all feel how long it waited for someone to come.",
           "effects": [
             {
               "skip": 1
@@ -36,7 +36,7 @@
     },
     {
       "id": "bury",
-      "label": "Find its bones and bury them.",
+      "label": "Find its bones and bury them, as its House never did.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -44,7 +44,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A long hour of searching. It thanks you, and is gone.",
+          "text": "A long hour of searching. It thanks you, and is gone, and the road feels lighter.",
           "effects": [
             {
               "score": {
@@ -57,7 +57,7 @@
     },
     {
       "id": "flee",
-      "label": "Run from it.",
+      "label": "Run from it. It is not yours to grieve.",
       "rule": "leader",
       "tags": [
         "cautious"

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "climb",
-      "label": "Climb the frozen falls.",
+      "label": "Climb the frozen falls, and trust the ice to hold.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -34,7 +34,7 @@
         },
         {
           "w": 30,
-          "text": "The ice cracks under your hands like a gunshot.",
+          "text": "The ice cracks under your hands like a gunshot, and you fall.",
           "effects": [
             {
               "to": "party",
@@ -47,7 +47,7 @@
     },
     {
       "id": "cave",
-      "label": "The strongest breaks into the cave behind the ice.",
+      "label": "The strongest breaks into the cave behind the ice, to see what scratched.",
       "rule": "scion:highest:might",
       "tags": [
         "reckless"
@@ -55,7 +55,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "A hermit's hoard, long frozen, and the hermit too.",
+          "text": "A hermit's hoard, long frozen, and the hermit too, still curled up against the cold.",
           "effects": [
             {
               "resources": {
@@ -67,7 +67,7 @@
         },
         {
           "w": 40,
-          "text": "A bear's den, and the bear was the one scratching.",
+          "text": "A bear's den, and the bear was the one scratching, and it is very hungry after its long sleep.",
           "effects": [
             {
               "encounter": {}
@@ -78,7 +78,7 @@
     },
     {
       "id": "round",
-      "label": "Find the path round.",
+      "label": "Find the path round, and leave the scratching to whoever made it.",
       "rule": "leader",
       "tags": [
         "cautious"

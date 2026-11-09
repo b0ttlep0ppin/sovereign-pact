@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "free",
-      "label": "The strongest cuts her free.",
+      "label": "The strongest cuts her free, hoping she can tell you what she saw.",
       "rule": "scion:highest:might",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "She thaws, gasping, and before she runs she presses her bow into your hands.",
+          "text": "She thaws, gasping, and before she runs she presses her bow into your hands. She does not look back.",
           "effects": [
             {
               "item": {
@@ -71,7 +71,7 @@
     },
     {
       "id": "go",
-      "label": "Walk on, and do not look back.",
+      "label": "Walk on, and do not look back. Whatever she saw, it is still there.",
       "rule": "leader",
       "tags": [
         "cautious"

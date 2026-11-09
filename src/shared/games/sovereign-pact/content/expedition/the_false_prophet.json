@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "debate",
-      "label": "The wisest debates him before the pilgrims.",
+      "label": "The wisest debates him before the pilgrims, and fights for their faith.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -32,7 +32,7 @@
         },
         {
           "w": 40,
-          "text": "He wins, and the pilgrims look at you with pity.",
+          "text": "He wins, and the pilgrims look at you with pity, and some of you begin to wonder.",
           "effects": [
             {
               "to": "party",
@@ -44,7 +44,7 @@
     },
     {
       "id": "listen",
-      "label": "Listen to his sermon.",
+      "label": "Listen to his sermon, and judge for yourselves whether the Six are dead.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -69,7 +69,7 @@
     },
     {
       "id": "silence",
-      "label": "Silence him.",
+      "label": "Silence him, before his words spread any further.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -77,7 +77,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The pilgrims scatter, and some of them run toward the Gate.",
+          "text": "The pilgrims scatter, and some of them run toward the Gate, to see for themselves.",
           "effects": [
             {
               "doom": 1

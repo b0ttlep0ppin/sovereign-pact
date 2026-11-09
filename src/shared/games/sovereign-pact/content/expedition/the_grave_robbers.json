@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "join",
-      "label": "Take the cut, and help them dig.",
+      "label": "Take the cut and help them dig. The dead are past caring.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -40,7 +40,7 @@
         },
         {
           "w": 40,
-          "text": "The barrow's keeper is home, and it has been listening to the digging.",
+          "text": "The barrow's keeper is home, and it has been listening to the digging, and it is ready.",
           "effects": [
             {
               "encounter": {}
@@ -51,7 +51,7 @@
     },
     {
       "id": "stop",
-      "label": "Run them off.",
+      "label": "Run them off. The dead deserve their rest.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -76,7 +76,7 @@
     },
     {
       "id": "watch",
-      "label": "The sharpest watches from a distance.",
+      "label": "The sharpest watches from a distance, to learn what lives in the barrow.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"

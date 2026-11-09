@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "take",
-      "label": "Take what the robbers left.",
+      "label": "Take what the robbers left. It would be a waste to leave it.",
       "rule": "vote",
       "tags": [
         "cruel"
@@ -47,7 +47,7 @@
     },
     {
       "id": "seal",
-      "label": "The devout reseals the barrow.",
+      "label": "The devout reseals the barrow, and lays the dead back to rest.",
       "rule": "scion:trait:devout|scion:highest:sagacity",
       "tags": [
         "kind"
@@ -74,7 +74,7 @@
     },
     {
       "id": "track",
-      "label": "The sharpest tracks the robbers.",
+      "label": "The sharpest tracks the robbers, and the loot they did get away with.",
       "rule": "scion:highest:acuity",
       "tags": [
         "bold"
@@ -82,7 +82,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Their camp, their loot, and their knives.",
+          "text": "Their camp, their loot, and their knives, all waiting.",
           "effects": [
             {
               "encounter": {

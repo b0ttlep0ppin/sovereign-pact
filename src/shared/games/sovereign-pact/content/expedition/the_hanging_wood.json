@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "cut",
-      "label": "The leader cuts one down and opens it.",
+      "label": "The Leader cuts one down and opens it, needing to know what they hold.",
       "rule": "leader",
       "tags": [
         "reckless"
@@ -32,7 +32,7 @@
         },
         {
           "w": 50,
-          "text": "Inside is a name, and it is the leader's, and it is fresh.",
+          "text": "Inside is a name, and it is the Leader's, and it is fresh.",
           "effects": [
             {
               "curse": true
@@ -46,7 +46,7 @@
     },
     {
       "id": "add",
-      "label": "Tie up a bundle of your own, for luck.",
+      "label": "Tie up a bundle of your own, for luck, as others have before.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -72,7 +72,7 @@
     },
     {
       "id": "burn",
-      "label": "Burn a path through the bundles.",
+      "label": "Burn a path through the bundles. Whatever they are for, it is not good.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -80,7 +80,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The wood burns screaming, and what comes out of the smoke is not happy.",
+          "text": "The wood burns screaming, and what comes out of the smoke is not happy about it.",
           "effects": [
             {
               "encounter": {

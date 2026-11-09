@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "temper",
-      "label": "Feed it a piece of good iron.",
+      "label": "Feed it a piece of good iron, and trust it to give back better.",
       "rule": "leader",
       "tags": [
         "clever"
@@ -39,7 +39,7 @@
     },
     {
       "id": "feed",
-      "label": "The strongest feeds it their own heat.",
+      "label": "The strongest feeds it their own heat, willing to pay in flesh.",
       "rule": "scion:highest:might",
       "tags": [
         "reckless"
@@ -47,7 +47,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It drinks the warmth from their arm, leaving it grey and cold, and gives a gift for it.",
+          "text": "It drinks the warmth from their arm, leaving it grey and cold, and gives a gift for it. The arm never feels quite warm again.",
           "effects": [
             {
               "durability": -30,
@@ -64,7 +64,7 @@
     },
     {
       "id": "quench",
-      "label": "Quench it with water.",
+      "label": "Quench it with water. Hungry things are better put out.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -72,7 +72,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It does not like that at all.",
+          "text": "It does not like that at all, and it is still very hot.",
           "effects": [
             {
               "encounter": {}

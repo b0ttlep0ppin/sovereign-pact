@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "hold",
-      "label": "The toughest holds the burning latch.",
+      "label": "The toughest holds the burning latch, so that the rest may pass.",
       "rule": "scion:highest:resilience",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Burned to the elbow, and the party through, and their hand-print added to the others.",
+          "text": "Burned to the elbow, and the party through, and their hand-print added to the others in the iron.",
           "effects": [
             {
               "durability": -30,
@@ -40,7 +40,7 @@
     },
     {
       "id": "each",
-      "label": "Each Scion takes a turn at the latch.",
+      "label": "Each Scion takes a turn at the latch, so that no one burns alone.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -63,7 +63,7 @@
     },
     {
       "id": "round",
-      "label": "Find another way.",
+      "label": "Find another way, rather than leave your hand in that gate.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -71,7 +71,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Another way, through the devils' kennels, and the devils' dogs.",
+          "text": "Another way, through the devils' kennels, and the devils' dogs are awake.",
           "effects": [
             {
               "encounter": {}

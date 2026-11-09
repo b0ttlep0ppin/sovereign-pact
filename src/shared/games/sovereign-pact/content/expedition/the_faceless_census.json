@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "truth",
-      "label": "Give your true names.",
+      "label": "Give your true names, and let the city count you.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They write them down with care, in a hand that is not theirs. Now the city knows you, for better and worse.",
+          "text": "They write them down with care, in a hand that is not theirs. Now the city knows you, for better and worse, and it will not forget.",
           "effects": [
             {
               "to": "party",
@@ -36,7 +36,7 @@
     },
     {
       "id": "lie",
-      "label": "The craftiest gives false names for everyone.",
+      "label": "The craftiest gives false names for everyone, and hopes the city never checks.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"
@@ -66,7 +66,7 @@
     },
     {
       "id": "ledger",
-      "label": "Snatch their ledger.",
+      "label": "Snatch their ledger, and see what names it holds.",
       "rule": "leader",
       "tags": [
         "reckless"
@@ -74,7 +74,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The city screams, every blank mouth at once.",
+          "text": "The city screams, every blank mouth at once, and comes for the names you took.",
           "effects": [
             {
               "score": {

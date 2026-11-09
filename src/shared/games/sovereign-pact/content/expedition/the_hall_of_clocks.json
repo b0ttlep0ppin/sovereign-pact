@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "wind",
-      "label": "Wind the backward clock forward.",
+      "label": "Wind the backward clock forward, and set time right again.",
       "rule": "vote",
       "tags": [
         "clever"
@@ -30,7 +30,7 @@
         },
         {
           "w": 40,
-          "text": "Time catches up with you, and it has been waiting.",
+          "text": "Time catches up with you, and it has been waiting, and it is not gentle.",
           "effects": [
             {
               "to": "party",
@@ -46,7 +46,7 @@
     },
     {
       "id": "listen",
-      "label": "The wisest listens to the ticking.",
+      "label": "The wisest listens to the ticking, and tries to learn what it counts.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "kind"
@@ -54,7 +54,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "All thousand clocks are counting down to the same thing.",
+          "text": "All thousand clocks are counting down to the same thing, and it is not far off.",
           "effects": [
             {
               "foresee": true
@@ -68,7 +68,7 @@
     },
     {
       "id": "smash",
-      "label": "Smash them all.",
+      "label": "Smash them all, and end the ticking for good.",
       "rule": "leader",
       "tags": [
         "reckless"

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "hide",
-      "label": "Look away and hide.",
+      "label": "Look away and hide, and pray the foxes never knew you were there.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -32,7 +32,7 @@
         },
         {
           "w": 30,
-          "text": "They pass. The rain stops. One fox turns back, looks right at your hiding place, and smiles.",
+          "text": "They pass. The rain stops. One fox turns back, looks right at your hiding place, and smiles. It will remember you.",
           "effects": [
             {
               "to": "party",
@@ -44,7 +44,7 @@
     },
     {
       "id": "gift",
-      "label": "Leave a gift for the fox bride.",
+      "label": "Leave a gift for the fox bride, as the old wives say you should.",
       "rule": "leader",
       "tags": [
         "kind"
@@ -52,7 +52,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A fox comes back alone, in silk, with a gift of its own, and bows.",
+          "text": "A fox comes back alone, in silk, with a gift of its own, and bows. Luck follows you out of the wood.",
           "effects": [
             {
               "resources": {
@@ -71,7 +71,7 @@
     },
     {
       "id": "watch",
-      "label": "The stealthiest watches the procession.",
+      "label": "The stealthiest watches the procession, curious where the foxes walk.",
       "rule": "scion:highest:guile",
       "tags": [
         "reckless"
@@ -88,7 +88,7 @@
         },
         {
           "w": 50,
-          "text": "Seen. The bride lifts her veil, and smiles.",
+          "text": "Seen. The bride lifts her veil, and smiles, and there is nothing beneath it but teeth.",
           "effects": [
             {
               "curse": true

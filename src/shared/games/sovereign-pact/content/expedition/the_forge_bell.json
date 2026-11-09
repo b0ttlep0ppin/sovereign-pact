@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "ring",
-      "label": "Ring the old forge bell.",
+      "label": "Ring the old forge bell, and see whether the smiths still answer.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "The ghosts of the smiths rise to work, silent and grey, and make you something.",
+          "text": "The ghosts of the smiths rise to work, silent and grey, and make you something. They do not stop when you leave.",
           "effects": [
             {
               "item": {
@@ -32,7 +32,7 @@
         },
         {
           "w": 50,
-          "text": "Something else rises to the call.",
+          "text": "Something else rises to the call, and it is not a smith.",
           "effects": [
             {
               "encounter": {}
@@ -43,7 +43,7 @@
     },
     {
       "id": "take",
-      "label": "The strongest takes the bell for its metal.",
+      "label": "The strongest takes the bell for its metal. It has rung its last.",
       "rule": "scion:highest:might",
       "tags": [
         "bold"
@@ -51,7 +51,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Heavy, and worth it, and the halls are very quiet after.",
+          "text": "Heavy, and worth it, and the halls are very quiet after, as if something has been lost.",
           "effects": [
             {
               "resources": {
@@ -68,7 +68,7 @@
     },
     {
       "id": "leave",
-      "label": "Leave it silent.",
+      "label": "Leave it silent. Some calls should not be made.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -90,7 +90,7 @@
     },
     {
       "id": "ring_it",
-      "label": "The one in plate rings it.",
+      "label": "The one in plate rings it, and lets the old hammers hear the call of iron.",
       "rule": "scion:wears:plate",
       "only": true,
       "tags": [

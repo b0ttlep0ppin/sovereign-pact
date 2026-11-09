@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "pick",
-      "label": "Pick a glass rose.",
+      "label": "Pick a glass rose. The garden has so many.",
       "rule": "leader",
       "tags": [
         "reckless"
@@ -32,7 +32,7 @@
         },
         {
           "w": 50,
-          "text": "The gardener comes, and it is not happy about its rose.",
+          "text": "The gardener comes, and it is not happy about its rose, and it has been gardening a long time.",
           "effects": [
             {
               "encounter": {}
@@ -43,7 +43,7 @@
     },
     {
       "id": "tend",
-      "label": "The wisest sweeps a path, as a guest should.",
+      "label": "The wisest sweeps a path, as a guest should, and thanks the gardener for the visit.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "kind"
@@ -66,7 +66,7 @@
     },
     {
       "id": "walk",
-      "label": "Walk carefully round the beds.",
+      "label": "Walk carefully round the beds, and touch nothing at all.",
       "rule": "vote",
       "tags": [
         "cautious"

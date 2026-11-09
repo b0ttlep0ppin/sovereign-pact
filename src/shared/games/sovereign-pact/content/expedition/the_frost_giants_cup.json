@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "drink",
-      "label": "The toughest drinks from the giant's cup.",
+      "label": "The toughest drinks from the giant's cup, daring to taste what giants drink.",
       "rule": "scion:highest:resilience",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "Giant's mead. They feel enormous, and very loud.",
+          "text": "Giant's mead. They feel enormous, and very loud, and they sing all the way down the glacier.",
           "effects": [
             {
               "growth": {
@@ -36,7 +36,7 @@
         },
         {
           "w": 40,
-          "text": "Giant's poison, thick and sweet, and cramping.",
+          "text": "Giant's poison, thick and sweet, and cramping, and it does not want to leave.",
           "effects": [
             {
               "status": "poison"
@@ -50,7 +50,7 @@
     },
     {
       "id": "take",
-      "label": "Chip off the cup's rim. Giant ice never melts.",
+      "label": "Chip off the cup's rim. Giant ice never melts, and it will sell.",
       "rule": "vote",
       "tags": [
         "clever"
@@ -71,7 +71,7 @@
     },
     {
       "id": "giant",
-      "label": "Wait for the giant to come back.",
+      "label": "Wait for the giant to come back, and face it at its own cup.",
       "rule": "leader",
       "tags": [
         "bold"
@@ -79,7 +79,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It comes back thirsty, and finds you at its cup.",
+          "text": "It comes back thirsty, and finds you at its cup, and it is not the sharing kind.",
           "effects": [
             {
               "encounter": {

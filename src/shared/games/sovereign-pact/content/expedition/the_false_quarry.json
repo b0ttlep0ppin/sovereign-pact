@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "strike",
-      "label": "Strike it anyway.",
+      "label": "Strike it anyway. Whatever it is, it is not friendly.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -34,7 +34,7 @@
     },
     {
       "id": "see",
-      "label": "The sharpest eye watches it, and waits.",
+      "label": "The sharpest eye watches it, and waits for it to lead you true.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -42,7 +42,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It leads you to the real one without ever knowing it.",
+          "text": "It leads you to the real one without ever knowing it, and you leave it to its borrowed shape.",
           "effects": [
             {
               "skip": 1
@@ -58,7 +58,7 @@
     },
     {
       "id": "talk",
-      "label": "The smoothest speaks to the thing in the borrowed shape.",
+      "label": "The smoothest speaks to the thing in the borrowed shape, curious what it wants.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"
@@ -66,7 +66,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "It wants the quarry dead too, and it walks with you a while.",
+          "text": "It wants the quarry dead too, and it walks with you a while, close enough to touch.",
           "effects": [
             {
               "to": "party",

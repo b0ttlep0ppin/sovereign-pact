@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "heal",
-      "label": "The best healer tends its broken wings.",
+      "label": "The best healer tends its broken wings, so that it may finish what it came to say.",
       "rule": "scion:most_healing",
       "tags": [
         "kind"
@@ -38,7 +38,7 @@
     },
     {
       "id": "listen",
-      "label": "The wisest finishes the word for it.",
+      "label": "The wisest finishes the word for it, so that its message is not lost.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -46,7 +46,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A name, and a warning about the End Ruler, and then its light goes out.",
+          "text": "A name, and a warning about the End Ruler, and then its light goes out. The word stays with them, heavy and bright.",
           "effects": [
             {
               "score": {
@@ -62,7 +62,7 @@
     },
     {
       "id": "feathers",
-      "label": "Take its feathers while it dies.",
+      "label": "Take its feathers while it dies. They will not help it now.",
       "rule": "leader",
       "tags": [
         "cruel"

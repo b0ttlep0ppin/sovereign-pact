@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "arm",
-      "label": "The one with the hurt arm lays it in the vine's palm.",
+      "label": "The one with the hurt arm lays it in the vine's palm, trusting the voice in the well.",
       "rule": "scion:injured:arms|scion:lowest:might",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "The vine knits the arm, green and gentle, and lets go, and leaves a leaf in the wound.",
+          "text": "The vine knits the arm, green and gentle, and lets go, and leaves a leaf in the wound that never quite falls out.",
           "effects": [
             {
               "mend": true
@@ -49,7 +49,7 @@
     },
     {
       "id": "pious",
-      "label": "Healer's hands ask the well its name.",
+      "label": "Healer's hands ask the well its name, one healer to another.",
       "rule": "scion:trait:pious_hands|scion:most_healing",
       "tags": [
         "kind"
@@ -73,7 +73,7 @@
     },
     {
       "id": "burn",
-      "label": "Burn it out of the well.",
+      "label": "Burn it out of the well. Nothing green should reach from the dark.",
       "rule": "vote",
       "tags": [
         "cruel"
