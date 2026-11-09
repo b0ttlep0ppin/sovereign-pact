@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "silent",
-      "label": "Cross in perfect silence.",
+      "label": "Cross in perfect silence, and pray nobody so much as breathes too loud.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -44,7 +44,7 @@
     },
     {
       "id": "sing",
-      "label": "The steadiest voice sings the one right note.",
+      "label": "The steadiest voice sings the one right note, and trusts the chamber to answer kindly.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -67,7 +67,7 @@
     },
     {
       "id": "shout",
-      "label": "Shout, and run.",
+      "label": "Shout, and run, and let the ceiling fall behind you.",
       "rule": "leader",
       "tags": [
         "reckless"

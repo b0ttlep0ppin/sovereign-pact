@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "answer",
-      "label": "The cleverest answers the dragon's riddle.",
+      "label": "The cleverest answers the dragon's riddle, knowing what waits for the wrong answer.",
       "rule": "scion:highest:acuity|scion:highest:sagacity",
       "tags": [
         "clever"
@@ -48,7 +48,7 @@
     },
     {
       "id": "riddle",
-      "label": "The shrewdest asks it a riddle back.",
+      "label": "The shrewdest asks it a riddle back, and hopes it is a hard one.",
       "rule": "scion:highest:guile",
       "tags": [
         "reckless"
@@ -56,7 +56,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It thinks for an hour, smoke curling, and lets you pass while it thinks.",
+          "text": "It thinks for an hour, smoke curling, and lets you pass while it thinks. It may still be thinking.",
           "effects": [
             {
               "skip": 1
@@ -72,7 +72,7 @@
     },
     {
       "id": "other",
-      "label": "Find another pass.",
+      "label": "Find another pass. No riddle is worth being eaten for.",
       "rule": "vote",
       "tags": [
         "cautious"

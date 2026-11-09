@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "wear",
-      "label": "The leader puts on the dead king's crown.",
+      "label": "The Leader puts on the dead king's crown, feeling it was meant to be found.",
       "rule": "leader",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "It fits. It feels right. It feels like it was waiting.",
+          "text": "It fits. It feels right. It feels like it was waiting, and that is the part that worries everyone else.",
           "effects": [
             {
               "score": {
@@ -52,7 +52,7 @@
     },
     {
       "id": "sell",
-      "label": "Take it to sell.",
+      "label": "Take it to sell. A dead king has no use for gold.",
       "rule": "leader",
       "tags": [
         "clever"
@@ -73,7 +73,7 @@
     },
     {
       "id": "bury",
-      "label": "Bury it properly with its king.",
+      "label": "Bury it properly with its king, and let the battle finally end.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -81,7 +81,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The field is quieter after, as if a long battle had finally ended.",
+          "text": "The field is quieter after, as if a long battle had finally ended, and the dead can lie down.",
           "effects": [
             {
               "to": "party",

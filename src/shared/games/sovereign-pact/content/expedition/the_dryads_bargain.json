@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "give",
-      "label": "Each Scion gives her a lock of hair.",
+      "label": "Each Scion decides whether to give her a lock of hair, for the wood's goodwill.",
       "rule": "each_scion",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 80,
-          "text": "She weaves it into her branches, humming.",
+          "text": "She weaves it into her branches, humming. Somewhere in the wood, a tree grows a little like them.",
           "effects": [
             {
               "sanity": 4
@@ -41,7 +41,7 @@
     },
     {
       "id": "keep",
-      "label": "Each Scion keeps their hair, and walks on without her leave.",
+      "label": "Each Scion decides whether to keep their hair, and walk on without her leave.",
       "rule": "each_scion",
       "tags": [
         "cautious"
@@ -49,7 +49,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The wood is less kind. Roots rise to catch the ankle.",
+          "text": "The wood is less kind. Roots rise to catch the ankle, and the dryad watches from every tree.",
           "effects": [
             {
               "durability": -8,

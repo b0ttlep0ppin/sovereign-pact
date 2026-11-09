@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "bribe",
-      "label": "Bribe the clerk.",
+      "label": "Bribe the clerk. Every list has room for one more name.",
       "rule": "vote",
       "tags": [
         "clever"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "You are on the list now, in red ink, and the way ahead is shorter.",
+          "text": "You are on the list now, in red ink, and the way ahead is shorter. You hope you never learn what the list is for.",
           "effects": [
             {
               "resources": {
@@ -37,7 +37,7 @@
     },
     {
       "id": "forge",
-      "label": "The shrewdest forges the paper themselves.",
+      "label": "The shrewdest forges the paper themselves, thumbprint and all.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"
@@ -72,7 +72,7 @@
     },
     {
       "id": "burn",
-      "label": "Burn his papers.",
+      "label": "Burn his papers, and see how the damned like their freedom.",
       "rule": "leader",
       "tags": [
         "reckless"

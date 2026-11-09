@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "empress",
-      "label": "The one the roses turn to takes the throne.",
+      "label": "The one the roses turn to takes the throne, as the garden wishes.",
       "rule": "scion:tarot:empress|vote",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The garden kneels, every rose, and the scent of it heals.",
+          "text": "The garden kneels, every rose, and the scent of it heals. It is hard to leave.",
           "effects": [
             {
               "to": "party",
@@ -37,7 +37,7 @@
     },
     {
       "id": "cut",
-      "label": "The strongest cuts a path to the throne.",
+      "label": "The strongest cuts a path to the throne, roses or no roses.",
       "rule": "scion:highest:might",
       "tags": [
         "reckless"
@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "The roses bleed red sap, and the throne holds a jeweled seed.",
+          "text": "The roses bleed red sap, and the throne holds a jewelled seed.",
           "effects": [
             {
               "resources": {
@@ -56,7 +56,7 @@
         },
         {
           "w": 40,
-          "text": "The thorns fight back, and their poison is sweet.",
+          "text": "The thorns fight back, and their poison is sweet, and it lingers.",
           "effects": [
             {
               "to": "party",
@@ -72,7 +72,7 @@
     },
     {
       "id": "bow",
-      "label": "Bow to the empty throne, and go.",
+      "label": "Bow to the empty throne, and go before the roses decide otherwise.",
       "rule": "leader",
       "tags": [
         "cautious"

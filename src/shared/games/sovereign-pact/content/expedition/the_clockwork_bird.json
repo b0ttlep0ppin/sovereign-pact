@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "wind",
-      "label": "The cleverest hands wind it up again.",
+      "label": "The cleverest hands wind it up again, so that its song may go on.",
       "rule": "scion:highest:guile",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It sings, brighter, and leads you through the ruins to its maker's room.",
+          "text": "It sings, brighter, and leads you through the ruins to its maker's room, where it has been waiting to go.",
           "effects": [
             {
               "fork": {
@@ -36,7 +36,7 @@
     },
     {
       "id": "catch",
-      "label": "Catch it for the House.",
+      "label": "Catch it for the House. A thing so fine should not be left to rust.",
       "rule": "vote",
       "tags": [
         "clever"
@@ -55,7 +55,7 @@
         },
         {
           "w": 40,
-          "text": "Its beak is sharp, and brass, and it goes for the eyes.",
+          "text": "Its beak is sharp, and brass, and it goes for the eyes, and does not like being caught.",
           "effects": [
             {
               "durability": -20,
@@ -67,7 +67,7 @@
     },
     {
       "id": "let",
-      "label": "Let it run down.",
+      "label": "Let it run down. Its maker is long gone, and so are its best days.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -75,7 +75,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The song slows, and slows, and stops mid-note, and the forge is very quiet.",
+          "text": "The song slows, and slows, and stops mid-note, and the forge is very quiet, and very dead.",
           "effects": [
             {
               "to": "party",

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "small",
-      "label": "The meekest of you speaks to them.",
+      "label": "The meekest of you speaks to them, gently, one frightened soul to another.",
       "rule": "scion:lowest:might|scion:fewest_kills",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They whisper to the meek one what they are hiding from, and where it sleeps, and how it eats.",
+          "text": "They whisper to the meek one what they are hiding from, and where it sleeps, and how it eats. The meek one does not sleep that night.",
           "effects": [
             {
               "foresee": true
@@ -35,7 +35,7 @@
     },
     {
       "id": "take",
-      "label": "Take their scraps, and go.",
+      "label": "Take their scraps and go, quietly, before it hears you.",
       "rule": "vote",
       "tags": [
         "cruel"
@@ -43,7 +43,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A little food, a little shame, and their eyes in the dark.",
+          "text": "A little food, a little shame, and their eyes in the dark following you out.",
           "effects": [
             {
               "resources": {
@@ -59,7 +59,7 @@
     },
     {
       "id": "hunt",
-      "label": "Go and hunt what they fear.",
+      "label": "Go and hunt what they fear, so they need not hide any longer.",
       "rule": "leader",
       "tags": [
         "bold"
@@ -67,7 +67,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It is awake, and it is bigger than they said.",
+          "text": "It is awake, and it is bigger than they said, and it has been waiting for someone brave enough.",
           "effects": [
             {
               "encounter": {

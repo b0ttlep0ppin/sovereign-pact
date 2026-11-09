@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "scales",
-      "label": "Gather the loose scales.",
+      "label": "Gather the loose scales, and mind their edges.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Wyrmbone and scale, enough to armor a House, and edges that bite.",
+          "text": "Wyrmbone and scale, enough to armour a House, and edges that bite the hands that gather them.",
           "effects": [
             {
               "resources": {
@@ -38,7 +38,7 @@
     },
     {
       "id": "wear",
-      "label": "The toughest climbs inside the skin and wears it.",
+      "label": "The toughest climbs inside the skin and wears it, to borrow the dragon's dread.",
       "rule": "scion:highest:resilience",
       "tags": [
         "reckless"
@@ -60,7 +60,7 @@
     },
     {
       "id": "burn",
-      "label": "Burn it, so no rival has it.",
+      "label": "Burn it, so that no rival can have it.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -68,7 +68,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It burns for a day, and the smoke smells of rage.",
+          "text": "It burns for a day, and the smoke smells of rage, and somewhere a dragon lifts its head.",
           "effects": [
             {
               "score": {

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "drink",
-      "label": "The most weathered of you drinks from the spring.",
+      "label": "The most weathered of you drinks from the spring, tempted by the years it promises back.",
       "rule": "scion:most_expeditions",
       "tags": [
         "reckless"
@@ -46,7 +46,7 @@
     },
     {
       "id": "bottle",
-      "label": "Bottle some for home.",
+      "label": "Bottle some for home, and leave the drinking to the dead.",
       "rule": "leader",
       "tags": [
         "clever"
@@ -54,7 +54,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Clear water that never goes stale, and never quite stays still.",
+          "text": "Clear water that never goes stale, and never quite stays still in the bottle.",
           "effects": [
             {
               "resources": {
@@ -67,7 +67,7 @@
     },
     {
       "id": "leave",
-      "label": "Leave the spring to its dead.",
+      "label": "Leave the spring to its dead. Youth that keeps you forever is no gift.",
       "rule": "vote",
       "tags": [
         "cautious"

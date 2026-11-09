@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "talk",
-      "label": "Each speaks with their older self.",
+      "label": "Each Scion speaks with their older self, hoping to learn what is to come.",
       "rule": "each_scion",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "Advice, from the one who knows how it goes.",
+          "text": "Advice, from the one who knows how it goes. They take it to heart.",
           "effects": [
             {
               "xp": 60
@@ -33,7 +33,7 @@
         },
         {
           "w": 40,
-          "text": "A warning, and it is not one they wanted.",
+          "text": "A warning, and it is not one they wanted, and it comes true in the telling.",
           "effects": [
             {
               "sanity": -15
@@ -44,7 +44,7 @@
     },
     {
       "id": "pass",
-      "label": "Each walks past their echo without a word.",
+      "label": "Each Scion walks past their echo without a word. Some futures are better not heard.",
       "rule": "each_scion",
       "tags": [
         "cautious"
@@ -52,7 +52,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It does not look back. It never did.",
+          "text": "It does not look back. It never did, and now they know they never will.",
           "effects": [
             {
               "sanity": -3

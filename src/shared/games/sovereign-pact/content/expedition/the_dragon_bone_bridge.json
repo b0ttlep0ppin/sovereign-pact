@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "cross",
-      "label": "Cross the dragon's spine.",
+      "label": "Cross the dragon's spine, and trust that what is dead stays dead.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -31,7 +31,7 @@
         },
         {
           "w": 20,
-          "text": "A vertebra gives under your feet, and the whole spine groans.",
+          "text": "A vertebra gives under your feet, and the whole spine groans, as if in pain.",
           "effects": [
             {
               "to": "party",
@@ -44,7 +44,7 @@
     },
     {
       "id": "bone",
-      "label": "The strongest prises a rib loose on the way.",
+      "label": "The strongest prises a rib loose on the way, for the House's forges.",
       "rule": "scion:highest:might",
       "tags": [
         "reckless"
@@ -52,7 +52,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Wyrmbone, and the bridge lurches, and far down the spine something shifts.",
+          "text": "Wyrmbone, and the bridge lurches, and far down the spine something shifts that should not.",
           "effects": [
             {
               "resources": {
@@ -69,7 +69,7 @@
     },
     {
       "id": "around",
-      "label": "Go around the gorge.",
+      "label": "Go around the gorge, rather than walk on the back of a dragon.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -77,7 +77,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A day's climb, and the hills are not empty.",
+          "text": "A day's climb, and the hills are not empty, and they have been watching you go.",
           "effects": [
             {
               "fork": {

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "open",
-      "label": "Open the door to the voices.",
+      "label": "Open the door to the voices, and let yourselves hope it is home.",
       "rule": "leader",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 40,
-          "text": "A tavern, somewhere, somewhen. They feed you and send you back better than you were.",
+          "text": "A tavern, somewhere, somewhen. They feed you and send you back better than you were, and you never find the door again.",
           "effects": [
             {
               "to": "party",
@@ -49,7 +49,7 @@
     },
     {
       "id": "knock",
-      "label": "The sharpest ear knocks, and listens.",
+      "label": "The sharpest ear knocks, and listens closely for what answers.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -57,7 +57,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The laughter stops. Someone on the other side whispers a warning, and it is a good one.",
+          "text": "The laughter stops. Someone on the other side whispers a warning, and it is a good one. You do not ask how they knew.",
           "effects": [
             {
               "skip": 1
@@ -68,7 +68,7 @@
     },
     {
       "id": "walk",
-      "label": "Walk on past it.",
+      "label": "Walk on past it. Nothing down here sounds like home by chance.",
       "rule": "vote",
       "tags": [
         "cautious"

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "rouse",
-      "label": "Rouse the dragon and finish what he started.",
+      "label": "Rouse the dragon and finish what the slayer started.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It wakes weak, and furious, and remembers the last one who came.",
+          "text": "It wakes weak, and furious, and remembers the last one who came, and means to do better this time.",
           "effects": [
             {
               "encounter": {
@@ -39,7 +39,7 @@
     },
     {
       "id": "slip",
-      "label": "The quietest slips into the tomb past it.",
+      "label": "The quietest slips into the tomb past it, holding their breath.",
       "rule": "scion:highest:guile|scion:highest:speed",
       "tags": [
         "reckless"
@@ -71,7 +71,7 @@
     },
     {
       "id": "leave",
-      "label": "Leave them both to their long sleep.",
+      "label": "Leave them both to their long sleep. Some victories are not finished.",
       "rule": "leader",
       "tags": [
         "cautious"

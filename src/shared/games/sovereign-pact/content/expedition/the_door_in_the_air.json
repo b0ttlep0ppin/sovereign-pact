@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "open",
-      "label": "Open the green door.",
+      "label": "Open the green door, and step into the sunlight beyond.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "Sunlight, warm and real, and bees, for one long moment. Then it is gone, and you have it still.",
+          "text": "Sunlight, warm and real, and bees, for one long moment. Then it is gone, and you have it still, and always will.",
           "effects": [
             {
               "to": "party",
@@ -31,7 +31,7 @@
         },
         {
           "w": 50,
-          "text": "Not sunlight. Something on the other side was making the sound of bees.",
+          "text": "Not sunlight. Something on the other side was making the sound of bees, and it is very pleased you opened the door.",
           "effects": [
             {
               "encounter": {
@@ -45,7 +45,7 @@
     },
     {
       "id": "look",
-      "label": "The sharpest eye looks through the keyhole.",
+      "label": "The sharpest eye looks through the keyhole, before anyone opens it.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -53,7 +53,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Home, small and bright and far away. And the way back to it.",
+          "text": "Home, small and bright and far away. And the way back to it, if you are quick.",
           "effects": [
             {
               "foresee": true
@@ -64,7 +64,7 @@
     },
     {
       "id": "leave",
-      "label": "Leave it shut.",
+      "label": "Leave it shut. No door hangs in the air for any good reason.",
       "rule": "leader",
       "tags": [
         "cautious"

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "feed",
-      "label": "Feed the little thing.",
+      "label": "Feed the little thing. It is hard to refuse something that likes you so.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "It follows you home, puffing smoke, and the House must build somewhere to keep it.",
+          "text": "It follows you home, puffing smoke, and the House must build somewhere to keep it. It will not stay little forever.",
           "effects": [
             {
               "house_improvement": "building"
@@ -30,7 +30,7 @@
         },
         {
           "w": 40,
-          "text": "Its mother finds you, and she is not little.",
+          "text": "Its mother finds you, and she is not little, and she is not grateful.",
           "effects": [
             {
               "encounter": {
@@ -43,7 +43,7 @@
     },
     {
       "id": "drive",
-      "label": "Drive it away.",
+      "label": "Drive it away, before its mother comes looking.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -62,7 +62,7 @@
     },
     {
       "id": "sell",
-      "label": "The shrewdest sells it to a passing collector.",
+      "label": "The shrewdest sells it to a passing collector. Dragons fetch a fine price.",
       "rule": "scion:highest:guile",
       "tags": [
         "cruel"
@@ -86,7 +86,7 @@
     },
     {
       "id": "a_spark",
-      "label": "The one with a staff feeds it a spark.",
+      "label": "The one with a staff feeds it a spark, curious what it will do.",
       "rule": "scion:wields:staff",
       "only": true,
       "tags": [

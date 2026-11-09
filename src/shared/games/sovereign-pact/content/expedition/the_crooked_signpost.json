@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "left",
-      "label": "The quickest scouts the left way home.",
+      "label": "The quickest scouts the left way home, and hopes it means what it says.",
       "rule": "scion:highest:speed",
       "tags": [
         "bold"
@@ -30,7 +30,7 @@
         },
         {
           "w": 40,
-          "text": "A shortcut to something hungry, waiting at the end of it.",
+          "text": "A shortcut to something hungry, waiting patiently at the end of it.",
           "effects": [
             {
               "encounter": {
@@ -43,7 +43,7 @@
     },
     {
       "id": "right",
-      "label": "The party keeps right, and trusts nothing.",
+      "label": "The party keeps right, and trusts nothing the post says.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -63,7 +63,7 @@
     },
     {
       "id": "burn",
-      "label": "Pull up the post and burn it.",
+      "label": "Pull up the post and burn it, so that it leads no one else astray.",
       "rule": "leader",
       "tags": [
         "reckless"
@@ -71,7 +71,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The paths straighten out. Something on them is very cross.",
+          "text": "The paths straighten out. Something on them is very cross about it.",
           "effects": [
             {
               "fork": {

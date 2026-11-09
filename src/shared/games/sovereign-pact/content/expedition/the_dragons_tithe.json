@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "pay",
-      "label": "Let the dragon choose who pays.",
+      "label": "Let the dragon choose who pays, and accept whatever it decides.",
       "rule": "house:random",
       "tags": [
         "cautious"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It chooses. Nobody sees how. The House pays in gold, and the herald blows his horn.",
+          "text": "It chooses. Nobody sees how. The House pays in gold, and the herald blows his horn, and the sky is quiet.",
           "effects": [
             {
               "resources": {
@@ -39,7 +39,7 @@
     },
     {
       "id": "refuse",
-      "label": "Refuse the tithe.",
+      "label": "Refuse the tithe. No dragon taxes the Pact.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -47,7 +47,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The herald whistles, and the sky darkens.",
+          "text": "The herald whistles, and the sky darkens, and it keeps darkening.",
           "effects": [
             {
               "encounter": {
@@ -65,7 +65,7 @@
     },
     {
       "id": "brave",
-      "label": "The bravest offers a challenge instead of gold.",
+      "label": "The bravest offers a challenge instead of gold, and dares the dragon to accept.",
       "rule": "scion:trait:brave|scion:highest:might",
       "tags": [
         "reckless"

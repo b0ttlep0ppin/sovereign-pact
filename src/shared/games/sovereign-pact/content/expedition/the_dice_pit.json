@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "watch",
-      "label": "Let the devils' throw land.",
+      "label": "Let the devils' throw land where it will. You could not stop it if you tried.",
       "rule": "house:random",
       "tags": [
         "reckless"
@@ -32,7 +32,7 @@
         },
         {
           "w": 50,
-          "text": "The House loses. Its Scions feel something leave them, and the devils cheer.",
+          "text": "The House loses. Its Scions feel something leave them, and the devils cheer, and pass it around.",
           "effects": [
             {
               "sanity": -15
@@ -46,7 +46,7 @@
     },
     {
       "id": "cheat",
-      "label": "The shrewdest cheats the devils at their own game.",
+      "label": "The shrewdest cheats the devils at their own game, and dares them to notice.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"
@@ -83,7 +83,7 @@
     },
     {
       "id": "run",
-      "label": "Run before the dice stop rolling.",
+      "label": "Run before the dice stop rolling, and pray they forget your House.",
       "rule": "vote",
       "tags": [
         "cautious"

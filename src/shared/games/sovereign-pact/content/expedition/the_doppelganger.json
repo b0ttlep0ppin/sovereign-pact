@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "ask",
-      "label": "The sharpest asks what only the real one would know.",
+      "label": "The sharpest asks them both what only the real one could know.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "The false one fumbles a childhood name, and its face slips, and it runs.",
+          "text": "The false one fumbles a childhood name, and its face slips, and it runs. Nobody sleeps near the fire that night.",
           "effects": [
             {
               "score": {
@@ -35,7 +35,7 @@
         },
         {
           "w": 30,
-          "text": "Both answer perfectly. Both of them smile.",
+          "text": "Both answer perfectly. Both of them smile, in exactly the same way.",
           "effects": [
             {
               "encounter": {
@@ -48,7 +48,7 @@
     },
     {
       "id": "both",
-      "label": "Keep both until one gives itself away.",
+      "label": "Keep both close until one gives itself away, and never turn your back.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -56,7 +56,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It gives itself away at the worst possible moment, with a knife.",
+          "text": "It gives itself away at the worst possible moment, with a knife, and the face it wears is still the one you trusted.",
           "effects": [
             {
               "encounter": {
@@ -73,7 +73,7 @@
     },
     {
       "id": "test",
-      "label": "Test them both with silver.",
+      "label": "Test them both with silver, and see whose skin can bear it.",
       "rule": "leader",
       "tags": [
         "bold"
@@ -81,7 +81,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Silver burns one of them, and it stops pretending.",
+          "text": "Silver burns one of them, and it stops pretending, and what it is underneath is not a person.",
           "effects": [
             {
               "encounter": {

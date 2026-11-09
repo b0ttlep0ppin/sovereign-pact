@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "buy",
-      "label": "Buy his newest map.",
+      "label": "Buy his newest map, while it is still true.",
       "rule": "vote",
       "tags": [
         "clever"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "True for a day, and then the roads start to crawl again.",
+          "text": "True for a day, and then the roads start to crawl again, and you hear him weeping somewhere behind you.",
           "effects": [
             {
               "resources": {
@@ -37,7 +37,7 @@
     },
     {
       "id": "free",
-      "label": "The kindest unchains him from his desk.",
+      "label": "The kindest unchains him from his desk, and ends his endless labour.",
       "rule": "scion:most_healing|scion:highest:sagacity",
       "tags": [
         "kind"
@@ -62,7 +62,7 @@
     },
     {
       "id": "steal",
-      "label": "Steal his maps.",
+      "label": "Steal his maps. He will only draw more.",
       "rule": "leader",
       "tags": [
         "cruel"

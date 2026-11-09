@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "wait",
-      "label": "Wait in the shadows for it to pass.",
+      "label": "Wait in the shadows for it to pass, and let it keep its endless patrol.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -34,7 +34,7 @@
     },
     {
       "id": "wind",
-      "label": "The cleverest winds it down from behind.",
+      "label": "The cleverest winds it down from behind, before it can turn its lamps on you.",
       "rule": "scion:highest:guile|scion:highest:acuity",
       "tags": [
         "clever"
@@ -42,7 +42,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "It stops mid-step, spear raised. Its gears are worth a fortune.",
+          "text": "It stops mid-step, spear raised. Its gears are worth a fortune, and it never sees you take them.",
           "effects": [
             {
               "resources": {
@@ -54,7 +54,7 @@
         },
         {
           "w": 40,
-          "text": "It turns. Its lamps fix on you.",
+          "text": "It turns. Its lamps fix on you, and its spear comes down.",
           "effects": [
             {
               "encounter": {
@@ -67,7 +67,7 @@
     },
     {
       "id": "fight",
-      "label": "Break it.",
+      "label": "Break it, and end its patrol for good.",
       "rule": "leader",
       "tags": [
         "bold"
@@ -75,7 +75,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It fights exactly as it was built to, tirelessly, and it was built well.",
+          "text": "It fights exactly as it was built to, tirelessly, and it was built very well.",
           "effects": [
             {
               "encounter": {}
@@ -91,7 +91,7 @@
     },
     {
       "id": "open_its_back",
-      "label": "The Tinkerer opens its back while it walks.",
+      "label": "The Tinkerer opens its back while it walks, hands steady and quick.",
       "rule": "scion:job:tinkerer",
       "only": true,
       "tags": [

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "slow",
-      "label": "The slowest stands before the crows' court.",
+      "label": "The slowest stands before the crows' court, and awaits their verdict.",
       "rule": "scion:lowest:speed|scion:random",
       "tags": [
         "kind"
@@ -33,7 +33,7 @@
         },
         {
           "w": 30,
-          "text": "They judge the laggard food, and fall on them.",
+          "text": "They judge the laggard food, and fall on them, beaks first.",
           "effects": [
             {
               "durability": -20,
@@ -48,7 +48,7 @@
     },
     {
       "id": "scatter",
-      "label": "Scatter their parliament.",
+      "label": "Scatter their parliament. No crow sits in judgement on your House.",
       "rule": "vote",
       "tags": [
         "cruel"
@@ -56,7 +56,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They go, cawing outrage, and come back with friends.",
+          "text": "They go, cawing outrage, and come back with friends, and the friends have friends.",
           "effects": [
             {
               "encounter": {
@@ -69,7 +69,7 @@
     },
     {
       "id": "offer",
-      "label": "Offer them something shiny.",
+      "label": "Offer them something shiny, to buy their good opinion.",
       "rule": "leader",
       "tags": [
         "clever"

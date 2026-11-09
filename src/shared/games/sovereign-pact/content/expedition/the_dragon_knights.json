@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "truth",
-      "label": "Tell the captain the truth.",
+      "label": "Tell the captain the truth, and hope it is enough to satisfy her.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "She nods, and they escort you a way, wings beating overhead.",
+          "text": "She nods, and they escort you a way, wings beating overhead, and nothing dares come near.",
           "effects": [
             {
               "skip": 1
@@ -41,7 +41,7 @@
     },
     {
       "id": "bluff",
-      "label": "The smoothest bluffs about your business here.",
+      "label": "The smoothest bluffs about your business here, and keeps a straight face.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"
@@ -49,7 +49,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They salute, and take off in a storm of dust.",
+          "text": "They salute, and take off in a storm of dust, and never think to ask again.",
           "effects": [
             {
               "score": {
@@ -65,7 +65,7 @@
     },
     {
       "id": "duel",
-      "label": "The strongest challenges the captain.",
+      "label": "The strongest challenges the captain, and lets steel settle the question.",
       "rule": "scion:highest:might",
       "tags": [
         "bold"
@@ -89,7 +89,7 @@
         },
         {
           "w": 50,
-          "text": "The captain wins, and does not bother to look back.",
+          "text": "The captain wins, and does not bother to look back at what she left in the dust.",
           "effects": [
             {
               "injury": "body"

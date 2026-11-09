@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "take",
-      "label": "Take them along, and their secret.",
+      "label": "Take them along, and their secret, and see them safely home.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They lead the way, jumping at every shadow.",
+          "text": "They lead the way, jumping at every shadow, and they lead it true.",
           "effects": [
             {
               "skip": 2
@@ -35,7 +35,7 @@
     },
     {
       "id": "turn",
-      "label": "Hand them back to their own House.",
+      "label": "Hand them back to their own House, as the Pact demands.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -43,7 +43,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Their House is grateful. The deserters are not. You are on your own.",
+          "text": "Their House is grateful. The deserters are not, and they say nothing more. You are on your own.",
           "effects": [
             {
               "accord": 2
@@ -54,7 +54,7 @@
     },
     {
       "id": "question",
-      "label": "The shrewdest gets the location, and leaves them in the ditch.",
+      "label": "The shrewdest gets the location out of them, and leaves them in the ditch.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"

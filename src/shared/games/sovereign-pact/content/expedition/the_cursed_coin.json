@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "take",
-      "label": "The leader pockets the smiling coin.",
+      "label": "The Leader pockets the smiling coin, whatever the stories say.",
       "rule": "leader",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "It is just a coin. A very nice one.",
+          "text": "It is just a coin. A very nice one. Probably.",
           "effects": [
             {
               "resources": {
@@ -48,7 +48,7 @@
     },
     {
       "id": "kick",
-      "label": "Kick it into the ditch.",
+      "label": "Kick it into the ditch, and walk on before temptation wins.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -56,7 +56,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It rolls back onto the road behind you, face up, smiling.",
+          "text": "It rolls back onto the road behind you, face up, smiling, and follows you for a while.",
           "effects": [
             {
               "to": "party",
@@ -68,7 +68,7 @@
     },
     {
       "id": "bless",
-      "label": "The most devout blesses it before anyone touches it.",
+      "label": "The most devout blesses it before anyone touches it, to drive out whatever smiles.",
       "rule": "scion:trait:devout|scion:highest:sagacity",
       "tags": [
         "clever"

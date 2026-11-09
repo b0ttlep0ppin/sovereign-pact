@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "speak",
-      "label": "Each Scion speaks their name into the hall.",
+      "label": "Each Scion speaks their name into the hall, and hears what comes back.",
       "rule": "each_scion",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 55,
-          "text": "The echo says your name the way someone who loved you said it.",
+          "text": "The echo says your name the way someone who loved you said it, and for a moment they are there.",
           "effects": [
             {
               "sanity": 15
@@ -30,7 +30,7 @@
         },
         {
           "w": 45,
-          "text": "The echo says your name the way your enemies will.",
+          "text": "The echo says your name the way your enemies will, and you learn exactly how much they hate you.",
           "effects": [
             {
               "sanity": -15
@@ -44,7 +44,7 @@
     },
     {
       "id": "silent",
-      "label": "Each Scion keeps silent, and listens.",
+      "label": "Each Scion keeps silent, and listens to what the hall says of the others.",
       "rule": "each_scion",
       "tags": [
         "cautious"
@@ -52,7 +52,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "You cross in silence, and hear everything the hall says about everyone else.",
+          "text": "You cross in silence, and hear everything the hall says about everyone else. You keep it to yourself.",
           "effects": [
             {
               "xp": 30

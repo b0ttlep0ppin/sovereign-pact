@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "empress",
-      "label": "The Empress's child turns a card.",
+      "label": "The Empress's child turns a card, hoping she smiles upon them.",
       "rule": "scion:tarot:empress|scion:random",
       "tags": [
         "bold"
@@ -33,7 +33,7 @@
         },
         {
           "w": 40,
-          "text": "The Empress, reversed, and her painted eyes open.",
+          "text": "The Empress, reversed, and her painted eyes open, and look straight at them.",
           "effects": [
             {
               "sanity": -10
@@ -44,7 +44,7 @@
     },
     {
       "id": "hermit",
-      "label": "The Hermit's child turns a card.",
+      "label": "The Hermit's child turns a card, seeking what lies ahead.",
       "rule": "scion:tarot:hermit|scion:highest:sagacity",
       "tags": [
         "clever"
@@ -52,7 +52,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The Hermit, and his lamp shows the road ahead, and what waits on it.",
+          "text": "The Hermit, and his lamp shows the road ahead, and what waits on it in the dark.",
           "effects": [
             {
               "foresee": true
@@ -63,7 +63,7 @@
     },
     {
       "id": "burn",
-      "label": "Burn her deck.",
+      "label": "Burn her deck. No good comes from cards that keep secrets.",
       "rule": "vote",
       "tags": [
         "cruel"
@@ -71,7 +71,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The cards curl and scream in the fire. The Court will hear of it.",
+          "text": "The cards curl and scream in the fire. The Court will hear of it, and so will something else.",
           "effects": [
             {
               "score": {

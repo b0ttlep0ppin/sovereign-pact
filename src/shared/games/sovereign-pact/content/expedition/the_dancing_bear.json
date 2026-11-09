@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "free",
-      "label": "The strongest breaks the bear's chain.",
+      "label": "The strongest breaks the bear's chain, and gives it back its freedom.",
       "rule": "scion:highest:might",
       "tags": [
         "kind"
@@ -47,7 +47,7 @@
     },
     {
       "id": "buy",
-      "label": "Buy the bear off him.",
+      "label": "Buy the bear off him, and spare it the whip.",
       "rule": "leader",
       "tags": [
         "clever"
@@ -72,7 +72,7 @@
     },
     {
       "id": "watch",
-      "label": "Watch the dance, and pay the man.",
+      "label": "Watch the dance, and pay the man. It is not your bear to free.",
       "rule": "vote",
       "tags": [
         "cruel"
@@ -80,7 +80,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It is a sad dance, and the bear's eyes never leave you.",
+          "text": "It is a sad dance, and the bear's eyes never leave you, and you see them for nights after.",
           "effects": [
             {
               "resources": {

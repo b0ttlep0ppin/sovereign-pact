@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "dive",
-      "label": "The hardiest dives for the altar plate.",
+      "label": "The hardiest dives for the altar plate, trying not to disturb the congregation.",
       "rule": "scion:highest:resilience",
       "tags": [
         "bold"
@@ -52,7 +52,7 @@
     },
     {
       "id": "pray",
-      "label": "Pray from the roof with the drowned.",
+      "label": "Pray from the roof with the drowned, and join their silent service.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -60,7 +60,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The candles flare, and the marsh is quieter for a while.",
+          "text": "The candles flare, and the marsh is quieter for a while, as if the drowned were praying for you.",
           "effects": [
             {
               "to": "party",
@@ -76,7 +76,7 @@
     },
     {
       "id": "leave",
-      "label": "Leave it to the water.",
+      "label": "Leave it to the water, and to whoever still tends those candles.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -104,7 +104,7 @@
     },
     {
       "id": "ward_and_dive",
-      "label": "The Abjurer wards their breath and dives for the altar.",
+      "label": "The Abjurer wards their breath and dives for the altar, trusting their magic to hold.",
       "rule": "scion:job:abjurer",
       "only": true,
       "tags": [

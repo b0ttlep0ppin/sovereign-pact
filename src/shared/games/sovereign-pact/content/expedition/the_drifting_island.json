@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "jump",
-      "label": "Jump to it before it drifts away.",
+      "label": "Jump to it before it drifts away, and see where it carries you.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "It carries you a long way through the dark, and sets you down gently.",
+          "text": "It carries you a long way through the dark, and sets you down gently, as if it knew where you were going.",
           "effects": [
             {
               "skip": 2
@@ -30,7 +30,7 @@
         },
         {
           "w": 40,
-          "text": "It carries you somewhere you did not mean to go, and leaves.",
+          "text": "It carries you somewhere you did not mean to go, and leaves without saying goodbye.",
           "effects": [
             {
               "fork": {
@@ -47,7 +47,7 @@
     },
     {
       "id": "pick",
-      "label": "The quickest leaps over, grabs the fruit, and leaps back.",
+      "label": "The quickest leaps over, grabs the fruit, and leaps back before it is too far.",
       "rule": "scion:highest:speed",
       "tags": [
         "bold"
@@ -67,7 +67,7 @@
     },
     {
       "id": "watch",
-      "label": "Watch it go.",
+      "label": "Watch it go. Not everything that drifts by is meant to be boarded.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -75,7 +75,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "As it drifts away, something on it stands up and waves.",
+          "text": "As it drifts away, something on it stands up and waves, and keeps waving until it is gone.",
           "effects": [
             {
               "to": "party",

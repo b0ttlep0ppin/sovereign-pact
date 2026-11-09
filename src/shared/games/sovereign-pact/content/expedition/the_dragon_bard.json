@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "tell",
-      "label": "The best talker tells him your story.",
+      "label": "The best talker tells him your story, and hopes he gives it a kind ending.",
       "rule": "scion:highest:guile",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He makes a song of it, a good one, with dragons in it. Your House will be famous, and he decides how it ends.",
+          "text": "He makes a song of it, a good one, with dragons in it. Your House will be famous, and he has already decided how it ends.",
           "effects": [
             {
               "score": {
@@ -34,7 +34,7 @@
     },
     {
       "id": "ask",
-      "label": "Ask him which dragon rules here.",
+      "label": "Ask him which dragon rules here, and what she cannot abide.",
       "rule": "vote",
       "tags": [
         "clever"
@@ -42,7 +42,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He tells you her name, and her temper, and her one weakness, and then plays a sad chord.",
+          "text": "He tells you her name, and her temper, and her one weakness, and then plays a sad chord for all who learned it before you.",
           "effects": [
             {
               "foresee": true
@@ -58,7 +58,7 @@
     },
     {
       "id": "pass",
-      "label": "Pass him by.",
+      "label": "Pass him by. Bards who sing of dragons rarely live long, and neither do their heroes.",
       "rule": "leader",
       "tags": [
         "cautious"
