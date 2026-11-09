@@ -25,7 +25,7 @@ describe("events (Josh's playtest: name your own Scion; then see what it did)", 
     const pick = s.expedition!.party[0]!.at(-1)!;
     const name = s.people.find((p) => p.id === pick)!.name;
     fireEvent.change(screen.getByRole("combobox"), { target: { value: String(pick) } });
-    fireEvent.click(screen.getByRole("button", { name: "The strongest digs for the light." }));
+    fireEvent.click(screen.getByRole("button", { name: /^The strongest digs for the light/ }));
     expect(moves.at(-1)).toEqual({ type: "decide", option: 0, person: pick });
     unmount();
     const r = g.applyMove(s, "p1", moves.at(-1)!);
