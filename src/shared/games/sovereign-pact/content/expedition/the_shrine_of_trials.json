@@ -61,7 +61,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The coals glow kindly.",
+          "text": "The coals glow kindly, and warm you through.",
           "effects": [
             {
               "to": "party",
@@ -81,7 +81,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Brass, heavy, and very old.",
+          "text": "Brass, heavy, and very old, and the coals hiss as they die.",
           "effects": [
             {
               "resources": {

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "light",
-      "label": "The one with the most room in their pack goes up.",
+      "label": "The one with the most room in their pack climbs the heap.",
       "rule": "scion:most_open_slots|scion:random",
       "tags": [
         "clever"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They come down loaded.",
+          "text": "They come down loaded, and do not look at the helms.",
           "effects": [
             {
               "item": {
@@ -47,7 +47,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "The heap slides.",
+          "text": "The heap slides, and takes their legs with it.",
           "effects": [
             {
               "durability": -40,
@@ -57,7 +57,7 @@
         },
         {
           "w": 50,
-          "text": "They find the tinker's own good hammer.",
+          "text": "They find the tinker's own good hammer, buried deep.",
           "effects": [
             {
               "item": {
@@ -70,7 +70,7 @@
     },
     {
       "id": "trade",
-      "label": "Trade the tinker for parts.",
+      "label": "Trade with the tinker for parts.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -78,7 +78,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Fair weight for fair coin.",
+          "text": "Fair weight for fair coin. He grins the whole time.",
           "effects": [
             {
               "resources": {

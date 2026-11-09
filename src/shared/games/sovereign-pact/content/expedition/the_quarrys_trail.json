@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Straight to where it rests.",
+          "text": "Straight to where it rests, licking its wound.",
           "effects": [
             {
               "skip": 1
@@ -59,7 +59,7 @@
     },
     {
       "id": "rush",
-      "label": "Run it down now while it bleeds.",
+      "label": "Run it down now, while it bleeds.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -67,7 +67,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It is not as hurt as it looked.",
+          "text": "It is not as hurt as it looked. It was leading you.",
           "effects": [
             {
               "encounter": {

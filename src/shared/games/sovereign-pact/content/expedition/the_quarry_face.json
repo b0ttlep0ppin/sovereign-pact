@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "cut",
-      "label": "Everyone cuts.",
+      "label": "Everyone takes up a rusted tool and cuts.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 80,
-          "text": "Good stone, and lots of it.",
+          "text": "Good stone, and a great deal of it, and arms that ache to the shoulder.",
           "effects": [
             {
               "resources": {
@@ -37,7 +37,7 @@
         },
         {
           "w": 20,
-          "text": "The face gives way.",
+          "text": "The face gives way, the way it did for the last workers.",
           "effects": [
             {
               "resources": {
@@ -61,7 +61,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A little, but the finest.",
+          "text": "A little, but the finest, and a few old coins in the rubble.",
           "effects": [
             {
               "resources": {
@@ -75,7 +75,7 @@
     },
     {
       "id": "tools",
-      "label": "Take the old tools.",
+      "label": "Take the abandoned tools.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -83,7 +83,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Rusted, but iron is iron.",
+          "text": "Rusted, but iron is iron. You try not to wonder why they were dropped.",
           "effects": [
             {
               "resources": {

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "hold",
-      "label": "The strongest breaks open the hold.",
+      "label": "The strongest breaks open the chained hold.",
       "rule": "scion:highest:might",
       "tags": [
         "bold"
@@ -56,7 +56,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It sailed from your world into this one. The last page is a warning.",
+          "text": "It sailed from your world into this one. The last page is a warning, and the ink ran.",
           "effects": [
             {
               "score": {
@@ -73,7 +73,7 @@
     },
     {
       "id": "timber",
-      "label": "Strip it for timber.",
+      "label": "Strip the ship for timber.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -81,7 +81,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Old oak, sea-hardened.",
+          "text": "Old oak, sea-hardened. The water sound inside stops while you work.",
           "effects": [
             {
               "resources": {

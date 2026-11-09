@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "rush",
-      "label": "Rush it.",
+      "label": "Rush into the black thorn.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Into the thorns.",
+          "text": "Into the thorns, and they tear at everything, and it is waiting in the middle.",
           "effects": [
             {
               "encounter": {}
@@ -36,7 +36,7 @@
     },
     {
       "id": "burn",
-      "label": "Burn it out.",
+      "label": "Burn it out of the thicket.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -44,7 +44,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It runs into your trap.",
+          "text": "It bolts out of the smoke and straight into your blades.",
           "effects": [
             {
               "encounter": {
@@ -57,7 +57,7 @@
     },
     {
       "id": "wait",
-      "label": "The patient one waits for it to leave.",
+      "label": "The patient one waits for it to come out.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "cautious"
@@ -65,7 +65,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It leaves, and you have the drop on it.",
+          "text": "It leaves at last, and you have the drop on it.",
           "effects": [
             {
               "encounter": {

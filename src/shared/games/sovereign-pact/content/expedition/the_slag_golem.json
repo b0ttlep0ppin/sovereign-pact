@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "hire",
-      "label": "Give it a job.",
+      "label": "Give the golem a job.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It carries your heaviest packs and leaves at the next fork.",
+          "text": "It carries your heaviest packs, humming, and leaves at the next fork.",
           "effects": [
             {
               "to": "party",
@@ -57,7 +57,7 @@
     },
     {
       "id": "talk",
-      "label": "The cleverest asks about the forge.",
+      "label": "The cleverest asks it about the forge.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"

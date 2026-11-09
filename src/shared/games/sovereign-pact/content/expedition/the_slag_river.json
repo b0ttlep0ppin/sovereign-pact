@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "cross",
-      "label": "Cross on the crust.",
+      "label": "Cross on the black crust.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -32,7 +32,7 @@
         },
         {
           "w": 30,
-          "text": "The crust breaks.",
+          "text": "The crust breaks, and the red comes up.",
           "effects": [
             {
               "to": "party",
@@ -44,7 +44,7 @@
     },
     {
       "id": "pick",
-      "label": "The sharpest picks out the metal.",
+      "label": "The sharpest eye picks out the metal.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -52,7 +52,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A pocketful of good iron.",
+          "text": "A pocketful of good iron, still hot.",
           "effects": [
             {
               "resources": {
@@ -73,7 +73,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It cools. Something else comes along the bank.",
+          "text": "It cools. Something else comes along the bank while you wait.",
           "effects": [
             {
               "encounter": {}

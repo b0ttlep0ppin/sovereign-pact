@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "share",
-      "label": "Share the seam.",
+      "label": "Share the seam with them.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Half each.",
+          "text": "Half each, and nobody draws steel.",
           "effects": [
             {
               "resources": {
@@ -37,7 +37,7 @@
     },
     {
       "id": "drive",
-      "label": "Drive them off.",
+      "label": "Drive them off the seam.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They go, and they will remember.",
+          "text": "They go, and they will remember, and so will their House.",
           "effects": [
             {
               "resources": {
@@ -69,7 +69,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A rumor of a better seam.",
+          "text": "A rumor of a better seam, a day's walk off. They thank you for it.",
           "effects": [
             {
               "resources": {

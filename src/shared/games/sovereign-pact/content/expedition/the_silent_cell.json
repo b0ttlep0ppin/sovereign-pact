@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "hermit",
-      "label": "The Hermit's child sits in it.",
+      "label": "The Hermit's child sits alone in the cell.",
       "rule": "scion:tarot:hermit|scion:highest:sagacity",
       "tags": [
         "clever"
@@ -43,7 +43,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Their hands warm.",
+          "text": "Their hands warm, and the warmth spreads to everyone they touch.",
           "effects": [
             {
               "to": "party",
@@ -60,7 +60,7 @@
     },
     {
       "id": "search",
-      "label": "Search it.",
+      "label": "Search the cell.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -68,7 +68,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A hidden relic, and a curse on the hand that takes it.",
+          "text": "A hidden relic under the stool, and a curse on the hand that takes it.",
           "effects": [
             {
               "item": {

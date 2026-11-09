@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "hire",
-      "label": "Hire them for the next fight.",
+      "label": "The Leader hires them for the next fight.",
       "rule": "leader",
       "tags": [
         "clever"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They earn every coin.",
+          "text": "They earn every coin, and do not ask for more. This time.",
           "effects": [
             {
               "resources": {
@@ -50,7 +50,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They laugh, and pass by.",
+          "text": "They laugh, and decide you are not, and pass by.",
           "effects": [
             {
               "score": {
@@ -63,7 +63,7 @@
     },
     {
       "id": "fight",
-      "label": "Fight them first.",
+      "label": "Strike before they decide.",
       "rule": "vote",
       "tags": [
         "bold"

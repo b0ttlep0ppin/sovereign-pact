@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "read",
-      "label": "The wisest reads them.",
+      "label": "The wisest reads the runes.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "A warning about the road ahead.",
+          "text": "A warning about the road ahead, and they will not forget it.",
           "effects": [
             {
               "foresee": true
@@ -30,7 +30,7 @@
         },
         {
           "w": 30,
-          "text": "A curse on whoever reads.",
+          "text": "A curse on whoever reads, and they have read it.",
           "effects": [
             {
               "curse": true
@@ -49,7 +49,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Scholars pay well.",
+          "text": "Scholars pay well, and do not ask whose name is on the last line.",
           "effects": [
             {
               "resources": {
@@ -67,7 +67,7 @@
     },
     {
       "id": "topple",
-      "label": "Topple it.",
+      "label": "Topple the stone.",
       "rule": "leader",
       "tags": [
         "reckless"

@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It comes close, and gives them something it was keeping.",
+          "text": "It comes close, and gives them something it was keeping, and is gone.",
           "effects": [
             {
               "item": {
@@ -37,7 +37,7 @@
     },
     {
       "id": "chase",
-      "label": "Chase it down.",
+      "label": "The quickest chases it down.",
       "rule": "scion:highest:speed",
       "tags": [
         "reckless"
@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "It bursts into cold light.",
+          "text": "It bursts into cold light, and the cold gets into everyone's joints.",
           "effects": [
             {
               "to": "party",
@@ -55,7 +55,7 @@
         },
         {
           "w": 50,
-          "text": "It flees into a cave and shows you a way through.",
+          "text": "It flees into a cave, and shows you a way through.",
           "effects": [
             {
               "skip": 1

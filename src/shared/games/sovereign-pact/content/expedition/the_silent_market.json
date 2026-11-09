@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "browse",
-      "label": "Browse, and point.",
+      "label": "Browse the stalls, and point.",
       "rule": "vote",
       "tags": [
         "clever"
@@ -32,7 +32,7 @@
         },
         {
           "w": 40,
-          "text": "You point at the wrong thing.",
+          "text": "You point at the wrong thing, and the seller nods, and takes your coin.",
           "effects": [
             {
               "resources": {
@@ -53,7 +53,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Every head turns.",
+          "text": "Every head turns, and every face on every hook turns with them.",
           "effects": [
             {
               "encounter": {}
@@ -64,7 +64,7 @@
     },
     {
       "id": "watch",
-      "label": "The sharpest watches who buys what.",
+      "label": "The sharpest eye watches who buys what.",
       "rule": "scion:highest:acuity",
       "tags": [
         "cautious"
@@ -72,7 +72,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "You learn whose faces they are.",
+          "text": "You learn whose faces they are. Some of them you knew.",
           "effects": [
             {
               "score": {

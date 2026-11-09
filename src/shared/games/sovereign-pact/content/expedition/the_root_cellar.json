@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "take",
-      "label": "Take what you need.",
+      "label": "Take what you need from the stores.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "Good food, and a quiet night.",
+          "text": "Good food, and a quiet night above the dark stair.",
           "effects": [
             {
               "to": "party",
@@ -31,7 +31,7 @@
         },
         {
           "w": 30,
-          "text": "Its owner comes home.",
+          "text": "Its owner comes home, up the stair from under the roots.",
           "effects": [
             {
               "encounter": {
@@ -52,7 +52,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Honest food.",
+          "text": "Honest food, and a quiet night, and the dark below stays dark.",
           "effects": [
             {
               "resources": {
@@ -73,7 +73,7 @@
     },
     {
       "id": "search",
-      "label": "The sharpest searches deeper.",
+      "label": "The sharpest eye searches deeper.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -81,7 +81,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A false wall, and old coins behind it.",
+          "text": "A false wall, and old coins behind it, and the stair still going down.",
           "effects": [
             {
               "resources": {

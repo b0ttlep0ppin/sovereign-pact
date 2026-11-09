@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "heart",
-      "label": "Pry out the heart.",
+      "label": "The strongest pries out the titan's heart.",
       "rule": "scion:highest:might",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "It comes free, warm as a coal.",
+          "text": "It comes free, warm as a coal, and the glow goes out of the titan's eyes.",
           "effects": [
             {
               "resources": {
@@ -46,7 +46,7 @@
     },
     {
       "id": "study",
-      "label": "The cleverest studies its making.",
+      "label": "The cleverest studies how it was made.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -54,7 +54,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Old forge-craft, for the House's smiths.",
+          "text": "Old forge-craft, for the House's smiths, and dreams of iron hands for weeks.",
           "effects": [
             {
               "house_improvement": "shop"
@@ -65,7 +65,7 @@
     },
     {
       "id": "strip",
-      "label": "Strip the plates.",
+      "label": "Strip the titan's plates.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -73,7 +73,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Iron, a lot of it.",
+          "text": "Iron, a great deal of it, and the heart pulses a little faster as you work.",
           "effects": [
             {
               "resources": {

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "enter",
-      "label": "Go into the house.",
+      "label": "Go into the one house still standing.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -45,7 +45,7 @@
     },
     {
       "id": "survey",
-      "label": "The sharpest eye reads the burn.",
+      "label": "The sharpest eye reads the burn marks.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -53,7 +53,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It came from the north, and it is old.",
+          "text": "It came from the north, and it is old, and it took its time.",
           "effects": [
             {
               "foresee": true
@@ -77,7 +77,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Long work. The dead rest.",
+          "text": "Long work, and the shadows on the walls do not fade. But the dead rest.",
           "effects": [
             {
               "to": "party",

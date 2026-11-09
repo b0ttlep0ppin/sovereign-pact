@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "race",
-      "label": "Race them.",
+      "label": "The quickest sets a punishing pace to beat them.",
       "rule": "scion:highest:speed",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "You get there first.",
+          "text": "You get there first, worn ragged, and their mark on the tree still in your head.",
           "effects": [
             {
               "skip": 1
@@ -36,7 +36,7 @@
     },
     {
       "id": "join",
-      "label": "Join forces.",
+      "label": "Catch them up and join forces.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -44,7 +44,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They share the trail, and the credit.",
+          "text": "They share the trail, and the credit, and the watch at night.",
           "effects": [
             {
               "to": "party",
@@ -61,7 +61,7 @@
     },
     {
       "id": "sabotage",
-      "label": "Lay a false trail for them.",
+      "label": "The craftiest lays a false trail for them.",
       "rule": "scion:highest:guile",
       "tags": [
         "cruel"
@@ -69,7 +69,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They go the wrong way.",
+          "text": "They go the wrong way, into country you would not send a dog.",
           "effects": [
             {
               "score": {

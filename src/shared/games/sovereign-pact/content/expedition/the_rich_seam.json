@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "A heavy haul.",
+          "text": "A heavy haul, and every tool blunted.",
           "effects": [
             {
               "resources": {
@@ -37,7 +37,7 @@
         },
         {
           "w": 30,
-          "text": "Digging makes noise.",
+          "text": "Digging makes noise, and something comes through the Gate to see.",
           "effects": [
             {
               "resources": {
@@ -53,7 +53,7 @@
     },
     {
       "id": "quick",
-      "label": "Take what is loose and go.",
+      "label": "Take what lies loose and go.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -61,7 +61,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A little, safely.",
+          "text": "A little, safely, and no time lost.",
           "effects": [
             {
               "resources": {
@@ -83,7 +83,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Next time you will know just where to dig.",
+          "text": "Next time you will know just where to dig, if there is a next time.",
           "effects": [
             {
               "resources": {

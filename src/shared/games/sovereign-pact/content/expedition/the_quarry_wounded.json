@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "finish",
-      "label": "Finish it.",
+      "label": "Finish it while it is down.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It fights to the last.",
+          "text": "It fights to the last, and the last is a long time coming.",
           "effects": [
             {
               "encounter": {}
@@ -32,7 +32,7 @@
     },
     {
       "id": "mercy",
-      "label": "The healer tends it instead.",
+      "label": "The healer tends its wound instead.",
       "rule": "scion:most_healing|scion:fewest_kills",
       "tags": [
         "kind"
@@ -40,7 +40,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It lets them, and limps away. The hunt is over another way.",
+          "text": "It lets them, trembling, and limps away. The hunt is over another way.",
           "effects": [
             {
               "score": {
@@ -64,7 +64,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A rival House's arrow.",
+          "text": "A rival House's arrow, fletched in their colours.",
           "effects": [
             {
               "score": {

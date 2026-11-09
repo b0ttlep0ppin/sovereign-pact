@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "chase",
-      "label": "Chase the thieves.",
+      "label": "Chase the thieves into the hills.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They fight for it.",
+          "text": "They fight for it, and lose, and the pilgrims sing your names.",
           "effects": [
             {
               "encounter": {}
@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Asleep. The relic, and their loot.",
+          "text": "Asleep, the lot of them. You take back the relic, and their loot.",
           "effects": [
             {
               "resources": {
@@ -63,7 +63,7 @@
     },
     {
       "id": "buy",
-      "label": "Buy the relic from the thieves for yourselves.",
+      "label": "The Leader buys the relic from the thieves, for yourselves.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -71,7 +71,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A relic is a relic.",
+          "text": "A relic is a relic. The pilgrims will never know who has it.",
           "effects": [
             {
               "resources": {

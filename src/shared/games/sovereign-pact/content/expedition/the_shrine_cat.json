@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "feed",
-      "label": "Feed the cat.",
+      "label": "Feed the holy cat.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It purrs. The priests bless the party.",
+          "text": "It purrs, a sound too deep for its size. The priests bless the party.",
           "effects": [
             {
               "to": "party",
@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "It allows this.",
+          "text": "It allows this, and blinks its milky eye at them.",
           "effects": [
             {
               "blessing": {
@@ -77,7 +77,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The priests are horrified.",
+          "text": "The priests are horrified, and the cat watches you all the way out.",
           "effects": [
             {
               "score": {

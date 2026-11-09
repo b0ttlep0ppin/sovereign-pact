@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The god sees, and approves.",
+          "text": "The god sees through their eyes, and approves.",
           "effects": [
             {
               "growth": {
@@ -42,7 +42,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The god sees, and wants more.",
+          "text": "The god sees through their eyes, and wants more. It does not leave entirely.",
           "effects": [
             {
               "growth": {
@@ -58,7 +58,7 @@
     },
     {
       "id": "all",
-      "label": "Take the masks.",
+      "label": "The Leader takes the masks down.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -66,7 +66,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Blind, they are only wood. But the monks remember.",
+          "text": "Off the wall, they are only wood. But the monks remember, and so do the gods.",
           "effects": [
             {
               "resources": {

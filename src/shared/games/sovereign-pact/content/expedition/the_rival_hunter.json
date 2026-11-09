@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "join",
-      "label": "Work together.",
+      "label": "Hunt together, for an even split.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 80,
-          "text": "They are as good as they look.",
+          "text": "They are as good as they look, and they guard your flank.",
           "effects": [
             {
               "to": "party",
@@ -36,7 +36,7 @@
         },
         {
           "w": 20,
-          "text": "They take the trophy and run, at the end.",
+          "text": "At the end they take the trophy and run, and you never saw the bow come up.",
           "effects": [
             {
               "to": "party",
@@ -48,7 +48,7 @@
     },
     {
       "id": "race",
-      "label": "Race them to it.",
+      "label": "The quickest races them to the quarry.",
       "rule": "scion:highest:speed",
       "tags": [
         "bold"
@@ -56,7 +56,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "You get there first.",
+          "text": "You get there first, and they arrive in time to watch.",
           "effects": [
             {
               "skip": 1
@@ -72,7 +72,7 @@
     },
     {
       "id": "rob",
-      "label": "Rob them of their gear.",
+      "label": "Rob them of their fine gear.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -80,7 +80,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Very good gear.",
+          "text": "Very good gear. They will not be needing it, and you do not look back.",
           "effects": [
             {
               "item": {

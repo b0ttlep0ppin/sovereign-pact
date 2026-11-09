@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "Every bolt goes after them, and misses.",
+          "text": "Every bolt goes after them, and misses, and the masks applaud.",
           "effects": [
             {
               "score": {
@@ -80,7 +80,7 @@
     },
     {
       "id": "arm",
-      "label": "The one with a hurt arm stays behind with a shield.",
+      "label": "The one with the hurt arm holds a shield over the rest.",
       "rule": "scion:injured:arms|vote",
       "tags": [
         "cautious"
@@ -88,7 +88,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The rest cross under cover; the shield bearer catches up bruised.",
+          "text": "The rest cross under cover. The shield bearer catches up last, bruised, with the shield full of bolts.",
           "effects": [
             {
               "durability": -20,

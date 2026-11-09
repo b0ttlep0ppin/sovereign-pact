@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "read",
-      "label": "The wisest reads them with the monks.",
+      "label": "The wisest reads the stars with the monks.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The missing star means a death.",
+          "text": "The missing star means a death. They know where, and soon.",
           "effects": [
             {
               "foresee": true
@@ -44,7 +44,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The star comes back, faintly.",
+          "text": "The star comes back, faintly, and the monks breathe again.",
           "effects": [
             {
               "to": "party",
@@ -64,7 +64,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A long night's walk.",
+          "text": "A long night's walk, and you go further than you meant to.",
           "effects": [
             {
               "skip": 1

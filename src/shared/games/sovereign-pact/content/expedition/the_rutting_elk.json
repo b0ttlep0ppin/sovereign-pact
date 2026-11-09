@@ -53,7 +53,7 @@
         },
         {
           "w": 35,
-          "text": "An elk turns.",
+          "text": "An elk turns, antlers first.",
           "effects": [
             {
               "durability": -25,
@@ -65,7 +65,7 @@
     },
     {
       "id": "hunt",
-      "label": "Bring one down while they are busy.",
+      "label": "The Leader brings one down while they are busy.",
       "rule": "leader",
       "tags": [
         "cruel"

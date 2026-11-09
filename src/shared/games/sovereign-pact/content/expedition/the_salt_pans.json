@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "rake",
-      "label": "Rake as much as you can carry.",
+      "label": "Rake as much salt as you can carry.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Heavy work, heavy packs.",
+          "text": "Heavy work, heavy packs, and the rows behind you raked smooth again by morning.",
           "effects": [
             {
               "resources": {
@@ -38,7 +38,7 @@
     },
     {
       "id": "slow",
-      "label": "The slowest stays to watch for the salt-keepers.",
+      "label": "The slowest stays back to watch for the salt-keepers.",
       "rule": "scion:lowest:speed|scion:random",
       "tags": [
         "cautious"
@@ -70,7 +70,7 @@
     },
     {
       "id": "trade",
-      "label": "Trade with the salt-keepers.",
+      "label": "The shrewdest trades with the salt-keepers.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"
@@ -78,7 +78,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Salt for iron, fair.",
+          "text": "Salt for iron, fair, with hands that are very dry.",
           "effects": [
             {
               "resources": {

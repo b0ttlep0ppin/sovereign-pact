@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "answer",
-      "label": "The one called answers.",
+      "label": "The one being called answers the voice.",
       "rule": "scion:random",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "An ancestor, who tells them a secret of the House before the wall swallows him.",
+          "text": "An ancestor, who tells them a secret of the House before the wall swallows him back.",
           "effects": [
             {
               "score": {
@@ -35,7 +35,7 @@
         },
         {
           "w": 50,
-          "text": "A liar, who only wanted to be heard.",
+          "text": "A liar, who only wanted to be heard, and will not stop now.",
           "effects": [
             {
               "sanity": -15
@@ -46,7 +46,7 @@
     },
     {
       "id": "free",
-      "label": "Pull him free.",
+      "label": "Pull him free of the wall.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -80,7 +80,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "You hear it for a day after.",
+          "text": "You hear it for a day after, and the name most of all.",
           "effects": [
             {
               "to": "party",

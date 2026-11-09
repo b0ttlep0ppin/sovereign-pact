@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "It carries you far and lets you off gently.",
+          "text": "It carries you far, and lets you off gently, and drifts back the way it came.",
           "effects": [
             {
               "skip": 2
@@ -54,7 +54,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Written in a drowned woman's hand. You leave the boat.",
+          "text": "Written in a drowned woman's hand. You leave the boat where it is.",
           "effects": [
             {
               "score": {
@@ -67,7 +67,7 @@
     },
     {
       "id": "burn",
-      "label": "Burn it.",
+      "label": "Burn the boat.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -75,7 +75,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Something in the water screams.",
+          "text": "Something in the water screams, and does not follow.",
           "effects": [
             {
               "to": "party",
