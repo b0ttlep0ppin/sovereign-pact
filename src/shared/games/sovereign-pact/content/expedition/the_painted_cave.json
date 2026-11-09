@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "study",
-      "label": "The wisest studies the last painting.",
+      "label": "The wisest studies the newest painting.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It shows what lies ahead. Mostly.",
+          "text": "It shows what lies ahead. Mostly. The last part is not yet painted.",
           "effects": [
             {
               "skip": 1
@@ -37,7 +37,7 @@
     },
     {
       "id": "add",
-      "label": "Paint something of your own.",
+      "label": "Paint something of your own on the wall.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It feels like a promise kept.",
+          "text": "It feels like a promise kept, though no one can say to whom.",
           "effects": [
             {
               "to": "party",

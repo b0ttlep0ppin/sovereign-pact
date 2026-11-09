@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "climb",
-      "label": "The quickest climbs for an egg.",
+      "label": "The quickest climbs for an iron egg.",
       "rule": "scion:highest:speed",
       "tags": [
         "reckless"
@@ -46,7 +46,7 @@
     },
     {
       "id": "knives",
-      "label": "Take the knives from the bottom of the nest.",
+      "label": "Pull blades from the bottom of the nest.",
       "rule": "leader",
       "tags": [
         "clever"
@@ -54,7 +54,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Fine blades, all of them.",
+          "text": "Fine blades, all of them, and one still has a hand's warmth in the grip.",
           "effects": [
             {
               "item": {

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "pick",
-      "label": "Pick a flower each.",
+      "label": "Pick a pale flower each.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "Sweet forgetting, and rest.",
+          "text": "Sweet forgetting, and rest, and you do not dream.",
           "effects": [
             {
               "to": "party",
@@ -31,7 +31,7 @@
         },
         {
           "w": 40,
-          "text": "You forget the way.",
+          "text": "You forget the way, and walk somewhere you did not mean to go.",
           "effects": [
             {
               "fork": {
@@ -75,7 +75,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A drug for sleepless nights, worth its weight.",
+          "text": "A drug for sleepless nights, worth its weight, and worse in larger doses.",
           "effects": [
             {
               "resources": {

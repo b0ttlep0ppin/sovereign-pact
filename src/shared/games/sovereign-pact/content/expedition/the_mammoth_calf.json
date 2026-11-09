@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "lead",
-      "label": "Lead it back toward the shaking.",
+      "label": "Lead the calf toward the shaking.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "Its mother finds it, and lets you walk in her shelter.",
+          "text": "Its mother finds it, and lets you walk in the shelter of her bulk.",
           "effects": [
             {
               "skip": 1
@@ -35,7 +35,7 @@
         },
         {
           "w": 30,
-          "text": "Its mother finds you first.",
+          "text": "Its mother finds you first, and she does not see a rescue.",
           "effects": [
             {
               "encounter": {
@@ -48,7 +48,7 @@
     },
     {
       "id": "hide",
-      "label": "Hide until they pass.",
+      "label": "Hide in the snow until they pass.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -56,7 +56,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A herd, a long cold wait.",
+          "text": "A whole herd, and a long, freezing wait, and your kit stiff with ice by the end.",
           "effects": [
             {
               "to": "party",
@@ -76,7 +76,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They do, and the herd will remember.",
+          "text": "They do. The herd hears the calf stop crying, and the herd remembers.",
           "effects": [
             {
               "resources": {

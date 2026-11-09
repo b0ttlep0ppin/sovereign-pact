@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "fight",
-      "label": "The one with most kills goes down.",
+      "label": "The one with the most kills goes down into the pit.",
       "rule": "scion:most_kills",
       "tags": [
         "bold"
@@ -35,7 +35,7 @@
         },
         {
           "w": 45,
-          "text": "They lose, and live, which the demons find funny.",
+          "text": "They lose, and live, which the demons find very funny.",
           "effects": [
             {
               "injury": "body"
@@ -75,7 +75,7 @@
     },
     {
       "id": "all",
-      "label": "Everyone goes down together.",
+      "label": "Everyone goes down into the pit together.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -83,7 +83,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The demons love it.",
+          "text": "The demons love it, and send down something worth the crowd.",
           "effects": [
             {
               "encounter": {

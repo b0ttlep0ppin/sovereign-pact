@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "dance",
-      "label": "The most charming goes in and dances.",
+      "label": "The most charming puts on a mask and goes in to dance.",
       "rule": "scion:highest:guile",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "They dance until the music stops, and someone presses a gift into their hand on the way out.",
+          "text": "They dance until the music stops, and a gloved hand presses a gift into theirs on the way out.",
           "effects": [
             {
               "item": {
@@ -37,7 +37,7 @@
         },
         {
           "w": 50,
-          "text": "When the music stops, their mask will not come off for a while.",
+          "text": "When the music stops, their mask will not come off for a while, and they do not want it to.",
           "effects": [
             {
               "sanity": -25
@@ -51,7 +51,7 @@
     },
     {
       "id": "refuse",
-      "label": "Refuse the masks.",
+      "label": "Refuse the masks at the door.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -59,7 +59,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The doorman is offended. So is everyone inside.",
+          "text": "The doorman is offended. So is everyone inside, and they stop dancing.",
           "effects": [
             {
               "encounter": {}

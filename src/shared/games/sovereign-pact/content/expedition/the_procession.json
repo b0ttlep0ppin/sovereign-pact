@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "walk",
-      "label": "Walk with them.",
+      "label": "Walk with the penitents.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They take you through the Court's gates as one of theirs.",
+          "text": "They take you through the Court's gates as one of theirs, singing, and their blood is on your boots.",
           "effects": [
             {
               "skip": 1
@@ -65,7 +65,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They do not break easily.",
+          "text": "They do not break easily, and they keep singing as they fight.",
           "effects": [
             {
               "encounter": {}

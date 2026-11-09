@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Something lightens.",
+          "text": "Something lightens, a little, and the water moves under the coins.",
           "effects": [
             {
               "resources": {
@@ -38,7 +38,7 @@
     },
     {
       "id": "take",
-      "label": "Take the coins.",
+      "label": "The Leader scoops up the coins.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -46,7 +46,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A fortune, and every wish in it.",
+          "text": "A fortune, and every wish in it, and none of them were wishes for you.",
           "effects": [
             {
               "resources": {
@@ -62,7 +62,7 @@
     },
     {
       "id": "pray",
-      "label": "The devout prays over it.",
+      "label": "The devout prays over the well.",
       "rule": "scion:trait:devout|scion:most_healing",
       "tags": [
         "kind"

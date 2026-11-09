@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "eat",
-      "label": "Eat with them.",
+      "label": "Sit and eat with the pilgrims.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Full, and among friends.",
+          "text": "Full, and among friends, and their fixed smiles hardly seem strange by the end.",
           "effects": [
             {
               "to": "party",
@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Good prices.",
+          "text": "Good prices, and good wares, and nobody asks where you have been.",
           "effects": [
             {
               "item": {
@@ -63,7 +63,7 @@
     },
     {
       "id": "preach",
-      "label": "The devout leads a prayer.",
+      "label": "The devout leads the feast in prayer.",
       "rule": "scion:trait:devout|scion:highest:sagacity",
       "tags": [
         "kind"
@@ -71,7 +71,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The town remembers your House.",
+          "text": "The town remembers your House, and says so loudly.",
           "effects": [
             {
               "score": {

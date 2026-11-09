@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "smile",
-      "label": "Smile back.",
+      "label": "Smile back at them.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "They are delighted, and give you gifts.",
+          "text": "They are delighted, and give you gifts, and keep smiling.",
           "effects": [
             {
               "resources": {
@@ -36,7 +36,7 @@
         },
         {
           "w": 30,
-          "text": "Your smile is wrong somehow.",
+          "text": "Your smile is wrong somehow, and every painted smile drops at once.",
           "effects": [
             {
               "encounter": {
@@ -57,7 +57,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They take them for one of their own, and lead you out.",
+          "text": "They take them for one of their own, and lead you out. The paint is hard to wash off.",
           "effects": [
             {
               "skip": 2
@@ -71,7 +71,7 @@
     },
     {
       "id": "hurry",
-      "label": "Hurry past.",
+      "label": "Hurry past the smiling faces.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -79,7 +79,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The smiles follow you.",
+          "text": "The smiles follow you, from every window, until long after there are no more windows.",
           "effects": [
             {
               "to": "party",

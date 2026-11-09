@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The net comes up with a drowned knight's gear.",
+          "text": "The net comes up heavy with a drowned knight's gear, and nothing of the knight.",
           "effects": [
             {
               "item": {
@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Old marsh-craft. It holds.",
+          "text": "Old marsh-craft. It holds, and it costs, and she does not say what she is humming.",
           "effects": [
             {
               "mend": true
@@ -69,7 +69,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Whatever was in them swims free, and remembers you.",
+          "text": "Whatever was in them swims free, and it remembers you.",
           "effects": [
             {
               "doom": 1

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "buy",
-      "label": "Buy it from them.",
+      "label": "Buy the quarry from them.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A fair price, and a fair fight.",
+          "text": "A fair price, and then they cut it loose on you, and it is a fair fight.",
           "effects": [
             {
               "resources": {
@@ -37,7 +37,7 @@
     },
     {
       "id": "drive",
-      "label": "Drive them off.",
+      "label": "Drive the poachers off.",
       "rule": "leader",
       "tags": [
         "bold"
@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They fight. The quarry escapes in the chaos.",
+          "text": "They fight. The quarry tears free in the chaos and is gone.",
           "effects": [
             {
               "encounter": {}
@@ -60,7 +60,7 @@
     },
     {
       "id": "free",
-      "label": "The gentlest frees it.",
+      "label": "The gentlest frees the beast.",
       "rule": "scion:fewest_kills|scion:highest:sagacity",
       "tags": [
         "kind"
@@ -68,7 +68,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It does not attack. It watches, and goes.",
+          "text": "It does not attack. It watches, a long moment, and goes, and the way it goes is shorter.",
           "effects": [
             {
               "score": {

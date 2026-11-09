@@ -14,7 +14,7 @@
   "options": [
     {
       "id": "help",
-      "label": "Pick up a pick and help.",
+      "label": "Take up a pick and help them finish.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -22,7 +22,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The seam opens, and the ghosts lay down their picks for good.",
+          "text": "The seam opens, and the ghosts lay down their picks for good, and thank you with their lamps going out.",
           "effects": [
             {
               "resources": {
@@ -40,7 +40,7 @@
     },
     {
       "id": "take",
-      "label": "Wait for them to break through, then take it.",
+      "label": "Wait for them to break through, then take the ore.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -48,7 +48,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They do not like it.",
+          "text": "You get the ore. They turn their lamp-eyes on you, all of them, and do not look away.",
           "effects": [
             {
               "resources": {
@@ -73,7 +73,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A cave-in, and they show you where the next one will be.",
+          "text": "A cave-in. They show you where the next one will be, and the way around it.",
           "effects": [
             {
               "skip": 1

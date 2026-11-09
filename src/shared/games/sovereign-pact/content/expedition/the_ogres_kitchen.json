@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "cook",
-      "label": "The cleverest cooks for it instead.",
+      "label": "The cleverest offers to cook for it instead.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It loves the stew, and pays in shiny things.",
+          "text": "It loves the stew, and forgets what it was going to put in, and pays in shiny things.",
           "effects": [
             {
               "resources": {
@@ -39,7 +39,7 @@
     },
     {
       "id": "feed",
-      "label": "Give it your food.",
+      "label": "Give it your food instead.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -47,7 +47,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It is grateful, in an ogre way.",
+          "text": "It is grateful, in an ogre way, and its gratitude is heavy and hard to carry, but it will keep you safe.",
           "effects": [
             {
               "to": "party",

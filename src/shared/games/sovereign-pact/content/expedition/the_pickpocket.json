@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "chase",
-      "label": "The fastest chases.",
+      "label": "The fastest gives chase.",
       "rule": "scion:highest:speed",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "Caught, and the purse back, and more.",
+          "text": "Caught, and the purse back, and more besides. Under the mask the child is very old.",
           "effects": [
             {
               "resources": {
@@ -32,7 +32,7 @@
         },
         {
           "w": 40,
-          "text": "Lost in the crowd.",
+          "text": "Lost in the crowd, and the purse with it, and two more purses gone in the chase.",
           "effects": [
             {
               "resources": {
@@ -45,7 +45,7 @@
     },
     {
       "id": "let",
-      "label": "Let the child have it.",
+      "label": "Let the child keep it.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -53,7 +53,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Gone.",
+          "text": "Gone. Somewhere, a small white face is grateful.",
           "effects": [
             {
               "resources": {
@@ -79,7 +79,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "To a thieves' den with a back door you can use.",
+          "text": "To a thieves' den, with a back door you can use.",
           "effects": [
             {
               "skip": 1

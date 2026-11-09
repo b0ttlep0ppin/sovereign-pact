@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "take",
-      "label": "Take a pup to raise.",
+      "label": "The Leader takes a pup to raise.",
       "rule": "leader",
       "tags": [
         "reckless"
@@ -43,7 +43,7 @@
     },
     {
       "id": "leave",
-      "label": "Leave them be and go quietly.",
+      "label": "Leave the pups and go quietly.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -51,7 +51,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The mother passes you on the path an hour later, and only looks.",
+          "text": "The mother passes you on the path an hour later, bloody to the shoulder, and only looks.",
           "effects": [
             {
               "to": "party",
@@ -63,7 +63,7 @@
     },
     {
       "id": "hunt",
-      "label": "Wait for the mother and take her.",
+      "label": "Wait by the den for the mother.",
       "rule": "vote",
       "tags": [
         "bold"

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "chest",
-      "label": "The craftiest picks the chest.",
+      "label": "The craftiest picks the chest's lock.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"
@@ -53,7 +53,7 @@
     },
     {
       "id": "smell",
-      "label": "The hardiest finds out what the smell is.",
+      "label": "The hardiest goes down to find out what the smell is.",
       "rule": "scion:highest:resilience",
       "tags": [
         "bold"
@@ -61,7 +61,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Whatever ate the mule is still in the ditch.",
+          "text": "Whatever ate the mule is still in the ditch, and it is still hungry.",
           "effects": [
             {
               "encounter": {
@@ -82,7 +82,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Bread for a week.",
+          "text": "Bread for a week, from the sacks the flies have not found.",
           "effects": [
             {
               "to": "party",

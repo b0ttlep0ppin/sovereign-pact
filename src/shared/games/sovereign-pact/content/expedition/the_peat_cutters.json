@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "buy",
-      "label": "Buy the torc from them.",
+      "label": "Buy the torc from the cutters.",
       "rule": "vote",
       "tags": [
         "clever"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Old gold, older magic.",
+          "text": "Old gold, older magic, warm from a throat that has been cold a thousand years.",
           "effects": [
             {
               "resources": {
@@ -47,7 +47,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They grumble, and do it, and the bog is quieter.",
+          "text": "They grumble, and do it, and whatever the body was keeping down stays down.",
           "effects": [
             {
               "to": "party",
@@ -70,7 +70,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A sacrifice, to keep something down.",
+          "text": "A sacrifice, to keep something down, and the sacrifice is wearing off.",
           "effects": [
             {
               "score": {

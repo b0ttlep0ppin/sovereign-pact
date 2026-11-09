@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "pay",
-      "label": "Leave coin.",
+      "label": "Leave coin in the basket.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He lets you pass with a blessing.",
+          "text": "He lets you pass with a blessing, and does not look at the coin.",
           "effects": [
             {
               "resources": {
@@ -38,7 +38,7 @@
     },
     {
       "id": "sin",
-      "label": "Each Scion leaves a sin.",
+      "label": "Each Scion leaves a sin behind.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -46,7 +46,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Lighter, every one.",
+          "text": "Lighter, every one. He puts the sins in the basket with the teeth.",
           "effects": [
             {
               "to": "party",
@@ -58,7 +58,7 @@
     },
     {
       "id": "force",
-      "label": "Push past him.",
+      "label": "Push past him onto the bridge.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -66,7 +66,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The shrine will not open for you.",
+          "text": "The shrine will not open for you, and what you did here is written down somewhere.",
           "effects": [
             {
               "doom": 1

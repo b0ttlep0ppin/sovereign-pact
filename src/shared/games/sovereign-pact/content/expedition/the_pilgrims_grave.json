@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "carry",
-      "label": "Carry their offering to the shrine.",
+      "label": "Carry their offering on to the shrine.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The priests bless you for it.",
+          "text": "The priests bless you for it, and add a name to their prayers.",
           "effects": [
             {
               "to": "party",
@@ -38,7 +38,7 @@
     },
     {
       "id": "pray",
-      "label": "The devout prays at the grave.",
+      "label": "The devout prays at the fresh grave.",
       "rule": "scion:trait:devout|scion:highest:sagacity",
       "tags": [
         "kind"
@@ -46,7 +46,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The pilgrim's last wish, whispered.",
+          "text": "The pilgrim's last wish, whispered from under the loose earth.",
           "effects": [
             {
               "blessing": {
@@ -60,7 +60,7 @@
     },
     {
       "id": "take",
-      "label": "Take the offering.",
+      "label": "The Leader takes the offering.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -68,7 +68,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Good silver, and a heavy heart.",
+          "text": "Good silver, and a heavy heart, and the crows come back the moment you leave.",
           "effects": [
             {
               "resources": {

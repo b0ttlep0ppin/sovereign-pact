@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "light",
-      "label": "Light a candle at each.",
+      "label": "Light a candle at every shrine.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It takes all day. The road feels lighter after.",
+          "text": "It takes all day. The road feels lighter after, and the unlit one is lit.",
           "effects": [
             {
               "to": "party",
@@ -33,7 +33,7 @@
     },
     {
       "id": "pray",
-      "label": "The most devout prays at the last.",
+      "label": "The most devout prays at the newest shrine.",
       "rule": "scion:trait:devout|scion:highest:sagacity",
       "tags": [
         "kind"
@@ -41,7 +41,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Someone answers.",
+          "text": "Someone answers, from very close.",
           "effects": [
             {
               "blessing": {
@@ -63,7 +63,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The candles go out as you pass, one by one.",
+          "text": "The candles go out as you pass, one by one, all the way down the road.",
           "effects": [
             {
               "to": "party",

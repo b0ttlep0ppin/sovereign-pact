@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "draw",
-      "label": "Draw lots.",
+      "label": "Let the bones choose.",
       "rule": "house:random",
       "tags": [
         "cautious"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The lot falls, and that House pays.",
+          "text": "The bones fall, and the spirit grins at one House, and that House pays.",
           "effects": [
             {
               "resources": {
@@ -47,7 +47,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The spirit is impressed, which is rare.",
+          "text": "The spirit is impressed, which is rare, and it says so to everyone it meets.",
           "effects": [
             {
               "resources": {
@@ -68,7 +68,7 @@
     },
     {
       "id": "refuse",
-      "label": "Refuse to pay.",
+      "label": "Refuse the toll.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -76,7 +76,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The spirit takes it out of you another way.",
+          "text": "The spirit takes its due another way, and it brought friends to collect.",
           "effects": [
             {
               "encounter": {}

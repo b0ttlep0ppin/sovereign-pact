@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "follow",
-      "label": "Follow it.",
+      "label": "Follow the shadow where it walks.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "To where it was lost.",
+          "text": "It walks you, never turning, to the place where it was lost.",
           "effects": [
             {
               "skip": 2
@@ -30,7 +30,7 @@
         },
         {
           "w": 40,
-          "text": "To what took it.",
+          "text": "It walks you to what took it, and then it is gone, and the thing is not.",
           "effects": [
             {
               "encounter": {
@@ -43,7 +43,7 @@
     },
     {
       "id": "speak",
-      "label": "The wisest speaks to it.",
+      "label": "The wisest speaks to the shadow.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "kind"
@@ -51,7 +51,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It nods toward the hills.",
+          "text": "It does not answer. It only lifts an arm that is not there and points toward the hills, and the cold of it stays with you.",
           "effects": [
             {
               "skip": 1
@@ -66,7 +66,7 @@
     },
     {
       "id": "flee",
-      "label": "It is an ill omen. Avoid it.",
+      "label": "It is an ill omen. Go around it.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -74,7 +74,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It waits by the road as you pass.",
+          "text": "It waits by the road as you pass, and its head turns to follow you, though it has no face to turn.",
           "effects": [
             {
               "to": "party",

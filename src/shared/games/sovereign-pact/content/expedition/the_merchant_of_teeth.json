@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "trade",
-      "label": "The leader trades.",
+      "label": "The Leader trades a little of themselves.",
       "rule": "leader",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It takes something you will not miss for years, and hands over something fine.",
+          "text": "He takes something you will not miss for years, and hands over something fine. The Leader's step is a little slower after.",
           "effects": [
             {
               "item": {
@@ -39,7 +39,7 @@
     },
     {
       "id": "haggle",
-      "label": "The cleverest haggles it down.",
+      "label": "The cleverest haggles him down.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"
@@ -47,7 +47,7 @@
       "outcomes": [
         {
           "w": 45,
-          "text": "It is delighted to be bested, and pays for the lesson.",
+          "text": "He is delighted to be bested, and pays for the lesson.",
           "effects": [
             {
               "item": {
@@ -63,7 +63,7 @@
         },
         {
           "w": 55,
-          "text": "It is delighted, and takes a tooth for its trouble.",
+          "text": "He is delighted, and takes a tooth for his trouble, root and all.",
           "effects": [
             {
               "durability": -20,
@@ -78,7 +78,7 @@
     },
     {
       "id": "refuse",
-      "label": "Refuse politely.",
+      "label": "Refuse him politely.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -98,7 +98,7 @@
     },
     {
       "id": "other_teeth",
-      "label": "The Pugilist offers it some teeth. Not their own.",
+      "label": "The Pugilist offers him some teeth. Not their own.",
       "rule": "scion:job:pugilist",
       "only": true,
       "tags": [
@@ -107,7 +107,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "It is delighted, with the teeth and the knuckles both, and pays in iron rings that fit over them.",
+          "text": "He is delighted, with the teeth and the knuckles both, and pays in iron rings that fit over them.",
           "effects": [
             {
               "gear": {
@@ -119,7 +119,7 @@
         },
         {
           "w": 30,
-          "text": "It takes the teeth, and then some of the Pugilist's, for its trouble.",
+          "text": "He takes the teeth, and then some of the Pugilist's, for his trouble.",
           "effects": [
             {
               "hp": -15,

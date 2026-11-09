@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "free",
-      "label": "Free them all.",
+      "label": "Free every prisoner.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "They scatter, thanking you. The laughing one stays and offers to serve.",
+          "text": "They scatter, thanking you. The laughing one stays, and offers to serve.",
           "effects": [
             {
               "house_improvement": "recruit"
@@ -48,7 +48,7 @@
     },
     {
       "id": "question",
-      "label": "The sharpest questions them first.",
+      "label": "The sharpest eye questions them first.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -56,7 +56,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "You free the ones who deserve it.",
+          "text": "You free the ones who deserve it, and leave the laughing one where he is.",
           "effects": [
             {
               "score": {
@@ -82,7 +82,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Their shouting follows you a long way.",
+          "text": "Their shouting follows you a long way, and the laughing goes on longer.",
           "effects": [
             {
               "to": "party",

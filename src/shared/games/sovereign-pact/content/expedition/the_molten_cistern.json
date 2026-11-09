@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "A good haul.",
+          "text": "A good haul, still smoking.",
           "effects": [
             {
               "resources": {
@@ -32,7 +32,7 @@
         },
         {
           "w": 30,
-          "text": "The pole catches fire, then a sleeve.",
+          "text": "The pole catches fire, then a sleeve, then the next sleeve.",
           "effects": [
             {
               "to": "party",
@@ -44,7 +44,7 @@
     },
     {
       "id": "reach",
-      "label": "The quickest reaches for the best one.",
+      "label": "The quickest reaches for the best ingot.",
       "rule": "scion:highest:speed",
       "tags": [
         "reckless"
@@ -52,7 +52,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "Star iron.",
+          "text": "Star iron, and they pull back before the heat bites.",
           "effects": [
             {
               "resources": {
@@ -64,7 +64,7 @@
         },
         {
           "w": 50,
-          "text": "Burned.",
+          "text": "They have it, and then the heat has them.",
           "effects": [
             {
               "durability": -25,
@@ -76,7 +76,7 @@
     },
     {
       "id": "leave",
-      "label": "Leave it.",
+      "label": "Leave the cistern be.",
       "rule": "leader",
       "tags": [
         "cautious"

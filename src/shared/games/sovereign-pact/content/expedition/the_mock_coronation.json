@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The court roars with laughter, and lets you through as friends.",
+          "text": "The court roars with laughter and lets you through as friends. Somewhere, the joke is heard, and something takes it seriously.",
           "effects": [
             {
               "skip": 2
@@ -72,7 +72,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Real gold, under the paint.",
+          "text": "Real gold, under the paint, and the whole mob after you.",
           "effects": [
             {
               "resources": {

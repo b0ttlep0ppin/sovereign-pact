@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "strong",
-      "label": "The strongest tries.",
+      "label": "The strongest tries the sword.",
       "rule": "scion:highest:might",
       "tags": [
         "bold"
@@ -37,7 +37,7 @@
         },
         {
           "w": 65,
-          "text": "It does not, and the stone seems amused.",
+          "text": "It does not, and the stone seems amused, and their arms ache for days.",
           "effects": [
             {
               "durability": -10,
@@ -74,7 +74,7 @@
         },
         {
           "w": 75,
-          "text": "It does not. Nobody laughs.",
+          "text": "It does not. Nobody laughs, and they learn something from trying.",
           "effects": [
             {
               "xp": 40
@@ -85,7 +85,7 @@
     },
     {
       "id": "read",
-      "label": "The sharpest reads the scratches.",
+      "label": "The sharpest eye reads the scratches.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -93,7 +93,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Names. Hundreds of them. Some are from your Houses.",
+          "text": "Names. Hundreds of them. Some are from your Houses, and some are fresh.",
           "effects": [
             {
               "score": {

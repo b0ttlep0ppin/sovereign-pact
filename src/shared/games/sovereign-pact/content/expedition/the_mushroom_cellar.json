@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "pick",
-      "label": "Pick them.",
+      "label": "Pick the glowing mushrooms.",
       "rule": "vote",
       "tags": [
         "clever"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "Baskets of light.",
+          "text": "Baskets of soft light.",
           "effects": [
             {
               "resources": {
@@ -32,7 +32,7 @@
         },
         {
           "w": 30,
-          "text": "Spores.",
+          "text": "Spores, in a pale cloud, and the cellar starts to tilt.",
           "effects": [
             {
               "to": "party",
@@ -52,7 +52,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "Visions, and clarity.",
+          "text": "Visions, and then clarity, and they see the road ahead.",
           "effects": [
             {
               "foresee": true
@@ -61,7 +61,7 @@
         },
         {
           "w": 50,
-          "text": "Visions, and vomiting.",
+          "text": "Visions, and then vomiting, and then worse.",
           "effects": [
             {
               "status": "poison"
@@ -80,7 +80,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A crop for the House.",
+          "text": "A crop for the House, grown in the dark under its floors.",
           "effects": [
             {
               "house_improvement": "building"

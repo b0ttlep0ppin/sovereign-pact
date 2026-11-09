@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "buy",
-      "label": "Buy the ring back, and the story.",
+      "label": "Buy back the ring, and the story with it.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He tells you where, and when. It was not long ago.",
+          "text": "He tells you where, and when. It was not long ago, and he will not meet your eyes.",
           "effects": [
             {
               "resources": {
@@ -37,7 +37,7 @@
     },
     {
       "id": "threaten",
-      "label": "The strongest asks him again.",
+      "label": "The strongest asks him again, closer.",
       "rule": "scion:highest:might",
       "tags": [
         "cruel"
@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "He tells it fast.",
+          "text": "He tells it fast, with a blade at his throat, and the road hears how you got it.",
           "effects": [
             {
               "skip": 1
@@ -57,7 +57,7 @@
         },
         {
           "w": 40,
-          "text": "He has friends.",
+          "text": "He whistles, and he has friends.",
           "effects": [
             {
               "encounter": {}
@@ -68,7 +68,7 @@
     },
     {
       "id": "read",
-      "label": "The shrewdest reads his face.",
+      "label": "The shrewdest watches his face as he talks.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"
@@ -76,7 +76,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He is lying about the bread, not about the place.",
+          "text": "He is lying about the bread. He is not lying about the place.",
           "effects": [
             {
               "skip": 1

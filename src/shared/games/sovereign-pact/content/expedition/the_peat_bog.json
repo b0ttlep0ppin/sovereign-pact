@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "cut",
-      "label": "Cut peat.",
+      "label": "Cut peat from the old steps.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Heavy, wet work.",
+          "text": "Heavy, wet work, and once a spade strikes something soft.",
           "effects": [
             {
               "resources": {
@@ -46,7 +46,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "An old sword in the peat.",
+          "text": "An old sword in the peat, and the hand that held it, brown as leather.",
           "effects": [
             {
               "item": {
@@ -59,7 +59,7 @@
     },
     {
       "id": "leave",
-      "label": "Leave it.",
+      "label": "Leave the bog be.",
       "rule": "leader",
       "tags": [
         "cautious"

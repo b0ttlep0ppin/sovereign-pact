@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "north",
-      "label": "Go north, fast.",
+      "label": "Go north, and fast.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "North.",
+          "text": "North, at a hard pace, reading every tree you pass.",
           "effects": [
             {
               "skip": 1
@@ -40,7 +40,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Three days. And they were bleeding.",
+          "text": "Three days. And they were bleeding when they cut it.",
           "effects": [
             {
               "foresee": true
@@ -54,7 +54,7 @@
     },
     {
       "id": "answer",
-      "label": "Cut an answer beneath.",
+      "label": "Cut an answer beneath it.",
       "rule": "leader",
       "tags": [
         "kind"
@@ -62,7 +62,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "For them, if they come back.",
+          "text": "WE ARE COMING. For them, if they come back this way.",
           "effects": [
             {
               "to": "party",
