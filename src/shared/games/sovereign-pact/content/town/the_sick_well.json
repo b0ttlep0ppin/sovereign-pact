@@ -7,7 +7,7 @@
     19
   ],
   "title": "The Sick Well",
-  "text": "The town well has turned brackish and the children who drank from it dream of drowning. The physicians traced the sickness to a nest beyond the Gate, in the Drowned Marches. It must be cleansed at the source.",
+  "text": "The town well has turned brackish, green scum on the bucket, and the children who drank from it dream of drowning and wake coughing up river weed. The physicians traced the sickness to a nest beyond the Gate, in the Drowned Marches. It must be cleansed at the source.",
   "rule": "vote",
   "forces": {
     "pool": "drowned_marches"

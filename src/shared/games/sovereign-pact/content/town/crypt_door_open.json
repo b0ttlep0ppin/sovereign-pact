@@ -10,7 +10,7 @@
     "building:crypt"
   ],
   "title": "The Crypt Door, Open",
-  "text": "The crypt door is found open in the morning. It was barred from outside. It has been opened from within.",
+  "text": "The crypt door is found open in the morning, swinging a little on its hinges. It was barred from outside, and the bar lies on the steps, unbroken. It has been opened from within. Dust on the stairs shows narrow, bare footprints, coming up.",
   "rule": "house",
   "options": [
     {

@@ -4,7 +4,7 @@
   "weight": 3,
   "years": [3, 20],
   "title": "The Breach in the Wall",
-  "text": "Something came up from the rift in the night and went back down again. It left a hole in the east wall wide enough for a cart.",
+  "text": "Something came up from the rift in the night and went back down again. Nobody saw it. It left a hole in the east wall wide enough for a cart, the stones not broken but bent outward, softly, like wax, and a smell of wet earth that will not lift.",
   "rule": "pledges",
   "crisis": {
     "need": { "stone": 30, "iron": 15 },
