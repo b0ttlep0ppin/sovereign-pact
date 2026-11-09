@@ -295,6 +295,17 @@ describe("the lasting effects (§9.4)", () => {
     expect(s.items.length).toBe(owned + 1);
     expect(s.expedition!.haul!.items.length).toBe(1);
   });
+
+  it("a named find comes once a campaign; after that the find is another item", () => {
+    const s = underway(2);
+    const owned = s.items.length;
+    const fx: TripEffect = { item: { tier: 3, named: "ant_lion_mandible" } };
+    resolve(s, option("house:highest_standing", fx));
+    expect(s.items.at(-1)!.named).toBe("ant_lion_mandible");
+    resolve(s, option("house:highest_standing", fx));
+    expect(s.items.length).toBe(owned + 2);
+    expect(s.items.filter((x) => x.named === "ant_lion_mandible")).toHaveLength(1);
+  });
 });
 
 describe("Jobs, gear and the next battle (Josh 2026-11-03: 'really engage with all the traits all the gear the jobs')", () => {

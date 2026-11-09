@@ -31,7 +31,7 @@
         },
         {
           "w": 30,
-          "text": "It flicks sand up the slope, and you slide, and slide, down toward it.",
+          "text": "It collapses the sand beneath you as you scramble up the slope, and you plunge down toward its open maw.",
           "effects": [
             {
               "encounter": {
@@ -44,7 +44,7 @@
     },
     {
       "id": "rope",
-      "label": "The strongest hauls everyone out on a rope.",
+      "label": "The strongest tries to haul everyone out as they scramble for the rim.",
       "rule": "scion:highest:might",
       "tags": [
         "kind"
@@ -69,7 +69,7 @@
     },
     {
       "id": "kill",
-      "label": "Go down into the funnel and kill it.",
+      "label": "It's too treacherous to attempt escape. Draw your weapons and dispatch the beast.",
       "rule": "leader",
       "tags": [
         "reckless"
@@ -77,14 +77,15 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It fights from the bottom of its pit, and when it dies its shell is worth something.",
+          "text": "It fights from the bottom of its pit, and when it finally dies, one of its mandibles comes away whole: long, hooked and still wet with venom.",
           "effects": [
             {
               "encounter": {}
             },
             {
-              "resources": {
-                "wyrmbone": 2
+              "item": {
+                "tier": 3,
+                "named": "ant_lion_mandible"
               }
             }
           ]

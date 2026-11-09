@@ -874,6 +874,18 @@
       "pools": ["beast_lands"]
     },
     {
+      "id": "ant_lion_mandible",
+      "name": "The Ant Lion's Mandible",
+      "base": "spear",
+      "tier": 3,
+      "props": [
+        ["venomed", 20],
+        ["keen", 10]
+      ],
+      "text": "Prised from the jaw of the pit-beast and bound to a haft. It still closes, very slightly, on whatever it pierces.",
+      "trip": true
+    },
+    {
       "id": "antler_crown",
       "name": "Antler Crown",
       "base": "helm",

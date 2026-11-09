@@ -64,9 +64,9 @@ export function carryNamed(s: SovState, id: string): Item {
   return item;
 }
 
-/** An event's find (§9.10): to `house`, or into the haul for the draft when it is null. */
-export function found(s: SovState, tier: ItemTier, house: number | null): void {
-  const item = find(s, tier);
+/** An event's find (§9.10): to `house`, or into the haul for the draft when it is null; a named item if it is not yet made. */
+export function found(s: SovState, tier: ItemTier, house: number | null, named?: string): void {
+  const item = named && !madeNamed(s, named) ? carryNamed(s, named) : find(s, tier);
   if (house === null) return;
   haul(s).items.pop();
   give(s, item, house);

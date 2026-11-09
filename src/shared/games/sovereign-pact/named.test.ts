@@ -1,7 +1,7 @@
 // Named items (§13.4, HANDOFF §6): fixed properties on a base, one of each a campaign; bosses drop
 // their own, pools hide theirs in Caches and boss hauls; artifacts score their category (§3.4).
 import { describe, expect, it } from "vitest";
-import { BOSS_BY_ID, ITEM_BASE_BY_ID, NAMED, POOL_BY_ID, PROPERTY_BY_ID, TOWN_EVENTS } from "./content.ts";
+import { BOSS_BY_ID, ITEM_BASE_BY_ID, NAMED, POOL_BY_ID, PROPERTY_BY_ID, TOWN_EVENTS, TRIP_EVENTS } from "./content.ts";
 import { muster } from "./expedition.ts";
 import { madeNamed, mintNamed, propertyKinds } from "./items.ts";
 import { bossLoot, find, itemName } from "./loot.ts";
@@ -31,8 +31,9 @@ describe("the named items' content", () => {
     }
     if (n.boss) expect(BOSS_BY_ID.has(n.boss), n.boss).toBe(true);
     for (const pool of n.pools ?? []) expect(POOL_BY_ID.has(pool), pool).toBe(true);
-    expect(n.boss || n.pools || n.cure || n.town, "found somewhere").toBeTruthy();
+    expect(n.boss || n.pools || n.cure || n.town || n.trip, "found somewhere").toBeTruthy();
     if (n.town) expect(TOWN_EVENTS.some((e) => JSON.stringify(e).includes(`"named":"${n.id}"`)), `${n.id} is in a town event`).toBe(true);
+    if (n.trip) expect(TRIP_EVENTS.some((e) => JSON.stringify(e).includes(`"named":"${n.id}"`)), `${n.id} is in an expedition event`).toBe(true);
   });
 
   it("every pool hides at least one", () => {

@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They run with you a day, ribs heaving, and fight like devils for anyone who fed them.",
+          "text": "Their exuberance for those who fed them bolsters the spirits of the ones who set them free.",
           "effects": [
             {
               "to": "party",
@@ -37,7 +37,7 @@
     },
     {
       "id": "one",
-      "label": "Take the best of them home.",
+      "label": "Take the finest of them home, to run at your heel.",
       "rule": "leader",
       "tags": [
         "clever"
@@ -45,10 +45,13 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A fine hound, all bone and hunger, and loyal already. It will not stop licking the hand that freed it.",
+          "text": "A fine hound, all bone and hunger, and loyal already. It runs at its rescuer's heel and smells trouble long before anyone sees it.",
           "effects": [
             {
-              "house_improvement": "recruit"
+              "blessing": {
+                "trait": "keen_eyed",
+                "years": 2
+              }
             }
           ]
         }

@@ -670,8 +670,8 @@ export interface TripEffect {
   fork?: { drop?: number; add?: NodeKind[] };
   /** The subject is Lost in the otherworld (§9.9). */
   scion_lost?: true;
-  /** A found item of this tier: to the subject's House, or into the haul for the draft when the party chose together. */
-  item?: { tier: 2 | 3 | 4 };
+  /** A found item of this tier: to the subject's House, or into the haul for the draft when the party chose together. A `named` one comes instead while it is not yet made. */
+  item?: { tier: 2 | 3 | 4; named?: string };
   /** A town event queued on the timeline `years` from now (§8.7), for the subject's House if it has one. */
   timeline?: { id: string; years: number };
   /** The subject is Changed (§9.6): a Change id from content/changes.json. */
@@ -919,6 +919,8 @@ export interface NamedDef {
   artifact?: { category: ScoreCategory; points: number };
   /** Found only through town events (Josh 2026-11-03: "powerful artifacts up for grabs"), never in a haul. */
   town?: true;
+  /** Found only through expedition events (Josh 2026-11-09: a trophy cut from the Ant Lion), never in a haul. */
+  trip?: true;
   /** A cure item (§11.2): one use, mending these injury results or any lasting one of a band; it may leave a look. */
   cure?: { injuries?: string[]; band?: "moderate"; look?: string };
 }

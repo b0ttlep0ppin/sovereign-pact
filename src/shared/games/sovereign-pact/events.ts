@@ -337,7 +337,7 @@ function apply(s: SovState, fx: TripEffect, ids: number[], house: number | null,
   if (fx.doom) s.doom = Math.max(0, Math.min(100, s.doom + fx.doom));
   if (fx.flag && !s.flags.includes(fx.flag)) s.flags.push(fx.flag);
   // §9.10: an item goes to the subject's House; one the party chose together goes to the draft.
-  if (fx.item) found(s, fx.item.tier, house);
+  if (fx.item) found(s, fx.item.tier, house, fx.item.named);
   if (fx.house_improvement) improve(s, fx.house_improvement, house ?? withRng(s, (rng) => rng.pick(present(s))));
   if (fx.timeline) s.timeline.push({ year: s.year + fx.timeline.years, id: fx.timeline.id, ...(house === null ? {} : { house }) });
   // Passed by, never the boss.

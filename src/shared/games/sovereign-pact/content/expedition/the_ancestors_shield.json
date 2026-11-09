@@ -9,11 +9,11 @@
     8
   ],
   "title": "The Ancestor's Shield",
-  "text": "A shield hangs over a barrow's door, its paint flaking, its rim black with age. It bears a House's arms. Your own House's arms, painted by someone who died before your founders were born. Beneath it the barrow breathes out a cold, patient air.",
+  "text": "A shield hangs over a barrow's door, its paint flaking, its rim black with age. Each of you looks up and sees your own House's arms upon it, painted by someone who died before your founders were born. Beneath it the barrow breathes out a cold, patient air, and every House is already sure the shield is theirs.",
   "options": [
     {
       "id": "take",
-      "label": "Take it down, by right of blood.",
+      "label": "Take it down by right of blood, whichever blood that turns out to be.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "It comes down easily, as if it had been waiting. It is yours. It always was.",
+          "text": "It comes down easily, as if it had been waiting. The arguing over whose arms it bears lasts the rest of the day, and each of you still sees your own.",
           "effects": [
             {
               "item": {
@@ -37,7 +37,7 @@
         },
         {
           "w": 30,
-          "text": "The ancestor disagrees, and comes up out of the barrow to say so.",
+          "text": "The ancestor disagrees with all of you, and comes up out of the barrow to say so.",
           "effects": [
             {
               "encounter": {
@@ -76,7 +76,7 @@
     },
     {
       "id": "read",
-      "label": "The wisest reads the barrow's runes.",
+      "label": "The wisest reads the barrow's runes, searching for the meaning behind the strange spectacle.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -84,7 +84,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The runes name a forgotten branch of the House, and how it ended. Nobody tells the others how.",
+          "text": "The runes name a forgotten branch of a House, and how it ended. They do not say which House, and nobody tells the others what they read.",
           "effects": [
             {
               "score": {
