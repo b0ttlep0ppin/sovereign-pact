@@ -9,7 +9,7 @@
     9
   ],
   "title": "The Mirror Maze",
-  "text": "A maze of mirrors where the reflections walk a step behind. One of them is a step ahead.",
+  "text": "A maze of mirrors where the reflections walk a step behind you, always a heartbeat slow. Except one. One of the reflections is a step ahead, and it keeps glancing back over its shoulder at you, as if to see if you are following.",
   "options": [
     {
       "id": "follow",

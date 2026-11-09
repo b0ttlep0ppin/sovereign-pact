@@ -8,6 +8,7 @@ Josh: **"give all of these event descriptions more evocative and detailed prose,
 - **Reading:** "descriptions" is each event's opening text, the part read before anyone chooses. Choices and outcome texts keep their words; Josh can reword those in the Event Book.
 - **The model is Josh's own rewrite of the Abandoned Kennel** in the Event Book: two to four plain sentences, about twice the old length, one concrete, sensory detail that makes the scene wrong or sad, no flourish. Every fact a choice relies on (who is heaviest, most haunted, a House's arms, a toll) stays in the text.
 - Done in batches, a PR each, expedition events first, then settlement, House and crisis events.
+- **Town events** (settlement, House, crisis) were mostly written in the dark passes of 2026-11-03 and already read this way; only the 29 short or plain ones are rewritten, the rest keep their words.
 
 ## 2026-11-05 (implementation, Milestone 8cu): new Settlement music, no House themes for now
 
