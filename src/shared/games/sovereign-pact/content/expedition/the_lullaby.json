@@ -13,12 +13,12 @@
   "options": [
     {
       "id": "listen",
-      "label": "Who sleeps?",
+      "label": "Who falls asleep?",
       "rule": "scion:lowest:acuity",
       "outcomes": [
         {
           "w": 60,
-          "text": "They sleep through the night and wake slow and heavy.",
+          "text": "They sleep through the night, deep as the drowned, and wake slow and heavy.",
           "effects": [
             {
               "status": "sleep"
@@ -27,7 +27,7 @@
         },
         {
           "w": 40,
-          "text": "They dream of a different card turning over, and wake under a different star.",
+          "text": "They dream of a different card turning over, and wake under a different star, rested as they have not been in years.",
           "effects": [
             {
               "tarot": true

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "turn",
-      "label": "Each of you gives it a turn.",
+      "label": "Each of you gives the wheel a turn.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Prayers, and a lightness.",
+          "text": "Prayers, and a lightness, and the wheel's groan in your chest.",
           "effects": [
             {
               "to": "party",
@@ -41,7 +41,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "A thousand prayers at once, and one answered.",
+          "text": "A thousand prayers at once, and one of them answered.",
           "effects": [
             {
               "blessing": {
@@ -53,7 +53,7 @@
         },
         {
           "w": 40,
-          "text": "It flies off its axle.",
+          "text": "It flies off its axle, and the monks will be talking about it for a while.",
           "effects": [
             {
               "durability": -15,
@@ -78,7 +78,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "One of them is a prayer for your House.",
+          "text": "One of them is a prayer for your House, written long ago, in a hand you almost know.",
           "effects": [
             {
               "score": {

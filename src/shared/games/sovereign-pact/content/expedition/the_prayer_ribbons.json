@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "tie",
-      "label": "Tie one for the House.",
+      "label": "Tie a ribbon for the House.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A prayer for the House, among a thousand others.",
+          "text": "A prayer for the House, among a thousand others, whispering with them.",
           "effects": [
             {
               "score": {
@@ -46,7 +46,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Prayers of your ancestors, and one secret.",
+          "text": "Prayers of your ancestors, and one secret they should not have tied to a tree.",
           "effects": [
             {
               "score": {
@@ -67,7 +67,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Petty, and satisfying.",
+          "text": "Petty, and satisfying, and the whispering stops for a moment.",
           "effects": [
             {
               "score": {

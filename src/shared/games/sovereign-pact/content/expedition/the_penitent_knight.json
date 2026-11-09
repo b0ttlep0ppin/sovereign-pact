@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "accept",
-      "label": "Let him.",
+      "label": "Let him earn his forgiveness at your side.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He fights like a man with nothing to lose.",
+          "text": "He fights like a man with nothing left to lose, and puts himself in front of every blow.",
           "effects": [
             {
               "to": "party",
@@ -38,7 +38,7 @@
     },
     {
       "id": "judge",
-      "label": "The wisest asks what he did.",
+      "label": "The wisest asks him what he did.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -46,7 +46,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Something terrible. He tells you where the Court keeps its secrets.",
+          "text": "Something terrible. He tells it all, and then tells you where the Court keeps its secrets.",
           "effects": [
             {
               "score": {
@@ -59,7 +59,7 @@
     },
     {
       "id": "refuse",
-      "label": "Refuse.",
+      "label": "Refuse him.",
       "rule": "leader",
       "tags": [
         "cautious"

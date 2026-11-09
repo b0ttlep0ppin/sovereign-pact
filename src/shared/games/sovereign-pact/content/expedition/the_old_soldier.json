@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "learn",
-      "label": "The greenest learns from him.",
+      "label": "The greenest learns at his feet.",
       "rule": "scion:fewest_expeditions",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He is a hard teacher, and a good one.",
+          "text": "He is a hard teacher, and a good one, and he never once asks their name.",
           "effects": [
             {
               "xp": 150
@@ -35,7 +35,7 @@
     },
     {
       "id": "relieve",
-      "label": "The leader relieves him of duty.",
+      "label": "The Leader relieves him of duty.",
       "rule": "leader",
       "tags": [
         "kind"
@@ -43,7 +43,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He salutes, and goes home at last, wherever that is.",
+          "text": "He salutes, and goes home at last, wherever that is now.",
           "effects": [
             {
               "to": "party",
@@ -68,7 +68,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He marches with you as far as the next fight, and fights like ten.",
+          "text": "He marches with you as far as the next fight, and stands in front, and fights like ten.",
           "effects": [
             {
               "to": "party",

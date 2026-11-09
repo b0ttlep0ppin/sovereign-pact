@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "follow",
-      "label": "Follow the song.",
+      "label": "Follow the song into the wind.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Closer.",
+          "text": "Closer. The voice cracks on the same note every time.",
           "effects": [
             {
               "skip": 1
@@ -32,7 +32,7 @@
     },
     {
       "id": "sing",
-      "label": "The steadiest voice sings back.",
+      "label": "The steadiest voice sings the next verse back.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "kind"
@@ -40,7 +40,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The song answers, stronger.",
+          "text": "The song answers, stronger, as if whoever sings it has remembered they are not alone.",
           "effects": [
             {
               "skip": 1
@@ -55,7 +55,7 @@
     },
     {
       "id": "quiet",
-      "label": "Keep quiet, in case it is a lure.",
+      "label": "Keep silent, in case it is a lure.",
       "rule": "leader",
       "tags": [
         "cautious"

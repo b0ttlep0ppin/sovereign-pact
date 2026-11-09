@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "fell",
-      "label": "Fell them.",
+      "label": "Fell the silver trees.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "Fine timber, a great deal of it.",
+          "text": "Fine timber, a great deal of it, and the stone faces frown harder.",
           "effects": [
             {
               "resources": {
@@ -32,7 +32,7 @@
         },
         {
           "w": 40,
-          "text": "The stones were guarding the trees.",
+          "text": "The stones were guarding the trees, and they still are.",
           "effects": [
             {
               "resources": {
@@ -48,7 +48,7 @@
     },
     {
       "id": "ask",
-      "label": "Ask the stones' leave first.",
+      "label": "The wisest asks the stones' leave first.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "kind"
@@ -56,7 +56,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "One tree, given freely, and the stones are content.",
+          "text": "One tree, given freely, and the stone faces ease.",
           "effects": [
             {
               "resources": {
@@ -81,7 +81,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Less, but no one minds.",
+          "text": "Less, but no one minds, and no stone turns to watch you go.",
           "effects": [
             {
               "resources": {

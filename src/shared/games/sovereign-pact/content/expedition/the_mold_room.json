@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "break",
-      "label": "The strongest breaks it open.",
+      "label": "The strongest breaks the sealed mold.",
       "rule": "scion:highest:might",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "A blade, perfect.",
+          "text": "A blade, perfect, still warm.",
           "effects": [
             {
               "item": {
@@ -32,7 +32,7 @@
         },
         {
           "w": 40,
-          "text": "A golem, half-made.",
+          "text": "A golem, half-made, and angry about it.",
           "effects": [
             {
               "encounter": {}
@@ -76,7 +76,7 @@
     },
     {
       "id": "sell",
-      "label": "Carry it out to sell.",
+      "label": "Haul it out to sell.",
       "rule": "leader",
       "tags": [
         "clever"
@@ -84,7 +84,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Heavy, and worth it.",
+          "text": "Heavy, and worth it, and it bruises every shoulder that carries it.",
           "effects": [
             {
               "resources": {

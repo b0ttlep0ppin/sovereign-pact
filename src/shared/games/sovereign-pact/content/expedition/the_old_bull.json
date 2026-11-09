@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "brave",
-      "label": "The bravest stands their ground.",
+      "label": "The bravest stands their ground before it.",
       "rule": "scion:trait:brave|scion:highest:might",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "It snorts, and steps aside for them.",
+          "text": "It snorts, long and hot, and steps aside for them alone.",
           "effects": [
             {
               "score": {
@@ -35,7 +35,7 @@
         },
         {
           "w": 30,
-          "text": "It charges anyway.",
+          "text": "It charges anyway, and the old scars on its hide get a new story.",
           "effects": [
             {
               "durability": -40,
@@ -47,7 +47,7 @@
     },
     {
       "id": "hunt",
-      "label": "Bring it down.",
+      "label": "Bring the old bull down.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -55,7 +55,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It does not go down easily.",
+          "text": "It does not go down easily, and it does not go down alone, but it goes down.",
           "effects": [
             {
               "encounter": {
@@ -73,7 +73,7 @@
     },
     {
       "id": "around",
-      "label": "Go the long way.",
+      "label": "Go the long way round.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -81,7 +81,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A day lost to the brambles.",
+          "text": "A day lost to the brambles, and the bull's eyes on your backs the whole first hour.",
           "effects": [
             {
               "to": "party",

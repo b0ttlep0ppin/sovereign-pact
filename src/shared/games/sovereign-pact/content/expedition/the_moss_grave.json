@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "The sword, and the old bones politely still.",
+          "text": "The sword, and the old bones politely still, and the moss whispering about it after.",
           "effects": [
             {
               "item": {
@@ -49,7 +49,7 @@
     },
     {
       "id": "pray",
-      "label": "The devout prays over it.",
+      "label": "The devout prays over the grave.",
       "rule": "scion:trait:devout|scion:highest:sagacity",
       "tags": [
         "kind"
@@ -57,7 +57,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Something old is grateful.",
+          "text": "Something old beneath the moss is grateful, and its courage settles on them.",
           "effects": [
             {
               "blessing": {
@@ -71,7 +71,7 @@
     },
     {
       "id": "mark",
-      "label": "Mark it, and leave it.",
+      "label": "Mark the grave, and leave it.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -79,7 +79,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A grave is a grave.",
+          "text": "A grave is a grave. Those who come after will see you honored it.",
           "effects": [
             {
               "score": {

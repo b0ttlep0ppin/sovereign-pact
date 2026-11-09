@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "young",
-      "label": "The least traveled wades in.",
+      "label": "The least traveled wades in after the glint.",
       "rule": "scion:fewest_expeditions",
       "tags": [
         "bold"
@@ -35,7 +35,7 @@
         },
         {
           "w": 30,
-          "text": "Something in the stream bites.",
+          "text": "Something in the stream bites, and it was waiting.",
           "effects": [
             {
               "status": "poison"
@@ -71,7 +71,7 @@
     },
     {
       "id": "leave",
-      "label": "Leave it; it is a trap.",
+      "label": "Leave it. It is a trap.",
       "rule": "leader",
       "tags": [
         "cautious"

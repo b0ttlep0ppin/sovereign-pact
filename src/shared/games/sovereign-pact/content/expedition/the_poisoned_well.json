@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "share",
-      "label": "Pass yours round to everyone.",
+      "label": "Pass your antidote round to everyone.",
       "rule": "secret",
       "tags": [
         "kind"
@@ -57,7 +57,7 @@
     },
     {
       "id": "hoard",
-      "label": "Keep it for your own.",
+      "label": "Keep your antidote for your own.",
       "rule": "secret",
       "tags": [
         "cautious"

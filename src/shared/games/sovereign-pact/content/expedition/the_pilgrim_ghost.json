@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "tell",
-      "label": "Tell the truth.",
+      "label": "Tell it the truth.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It weeps, and walks on.",
+          "text": "It weeps, without a sound, and walks on.",
           "effects": [
             {
               "to": "party",
@@ -33,7 +33,7 @@
     },
     {
       "id": "lie",
-      "label": "Tell it not far.",
+      "label": "Tell it the shrine is not far.",
       "rule": "leader",
       "tags": [
         "kind"
@@ -58,7 +58,7 @@
     },
     {
       "id": "lead",
-      "label": "The devout leads it there.",
+      "label": "The devout leads it all the way there.",
       "rule": "scion:trait:devout|scion:highest:sagacity",
       "tags": [
         "kind"
@@ -66,7 +66,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "At the shrine it blesses them.",
+          "text": "At the shrine it blesses them, and is gone.",
           "effects": [
             {
               "blessing": {

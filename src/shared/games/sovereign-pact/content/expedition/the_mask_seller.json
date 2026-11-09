@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It fits perfectly. They had forgotten what it felt like.",
+          "text": "It fits perfectly. They had forgotten what it felt like to be that person.",
           "effects": [
             {
               "sanity": 20
@@ -37,7 +37,7 @@
     },
     {
       "id": "trade",
-      "label": "Trade your own face for the finest mask.",
+      "label": "The Leader trades their own face for the finest mask.",
       "rule": "leader",
       "tags": [
         "reckless"
@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The mask is magnificent. In the mirror, the leader is not sure who looks back.",
+          "text": "The mask is magnificent. In the mirror, the Leader is not sure who looks back.",
           "effects": [
             {
               "item": {
@@ -61,7 +61,7 @@
     },
     {
       "id": "burn",
-      "label": "Burn the stall.",
+      "label": "Burn the stall and every face on it.",
       "rule": "vote",
       "tags": [
         "cruel"
@@ -69,7 +69,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The masks scream as they burn. Every face in them.",
+          "text": "The masks scream as they burn, every face in them, and some of the voices you know.",
           "effects": [
             {
               "to": "party",

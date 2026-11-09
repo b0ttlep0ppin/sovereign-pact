@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "plead",
-      "label": "The smoothest pleads.",
+      "label": "The smoothest tongue pleads your case.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "Acquitted, and the crowd cheers.",
+          "text": "Acquitted, and the breathless crowd cheers without a sound.",
           "effects": [
             {
               "score": {
@@ -32,7 +32,7 @@
         },
         {
           "w": 40,
-          "text": "Guilty.",
+          "text": "Guilty. The fine is heavy, and the gallows creaks, disappointed.",
           "effects": [
             {
               "resources": {
@@ -45,7 +45,7 @@
     },
     {
       "id": "confess",
-      "label": "Confess to anything.",
+      "label": "Confess to whatever he likes.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -53,7 +53,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A small fine, and a long stare.",
+          "text": "A small fine, and a long stare from the mask, and the feeling of having confessed to something true.",
           "effects": [
             {
               "resources": {
@@ -70,7 +70,7 @@
     },
     {
       "id": "unmask",
-      "label": "Unmask the judge.",
+      "label": "Tear the mask from the judge.",
       "rule": "leader",
       "tags": [
         "reckless"
@@ -78,7 +78,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Under the mask, another mask, and the court rises.",
+          "text": "Under the mask, another mask, and the whole court rises at once.",
           "effects": [
             {
               "encounter": {

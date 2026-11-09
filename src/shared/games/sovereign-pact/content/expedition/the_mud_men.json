@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "wait",
-      "label": "Wait them out.",
+      "label": "Wait out the night inside the ring.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "At dawn they sink back.",
+          "text": "At dawn they sink back into the marsh. No one sleeps.",
           "effects": [
             {
               "to": "party",
@@ -62,7 +62,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They are pointing. All of them, the same way.",
+          "text": "They are pointing. All of them, the same way, and that way is shorter.",
           "effects": [
             {
               "skip": 1

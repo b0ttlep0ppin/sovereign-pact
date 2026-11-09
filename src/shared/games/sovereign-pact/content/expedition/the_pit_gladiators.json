@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "fight",
-      "label": "The strongest fights.",
+      "label": "The strongest steps into the arena.",
       "rule": "scion:highest:might",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "Victory, and the crowd's roar.",
+          "text": "Victory, and the roar of the stands, and the devils taking note.",
           "effects": [
             {
               "score": {
@@ -35,7 +35,7 @@
         },
         {
           "w": 40,
-          "text": "Defeat.",
+          "text": "Defeat, and the long walk out on someone else's legs.",
           "effects": [
             {
               "injury": "body"
@@ -54,7 +54,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The devils are displeased.",
+          "text": "The devils are displeased, and they come down from the stands.",
           "effects": [
             {
               "encounter": {}
@@ -78,7 +78,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "Winnings in devil coin.",
+          "text": "Winnings in devil coin, hot to the touch.",
           "effects": [
             {
               "resources": {
@@ -89,7 +89,7 @@
         },
         {
           "w": 50,
-          "text": "Lost.",
+          "text": "Lost, every coin.",
           "effects": [
             {
               "resources": {

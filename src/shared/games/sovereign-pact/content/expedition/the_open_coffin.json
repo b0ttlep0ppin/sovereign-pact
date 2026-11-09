@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "weak",
-      "label": "The frailest lies in it; the voice has been calling to them all along.",
+      "label": "The frailest lies down in it. The voice has been calling to them all along.",
       "rule": "scion:lowest:resilience|scion:random",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "The lid shuts, and opens. They come out with a dead king's ring.",
+          "text": "The lid shuts, and opens. They come out with a dead king's ring, and something of the dark behind their eyes.",
           "effects": [
             {
               "item": {
@@ -35,7 +35,7 @@
         },
         {
           "w": 40,
-          "text": "The lid shuts, and stays shut a while.",
+          "text": "The lid shuts, and stays shut a while, and when it opens they are not all the way back.",
           "effects": [
             {
               "injury": "sanity"
@@ -46,7 +46,7 @@
     },
     {
       "id": "prise",
-      "label": "Prise out the lining.",
+      "label": "The shrewdest prises out the lining.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"
@@ -54,7 +54,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Gold sewn into the silk.",
+          "text": "Gold sewn into the silk, and the voice goes quiet with offense.",
           "effects": [
             {
               "resources": {
@@ -67,7 +67,7 @@
     },
     {
       "id": "close",
-      "label": "Close the lid and nail it.",
+      "label": "Close the lid and nail it shut.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -75,7 +75,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Something knocks from inside as you leave.",
+          "text": "Something knocks from inside as you leave, patient and polite.",
           "effects": [
             {
               "to": "party",

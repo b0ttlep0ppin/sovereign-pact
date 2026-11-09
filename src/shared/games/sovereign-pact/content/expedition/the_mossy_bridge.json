@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "sneak",
-      "label": "Sneak across.",
+      "label": "Creep across past the sleeping troll.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -51,7 +51,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Honest, and the wood approves.",
+          "text": "Honest, and the wood approves, and the path feels lighter.",
           "effects": [
             {
               "resources": {
@@ -68,7 +68,7 @@
     },
     {
       "id": "purse",
-      "label": "The quietest lifts the troll's purse.",
+      "label": "The quietest hands lift the troll's purse.",
       "rule": "scion:highest:guile",
       "tags": [
         "reckless"
@@ -76,7 +76,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "A fat purse of other travelers' tolls.",
+          "text": "A fat purse of other travelers' tolls, and the troll never stirs.",
           "effects": [
             {
               "resources": {
@@ -87,7 +87,7 @@
         },
         {
           "w": 40,
-          "text": "A troll's grip.",
+          "text": "A troll's grip, and the crunch of something giving way.",
           "effects": [
             {
               "durability": -25,
@@ -99,7 +99,7 @@
     },
     {
       "id": "pay_the_toll",
-      "label": "The Knight wakes the troll and pays the toll honestly.",
+      "label": "The Knight wakes the troll and pays the toll to its face.",
       "rule": "scion:job:knight",
       "only": true,
       "tags": [

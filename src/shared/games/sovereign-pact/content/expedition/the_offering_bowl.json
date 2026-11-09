@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "give",
-      "label": "Give something.",
+      "label": "Give something to the Six.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The Six notice.",
+          "text": "The Six notice, and are pleased.",
           "effects": [
             {
               "resources": {
@@ -40,7 +40,7 @@
     },
     {
       "id": "take",
-      "label": "Take something.",
+      "label": "Take something from the bowl.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -72,7 +72,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Offerings from every House, and what each House prays for.",
+          "text": "Offerings from every House, and what each House prays for, and some of the prayers are about you.",
           "effects": [
             {
               "score": {

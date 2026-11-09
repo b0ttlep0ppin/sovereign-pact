@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "look",
-      "label": "Each Scion looks in.",
+      "label": "Each Scion looks into the pool.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -31,7 +31,7 @@
         },
         {
           "w": 40,
-          "text": "Nothing.",
+          "text": "Nothing. Only dark water, and your own face, alone.",
           "effects": [
             {
               "to": "party",
@@ -43,7 +43,7 @@
     },
     {
       "id": "devout",
-      "label": "The devout drinks from it.",
+      "label": "The devout drinks from the pool.",
       "rule": "scion:trait:devout|scion:highest:sagacity",
       "tags": [
         "kind"
@@ -51,7 +51,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A blessing, for years.",
+          "text": "A blessing, and it will last for years.",
           "effects": [
             {
               "blessing": {

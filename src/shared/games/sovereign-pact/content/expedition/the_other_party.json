@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "warn",
-      "label": "Tell them how long it has been.",
+      "label": "The Leader tells them how long it has been.",
       "rule": "leader",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They go very quiet, and give you everything they carry, and walk into the dark.",
+          "text": "They go very quiet, and give you everything they carry, and walk into the dark one by one.",
           "effects": [
             {
               "item": {
@@ -46,7 +46,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They tell old stories of your Houses, true and not.",
+          "text": "They tell old stories of your Houses, some true, and laugh at the wrong places.",
           "effects": [
             {
               "score": {
@@ -71,7 +71,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Old gold spends just as well.",
+          "text": "Old gold spends just as well. In the morning, their camp is empty, and the fire long cold.",
           "effects": [
             {
               "resources": {

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "kneel",
-      "label": "Climb on your knees, together.",
+      "label": "Climb on your knees, all of you together.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It takes a day and a night. You are forgiven something.",
+          "text": "It takes a day and a night, and the stone takes skin. You are forgiven something.",
           "effects": [
             {
               "to": "party",
@@ -67,7 +67,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They talk about it at the top for years.",
+          "text": "Three thousand steps, and their legs are ruined for it. They talk about it at the top for years.",
           "effects": [
             {
               "score": {

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "feed",
-      "label": "Share supplies and send them home.",
+      "label": "Share your supplies and send them home.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They make it home. The city hears who brought them.",
+          "text": "Your own kit wears thin for it. They make it home, and the city hears who brought them.",
           "effects": [
             {
               "to": "party",
@@ -49,7 +49,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "One stays on, glad of a House to serve.",
+          "text": "One of them stays on, glad of any House that will have him.",
           "effects": [
             {
               "house_improvement": "recruit"
@@ -60,7 +60,7 @@
     },
     {
       "id": "rob",
-      "label": "Take their gear; they are as good as dead.",
+      "label": "Strip their gear. They are as good as dead.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -68,7 +68,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Good city iron.",
+          "text": "Good city iron, and they watch you take it. Word of it will reach home before they do, if they do.",
           "effects": [
             {
               "resources": {

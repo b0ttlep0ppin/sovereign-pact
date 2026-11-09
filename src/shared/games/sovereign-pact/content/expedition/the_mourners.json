@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "pay",
-      "label": "Pay them.",
+      "label": "Pay them for their centuries.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They fall silent at last, and fade.",
+          "text": "They fall silent at last, and fade, and the barrow is quiet.",
           "effects": [
             {
               "resources": {
@@ -46,7 +46,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They teach the old lament.",
+          "text": "They teach the old lament, the one nobody sings any more.",
           "effects": [
             {
               "jp": 40
@@ -70,7 +70,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They wail louder, and the barrow wakes.",
+          "text": "They wail louder, and the barrow wakes to see why.",
           "effects": [
             {
               "encounter": {}

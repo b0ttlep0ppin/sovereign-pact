@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "down",
-      "label": "Go down.",
+      "label": "Go down toward the singing.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "A garden underground, impossible and real.",
+          "text": "A garden underground, impossible and real, and the warm air knits you as you breathe it.",
           "effects": [
             {
               "to": "party",
@@ -35,7 +35,7 @@
         },
         {
           "w": 50,
-          "text": "What tends the garden.",
+          "text": "A garden underground, and something tending it that does not like guests.",
           "effects": [
             {
               "encounter": {
@@ -48,7 +48,7 @@
     },
     {
       "id": "listen",
-      "label": "The keenest ear listens first.",
+      "label": "The keenest ear listens at the top of the stairs.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -56,7 +56,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Rain, and singing. Then nothing.",
+          "text": "Rain, and singing, and then nothing at all. But they heard enough to know what lies ahead.",
           "effects": [
             {
               "foresee": true
@@ -67,7 +67,7 @@
     },
     {
       "id": "up",
-      "label": "Go back up.",
+      "label": "Climb back up while you still want to.",
       "rule": "leader",
       "tags": [
         "cautious"

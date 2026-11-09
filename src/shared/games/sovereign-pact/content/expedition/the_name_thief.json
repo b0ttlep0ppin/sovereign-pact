@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "confront",
-      "label": "The Scion with the strongest will confronts them.",
+      "label": "The Scion with the strongest will confronts the thief.",
       "rule": "scion:highest:sagacity|scion:highest:resilience",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "Their name is theirs again.",
+          "text": "Their name is theirs again, and it fits.",
           "effects": [
             {
               "sanity": 10
@@ -30,7 +30,7 @@
         },
         {
           "w": 40,
-          "text": "The thief keeps it a while longer.",
+          "text": "The thief smiles with their mouth and keeps the name a while longer.",
           "effects": [
             {
               "sanity": -15
@@ -41,7 +41,7 @@
     },
     {
       "id": "buy",
-      "label": "Buy it back.",
+      "label": "Buy the name back.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -49,7 +49,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Names are cheap here.",
+          "text": "Names are cheap here. That should worry you more than it does.",
           "effects": [
             {
               "resources": {
@@ -62,7 +62,7 @@
     },
     {
       "id": "steal",
-      "label": "The shrewdest steals theirs in return.",
+      "label": "The shrewdest steals the thief's name in return.",
       "rule": "scion:highest:guile",
       "tags": [
         "cruel"
@@ -70,7 +70,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A useful name to have.",
+          "text": "A useful name to have, and nobody here will miss it.",
           "effects": [
             {
               "score": {

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "plead",
-      "label": "The wisest pleads the party's case.",
+      "label": "The wisest pleads the party's case before them.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "They hoot, and the way through the wood opens.",
+          "text": "They hoot, all together, and the way through the wood opens.",
           "effects": [
             {
               "skip": 1
@@ -35,7 +35,7 @@
         },
         {
           "w": 30,
-          "text": "They find against you.",
+          "text": "They find against you, and a hundred eyes follow you out.",
           "effects": [
             {
               "to": "party",
@@ -67,7 +67,7 @@
     },
     {
       "id": "scatter",
-      "label": "Scatter them.",
+      "label": "Scatter the court.",
       "rule": "leader",
       "tags": [
         "reckless"
@@ -75,7 +75,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A storm of feathers, and something bigger wakes.",
+          "text": "A storm of feathers, and something bigger wakes in the branches.",
           "effects": [
             {
               "encounter": {

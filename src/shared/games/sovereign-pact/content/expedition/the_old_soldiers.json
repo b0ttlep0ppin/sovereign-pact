@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "veteran",
-      "label": "Someone who has retired once sits with them.",
+      "label": "Someone who has retired once sits down at their fire.",
       "rule": "scion:retired_once|scion:most_expeditions",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They trade stories past midnight.",
+          "text": "They trade stories past midnight, the true ones, the ones nobody tells at home.",
           "effects": [
             {
               "to": "party",
@@ -44,7 +44,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The veterans are hard teachers.",
+          "text": "The veterans are hard teachers, and they do not soften what they teach.",
           "effects": [
             {
               "xp": 120
@@ -66,7 +66,7 @@
       "outcomes": [
         {
           "w": 40,
-          "text": "One old soldier shoulders a pack.",
+          "text": "One old soldier shoulders a pack without a word.",
           "effects": [
             {
               "house_improvement": "recruit"
@@ -75,7 +75,7 @@
         },
         {
           "w": 60,
-          "text": "They will not go back. They give you their old map instead.",
+          "text": "They will not go back. Not ever. They give you their old map instead.",
           "effects": [
             {
               "skip": 1

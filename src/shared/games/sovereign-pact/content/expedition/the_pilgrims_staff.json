@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "take",
-      "label": "The devout takes it up.",
+      "label": "The devout takes up the staff.",
       "rule": "scion:trait:devout|scion:highest:sagacity",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It fits their hand as if made for it.",
+          "text": "It fits their hand as if made for it, and the incense follows them.",
           "effects": [
             {
               "item": {
@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A limping pilgrim passes later, and smiles to see it.",
+          "text": "A limping pilgrim passes later, and smiles to see it, and has no shadow either.",
           "effects": [
             {
               "score": {
@@ -58,7 +58,7 @@
     },
     {
       "id": "pull",
-      "label": "The strongest pulls it free.",
+      "label": "The strongest pulls it from the road.",
       "rule": "scion:highest:might",
       "tags": [
         "bold"
@@ -77,7 +77,7 @@
         },
         {
           "w": 50,
-          "text": "It does not want them.",
+          "text": "It does not want them, and it twists their arms to say so.",
           "effects": [
             {
               "durability": -15,

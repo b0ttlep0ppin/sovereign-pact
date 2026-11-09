@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "free",
-      "label": "Free the lantern.",
+      "label": "Beat the moths off the lantern.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Its light is warm, and lasts the night.",
+          "text": "Its light is warm, and lasts the night, and keeps the dark well back.",
           "effects": [
             {
               "to": "party",
@@ -33,7 +33,7 @@
     },
     {
       "id": "catch",
-      "label": "Catch the moths. Their dust is worth something.",
+      "label": "The sharpest eye catches moths for their dust.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -41,7 +41,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "A pouch of shining dust.",
+          "text": "A pouch of shining dust, still faintly warm.",
           "effects": [
             {
               "resources": {
@@ -52,7 +52,7 @@
         },
         {
           "w": 30,
-          "text": "The dust gets in their eyes.",
+          "text": "The dust gets in their eyes, and the world swims.",
           "effects": [
             {
               "status": "confusion"
@@ -63,7 +63,7 @@
     },
     {
       "id": "dark",
-      "label": "Put the lantern out.",
+      "label": "Snuff the lantern out.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -71,7 +71,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The moths turn to you.",
+          "text": "In the dark, the moths turn to you, and they are still hungry.",
           "effects": [
             {
               "encounter": {

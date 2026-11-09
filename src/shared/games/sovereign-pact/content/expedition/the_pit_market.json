@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "trade",
-      "label": "The craftiest haggles.",
+      "label": "The craftiest haggles at a stall.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"
@@ -37,7 +37,7 @@
         },
         {
           "w": 40,
-          "text": "The price was more than it seemed.",
+          "text": "The price was more than it seemed, and they pay it with their hands.",
           "effects": [
             {
               "item": {
@@ -90,7 +90,7 @@
     },
     {
       "id": "leave",
-      "label": "Leave.",
+      "label": "Leave the market.",
       "rule": "leader",
       "tags": [
         "cautious"

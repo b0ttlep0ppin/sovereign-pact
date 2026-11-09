@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "follow",
-      "label": "The sharpest eye follows the one that is ahead.",
+      "label": "The sharpest eye follows the reflection that walks ahead.",
       "rule": "scion:highest:acuity",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "It leads you out the far side.",
+          "text": "It leads you out the far side, and waves.",
           "effects": [
             {
               "skip": 1
@@ -30,7 +30,7 @@
         },
         {
           "w": 40,
-          "text": "It leads you to its friends.",
+          "text": "It leads you to its friends, and they step out of the glass.",
           "effects": [
             {
               "encounter": {
@@ -43,7 +43,7 @@
     },
     {
       "id": "break",
-      "label": "Break the mirrors.",
+      "label": "Smash your way through the mirrors.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -51,7 +51,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Glass everywhere, and blood.",
+          "text": "Glass everywhere, and blood on every hand, and the reflections laughing in the shards.",
           "effects": [
             {
               "to": "party",
@@ -76,7 +76,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It walks into a mirror and does not come out.",
+          "text": "It walks into a mirror and does not come out, and the glass goes dark behind it.",
           "effects": [
             {
               "score": {

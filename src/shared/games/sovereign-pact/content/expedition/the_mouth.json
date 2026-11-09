@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "run",
-      "label": "Run past.",
+      "label": "Run past the lip.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -44,7 +44,7 @@
     },
     {
       "id": "feed",
-      "label": "Feed it something.",
+      "label": "Throw something in to feed it.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -52,7 +52,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It closes, satisfied.",
+          "text": "It closes, slowly, satisfied, and the way beyond is shorter for it.",
           "effects": [
             {
               "resources": {
@@ -68,7 +68,7 @@
     },
     {
       "id": "look",
-      "label": "The wisest looks into it.",
+      "label": "The wisest looks down into it.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -76,7 +76,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "Down there, the way out.",
+          "text": "Down there, past the teeth, the way out.",
           "effects": [
             {
               "foresee": true
@@ -88,7 +88,7 @@
         },
         {
           "w": 50,
-          "text": "Down there, nothing.",
+          "text": "Down there, nothing. Nothing at all, and it looks back.",
           "effects": [
             {
               "sanity": -20

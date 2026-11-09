@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "ivory",
-      "label": "Take ivory.",
+      "label": "Take ivory from the dead.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "As much as you can carry.",
+          "text": "As much as you can carry, and the bones creak as you go.",
           "effects": [
             {
               "resources": {
@@ -33,7 +33,7 @@
         },
         {
           "w": 40,
-          "text": "The guardian.",
+          "text": "The guardian rises out of the bones.",
           "effects": [
             {
               "encounter": {
@@ -54,7 +54,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Asleep. You take a little and go.",
+          "text": "Asleep, curled among the tusks. You take a little and go softly.",
           "effects": [
             {
               "resources": {
@@ -67,7 +67,7 @@
     },
     {
       "id": "respect",
-      "label": "Leave the dead their tusks.",
+      "label": "Leave the dead their ivory.",
       "rule": "leader",
       "tags": [
         "kind"
@@ -75,7 +75,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The wind drops as you go.",
+          "text": "The wind drops as you go, and the watching eases.",
           "effects": [
             {
               "to": "party",

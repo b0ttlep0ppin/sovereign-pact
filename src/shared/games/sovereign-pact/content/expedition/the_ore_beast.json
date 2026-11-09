@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "follow",
-      "label": "Follow and gather.",
+      "label": "Follow it and gather what it leaves.",
       "rule": "vote",
       "tags": [
         "clever"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Unpleasant, profitable.",
+          "text": "Unpleasant work, and profitable, and the beast keeps looking back.",
           "effects": [
             {
               "resources": {
@@ -38,7 +38,7 @@
     },
     {
       "id": "hunt",
-      "label": "Hunt it for its hide.",
+      "label": "Hunt it for its metal hide.",
       "rule": "leader",
       "tags": [
         "bold"
@@ -82,7 +82,7 @@
         },
         {
           "w": 60,
-          "text": "It wanders off, unbothered.",
+          "text": "It wanders off, unbothered, and leaves you a little more iron for your trouble.",
           "effects": [
             {
               "resources": {

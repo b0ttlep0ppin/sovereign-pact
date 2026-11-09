@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "cross",
-      "label": "The named Scion crosses their own name out.",
+      "label": "The named Scion crosses out their own name.",
       "rule": "scion:random",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "The city takes them for its own, and lets you all pass.",
+          "text": "The city takes them for one of its own, and lets you all pass. They feel it take them.",
           "effects": [
             {
               "skip": 2
@@ -33,7 +33,7 @@
         },
         {
           "w": 50,
-          "text": "Their face goes numb for a day.",
+          "text": "Their face goes numb for a day, and their mouth will not shape words.",
           "effects": [
             {
               "sanity": -8
@@ -47,7 +47,7 @@
     },
     {
       "id": "scrub",
-      "label": "Scrub the name off.",
+      "label": "Scrub the name off the wall.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -55,7 +55,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It comes back, fainter.",
+          "text": "It comes back, fainter, as you watch.",
           "effects": [
             {
               "to": "party",
@@ -75,7 +75,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Some you know, from the House's histories.",
+          "text": "Some you know, from the House's histories, and how they ended.",
           "effects": [
             {
               "score": {

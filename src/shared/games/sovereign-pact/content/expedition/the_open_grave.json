@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "search",
-      "label": "The hardiest searches inside.",
+      "label": "The hardiest searches the empty barrow.",
       "rule": "scion:highest:resilience",
       "tags": [
         "bold"
@@ -50,7 +50,7 @@
     },
     {
       "id": "close",
-      "label": "Close it again.",
+      "label": "Close the barrow again.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -58,7 +58,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It takes all of you to lift the door. The barrow seems quieter for it.",
+          "text": "It takes all of you to lift the door, and every arm aches. The barrow seems quieter for it.",
           "effects": [
             {
               "to": "party",

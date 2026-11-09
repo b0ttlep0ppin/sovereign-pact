@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "follow",
-      "label": "Follow the road on the map.",
+      "label": "Follow the road that is not there.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "It is there when you walk it.",
+          "text": "It is there when you walk it, and it is short.",
           "effects": [
             {
               "skip": 2
@@ -30,7 +30,7 @@
         },
         {
           "w": 40,
-          "text": "It leads somewhere else entirely.",
+          "text": "It leads somewhere else entirely, and the map does not show the way back.",
           "effects": [
             {
               "fork": {
@@ -46,7 +46,7 @@
     },
     {
       "id": "study",
-      "label": "The wisest studies who drew it.",
+      "label": "The wisest studies whose hand drew it.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -54,7 +54,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Your own hand, years from now.",
+          "text": "Your own hand, years from now. The ink is not yet dry.",
           "effects": [
             {
               "score": {
@@ -70,7 +70,7 @@
     },
     {
       "id": "burn",
-      "label": "Burn it.",
+      "label": "Burn the map.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -78,7 +78,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The ash spells a word you do not know.",
+          "text": "The ash spells a word you do not know, and something far off loses its way.",
           "effects": [
             {
               "doom": -1

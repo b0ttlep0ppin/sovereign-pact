@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "swear",
-      "label": "The bravest swears an oath on it.",
+      "label": "The bravest swears an oath on the stone.",
       "rule": "scion:trait:brave|scion:highest:might",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The stone takes the oath. So does the one who swore it.",
+          "text": "The stone takes the oath. So does the one who swore it, and they are bound to it now.",
           "effects": [
             {
               "growth": {
@@ -39,7 +39,7 @@
     },
     {
       "id": "read",
-      "label": "The sharpest reads what was written over the name.",
+      "label": "The sharpest eye reads what was written over the name.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -68,7 +68,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "Every oath ever sworn on it is released.",
+          "text": "Every oath ever sworn on it is released, and the air feels clean.",
           "effects": [
             {
               "to": "party",

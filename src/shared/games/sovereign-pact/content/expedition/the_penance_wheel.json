@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The crowd boos. The penitent blesses you.",
+          "text": "The crowd boos, then stops booing and reaches for knives. The penitent blesses you as you fight.",
           "effects": [
             {
               "score": {
@@ -43,7 +43,7 @@
     },
     {
       "id": "spin",
-      "label": "Spin it, as the custom asks.",
+      "label": "The Leader spins the wheel, as the custom asks.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -51,7 +51,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Luck, of a kind, and his screams.",
+          "text": "Luck, of a kind, and his screams for every turn of it.",
           "effects": [
             {
               "resources": {
@@ -68,7 +68,7 @@
     },
     {
       "id": "watch",
-      "label": "The sharpest watches the crowd instead.",
+      "label": "The sharpest eye watches the crowd instead.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"

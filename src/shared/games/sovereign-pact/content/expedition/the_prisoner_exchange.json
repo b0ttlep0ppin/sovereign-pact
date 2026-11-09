@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "accept",
-      "label": "Accept.",
+      "label": "Accept their terms.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They come home. The favor will be called.",
+          "text": "Your Lost come home. The favor will be called, and they will choose the hour.",
           "effects": [
             {
               "skip": 2
@@ -43,7 +43,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Gold, not favors.",
+          "text": "Gold, not favors. The rider looks disappointed.",
           "effects": [
             {
               "resources": {
@@ -59,7 +59,7 @@
     },
     {
       "id": "refuse",
-      "label": "Refuse, and find them yourselves.",
+      "label": "Refuse, and find your Lost yourselves.",
       "rule": "leader",
       "tags": [
         "bold"
@@ -67,7 +67,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The long way.",
+          "text": "The long way, and the honest one.",
           "effects": [
             {
               "score": {
