@@ -14,7 +14,7 @@
   "options": [
     {
       "id": "study",
-      "label": "The wisest leans close and studies it.",
+      "label": "The wisest leans close and studies it, hoping to learn what it is learning.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -22,7 +22,7 @@
       "outcomes": [
         {
           "w": 45,
-          "text": "It is a mind, of a kind. They learn how it changes the things it grows in.",
+          "text": "It is a mind, of a kind. They learn how it changes the things it grows in, and wish they had not.",
           "effects": [
             {
               "growth": {
@@ -38,7 +38,7 @@
         },
         {
           "w": 30,
-          "text": "It learns them too. Something pale begins to grow under their nails.",
+          "text": "It learns them too. Something pale begins to grow under their nails, and it will not be cut away.",
           "effects": [
             {
               "curse": true
@@ -60,7 +60,7 @@
     },
     {
       "id": "burn",
-      "label": "Burn it before it learns any more.",
+      "label": "Burn it, before it learns any more of your words.",
       "rule": "leader",
       "tags": [
         "bold"
@@ -68,7 +68,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It does not scream, but every spore in the air tries to.",
+          "text": "It does not scream, but every spore in the air tries to, and the sound gets into your heads.",
           "effects": [
             {
               "to": "party",
@@ -83,7 +83,7 @@
     },
     {
       "id": "bargain",
-      "label": "Speak to it, and bargain.",
+      "label": "Speak to it and bargain, since it seems so eager to listen.",
       "rule": "leader",
       "tags": [
         "reckless"
@@ -91,7 +91,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It wants a memory. It takes one, slowly, and pays in Essence that smells of earth.",
+          "text": "It wants a memory. It takes one, slowly, and pays in Essence that smells of earth. Nobody can recall what it took.",
           "effects": [
             {
               "sanity": -15

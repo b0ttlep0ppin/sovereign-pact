@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "eat",
-      "label": "Your fiercest, the one it hums for, cracks it and drinks.",
+      "label": "Your fiercest, the one it hums for, cracks it open and drinks, answering its call.",
       "rule": "scion:most_kills",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 45,
-          "text": "Scales first, by evening. Then the hunger, then the fire.",
+          "text": "Scales first, by evening. Then the hunger, then the fire, and then nothing is ever quite the same.",
           "effects": [
             {
               "change": "wyrmling"
@@ -30,7 +30,7 @@
         },
         {
           "w": 35,
-          "text": "It tastes of smoke and iron, and they come away stronger.",
+          "text": "It tastes of smoke and iron, and they come away stronger, with a heat in their blood that does not fade.",
           "effects": [
             {
               "stat": {
@@ -41,7 +41,7 @@
         },
         {
           "w": 20,
-          "text": "Something in it fights back on the way down.",
+          "text": "Something in it fights back on the way down, and it is not done fighting.",
           "effects": [
             {
               "injury": "body"
@@ -52,7 +52,7 @@
     },
     {
       "id": "carry",
-      "label": "Wrap it up and carry it out, carefully.",
+      "label": "Wrap it up and carry it out carefully, before anything comes looking for it.",
       "rule": "vote",
       "tags": [
         "clever"
@@ -60,7 +60,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "It goes quiet in the dark of a pack, a warm weight against the spine. The scholars will pay for it.",
+          "text": "It goes quiet in the dark of a pack, a warm weight against the spine. The scholars will pay well for it, and ask no questions.",
           "effects": [
             {
               "resources": {
@@ -76,7 +76,7 @@
         },
         {
           "w": 40,
-          "text": "Its mother wants it back. You hear her coming long before you see her.",
+          "text": "Its mother wants it back. You hear her coming long before you see her, and then the sky is full of her.",
           "effects": [
             {
               "encounter": {
@@ -89,7 +89,7 @@
     },
     {
       "id": "smash",
-      "label": "Smash it before it hatches.",
+      "label": "Smash it before it hatches. The world has monsters enough.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -97,7 +97,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "It goes out like a coal in the rain. The gold around it is still gold.",
+          "text": "It goes out like a coal in the rain. The gold around it is still gold, and you take every piece.",
           "effects": [
             {
               "resources": {
@@ -108,7 +108,7 @@
         },
         {
           "w": 30,
-          "text": "Its mother heard. The sky goes dark with her.",
+          "text": "Its mother heard. The sky goes dark with her, and she is not interested in apologies.",
           "effects": [
             {
               "encounter": {

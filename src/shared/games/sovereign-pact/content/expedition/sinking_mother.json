@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "go",
-      "label": "Let them go to her.",
+      "label": "Let them go to her, if her arms are what they need.",
       "rule": "scion:lowest:sanity",
       "tags": [
         "reckless",
@@ -31,7 +31,7 @@
         },
         {
           "w": 35,
-          "text": "She kisses their brow and is gone. They come back calmer, holding something she gave them.",
+          "text": "She kisses their brow and is gone. They come back calmer, holding something she gave them, and will not let anyone else touch it.",
           "effects": [
             {
               "sanity": 30
@@ -45,7 +45,7 @@
         },
         {
           "w": 20,
-          "text": "She will not let go.",
+          "text": "She will not let go, and the water is very cold, and very deep.",
           "effects": [
             {
               "injury": "body"
@@ -56,7 +56,7 @@
     },
     {
       "id": "ignore",
-      "label": "Walk on, eyes front.",
+      "label": "Walk on, eyes front. No mother waits in water like that.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -74,7 +74,7 @@
         },
         {
           "w": 30,
-          "text": "The humming follows you all day.",
+          "text": "The humming follows you all day, and some of you find yourselves humming along.",
           "effects": [
             {
               "to": "party",
@@ -86,7 +86,7 @@
     },
     {
       "id": "hum_back",
-      "label": "The Minstrel hums her tune back to her.",
+      "label": "The Minstrel hums her tune back to her, gently, as a child might.",
       "rule": "scion:job:minstrel",
       "only": true,
       "tags": [

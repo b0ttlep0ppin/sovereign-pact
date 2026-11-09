@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "kneel",
-      "label": "Kneel in the heat, and pay what he asks.",
+      "label": "Kneel in the heat and pay what he asks, for strength that will not fail you.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The fire goes into your arms and does not burn. The gold goes into the fire.",
+          "text": "The fire goes into your arms and does not burn. The gold goes into the fire, and the King's laughter shakes the mountain.",
           "effects": [
             {
               "to": "party",
@@ -53,7 +53,7 @@
     },
     {
       "id": "defy",
-      "label": "Refuse him, to his horned face.",
+      "label": "Refuse him to his horned face. No House of yours will bow to a demon.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -61,14 +61,14 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He stands, slow and enormous, and the mountain behind him roars higher.",
+          "text": "He stands, slow and enormous, and the mountain behind him roars higher in answer.",
           "effects": []
         }
       ]
     },
     {
       "id": "cheat",
-      "label": "Take the gift, and keep your purses.",
+      "label": "Take the gift and keep your purses, and hope he is slower than he looks.",
       "rule": "leader",
       "tags": [
         "clever",
@@ -77,7 +77,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "The leader takes the fire and keeps the years. The King laughs, and picks up his cudgel.",
+          "text": "The Leader takes the fire and keeps the gold. The King laughs, and picks up his cudgel.",
           "effects": [
             {
               "stat": {
@@ -88,7 +88,7 @@
         },
         {
           "w": 40,
-          "text": "He was a demon before he was a king. The fire goes into the leader the other way.",
+          "text": "He was a demon before he was a king. The fire goes into the Leader the other way, and it burns.",
           "effects": [
             {
               "durability": -40,

@@ -15,7 +15,7 @@
   "options": [
     {
       "id": "squeeze",
-      "label": "Squeeze through, gear and all, and pray nobody sticks.",
+      "label": "Squeeze through gear and all, and pray the one carrying most does not stick fast.",
       "rule": "scion:heaviest_gear",
       "tags": [
         "bold"
@@ -33,7 +33,7 @@
         },
         {
           "w": 40,
-          "text": "They stick fast, and something far below breathes out. Getting them free costs skin and an hour of listening.",
+          "text": "They stick fast, and something far below breathes out. Getting them free costs skin and an hour of listening to it breathe.",
           "effects": [
             {
               "durability": -40,
@@ -48,7 +48,7 @@
     },
     {
       "id": "around",
-      "label": "Look for another way round.",
+      "label": "Look for another way around, rather than crawl into the rock's throat.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -56,7 +56,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "There is one. It is long, and dark, and full of the sound of dripping.",
+          "text": "There is one. It is long, and dark, and full of the sound of dripping, and it seems to go on forever.",
           "effects": [
             {
               "sanity": -5
@@ -65,7 +65,7 @@
         },
         {
           "w": 50,
-          "text": "There is one, and something lives in it, and it is awake.",
+          "text": "There is one, and something lives in it, and it is awake, and it is hungry.",
           "effects": [
             {
               "encounter": {}

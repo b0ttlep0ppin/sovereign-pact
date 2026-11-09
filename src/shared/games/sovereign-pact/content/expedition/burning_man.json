@@ -14,7 +14,7 @@
   "options": [
     {
       "id": "help",
-      "label": "The one the tides favor helps him.",
+      "label": "The one the tides favor goes to him with water, hoping to quench what burns him.",
       "rule": "scion:trait:tidebound|scion:highest:resilience",
       "tags": [
         "kind"
@@ -22,7 +22,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "The flames gutter and go out. He thanks them with a voice like a cooling coal, and promises he will remember the favor.",
+          "text": "The flames gutter and go out. He thanks them with a voice like a cooling coal, and promises he will remember the favor. He sounds as if he means it.",
           "effects": [
             {
               "score": {
@@ -38,7 +38,7 @@
         },
         {
           "w": 40,
-          "text": "The flames do not go out. They spread, gladly, up the sleeve that reached for him.",
+          "text": "The flames do not go out. They spread, gladly, up the sleeve that reached for him, and he watches with polite interest.",
           "effects": [
             {
               "durability": -30,
@@ -53,7 +53,7 @@
     },
     {
       "id": "pass",
-      "label": "Pass by, and keep the water.",
+      "label": "Pass by and keep the water. A man who does not burn needs no help from you.",
       "rule": "leader",
       "tags": [
         "cautious"

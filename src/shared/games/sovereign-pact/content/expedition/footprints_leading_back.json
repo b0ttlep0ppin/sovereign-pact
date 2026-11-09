@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "follow",
-      "label": "The least travelled follows them.",
+      "label": "The least travelled follows them, needing to know who walks in their boots.",
       "rule": "scion:fewest_expeditions",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 55,
-          "text": "They lead to a campsite left by someone of a House long before you, and what they could not carry home.",
+          "text": "They lead to a campsite left by someone of a House long before you, and what they could not carry home. Nobody asks what became of them.",
           "effects": [
             {
               "item": {
@@ -48,7 +48,7 @@
     },
     {
       "id": "ignore",
-      "label": "Leave them be, and keep your own feet moving.",
+      "label": "Leave them be and keep your own feet moving. Some questions answer themselves too well.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -56,7 +56,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "For the rest of the day everyone walks a little faster.",
+          "text": "For the rest of the day everyone walks a little faster, and nobody looks at the ground.",
           "effects": [
             {
               "to": "party",

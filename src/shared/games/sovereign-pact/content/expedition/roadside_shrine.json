@@ -14,7 +14,7 @@
   "options": [
     {
       "id": "pray",
-      "label": "Kneel together before the nameless saint.",
+      "label": "Kneel together before the nameless saint, and hope it is kind.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -22,7 +22,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "Nothing answers, but you all stand up lucky, and no one says it aloud.",
+          "text": "Nothing answers, but you all stand up lucky, and no one says it aloud for fear of losing it.",
           "effects": [
             {
               "blessing": {
@@ -47,7 +47,7 @@
     },
     {
       "id": "take",
-      "label": "The bravest takes the flowers.",
+      "label": "The bravest takes the fresh flowers, curious what keeps them alive.",
       "rule": "scion:trait:brave|scion:highest:might",
       "tags": [
         "bold"
@@ -67,7 +67,7 @@
         },
         {
           "w": 50,
-          "text": "They wilt at once, and so does something in the one who took them.",
+          "text": "They wilt at once, and so does something in the one who took them, and it does not come back.",
           "effects": [
             {
               "sanity": -20
@@ -78,7 +78,7 @@
     },
     {
       "id": "vigil",
-      "label": "The Knight keeps vigil at it through the night.",
+      "label": "The Knight keeps vigil at it through the night, as knights once did.",
       "rule": "scion:job:knight",
       "only": true,
       "tags": [

@@ -14,7 +14,7 @@
   "options": [
     {
       "id": "limb",
-      "label": "Pay in kind; the merchant picks whose.",
+      "label": "Pay in kind, and let the merchant choose whose flesh settles the price.",
       "rule": "scion:random",
       "tags": [
         "reckless"
@@ -22,7 +22,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The merchant takes its due with a little silver knife and gives good weight for it.",
+          "text": "The merchant takes its due with a little silver knife, gently, and gives good weight for it. The wound never quite stops aching.",
           "effects": [
             {
               "injury": "arms"
@@ -38,7 +38,7 @@
     },
     {
       "id": "gold",
-      "label": "Pay in gold.",
+      "label": "Pay in honest gold, and keep your bodies your own.",
       "rule": "house:highest_standing",
       "tags": [
         "clever"
@@ -64,7 +64,7 @@
     },
     {
       "id": "browse",
-      "label": "Only look, and keep your hands to yourselves.",
+      "label": "Only look, and keep your hands to yourselves. Nothing here is free to touch.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -93,7 +93,7 @@
         },
         {
           "w": 30,
-          "text": "You look too long.",
+          "text": "You look too long, and the market looks back.",
           "effects": [
             {
               "sanity": -10

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "kneel",
-      "label": "Kneel among the clouds, and call him king.",
+      "label": "Kneel among the clouds and call him king, for strength like the storm's.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The thunder goes into your arms. Something of each of you stays kneeling there when you rise.",
+          "text": "The thunder goes into your arms. Something of each of you stays kneeling there when you rise, and it will kneel forever.",
           "effects": [
             {
               "to": "party",
@@ -48,7 +48,7 @@
     },
     {
       "id": "defy",
-      "label": "Refuse him, under his own sky.",
+      "label": "Refuse him under his own sky, and let the storm do its worst.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -56,14 +56,14 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He rises from his throne of storm, and the lightning rises with him.",
+          "text": "He rises from his throne of storm, and the lightning rises with him, eager.",
           "effects": []
         }
       ]
     },
     {
       "id": "cheat",
-      "label": "Take the lightning, and stay standing.",
+      "label": "Take the lightning and stay standing. A king who demands kneeling has not earned it.",
       "rule": "leader",
       "tags": [
         "clever",
@@ -72,7 +72,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "The leader takes the lightning and does not kneel. The Thunderer laughs, and stands.",
+          "text": "The Leader takes the lightning and does not kneel. The Thunderer laughs, and stands, and the clouds scatter from his feet.",
           "effects": [
             {
               "stat": {
@@ -83,7 +83,7 @@
         },
         {
           "w": 40,
-          "text": "He sees it coming. The lightning goes the other way, through the leader's ribs.",
+          "text": "He sees it coming. The lightning goes the other way, through the Leader's ribs, and the smell of it lingers for days.",
           "effects": [
             {
               "durability": -40,

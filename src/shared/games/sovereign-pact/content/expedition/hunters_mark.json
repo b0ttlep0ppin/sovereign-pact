@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "follow",
-      "label": "The best tracker follows the blood, wherever it leads.",
+      "label": "The best tracker follows the blood wherever it leads, eager to finish what was started.",
       "rule": "scion:highest:acuity",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "The blood runs straight and fresh, a shortcut through the rocks to the mouth of its lair.",
+          "text": "The blood runs straight and fresh, a shortcut through the rocks to the very mouth of its lair.",
           "effects": [
             {
               "skip": 2
@@ -43,7 +43,7 @@
     },
     {
       "id": "careful",
-      "label": "Keep to the path, and let it bleed.",
+      "label": "Keep to the path and let it bleed. Wounded things are the most dangerous.",
       "rule": "leader",
       "tags": [
         "cautious"

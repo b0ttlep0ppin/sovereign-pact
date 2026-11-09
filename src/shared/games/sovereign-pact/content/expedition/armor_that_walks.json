@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "wear",
-      "label": "Let the gentlest of you step into its arms.",
+      "label": "Let the gentlest of you step into its waiting arms, trusting that it means no harm.",
       "rule": "scion:fewest_kills",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "The plates close over them one by one. When the helm shuts, the eyes inside are not quite theirs any more.",
+          "text": "The plates close over them one by one. When the helm shuts, the eyes inside are not quite theirs any more, and they never will be again.",
           "effects": [
             {
               "change": "barrow_knight"
@@ -33,7 +33,7 @@
         },
         {
           "w": 30,
-          "text": "It is only armor after all: very old, very good, and it fits.",
+          "text": "It is only armor after all: very old, very good, and it fits as if it was forged for them. Perhaps it was.",
           "effects": [
             {
               "item": {
@@ -57,7 +57,7 @@
     },
     {
       "id": "break",
-      "label": "The strongest breaks it apart before it moves again.",
+      "label": "The strongest breaks it apart before it can move again, and before anyone is tempted.",
       "rule": "scion:highest:might",
       "tags": [
         "bold"
@@ -65,7 +65,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "It comes apart like a dropped pot, and something sighs out of the pieces.",
+          "text": "It comes apart like a dropped pot, and something sighs out of the pieces, grateful or relieved.",
           "effects": [
             {
               "resources": {
@@ -81,7 +81,7 @@
         },
         {
           "w": 40,
-          "text": "It does not want to be broken.",
+          "text": "It does not want to be broken, and it has had a long time to learn how to fight.",
           "effects": [
             {
               "encounter": {
@@ -94,7 +94,7 @@
     },
     {
       "id": "leave",
-      "label": "Back away and go round.",
+      "label": "Back away and go around it. Whatever wore that armor last did not walk away.",
       "rule": "vote",
       "tags": [
         "cautious"

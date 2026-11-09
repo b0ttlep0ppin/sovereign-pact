@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "kneel",
-      "label": "Kneel, and let him weigh your hearts.",
+      "label": "Kneel, and let him weigh your hearts against the feather.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Each of you steps onto the scale. You come down lighter, and a little emptier.",
+          "text": "Each of you steps onto the scale. You come down lighter, and a little emptier, and the thing in the dark breathes slower, satisfied.",
           "effects": [
             {
               "to": "party",
@@ -49,7 +49,7 @@
     },
     {
       "id": "defy",
-      "label": "Refuse the scale.",
+      "label": "Refuse the scale. Your hearts are not his to weigh.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -57,14 +57,14 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He rises from beside his scale, and the thing breathing in the dark behind him rises too.",
+          "text": "He rises from beside his scale, and the thing breathing in the dark behind him rises too, and it is hungry.",
           "effects": []
         }
       ]
     },
     {
       "id": "cheat",
-      "label": "Put a thumb on the scale.",
+      "label": "Put a thumb on the scale while the judge looks away, and hope he never looks back.",
       "rule": "leader",
       "tags": [
         "clever",
@@ -73,7 +73,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "The leader's thumb tips the balance. The judge sees it, and says nothing, and stands.",
+          "text": "The Leader's thumb tips the balance. The judge sees it, and says nothing, and stands. His silence is worse than anger.",
           "effects": [
             {
               "growth": {

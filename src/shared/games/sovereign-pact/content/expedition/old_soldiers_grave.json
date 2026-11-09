@@ -14,7 +14,7 @@
   "options": [
     {
       "id": "kneel",
-      "label": "The one it names kneels at the cairn.",
+      "label": "The one it names kneels at the cairn, feeling the words were carved for them.",
       "rule": "scion:retired_once|scion:most_expeditions",
       "tags": [
         "kind"
@@ -36,7 +36,7 @@
         },
         {
           "w": 30,
-          "text": "They stand up older, with grey in their hair that was not there before.",
+          "text": "They stand up older, with grey in their hair that was not there before. The soldier gave what he had, and took a little back.",
           "effects": [
             {
               "xp": 40
@@ -50,7 +50,7 @@
     },
     {
       "id": "pass",
-      "label": "Pass by without stopping.",
+      "label": "Pass by without stopping. The dead have had their due.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -80,7 +80,7 @@
     },
     {
       "id": "sword_down",
-      "label": "The Soldier lays their sword on the cairn, and takes it up again.",
+      "label": "The Soldier lays their sword on the cairn, and takes it up again, as the words ask.",
       "rule": "scion:job:soldier",
       "only": true,
       "tags": [

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "sing",
-      "label": "Let your wisest step into the gap.",
+      "label": "Let your wisest step into the gap, and give the choir the voice it has been missing.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 40,
-          "text": "They take the missing part. The song ends, and the light that was singing it stays inside them.",
+          "text": "They take the missing part. The song ends, and the light that was singing it stays inside them, burning quietly where their heart used to be.",
           "effects": [
             {
               "change": "seraph_husk"
@@ -30,7 +30,7 @@
         },
         {
           "w": 40,
-          "text": "They sing it once, perfectly, and the choir lets them go with a blessing.",
+          "text": "They sing it once, perfectly, and the choir lets them go with a blessing that hums in their bones.",
           "effects": [
             {
               "blessing": {
@@ -45,7 +45,7 @@
         },
         {
           "w": 20,
-          "text": "They sing it wrong.",
+          "text": "They sing it wrong, and every faceless head turns toward them at once.",
           "effects": [
             {
               "sanity": -30
@@ -56,7 +56,7 @@
     },
     {
       "id": "listen",
-      "label": "Sit at the back and listen.",
+      "label": "Sit at the back and listen, and leave the gap for someone braver.",
       "rule": "vote",
       "tags": [
         "kind",
@@ -65,7 +65,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Nobody speaks for a long time afterwards. Nobody needs to.",
+          "text": "Nobody speaks for a long time afterwards. Nobody needs to. The hymn stays with you, softly, for days.",
           "effects": [
             {
               "to": "party",

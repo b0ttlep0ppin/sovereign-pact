@@ -14,7 +14,7 @@
   "options": [
     {
       "id": "dig",
-      "label": "The strongest digs for the light.",
+      "label": "The strongest digs for the light, hoping whatever tends it will be grateful.",
       "rule": "scion:highest:might",
       "tags": [
         "bold"
@@ -38,7 +38,7 @@
         },
         {
           "w": 45,
-          "text": "The roof finishes falling, and the light goes out under it.",
+          "text": "The roof finishes falling, and the light goes out under it, along with the strength in their legs.",
           "effects": [
             {
               "injury": "legs"
@@ -49,7 +49,7 @@
     },
     {
       "id": "pray",
-      "label": "Pray among the ruins.",
+      "label": "Pray among the ruins, and hope that something here still listens.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -79,7 +79,7 @@
     },
     {
       "id": "pass",
-      "label": "Leave it to its god.",
+      "label": "Leave it to its god. Whatever keeps that lamp burning is not your concern.",
       "rule": "leader",
       "tags": [
         "cautious"

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "give",
-      "label": "Give him your bread, and do not look at his shadow.",
+      "label": "Give him your bread, and try not to look at where his shadow should be.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "He eats slowly and blesses you in a language older than the kingdom.",
+          "text": "He eats slowly and blesses you in a language older than the kingdom. The words stay warm in your chest for days.",
           "effects": [
             {
               "sanity": 10
@@ -35,7 +35,7 @@
         },
         {
           "w": 30,
-          "text": "He takes it and laughs, and his laugh follows you across the water.",
+          "text": "He takes it and laughs, and his laugh follows you across the water and a long way past it.",
           "effects": [
             {
               "sanity": -5
@@ -46,7 +46,7 @@
     },
     {
       "id": "refuse",
-      "label": "Walk past him.",
+      "label": "Walk past him. Whatever he is, he is no beggar.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -65,7 +65,7 @@
     },
     {
       "id": "rob",
-      "label": "Take what he has. He cannot follow.",
+      "label": "Take what he has. He has no feet, and cannot follow.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -73,7 +73,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "Three coins, older than any king. Nobody will ask where they came from.",
+          "text": "Three coins, older than any king. Nobody will ask where they came from, and you do not mean to tell them.",
           "effects": [
             {
               "score": {
@@ -84,7 +84,7 @@
         },
         {
           "w": 40,
-          "text": "Three coins, and something comes with them.",
+          "text": "Three coins, and something comes with them that was not in his hand.",
           "effects": [
             {
               "score": {

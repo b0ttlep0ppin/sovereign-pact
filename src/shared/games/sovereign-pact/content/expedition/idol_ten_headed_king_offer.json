@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "kneel",
-      "label": "Kneel, and call him master.",
+      "label": "Kneel and call him master, for cunning no mortal teacher could give.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Ten voices whisper their tricks into you at once. You come away cleverer, and you will never be sure again which thoughts are yours.",
+          "text": "Ten voices whisper their tricks into you at once. You come away cleverer, and you will never be sure again which thoughts are your own.",
           "effects": [
             {
               "to": "party",
@@ -48,7 +48,7 @@
     },
     {
       "id": "defy",
-      "label": "Refuse him, all ten faces of him.",
+      "label": "Refuse him, all ten faces of him, and see which one frowns first.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -63,7 +63,7 @@
     },
     {
       "id": "cheat",
-      "label": "Learn his cunning, and never bow.",
+      "label": "Learn his cunning and never bow. Let him see how well you learn.",
       "rule": "leader",
       "tags": [
         "clever",
@@ -72,7 +72,7 @@
       "outcomes": [
         {
           "w": 55,
-          "text": "The leader learns the trick and does not bow. Nine of the heads laugh; the tenth draws its sword.",
+          "text": "The Leader learns the trick and does not bow. Nine of the heads laugh; the tenth draws its sword.",
           "effects": [
             {
               "stat": {
@@ -83,7 +83,7 @@
         },
         {
           "w": 45,
-          "text": "One of the heads saw it coming. The trick turns in the leader's hands and goes into all of you instead.",
+          "text": "One of the heads saw it coming. The trick turns in the Leader's hands and goes into all of you instead.",
           "effects": [
             {
               "to": "party",

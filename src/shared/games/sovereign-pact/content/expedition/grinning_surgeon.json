@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "work",
-      "label": "Let him work on the one who needs it most.",
+      "label": "Let him work on the one who needs it most, and pray his skill is as fine as his smile.",
       "rule": "scion:injured:any",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "His hands are quick and clean, and when he is done the old wound is gone.",
+          "text": "His hands are quick and clean, and when he is done the old wound is gone, as if it had never been.",
           "effects": [
             {
               "mend": true
@@ -30,7 +30,7 @@
         },
         {
           "w": 40,
-          "text": "He fixes it, and while he is in there he leaves a little something of his own.",
+          "text": "He fixes it, and while he is in there he leaves a little something of his own. He is still smiling when he sews it shut.",
           "effects": [
             {
               "mend": true
@@ -44,7 +44,7 @@
     },
     {
       "id": "decline",
-      "label": "Decline, and keep your distance from the saws.",
+      "label": "Decline politely, and keep well clear of the saws.",
       "rule": "leader",
       "tags": [
         "cautious"

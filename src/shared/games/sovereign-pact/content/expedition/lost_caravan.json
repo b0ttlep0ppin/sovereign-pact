@@ -14,7 +14,7 @@
   "options": [
     {
       "id": "escort",
-      "label": "Walk them home through whatever is circling.",
+      "label": "Walk them home, through whatever has been circling them.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -22,7 +22,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "They reach the settlement a week behind you, and tell everyone who saved them. Their stock is better for it.",
+          "text": "They reach the settlement a week behind you, and tell everyone who saved them. Their stock is better for it, and so is your name.",
           "effects": [
             {
               "house_improvement": "shop"
@@ -31,7 +31,7 @@
         },
         {
           "w": 40,
-          "text": "Something wants the caravan more than you do.",
+          "text": "Something wants the caravan more than you do, and it has been waiting for you to lead it out.",
           "effects": [
             {
               "encounter": {}
@@ -45,7 +45,7 @@
     },
     {
       "id": "salvage",
-      "label": "The poorest House helps itself to the wagons.",
+      "label": "The poorest House helps itself to the wagons. The drivers will not live to need them.",
       "rule": "house:lowest_standing",
       "tags": [
         "cruel"
@@ -53,7 +53,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The drivers do not fight. They only watch from under the wagons, and remember your colors.",
+          "text": "The drivers do not fight. They only watch from under the wagons, and remember your colors, and tell everyone who will listen.",
           "effects": [
             {
               "resources": {

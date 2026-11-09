@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "refuse",
-      "label": "Send him away into the dark.",
+      "label": "Send him away into the dark, and trust the others to do the same.",
       "rule": "secret",
       "tags": [
         "cautious"
@@ -29,7 +29,7 @@
         },
         {
           "w": 100,
-          "text": "He goes, and in the morning your Scions find someone has told him exactly where to cut.",
+          "text": "He goes, and in the morning your Scions find that someone has told him exactly where to cut. Trust was a poor shield.",
           "effects": [
             {
               "sanity": -10
@@ -46,7 +46,7 @@
     },
     {
       "id": "inform",
-      "label": "Tell him what he wants to hear.",
+      "label": "Tell him what he wants to hear. Every House would do the same, given the chance.",
       "rule": "secret",
       "tags": [
         "cruel"
@@ -54,7 +54,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He pays in old silver, warm from his hand. Nobody will ever know.",
+          "text": "He pays in old silver, warm from his hand. Nobody will ever know, unless he tells them.",
           "effects": [
             {
               "resources": {
@@ -73,7 +73,7 @@
         },
         {
           "w": 100,
-          "text": "He pays you, and he pays the others for the same, and goes off laughing with all of your secrets.",
+          "text": "He pays you, and he pays the others for the same, and goes off laughing into the night with all of your secrets.",
           "effects": [
             {
               "resources": {
