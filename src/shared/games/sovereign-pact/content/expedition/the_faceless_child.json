@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "draw",
-      "label": "The kindest draws a face on the child in charcoal.",
+      "label": "The kindest draws it a face in charcoal.",
       "rule": "scion:most_healing|scion:highest:sagacity",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The child smiles with the drawn mouth, and leads you out.",
+          "text": "The child smiles with the drawn mouth, a crooked charcoal smile, and takes their hand, and leads you out.",
           "effects": [
             {
               "skip": 1
@@ -43,7 +43,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The child follows you for a mile, then stops.",
+          "text": "The child follows you for a mile, pointing at your faces, and then stops, and stands in the road.",
           "effects": [
             {
               "to": "party",
@@ -63,7 +63,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The street fills with faceless adults.",
+          "text": "It runs, and the street fills with faceless adults, and all of them are turned toward you.",
           "effects": [
             {
               "encounter": {

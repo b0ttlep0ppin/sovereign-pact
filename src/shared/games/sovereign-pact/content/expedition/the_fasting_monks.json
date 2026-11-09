@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "fast",
-      "label": "The toughest fasts.",
+      "label": "The toughest fasts a day with them.",
       "rule": "scion:highest:resilience",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A vision, and a hunger.",
+          "text": "A vision, sharp as a blade, and a hunger that does not go away.",
           "effects": [
             {
               "foresee": true
@@ -46,7 +46,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They break their fast and weep. Their visions end.",
+          "text": "They break their fast and weep, and eat like animals. Their visions end, and they do not thank you.",
           "effects": [
             {
               "to": "party",
@@ -71,7 +71,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "Clear-headed and light.",
+          "text": "Clear-headed and light, as if the bones are made of air.",
           "effects": [
             {
               "to": "party",
@@ -81,7 +81,7 @@
         },
         {
           "w": 30,
-          "text": "Faint and dizzy.",
+          "text": "Faint and dizzy, and the world tilts.",
           "effects": [
             {
               "to": "party",

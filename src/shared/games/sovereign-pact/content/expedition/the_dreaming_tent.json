@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "sleep",
-      "label": "The most troubled sleeps there.",
+      "label": "The most troubled lies down in the tent.",
       "rule": "scion:lowest:sanity",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "The dream is gentle and long, and they wake up a different person.",
+          "text": "The dream is gentle and long, and they wake up someone a little different, and lighter.",
           "effects": [
             {
               "sanity": 30
@@ -30,7 +30,7 @@
         },
         {
           "w": 40,
-          "text": "The dream is very clear.",
+          "text": "The dream is very, very clear, and it comes back every night after.",
           "effects": [
             {
               "sanity": -10
@@ -52,7 +52,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It is very good silk.",
+          "text": "It is very good silk, and it still smells of home.",
           "effects": [
             {
               "resources": {
@@ -73,7 +73,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It burns with the smell of somebody's kitchen.",
+          "text": "It burns with the smell of somebody's kitchen, and a voice calls a name from inside.",
           "effects": [
             {
               "to": "party",

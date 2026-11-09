@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "buy",
-      "label": "Buy something.",
+      "label": "Buy something the marsh took.",
       "rule": "vote",
       "tags": [
         "clever"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A drowned soldier's gear, cleaned.",
+          "text": "A drowned soldier's gear, cleaned, still smelling of the deep.",
           "effects": [
             {
               "resources": {
@@ -39,7 +39,7 @@
     },
     {
       "id": "haggle",
-      "label": "The shrewdest haggles.",
+      "label": "The shrewdest haggles with the drowned.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"
@@ -47,7 +47,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A good price, and gossip.",
+          "text": "A good price, and gossip, and wet coins in change.",
           "effects": [
             {
               "resources": {
@@ -78,7 +78,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The rafts drift off while they wait. They are alone a while.",
+          "text": "The rafts drift off into the fog while they wait. They are alone a long while, and the marsh talks to them.",
           "effects": [
             {
               "sanity": -10

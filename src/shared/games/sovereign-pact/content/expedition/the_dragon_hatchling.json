@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "feed",
-      "label": "Feed it.",
+      "label": "Feed the little thing.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "It follows you home.",
+          "text": "It follows you home, puffing smoke, and the House must build somewhere to keep it.",
           "effects": [
             {
               "house_improvement": "building"
@@ -30,7 +30,7 @@
         },
         {
           "w": 40,
-          "text": "Its mother finds you.",
+          "text": "Its mother finds you, and she is not little.",
           "effects": [
             {
               "encounter": {
@@ -70,7 +70,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A fortune.",
+          "text": "A fortune, and the collector's carriage rattles off with it squealing inside. Somewhere, its mother will want to know.",
           "effects": [
             {
               "resources": {

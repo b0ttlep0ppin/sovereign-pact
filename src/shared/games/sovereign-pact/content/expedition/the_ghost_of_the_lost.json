@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "ask",
-      "label": "Ask it what it saw.",
+      "label": "The wisest asks it what it saw.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It points the way, and fades.",
+          "text": "It points the way, and fades, and you all feel how long it waited.",
           "effects": [
             {
               "skip": 1
@@ -44,7 +44,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A long hour. It thanks you.",
+          "text": "A long hour of searching. It thanks you, and is gone.",
           "effects": [
             {
               "score": {
@@ -65,7 +65,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It follows a while.",
+          "text": "It follows a while, asking why nobody came.",
           "effects": [
             {
               "to": "party",

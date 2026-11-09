@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "ring",
-      "label": "Ring it.",
+      "label": "Ring the old forge bell.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "The ghosts of the smiths rise to work, and make you something.",
+          "text": "The ghosts of the smiths rise to work, silent and grey, and make you something.",
           "effects": [
             {
               "item": {
@@ -43,7 +43,7 @@
     },
     {
       "id": "take",
-      "label": "The strongest takes the bell for its bronze.",
+      "label": "The strongest takes the bell for its metal.",
       "rule": "scion:highest:might",
       "tags": [
         "bold"
@@ -51,7 +51,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Heavy, and worth it.",
+          "text": "Heavy, and worth it, and the halls are very quiet after.",
           "effects": [
             {
               "resources": {

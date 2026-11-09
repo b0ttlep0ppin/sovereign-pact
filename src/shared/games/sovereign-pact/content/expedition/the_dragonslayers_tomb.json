@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "rouse",
-      "label": "Rouse the dragon and finish it.",
+      "label": "Rouse the dragon and finish what he started.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It is weak, and furious.",
+          "text": "It wakes weak, and furious, and remembers the last one who came.",
           "effects": [
             {
               "encounter": {
@@ -39,7 +39,7 @@
     },
     {
       "id": "slip",
-      "label": "The quietest slips into the tomb.",
+      "label": "The quietest slips into the tomb past it.",
       "rule": "scion:highest:guile|scion:highest:speed",
       "tags": [
         "reckless"
@@ -47,7 +47,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "The slayer's spear.",
+          "text": "The slayer's spear, still sharp, still stained.",
           "effects": [
             {
               "item": {
@@ -58,7 +58,7 @@
         },
         {
           "w": 40,
-          "text": "The dragon stirs.",
+          "text": "The dragon stirs, and the ember in its chest becomes a fire.",
           "effects": [
             {
               "encounter": {

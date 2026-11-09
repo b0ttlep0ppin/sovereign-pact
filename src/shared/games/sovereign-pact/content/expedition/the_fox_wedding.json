@@ -44,7 +44,7 @@
     },
     {
       "id": "gift",
-      "label": "Leave a gift for the bride.",
+      "label": "Leave a gift for the fox bride.",
       "rule": "leader",
       "tags": [
         "kind"
@@ -52,7 +52,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A fox returns with a gift of its own.",
+          "text": "A fox comes back alone, in silk, with a gift of its own, and bows.",
           "effects": [
             {
               "resources": {
@@ -71,7 +71,7 @@
     },
     {
       "id": "watch",
-      "label": "The stealthiest watches.",
+      "label": "The stealthiest watches the procession.",
       "rule": "scion:highest:guile",
       "tags": [
         "reckless"
@@ -79,7 +79,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "Unseen, and they learn the foxes' road.",
+          "text": "Unseen, and they learn the foxes' secret road.",
           "effects": [
             {
               "skip": 1
@@ -88,7 +88,7 @@
         },
         {
           "w": 50,
-          "text": "Seen.",
+          "text": "Seen. The bride lifts her veil, and smiles.",
           "effects": [
             {
               "curse": true

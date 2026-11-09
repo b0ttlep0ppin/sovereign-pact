@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "debate",
-      "label": "The wisest debates him.",
+      "label": "The wisest debates him before the pilgrims.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "The pilgrims turn back to the road.",
+          "text": "The pilgrims turn back to the road, picking up their beads.",
           "effects": [
             {
               "score": {
@@ -32,7 +32,7 @@
         },
         {
           "w": 40,
-          "text": "He wins.",
+          "text": "He wins, and the pilgrims look at you with pity.",
           "effects": [
             {
               "to": "party",
@@ -44,7 +44,7 @@
     },
     {
       "id": "listen",
-      "label": "Listen.",
+      "label": "Listen to his sermon.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -52,7 +52,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He makes a terrible kind of sense.",
+          "text": "He makes a terrible kind of sense, and it stays with you, like a stone in the shoe.",
           "effects": [
             {
               "score": {
@@ -77,7 +77,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The pilgrims scatter.",
+          "text": "The pilgrims scatter, and some of them run toward the Gate.",
           "effects": [
             {
               "doom": 1

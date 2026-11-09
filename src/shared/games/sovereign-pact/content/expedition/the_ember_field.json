@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "A good haul, and burned fingers.",
+          "text": "A good haul, and burned fingers, and boots that smell of smoke for a month.",
           "effects": [
             {
               "resources": {
@@ -37,7 +37,7 @@
         },
         {
           "w": 30,
-          "text": "The embers flare.",
+          "text": "The embers flare under your feet.",
           "effects": [
             {
               "to": "party",
@@ -57,7 +57,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Which dragon won, and where it went to heal.",
+          "text": "Which dragon won, and where it crawled off to heal.",
           "effects": [
             {
               "foresee": true

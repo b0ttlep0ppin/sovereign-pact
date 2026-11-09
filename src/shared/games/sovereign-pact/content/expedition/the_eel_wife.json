@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "tide",
-      "label": "The one with the sea in them answers.",
+      "label": "The one with the sea in them answers her.",
       "rule": "scion:trait:tidebound|scion:lowest:sanity",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "She knows their blood, and gives them a pearl the size of an eye.",
+          "text": "She knows their blood, and kisses their brow, and gives them a pearl the size of an eye.",
           "effects": [
             {
               "resources": {
@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "She believes it, and sinks away.",
+          "text": "She believes it, and sinks away, and the eels go still.",
           "effects": [
             {
               "skip": 1
@@ -54,7 +54,7 @@
         },
         {
           "w": 50,
-          "text": "She does not.",
+          "text": "She does not believe it, and the eels uncoil.",
           "effects": [
             {
               "encounter": {

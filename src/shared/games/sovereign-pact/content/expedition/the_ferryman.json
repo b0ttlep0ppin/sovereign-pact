@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "coin",
-      "label": "Pay in coin, everyone.",
+      "label": "Pay the ferryman in coin, everyone.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It is a great deal of coin.",
+          "text": "It is a great deal of coin, and he counts it with long grey fingers.",
           "effects": [
             {
               "resources": {
@@ -34,7 +34,7 @@
     },
     {
       "id": "memory",
-      "label": "Pay in memories.",
+      "label": "Pay him in memories.",
       "rule": "leader",
       "tags": [
         "reckless"
@@ -42,7 +42,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Everyone forgets something. Nobody can say what.",
+          "text": "Everyone forgets something. Nobody can say what. Everyone keeps looking for it.",
           "effects": [
             {
               "to": "party",
@@ -58,7 +58,7 @@
     },
     {
       "id": "swim",
-      "label": "The hardiest swims a rope across.",
+      "label": "The hardiest swims a rope across his river.",
       "rule": "scion:highest:resilience",
       "tags": [
         "bold"
@@ -66,7 +66,7 @@
       "outcomes": [
         {
           "w": 40,
-          "text": "They make it across and drag a rope for the rest.",
+          "text": "They make it across, half drowned, and drag a rope for the rest.",
           "effects": [
             {
               "score": {
@@ -81,7 +81,7 @@
         },
         {
           "w": 60,
-          "text": "The river is not water.",
+          "text": "The river is not water, and it does not want to give them back.",
           "effects": [
             {
               "sanity": -25

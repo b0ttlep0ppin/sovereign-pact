@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "give",
-      "label": "Each Scion gives a lock.",
+      "label": "Each Scion gives her a lock of hair.",
       "rule": "each_scion",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 80,
-          "text": "She weaves it into her branches.",
+          "text": "She weaves it into her branches, humming.",
           "effects": [
             {
               "sanity": 4
@@ -30,7 +30,7 @@
         },
         {
           "w": 20,
-          "text": "She keeps a little more than hair.",
+          "text": "She keeps a little more than hair, and they will not remember what.",
           "effects": [
             {
               "sanity": -8
@@ -41,7 +41,7 @@
     },
     {
       "id": "keep",
-      "label": "Each Scion keeps their hair, and walks on.",
+      "label": "Each Scion keeps their hair, and walks on without her leave.",
       "rule": "each_scion",
       "tags": [
         "cautious"
@@ -49,7 +49,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The wood is less kind.",
+          "text": "The wood is less kind. Roots rise to catch the ankle.",
           "effects": [
             {
               "durability": -8,

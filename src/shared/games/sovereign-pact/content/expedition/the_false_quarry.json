@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It sheds the shape and fights.",
+          "text": "It sheds the quarry's shape like a coat, and what is underneath fights.",
           "effects": [
             {
               "encounter": {
@@ -34,7 +34,7 @@
     },
     {
       "id": "see",
-      "label": "The sharpest eye watches it.",
+      "label": "The sharpest eye watches it, and waits.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -42,7 +42,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It leads you to the real one without knowing.",
+          "text": "It leads you to the real one without ever knowing it.",
           "effects": [
             {
               "skip": 1
@@ -58,7 +58,7 @@
     },
     {
       "id": "talk",
-      "label": "The smoothest speaks to it.",
+      "label": "The smoothest speaks to the thing in the borrowed shape.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"
@@ -66,7 +66,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "It wants the quarry dead too.",
+          "text": "It wants the quarry dead too, and it walks with you a while.",
           "effects": [
             {
               "to": "party",

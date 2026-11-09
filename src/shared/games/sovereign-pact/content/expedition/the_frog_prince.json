@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 40,
-          "text": "A prince, wet and grateful. His House will remember.",
+          "text": "A prince, wet and grateful and naked. His House will remember.",
           "effects": [
             {
               "score": {
@@ -48,7 +48,7 @@
     },
     {
       "id": "crown",
-      "label": "Take the crown.",
+      "label": "Take his tiny crown.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -56,7 +56,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Real gold, and a very angry frog.",
+          "text": "Real gold, and a very angry frog, who knows a witch.",
           "effects": [
             {
               "resources": {
@@ -72,7 +72,7 @@
     },
     {
       "id": "pass",
-      "label": "Wish him luck.",
+      "label": "Wish him luck, and go.",
       "rule": "vote",
       "tags": [
         "cautious"

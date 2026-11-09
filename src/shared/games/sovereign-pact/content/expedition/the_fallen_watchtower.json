@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "haul",
-      "label": "Haul the stone.",
+      "label": "Haul the good stone away.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Heavy, good stone.",
+          "text": "Heavy, good stone, and somewhere under the last of it, a skeleton still facing the road.",
           "effects": [
             {
               "resources": {
@@ -46,7 +46,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The guard's strongbox.",
+          "text": "The guard's strongbox, under the beacon basket, still locked.",
           "effects": [
             {
               "resources": {
@@ -68,7 +68,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A watchtower of your own, in time.",
+          "text": "A watchtower of your own, in time, to watch for whatever came.",
           "effects": [
             {
               "house_improvement": "building"

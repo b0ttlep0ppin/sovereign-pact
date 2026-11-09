@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "dodge",
-      "label": "Everyone scatters.",
+      "label": "Everyone scatters, and hopes.",
       "rule": "scion:random",
       "tags": [
         "cautious"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "Everyone makes it but one, who is only grazed.",
+          "text": "Everyone makes it but one, who is only grazed, bleeding from the scalp.",
           "effects": [
             {
               "durability": -20,
@@ -42,7 +42,7 @@
     },
     {
       "id": "catch",
-      "label": "The quickest pulls the slowest clear.",
+      "label": "The quickest drags the slowest clear.",
       "rule": "scion:highest:speed",
       "tags": [
         "kind"
@@ -50,7 +50,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A hand in the collar, a heave, and the rocks land where they were.",
+          "text": "A hand in the collar, a heave, and the rocks land where they were standing.",
           "effects": [
             {
               "score": {
@@ -66,7 +66,7 @@
     },
     {
       "id": "brace",
-      "label": "The hardiest braces the overhang.",
+      "label": "The hardiest braces the overhang with their body.",
       "rule": "scion:highest:resilience",
       "tags": [
         "bold"
@@ -74,7 +74,7 @@
       "outcomes": [
         {
           "w": 55,
-          "text": "It holds, and so do they.",
+          "text": "It holds, and so do they, arms shaking, until the last of you is clear.",
           "effects": [
             {
               "score": {

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "dig",
-      "label": "Dig it out.",
+      "label": "Dig the star out of its crater.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "A heart of star-metal.",
+          "text": "A heart of star-metal, still singing faintly in the hand.",
           "effects": [
             {
               "resources": {
@@ -33,7 +33,7 @@
         },
         {
           "w": 40,
-          "text": "Something else came down with it.",
+          "text": "Something else came down with it, and it has been waiting at the bottom of the crater.",
           "effects": [
             {
               "encounter": {
@@ -54,7 +54,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It sings of the sky it fell from, until dawn.",
+          "text": "It sings of the sky it fell from, all night, and you weep without knowing why, and feel better.",
           "effects": [
             {
               "to": "party",
@@ -66,7 +66,7 @@
     },
     {
       "id": "touch",
-      "label": "The boldest touches it.",
+      "label": "The boldest touches the star.",
       "rule": "scion:trait:brave|scion:random",
       "tags": [
         "reckless"
@@ -74,7 +74,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "Starlight, in the blood.",
+          "text": "Starlight, in the blood, bright and cold.",
           "effects": [
             {
               "growth": {
@@ -85,7 +85,7 @@
         },
         {
           "w": 50,
-          "text": "Starlight, too much of it.",
+          "text": "Starlight, too much of it, burning from the inside out.",
           "effects": [
             {
               "status": "burn"

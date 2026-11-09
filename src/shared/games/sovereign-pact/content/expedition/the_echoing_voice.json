@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "answer",
-      "label": "The one with the steadiest mind answers it.",
+      "label": "The steadiest mind answers the voice.",
       "rule": "scion:highest:sagacity|scion:highest:resilience",
       "tags": [
         "clever"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Not them. A mimic. But it knows where they are, and says so to keep you talking.",
+          "text": "Not them. A mimic, learning. But it knows where they are, and says so, to keep you talking.",
           "effects": [
             {
               "foresee": true
@@ -35,7 +35,7 @@
     },
     {
       "id": "descend",
-      "label": "Climb down to it.",
+      "label": "Climb down to the voice.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -43,7 +43,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It is not them.",
+          "text": "It is not them. It never was. It is very glad you came.",
           "effects": [
             {
               "encounter": {
@@ -64,7 +64,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It keeps calling. You keep walking.",
+          "text": "It keeps calling, muffled, in their voice. You keep walking.",
           "effects": [
             {
               "to": "party",

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "return",
-      "label": "The strongest lifts it back up.",
+      "label": "The strongest lifts the egg back to the canopy.",
       "rule": "scion:highest:might",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "A cry of thanks from above, and a feather falls.",
+          "text": "A cry of thanks from above, and a feather as long as an arm drifts down.",
           "effects": [
             {
               "blessing": {
@@ -33,7 +33,7 @@
         },
         {
           "w": 30,
-          "text": "The parent thinks you are stealing it.",
+          "text": "The parent thinks you are stealing it, and comes down out of the sky.",
           "effects": [
             {
               "encounter": {
@@ -54,7 +54,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A rare egg, and a shadow circling.",
+          "text": "A rare egg, warm against the back, and a shadow circling above you all the rest of the day.",
           "effects": [
             {
               "resources": {
@@ -70,7 +70,7 @@
     },
     {
       "id": "leave",
-      "label": "Leave it be.",
+      "label": "Leave it where it fell.",
       "rule": "vote",
       "tags": [
         "cautious"

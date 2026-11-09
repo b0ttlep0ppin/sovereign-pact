@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The wind drops for a day.",
+          "text": "The coin freezes into the altar. The wind drops for a day.",
           "effects": [
             {
               "resources": {
@@ -49,7 +49,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "Cold steel that never dulls.",
+          "text": "Cold steel that never dulls, and never warms.",
           "effects": [
             {
               "item": {
@@ -60,7 +60,7 @@
         },
         {
           "w": 50,
-          "text": "The god takes something back.",
+          "text": "The god takes something back, in ice, from the hand that took the sword.",
           "effects": [
             {
               "to": "party",
@@ -75,7 +75,7 @@
     },
     {
       "id": "pray",
-      "label": "The devout prays.",
+      "label": "The devout prays to the winter god.",
       "rule": "scion:trait:devout|scion:highest:sagacity",
       "tags": [
         "kind"
@@ -83,7 +83,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The winter god listens.",
+          "text": "The winter god listens, and the cold becomes a kind of strength.",
           "effects": [
             {
               "blessing": {

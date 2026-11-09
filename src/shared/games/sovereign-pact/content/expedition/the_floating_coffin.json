@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "open",
-      "label": "Open it.",
+      "label": "Pry open the coffin.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "A drowned merchant, very grateful, who pays you in river pearls.",
+          "text": "A drowned merchant, very polite, very grateful, who pays you in river pearls.",
           "effects": [
             {
               "resources": {
@@ -32,7 +32,7 @@
         },
         {
           "w": 50,
-          "text": "Something else, much less grateful.",
+          "text": "Something else, much less grateful, and much less polite.",
           "effects": [
             {
               "encounter": {
@@ -45,7 +45,7 @@
     },
     {
       "id": "ask",
-      "label": "The wisest asks who is inside.",
+      "label": "The wisest knocks back, and asks who is inside.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -53,7 +53,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A name you know from the House's old debts.",
+          "text": "It gives a name you know from the House's old debts.",
           "effects": [
             {
               "score": {
@@ -74,7 +74,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The knocking fades.",
+          "text": "The knocking fades as it drifts away, three knocks, and three, and three.",
           "effects": [
             {
               "to": "party",

@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Everyone is honest. The box opens, and the shares are good.",
+          "text": "Everyone is honest. The box comes up, the lid opens, and the shares are good.",
           "effects": [
             {
               "resources": {
@@ -40,7 +40,7 @@
         },
         {
           "w": 100,
-          "text": "Your share is gone before you reach it.",
+          "text": "Your share is gone before you reach it, and the water is muddy with someone's haste.",
           "effects": [
             {
               "sanity": -8
@@ -54,7 +54,7 @@
     },
     {
       "id": "grab",
-      "label": "Dive early and take the lot.",
+      "label": "Dive early, and take the lot.",
       "rule": "secret",
       "tags": [
         "cruel"
@@ -62,7 +62,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Nobody else thought of it.",
+          "text": "Nobody else thought of it. You come up heavy, and grinning, and cold.",
           "effects": [
             {
               "resources": {
@@ -81,7 +81,7 @@
         },
         {
           "w": 100,
-          "text": "Others had the same idea. There is a fight in the water.",
+          "text": "Others had the same idea. There is a fight under the water, in the dark, with knives.",
           "effects": [
             {
               "resources": {

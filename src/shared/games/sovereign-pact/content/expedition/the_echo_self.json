@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "talk",
-      "label": "Each talks to their echo.",
+      "label": "Each speaks with their older self.",
       "rule": "each_scion",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "Advice from the one who knows.",
+          "text": "Advice, from the one who knows how it goes.",
           "effects": [
             {
               "xp": 60
@@ -33,7 +33,7 @@
         },
         {
           "w": 40,
-          "text": "A warning they do not want.",
+          "text": "A warning, and it is not one they wanted.",
           "effects": [
             {
               "sanity": -15
@@ -44,7 +44,7 @@
     },
     {
       "id": "pass",
-      "label": "Each walks past without a word.",
+      "label": "Each walks past their echo without a word.",
       "rule": "each_scion",
       "tags": [
         "cautious"
@@ -52,7 +52,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It does not look back.",
+          "text": "It does not look back. It never did.",
           "effects": [
             {
               "sanity": -3

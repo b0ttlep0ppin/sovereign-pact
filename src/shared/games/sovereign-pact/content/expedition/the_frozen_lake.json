@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 65,
-          "text": "It follows them, and the others cross safe behind.",
+          "text": "It follows them under the ice, nose to their boots, and the others cross safe behind.",
           "effects": [
             {
               "xp": 80
@@ -56,7 +56,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Slow, careful, cold.",
+          "text": "Slow, careful, cold, with the pale shape sliding under one of you, then another.",
           "effects": [
             {
               "to": "party",

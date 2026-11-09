@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "open",
-      "label": "Open it.",
+      "label": "Open the door to the voices.",
       "rule": "leader",
       "tags": [
         "reckless"
@@ -35,7 +35,7 @@
         },
         {
           "w": 60,
-          "text": "The voices stop when the door opens.",
+          "text": "The voices stop when the door opens, all at once. Every face inside turns.",
           "effects": [
             {
               "encounter": {
@@ -49,7 +49,7 @@
     },
     {
       "id": "knock",
-      "label": "The sharpest ear knocks and listens.",
+      "label": "The sharpest ear knocks, and listens.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -68,7 +68,7 @@
     },
     {
       "id": "walk",
-      "label": "Walk on.",
+      "label": "Walk on past it.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -76,7 +76,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The laughter goes on behind you for a long time.",
+          "text": "The laughter goes on behind you for a long time, and then it starts calling your names.",
           "effects": [
             {
               "to": "party",

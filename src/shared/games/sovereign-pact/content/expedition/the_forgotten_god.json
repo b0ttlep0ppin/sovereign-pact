@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "worship",
-      "label": "Leave it an offering.",
+      "label": "Leave the little god an offering.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It does what it can, which is a little.",
+          "text": "It does what it can, which is a little, and it is so very grateful.",
           "effects": [
             {
               "to": "party",
@@ -47,7 +47,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It gives far more than it should for a promise of remembrance.",
+          "text": "It gives far more than it should, for a promise of remembrance. Do not forget.",
           "effects": [
             {
               "growth": {
@@ -65,7 +65,7 @@
     },
     {
       "id": "break",
-      "label": "Break the shrine.",
+      "label": "Break its shrine.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -73,7 +73,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A very small voice, cursing.",
+          "text": "A very small voice, cursing, and the curse is not small.",
           "effects": [
             {
               "curse": true

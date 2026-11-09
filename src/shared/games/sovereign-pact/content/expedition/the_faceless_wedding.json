@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "sit",
-      "label": "Sit and celebrate.",
+      "label": "Sit, and celebrate with the faceless.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "Good food, odd music, and gifts for the guests.",
+          "text": "Good food, odd music with no singer, and little gifts for the guests.",
           "effects": [
             {
               "resources": {
@@ -36,7 +36,7 @@
         },
         {
           "w": 30,
-          "text": "You are not guests. You are the feast.",
+          "text": "You are not guests. You never were. You are the feast.",
           "effects": [
             {
               "encounter": {
@@ -49,7 +49,7 @@
     },
     {
       "id": "gift",
-      "label": "The shrewdest offers a gift.",
+      "label": "The shrewdest offers the couple a gift.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"
@@ -57,7 +57,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They are delighted, and show you the way out.",
+          "text": "They are delighted, smooth heads bobbing, and show you a quick way out.",
           "effects": [
             {
               "resources": {
@@ -73,7 +73,7 @@
     },
     {
       "id": "leave",
-      "label": "Slip away.",
+      "label": "Slip away before the vows are done.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -81,7 +81,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The music follows.",
+          "text": "The music follows, and so do their smooth, turning heads.",
           "effects": [
             {
               "to": "party",

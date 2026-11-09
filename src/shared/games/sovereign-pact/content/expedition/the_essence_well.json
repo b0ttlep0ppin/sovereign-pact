@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Every flask you have.",
+          "text": "Every flask you have, cold and bright and humming.",
           "effects": [
             {
               "resources": {
@@ -34,7 +34,7 @@
     },
     {
       "id": "drink",
-      "label": "The bravest drinks.",
+      "label": "The bravest drinks from the well.",
       "rule": "scion:trait:brave|scion:highest:resilience",
       "tags": [
         "reckless"
@@ -42,7 +42,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "They glow for a day.",
+          "text": "They glow for a day, faintly, from the inside. Nobody likes to look at them.",
           "effects": [
             {
               "growth": {
@@ -57,7 +57,7 @@
         },
         {
           "w": 40,
-          "text": "It burns going down.",
+          "text": "It burns going down, cold fire, and keeps burning.",
           "effects": [
             {
               "status": "burn"
@@ -79,7 +79,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A rival will find the sign.",
+          "text": "A rival will find the sign, and know whose it is.",
           "effects": [
             {
               "resources": {

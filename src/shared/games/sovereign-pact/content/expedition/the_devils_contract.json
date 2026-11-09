@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "tear",
-      "label": "Tear it up.",
+      "label": "Tear the contract in half.",
       "rule": "secret",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Every House tore it. The devil sulks off.",
+          "text": "Every House tore it. The devil sulks off into the dark, its neat hand wasted.",
           "effects": [
             {
               "to": "party",
@@ -37,7 +37,7 @@
         },
         {
           "w": 100,
-          "text": "Somebody signed. You feel it land on you.",
+          "text": "Somebody signed. You feel the bane land on you in the night, like a cold hand on the chest.",
           "effects": [
             {
               "sanity": -15
@@ -51,7 +51,7 @@
     },
     {
       "id": "sign",
-      "label": "Sign it.",
+      "label": "Sign it, in your own hand.",
       "rule": "secret",
       "tags": [
         "cruel"
@@ -59,7 +59,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Only you signed. The boon is real.",
+          "text": "Only you signed. The boon is real, and warm, and the devil smiles as it folds the paper away.",
           "effects": [
             {
               "resources": {
@@ -82,7 +82,7 @@
         },
         {
           "w": 100,
-          "text": "Others signed too. The banes cancel out, and the devil keeps the difference.",
+          "text": "Others signed too. The banes cancel out, and the devil keeps the difference, and thanks you all.",
           "effects": [
             {
               "doom": 2

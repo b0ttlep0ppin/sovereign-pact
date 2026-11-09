@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "walk",
-      "label": "Walk among them.",
+      "label": "Walk among their ranks.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "They do not move.",
+          "text": "They do not move. You feel their eyes anyway.",
           "effects": [
             {
               "to": "party",
@@ -52,7 +52,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Fine steel, and the army turns its heads.",
+          "text": "Fine steel, and as it comes free, the whole army turns its heads.",
           "effects": [
             {
               "item": {
@@ -68,7 +68,7 @@
     },
     {
       "id": "salute",
-      "label": "Salute them and go around.",
+      "label": "Salute them, and go around.",
       "rule": "leader",
       "tags": [
         "kind"
@@ -76,7 +76,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Their banners stir.",
+          "text": "Their stiff banners stir, once, in no wind.",
           "effects": [
             {
               "score": {

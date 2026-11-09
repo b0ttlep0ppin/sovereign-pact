@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "scales",
-      "label": "Gather scales.",
+      "label": "Gather the loose scales.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Wyrmbone and scale, enough to armor a House.",
+          "text": "Wyrmbone and scale, enough to armor a House, and edges that bite.",
           "effects": [
             {
               "resources": {
@@ -38,7 +38,7 @@
     },
     {
       "id": "wear",
-      "label": "The toughest climbs inside and wears it a while.",
+      "label": "The toughest climbs inside the skin and wears it.",
       "rule": "scion:highest:resilience",
       "tags": [
         "reckless"
@@ -46,7 +46,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They smell like dragon for a week. Things leave them alone.",
+          "text": "They smell like dragon for a week. Things in the wild give them a very wide berth.",
           "effects": [
             {
               "status": "protect"
@@ -68,7 +68,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It burns for a day.",
+          "text": "It burns for a day, and the smoke smells of rage.",
           "effects": [
             {
               "score": {

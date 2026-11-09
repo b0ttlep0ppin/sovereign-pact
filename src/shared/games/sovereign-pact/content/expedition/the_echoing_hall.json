@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "speak",
-      "label": "Speak your name into the hall.",
+      "label": "Each Scion speaks their name into the hall.",
       "rule": "each_scion",
       "tags": [
         "bold"
@@ -44,7 +44,7 @@
     },
     {
       "id": "silent",
-      "label": "Keep silent.",
+      "label": "Each Scion keeps silent, and listens.",
       "rule": "each_scion",
       "tags": [
         "cautious"
@@ -52,7 +52,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "You cross in silence, and hear everyone else.",
+          "text": "You cross in silence, and hear everything the hall says about everyone else.",
           "effects": [
             {
               "xp": 30

@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "A wild hour, and you feel years younger.",
+          "text": "A wild hour, mud to the knees, and you feel years younger.",
           "effects": [
             {
               "to": "party",
@@ -31,7 +31,7 @@
         },
         {
           "w": 40,
-          "text": "You cannot stop.",
+          "text": "You cannot stop. Your feet will not stop. The fiddler smiles with blue lips.",
           "effects": [
             {
               "to": "party",
@@ -47,7 +47,7 @@
     },
     {
       "id": "request",
-      "label": "The best talker asks for a sad song.",
+      "label": "The best talker asks him for a sad song.",
       "rule": "scion:highest:guile",
       "tags": [
         "kind"
@@ -55,7 +55,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He plays it, and the marsh weeps, and you pass in peace.",
+          "text": "He plays it, and the marsh weeps, and the reeds lie still, and you pass in peace.",
           "effects": [
             {
               "skip": 1

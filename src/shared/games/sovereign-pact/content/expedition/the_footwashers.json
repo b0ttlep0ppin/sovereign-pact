@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "rest",
-      "label": "Let them.",
+      "label": "Let them wash your feet.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Fresh feet and a lighter heart.",
+          "text": "Fresh feet and a lighter heart, and they hum while they work.",
           "effects": [
             {
               "to": "party",
@@ -37,7 +37,7 @@
     },
     {
       "id": "tell",
-      "label": "The best talker tells them the news.",
+      "label": "The best talker tells them the news of the road.",
       "rule": "scion:highest:guile",
       "tags": [
         "kind"
@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They give news back: what waits on the road ahead.",
+          "text": "They give news back, in low voices: what waits on the road ahead.",
           "effects": [
             {
               "foresee": true
@@ -56,7 +56,7 @@
     },
     {
       "id": "hurry",
-      "label": "No time.",
+      "label": "No time to stop.",
       "rule": "leader",
       "tags": [
         "cautious"

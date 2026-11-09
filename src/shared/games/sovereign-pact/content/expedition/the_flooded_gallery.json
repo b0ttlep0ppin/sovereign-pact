@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "wade",
-      "label": "Wade through.",
+      "label": "Wade through the black water.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "Cold and wet, but through.",
+          "text": "Cold to the bone and wet, but through.",
           "effects": [
             {
               "to": "party",
@@ -31,7 +31,7 @@
         },
         {
           "w": 30,
-          "text": "Something in the water.",
+          "text": "Something in the water, and it was what was gleaming.",
           "effects": [
             {
               "encounter": {
@@ -52,7 +52,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A drowned miner's lamp and purse.",
+          "text": "A drowned miner's lamp and purse, and the miner, who does not mind.",
           "effects": [
             {
               "resources": {
@@ -78,7 +78,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Longer, and drier.",
+          "text": "Longer, and drier, and not empty.",
           "effects": [
             {
               "fork": {
