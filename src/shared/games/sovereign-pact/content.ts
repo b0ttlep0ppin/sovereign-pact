@@ -919,6 +919,8 @@ export interface NamedDef {
   artifact?: { category: ScoreCategory; points: number };
   /** Found only through town events (Josh 2026-11-03: "powerful artifacts up for grabs"), never in a haul. */
   town?: true;
+  /** Found only through expedition events (Josh 2026-11-09: a trophy cut from the Ant Lion), never in a haul. */
+  trip?: true;
   /** A cure item (§11.2): one use, mending these injury results or any lasting one of a band; it may leave a look. */
   cure?: { injuries?: string[]; band?: "moderate"; look?: string };
 }
