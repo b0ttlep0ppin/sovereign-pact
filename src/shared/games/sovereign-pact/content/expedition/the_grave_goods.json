@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "Old gold.",
+          "text": "Old gold, and the dead watch you take it.",
           "effects": [
             {
               "resources": {
@@ -36,7 +36,7 @@
         },
         {
           "w": 30,
-          "text": "The dead want it back.",
+          "text": "The dead want it back, and they are what stopped the robbers.",
           "effects": [
             {
               "encounter": {}
@@ -55,7 +55,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The dead are grateful.",
+          "text": "The dead lie down again, grateful, and something of their peace goes with you.",
           "effects": [
             {
               "score": {
@@ -82,7 +82,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Their camp, and the loot they took.",
+          "text": "Their camp, their loot, and their knives.",
           "effects": [
             {
               "encounter": {

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "word",
-      "label": "The wisest changes the word.",
+      "label": "The wisest changes the word on its brow.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "It turns, and kneels, and walks with you to the next fight.",
+          "text": "It turns, and kneels, and walks with you, a wall of iron at your side.",
           "effects": [
             {
               "to": "party",
@@ -36,7 +36,7 @@
         },
         {
           "w": 50,
-          "text": "It turns, and remembers its orders.",
+          "text": "It turns, and remembers its orders, and you are not on its list.",
           "effects": [
             {
               "encounter": {}
@@ -47,7 +47,7 @@
     },
     {
       "id": "scrap",
-      "label": "Break it up for iron.",
+      "label": "The strongest breaks it up for iron.",
       "rule": "scion:highest:might",
       "tags": [
         "bold"
@@ -55,7 +55,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It is a great deal of iron.",
+          "text": "It is a great deal of iron, and it does not resist, which is worse.",
           "effects": [
             {
               "resources": {

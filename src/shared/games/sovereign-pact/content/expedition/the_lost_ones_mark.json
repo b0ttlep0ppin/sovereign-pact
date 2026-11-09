@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "follow",
-      "label": "Follow the arrow.",
+      "label": "Follow the bloody arrow.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -44,7 +44,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A second mark, under the first: a warning about what follows them.",
+          "text": "A second mark under the first: a warning about what follows them.",
           "effects": [
             {
               "to": "party",
@@ -68,7 +68,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "An answer, far off.",
+          "text": "An answer, far off, weak, but theirs.",
           "effects": [
             {
               "to": "party",
@@ -78,7 +78,7 @@
         },
         {
           "w": 50,
-          "text": "Something else answers.",
+          "text": "Something else answers, in their voice.",
           "effects": [
             {
               "encounter": {

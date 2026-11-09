@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "accuse",
-      "label": "Accuse a rival House.",
+      "label": "Point at a rival House.",
       "rule": "house:random|vote",
       "tags": [
         "cruel"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The inquisitor takes note.",
+          "text": "The inquisitor takes note, very carefully, in a little black book.",
           "effects": [
             {
               "score": {
@@ -37,7 +37,7 @@
     },
     {
       "id": "faith",
-      "label": "The devout recites the creed.",
+      "label": "The devout recites the creed for him.",
       "rule": "scion:trait:devout|scion:highest:sagacity",
       "tags": [
         "clever"
@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Word-perfect. You may pass.",
+          "text": "Word-perfect. He sounds disappointed. You may pass.",
           "effects": [
             {
               "skip": 1
@@ -64,7 +64,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He has guards.",
+          "text": "He has guards, and they were hoping you would.",
           "effects": [
             {
               "encounter": {}

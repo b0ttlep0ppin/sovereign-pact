@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "arm",
-      "label": "The one with the hurt arm lays it in.",
+      "label": "The one with the hurt arm lays it in the vine's palm.",
       "rule": "scion:injured:arms|scion:lowest:might",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "The vine knits the arm and lets go.",
+          "text": "The vine knits the arm, green and gentle, and lets go, and leaves a leaf in the wound.",
           "effects": [
             {
               "mend": true
@@ -33,7 +33,7 @@
         },
         {
           "w": 30,
-          "text": "The vine takes the arm's strength instead of its hurt.",
+          "text": "The vine takes the arm's strength instead of its hurt, and sighs with pleasure.",
           "effects": [
             {
               "stat": {
@@ -49,7 +49,7 @@
     },
     {
       "id": "pious",
-      "label": "Someone with healer's hands asks the well's name.",
+      "label": "Healer's hands ask the well its name.",
       "rule": "scion:trait:pious_hands|scion:most_healing",
       "tags": [
         "kind"
@@ -57,7 +57,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It answers, and teaches a little of its craft.",
+          "text": "It answers, and teaches a little of its green craft.",
           "effects": [
             {
               "growth": {
@@ -73,7 +73,7 @@
     },
     {
       "id": "burn",
-      "label": "Burn it out.",
+      "label": "Burn it out of the well.",
       "rule": "vote",
       "tags": [
         "cruel"
@@ -81,7 +81,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It screams like a child.",
+          "text": "It screams like a child as it burns, and the ash is worth something.",
           "effects": [
             {
               "to": "party",

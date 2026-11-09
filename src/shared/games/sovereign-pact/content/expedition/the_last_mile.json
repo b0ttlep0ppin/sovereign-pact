@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "kneel",
-      "label": "Each Scion walks it on their knees.",
+      "label": "Each Scion walks the last mile on their knees.",
       "rule": "each_scion",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Bloody knees, and a quiet mind.",
+          "text": "Bloody knees, and a quiet mind, and the shrine bells ring as they arrive.",
           "effects": [
             {
               "durability": -15,
@@ -44,7 +44,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The monks frown.",
+          "text": "The monks frown, and turn their backs.",
           "effects": [
             {
               "sanity": -3

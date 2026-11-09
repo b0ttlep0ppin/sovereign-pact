@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "cross",
-      "label": "Cross quickly.",
+      "label": "Cross quickly, over the frozen faces.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 80,
-          "text": "Across, with the frozen faces watching.",
+          "text": "Across, with the frozen faces watching every step, and one of them blinking.",
           "effects": [
             {
               "to": "party",
@@ -31,7 +31,7 @@
         },
         {
           "w": 20,
-          "text": "The ice cracks under the slowest.",
+          "text": "The ice cracks under the slowest, and a frozen hand reaches up through the crack.",
           "effects": [
             {
               "durability": -30,
@@ -51,7 +51,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Safe, but the cold gets into them.",
+          "text": "Safe, but the cold gets into them, and stays.",
           "effects": [
             {
               "status": "slow"
@@ -73,7 +73,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "They thaw, and give thanks with a ring.",
+          "text": "They thaw, gasping, and give thanks with a ring.",
           "effects": [
             {
               "item": {
@@ -84,7 +84,7 @@
         },
         {
           "w": 50,
-          "text": "They thaw, and they are not grateful.",
+          "text": "They thaw, and they are not grateful at all.",
           "effects": [
             {
               "encounter": {

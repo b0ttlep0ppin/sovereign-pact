@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "listen",
-      "label": "Listen to the end.",
+      "label": "Listen to his sermon to the end.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "You understand the court now.",
+          "text": "You understand the Court now, and you wish you did not.",
           "effects": [
             {
               "score": {
@@ -36,7 +36,7 @@
         },
         {
           "w": 50,
-          "text": "You almost agree.",
+          "text": "You almost agree, and you cannot remember why that frightens you.",
           "effects": [
             {
               "to": "party",
@@ -74,7 +74,7 @@
         },
         {
           "w": 40,
-          "text": "He is better at this.",
+          "text": "He is better at this, much better, and the empty crowd laughs.",
           "effects": [
             {
               "sanity": -15
@@ -85,7 +85,7 @@
     },
     {
       "id": "stop",
-      "label": "Stop your ears.",
+      "label": "Stop your ears and walk on.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -93,7 +93,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "You hear it anyway, faint.",
+          "text": "You hear it anyway, faint, like water in the walls.",
           "effects": [
             {
               "to": "party",

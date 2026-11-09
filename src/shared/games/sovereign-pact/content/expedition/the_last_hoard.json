@@ -71,7 +71,7 @@
     },
     {
       "id": "honor",
-      "label": "Leave it to the dead.",
+      "label": "Leave it all to the dead.",
       "rule": "leader",
       "tags": [
         "kind"
@@ -79,7 +79,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "You go on with empty pockets and a lighter heart.",
+          "text": "You go on with empty pockets and a lighter heart, and something in the cave sighs, content.",
           "effects": [
             {
               "to": "party",

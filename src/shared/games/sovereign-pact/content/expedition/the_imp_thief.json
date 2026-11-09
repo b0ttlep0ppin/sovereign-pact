@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "chase",
-      "label": "The quickest gives chase.",
+      "label": "The quickest gives chase into the dark.",
       "rule": "scion:highest:speed",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "Caught, with its whole stash.",
+          "text": "Caught by the tail, with its whole stash, still cackling.",
           "effects": [
             {
               "resources": {
@@ -32,7 +32,7 @@
         },
         {
           "w": 40,
-          "text": "Into its nest.",
+          "text": "Into its nest, and it was not alone.",
           "effects": [
             {
               "encounter": {
@@ -53,7 +53,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Lighter, and wiser.",
+          "text": "Lighter, and wiser, and its laughter carries a long way.",
           "effects": [
             {
               "resources": {
@@ -74,7 +74,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It comes back for seconds.",
+          "text": "It comes back for seconds, greedy, and leaves the first purse in the trap.",
           "effects": [
             {
               "resources": {

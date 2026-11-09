@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "look",
-      "label": "The strongest arm tests his blade.",
+      "label": "The strongest arm tests his blades.",
       "rule": "scion:highest:might",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It is good. He beams.",
+          "text": "It is good. He beams, and the forge feels warmer for it.",
           "effects": [
             {
               "item": {
@@ -47,7 +47,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "He packs his hammer.",
+          "text": "He packs his hammer, and looks back once.",
           "effects": [
             {
               "house_improvement": "recruit"
@@ -56,7 +56,7 @@
         },
         {
           "w": 40,
-          "text": "He will wait for his master.",
+          "text": "He will wait for his master. He will always wait.",
           "effects": [
             {
               "to": "party",
@@ -76,7 +76,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He lets the fire go out.",
+          "text": "He lets the fire go out, and sits in the dark, and does not speak.",
           "effects": [
             {
               "to": "party",

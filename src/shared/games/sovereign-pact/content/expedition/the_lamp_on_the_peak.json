@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "hermit",
-      "label": "The one who wants least goes up.",
+      "label": "The one who wants least goes up to the lamp.",
       "rule": "scion:tarot:hermit|scion:highest:sagacity",
       "tags": [
         "clever"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They come down quieter, and know which way to go.",
+          "text": "They come down quieter, with gold in their eyes, and know which way to go.",
           "effects": [
             {
               "foresee": true
@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 40,
-          "text": "They reach it, somehow.",
+          "text": "They reach it, somehow, bleeding from the fingers.",
           "effects": [
             {
               "xp": 120
@@ -70,7 +70,7 @@
     },
     {
       "id": "pass",
-      "label": "It is not for you.",
+      "label": "Leave it. It is not for you.",
       "rule": "vote",
       "tags": [
         "cautious"

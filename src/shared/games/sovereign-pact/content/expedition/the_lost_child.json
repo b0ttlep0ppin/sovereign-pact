@@ -49,7 +49,7 @@
     },
     {
       "id": "ask",
-      "label": "The sharpest asks it questions first.",
+      "label": "The sharpest asks her questions first.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -73,7 +73,7 @@
     },
     {
       "id": "leave",
-      "label": "Leave it be.",
+      "label": "Leave her on her stone.",
       "rule": "leader",
       "tags": [
         "cautious"

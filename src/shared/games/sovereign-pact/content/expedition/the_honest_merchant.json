@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "buy",
-      "label": "Buy something good.",
+      "label": "Buy something good from her.",
       "rule": "leader",
       "tags": [
         "clever"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A fair price for a fine thing.",
+          "text": "A fair price for a fine thing. It feels like a trick, and it is not.",
           "effects": [
             {
               "resources": {
@@ -47,7 +47,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A fair price.",
+          "text": "A fair price, counted out in front of you. Unsettling.",
           "effects": [
             {
               "resources": {
@@ -60,7 +60,7 @@
     },
     {
       "id": "ask",
-      "label": "The wisest asks her why she is honest out here.",
+      "label": "The wisest asks why she is honest out here.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "kind"

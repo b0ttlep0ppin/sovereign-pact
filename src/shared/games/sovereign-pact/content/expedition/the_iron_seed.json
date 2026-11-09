@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "An iron sapling, and the ruins feel less dead.",
+          "text": "An iron sapling, red as rust, and the ruins feel a little less dead.",
           "effects": [
             {
               "to": "party",
@@ -44,7 +44,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It grows into something worth having.",
+          "text": "It grows, slowly, into something worth having, and its roots like the warmth of a body.",
           "effects": [
             {
               "item": {
@@ -65,7 +65,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Good iron, and a feeling of having killed something.",
+          "text": "Good iron, and a feeling of having killed something small.",
           "effects": [
             {
               "resources": {

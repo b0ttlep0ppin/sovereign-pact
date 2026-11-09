@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "key",
-      "label": "The quickest snatches the key.",
+      "label": "The quickest snatches the key from its hook.",
       "rule": "scion:highest:speed",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "The key, to a devil's strongbox.",
+          "text": "The key, to a devil's strongbox, and the box is full.",
           "effects": [
             {
               "resources": {
@@ -33,7 +33,7 @@
         },
         {
           "w": 40,
-          "text": "A hook takes them instead.",
+          "text": "A hook takes them instead, through the coat and the skin.",
           "effects": [
             {
               "durability": -25,
@@ -53,7 +53,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They thank you, and the gardener comes.",
+          "text": "They thank you, sobbing, and the gardener comes to see who is pruning.",
           "effects": [
             {
               "score": {
@@ -77,7 +77,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Chains brush every shoulder.",
+          "text": "Chains brush every shoulder, and every hook turns to follow.",
           "effects": [
             {
               "to": "party",

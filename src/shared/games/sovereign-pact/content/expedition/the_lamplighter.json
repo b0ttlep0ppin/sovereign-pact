@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "walk",
-      "label": "Walk under the lamps.",
+      "label": "Each Scion walks under the green lamps.",
       "rule": "each_scion",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "Their own face, a little older.",
+          "text": "Their own face, a little older, a little sadder.",
           "effects": [
             {
               "sanity": 5
@@ -41,7 +41,7 @@
     },
     {
       "id": "around",
-      "label": "Keep to the dark.",
+      "label": "Each Scion keeps to the dark between the lamps.",
       "rule": "each_scion",
       "tags": [
         "cautious"

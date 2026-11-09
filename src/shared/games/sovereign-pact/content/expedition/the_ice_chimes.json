@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "listen",
-      "label": "Stop and listen.",
+      "label": "Stop and listen to the chimes.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "A lullaby, and rest.",
+          "text": "A lullaby, slow and sad, and a deep rest.",
           "effects": [
             {
               "to": "party",
@@ -31,7 +31,7 @@
         },
         {
           "w": 40,
-          "text": "A song of the frozen dead.",
+          "text": "A song of the frozen dead, and it wants you to lie down and join it.",
           "effects": [
             {
               "to": "party",
@@ -55,7 +55,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Silence, and something in the cave wakes to it.",
+          "text": "Silence, sudden and total, and something in the cave wakes to it.",
           "effects": [
             {
               "encounter": {}
@@ -74,7 +74,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The chimes answer, and show the way.",
+          "text": "The chimes answer, note for note, and their song shows the way.",
           "effects": [
             {
               "skip": 1

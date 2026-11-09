@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "The frogs watch, and let you.",
+          "text": "The frogs watch with brass eyes, and let you.",
           "effects": [
             {
               "skip": 1
@@ -49,7 +49,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They croak and make a path.",
+          "text": "They croak, deep and pleased, and make a path.",
           "effects": [
             {
               "skip": 1
@@ -72,7 +72,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A long, wet way.",
+          "text": "A long, wet way, and the frogs watch the whole time.",
           "effects": [
             {
               "to": "party",

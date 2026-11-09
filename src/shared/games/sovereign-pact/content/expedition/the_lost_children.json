@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "play",
-      "label": "Play.",
+      "label": "Play their counting game.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "They are only children, lost. They show you the way out.",
+          "text": "They are only children, lost. They show you the way out, giggling.",
           "effects": [
             {
               "skip": 1
@@ -56,7 +56,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They skip a number. Something hides in that number.",
+          "text": "They skip a number, every time. Something hides in that number.",
           "effects": [
             {
               "foresee": true
@@ -67,7 +67,7 @@
     },
     {
       "id": "leave",
-      "label": "Stop your ears and walk.",
+      "label": "Stop your ears, and walk.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -75,7 +75,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The counting follows until dark.",
+          "text": "The counting follows until dark, and then it is counting you.",
           "effects": [
             {
               "to": "party",

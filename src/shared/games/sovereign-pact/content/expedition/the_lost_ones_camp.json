@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Their last days, and where they went.",
+          "text": "Their last days, and where they went, and what they heard at night.",
           "effects": [
             {
               "skip": 1
@@ -44,7 +44,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Fresh enough.",
+          "text": "Fresh enough. They might still be alive.",
           "effects": [
             {
               "skip": 1
@@ -66,7 +66,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The fire takes, and the night is quiet.",
+          "text": "The fire takes, and the night is quiet, and nothing comes. Nothing came for them either, at first.",
           "effects": [
             {
               "to": "party",

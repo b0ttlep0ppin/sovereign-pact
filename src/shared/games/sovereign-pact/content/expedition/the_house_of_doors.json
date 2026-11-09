@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "The right street.",
+          "text": "The right street, under the right sky.",
           "effects": [
             {
               "skip": 1
@@ -30,7 +30,7 @@
         },
         {
           "w": 30,
-          "text": "The wrong street, and the wrong crowd.",
+          "text": "The wrong street, and the wrong crowd, and they have been waiting.",
           "effects": [
             {
               "encounter": {
@@ -51,7 +51,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Behind one, a merchant's vault.",
+          "text": "Behind one, a merchant's vault. Behind the others, things you do not talk about.",
           "effects": [
             {
               "resources": {
@@ -68,7 +68,7 @@
     },
     {
       "id": "slow",
-      "label": "The slowest keeps a door propped, so you can come back.",
+      "label": "The slowest props a door open, so you can come back.",
       "rule": "scion:lowest:speed|leader",
       "tags": [
         "cautious"
@@ -76,7 +76,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A way back, if you need it.",
+          "text": "A way back, if you need it, and it feels like a hand on the shoulder.",
           "effects": [
             {
               "to": "party",

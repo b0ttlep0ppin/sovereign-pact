@@ -35,7 +35,7 @@
         },
         {
           "w": 40,
-          "text": "One night, and you come out a week later.",
+          "text": "One night, and you come out a week later, and something of the music stayed in you.",
           "effects": [
             {
               "to": "party",
@@ -52,7 +52,7 @@
     },
     {
       "id": "gift",
-      "label": "Leave a gift at the door and go on.",
+      "label": "Leave a gift at the door, and go on.",
       "rule": "leader",
       "tags": [
         "kind"
@@ -60,7 +60,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The small figure takes it gravely and gives one back.",
+          "text": "The small figure takes it gravely, and gives one back with too many teeth.",
           "effects": [
             {
               "resources": {
@@ -79,7 +79,7 @@
     },
     {
       "id": "refuse",
-      "label": "Refuse politely.",
+      "label": "Refuse, politely.",
       "rule": "leader",
       "tags": [
         "cautious"

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "cure",
-      "label": "The most hurt takes the cure.",
+      "label": "The most hurt takes her cure.",
       "rule": "scion:injured:any|scion:lowest:sanity",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It works, and she smiles at the hair as if it were gold.",
+          "text": "It works, and she strokes the lock of hair as if it were gold, and puts it somewhere safe.",
           "effects": [
             {
               "mend": true
@@ -46,7 +46,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A good potion.",
+          "text": "A good potion, foul-tasting and strong.",
           "effects": [
             {
               "resources": {

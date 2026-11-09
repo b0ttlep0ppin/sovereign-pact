@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He says three words, and they help.",
+          "text": "He says three words, and they help, and they will not say what they were.",
           "effects": [
             {
               "growth": {
@@ -47,7 +47,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A small good thing.",
+          "text": "A small good thing, added to the mouldering pile.",
           "effects": [
             {
               "to": "party",
@@ -59,7 +59,7 @@
     },
     {
       "id": "test",
-      "label": "The proudest climbs to test him.",
+      "label": "The proudest climbs up to test him.",
       "rule": "scion:highest:might|leader",
       "tags": [
         "bold"
@@ -67,7 +67,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He sends them down humbled.",
+          "text": "He sends them down humbled, and very quiet, and they do not talk about what he said.",
           "effects": [
             {
               "sanity": -10

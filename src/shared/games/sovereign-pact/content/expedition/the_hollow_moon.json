@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "enter",
-      "label": "Climb up and go in.",
+      "label": "Climb up and go into the moon.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "A room of silver dust, and a gift on a table.",
+          "text": "A room of silver dust, and a gift laid out on a table, and the wind moaning.",
           "effects": [
             {
               "item": {
@@ -36,7 +36,7 @@
         },
         {
           "w": 50,
-          "text": "A room of silver dust, and its keeper.",
+          "text": "A room of silver dust, and its keeper, who is very lonely and very hungry.",
           "effects": [
             {
               "encounter": {
@@ -57,7 +57,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Something knocks back, and the moon drifts higher.",
+          "text": "Something knocks back, slowly, and the moon drifts higher, out of reach.",
           "effects": [
             {
               "score": {
@@ -81,7 +81,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It follows for a while.",
+          "text": "It follows for a while, low and close, moaning.",
           "effects": [
             {
               "to": "party",

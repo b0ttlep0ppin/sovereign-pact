@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "way",
-      "label": "Ask the way.",
+      "label": "Ask him the way.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He draws a map.",
+          "text": "He wipes the slate for the first time in forty years, and draws a map.",
           "effects": [
             {
               "skip": 1
@@ -40,7 +40,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He writes one word, and weeps.",
+          "text": "He writes one word, and weeps, and will not wipe it away.",
           "effects": [
             {
               "foresee": true
@@ -67,7 +67,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He touches each brow.",
+          "text": "He touches each brow with a chalky thumb, and the dust stays all day.",
           "effects": [
             {
               "to": "party",

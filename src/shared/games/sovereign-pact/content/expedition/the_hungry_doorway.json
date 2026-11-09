@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "They come back with their arms full.",
+          "text": "They come back with their arms full, and frost in their hair, and will not say what they saw.",
           "effects": [
             {
               "item": {
@@ -35,7 +35,7 @@
         },
         {
           "w": 50,
-          "text": "They come back with their eyes wrong.",
+          "text": "They come back with their eyes wrong, and something of the night side clinging to them.",
           "effects": [
             {
               "sanity": -25
@@ -49,7 +49,7 @@
     },
     {
       "id": "heavy",
-      "label": "The most armored goes first.",
+      "label": "The most armored goes through first.",
       "rule": "scion:heaviest_gear",
       "tags": [
         "bold"
@@ -57,7 +57,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Whatever is on the other side cannot get through all that iron.",
+          "text": "Whatever is on the other side cannot get through all that iron, though it tries, and the dents prove it.",
           "effects": [
             {
               "xp": 120
@@ -72,7 +72,7 @@
     },
     {
       "id": "close",
-      "label": "Close the door.",
+      "label": "Close the door on the night.",
       "rule": "vote",
       "tags": [
         "cautious"

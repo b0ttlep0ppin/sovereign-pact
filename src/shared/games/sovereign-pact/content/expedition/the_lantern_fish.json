@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "follow",
-      "label": "Follow the light.",
+      "label": "Follow its warm light.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -32,7 +32,7 @@
         },
         {
           "w": 60,
-          "text": "It leads you somewhere, and turns away.",
+          "text": "It leads you a long way, and then turns away, uninterested.",
           "effects": [
             {
               "skip": 2
@@ -51,7 +51,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Its eye passes very close.",
+          "text": "Its blind eye passes very close, big as a door.",
           "effects": [
             {
               "to": "party",
@@ -63,7 +63,7 @@
     },
     {
       "id": "lure",
-      "label": "The cleverest lures it with a lamp, and cuts off its light.",
+      "label": "The cleverest lures it with a lamp and cuts off its light.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -71,7 +71,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A lantern that never goes out.",
+          "text": "A lantern that never goes out, and a fish that wants it back.",
           "effects": [
             {
               "item": {

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "look",
-      "label": "The bravest looks back.",
+      "label": "The bravest looks back at the eye.",
       "rule": "scion:trait:brave|scion:highest:resilience",
       "tags": [
         "bold"
@@ -35,7 +35,7 @@
         },
         {
           "w": 50,
-          "text": "It does not blink.",
+          "text": "It does not blink. It never will. They can still feel it.",
           "effects": [
             {
               "sanity": -25
@@ -54,7 +54,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "You walk blind for a mile.",
+          "text": "You walk blind for a mile, and feel it watching every step.",
           "effects": [
             {
               "to": "party",

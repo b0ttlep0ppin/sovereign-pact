@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "shout",
-      "label": "Shout your names back into it.",
+      "label": "Shout your names back into the wind.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The wind takes them and goes quiet, satisfied.",
+          "text": "The wind takes them and goes quiet, satisfied. It will keep them.",
           "effects": [
             {
               "to": "party",
@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A name from the founding of your Houses, and what became of it.",
+          "text": "A name from the founding of your Houses, and what became of it, and it is not a good story.",
           "effects": [
             {
               "score": {
@@ -69,7 +69,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It howls at your backs all the way down.",
+          "text": "It howls your names at your backs all the way down.",
           "effects": [
             {
               "to": "party",

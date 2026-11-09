@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "wound",
-      "label": "The most wounded accepts.",
+      "label": "The most wounded lets her freeze the wound.",
       "rule": "scion:injured:any|scion:lowest:resilience",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It stops hurting. It stops feeling.",
+          "text": "It stops hurting. It stops feeling. It stops.",
           "effects": [
             {
               "mend": true
@@ -35,7 +35,7 @@
     },
     {
       "id": "refuse",
-      "label": "Refuse.",
+      "label": "Refuse her cold kiss.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -64,7 +64,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "She gives a charm against cold.",
+          "text": "She smiles with blue lips, and gives a charm against the cold.",
           "effects": [
             {
               "to": "party",

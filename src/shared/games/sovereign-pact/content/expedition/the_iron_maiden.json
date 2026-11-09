@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "The spikes close and do not quite meet. They step out harder.",
+          "text": "The spikes close and do not quite meet. They step out harder, and bleeding.",
           "effects": [
             {
               "stat": {
@@ -50,7 +50,7 @@
     },
     {
       "id": "scarred",
-      "label": "The most battle-scarred knows the trick: wedge the lid with a scabbard.",
+      "label": "The most battle-scarred knows the trick: wedge the lid.",
       "rule": "scion:injured:any|scion:highest:resilience",
       "tags": [
         "clever"
@@ -58,7 +58,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They wedge the lid with a scabbard and pry out the iron.",
+          "text": "They wedge the lid with a scabbard and pry out the iron, and the voice inside goes very quiet.",
           "effects": [
             {
               "resources": {
@@ -74,7 +74,7 @@
     },
     {
       "id": "leave",
-      "label": "Close the lid and walk on.",
+      "label": "Close the lid, and walk on.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -82,7 +82,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The voice keeps calling all afternoon.",
+          "text": "The voice keeps calling all afternoon, warm and patient, through the iron.",
           "effects": [
             {
               "to": "party",

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "enter",
-      "label": "The leader goes inside.",
+      "label": "The leader steps into the house of mirrors.",
       "rule": "leader",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "They see what they could become, and it is good.",
+          "text": "They see what they could become, and it is good, and they carry it out with them.",
           "effects": [
             {
               "growth": {
@@ -35,7 +35,7 @@
         },
         {
           "w": 50,
-          "text": "They see what they will become.",
+          "text": "They see what they will become, and the mirror does not let them look away.",
           "effects": [
             {
               "sanity": -25
@@ -54,7 +54,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Seven years of bad luck, the old saying goes.",
+          "text": "Seven years of bad luck, the old saying goes, and every shard keeps a face.",
           "effects": [
             {
               "to": "party",
@@ -77,7 +77,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "In the outer mirrors, the way ahead, reflected.",
+          "text": "In the outer mirrors, the way ahead, reflected, and nothing standing in it.",
           "effects": [
             {
               "skip": 1
