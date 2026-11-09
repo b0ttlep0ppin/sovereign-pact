@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "kneel",
-      "label": "The Leader kneels to the empty throne.",
+      "label": "The Leader kneels to the empty throne, as a courtier should.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The armor kneels back. The herald gives you safe passage and a sealed letter that no one can open.",
+          "text": "The armour kneels back. The herald gives you safe passage and a sealed letter that no one can open, and no one dares to burn.",
           "effects": [
             {
               "skip": 1
@@ -37,7 +37,7 @@
     },
     {
       "id": "claim",
-      "label": "The highest-ranked House claims the throne.",
+      "label": "The highest-ranked House claims the empty throne for itself.",
       "rule": "house:highest_standing",
       "tags": [
         "reckless"
@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 40,
-          "text": "The armor applauds, slowly, gauntlets clanking, and lets you take the throne's gold.",
+          "text": "The armour applauds, slowly, gauntlets clanking, and lets you take the throne's gold.",
           "effects": [
             {
               "resources": {
@@ -61,7 +61,7 @@
         },
         {
           "w": 60,
-          "text": "The armor stands, every suit, all at once.",
+          "text": "The armour stands, every suit, all at once, and draws.",
           "effects": [
             {
               "encounter": {
@@ -74,7 +74,7 @@
     },
     {
       "id": "leave",
-      "label": "Back out quietly.",
+      "label": "Back out quietly, and leave the court to its empty king.",
       "rule": "vote",
       "tags": [
         "cautious"

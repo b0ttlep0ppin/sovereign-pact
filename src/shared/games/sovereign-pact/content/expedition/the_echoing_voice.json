@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "answer",
-      "label": "The steadiest mind answers the voice.",
+      "label": "The steadiest mind answers the voice, and keeps it talking.",
       "rule": "scion:highest:sagacity|scion:highest:resilience",
       "tags": [
         "clever"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Not them. A mimic, learning. But it knows where they are, and says so, to keep you talking.",
+          "text": "Not them. A mimic, learning. But it knows where they are, and says so, to keep you talking a little longer.",
           "effects": [
             {
               "foresee": true
@@ -35,7 +35,7 @@
     },
     {
       "id": "descend",
-      "label": "Climb down to the voice.",
+      "label": "Climb down to the voice. If there is any chance it is them, you must go.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -56,7 +56,7 @@
     },
     {
       "id": "seal",
-      "label": "Roll a stone over the hole.",
+      "label": "Roll a stone over the hole. Whatever is down there does not get to use their voice.",
       "rule": "leader",
       "tags": [
         "cautious"

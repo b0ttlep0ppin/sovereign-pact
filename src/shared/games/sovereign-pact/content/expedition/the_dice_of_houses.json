@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "throw",
-      "label": "Throw the giant's dice.",
+      "label": "Throw the giant's dice, and let fate choose which House it favours.",
       "rule": "house:random",
       "tags": [
         "reckless"
@@ -32,7 +32,7 @@
         },
         {
           "w": 50,
-          "text": "They roll a long way and stop. They name a House, and its Scions feel the stones lean on them.",
+          "text": "They roll a long way and stop. They name a House, and its Scions feel the stones lean on them, heavy and cold.",
           "effects": [
             {
               "sanity": -15
@@ -43,7 +43,7 @@
     },
     {
       "id": "weigh",
-      "label": "The wisest weighs them before anyone throws.",
+      "label": "The wisest weighs them before anyone throws, suspecting a trick.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -65,7 +65,7 @@
     },
     {
       "id": "leave",
-      "label": "Leave them lying in their ring.",
+      "label": "Leave them lying in their ring. Some games are not meant for you.",
       "rule": "vote",
       "tags": [
         "cautious"

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "gather",
-      "label": "Gather scales among the embers.",
+      "label": "Gather scales among the embers, and mind where you step.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -37,7 +37,7 @@
         },
         {
           "w": 30,
-          "text": "The embers flare under your feet.",
+          "text": "The embers flare under your feet, as if the old fight still burns.",
           "effects": [
             {
               "to": "party",
@@ -49,7 +49,7 @@
     },
     {
       "id": "read",
-      "label": "The sharpest reads the battle in the ground.",
+      "label": "The sharpest reads the battle in the ground, to learn which dragon won.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -57,7 +57,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Which dragon won, and where it crawled off to heal.",
+          "text": "Which dragon won, and where it crawled off to heal. It is still there, and still healing.",
           "effects": [
             {
               "foresee": true
@@ -73,7 +73,7 @@
     },
     {
       "id": "round",
-      "label": "Go round the field.",
+      "label": "Go round the field, rather than walk where dragons died.",
       "rule": "leader",
       "tags": [
         "cautious"

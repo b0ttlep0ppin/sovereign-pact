@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "quiet",
-      "label": "Walk through on tiptoe.",
+      "label": "Walk through on tiptoe, and do not wake the crystals.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -43,7 +43,7 @@
     },
     {
       "id": "mine",
-      "label": "Break off a crystal.",
+      "label": "Break off a crystal. Something this beautiful will fetch a fine price.",
       "rule": "leader",
       "tags": [
         "bold"
@@ -51,7 +51,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It shrieks, a hundredfold, and something deep in the cave answers.",
+          "text": "It shrieks, a hundredfold, and something deep in the cave answers, and it is coming.",
           "effects": [
             {
               "resources": {
@@ -67,7 +67,7 @@
     },
     {
       "id": "sing",
-      "label": "The steadiest voice sings to the crystals.",
+      "label": "The steadiest voice sings to the crystals, hoping they will sing back.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -75,7 +75,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They sing back, softly, and their song shows the way through.",
+          "text": "They sing back, softly, and their song shows the way through the dark.",
           "effects": [
             {
               "skip": 1
@@ -86,7 +86,7 @@
     },
     {
       "id": "one_note",
-      "label": "The Minstrel sings one note to the crystals.",
+      "label": "The Minstrel sings one note to the crystals, pure and clear, and lets the cave answer.",
       "rule": "scion:job:minstrel",
       "only": true,
       "tags": [

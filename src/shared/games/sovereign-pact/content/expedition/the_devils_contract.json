@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "tear",
-      "label": "Tear the contract in half.",
+      "label": "Tear the contract in half, and trust the others will do the same.",
       "rule": "secret",
       "tags": [
         "kind"
@@ -37,7 +37,7 @@
         },
         {
           "w": 100,
-          "text": "Somebody signed. You feel the bane land on you in the night, like a cold hand on the chest.",
+          "text": "Somebody signed. You feel the bane land on you in the night, like a cold hand on the chest, and you wonder who.",
           "effects": [
             {
               "sanity": -15
@@ -51,7 +51,7 @@
     },
     {
       "id": "sign",
-      "label": "Sign it, in your own hand.",
+      "label": "Sign it, in your own hand. A boon is a boon, and rivals are rivals.",
       "rule": "secret",
       "tags": [
         "cruel"
@@ -59,7 +59,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Only you signed. The boon is real, and warm, and the devil smiles as it folds the paper away.",
+          "text": "Only you signed. The boon is real, and warm, and the devil smiles as it folds the paper away. It will keep the paper forever.",
           "effects": [
             {
               "resources": {

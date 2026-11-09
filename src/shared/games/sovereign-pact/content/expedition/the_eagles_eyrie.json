@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "climb",
-      "label": "The quickest climbs to the nest.",
+      "label": "The quickest climbs to the nest, to see the land as the eagle does.",
       "rule": "scion:highest:speed",
       "tags": [
         "bold"
@@ -33,7 +33,7 @@
         },
         {
           "w": 40,
-          "text": "The eagle comes home, and it is very large, and very angry.",
+          "text": "The eagle comes home, and it is very large, and very angry, and it goes for the eyes.",
           "effects": [
             {
               "durability": -25,
@@ -45,7 +45,7 @@
     },
     {
       "id": "eggs",
-      "label": "Take an egg to sell.",
+      "label": "Take an egg to sell, while the eagle is away hunting.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -53,7 +53,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A fine price, and the eagle hunts you all the next day.",
+          "text": "A fine price, and the eagle hunts you all the next day, screaming from the sky.",
           "effects": [
             {
               "resources": {
@@ -71,7 +71,7 @@
     },
     {
       "id": "pass",
-      "label": "Pass under the crag quietly.",
+      "label": "Pass under the crag quietly, and leave the eagle to its bones.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -79,7 +79,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A feather drifts down, long as an arm. You keep it.",
+          "text": "A feather drifts down, long as an arm. You keep it, and it stays warm.",
           "effects": [
             {
               "to": "party",

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "crack",
-      "label": "The one carrying least squeezes through and drops a rope.",
+      "label": "The one carrying least squeezes through the crack and drops a rope for the rest.",
       "rule": "scion:most_open_slots",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 80,
-          "text": "They make it, and the rope holds.",
+          "text": "They make it, and the rope holds, and the rest follow.",
           "effects": [
             {
               "skip": 1
@@ -42,7 +42,7 @@
     },
     {
       "id": "climb",
-      "label": "The strongest climbs down the rubble.",
+      "label": "The strongest climbs down the rubble, trusting their grip.",
       "rule": "scion:highest:might",
       "tags": [
         "reckless"
@@ -62,7 +62,7 @@
         },
         {
           "w": 40,
-          "text": "The stone gives way under their hand.",
+          "text": "The stone gives way under their hand, and the arm takes the fall.",
           "effects": [
             {
               "injury": "arms"
@@ -73,7 +73,7 @@
     },
     {
       "id": "round",
-      "label": "Take the long way round, through the tunnels.",
+      "label": "Take the long way round, through the tunnels, and hope whatever lives there is asleep.",
       "rule": "vote",
       "tags": [
         "cautious"

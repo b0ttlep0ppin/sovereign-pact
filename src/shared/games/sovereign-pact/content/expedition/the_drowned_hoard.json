@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "share",
-      "label": "Split it fairly.",
+      "label": "Split it fairly, as you agreed.",
       "rule": "secret",
       "tags": [
         "kind"
@@ -54,7 +54,7 @@
     },
     {
       "id": "grab",
-      "label": "Dive early, and take the lot.",
+      "label": "Dive early in the night, and take the lot for your House.",
       "rule": "secret",
       "tags": [
         "cruel"
@@ -62,7 +62,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Nobody else thought of it. You come up heavy, and grinning, and cold.",
+          "text": "Nobody else thought of it. You come up heavy, and grinning, and very cold.",
           "effects": [
             {
               "resources": {
@@ -81,7 +81,7 @@
         },
         {
           "w": 100,
-          "text": "Others had the same idea. There is a fight under the water, in the dark, with knives.",
+          "text": "Others had the same idea. There is a fight under the water, in the dark, with knives, and nobody wins.",
           "effects": [
             {
               "resources": {

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "sword",
-      "label": "The strongest cuts the sword out of the ice.",
+      "label": "The strongest cuts the sword out of the ice, whatever it takes.",
       "rule": "scion:highest:might",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It takes all day and all your warmth. It is a very fine sword.",
+          "text": "It takes all day and all your warmth. It is a very fine sword, and very cold to hold.",
           "effects": [
             {
               "item": {
@@ -38,7 +38,7 @@
     },
     {
       "id": "man",
-      "label": "The wisest thaws the frozen man.",
+      "label": "The wisest thaws the frozen man, hoping he can still be saved.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "kind"
@@ -46,7 +46,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "He thaws, and gasps, and thanks you, and tells you where he was going.",
+          "text": "He thaws, and gasps, and thanks you, and tells you where he was going, and why he never got there.",
           "effects": [
             {
               "skip": 1
@@ -71,7 +71,7 @@
     },
     {
       "id": "door",
-      "label": "Open the door set in nothing.",
+      "label": "Open the door set in nothing, and see where it leads.",
       "rule": "leader",
       "tags": [
         "reckless"
@@ -79,7 +79,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It goes somewhere colder, and something there was keeping house.",
+          "text": "It goes somewhere colder, and something there was keeping house, and does not like visitors.",
           "effects": [
             {
               "fork": {

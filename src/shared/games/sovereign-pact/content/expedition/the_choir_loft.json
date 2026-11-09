@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "sing",
-      "label": "The steadiest voice sings the sixth part.",
+      "label": "The steadiest voice sings the sixth part, and gives the hymn its ending at last.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The hymn completes at last, and the empty air sighs, and the dust settles.",
+          "text": "The hymn completes at last, and the empty air sighs, and the dust settles. Something that has waited a very long time can rest.",
           "effects": [
             {
               "to": "party",
@@ -36,7 +36,7 @@
     },
     {
       "id": "listen",
-      "label": "Listen from below.",
+      "label": "Listen from below, and leave the gap to whoever it belongs to.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -44,7 +44,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Beautiful and sad, and always that gap, waiting.",
+          "text": "Beautiful and sad, and always that gap, waiting for someone who never came.",
           "effects": [
             {
               "to": "party",
@@ -56,7 +56,7 @@
     },
     {
       "id": "silence",
-      "label": "Silence them.",
+      "label": "Silence them. The dead should not sing.",
       "rule": "leader",
       "tags": [
         "cruel"

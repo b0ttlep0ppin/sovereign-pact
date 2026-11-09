@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "pay",
-      "label": "Pay the beggar lord for a secret.",
+      "label": "Pay the beggar lord for a secret. Nobody hears more than those nobody sees.",
       "rule": "vote",
       "tags": [
         "clever"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A rival House's weakness, whispered through rotten teeth.",
+          "text": "A rival House's weakness, whispered through rotten teeth. It is worth every coin.",
           "effects": [
             {
               "resources": {
@@ -39,7 +39,7 @@
     },
     {
       "id": "kind",
-      "label": "The kindest shares their food with his court.",
+      "label": "The kindest shares their food with his court, and asks for nothing in return.",
       "rule": "scion:most_healing|scion:fewest_kills",
       "tags": [
         "kind"
@@ -60,7 +60,7 @@
     },
     {
       "id": "threaten",
-      "label": "Threaten him on his own heap.",
+      "label": "Threaten him on his own heap, and take what he knows by force.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -68,7 +68,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Every beggar in the city turns, and there are a great many beggars.",
+          "text": "Every beggar in the city turns, and there are a great many beggars, and they have nothing to lose.",
           "effects": [
             {
               "encounter": {

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "pan",
-      "label": "Pan the bitter creek.",
+      "label": "Pan the bitter creek, and never mind the green hands.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A good haul, and green hands for a week.",
+          "text": "A good haul, and green hands for a week, and a bitter taste that will not leave.",
           "effects": [
             {
               "resources": {
@@ -35,7 +35,7 @@
     },
     {
       "id": "dam",
-      "label": "The strongest dams it to dig the bed.",
+      "label": "The strongest dams it to dig the bed, and takes everything it holds.",
       "rule": "scion:highest:might",
       "tags": [
         "bold"
@@ -43,7 +43,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A great haul, and the village below runs dry, and curses your name.",
+          "text": "A great haul, and the village below runs dry, and curses your name for a generation.",
           "effects": [
             {
               "resources": {
@@ -61,7 +61,7 @@
     },
     {
       "id": "trace",
-      "label": "Trace the creek to its source.",
+      "label": "Trace the creek to its source, where the copper runs thickest.",
       "rule": "leader",
       "tags": [
         "reckless"
@@ -69,7 +69,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A rich vein, and something guarding it.",
+          "text": "A rich vein, and something guarding it that has grown green and bitter too.",
           "effects": [
             {
               "encounter": {}

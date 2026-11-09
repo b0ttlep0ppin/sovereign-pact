@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "confess",
-      "label": "Each Scion steps behind the curtain and confesses.",
+      "label": "Each Scion steps behind the curtain and confesses, hoping to be unburdened.",
       "rule": "each_scion",
       "tags": [
         "kind"
@@ -30,7 +30,7 @@
         },
         {
           "w": 30,
-          "text": "The voice listens, and thanks them, and tells it to someone else.",
+          "text": "The voice listens, and thanks them, and tells it to someone else. They hear it being retold, faintly, as they leave.",
           "effects": [
             {
               "sanity": -5
@@ -41,7 +41,7 @@
     },
     {
       "id": "listen",
-      "label": "Each Scion listens to the others' sins instead.",
+      "label": "Each Scion listens to the others' sins instead, and keeps their own counsel.",
       "rule": "each_scion",
       "tags": [
         "clever"
@@ -49,7 +49,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Other people's sins, whispered through the curtain, and useful ones.",
+          "text": "Other people's sins, whispered through the curtain, and useful ones to know.",
           "effects": [
             {
               "xp": 30

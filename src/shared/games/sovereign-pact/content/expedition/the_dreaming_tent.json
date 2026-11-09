@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "sleep",
-      "label": "The most troubled lies down in the tent.",
+      "label": "The most troubled lies down in the tent, longing for the peace it promises.",
       "rule": "scion:lowest:sanity",
       "tags": [
         "kind"
@@ -30,7 +30,7 @@
         },
         {
           "w": 40,
-          "text": "The dream is very, very clear, and it comes back every night after.",
+          "text": "The dream is very, very clear, and it comes back every night after, and it is not gentle.",
           "effects": [
             {
               "sanity": -10
@@ -44,7 +44,7 @@
     },
     {
       "id": "steal",
-      "label": "Take the silk.",
+      "label": "Take the silk. Whoever pitched it is not coming back for it.",
       "rule": "leader",
       "tags": [
         "clever"
@@ -65,7 +65,7 @@
     },
     {
       "id": "burn",
-      "label": "Burn it before anyone gets ideas.",
+      "label": "Burn it before anyone gets ideas. Nothing that smells of home belongs out here.",
       "rule": "vote",
       "tags": [
         "cautious"

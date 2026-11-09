@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "pay",
-      "label": "Pay their toll in fish and gold.",
+      "label": "Pay their toll in fish and gold, and keep your fingers inside the boat.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They sink away, one by one, cold fingers sliding off the gunwales.",
+          "text": "They sink away, one by one, cold fingers sliding off the gunwales, and you breathe again.",
           "effects": [
             {
               "resources": {
@@ -34,7 +34,7 @@
     },
     {
       "id": "fight",
-      "label": "Fight them off the boat.",
+      "label": "Fight them off the boat. No toll for things with mouths like that.",
       "rule": "leader",
       "tags": [
         "bold"
@@ -42,7 +42,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "In the water, where they are strongest, and there are more below.",
+          "text": "In the water, where they are strongest, and there are many more below.",
           "effects": [
             {
               "encounter": {
@@ -55,7 +55,7 @@
     },
     {
       "id": "talk",
-      "label": "The shrewdest talks them into guiding you.",
+      "label": "The shrewdest talks them into guiding you through the reeds instead.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"

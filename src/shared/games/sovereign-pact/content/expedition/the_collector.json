@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "tell",
-      "label": "The most scarred tells him the story.",
+      "label": "The most scarred tells him the story, for a price, and tries not to look at the jars.",
       "rule": "scion:injured:any|scion:random",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He pays in old gold and writes every word down, and asks to see the scar, and touches it.",
+          "text": "He pays in old gold and writes every word down, and asks to see the scar, and touches it, gently, lovingly.",
           "effects": [
             {
               "resources": {
@@ -37,7 +37,7 @@
     },
     {
       "id": "lie",
-      "label": "The best liar tells a better story.",
+      "label": "The best liar tells a better story than the truth, and keeps the real one hidden.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"
@@ -63,7 +63,7 @@
     },
     {
       "id": "refuse",
-      "label": "Refuse him.",
+      "label": "Refuse him. Your scars are your own, and not for any collection.",
       "rule": "vote",
       "tags": [
         "cautious"

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "arm",
-      "label": "The one with the hurt arm strikes the anvil.",
+      "label": "The one with the hurt arm strikes the anvil, and is honest about the blow.",
       "rule": "scion:injured:arms|scion:lowest:might",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 75,
-          "text": "The ring of it goes up the bone like cold fire. The arm is whole.",
+          "text": "The ring of it goes up the bone like cold fire. The arm is whole, and the ghost nods.",
           "effects": [
             {
               "mend": true
@@ -33,7 +33,7 @@
         },
         {
           "w": 25,
-          "text": "The anvil rings, and the arm goes numb, and stays a little numb.",
+          "text": "The anvil rings, and the arm goes numb, and stays a little numb, for something in the blow was not honest.",
           "effects": [
             {
               "stat": {
@@ -46,7 +46,7 @@
     },
     {
       "id": "forge",
-      "label": "The strongest works the anvil for the ghost.",
+      "label": "The strongest works the anvil for the ghost, so that it may see one more blade made.",
       "rule": "scion:highest:might",
       "tags": [
         "clever"
@@ -72,7 +72,7 @@
     },
     {
       "id": "take",
-      "label": "Take the anvil for the House.",
+      "label": "Take the anvil for the House. A ghost cannot carry it, after all.",
       "rule": "vote",
       "tags": [
         "cruel"
@@ -80,7 +80,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Heavy as sin, and the ghost follows it, and stands behind whoever carries it.",
+          "text": "Heavy as sin, and the ghost follows it, and stands behind whoever carries it, watching.",
           "effects": [
             {
               "resources": {

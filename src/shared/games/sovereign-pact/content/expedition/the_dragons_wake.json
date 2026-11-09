@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "mourn",
-      "label": "Mourn with them, at a distance.",
+      "label": "Mourn with them at a distance, and share in a grief older than your Houses.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A great dragon notices you mourning, and bows its head to you, once.",
+          "text": "A great dragon notices you mourning, and bows its head to you, once. You will never forget it.",
           "effects": [
             {
               "to": "party",
@@ -38,7 +38,7 @@
     },
     {
       "id": "scale",
-      "label": "The quietest steals a fallen scale.",
+      "label": "The quietest steals a fallen scale while the dragons grieve.",
       "rule": "scion:highest:guile|scion:highest:speed",
       "tags": [
         "reckless"
@@ -57,7 +57,7 @@
         },
         {
           "w": 40,
-          "text": "Seen. The song stops.",
+          "text": "Seen. The song stops, and every head turns.",
           "effects": [
             {
               "encounter": {
@@ -70,7 +70,7 @@
     },
     {
       "id": "listen",
-      "label": "The wisest listens to the song.",
+      "label": "The wisest listens to the song, hoping to understand what it tells.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -78,7 +78,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The song is a history, older than the Houses, and it names the End Ruler.",
+          "text": "The song is a history, older than the Houses, and it names the End Ruler. The name stays with them like a burn.",
           "effects": [
             {
               "score": {

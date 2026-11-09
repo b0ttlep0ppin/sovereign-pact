@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "follow",
-      "label": "Follow the bare footprints.",
+      "label": "Follow the bare footprints, and learn where they all went.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "To a square where the faceless dance, barefoot and silent, and they let you watch.",
+          "text": "To a square where the faceless dance, barefoot and silent, and they let you watch. They do not let you forget.",
           "effects": [
             {
               "foresee": true
@@ -34,7 +34,7 @@
         },
         {
           "w": 40,
-          "text": "To where they went.",
+          "text": "To where they went, and what took them there.",
           "effects": [
             {
               "encounter": {}
@@ -45,7 +45,7 @@
     },
     {
       "id": "search",
-      "label": "The shrewdest searches the empty houses.",
+      "label": "The shrewdest searches the empty houses, while their owners are away.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"
@@ -66,7 +66,7 @@
     },
     {
       "id": "keep",
-      "label": "Keep your own shoes on, and keep moving.",
+      "label": "Keep your own shoes on, and keep moving, whatever your feet want.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -74,7 +74,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Your feet ache to be bare all day.",
+          "text": "Your feet ache to be bare all day, and some of you catch yourselves unlacing your boots.",
           "effects": [
             {
               "to": "party",

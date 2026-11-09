@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "play",
-      "label": "The wisest sits down to play for their life.",
+      "label": "The wisest sits down to play for their life, against a box already full of pieces.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 45,
-          "text": "Checkmate. It bows, slowly, and the board of teeth is yours.",
+          "text": "Checkmate. It bows, slowly, and the board of teeth is yours. You do not ask whose teeth.",
           "effects": [
             {
               "score": {
@@ -37,7 +37,7 @@
         },
         {
           "w": 55,
-          "text": "Checkmate. It reaches across the board and takes a little of them, and puts it in the box.",
+          "text": "Checkmate. It reaches across the board and takes a little of them, and puts it in the box with the rest.",
           "effects": [
             {
               "sanity": -20
@@ -53,7 +53,7 @@
     },
     {
       "id": "cheat",
-      "label": "The craftiest plays, and cheats.",
+      "label": "The craftiest plays, and cheats. It is only fair, against a thing like that.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"
@@ -74,7 +74,7 @@
     },
     {
       "id": "refuse",
-      "label": "Refuse its game.",
+      "label": "Refuse its game. No board is worth a place in that box.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -93,7 +93,7 @@
     },
     {
       "id": "see_the_trick",
-      "label": "The Tinkerer studies how the pieces move.",
+      "label": "The Tinkerer studies how the pieces move, certain there is a trick to them.",
       "rule": "scion:job:tinkerer",
       "only": true,
       "tags": [

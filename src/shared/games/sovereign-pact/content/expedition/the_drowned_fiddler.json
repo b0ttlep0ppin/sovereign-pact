@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "dance",
-      "label": "Dance with the reeds.",
+      "label": "Dance with the reeds, and let the jig take you.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -31,7 +31,7 @@
         },
         {
           "w": 40,
-          "text": "You cannot stop. Your feet will not stop. The fiddler smiles with blue lips.",
+          "text": "You cannot stop. Your feet will not stop. The fiddler smiles with blue lips, and plays faster.",
           "effects": [
             {
               "to": "party",
@@ -47,7 +47,7 @@
     },
     {
       "id": "request",
-      "label": "The best talker asks him for a sad song.",
+      "label": "The best talker asks him for a sad song instead, before the dancing takes hold.",
       "rule": "scion:highest:guile",
       "tags": [
         "kind"
@@ -55,7 +55,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He plays it, and the marsh weeps, and the reeds lie still, and you pass in peace.",
+          "text": "He plays it, and the marsh weeps, and the reeds lie still, and you pass in peace. He is still weeping when you look back.",
           "effects": [
             {
               "skip": 1
@@ -70,7 +70,7 @@
     },
     {
       "id": "stop",
-      "label": "Stop your ears and go round.",
+      "label": "Stop your ears and go round, before your feet betray you.",
       "rule": "leader",
       "tags": [
         "cautious"

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "tide",
-      "label": "The one with the sea in them answers her.",
+      "label": "The one with the sea in their blood answers her, as kin to kin.",
       "rule": "scion:trait:tidebound|scion:lowest:sanity",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "She knows their blood, and kisses their brow, and gives them a pearl the size of an eye.",
+          "text": "She knows their blood, and kisses their brow, and gives them a pearl the size of an eye. It watches them.",
           "effects": [
             {
               "resources": {
@@ -37,7 +37,7 @@
     },
     {
       "id": "lie",
-      "label": "The best liar lies to her.",
+      "label": "The best liar lies to her, and hopes the sea does not know the truth.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"
@@ -67,7 +67,7 @@
     },
     {
       "id": "strike",
-      "label": "Strike first.",
+      "label": "Strike first, before she can ask again.",
       "rule": "leader",
       "tags": [
         "bold"
@@ -75,7 +75,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The water boils with eels.",
+          "text": "The water boils with eels, and every one of them is hers.",
           "effects": [
             {
               "encounter": {}

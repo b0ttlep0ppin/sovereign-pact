@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "pay",
-      "label": "Pay him for the Court's secrets.",
+      "label": "Pay him for the Court's secrets, and hope he is as desperate as he looks.",
       "rule": "vote",
       "tags": [
         "clever"
@@ -35,7 +35,7 @@
         },
         {
           "w": 30,
-          "text": "He takes the money, and runs, and laughs.",
+          "text": "He takes the money, and runs, and laughs, and the laugh is the most honest thing about him.",
           "effects": [
             {
               "resources": {
@@ -48,7 +48,7 @@
     },
     {
       "id": "feed",
-      "label": "The kindest gives him bread instead.",
+      "label": "The kindest gives him bread instead, as a priest once might have done.",
       "rule": "scion:most_healing|scion:highest:sagacity",
       "tags": [
         "kind"
@@ -72,7 +72,7 @@
     },
     {
       "id": "turn",
-      "label": "Turn him over to the Court.",
+      "label": "Turn him over to the Court, and buy your passage with his hide.",
       "rule": "leader",
       "tags": [
         "cruel"
