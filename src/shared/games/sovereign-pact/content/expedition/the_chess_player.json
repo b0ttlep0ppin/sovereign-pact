@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "play",
-      "label": "The wisest plays.",
+      "label": "The wisest sits down to play for their life.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 45,
-          "text": "Checkmate. It bows, and the board is yours.",
+          "text": "Checkmate. It bows, slowly, and the board of teeth is yours.",
           "effects": [
             {
               "score": {
@@ -37,7 +37,7 @@
         },
         {
           "w": 55,
-          "text": "Checkmate. It takes a little of them.",
+          "text": "Checkmate. It reaches across the board and takes a little of them, and puts it in the box.",
           "effects": [
             {
               "sanity": -20
@@ -61,7 +61,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It sees, and laughs, and sweeps the board clean, and lets you go.",
+          "text": "It sees, and laughs, a long dry laugh, and sweeps the board clean, and lets you go.",
           "effects": [
             {
               "score": {
@@ -74,7 +74,7 @@
     },
     {
       "id": "refuse",
-      "label": "Refuse the game.",
+      "label": "Refuse its game.",
       "rule": "leader",
       "tags": [
         "cautious"

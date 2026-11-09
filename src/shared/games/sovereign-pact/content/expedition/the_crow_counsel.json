@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "slow",
-      "label": "The slowest stands before them.",
+      "label": "The slowest stands before the crows' court.",
       "rule": "scion:lowest:speed|scion:random",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "They judge the laggard worthy, and show a shortcut.",
+          "text": "They judge the laggard worthy, and the white-eyed one shows a shortcut.",
           "effects": [
             {
               "skip": 1
@@ -33,7 +33,7 @@
         },
         {
           "w": 30,
-          "text": "They judge the laggard food.",
+          "text": "They judge the laggard food, and fall on them.",
           "effects": [
             {
               "durability": -20,
@@ -48,7 +48,7 @@
     },
     {
       "id": "scatter",
-      "label": "Scatter them.",
+      "label": "Scatter their parliament.",
       "rule": "vote",
       "tags": [
         "cruel"
@@ -56,7 +56,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They come back with friends.",
+          "text": "They go, cawing outrage, and come back with friends.",
           "effects": [
             {
               "encounter": {
@@ -77,7 +77,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They caw approval, and leave you alone.",
+          "text": "They caw approval, and leave you be, and the old one keeps the coin.",
           "effects": [
             {
               "resources": {

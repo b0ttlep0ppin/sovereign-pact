@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "free",
-      "label": "Free the one.",
+      "label": "Free the one who begged.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The others curse you, and she weeps with thanks.",
+          "text": "The others curse you for stealing her penance. She weeps her thanks and runs.",
           "effects": [
             {
               "score": {
@@ -38,7 +38,7 @@
     },
     {
       "id": "respect",
-      "label": "Respect their penance.",
+      "label": "Leave them to their penance.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -58,7 +58,7 @@
     },
     {
       "id": "strong",
-      "label": "The strongest breaks all the chains.",
+      "label": "The strongest breaks every chain.",
       "rule": "scion:highest:might",
       "tags": [
         "bold"
@@ -66,7 +66,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Freed, and furious.",
+          "text": "Freed, all of them, and furious, and they turn on you.",
           "effects": [
             {
               "encounter": {}

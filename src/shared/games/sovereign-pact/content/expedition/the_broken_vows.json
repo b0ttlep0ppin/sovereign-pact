@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "gather",
-      "label": "Gather and keep them.",
+      "label": "Gather up the vows and keep them safe.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The converts jeer. The old saints are pleased.",
+          "text": "The converts jeer and throw mud. Somewhere, the old saints are pleased.",
           "effects": [
             {
               "to": "party",
@@ -46,7 +46,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Names worth knowing.",
+          "text": "Names worth knowing, and the secrets they swore off.",
           "effects": [
             {
               "score": {
@@ -59,7 +59,7 @@
     },
     {
       "id": "join",
-      "label": "Tear one of your own, to blend in.",
+      "label": "Tear one of your own vows, to blend in.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -67,7 +67,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Through the court as friends, and something inside you tears too.",
+          "text": "Through the Court as friends, smiling, and something inside each of you tears with the ribbon.",
           "effects": [
             {
               "skip": 2

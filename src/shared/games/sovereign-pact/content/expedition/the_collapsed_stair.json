@@ -30,7 +30,7 @@
         },
         {
           "w": 20,
-          "text": "They make it, mostly.",
+          "text": "They make it, mostly, and leave some skin on the stone.",
           "effects": [
             {
               "durability": -25,
@@ -42,7 +42,7 @@
     },
     {
       "id": "climb",
-      "label": "The strongest climbs down.",
+      "label": "The strongest climbs down the rubble.",
       "rule": "scion:highest:might",
       "tags": [
         "reckless"
@@ -50,7 +50,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "Down and done.",
+          "text": "Down and done, with dust in every breath.",
           "effects": [
             {
               "skip": 1
@@ -62,7 +62,7 @@
         },
         {
           "w": 40,
-          "text": "The stone gives.",
+          "text": "The stone gives way under their hand.",
           "effects": [
             {
               "injury": "arms"
@@ -73,7 +73,7 @@
     },
     {
       "id": "round",
-      "label": "Take the long way round.",
+      "label": "Take the long way round, through the tunnels.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -81,7 +81,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Longer, darker, and safe.",
+          "text": "Longer, darker, and safe, though the smell of something living stays with you.",
           "effects": [
             {
               "to": "party",

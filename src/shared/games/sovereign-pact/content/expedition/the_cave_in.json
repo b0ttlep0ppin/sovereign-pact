@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "dig",
-      "label": "Everyone digs.",
+      "label": "Everyone digs, in the dark.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Hours of it.",
+          "text": "Hours of it, hands bleeding, in the silence, with something listening ahead.",
           "effects": [
             {
               "to": "party",
@@ -38,7 +38,7 @@
     },
     {
       "id": "strong",
-      "label": "The strongest clears it.",
+      "label": "The strongest clears the rubble.",
       "rule": "scion:highest:might",
       "tags": [
         "bold"
@@ -46,7 +46,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Faster.",
+          "text": "Faster, and the stone fights them every inch.",
           "effects": [
             {
               "durability": -30,
@@ -69,7 +69,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Deeper.",
+          "text": "Deeper, into the dark, where the thing that heard is waiting.",
           "effects": [
             {
               "fork": {

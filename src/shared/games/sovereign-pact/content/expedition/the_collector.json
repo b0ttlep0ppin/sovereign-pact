@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "tell",
-      "label": "The most scarred tells it.",
+      "label": "The most scarred tells him the story.",
       "rule": "scion:injured:any|scion:random",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He pays in old gold and writes every word down.",
+          "text": "He pays in old gold and writes every word down, and asks to see the scar, and touches it.",
           "effects": [
             {
               "resources": {
@@ -37,7 +37,7 @@
     },
     {
       "id": "lie",
-      "label": "The best liar tells a better one.",
+      "label": "The best liar tells a better story.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"
@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He pays double, and knows, and does not mind.",
+          "text": "He pays double, and knows it was a lie, and does not mind. Something in a jar taps the glass.",
           "effects": [
             {
               "resources": {

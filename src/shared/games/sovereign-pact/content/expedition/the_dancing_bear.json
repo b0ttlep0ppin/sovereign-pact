@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "free",
-      "label": "The strongest breaks the chain.",
+      "label": "The strongest breaks the bear's chain.",
       "rule": "scion:highest:might",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "The bear walks off into the trees, and the showman runs the other way.",
+          "text": "The bear walks off into the trees without looking back, and the showman runs the other way.",
           "effects": [
             {
               "to": "party",
@@ -55,7 +55,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It follows you a day, and fights for you, and then goes home.",
+          "text": "It follows you a day, and fights for you like a wall, and then goes home.",
           "effects": [
             {
               "resources": {
@@ -72,7 +72,7 @@
     },
     {
       "id": "watch",
-      "label": "Watch the dance and pay the man.",
+      "label": "Watch the dance, and pay the man.",
       "rule": "vote",
       "tags": [
         "cruel"
@@ -80,7 +80,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It is a sad dance.",
+          "text": "It is a sad dance, and the bear's eyes never leave you.",
           "effects": [
             {
               "resources": {

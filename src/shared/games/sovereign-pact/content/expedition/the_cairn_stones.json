@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "add",
-      "label": "Each of you adds a stone.",
+      "label": "Each of you adds a stone for the dead.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The cairn grows, and the barrows are quieter.",
+          "text": "The cairn grows, and the barrows around you seem to settle, quieter.",
           "effects": [
             {
               "to": "party",
@@ -46,7 +46,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Bad luck.",
+          "text": "Bad luck. It is heavier than it should be, and it follows you home.",
           "effects": [
             {
               "curse": true
@@ -57,7 +57,7 @@
     },
     {
       "id": "dig",
-      "label": "The strongest digs under it.",
+      "label": "The strongest digs under the cairn.",
       "rule": "scion:highest:might",
       "tags": [
         "cruel"
@@ -65,7 +65,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "A warrior's grave goods.",
+          "text": "A warrior's grave goods, wrapped in rotten cloth.",
           "effects": [
             {
               "item": {
@@ -76,7 +76,7 @@
         },
         {
           "w": 40,
-          "text": "The warrior.",
+          "text": "The warrior, and he did not want to be remembered this way.",
           "effects": [
             {
               "encounter": {

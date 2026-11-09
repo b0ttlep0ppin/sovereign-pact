@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "free",
-      "label": "The strongest breaks the chain.",
+      "label": "The strongest breaks their chain.",
       "rule": "scion:highest:might",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "They scatter, and one leaves you something it hid.",
+          "text": "They scatter like smoke, and the one who begged leaves you something it hid.",
           "effects": [
             {
               "item": {
@@ -35,7 +35,7 @@
         },
         {
           "w": 30,
-          "text": "The imp calls its masters.",
+          "text": "The imp screams for its masters, and its masters come.",
           "effects": [
             {
               "encounter": {
@@ -56,7 +56,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It lets the one go, and keeps your gold.",
+          "text": "It lets the one go, with a sneer, and keeps your gold.",
           "effects": [
             {
               "resources": {
@@ -74,7 +74,7 @@
     },
     {
       "id": "ignore",
-      "label": "Look away.",
+      "label": "Look away, and keep walking.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -82,7 +82,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The voice follows you down.",
+          "text": "The voice follows you down, in your own House's tongue, begging.",
           "effects": [
             {
               "to": "party",

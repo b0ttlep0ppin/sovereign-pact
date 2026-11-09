@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "take",
-      "label": "Take them along.",
+      "label": "Take them along, and their secret.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They lead the way.",
+          "text": "They lead the way, jumping at every shadow.",
           "effects": [
             {
               "skip": 2
@@ -35,7 +35,7 @@
     },
     {
       "id": "turn",
-      "label": "Turn them in to their House.",
+      "label": "Hand them back to their own House.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -43,7 +43,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Their House is grateful. You are on your own.",
+          "text": "Their House is grateful. The deserters are not. You are on your own.",
           "effects": [
             {
               "accord": 2
@@ -54,7 +54,7 @@
     },
     {
       "id": "question",
-      "label": "The shrewdest gets the location and leaves them.",
+      "label": "The shrewdest gets the location, and leaves them in the ditch.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"
@@ -62,7 +62,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Enough to go on.",
+          "text": "Enough to go on, and their curses at your backs.",
           "effects": [
             {
               "skip": 1

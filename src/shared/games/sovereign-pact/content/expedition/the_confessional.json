@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "confess",
-      "label": "Each Scion confesses.",
+      "label": "Each Scion steps behind the curtain and confesses.",
       "rule": "each_scion",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "A weight lifted.",
+          "text": "A weight lifted, and the voice says nothing at all, kindly.",
           "effects": [
             {
               "sanity": 12
@@ -30,7 +30,7 @@
         },
         {
           "w": 30,
-          "text": "The voice tells it to someone.",
+          "text": "The voice listens, and thanks them, and tells it to someone else.",
           "effects": [
             {
               "sanity": -5
@@ -41,7 +41,7 @@
     },
     {
       "id": "listen",
-      "label": "Each Scion listens instead.",
+      "label": "Each Scion listens to the others' sins instead.",
       "rule": "each_scion",
       "tags": [
         "clever"
@@ -49,7 +49,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Other people's sins, and useful ones.",
+          "text": "Other people's sins, whispered through the curtain, and useful ones.",
           "effects": [
             {
               "xp": 30

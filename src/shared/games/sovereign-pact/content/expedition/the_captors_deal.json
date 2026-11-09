@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "trade",
-      "label": "Trade the toughest, who can escape later.",
+      "label": "Trade the toughest, who might escape later.",
       "rule": "scion:highest:resilience",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "It works.",
+          "text": "It works. The chief takes them, and they break their ropes in the night and come back bloody.",
           "effects": [
             {
               "skip": 2
@@ -34,7 +34,7 @@
         },
         {
           "w": 40,
-          "text": "The chief is no fool.",
+          "text": "The chief is no fool. He was counting on you trying something.",
           "effects": [
             {
               "encounter": {}
@@ -45,7 +45,7 @@
     },
     {
       "id": "fight",
-      "label": "Fight.",
+      "label": "Draw steel, ropes or no ropes.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -53,7 +53,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The bandits are many.",
+          "text": "The bandits are many, and they fight like people with nothing to lose.",
           "effects": [
             {
               "encounter": {
@@ -71,7 +71,7 @@
     },
     {
       "id": "pay",
-      "label": "Pay gold instead.",
+      "label": "Pay him in gold instead of flesh.",
       "rule": "house:highest_standing|leader",
       "tags": [
         "cautious"
@@ -79,7 +79,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Gold talks.",
+          "text": "Gold talks, and the ropes come off, and the chief counts every coin twice.",
           "effects": [
             {
               "resources": {

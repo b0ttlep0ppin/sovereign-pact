@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "mend",
-      "label": "Let him mend it.",
+      "label": "Let him mend your gear with his screaming thread.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Better than new, and it whispers.",
+          "text": "Better than new, and it whispers, very faintly, all the time.",
           "effects": [
             {
               "to": "party",
@@ -37,7 +37,7 @@
     },
     {
       "id": "haggle",
-      "label": "The shrewdest haggles.",
+      "label": "The shrewdest haggles his price down.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"
@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A good price, paid in a small lie.",
+          "text": "A good price, paid in a small lie, which he stitches in with the rest.",
           "effects": [
             {
               "to": "party",
@@ -57,7 +57,7 @@
     },
     {
       "id": "refuse",
-      "label": "Refuse.",
+      "label": "Refuse his needle.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -65,7 +65,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He is offended, and tells his friends.",
+          "text": "He is offended, and spits out his pins, and tells his friends.",
           "effects": [
             {
               "encounter": {}

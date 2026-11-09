@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "The Empress, upright. A good harvest for the House.",
+          "text": "The Empress, upright, ripe with plenty. A good harvest for the House.",
           "effects": [
             {
               "resources": {
@@ -33,7 +33,7 @@
         },
         {
           "w": 40,
-          "text": "The Empress, reversed.",
+          "text": "The Empress, reversed, and her painted eyes open.",
           "effects": [
             {
               "sanity": -10
@@ -52,7 +52,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The Hermit, and a lamp shown on the road ahead.",
+          "text": "The Hermit, and his lamp shows the road ahead, and what waits on it.",
           "effects": [
             {
               "foresee": true
@@ -63,7 +63,7 @@
     },
     {
       "id": "burn",
-      "label": "Burn the deck.",
+      "label": "Burn her deck.",
       "rule": "vote",
       "tags": [
         "cruel"
@@ -71,7 +71,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The Court will hear of it.",
+          "text": "The cards curl and scream in the fire. The Court will hear of it.",
           "effects": [
             {
               "score": {

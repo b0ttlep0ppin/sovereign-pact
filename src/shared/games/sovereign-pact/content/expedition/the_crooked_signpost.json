@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "left",
-      "label": "The quickest scouts the left way.",
+      "label": "The quickest scouts the left way home.",
       "rule": "scion:highest:speed",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "A shortcut, and a good one.",
+          "text": "A shortcut, and a good one, and no marks on the post for it.",
           "effects": [
             {
               "skip": 1
@@ -30,7 +30,7 @@
         },
         {
           "w": 40,
-          "text": "A shortcut to something hungry.",
+          "text": "A shortcut to something hungry, waiting at the end of it.",
           "effects": [
             {
               "encounter": {
@@ -43,7 +43,7 @@
     },
     {
       "id": "right",
-      "label": "The party keeps right.",
+      "label": "The party keeps right, and trusts nothing.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -51,7 +51,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The long way, and an honest one.",
+          "text": "The long way, and an honest one, and it never once says HOME.",
           "effects": [
             {
               "to": "party",

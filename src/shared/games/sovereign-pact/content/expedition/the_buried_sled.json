@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "dig",
-      "label": "Dig out the load.",
+      "label": "Dig out the frozen load.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "Iron, and furs.",
+          "text": "Iron, and thick furs that smell of the dead dogs, and keep out the cold.",
           "effects": [
             {
               "resources": {
@@ -36,7 +36,7 @@
         },
         {
           "w": 30,
-          "text": "The drift moves.",
+          "text": "The drift moves, and slides, and buries you to the chest.",
           "effects": [
             {
               "to": "party",
@@ -48,7 +48,7 @@
     },
     {
       "id": "dogs",
-      "label": "The kindest buries the dogs first.",
+      "label": "The kindest buries the frozen dogs first.",
       "rule": "scion:most_healing|scion:highest:sagacity",
       "tags": [
         "kind"
@@ -56,7 +56,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Under the last dog, the driver's purse.",
+          "text": "Under the last dog, curled against its belly, the driver's purse.",
           "effects": [
             {
               "resources": {
@@ -80,7 +80,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Toward the hills, and something followed.",
+          "text": "Toward the hills, staggering. Something followed, walking in his footprints.",
           "effects": [
             {
               "foresee": true

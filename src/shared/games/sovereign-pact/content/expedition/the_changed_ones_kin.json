@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "go",
-      "label": "The Changed among you goes to them.",
+      "label": "The Changed among you goes to their kin.",
       "rule": "scion:changed|vote",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "They are kind, in their way, and give a gift for the road.",
+          "text": "They are kind, in their way, and give a gift for the road, and hold on a little too long.",
           "effects": [
             {
               "item": {
@@ -35,7 +35,7 @@
         },
         {
           "w": 40,
-          "text": "They want them to stay.",
+          "text": "They want them to stay, and they do not ask twice.",
           "effects": [
             {
               "sanity": -20
@@ -51,7 +51,7 @@
     },
     {
       "id": "drive",
-      "label": "Drive them off.",
+      "label": "Drive them back into the mist.",
       "rule": "vote",
       "tags": [
         "cruel"
@@ -59,7 +59,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They go, hurt. The mist feels colder.",
+          "text": "They go, hurt, calling softly. The mist feels colder after.",
           "effects": [
             {
               "to": "party",
