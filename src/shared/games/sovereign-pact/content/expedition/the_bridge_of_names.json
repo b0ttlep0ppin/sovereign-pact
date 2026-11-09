@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "give",
-      "label": "Each Scion decides.",
+      "label": "Each Scion decides: carve their own name into a plank.",
       "rule": "each_scion",
       "tags": [
         "kind"
@@ -37,7 +37,7 @@
     },
     {
       "id": "lie",
-      "label": "Each Scion decides: cross on someone else's name.",
+      "label": "Each Scion decides: cross on a dead stranger's name.",
       "rule": "each_scion",
       "tags": [
         "cruel"
@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "Nobody notices the lie.",
+          "text": "Nobody notices the lie. The dead name holds.",
           "effects": [
             {
               "xp": 40
@@ -54,7 +54,7 @@
         },
         {
           "w": 40,
-          "text": "The plank under them notices.",
+          "text": "The plank under them notices, and gives way.",
           "effects": [
             {
               "durability": -20,

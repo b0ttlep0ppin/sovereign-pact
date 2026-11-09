@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "comfort",
-      "label": "The kindest sits with her.",
+      "label": "The kindest sits with her and listens.",
       "rule": "scion:most_healing|scion:highest:sagacity",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "She tells her story, and fades at dawn, at peace.",
+          "text": "She tells her story through the night, and at dawn she lifts her veil and fades, at peace at last.",
           "effects": [
             {
               "score": {
@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "She laughs, and gives them her ring.",
+          "text": "She laughs, a sound like dry leaves, and presses her ring into their hand.",
           "effects": [
             {
               "item": {
@@ -56,7 +56,7 @@
         },
         {
           "w": 50,
-          "text": "She takes them at their word.",
+          "text": "She takes them at their word. Her cold fingers close around theirs, and she does not let go.",
           "effects": [
             {
               "curse": true
@@ -75,7 +75,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "She asks if you have seen him.",
+          "text": "She asks if you have seen him, and asks again, and keeps asking, long after you are out of earshot.",
           "effects": [
             {
               "to": "party",

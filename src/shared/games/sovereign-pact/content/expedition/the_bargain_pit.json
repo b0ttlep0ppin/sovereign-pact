@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "throw",
-      "label": "Throw in a purse of gold.",
+      "label": "Throw a purse of gold into its breath.",
       "rule": "leader",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "It comes back as a heavier purse.",
+          "text": "It comes back up on a warm gust, a heavier purse, the coins slick and faintly warm.",
           "effects": [
             {
               "resources": {
@@ -32,7 +32,7 @@
         },
         {
           "w": 50,
-          "text": "It does not come back.",
+          "text": "It does not come back. Far below, something swallows.",
           "effects": [
             {
               "resources": {
@@ -45,7 +45,7 @@
     },
     {
       "id": "blood",
-      "label": "The hardiest gives blood to the pit.",
+      "label": "The hardiest bleeds into the pit.",
       "rule": "scion:highest:resilience",
       "tags": [
         "bold"
@@ -53,7 +53,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It comes back as something in the veins that was not there before.",
+          "text": "It comes back as something in the veins that was not there before, strong and hot and not entirely theirs.",
           "effects": [
             {
               "durability": -25,
@@ -73,7 +73,7 @@
     },
     {
       "id": "seal",
-      "label": "Roll a stone over it.",
+      "label": "Roll a stone over its mouth.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -81,7 +81,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The breathing stops. Somewhere a long way down, something is disappointed.",
+          "text": "The breathing stops. Somewhere a long way down, something is very disappointed in you.",
           "effects": [
             {
               "score": {

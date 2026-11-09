@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He blesses you.",
+          "text": "He blesses you with a sore-covered hand, and the light about him brightens for a moment.",
           "effects": [
             {
               "resources": {
@@ -48,7 +48,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "He is.",
+          "text": "He is. He looks at them, once, and they will never quite meet anyone's eyes again.",
           "effects": [
             {
               "score": {
@@ -62,7 +62,7 @@
         },
         {
           "w": 50,
-          "text": "He is not, but he is clever.",
+          "text": "He is not, but he is very clever, and he gives them a cut to go away.",
           "effects": [
             {
               "resources": {
@@ -83,7 +83,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A cold feeling, all day.",
+          "text": "A cold feeling settles on you, and stays all day, as if the road itself has turned its back.",
           "effects": [
             {
               "to": "party",

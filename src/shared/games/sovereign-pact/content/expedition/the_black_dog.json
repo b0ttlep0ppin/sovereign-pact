@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "face",
-      "label": "The one it looks at faces it.",
+      "label": "The one it looks at meets its red eyes.",
       "rule": "scion:random",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "It wags once, and goes. It was only looking.",
+          "text": "It wags once, slowly, and goes. It was only looking. This time.",
           "effects": [
             {
               "sanity": 5
@@ -33,7 +33,7 @@
         },
         {
           "w": 50,
-          "text": "It was not only looking.",
+          "text": "It was not only looking. It knows them now, and it will come again, at the end.",
           "effects": [
             {
               "sanity": -20
@@ -47,7 +47,7 @@
     },
     {
       "id": "feed",
-      "label": "Feed it.",
+      "label": "Feed it, and hope it leaves.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -55,7 +55,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It eats, and goes, and does not come back for anyone.",
+          "text": "It eats with a crunch of bone, and goes, and does not come back for anyone.",
           "effects": [
             {
               "to": "party",
@@ -79,7 +79,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It goes. It will be back, for someone, some day.",
+          "text": "It goes, without hurry. It will be back, for someone, some day.",
           "effects": [
             {
               "doom": 1

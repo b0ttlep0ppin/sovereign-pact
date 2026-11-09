@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "ride",
-      "label": "Ride it down.",
+      "label": "Ride the swaying cage down.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Fast, and hot.",
+          "text": "Fast, and very hot, and the imp is still grinning when you reach the bottom.",
           "effects": [
             {
               "skip": 1
@@ -44,7 +44,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They arrive later, singed and annoyed.",
+          "text": "They arrive much later, singed, limping, and furious, with stories.",
           "effects": [
             {
               "durability": -20,
@@ -67,7 +67,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Its friends below heard it land.",
+          "text": "It falls a long way, still grinning. Its friends below heard it land.",
           "effects": [
             {
               "encounter": {

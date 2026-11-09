@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "blind",
-      "label": "The poorest eye wears it.",
+      "label": "The poorest eye borrows the oak's eyes.",
       "rule": "scion:lowest:acuity|scion:random",
       "tags": [
         "clever"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "They see every root and snare in the wood.",
+          "text": "They see every root and snare in the wood, and every path through it.",
           "effects": [
             {
               "growth": {
@@ -35,7 +35,7 @@
         },
         {
           "w": 30,
-          "text": "They see what the wood sees, and it is hungry.",
+          "text": "They see what the wood sees, and the wood is hungry, and it has been looking at all of you.",
           "effects": [
             {
               "sanity": -15
@@ -46,7 +46,7 @@
     },
     {
       "id": "cut",
-      "label": "The strongest cuts it free and takes it.",
+      "label": "The strongest cuts the face out of the tree.",
       "rule": "scion:highest:might",
       "tags": [
         "cruel"
@@ -54,7 +54,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The wood screams. The mask is fine work.",
+          "text": "The wood screams, every tree at once. The mask is fine work, and its eyes stay shut.",
           "effects": [
             {
               "item": {
@@ -70,7 +70,7 @@
     },
     {
       "id": "leave",
-      "label": "Nod to it and pass.",
+      "label": "Nod to it, as to a neighbour, and pass.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -78,7 +78,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The branches part a little.",
+          "text": "The face creaks into something like a smile, and the branches part a little.",
           "effects": [
             {
               "to": "party",

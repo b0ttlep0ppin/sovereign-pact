@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "listen",
-      "label": "Listen.",
+      "label": "Stand and listen to it play.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "A lament that eases the heart.",
+          "text": "A lament that eases the heart, and makes the dark feel like home.",
           "effects": [
             {
               "to": "party",
@@ -31,7 +31,7 @@
         },
         {
           "w": 40,
-          "text": "A lament that wakes the dead.",
+          "text": "A lament that wakes the dead, and they rise up homesick and angry.",
           "effects": [
             {
               "encounter": {}
@@ -50,7 +50,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A song of binding. The barrow sleeps.",
+          "text": "A song of binding, slow and low. The barrow sleeps.",
           "effects": [
             {
               "skip": 1
@@ -74,7 +74,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Someone screams.",
+          "text": "Somebody screams, somewhere in the dark, as the spine snaps. Not one of you.",
           "effects": [
             {
               "to": "party",

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "follow",
-      "label": "Follow it.",
+      "label": "Follow the blue light.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 40,
-          "text": "It leads you through the marsh by a dry path no map shows.",
+          "text": "It leads you through the marsh by a dry path no map shows, and winks out at the end.",
           "effects": [
             {
               "skip": 1
@@ -30,7 +30,7 @@
         },
         {
           "w": 60,
-          "text": "It leads you into the deep water, and waits.",
+          "text": "It leads you into the deep water, and waits, and watches who comes to see you drown.",
           "effects": [
             {
               "to": "party",
@@ -54,7 +54,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "It is in the jar, and very angry, and very bright.",
+          "text": "It is in the jar, beating against the glass, very angry and very bright.",
           "effects": [
             {
               "resources": {
@@ -65,7 +65,7 @@
         },
         {
           "w": 50,
-          "text": "It is not in the jar.",
+          "text": "It is not in the jar. It is behind them, very close, and then it is gone, and they cannot stop shaking.",
           "effects": [
             {
               "sanity": -10
@@ -76,7 +76,7 @@
     },
     {
       "id": "ignore",
-      "label": "Keep to your own way.",
+      "label": "Keep to your own way, and ignore it.",
       "rule": "leader",
       "tags": [
         "cautious"

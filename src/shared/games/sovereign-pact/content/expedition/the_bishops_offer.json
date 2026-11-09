@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "name",
-      "label": "Name a rival.",
+      "label": "Name a rival House as the worst sinner.",
       "rule": "house:random|vote",
       "tags": [
         "cruel"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The Court will look into it.",
+          "text": "He writes it down in purple ink. The Court will look into it, he says, and smiles.",
           "effects": [
             {
               "score": {
@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Absolved.",
+          "text": "Absolved, every one of you, with a wave of a ringed hand. It feels better than it should.",
           "effects": [
             {
               "resources": {
@@ -62,7 +62,7 @@
     },
     {
       "id": "expose",
-      "label": "The wisest exposes his own sins.",
+      "label": "The wisest names his sins instead.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "bold"
@@ -70,7 +70,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He goes white, and lets you go.",
+          "text": "He goes white beneath his paint, and lets you go very quickly.",
           "effects": [
             {
               "skip": 1

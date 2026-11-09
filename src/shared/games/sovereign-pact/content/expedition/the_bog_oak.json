@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "dig",
-      "label": "Dig it out.",
+      "label": "Dig the black trunk out of the peat.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "Black timber, hard as iron.",
+          "text": "Black timber, hard as iron, heavy as guilt.",
           "effects": [
             {
               "resources": {
@@ -36,7 +36,7 @@
         },
         {
           "w": 30,
-          "text": "The bog wants it back, and you with it.",
+          "text": "The bog wants it back, and you with it, and pulls.",
           "effects": [
             {
               "to": "party",
@@ -57,7 +57,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A fine bow, and a long afternoon.",
+          "text": "A fine black bow, and a long afternoon, and the peat bubbling the whole time.",
           "effects": [
             {
               "item": {

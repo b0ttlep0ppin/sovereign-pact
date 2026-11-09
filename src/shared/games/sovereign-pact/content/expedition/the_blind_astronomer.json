@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "ask",
-      "label": "Ask him the way.",
+      "label": "Ask him the way through the dark.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He traces it on the globe.",
+          "text": "He traces it on the globe with a cracked fingernail, hole by hole, and it is true.",
           "effects": [
             {
               "skip": 1
@@ -37,7 +37,7 @@
     },
     {
       "id": "study",
-      "label": "The sharpest studies his globe.",
+      "label": "The sharpest studies his globe of holes.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A star that should not be there, coming closer.",
+          "text": "One of the holes is new: a star that should not be there, and it is coming closer.",
           "effects": [
             {
               "foresee": true
@@ -64,7 +64,7 @@
     },
     {
       "id": "globe",
-      "label": "Take the globe.",
+      "label": "Take the globe from him.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -72,7 +72,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He weeps, and the stars go wrong around you.",
+          "text": "He weeps without eyes, and the stars overhead begin to go wrong.",
           "effects": [
             {
               "item": {

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "play",
-      "label": "The leader plays honestly.",
+      "label": "The leader plays it honestly.",
       "rule": "leader",
       "tags": [
         "reckless"
@@ -32,7 +32,7 @@
         },
         {
           "w": 50,
-          "text": "Ones. It takes its winnings and a little of your nerve.",
+          "text": "Ones. It takes its winnings, and a little of your nerve along with them.",
           "effects": [
             {
               "resources": {
@@ -56,7 +56,7 @@
       "outcomes": [
         {
           "w": 65,
-          "text": "It never sees it. Or it likes to lose to a good cheat.",
+          "text": "It never sees it. Or it likes to lose to a good cheat. It is hard to tell with a skull.",
           "effects": [
             {
               "resources": {
@@ -72,7 +72,7 @@
         },
         {
           "w": 35,
-          "text": "It sees it.",
+          "text": "It sees it. Its jaw stops clicking.",
           "effects": [
             {
               "encounter": {}
@@ -83,7 +83,7 @@
     },
     {
       "id": "decline",
-      "label": "Decline the game.",
+      "label": "Decline its game.",
       "rule": "leader",
       "tags": [
         "cautious"

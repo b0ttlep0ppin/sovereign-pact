@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "use",
-      "label": "Use it.",
+      "label": "Put the bone key in the mouth.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "The door opens on a quiet tomb and its treasure.",
+          "text": "The mouth swallows it, and the door opens on a quiet tomb and its treasure.",
           "effects": [
             {
               "resources": {
@@ -37,7 +37,7 @@
         },
         {
           "w": 40,
-          "text": "The door opens on a tomb that was not quiet.",
+          "text": "The door opens on a tomb that was not quiet at all.",
           "effects": [
             {
               "encounter": {}
@@ -48,7 +48,7 @@
     },
     {
       "id": "study",
-      "label": "The wisest studies whose finger it was.",
+      "label": "The wisest works out whose finger it was.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -56,7 +56,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The barrow's maker. He did not want it opened.",
+          "text": "The barrow's maker. He did not want it opened, and he wrote down why.",
           "effects": [
             {
               "score": {
@@ -80,7 +80,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It sways after you, though there is no wind.",
+          "text": "It sways after you as you go, though there is no wind, like a finger beckoning.",
           "effects": [
             {
               "to": "party",

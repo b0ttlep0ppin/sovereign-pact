@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "give",
-      "label": "The poorest House gives what it can.",
+      "label": "The poorest House drops what it can into his cup.",
       "rule": "house:lowest_standing",
       "tags": [
         "kind"
@@ -56,7 +56,7 @@
     },
     {
       "id": "mock",
-      "label": "The richest House mocks him.",
+      "label": "The richest House laughs at his paper crown.",
       "rule": "house:highest_standing",
       "tags": [
         "cruel"
@@ -64,7 +64,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He takes it with dignity, and something in the otherworld remembers.",
+          "text": "He takes it with dignity, and nods, and something in the ruins of his kingdom remembers your faces.",
           "effects": [
             {
               "doom": 1
@@ -80,7 +80,7 @@
     },
     {
       "id": "ask",
-      "label": "The wisest asks him about his kingdom.",
+      "label": "The wisest asks about his kingdom.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -88,7 +88,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He tells it well, and some of it is even true.",
+          "text": "He tells it well, with tears in his eyes, and some of it is even true.",
           "effects": [
             {
               "score": {

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "finish",
-      "label": "The strongest finishes the blade.",
+      "label": "The strongest takes up the warm hammer.",
       "rule": "scion:highest:might",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 55,
-          "text": "The bellows breathe with the hammer, and the blade comes out fine.",
+          "text": "The bellows breathe in time with the hammer, as if someone guides it, and the blade comes out fine.",
           "effects": [
             {
               "item": {
@@ -35,7 +35,7 @@
         },
         {
           "w": 45,
-          "text": "The coals flare at the first stroke.",
+          "text": "The coals flare white at the first stroke, angry that a stranger dared.",
           "effects": [
             {
               "durability": -25,
@@ -58,7 +58,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Good iron, old tools, still sharp.",
+          "text": "Good iron and old tools, still sharp. The bellows wheeze faster as you carry them out.",
           "effects": [
             {
               "resources": {

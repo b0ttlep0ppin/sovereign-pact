@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "sneak",
-      "label": "Sneak past while they work.",
+      "label": "Sneak past while the stokers work.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "Past, sweating.",
+          "text": "Past, sweating, eyes stinging with ash.",
           "effects": [
             {
               "to": "party",
@@ -31,7 +31,7 @@
         },
         {
           "w": 30,
-          "text": "A stoker looks up.",
+          "text": "A stoker looks up, and grins, and stops being bored.",
           "effects": [
             {
               "encounter": {
@@ -52,7 +52,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They love it, and wave you through.",
+          "text": "They love it, gasping at every rival's shame, and wave you through.",
           "effects": [
             {
               "skip": 1
@@ -76,7 +76,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It goes out with a roar, and so do they.",
+          "text": "It goes out with a roar, and so do the devils who fed it.",
           "effects": [
             {
               "encounter": {

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "brave",
-      "label": "The bravest crosses and makes it fast.",
+      "label": "The bravest crosses the rope and makes it fast.",
       "rule": "scion:trait:brave|scion:highest:speed",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 85,
-          "text": "A second rope, then a third. Everyone crosses dry.",
+          "text": "A second rope, then a third. Everyone crosses dry, with the water roaring below.",
           "effects": [
             {
               "xp": 80
@@ -35,7 +35,7 @@
         },
         {
           "w": 15,
-          "text": "The rope snaps.",
+          "text": "The rope snaps halfway, and the water takes them, and spits them out on the rocks.",
           "effects": [
             {
               "durability": -40,
@@ -51,7 +51,7 @@
     },
     {
       "id": "swim",
-      "label": "Swim.",
+      "label": "Swim the white water.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -59,7 +59,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Cold, wet, and slower.",
+          "text": "Cold to the bone, wet, and slower, and the river does not want to let go.",
           "effects": [
             {
               "to": "party",
@@ -75,7 +75,7 @@
     },
     {
       "id": "burn",
-      "label": "Burn the bridge so no one follows.",
+      "label": "Burn the bridge so nothing follows.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -83,7 +83,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "You swim, but nothing follows.",
+          "text": "You swim, cursing the cold, but nothing follows you across.",
           "effects": [
             {
               "to": "party",

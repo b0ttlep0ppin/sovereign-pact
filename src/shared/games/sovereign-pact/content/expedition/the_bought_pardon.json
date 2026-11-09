@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It does nothing, but you sleep better.",
+          "text": "It does nothing at all, but you sleep better.",
           "effects": [
             {
               "resources": {
@@ -46,7 +46,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "Pardons to sell back home.",
+          "text": "Pardons to sell back home, and who would ever know?",
           "effects": [
             {
               "resources": {
@@ -62,7 +62,7 @@
         },
         {
           "w": 40,
-          "text": "The pardoner knows his own work.",
+          "text": "The pardoner knows his own work, and he knows the guards.",
           "effects": [
             {
               "encounter": {
@@ -83,7 +83,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The crowd turns on him, then on you.",
+          "text": "The crowd turns on him, and then, because crowds are crowds, on you.",
           "effects": [
             {
               "score": {

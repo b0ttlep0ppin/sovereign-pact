@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "dig",
-      "label": "Dig down to whatever it was.",
+      "label": "The strongest digs down to whatever lies beneath.",
       "rule": "scion:highest:might",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "A heart of something, still beating, very valuable.",
+          "text": "A heart, vast and slow, still beating in the dirt, worth a fortune. The ground moans as it comes free.",
           "effects": [
             {
               "resources": {
@@ -35,7 +35,7 @@
         },
         {
           "w": 50,
-          "text": "It is still alive, a little.",
+          "text": "It is still alive, a little, and it does not want to be dug up.",
           "effects": [
             {
               "encounter": {
@@ -48,7 +48,7 @@
     },
     {
       "id": "cross",
-      "label": "Cross quickly.",
+      "label": "Cross quickly, and don't look down.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -56,7 +56,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Red to the knees, and no worse.",
+          "text": "Red to the knees, and the warmth stays on your skin all day.",
           "effects": [
             {
               "to": "party",
@@ -68,7 +68,7 @@
     },
     {
       "id": "bury",
-      "label": "The wisest says the rites for it.",
+      "label": "The wisest says the rites for the dying thing.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "kind"
@@ -76,7 +76,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The ground cools under your feet.",
+          "text": "The ground cools under your feet, and the slow beat fades, and stops.",
           "effects": [
             {
               "to": "party",
