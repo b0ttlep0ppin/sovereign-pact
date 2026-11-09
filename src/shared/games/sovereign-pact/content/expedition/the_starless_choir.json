@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "listen",
-      "label": "Listen.",
+      "label": "Listen to the choir.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "A song of home.",
+          "text": "A song of home, and it teaches something.",
           "effects": [
             {
               "to": "party",
@@ -35,7 +35,7 @@
         },
         {
           "w": 40,
-          "text": "A song of the end.",
+          "text": "A song of the end, and how it goes.",
           "effects": [
             {
               "to": "party",
@@ -55,7 +55,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Your own tune, thin but yours.",
+          "text": "Your own tune, thin but yours, and the choir louder around it.",
           "effects": [
             {
               "to": "party",
@@ -75,7 +75,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The choir falls silent, surprised.",
+          "text": "The choir falls silent, surprised, and the dark lets you through.",
           "effects": [
             {
               "score": {

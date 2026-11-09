@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "cut",
-      "label": "Cut out the heartwood.",
+      "label": "The strongest cuts out the glowing heartwood.",
       "rule": "scion:highest:might",
       "tags": [
         "bold"
@@ -48,7 +48,7 @@
     },
     {
       "id": "shelter",
-      "label": "Shelter under it: lightning never strikes twice.",
+      "label": "Shelter under it. Lightning never strikes twice.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -90,7 +90,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Something in the sky approves.",
+          "text": "Something in the clear sky approves.",
           "effects": [
             {
               "blessing": {

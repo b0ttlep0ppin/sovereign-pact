@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "rest",
-      "label": "Rest in the garden.",
+      "label": "Rest in the golden garden.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -37,7 +37,7 @@
     },
     {
       "id": "turn",
-      "label": "Turn the dial.",
+      "label": "The Leader turns the dial.",
       "rule": "leader",
       "tags": [
         "reckless"
@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "Time starts again, and the garden blooms.",
+          "text": "Time starts again, and the garden blooms, and the bees fly.",
           "effects": [
             {
               "score": {
@@ -60,7 +60,7 @@
         },
         {
           "w": 50,
-          "text": "Time starts again, all of it at once.",
+          "text": "Time starts again, all of it at once, and the Leader feels every hour of it.",
           "effects": [
             {
               "to": "party",
@@ -83,7 +83,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Bronze, old, and humming with stopped hours.",
+          "text": "Bronze, old, and humming with stopped hours, and the roses begin to brown.",
           "effects": [
             {
               "score": {

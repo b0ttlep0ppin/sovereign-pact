@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "pick",
-      "label": "Pick fast.",
+      "label": "Pick fast, before the bear comes.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -54,7 +54,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He lets you take half.",
+          "text": "He watches from the trees, and lets you take half.",
           "effects": [
             {
               "resources": {
@@ -76,7 +76,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Fine timber.",
+          "text": "Fine timber, and the bear does not come. You wonder why.",
           "effects": [
             {
               "resources": {

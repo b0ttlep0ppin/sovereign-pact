@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A long cold wait in a cave.",
+          "text": "A long cold wait in a cave, with the lightning stepping past outside.",
           "effects": [
             {
               "to": "party",
@@ -54,7 +54,7 @@
         },
         {
           "w": 40,
-          "text": "The lightning catches someone.",
+          "text": "The lightning stoops, and catches someone.",
           "effects": [
             {
               "injury": "body"
@@ -65,7 +65,7 @@
     },
     {
       "id": "bottle",
-      "label": "The cleverest catches some in a bottle.",
+      "label": "The cleverest catches some lightning in a bottle.",
       "rule": "scion:highest:acuity",
       "tags": [
         "reckless"
@@ -84,7 +84,7 @@
         },
         {
           "w": 50,
-          "text": "The bottle holds; the hand does not.",
+          "text": "The bottle holds. The hand does not.",
           "effects": [
             {
               "durability": -30,

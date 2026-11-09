@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "follow",
-      "label": "Follow them.",
+      "label": "Follow the tracks.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Into its trap.",
+          "text": "Into its trap, exactly as it meant.",
           "effects": [
             {
               "encounter": {
@@ -34,7 +34,7 @@
     },
     {
       "id": "read",
-      "label": "The sharpest eye reads them.",
+      "label": "The sharpest eye reads the tracks.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -55,7 +55,7 @@
     },
     {
       "id": "wait",
-      "label": "Wait for it to come.",
+      "label": "Wait for it to come to you.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -63,7 +63,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It does, in its own time.",
+          "text": "It does, in its own time, and the waiting is the worst of it.",
           "effects": [
             {
               "encounter": {}

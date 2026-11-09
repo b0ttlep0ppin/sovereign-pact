@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "pay",
-      "label": "Pay what it asks.",
+      "label": "The Leader pays what it asks.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The coins ring in the bowl and the keeper steps aside, humming.",
+          "text": "The coins ring in the bowl, and the keeper steps aside, humming something old.",
           "effects": [
             {
               "resources": {
@@ -34,7 +34,7 @@
     },
     {
       "id": "riddle",
-      "label": "The wisest offers a riddle instead.",
+      "label": "The wisest offers it a riddle instead.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -80,7 +80,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It does not go over easily.",
+          "text": "It does not go over easily, and it does not go over alone.",
           "effects": [
             {
               "encounter": {}

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "sap",
-      "label": "Collect the sap.",
+      "label": "The Leader collects the sap.",
       "rule": "leader",
       "tags": [
         "clever"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Amber that never sets.",
+          "text": "Amber that never sets, and you try not to look at what is in it.",
           "effects": [
             {
               "resources": {

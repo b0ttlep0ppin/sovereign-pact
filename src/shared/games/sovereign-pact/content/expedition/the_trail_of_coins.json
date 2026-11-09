@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "follow",
-      "label": "Follow the coins.",
+      "label": "Follow the coins into the hills.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They lead on, and you pocket them as you go.",
+          "text": "They lead on, and you pocket them as you go, one by one.",
           "effects": [
             {
               "skip": 1
@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Closer together here: they were running.",
+          "text": "Closer together here. They were running.",
           "effects": [
             {
               "foresee": true

@@ -34,7 +34,7 @@
     },
     {
       "id": "refuse",
-      "label": "Refuse.",
+      "label": "Refuse the tithe.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -53,7 +53,7 @@
         },
         {
           "w": 30,
-          "text": "They look at you a long time, then close the ledger and are gone.",
+          "text": "They look at you a long time, then close the ledger and are gone. The ledger is not.",
           "effects": [
             {
               "to": "party",

@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They are holy now, in the monks' eyes.",
+          "text": "They are holy now, in the monks' eyes, and their hands do not stop bleeding for days.",
           "effects": [
             {
               "score": {
@@ -66,7 +66,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Donations pour in.",
+          "text": "Donations pour in, and the monks will never know what the Six thought of it.",
           "effects": [
             {
               "resources": {

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "ford",
-      "label": "Ford it, lips shut.",
+      "label": "Ford the river, lips shut.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 80,
-          "text": "Across, wet and grieving.",
+          "text": "Across, wet and grieving for things you never lost.",
           "effects": [
             {
               "to": "party",
@@ -31,7 +31,7 @@
         },
         {
           "w": 20,
-          "text": "A splash in the mouth.",
+          "text": "A splash in the mouth, and every sorrow at once.",
           "effects": [
             {
               "to": "party",
@@ -67,7 +67,7 @@
     },
     {
       "id": "bridge",
-      "label": "Find the devils' bridge.",
+      "label": "The Leader finds the devils' bridge.",
       "rule": "leader",
       "tags": [
         "clever"
@@ -75,7 +75,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Guarded.",
+          "text": "Guarded, and the guards are glad of the company.",
           "effects": [
             {
               "encounter": {}

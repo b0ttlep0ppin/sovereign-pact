@@ -49,7 +49,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They do not thank you, and they do not need to.",
+          "text": "They do not thank you. They only look, and keep looking.",
           "effects": [
             {
               "to": "party",
@@ -61,7 +61,7 @@
     },
     {
       "id": "rob",
-      "label": "Take their last coins.",
+      "label": "The Leader takes their last coins.",
       "rule": "leader",
       "tags": [
         "cruel"

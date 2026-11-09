@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "answer",
-      "label": "The leader drinks and answers.",
+      "label": "The Leader drinks and answers truly.",
       "rule": "leader",
       "tags": [
         "bold"
@@ -54,7 +54,7 @@
         },
         {
           "w": 60,
-          "text": "The water turns to sand in the mouth.",
+          "text": "The water turns to sand in the mouth, and the tongue stays dry a long while.",
           "effects": [
             {
               "sanity": -10
@@ -76,7 +76,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Thirsty, and none the wiser.",
+          "text": "Thirsty, and none the wiser, and she never once looks up.",
           "effects": [
             {
               "to": "party",

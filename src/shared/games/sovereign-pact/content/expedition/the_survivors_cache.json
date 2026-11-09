@@ -43,7 +43,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Strength for the road, and a gift for them if they come back this way.",
+          "text": "Strength for the road, and coin for them if they come back this way.",
           "effects": [
             {
               "to": "party",
@@ -60,7 +60,7 @@
     },
     {
       "id": "take",
-      "label": "Take it all.",
+      "label": "The Leader takes all of it.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -68,7 +68,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They will not need it if you find them first.",
+          "text": "They will not need it if you find them first. That is what you tell yourselves.",
           "effects": [
             {
               "to": "party",

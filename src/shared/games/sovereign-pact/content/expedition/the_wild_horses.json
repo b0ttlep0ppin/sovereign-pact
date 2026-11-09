@@ -50,7 +50,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A good thing to have seen.",
+          "text": "A good thing to have seen, out here.",
           "effects": [
             {
               "to": "party",
@@ -70,7 +70,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It follows you a while, then home.",
+          "text": "It follows you a while, then all the way home.",
           "effects": [
             {
               "resources": {

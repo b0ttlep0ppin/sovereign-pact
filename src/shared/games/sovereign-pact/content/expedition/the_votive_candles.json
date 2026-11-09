@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A small flame among hundreds.",
+          "text": "A small flame among hundreds, and it leans toward you.",
           "effects": [
             {
               "resources": {
@@ -46,7 +46,7 @@
       "outcomes": [
         {
           "w": 80,
-          "text": "A flame that burns bright.",
+          "text": "A flame that burns bright and steady.",
           "effects": [
             {
               "sanity": 6
@@ -55,7 +55,7 @@
         },
         {
           "w": 20,
-          "text": "A flame that will not stay lit.",
+          "text": "A flame that will not stay lit, however often they try.",
           "effects": [
             {
               "sanity": -6
@@ -66,7 +66,7 @@
     },
     {
       "id": "wax",
-      "label": "Gather the spent wax to sell.",
+      "label": "The Leader gathers the spent wax to sell.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -74,7 +74,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Holy wax fetches a price.",
+          "text": "Holy wax fetches a price, and the priest watches every scrape.",
           "effects": [
             {
               "resources": {

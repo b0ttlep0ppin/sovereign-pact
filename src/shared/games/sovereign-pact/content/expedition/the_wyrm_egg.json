@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "take",
-      "label": "Take the egg.",
+      "label": "The Leader takes the wyrm egg.",
       "rule": "leader",
       "tags": [
         "reckless"
@@ -50,7 +50,7 @@
     },
     {
       "id": "smash",
-      "label": "Smash it.",
+      "label": "The Leader smashes it.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -58,7 +58,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "There will be one fewer wyrm in the reaches.",
+          "text": "There will be one fewer wyrm in the reaches, and the tapping stops.",
           "effects": [
             {
               "score": {

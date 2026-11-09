@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "help",
-      "label": "The healer helps.",
+      "label": "The healer helps him.",
       "rule": "scion:most_healing|scion:random",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He tells you how it fights.",
+          "text": "He tells you how it fights, and his House will hear you helped.",
           "effects": [
             {
               "to": "party",
@@ -36,7 +36,7 @@
     },
     {
       "id": "leave",
-      "label": "Leave him.",
+      "label": "The Leader leaves him in the ferns.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -63,7 +63,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Enough to go on.",
+          "text": "Enough to go on. Behind you he goes quiet.",
           "effects": [
             {
               "foresee": true

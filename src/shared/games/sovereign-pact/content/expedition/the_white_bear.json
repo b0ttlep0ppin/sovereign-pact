@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "weak",
-      "label": "The weakest walks in the middle.",
+      "label": "Put the weakest in the middle.",
       "rule": "scion:lowest:resilience|scion:lowest:might",
       "tags": [
         "cautious"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The bear follows, but it does not attack the circle.",
+          "text": "The bear follows all day, but it does not attack the circle.",
           "effects": [
             {
               "to": "party",
@@ -33,7 +33,7 @@
     },
     {
       "id": "feed",
-      "label": "Feed it.",
+      "label": "Feed the starving bear.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -41,7 +41,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It eats, and walks away.",
+          "text": "It eats, and walks away, and does not look back.",
           "effects": [
             {
               "resources": {
@@ -59,7 +59,7 @@
     },
     {
       "id": "hunt",
-      "label": "Hunt it.",
+      "label": "The Leader hunts it.",
       "rule": "leader",
       "tags": [
         "bold"

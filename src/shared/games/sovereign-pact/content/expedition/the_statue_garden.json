@@ -53,7 +53,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It is still alive in there, and tells you the way out.",
+          "text": "It is still alive in there, and tells you the way out, and begs you to stay.",
           "effects": [
             {
               "skip": 1
@@ -67,7 +67,7 @@
     },
     {
       "id": "hurry",
-      "label": "Hurry through without looking.",
+      "label": "Hurry through without looking at the faces.",
       "rule": "leader",
       "tags": [
         "cautious"

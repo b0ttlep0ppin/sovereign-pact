@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "cut",
-      "label": "Cut it.",
+      "label": "Cut the fallen star.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Star iron, heavy as sin.",
+          "text": "Star iron, heavy as sin, and it scars every tool that touches it.",
           "effects": [
             {
               "resources": {
@@ -67,7 +67,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It hums as you go.",
+          "text": "It hums as you go, softer, almost grateful.",
           "effects": [
             {
               "to": "party",

@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Slow, and safe.",
+          "text": "Slow, and safe, and the thing in the white keeps pace the whole way.",
           "effects": [
             {
               "to": "party",
@@ -41,7 +41,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "Through the glare, and out.",
+          "text": "Through the glare, and out, and nobody let go.",
           "effects": [
             {
               "skip": 1
@@ -53,7 +53,7 @@
         },
         {
           "w": 40,
-          "text": "Over a lip of ice.",
+          "text": "Over a lip of ice, and the rope is all that holds them.",
           "effects": [
             {
               "injury": "legs"

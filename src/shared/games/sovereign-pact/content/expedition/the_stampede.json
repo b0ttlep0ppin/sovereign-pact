@@ -85,7 +85,7 @@
     },
     {
       "id": "ride",
-      "label": "The quickest jumps on one.",
+      "label": "The quickest leaps onto one.",
       "rule": "scion:highest:speed",
       "tags": [
         "reckless"

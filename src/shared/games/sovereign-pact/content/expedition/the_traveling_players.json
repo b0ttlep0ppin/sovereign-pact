@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "watch",
-      "label": "Watch the play.",
+      "label": "Watch the play about your Houses.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It is a good play. You learn something about how others see you.",
+          "text": "It is a good play, and you laugh, and learn something about how others see you.",
           "effects": [
             {
               "to": "party",
@@ -59,7 +59,7 @@
     },
     {
       "id": "pay",
-      "label": "Pay them to change the villain to a rival House.",
+      "label": "The richest House pays them to make a rival the villain.",
       "rule": "house:highest_standing",
       "tags": [
         "cruel"
@@ -67,7 +67,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They take the coin and the note gladly.",
+          "text": "They take the coin and the note gladly. The rival will see the play sooner or later.",
           "effects": [
             {
               "resources": {

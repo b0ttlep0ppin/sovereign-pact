@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "tide",
-      "label": "The one with sea in them answers it.",
+      "label": "The one with sea in them answers the bell.",
       "rule": "scion:trait:tidebound|scion:lowest:sanity",
       "tags": [
         "kind"
@@ -30,7 +30,7 @@
         },
         {
           "w": 30,
-          "text": "They nearly do not come back.",
+          "text": "They nearly do not come back, and come back harder.",
           "effects": [
             {
               "sanity": -15
@@ -86,7 +86,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It rings anyway, in your dreams.",
+          "text": "It rings anyway, in your dreams, and in the dreams you walk toward it.",
           "effects": [
             {
               "to": "party",

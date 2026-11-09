@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It steps aside, and the wood is kinder.",
+          "text": "It steps aside, and the wood is kinder after.",
           "effects": [
             {
               "resources": {
@@ -46,7 +46,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It touches their brow.",
+          "text": "It touches their brow with a nose cold as snow, and luck goes with them.",
           "effects": [
             {
               "blessing": {
@@ -60,7 +60,7 @@
     },
     {
       "id": "fight",
-      "label": "Push past it.",
+      "label": "The Leader pushes past it.",
       "rule": "leader",
       "tags": [
         "bold"

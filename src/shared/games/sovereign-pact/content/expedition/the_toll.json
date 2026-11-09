@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "pay",
-      "label": "Pay in gold.",
+      "label": "The richest House pays in gold.",
       "rule": "house:highest_standing",
       "tags": [
         "cautious"
@@ -42,7 +42,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The keeper calls its kin.",
+          "text": "The keeper calls its kin up from the nothing below.",
           "effects": [
             {
               "encounter": {

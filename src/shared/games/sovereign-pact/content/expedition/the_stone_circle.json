@@ -51,7 +51,7 @@
     },
     {
       "id": "ward",
-      "label": "The wisest wards the circle and sleeps safe.",
+      "label": "The wisest wards the circle so you can sleep in it.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -59,7 +59,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A full night's sleep, the first in days.",
+          "text": "A full night's sleep, the first in days, and dreams of smoke.",
           "effects": [
             {
               "to": "party",

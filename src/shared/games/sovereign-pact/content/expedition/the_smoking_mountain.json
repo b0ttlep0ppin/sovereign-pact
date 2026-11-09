@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "over",
-      "label": "Go over the shoulder.",
+      "label": "Go over the shoulder, past the nests.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "Over, choking on ash.",
+          "text": "Over, choking on ash, with every kit black with it.",
           "effects": [
             {
               "to": "party",
@@ -31,7 +31,7 @@
         },
         {
           "w": 40,
-          "text": "A dragon's nest on the path.",
+          "text": "A dragon's nest on the path, and the dragon in it.",
           "effects": [
             {
               "encounter": {
@@ -44,7 +44,7 @@
     },
     {
       "id": "vents",
-      "label": "The sharpest finds the old lava tubes.",
+      "label": "The sharpest eye finds the old lava tubes.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -52,7 +52,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Through the mountain's belly, and out the far side.",
+          "text": "Through the mountain's belly, in the hot dark, and out the far side with pockets full of glowing stone.",
           "effects": [
             {
               "skip": 1
@@ -76,7 +76,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Days lost.",
+          "text": "Days lost, and the smoke on the horizon the whole time, watching.",
           "effects": [
             {
               "to": "party",

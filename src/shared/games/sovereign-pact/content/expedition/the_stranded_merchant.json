@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The merchant pays with a fine thing from the back.",
+          "text": "The merchant pays with a fine thing from the back. You do not see under the tarp.",
           "effects": [
             {
               "item": {
@@ -37,7 +37,7 @@
     },
     {
       "id": "buy",
-      "label": "Buy from the cargo at the side of the road.",
+      "label": "The Leader buys from the cargo.",
       "rule": "leader",
       "tags": [
         "clever"
@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Fair prices, for once.",
+          "text": "Fair prices, for once. The tarp stays down.",
           "effects": [
             {
               "resources": {
@@ -71,7 +71,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It is a lot of cargo.",
+          "text": "It is a lot of cargo, and word of it gets around.",
           "effects": [
             {
               "resources": {

@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The niche fills with light and the party is warmed.",
+          "text": "The niche fills with light, and the party is warmed through.",
           "effects": [
             {
               "to": "party",
@@ -46,7 +46,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They stand very still, and are calm.",
+          "text": "They stand very still, and are calm, for the first time in a long time.",
           "effects": [
             {
               "sanity": 30
@@ -62,7 +62,7 @@
     },
     {
       "id": "both",
-      "label": "Snuff them both.",
+      "label": "The Leader snuffs them both.",
       "rule": "leader",
       "tags": [
         "reckless"
@@ -70,7 +70,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The dark in the niche looks back.",
+          "text": "The dark in the niche looks back, and leaves something behind in the wax.",
           "effects": [
             {
               "to": "party",

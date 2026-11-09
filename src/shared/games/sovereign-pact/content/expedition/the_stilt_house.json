@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "call",
-      "label": "Call up to them.",
+      "label": "Call up to whoever is inside.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "A family of eel-catchers, who let you sleep dry.",
+          "text": "A family of eel-catchers, who let down the ladder and let you sleep dry.",
           "effects": [
             {
               "to": "party",
@@ -35,7 +35,7 @@
         },
         {
           "w": 30,
-          "text": "No one answers, and the light goes out.",
+          "text": "No one answers, and the boards above go very still.",
           "effects": [
             {
               "to": "party",
@@ -55,7 +55,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Empty, a meal still warm on the table.",
+          "text": "Empty, a meal still warm on the table, and a window facing the road ahead.",
           "effects": [
             {
               "resources": {
@@ -71,7 +71,7 @@
     },
     {
       "id": "pass",
-      "label": "Pass under it.",
+      "label": "Pass under the house.",
       "rule": "leader",
       "tags": [
         "cautious"

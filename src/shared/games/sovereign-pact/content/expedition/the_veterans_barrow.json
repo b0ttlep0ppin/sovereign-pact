@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "retired",
-      "label": "Someone who once retired goes in.",
+      "label": "Someone who once laid down their arms goes in.",
       "rule": "scion:retired_once|scion:most_expeditions",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The dead soldiers salute them and give up their captain's blade.",
+          "text": "The dead soldiers salute them, and give up their captain's blade.",
           "effects": [
             {
               "item": {
@@ -39,7 +39,7 @@
     },
     {
       "id": "force",
-      "label": "Force the door.",
+      "label": "The strongest forces the door.",
       "rule": "scion:highest:might",
       "tags": [
         "reckless"
@@ -47,7 +47,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The dead do not salute.",
+          "text": "The singing stops. The dead do not salute.",
           "effects": [
             {
               "encounter": {
@@ -68,7 +68,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A cold wind, and then peace.",
+          "text": "A cold wind, and the marching song, and then peace.",
           "effects": [
             {
               "to": "party",

@@ -47,7 +47,7 @@
     },
     {
       "id": "pick",
-      "label": "Pick a path and walk it.",
+      "label": "The Leader picks a path and walks it.",
       "rule": "leader",
       "tags": [
         "reckless"

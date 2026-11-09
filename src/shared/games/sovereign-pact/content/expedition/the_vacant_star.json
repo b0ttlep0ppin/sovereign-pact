@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "look",
-      "label": "The sharpest eye looks back.",
+      "label": "The sharpest eye looks back at the star.",
       "rule": "scion:highest:acuity",
       "tags": [
         "bold"
@@ -62,7 +62,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It watches you go, and something like interest passes over it.",
+          "text": "It watches you go, and something like interest passes over it. That is worse.",
           "effects": [
             {
               "doom": 2

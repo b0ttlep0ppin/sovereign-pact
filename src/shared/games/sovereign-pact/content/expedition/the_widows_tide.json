@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "tide",
-      "label": "Someone the sea knows walks out for it.",
+      "label": "Someone the sea knows walks out for the wreck.",
       "rule": "scion:trait:tidebound|scion:highest:speed",
       "tags": [
         "bold"
@@ -47,7 +47,7 @@
     },
     {
       "id": "together",
-      "label": "Everyone goes, quick, and grabs what they can.",
+      "label": "Everyone runs out and grabs what they can.",
       "rule": "vote",
       "tags": [
         "reckless"

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "lie",
-      "label": "Tell her he is coming home.",
+      "label": "The Leader tells her he is coming home.",
       "rule": "leader",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "She smiles and puts out the lantern and goes home.",
+          "text": "She smiles, and puts out the lantern, and goes home. You will not forget her face.",
           "effects": [
             {
               "to": "party",

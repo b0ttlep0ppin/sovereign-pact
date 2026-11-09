@@ -35,7 +35,7 @@
     },
     {
       "id": "fight",
-      "label": "Fight through the nearer knight.",
+      "label": "Fight your way past the nearer knight.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -54,7 +54,7 @@
     },
     {
       "id": "guess",
-      "label": "Pick a door at random.",
+      "label": "The Leader picks a door at random.",
       "rule": "leader",
       "tags": [
         "reckless"

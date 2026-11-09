@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "listen",
-      "label": "Listen to the news.",
+      "label": "Listen to the faceless crier's news.",
       "rule": "vote",
       "tags": [
         "clever"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "News of a rival's troubles.",
+          "text": "News of a rival's troubles, cried for anyone to hear.",
           "effects": [
             {
               "score": {
@@ -55,7 +55,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The faceless will repeat it everywhere.",
+          "text": "The faceless will repeat it everywhere, in that same cheerful voice.",
           "effects": [
             {
               "resources": {
@@ -73,7 +73,7 @@
     },
     {
       "id": "silence",
-      "label": "Silence him.",
+      "label": "The Leader silences him.",
       "rule": "leader",
       "tags": [
         "bold"
@@ -81,7 +81,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The square fills with the faceless.",
+          "text": "The bell stops. The square fills with the faceless.",
           "effects": [
             {
               "encounter": {}

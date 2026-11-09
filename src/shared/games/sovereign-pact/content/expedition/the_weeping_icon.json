@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "drink",
-      "label": "Drink from the bowl.",
+      "label": "Drink from the silver bowl.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -31,7 +31,7 @@
         },
         {
           "w": 20,
-          "text": "Salt, and grief that is not yours.",
+          "text": "Salt, and grief that is not yours, and does not leave.",
           "effects": [
             {
               "to": "party",
@@ -43,7 +43,7 @@
     },
     {
       "id": "pray",
-      "label": "The devout prays before it.",
+      "label": "The devout prays before the icon.",
       "rule": "scion:trait:devout|scion:highest:sagacity",
       "tags": [
         "kind"
@@ -51,7 +51,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The icon's eyes follow them out.",
+          "text": "The icon's red eyes follow them out, and luck follows with them.",
           "effects": [
             {
               "blessing": {
@@ -65,7 +65,7 @@
     },
     {
       "id": "bottle",
-      "label": "Bottle the tears to sell.",
+      "label": "The Leader bottles the tears to sell.",
       "rule": "leader",
       "tags": [
         "cruel"

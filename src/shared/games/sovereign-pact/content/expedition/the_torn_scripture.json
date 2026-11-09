@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "The court's real creed, in their own hand.",
+          "text": "The Court's real creed, in their own hand.",
           "effects": [
             {
               "score": {
@@ -32,7 +32,7 @@
         },
         {
           "w": 30,
-          "text": "It makes too much sense.",
+          "text": "It makes too much sense, and they cannot unread it.",
           "effects": [
             {
               "sanity": -12
@@ -51,7 +51,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A slow, careful work, and the court notices.",
+          "text": "Slow, careful work, door by door, and the Court notices.",
           "effects": [
             {
               "score": {
@@ -67,7 +67,7 @@
     },
     {
       "id": "burn",
-      "label": "Burn them all.",
+      "label": "Burn every page.",
       "rule": "leader",
       "tags": [
         "bold"
@@ -75,7 +75,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The court comes running.",
+          "text": "The Court comes running before the smoke clears.",
           "effects": [
             {
               "encounter": {

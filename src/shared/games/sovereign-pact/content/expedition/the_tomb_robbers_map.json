@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "follow",
-      "label": "Follow the map.",
+      "label": "The sharpest eye follows the dead man's map.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "Past the trap, into the chamber.",
+          "text": "Past his trap, into the chamber, and nothing has touched it since the day it was sealed.",
           "effects": [
             {
               "item": {
@@ -44,7 +44,7 @@
     },
     {
       "id": "sell",
-      "label": "Keep it to sell.",
+      "label": "Keep the map to sell.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -52,7 +52,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A rival will pay well.",
+          "text": "A rival will pay well, and walk into the traps instead of you.",
           "effects": [
             {
               "resources": {
@@ -78,7 +78,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The barrow is quieter after.",
+          "text": "The barrow is quieter after, as if it heard.",
           "effects": [
             {
               "to": "party",

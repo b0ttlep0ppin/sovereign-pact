@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "drink",
-      "label": "Drink with them, and keep the truce.",
+      "label": "Drink with the beasts, and keep the truce.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -75,7 +75,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Easy kills, and the plains remember.",
+          "text": "Easy kills, at first, and the plains remember.",
           "effects": [
             {
               "encounter": {
