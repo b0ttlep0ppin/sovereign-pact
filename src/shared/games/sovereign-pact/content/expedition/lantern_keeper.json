@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "trade",
-      "label": "Trade a memory for the light.",
+      "label": "Let the most haunted trade her a memory for the light.",
       "rule": "scion:lowest:sanity",
       "tags": [
         "reckless"
@@ -38,7 +38,7 @@
         },
         {
           "w": 30,
-          "text": "She takes more than she said.",
+          "text": "She takes more than she said, and smiles while she does it. The path is short, and lit, and they cannot remember why they are crying.",
           "effects": [
             {
               "sanity": -40
@@ -52,7 +52,7 @@
     },
     {
       "id": "refuse",
-      "label": "Find your own way.",
+      "label": "Refuse her, and find your own way in the dark.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -83,7 +83,7 @@
         },
         {
           "w": 40,
-          "text": "You find it, and something else finds you.",
+          "text": "You find it, and something else finds you, there in the dark where her light does not reach.",
           "effects": [
             {
               "encounter": {}

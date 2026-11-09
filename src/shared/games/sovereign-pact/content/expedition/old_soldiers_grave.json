@@ -14,7 +14,7 @@
   "options": [
     {
       "id": "kneel",
-      "label": "The one it names kneels.",
+      "label": "The one it names kneels at the cairn.",
       "rule": "scion:retired_once|scion:most_expeditions",
       "tags": [
         "kind"
@@ -22,7 +22,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "They stand up with an old soldier's patience in them.",
+          "text": "They stand up with an old soldier's patience settled in them, slow and sure.",
           "effects": [
             {
               "xp": 40
@@ -36,7 +36,7 @@
         },
         {
           "w": 30,
-          "text": "They stand up older.",
+          "text": "They stand up older, with grey in their hair that was not there before.",
           "effects": [
             {
               "xp": 40
@@ -50,7 +50,7 @@
     },
     {
       "id": "pass",
-      "label": "Pass by.",
+      "label": "Pass by without stopping.",
       "rule": "vote",
       "tags": [
         "cautious"

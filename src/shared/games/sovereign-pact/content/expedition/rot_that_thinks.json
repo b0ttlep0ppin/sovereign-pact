@@ -14,7 +14,7 @@
   "options": [
     {
       "id": "study",
-      "label": "The wisest studies it.",
+      "label": "The wisest leans close and studies it.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -38,7 +38,7 @@
         },
         {
           "w": 30,
-          "text": "It learns them, too.",
+          "text": "It learns them too. Something pale begins to grow under their nails.",
           "effects": [
             {
               "curse": true
@@ -47,7 +47,7 @@
         },
         {
           "w": 25,
-          "text": "It gives them something it grew: a curio of living wood.",
+          "text": "It gives them something it grew: a curio of living wood, still faintly warm.",
           "effects": [
             {
               "item": {
@@ -60,7 +60,7 @@
     },
     {
       "id": "burn",
-      "label": "Burn it.",
+      "label": "Burn it before it learns any more.",
       "rule": "leader",
       "tags": [
         "bold"
@@ -83,7 +83,7 @@
     },
     {
       "id": "bargain",
-      "label": "Bargain with it.",
+      "label": "Speak to it, and bargain.",
       "rule": "leader",
       "tags": [
         "reckless"
@@ -91,7 +91,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It wants a memory. It pays in Essence.",
+          "text": "It wants a memory. It takes one, slowly, and pays in Essence that smells of earth.",
           "effects": [
             {
               "sanity": -15

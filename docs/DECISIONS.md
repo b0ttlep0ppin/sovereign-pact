@@ -2,6 +2,13 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-09 (implementation, Milestone 8cw): richer prose for choices and outcomes
+
+Josh, after the 8cv pass: **"do the same process with the choices and outcomes, although don't make them too hard to understand, just improve the prose, make the options a little more ominous when possible"**.
+- **Choices** stay one plain sentence that says what you do; each gains a little menace. A choice that names who acts ("The strongest...", "Its House...") keeps that subject, because it tells the players who the rule will pick.
+- **Outcomes** get one to three sentences in the same voice as the openings, and always agree with their effects: a Sanity loss reads as dread, a fight reads as something arriving, a gain reads as a gain. Outcomes that already read this way keep their words.
+- Tests that matched a choice's words now read the label from content.
+
 ## 2026-11-09 (implementation, Milestone 8cv): richer event prose
 
 Josh: **"give all of these event descriptions more evocative and detailed prose, nothing too crazy but try to help set the tone of the game overall"**.

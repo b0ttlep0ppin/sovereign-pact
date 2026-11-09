@@ -22,7 +22,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "The flames go out. He thanks them, and promises he will remember the favor.",
+          "text": "The flames gutter and go out. He thanks them with a voice like a cooling coal, and promises he will remember the favor.",
           "effects": [
             {
               "score": {
@@ -38,7 +38,7 @@
         },
         {
           "w": 40,
-          "text": "The flames do not go out; they spread.",
+          "text": "The flames do not go out. They spread, gladly, up the sleeve that reached for him.",
           "effects": [
             {
               "durability": -30,
@@ -53,7 +53,7 @@
     },
     {
       "id": "pass",
-      "label": "Pass by.",
+      "label": "Pass by, and keep the water.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -61,7 +61,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He keeps walking, and the grass behind him burns for an hour.",
+          "text": "He keeps walking, polite and burning, and the grass behind him smokes for an hour.",
           "effects": [
             {
               "to": "party",

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "cross",
-      "label": "Cross it.",
+      "label": "Step through the humming light.",
       "rule": "leader",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "It hums through you and is gone. Nobody can say what it changed.",
+          "text": "It hums through you and is gone. Nobody can say what it changed, and nobody likes to think about it.",
           "effects": [
             {
               "sanity": -10,
@@ -31,7 +31,7 @@
         },
         {
           "w": 40,
-          "text": "It hums through you and leaves you sharper.",
+          "text": "It hums through you and leaves you sharper, as if something on the other side had looked at you and approved.",
           "effects": [
             {
               "jp": 20,
@@ -51,7 +51,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The long way has its own dangers.",
+          "text": "The long way has its own dangers, and one of them has been waiting.",
           "effects": [
             {
               "fork": {

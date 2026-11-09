@@ -17,7 +17,7 @@
   "options": [
     {
       "id": "eat",
-      "label": "Sit and eat.",
+      "label": "Sit down and eat what was laid for you.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -104,7 +104,7 @@
     },
     {
       "id": "leave",
-      "label": "Leave it.",
+      "label": "Push in your chairs and leave the feast to its hosts.",
       "rule": "leader",
       "tags": [
         "cautious"

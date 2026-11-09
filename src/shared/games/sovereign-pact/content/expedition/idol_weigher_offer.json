@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "kneel",
-      "label": "Kneel, and pay what it asks.",
+      "label": "Kneel, and let him weigh your hearts.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -49,7 +49,7 @@
     },
     {
       "id": "defy",
-      "label": "Refuse it.",
+      "label": "Refuse the scale.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -57,14 +57,14 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It rises from its throne, and it is very much larger standing.",
+          "text": "He rises from beside his scale, and the thing breathing in the dark behind him rises too.",
           "effects": []
         }
       ]
     },
     {
       "id": "cheat",
-      "label": "Take the gift and refuse the price.",
+      "label": "Put a thumb on the scale.",
       "rule": "leader",
       "tags": [
         "clever",
@@ -73,7 +73,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "The leader puts a thumb on the scale. The judge sees, and stands.",
+          "text": "The leader's thumb tips the balance. The judge sees it, and says nothing, and stands.",
           "effects": [
             {
               "growth": {
@@ -84,7 +84,7 @@
         },
         {
           "w": 50,
-          "text": "The thumb slips. The heart is weighed heavy, and the judge stands.",
+          "text": "The thumb slips. The heart is weighed heavy, and something in the dark is fed. Then the judge stands.",
           "effects": [
             {
               "sanity": -25

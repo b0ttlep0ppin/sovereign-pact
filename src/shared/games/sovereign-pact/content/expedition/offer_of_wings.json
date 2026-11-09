@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "accept",
-      "label": "Let it choose.",
+      "label": "Let it choose the lightest of you.",
       "rule": "scion:most_open_slots",
       "tags": [
         "reckless"
@@ -54,7 +54,7 @@
     },
     {
       "id": "refuse",
-      "label": "Tell it no.",
+      "label": "Tell it no, and hold your ground.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -71,7 +71,7 @@
         },
         {
           "w": 30,
-          "text": "It does not like that answer.",
+          "text": "It does not like that answer. All its feathers rise at once.",
           "effects": [
             {
               "encounter": {

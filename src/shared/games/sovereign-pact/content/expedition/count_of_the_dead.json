@@ -51,7 +51,7 @@
     },
     {
       "id": "refuse",
-      "label": "Refuse.",
+      "label": "Refuse him your dead.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -59,7 +59,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He writes something down anyway.",
+          "text": "He writes something down anyway, and blows on the ink, and does not look up again. You do not ask whose name it was.",
           "effects": [
             {
               "to": "party",

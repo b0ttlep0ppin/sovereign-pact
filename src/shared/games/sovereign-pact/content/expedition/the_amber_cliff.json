@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "cut",
-      "label": "Cut amber.",
+      "label": "Cut amber from the cliff.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Worth its weight in essence.",
+          "text": "It comes away in warm, glowing chunks, worth their weight in Essence. Nobody looks too closely at what is inside them.",
           "effects": [
             {
               "resources": {
@@ -34,7 +34,7 @@
     },
     {
       "id": "free",
-      "label": "The strongest cuts the man out.",
+      "label": "The strongest cuts the man free.",
       "rule": "scion:highest:might",
       "tags": [
         "kind"
@@ -42,7 +42,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "He breathes, and thanks you, and pays in old coin.",
+          "text": "He breathes, and weeps, and thanks you, and pays in coin no one has minted for a thousand years.",
           "effects": [
             {
               "resources": {
@@ -58,7 +58,7 @@
         },
         {
           "w": 50,
-          "text": "He breathes, and he is not a man.",
+          "text": "He breathes, and stretches, and stretches, and he is not a man.",
           "effects": [
             {
               "encounter": {}
@@ -69,7 +69,7 @@
     },
     {
       "id": "study",
-      "label": "The wisest studies the insects.",
+      "label": "The wisest studies the creatures in the amber.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -77,7 +77,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Old creatures, long gone.",
+          "text": "Old creatures, long gone from the world, and a few that never should have been in it.",
           "effects": [
             {
               "score": {

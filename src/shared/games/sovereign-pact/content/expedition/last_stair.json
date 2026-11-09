@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "first",
-      "label": "The hardiest goes first.",
+      "label": "The hardiest goes up first, to meet its first blow.",
       "rule": "scion:highest:resilience",
       "tags": [
         "bold"
@@ -42,7 +42,7 @@
     },
     {
       "id": "together",
-      "label": "Go up together.",
+      "label": "Go up together, shoulder to shoulder.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -50,7 +50,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Shoulder to shoulder, no one first, no one last.",
+          "text": "Shoulder to shoulder, no one first, no one last, into the breathing dark.",
           "effects": []
         }
       ]

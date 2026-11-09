@@ -14,7 +14,7 @@
   "options": [
     {
       "id": "rest",
-      "label": "Rest here.",
+      "label": "Lie down among the flowers and rest.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -38,7 +38,7 @@
     },
     {
       "id": "press_on",
-      "label": "Don't trust it. Keep moving.",
+      "label": "Don't trust it. Keep walking, eyes down.",
       "rule": "leader",
       "tags": [
         "cautious"

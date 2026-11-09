@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "pull",
-      "label": "The healer pulls it up.",
+      "label": "The healer hauls on the old rope.",
       "rule": "scion:most_healing",
       "tags": [
         "kind"
@@ -69,7 +69,7 @@
     },
     {
       "id": "torch",
-      "label": "Drop a torch.",
+      "label": "Drop a torch down, and listen.",
       "rule": "leader",
       "tags": [
         "cruel"

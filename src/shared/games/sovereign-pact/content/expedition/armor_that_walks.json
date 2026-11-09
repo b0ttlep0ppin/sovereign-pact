@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "wear",
-      "label": "Let the gentlest of you put it on.",
+      "label": "Let the gentlest of you step into its arms.",
       "rule": "scion:fewest_kills",
       "tags": [
         "reckless"

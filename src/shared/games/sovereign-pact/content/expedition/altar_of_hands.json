@@ -14,7 +14,7 @@
   "options": [
     {
       "id": "lay",
-      "label": "The weakest hand is laid in the hollow.",
+      "label": "Lay the weakest hand in the hollow, and let the stone decide.",
       "rule": "scion:injured:arms|scion:lowest:might",
       "tags": [
         "reckless"
@@ -34,7 +34,7 @@
         },
         {
           "w": 35,
-          "text": "The stone closes, and keeps what it took.",
+          "text": "The stone closes over the wrist, gentle as a mouth, and keeps what it took.",
           "effects": [
             {
               "injury": "arms"
@@ -43,7 +43,7 @@
         },
         {
           "w": 20,
-          "text": "Nothing happens. That is somehow worse.",
+          "text": "Nothing happens. The stone stays cold. Somehow that is worse.",
           "effects": [
             {
               "sanity": -15
@@ -54,7 +54,7 @@
     },
     {
       "id": "leave",
-      "label": "Leave the hands to their table.",
+      "label": "Leave the hands to their table, and their warmth.",
       "rule": "leader",
       "tags": [
         "cautious"

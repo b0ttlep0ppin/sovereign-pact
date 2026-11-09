@@ -46,7 +46,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They accept the coin with some disappointment.",
+          "text": "They take the coin with a sigh, as if you had refused a gift, and wrap your purchase in cloth that smells of the grave.",
           "effects": [
             {
               "resources": {
@@ -64,7 +64,7 @@
     },
     {
       "id": "browse",
-      "label": "Only look.",
+      "label": "Only look, and keep your hands to yourselves.",
       "rule": "vote",
       "tags": [
         "cautious"

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "hurry",
-      "label": "Hurry through holding your breath.",
+      "label": "Hold your breath and hurry through.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "Lungs burning, everyone makes it.",
+          "text": "Lungs burning, vision going grey at the edges, everyone makes it.",
           "effects": [
             {
               "to": "party",
@@ -31,7 +31,7 @@
         },
         {
           "w": 30,
-          "text": "Someone breathes.",
+          "text": "Someone breathes. The air gets inside their head and starts rearranging things.",
           "effects": [
             {
               "status": "confusion"
@@ -45,7 +45,7 @@
     },
     {
       "id": "vent",
-      "label": "The cleverest finds a draught and follows it.",
+      "label": "The sharpest nose follows a draught.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -53,7 +53,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A side passage, and clean air.",
+          "text": "A side passage, clean air, and something someone hid there.",
           "effects": [
             {
               "fork": {
@@ -76,7 +76,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Another way, and a longer one.",
+          "text": "Another way, longer, and the taste of old pennies stays in your mouths all the way.",
           "effects": [
             {
               "to": "party",

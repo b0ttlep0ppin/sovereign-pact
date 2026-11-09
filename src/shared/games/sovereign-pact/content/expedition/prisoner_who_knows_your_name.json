@@ -14,7 +14,7 @@
   "options": [
     {
       "id": "listen",
-      "label": "Listen.",
+      "label": "Listen to what they know.",
       "rule": "scion:random",
       "tags": [
         "clever"
@@ -22,7 +22,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "It is true, or near enough: a name, a meeting, a letter. Worth knowing.",
+          "text": "It is true, or near enough: a name, a meeting, a letter. Worth knowing. Worth keeping quiet.",
           "effects": [
             {
               "score": {
@@ -33,7 +33,7 @@
         },
         {
           "w": 50,
-          "text": "It is a lie, told well, and it stays with them.",
+          "text": "It is a lie, told very well, and it settles into whoever heard it like a splinter.",
           "effects": [
             {
               "sanity": -15
@@ -44,7 +44,7 @@
     },
     {
       "id": "free",
-      "label": "Free them.",
+      "label": "Lower the cage and free them.",
       "rule": "leader",
       "tags": [
         "kind"
@@ -52,7 +52,7 @@
       "outcomes": [
         {
           "w": 40,
-          "text": "They are grateful, and they have nowhere else to go.",
+          "text": "They are grateful, in a cracked, starved voice, and they have nowhere else to go.",
           "effects": [
             {
               "house_improvement": "recruit"
@@ -61,7 +61,7 @@
         },
         {
           "w": 60,
-          "text": "The cage was bait.",
+          "text": "The cage was bait. The ones who hung it were waiting.",
           "effects": [
             {
               "encounter": {
@@ -74,7 +74,7 @@
     },
     {
       "id": "leave",
-      "label": "Walk on.",
+      "label": "Walk on, and let them call.",
       "rule": "leader",
       "tags": [
         "cautious"

@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "The wound closes, and leaves a mark of favor.",
+          "text": "The wound closes, and leaves a pale mark of favor where it was.",
           "effects": [
             {
               "mend": true
@@ -36,7 +36,7 @@
         },
         {
           "w": 40,
-          "text": "The altar takes a little more.",
+          "text": "The altar takes a little more than the scar, and gives back something hard-won.",
           "effects": [
             {
               "sanity": -15
@@ -58,7 +58,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A cut across the palm. They are not unblooded now.",
+          "text": "A cut across the palm, deep and clean. They are not unblooded now, and they will not forget it.",
           "effects": [
             {
               "durability": -20,
@@ -73,7 +73,7 @@
     },
     {
       "id": "pious",
-      "label": "Someone with healer's hands blesses the altar instead.",
+      "label": "Healer's hands bless the altar instead of bleeding on it.",
       "rule": "scion:trait:pious_hands|vote",
       "tags": [
         "kind"
@@ -81,7 +81,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The altar is quiet, and the party's cuts close.",
+          "text": "The altar falls quiet, almost sulking, and the party's cuts begin to close.",
           "effects": [
             {
               "to": "party",

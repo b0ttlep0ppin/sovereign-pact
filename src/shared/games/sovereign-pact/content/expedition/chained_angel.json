@@ -54,7 +54,7 @@
     },
     {
       "id": "kill",
-      "label": "End it.",
+      "label": "End it, while it still asks for nothing.",
       "rule": "vote",
       "tags": [
         "cruel"
@@ -84,7 +84,7 @@
     },
     {
       "id": "leave",
-      "label": "Leave it chained.",
+      "label": "Leave it chained, and leave quickly.",
       "rule": "leader",
       "tags": [
         "cautious"

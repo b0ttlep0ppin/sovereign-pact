@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "boat",
-      "label": "Take the devil's boat.",
+      "label": "Take the devil's boat, and do not ask the fare.",
       "rule": "vote",
       "tags": [
         "clever"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A fast crossing. The fare comes later.",
+          "text": "A fast, smooth crossing over the grey. The fare comes later, and it comes for everyone.",
           "effects": [
             {
               "skip": 2
@@ -35,7 +35,7 @@
     },
     {
       "id": "wade",
-      "label": "Wade across.",
+      "label": "Wade across the ash instead.",
       "rule": "leader",
       "tags": [
         "bold"
@@ -43,7 +43,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Something under the ash takes an interest.",
+          "text": "Something under the ash takes an interest, and the ash is hot, very hot, all the way down.",
           "effects": [
             {
               "encounter": {
@@ -60,7 +60,7 @@
     },
     {
       "id": "bargain",
-      "label": "The shrewdest haggles the fare.",
+      "label": "The shrewdest haggles over the fare.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"
@@ -68,7 +68,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "A fair price, paid in coin.",
+          "text": "A fair price, paid in coin. The devil looks almost offended.",
           "effects": [
             {
               "resources": {
@@ -82,7 +82,7 @@
         },
         {
           "w": 40,
-          "text": "The devil haggles better.",
+          "text": "The devil haggles better. It always does.",
           "effects": [
             {
               "resources": {

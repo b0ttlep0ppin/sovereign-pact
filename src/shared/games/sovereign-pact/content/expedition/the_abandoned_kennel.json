@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "free",
-      "label": "Let them out and feed them.",
+      "label": "Break the cages open and feed them.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They run with you a day, and fight like devils for you.",
+          "text": "They run with you a day, ribs heaving, and fight like devils for anyone who fed them.",
           "effects": [
             {
               "to": "party",
@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A fine hound, and loyal already.",
+          "text": "A fine hound, all bone and hunger, and loyal already. It will not stop licking the hand that freed it.",
           "effects": [
             {
               "house_improvement": "recruit"
@@ -56,7 +56,7 @@
     },
     {
       "id": "leave",
-      "label": "Leave them caged.",
+      "label": "Leave them in their cages.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -64,7 +64,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The howling follows you a long way.",
+          "text": "The howling follows you a long way, thinner and thinner, until you cannot tell if you still hear it.",
           "effects": [
             {
               "to": "party",

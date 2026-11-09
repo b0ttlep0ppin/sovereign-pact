@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "disarm",
-      "label": "The cleverest hands disarm it.",
+      "label": "The cleverest hands disarm the ring of bones.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A trinket the quarry stole from its last hunter.",
+          "text": "A trinket the quarry stole from its last hunter, still with a finger in it.",
           "effects": [
             {
               "item": {
@@ -42,7 +42,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It snaps on them, and the quarry comes to look.",
+          "text": "It snaps shut on them, bone teeth in the leg, and the quarry comes to look.",
           "effects": [
             {
               "durability": -25,
@@ -59,7 +59,7 @@
     },
     {
       "id": "around",
-      "label": "Go around.",
+      "label": "Go the long way around it.",
       "rule": "vote",
       "tags": [
         "cautious"
