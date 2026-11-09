@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "take",
-      "label": "The leader pockets it.",
+      "label": "The leader pockets the smiling coin.",
       "rule": "leader",
       "tags": [
         "reckless"
@@ -32,7 +32,7 @@
         },
         {
           "w": 50,
-          "text": "It is not just a coin.",
+          "text": "It is not just a coin. It is warm, and it is smiling wider.",
           "effects": [
             {
               "resources": {
@@ -56,7 +56,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It rolls back onto the road behind you.",
+          "text": "It rolls back onto the road behind you, face up, smiling.",
           "effects": [
             {
               "to": "party",
@@ -68,7 +68,7 @@
     },
     {
       "id": "bless",
-      "label": "The most devout blesses it first.",
+      "label": "The most devout blesses it before anyone touches it.",
       "rule": "scion:trait:devout|scion:highest:sagacity",
       "tags": [
         "clever"
@@ -76,7 +76,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It goes dull, and stays gold.",
+          "text": "It goes dull, and stops smiling, and stays gold.",
           "effects": [
             {
               "resources": {

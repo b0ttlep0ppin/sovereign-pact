@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "bribe",
-      "label": "Bribe him.",
+      "label": "Bribe the clerk.",
       "rule": "vote",
       "tags": [
         "clever"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "You are on the list now, and the way ahead is shorter.",
+          "text": "You are on the list now, in red ink, and the way ahead is shorter.",
           "effects": [
             {
               "resources": {
@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "A perfect forgery.",
+          "text": "A perfect forgery, thumbprint and all.",
           "effects": [
             {
               "skip": 2
@@ -59,7 +59,7 @@
         },
         {
           "w": 40,
-          "text": "He spots it and rings a bell.",
+          "text": "It spots it at once, and rings a little bell, and things come.",
           "effects": [
             {
               "encounter": {
@@ -80,7 +80,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A thousand damned souls go free in the confusion, and you with them.",
+          "text": "A thousand damned souls go free in the confusion, and you with them, and something below notices.",
           "effects": [
             {
               "score": {

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "arm",
-      "label": "The one with the hurt arm strikes it.",
+      "label": "The one with the hurt arm strikes the anvil.",
       "rule": "scion:injured:arms|scion:lowest:might",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 75,
-          "text": "The ring of it goes up the bone. The arm is whole.",
+          "text": "The ring of it goes up the bone like cold fire. The arm is whole.",
           "effects": [
             {
               "mend": true
@@ -33,7 +33,7 @@
         },
         {
           "w": 25,
-          "text": "The anvil rings, and the arm goes numb.",
+          "text": "The anvil rings, and the arm goes numb, and stays a little numb.",
           "effects": [
             {
               "stat": {
@@ -46,7 +46,7 @@
     },
     {
       "id": "forge",
-      "label": "The strongest works the anvil.",
+      "label": "The strongest works the anvil for the ghost.",
       "rule": "scion:highest:might",
       "tags": [
         "clever"
@@ -54,7 +54,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A blade the ghost is proud of.",
+          "text": "A blade the ghost is proud of. It nods once, and fades into the frost.",
           "effects": [
             {
               "item": {
@@ -80,7 +80,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Heavy, and the ghost follows it.",
+          "text": "Heavy as sin, and the ghost follows it, and stands behind whoever carries it.",
           "effects": [
             {
               "resources": {

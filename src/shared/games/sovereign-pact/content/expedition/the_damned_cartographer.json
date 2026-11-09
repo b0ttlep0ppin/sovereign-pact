@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "True for a day.",
+          "text": "True for a day, and then the roads start to crawl again.",
           "effects": [
             {
               "resources": {
@@ -37,7 +37,7 @@
     },
     {
       "id": "free",
-      "label": "The kindest unchains him.",
+      "label": "The kindest unchains him from his desk.",
       "rule": "scion:most_healing|scion:highest:sagacity",
       "tags": [
         "kind"
@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He draws one last map, a true one, and fades.",
+          "text": "He draws one last map, a true one, and smiles for the first time in centuries, and fades.",
           "effects": [
             {
               "foresee": true
@@ -70,7 +70,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They change in your pack into maps of nowhere.",
+          "text": "They change in your pack into maps of nowhere, and nowhere has teeth.",
           "effects": [
             {
               "to": "party",

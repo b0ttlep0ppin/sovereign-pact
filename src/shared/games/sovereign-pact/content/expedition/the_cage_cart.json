@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "follow",
-      "label": "Follow the cart's ruts.",
+      "label": "Follow the cart's ruts to whoever took them.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "To the slavers' camp.",
+          "text": "To the slavers' camp, and the slavers, who are not glad to see you.",
           "effects": [
             {
               "encounter": {}
@@ -43,7 +43,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Where they were sold, and to whom.",
+          "text": "Where they were sold, and to whom, and for how little.",
           "effects": [
             {
               "foresee": true
@@ -66,7 +66,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The slavers will see the smoke.",
+          "text": "It burns high and black. The slavers will see the smoke, and know someone is coming.",
           "effects": [
             {
               "score": {

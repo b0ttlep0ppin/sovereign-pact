@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "pan",
-      "label": "Pan the creek.",
+      "label": "Pan the bitter creek.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A good haul.",
+          "text": "A good haul, and green hands for a week.",
           "effects": [
             {
               "resources": {
@@ -43,7 +43,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A great haul, and the village below runs dry.",
+          "text": "A great haul, and the village below runs dry, and curses your name.",
           "effects": [
             {
               "resources": {
@@ -61,7 +61,7 @@
     },
     {
       "id": "trace",
-      "label": "Trace it to the source.",
+      "label": "Trace the creek to its source.",
       "rule": "leader",
       "tags": [
         "reckless"
@@ -69,7 +69,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A guarded vein.",
+          "text": "A rich vein, and something guarding it.",
           "effects": [
             {
               "encounter": {}

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "touch",
-      "label": "Touch it, with the pilgrims.",
+      "label": "Creep in and touch it, with the pilgrims.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Warm, still, and comforting.",
+          "text": "It is still warm under the soot, and the warmth goes into you like comfort.",
           "effects": [
             {
               "to": "party",
@@ -33,7 +33,7 @@
     },
     {
       "id": "carry",
-      "label": "The strongest carries it out of the court.",
+      "label": "The strongest carries it out of the Court.",
       "rule": "scion:highest:might",
       "tags": [
         "bold"
@@ -41,7 +41,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The court notices, and the pilgrims cheer.",
+          "text": "The pilgrims cheer. The Court notices, and sends its people after you.",
           "effects": [
             {
               "score": {
@@ -57,7 +57,7 @@
     },
     {
       "id": "report",
-      "label": "Report the pilgrims to the court.",
+      "label": "Report the pilgrims to the Court.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -65,7 +65,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The court rewards you. The pilgrims weep.",
+          "text": "The Court rewards you in silver. The pilgrims weep, and are taken away, and you hear them a long time.",
           "effects": [
             {
               "resources": {

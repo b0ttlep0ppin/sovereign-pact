@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "wait",
-      "label": "Wait for it to pass.",
+      "label": "Wait in the shadows for it to pass.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -42,7 +42,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "It stops mid-step. Its gears are worth a fortune.",
+          "text": "It stops mid-step, spear raised. Its gears are worth a fortune.",
           "effects": [
             {
               "resources": {
@@ -54,7 +54,7 @@
         },
         {
           "w": 40,
-          "text": "It turns.",
+          "text": "It turns. Its lamps fix on you.",
           "effects": [
             {
               "encounter": {
@@ -75,7 +75,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It fights as it was built to.",
+          "text": "It fights exactly as it was built to, tirelessly, and it was built well.",
           "effects": [
             {
               "encounter": {}

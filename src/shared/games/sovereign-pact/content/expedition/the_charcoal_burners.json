@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "help",
-      "label": "Help them tend the mounds.",
+      "label": "Help them tend the smoking mounds.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Smoky work, and they share their supper.",
+          "text": "Smoky, choking work, and at the end they share their supper, and their charcoal.",
           "effects": [
             {
               "to": "party",
@@ -46,7 +46,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They tell you which paths the wood keeps.",
+          "text": "They tell you which paths the wood keeps, and which it lets go.",
           "effects": [
             {
               "foresee": true
@@ -57,7 +57,7 @@
     },
     {
       "id": "pass",
-      "label": "Pass by.",
+      "label": "Pass by their mounds.",
       "rule": "leader",
       "tags": [
         "cautious"

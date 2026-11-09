@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They tell the meek one what they are hiding from, and where it sleeps.",
+          "text": "They whisper to the meek one what they are hiding from, and where it sleeps, and how it eats.",
           "effects": [
             {
               "foresee": true
@@ -35,7 +35,7 @@
     },
     {
       "id": "take",
-      "label": "Take the scraps.",
+      "label": "Take their scraps, and go.",
       "rule": "vote",
       "tags": [
         "cruel"
@@ -43,7 +43,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A little food, a little shame.",
+          "text": "A little food, a little shame, and their eyes in the dark.",
           "effects": [
             {
               "resources": {
@@ -67,7 +67,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It is awake.",
+          "text": "It is awake, and it is bigger than they said.",
           "effects": [
             {
               "encounter": {

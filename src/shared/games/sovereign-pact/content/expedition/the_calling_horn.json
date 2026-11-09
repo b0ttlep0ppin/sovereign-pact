@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "blow",
-      "label": "Blow it.",
+      "label": "Blow the horn, full and loud.",
       "rule": "leader",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Every beast for miles hears it.",
+          "text": "Every beast for miles hears it, and all of them come.",
           "effects": [
             {
               "encounter": {
@@ -35,7 +35,7 @@
     },
     {
       "id": "take",
-      "label": "Take it home.",
+      "label": "Take it home, unblown.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -43,7 +43,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "For another day.",
+          "text": "For another day, and another hunt.",
           "effects": [
             {
               "item": {
@@ -56,7 +56,7 @@
     },
     {
       "id": "quiet",
-      "label": "The quietest blows it softly.",
+      "label": "The quietest blows it, very softly.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"
@@ -64,7 +64,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Only the quarry hears.",
+          "text": "Only the quarry hears, and it comes alone, and curious.",
           "effects": [
             {
               "encounter": {

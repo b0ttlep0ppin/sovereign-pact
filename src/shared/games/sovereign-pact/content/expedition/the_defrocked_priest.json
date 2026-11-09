@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "pay",
-      "label": "Pay him.",
+      "label": "Pay him for the Court's secrets.",
       "rule": "vote",
       "tags": [
         "clever"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "A back way through the court.",
+          "text": "A back way through the Court, past every guard.",
           "effects": [
             {
               "resources": {
@@ -35,7 +35,7 @@
         },
         {
           "w": 30,
-          "text": "He takes the money and runs.",
+          "text": "He takes the money, and runs, and laughs.",
           "effects": [
             {
               "resources": {
@@ -56,7 +56,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He weeps, and tells you everything.",
+          "text": "He weeps, and eats, and tells you everything, every bribe and every body.",
           "effects": [
             {
               "foresee": true
@@ -72,7 +72,7 @@
     },
     {
       "id": "turn",
-      "label": "Turn him over to the court.",
+      "label": "Turn him over to the Court.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -80,7 +80,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The court thanks you, and lets you pass.",
+          "text": "The Court thanks you, and lets you pass. You hear him blessing them as they drag him off.",
           "effects": [
             {
               "skip": 1

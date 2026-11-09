@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "drink",
-      "label": "The most weathered of you drinks.",
+      "label": "The most weathered of you drinks from the spring.",
       "rule": "scion:most_expeditions",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "Years fall off them. They feel it in every joint.",
+          "text": "Years fall off them. They feel it in every joint, and they do not want to stop.",
           "effects": [
             {
               "growth": {
@@ -35,7 +35,7 @@
         },
         {
           "w": 40,
-          "text": "They want to stay.",
+          "text": "They want to stay. They lie down among the smiling bones, and it takes three of you to drag them away.",
           "effects": [
             {
               "sanity": -25
@@ -54,7 +54,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Clear water that never goes stale.",
+          "text": "Clear water that never goes stale, and never quite stays still.",
           "effects": [
             {
               "resources": {

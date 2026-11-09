@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "sing",
-      "label": "The steadiest voice joins them.",
+      "label": "The steadiest voice sings the sixth part.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The hymn completes.",
+          "text": "The hymn completes at last, and the empty air sighs, and the dust settles.",
           "effects": [
             {
               "to": "party",
@@ -44,7 +44,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Beautiful and sad.",
+          "text": "Beautiful and sad, and always that gap, waiting.",
           "effects": [
             {
               "to": "party",
@@ -64,7 +64,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The Shrine goes cold.",
+          "text": "The voices stop mid-note. The Shrine goes cold, and something in it turns to look at you.",
           "effects": [
             {
               "to": "party",

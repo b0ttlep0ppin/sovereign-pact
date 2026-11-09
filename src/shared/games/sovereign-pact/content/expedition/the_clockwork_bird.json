@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "wind",
-      "label": "The cleverest hands wind it.",
+      "label": "The cleverest hands wind it up again.",
       "rule": "scion:highest:guile",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It sings, and leads you to its maker's room.",
+          "text": "It sings, brighter, and leads you through the ruins to its maker's room.",
           "effects": [
             {
               "fork": {
@@ -44,7 +44,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "It is a fine toy, and worth a lot.",
+          "text": "It is a fine toy, and worth a lot, and it never stops trying to escape.",
           "effects": [
             {
               "resources": {
@@ -55,7 +55,7 @@
         },
         {
           "w": 40,
-          "text": "Its beak is sharp.",
+          "text": "Its beak is sharp, and brass, and it goes for the eyes.",
           "effects": [
             {
               "durability": -20,
@@ -75,7 +75,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The song slows, and stops.",
+          "text": "The song slows, and slows, and stops mid-note, and the forge is very quiet.",
           "effects": [
             {
               "to": "party",

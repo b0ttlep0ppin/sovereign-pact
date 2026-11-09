@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They are welcome, and so are their friends.",
+          "text": "They are welcome, and so are their friends, and the fire is warm and strange.",
           "effects": [
             {
               "to": "party",
@@ -37,7 +37,7 @@
     },
     {
       "id": "pretend",
-      "label": "Pretend to be changed.",
+      "label": "The shrewdest pretends to be Changed.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"
@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 55,
-          "text": "A convincing limp and a glass eye.",
+          "text": "A convincing limp, a glass eye, a growl. The keeper nods you in.",
           "effects": [
             {
               "to": "party",
@@ -55,7 +55,7 @@
         },
         {
           "w": 45,
-          "text": "The guests know.",
+          "text": "The guests know. Every head turns, antlers and scales and all.",
           "effects": [
             {
               "encounter": {
@@ -68,7 +68,7 @@
     },
     {
       "id": "leave",
-      "label": "Sleep outside.",
+      "label": "Sleep outside in the cold.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -76,7 +76,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Something watches from the windows all night.",
+          "text": "Something watches from the windows all night, and does not blink.",
           "effects": [
             {
               "to": "party",

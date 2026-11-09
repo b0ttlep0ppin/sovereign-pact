@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "wear",
-      "label": "The leader tries it on.",
+      "label": "The leader puts on the dead king's crown.",
       "rule": "leader",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "It fits. It feels right.",
+          "text": "It fits. It feels right. It feels like it was waiting.",
           "effects": [
             {
               "score": {
@@ -36,7 +36,7 @@
         },
         {
           "w": 50,
-          "text": "It fits. It whispers.",
+          "text": "It fits. It whispers. It does not stop.",
           "effects": [
             {
               "curse": true
@@ -60,7 +60,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Gold is gold.",
+          "text": "Gold is gold, and the dead king can have his mud.",
           "effects": [
             {
               "resources": {
@@ -81,7 +81,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The field is quieter after.",
+          "text": "The field is quieter after, as if a long battle had finally ended.",
           "effects": [
             {
               "to": "party",

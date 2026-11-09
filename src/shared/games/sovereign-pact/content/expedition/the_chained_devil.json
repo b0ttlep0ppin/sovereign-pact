@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "free",
-      "label": "Free it.",
+      "label": "Break its chains, and trust its word.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 40,
-          "text": "It keeps its word, to everyone's surprise.",
+          "text": "It keeps its word, to everyone's surprise, and shows the way out.",
           "effects": [
             {
               "skip": 2
@@ -33,7 +33,7 @@
         },
         {
           "w": 60,
-          "text": "It keeps its word, in its own way.",
+          "text": "It keeps its word, in its own way, which is not your way.",
           "effects": [
             {
               "fork": {
@@ -60,7 +60,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It lied to the wrong devil. It tells you who.",
+          "text": "It lied to the wrong devil. It tells you who, very gladly.",
           "effects": [
             {
               "score": {
@@ -81,7 +81,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It curses you as you go.",
+          "text": "It curses you as you go, sweetly, by name.",
           "effects": [
             {
               "to": "party",
