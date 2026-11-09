@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "buy",
-      "label": "Buy one of the eyes.",
+      "label": "Buy one of the eyes, and see what it sees.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -35,7 +35,7 @@
         },
         {
           "w": 40,
-          "text": "It sees you, and tells someone what it saw.",
+          "text": "It sees you, and tells someone what it saw, and they come to find you.",
           "effects": [
             {
               "resources": {
@@ -51,7 +51,7 @@
     },
     {
       "id": "smash",
-      "label": "The strongest smashes the jar.",
+      "label": "The strongest smashes the jar. Nothing should watch you like that.",
       "rule": "scion:highest:might",
       "tags": [
         "bold"
@@ -72,7 +72,7 @@
     },
     {
       "id": "cover",
-      "label": "Cover the jar, and walk on.",
+      "label": "Cover the jar, and walk on, and try to forget them.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -91,7 +91,7 @@
     },
     {
       "id": "stare_back",
-      "label": "The keen-eyed one stares back.",
+      "label": "The keen-eyed one stares back, unwilling to be watched by a jar.",
       "rule": "scion:trait:keen_eyed",
       "only": true,
       "tags": [

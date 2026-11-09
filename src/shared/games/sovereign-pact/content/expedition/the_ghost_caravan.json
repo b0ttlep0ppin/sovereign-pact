@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "ride",
-      "label": "Ride with the dead; the best talker tells the story.",
+      "label": "Ride with the dead, and let the best talker pay the fare in a story.",
       "rule": "scion:highest:guile",
       "tags": [
         "bold"
@@ -36,7 +36,7 @@
     },
     {
       "id": "trade",
-      "label": "Trade with their pale merchant.",
+      "label": "Trade with their pale merchant, for goods the living no longer make.",
       "rule": "leader",
       "tags": [
         "clever"
@@ -62,7 +62,7 @@
     },
     {
       "id": "stand",
-      "label": "Stand aside, and let them pass.",
+      "label": "Stand aside, and let the dead pass in peace.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -93,7 +93,7 @@
     },
     {
       "id": "lies_for_fare",
-      "label": "The Gambler pays the fare in a story, mostly lies.",
+      "label": "The Gambler pays the fare in a story, mostly lies, and trusts the dead to enjoy it.",
       "rule": "scion:job:gambler",
       "only": true,
       "tags": [

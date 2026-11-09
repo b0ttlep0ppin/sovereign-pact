@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "tinker",
-      "label": "The cleverest tinkers with the engine.",
+      "label": "The cleverest tinkers with the engine, hoping to coax a gift from its heart.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -36,7 +36,7 @@
         },
         {
           "w": 45,
-          "text": "A turn here, a tap there, and it explodes in light and heat.",
+          "text": "A turn here, a tap there, and it explodes in light and heat, and leaves a little of their shape on the floor.",
           "effects": [
             {
               "to": "party",
@@ -51,7 +51,7 @@
     },
     {
       "id": "shut",
-      "label": "The strongest shuts it down.",
+      "label": "The strongest shuts it down, and ends a thousand years of turning.",
       "rule": "scion:highest:might",
       "tags": [
         "bold"
@@ -59,7 +59,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The light dies. Something somewhere in the Forge Ruins stops working, and is glad.",
+          "text": "The light dies. Something somewhere in the Forge Ruins stops working, and is glad to rest.",
           "effects": [
             {
               "score": {
@@ -75,7 +75,7 @@
     },
     {
       "id": "leave",
-      "label": "Leave it turning.",
+      "label": "Leave it turning. Whoever tried to take its heart is a warning enough.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -94,7 +94,7 @@
     },
     {
       "id": "drink_the_light",
-      "label": "The Conjurer drinks from its light.",
+      "label": "The Conjurer drinks from its light, thirsty for power that burns so bright.",
       "rule": "scion:job:conjurer",
       "only": true,
       "tags": [

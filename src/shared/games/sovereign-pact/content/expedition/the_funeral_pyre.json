@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "help",
-      "label": "Give them wood, and help build the pyre.",
+      "label": "Give them wood, and help build the pyre before she rises.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A fine burning. The warrior's fingers stop twitching. She rests.",
+          "text": "A fine burning. The warrior's fingers stop twitching. She rests, and the mourners weep with relief.",
           "effects": [
             {
               "resources": {
@@ -39,7 +39,7 @@
     },
     {
       "id": "watch",
-      "label": "Keep watch while they work.",
+      "label": "Keep watch while they work, steel drawn, in case she wakes first.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -63,7 +63,7 @@
     },
     {
       "id": "goods",
-      "label": "The shrewdest asks after the warrior's grave goods.",
+      "label": "The shrewdest asks after the warrior's grave goods. She will not need them.",
       "rule": "scion:highest:guile",
       "tags": [
         "cruel"

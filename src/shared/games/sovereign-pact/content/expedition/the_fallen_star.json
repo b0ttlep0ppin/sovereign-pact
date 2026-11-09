@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "dig",
-      "label": "Dig the star out of its crater.",
+      "label": "Dig the star out of its crater, while it is still warm.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "A heart of star-metal, still singing faintly in the hand.",
+          "text": "A heart of star-metal, still singing faintly in the hand, and it never quite stops.",
           "effects": [
             {
               "resources": {
@@ -46,7 +46,7 @@
     },
     {
       "id": "listen",
-      "label": "Sit and listen to it sing.",
+      "label": "Sit and listen to it sing, and let it remind you of something far away.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -66,7 +66,7 @@
     },
     {
       "id": "touch",
-      "label": "The boldest touches the star.",
+      "label": "The boldest touches the star, longing to know what it feels like.",
       "rule": "scion:trait:brave|scion:random",
       "tags": [
         "reckless"
@@ -74,7 +74,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "Starlight, in the blood, bright and cold.",
+          "text": "Starlight, in the blood, bright and cold, and it stays.",
           "effects": [
             {
               "growth": {

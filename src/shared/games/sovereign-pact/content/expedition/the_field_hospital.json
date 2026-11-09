@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "heal",
-      "label": "The best healer goes through the stores.",
+      "label": "The best healer goes through the stores, taking what may yet be of use.",
       "rule": "scion:most_healing",
       "tags": [
         "clever"
@@ -36,7 +36,7 @@
     },
     {
       "id": "wounded",
-      "label": "The worst hurt lies down on a cot for an hour.",
+      "label": "The worst hurt lies down on a cot for an hour, desperate for rest.",
       "rule": "scion:injured:any|scion:lowest:sanity",
       "tags": [
         "kind"
@@ -56,7 +56,7 @@
         },
         {
           "w": 30,
-          "text": "An hour of rest, and a dream about whoever lay on the cot before, and how they died.",
+          "text": "An hour of rest, and a dream about whoever lay on the cot before, and how they died, slowly.",
           "effects": [
             {
               "sanity": -10
@@ -67,7 +67,7 @@
     },
     {
       "id": "strip",
-      "label": "Strip the tents for anything worth selling.",
+      "label": "Strip the tents for anything worth selling. The dead do not need it.",
       "rule": "leader",
       "tags": [
         "cruel"

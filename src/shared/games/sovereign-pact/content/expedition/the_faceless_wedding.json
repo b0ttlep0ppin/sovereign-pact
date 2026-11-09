@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "sit",
-      "label": "Sit, and celebrate with the faceless.",
+      "label": "Sit, and celebrate with the faceless. It would be rude to refuse.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "Good food, odd music with no singer, and little gifts for the guests.",
+          "text": "Good food, odd music with no singer, and little gifts for the guests. You do not ask what is in them.",
           "effects": [
             {
               "resources": {
@@ -49,7 +49,7 @@
     },
     {
       "id": "gift",
-      "label": "The shrewdest offers the couple a gift.",
+      "label": "The shrewdest offers the couple a gift, and wishes them well.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"
@@ -73,7 +73,7 @@
     },
     {
       "id": "leave",
-      "label": "Slip away before the vows are done.",
+      "label": "Slip away before the vows are done, before anyone asks you to stay.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -81,7 +81,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The music follows, and so do their smooth, turning heads.",
+          "text": "The music follows, and so do their smooth, turning heads, all the way to the edge of the city.",
           "effects": [
             {
               "to": "party",

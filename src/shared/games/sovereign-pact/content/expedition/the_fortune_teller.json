@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "read",
-      "label": "The leader has their cards read.",
+      "label": "The Leader has their cards read, and pays whatever price the cards ask.",
       "rule": "leader",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "She turns a card over, and it is not the one the leader was born under. It is now.",
+          "text": "She turns a card over, and it is not the one the Leader was born under. It is now, and it always will be.",
           "effects": [
             {
               "tarot": true
@@ -32,7 +32,7 @@
     },
     {
       "id": "listen",
-      "label": "The wisest listens from the edge.",
+      "label": "The wisest listens from the edge, to learn how she does it.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -56,7 +56,7 @@
     },
     {
       "id": "pass",
-      "label": "Pass her by.",
+      "label": "Pass her by. Anything she reads for free will cost you dearly.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -76,7 +76,7 @@
     },
     {
       "id": "read_for_her",
-      "label": "The Soothsayer reads for her instead.",
+      "label": "The Soothsayer reads for her instead, and turns her own cards on her.",
       "rule": "scion:job:soothsayer",
       "only": true,
       "tags": [

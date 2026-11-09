@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "blood",
-      "label": "The least blooded finishes it.",
+      "label": "The least blooded finishes it, and learns what killing truly is.",
       "rule": "scion:fewest_kills",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It is quick and ugly, and they will remember its eyes.",
+          "text": "It is quick and ugly, and they will remember its eyes for a long time.",
           "effects": [
             {
               "xp": 120
@@ -35,7 +35,7 @@
     },
     {
       "id": "mend",
-      "label": "The wisest binds its leg and lets it go.",
+      "label": "The wisest binds its leg and lets it go, sparing one small life.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "kind"
@@ -55,7 +55,7 @@
     },
     {
       "id": "leave",
-      "label": "Leave it in its hollow.",
+      "label": "Leave it in its hollow. It is not worth the trouble either way.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -87,7 +87,7 @@
     },
     {
       "id": "show_them",
-      "label": "The Soldier shows the least blooded how.",
+      "label": "The Soldier shows the least blooded how, so it is done quick and clean.",
       "rule": "scion:job:soldier",
       "only": true,
       "tags": [

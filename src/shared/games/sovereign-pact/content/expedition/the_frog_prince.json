@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "kiss",
-      "label": "The kindest kisses him.",
+      "label": "The kindest kisses him, hoping to undo the witch's work.",
       "rule": "scion:most_healing|scion:random",
       "tags": [
         "kind"
@@ -37,7 +37,7 @@
         },
         {
           "w": 60,
-          "text": "Still a frog. A poisonous one.",
+          "text": "Still a frog. A poisonous one, and very sorry about it.",
           "effects": [
             {
               "status": "poison"
@@ -48,7 +48,7 @@
     },
     {
       "id": "crown",
-      "label": "Take his tiny crown.",
+      "label": "Take his tiny crown. A frog has no need of gold.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -56,7 +56,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Real gold, and a very angry frog, who knows a witch.",
+          "text": "Real gold, and a very angry frog, who knows a witch, and will tell her.",
           "effects": [
             {
               "resources": {
@@ -72,7 +72,7 @@
     },
     {
       "id": "pass",
-      "label": "Wish him luck, and go.",
+      "label": "Wish him luck, and go, before anyone is tempted.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -92,7 +92,7 @@
     },
     {
       "id": "kiss_him",
-      "label": "The kindly one kisses him.",
+      "label": "The kindly one kisses him, unable to leave anyone so cursed.",
       "rule": "scion:trait:kindly",
       "only": true,
       "tags": [

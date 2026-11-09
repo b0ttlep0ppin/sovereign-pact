@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "return",
-      "label": "The strongest lifts the egg back to the canopy.",
+      "label": "The strongest lifts the egg back to the canopy, to return it to its screaming parent.",
       "rule": "scion:highest:might",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "A cry of thanks from above, and a feather as long as an arm drifts down.",
+          "text": "A cry of thanks from above, and a feather as long as an arm drifts down. It brings luck.",
           "effects": [
             {
               "blessing": {
@@ -33,7 +33,7 @@
         },
         {
           "w": 30,
-          "text": "The parent thinks you are stealing it, and comes down out of the sky.",
+          "text": "The parent thinks you are stealing it, and comes down out of the sky, screaming.",
           "effects": [
             {
               "encounter": {
@@ -46,7 +46,7 @@
     },
     {
       "id": "take",
-      "label": "Take the egg.",
+      "label": "Take the egg. A thing so rare is worth the risk.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -54,7 +54,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A rare egg, warm against the back, and a shadow circling above you all the rest of the day.",
+          "text": "A rare egg, warm against the back, and a shadow circling above you all the rest of the day, waiting for its chance.",
           "effects": [
             {
               "resources": {
@@ -70,7 +70,7 @@
     },
     {
       "id": "leave",
-      "label": "Leave it where it fell.",
+      "label": "Leave it where it fell. It is not yours to save or to take.",
       "rule": "vote",
       "tags": [
         "cautious"

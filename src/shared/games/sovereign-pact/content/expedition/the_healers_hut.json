@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "ask",
-      "label": "The best healer asks what wounds she tended.",
+      "label": "The best healer asks what wounds she tended, healer to healer.",
       "rule": "scion:most_healing|scion:highest:sagacity",
       "tags": [
         "kind"
@@ -36,7 +36,7 @@
     },
     {
       "id": "pay",
-      "label": "Pay her for her trouble.",
+      "label": "Pay her for her trouble, and leave the bandages unasked about.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -62,7 +62,7 @@
     },
     {
       "id": "suspect",
-      "label": "Accuse her of selling them out.",
+      "label": "Accuse her of selling them out. Those bandages are not the right colour.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -70,7 +70,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "She did not. She tells you nothing now, and shuts the door.",
+          "text": "She did not. She tells you nothing now, and shuts the door, and you will never know what she saw.",
           "effects": [
             {
               "to": "party",

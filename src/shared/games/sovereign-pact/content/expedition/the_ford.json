@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "ford",
-      "label": "Ford it together, roped.",
+      "label": "Ford it together, roped, and trust each other to hold.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -31,7 +31,7 @@
         },
         {
           "w": 20,
-          "text": "Someone is swept off their feet and dragged under before the rope holds.",
+          "text": "Someone is swept off their feet and dragged under before the rope holds, and the river takes its due.",
           "effects": [
             {
               "injury": "legs"
@@ -42,7 +42,7 @@
     },
     {
       "id": "swim",
-      "label": "The strongest swims a rope over.",
+      "label": "The strongest swims a rope over, against the flood.",
       "rule": "scion:highest:might",
       "tags": [
         "bold"
@@ -67,7 +67,7 @@
     },
     {
       "id": "wait",
-      "label": "Wait for the flood to fall.",
+      "label": "Wait for the flood to fall, and lose a day to the river.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -75,7 +75,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A day lost, listening to the river roar.",
+          "text": "A day lost, listening to the river roar, and wondering how many it has taken.",
           "effects": [
             {
               "to": "party",

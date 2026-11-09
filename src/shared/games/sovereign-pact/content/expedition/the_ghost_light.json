@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "follow",
-      "label": "Follow the blue light.",
+      "label": "Follow the blue light, wherever it leads, as others have before.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "To treasure, left by whoever followed it last.",
+          "text": "To treasure, left by whoever followed it last. You do not find them.",
           "effects": [
             {
               "item": {
@@ -32,7 +32,7 @@
         },
         {
           "w": 50,
-          "text": "To a drop, and a hard landing at the bottom.",
+          "text": "To a drop, and a hard landing at the bottom, and the light hovering above, waiting.",
           "effects": [
             {
               "to": "party",
@@ -45,7 +45,7 @@
     },
     {
       "id": "ignore",
-      "label": "Ignore it.",
+      "label": "Ignore it. Lights that wait for you are never kind.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -68,7 +68,7 @@
     },
     {
       "id": "trap",
-      "label": "The shrewdest traps it in a jar.",
+      "label": "The shrewdest traps it in a jar, before it leads anyone else astray.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"

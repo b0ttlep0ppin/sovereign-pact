@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "haul",
-      "label": "Haul the good stone away.",
+      "label": "Haul the good stone away. The tower will not stand again.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Heavy, good stone, and somewhere under the last of it, a skeleton still facing the road.",
+          "text": "Heavy, good stone, and somewhere under the last of it, a skeleton still facing the road, still watching.",
           "effects": [
             {
               "resources": {
@@ -38,7 +38,7 @@
     },
     {
       "id": "search",
-      "label": "The sharpest eye searches the ruin.",
+      "label": "The sharpest eye searches the ruin, for what the guard left behind.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -60,7 +60,7 @@
     },
     {
       "id": "rebuild",
-      "label": "Mark it for the House to rebuild.",
+      "label": "Mark it for the House to rebuild, so that someone watches once again.",
       "rule": "leader",
       "tags": [
         "kind"
@@ -68,7 +68,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A watchtower of your own, in time, to watch for whatever came.",
+          "text": "A watchtower of your own, in time, to watch for whatever came. You hope it does not come again.",
           "effects": [
             {
               "house_improvement": "building"

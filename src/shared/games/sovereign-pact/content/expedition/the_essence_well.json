@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "bottle",
-      "label": "Bottle what you can.",
+      "label": "Bottle what you can, and leave the drinking to braver fools.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Every flask you have, cold and bright and humming.",
+          "text": "Every flask you have, cold and bright and humming, and the well no lower for it.",
           "effects": [
             {
               "resources": {
@@ -34,7 +34,7 @@
     },
     {
       "id": "drink",
-      "label": "The bravest drinks from the well.",
+      "label": "The bravest drinks from the well, unable to resist what it might give.",
       "rule": "scion:trait:brave|scion:highest:resilience",
       "tags": [
         "reckless"
@@ -57,7 +57,7 @@
         },
         {
           "w": 40,
-          "text": "It burns going down, cold fire, and keeps burning.",
+          "text": "It burns going down, cold fire, and keeps burning long after.",
           "effects": [
             {
               "status": "burn"
@@ -71,7 +71,7 @@
     },
     {
       "id": "guard",
-      "label": "Mark it for the House and post a sign.",
+      "label": "Mark it for the House and post a sign, so that every rival knows whose it is.",
       "rule": "leader",
       "tags": [
         "clever"

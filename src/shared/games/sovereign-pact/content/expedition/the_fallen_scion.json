@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "bury",
-      "label": "Bury the stranger properly.",
+      "label": "Bury the stranger properly, as you would want someone to bury you.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It takes an hour, and nobody minds. The wind stops while you work.",
+          "text": "It takes an hour, and nobody minds. The wind stops while you work, as if in respect.",
           "effects": [
             {
               "to": "party",
@@ -38,7 +38,7 @@
     },
     {
       "id": "strip",
-      "label": "Take the dead stranger's armor.",
+      "label": "Take the dead stranger's armour. Good plate should not lie in the rain.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -63,7 +63,7 @@
     },
     {
       "id": "read",
-      "label": "The wisest breaks the seals and reads the letters.",
+      "label": "The wisest breaks the seals and reads the letters, to learn who this was.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"

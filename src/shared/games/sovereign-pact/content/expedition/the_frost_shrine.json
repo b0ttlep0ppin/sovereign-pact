@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "offer",
-      "label": "Leave an offering of your own.",
+      "label": "Leave an offering of your own, and ask the winter god for mercy.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -41,7 +41,7 @@
     },
     {
       "id": "sword",
-      "label": "The strongest pries the sword from the ice.",
+      "label": "The strongest pries the sword from the ice, offering or not.",
       "rule": "scion:highest:might",
       "tags": [
         "reckless"
@@ -75,7 +75,7 @@
     },
     {
       "id": "pray",
-      "label": "The devout prays to the winter god.",
+      "label": "The devout prays to the winter god, hoping it hears a stranger.",
       "rule": "scion:trait:devout|scion:highest:sagacity",
       "tags": [
         "kind"
@@ -83,7 +83,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The winter god listens, and the cold becomes a kind of strength.",
+          "text": "The winter god listens, and the cold becomes a kind of strength that settles in the bones.",
           "effects": [
             {
               "blessing": {

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "coin",
-      "label": "Pay the ferryman in coin, everyone.",
+      "label": "Pay the ferryman in coin, everyone, and keep your memories your own.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It is a great deal of coin, and he counts it with long grey fingers.",
+          "text": "It is a great deal of coin, and he counts it with long grey fingers, slowly, and twice.",
           "effects": [
             {
               "resources": {
@@ -34,7 +34,7 @@
     },
     {
       "id": "memory",
-      "label": "Pay him in memories.",
+      "label": "Pay him in memories. Gold is harder to come by out here.",
       "rule": "leader",
       "tags": [
         "reckless"
@@ -58,7 +58,7 @@
     },
     {
       "id": "swim",
-      "label": "The hardiest swims a rope across his river.",
+      "label": "The hardiest swims a rope across his river, and refuses to pay at all.",
       "rule": "scion:highest:resilience",
       "tags": [
         "bold"
@@ -66,7 +66,7 @@
       "outcomes": [
         {
           "w": 40,
-          "text": "They make it across, half drowned, and drag a rope for the rest.",
+          "text": "They make it across, half drowned, and drag a rope for the rest. The ferryman watches, unsmiling.",
           "effects": [
             {
               "score": {

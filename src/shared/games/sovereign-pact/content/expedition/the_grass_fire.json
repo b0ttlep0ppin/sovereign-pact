@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "run",
-      "label": "Run before the fire.",
+      "label": "Run before the fire, with the beasts, and do not look back.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -43,7 +43,7 @@
     },
     {
       "id": "backburn",
-      "label": "The cleverest lights a backfire.",
+      "label": "The cleverest lights a backfire, and fights fire with fire.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -51,7 +51,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A black patch to shelter in, and the fire roars round you on both sides.",
+          "text": "A black patch to shelter in, and the fire roars round you on both sides, and passes.",
           "effects": [
             {
               "score": {
@@ -64,7 +64,7 @@
     },
     {
       "id": "river",
-      "label": "Make for the river.",
+      "label": "Make for the river, where the fire cannot follow.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -72,7 +72,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Wet, and safe from the fire, and the fleeing beasts are all round you, and frightened.",
+          "text": "Wet, and safe from the fire, and the fleeing beasts are all round you, and frightened, and they do not care who they trample.",
           "effects": [
             {
               "encounter": {}

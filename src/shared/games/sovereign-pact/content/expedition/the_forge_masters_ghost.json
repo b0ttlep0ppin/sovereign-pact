@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "heavy",
-      "label": "The one in the heaviest gear stands for his inspection.",
+      "label": "The one in the heaviest gear stands for his inspection, back straight and chin high.",
       "rule": "scion:heaviest_gear|scion:highest:might",
       "tags": [
         "bold"
@@ -35,7 +35,7 @@
         },
         {
           "w": 40,
-          "text": "He does not approve, and shows them exactly why.",
+          "text": "He does not approve, and shows them exactly why, with his cold hands.",
           "effects": [
             {
               "durability": -30,
@@ -47,7 +47,7 @@
     },
     {
       "id": "bow",
-      "label": "Bow to the forge-master.",
+      "label": "Bow to the forge-master, as his smiths once did.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -67,7 +67,7 @@
     },
     {
       "id": "dismiss",
-      "label": "Tell him the forge is dead.",
+      "label": "Tell him the forge is dead, and that he should rest.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -75,7 +75,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He does not take it well. Nobody has told him in a thousand years.",
+          "text": "He does not take it well. Nobody has told him in a thousand years, and he does not believe you.",
           "effects": [
             {
               "encounter": {}

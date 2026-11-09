@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "enter",
-      "label": "The leader steps into the house of mirrors.",
+      "label": "The Leader steps into the house of mirrors, curious what it will show them.",
       "rule": "leader",
       "tags": [
         "reckless"
@@ -46,7 +46,7 @@
     },
     {
       "id": "break",
-      "label": "Break every mirror.",
+      "label": "Break every mirror. No one needs to see their own death.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -69,7 +69,7 @@
     },
     {
       "id": "look",
-      "label": "The sharpest eye studies only the outer mirrors.",
+      "label": "The sharpest eye studies only the outer mirrors, and keeps out of the house.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"

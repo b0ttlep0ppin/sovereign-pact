@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "wade",
-      "label": "Wade through the black water.",
+      "label": "Wade through the black water, and do not reach for whatever gleams.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -31,7 +31,7 @@
         },
         {
           "w": 30,
-          "text": "Something in the water, and it was what was gleaming.",
+          "text": "Something in the water, and it was what was gleaming, and it was looking at you.",
           "effects": [
             {
               "encounter": {
@@ -44,7 +44,7 @@
     },
     {
       "id": "dive",
-      "label": "The toughest dives for the gleam.",
+      "label": "The toughest dives for the gleam, holding their breath against the cold.",
       "rule": "scion:highest:resilience",
       "tags": [
         "reckless"
@@ -52,7 +52,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A drowned miner's lamp and purse, and the miner, who does not mind.",
+          "text": "A drowned miner's lamp and purse, and the miner, who does not mind. He watches them go.",
           "effects": [
             {
               "resources": {
@@ -70,7 +70,7 @@
     },
     {
       "id": "around",
-      "label": "Find a way around.",
+      "label": "Find a way around, rather than wade into water that black.",
       "rule": "leader",
       "tags": [
         "cautious"

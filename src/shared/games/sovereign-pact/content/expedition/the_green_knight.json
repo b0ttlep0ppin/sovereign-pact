@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "strike",
-      "label": "The strongest takes his game, and strikes.",
+      "label": "The strongest takes his game, and strikes with all their strength.",
       "rule": "scion:highest:might",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "His head rolls in the moss, and he picks it up, and it smiles. He says he will find you again.",
+          "text": "His head rolls in the moss, and he picks it up, and it smiles. He says he will find you again, and you believe him.",
           "effects": [
             {
               "score": {
@@ -37,7 +37,7 @@
     },
     {
       "id": "decline",
-      "label": "Decline his game.",
+      "label": "Decline his game. A blow you owe in a year is a blow you cannot escape.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -67,7 +67,7 @@
     },
     {
       "id": "trick",
-      "label": "The shrewdest offers him a different game.",
+      "label": "The shrewdest offers him a different game, one with fewer heads at stake.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"

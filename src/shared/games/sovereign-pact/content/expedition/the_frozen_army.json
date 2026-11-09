@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "walk",
-      "label": "Walk among their ranks.",
+      "label": "Walk among their ranks, and pray none of them wake.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "They do not move. You feel their eyes anyway.",
+          "text": "They do not move. You feel their eyes anyway, all the way across the ice.",
           "effects": [
             {
               "to": "party",
@@ -44,7 +44,7 @@
     },
     {
       "id": "loot",
-      "label": "The strongest pries loose a captain's sword.",
+      "label": "The strongest pries loose a captain's sword. He will not need it now.",
       "rule": "scion:highest:might",
       "tags": [
         "cruel"
@@ -52,7 +52,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Fine steel, and as it comes free, the whole army turns its heads.",
+          "text": "Fine steel, and as it comes free, the whole army turns its heads to watch you go.",
           "effects": [
             {
               "item": {
@@ -68,7 +68,7 @@
     },
     {
       "id": "salute",
-      "label": "Salute them, and go around.",
+      "label": "Salute them, and go around. They marched for a House, as you do.",
       "rule": "leader",
       "tags": [
         "kind"
@@ -76,7 +76,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Their stiff banners stir, once, in no wind.",
+          "text": "Their stiff banners stir, once, in no wind, as if returning the honour.",
           "effects": [
             {
               "score": {

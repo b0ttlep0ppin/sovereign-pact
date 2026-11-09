@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "rest",
-      "label": "Let them wash your feet.",
+      "label": "Let them wash your feet, and rest a while in their gentle hands.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -37,7 +37,7 @@
     },
     {
       "id": "tell",
-      "label": "The best talker tells them the news of the road.",
+      "label": "The best talker tells them the news of the road, and listens for what they give back.",
       "rule": "scion:highest:guile",
       "tags": [
         "kind"
@@ -56,7 +56,7 @@
     },
     {
       "id": "hurry",
-      "label": "No time to stop.",
+      "label": "No time to stop. The road ahead will not wait.",
       "rule": "leader",
       "tags": [
         "cautious"

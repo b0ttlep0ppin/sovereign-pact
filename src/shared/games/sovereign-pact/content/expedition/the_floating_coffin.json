@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "open",
-      "label": "Pry open the coffin.",
+      "label": "Pry open the coffin, and answer the knocking.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "A drowned merchant, very polite, very grateful, who pays you in river pearls.",
+          "text": "A drowned merchant, very polite, very grateful, who pays you in river pearls and asks you to close the lid again.",
           "effects": [
             {
               "resources": {
@@ -45,7 +45,7 @@
     },
     {
       "id": "ask",
-      "label": "The wisest knocks back, and asks who is inside.",
+      "label": "The wisest knocks back, and asks who is inside before anyone opens it.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -53,7 +53,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It gives a name you know from the House's old debts.",
+          "text": "It gives a name you know from the House's old debts, and it would like to discuss them.",
           "effects": [
             {
               "score": {
@@ -66,7 +66,7 @@
     },
     {
       "id": "push",
-      "label": "Push it on downstream.",
+      "label": "Push it on downstream. Whoever is inside is not your concern.",
       "rule": "leader",
       "tags": [
         "cautious"

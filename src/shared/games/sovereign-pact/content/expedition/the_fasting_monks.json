@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "fast",
-      "label": "The toughest fasts a day with them.",
+      "label": "The toughest fasts a day with them, hungry for their visions.",
       "rule": "scion:highest:resilience",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A vision, sharp as a blade, and a hunger that does not go away.",
+          "text": "A vision, sharp as a blade, and a hunger that does not go away, even after eating.",
           "effects": [
             {
               "foresee": true
@@ -38,7 +38,7 @@
     },
     {
       "id": "feed",
-      "label": "Feed them.",
+      "label": "Feed them. No vision is worth starving for.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -63,7 +63,7 @@
     },
     {
       "id": "all",
-      "label": "Everyone fasts.",
+      "label": "Everyone fasts, and shares in whatever the monks have seen.",
       "rule": "vote",
       "tags": [
         "bold"

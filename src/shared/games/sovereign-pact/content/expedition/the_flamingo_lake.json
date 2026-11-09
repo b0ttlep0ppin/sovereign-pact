@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "salt",
-      "label": "Gather the white salt.",
+      "label": "Gather the white salt, and ignore the honking.",
       "rule": "vote",
       "tags": [
         "clever"
@@ -34,7 +34,7 @@
     },
     {
       "id": "rest",
-      "label": "Rest by the water and watch them.",
+      "label": "Rest by the water and watch them. You may never see anything this peaceful again.",
       "rule": "leader",
       "tags": [
         "kind"
@@ -42,7 +42,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "An afternoon of pink and quiet. For once, nothing is wrong.",
+          "text": "An afternoon of pink and quiet. For once, nothing is wrong, and that is almost more than you can bear.",
           "effects": [
             {
               "to": "party",
@@ -54,7 +54,7 @@
     },
     {
       "id": "wade",
-      "label": "The quickest wades out for a feather.",
+      "label": "The quickest wades out for a feather, for luck.",
       "rule": "scion:highest:speed",
       "tags": [
         "reckless"

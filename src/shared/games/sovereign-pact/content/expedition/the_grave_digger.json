@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "ask",
-      "label": "Ask him who the graves are for.",
+      "label": "Ask him who the graves are for. You would rather know.",
       "rule": "vote",
       "tags": [
         "clever"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He names a rival House, and keeps digging, and does not look up.",
+          "text": "He names a rival House, and keeps digging, and does not look up. You do not ask about the others.",
           "effects": [
             {
               "score": {
@@ -34,7 +34,7 @@
     },
     {
       "id": "help",
-      "label": "The strongest helps him dig.",
+      "label": "The strongest helps him dig, so that the graves are ready when needed.",
       "rule": "scion:highest:might",
       "tags": [
         "kind"
@@ -55,7 +55,7 @@
     },
     {
       "id": "fill",
-      "label": "Fill in his graves.",
+      "label": "Fill in his graves. Nobody needs to be buried today.",
       "rule": "leader",
       "tags": [
         "bold"
@@ -63,7 +63,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He weeps, and the barrows stir, waiting for their beds.",
+          "text": "He weeps, and the barrows stir, waiting for their beds, and growing impatient.",
           "effects": [
             {
               "encounter": {}

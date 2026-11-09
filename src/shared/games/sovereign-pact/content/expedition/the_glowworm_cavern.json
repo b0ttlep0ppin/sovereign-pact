@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "rest",
-      "label": "Rest here, under the false stars.",
+      "label": "Rest here a while, under the false stars, and let the dark wait.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A good rest under false stars, warm and soft and smelling of rain.",
+          "text": "A good rest under false stars, warm and soft and smelling of rain. It is very hard to leave.",
           "effects": [
             {
               "to": "party",
@@ -37,7 +37,7 @@
     },
     {
       "id": "gather",
-      "label": "The sharpest gathers worms for light.",
+      "label": "The sharpest gathers worms for light, against the dark ahead.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -57,7 +57,7 @@
     },
     {
       "id": "deeper",
-      "label": "Follow the worms deeper in.",
+      "label": "Follow the worms deeper in, to see where the light begins.",
       "rule": "leader",
       "tags": [
         "bold"

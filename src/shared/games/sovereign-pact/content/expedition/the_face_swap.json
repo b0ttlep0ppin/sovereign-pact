@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "changed",
-      "label": "One who was Changed bargains with her.",
+      "label": "One who was Changed bargains with her, since their face is already a stranger's.",
       "rule": "scion:changed|vote",
       "tags": [
         "clever"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "She pays well for a long look at their face, touches it, and gives it back.",
+          "text": "She pays well for a long look at their face, touches it, and gives it back. It does not feel quite the same.",
           "effects": [
             {
               "resources": {
@@ -39,7 +39,7 @@
     },
     {
       "id": "sell",
-      "label": "The craftiest sells her someone else's face.",
+      "label": "The craftiest sells her someone else's face, and hopes she never checks.",
       "rule": "scion:highest:guile",
       "tags": [
         "cruel"
@@ -47,7 +47,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "Someone else's face, peeled from somewhere. She never notices.",
+          "text": "Someone else's face, peeled from somewhere. She never notices, and you do not ask where it came from.",
           "effects": [
             {
               "resources": {
@@ -61,7 +61,7 @@
         },
         {
           "w": 40,
-          "text": "She takes yours instead, for a while, and pegs it up with the others.",
+          "text": "She takes yours instead, for a while, and pegs it up with the others to dry.",
           "effects": [
             {
               "status": "confusion"
@@ -75,7 +75,7 @@
     },
     {
       "id": "leave",
-      "label": "Keep your faces, and walk on.",
+      "label": "Keep your faces, and walk on. Nothing in this city should be bought.",
       "rule": "leader",
       "tags": [
         "cautious"

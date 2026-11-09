@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "draw",
-      "label": "The kindest draws it a face in charcoal.",
+      "label": "The kindest draws it a face in charcoal, so that it has something to smile with.",
       "rule": "scion:most_healing|scion:highest:sagacity",
       "tags": [
         "kind"
@@ -35,7 +35,7 @@
     },
     {
       "id": "refuse",
-      "label": "Gently refuse.",
+      "label": "Gently refuse. Your faces are not yours to give.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -55,7 +55,7 @@
     },
     {
       "id": "shoo",
-      "label": "Shoo it away.",
+      "label": "Shoo it away, before it decides it wants yours.",
       "rule": "leader",
       "tags": [
         "cruel"

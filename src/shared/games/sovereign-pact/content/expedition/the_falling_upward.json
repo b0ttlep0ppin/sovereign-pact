@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "swim",
-      "label": "Swim through the air toward the far ground.",
+      "label": "Swim through the air toward the far ground, and try not to look down. Or up.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -50,7 +50,7 @@
     },
     {
       "id": "anchor",
-      "label": "The strongest grabs a rock and holds everyone on.",
+      "label": "The strongest grabs a rock and holds everyone on, until the world remembers itself.",
       "rule": "scion:highest:might",
       "tags": [
         "cautious"
@@ -58,7 +58,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The world settles back down. Their arms do not.",
+          "text": "The world settles back down. Their arms do not, for a long while.",
           "effects": [
             {
               "durability": -20,
@@ -70,7 +70,7 @@
     },
     {
       "id": "let",
-      "label": "Let go, and fall upward.",
+      "label": "Let go, and fall upward, and see where the sky takes you.",
       "rule": "leader",
       "tags": [
         "reckless"
