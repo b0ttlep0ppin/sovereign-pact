@@ -2,6 +2,13 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-09 (implementation, Milestone 8cv): richer event prose
+
+Josh: **"give all of these event descriptions more evocative and detailed prose, nothing too crazy but try to help set the tone of the game overall"**.
+- **Reading:** "descriptions" is each event's opening text, the part read before anyone chooses. Choices and outcome texts keep their words; Josh can reword those in the Event Book.
+- **The model is Josh's own rewrite of the Abandoned Kennel** in the Event Book: two to four plain sentences, about twice the old length, one concrete, sensory detail that makes the scene wrong or sad, no flourish. Every fact a choice relies on (who is heaviest, most haunted, a House's arms, a toll) stays in the text.
+- Done in batches, a PR each, expedition events first, then settlement, House and crisis events.
+
 ## 2026-11-05 (implementation, Milestone 8cu): new Settlement music, no House themes for now
 
 Josh: **"I added some more music, replace the ambience music with those. Remove the theme selection for now for the house, i may add it back later if I find appropriate songs"**.
