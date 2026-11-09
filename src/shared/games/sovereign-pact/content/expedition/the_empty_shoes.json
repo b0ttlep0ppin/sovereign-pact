@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "To a square where the faceless dance, and let you watch.",
+          "text": "To a square where the faceless dance, barefoot and silent, and they let you watch.",
           "effects": [
             {
               "foresee": true
@@ -45,7 +45,7 @@
     },
     {
       "id": "search",
-      "label": "The shrewdest searches the houses.",
+      "label": "The shrewdest searches the empty houses.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"
@@ -53,7 +53,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Every house left as if for a moment.",
+          "text": "Every house left as if for a moment, the kettle still warm, and coins on the table.",
           "effects": [
             {
               "resources": {
@@ -74,7 +74,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Your feet ache to be bare.",
+          "text": "Your feet ache to be bare all day.",
           "effects": [
             {
               "to": "party",

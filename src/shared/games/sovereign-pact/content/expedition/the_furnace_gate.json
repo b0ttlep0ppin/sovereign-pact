@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "hold",
-      "label": "The toughest holds the latch.",
+      "label": "The toughest holds the burning latch.",
       "rule": "scion:highest:resilience",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Burned to the elbow, and the party through.",
+          "text": "Burned to the elbow, and the party through, and their hand-print added to the others.",
           "effects": [
             {
               "durability": -30,
@@ -48,7 +48,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Everyone burned a little.",
+          "text": "Everyone burned a little, and everyone through.",
           "effects": [
             {
               "to": "party",
@@ -71,7 +71,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Another way, through the devils' kennels.",
+          "text": "Another way, through the devils' kennels, and the devils' dogs.",
           "effects": [
             {
               "encounter": {}

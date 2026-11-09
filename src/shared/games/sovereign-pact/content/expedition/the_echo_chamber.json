@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "silent",
-      "label": "Cross in silence.",
+      "label": "Cross in perfect silence.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 80,
-          "text": "Not a sound.",
+          "text": "Not a sound, not a breath. The silence presses on the ears like water.",
           "effects": [
             {
               "to": "party",
@@ -31,7 +31,7 @@
         },
         {
           "w": 20,
-          "text": "Someone sneezes.",
+          "text": "Someone sneezes. It comes back a hundred times, and the stones come down.",
           "effects": [
             {
               "to": "party",
@@ -44,7 +44,7 @@
     },
     {
       "id": "sing",
-      "label": "The steadiest voice sings the right note.",
+      "label": "The steadiest voice sings the one right note.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -52,7 +52,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The ceiling hums, and holds, and shows a hidden door.",
+          "text": "The ceiling hums, and holds, and a hidden door swings open.",
           "effects": [
             {
               "fork": {
@@ -67,7 +67,7 @@
     },
     {
       "id": "shout",
-      "label": "Shout and run.",
+      "label": "Shout, and run.",
       "rule": "leader",
       "tags": [
         "reckless"
@@ -75,7 +75,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Out, and the way back is sealed.",
+          "text": "Out, just, and the way back is sealed under a ton of stone.",
           "effects": [
             {
               "skip": 1

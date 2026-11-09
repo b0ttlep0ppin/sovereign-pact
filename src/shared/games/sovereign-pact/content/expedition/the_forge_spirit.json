@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "temper",
-      "label": "Give it a piece of good iron.",
+      "label": "Feed it a piece of good iron.",
       "rule": "leader",
       "tags": [
         "clever"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It eats the iron and hands back a better blade.",
+          "text": "It eats the iron with a hiss, and hands back a better blade.",
           "effects": [
             {
               "resources": {
@@ -39,7 +39,7 @@
     },
     {
       "id": "feed",
-      "label": "The strongest feeds it a hand's worth of their own heat.",
+      "label": "The strongest feeds it their own heat.",
       "rule": "scion:highest:might",
       "tags": [
         "reckless"
@@ -47,7 +47,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It drinks the warmth from their arm, and gives a gift for it.",
+          "text": "It drinks the warmth from their arm, leaving it grey and cold, and gives a gift for it.",
           "effects": [
             {
               "durability": -30,
@@ -72,7 +72,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It does not like that.",
+          "text": "It does not like that at all.",
           "effects": [
             {
               "encounter": {}

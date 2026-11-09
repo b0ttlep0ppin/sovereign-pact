@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "You land on the far side, a long way on.",
+          "text": "You land on the far side, a long way on, retching.",
           "effects": [
             {
               "skip": 2
@@ -34,7 +34,7 @@
         },
         {
           "w": 30,
-          "text": "You land somewhere else.",
+          "text": "You land somewhere else, upside down, and something there was expecting you.",
           "effects": [
             {
               "fork": {
@@ -50,7 +50,7 @@
     },
     {
       "id": "anchor",
-      "label": "The strongest grabs a rock and holds on.",
+      "label": "The strongest grabs a rock and holds everyone on.",
       "rule": "scion:highest:might",
       "tags": [
         "cautious"
@@ -58,7 +58,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The world settles. Their arms do not.",
+          "text": "The world settles back down. Their arms do not.",
           "effects": [
             {
               "durability": -20,
@@ -70,7 +70,7 @@
     },
     {
       "id": "let",
-      "label": "Let go and fall.",
+      "label": "Let go, and fall upward.",
       "rule": "leader",
       "tags": [
         "reckless"
@@ -78,7 +78,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Up, and up, and down again, all of you shaking.",
+          "text": "Up, and up, and over, and down again, and all of you shaking, and somehow wiser.",
           "effects": [
             {
               "to": "party",

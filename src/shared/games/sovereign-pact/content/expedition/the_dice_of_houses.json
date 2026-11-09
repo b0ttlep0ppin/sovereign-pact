@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "throw",
-      "label": "Throw them.",
+      "label": "Throw the giant's dice.",
       "rule": "house:random",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "The dice name a House, and gold rains on it.",
+          "text": "They roll a long way and stop. They name a House, and gold rains on it out of a clear sky.",
           "effects": [
             {
               "resources": {
@@ -32,7 +32,7 @@
         },
         {
           "w": 50,
-          "text": "The dice name a House, and its Scions feel the stones' weight.",
+          "text": "They roll a long way and stop. They name a House, and its Scions feel the stones lean on them.",
           "effects": [
             {
               "sanity": -15
@@ -43,7 +43,7 @@
     },
     {
       "id": "weigh",
-      "label": "The wisest weighs them first.",
+      "label": "The wisest weighs them before anyone throws.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -51,7 +51,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Loaded. They read whose hand loaded them.",
+          "text": "Loaded, every one, and they can read whose hand loaded them.",
           "effects": [
             {
               "score": {
@@ -65,7 +65,7 @@
     },
     {
       "id": "leave",
-      "label": "Leave them lie.",
+      "label": "Leave them lying in their ring.",
       "rule": "vote",
       "tags": [
         "cautious"

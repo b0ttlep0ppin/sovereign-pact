@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "time",
-      "label": "The sharpest times the gears.",
+      "label": "The sharpest times the turning gears.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Through without a scratch.",
+          "text": "Through without a scratch, step by counted step.",
           "effects": [
             {
               "xp": 40
@@ -32,7 +32,7 @@
     },
     {
       "id": "rush",
-      "label": "Rush through.",
+      "label": "Rush through between the teeth.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -40,7 +40,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "Through, mostly.",
+          "text": "Through, mostly, with oil and blood on your coats.",
           "effects": [
             {
               "to": "party",
@@ -50,7 +50,7 @@
         },
         {
           "w": 40,
-          "text": "A sleeve caught.",
+          "text": "A sleeve caught, and the arm in it.",
           "effects": [
             {
               "injury": "arms"
@@ -69,7 +69,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They grind to a halt, and the whole ruin shudders awake.",
+          "text": "They grind to a halt with a shriek, and the whole ruin shudders awake.",
           "effects": [
             {
               "encounter": {

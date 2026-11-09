@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 40,
-          "text": "The armor applauds, slowly, and lets you take the throne's gold.",
+          "text": "The armor applauds, slowly, gauntlets clanking, and lets you take the throne's gold.",
           "effects": [
             {
               "resources": {
@@ -61,7 +61,7 @@
         },
         {
           "w": 60,
-          "text": "The armor stands.",
+          "text": "The armor stands, every suit, all at once.",
           "effects": [
             {
               "encounter": {

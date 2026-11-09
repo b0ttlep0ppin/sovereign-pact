@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "pay",
-      "label": "Pay for a secret.",
+      "label": "Pay the beggar lord for a secret.",
       "rule": "vote",
       "tags": [
         "clever"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A rival House's weakness.",
+          "text": "A rival House's weakness, whispered through rotten teeth.",
           "effects": [
             {
               "resources": {
@@ -47,7 +47,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He names them a friend of the poor.",
+          "text": "He names them a friend of the poor, and every beggar in the city will know their face.",
           "effects": [
             {
               "score": {
@@ -60,7 +60,7 @@
     },
     {
       "id": "threaten",
-      "label": "Threaten him.",
+      "label": "Threaten him on his own heap.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -68,7 +68,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Every beggar in the city turns.",
+          "text": "Every beggar in the city turns, and there are a great many beggars.",
           "effects": [
             {
               "encounter": {

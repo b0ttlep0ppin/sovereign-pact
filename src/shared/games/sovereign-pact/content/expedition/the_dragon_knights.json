@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "truth",
-      "label": "Tell the truth.",
+      "label": "Tell the captain the truth.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "They escort you a way.",
+          "text": "She nods, and they escort you a way, wings beating overhead.",
           "effects": [
             {
               "skip": 1
@@ -30,7 +30,7 @@
         },
         {
           "w": 40,
-          "text": "They do not believe you.",
+          "text": "They do not believe you, and lower their lances.",
           "effects": [
             {
               "encounter": {}
@@ -41,7 +41,7 @@
     },
     {
       "id": "bluff",
-      "label": "The smoothest bluffs.",
+      "label": "The smoothest bluffs about your business here.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"
@@ -49,7 +49,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They salute.",
+          "text": "They salute, and take off in a storm of dust.",
           "effects": [
             {
               "score": {
@@ -73,7 +73,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "The captain yields, and gives up her lance.",
+          "text": "The captain yields, scarred face unreadable, and gives up her lance.",
           "effects": [
             {
               "item": {
@@ -89,7 +89,7 @@
         },
         {
           "w": 50,
-          "text": "The captain wins.",
+          "text": "The captain wins, and does not bother to look back.",
           "effects": [
             {
               "injury": "body"

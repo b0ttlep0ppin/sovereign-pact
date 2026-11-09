@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "empress",
-      "label": "The one the roses turn to takes the seat.",
+      "label": "The one the roses turn to takes the throne.",
       "rule": "scion:tarot:empress|vote",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The garden kneels.",
+          "text": "The garden kneels, every rose, and the scent of it heals.",
           "effects": [
             {
               "to": "party",
@@ -37,7 +37,7 @@
     },
     {
       "id": "cut",
-      "label": "Cut a path to the throne.",
+      "label": "The strongest cuts a path to the throne.",
       "rule": "scion:highest:might",
       "tags": [
         "reckless"
@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "The roses bleed, and the throne holds a jeweled seed.",
+          "text": "The roses bleed red sap, and the throne holds a jeweled seed.",
           "effects": [
             {
               "resources": {
@@ -56,7 +56,7 @@
         },
         {
           "w": 40,
-          "text": "The thorns fight back.",
+          "text": "The thorns fight back, and their poison is sweet.",
           "effects": [
             {
               "to": "party",
@@ -72,7 +72,7 @@
     },
     {
       "id": "bow",
-      "label": "Bow to the empty seat and go.",
+      "label": "Bow to the empty throne, and go.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -80,7 +80,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A rose follows you out on the wind.",
+          "text": "A single rose follows you out on the wind, and stays fresh for a year.",
           "effects": [
             {
               "blessing": {

@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "A glimpse of the whole land from the top, and down safe.",
+          "text": "A glimpse of the whole land from the top, bones and all, and down safe.",
           "effects": [
             {
               "foresee": true
@@ -33,7 +33,7 @@
         },
         {
           "w": 40,
-          "text": "The eagle comes home.",
+          "text": "The eagle comes home, and it is very large, and very angry.",
           "effects": [
             {
               "durability": -25,
@@ -53,7 +53,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A fine price, and the eagle hunts you for a day.",
+          "text": "A fine price, and the eagle hunts you all the next day.",
           "effects": [
             {
               "resources": {
@@ -79,7 +79,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A feather drifts down. You keep it.",
+          "text": "A feather drifts down, long as an arm. You keep it.",
           "effects": [
             {
               "to": "party",

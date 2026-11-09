@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 55,
-          "text": "They come up gasping with silver in their arms.",
+          "text": "They come up gasping, silver in their arms, and the congregation never lifts its heads.",
           "effects": [
             {
               "resources": {
@@ -37,7 +37,7 @@
         },
         {
           "w": 45,
-          "text": "Something down there holds on.",
+          "text": "Something down there holds on, and a bowed head turns to look at them.",
           "effects": [
             {
               "durability": -30,
@@ -52,7 +52,7 @@
     },
     {
       "id": "pray",
-      "label": "Pray from the roof.",
+      "label": "Pray from the roof with the drowned.",
       "rule": "vote",
       "tags": [
         "kind"

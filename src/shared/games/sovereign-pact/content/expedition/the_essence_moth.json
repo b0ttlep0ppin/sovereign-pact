@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "net",
-      "label": "Net them.",
+      "label": "Net the glowing moths.",
       "rule": "vote",
       "tags": [
         "clever"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Wings full of essence.",
+          "text": "Wings full of essence, beating softly against the net until they stop.",
           "effects": [
             {
               "resources": {
@@ -34,7 +34,7 @@
     },
     {
       "id": "pool",
-      "label": "The hardiest drinks from the pool before they do.",
+      "label": "The hardiest drinks from the pool before the moths do.",
       "rule": "scion:highest:resilience",
       "tags": [
         "reckless"
@@ -42,7 +42,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Bright, burning, strong.",
+          "text": "Bright, burning, strong, and a hunger behind it like the moths'.",
           "effects": [
             {
               "mp": 40
@@ -64,7 +64,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They follow you a while, glowing.",
+          "text": "They follow you a while in a pale cloud, glowing, and nothing comes near.",
           "effects": [
             {
               "to": "party",

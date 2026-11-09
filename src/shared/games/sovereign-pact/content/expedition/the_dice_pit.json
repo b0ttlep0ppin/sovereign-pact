@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "watch",
-      "label": "Let the throw land.",
+      "label": "Let the devils' throw land.",
       "rule": "house:random",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "The House wins. The devils pay in coin they can't spend in hell.",
+          "text": "The House wins. The devils howl and pay in coin they cannot spend in hell.",
           "effects": [
             {
               "resources": {
@@ -32,7 +32,7 @@
         },
         {
           "w": 50,
-          "text": "The House loses. Its Scions feel something leave them.",
+          "text": "The House loses. Its Scions feel something leave them, and the devils cheer.",
           "effects": [
             {
               "sanity": -15
@@ -46,7 +46,7 @@
     },
     {
       "id": "cheat",
-      "label": "Cheat the devils.",
+      "label": "The shrewdest cheats the devils at their own game.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"
@@ -54,7 +54,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "Loaded dice beat loaded dice.",
+          "text": "Loaded dice beat loaded dice. The devils are almost proud.",
           "effects": [
             {
               "score": {
@@ -70,7 +70,7 @@
         },
         {
           "w": 40,
-          "text": "Devils know cheating.",
+          "text": "Devils know cheating better than anyone. The whole pit turns.",
           "effects": [
             {
               "encounter": {
@@ -83,7 +83,7 @@
     },
     {
       "id": "run",
-      "label": "Run before the dice stop.",
+      "label": "Run before the dice stop rolling.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -91,7 +91,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They do not chase. They will roll again.",
+          "text": "They do not chase. They will roll again, later, when you are not there to see.",
           "effects": [
             {
               "to": "party",

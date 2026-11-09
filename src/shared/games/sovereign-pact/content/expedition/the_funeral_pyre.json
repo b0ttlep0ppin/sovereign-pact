@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "help",
-      "label": "Give them wood and help build it.",
+      "label": "Give them wood, and help build the pyre.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A fine burning. The warrior rests.",
+          "text": "A fine burning. The warrior's fingers stop twitching. She rests.",
           "effects": [
             {
               "resources": {
@@ -47,7 +47,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The barrow dead come to see, and are turned back.",
+          "text": "The barrow dead come to see the burning, and are turned back by your steel.",
           "effects": [
             {
               "encounter": {}
@@ -71,7 +71,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They sell you a sword they should have burned.",
+          "text": "They sell you a sword they should have burned with her, and she would like it back.",
           "effects": [
             {
               "resources": {

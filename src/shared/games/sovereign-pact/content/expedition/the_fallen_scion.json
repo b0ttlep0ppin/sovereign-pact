@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "bury",
-      "label": "Bury it properly.",
+      "label": "Bury the stranger properly.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It takes an hour. Nobody minds.",
+          "text": "It takes an hour, and nobody minds. The wind stops while you work.",
           "effects": [
             {
               "to": "party",
@@ -38,7 +38,7 @@
     },
     {
       "id": "strip",
-      "label": "Take the armor.",
+      "label": "Take the dead stranger's armor.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -46,7 +46,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It fits. Nobody says anything for a while.",
+          "text": "It fits, perfectly, as if it was made for the one wearing it now. Nobody says anything for a while.",
           "effects": [
             {
               "item": {
@@ -63,7 +63,7 @@
     },
     {
       "id": "read",
-      "label": "The wisest reads the letters.",
+      "label": "The wisest breaks the seals and reads the letters.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -71,7 +71,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They tell of a House that held this place once, and what it found here.",
+          "text": "They tell of a House that held this place once, and what it found here, and why nobody remembers them.",
           "effects": [
             {
               "score": {

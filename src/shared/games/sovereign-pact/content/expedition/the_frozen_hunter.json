@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "free",
-      "label": "Cut the hunter free.",
+      "label": "The strongest cuts her free.",
       "rule": "scion:highest:might",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "They thaw, gasping, and before they run they press their bow into your hands.",
+          "text": "She thaws, gasping, and before she runs she presses her bow into your hands.",
           "effects": [
             {
               "item": {
@@ -37,7 +37,7 @@
         },
         {
           "w": 50,
-          "text": "They thaw, and they are still aiming at what is behind you.",
+          "text": "She thaws, and she is still aiming at what is behind you.",
           "effects": [
             {
               "encounter": {
@@ -50,7 +50,7 @@
     },
     {
       "id": "turn",
-      "label": "Turn round and look.",
+      "label": "Turn round, and look at what she saw.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -58,7 +58,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "You see it before it sees you.",
+          "text": "You see it before it sees you. Only just.",
           "effects": [
             {
               "encounter": {
@@ -71,7 +71,7 @@
     },
     {
       "id": "go",
-      "label": "Walk on and do not look back.",
+      "label": "Walk on, and do not look back.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -79,7 +79,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "You do not look back. It is very hard.",
+          "text": "You do not look back. It is very hard. Something breathes the whole way.",
           "effects": [
             {
               "to": "party",

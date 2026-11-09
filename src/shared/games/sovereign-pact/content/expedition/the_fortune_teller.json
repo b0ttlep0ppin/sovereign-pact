@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "She turns a card over, and it is not the one the leader was born under.",
+          "text": "She turns a card over, and it is not the one the leader was born under. It is now.",
           "effects": [
             {
               "tarot": true
@@ -56,7 +56,7 @@
     },
     {
       "id": "pass",
-      "label": "Pass by.",
+      "label": "Pass her by.",
       "rule": "vote",
       "tags": [
         "cautious"

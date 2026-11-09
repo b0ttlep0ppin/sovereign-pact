@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "pay",
-      "label": "Let the dragon choose.",
+      "label": "Let the dragon choose who pays.",
       "rule": "house:random",
       "tags": [
         "cautious"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It chooses, and the House pays in gold.",
+          "text": "It chooses. Nobody sees how. The House pays in gold, and the herald blows his horn.",
           "effects": [
             {
               "resources": {
@@ -47,7 +47,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The herald whistles.",
+          "text": "The herald whistles, and the sky darkens.",
           "effects": [
             {
               "encounter": {
@@ -65,7 +65,7 @@
     },
     {
       "id": "brave",
-      "label": "The bravest offers a challenge instead.",
+      "label": "The bravest offers a challenge instead of gold.",
       "rule": "scion:trait:brave|scion:highest:might",
       "tags": [
         "reckless"
@@ -73,7 +73,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "The herald is amused, and lets you pass.",
+          "text": "The herald is amused, and lets you pass, and laughs about it for a long time.",
           "effects": [
             {
               "score": {
@@ -87,7 +87,7 @@
         },
         {
           "w": 40,
-          "text": "The herald is not amused.",
+          "text": "The herald is not amused. He raises his horn, and fire answers it.",
           "effects": [
             {
               "durability": -40,

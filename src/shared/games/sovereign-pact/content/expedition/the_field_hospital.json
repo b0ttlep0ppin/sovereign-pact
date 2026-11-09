@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Bandages, salves, and a surgeon's notes that make sense.",
+          "text": "Bandages, salves, and a surgeon's notes that make a horrible kind of sense.",
           "effects": [
             {
               "to": "party",
@@ -36,7 +36,7 @@
     },
     {
       "id": "wounded",
-      "label": "The worst hurt gets a cot for an hour.",
+      "label": "The worst hurt lies down on a cot for an hour.",
       "rule": "scion:injured:any|scion:lowest:sanity",
       "tags": [
         "kind"
@@ -44,7 +44,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "An hour of real rest, in a real bed.",
+          "text": "An hour of real rest, in a real bed, with nothing watching.",
           "effects": [
             {
               "sanity": 15
@@ -56,7 +56,7 @@
         },
         {
           "w": 30,
-          "text": "An hour of rest, and a dream about whoever had the cot before.",
+          "text": "An hour of rest, and a dream about whoever lay on the cot before, and how they died.",
           "effects": [
             {
               "sanity": -10
@@ -75,7 +75,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Silver instruments and old coin.",
+          "text": "Silver instruments, old coin, and something under the last cot that you leave where it is.",
           "effects": [
             {
               "resources": {

@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They write them down with care. Now the city knows you, for better and worse.",
+          "text": "They write them down with care, in a hand that is not theirs. Now the city knows you, for better and worse.",
           "effects": [
             {
               "to": "party",
@@ -36,7 +36,7 @@
     },
     {
       "id": "lie",
-      "label": "The craftiest gives false ones for everyone.",
+      "label": "The craftiest gives false names for everyone.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"
@@ -44,7 +44,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "They write them down. Somewhere a ledger now lists people who never were.",
+          "text": "They write them down. Somewhere a ledger now lists people who never were, and the city will go looking for them.",
           "effects": [
             {
               "score": {
@@ -55,7 +55,7 @@
         },
         {
           "w": 40,
-          "text": "They write them down, then look up. Nobody has a face to look up with.",
+          "text": "They write them down, then look up. Nobody has a face to look up with, and still they look.",
           "effects": [
             {
               "encounter": {}
@@ -66,7 +66,7 @@
     },
     {
       "id": "ledger",
-      "label": "Take the ledger.",
+      "label": "Snatch their ledger.",
       "rule": "leader",
       "tags": [
         "reckless"
@@ -74,7 +74,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The city screams.",
+          "text": "The city screams, every blank mouth at once.",
           "effects": [
             {
               "score": {

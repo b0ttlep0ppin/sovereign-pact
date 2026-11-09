@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "follow",
-      "label": "Follow it.",
+      "label": "Follow the blue light.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "To treasure.",
+          "text": "To treasure, left by whoever followed it last.",
           "effects": [
             {
               "item": {
@@ -32,7 +32,7 @@
         },
         {
           "w": 50,
-          "text": "To a drop.",
+          "text": "To a drop, and a hard landing at the bottom.",
           "effects": [
             {
               "to": "party",
@@ -76,7 +76,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A light that never goes out.",
+          "text": "A light that never goes out, and it never stops pressing against the glass.",
           "effects": [
             {
               "to": "party",

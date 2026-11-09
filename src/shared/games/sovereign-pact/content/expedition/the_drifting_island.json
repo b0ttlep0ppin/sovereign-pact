@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "jump",
-      "label": "Jump to it.",
+      "label": "Jump to it before it drifts away.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "It carries you a long way, and sets you down gently.",
+          "text": "It carries you a long way through the dark, and sets you down gently.",
           "effects": [
             {
               "skip": 2
@@ -30,7 +30,7 @@
         },
         {
           "w": 40,
-          "text": "It carries you somewhere you did not mean to go.",
+          "text": "It carries you somewhere you did not mean to go, and leaves.",
           "effects": [
             {
               "fork": {
@@ -47,7 +47,7 @@
     },
     {
       "id": "pick",
-      "label": "The quickest leaps over, grabs what grows there, and leaps back.",
+      "label": "The quickest leaps over, grabs the fruit, and leaps back.",
       "rule": "scion:highest:speed",
       "tags": [
         "bold"
@@ -55,7 +55,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Fruit that glows, and tastes of home.",
+          "text": "Fruit that glows, and tastes of a home none of you have seen.",
           "effects": [
             {
               "to": "party",
@@ -75,7 +75,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Something on it waves.",
+          "text": "As it drifts away, something on it stands up and waves.",
           "effects": [
             {
               "to": "party",

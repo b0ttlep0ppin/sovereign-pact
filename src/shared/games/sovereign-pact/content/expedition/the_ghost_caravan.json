@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "ride",
-      "label": "Ride with them; the best talker tells the story.",
+      "label": "Ride with the dead; the best talker tells the story.",
       "rule": "scion:highest:guile",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They love the story, and carry you further than they meant to.",
+          "text": "They love the story, the dead, and carry you further than they meant to, and the cold stays in your bones.",
           "effects": [
             {
               "skip": 1
@@ -36,7 +36,7 @@
     },
     {
       "id": "trade",
-      "label": "Trade with their merchant.",
+      "label": "Trade with their pale merchant.",
       "rule": "leader",
       "tags": [
         "clever"
@@ -44,7 +44,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The goods are old, and real.",
+          "text": "The goods are old, and real, and cold to the touch.",
           "effects": [
             {
               "resources": {
@@ -62,7 +62,7 @@
     },
     {
       "id": "stand",
-      "label": "Stand aside and let them pass.",
+      "label": "Stand aside, and let them pass.",
       "rule": "vote",
       "tags": [
         "cautious"

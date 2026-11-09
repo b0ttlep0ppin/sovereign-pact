@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "She pays for a look at their face, and gives it back.",
+          "text": "She pays well for a long look at their face, touches it, and gives it back.",
           "effects": [
             {
               "resources": {
@@ -47,7 +47,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "Someone else's face. She never notices.",
+          "text": "Someone else's face, peeled from somewhere. She never notices.",
           "effects": [
             {
               "resources": {
@@ -61,7 +61,7 @@
         },
         {
           "w": 40,
-          "text": "She takes yours instead, for a while.",
+          "text": "She takes yours instead, for a while, and pegs it up with the others.",
           "effects": [
             {
               "status": "confusion"
@@ -75,7 +75,7 @@
     },
     {
       "id": "leave",
-      "label": "Keep your faces.",
+      "label": "Keep your faces, and walk on.",
       "rule": "leader",
       "tags": [
         "cautious"

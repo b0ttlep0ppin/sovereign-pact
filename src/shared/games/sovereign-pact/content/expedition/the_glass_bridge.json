@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "cross",
-      "label": "Cross carefully.",
+      "label": "Cross carefully over the city.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 80,
-          "text": "It holds.",
+          "text": "It holds, and the city's people watch every step.",
           "effects": [
             {
               "to": "party",
@@ -31,7 +31,7 @@
         },
         {
           "w": 20,
-          "text": "It cracks under the heaviest.",
+          "text": "It cracks under the heaviest, and the people below cheer.",
           "effects": [
             {
               "injury": "legs"
@@ -69,7 +69,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It is a city from the time before the rift, and it is not empty.",
+          "text": "It is a city from the time before the rift, and it is not empty, and they are waiting for someone to fall.",
           "effects": [
             {
               "score": {

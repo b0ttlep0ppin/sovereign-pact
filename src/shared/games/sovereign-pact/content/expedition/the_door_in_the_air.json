@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "open",
-      "label": "Open it.",
+      "label": "Open the green door.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "Sunlight, warm and real, for a moment.",
+          "text": "Sunlight, warm and real, and bees, for one long moment. Then it is gone, and you have it still.",
           "effects": [
             {
               "to": "party",
@@ -31,7 +31,7 @@
         },
         {
           "w": 50,
-          "text": "Not sunlight.",
+          "text": "Not sunlight. Something on the other side was making the sound of bees.",
           "effects": [
             {
               "encounter": {
@@ -53,7 +53,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Home. And the way back to it.",
+          "text": "Home, small and bright and far away. And the way back to it.",
           "effects": [
             {
               "foresee": true
@@ -72,7 +72,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Someone knocks as you go.",
+          "text": "As you go, someone on the other side knocks, politely, three times.",
           "effects": [
             {
               "to": "party",

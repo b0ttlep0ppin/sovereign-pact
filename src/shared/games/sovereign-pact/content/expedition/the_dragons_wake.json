@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A dragon notices you mourning, and nods.",
+          "text": "A great dragon notices you mourning, and bows its head to you, once.",
           "effects": [
             {
               "to": "party",
@@ -38,7 +38,7 @@
     },
     {
       "id": "scale",
-      "label": "The quietest takes a fallen scale.",
+      "label": "The quietest steals a fallen scale.",
       "rule": "scion:highest:guile|scion:highest:speed",
       "tags": [
         "reckless"
@@ -46,7 +46,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "A dragon's scale, unseen.",
+          "text": "A dragon's scale, still warm, unseen.",
           "effects": [
             {
               "resources": {
@@ -57,7 +57,7 @@
         },
         {
           "w": 40,
-          "text": "Seen.",
+          "text": "Seen. The song stops.",
           "effects": [
             {
               "encounter": {
@@ -78,7 +78,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The song is a history. It names the End Ruler.",
+          "text": "The song is a history, older than the Houses, and it names the End Ruler.",
           "effects": [
             {
               "score": {

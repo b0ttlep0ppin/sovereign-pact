@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "ask",
-      "label": "The sharpest asks questions only the real one could answer.",
+      "label": "The sharpest asks what only the real one would know.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "The false one fumbles a childhood name, and runs.",
+          "text": "The false one fumbles a childhood name, and its face slips, and it runs.",
           "effects": [
             {
               "score": {
@@ -35,7 +35,7 @@
         },
         {
           "w": 30,
-          "text": "Both answer perfectly.",
+          "text": "Both answer perfectly. Both of them smile.",
           "effects": [
             {
               "encounter": {
@@ -56,7 +56,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It gives itself away at the worst moment.",
+          "text": "It gives itself away at the worst possible moment, with a knife.",
           "effects": [
             {
               "encounter": {
@@ -81,7 +81,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Silver burns one of them.",
+          "text": "Silver burns one of them, and it stops pretending.",
           "effects": [
             {
               "encounter": {

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "drink",
-      "label": "The toughest drinks.",
+      "label": "The toughest drinks from the giant's cup.",
       "rule": "scion:highest:resilience",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "Giant's mead. They feel enormous.",
+          "text": "Giant's mead. They feel enormous, and very loud.",
           "effects": [
             {
               "growth": {
@@ -36,7 +36,7 @@
         },
         {
           "w": 40,
-          "text": "Giant's poison.",
+          "text": "Giant's poison, thick and sweet, and cramping.",
           "effects": [
             {
               "status": "poison"
@@ -71,7 +71,7 @@
     },
     {
       "id": "giant",
-      "label": "Wait for the giant.",
+      "label": "Wait for the giant to come back.",
       "rule": "leader",
       "tags": [
         "bold"
@@ -79,7 +79,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It comes back thirsty.",
+          "text": "It comes back thirsty, and finds you at its cup.",
           "effects": [
             {
               "encounter": {

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "pay",
-      "label": "Pay in fish and gold.",
+      "label": "Pay their toll in fish and gold.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They sink away.",
+          "text": "They sink away, one by one, cold fingers sliding off the gunwales.",
           "effects": [
             {
               "resources": {
@@ -34,7 +34,7 @@
     },
     {
       "id": "fight",
-      "label": "Fight them off.",
+      "label": "Fight them off the boat.",
       "rule": "leader",
       "tags": [
         "bold"
@@ -42,7 +42,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "In the water, where they are strongest.",
+          "text": "In the water, where they are strongest, and there are more below.",
           "effects": [
             {
               "encounter": {
@@ -63,7 +63,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Through the reeds, quickly.",
+          "text": "Through the reeds, quickly, with grey heads bobbing all around you.",
           "effects": [
             {
               "skip": 1

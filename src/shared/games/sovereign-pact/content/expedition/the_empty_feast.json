@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "The food is real, and very good, and nobody comes back.",
+          "text": "The food is real, and very good, and nobody comes back. Nobody.",
           "effects": [
             {
               "to": "party",
@@ -35,7 +35,7 @@
         },
         {
           "w": 40,
-          "text": "The guests come back.",
+          "text": "The guests come back, and they are hungry, and they are not angry that you sat. They are pleased.",
           "effects": [
             {
               "encounter": {}
@@ -54,7 +54,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Very fine silver.",
+          "text": "Very fine silver, and very cold, and it never warms.",
           "effects": [
             {
               "resources": {
@@ -70,7 +70,7 @@
     },
     {
       "id": "leave",
-      "label": "Leave it untouched.",
+      "label": "Leave it all untouched.",
       "rule": "vote",
       "tags": [
         "cautious"

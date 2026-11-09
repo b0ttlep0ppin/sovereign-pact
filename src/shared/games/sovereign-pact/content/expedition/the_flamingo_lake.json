@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "salt",
-      "label": "Gather the salt.",
+      "label": "Gather the white salt.",
       "rule": "vote",
       "tags": [
         "clever"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Good salt sells well.",
+          "text": "Good salt, and it sells well, and the flamingos never stop honking.",
           "effects": [
             {
               "resources": {
@@ -42,7 +42,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "An afternoon of pink and quiet.",
+          "text": "An afternoon of pink and quiet. For once, nothing is wrong.",
           "effects": [
             {
               "to": "party",
@@ -62,7 +62,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "A feather for luck.",
+          "text": "A long pink feather, for luck.",
           "effects": [
             {
               "blessing": {
@@ -74,7 +74,7 @@
         },
         {
           "w": 40,
-          "text": "The flock rises all at once, and the salt cuts.",
+          "text": "The flock rises all at once in a roar of wings, and the salt crust cuts like glass.",
           "effects": [
             {
               "durability": -10,

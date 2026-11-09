@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "heal",
-      "label": "The best healer tends it.",
+      "label": "The best healer tends its broken wings.",
       "rule": "scion:most_healing",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It finishes the word, and the word is a blessing.",
+          "text": "It breathes, and finishes the word at last, and the word is a blessing, and it settles on them like light.",
           "effects": [
             {
               "blessing": {
@@ -46,7 +46,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A name, and a warning about the End Ruler.",
+          "text": "A name, and a warning about the End Ruler, and then its light goes out.",
           "effects": [
             {
               "score": {
@@ -62,7 +62,7 @@
     },
     {
       "id": "feathers",
-      "label": "Take its feathers.",
+      "label": "Take its feathers while it dies.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -70,7 +70,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Each one is worth a fortune. It watches you take them.",
+          "text": "Each one is worth a fortune. It watches you take them, and its eyes never close.",
           "effects": [
             {
               "score": {

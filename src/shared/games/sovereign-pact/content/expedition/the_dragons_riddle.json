@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "answer",
-      "label": "The cleverest answers.",
+      "label": "The cleverest answers the dragon's riddle.",
       "rule": "scion:highest:acuity|scion:highest:sagacity",
       "tags": [
         "clever"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "Right. The dragon laughs, and gives you a scale for luck.",
+          "text": "Right. The dragon laughs, a rumble like a landslide, and gives you a scale for luck.",
           "effects": [
             {
               "resources": {
@@ -48,7 +48,7 @@
     },
     {
       "id": "riddle",
-      "label": "The shrewdest asks one back.",
+      "label": "The shrewdest asks it a riddle back.",
       "rule": "scion:highest:guile",
       "tags": [
         "reckless"
@@ -56,7 +56,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It thinks for an hour, and lets you pass while it thinks.",
+          "text": "It thinks for an hour, smoke curling, and lets you pass while it thinks.",
           "effects": [
             {
               "skip": 1
@@ -80,7 +80,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A long, cold way round.",
+          "text": "A long, cold way round, with the dragon's eye on your backs.",
           "effects": [
             {
               "to": "party",
