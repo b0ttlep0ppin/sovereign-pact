@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "cure",
-      "label": "The most hurt takes her cure.",
+      "label": "The most hurt takes her cure, and pays with a lock of hair, freely given.",
       "rule": "scion:injured:any|scion:lowest:sanity",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It works, and she strokes the lock of hair as if it were gold, and puts it somewhere safe.",
+          "text": "It works, and she strokes the lock of hair as if it were gold, and puts it somewhere safe. They wonder, after, what she will do with it.",
           "effects": [
             {
               "mend": true
@@ -38,7 +38,7 @@
     },
     {
       "id": "trade",
-      "label": "Trade for a potion instead.",
+      "label": "Trade for a potion instead, and keep your hair your own.",
       "rule": "leader",
       "tags": [
         "clever"
@@ -63,7 +63,7 @@
     },
     {
       "id": "leave",
-      "label": "Leave before the hut stands up.",
+      "label": "Leave before the hut stands up. Nothing on chicken legs is to be trusted.",
       "rule": "vote",
       "tags": [
         "cautious"

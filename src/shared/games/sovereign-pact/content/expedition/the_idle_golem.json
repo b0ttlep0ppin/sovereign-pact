@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "word",
-      "label": "The wisest changes the word on its brow.",
+      "label": "The wisest changes the word on its brow, hoping to make it serve a new master.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -47,7 +47,7 @@
     },
     {
       "id": "scrap",
-      "label": "The strongest breaks it up for iron.",
+      "label": "The strongest breaks it up for iron, before anyone else gets ideas.",
       "rule": "scion:highest:might",
       "tags": [
         "bold"
@@ -55,7 +55,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It is a great deal of iron, and it does not resist, which is worse.",
+          "text": "It is a great deal of iron, and it does not resist, which is worse. It watches the whole time.",
           "effects": [
             {
               "resources": {
@@ -68,7 +68,7 @@
     },
     {
       "id": "leave",
-      "label": "Leave it be.",
+      "label": "Leave it be. Some guardians are better left at rest.",
       "rule": "vote",
       "tags": [
         "cautious"

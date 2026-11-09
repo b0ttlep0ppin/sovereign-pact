@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "knock",
-      "label": "Knock on the door with the wreath of teeth.",
+      "label": "Knock on the door with the wreath of teeth, and hope for a kind host.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -46,7 +46,7 @@
     },
     {
       "id": "peek",
-      "label": "The quietest peeks in through the knothole.",
+      "label": "The quietest peeks in through the knothole, before anyone knocks.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"
@@ -67,7 +67,7 @@
     },
     {
       "id": "pass",
-      "label": "Let whoever lives there be.",
+      "label": "Let whoever lives there be. Teeth on a door are warning enough.",
       "rule": "leader",
       "tags": [
         "cautious"

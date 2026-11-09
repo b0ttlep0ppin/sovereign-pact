@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "take",
-      "label": "Take her away with you.",
+      "label": "Take her away with you, whatever the Court sends after you.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "She clings to your hand, and the Court sends its hunters after you.",
+          "text": "She clings to your hand, and the Court sends its hunters after you, and they are very eager.",
           "effects": [
             {
               "score": {
@@ -37,7 +37,7 @@
     },
     {
       "id": "hide",
-      "label": "The shrewdest hides her among the pilgrims.",
+      "label": "The shrewdest hides her among the pilgrims, where no one will think to look.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"
@@ -59,7 +59,7 @@
     },
     {
       "id": "refuse",
-      "label": "Refuse her. It is not your place.",
+      "label": "Refuse her. It is not your place to steal the Court's children.",
       "rule": "leader",
       "tags": [
         "cautious"

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "take",
-      "label": "Take what can be carried.",
+      "label": "Take what can be carried. The dragon is dead, after all.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -50,7 +50,7 @@
     },
     {
       "id": "bones",
-      "label": "The strongest takes only a bone.",
+      "label": "The strongest takes only a bone, and leaves the gold to the dead.",
       "rule": "scion:highest:might",
       "tags": [
         "clever"
@@ -71,7 +71,7 @@
     },
     {
       "id": "honor",
-      "label": "Leave it all to the dead.",
+      "label": "Leave it all to the dead. Some hoards should stay hoarded.",
       "rule": "leader",
       "tags": [
         "kind"

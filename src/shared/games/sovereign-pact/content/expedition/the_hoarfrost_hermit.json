@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "shelter",
-      "label": "Shelter with the half-frozen man.",
+      "label": "Shelter with the half-frozen man, and trust that his ice does not spread.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 80,
-          "text": "A cold, safe night, and his heart beats slow in the dark.",
+          "text": "A cold, safe night, and his heart beats slow in the dark, and you count it until dawn.",
           "effects": [
             {
               "to": "party",
@@ -43,7 +43,7 @@
     },
     {
       "id": "ask",
-      "label": "The wisest asks how he became so.",
+      "label": "The wisest asks how he became so, and how to keep from following.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -65,7 +65,7 @@
     },
     {
       "id": "storm",
-      "label": "Push on through the storm.",
+      "label": "Push on through the storm, rather than sleep beside a heart of ice.",
       "rule": "leader",
       "tags": [
         "bold"

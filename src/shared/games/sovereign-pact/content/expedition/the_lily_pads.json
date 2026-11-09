@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "hop",
-      "label": "Hop across on the pads.",
+      "label": "Hop across on the pads, and hope the frogs are not hungry.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -30,7 +30,7 @@
         },
         {
           "w": 40,
-          "text": "The frogs do not let you.",
+          "text": "The frogs do not let you, and they are very quick.",
           "effects": [
             {
               "encounter": {}
@@ -41,7 +41,7 @@
     },
     {
       "id": "feed",
-      "label": "The kindest tosses them bread.",
+      "label": "The kindest tosses them bread, to buy their good mood.",
       "rule": "scion:most_healing|scion:highest:sagacity",
       "tags": [
         "kind"
@@ -64,7 +64,7 @@
     },
     {
       "id": "round",
-      "label": "Go round the lake.",
+      "label": "Go round the lake, and leave the frogs to their herons.",
       "rule": "leader",
       "tags": [
         "cautious"

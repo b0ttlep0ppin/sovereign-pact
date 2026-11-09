@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "fire",
-      "label": "Build the fire high, and wait.",
+      "label": "Build the fire high, and wait out the laughter until dawn.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A sleepless night of laughter in the dark, but no visitors.",
+          "text": "A sleepless night of laughter in the dark, but no visitors. Nobody laughs in the morning.",
           "effects": [
             {
               "to": "party",
@@ -33,7 +33,7 @@
     },
     {
       "id": "scare",
-      "label": "The strongest charges out roaring.",
+      "label": "The strongest charges out roaring, to show them who is the beast here.",
       "rule": "scion:highest:might",
       "tags": [
         "bold"
@@ -52,7 +52,7 @@
         },
         {
           "w": 30,
-          "text": "They do not scatter. They laugh louder.",
+          "text": "They do not scatter. They laugh louder, and come closer.",
           "effects": [
             {
               "encounter": {
@@ -65,7 +65,7 @@
     },
     {
       "id": "bait",
-      "label": "Leave them meat away from camp.",
+      "label": "Leave them meat away from camp, and hope it keeps them busy.",
       "rule": "leader",
       "tags": [
         "clever"

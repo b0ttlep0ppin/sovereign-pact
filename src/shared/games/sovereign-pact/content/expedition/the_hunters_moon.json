@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "hunt",
-      "label": "Hunt by the red moonlight.",
+      "label": "Hunt by the red moonlight, while the quarry cannot hide.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -39,7 +39,7 @@
     },
     {
       "id": "rest",
-      "label": "Rest, and hunt at dawn.",
+      "label": "Rest, and hunt at dawn. Nothing else can hide tonight either.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -47,7 +47,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It moves in the night, close by. You hear it pass the camp, slowly, and keep going.",
+          "text": "It moves in the night, close by. You hear it pass the camp, slowly, and keep going. Nobody breathes until it is gone.",
           "effects": [
             {
               "to": "party",
@@ -59,7 +59,7 @@
     },
     {
       "id": "pray",
-      "label": "The devout asks the red moon for luck.",
+      "label": "The devout asks the red moon for luck, as hunters have for ages.",
       "rule": "scion:trait:devout|scion:highest:sagacity",
       "tags": [
         "kind"

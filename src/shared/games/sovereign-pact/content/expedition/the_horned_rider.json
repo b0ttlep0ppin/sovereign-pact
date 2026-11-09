@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "killer",
-      "label": "The most blooded steps forward to be judged.",
+      "label": "The most blooded steps forward to be judged, and does not flinch.",
       "rule": "scion:most_kills|scion:highest:might",
       "tags": [
         "bold"
@@ -37,7 +37,7 @@
         },
         {
           "w": 50,
-          "text": "He judges them harshly, and the herd turns.",
+          "text": "He judges them harshly, and the herd turns as one.",
           "effects": [
             {
               "encounter": {
@@ -50,7 +50,7 @@
     },
     {
       "id": "gentle",
-      "label": "The gentlest speaks for you instead.",
+      "label": "The gentlest speaks for you instead, hoping mercy weighs more than blood.",
       "rule": "scion:fewest_kills|scion:highest:sagacity",
       "tags": [
         "kind"
@@ -69,7 +69,7 @@
     },
     {
       "id": "hide",
-      "label": "Hide in the brush until he passes.",
+      "label": "Hide in the brush until he passes, and hope the herd does not find you.",
       "rule": "vote",
       "tags": [
         "cautious"

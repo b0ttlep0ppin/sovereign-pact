@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "climb",
-      "label": "The wisest climbs to see him.",
+      "label": "The wisest climbs to see him, eager to learn what keeps the others silent.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He says three words, and they help, and they will not say what they were.",
+          "text": "He says three words, and they help, and they will not say what they were, not even to you.",
           "effects": [
             {
               "growth": {
@@ -39,7 +39,7 @@
     },
     {
       "id": "bread",
-      "label": "Leave bread with the rest.",
+      "label": "Leave bread with the rest, and leave him his solitude.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -59,7 +59,7 @@
     },
     {
       "id": "test",
-      "label": "The proudest climbs up to test him.",
+      "label": "The proudest climbs up to test him, certain no hermit can teach them anything.",
       "rule": "scion:highest:might|leader",
       "tags": [
         "bold"

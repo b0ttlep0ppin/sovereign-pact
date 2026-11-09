@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "pay",
-      "label": "Each pays the ferryman a memory.",
+      "label": "Each Scion decides whether to pay the ferryman a memory for the crossing.",
       "rule": "each_scion",
       "tags": [
         "cautious"
@@ -41,7 +41,7 @@
     },
     {
       "id": "swim",
-      "label": "Each finds another way across.",
+      "label": "Each Scion decides whether to find another way across, and keep their memories.",
       "rule": "each_scion",
       "tags": [
         "reckless"

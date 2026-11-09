@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "mark",
-      "label": "Mark it on the House's maps.",
+      "label": "Mark it on the House's maps, and claim it before anyone else does.",
       "rule": "vote",
       "tags": [
         "clever"
@@ -32,7 +32,7 @@
     },
     {
       "id": "drink",
-      "label": "Drink and rest by the water.",
+      "label": "Drink and rest by the water, and let the deer keep you company.",
       "rule": "leader",
       "tags": [
         "kind"
@@ -56,7 +56,7 @@
     },
     {
       "id": "poison",
-      "label": "The craftiest fouls the spring, so no rival can use it.",
+      "label": "The craftiest fouls the spring, so that no rival can ever use it.",
       "rule": "scion:highest:guile",
       "tags": [
         "cruel"
@@ -64,7 +64,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Spiteful work, and the deer stop coming.",
+          "text": "Spiteful work, and the deer stop coming, and something in the hills notices what you did.",
           "effects": [
             {
               "score": {

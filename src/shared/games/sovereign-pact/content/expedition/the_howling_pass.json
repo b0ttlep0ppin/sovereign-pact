@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "shout",
-      "label": "Shout your names back into the wind.",
+      "label": "Shout your names back into the wind, and let it know you are still alive.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The wind takes them and goes quiet, satisfied. It will keep them.",
+          "text": "The wind takes them and goes quiet, satisfied. It will keep them, for when you are not.",
           "effects": [
             {
               "to": "party",
@@ -37,7 +37,7 @@
     },
     {
       "id": "listen",
-      "label": "The wisest listens for one name in particular.",
+      "label": "The wisest listens for one name in particular, hoping to learn what became of it.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -61,7 +61,7 @@
     },
     {
       "id": "hurry",
-      "label": "Stop your ears and hurry through.",
+      "label": "Stop your ears and hurry through, before it calls your own names.",
       "rule": "leader",
       "tags": [
         "cautious"

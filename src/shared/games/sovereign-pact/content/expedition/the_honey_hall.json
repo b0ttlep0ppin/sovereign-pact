@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "honey",
-      "label": "Gather honey from the rafters.",
+      "label": "Gather honey from the rafters, and hope the bees are feeling generous.",
       "rule": "leader",
       "tags": [
         "reckless"
@@ -36,7 +36,7 @@
         },
         {
           "w": 40,
-          "text": "The bees do not allow it.",
+          "text": "The bees do not allow it, and there are a great many bees.",
           "effects": [
             {
               "to": "party",
@@ -51,7 +51,7 @@
     },
     {
       "id": "smoke",
-      "label": "The cleverest smokes them out first.",
+      "label": "The cleverest smokes them out first, before anyone reaches for the comb.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -76,7 +76,7 @@
     },
     {
       "id": "leave",
-      "label": "Leave them to their hall.",
+      "label": "Leave them to their hall. It is theirs now.",
       "rule": "vote",
       "tags": [
         "cautious"

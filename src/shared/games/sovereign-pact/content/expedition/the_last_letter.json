@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "read",
-      "label": "Break the seal and read it.",
+      "label": "Break the seal and read it. The Lost cannot wait on courtesy.",
       "rule": "vote",
       "tags": [
         "clever"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Where they are, and how long they can hold, and how afraid they are.",
+          "text": "Where they are, and how long they can hold, and how afraid they are. The fear is in every line.",
           "effects": [
             {
               "foresee": true
@@ -35,7 +35,7 @@
     },
     {
       "id": "carry",
-      "label": "Carry it home unopened.",
+      "label": "Carry it home unopened, as the courier meant to.",
       "rule": "leader",
       "tags": [
         "kind"
@@ -56,7 +56,7 @@
     },
     {
       "id": "courier",
-      "label": "The healer tends the courier's body for burial.",
+      "label": "The healer tends the courier's body for burial, as he deserves.",
       "rule": "scion:most_healing|scion:random",
       "tags": [
         "kind"

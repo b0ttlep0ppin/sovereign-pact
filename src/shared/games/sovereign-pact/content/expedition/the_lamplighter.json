@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "walk",
-      "label": "Each Scion walks under the green lamps.",
+      "label": "Each Scion walks under the green lamps, and sees their own true face.",
       "rule": "each_scion",
       "tags": [
         "bold"
@@ -30,7 +30,7 @@
         },
         {
           "w": 30,
-          "text": "Not their face.",
+          "text": "Not their face. They do not say whose it was.",
           "effects": [
             {
               "sanity": -15
@@ -41,7 +41,7 @@
     },
     {
       "id": "around",
-      "label": "Each Scion keeps to the dark between the lamps.",
+      "label": "Each Scion keeps to the dark between the lamps, unwilling to see the truth.",
       "rule": "each_scion",
       "tags": [
         "cautious"
@@ -49,7 +49,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The faces in the dark are worse.",
+          "text": "The faces in the dark are worse, and they are close.",
           "effects": [
             {
               "sanity": -5

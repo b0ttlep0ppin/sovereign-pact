@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "enter",
-      "label": "Go in for one night.",
+      "label": "Go in for one night. The music is very good, and you are very tired.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -35,7 +35,7 @@
         },
         {
           "w": 40,
-          "text": "One night, and you come out a week later, and something of the music stayed in you.",
+          "text": "One night, and you come out a week later, and something of the music stayed in you, and it will not leave.",
           "effects": [
             {
               "to": "party",
@@ -52,7 +52,7 @@
     },
     {
       "id": "gift",
-      "label": "Leave a gift at the door, and go on.",
+      "label": "Leave a gift at the door, and go on before the music takes you.",
       "rule": "leader",
       "tags": [
         "kind"
@@ -79,7 +79,7 @@
     },
     {
       "id": "refuse",
-      "label": "Refuse, politely.",
+      "label": "Refuse, politely. Time runs strangely under hills.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -99,7 +99,7 @@
     },
     {
       "id": "play_at_the_door",
-      "label": "The one with an instrument plays at the door.",
+      "label": "The one with an instrument plays at the door, and offers a song of their own.",
       "rule": "scion:wields:instrument",
       "only": true,
       "tags": [

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "heal",
-      "label": "The best healer sees to its leg.",
+      "label": "The best healer sees to its leg, and wins its trust.",
       "rule": "scion:most_healing",
       "tags": [
         "kind"
@@ -36,7 +36,7 @@
     },
     {
       "id": "saddle",
-      "label": "Take the saddle and gear.",
+      "label": "Take the saddle and gear. Its rider will not be back for it.",
       "rule": "leader",
       "tags": [
         "clever"
@@ -58,7 +58,7 @@
     },
     {
       "id": "end",
-      "label": "End its pain.",
+      "label": "End its pain. It is the only mercy left to give.",
       "rule": "vote",
       "tags": [
         "cautious"

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "look",
-      "label": "The bravest looks back at the eye.",
+      "label": "The bravest looks back at the eye, and refuses to look away.",
       "rule": "scion:trait:brave|scion:highest:resilience",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "It blinks first.",
+          "text": "It blinks first. Nobody believes it at first, but it did.",
           "effects": [
             {
               "score": {
@@ -35,7 +35,7 @@
         },
         {
           "w": 50,
-          "text": "It does not blink. It never will. They can still feel it.",
+          "text": "It does not blink. It never will. They can still feel it, every day, everywhere.",
           "effects": [
             {
               "sanity": -25
@@ -46,7 +46,7 @@
     },
     {
       "id": "cover",
-      "label": "Cover your eyes and walk.",
+      "label": "Cover your eyes and walk, and do not let it see your faces.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -70,7 +70,7 @@
     },
     {
       "id": "signal",
-      "label": "Signal it.",
+      "label": "Signal it. If it wants to look, let it see you.",
       "rule": "leader",
       "tags": [
         "reckless"
@@ -78,7 +78,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Something comes down.",
+          "text": "Something comes down, and it has been wanting to for a long time.",
           "effects": [
             {
               "encounter": {

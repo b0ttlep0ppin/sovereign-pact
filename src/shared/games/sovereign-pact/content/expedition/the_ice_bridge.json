@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "cross",
-      "label": "Cross quickly, over the frozen faces.",
+      "label": "Cross quickly, over the frozen faces, and do not look down at them.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -43,7 +43,7 @@
     },
     {
       "id": "slow",
-      "label": "The slowest goes last, roped.",
+      "label": "The slowest goes last, roped, and steps where the others stepped.",
       "rule": "scion:lowest:speed|scion:random",
       "tags": [
         "cautious"
@@ -65,7 +65,7 @@
     },
     {
       "id": "free",
-      "label": "The strongest cuts a traveler out of the ice.",
+      "label": "The strongest cuts a traveller out of the ice, unable to leave them there.",
       "rule": "scion:highest:might",
       "tags": [
         "kind"

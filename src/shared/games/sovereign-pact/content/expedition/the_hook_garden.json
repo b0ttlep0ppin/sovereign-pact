@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "key",
-      "label": "The quickest snatches the key from its hook.",
+      "label": "The quickest snatches the key from its hook, before the chains can catch them.",
       "rule": "scion:highest:speed",
       "tags": [
         "bold"
@@ -33,7 +33,7 @@
         },
         {
           "w": 40,
-          "text": "A hook takes them instead, through the coat and the skin.",
+          "text": "A hook takes them instead, through the coat and the skin, and it does not want to let go.",
           "effects": [
             {
               "durability": -25,
@@ -45,7 +45,7 @@
     },
     {
       "id": "free",
-      "label": "Free the damned on the low hooks.",
+      "label": "Free the damned on the low hooks, whatever the gardener thinks.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -69,7 +69,7 @@
     },
     {
       "id": "through",
-      "label": "Go straight through, heads down.",
+      "label": "Go straight through, heads down, and touch nothing.",
       "rule": "leader",
       "tags": [
         "cautious"

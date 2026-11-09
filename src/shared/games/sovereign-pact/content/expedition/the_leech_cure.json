@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "accept",
-      "label": "Let him bleed the wounded.",
+      "label": "Let him bleed the wounded, and trust his prize leeches.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -35,7 +35,7 @@
         },
         {
           "w": 30,
-          "text": "The leeches are not his prize ones.",
+          "text": "The leeches are not his prize ones, and they leave something behind.",
           "effects": [
             {
               "to": "party",
@@ -47,7 +47,7 @@
     },
     {
       "id": "ask",
-      "label": "The sharpest asks to see his notes.",
+      "label": "The sharpest asks to see his notes, before anyone bares an arm.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -66,7 +66,7 @@
     },
     {
       "id": "refuse",
-      "label": "Refuse his leeches, politely.",
+      "label": "Refuse his leeches, politely. You have bled enough.",
       "rule": "leader",
       "tags": [
         "cautious"

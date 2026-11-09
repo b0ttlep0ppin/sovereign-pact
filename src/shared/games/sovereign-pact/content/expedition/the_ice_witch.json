@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "wound",
-      "label": "The most wounded lets her freeze the wound.",
+      "label": "The most wounded lets her freeze the wound, tempted by the promise of no more pain.",
       "rule": "scion:injured:any|scion:lowest:resilience",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It stops hurting. It stops feeling. It stops.",
+          "text": "It stops hurting. It stops feeling. It stops. They will never be quite warm there again.",
           "effects": [
             {
               "mend": true
@@ -35,7 +35,7 @@
     },
     {
       "id": "refuse",
-      "label": "Refuse her cold kiss.",
+      "label": "Refuse her cold kiss. Some cures are worse than the wound.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -56,7 +56,7 @@
     },
     {
       "id": "trade",
-      "label": "The wisest trades her a secret instead.",
+      "label": "The wisest trades her a secret instead, one cold thing for another.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"

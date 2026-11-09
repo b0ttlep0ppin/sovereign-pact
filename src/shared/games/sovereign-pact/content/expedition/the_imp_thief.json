@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "chase",
-      "label": "The quickest gives chase into the dark.",
+      "label": "The quickest gives chase into the dark, determined to get the purse back.",
       "rule": "scion:highest:speed",
       "tags": [
         "bold"
@@ -32,7 +32,7 @@
         },
         {
           "w": 40,
-          "text": "Into its nest, and it was not alone.",
+          "text": "Into its nest, and it was not alone, and it was never really running.",
           "effects": [
             {
               "encounter": {
@@ -45,7 +45,7 @@
     },
     {
       "id": "let",
-      "label": "Let it go.",
+      "label": "Let it go. Chasing an imp into the dark is a fool's errand.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -66,7 +66,7 @@
     },
     {
       "id": "trap",
-      "label": "The cleverest baits a trap with more gold.",
+      "label": "The cleverest baits a trap with more gold, and lets greed do the rest.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"

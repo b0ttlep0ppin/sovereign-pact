@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "wait",
-      "label": "Wait for them to drink and go.",
+      "label": "Wait for them to drink and go, however long it takes.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -33,7 +33,7 @@
     },
     {
       "id": "drive",
-      "label": "Drive them off with fire.",
+      "label": "Drive them off with fire. You need that water more than they do.",
       "rule": "leader",
       "tags": [
         "bold"
@@ -64,7 +64,7 @@
     },
     {
       "id": "sneak",
-      "label": "The quietest fills the skins under their noses.",
+      "label": "The quietest fills the skins under their very noses.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "pick",
-      "label": "The sharpest eye picks the door.",
+      "label": "The sharpest eye picks the door, and trusts it is the right one.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -43,7 +43,7 @@
     },
     {
       "id": "all",
-      "label": "Open them all.",
+      "label": "Open them all, and see what every city holds.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -68,7 +68,7 @@
     },
     {
       "id": "slow",
-      "label": "The slowest props a door open, so you can come back.",
+      "label": "The slowest props a door open, so you have a way back if you need one.",
       "rule": "scion:lowest:speed|leader",
       "tags": [
         "cautious"

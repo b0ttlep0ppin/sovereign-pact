@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "lay",
-      "label": "The most wounded lays their wound in the stone hands.",
+      "label": "The most wounded lays their wound in the stone hands, praying they are among the lucky.",
       "rule": "scion:injured:any|scion:lowest:sanity",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The hands close, warm as flesh, and open again, and the wound is gone.",
+          "text": "The hands close, warm as flesh, and open again, and the wound is gone. Something in the stone keeps the memory of it.",
           "effects": [
             {
               "mend": true
@@ -35,7 +35,7 @@
     },
     {
       "id": "all",
-      "label": "All of you lay a hand there.",
+      "label": "All of you lay a hand there, and share whatever the stone gives.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -59,7 +59,7 @@
     },
     {
       "id": "pry",
-      "label": "Pry out the jewels in the palms.",
+      "label": "Pry out the jewels in the palms. The pilgrims have had their use of them.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -67,7 +67,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The stone hands close on the thief's fingers, slowly, and grind.",
+          "text": "The stone hands close on the thief's fingers, slowly, and grind, and only let go when they are paid.",
           "effects": [
             {
               "resources": {

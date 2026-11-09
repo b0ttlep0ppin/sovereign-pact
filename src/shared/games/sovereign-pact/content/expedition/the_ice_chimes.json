@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "listen",
-      "label": "Stop and listen to the chimes.",
+      "label": "Stop and listen to the chimes, and let them sing you home.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -31,7 +31,7 @@
         },
         {
           "w": 40,
-          "text": "A song of the frozen dead, and it wants you to lie down and join it.",
+          "text": "A song of the frozen dead, and it wants you to lie down and join it, and it is very hard to say no.",
           "effects": [
             {
               "to": "party",
@@ -47,7 +47,7 @@
     },
     {
       "id": "break",
-      "label": "The strongest breaks the chimes.",
+      "label": "The strongest breaks the chimes, before their song calls anyone else.",
       "rule": "scion:highest:might",
       "tags": [
         "bold"
@@ -55,7 +55,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Silence, sudden and total, and something in the cave wakes to it.",
+          "text": "Silence, sudden and total, and something in the cave wakes to it, and wants its music back.",
           "effects": [
             {
               "encounter": {}
@@ -66,7 +66,7 @@
     },
     {
       "id": "hum",
-      "label": "The wisest hums the tune back.",
+      "label": "The wisest hums the tune back, and asks the chimes the way.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
