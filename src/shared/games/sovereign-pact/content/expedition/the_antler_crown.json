@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "wear",
-      "label": "The boldest puts on the crown of antlers.",
+      "label": "The boldest among you snatches the crown without a second thought and sets it upon their head.",
       "rule": "scion:trait:brave|scion:random",
       "tags": [
         "reckless"
@@ -37,7 +37,7 @@
         },
         {
           "w": 40,
-          "text": "The wood does not bow. It comes for them.",
+          "text": "The wood does not bow. It comes for the one who would usurp it.",
           "effects": [
             {
               "encounter": {
@@ -50,7 +50,7 @@
     },
     {
       "id": "leave",
-      "label": "Leave it hanging.",
+      "label": "Leave it hanging. Its place is in the wild, not in the hands of men.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -70,7 +70,7 @@
     },
     {
       "id": "sell",
-      "label": "Take it down to sell.",
+      "label": "Plunder the crown, so that it may bring glory to your House.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -78,7 +78,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It fetches a good price, and thorns find every step out of the wood.",
+          "text": "It fetches a fine price in town, and thorns find every step of the way out of the wood.",
           "effects": [
             {
               "resources": {

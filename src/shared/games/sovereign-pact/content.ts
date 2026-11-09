@@ -670,8 +670,8 @@ export interface TripEffect {
   fork?: { drop?: number; add?: NodeKind[] };
   /** The subject is Lost in the otherworld (§9.9). */
   scion_lost?: true;
-  /** A found item of this tier: to the subject's House, or into the haul for the draft when the party chose together. */
-  item?: { tier: 2 | 3 | 4 };
+  /** A found item of this tier: to the subject's House, or into the haul for the draft when the party chose together. A `named` one comes instead while it is not yet made. */
+  item?: { tier: 2 | 3 | 4; named?: string };
   /** A town event queued on the timeline `years` from now (§8.7), for the subject's House if it has one. */
   timeline?: { id: string; years: number };
   /** The subject is Changed (§9.6): a Change id from content/changes.json. */

@@ -2,6 +2,14 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-09 (implementation, Milestone 8cx): choices and outcomes in Josh's own style
+
+Josh rewrote eight events in the Event Book (Altar of Hands, Abandoned Kennel, Altar of Scars, Amber Cliff, Ancestor's Shield, Ant Lion, Antler Crown, Abandoned Mill) and asked: **"I've updated some events with my desired writing style and some notes if you think you can emulate it. Do not over index on my specific word choices but the tone and style are appropriate."**
+- **His edits go in as written,** with spelling and punctuation tidied ("giving in to", "its place").
+- **The style, as read from his edits:** a choice says what you do *and why*, or what pulls at you ("hoping to glean some insight", "no good can come of this", "without a second thought", "so that it may bring glory to your House"); it may run to a long sentence. Words lean old and grave (forsake, plunder, dispatch, usurp). Choices that name who acts keep that subject. An outcome adds one beat of aftermath or feeling after what happens ("yearning for what could have been", "They are better left undisturbed.").
+- **His notes:** the Kennel's "take the best of them home" no longer gives a recruit (a hound is not a Scion); the hound runs at its rescuer's heel, Keen-Eyed for 2 Years, as the Kennels' own order gives. The Ancestor's Shield shows each House its own arms, and the Houses bicker over it. The Ant Lion no longer gives wyrmbone (a rare material for buildings' level-3 orders); killing it gives a new named spear, **The Ant Lion's Mandible** (Venomed, Keen), once a campaign. An expedition event's `item` can now name a named item.
+- Then every other event's choices and outcomes are rewritten the same way, in batches, a PR each. Effects never change.
+
 ## 2026-11-09 (implementation, Milestone 8cw): richer prose for choices and outcomes
 
 Josh, after the 8cv pass: **"do the same process with the choices and outcomes, although don't make them too hard to understand, just improve the prose, make the options a little more ominous when possible"**.

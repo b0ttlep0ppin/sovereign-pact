@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "scar",
-      "label": "The one with an old wound lays it on the stone.",
+      "label": "Present a nagging scar that now burns in the altar's presence, hoping its promise holds true.",
       "rule": "scion:injured:any|scion:retired_once",
       "tags": [
         "bold"

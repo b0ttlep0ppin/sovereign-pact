@@ -9,11 +9,11 @@
     10
   ],
   "title": "The Amber Cliff",
-  "text": "A cliff of amber glows like a low sun in the grey light. Things are caught inside it, hanging where they died: insects, birds, a fox in mid-leap. Further in, a man, his mouth open, his hand pressed flat against the inside as if he is still trying to get out.",
+  "text": "A cliff of amber glows like dim stars in the grey light. Things are caught inside it, hanging where they died: insects, birds, a fox in mid-leap. Further in, a man, his mouth open, his hand pressed flat against the inside as if he is still trying to get out.",
   "options": [
     {
       "id": "cut",
-      "label": "Cut amber from the cliff.",
+      "label": "Harvest the golden amber from the cliffside, and forsake the man.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -58,7 +58,7 @@
         },
         {
           "w": 50,
-          "text": "He breathes, and stretches, and stretches, and he is not a man.",
+          "text": "He breathes, and stretches, and his form twists. What stands before you is no man.",
           "effects": [
             {
               "encounter": {}
@@ -69,7 +69,7 @@
     },
     {
       "id": "study",
-      "label": "The wisest studies the creatures in the amber.",
+      "label": "The wisest studies the creatures in the amber, hoping to glean some insight from what is trapped within.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -77,7 +77,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Old creatures, long gone from the world, and a few that never should have been in it.",
+          "text": "Ancient creatures, long since vanished from the world, and a few that never should have been in it, peer out from inside the amber. They are better left undisturbed.",
           "effects": [
             {
               "score": {

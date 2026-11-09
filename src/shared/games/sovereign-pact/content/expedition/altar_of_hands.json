@@ -10,11 +10,11 @@
     8
   ],
   "title": "The Altar of Hands",
-  "text": "A stone table in the dark, set with hands the way another table would be set with plates. Some are wax, some are bone, and one is still warm. In the middle of the stone is a hollow worn smooth, shaped for exactly one more.",
+  "text": "A stone table in the dark, set with hands the way another table would be set with plates. Some are wax, some are bone, and one is still warm. In the middle of the stone is a hollow worn smooth, shaped for exactly one more, and it calls to you.",
   "options": [
     {
       "id": "lay",
-      "label": "Lay the weakest hand in the hollow, and let the stone decide.",
+      "label": "Place the frailest hand inside the hollow, giving in to the allure of the ancient altar.",
       "rule": "scion:injured:arms|scion:lowest:might",
       "tags": [
         "reckless"
@@ -34,7 +34,7 @@
         },
         {
           "w": 35,
-          "text": "The stone closes over the wrist, gentle as a mouth, and keeps what it took.",
+          "text": "The stone closes over the wrist, gentle as a mouth, and keeps what it took, gnawing at flesh freely offered.",
           "effects": [
             {
               "injury": "arms"
@@ -43,7 +43,7 @@
         },
         {
           "w": 20,
-          "text": "Nothing happens. The stone stays cold. Somehow that is worse.",
+          "text": "A vision of the hand severed cleanly at the wrist falls over them after a few moments, and they recoil in horror.",
           "effects": [
             {
               "sanity": -15
@@ -54,7 +54,7 @@
     },
     {
       "id": "leave",
-      "label": "Leave the hands to their table, and their warmth.",
+      "label": "Ignore the call of the altar. No good can come of this.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -62,7 +62,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "You go on, and nobody looks at their own hands for a while.",
+          "text": "Those who move on find their palms itch for days afterwards, yearning for what could have been.",
           "effects": [
             {
               "sanity": -5
