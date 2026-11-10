@@ -9,11 +9,11 @@
     10
   ],
   "title": "The Track in the Snow",
-  "text": "The quarry's tracks, clear as print in fresh snow, leading straight and steady away from you. Too clear. Too easy. The quarry is clever, and it knows it is being hunted.",
+  "text": "The quarry's tracks lie clear as print in fresh snow, leading straight and steady away from you. They are too clear, too easy. The quarry is clever, and it knows it is being hunted.",
   "options": [
     {
       "id": "follow",
-      "label": "Follow the tracks, and trust that easy is sometimes just easy.",
+      "label": "Follow the tracks, trusting that easy is sometimes just easy.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Into its trap, exactly as it meant.",
+          "text": "They lead into its trap, exactly as it meant.",
           "effects": [
             {
               "encounter": {
@@ -34,7 +34,7 @@
     },
     {
       "id": "read",
-      "label": "The sharpest eye reads the tracks, to learn why they are so clear.",
+      "label": "The sharpest reads the tracks to learn why they are so clear.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -42,7 +42,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Walked backward. It is behind you.",
+          "text": "It walked them backward. It is behind you.",
           "effects": [
             {
               "encounter": {
@@ -55,7 +55,7 @@
     },
     {
       "id": "wait",
-      "label": "Wait for it to come to you. Let the hunter be hunted.",
+      "label": "Wait for it to come to you; let the hunter be hunted.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -63,7 +63,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It does, in its own time, and the waiting is the worst of it.",
+          "text": "It comes in its own time. The waiting is the worst of it.",
           "effects": [
             {
               "encounter": {}

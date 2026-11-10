@@ -9,11 +9,11 @@
     10
   ],
   "title": "The Wounded Hunter",
-  "text": "A hunter from another House lies in the ferns, mauled by your quarry, his leathers torn open, his blood soaking the moss. He begs for help in a thin voice. He saw it up close, he says. He saw it.",
+  "text": "A hunter from another House lies in the ferns, mauled by your quarry, his leathers torn open and his blood soaking the moss. He begs for help in a thin voice. He saw it up close, he says. He saw it.",
   "options": [
     {
       "id": "help",
-      "label": "The healer helps him. His House would do the same for yours. Perhaps.",
+      "label": "The healer helps him; his House would do the same for yours, perhaps.",
       "rule": "scion:most_healing|scion:random",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He tells you how it fights, and his House will hear you helped.",
+          "text": "He tells you how it fights. His House will hear that you helped.",
           "effects": [
             {
               "to": "party",
@@ -36,7 +36,7 @@
     },
     {
       "id": "leave",
-      "label": "The Leader leaves him in the ferns. The hunt waits for no one.",
+      "label": "The Leader leaves him in the ferns; the hunt waits for no one.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -55,7 +55,7 @@
     },
     {
       "id": "ask",
-      "label": "Ask what he saw, then go, before what mauled him comes back.",
+      "label": "Ask what he saw, then go before what mauled him comes back.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -63,7 +63,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Enough to go on. Behind you he goes quiet.",
+          "text": "He tells you enough to go on. Behind you, he goes quiet.",
           "effects": [
             {
               "foresee": true

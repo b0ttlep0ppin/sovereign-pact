@@ -9,11 +9,11 @@
     10
   ],
   "title": "The Unravelling",
-  "text": "A thread hangs in the dark, fine as hair, shining faintly. Pulling it unravels something. Maybe the dark. Maybe you. You can feel it tug at you, very gently, from somewhere behind your ribs.",
+  "text": "A thread hangs in the dark, fine as hair and shining faintly. Pulling it unravels something, perhaps the dark, perhaps you. You can feel it tugging gently at you from somewhere behind your ribs.",
   "options": [
     {
       "id": "pull",
-      "label": "The Leader pulls the thread, to learn what unravels.",
+      "label": "The Leader pulls the thread to learn what unravels.",
       "rule": "leader",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "The dark unravels a little, and there is light behind it.",
+          "text": "The dark unravels a little. There is light behind it.",
           "effects": [
             {
               "skip": 2
@@ -42,7 +42,7 @@
     },
     {
       "id": "cut",
-      "label": "Cut the thread, before it pulls anything else apart.",
+      "label": "Cut the thread before it pulls anything else apart.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -50,7 +50,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It whips back, and the dark tightens, and something in it is awake.",
+          "text": "It whips back, and the dark tightens. Something in it is awake.",
           "effects": [
             {
               "encounter": {}
@@ -61,7 +61,7 @@
     },
     {
       "id": "tie",
-      "label": "The wisest ties it off, so nothing comes undone.",
+      "label": "The wisest ties it off so nothing comes undone.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -69,7 +69,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Tied. The dark holds still, and you learn how it is made.",
+          "text": "Once it is tied the dark holds still, and you learn how it is made.",
           "effects": [
             {
               "score": {

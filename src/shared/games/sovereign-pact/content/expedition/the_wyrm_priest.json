@@ -9,11 +9,11 @@
     10
   ],
   "title": "The Wyrm Priest",
-  "text": "A priest of the dragons sits by the road in robes of scale, his skin burned glassy, his eyes gold. He blesses travelers with fire, lightly, if they kneel. The ground around him is scorched in rings.",
+  "text": "A priest of the dragons sits by the road in robes of scale, his skin burned glassy, his eyes gold. He blesses travelers who kneel with a light touch of fire. The ground around him is scorched in rings.",
   "options": [
     {
       "id": "kneel",
-      "label": "Kneel for his fire, and trust his gods to be gentle.",
+      "label": "Kneel for his fire, trusting his gods to be gentle.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 80,
-          "text": "Warm, not burned, and the warmth stays like armor.",
+          "text": "The fire warms without burning, and the warmth stays on you like armor.",
           "effects": [
             {
               "to": "party",
@@ -31,7 +31,7 @@
         },
         {
           "w": 20,
-          "text": "Burned.",
+          "text": "It burns.",
           "effects": [
             {
               "to": "party",
@@ -51,7 +51,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Fire. They come out of it changed in small ways, and scarred in larger ones.",
+          "text": "They come out of the fire changed in small ways, and scarred in larger ones.",
           "effects": [
             {
               "growth": {
@@ -68,7 +68,7 @@
     },
     {
       "id": "refuse",
-      "label": "Refuse his blessing. You kneel to no dragon.",
+      "label": "Refuse his blessing; you kneel to no dragon.",
       "rule": "vote",
       "tags": [
         "bold"

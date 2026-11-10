@@ -30,14 +30,14 @@
     },
     {
       "id": "stay_away",
-      "label": "Keep your people indoors until dawn. Nothing sold at midnight is worth the price.",
+      "label": "Keep your people indoors until dawn; nothing sold at midnight is worth the price.",
       "tags": [
         "cautious"
       ],
       "outcomes": [
         {
           "w": 1,
-          "text": "Your doors stay shut. Something taps on them, politely, until the bell stops.",
+          "text": "Your doors stay shut. Something taps on them politely until the bell stops.",
           "effects": [
             {
               "scion": {

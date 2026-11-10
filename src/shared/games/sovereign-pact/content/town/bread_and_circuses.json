@@ -7,7 +7,7 @@
     20
   ],
   "title": "Bread and Circuses",
-  "text": "The lower town is restless, and the Gate has been loud. Men gather on corners and fall quiet when a House's colors pass. Old men say the last time the city went this hungry for distraction, it found one in a burning, and they still remember the smell.",
+  "text": "The lower town is restless, and the Gate has been loud. Men gather on corners, falling quiet when a House's colors pass. The last time the city went this hungry for distraction, the old men say, it found one in a burning, and they still remember the smell.",
   "rule": "secret",
   "options": [
     {
@@ -37,14 +37,14 @@
     },
     {
       "id": "abstain",
-      "label": "Let the other Houses pay. Your Gold has better uses than wine.",
+      "label": "Let the other Houses pay; your Gold has better uses than wine.",
       "tags": [
         "cautious"
       ],
       "outcomes": [
         {
           "w": 100,
-          "text": "You keep your purse closed, and watch who pays, and who does not.",
+          "text": "You keep your purse closed and watch who pays, and who does not.",
           "effects": []
         }
       ]

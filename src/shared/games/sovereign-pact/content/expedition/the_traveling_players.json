@@ -9,11 +9,11 @@
     10
   ],
   "title": "The Traveling Players",
-  "text": "A troupe of players on the otherworld road, painted and grinning, putting on a play about your Houses on the back of their wagon. They have the details wrong. Mostly. The bits they have right, no one outside your Houses should know.",
+  "text": "A troupe of players on the otherworld road, painted and grinning, are putting on a play about your Houses on the back of their wagon. They have most of the details wrong. The few they have right, no one outside your Houses should know.",
   "options": [
     {
       "id": "watch",
-      "label": "Watch the play about your Houses, and learn what the world thinks of you.",
+      "label": "Watch the play to learn what the world thinks of you.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It is a good play, and you laugh, and learn something about how others see you.",
+          "text": "It is a good play. You laugh, and learn something about how others see you.",
           "effects": [
             {
               "to": "party",
@@ -38,7 +38,7 @@
     },
     {
       "id": "correct",
-      "label": "The best talker corrects them, so the story is told your way.",
+      "label": "The best talker corrects them so the story is told your way.",
       "rule": "scion:highest:guile",
       "tags": [
         "bold"
@@ -46,7 +46,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They rewrite it on the spot. Word will spread, your way.",
+          "text": "They rewrite it on the spot. Word will spread your way.",
           "effects": [
             {
               "score": {
@@ -67,7 +67,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They take the coin and the note gladly. The rival will see the play sooner or later.",
+          "text": "They gladly take the coin and the note. Sooner or later, the rival will see the play.",
           "effects": [
             {
               "resources": {

@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He grunts, and gives you the herbs, and they close wounds.",
+          "text": "He grunts and hands over the herbs. They close wounds.",
           "effects": [
             {
               "mend": true

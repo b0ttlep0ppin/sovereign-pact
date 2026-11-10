@@ -7,7 +7,7 @@
     20
   ],
   "title": "The Ashen Procession",
-  "text": "Pilgrims with ash-white faces file through the city towards the Rift Gate, singing a hymn with no words. At each Seat they stop and wait. They want someone to walk with them to the Gate and back. They have done this every hundred Years, and it has always kept the Gate shut.",
+  "text": "Pilgrims with ash-white faces file through the city toward the Rift Gate, singing a hymn with no words. At each Seat they stop and wait for someone to walk with them to the Gate and back. They have done this every hundred Years, and it has always kept the Gate shut.",
   "rule": "each_house",
   "options": [
     {
@@ -23,7 +23,7 @@
       "outcomes": [
         {
           "w": 1,
-          "text": "Your Scion walks to the Gate and back in silence and comes home lighter, as if they left something heavy at the edge of the world.",
+          "text": "Your Scion walks to the Gate and back in silence. They come home lighter, as if they left something heavy at the edge of the world.",
           "effects": [
             {
               "scion": {
@@ -43,7 +43,7 @@
         },
         {
           "w": 1,
-          "text": "Your Scion walks to the Gate and back. They have not slept since. They hum the hymn under their breath.",
+          "text": "Your Scion walks to the Gate and back, and has not slept since. They hum the hymn under their breath.",
           "effects": [
             {
               "scion": {
@@ -74,7 +74,7 @@
       "outcomes": [
         {
           "w": 1,
-          "text": "They take the bread and do not eat it. One of them touches your door, and it is warm for a week.",
+          "text": "They take the bread without eating it. One of them touches your door, which stays warm for a week.",
           "effects": [
             {
               "accord": 2
@@ -85,14 +85,14 @@
     },
     {
       "id": "doors",
-      "label": "Keep your doors shut until they pass. Let another House walk with them.",
+      "label": "Keep your doors shut until they pass; let another House walk with them.",
       "tags": [
         "cautious"
       ],
       "outcomes": [
         {
           "w": 1,
-          "text": "They wait at your door until midnight, singing without words, then file on. The ash on your step does not sweep away.",
+          "text": "They wait at your door until midnight, singing without words, then file on. The ash on your step will not sweep away.",
           "effects": []
         }
       ]

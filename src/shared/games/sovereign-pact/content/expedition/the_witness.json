@@ -9,11 +9,11 @@
     10
   ],
   "title": "The Witness",
-  "text": "A shepherd sits on a rock with his flock, chewing a stalk of grass. He saw the Lost pass a week ago, he says, and he will tell you which way for a price. His sheep do not take their eyes off you.",
+  "text": "A shepherd sits on a rock with his flock, chewing a stalk of grass. He saw the Lost pass a week ago, he says, and for a price he will tell you which way they went. His sheep never take their eyes off you.",
   "options": [
     {
       "id": "pay",
-      "label": "Pay the shepherd. A week's head start is worth the coin.",
+      "label": "Pay the shepherd; a week's head start is worth the coin.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He points. The sheep watch you go.",
+          "text": "He points the way. The sheep watch you go.",
           "effects": [
             {
               "resources": {
@@ -37,7 +37,7 @@
     },
     {
       "id": "charm",
-      "label": "The smoothest charms it out of him, and learns what else he saw.",
+      "label": "The smoothest charms it out of him, along with whatever else he saw.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"
@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He tells it for free, and more besides.",
+          "text": "He tells it for free, with more besides.",
           "effects": [
             {
               "skip": 1
@@ -59,7 +59,7 @@
     },
     {
       "id": "frighten",
-      "label": "The strongest frightens it out of him. There is no time to bargain.",
+      "label": "The strongest frightens it out of him; there is no time to bargain.",
       "rule": "scion:highest:might",
       "tags": [
         "cruel"
@@ -67,7 +67,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He points the wrong way, and the sheep know it.",
+          "text": "He points the wrong way. The sheep know it.",
           "effects": [
             {
               "to": "party",

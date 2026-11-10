@@ -9,11 +9,11 @@
     10
   ],
   "title": "The Watcher in the Trees",
-  "text": "Someone has been following since dawn, never close, always at the edge of the trees. Only one of you has seen them clearly: a tall shape, still, watching. They seem to want that one.",
+  "text": "Someone has been following since dawn, never close, always at the edge of the trees. Only one of you has seen them clearly: a tall, still shape, watching. They seem to want that one.",
   "options": [
     {
       "id": "marked",
-      "label": "The one they watch goes alone to meet them, and learns what they want.",
+      "label": "The one they watch goes alone to meet them.",
       "rule": "scion:most_targeted",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "An old hunter, offering a trade: a lesson for a story.",
+          "text": "It is an old hunter, offering a lesson in trade for a story.",
           "effects": [
             {
               "jp": 80
@@ -48,7 +48,7 @@
     },
     {
       "id": "ambush",
-      "label": "The craftiest sets an ambush, and turns the watcher into the watched.",
+      "label": "The craftiest sets an ambush to turn the watcher into the watched.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"
@@ -56,7 +56,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "You catch them, and they are not pleased.",
+          "text": "You catch them. They are not pleased.",
           "effects": [
             {
               "encounter": {
@@ -69,7 +69,7 @@
     },
     {
       "id": "ignore",
-      "label": "Keep walking. If they wanted a fight, they would have had one.",
+      "label": "Keep walking; if they wanted a fight, they would have had one.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -77,7 +77,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They follow you all the way to the next fight, and watch.",
+          "text": "They follow you all the way to the next fight, and watch it.",
           "effects": [
             {
               "to": "party",

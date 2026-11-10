@@ -9,11 +9,11 @@
     9
   ],
   "title": "The Weeping Statue",
-  "text": "A saint in grey stone, her face worn smooth by centuries of hands, weeps clear water into a bowl at her feet. The bowl never fills. The water never stops. Dead flowers lie heaped around her, from pilgrims long gone.",
+  "text": "A saint in grey stone, her face worn smooth by centuries of hands, weeps clear water into a bowl at her feet. The bowl never fills, and the water never stops. Dead flowers from pilgrims long gone lie heaped around her.",
   "options": [
     {
       "id": "drink",
-      "label": "The healer drinks the saint's tears, and takes her grief inside them.",
+      "label": "The healer drinks the saint's tears, taking her grief inside them.",
       "rule": "scion:most_healing",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 55,
-          "text": "The water is cold and it stays cold, a well inside them.",
+          "text": "The water stays cold inside them, like a well.",
           "effects": [
             {
               "trait": "+deep_well"
@@ -33,7 +33,7 @@
         },
         {
           "w": 45,
-          "text": "They sleep badly ever after. They will not say what the saint shows them.",
+          "text": "They sleep badly ever after, and will not say what the saint shows them.",
           "effects": [
             {
               "trait": "+nightmares"
@@ -47,7 +47,7 @@
     },
     {
       "id": "leave",
-      "label": "Leave her to her grief. Some sorrows are not yours to share.",
+      "label": "Leave her to her grief; some sorrows are not yours to share.",
       "rule": "vote",
       "tags": [
         "cautious"

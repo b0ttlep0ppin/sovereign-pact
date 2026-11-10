@@ -9,11 +9,11 @@
     9
   ],
   "title": "The Tithe-Men",
-  "text": "Men in grey with ledgers under their arms block the road, standing very straight, their faces pale as paper. Everyone pays the tithe, they say. Everyone. Even here. Their ledgers list every House by name, in a hand that does not change.",
+  "text": "Men in grey block the road with ledgers under their arms, standing very straight, their faces pale as paper. Everyone pays the tithe, they say, even here. Their ledgers list every House by name, in a hand that never changes.",
   "options": [
     {
       "id": "pay",
-      "label": "The richest House pays them in Essence, and buys the road.",
+      "label": "The richest House pays them in Essence to buy the road.",
       "rule": "house:highest_standing",
       "tags": [
         "cautious"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They count it twice and step aside, and write your House's name in the ledger.",
+          "text": "They count it twice, write your House's name in the ledger and step aside.",
           "effects": [
             {
               "resources": {
@@ -34,7 +34,7 @@
     },
     {
       "id": "refuse",
-      "label": "Refuse the tithe. No ledger here has any right to you.",
+      "label": "Refuse the tithe; no ledger here has any right to you.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -53,7 +53,7 @@
         },
         {
           "w": 30,
-          "text": "They look at you a long time, then close the ledger and are gone. The ledger is not.",
+          "text": "They look at you a long time, then close the ledger and are gone. The ledger remains.",
           "effects": [
             {
               "to": "party",

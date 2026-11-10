@@ -9,11 +9,11 @@
     10
   ],
   "title": "The Veterans' Shrine",
-  "text": "A cairn of old weapons, swords and spears and axes, each laid by someone who came back from the Gate one time too many. Rust bleeds into the stones. There is room for one more.",
+  "text": "A cairn of old swords, spears and axes stands by the road, each laid by someone who came back from the Gate one time too many. Rust bleeds into the stones. There is room for one more.",
   "options": [
     {
       "id": "veteran",
-      "label": "The one who has been out most often lays something down, and leaves a little of the Gate behind.",
+      "label": "The one who has been out most often lays something down, leaving a little of the Gate behind.",
       "rule": "scion:retired_once|scion:most_expeditions",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It is easier to leave than they thought, and they walk away lighter.",
+          "text": "Leaving it is easier than they thought. They walk away lighter.",
           "effects": [
             {
               "sanity": 25
@@ -37,7 +37,7 @@
     },
     {
       "id": "take",
-      "label": "The Leader takes the best of the old weapons. Good steel should not rust.",
+      "label": "The Leader takes the best of the old weapons; good steel should not rust.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It is a fine old blade, and it does not want to be here, and it does not want to be with you.",
+          "text": "The old blade is fine. It does not want to be here, and it does not want to be with you either.",
           "effects": [
             {
               "item": {
@@ -70,7 +70,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Old iron, rusting in the rain, and a little peace in seeing it.",
+          "text": "There is a little peace in seeing the old iron rust in the rain.",
           "effects": [
             {
               "to": "party",

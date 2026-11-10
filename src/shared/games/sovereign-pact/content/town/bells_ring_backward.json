@@ -12,14 +12,14 @@
   "options": [
     {
       "id": "silence",
-      "label": "Cut the bell ropes, and silence whatever is ringing them.",
+      "label": "Cut the bell ropes to silence whatever is ringing them.",
       "tags": [
         "cautious"
       ],
       "outcomes": [
         {
           "w": 70,
-          "text": "The towers stand mute. The quiet is worse than the bells, but it is only quiet.",
+          "text": "The towers stand mute. The quiet is worse than the bells, though it is only quiet.",
           "effects": [
             {
               "accord": -2
@@ -28,7 +28,7 @@
         },
         {
           "w": 30,
-          "text": "The ropes are cut. The bells ring anyway, slower, as if something else is pulling.",
+          "text": "The ropes are cut, but the bells ring anyway, slower, as if something else is pulling.",
           "effects": [
             {
               "to": "all",

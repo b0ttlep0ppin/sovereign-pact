@@ -9,11 +9,11 @@
     10
   ],
   "title": "The Underground River",
-  "text": "A black river runs through the caverns, fast and cold and loud, roaring off into the dark. A boat is tied at the bank, rocking. It has been tied here a long time. The rope is fraying.",
+  "text": "A black river runs through the caverns, fast and cold and loud, roaring off into the dark. A boat tied at the bank rocks on the current. It has been tied here a long time, and the rope is fraying.",
   "options": [
     {
       "id": "boat",
-      "label": "Take the old boat, and trust the fraying rope held for a reason.",
+      "label": "Take the old boat, trusting the rope held for a reason.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "Fast, far, and out into the light.",
+          "text": "It carries you fast and far, out into the light.",
           "effects": [
             {
               "skip": 2
@@ -30,7 +30,7 @@
         },
         {
           "w": 40,
-          "text": "Over a fall, in the dark, with the boat in pieces around you.",
+          "text": "It goes over a fall in the dark, breaking to pieces around you.",
           "effects": [
             {
               "to": "party",
@@ -54,7 +54,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A safe crossing, and the one who swam it battered by the rocks.",
+          "text": "The crossing is safe, though the one who swam it is battered by the rocks.",
           "effects": [
             {
               "skip": 1
@@ -69,7 +69,7 @@
     },
     {
       "id": "walk",
-      "label": "Walk the bank, and keep clear of the roaring water.",
+      "label": "Walk the bank, keeping clear of the roaring water.",
       "rule": "leader",
       "tags": [
         "cautious"

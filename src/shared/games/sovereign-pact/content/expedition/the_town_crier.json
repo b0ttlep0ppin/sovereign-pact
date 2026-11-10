@@ -9,11 +9,11 @@
     9
   ],
   "title": "The Town Crier",
-  "text": "A faceless crier rings his bell in an empty square, the sound echoing off blank walls. He calls out news of your own House, things no one should know, in a clear and cheerful voice. Shutters creak open to listen.",
+  "text": "A faceless crier rings his bell in an empty square, the sound echoing off blank walls. In a clear and cheerful voice he calls out news of your own House, things no one should know. Shutters creak open to listen.",
   "options": [
     {
       "id": "listen",
-      "label": "Listen to the faceless crier's news, and learn what else he knows.",
+      "label": "Listen to his news and learn what else he knows.",
       "rule": "vote",
       "tags": [
         "clever"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "News of a rival's troubles, cried for anyone to hear.",
+          "text": "He cries a rival's troubles for anyone to hear.",
           "effects": [
             {
               "score": {
@@ -32,7 +32,7 @@
         },
         {
           "w": 40,
-          "text": "News of your own, not yet happened.",
+          "text": "He cries news of your own that has not happened yet.",
           "effects": [
             {
               "to": "party",
@@ -47,7 +47,7 @@
     },
     {
       "id": "pay",
-      "label": "The shrewdest pays him to cry a lie about a rival, in that same cheerful voice.",
+      "label": "The shrewdest pays him to cry a lie about a rival.",
       "rule": "scion:highest:guile",
       "tags": [
         "cruel"
@@ -55,7 +55,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The faceless will repeat it everywhere, in that same cheerful voice.",
+          "text": "The faceless will repeat it everywhere, as cheerfully as he did.",
           "effects": [
             {
               "resources": {

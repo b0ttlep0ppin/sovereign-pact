@@ -9,7 +9,7 @@
     8
   ],
   "title": "The Veteran's Barrow",
-  "text": "A barrow where only those who once laid down their arms may enter. The door is carved with a broken sword, and the stone before it is worn by the knees of old soldiers. Inside, faintly, men are singing a marching song.",
+  "text": "Only those who once laid down their arms may enter this barrow. A broken sword is carved on its door, and the stone before it is worn by the knees of old soldiers. Inside, faintly, men are singing a marching song.",
   "options": [
     {
       "id": "retired",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The dead soldiers salute them, and give up their captain's blade.",
+          "text": "The dead soldiers salute them and give up their captain's blade.",
           "effects": [
             {
               "item": {
@@ -39,7 +39,7 @@
     },
     {
       "id": "force",
-      "label": "The strongest forces the door. The dead can sing elsewhere.",
+      "label": "The strongest forces the door; the dead can sing elsewhere.",
       "rule": "scion:highest:might",
       "tags": [
         "reckless"
@@ -47,7 +47,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The singing stops. The dead do not salute.",
+          "text": "The singing stops, and the dead do not salute.",
           "effects": [
             {
               "encounter": {
@@ -60,7 +60,7 @@
     },
     {
       "id": "pray",
-      "label": "Say the soldiers' prayer and go, and leave them to their song.",
+      "label": "Say the soldiers' prayer and go, leaving them to their song.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -68,7 +68,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A cold wind, and the marching song, and then peace.",
+          "text": "A cold wind carries the marching song out to you. Then there is peace.",
           "effects": [
             {
               "to": "party",

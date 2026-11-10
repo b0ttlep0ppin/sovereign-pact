@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "bathe",
-      "label": "Let the strangest of you bathe in it, and wash away what is not theirs.",
+      "label": "Let the strangest of you bathe in it to wash away what is not theirs.",
       "rule": "scion:changed|vote",
       "tags": [
         "kind"
@@ -33,7 +33,7 @@
         },
         {
           "w": 40,
-          "text": "The water is cold, and nothing changes but their mood.",
+          "text": "The water is cold. Nothing changes but their mood.",
           "effects": [
             {
               "sanity": 20

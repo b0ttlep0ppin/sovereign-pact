@@ -9,7 +9,7 @@
     10
   ],
   "title": "The Two Doors",
-  "text": "Two doors in a hillside, one guarded by a knight who always lies and one by a knight who never does. The usual riddle. The knights look bored. Their armor is very old, and nothing moves behind their visors.",
+  "text": "Two doors stand in a hillside, one guarded by a knight who always lies and one by a knight who never does. It is the usual riddle, and the knights look bored. Their armor is very old, and nothing moves behind their visors.",
   "options": [
     {
       "id": "riddle",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The right door, a short way, and the knights clap politely.",
+          "text": "They choose the right door, which proves a short way. The knights clap politely.",
           "effects": [
             {
               "skip": 1
@@ -35,7 +35,7 @@
     },
     {
       "id": "fight",
-      "label": "Fight your way past the nearer knight. Riddles are for the bored.",
+      "label": "Fight your way past the nearer knight; riddles are for the bored.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -54,7 +54,7 @@
     },
     {
       "id": "guess",
-      "label": "The Leader picks a door at random, and trusts to luck.",
+      "label": "The Leader picks a door at random, trusting to luck.",
       "rule": "leader",
       "tags": [
         "reckless"
@@ -62,7 +62,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "The right door.",
+          "text": "It is the right door.",
           "effects": [
             {
               "skip": 1
@@ -71,7 +71,7 @@
         },
         {
           "w": 50,
-          "text": "The wrong door.",
+          "text": "It is the wrong door.",
           "effects": [
             {
               "fork": {

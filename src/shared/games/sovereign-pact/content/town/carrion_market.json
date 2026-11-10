@@ -12,14 +12,14 @@
   "options": [
     {
       "id": "gold",
-      "label": "Pay in Gold, and keep your years for yourselves.",
+      "label": "Pay in Gold and keep your years for yourselves.",
       "tags": [
         "clever"
       ],
       "outcomes": [
         {
           "w": 60,
-          "text": "A stoppered bottle the Apothecary cannot name, and a book with the last page torn out.",
+          "text": "You come away with a stoppered bottle the Apothecary cannot name, and a book with its last page torn out.",
           "effects": [
             {
               "resources": {
@@ -36,7 +36,7 @@
         },
         {
           "w": 40,
-          "text": "What you bought is gone when you get home. The receipt is in your own handwriting.",
+          "text": "What you bought is gone by the time you get home. The receipt is in your own handwriting.",
           "effects": [
             {
               "resources": {
@@ -49,14 +49,14 @@
     },
     {
       "id": "years",
-      "label": "Pay in years, as they prefer. Their wares are worth more that way.",
+      "label": "Pay in years, as they prefer; their wares are worth more that way.",
       "tags": [
         "reckless"
       ],
       "outcomes": [
         {
           "w": 70,
-          "text": "The Scion who paid wakes a decade older. The bargain was a good one: a sliver of moonlight in a jar, real enough to forge.",
+          "text": "The Scion who paid wakes a decade older, but the bargain was good: a sliver of moonlight in a jar, real enough to forge.",
           "effects": [
             {
               "scion": {
@@ -78,7 +78,7 @@
         },
         {
           "w": 30,
-          "text": "The Scion who paid comes home older, and forgetting. Whatever they knew of fighting, they will have to learn again.",
+          "text": "The Scion who paid comes home older and forgetful. Whatever they knew of fighting, they must learn again.",
           "effects": [
             {
               "scion": {
@@ -100,14 +100,14 @@
     },
     {
       "id": "stay",
-      "label": "Keep the House at home. Nothing sold among the bones is worth buying.",
+      "label": "Keep the House at home; nothing sold among the bones is worth buying.",
       "tags": [
         "cautious"
       ],
       "outcomes": [
         {
           "w": 100,
-          "text": "Your House stays in. The music from the boneyard goes on until the dawn bell, and some of the tunes are ones your mothers sang.",
+          "text": "The music from the boneyard goes on until the dawn bell. Some of the tunes are ones your mothers sang.",
           "effects": []
         }
       ]

@@ -9,7 +9,7 @@
     10
   ],
   "title": "The Unlit Stars",
-  "text": "Out here the stars are unlit, hanging like dead lamps on threads of nothing, cold and grey. One hangs low enough to reach, if someone climbs. It turns slowly, as if looking for someone.",
+  "text": "Out here the stars are unlit, hanging cold and grey like dead lamps on threads of nothing. One hangs low enough to reach, if someone climbs. It turns slowly, as if looking for someone.",
   "options": [
     {
       "id": "climb",
@@ -51,7 +51,7 @@
     },
     {
       "id": "light",
-      "label": "The wisest tries to light it again, so it may see what it seeks.",
+      "label": "The wisest tries to light it again so it may see what it seeks.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "kind"
@@ -59,7 +59,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It flickers, and for a moment you can see the way home.",
+          "text": "It flickers. For a moment you can see the way home.",
           "effects": [
             {
               "skip": 1
@@ -74,7 +74,7 @@
     },
     {
       "id": "ignore",
-      "label": "Do not look up. Whoever it is looking for, it is not you.",
+      "label": "Do not look up; whoever it seeks, it is not you.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -82,7 +82,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It is hard not to, and it keeps turning toward you.",
+          "text": "Not looking is hard, and it keeps turning toward you.",
           "effects": [
             {
               "to": "party",

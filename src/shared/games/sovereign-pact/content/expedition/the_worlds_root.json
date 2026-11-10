@@ -9,11 +9,11 @@
     10
   ],
   "title": "The World's Root",
-  "text": "A root of some impossible tree, as wide as a castle, curves out of the ground and back in. Sap like amber oozes from a wound in its side, and in the sap, caught like flies, are tiny figures. Some of them are still moving.",
+  "text": "A root of some impossible tree, as wide as a castle, curves out of the ground and back in. Sap like amber oozes from a wound in its side. Tiny figures are caught in the sap like flies, and some of them are still moving.",
   "options": [
     {
       "id": "sap",
-      "label": "The Leader collects the sap, and does not look too closely at what is caught in it.",
+      "label": "The Leader collects the sap without looking too closely at what is caught in it.",
       "rule": "leader",
       "tags": [
         "clever"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Amber that never sets, and you try not to look at what is in it.",
+          "text": "It is amber that never sets. You try not to look at what is in it.",
           "effects": [
             {
               "resources": {
@@ -34,7 +34,7 @@
     },
     {
       "id": "climb",
-      "label": "The strongest climbs into the wound, to learn what lives inside the root.",
+      "label": "The strongest climbs into the wound to learn what lives inside the root.",
       "rule": "scion:highest:might",
       "tags": [
         "reckless"
@@ -42,7 +42,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "Inside it is warm, and alive, and gives them something.",
+          "text": "Inside it is warm and alive, and it gives them something.",
           "effects": [
             {
               "growth": {
@@ -56,7 +56,7 @@
         },
         {
           "w": 50,
-          "text": "Inside it is warm, and alive, and hungry.",
+          "text": "Inside it is warm and alive, and hungry.",
           "effects": [
             {
               "injury": "body"
@@ -67,7 +67,7 @@
     },
     {
       "id": "bind",
-      "label": "Bind the wound with what cloth you have, so the root may heal.",
+      "label": "Bind the wound with what cloth you have so the root may heal.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -75,7 +75,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The root shudders, and somewhere far off, a tree sighs.",
+          "text": "The root shudders. Somewhere far off, a tree sighs.",
           "effects": [
             {
               "to": "party",

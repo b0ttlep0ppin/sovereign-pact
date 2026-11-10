@@ -9,11 +9,11 @@
     10
   ],
   "title": "The Two Candles",
-  "text": "Two candles burn before an empty niche, one for the world and one for the self, their flames leaning toward each other. The Six ask which you would keep lit, a monk says. There is only wax enough for one.",
+  "text": "Two candles burn before an empty niche, one for the world and one for the self, their flames leaning toward each other. The Six ask which you would keep lit, a monk says. There is wax enough for only one.",
   "options": [
     {
       "id": "world",
-      "label": "The Empress's child tends the world's candle, and gives the wax to others.",
+      "label": "The Empress's child tends the world's candle, giving the wax to others.",
       "rule": "scion:tarot:empress|vote",
       "tags": [
         "kind"
@@ -38,7 +38,7 @@
     },
     {
       "id": "self",
-      "label": "The Hermit's child tends the self's candle, and keeps the wax for their own soul.",
+      "label": "The Hermit's child tends the self's candle, keeping the wax for their own soul.",
       "rule": "scion:tarot:hermit|scion:lowest:sanity",
       "tags": [
         "clever"
@@ -46,7 +46,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They stand very still, and are calm, for the first time in a long time.",
+          "text": "They stand very still, calm for the first time in a long while.",
           "effects": [
             {
               "sanity": 30
@@ -62,7 +62,7 @@
     },
     {
       "id": "both",
-      "label": "The Leader snuffs them both. The Six can choose for themselves.",
+      "label": "The Leader snuffs them both; the Six can choose for themselves.",
       "rule": "leader",
       "tags": [
         "reckless"
@@ -70,7 +70,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The dark in the niche looks back, and leaves something behind in the wax.",
+          "text": "The dark in the niche looks back. It leaves something behind in the wax.",
           "effects": [
             {
               "to": "party",
