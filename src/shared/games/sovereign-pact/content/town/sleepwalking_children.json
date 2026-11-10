@@ -12,7 +12,7 @@
   "options": [
     {
       "id": "lock",
-      "label": "Lock the children in at night, so they cannot reach the Gate.",
+      "label": "Lock the children in at night so they cannot reach the Gate.",
       "tags": [
         "cautious",
         "cruel"
@@ -20,7 +20,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "The doors are barred. The singing comes through the walls anyway, quieter.",
+          "text": "The doors are barred, but the singing comes through the walls anyway, quieter.",
           "effects": [
             {
               "accord": -2
@@ -29,7 +29,7 @@
         },
         {
           "w": 30,
-          "text": "Barred doors are no use. At dawn one bed is empty, and the song has one voice fewer.",
+          "text": "The bars are no use. At dawn one bed is empty, and the song has one voice fewer.",
           "effects": [
             {
               "accord": -4
@@ -43,14 +43,14 @@
     },
     {
       "id": "walk",
-      "label": "Send a Scion to walk with them to the Gate, and learn the song.",
+      "label": "Send a Scion to walk with them to the Gate and learn the song.",
       "tags": [
         "bold"
       ],
       "outcomes": [
         {
           "w": 50,
-          "text": "The Scion learns the song, and the song is a map of the dark beyond the Gate.",
+          "text": "The Scion learns the song. It is a map of the dark beyond the Gate.",
           "effects": [
             {
               "to": "random",
@@ -73,7 +73,7 @@
         },
         {
           "w": 50,
-          "text": "The Scion learns the song, and cannot stop humming it, even asleep.",
+          "text": "The Scion learns the song and cannot stop humming it, even asleep.",
           "effects": [
             {
               "to": "random",
@@ -89,14 +89,14 @@
     },
     {
       "id": "wake",
-      "label": "Wake them all at once, with the bells, and break whatever holds them.",
+      "label": "Wake them all at once with the bells, to break whatever holds them.",
       "tags": [
         "reckless"
       ],
       "outcomes": [
         {
           "w": 60,
-          "text": "They wake screaming, and remember nothing. The song stops.",
+          "text": "They wake screaming and remember nothing. The song stops.",
           "effects": [
             {
               "accord": 2

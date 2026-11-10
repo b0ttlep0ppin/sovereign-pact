@@ -7,19 +7,19 @@
     20
   ],
   "title": "The Tithe of Hair",
-  "text": "Each morning one of your Scions wakes with a lock of hair cut away. The doors are barred. The windows are shut. The cut is clean, and very close to the throat, and the pillow beside it is always warm.",
+  "text": "Each morning one of your Scions wakes with a lock of hair cut away, though the doors are barred and the windows shut. The cut is clean and very close to the throat. The pillow beside it is always warm.",
   "rule": "house",
   "options": [
     {
       "id": "watch",
-      "label": "Set a watch at the bedside through the night, and catch whatever cuts.",
+      "label": "Set a watch at the bedside through the night to catch whatever cuts.",
       "tags": [
         "bold"
       ],
       "outcomes": [
         {
           "w": 50,
-          "text": "The watch sees a child-sized shadow at the bedside, and chases it into a wall. The cutting stops.",
+          "text": "The watch sees a child-sized shadow at the bedside and chases it into a wall. The cutting stops.",
           "effects": [
             {
               "score": {
@@ -30,7 +30,7 @@
         },
         {
           "w": 50,
-          "text": "The watch falls asleep at the stroke of three, every time. In the morning it is the watcher's hair that is cut.",
+          "text": "Every time, the watch falls asleep at the stroke of three. In the morning it is the watcher's hair that has been cut.",
           "effects": [
             {
               "scion": {
@@ -44,7 +44,7 @@
     },
     {
       "id": "leave_offering",
-      "label": "Leave a lock out each night, willingly, and keep the knife from the throat.",
+      "label": "Leave a lock out willingly each night to keep the knife from the throat.",
       "tags": [
         "clever"
       ],
@@ -65,7 +65,7 @@
         },
         {
           "w": 30,
-          "text": "The offering is taken. The next week, two locks.",
+          "text": "The offering is taken. The next week, it takes two locks.",
           "effects": [
             {
               "sanity": -8
@@ -76,14 +76,14 @@
     },
     {
       "id": "shear",
-      "label": "Shave every head in the House, and leave it nothing to take.",
+      "label": "Shave every head in the House, leaving it nothing to take.",
       "tags": [
         "cautious"
       ],
       "outcomes": [
         {
           "w": 100,
-          "text": "The House goes shorn, and the town laughs, and the cutting stops.",
+          "text": "The House goes shorn and the town laughs, but the cutting stops.",
           "effects": [
             {
               "score": {

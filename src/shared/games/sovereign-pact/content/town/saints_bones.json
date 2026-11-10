@@ -7,19 +7,19 @@
     20
   ],
   "title": "A Saint's Bones",
-  "text": "Diggers in the old crypts have found a saint's bones in a lead box, still smelling of myrrh after five hundred Years. The diggers will not touch it again. The box was nailed shut from the inside, and the inside of the lid is scored with fingernails.",
+  "text": "Diggers in the old crypts have found a saint's bones in a lead box, still smelling of myrrh after five hundred Years. The diggers will not touch it again. The box was nailed shut from the inside, and the underside of the lid is scored with fingernails.",
   "rule": "vote",
   "options": [
     {
       "id": "enshrine",
-      "label": "Enshrine the bones for the city, and let every House share their blessing.",
+      "label": "Enshrine the bones for the city so every House shares their blessing.",
       "tags": [
         "kind"
       ],
       "outcomes": [
         {
           "w": 100,
-          "text": "Pilgrims come, and the city sleeps easier. The priests do not say that the bones are in a different order each morning.",
+          "text": "Pilgrims come, and the city sleeps easier. The priests do not say that each morning the bones lie in a different order.",
           "effects": [
             {
               "sanity": 10,
@@ -34,14 +34,14 @@
     },
     {
       "id": "sell",
-      "label": "Sell them to the church across the river, and be rid of that box.",
+      "label": "Sell them to the church across the river and be rid of that box.",
       "tags": [
         "clever"
       ],
       "outcomes": [
         {
           "w": 100,
-          "text": "The church across the river pays well. Their bell has not rung since.",
+          "text": "The church across the river pays well. Its bell has not rung since.",
           "effects": [
             {
               "resources": {
@@ -62,7 +62,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "One House's chapel holds them, and the others mutter. At night the box is warm.",
+          "text": "The bones rest in one House's chapel while the others mutter. At night the box is warm.",
           "effects": [
             {
               "score": {

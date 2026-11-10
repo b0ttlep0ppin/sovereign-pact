@@ -7,19 +7,19 @@
     20
   ],
   "title": "The Suitor",
-  "text": "A noble of a fallen line arrives in a black carriage to propose a match: their blood and their grudges for your name. Their family died out a century ago, in a fever no one will speak of. They have brought the papers to prove they did not. Their hands are very cold.",
+  "text": "A noble of a fallen line arrives in a black carriage to propose a match, their blood and their grudges for your name. Their family died out a century ago in a fever no one will speak of, yet they have brought papers to prove it did not. Their hands are very cold.",
   "rule": "house",
   "options": [
     {
       "id": "accept",
-      "label": "Accept the cold-handed suitor's match. Old blood is still blood, and grudges can be useful.",
+      "label": "Accept the match; old blood is still blood, and grudges can be useful.",
       "tags": [
         "bold"
       ],
       "outcomes": [
         {
           "w": 100,
-          "text": "A new face at table, and new enemies at court. The servants say the newcomer's room smells of turned earth, and the young Scion who stood at the altar grows colder by the month.",
+          "text": "There is a new face at table and new enemies at court. The servants say the newcomer's room smells of turned earth, and the young Scion who stood at the altar grows colder by the month.",
           "effects": [
             {
               "recruit_gain": 1
@@ -39,14 +39,14 @@
     },
     {
       "id": "decline",
-      "label": "Decline politely. Some lines are meant to stay dead.",
+      "label": "Decline politely; some lines are meant to stay dead.",
       "tags": [
         "cautious"
       ],
       "outcomes": [
         {
           "w": 100,
-          "text": "The suitor bows and leaves. The flowers they brought are dead by evening, and the vase is cracked.",
+          "text": "The suitor bows and leaves. By evening the flowers they brought are dead, the vase cracked.",
           "effects": []
         }
       ]

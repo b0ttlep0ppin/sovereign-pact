@@ -12,7 +12,7 @@
   "options": [
     {
       "id": "feed",
-      "label": "Give it what it asks: a seat, a share, a room. It is of the House now.",
+      "label": "Give it what it asks, a seat, a share, a room; it is of the House now.",
       "tags": [
         "kind",
         "reckless"
@@ -20,7 +20,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "It is courteous, and it is grateful. Gold appears in the strongroom that nobody put there.",
+          "text": "It is courteous and grateful. Gold appears in the strongroom that nobody put there.",
           "effects": [
             {
               "resources": {
@@ -39,7 +39,7 @@
         },
         {
           "w": 50,
-          "text": "It asks, at last, for one of your own, and takes them by the hand into the room behind the wall. They come back a day later and do not speak of it.",
+          "text": "At last it asks for one of your own and leads them by the hand into the room behind the wall. They come back a day later and will not speak of it.",
           "effects": [
             {
               "scion": {
@@ -54,7 +54,7 @@
     },
     {
       "id": "exorcise",
-      "label": "Bring the priests and the salt, and drive it out of the House.",
+      "label": "Bring the priests and the salt to drive it out of the House.",
       "tags": [
         "bold"
       ],
@@ -77,7 +77,7 @@
         },
         {
           "w": 40,
-          "text": "It goes, and takes the one who held the salt by the throat on its way out.",
+          "text": "It goes, taking the one who held the salt by the throat on its way out.",
           "effects": [
             {
               "scion": {
@@ -103,7 +103,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It eats nothing. It watches everyone. The House learns to eat quickly.",
+          "text": "It eats nothing and watches everyone. The House learns to eat quickly.",
           "effects": [
             {
               "sanity": -10

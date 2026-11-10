@@ -7,13 +7,13 @@
     20
   ],
   "title": "The King's Favour",
-  "text": "A letter arrives sealed in black wax that is still wet. The old King thanks your House for its loyalty in the matter of the tax, and sends a token of his favour: a ring, river-cold, with a drowned crown on it. He writes that he will see you in the Barrows soon.",
+  "text": "A letter arrives sealed in black wax that is still wet. The old King thanks your House for its loyalty in the matter of the tax. As a token of his favour he sends a river-cold ring bearing a drowned crown, and writes that he will see you in the Barrows soon.",
   "rule": "house",
   "chained": true,
   "options": [
     {
       "id": "wear",
-      "label": "Wear the drowned King's ring. A King's favour is a King's favour, drowned or not.",
+      "label": "Wear the drowned King's ring; a King's favour is a King's favour, drowned or not.",
       "tags": [
         "bold"
       ],
@@ -46,7 +46,7 @@
       "outcomes": [
         {
           "w": 1,
-          "text": "The bishop burns it on the altar. The flame is black and smells of the river. He blesses your Seat himself, and the city hears of it.",
+          "text": "The bishop burns it on the altar in a black flame that smells of the river. He blesses your Seat himself, and the city hears of it.",
           "effects": [
             {
               "accord": 3
@@ -65,14 +65,14 @@
     },
     {
       "id": "burn",
-      "label": "Burn it unread, and never speak of it again.",
+      "label": "Burn it unread and never speak of it again.",
       "tags": [
         "cautious"
       ],
       "outcomes": [
         {
           "w": 1,
-          "text": "It burns slowly. For a week afterwards your Seat's fires burn black for a moment before they catch.",
+          "text": "It burns slowly. For a week afterward, your Seat's fires burn black for a moment before they catch.",
           "effects": [
             {
               "sanity": -5

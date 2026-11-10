@@ -7,19 +7,19 @@
     20
   ],
   "title": "The Quiet Plague",
-  "text": "A sickness that makes no sound. Its victims stop speaking, then stop blinking, then stand at their windows facing the Rift Gate, smiling.",
+  "text": "A sickness spreads that makes no sound. Its victims stop speaking, then stop blinking, then stand at their windows facing the Rift Gate, smiling.",
   "rule": "vote",
   "options": [
     {
       "id": "quarantine",
-      "label": "Seal the quarter, before the smiling spreads.",
+      "label": "Seal the quarter before the smiling spreads.",
       "tags": [
         "cautious"
       ],
       "outcomes": [
         {
           "w": 70,
-          "text": "The quarter is sealed. The smiling faces at the windows go dark, one by one.",
+          "text": "The quarter is sealed. One by one, the smiling faces at the windows go dark.",
           "effects": [
             {
               "accord": -3
@@ -28,7 +28,7 @@
         },
         {
           "w": 30,
-          "text": "The seal holds, but one of the Houses' own was inside it, and comes out smiling.",
+          "text": "The seal holds, but one of the Houses' own was inside it. They come out smiling.",
           "effects": [
             {
               "accord": -3
@@ -67,7 +67,7 @@
         },
         {
           "w": 40,
-          "text": "The physicians catch it too. Now they smile at the Gate with the rest.",
+          "text": "The physicians catch it too, and now they smile at the Gate with the rest.",
           "effects": [
             {
               "to": "commons",
@@ -95,7 +95,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "One of them whispers the shape of a danger to come, and dies with her mouth still moving.",
+          "text": "One of them whispers the shape of a danger to come, then dies with her mouth still moving.",
           "effects": [
             {
               "to": "all",
@@ -110,7 +110,7 @@
         },
         {
           "w": 50,
-          "text": "The question is answered, in a voice from very far below. Everyone who heard it dreams of the same door.",
+          "text": "An answer comes in a voice from very far below. Everyone who heard it dreams of the same door.",
           "effects": [
             {
               "to": "all",

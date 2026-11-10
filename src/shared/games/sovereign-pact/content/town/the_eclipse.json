@@ -7,19 +7,19 @@
     20
   ],
   "title": "The Eclipse",
-  "text": "The sun goes out at noon and does not come back for an hour. The birds drop silent from the sky, the candles burn blue, and in the dark the Rift Gate glows like an open eye. The dogs will not stop howling.",
+  "text": "At noon the sun goes out and does not come back for an hour. The birds drop silent from the sky and the candles burn blue. In the dark, the Rift Gate glows like an open eye. The dogs will not stop howling.",
   "rule": "each_house",
   "options": [
     {
       "id": "pray",
-      "label": "Gather the household in prayer, and wait for the sun to return.",
+      "label": "Gather the household in prayer and wait for the sun to return.",
       "tags": [
         "cautious"
       ],
       "outcomes": [
         {
           "w": 100,
-          "text": "The House waits it out on its knees, candles burning blue, and the Gate's eye passes over you.",
+          "text": "The House waits it out on its knees by the light of blue candles. The Gate's eye passes over you.",
           "effects": [
             {
               "sanity": 5
@@ -30,14 +30,14 @@
     },
     {
       "id": "hide",
-      "label": "Shutter the windows and wait. Do not let the eye find you.",
+      "label": "Shutter the windows and wait, so the eye cannot find you.",
       "tags": [
         "cautious"
       ],
       "outcomes": [
         {
           "w": 80,
-          "text": "Nothing happens. Nothing you can name.",
+          "text": "Nothing happens that you can name.",
           "effects": []
         },
         {
@@ -53,7 +53,7 @@
     },
     {
       "id": "go_out",
-      "label": "Walk out under the dead sun, and see the city as the rift sees it.",
+      "label": "Walk out under the dead sun to see the city as the rift sees it.",
       "tags": [
         "bold",
         "reckless"
@@ -72,7 +72,7 @@
         },
         {
           "w": 50,
-          "text": "You see the city as the rift sees it. Some of you do not sleep for weeks.",
+          "text": "You see the city as the rift sees it. Some of you do not sleep for weeks after.",
           "effects": [
             {
               "sanity": -20

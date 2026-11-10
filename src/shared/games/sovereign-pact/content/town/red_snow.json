@@ -7,19 +7,19 @@
     20
   ],
   "title": "The Red Snow",
-  "text": "Snow falls red over the city for a night and a day. It tastes of iron. Where it melts, the winter grain sprouts black and grows an inch an hour.",
+  "text": "For a night and a day, red snow falls over the city. It tastes of iron. Where it melts, the winter grain sprouts black and grows an inch an hour.",
   "rule": "each_house",
   "options": [
     {
       "id": "burn",
-      "label": "Burn the black grain. A hungry winter is better than a cursed one.",
+      "label": "Burn the black grain; a hungry winter is better than a cursed one.",
       "tags": [
         "cautious"
       ],
       "outcomes": [
         {
           "w": 100,
-          "text": "A hungry winter, but a clean one. The ash is red too.",
+          "text": "The winter is hungry but clean. The ash is red too.",
           "effects": [
             {
               "resources": {
@@ -32,14 +32,14 @@
     },
     {
       "id": "eat",
-      "label": "Bring it in. Grain is grain, and the House must eat.",
+      "label": "Bring it in; grain is grain, and the House must eat.",
       "tags": [
         "reckless"
       ],
       "outcomes": [
         {
           "w": 50,
-          "text": "It feeds the House, and nothing happens. Nothing you notice.",
+          "text": "It feeds the House, and nothing happens that you notice.",
           "effects": [
             {
               "resources": {
@@ -50,7 +50,7 @@
         },
         {
           "w": 50,
-          "text": "Those who ate first dream of the Gate, and wake with grave dirt under their nails.",
+          "text": "Those who ate first dream of the Gate. They wake with grave dirt under their nails.",
           "effects": [
             {
               "resources": {
@@ -68,7 +68,7 @@
     },
     {
       "id": "sell",
-      "label": "Sell it cheap in the lower town, and let the poor take the risk.",
+      "label": "Sell it cheap in the lower town and let the poor take the risk.",
       "tags": [
         "cruel"
       ],

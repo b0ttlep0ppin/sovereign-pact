@@ -7,12 +7,12 @@
     20
   ],
   "title": "The Surgeon of Saint Wend",
-  "text": "A surgeon in a leather apron arrives with a cart of jars and a letter from a saint nobody has heard of. He offers his art to every House. He does not want gold. He wants material.",
+  "text": "A surgeon in a leather apron arrives with a cart of jars and a letter from a saint nobody has heard of. He offers his art to every House. He does not want gold; he wants material.",
   "rule": "each_house",
   "options": [
     {
       "id": "give_recruit",
-      "label": "Give him a recruit to work with, and take what salves he leaves.",
+      "label": "Give him a recruit to work with, and take the salves he leaves.",
       "tags": [
         "cruel"
       ],
@@ -22,7 +22,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "He returns the recruit at dawn, stitched, smiling, and unable to remember their own name. He leaves salves by the dozen.",
+          "text": "He returns the recruit at dawn, stitched and smiling, unable to remember their own name. He leaves salves by the dozen.",
           "effects": [
             {
               "consumable": {
@@ -40,7 +40,7 @@
         },
         {
           "w": 40,
-          "text": "He does not return the recruit. He leaves a jar instead, and something in it knocks when you ask it questions.",
+          "text": "He does not return the recruit. Instead he leaves a jar, and something in it knocks when you ask it questions.",
           "effects": [
             {
               "consumable": {
@@ -59,7 +59,7 @@
     },
     {
       "id": "graft",
-      "label": "Let him improve one of your Scions, and pray his saint is a kind one.",
+      "label": "Let him improve one of your Scions, praying his saint is a kind one.",
       "tags": [
         "bold"
       ],
@@ -70,7 +70,7 @@
       "outcomes": [
         {
           "w": 1,
-          "text": "The grafting takes. The new arm is stronger than the old one, and only twitches at night.",
+          "text": "The graft takes. The new arm is stronger than the old one, and only twitches at night.",
           "effects": [
             {
               "scion": {
@@ -86,7 +86,7 @@
         },
         {
           "w": 1,
-          "text": "The graft takes badly. Your Scion screams for three days and comes out of it changed in the eyes.",
+          "text": "The graft takes badly. Your Scion screams for three days and comes out of it changed about the eyes.",
           "effects": [
             {
               "scion": {
@@ -102,7 +102,7 @@
     },
     {
       "id": "bar",
-      "label": "Bar the door against him. Whatever his saint is, it is not yours.",
+      "label": "Bar the door against him; whatever his saint is, it is not yours.",
       "tags": [
         "cautious"
       ],

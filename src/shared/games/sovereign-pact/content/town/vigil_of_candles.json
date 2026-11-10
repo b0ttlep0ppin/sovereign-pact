@@ -7,12 +7,12 @@
     20
   ],
   "title": "The Vigil of a Hundred Candles",
-  "text": "The bishop calls a vigil against the Rift. For one night every House is asked to keep candles burning in the cathedral, and to give something to the dark so that it takes nothing else.",
+  "text": "The bishop calls a vigil against the Rift. For one night every House is asked to keep candles burning in the cathedral and to give something to the dark, so that it takes nothing else.",
   "rule": "each_house",
   "options": [
     {
       "id": "candles",
-      "label": "Buy candles and keep the vigil, so the dark has light to look at.",
+      "label": "Buy candles and keep the vigil so the dark has light to look at.",
       "tags": [
         "kind"
       ],
@@ -24,7 +24,7 @@
       "outcomes": [
         {
           "w": 1,
-          "text": "Your candles burn all night. In the morning one of them is still lit, and will not go out.",
+          "text": "Your candles burn all night. In the morning one of them is still lit, and it will not go out.",
           "effects": [
             {
               "doom": -2
@@ -41,7 +41,7 @@
     },
     {
       "id": "vow",
-      "label": "Give a recruit to the vow of silence, so the dark takes nothing else.",
+      "label": "Give a recruit to the vow of silence so the dark takes nothing else.",
       "tags": [
         "cruel"
       ],
@@ -51,7 +51,7 @@
       "outcomes": [
         {
           "w": 1,
-          "text": "Your recruit is walled into the cathedral's undercroft with bread, water and a candle. You can hear them praying through the stone. The Rift is very quiet.",
+          "text": "Your recruit is walled into the cathedral's undercroft with bread, water and a candle. Through the stone you can hear them praying, and the Rift is very quiet.",
           "effects": [
             {
               "doom": -4
@@ -72,7 +72,7 @@
       "outcomes": [
         {
           "w": 1,
-          "text": "Your lamps burn down at the usual time, and the dark outside your windows is very patient.",
+          "text": "Your lamps burn down at the usual hour. The dark outside your windows is very patient.",
           "effects": []
         }
       ]

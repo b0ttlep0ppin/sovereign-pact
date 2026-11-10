@@ -10,12 +10,12 @@
     "building:scriptorium"
   ],
   "title": "The Book That Writes Itself",
-  "text": "In your scriptorium a blank book is filling, a page a night, in a hand none of the scribes own. It is a history of your House. It has reached this Year, and it has not stopped.",
+  "text": "In your scriptorium a blank book is filling at a page a night, in a hand none of the scribes own. It is a history of your House. It has reached this Year, and it has not stopped.",
   "rule": "house",
   "options": [
     {
       "id": "read_ahead",
-      "label": "Read the pages yet to come, and learn what becomes of the House.",
+      "label": "Read the pages yet to come to learn what becomes of the House.",
       "tags": [
         "reckless",
         "clever"
@@ -23,7 +23,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "The House's future is there, and it is not all bad. The reader is never quite at ease again.",
+          "text": "The House's future is there, and not all of it is bad. The reader is never quite at ease again.",
           "effects": [
             {
               "score": {
@@ -59,21 +59,21 @@
     },
     {
       "id": "burn",
-      "label": "Burn the book. No House should know its own ending.",
+      "label": "Burn the book; no House should know its own ending.",
       "tags": [
         "cautious"
       ],
       "outcomes": [
         {
           "w": 100,
-          "text": "It burns slowly, and the scribes swear the last page curled to cover itself, as if ashamed.",
+          "text": "It burns slowly. The scribes swear the last page curled to cover itself, as if ashamed.",
           "effects": []
         }
       ]
     },
     {
       "id": "sell",
-      "label": "Sell it to the Apostate traders, and let someone else carry it.",
+      "label": "Sell it to the Apostate traders and let someone else carry it.",
       "tags": [
         "cruel"
       ],

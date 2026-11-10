@@ -7,7 +7,7 @@
     19
   ],
   "title": "The Sick Well",
-  "text": "The town well has turned brackish, green scum on the bucket, and the children who drank from it dream of drowning and wake coughing up river weed. The physicians traced the sickness to a nest beyond the Gate, in the Drowned Marches. It must be cleansed at the source.",
+  "text": "The town well has turned brackish, green scum on the bucket. The children who drank from it dream of drowning and wake coughing up river weed. The physicians have traced the sickness to a nest beyond the Gate, in the Drowned Marches, where it must be cleansed at the source.",
   "rule": "vote",
   "forces": {
     "pool": "drowned_marches"
@@ -22,7 +22,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Water comes by cart from the river, dear and slow, and the children stop dreaming.",
+          "text": "Water comes dear and slow by cart from the river. The children stop dreaming.",
           "effects": [
             {
               "resources": {
@@ -36,7 +36,7 @@
     },
     {
       "id": "boil",
-      "label": "Boil it and keep drinking. The city cannot go without water.",
+      "label": "Boil it and keep drinking; the city cannot go without water.",
       "tags": [
         "reckless"
       ],
@@ -48,7 +48,7 @@
         },
         {
           "w": 50,
-          "text": "The dreams spread, house to house, and more children wake coughing weed.",
+          "text": "The dreams spread from house to house, and more children wake coughing weed.",
           "effects": [
             {
               "sanity": -10,
@@ -63,14 +63,14 @@
     },
     {
       "id": "pray",
-      "label": "Have it blessed at the Shrine, and let the city see you try.",
+      "label": "Have it blessed at the Shrine so the city sees you try.",
       "tags": [
         "kind"
       ],
       "outcomes": [
         {
           "w": 100,
-          "text": "The priests sing over it every night. It helps the singers, at least, and the city sees them try.",
+          "text": "Every night the priests sing over it. It helps the singers at least, and the city sees them try.",
           "effects": [
             {
               "accord": 2

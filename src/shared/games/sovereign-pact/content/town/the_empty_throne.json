@@ -7,12 +7,12 @@
     19
   ],
   "title": "The Empty Throne",
-  "text": "A throne stands in the Commons square this morning. Nobody built it. It is carved from something like black glass, it is warm, and it is exactly the right size for whoever looks at it. The city's poor have been bowing to it all morning. Each House may put a Scion in it, if they dare.",
+  "text": "This morning a throne stands in the Commons square. Nobody built it. It is carved from something like black glass, it is warm, and it is exactly the right size for whoever looks at it. The city's poor have been bowing to it all morning. Each House may seat a Scion on it, if they dare.",
   "rule": "each_house",
   "options": [
     {
       "id": "sit",
-      "label": "Sit a Scion on the black throne, and see what it shows a ruler.",
+      "label": "Seat a Scion on the black throne to see what it shows a ruler.",
       "tags": [
         "bold"
       ],
@@ -23,7 +23,7 @@
       "outcomes": [
         {
           "w": 1,
-          "text": "Your Scion sits, and for one breath sees the whole city laid out like a map, and beyond it the Gate, and beyond the Gate a throne just like this one with somebody already in it. They stand up a little taller.",
+          "text": "For one breath your Scion sees the whole city laid out like a map, the Gate beyond it, and beyond the Gate a throne just like this one with someone already in it. They stand up a little taller.",
           "effects": [
             {
               "scion": {
@@ -48,7 +48,7 @@
         },
         {
           "w": 1,
-          "text": "Your Scion sits, and something on the other side of the Gate sits down at the same moment, and looks at them. They scream until their voice goes.",
+          "text": "As your Scion sits, something on the other side of the Gate sits down at the same moment and looks at them. They scream until their voice goes.",
           "effects": [
             {
               "scion": {
@@ -67,7 +67,7 @@
     },
     {
       "id": "chain",
-      "label": "Pay to have it chained and covered, so no one is tempted to sit.",
+      "label": "Pay to have it chained and covered so no one is tempted to sit.",
       "tags": [
         "kind"
       ],
@@ -79,7 +79,7 @@
       "outcomes": [
         {
           "w": 1,
-          "text": "It takes forty feet of iron chain and a great canvas sheet. Under the sheet, at night, something shifts its weight.",
+          "text": "It takes forty feet of iron chain and a great canvas sheet. At night, under the sheet, something shifts its weight.",
           "effects": [
             {
               "doom": -1
@@ -93,14 +93,14 @@
     },
     {
       "id": "walk_round",
-      "label": "Walk the long way round the square. No House should want that seat.",
+      "label": "Walk the long way round the square; no House should want that seat.",
       "tags": [
         "cautious"
       ],
       "outcomes": [
         {
           "w": 1,
-          "text": "You walk round. The throne is facing your Seat the next morning.",
+          "text": "You walk round. The next morning the throne is facing your Seat.",
           "effects": [
             {
               "sanity": -5

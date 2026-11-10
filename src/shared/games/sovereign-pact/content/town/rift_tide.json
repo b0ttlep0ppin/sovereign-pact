@@ -7,7 +7,7 @@
     20
   ],
   "title": "The Rift Tide",
-  "text": "The Rift Gate breathes out. A grey tide rolls through the lower streets, and what it touches it changes: rats with men's hands, a well that sings, a cobbler who will not stop growing.",
+  "text": "The Rift Gate breathes out. A grey tide rolls through the lower streets, changing whatever it touches: rats with men's hands, a well that sings, a cobbler who will not stop growing.",
   "rule": "vote",
   "options": [
     {
@@ -19,7 +19,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The fire stops it. The lower town will not forgive you, and does not forget who gave the order.",
+          "text": "The fire stops it. The lower town will never forgive you, nor forget who gave the order.",
           "effects": [
             {
               "accord": -6
@@ -33,7 +33,7 @@
     },
     {
       "id": "wall",
-      "label": "Raise walls and wait for the tide to ebb, and hope it takes nothing with it.",
+      "label": "Raise walls and wait for the tide to ebb, hoping it takes nothing with it.",
       "tags": [
         "cautious"
       ],
@@ -55,7 +55,7 @@
         },
         {
           "w": 40,
-          "text": "It ebbs, but not all of it. In one House the tide stayed in someone.",
+          "text": "It ebbs, but not all of it. In one House, the tide stayed in someone.",
           "effects": [
             {
               "doom": 3
@@ -72,7 +72,7 @@
     },
     {
       "id": "bottle",
-      "label": "Send the Houses' alchemists to bottle it. Something that changes things is worth a fortune.",
+      "label": "Send the Houses' alchemists to bottle it; something that changes things is worth a fortune.",
       "tags": [
         "clever",
         "reckless"
@@ -80,7 +80,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "Glass jars of grey tide line the shelves. It is worth a fortune to the right buyer, and there are always right buyers.",
+          "text": "Glass jars of grey tide line the shelves. To the right buyer they are worth a fortune, and there are always right buyers.",
           "effects": [
             {
               "to": "all",
@@ -95,7 +95,7 @@
         },
         {
           "w": 30,
-          "text": "The jars crack in the night. The tide gets out and goes back home, slowly, through the Houses.",
+          "text": "The jars crack in the night. The tide gets out and goes slowly home through the Houses.",
           "effects": [
             {
               "to": "all",

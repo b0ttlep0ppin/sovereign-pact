@@ -7,12 +7,12 @@
     20
   ],
   "title": "A Stranger at the Gate",
-  "text": "A traveller in rift-stained mail stands at one House's door in the sleet and asks for shelter. Their armor is scored by claws. They will not give a name, and when they speak they cast no breath on the cold air. The dogs have gone under the stairs.",
+  "text": "A traveller in rift-stained mail stands at one House's door in the sleet, asking for shelter. Their armor is scored by claws. They will not give a name, and when they speak their breath does not show on the cold air. The dogs have gone under the stairs.",
   "rule": "random_house",
   "options": [
     {
       "id": "admit",
-      "label": "Admit the stranger. No one should be left out in the sleet.",
+      "label": "Admit the stranger; no one should be left out in the sleet.",
       "tags": [
         "kind",
         "bold"
@@ -29,7 +29,7 @@
         },
         {
           "w": 40,
-          "text": "In the night the stranger is gone, and so is a strongbox. The bed they slept in is cold as a grave.",
+          "text": "In the night the stranger is gone, and so is a strongbox. Their bed is cold as a grave.",
           "effects": [
             {
               "resources": {
@@ -42,14 +42,14 @@
     },
     {
       "id": "interrogate",
-      "label": "Admit them under guard, and ask questions until they answer.",
+      "label": "Admit them under guard and ask questions until they answer.",
       "tags": [
         "clever"
       ],
       "outcomes": [
         {
           "w": 70,
-          "text": "They talk, eventually, about what lies past the Gate, in a voice that does not move their lips.",
+          "text": "Eventually they talk about what lies past the Gate, in a voice that does not move their lips.",
           "effects": [
             {
               "score": {
@@ -60,7 +60,7 @@
         },
         {
           "w": 30,
-          "text": "They say nothing at all, and at dawn the guards find only the mail, empty and still buckled.",
+          "text": "They say nothing at all. At dawn the guards find only the mail, empty and still buckled.",
           "effects": [
             {
               "sanity": -5
@@ -71,14 +71,14 @@
     },
     {
       "id": "turn_away",
-      "label": "Turn them back into the sleet. Anything that casts no breath is no guest.",
+      "label": "Turn them back into the sleet; anything that casts no breath is no guest.",
       "tags": [
         "cautious"
       ],
       "outcomes": [
         {
           "w": 100,
-          "text": "They walk off into the dark without a word. The dogs follow them to the edge of the fields and will not come back.",
+          "text": "They walk off into the dark without a word. The dogs follow them to the edge of the fields and do not come back.",
           "effects": []
         }
       ]

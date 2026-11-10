@@ -7,19 +7,19 @@
     18
   ],
   "title": "The Weeping Foundation",
-  "text": "The mortar of one House's finest building has begun to weep. Not water: something thicker, warm, that runs down the walls in the night and pools in the shape of handprints. The masons will not go near it.",
+  "text": "The mortar of one House's finest building has begun to weep. It is not water but something thicker and warm, running down the walls at night and pooling in the shape of handprints. The masons will not go near it.",
   "rule": "random_house",
   "options": [
     {
       "id": "raze",
-      "label": "Tear the building down to its footings, and find what weeps beneath.",
+      "label": "Tear the building down to its footings to find what weeps beneath.",
       "tags": [
         "bold"
       ],
       "outcomes": [
         {
           "w": 1,
-          "text": "The walls come down and the weeping stops. Under the footings, in the wet mortar, you find a heart of red stone, still beating.",
+          "text": "The walls come down and the weeping stops. Under the footings, in the wet mortar, lies a heart of red stone, still beating.",
           "effects": [
             {
               "raze": "best"
@@ -51,7 +51,7 @@
       "outcomes": [
         {
           "w": 1,
-          "text": "The priests sing for three nights. The weeping stops, the stones dry, and the building stands taller than before.",
+          "text": "The priests sing for three nights. The weeping stops and the stones dry, and the building stands taller than before.",
           "effects": [
             {
               "raise": "any"
@@ -65,14 +65,14 @@
     },
     {
       "id": "leave",
-      "label": "Paint over it and carry on. It is only mortar.",
+      "label": "Paint over it and carry on; it is only mortar.",
       "tags": [
         "cautious"
       ],
       "outcomes": [
         {
           "w": 1,
-          "text": "The paint holds, mostly. You stop letting the children play in that wing.",
+          "text": "The paint mostly holds. You stop letting the children play in that wing.",
           "effects": [
             {
               "sanity": -10

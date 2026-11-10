@@ -7,12 +7,12 @@
     20
   ],
   "title": "The Gilded Coffin",
-  "text": "A coffin of beaten gold has been left on the Commons steps, addressed in a fine hand to 'the greatest of the Houses'. It is heavy. It is locked. Something inside it turns over now and then. The Commons will give it to whichever House pays the most iron for the honour.",
+  "text": "A coffin of beaten gold has been left on the Commons steps, addressed in a fine hand to 'the greatest of the Houses'. It is heavy and locked. Now and then, something inside turns over. The Commons will give it to whichever House pays the most iron for the honour.",
   "rule": "secret",
   "options": [
     {
       "id": "bid",
-      "label": "Send a sealed bid of iron for the coffin, and claim the honour for your House.",
+      "label": "Send a sealed bid of iron for the coffin to claim the honour for your House.",
       "tags": [
         "bold"
       ],
@@ -30,7 +30,7 @@
     },
     {
       "id": "let_it_be",
-      "label": "Let the greatest House have it. Whatever turns over inside is theirs to keep.",
+      "label": "Let the greatest House have it; whatever turns over inside is theirs to keep.",
       "tags": [
         "cautious"
       ],

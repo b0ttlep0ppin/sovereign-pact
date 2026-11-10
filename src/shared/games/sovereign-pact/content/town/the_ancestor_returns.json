@@ -7,19 +7,19 @@
     20
   ],
   "title": "The Ancestor Returns",
-  "text": "The crypt door was open this morning, and an ancestor of your House is sitting at the head of your table in her burial clothes. She asks for wine. She knows every servant's name. She wants her old room back, and she says she has come to help.",
+  "text": "The crypt door was open this morning. An ancestor of your House sits at the head of your table in her burial clothes, asking for wine. She knows every servant's name and wants her old room back. She has come to help, she says.",
   "rule": "house",
   "options": [
     {
       "id": "welcome",
-      "label": "Welcome her home. She was of the House, and she says she has come to help.",
+      "label": "Welcome her home; she was of the House.",
       "tags": [
         "bold"
       ],
       "outcomes": [
         {
           "w": 1,
-          "text": "She takes up her old room and sits in on the House's councils. Her advice is excellent. She does not eat, she does not sleep, and the House's younger ones will not go past her door.",
+          "text": "She takes up her old room and sits in on the House's councils, where her advice is excellent. She neither eats nor sleeps, and the House's younger ones will not go past her door.",
           "effects": [
             {
               "recruit_gain": 1
@@ -38,7 +38,7 @@
     },
     {
       "id": "return",
-      "label": "Have a Scion walk her back to the crypt, gently, where she belongs.",
+      "label": "Have a Scion walk her gently back to the crypt, where she belongs.",
       "tags": [
         "kind"
       ],
@@ -49,7 +49,7 @@
       "outcomes": [
         {
           "w": 1,
-          "text": "Your Scion takes her arm and walks her down, talking of old times. She lies back down with a sigh, and leaves them a ring and a blessing.",
+          "text": "Your Scion takes her arm and walks her down, talking of old times. She lies back down with a sigh, leaving them a ring and a blessing.",
           "effects": [
             {
               "scion": {
@@ -86,14 +86,14 @@
     },
     {
       "id": "lock",
-      "label": "Lock the doors and wait for her to leave. The dead have no seat at this table.",
+      "label": "Lock the doors and wait for her to leave; the dead have no seat at this table.",
       "tags": [
         "cautious"
       ],
       "outcomes": [
         {
           "w": 1,
-          "text": "She knocks on every door in the Seat, politely, all night. In the morning she is gone. The crypt door is still open.",
+          "text": "All night she knocks politely on every door in the Seat. In the morning she is gone, but the crypt door is still open.",
           "effects": [
             {
               "sanity": -10

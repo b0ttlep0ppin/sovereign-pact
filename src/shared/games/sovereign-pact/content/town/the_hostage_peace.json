@@ -7,12 +7,12 @@
     20
   ],
   "title": "The Hostage Peace",
-  "text": "After a winter of knives in the dark, the magistrates have had enough. The House with the most Scions must send a Ward to a rival Seat, and take one back, as the old Houses did when the city was young. The magistrates call it a peace. Everyone else calls it hostages.",
+  "text": "After a winter of knives in the dark, the magistrates have had enough. As the old Houses did when the city was young, the House with the most Scions must send a Ward to a rival Seat and take one back. The magistrates call it a peace. Everyone else calls it hostages.",
   "rule": "most_scions",
   "options": [
     {
       "id": "exchange",
-      "label": "Name the House you will exchange Wards with, and trust them with your blood.",
+      "label": "Name the House you will exchange Wards with, trusting them with your blood.",
       "tags": [
         "kind"
       ],
@@ -20,7 +20,7 @@
       "outcomes": [
         {
           "w": 1,
-          "text": "The Wards change Seats in a closed carriage at midnight. Each House has someone at the other's table now, and each table is a little more careful.",
+          "text": "At midnight the Wards change Seats in a closed carriage. Now each House has someone at the other's table, and each table is a little more careful.",
           "effects": [
             {
               "to": "target",
@@ -35,7 +35,7 @@
     },
     {
       "id": "bribe",
-      "label": "Bribe the magistrates to look elsewhere. Peace can be bought another way.",
+      "label": "Bribe the magistrates to look elsewhere; peace can be bought another way.",
       "tags": [
         "clever"
       ],
@@ -58,14 +58,14 @@
     },
     {
       "id": "refuse",
-      "label": "Refuse. No child of this House sleeps under another roof.",
+      "label": "Refuse; no child of this House sleeps under another roof.",
       "tags": [
         "cautious"
       ],
       "outcomes": [
         {
           "w": 1,
-          "text": "The magistrates write your refusal into the record. The other Houses read it aloud at dinner.",
+          "text": "The magistrates write your refusal into the record, and the other Houses read it aloud at dinner.",
           "effects": [
             {
               "accord": -3

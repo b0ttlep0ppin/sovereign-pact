@@ -7,12 +7,12 @@
     20
   ],
   "title": "The Knife in the Bed",
-  "text": "Your steward found a knife under your heir's pillow this morning, blade up. It carries another Great House's arms on the pommel. That is either the stupidest assassin in the city, or someone who very much wants you to blame that House.",
+  "text": "This morning your steward found a knife under your heir's pillow, blade up, with another Great House's arms on the pommel. Either that is the stupidest assassin in the city, or someone very much wants you to blame that House.",
   "rule": "house",
   "options": [
     {
       "id": "retaliate",
-      "label": "Name the House on the pommel, and repay them in kind.",
+      "label": "Name the House on the pommel and repay them in kind.",
       "tags": [
         "cruel"
       ],
@@ -40,7 +40,7 @@
     },
     {
       "id": "investigate",
-      "label": "Put a Scion on the knife's trail, to learn who truly sent it.",
+      "label": "Put a Scion on the knife's trail to learn who truly sent it.",
       "tags": [
         "clever"
       ],
@@ -51,7 +51,7 @@
       "outcomes": [
         {
           "w": 1,
-          "text": "Your Scion follows the knife back to the smith who forged it, and the smith back to a cellar where someone has been forging every House's arms. You burn the cellar. The Houses are spared a war.",
+          "text": "Your Scion traces the knife to the smith who forged it, and the smith to a cellar where someone has been forging every House's arms. You burn the cellar, and the Houses are spared a war.",
           "effects": [
             {
               "scion": {
@@ -72,7 +72,7 @@
         },
         {
           "w": 1,
-          "text": "Your Scion follows the trail into the lower town and is found two days later in a ditch, alive, with the knife's twin in their side.",
+          "text": "Your Scion follows the trail into the lower town. Two days later they are found alive in a ditch, the knife's twin in their side.",
           "effects": [
             {
               "scion": {
@@ -87,14 +87,14 @@
     },
     {
       "id": "burn_it",
-      "label": "Melt the knife and say nothing. Let whoever sent it wonder.",
+      "label": "Melt the knife and say nothing; let whoever sent it wonder.",
       "tags": [
         "cautious"
       ],
       "outcomes": [
         {
           "w": 1,
-          "text": "The knife melts. You double the guard and say nothing. Your heir sleeps badly for a season.",
+          "text": "The knife melts. You double the guard and keep silent. Your heir sleeps badly for a season.",
           "effects": []
         }
       ]

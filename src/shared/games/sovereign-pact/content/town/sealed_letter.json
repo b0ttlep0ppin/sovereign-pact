@@ -7,12 +7,12 @@
     20
   ],
   "title": "The Sealed Letter",
-  "text": "An unsigned letter, sealed in black wax, offers your House a rival's secrets: their debts, their dead, the name of the Scion they fear to lose. The price is a lock of hair from one of your own.",
+  "text": "An unsigned letter sealed in black wax offers your House a rival's secrets: their debts, their dead, the name of the Scion they fear to lose. The price is a lock of hair from one of your own.",
   "rule": "house",
   "options": [
     {
       "id": "pay",
-      "label": "Send a lock of hair from one of your own. A rival's secrets are worth a little hair.",
+      "label": "Send a lock of hair from one of your own; a rival's secrets are worth a little hair.",
       "tags": [
         "cruel",
         "clever"
@@ -20,7 +20,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "The secrets are true, every one of them.",
+          "text": "Every one of the secrets is true.",
           "effects": [
             {
               "score": {
@@ -31,7 +31,7 @@
         },
         {
           "w": 40,
-          "text": "The secrets are true. And the Scion whose hair you sent has woken every night since with the feeling of a hand on their head.",
+          "text": "The secrets are true. Every night since, the Scion whose hair you sent has woken feeling a hand on their head.",
           "effects": [
             {
               "score": {
@@ -49,21 +49,21 @@
     },
     {
       "id": "burn",
-      "label": "Burn the letter unread. No secret is worth what it asks.",
+      "label": "Burn the letter unread; no secret is worth what it asks.",
       "tags": [
         "cautious"
       ],
       "outcomes": [
         {
           "w": 100,
-          "text": "The wax will not burn. You bury it instead, under the chapel floor, and the floor is warm there.",
+          "text": "The wax will not burn. You bury it under the chapel floor instead, and the floor is warm there.",
           "effects": []
         }
       ]
     },
     {
       "id": "expose",
-      "label": "Carry it to the rival House, unopened, and let them know someone is selling them.",
+      "label": "Carry it unopened to the rival House, to warn them someone is selling them.",
       "tags": [
         "kind",
         "bold"
@@ -71,7 +71,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The rival is shaken, and grateful, and now owes you. The city hears of it.",
+          "text": "The rival is shaken and grateful, and now owes you. The city hears of it.",
           "effects": [
             {
               "score": {

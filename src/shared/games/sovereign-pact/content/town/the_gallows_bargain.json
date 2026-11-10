@@ -7,12 +7,12 @@
     20
   ],
   "title": "The Gallows Bargain",
-  "text": "A condemned grave-robber, rope already round his neck, shouts to the crowd that he knows where the Founder's sword is buried, and he will tell the first House that buys his pardon. The hangman is waiting. So is the crowd.",
+  "text": "A condemned grave-robber with the rope already round his neck shouts to the crowd that he knows where the Founder's sword is buried. He will tell the first House that buys his pardon. The hangman is waiting, and so is the crowd.",
   "rule": "random_house",
   "options": [
     {
       "id": "pardon",
-      "label": "Buy the grave-robber's pardon, and learn where the Founder's sword lies.",
+      "label": "Buy the grave-robber's pardon to learn where the Founder's sword lies.",
       "tags": [
         "bold"
       ],
@@ -24,7 +24,7 @@
       "outcomes": [
         {
           "w": 2,
-          "text": "He leads you to an unmarked grave outside the walls. The sword is there, wrapped in a shroud. So is the Founder, who is not as dead as the histories say.",
+          "text": "He leads you to an unmarked grave outside the walls, where the sword lies wrapped in a shroud. So does the Founder, who is not as dead as the histories say.",
           "effects": [
             {
               "item": {
@@ -41,7 +41,7 @@
         },
         {
           "w": 1,
-          "text": "He leads you to the grave, points, and runs. The grave is empty, and fresh. He is never seen again, and neither is your gold.",
+          "text": "He leads you to the grave, points, and runs. The grave is empty, and fresh. Neither he nor your gold is seen again.",
           "effects": [
             {
               "accord": -2
@@ -52,14 +52,14 @@
     },
     {
       "id": "recruit",
-      "label": "Take him into your service instead of paying. A thief who knows graves is useful.",
+      "label": "Take him into your service instead of paying; a thief who knows graves is useful.",
       "tags": [
         "clever"
       ],
       "outcomes": [
         {
           "w": 1,
-          "text": "The magistrates hand him over in chains. He is quick, clever and loyal for exactly as long as it suits him, and he never tells you where the sword is.",
+          "text": "The magistrates hand him over in chains. He is quick, clever and loyal for exactly as long as it suits him. He never tells you where the sword is.",
           "effects": [
             {
               "recruit_gain": 1
@@ -78,14 +78,14 @@
     },
     {
       "id": "hang",
-      "label": "Let the hangman do his work. A thief's word is worth his neck.",
+      "label": "Let the hangman do his work; a thief's word is worth his neck.",
       "tags": [
         "cautious"
       ],
       "outcomes": [
         {
           "w": 1,
-          "text": "He hangs. His last words are a set of directions, and nobody is quite sure afterwards whether they wrote them down right.",
+          "text": "He hangs. His last words are a set of directions, and afterward nobody is quite sure they wrote them down right.",
           "effects": []
         }
       ]

@@ -7,12 +7,12 @@
     20
   ],
   "title": "The Heir at the Window",
-  "text": "Every night at the third hour, a figure stands at your Seat's high window wearing your heir's face, your heir's clothes, your heir's smile. Your heir is asleep in bed each time. The servants have started calling them by both names.",
+  "text": "Every night at the third hour, a figure stands at your Seat's high window wearing your heir's face, clothes and smile, while your heir sleeps in bed. The servants have started calling them by both names.",
   "rule": "house",
   "options": [
     {
       "id": "confront",
-      "label": "Send a Scion up to meet it, and stare it down.",
+      "label": "Send a Scion up to meet it and stare it down.",
       "tags": [
         "bold"
       ],
@@ -23,7 +23,7 @@
       "outcomes": [
         {
           "w": 1,
-          "text": "Your Scion meets it at the window and does not blink first. It bows, steps back into the glass, and leaves behind a gift wrapped in your heir's own handwriting.",
+          "text": "Your Scion meets it at the window and does not blink first. It bows and steps back into the glass, leaving a gift wrapped in your heir's own handwriting.",
           "effects": [
             {
               "scion": {
@@ -60,14 +60,14 @@
     },
     {
       "id": "board",
-      "label": "Board up the window, and give it nowhere to stand.",
+      "label": "Board up the window to give it nowhere to stand.",
       "tags": [
         "cautious"
       ],
       "outcomes": [
         {
           "w": 1,
-          "text": "The window is boarded. The figure appears at the next window along, and the next, a little nearer the heir's room each night, and then it stops.",
+          "text": "Once the window is boarded, the figure appears at the next window along, then the next, a little nearer the heir's room each night. Then it stops.",
           "effects": [
             {
               "sanity": -10
@@ -78,7 +78,7 @@
     },
     {
       "id": "mirror",
-      "label": "Hang a saint's mirror across from it, so it must face itself.",
+      "label": "Hang a saint's mirror across from it so it must face itself.",
       "tags": [
         "kind"
       ],
@@ -90,7 +90,7 @@
       "outcomes": [
         {
           "w": 1,
-          "text": "The figure sees itself in the saint's mirror and screams with your heir's voice. It is gone. Your heir wakes with a nosebleed and a sense of loss.",
+          "text": "The figure sees itself in the saint's mirror and screams with your heir's voice, then is gone. Your heir wakes with a nosebleed and a sense of loss.",
           "effects": [
             {
               "doom": -1

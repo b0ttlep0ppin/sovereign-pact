@@ -7,7 +7,7 @@
     20
   ],
   "title": "The Mold in the Granary",
-  "text": "Black mold blooms in the poorest House's granary, in patterns like writing, spreading across the sacks overnight. The granary cats will not go in. The mold has begun to grow along the beams toward the house, and the children say it whispers.",
+  "text": "Overnight, black mold blooms in the poorest House's granary in patterns like writing, spreading across the sacks. The granary cats will not go in. Now it is growing along the beams toward the house, and the children say it whispers.",
   "rule": "least_grain",
   "options": [
     {
@@ -32,14 +32,14 @@
     },
     {
       "id": "scrape",
-      "label": "Scrape away the mold and save what you can. The House cannot spare the grain.",
+      "label": "Scrape away the mold and save what you can; the House cannot spare the grain.",
       "tags": [
         "clever"
       ],
       "outcomes": [
         {
           "w": 60,
-          "text": "Most of it is saved. The scrapers' hands are black for a month.",
+          "text": "Most of it is saved, though the scrapers' hands stay black for a month.",
           "effects": [
             {
               "resources": {
@@ -50,7 +50,7 @@
         },
         {
           "w": 40,
-          "text": "The mold comes back, worse, in the shape of handprints.",
+          "text": "The mold comes back worse, in the shape of handprints.",
           "effects": [
             {
               "resources": {
@@ -63,7 +63,7 @@
     },
     {
       "id": "ignore",
-      "label": "Leave it, and hope the cold kills it.",
+      "label": "Leave it, hoping the cold kills it.",
       "tags": [
         "reckless"
       ],
