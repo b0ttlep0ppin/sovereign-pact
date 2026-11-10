@@ -25,7 +25,8 @@ describe("events (Josh's playtest: name your own Scion; then see what it did)", 
     const pick = s.expedition!.party[0]!.at(-1)!;
     const name = s.people.find((p) => p.id === pick)!.name;
     fireEvent.change(screen.getByRole("combobox"), { target: { value: String(pick) } });
-    fireEvent.click(screen.getByRole("button", { name: /^The strongest digs for the light/ }));
+    // The one named stands in the choice's words (Josh 2026-11-10).
+    fireEvent.click(screen.getByRole("button", { name: new RegExp(`^The strongest, ${name}, digs for the light`) }));
     expect(moves.at(-1)).toEqual({ type: "decide", option: 0, person: pick });
     unmount();
     const r = g.applyMove(s, "p1", moves.at(-1)!);
@@ -34,7 +35,8 @@ describe("events (Josh's playtest: name your own Scion; then see what it did)", 
     render(<SovereignPact me="p1" players={[]} isMyTurn sendMove={() => {}} lastError={null} view={g.view(s, "p1")} />);
     const card = screen.getByRole("dialog", { name: "What happened" });
     expect(card.textContent).toContain("The Collapsed Chapel");
-    expect(card.textContent).toContain(`It fell on ${name}.`);
+    expect(card.textContent).toContain(`The strongest, ${name}, digs for the light`);
+    expect(card.textContent).not.toContain("It fell on");
     expect(card.textContent).toContain(s.expedition!.told!.parts[0]!.text);
     fireEvent.click(screen.getByRole("button", { name: "Go on" }));
     expect(screen.queryByRole("dialog", { name: "What happened" })).toBeNull();

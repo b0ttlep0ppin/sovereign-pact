@@ -25,6 +25,7 @@ import Readying from "./Readying";
 import Roster from "./Roster";
 import ScionSprite, { lookOf } from "./ScionSprite";
 import { HERALDRY_COLORS, Emblem } from "./Emblem";
+import { Named } from "./Named";
 import RiftGate from "./RiftGate";
 import TownMap from "./TownMap";
 import Volunteers from "./Volunteers";
@@ -849,7 +850,7 @@ function EventVote({ view, sendMove }: { view: SovView; sendMove: (m: SovMove) =
         return (
           <div key={o.id} className="sp-event-vote__option">
             <button type="button" className="sp-button" onClick={() => sendMove({ type: "decide", option: i, ...(can && who !== undefined ? { person: who } : {}) })}>
-              {o.label}
+              <Named label={o.label} person={can && who !== undefined ? who : auto} view={view} />
             </button>
             {o.only ? <span className="sp-event-vote__only">{onlyBecause(o.rule)}</span> : null}
             {can ? (
