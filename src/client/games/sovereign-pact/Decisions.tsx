@@ -30,14 +30,15 @@ export function voteText(vote: NonNullable<SovView["vote"]>, houses?: SovView["h
   return { question: ev?.title ?? vote.subject, options: vote.options.map((id) => ev?.options?.find((o) => o.id === id)?.label ?? id) };
 }
 
-export default function Decisions({ view, sendMove, canAct }: Props) {
+/** Decisions to answer; with `omens` false, what came of the Omens is left to its own panel (`OmensPanel`). */
+export default function Decisions({ view, sendMove, canAct, omens: withOmens = true }: Props & { omens?: boolean }) {
   const me = view.me;
   const mine = view.mine;
   if (me === null || !mine) return null;
   const vote = view.vote;
   const events = view.events;
   const bargains = mine.bargains;
-  const omens = view.omens ?? [];
+  const omens = withOmens ? (view.omens ?? []) : [];
   if (!vote && !events.length && !view.crisis && !bargains.length && !omens.length) return null;
   return (
     <section className="sp-panel sp-decisions" aria-label="Decisions">
@@ -164,6 +165,16 @@ function EventOptions({ view, event, options, odds, sendMove }: { view: SovView;
         );
       })}
     </div>
+  );
+}
+
+/** What came of the Omens, as a panel of its own (the town's main column). */
+export function OmensPanel({ view }: { view: SovView }) {
+  if (view.me === null || !view.omens?.length) return null;
+  return (
+    <section className="sp-panel sp-panel--omens">
+      <OmensTold view={view} />
+    </section>
   );
 }
 

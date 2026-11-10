@@ -18,7 +18,7 @@ import { useUiSounds } from "./uiSound";
 import ChainMap from "./ChainMap";
 import Deals from "./Deals";
 import Formation from "./Formation";
-import Decisions from "./Decisions";
+import Decisions, { OmensPanel } from "./Decisions";
 import Market from "./Market";
 import HouseDesigner from "./HouseDesigner";
 import Readying from "./Readying";
@@ -389,28 +389,27 @@ export default function SovereignPact({ view, isMyTurn, sendMove, lastError }: P
         <div className="sp-stage">
           <div className="sp-stage__main">
             {mine && view.expedition ? (
-              <section className="sp-panel sp-orders" aria-label="Your orders">
+              <section className="sp-panel sp-panel--orders" aria-label="Your orders">
                 <h2>Your orders</h2>
                 <Muster view={view} sendMove={sendMove} chosen={chosen} setChosen={setChosen} openBattle={hidden ? () => setHidden(false) : undefined} />
               </section>
             ) : null}
-            <div className="sp-stage__pair">
-              <ChainMap view={view} sendMove={sendMove} />
-              {mine ? (
-                <Formation
-                  view={view}
-                  people={partyPeople}
-                  sendMove={sendMove}
-                  canAct={!fight}
-                  title="The party's formation"
-                  note={mustering ? (chosen.length ? "The Scions you have chosen stand here when the first battle opens; move them now or later." : "Choose Scions in your orders to see where they will stand.") : undefined}
-                />
-              ) : null}
-            </div>
+            <ChainMap view={view} sendMove={sendMove} />
           </div>
+          {/* The formation stands beside the road, under what happened (Josh 2026-11-10: use the width). */}
           <aside className="sp-stage__side">
             {battleList}
             {chronicle}
+            {mine ? (
+              <Formation
+                view={view}
+                people={partyPeople}
+                sendMove={sendMove}
+                canAct={!fight}
+                title="The party's formation"
+                note={mustering ? (chosen.length ? "The Scions you have chosen stand here when the first battle opens; move them now or later." : "Choose Scions in your orders to see where they will stand.") : undefined}
+              />
+            ) : null}
           </aside>
         </div>
       ) : (
@@ -436,9 +435,10 @@ export default function SovereignPact({ view, isMyTurn, sendMove, lastError }: P
                 ["battles", "Battles", battleList],
               ]}
             />
+            {view.phase === "settlement" ? <OmensPanel view={view} /> : null}
           </div>
           <aside className="sp-stage__side">
-            {view.phase === "settlement" ? <Decisions view={view} sendMove={sendMove} canAct={open} /> : null}
+            {view.phase === "settlement" ? <Decisions view={view} sendMove={sendMove} canAct={open} omens={false} /> : null}
             {chronicle}
           </aside>
         </div>
