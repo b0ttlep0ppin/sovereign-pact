@@ -43,7 +43,9 @@
 .sp-grid--enemy { transform: rotateY(14deg); }
 .sp-grid--party { transform: rotateY(-14deg); }
 .sp-cell { border: 1px solid rgba(255, 255, 255, 0.08); background: rgba(6, 5, 8, 0.28); }
-.sp-cell.is-telegraphed { background: repeating-linear-gradient(45deg, rgba(200, 40, 40, 0.45) 0 4px, transparent 4px 8px); }
+.sp-cell.is-telegraphed { background: repeating-linear-gradient(45deg, rgba(200, 40, 40, 0.45) 0 4px, transparent 4px 8px); box-shadow: inset 0 0 0 1px rgba(220, 60, 50, 0.7); animation: sp-warn 1.1s ease-in-out infinite alternate; }
+@keyframes sp-warn { from { opacity: 0.55; } to { opacity: 1; } }
+[data-motion="reduced"] .sp-cell.is-telegraphed { animation: none; }
 
 .sp-unit { position: absolute; display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 3px; box-sizing: border-box; transition: left 120ms, top 120ms, opacity 300ms, filter 300ms; }
 .sp-unit__body {
