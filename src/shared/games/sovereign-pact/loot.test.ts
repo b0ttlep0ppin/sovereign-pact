@@ -82,6 +82,12 @@ describe("Caches and the boss", () => {
       expect(items.length).toBeLessThanOrEqual(2);
       expect(items.every((i) => i.tier >= 3 && i.house === -1 && i.ilvl === 3)).toBe(true);
       expect(s.items.length).toBe(owned);
+      // The party stops on a card that says what the cache held.
+      const told = s.expedition!.told!;
+      expect(told.where).toBe("A cache");
+      const lines = told.parts[0]!.lines.map((l) => l.text);
+      expect(lines.filter((l) => l.startsWith("The party carries the")).length).toBe(items.length);
+      expect(s.expedition!.halt).toEqual([0]);
     }
     expect(trapped).toBeGreaterThan(0);
     expect(trapped).toBeLessThan(20);

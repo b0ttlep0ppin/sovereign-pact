@@ -2,6 +2,10 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-10 (implementation, Milestone 8dq): a cache opens the outcome card with what it held
+
+Josh: "caches should notify of the items they found in a popup". Opening a cache now fills the expedition's outcome card (`told`, headed "A cache" through its new `where` field) with each item and material it added to the haul, and the party waits for every House to close it (`halt`), as after an event. A trapped cache shows the card after its ambush is won, since that is when it opens. Reading taken: the card reuses the event outcome dialog rather than a new popup, so it looks and closes the same way.
+
 ## 2026-11-10 (implementation, Milestone 8dp): the Bestiary's "Needs work" sprites are replaced, renamed or removed
 
 Josh marked 46 sprites "Needs work" in the Bestiary and left notes on the rest. What changed:

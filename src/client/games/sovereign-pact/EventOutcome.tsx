@@ -19,7 +19,7 @@ export function useTold(view: SovView) {
   const [seen, setSeen] = useState(readSeen);
   const e = view.expedition;
   const told = e?.told;
-  const key = told ? `${view.year}:${e.card.pool}:${told.n}:${told.parts.length}:${told.parts.reduce((n, p) => n + p.lines.length, 0)}` : null;
+  const key = told ? `${view.year}:${e.card.pool}:${told.where ?? ""}:${told.n}:${told.parts.length}:${told.parts.reduce((n, p) => n + p.lines.length, 0)}` : null;
   // Also open while the fight it started is on: the card comes first, so the outcome can be read before
   // steel is drawn (Josh 2026-11-03: "it's still not letting me process what happens in events").
   const open = !!told && !e.event && key !== seen;
@@ -41,7 +41,7 @@ export default function EventOutcome({ view, onClose, toArms = false }: { view: 
   return (
     <div className="sp-told" role="dialog" aria-modal="true" aria-label="What happened">
       <div className="sp-told__card">
-        <p className="sp-told__where">{def?.title ?? "The event"}</p>
+        <p className="sp-told__where">{told.where ?? def?.title ?? "The event"}</p>
         {told.parts.map((p, i) => (
           <section key={i} className="sp-told__part">
             <p className="sp-told__choice">
