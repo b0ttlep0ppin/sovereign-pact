@@ -112,6 +112,12 @@ describe("properties in battle", () => {
     const plain = hitFor(scion(), skeleton());
     expect(hitFor(scion({ "edge.fire": 40 }), skeleton())).toBeGreaterThan(plain);
     expect(hitFor(scion({ "edge.fire": 40 }), skeleton({ affinity: { fire: 100 } }))).toBe(plain);
+    // The hit names its edge, so the battle screen can colour and sound the magic weapon.
+    const u = scion({ "edge.fire": 40 });
+    const t = skeleton();
+    const b = newBattle(1, [u, t]);
+    strike(b, createRng(5), u, t, ATTACK);
+    expect(b.events.find((e) => e.t === "hit")).toMatchObject({ edge: "fire" });
   });
 
   it("Draining heals, Mana-thirst restores MP, Thorned hurts the attacker", () => {

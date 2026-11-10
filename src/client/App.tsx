@@ -1,7 +1,8 @@
 // The Sovereign Pact on its own: the browser hosts the whole campaign, running the same rules the Vibe
 // Pulse room server would. Seats are played hot-seat in this browser, any of them by a bot; the
 // campaign autosaves at every checkpoint (the start of each Settlement Phase) and can be exported to,
-// or imported from, a save file (SPEC §4.4).
+// or imported from, a save file (SPEC §4.4). This browser also keeps the whole table after every move,
+// so a reload or a new build picks up mid-Year, mid-expedition, even mid-battle (Josh 2026-11-10).
 import { useEffect, useMemo, useState } from "react";
 import { createRng, type RoomPlayer } from "@vibepulse/shared";
 import { restore, sovereignPact, type SovMove, type SovSave, type SovState } from "@vibepulse/shared/games/sovereign-pact";
@@ -10,6 +11,7 @@ import Prologue from "./games/sovereign-pact/Prologue";
 
 const g = sovereignPact;
 const SAVE_KEY = "sovereign-pact:save";
+const LIVE_KEY = "sovereign-pact:live";
 
 interface Table {
   /** Which seats bots play, by seat index. */
@@ -42,6 +44,42 @@ function writeStored(stored: StoredSave): void {
   }
 }
 
+interface LiveSave {
+  bots: boolean[];
+  state: SovState;
+  savedAt: string;
+}
+
+/** The table as it stood after the last move, if it still opens under these rules (a new build may have changed them). */
+function readLive(): LiveSave | null {
+  try {
+    const raw = globalThis.localStorage?.getItem(LIVE_KEY);
+    const live = raw ? (JSON.parse(raw) as LiveSave) : null;
+    if (!live || !Array.isArray(live.bots) || live.state?.players?.length !== live.bots.length || g.result(live.state)) return null;
+    for (const p of live.state.players) g.view(live.state, p);
+    return live;
+  } catch {
+    return null;
+  }
+}
+
+function writeLive(table: Table): void {
+  try {
+    globalThis.localStorage?.setItem(LIVE_KEY, JSON.stringify({ bots: table.bots, state: table.state, savedAt: new Date().toISOString() }));
+  } catch {
+    // Storage full or blocked: the checkpoint autosave still holds the Year's start.
+  }
+}
+
+const PHASE_AT: Record<string, string> = { founding: "founding the Houses", omens: "reading the omens", settlement: "in the Settlement", expedition: "on the expedition", reckoning: "at the Reckoning" };
+
+/** Where a kept table stands: "Houses A and B, Year 3, on the expedition". */
+function describeLive(s: SovState): string {
+  const names = s.houses.map((h) => h.name);
+  const who = names.length === 1 ? `House ${names[0]}` : `Houses ${names.slice(0, -1).join(", ")} and ${names.at(-1)}`;
+  return `${who}, Year ${s.year}, ${PHASE_AT[s.phase] ?? s.phase}`;
+}
+
 /** Starts or continues a campaign: `save` is anything a checkpoint wrote; a bad one starts fresh. */
 function startTable(bots: boolean[], options: Record<string, string>, save?: unknown): Table {
   const seed = Math.floor(Math.random() * 2 ** 32);
@@ -59,9 +97,10 @@ export function App() {
     [table],
   );
 
-  // Autosave each checkpoint.
+  // Autosave each checkpoint, and keep the whole table after every move.
   useEffect(() => {
     if (!table) return;
+    writeLive(table);
     const save = g.checkpoint!(table.state);
     if (save) writeStored({ bots: table.bots, save, savedAt: new Date().toISOString() });
   }, [table]);
@@ -162,6 +201,7 @@ function NewCampaign({ onStart }: { onStart: (t: Table) => void }) {
   const [display, setDisplay] = useState("crunch");
   const [length, setLength] = useState("full");
   const [stored] = useState(readStored);
+  const [live] = useState(readLive);
   const [importError, setImportError] = useState<string | null>(null);
   const seated = bots.slice(0, houses);
 
@@ -179,13 +219,25 @@ function NewCampaign({ onStart }: { onStart: (t: Table) => void }) {
 
   return (
     <div className="app__new">
-      {stored ? (
+      {live || stored ? (
         <section className="app__card sp-panel">
           <h2>Continue</h2>
-          <p>{g.describeSave!(stored.save)}</p>
-          <button type="button" className="sp-button" onClick={() => onStart(startTable(stored.bots, {}, stored.save))}>
-            Continue the campaign
-          </button>
+          {live ? (
+            <>
+              <p>{describeLive(live.state)}</p>
+              <button type="button" className="sp-button" onClick={() => onStart({ bots: live.bots, state: live.state })}>
+                Continue where you left off
+              </button>
+            </>
+          ) : null}
+          {stored ? (
+            <>
+              <p>{g.describeSave!(stored.save)}</p>
+              <button type="button" className={live ? "app__button" : "sp-button"} onClick={() => onStart(startTable(stored.bots, {}, stored.save))}>
+                {live ? `Go back to the start of Year ${stored.save.campaign.year}` : "Continue the campaign"}
+              </button>
+            </>
+          ) : null}
         </section>
       ) : null}
       <section className="app__card sp-panel">

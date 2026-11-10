@@ -270,7 +270,7 @@ export function strike(b: Battle, rng: Rng, u: Combatant, t: Combatant, ab: Abil
   const edge = weaponHit && damage > 0 ? edgeOf(u) : undefined;
   if (edge) damage += Math.max(0, Math.round(((damage * u.mods[`edge.${edge}`]!) / 100) * affinityMult(t, edge)));
 
-  b.events.push({ t: "hit", unit: u.id, target: t.id, damage, loc, crit: crit || undefined, weak: weak || undefined, element: element ?? undefined });
+  b.events.push({ t: "hit", unit: u.id, target: t.id, damage, loc, crit: crit || undefined, weak: weak || undefined, element: element ?? undefined, ...(edge ? { edge } : {}) });
   applyHit(b, rng, u, t, ab, damage, loc, opts);
   // An axe's crit bleeds, a mace's stuns (§13.2): the target's resist still applies.
   if (crit && physical && u.weapon.critStatus && !t.dead) tryStatus(b, rng, t, u.weapon.critStatus, 100);

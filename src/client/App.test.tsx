@@ -94,8 +94,35 @@ describe("the standalone host", () => {
       first.unmount();
       render(<App />);
       fireEvent.click(screen.getByRole("button", { name: "Skip" }));
-      fireEvent.click(screen.getByRole("button", { name: "Continue the campaign" }));
+      fireEvent.click(screen.getByRole("button", { name: "Go back to the start of Year 2" }));
       expect(screen.getByText("The campaign resumes in Year 2.")).toBeTruthy();
+    } finally {
+      vi.useRealTimers();
+    }
+  });
+
+  it("keeps the table after every move, so a reload picks up mid-Year (Josh 2026-11-10)", () => {
+    vi.useFakeTimers();
+    try {
+      const first = render(<App />);
+      fireEvent.click(screen.getByRole("button", { name: "Skip" }));
+      fireEvent.click(screen.getByRole("button", { name: "Swear the Pact" }));
+      fireEvent.click(screen.getAllByRole("radio", { name: /counts double/ })[0]!);
+      fireEvent.click(screen.getByRole("button", { name: "Swear the Pact" }));
+      letBotsMove();
+      draft();
+      seal();
+      letBotsMove();
+      // Mid-expedition: no checkpoint since the Year began, but the table is kept.
+      const kept = JSON.parse(localStorage.getItem("sovereign-pact:live")!) as { state: { phase: string; year: number } };
+      expect(kept.state.year).toBe(1);
+      expect(kept.state.phase).not.toBe("founding");
+      first.unmount();
+      render(<App />);
+      fireEvent.click(screen.getByRole("button", { name: "Skip" }));
+      expect(screen.getByText(/Year 1, (on the expedition|in the Settlement)/)).toBeTruthy();
+      fireEvent.click(screen.getByRole("button", { name: "Continue where you left off" }));
+      expect(year(1)).toBeTruthy();
     } finally {
       vi.useRealTimers();
     }

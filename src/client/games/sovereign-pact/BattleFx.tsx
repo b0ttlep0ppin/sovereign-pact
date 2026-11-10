@@ -27,6 +27,8 @@ export interface Strike {
   status?: string;
   /** A spear's or knife's blow: a straight stab, not a slash. */
   thrust?: boolean;
+  /** A magic weapon's blow (an elemental weapon, an edge or an enchantment): the steel's marks in its element's colours. */
+  charm?: boolean;
 }
 
 /** Weapons that stab rather than cut. */
@@ -89,13 +91,15 @@ export function strikesOf(ev: Event[], units: Map<number, ReplayUnit>): Strike[]
     else if (act?.kind === "magic" || act?.kind === "support") kind = "spell";
     // A ranged ability, or any blow from a bow or crossbow: an arrow or bolt flies from where they stand.
     else if (act?.reach === "ranged" || RANGED.has(units.get(e.unit)?.weapon ?? "")) kind = "shot";
-    else if (e.t === "hit" && e.element) kind = "spell";
+    // A creature's elemental blow is drawn as a spell; a Scion's weapon keeps its slash, stab or shot.
+    else if (e.t === "hit" && e.element && !units.get(e.unit)?.weapon) kind = "spell";
     else kind = "melee";
     // A heal that also blesses (Regen) is drawn once, as the heal.
     if (kind === "heal") for (let k = out.length - 1; k >= 0; k--) if (out[k]!.wave === wave && out[k]!.to === e.target && out[k]!.kind === "boon") out.splice(k, 1);
-    const element = (e.t === "hit" ? e.element : undefined) ?? act?.element ?? (e.t === "heal" ? "holy" : undefined);
+    const element = (e.t === "hit" ? (e.element ?? e.edge) : undefined) ?? act?.element ?? (e.t === "heal" ? "holy" : undefined);
     const thrust = kind === "melee" && THRUSTS.has(units.get(e.unit)?.weapon ?? "");
-    out.push({ from: e.unit, to: e.target, kind, wave, ...(element ? { element } : {}), ...(e.t === "hit" && e.crit ? { crit: true } : {}), ...(e.t === "miss" ? { miss: true } : {}), ...(thrust ? { thrust: true } : {}) });
+    const charm = (kind === "melee" || kind === "shot") && !!element && !!units.get(e.unit)?.weapon;
+    out.push({ from: e.unit, to: e.target, kind, wave, ...(element ? { element } : {}), ...(e.t === "hit" && e.crit ? { crit: true } : {}), ...(e.t === "miss" ? { miss: true } : {}), ...(thrust ? { thrust: true } : {}), ...(charm ? { charm: true } : {}) });
   }
   return out;
 }
@@ -315,6 +319,10 @@ function StrikeFx({ from, to, s, i, ms }: { from: Pt; to: Pt; s: Strike; i: numb
   if (kind) return <BoonFx from={from} to={to} s={s} glyph={kind.glyph} sparks={sparks} vars={vars} ms={ms} />;
   return (
     <>
+      {s.charm ? (
+        // A magic weapon (Josh 2026-11-10: "special sfx and animation coloring for magical weapons"): its element wreathes the wielder as they strike.
+        <span className={`sp-fx__aura sp-fx__aura--${s.element} is-charm`} style={at(from, { animationDelay: ms(start), animationDuration: ms(impact - start + 120) })} />
+      ) : null}
       {s.kind === "melee" && !s.thrust ? (
         // The rush: speed lines from the attacker through the gap to the foe.
         <span className="sp-fx__streak" style={at(from, { width: len, rotate: `${angle}deg`, animationDelay: ms(impact - 150), animationDuration: ms(300) })} />
@@ -351,13 +359,14 @@ function StrikeFx({ from, to, s, i, ms }: { from: Pt; to: Pt; s: Strike; i: numb
         // A stab (Josh 2026-11-03: "a line poking forward and impacting"): a shaft of light drives through them and a point of light bursts where it goes in.
         <>
           <span className="sp-fx__aim" style={at(to, { rotate: `${angle}deg` })}>
-            <span className={`sp-fx__thrust${s.crit ? " is-crit" : ""}`} style={{ animationDelay: ms(impact - 90), animationDuration: ms(s.crit ? 380 : 300) }} />
+            <span className={`sp-fx__thrust${s.crit ? " is-crit" : ""}${s.charm ? " is-charm" : ""}`} style={{ animationDelay: ms(impact - 90), animationDuration: ms(s.crit ? 380 : 300) }} />
             {s.miss ? null : <span className={`sp-fx__pierce${s.crit ? " is-crit" : ""}`} style={{ animationDelay: ms(impact), animationDuration: ms(340) }} />}
           </span>
         </>
       ) : null}
+      {s.charm && s.kind === "melee" && !s.miss ? <span className={`sp-fx__burst sp-fx__burst--${s.element} is-charm`} style={at(to, { animationDelay: ms(impact + 40), animationDuration: ms(480) })} /> : null}
       {s.miss || s.thrust ? null : s.kind === "melee" ? (
-        <svg className={`sp-fx__slash${s.crit ? " is-crit" : ""}`} style={at(to, { rotate: `${((i * 47) % 70) - 35 + (dx < 0 ? 180 : 0)}deg`, animationDelay: ms(impact), animationDuration: ms(s.crit ? 420 : 340) })} viewBox="-50 -50 100 100">
+        <svg className={`sp-fx__slash${s.crit ? " is-crit" : ""}${s.charm ? " is-charm" : ""}`} style={at(to, { rotate: `${((i * 47) % 70) - 35 + (dx < 0 ? 180 : 0)}deg`, animationDelay: ms(impact), animationDuration: ms(s.crit ? 420 : 340) })} viewBox="-50 -50 100 100">
           <path d="M-46 22 Q -4 -60 46 -16 Q 0 -38 -46 22 Z" />
           <path d="M-40 18 Q -2 -48 40 -14 Q 0 -32 -40 18 Z" />
         </svg>
@@ -369,7 +378,7 @@ function StrikeFx({ from, to, s, i, ms }: { from: Pt; to: Pt; s: Strike; i: numb
       {Array.from({ length: sparks }, (_, j) => (
         <span
           key={j}
-          className={`sp-fx__spark sp-fx__spark--${s.kind === "heal" ? "heal" : s.kind === "melee" || s.kind === "shot" ? "steel" : (s.element ?? "none")}`}
+          className={`sp-fx__spark sp-fx__spark--${s.kind === "heal" ? "heal" : (s.kind === "melee" || s.kind === "shot") && !(s.charm && j % 2) ? "steel" : (s.element ?? "none")}`}
           style={at(to, {
             // A stab sprays forward, out the far side; everything else bursts all round.
             ["--a" as string]: s.thrust ? `${angle + ((j * 53) % 70) - 35}deg` : `${(j * 360) / sparks + ((i * 37) % 30)}deg`,

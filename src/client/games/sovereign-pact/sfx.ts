@@ -27,6 +27,37 @@ const WEAPONS: Record<string, [swing: string, hit: string]> = {
   crossbow: ["shot_crossbow", "hit_bolt"],
 };
 
+/**
+ * What a landed weapon blow does to the body after the steel's own sound (Josh 2026-11-10: "a second
+ * sound afterwards if you hit, which is crunchy or impactful"): blades and points split flesh, arrows
+ * and bolts sink in, axes and maces break bone, fists thump. Plate and stone ring instead, a spirit has
+ * nothing to break, and the dead's bones crack under any weapon.
+ */
+const CRUNCH: Record<string, string> = {
+  sword: "crunch_flesh",
+  knife: "crunch_flesh",
+  spear: "crunch_flesh",
+  thrown: "crunch_flesh",
+  bow: "crunch_pierce",
+  crossbow: "crunch_pierce",
+  axe: "crunch_bone",
+  mace: "crunch_bone",
+  staff: "crunch_bone",
+  instrument: "crunch_body",
+  knuckles: "crunch_body",
+  unarmed: "crunch_body",
+};
+
+/** The crunch of `by`'s weapon landing on `on`; none for a creature's own blows or a body with nothing to break. */
+export function crunchOf(by: ReplayUnit | undefined, on: ReplayUnit | undefined): string | null {
+  if (!by?.weapon) return null;
+  const tags = on ? tagsOf(on) : [];
+  if (tags.includes("spirit")) return null;
+  if (tags.some((t) => t === "armored" || t === "construct")) return "crunch_plate";
+  if (tags.includes("undead")) return "crunch_bone";
+  return CRUNCH[by.weapon] ?? "crunch_flesh";
+}
+
 /** What a creature's blow sounds like, by its first tag that says (§16.1: monster sounds by tag). */
 const BY_TAG: [tags: string[], hit: string][] = [
   [["beast", "dragon", "dragonkin", "insect", "aquatic", "slime", "flesh", "fungus", "plant"], "hit_bite"],
@@ -67,11 +98,11 @@ export function blowOf(u: ReplayUnit | undefined): [swing: string | null, hit: s
   return [null, hit === "hit_bite" && u.size[0] * u.size[1] >= 4 ? "hit_maul" : hit];
 }
 
-/** The cues a turn's events play, in order, at most six. */
+/** The cues a turn's events play, in order, at most ten. */
 export function soundsOf(ev: readonly Event[], units: ReadonlyMap<number, ReplayUnit>): Sound[] {
   const out: Sound[] = [];
   const add = (cue: string, at: number) => {
-    if (out.length < 6 && !out.some((s) => s.cue === cue && Math.abs(s.at - at) < 60)) out.push({ cue, at });
+    if (out.length < 10 && !out.some((s) => s.cue === cue && Math.abs(s.at - at) < 60)) out.push({ cue, at });
   };
   const use = ev.find((e) => e.t === "use");
   const by = use ? units.get(use.unit) : undefined;
@@ -90,7 +121,16 @@ export function soundsOf(ev: readonly Event[], units: ReadonlyMap<number, Replay
   hits.slice(0, 3).forEach((h, i) => {
     // A spell lands once it has risen beside its caster and crossed the field (BattleFx's IMPACT_MS).
     const at = (spell ? 860 : 170) + i * 90;
-    add(h.element ? `impact_${h.element}` : spell ? `impact_${element ?? "arcane"}` : blow, at);
+    const struck = units.get(h.target);
+    if (spell) add(`impact_${h.element ?? element ?? "arcane"}`, at);
+    else if (by?.weapon && h.unit === by.id) {
+      // A Scion's blow: the steel, then the body giving way, then a magic weapon's element bursting.
+      add(blow, at);
+      const crunch = crunchOf(by, struck);
+      if (crunch) add(crunch, at + 60);
+      const charm = h.element ?? h.edge;
+      if (charm) add(`impact_${charm}`, at + 110);
+    } else add(h.element ? `impact_${h.element}` : blow, at);
     if (h.crit) add("crit", at + 30);
   });
   for (const e of ev) {

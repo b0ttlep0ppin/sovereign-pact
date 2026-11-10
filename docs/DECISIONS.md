@@ -2,6 +2,22 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-10 (implementation, Milestone 8dc): the browser keeps the whole table
+
+Josh: **"the game should save more periodically, every republish i'm losing my progress if i'm middle expedition or even now after I got back to town"**.
+- The checkpoint save (§4.4) stays as it is: the Settlement Phase's first state, the one Vibe Pulse keeps and the one Export writes.
+- The standalone host also keeps the whole table in this browser after every move (`sovereign-pact:live`, under 100 KB in a bot campaign). Continue now offers **Continue where you left off**, which resumes mid-Year, mid-expedition or mid-battle, and **Go back to the start of Year N** from the checkpoint.
+- Reading taken: a kept table that the current build can't open (a broken record, or every seat's view throws) is ignored, and the checkpoint is offered alone. A finished campaign isn't offered.
+
+## 2026-11-10 (implementation, Milestone 8db): a blow that lands crunches
+
+Josh: **"current sword slice sound effect should play, but it should also play a second sound afterwards if you hit, which is crunchy or impactful etc. maybe depending on the weapon if we have enough, maybe even special sfx and animation coloring for magical weapons"**.
+- A Scion's landed blow now plays three layers: the swing, the weapon's hit, then about 60 ms later a **crunch** cut from BOOM Close Combat and Medieval Weapons (Designed), a little quieter than the hit. Blades, spears, knives and thrown weapons split flesh (Blood Splash Medium); bows and crossbows sink in (Blood Splash Soft); axes, maces and staves break bone (Bone Break Hard); fists and instruments thump (Kick Torso Hard).
+- Reading taken: the crunch follows what is struck too. Armored foes and constructs ring like plate (Armor Full Plate Impact), the undead crack like bone under any weapon, and spirits make no crunch. A miss plays no crunch. Creatures' own blows keep their bites and claws, which are crunchy already.
+- A **magic weapon** is one whose blow carries an element: an elemental weapon, a Fire/Water/… edge, or an enchantment. Its blow adds the element's impact sound after the crunch. It is now drawn as its own slash, stab or shot in the element's colours, with the wielder wreathed in the element, a burst after the cut and mixed sparks. Before this it was drawn as a conjured spell. Hits now name the edge that added to them (`edge` on the hit event).
+- Josh, same night: **"The mortal wound text could be a little more flavorful. "The know that death comes for them, and yet they fight on for their house and their companions.""** The Mortal wound now reads "They know that death has come for them, yet they fight on for their House and their companions. Last Stand until the battle ends, then death."
+- Up to ten cues a turn (was six). The cutter takes an optional `lufs` per cue for layers that sit under another.
+
 ## 2026-11-10 (implementation, Milestone 8da): the charge's own color
 
 Josh: **"should probably be able to choose the "Charge" color on your house emblem"**.

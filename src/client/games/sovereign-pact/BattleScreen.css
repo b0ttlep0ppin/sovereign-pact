@@ -297,6 +297,11 @@
 .sp-fx__flash { width: 80px; height: 80px; margin: -40px 0 0 -40px; border-radius: 50%; background: radial-gradient(circle, #fff 0 25%, rgba(255, 240, 200, 0.6) 45%, transparent 70%); animation-name: sp-fx-flash; }
 .sp-fx__flash.is-crit { width: 140px; height: 140px; margin: -70px 0 0 -70px; }
 @keyframes sp-fx-flash { 0% { opacity: 0; scale: 0.3; } 12% { opacity: 1; scale: 1; } 100% { opacity: 0; scale: 1.6; } }
+/* A magic weapon's blow: the slash or stab burns in its element, the wielder is wreathed in it, and a burst follows the cut. */
+.sp-fx__slash.is-charm { filter: drop-shadow(0 0 10px var(--glow)) drop-shadow(0 0 4px var(--glow)) drop-shadow(0 0 2px #fff); }
+.sp-fx__slash.is-charm path + path { fill: color-mix(in srgb, var(--core) 45%, #fff); }
+.sp-fx__thrust.is-charm { box-shadow: 0 0 16px 3px var(--glow); }
+.sp-fx__aura.is-charm { transform: scale(0.75); }
 .sp-fx__slash.is-crit { width: 220px; height: 220px; margin: -110px 0 0 -110px; filter: drop-shadow(0 0 10px #ff3020) drop-shadow(0 0 3px #fff); }
 @keyframes sp-fx-slash { 0% { opacity: 0; scale: 0.4 0.2; } 20% { opacity: 1; scale: 1.1 1; } 100% { opacity: 0; scale: 1.25 0.6; } }
 .sp-fx__burst {
