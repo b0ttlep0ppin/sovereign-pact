@@ -10,12 +10,12 @@
     "building:crypt"
   ],
   "title": "The Crypt Door, Open",
-  "text": "The crypt door is found open in the morning, swinging a little on its hinges. It was barred from outside, and the bar lies on the steps, unbroken. It has been opened from within. Dust on the stairs shows narrow, bare footprints, coming up.",
+  "text": "In the morning the crypt door is found open, swinging a little on its hinges. It was barred from outside, and the bar lies unbroken on the steps; it was opened from within. In the dust on the stairs, narrow bare footprints come up.",
   "rule": "house",
   "options": [
     {
       "id": "count",
-      "label": "Go down and count the dead, to learn which of them walked.",
+      "label": "Go down and count the dead to learn which of them walked.",
       "tags": [
         "bold"
       ],
@@ -50,14 +50,14 @@
     },
     {
       "id": "seal",
-      "label": "Seal the crypt with iron and salt, so nothing else comes up.",
+      "label": "Seal the crypt with iron and salt so nothing else comes up.",
       "tags": [
         "cautious"
       ],
       "outcomes": [
         {
           "w": 100,
-          "text": "The bars hold. Something taps on them, now and then, politely.",
+          "text": "The bars hold. Now and then, something taps on them politely.",
           "effects": [
             {
               "resources": {
@@ -78,7 +78,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "The House's dead are grateful. Old skills come back to the living in dreams.",
+          "text": "The House's dead are grateful. Old skills return to the living in dreams.",
           "effects": [
             {
               "scion": {
@@ -90,7 +90,7 @@
         },
         {
           "w": 50,
-          "text": "The House's dead are hungry. The larder is bare by morning, and the dogs will not come inside.",
+          "text": "The House's dead are hungry. By morning the larder is bare, and the dogs will not come inside.",
           "effects": [
             {
               "resources": {

@@ -7,19 +7,19 @@
     20
   ],
   "title": "The Founder's Creditor",
-  "text": "A man in grave-clothes waits in the hall with a ledger. On the last page, in your founder's own hand, is a debt: payable this Year, in Gold or in blood, at the creditor's choosing. He has chosen to let you choose.",
+  "text": "A man in grave-clothes waits in the hall with a ledger. On its last page, in your founder's own hand, is a debt payable this Year in Gold or in blood, at the creditor's choosing. He has chosen to let you choose.",
   "rule": "house",
   "options": [
     {
       "id": "gold",
-      "label": "Pay the founder's debt in Gold, and keep the House's blood its own.",
+      "label": "Pay the founder's debt in Gold, keeping the House's blood its own.",
       "tags": [
         "cautious"
       ],
       "outcomes": [
         {
           "w": 100,
-          "text": "He counts every coin twice, bows, and leaves no footprints in the snow.",
+          "text": "He counts every coin twice and bows. He leaves no footprints in the snow.",
           "effects": [
             {
               "resources": {
@@ -39,7 +39,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "The eldest of the House opens a vein over the ledger. The page drinks, and is clean.",
+          "text": "The eldest of the House opens a vein over the ledger. The page drinks until it is clean.",
           "effects": [
             {
               "scion": {
@@ -56,7 +56,7 @@
         },
         {
           "w": 30,
-          "text": "The page drinks too deeply. The eldest is a long time recovering, and never warm again.",
+          "text": "The page drinks too deeply. The eldest is a long time recovering, and is never warm again.",
           "effects": [
             {
               "scion": {
@@ -76,7 +76,7 @@
     },
     {
       "id": "refuse",
-      "label": "Refuse him, and burn the ledger. The dead do not collect.",
+      "label": "Refuse him and burn the ledger; the dead do not collect.",
       "tags": [
         "bold",
         "reckless"
@@ -84,7 +84,7 @@
       "outcomes": [
         {
           "w": 40,
-          "text": "The ledger burns green. He smiles, and goes.",
+          "text": "The ledger burns green. He smiles and goes.",
           "effects": [
             {
               "score": {
@@ -95,7 +95,7 @@
         },
         {
           "w": 60,
-          "text": "The ledger burns green. Over the next weeks, things the House owns begin to go missing, one by one: a horse, a ring, a wing of the Seat.",
+          "text": "The ledger burns green. Over the following weeks the House's things begin to go missing one by one: a horse, a ring, a wing of the Seat.",
           "effects": [
             {
               "ruin": 1

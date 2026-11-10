@@ -66,7 +66,7 @@
     }
   ],
   "blamed": {
-    "text": "The magistrates read the name aloud in the square. The named House's children are watched in the street, and its blood is spoken of in whispers that never stop.",
+    "text": "The magistrates read the name aloud in the square. From then on the named House's children are watched in the street; its blood is spoken of in whispers that never stop.",
     "effects": [
       {
         "house_trait": "+the_mothers_mark"

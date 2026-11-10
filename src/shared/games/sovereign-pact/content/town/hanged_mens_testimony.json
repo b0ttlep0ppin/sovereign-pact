@@ -7,7 +7,7 @@
     20
   ],
   "title": "The Hanged Men's Testimony",
-  "text": "The three thieves hanged on the Commons gibbet have started talking. At dusk, with their eyes pecked out and their tongues black, they accuse one of the Great Houses of poisoning the Commons' wells. They will not say which until they are asked properly.",
+  "text": "The three thieves hanged on the Commons gibbet have started talking. At dusk, eyes pecked out and tongues black, they accuse one of the Great Houses of poisoning the Commons' wells. They will not say which until they are asked properly.",
   "rule": "secret",
   "options": [
     {
@@ -20,14 +20,14 @@
       "outcomes": [
         {
           "w": 1,
-          "text": "You listen to the dead men, and you give the magistrates the name you heard. Or the name you wanted to hear.",
+          "text": "You listen to the dead men and give the magistrates the name you heard, or the name you wanted to hear.",
           "effects": []
         }
       ]
     },
     {
       "id": "cut_down",
-      "label": "Pay the hangman to cut them down and burn them, before they say too much.",
+      "label": "Pay the hangman to cut them down and burn them before they say too much.",
       "tags": [
         "clever"
       ],
@@ -52,21 +52,21 @@
     },
     {
       "id": "ignore",
-      "label": "Stop up your ears and walk past. The dead lie as well as the living.",
+      "label": "Stop up your ears and walk past; the dead lie as well as the living.",
       "tags": [
         "cautious"
       ],
       "outcomes": [
         {
           "w": 1,
-          "text": "You walk past. The dead men laugh at your back.",
+          "text": "You walk past as the dead men laugh at your back.",
           "effects": []
         }
       ]
     }
   ],
   "blamed": {
-    "text": "The magistrates seize the named House's stores and pour them into the poisoned wells to sweeten them. The city is satisfied. The dead men stop talking.",
+    "text": "The magistrates seize the named House's stores and pour them into the poisoned wells to sweeten them. The city is satisfied; the dead men stop talking.",
     "effects": [
       {
         "resources": {

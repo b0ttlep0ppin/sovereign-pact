@@ -19,7 +19,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "Behind a wall that should be solid, a room furnished for someone small. The bed is still warm. You brick it up again.",
+          "text": "Behind a wall that should be solid is a room furnished for someone small. The bed is still warm. You brick it up again.",
           "effects": [
             {
               "sanity": -10
@@ -33,7 +33,7 @@
         },
         {
           "w": 50,
-          "text": "You find them. They sit at table with the recruits, and soon nobody can remember who sat in that chair before.",
+          "text": "You find them sitting at table with the recruits. Soon nobody can remember who sat in that chair before.",
           "effects": [
             {
               "recruits_lost": 1
@@ -50,14 +50,14 @@
     },
     {
       "id": "strike",
-      "label": "Strike the extra name out, and hope it stays struck.",
+      "label": "Strike the extra name out, hoping it stays struck.",
       "tags": [
         "cautious"
       ],
       "outcomes": [
         {
           "w": 80,
-          "text": "The ink comes back each morning. In time you stop checking.",
+          "text": "Each morning the ink comes back. In time you stop checking.",
           "effects": [
             {
               "sanity": -3
@@ -97,7 +97,7 @@
         },
         {
           "w": 40,
-          "text": "The name answers to being called. Something walks your halls at night in House colors.",
+          "text": "The name answers when called. Something walks your halls at night in House colors.",
           "effects": [
             {
               "score": {

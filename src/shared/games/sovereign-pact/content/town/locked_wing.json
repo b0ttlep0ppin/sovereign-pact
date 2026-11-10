@@ -7,7 +7,7 @@
     20
   ],
   "title": "The Locked Wing",
-  "text": "A door in the Seat that was never there opens onto a wing that was never built: long corridors, furnished, dusted, lamps lit. The portraits on the walls are of your House. Some of the faces are of Scions not yet born.",
+  "text": "A door in the Seat that was never there opens onto a wing that was never built, its long corridors furnished, dusted and lamplit. The portraits on the walls are of your House. Some of the faces belong to Scions not yet born.",
   "rule": "house",
   "options": [
     {
@@ -20,7 +20,7 @@
       "outcomes": [
         {
           "w": 40,
-          "text": "A treasure room, dusty and real, and a portrait of you on the wall, older.",
+          "text": "You find a treasure room, dusty and real, with a portrait of you on the wall, older.",
           "effects": [
             {
               "score": {
@@ -31,7 +31,7 @@
         },
         {
           "w": 30,
-          "text": "A nursery, with a child in it who knows your name.",
+          "text": "You find a nursery. The child in it knows your name.",
           "effects": [
             {
               "recruit_gain": 1
@@ -43,7 +43,7 @@
         },
         {
           "w": 30,
-          "text": "Nothing but corridors that lead back to the door. Some never stop walking them in their sleep.",
+          "text": "The corridors only lead back to the door. Some of you never stop walking them in your sleep.",
           "effects": [
             {
               "sanity": -20
@@ -54,14 +54,14 @@
     },
     {
       "id": "brick",
-      "label": "Brick it up. The future can stay behind a wall.",
+      "label": "Brick it up; the future can stay behind a wall.",
       "tags": [
         "cautious"
       ],
       "outcomes": [
         {
           "w": 100,
-          "text": "The bricks are warm for a week, and something on the other side breathes against them.",
+          "text": "For a week the bricks are warm, and something on the other side breathes against them.",
           "effects": []
         }
       ]

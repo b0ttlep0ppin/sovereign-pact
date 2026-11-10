@@ -16,7 +16,7 @@
     },
     "temptation": {
       "label": "Run your own ferry while the bridge is down.",
-      "text": "A tidy profit, as long as the bridge stays down a while. Nobody need know whose ferries are carrying the trade.",
+      "text": "There is a tidy profit in it, so long as the bridge stays down a while. Nobody need know whose ferries carry the trade.",
       "penalty": 15,
       "effects": [
         {
@@ -27,7 +27,7 @@
       ]
     },
     "triumph": {
-      "text": "The new span is finer than the old, and nobody looks down when crossing.",
+      "text": "The new span is finer than the old. Those who cross it keep their eyes ahead.",
       "effects": [
         {
           "accord": 3
@@ -35,11 +35,11 @@
       ]
     },
     "holds": {
-      "text": "Timber trestles carry the trade. The ferrymen charge double and will not cross after dark.",
+      "text": "Timber trestles carry the trade. The ferrymen charge double, and none will cross after dark.",
       "effects": []
     },
     "falters": {
-      "text": "Trade dwindles. The empty piers fill with people who stare at the water.",
+      "text": "Trade dwindles. The empty piers fill with people who sit and stare at the water.",
       "effects": [
         {
           "accord": -5
@@ -53,7 +53,7 @@
       ]
     },
     "calamity": {
-      "text": "The river is a wall. The markets starve, and on still nights the hands below the water can be heard knocking on the hulls.",
+      "text": "The river becomes a wall, and the markets starve. On still nights, hands can be heard knocking on the hulls from below.",
       "effects": [
         {
           "accord": -10

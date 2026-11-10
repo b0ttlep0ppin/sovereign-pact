@@ -16,7 +16,7 @@
     },
     "temptation": {
       "label": "Send your servants to pick over the bones for rings.",
-      "text": "The dead were buried with their jewellery. They will not miss it. They will remember who took it.",
+      "text": "The dead were buried with their jewellery. They will not miss it, but they will remember who took it.",
       "penalty": 15,
       "effects": [
         {
@@ -30,7 +30,7 @@
       ]
     },
     "triumph": {
-      "text": "The ossuary is sealed with a new vault, and the bishop reads the name of every dead soul over it. It takes a month. The dead lie still.",
+      "text": "The ossuary is sealed with a new vault. The bishop reads the name of every dead soul over it; it takes a month, but the dead lie still.",
       "effects": [
         {
           "accord": 3
@@ -41,11 +41,11 @@
       ]
     },
     "holds": {
-      "text": "Sealed, roughly. On quiet nights the floor of the cathedral creaks as if something underneath is turning over.",
+      "text": "The ossuary is sealed, roughly. On quiet nights the cathedral floor creaks as if something underneath is turning over.",
       "effects": []
     },
     "falters": {
-      "text": "The seal cracks within a week. The dead walk the lower town at night, looking for their own houses, and the living move out of them.",
+      "text": "The seal cracks within a week. At night the dead walk the lower town looking for their own houses, so the living move out of them.",
       "effects": [
         {
           "accord": -5
@@ -56,7 +56,7 @@
       ]
     },
     "calamity": {
-      "text": "The bone slope reaches the street. The dead walk into every Seat and lie down in the beds, and they will not be moved without a fight.",
+      "text": "The bone slope reaches the street. The dead walk into every Seat to lie down in the beds, and none of them can be moved without a fight.",
       "effects": [
         {
           "accord": -12

@@ -7,7 +7,7 @@
     20
   ],
   "title": "The Market Caravan",
-  "text": "A caravan camps in the Commons that no gate-ward saw arrive. Its traders wear veils even to eat, and their camels do not blink. They sell things nobody here has seen: salt from the bottom of a dead sea, glass that remembers, lamp oil that burns black.",
+  "text": "A caravan no gate-ward saw arrive camps in the Commons. Its traders wear veils even to eat, and their camels do not blink. They sell things nobody here has seen: salt from the bottom of a dead sea, glass that remembers, lamp oil that burns black.",
   "rule": "each_house",
   "options": [
     {
@@ -19,7 +19,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Strange stuff, carefully wrapped. Nobody remembers the traders' faces, only their hands.",
+          "text": "The strange stuff comes carefully wrapped. Nobody remembers the traders' faces, only their hands.",
           "effects": [
             {
               "resources": {
@@ -33,14 +33,14 @@
     },
     {
       "id": "pass",
-      "label": "Look, but buy nothing. Nothing that arrives unseen should be trusted.",
+      "label": "Look, but buy nothing; nothing that arrives unseen should be trusted.",
       "tags": [
         "cautious"
       ],
       "outcomes": [
         {
           "w": 100,
-          "text": "The caravan is gone by morning. So are its wheel ruts, and the camels' tracks, and the memory of their faces.",
+          "text": "By morning the caravan is gone, along with its wheel ruts, the camels' tracks and every memory of their faces.",
           "effects": []
         }
       ]

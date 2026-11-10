@@ -10,19 +10,19 @@
     "building:farm"
   ],
   "title": "The Grain That Screams",
-  "text": "Your farm's harvest screams when it is cut. Not loudly. The reapers have started wearing wax in their ears, and some of them have started to scream back.",
+  "text": "Your farm's harvest screams when it is cut, though not loudly. The reapers have started wearing wax in their ears. Some of them have started to scream back.",
   "rule": "house",
   "options": [
     {
       "id": "burn",
-      "label": "Burn the screaming field, and buy your seed from somewhere sane.",
+      "label": "Burn the screaming field and buy your seed from somewhere sane.",
       "tags": [
         "cautious"
       ],
       "outcomes": [
         {
           "w": 100,
-          "text": "The field burns quietly, which is worse. Next Year's seed is bought from far away.",
+          "text": "The field burns quietly, which is worse. Next Year's seed comes from far away.",
           "effects": [
             {
               "resources": {
@@ -36,14 +36,14 @@
     },
     {
       "id": "harvest",
-      "label": "Bring the harvest in anyway. Bread is bread, and winter is coming.",
+      "label": "Bring the harvest in anyway; bread is bread, and winter is coming.",
       "tags": [
         "reckless"
       ],
       "outcomes": [
         {
           "w": 60,
-          "text": "The bread is fine. Nobody eats it in silence, though.",
+          "text": "The bread is fine, though nobody eats it in silence.",
           "effects": [
             {
               "resources": {
@@ -57,7 +57,7 @@
         },
         {
           "w": 40,
-          "text": "The bread is fine. One reaper does not stop screaming, and has to be sent away.",
+          "text": "The bread is fine. One reaper will not stop screaming and has to be sent away.",
           "effects": [
             {
               "resources": {
@@ -73,14 +73,14 @@
     },
     {
       "id": "ask",
-      "label": "Ask the grain what it wants, and hope it is something you can give.",
+      "label": "Ask the grain what it wants, hoping it is something you can give.",
       "tags": [
         "clever"
       ],
       "outcomes": [
         {
           "w": 50,
-          "text": "It wants to be planted at the Gate. It grows there into something tall, and the Gate's light dims around it.",
+          "text": "It wants to be planted at the Gate. There it grows into something tall, and the Gate's light dims around it.",
           "effects": [
             {
               "doom": -3
@@ -94,7 +94,7 @@
         },
         {
           "w": 50,
-          "text": "It wants the one who asked. The Scion sleeps in the field for three nights, and comes back with straw in their lungs.",
+          "text": "It wants the one who asked. The Scion sleeps in the field for three nights and comes back with straw in their lungs.",
           "effects": [
             {
               "scion": {

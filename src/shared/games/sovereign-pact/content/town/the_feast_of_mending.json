@@ -83,7 +83,7 @@
     {
       "when": "all",
       "option": "give",
-      "text": "Every House brings its best. The feast runs till dawn, the old quarrels are toasted away, and the Rift is quiet all night.",
+      "text": "Every House brings its best. Old quarrels are toasted away at a feast that runs till dawn, and all night the Rift is quiet.",
       "effects": [
         {
           "accord": 6
@@ -96,7 +96,7 @@
     {
       "when": "none",
       "option": "give",
-      "text": "Nobody brings food. The long table stands in the square all night with nothing on it, and in the morning the poor say the dead sat down at it.",
+      "text": "Nobody brings food. The long table stands empty in the square all night. In the morning the poor say the dead sat down at it.",
       "effects": [
         {
           "accord": -3

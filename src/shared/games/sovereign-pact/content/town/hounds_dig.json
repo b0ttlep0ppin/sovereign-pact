@@ -10,7 +10,7 @@
     "building:kennels"
   ],
   "title": "What the Hounds Dug Up",
-  "text": "The kennel hounds have been digging all night under the east wall. They have found something, and they will not let anyone near it, and they will not stop whining.",
+  "text": "All night the kennel hounds have been digging under the east wall. They have found something, and they will let no one near it. They will not stop whining.",
   "rule": "house",
   "options": [
     {
@@ -22,7 +22,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "A child's skeleton, wearing your House's colors, centuries old. Nobody knows her name.",
+          "text": "It is a child's skeleton, centuries old, wearing your House's colors. Nobody knows her name.",
           "effects": [
             {
               "sanity": -8
@@ -36,7 +36,7 @@
         },
         {
           "w": 50,
-          "text": "A chest of old coin, and a hand still holding the key.",
+          "text": "It is a chest of old coin, a hand still holding the key.",
           "effects": [
             {
               "resources": {
@@ -49,7 +49,7 @@
     },
     {
       "id": "fill",
-      "label": "Fill the hole and chain the hounds. Some things are buried for a reason.",
+      "label": "Fill the hole and chain the hounds; some things are buried for a reason.",
       "tags": [
         "cautious"
       ],
@@ -63,14 +63,14 @@
     },
     {
       "id": "let_them",
-      "label": "Let the hounds have what they found. They dug for it.",
+      "label": "Let the hounds have what they found; they dug for it.",
       "tags": [
         "reckless"
       ],
       "outcomes": [
         {
           "w": 60,
-          "text": "They eat whatever it was. Afterwards they are bigger, and quieter, and they watch the Scions.",
+          "text": "They eat whatever it was. Afterward they are bigger and quieter, and they watch the Scions.",
           "effects": [
             {
               "score": {
@@ -84,7 +84,7 @@
         },
         {
           "w": 40,
-          "text": "They eat it, and turn on the kennel master's apprentice in the night.",
+          "text": "They eat it. In the night they turn on the kennel master's apprentice.",
           "effects": [
             {
               "recruits_lost": 1

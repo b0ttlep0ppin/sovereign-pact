@@ -7,19 +7,19 @@
     20
   ],
   "title": "The Hooded Confessor",
-  "text": "A hooded confessor sits in the cathedral's darkest booth and hears the city's sins for nothing, day and night, and never seems to tire. He remembers every one. He has begun to write them down, in a great black book, in a hand that is very neat.",
+  "text": "A hooded confessor sits in the cathedral's darkest booth, hearing the city's sins day and night for nothing, never seeming to tire. He remembers every one. Now he has begun to write them down in a great black book, in a very neat hand.",
   "rule": "vote",
   "options": [
     {
       "id": "welcome",
-      "label": "Let him hear the city's sins. A city unburdened sleeps easier.",
+      "label": "Let him hear the city's sins; a city unburdened sleeps easier.",
       "tags": [
         "kind"
       ],
       "outcomes": [
         {
           "w": 60,
-          "text": "The city sleeps easier, unburdened, and the black book grows.",
+          "text": "The city sleeps easier, and the black book grows.",
           "effects": [
             {
               "accord": 3
@@ -28,7 +28,7 @@
         },
         {
           "w": 40,
-          "text": "Pages of his book turn up nailed to doors. One carries a House's name, and a sin the House thought buried.",
+          "text": "Pages of his book turn up nailed to doors. One carries a House's name, with a sin the House thought buried.",
           "effects": [
             {
               "accord": -2
@@ -45,7 +45,7 @@
     },
     {
       "id": "seize",
-      "label": "Seize his black book, before it is read by someone worse.",
+      "label": "Seize his black book before someone worse reads it.",
       "tags": [
         "bold",
         "cruel"
@@ -68,7 +68,7 @@
         },
         {
           "w": 50,
-          "text": "There is no book. There was never a confessor. The booth smells of wet earth, and every House's sins are whispered in its halls that night.",
+          "text": "There is no book, and there never was a confessor. The booth smells of wet earth. That night every House's sins are whispered in its halls.",
           "effects": [
             {
               "to": "all",
@@ -80,14 +80,14 @@
     },
     {
       "id": "ignore",
-      "label": "Leave him to his booth. Confession is between a soul and its confessor.",
+      "label": "Leave him to his booth; confession is between a soul and its confessor.",
       "tags": [
         "cautious"
       ],
       "outcomes": [
         {
           "w": 100,
-          "text": "He leaves in spring, heavy with secrets, by the road toward the Gate. Whatever waits there will read them.",
+          "text": "In spring he leaves by the road toward the Gate, heavy with secrets. Whatever waits there will read them.",
           "effects": [
             {
               "doom": 1

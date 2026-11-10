@@ -12,7 +12,7 @@
   "options": [
     {
       "id": "accuse",
-      "label": "Name the House that did it, and let the magistrates have their answer.",
+      "label": "Name the House that did it, and give the magistrates their answer.",
       "tags": [
         "cruel"
       ],
@@ -27,7 +27,7 @@
     },
     {
       "id": "confess",
-      "label": "Let one of your servants confess, to end it before the Houses turn on each other.",
+      "label": "Let one of your servants confess, ending it before the Houses turn on each other.",
       "tags": [
         "kind"
       ],
@@ -37,7 +37,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "Your servant hangs at dawn, and the city breathes out. Nobody believes it, and everybody is grateful.",
+          "text": "Your servant hangs at dawn, and the city breathes out. Nobody believes it, yet everybody is grateful.",
           "effects": [
             {
               "accord": 5
@@ -52,7 +52,7 @@
         },
         {
           "w": 30,
-          "text": "Your servant hangs, and on the gibbet he names the real killers in a voice that is not his. The crowd goes home very quiet.",
+          "text": "Your servant hangs. On the gibbet he names the real killers in a voice that is not his, and the crowd goes home very quiet.",
           "effects": [
             {
               "accord": 2
@@ -73,14 +73,14 @@
       "outcomes": [
         {
           "w": 1,
-          "text": "You keep your counsel. The steward's skin is gone from the step by morning.",
+          "text": "You keep your counsel. By morning the steward's skin is gone from the step.",
           "effects": []
         }
       ]
     }
   ],
   "blamed": {
-    "text": "The mob gathers at their gates with torches and the steward's empty face held up on a pole. By morning their finest building is ash, and the city sleeps easier.",
+    "text": "The mob gathers at their gates with torches, holding the steward's empty face up on a pole. By morning their finest building is ash. The city sleeps easier.",
     "effects": [
       {
         "raze": "best"

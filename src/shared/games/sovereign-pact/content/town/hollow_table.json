@@ -12,7 +12,7 @@
   "options": [
     {
       "id": "attend",
-      "label": "Send your sharpest Scion to dine with the dead lord, and eat nothing.",
+      "label": "Send your sharpest Scion to dine with the dead lord, eating nothing.",
       "tags": [
         "bold"
       ],
@@ -23,7 +23,7 @@
       "outcomes": [
         {
           "w": 1,
-          "text": "Your Scion eats nothing, says the right things, and leaves with a gift from the host: something old, wrapped in a shroud.",
+          "text": "Your Scion eats nothing and says the right things. They leave with a gift from the host, something old wrapped in a shroud.",
           "effects": [
             {
               "item": {
@@ -40,7 +40,7 @@
         },
         {
           "w": 1,
-          "text": "Your Scion ate. They came home before dawn and have not been warm since.",
+          "text": "Your Scion ate. They came home before dawn, and have not been warm since.",
           "effects": [
             {
               "scion": {
@@ -56,7 +56,7 @@
     },
     {
       "id": "proxy",
-      "label": "Send a recruit in your place, in your colours. The dead lord may not notice.",
+      "label": "Send a recruit in your place, in your colours; the dead lord may not notice.",
       "tags": [
         "cruel",
         "clever"
@@ -78,7 +78,7 @@
         },
         {
           "w": 30,
-          "text": "The recruit does not come home. A purse arrives the next day, with their teeth in it.",
+          "text": "The recruit does not come home. The next day a purse arrives with their teeth in it.",
           "effects": [
             {
               "resources": {
@@ -94,7 +94,7 @@
     },
     {
       "id": "decline",
-      "label": "Send your regrets. No living House dines with the dead.",
+      "label": "Send your regrets; no living House dines with the dead.",
       "tags": [
         "cautious"
       ],

@@ -47,7 +47,7 @@
     {
       "when": "none",
       "option": "bid",
-      "text": "No House bids. The coffin is gone in the morning. A golden coffin is seen in the Rift's light that night, floating towards the Gate.",
+      "text": "No House bids, and by morning the coffin is gone. That night a golden coffin is seen in the Rift's light, floating towards the Gate.",
       "effects": [
         {
           "doom": 2
@@ -56,7 +56,7 @@
     }
   ],
   "prize": {
-    "text": "The coffin is yours. Opened, it holds a fortune in grave-goods and a corpse in fine clothes that smiles at the youngest of your House, and has to be buried three times before it stays down.",
+    "text": "The coffin is yours. Inside lies a fortune in grave-goods beside a corpse in fine clothes. It smiles at the youngest of your House; it has to be buried three times before it stays down.",
     "effects": [
       {
         "item": {

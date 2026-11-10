@@ -102,7 +102,7 @@
     {
       "when": "none",
       "option": "walk",
-      "text": "Nobody walks with them. The pilgrims reach the Gate alone and do not come back, and the Gate is a little wider in the morning.",
+      "text": "Nobody walks with them. The pilgrims reach the Gate alone and do not come back. In the morning the Gate is a little wider.",
       "effects": [
         {
           "doom": 4

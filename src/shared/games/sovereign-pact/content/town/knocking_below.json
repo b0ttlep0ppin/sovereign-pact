@@ -15,7 +15,7 @@
   "options": [
     {
       "id": "break_through",
-      "label": "Break through to whatever is knocking, in case it is a crew still living.",
+      "label": "Break through to whatever is knocking, in case a crew still lives.",
       "tags": [
         "bold",
         "reckless"
@@ -23,7 +23,7 @@
       "outcomes": [
         {
           "w": 40,
-          "text": "Beyond the wall, a lost seam of iron, and the bones of an old crew who knocked until they could not.",
+          "text": "Beyond the wall lie a lost seam of iron and the bones of an old crew, who knocked until they could not.",
           "effects": [
             {
               "resources": {
@@ -34,7 +34,7 @@
         },
         {
           "w": 30,
-          "text": "Beyond the wall, a cave of black glass, singing faintly.",
+          "text": "Beyond the wall is a cave of black glass, singing faintly.",
           "effects": [
             {
               "resources": {
@@ -62,14 +62,14 @@
     },
     {
       "id": "answer",
-      "label": "Knock back, three and three, and wait to learn what answers.",
+      "label": "Knock back, three and three, and wait for an answer.",
       "tags": [
         "clever"
       ],
       "outcomes": [
         {
           "w": 60,
-          "text": "The knocking stops. The seam beyond it gives freely for a while.",
+          "text": "The knocking stops. For a while the seam beyond gives freely.",
           "effects": [
             {
               "resources": {
@@ -91,14 +91,14 @@
     },
     {
       "id": "seal",
-      "label": "Collapse the gallery, and bury whatever knocks.",
+      "label": "Collapse the gallery to bury whatever knocks.",
       "tags": [
         "cautious"
       ],
       "outcomes": [
         {
           "w": 100,
-          "text": "The gallery comes down. The mine yields less this Year, and the miners swear they still hear it, fainter.",
+          "text": "The gallery comes down. The mine yields less this Year, and the miners swear they can still hear it, fainter.",
           "effects": [
             {
               "resources": {

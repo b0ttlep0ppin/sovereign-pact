@@ -115,7 +115,7 @@
     {
       "when": "none",
       "option": "burn",
-      "text": "No House burns its granary. The city's bread hums faintly in the oven, and the Rift is warm to the touch.",
+      "text": "No House burns its granary. The city's bread hums faintly in the oven; the Rift is warm to the touch.",
       "effects": [
         {
           "doom": 3

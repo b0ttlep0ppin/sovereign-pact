@@ -53,7 +53,7 @@
     {
       "when": "none",
       "option": "bid",
-      "text": "Nobody bids. The auctioneer bows to the empty square and burns the lot on the steps; the smoke smells of incense and hair, and the cathedral bell cracks.",
+      "text": "Nobody bids. The auctioneer bows to the empty square, then burns the lot on the steps. The smoke smells of incense and hair; that night the cathedral bell cracks.",
       "effects": [
         {
           "doom": 3
@@ -62,7 +62,7 @@
     }
   ],
   "prize": {
-    "text": "The hand is delivered in a silver cage before sunrise. It is blessing the servant who carries it, and the servant is weeping.",
+    "text": "The hand is delivered in a silver cage before sunrise. It blesses the servant who carries it, who weeps the whole way.",
     "effects": [
       {
         "item": {

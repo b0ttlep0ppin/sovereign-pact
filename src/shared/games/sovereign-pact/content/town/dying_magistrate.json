@@ -7,12 +7,12 @@
     20
   ],
   "title": "The Dying Magistrate",
-  "text": "The old Magistrate is dying in a room that smells of camphor and rot, without an heir. His physicians whisper in the corridors that a House could have its own name read into the will, for the right gift and the right silence. He is not dying fast enough for some.",
+  "text": "The old Magistrate is dying without an heir, in a room that smells of camphor and rot. His physicians whisper in the corridors that a House could have its own name read into the will for the right gift and the right silence. For some, he is not dying fast enough.",
   "rule": "secret",
   "options": [
     {
       "id": "bribe",
-      "label": "Send the physicians a gift, and say nothing. A will is only ink.",
+      "label": "Send the physicians a gift and say nothing; a will is only ink.",
       "tags": [
         "cruel",
         "clever"
@@ -50,14 +50,14 @@
     },
     {
       "id": "abstain",
-      "label": "Send flowers, and nothing else. Let him die with his honor.",
+      "label": "Send flowers and nothing else; let him die with his honor.",
       "tags": [
         "cautious"
       ],
       "outcomes": [
         {
           "w": 100,
-          "text": "Your House mourns him in public, which is more than most do, and the city notices.",
+          "text": "Your House mourns him in public, which is more than most do. The city notices.",
           "effects": [
             {
               "score": {
@@ -73,7 +73,7 @@
     {
       "when": "none",
       "option": "bribe",
-      "text": "No House bought the will. It leaves his coffers to the city itself.",
+      "text": "No House bought the will, so his coffers go to the city itself.",
       "effects": [
         {
           "to": "commons",
@@ -89,7 +89,7 @@
     {
       "when": "all",
       "option": "bribe",
-      "text": "Every House bribed a dying man. The whole city knows it by supper.",
+      "text": "Every House bribed a dying man. By supper the whole city knows.",
       "effects": [
         {
           "accord": -8

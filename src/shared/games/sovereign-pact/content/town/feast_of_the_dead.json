@@ -10,19 +10,19 @@
     "building:crypt"
   ],
   "title": "Feast of the Dead",
-  "text": "The Crypt's doors stand open at midnight, and candlelight spills up the stairs. The long table inside is laid with the House's best silver, the wine poured, the bread warm. Every chair but one is taken by something very still, in the House's old colors.",
+  "text": "At midnight the Crypt's doors stand open, candlelight spilling up the stairs. The long table inside is laid with the House's best silver, the wine poured, the bread warm. Every chair but one is taken by something very still, dressed in the House's old colors.",
   "rule": "house",
   "options": [
     {
       "id": "sit",
-      "label": "Take the empty chair and sit with the dead. It was left for you.",
+      "label": "Take the empty chair and sit with the dead; it was left for you.",
       "tags": [
         "bold"
       ],
       "outcomes": [
         {
           "w": 60,
-          "text": "The dead are good company, and have much to tell, and they keep refilling your glass.",
+          "text": "The dead are good company. They have much to tell, and they keep refilling your glass.",
           "effects": [
             {
               "score": {
@@ -33,7 +33,7 @@
         },
         {
           "w": 40,
-          "text": "The dead are poor company. They stare, and do not eat, and do not let you leave until dawn.",
+          "text": "The dead are poor company. They stare without eating, and they do not let you leave until dawn.",
           "effects": [
             {
               "sanity": -15
@@ -44,7 +44,7 @@
     },
     {
       "id": "seal",
-      "label": "Seal the crypt doors on the feast, and let the dead dine alone.",
+      "label": "Seal the crypt doors on the feast and let the dead dine alone.",
       "tags": [
         "cautious"
       ],

@@ -7,7 +7,7 @@
     20
   ],
   "title": "What the Foundation Held",
-  "text": "The building you painted over has stopped weeping. It has started breathing. Last night the floor of the cellar opened like a mouth, and there are steps going down that were never built.",
+  "text": "The building you painted over has stopped weeping and started breathing. Last night the cellar floor opened like a mouth onto steps going down that were never built.",
   "rule": "house",
   "chained": true,
   "options": [
@@ -24,7 +24,7 @@
       "outcomes": [
         {
           "w": 1,
-          "text": "They come back up with something in their arms that was buried before the city was founded, and will not say what else they saw.",
+          "text": "They come back up carrying something buried before the city was founded. They will not say what else they saw.",
           "effects": [
             {
               "item": {
@@ -43,7 +43,7 @@
         },
         {
           "w": 1,
-          "text": "They come back up a day later, on all fours, and the steps close behind them. They are mostly still themselves.",
+          "text": "A day later they come back up on all fours, and the steps close behind them. They are mostly still themselves.",
           "effects": [
             {
               "scion": {
@@ -59,14 +59,14 @@
     },
     {
       "id": "seal",
-      "label": "Pour the cellar full of lead, and seal whatever breathes below.",
+      "label": "Pour the cellar full of lead to seal whatever breathes below.",
       "tags": [
         "cautious"
       ],
       "outcomes": [
         {
           "w": 1,
-          "text": "It takes every scrap of iron in the stores. The breathing stops. The building is never quite level again.",
+          "text": "It takes every scrap of iron in the stores. The breathing stops, though the building is never quite level again.",
           "effects": [
             {
               "resources": {

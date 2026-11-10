@@ -7,7 +7,7 @@
     20
   ],
   "title": "Fire in the Lower Town",
-  "text": "A chandler's shop went up at midnight and the wind did the rest. Three streets are ash, still smoking, and the bells rang until dawn. The survivors say the fire walked from house to house on its own, and knocked first, and waited to be let in.",
+  "text": "A chandler's shop went up at midnight, and the wind did the rest. Three streets are ash, still smoking, and the bells rang until dawn. The survivors say the fire walked from house to house on its own, knocking first and waiting to be let in.",
   "rule": "pledges",
   "crisis": {
     "need": {
@@ -15,7 +15,7 @@
       "grain": 15
     },
     "triumph": {
-      "text": "The streets rise again within the Year, and the people bless the Houses by name.",
+      "text": "The streets rise again within the Year. The people bless the Houses by name.",
       "effects": [
         {
           "accord": 4
@@ -23,11 +23,11 @@
       ]
     },
     "holds": {
-      "text": "Shelters, soup, and slow rebuilding. Nobody will light a candle in the new houses.",
+      "text": "There are shelters, soup, and slow rebuilding. Nobody will light a candle in the new houses.",
       "effects": []
     },
     "falters": {
-      "text": "The burned-out families drift away to other cities, and take the story of the knocking fire with them.",
+      "text": "The burned-out families drift away to other cities, carrying the tale of the knocking fire with them.",
       "effects": [
         {
           "accord": -5
@@ -35,7 +35,7 @@
       ]
     },
     "calamity": {
-      "text": "In the Year's end gales the fire walks again, and this time it knocks on a House's door.",
+      "text": "In the gales at the Year's end the fire walks again. This time it knocks on a House's door.",
       "effects": [
         {
           "accord": -10

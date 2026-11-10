@@ -7,12 +7,12 @@
     20
   ],
   "title": "The Drowned Procession",
-  "text": "Out of the river walk the drowned, in their Sunday clothes, in a slow procession toward the Rift Gate. They knock at every House's door as they pass, asking for the ones they lost.",
+  "text": "The drowned walk out of the river in their Sunday clothes, in a slow procession toward the Rift Gate. As they pass they knock at every House's door, asking for the ones they lost.",
   "rule": "each_house",
   "options": [
     {
       "id": "open",
-      "label": "Open the door and hear the names they ask for, whatever they may be.",
+      "label": "Open the door and hear the names they ask for.",
       "tags": [
         "kind",
         "bold"
@@ -20,7 +20,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "They name an ancestor of the House, long dead, and bow to the hall. The water they leave behind is clean.",
+          "text": "They name a long-dead ancestor of the House and bow to the hall. The water they leave behind is clean.",
           "effects": [
             {
               "score": {
@@ -34,7 +34,7 @@
         },
         {
           "w": 50,
-          "text": "They name one of your living, and wait. They go at last, but that Scion has dreamed of deep water every night since.",
+          "text": "They name one of your living and wait. At last they go, but that Scion has dreamed of deep water every night since.",
           "effects": [
             {
               "scion": {
@@ -47,14 +47,14 @@
     },
     {
       "id": "bar",
-      "label": "Bar the door and wait for dawn. The drowned can ask elsewhere.",
+      "label": "Bar the door and wait for dawn; the drowned can ask elsewhere.",
       "tags": [
         "cautious"
       ],
       "outcomes": [
         {
           "w": 70,
-          "text": "Wet handprints dry on the door. They are still there in spring, no matter how it is scrubbed.",
+          "text": "Wet handprints dry on the door. However it is scrubbed, they are still there in spring.",
           "effects": [
             {
               "sanity": -3
@@ -74,7 +74,7 @@
     },
     {
       "id": "follow",
-      "label": "Follow the drowned to the Gate, to learn what they mean to do there.",
+      "label": "Follow the drowned to the Gate to learn what they mean to do there.",
       "tags": [
         "reckless"
       ],
@@ -97,7 +97,7 @@
         },
         {
           "w": 60,
-          "text": "A Scion walked with them too far, and came back coughing up river silt for a month.",
+          "text": "A Scion walked too far with them, and coughed up river silt for a month after.",
           "effects": [
             {
               "scion": {

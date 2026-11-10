@@ -7,12 +7,12 @@
     4
   ],
   "title": "Hoofprints in the Snow",
-  "text": "Every morning this winter there are tracks in the snow outside the walls: cloven, each print the size of a wagon wheel, circling the whole city once in the night and going back towards the Gate. The hunters will not follow them. The children have started drawing them.",
+  "text": "Every morning this winter there are tracks in the snow outside the walls. They are cloven, each print the size of a wagon wheel, circling the whole city once in the night before turning back toward the Gate. The hunters will not follow them. The children have started drawing them.",
   "rule": "random_house",
   "options": [
     {
       "id": "follow",
-      "label": "Send a Scion to follow the tracks, and learn how big it is.",
+      "label": "Send a Scion to follow the tracks and learn how big it is.",
       "tags": [
         "bold"
       ],
@@ -23,7 +23,7 @@
       "outcomes": [
         {
           "w": 1,
-          "text": "Your Scion follows them to a scar in the hills where the snow has melted in a circle, and comes back with a shed horn as long as a lance and a clear idea of how big it is.",
+          "text": "Your Scion follows them to a scar in the hills where the snow has melted in a circle. They come back with a shed horn as long as a lance, and a clear idea of how big it is.",
           "effects": [
             {
               "scion": {
@@ -44,7 +44,7 @@
         },
         {
           "w": 1,
-          "text": "Your Scion follows them too far. They are found at dawn at the bottom of a print, one leg broken under them, babbling about a smell like a forge.",
+          "text": "Your Scion follows them too far. At dawn they are found at the bottom of a print, one leg broken under them, babbling about a smell like a forge.",
           "effects": [
             {
               "scion": {
@@ -60,7 +60,7 @@
     },
     {
       "id": "salt",
-      "label": "Lay salt and iron along the whole wall, and keep it out.",
+      "label": "Lay salt and iron along the whole wall to keep it out.",
       "tags": [
         "kind"
       ],
@@ -73,7 +73,7 @@
       "outcomes": [
         {
           "w": 1,
-          "text": "The masons line the wall with salt and old nails. The tracks keep their distance after that, and the city sleeps.",
+          "text": "The masons line the wall with salt and old nails. After that the tracks keep their distance, and the city sleeps.",
           "effects": [
             {
               "accord": 2
@@ -87,14 +87,14 @@
     },
     {
       "id": "hush",
-      "label": "Tell the children to stop drawing them, before the fear spreads.",
+      "label": "Tell the children to stop drawing them before the fear spreads.",
       "tags": [
         "cautious"
       ],
       "outcomes": [
         {
           "w": 1,
-          "text": "The children stop drawing the tracks. They start drawing the thing that made them, and they all draw it the same.",
+          "text": "The children stop drawing the tracks. Instead they draw the thing that made them, and they all draw it the same.",
           "effects": [
             {
               "sanity": -5

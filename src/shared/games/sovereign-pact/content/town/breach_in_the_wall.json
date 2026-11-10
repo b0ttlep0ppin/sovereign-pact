@@ -8,10 +8,10 @@
   "rule": "pledges",
   "crisis": {
     "need": { "stone": 30, "iron": 15 },
-    "temptation": { "label": "Let the masons take your quarry's best stone home.", "text": "The foreman offers to look the other way on a few loads, for a share.", "penalty": 15, "effects": [{ "resources": { "stone": 15 } }] },
-    "triumph": { "text": "The breach is sealed stronger than before.", "effects": [{ "accord": 3 }, { "doom": -2 }] },
-    "holds": { "text": "Patched, and watched.", "effects": [] },
-    "falters": { "text": "The patch holds badly; things slip through on moonless nights.", "effects": [{ "accord": -5 }, { "doom": 5 }] },
-    "calamity": { "text": "The breach stands open. The next expedition must wait while the walls are manned.", "effects": [{ "accord": -10 }, { "doom": 10 }, { "flag": "expedition_delayed" }] }
+    "temptation": { "label": "Let the masons take your quarry's best stone home.", "text": "The foreman offers to look the other way on a few loads, for a share of what they fetch.", "penalty": 15, "effects": [{ "resources": { "stone": 15 } }] },
+    "triumph": { "text": "The breach is sealed with stone stronger than the old wall.", "effects": [{ "accord": 3 }, { "doom": -2 }] },
+    "holds": { "text": "The breach is patched. Men watch it through the night.", "effects": [] },
+    "falters": { "text": "The patch holds badly. On moonless nights, things slip through.", "effects": [{ "accord": -5 }, { "doom": 5 }] },
+    "calamity": { "text": "The breach stands open. Every spear is needed on the walls, so the next expedition must wait.", "effects": [{ "accord": -10 }, { "doom": 10 }, { "flag": "expedition_delayed" }] }
   }
 }

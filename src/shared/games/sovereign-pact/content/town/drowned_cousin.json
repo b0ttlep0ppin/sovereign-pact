@@ -7,12 +7,12 @@
     20
   ],
   "title": "The Drowned Cousin",
-  "text": "A cousin of the House, drowned ten years ago and buried with honor, is at the gate this morning, dripping, asking to come home. They remember everything. They are a little too cold.",
+  "text": "A cousin of the House, drowned ten years ago and buried with honor, stands at the gate this morning, dripping, asking to come home. They remember everything. They are a little too cold.",
   "rule": "house",
   "options": [
     {
       "id": "welcome",
-      "label": "Welcome the drowned cousin home. Blood is blood, wet or dry.",
+      "label": "Welcome the drowned cousin home; blood is blood, wet or dry.",
       "tags": [
         "kind",
         "reckless"
@@ -20,7 +20,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "They take up their old room and their old sword, and train harder than any of the recruits.",
+          "text": "They take up their old room and their old sword, training harder than any of the recruits.",
           "effects": [
             {
               "recruit_gain": 1
@@ -32,7 +32,7 @@
         },
         {
           "w": 50,
-          "text": "They take up their old room. Within a month the well water tastes of the river, and the House's eldest sleeps in a chair by the fire.",
+          "text": "They take up their old room. Within a month the well water tastes of the river, and the House's eldest has taken to sleeping in a chair by the fire.",
           "effects": [
             {
               "recruit_gain": 1
@@ -50,14 +50,14 @@
     },
     {
       "id": "test",
-      "label": "Test them with silver and salt, to learn what came back from the river.",
+      "label": "Test them with silver and salt to learn what came back from the river.",
       "tags": [
         "clever"
       ],
       "outcomes": [
         {
           "w": 60,
-          "text": "They hold the silver without flinching. They are only cold. They stay.",
+          "text": "They hold the silver without flinching; they are only cold. They stay.",
           "effects": [
             {
               "recruit_gain": 1
@@ -66,7 +66,7 @@
         },
         {
           "w": 40,
-          "text": "The silver burns them. They go back to the river without a word, and the House mourns them twice.",
+          "text": "The silver burns them. They go back to the river without a word, and the House mourns them a second time.",
           "effects": [
             {
               "sanity": -10
@@ -82,14 +82,14 @@
     },
     {
       "id": "refuse",
-      "label": "Turn them away at the gate. The House buried them once already.",
+      "label": "Turn them away at the gate; the House buried them once already.",
       "tags": [
         "cautious"
       ],
       "outcomes": [
         {
           "w": 100,
-          "text": "They stand at the gate until dark, and then they are not there. The family plot is wet for a year.",
+          "text": "They stand at the gate until dark, and then they are gone. The family plot stays wet for a year.",
           "effects": [
             {
               "sanity": -5

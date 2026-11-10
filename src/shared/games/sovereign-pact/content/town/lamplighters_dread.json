@@ -12,14 +12,14 @@
   "options": [
     {
       "id": "pay",
-      "label": "Pay the lamplighters double for the winter, so the streets stay lit.",
+      "label": "Pay the lamplighters double for the winter so the streets stay lit.",
       "tags": [
         "kind"
       ],
       "outcomes": [
         {
           "w": 100,
-          "text": "The lamps burn. The extra one burns too, somewhere, every night.",
+          "text": "The lamps burn. Somewhere, every night, the extra one burns too.",
           "effects": [
             {
               "resources": {
@@ -35,7 +35,7 @@
     },
     {
       "id": "escort",
-      "label": "Send your Scions out on the rounds with them, so they need not walk alone.",
+      "label": "Send your Scions out on the rounds so the lamplighters need not walk alone.",
       "tags": [
         "bold"
       ],
@@ -72,7 +72,7 @@
     },
     {
       "id": "dark",
-      "label": "Let the streets go dark. Lamps cost Gold, and fear is free.",
+      "label": "Let the streets go dark; lamps cost Gold, and fear is free.",
       "tags": [
         "cautious",
         "cruel"

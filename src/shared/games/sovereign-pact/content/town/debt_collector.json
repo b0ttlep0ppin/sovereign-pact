@@ -7,19 +7,19 @@
     20
   ],
   "title": "The Debt Collector",
-  "text": "A grey man with a ledger arrives to collect the kingdom's old debt from its richest House. He sits in the hall with his hat on his knees and does not eat or drink or sleep. He will not leave until he is paid or refused. The dogs will not go near him.",
+  "text": "A grey man with a ledger arrives to collect the kingdom's old debt from its richest House. He sits in the hall with his hat on his knees, never eating, drinking or sleeping, and will not leave until he is paid or refused. The dogs will not go near him.",
   "rule": "most_gold",
   "options": [
     {
       "id": "pay",
-      "label": "Pay the kingdom's old debt, and be rid of him (50 Gold).",
+      "label": "Pay the kingdom's old debt to be rid of him (50 Gold).",
       "tags": [
         "kind"
       ],
       "outcomes": [
         {
           "w": 100,
-          "text": "He tips his hat, closes the ledger, and leaves. The dogs come back into the hall.",
+          "text": "He tips his hat, closes the ledger and leaves. The dogs come back into the hall.",
           "effects": [
             {
               "resources": {
@@ -40,14 +40,14 @@
     },
     {
       "id": "refuse",
-      "label": "Refuse the grey man. The kingdom's debts are not yours.",
+      "label": "Refuse the grey man; the kingdom's debts are not yours.",
       "tags": [
         "bold"
       ],
       "outcomes": [
         {
           "w": 100,
-          "text": "He writes something in the ledger and leaves. Trade turns cold for every House, and every House knows why.",
+          "text": "He writes something in the ledger before he leaves. Trade turns cold for every House, and every House knows why.",
           "effects": [
             {
               "resources": {
@@ -64,7 +64,7 @@
     },
     {
       "id": "vagabonds",
-      "label": "Set the Vagabonds on him, and let the ledger go missing.",
+      "label": "Set the Vagabonds on him so the ledger goes missing.",
       "tags": [
         "cruel",
         "clever"
@@ -83,7 +83,7 @@
         },
         {
           "w": 50,
-          "text": "He was expecting that. The ledger's debt doubles.",
+          "text": "He was expecting that. The debt in the ledger doubles.",
           "effects": [
             {
               "resources": {
