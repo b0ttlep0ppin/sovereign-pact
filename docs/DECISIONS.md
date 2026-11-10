@@ -2,6 +2,13 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-10 (implementation, Milestone 8dg): the crown shimmers
+
+Josh: **"add some shimmer to the animation, and slightly thin out the silhouette on the splash screen so its more implying the crown than drawing it"**.
+- A pale sheen sweeps across the torn part of the crown every few seconds, and small sparks of light run along its cracks.
+- Josh: **"add some bubbling of pixels across the main line on the top, like carbonation bubbles floating upwards"**. Small pale pixels fizz up off the torn edge and fade as they rise, kept inside the crown's outline. They stop once the crown is whole, and reduced motion hides them.
+- The splash's crown is drawn faint: thinner, more broken cracks and a thinner veil of violet. The Rift Gate keeps the full drawing.
+
 ## 2026-11-10 (implementation, Milestone 8df): the rift is a crown
 
 Josh: **"The purple rift should probably have a little more texture, it would be cool if it's silhouette could suggest the shape of a crown, both in the splash screen and on settlement screen, maybe even filling in a bit more every year as you get closer to year twenty"**.

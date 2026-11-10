@@ -13,14 +13,21 @@ const CROWN =
 const ORBS: [number, number, number][] = [[8, 21, 4], [64, 14, 4], [100, 3, 5], [136, 14, 4], [192, 21, 4]];
 const JEWELS = [46, 73, 100, 127, 154];
 
+/** Pixel bubbles fizzing up off the torn edge, like carbonation: [x, size, seconds to rise, delay, height]. */
+const BUBBLES: [number, number, number, number, number][] = Array.from({ length: 22 }, (_, i) => {
+  const r = (k: number) => ((i * 7919 + k * 104729) % 997) / 997;
+  return [22 + r(1) * 156, r(2) < 0.7 ? 1.2 : 1.8, 1.6 + r(3) * 1.8, -r(4) * 3.4, 8 + r(5) * 16];
+});
+
 /** How much of the crown the Years have filled: a sliver at the start, all of it in the last Year. */
 export const crownFill = (year: number, years: number): number => Math.min(1, Math.max(0.08, year / Math.max(1, years)));
 
-export default function RiftCrown({ fill, className }: { fill: number; className?: string }) {
+/** `faint`: the splash's crown, only hinted at; thin broken cracks and a thinner veil of violet. */
+export default function RiftCrown({ fill, className, faint }: { fill: number; className?: string; faint?: boolean }) {
   const id = `crown${useId().replace(/[^a-zA-Z0-9]/g, "")}`;
   const top = 78 - 74 * Math.min(1, Math.max(0, fill));
   return (
-    <svg className={`sp-crown${className ? ` ${className}` : ""}`} viewBox="0 0 200 80" aria-hidden="true" data-fill={fill.toFixed(2)}>
+    <svg className={`sp-crown${faint ? " sp-crown--faint" : ""}${className ? ` ${className}` : ""}`} viewBox="0 0 200 80" aria-hidden="true" data-fill={fill.toFixed(2)}>
       <defs>
         {/* Ragged edges: the outline pushed about by noise. */}
         <filter id={`${id}r`} x="-10%" y="-20%" width="120%" height="140%">
@@ -46,6 +53,12 @@ export default function RiftCrown({ fill, className }: { fill: number; className
           <stop offset="0.8" stopColor="#5a1f8e" />
           <stop offset="1" stopColor="#2a0a44" />
         </linearGradient>
+        {/* The shimmer: a pale sheen that sweeps across what has torn open. */}
+        <linearGradient id={`${id}s`} x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stopColor="#fff" stopOpacity="0" />
+          <stop offset="0.5" stopColor="#fdf6ff" stopOpacity="0.95" />
+          <stop offset="1" stopColor="#fff" stopOpacity="0" />
+        </linearGradient>
         <clipPath id={`${id}k`}>
           <path d={CROWN} />
         </clipPath>
@@ -61,6 +74,8 @@ export default function RiftCrown({ fill, className }: { fill: number; className
         {ORBS.map(([x, y, r]) => (
           <circle key={x} className="sp-crown__ghost" cx={x} cy={y} r={r} />
         ))}
+        {/* Light running along the cracks. */}
+        <path className="sp-crown__run" d={CROWN} />
         <g clipPath={`url(#${id}c)`} className="sp-crown__body">
           <path d={CROWN} fill={`url(#${id}f)`} filter={`url(#${id}t)`} />
           {ORBS.map(([x, y, r]) => (
@@ -70,9 +85,26 @@ export default function RiftCrown({ fill, className }: { fill: number; className
           {JEWELS.map((x) => (
             <circle key={x} className="sp-crown__jewel" cx={x} cy={67} r={x === 100 ? 3 : 2} />
           ))}
+          <g clipPath={`url(#${id}k)`}>
+            <rect className="sp-crown__sheen" x="-60" y="-10" width="34" height="100" fill={`url(#${id}s)`} transform="skewX(-20)" />
+          </g>
         </g>
         {/* The torn edge where the filling has reached. */}
         {fill < 1 ? <line className="sp-crown__edge" x1="0" x2="200" y1={top} y2={top} clipPath={`url(#${id}k)`} /> : null}
+        {fill < 1 ? (
+          <g className="sp-crown__fizz" clipPath={`url(#${id}k)`}>
+            {BUBBLES.map(([x, size, rise, delay, height], i) => (
+              <rect
+                key={i}
+                x={x}
+                y={top - size}
+                width={size}
+                height={size}
+                style={{ animationDuration: `${rise}s`, animationDelay: `${delay}s`, ["--rise" as string]: `${-height}px` }}
+              />
+            ))}
+          </g>
+        ) : null}
       </g>
     </svg>
   );

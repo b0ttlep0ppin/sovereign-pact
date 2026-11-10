@@ -39,7 +39,7 @@ export default function Prologue({ onDone }: { onDone: () => void }) {
         }
       }}
     >
-      <RiftCrown className="sp-prologue__rift" fill={0.3} />
+      <RiftCrown className="sp-prologue__rift" fill={0.3} faint />
       <div className="sp-prologue__embers" aria-hidden="true">
         {Array.from({ length: 18 }, (_, i) => (
           <span key={i} style={{ left: `${(i * 53) % 100}%`, animationDelay: `${(i * 0.7) % 6}s`, animationDuration: `${6 + (i % 5)}s` }} />

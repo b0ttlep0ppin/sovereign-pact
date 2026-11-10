@@ -10,5 +10,25 @@
 .sp-crown__jewel { animation: sp-crown-wink 3.2s ease-in-out infinite; }
 .sp-crown__jewel:nth-of-type(2n) { animation-delay: 1.1s; }
 @keyframes sp-crown-wink { 50% { opacity: 0.35; } }
-@media (prefers-reduced-motion: reduce) { .sp-crown__body, .sp-crown__glow, .sp-crown__jewel { animation: none; } }
-[data-motion="reduced"] .sp-crown__body, [data-motion="reduced"] .sp-crown__glow, [data-motion="reduced"] .sp-crown__jewel { animation: none; }
+/* The shimmer: a sheen sweeping across, and light running along the cracks. */
+.sp-crown__sheen { animation: sp-crown-sheen 4.5s ease-in-out infinite; opacity: 0.75; }
+@keyframes sp-crown-sheen { from { transform: skewX(-20deg) translateX(0); } 70%, to { transform: skewX(-20deg) translateX(330px); } }
+.sp-crown__run { fill: none; stroke: #f0d8ff; stroke-width: 1; stroke-linecap: round; stroke-dasharray: 14 90; opacity: 0.8; filter: drop-shadow(0 0 2px #d9a8ff); animation: sp-crown-run 7s linear infinite; }
+@keyframes sp-crown-run { to { stroke-dashoffset: -520; } }
+/* Carbonation: pixels fizzing up off the torn edge and fading as they rise. */
+.sp-crown__fizz rect { fill: #f3dcff; opacity: 0; animation: sp-crown-fizz 2s ease-out infinite; }
+@keyframes sp-crown-fizz { 0% { transform: translateY(0); opacity: 0; } 12% { opacity: 0.95; } 100% { transform: translateY(var(--rise, -14px)); opacity: 0; } }
+/* The splash's crown: implied, not drawn. */
+.sp-crown--faint .sp-crown__ghost { stroke-width: 0.45; stroke-dasharray: 3 5 1 7; opacity: 0.45; fill: rgba(40, 10, 60, 0.15); }
+.sp-crown--faint .sp-crown__body { opacity: 0.5; }
+.sp-crown--faint .sp-crown__glow { opacity: 0.4; }
+.sp-crown--faint .sp-crown__band { stroke-width: 1.2; }
+.sp-crown--faint .sp-crown__run { stroke-width: 0.6; stroke-dasharray: 8 110; }
+.sp-crown--faint .sp-crown__edge { stroke-width: 0.9; }
+@keyframes sp-crown-breathe-faint { 50% { opacity: 0.36; } }
+.sp-crown--faint .sp-crown__body, .sp-crown--faint .sp-crown__glow { animation-name: sp-crown-breathe-faint; }
+@media (prefers-reduced-motion: reduce) { .sp-crown__body, .sp-crown__glow, .sp-crown__jewel, .sp-crown__sheen, .sp-crown__run { animation: none; } .sp-crown__sheen { display: none; } }
+[data-motion="reduced"] .sp-crown__body, [data-motion="reduced"] .sp-crown__glow, [data-motion="reduced"] .sp-crown__jewel, [data-motion="reduced"] .sp-crown__sheen, [data-motion="reduced"] .sp-crown__run { animation: none; }
+[data-motion="reduced"] .sp-crown__sheen { display: none; }
+@media (prefers-reduced-motion: reduce) { .sp-crown__fizz { display: none; } }
+[data-motion="reduced"] .sp-crown__fizz { display: none; }
