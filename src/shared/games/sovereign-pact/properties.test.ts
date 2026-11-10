@@ -128,6 +128,12 @@ describe("properties in battle", () => {
     hitFor(u, t);
     expect(u.hp).toBeGreaterThan(1);
     expect(u.mp).toBe(3);
+    // Sanguine blood drains on melee blows, and the HP it wins back is told, so its number shows.
+    const blood = scion({ meleeDrainPct: 5 });
+    blood.hp = 1;
+    const b = newBattle(1, [blood, skeleton()]);
+    strike(b, createRng(5), blood, b.units[1]!, ATTACK);
+    expect(b.events.find((e) => e.t === "heal")).toMatchObject({ unit: blood.id, target: blood.id, amount: blood.hp - 1, quiet: true });
     const armored = { ...scion({ thornsPct: 50 }), evasion: 0 };
     const foe = skeleton({ accuracy: 500 });
     const before = foe.hp;

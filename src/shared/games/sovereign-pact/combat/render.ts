@@ -72,6 +72,7 @@ export function describeEvent(b: Battle, e: BattleEvent): string {
       if (e.unit === e.target && !e.loc) return `${n(e.target)} suffers ${e.damage}`;
       return `${n(e.unit)} hits ${n(e.target)} for ${e.damage}${e.loc ? ` (${e.loc})` : ""}${e.crit ? " CRIT" : ""}${e.weak ? " weak point" : ""}`;
     case "heal":
+      if (e.quiet) return `${n(e.target)} regains ${e.amount} HP`;
       return `${n(e.unit)} heals ${n(e.target)} for ${e.amount}`;
     case "sanity":
       return `${n(e.target)} loses ${e.amount} Sanity`;

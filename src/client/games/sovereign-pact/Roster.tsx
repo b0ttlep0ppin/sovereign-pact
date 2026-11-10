@@ -25,12 +25,14 @@ const GROUPS: { status: Person["status"]; title: string }[] = [
 const BASE = Content.JOBS.filter((j) => !j.advanced);
 const words = (id: string) => id.replace(/_/g, " ");
 export const TAROT_BY_ID = new Map(Content.TAROT.map((t) => [t.id, t]));
+/** A House trait's badge on its Scions' cards, by its kind (§5.3). */
+const HOUSE_KIND: Record<string, string> = { major: "House", minor: "House", major_flaw: "House flaw", minor_flaw: "House flaw", bloodline: "Bloodline", mark: "House mark" };
 
 /** One trait or the Tarot card: its name, then what it does (Crunch) or how it reads (Flavor). */
 export function TraitLine({ kind, name, text, tarot }: { kind?: string; name: string; text?: string; tarot?: string }) {
   const card = tarot ? TAROT_BY_ID.get(tarot) : undefined;
   return (
-    <li className={kind ? "is-tarot" : undefined}>
+    <li className={kind ? "is-tarot" : undefined} data-kind={kind}>
       {tarot ? <TarotBadge id={tarot} number={card?.number} /> : kind ? <span className="sp-person__kind">{kind}</span> : null}
       <strong>{name}</strong>
       {text ? <span className="sp-ability__text">{text}</span> : null}
@@ -78,6 +80,7 @@ function Card({ p, view, sendMove, canAct }: Props & { p: Person }) {
   const cures = mine.cures.filter((c) => c.person === p.id);
   const ward = p.house !== p.host;
   const crunch = view.display === "crunch";
+  const blood = p.status === "recruit" ? [] : (view.houses[p.house]?.traits ?? []);
   const promote = mine.promotion.left < 1 ? "There is no ceremony left this Year." : mine.gold < mine.promotion.gold ? `A promotion costs ${mine.promotion.gold} Gold.` : null;
   return (
     <li className="sp-person sp-person--portrait" aria-label={p.name}>
@@ -131,12 +134,17 @@ function Card({ p, view, sendMove, canAct }: Props & { p: Person }) {
         </p>
       ) : null}
       {p.status === "recruit" ? <RecruitTask p={p} view={view} sendMove={sendMove} canAct={canAct} /> : null}
-      {p.tarot || p.traits.length ? (
+      {p.tarot || p.traits.length || blood.length ? (
         <ul className="sp-person__traits">
           {p.tarot ? <TraitLine kind="Tarot" tarot={p.tarot} name={TAROT_BY_ID.get(p.tarot)?.name ?? words(p.tarot)} text={crunch ? TAROT_BY_ID.get(p.tarot)?.crunch : undefined} /> : null}
           {p.traits.map((id) => {
             const t = Content.TRAIT_BY_ID.get(id);
             return <TraitLine key={id} name={t?.name ?? words(id)} text={crunch ? t?.crunch : t?.flavor} />;
+          })}
+          {/* Their birth House's traits ride into every battle with them (Josh 2026-11-10: "They should also be on the character sheet"). */}
+          {blood.map((id) => {
+            const t = Content.HOUSE_TRAIT_BY_ID.get(id);
+            return <TraitLine key={`house:${id}`} kind={HOUSE_KIND[t?.kind ?? ""] ?? "House"} name={t?.name ?? words(id)} text={crunch ? t?.crunch : t?.flavor} />;
           })}
         </ul>
       ) : null}

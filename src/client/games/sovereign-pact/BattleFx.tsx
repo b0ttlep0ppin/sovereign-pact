@@ -79,6 +79,8 @@ export function strikesOf(ev: Event[], units: Map<number, ReplayUnit>): Strike[]
       continue;
     }
     if (e.t !== "hit" && e.t !== "miss" && e.t !== "heal") continue;
+    // HP seeping back (a drain, Regen) shows only as its number.
+    if (e.t === "heal" && e.quiet) continue;
     if (!units.has(e.unit) || !units.has(e.target)) continue;
     if (user !== e.unit) {
       used = undefined;

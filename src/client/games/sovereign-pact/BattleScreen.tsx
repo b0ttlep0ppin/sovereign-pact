@@ -15,6 +15,7 @@ import { BattleLine } from "./LogIcons";
 import { statusAbout, statusLook, tintOf } from "./statusLook";
 import { injuryCue, playSounds, soundsOf } from "./sfx";
 import { uiSound } from "./uiSound";
+import { telegraphed } from "./telegraph";
 import "./BattleScreen.css";
 
 type Event = Replay["frames"][number]["ev"][number];
@@ -174,7 +175,7 @@ export default function BattleScreen({ replay, view, onClose, waiting = 0, fullL
   const end = replay.frames.at(-1)?.ev.find((e) => e.t === "end");
   // The turn order (§10.4): a battle being fought forecasts it; one being watched knows it.
   const order = live && at >= last ? (live.order ?? []) : replay.frames.slice(at).flatMap((f) => f.ev.filter((e) => e.t === "turn").map((e) => ({ unit: e.unit, charge: false }))).slice(0, 8);
-  const charges = ev.filter((e) => e.t === "charge" && e.telegraph);
+  const warned = useMemo(() => telegraphed(replay, at, vit), [replay, at, vit]);
   const strikes = useMemo(() => strikesOf(ev, units), [ev, units]);
   // A number pops as the blow that made it lands; the turn lasts until the last blow has been read.
   const landed = new Map<number, number>();
@@ -383,7 +384,7 @@ export default function BattleScreen({ replay, view, onClose, waiting = 0, fullL
         const x = i % COLS;
         const row = Math.floor(i / COLS);
         const col = s === "enemy" ? COLS - 1 - x : x;
-        const marked = charges.some((c) => c.t === "charge" && c.target.side === s && c.target.col === col && c.target.row === row);
+        const marked = warned.has(`${s}:${col}:${row}`);
         const k = aimable({ side: s, col, row });
         const cls = `sp-cell${marked ? " is-telegraphed" : ""}${k >= 0 ? " is-target" : ""}${k >= 0 && k === aiming?.cursor ? " is-cursor" : ""}${splashed({ side: s, col, row }) ? " is-splash" : ""}`;
         return (

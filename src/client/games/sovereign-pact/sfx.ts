@@ -135,7 +135,7 @@ export function soundsOf(ev: readonly Event[], units: ReadonlyMap<number, Replay
   });
   for (const e of ev) {
     if (e.t === "miss") add("miss", 170);
-    else if (e.t === "heal" && kind !== "heal") add("heal", 200);
+    else if (e.t === "heal" && kind !== "heal" && !e.quiet) add("heal", 200);
     else if (e.t === "defend") add("defend", 0);
     else if (e.t === "summon") add("summon", 100);
     else if (e.t === "vanish" || e.t === "flee") add("vanish", 200);

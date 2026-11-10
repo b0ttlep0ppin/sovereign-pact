@@ -2,7 +2,7 @@
 // Durations, charges and damage-over-time count ticks, 10 to a step (DECISIONS 2026-11-01, M1).
 import type { Rng } from "../../../rng.ts";
 import { TUNING } from "../tuning.ts";
-import { hpCap } from "./damage.ts";
+import { mend } from "./damage.ts";
 import { revert } from "./forms.ts";
 import { hazardStep } from "./hazards.ts";
 import { vanish } from "./summons.ts";
@@ -74,11 +74,11 @@ function pulseOf(b: Battle, rng: Rng, u: Combatant): void {
     hurt += pctOf(u.maxHp, C.bleed);
     if (bleed.loc && u.dur) u.dur[bleed.loc] = Math.max(0, u.dur[bleed.loc] - C.bleedDurability);
   }
-  if (hasStatus(u, "regen")) u.hp = Math.max(u.hp, Math.min(hpCap(u), u.hp + pctOf(u.maxHp, C.regen)));
+  if (hasStatus(u, "regen")) mend(b, u, u.id, pctOf(u.maxHp, C.regen));
   if (hasStatus(u, "mp_regen")) u.mp = Math.min(u.maxMp, u.mp + 2);
   if (hasStatus(u, "tp_regen")) u.tp = Math.min(C.tp.max, u.tp + 5);
   // Chorus songs (§12.11): Hearthsong, Fountain, Drumbeat.
-  if (u.mods.regenPct) u.hp = Math.max(u.hp, Math.min(hpCap(u), u.hp + pctOf(u.maxHp, u.mods.regenPct)));
+  if (u.mods.regenPct) mend(b, u, u.id, pctOf(u.maxHp, u.mods.regenPct));
   if (u.mods.mpPerPulse) u.mp = Math.min(u.maxMp, u.mp + u.mods.mpPerPulse);
   if (u.mods.tpPerPulse) u.tp = Math.min(C.tp.max, u.tp + u.mods.tpPerPulse);
   if (!hurt) return;
