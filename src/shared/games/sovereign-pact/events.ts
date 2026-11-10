@@ -245,7 +245,9 @@ function land(s: SovState, option: TripOption, { scions, house }: Subjects, othe
   const done = effects(s, outcome.effects, scions, option.rule === "vote" ? null : house);
   const e = s.expedition!;
   if (e.told?.n !== e.seen.length) e.told = { id: e.seen.at(-1) ?? "", n: e.seen.length, parts: [] };
-  e.told.parts.push({ label: option.label, who: who.replace(/: $/, ""), text: outcome.text, lines: [...said, ...tell(s, before)] });
+  // The one it fell on, for the card to name inside the choice's words (Josh 2026-11-10).
+  const one = option.rule !== "vote" && option.rule !== "secret" && scions.length === 1 ? { person: scions[0]! } : {};
+  e.told.parts.push({ label: option.label, who: who.replace(/: $/, ""), ...one, text: outcome.text, lines: [...said, ...tell(s, before)] });
   halt(s);
   return done;
 }

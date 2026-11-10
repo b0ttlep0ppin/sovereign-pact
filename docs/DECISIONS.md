@@ -2,6 +2,13 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-10 (implementation, Milestone 8cz): a choice names its Scion
+
+Josh: **"i wouldn't mind the event saying the specific scion who is qualifying for the criteria, "The sharpest eye - Bob - takes up his contest, sure of his aim". Make sure you highlight his name in house color too."**
+- **The name goes after the subject phrase** a choice opens with ("The sharpest eye", "The one with the most kills", "Let your wisest"), set off by commas, in the House's text colour (its primary, or its secondary when the primary is too dark to read). Commas rather than dashes: they read as plain prose, which is what 8cy asks of the text.
+- **Who is named:** on the vote card, the Scion the House has put forward, else the one the rule would choose; on the outcome card, the one it fell on, and "It fell on X." is then dropped. A random pick, a vote of the whole party, and choices that do not open with their subject ("Leave it to chance") keep their words as written; the card still says whom they fall on.
+- The phrase is found from the words themselves (`Named.tsx`); a test checks it only ever cuts between words for every event.
+
 ## 2026-11-10 (implementation, Milestone 8cy): event prose without the AI tells
 
 Josh read the 8cx rewrite and said: **"Your writing style is indicative of Ai. See for example "He wakes in time to shoot, one-eyed and very accurate". Noone forgot he is one eyed from previous statement, seems like your penchant for summarizing what is going on. You also frequently just append random stuff with "and", try a semi colon a comma a new sentence."** His model line: "The archer stirs and swiftly looses an arrow which finds its mark with precision." He asked for every description to be checked again; the flavor stays.

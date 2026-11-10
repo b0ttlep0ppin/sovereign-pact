@@ -436,6 +436,7 @@
 .sp-told__part { display: grid; gap: 6px; padding-top: 10px; border-top: 1px solid rgba(150, 110, 90, 0.18); }
 .sp-told__choice { margin: 0; color: #d8c8b0; font-weight: 600; }
 .sp-told__who { color: #a89480; font-weight: 400; }
+.sp-named { font-weight: 700; }
 .sp-told__text { margin: 0; color: #c9b7a2; font-style: italic; }
 .sp-told__lines { margin: 0; padding-left: 18px; display: grid; gap: 2px; color: #e2d4bc; }
 .sp-told__lines li::marker { color: #8a3a30; }

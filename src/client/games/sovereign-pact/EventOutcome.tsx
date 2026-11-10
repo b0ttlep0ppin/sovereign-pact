@@ -3,6 +3,7 @@
 // made that this House may see. It opens once for each event; the last one closed is remembered.
 import { Content, type SovView } from "@vibepulse/shared/games/sovereign-pact";
 import { useState } from "react";
+import { Named, subjectEnd } from "./Named";
 
 const SEEN_KEY = "sovereign-pact:told";
 const readSeen = (): string | null => {
@@ -44,8 +45,8 @@ export default function EventOutcome({ view, onClose, toArms = false }: { view: 
         {told.parts.map((p, i) => (
           <section key={i} className="sp-told__part">
             <p className="sp-told__choice">
-              {p.label}
-              {p.who ? <span className="sp-told__who"> It fell on {p.who}.</span> : null}
+              <Named label={p.label} person={p.person} view={view} />
+              {p.who && (p.person === undefined || subjectEnd(p.label) === null) ? <span className="sp-told__who"> It fell on {p.who}.</span> : null}
             </p>
             <p className="sp-told__text">{p.text}</p>
             {p.lines.length ? (

@@ -313,7 +313,7 @@ export interface Expedition {
   /** The event waiting on the party (§9.4): each House's vote, −1 for a House with no one present; for `each_scion`, each Scion's pick; a House's nominee for an option that falls on one Scion. */
   event?: { id: string; votes: (number | null)[]; picks?: Record<number, number | null>; nominees?: Record<number, number> };
   /** What the last event did (told.ts), for the outcome card: each option that landed, who it fell on (names, a House, or "" for the party), its outcome and the changes; `n` is the count of events met when it landed. */
-  told?: { id: string; n: number; parts: { label: string; who: string; text: string; lines: Told[] }[] };
+  told?: { id: string; n: number; parts: { label: string; who: string; person?: number; text: string; lines: Told[] }[] };
   /** What the party carries home (§9.8, §9.10): found items, not yet anyone's, and materials. Lost on a wipe. */
   haul?: { items: Item[]; stores: Stores };
   /** The haul as shares, being drafted (§9.10). */
