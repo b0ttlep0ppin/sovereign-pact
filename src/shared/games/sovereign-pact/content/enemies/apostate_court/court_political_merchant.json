@@ -1,6 +1,6 @@
 {
   "id": "court_political_merchant",
-  "name": "Political Merchant",
+  "name": "Venal Minister",
   "pool": "apostate_court",
   "tags": ["humanoid"],
   "role": "support",
@@ -18,7 +18,7 @@
     {"do": "hidden_knife", "target": "back_random"}
   ],
   "bestiary": {
-    "lore": "He has bought the bargain's favor and can sell a little of it to you. Your sword-arm, for instance.",
+    "lore": "The Court's minister keeps its ledgers and sells its favors. A word from him stays the strongest hand; the knife in his sleeve settles what words cannot.",
     "weakness": "Kill him: his bribes cost the strongest Scion a turn."
   }
 }
