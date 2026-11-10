@@ -2,6 +2,10 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-10 (implementation, Milestone 8dr): Knit Bone mends a Broken location, and every mend shows
+
+Josh: "seems like knit bone didn't do anything when i cast it?" It restored Durability, but to the most hurt location, which is usually a Broken one, and that location stayed Broken for the rest of the fight (the card still read "Broken" and the next hit there still forced an injury roll). Reading taken from §7.4 ("healers' Durability restoration matters"): any Durability put back on a Broken location makes it hold again. Every restore (Knit Bone, salves, Durability regen) now sends a `mend` battle event: the log says who mended which location and whether it is no longer Broken, a green "+N" pops over the Scion with the location, and the heal animation and sound play. Regen's per-turn mend shows only its number.
+
 ## 2026-11-10 (implementation, Milestone 8dq): a cache opens the outcome card with what it held
 
 Josh: "caches should notify of the items they found in a popup". Opening a cache now fills the expedition's outcome card (`told`, headed "A cache" through its new `where` field) with each item and material it added to the haul, and the party waits for every House to close it (`halt`), as after an event. A trapped cache shows the card after its ambush is won, since that is when it opens. Reading taken: the card reuses the event outcome dialog rather than a new popup, so it looks and closes the same way.

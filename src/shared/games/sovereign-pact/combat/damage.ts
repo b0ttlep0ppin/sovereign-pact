@@ -495,6 +495,16 @@ export function heal(b: Battle, u: Combatant, t: Combatant, ab: AbilityDef): num
 export const hpCap = (u: Combatant): number =>
   u.mods.noHeal ? u.hp : u.flags.includes("heal_cap_half") ? Math.round((u.maxHp * J.healCapPct) / 100) : u.maxHp;
 
+/** Put Durability back on one location. A Broken location that holds anything again is no longer Broken (§7.4: "healers' Durability restoration matters"). */
+export function knit(b: Battle, by: number, t: Combatant, loc: Location, amount: number, quiet = false): void {
+  if (!t.dur || !t.maxDur) return;
+  const before = t.dur[loc];
+  t.dur[loc] = Math.min(t.maxDur[loc], before + amount);
+  const unbroken = t.broken.includes(loc) && t.dur[loc] > 0;
+  if (unbroken) t.broken = t.broken.filter((l) => l !== loc);
+  if (t.dur[loc] > before || unbroken) b.events.push({ t: "mend", unit: by, target: t.id, loc, amount: t.dur[loc] - before, ...(unbroken ? { unbroken: true as const } : {}), ...(quiet ? { quiet: true as const } : {}) });
+}
+
 /** Revival: back from Down at 20% HP, no roll (§10.9). */
 export function revive(b: Battle, t: Combatant, hpPct: number = C.reviveHp): void {
   if (!t.down || t.dead || t.catatonic) return;
@@ -518,7 +528,7 @@ function supportEffects(b: Battle, rng: Rng, u: Combatant, t: Combatant, ab: Abi
   if (r?.hpPct) t.hp = Math.max(t.hp, Math.min(hpCap(t), t.hp + Math.round((t.maxHp * r.hpPct) / 100)));
   if (r?.durPct && t.dur && t.maxDur) {
     const locs = r.loc === "all" ? LOCATIONS : r.loc === "lowest" ? [LOCATIONS.reduce((a, l) => (t.dur![l] / t.maxDur![l] < t.dur![a] / t.maxDur![a] ? l : a))] : [rng.pick(LOCATIONS)];
-    for (const l of locs) t.dur[l] = Math.min(t.maxDur[l], t.dur[l] + Math.round((t.maxDur[l] * r.durPct) / 100));
+    for (const l of locs) knit(b, u.id, t, l, Math.round((t.maxDur[l] * r.durPct) / 100));
   }
   for (const c of ab.cure ?? []) for (const x of [...t.statuses]) if ((x.id === c || meta(x.id).kind === c) && !meta(x.id).fixed) removeStatus(b, t, x.id);
   if (ab.sanityPct && t.maxSanity) t.sanity = Math.max(0, Math.min(t.maxSanity, t.sanity + Math.round((t.maxSanity * ab.sanityPct) / 100)));

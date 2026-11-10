@@ -112,6 +112,13 @@ describe("abilities in battle", () => {
     ally.dur!.arms = 1;
     resolve(b, createRng(1), u, ab("knit_bone"), cellOf(ally), ally.id);
     expect(ally.dur!.arms).toBeGreaterThan(1);
+    // A Broken arm holds again, and the battle says so (Josh 2026-11-10: "knit bone didn't do anything").
+    Object.assign(ally, { broken: ["arms"] });
+    ally.dur!.arms = 0;
+    b.events.length = 0;
+    resolve(b, createRng(1), u, ab("knit_bone"), cellOf(ally), ally.id);
+    expect(ally.broken).not.toContain("arms");
+    expect(b.events).toContainEqual(expect.objectContaining({ t: "mend", target: ally.id, loc: "arms", unbroken: true }));
     addStatus(b, ally, "poison");
     resolve(b, createRng(1), u, ab("purify"), cellOf(ally), ally.id);
     expect(ally.statuses.some((s) => s.id === "poison")).toBe(false);
