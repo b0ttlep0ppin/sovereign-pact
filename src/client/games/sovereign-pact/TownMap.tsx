@@ -14,6 +14,7 @@ import type { SovMove, SovView } from "@vibepulse/shared/games/sovereign-pact";
 import { Content } from "@vibepulse/shared/games/sovereign-pact";
 import { useState, type CSSProperties, type DragEvent, type ReactNode } from "react";
 import { Emblem, HERALDRY_COLORS, inkOf } from "./Emblem";
+import RiftCrown, { crownFill } from "./RiftCrown";
 import "./TownMap.css";
 
 type Person = SovView["people"][number];
@@ -180,7 +181,7 @@ export default function TownMap({ view, sendMove, canAssign }: Props) {
       ) : null}
       <div className="sp-map__ground">
         <section {...target("gate", { kind: "sortie" }, true)} className="sp-map__gate" aria-label="The Rift Gate">
-          <span className="sp-map__gate-tear" aria-hidden="true" />
+          <RiftCrown className="sp-map__gate-tear" fill={crownFill(view.year, view.years)} />
           <strong>The Rift Gate</strong>
           {canAssign ? (
             <div className="sp-map__about" onClick={(e) => e.stopPropagation()}>
