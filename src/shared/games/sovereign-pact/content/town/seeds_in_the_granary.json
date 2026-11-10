@@ -12,7 +12,7 @@
   "options": [
     {
       "id": "plant",
-      "label": "Plant the pale seeds.",
+      "label": "Plant the pale seeds. A city fed twice over is worth a little humming.",
       "tags": [
         "bold"
       ],
@@ -45,7 +45,7 @@
     },
     {
       "id": "burn",
-      "label": "Burn your grain, seeds and all.",
+      "label": "Burn your grain, seeds and all, as the priests say.",
       "tags": [
         "kind"
       ],
@@ -68,7 +68,7 @@
     },
     {
       "id": "sell",
-      "label": "Sell the mixed grain on to the other Houses.",
+      "label": "Sell the mixed grain on to the other Houses, and let them do the worrying.",
       "tags": [
         "cruel",
         "clever"
@@ -92,7 +92,7 @@
     },
     {
       "id": "sift",
-      "label": "Sift out what seeds you can.",
+      "label": "Sift out what seeds you can, and keep the grain.",
       "tags": [
         "cautious"
       ],

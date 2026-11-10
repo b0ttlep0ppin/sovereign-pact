@@ -27,7 +27,7 @@
     },
     {
       "id": "burn",
-      "label": "Pay the guild to burn the ledger.",
+      "label": "Pay the guild to burn the ledger, before any House is named.",
       "tags": [
         "clever"
       ],
@@ -52,7 +52,7 @@
     },
     {
       "id": "leave",
-      "label": "Leave the midwives to their work.",
+      "label": "Leave the midwives to their work. Marked or not, they are children.",
       "tags": [
         "cautious"
       ],

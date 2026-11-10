@@ -12,7 +12,7 @@
   "options": [
     {
       "id": "welcome",
-      "label": "Welcome her home.",
+      "label": "Welcome her home. She was of the House, and she says she has come to help.",
       "tags": [
         "bold"
       ],
@@ -38,7 +38,7 @@
     },
     {
       "id": "return",
-      "label": "Have a Scion walk her back to the crypt.",
+      "label": "Have a Scion walk her back to the crypt, gently, where she belongs.",
       "tags": [
         "kind"
       ],
@@ -86,7 +86,7 @@
     },
     {
       "id": "lock",
-      "label": "Lock the doors and wait for her to leave.",
+      "label": "Lock the doors and wait for her to leave. The dead have no seat at this table.",
       "tags": [
         "cautious"
       ],

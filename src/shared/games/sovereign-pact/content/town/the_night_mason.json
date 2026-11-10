@@ -12,7 +12,7 @@
   "options": [
     {
       "id": "agree",
-      "label": "Agree to his price: hair and teeth from everyone.",
+      "label": "Agree to his price: hair and teeth from everyone. A building by dawn is worth a gap in the smile.",
       "tags": [
         "bold"
       ],
@@ -40,7 +40,7 @@
     },
     {
       "id": "haggle",
-      "label": "Offer him a recruit instead.",
+      "label": "Offer him a recruit instead, and spare the rest of the House.",
       "tags": [
         "cruel"
       ],
@@ -64,7 +64,7 @@
     },
     {
       "id": "send_away",
-      "label": "Send him away.",
+      "label": "Send him away. Nothing built at midnight stands on honest ground.",
       "tags": [
         "cautious"
       ],

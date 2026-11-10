@@ -12,7 +12,7 @@
   "options": [
     {
       "id": "exchange",
-      "label": "Name the House you will exchange Wards with.",
+      "label": "Name the House you will exchange Wards with, and trust them with your blood.",
       "tags": [
         "kind"
       ],
@@ -35,7 +35,7 @@
     },
     {
       "id": "bribe",
-      "label": "Bribe the magistrates to look elsewhere.",
+      "label": "Bribe the magistrates to look elsewhere. Peace can be bought another way.",
       "tags": [
         "clever"
       ],

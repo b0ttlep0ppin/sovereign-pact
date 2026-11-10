@@ -12,7 +12,7 @@
   "options": [
     {
       "id": "burn",
-      "label": "Burn it, cart and all.",
+      "label": "Burn it, cart and all, before whatever moves under the cloth gets out.",
       "tags": [
         "cautious"
       ],
@@ -26,7 +26,7 @@
     },
     {
       "id": "quarantine",
-      "label": "Quarantine it outside the walls.",
+      "label": "Quarantine it outside the walls, and let the guards keep watch.",
       "tags": [
         "clever"
       ],
@@ -53,7 +53,7 @@
     },
     {
       "id": "study",
-      "label": "Let the physicians study what moves under the cloth.",
+      "label": "Let the physicians study what moves under the cloth, whatever it costs them.",
       "tags": [
         "bold"
       ],

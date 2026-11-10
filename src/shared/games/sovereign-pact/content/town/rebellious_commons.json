@@ -12,7 +12,7 @@
   "options": [
     {
       "id": "hang",
-      "label": "Hang the ringleaders.",
+      "label": "Hang the ringleaders, and remind the city who rules it.",
       "tags": [
         "cruel"
       ],
@@ -36,7 +36,7 @@
     },
     {
       "id": "hear",
-      "label": "Hear their grievances.",
+      "label": "Hear their grievances. The city cannot stand against the Gate divided.",
       "tags": [
         "kind"
       ],
@@ -69,7 +69,7 @@
     },
     {
       "id": "pay",
-      "label": "Pay them to open the gates.",
+      "label": "Pay them to open the gates, and settle it with coin.",
       "tags": [
         "clever"
       ],

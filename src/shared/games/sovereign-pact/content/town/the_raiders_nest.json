@@ -15,7 +15,7 @@
   "options": [
     {
       "id": "arm",
-      "label": "Strip the armories to arm the party.",
+      "label": "Strip the armories to arm the party, so the den burns this Year.",
       "tags": [
         "bold"
       ],
@@ -36,7 +36,7 @@
     },
     {
       "id": "bait",
-      "label": "Leave a herd out as bait to draw them.",
+      "label": "Leave a herd out as bait, and draw the beasts away from their den.",
       "tags": [
         "clever"
       ],
@@ -72,7 +72,7 @@
     },
     {
       "id": "wait",
-      "label": "Bar the farms and wait for the party.",
+      "label": "Bar the farms and wait for the party to do its work.",
       "tags": [
         "cautious"
       ],

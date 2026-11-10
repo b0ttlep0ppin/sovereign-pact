@@ -12,7 +12,7 @@
   "options": [
     {
       "id": "worship",
-      "label": "Let the pilgrims come, and take their coin.",
+      "label": "Let the pilgrims come, and take their coin for the Commons.",
       "tags": [
         "kind"
       ],
@@ -51,7 +51,7 @@
     },
     {
       "id": "melt",
-      "label": "Melt the wax saint down.",
+      "label": "Melt the wax saint down, and learn what is inside it.",
       "tags": [
         "bold"
       ],
@@ -88,7 +88,7 @@
     },
     {
       "id": "sell",
-      "label": "Sell it to the Apostate traders, who have asked twice.",
+      "label": "Sell it to the Apostate traders, who have asked twice, and let them carry it off.",
       "tags": [
         "cruel",
         "clever"

@@ -12,7 +12,7 @@
   "options": [
     {
       "id": "cut",
-      "label": "Have the Apothecary cut the second shadow away.",
+      "label": "Have the Apothecary cut the second shadow away, before it decides to stay still for good.",
       "tags": [
         "bold"
       ],
@@ -81,7 +81,7 @@
     },
     {
       "id": "hide",
-      "label": "Keep them out of the light.",
+      "label": "Keep them out of the light, so the second shadow has nowhere to fall.",
       "tags": [
         "cautious"
       ],

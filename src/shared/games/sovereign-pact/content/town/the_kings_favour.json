@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "wear",
-      "label": "Wear the drowned King's ring.",
+      "label": "Wear the drowned King's ring. A King's favour is a King's favour, drowned or not.",
       "tags": [
         "bold"
       ],
@@ -39,7 +39,7 @@
     },
     {
       "id": "bishop",
-      "label": "Carry the letter to the bishop.",
+      "label": "Carry the letter to the bishop, and let the Church judge the King's favour.",
       "tags": [
         "kind"
       ],
@@ -65,7 +65,7 @@
     },
     {
       "id": "burn",
-      "label": "Burn it unread, and never speak of it.",
+      "label": "Burn it unread, and never speak of it again.",
       "tags": [
         "cautious"
       ],

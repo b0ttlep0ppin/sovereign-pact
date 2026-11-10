@@ -12,7 +12,7 @@
   "options": [
     {
       "id": "pray",
-      "label": "Gather the household in prayer.",
+      "label": "Gather the household in prayer, and wait for the sun to return.",
       "tags": [
         "cautious"
       ],
@@ -30,7 +30,7 @@
     },
     {
       "id": "hide",
-      "label": "Shutter the windows and wait.",
+      "label": "Shutter the windows and wait. Do not let the eye find you.",
       "tags": [
         "cautious"
       ],
@@ -53,7 +53,7 @@
     },
     {
       "id": "go_out",
-      "label": "Walk out under the dead sun.",
+      "label": "Walk out under the dead sun, and see the city as the rift sees it.",
       "tags": [
         "bold",
         "reckless"

@@ -15,7 +15,7 @@
   "options": [
     {
       "id": "read_ahead",
-      "label": "Read the pages yet to come.",
+      "label": "Read the pages yet to come, and learn what becomes of the House.",
       "tags": [
         "reckless",
         "clever"
@@ -59,7 +59,7 @@
     },
     {
       "id": "burn",
-      "label": "Burn the book.",
+      "label": "Burn the book. No House should know its own ending.",
       "tags": [
         "cautious"
       ],
@@ -73,7 +73,7 @@
     },
     {
       "id": "sell",
-      "label": "Sell it to the Apostate traders.",
+      "label": "Sell it to the Apostate traders, and let someone else carry it.",
       "tags": [
         "cruel"
       ],

@@ -12,7 +12,7 @@
   "options": [
     {
       "id": "raze",
-      "label": "Tear the building down to its footings.",
+      "label": "Tear the building down to its footings, and find what weeps beneath.",
       "tags": [
         "bold"
       ],
@@ -65,7 +65,7 @@
     },
     {
       "id": "leave",
-      "label": "Paint over it and carry on.",
+      "label": "Paint over it and carry on. It is only mortar.",
       "tags": [
         "cautious"
       ],

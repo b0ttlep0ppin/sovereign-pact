@@ -12,7 +12,7 @@
   "options": [
     {
       "id": "pay",
-      "label": "Send a lock of hair from one of your own.",
+      "label": "Send a lock of hair from one of your own. A rival's secrets are worth a little hair.",
       "tags": [
         "cruel",
         "clever"
@@ -49,7 +49,7 @@
     },
     {
       "id": "burn",
-      "label": "Burn the letter unread.",
+      "label": "Burn the letter unread. No secret is worth what it asks.",
       "tags": [
         "cautious"
       ],
@@ -63,7 +63,7 @@
     },
     {
       "id": "expose",
-      "label": "Carry it to the rival House, unopened.",
+      "label": "Carry it to the rival House, unopened, and let them know someone is selling them.",
       "tags": [
         "kind",
         "bold"

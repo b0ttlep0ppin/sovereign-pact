@@ -12,7 +12,7 @@
   "options": [
     {
       "id": "give",
-      "label": "Send your best food and your best manners.",
+      "label": "Send your best food and your best manners, and help mend what is broken.",
       "tags": [
         "kind"
       ],
@@ -35,7 +35,7 @@
     },
     {
       "id": "poison",
-      "label": "Name a rival House, and see to its cup.",
+      "label": "Name a rival House, and see to its cup. Feasts have ended wars before, and started them.",
       "tags": [
         "cruel"
       ],
@@ -66,7 +66,7 @@
     },
     {
       "id": "stay_home",
-      "label": "Plead illness, and stay at home.",
+      "label": "Plead illness, and stay at home. Let the others mend what they broke.",
       "tags": [
         "cautious"
       ],

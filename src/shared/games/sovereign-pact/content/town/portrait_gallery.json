@@ -12,7 +12,7 @@
   "options": [
     {
       "id": "insist",
-      "label": "Insist that they sit for him.",
+      "label": "Insist that they sit for him, and learn what he painted long ago.",
       "tags": [
         "bold"
       ],
@@ -47,7 +47,7 @@
     },
     {
       "id": "let_be",
-      "label": "Let it be.",
+      "label": "Let it be. Some faces are better left unpainted.",
       "tags": [
         "kind"
       ],

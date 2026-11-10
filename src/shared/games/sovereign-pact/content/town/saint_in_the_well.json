@@ -12,7 +12,7 @@
   "options": [
     {
       "id": "drink",
-      "label": "Keep the saint, and water the fields with her.",
+      "label": "Keep the saint, and water the fields with her. A House must eat.",
       "tags": [
         "bold"
       ],
@@ -35,7 +35,7 @@
     },
     {
       "id": "bury",
-      "label": "Haul her out and give her a proper grave.",
+      "label": "Haul her out and give her a proper grave, whatever it costs the harvest.",
       "tags": [
         "kind"
       ],
@@ -61,7 +61,7 @@
     },
     {
       "id": "sell",
-      "label": "Sell the saint's water by the bucket.",
+      "label": "Sell the saint's water by the bucket, and let the priests preach what they like.",
       "tags": [
         "cautious"
       ],

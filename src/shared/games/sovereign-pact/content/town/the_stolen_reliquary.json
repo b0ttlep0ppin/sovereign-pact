@@ -12,7 +12,7 @@
   "options": [
     {
       "id": "accuse",
-      "label": "Name the House you suspect.",
+      "label": "Name the House you suspect, before the bishop's fires find their own target.",
       "tags": [
         "cruel"
       ],
@@ -27,7 +27,7 @@
     },
     {
       "id": "return",
-      "label": "Buy it back from the fences, and return it quietly.",
+      "label": "Buy it back from the fences, and return it quietly, so the city does not burn.",
       "tags": [
         "kind"
       ],

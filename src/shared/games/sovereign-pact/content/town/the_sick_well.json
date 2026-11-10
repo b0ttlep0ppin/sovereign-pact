@@ -15,7 +15,7 @@
   "options": [
     {
       "id": "seal",
-      "label": "Seal the well until it is cleansed.",
+      "label": "Seal the well until it is cleansed, whatever the water costs meanwhile.",
       "tags": [
         "cautious"
       ],
@@ -36,7 +36,7 @@
     },
     {
       "id": "boil",
-      "label": "Boil it and keep drinking.",
+      "label": "Boil it and keep drinking. The city cannot go without water.",
       "tags": [
         "reckless"
       ],
@@ -63,7 +63,7 @@
     },
     {
       "id": "pray",
-      "label": "Have it blessed at the Shrine.",
+      "label": "Have it blessed at the Shrine, and let the city see you try.",
       "tags": [
         "kind"
       ],

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "watch",
-      "label": "Put a Scion on the walls to answer it.",
+      "label": "Put a Scion on the walls to answer it, and let it know the city does not cower.",
       "tags": [
         "bold"
       ],
@@ -56,7 +56,7 @@
     },
     {
       "id": "feed",
-      "label": "Leave it a recruit outside the walls.",
+      "label": "Leave it a recruit outside the walls, and hope one is enough.",
       "tags": [
         "cruel"
       ],
@@ -80,7 +80,7 @@
     },
     {
       "id": "shutters",
-      "label": "Shutters, and wax in every ear.",
+      "label": "Shutters, and wax in every ear. Let it call for someone else.",
       "tags": [
         "cautious"
       ],

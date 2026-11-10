@@ -12,7 +12,7 @@
   "options": [
     {
       "id": "burn",
-      "label": "Burn the lower streets before it spreads.",
+      "label": "Burn the lower streets before it spreads, and bear the city's hatred.",
       "tags": [
         "cruel"
       ],
@@ -33,7 +33,7 @@
     },
     {
       "id": "wall",
-      "label": "Raise walls and wait for the tide to ebb.",
+      "label": "Raise walls and wait for the tide to ebb, and hope it takes nothing with it.",
       "tags": [
         "cautious"
       ],
@@ -72,7 +72,7 @@
     },
     {
       "id": "bottle",
-      "label": "Send the Houses' alchemists to bottle it.",
+      "label": "Send the Houses' alchemists to bottle it. Something that changes things is worth a fortune.",
       "tags": [
         "clever",
         "reckless"

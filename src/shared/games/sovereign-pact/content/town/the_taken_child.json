@@ -15,7 +15,7 @@
   "options": [
     {
       "id": "vigil",
-      "label": "Keep a vigil at the Gate for them.",
+      "label": "Keep a vigil at the Gate for them, so they can find their way home.",
       "tags": [
         "kind"
       ],
@@ -33,7 +33,7 @@
     },
     {
       "id": "bargain",
-      "label": "Leave the wood an offering, in case.",
+      "label": "Leave the wood an offering, in case it is open to a trade.",
       "tags": [
         "clever"
       ],

@@ -40,7 +40,7 @@
     },
     {
       "id": "investigate",
-      "label": "Put a Scion on the knife's trail.",
+      "label": "Put a Scion on the knife's trail, to learn who truly sent it.",
       "tags": [
         "clever"
       ],
@@ -87,7 +87,7 @@
     },
     {
       "id": "burn_it",
-      "label": "Melt the knife and say nothing.",
+      "label": "Melt the knife and say nothing. Let whoever sent it wonder.",
       "tags": [
         "cautious"
       ],

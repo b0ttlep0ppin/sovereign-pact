@@ -12,7 +12,7 @@
   "options": [
     {
       "id": "admit",
-      "label": "Admit the stranger.",
+      "label": "Admit the stranger. No one should be left out in the sleet.",
       "tags": [
         "kind",
         "bold"
@@ -42,7 +42,7 @@
     },
     {
       "id": "interrogate",
-      "label": "Admit them under guard, and ask questions.",
+      "label": "Admit them under guard, and ask questions until they answer.",
       "tags": [
         "clever"
       ],
@@ -71,7 +71,7 @@
     },
     {
       "id": "turn_away",
-      "label": "Turn them back into the sleet.",
+      "label": "Turn them back into the sleet. Anything that casts no breath is no guest.",
       "tags": [
         "cautious"
       ],

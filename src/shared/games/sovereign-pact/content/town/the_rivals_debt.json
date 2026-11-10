@@ -12,7 +12,7 @@
   "options": [
     {
       "id": "pay_gold",
-      "label": "Pay off your grandfather's debt in gold.",
+      "label": "Pay off your grandfather's debt in gold, and clear his name.",
       "tags": [
         "kind"
       ],
@@ -37,7 +37,7 @@
     },
     {
       "id": "give_wing",
-      "label": "Hand over a building to the House you name.",
+      "label": "Hand over a building to the House you name, as your grandfather pledged.",
       "tags": [
         "bold"
       ],
@@ -65,7 +65,7 @@
     },
     {
       "id": "default",
-      "label": "Let the debt ride.",
+      "label": "Let the debt ride. Your grandfather's promises died with him.",
       "tags": [
         "cautious"
       ],

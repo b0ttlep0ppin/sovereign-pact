@@ -12,7 +12,7 @@
   "options": [
     {
       "id": "gold",
-      "label": "Pay it in gold teeth.",
+      "label": "Pay it in gold teeth, and hope it is not particular.",
       "tags": [
         "kind"
       ],
@@ -38,7 +38,7 @@
     },
     {
       "id": "recruits",
-      "label": "Pay it in real teeth.",
+      "label": "Pay it in real teeth, as it asked.",
       "tags": [
         "cruel"
       ],
@@ -68,7 +68,7 @@
     },
     {
       "id": "refuse",
-      "label": "Refuse, and brick up the door of ribs.",
+      "label": "Refuse, and brick up the door of ribs. The city owes it nothing.",
       "tags": [
         "cautious"
       ],

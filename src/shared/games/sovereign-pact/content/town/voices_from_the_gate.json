@@ -12,7 +12,7 @@
   "options": [
     {
       "id": "listen",
-      "label": "Send a Scion to listen at the Gate to the end.",
+      "label": "Send a Scion to listen at the Gate to the end, and take what the dead offer.",
       "tags": [
         "bold"
       ],
@@ -60,7 +60,7 @@
     },
     {
       "id": "answer",
-      "label": "Answer it from the walls, with the Pact's words.",
+      "label": "Answer it from the walls, with the Pact's words, and drown out the dead.",
       "tags": [
         "kind"
       ],
@@ -85,7 +85,7 @@
     },
     {
       "id": "stop_ears",
-      "label": "Stop your ears with wax.",
+      "label": "Stop your ears with wax. The dead can call for someone else.",
       "tags": [
         "cautious"
       ],

@@ -12,7 +12,7 @@
   "options": [
     {
       "id": "dream",
-      "label": "Send a Scion into the dream after them.",
+      "label": "Send a Scion into the dream after them, to lead the sleepers home.",
       "tags": [
         "bold"
       ],
@@ -58,7 +58,7 @@
     },
     {
       "id": "wall",
-      "label": "Wall up the street.",
+      "label": "Wall up the street, before whatever they dream of comes looking.",
       "tags": [
         "cruel"
       ],
@@ -76,7 +76,7 @@
     },
     {
       "id": "wait",
-      "label": "Wait, and watch the sleepers.",
+      "label": "Wait, and watch the sleepers, and learn where their eyes are looking.",
       "tags": [
         "cautious"
       ],

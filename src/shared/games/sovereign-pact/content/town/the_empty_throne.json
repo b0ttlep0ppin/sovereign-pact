@@ -12,7 +12,7 @@
   "options": [
     {
       "id": "sit",
-      "label": "Sit a Scion on the black throne.",
+      "label": "Sit a Scion on the black throne, and see what it shows a ruler.",
       "tags": [
         "bold"
       ],
@@ -67,7 +67,7 @@
     },
     {
       "id": "chain",
-      "label": "Pay to have it chained and covered.",
+      "label": "Pay to have it chained and covered, so no one is tempted to sit.",
       "tags": [
         "kind"
       ],
@@ -93,7 +93,7 @@
     },
     {
       "id": "walk_round",
-      "label": "Walk the long way round the square.",
+      "label": "Walk the long way round the square. No House should want that seat.",
       "tags": [
         "cautious"
       ],
