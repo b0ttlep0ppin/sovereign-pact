@@ -15,7 +15,20 @@
         "properties": {
           "id": { "$ref": "defs.schema.json#/definitions/id" },
           "source": { "type": "string", "pattern": "^Mega Pack [12]/.+\\.png$" },
-          "flip": { "type": "boolean" }
+          "flip": { "type": "boolean" },
+          "tweak": {
+            "description": "The owner's colour tweak from the Bestiary, baked in by tools/cut-monsters.py: hue in degrees, the rest in percent",
+            "type": "object",
+            "additionalProperties": false,
+            "minProperties": 1,
+            "properties": {
+              "hue": { "type": "integer", "minimum": -180, "maximum": 180 },
+              "sat": { "type": "integer", "minimum": 0, "maximum": 300 },
+              "bright": { "type": "integer", "minimum": 0, "maximum": 300 },
+              "contrast": { "type": "integer", "minimum": 0, "maximum": 300 },
+              "warmth": { "type": "integer", "minimum": 0, "maximum": 100 }
+            }
+          }
         }
       }
     }

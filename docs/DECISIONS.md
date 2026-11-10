@@ -2,6 +2,10 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-10 (implementation, Milestone 8do): the Bestiary's colour tweaks are baked into the sprites
+
+Josh went through every sprite in the Bestiary and set its Hue, Saturation, Brightness, Contrast and Warmth sliders on 319 of them. Each tweak is now a `tweak` on the sprite's manifest entry (only the sliders he moved), and `tools/cut-monsters.py` bakes it into the cut picture through `tools/sprite_tweak.py`, which applies the same CSS filter chain the Bestiary showed (`hue-rotate saturate brightness contrast sepia`, in that order, in sRGB; checked against Chromium to within 3 of 255 per channel). The shipped pictures were re-cut from the committed ones with the same function, so the game draws what he saw, everywhere a sprite appears, with no filter at run time (the battle's own glow and hover filters stay as they were).
+
 ## 2026-11-10 (implementation, Milestone 8dn): a bigger pool of given names
 
 Josh: **"need a bigger pool of names, seeing a lot of repeats"**. The given names grow from 44 women's and 42 men's to 189 and 198, all medieval European (English, Norman, Frankish, Norse, Occitan, Italian, Welsh and Irish), none shared between the lists or with House names or other content. A new recruit's name is also kept from the dead in every House's Chronicle (`namesTaken`), not only from the living and the muster.

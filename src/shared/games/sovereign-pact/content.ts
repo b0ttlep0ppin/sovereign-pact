@@ -323,6 +323,8 @@ export interface SpriteDef {
   id: string;
   /** The source file in the Mega Packs, for the cutting tool and the credits. */
   source: string;
+  /** Its colour tweak from the Bestiary, already baked into the cut picture by tools/cut-monsters.py. */
+  tweak?: Partial<Record<"hue" | "sat" | "bright" | "contrast" | "warmth", number>>;
   /** Mirrored to face the party. */
   flip: boolean;
 }
