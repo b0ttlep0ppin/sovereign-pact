@@ -50,6 +50,38 @@ interface LiveSave {
   savedAt: string;
 }
 
+/** The kept table as text, for a bug report where downloads are blocked (an artifact's frame). */
+function CopyTable() {
+  const [text, setText] = useState<string | null>(null);
+  const [copied, setCopied] = useState(false);
+  const copy = () => {
+    let raw = "";
+    try {
+      raw = globalThis.localStorage?.getItem(LIVE_KEY) ?? "";
+    } catch {
+      // Storage blocked: nothing to copy.
+    }
+    setText(raw);
+    globalThis.navigator?.clipboard?.writeText(raw).then(
+      () => setCopied(true),
+      () => setCopied(false),
+    );
+  };
+  return (
+    <>
+      <button type="button" className="app__button" onClick={copy}>
+        Copy this table for a bug report
+      </button>
+      {text !== null ? (
+        <>
+          <p>{copied ? "Copied. Paste it into the chat." : "Select all of this and copy it:"}</p>
+          <textarea readOnly value={text} rows={4} aria-label="The table, as text" onFocus={(e) => e.currentTarget.select()} />
+        </>
+      ) : null}
+    </>
+  );
+}
+
 /** The table as it stood after the last move, if it still opens under these rules (a new build may have changed them). */
 function readLive(): LiveSave | null {
   try {
@@ -228,6 +260,7 @@ function NewCampaign({ onStart }: { onStart: (t: Table) => void }) {
               <button type="button" className="sp-button" onClick={() => onStart({ bots: live.bots, state: live.state })}>
                 Continue where you left off
               </button>
+              <CopyTable />
             </>
           ) : null}
           {stored ? (
