@@ -71,7 +71,9 @@ describe("hits and damage (§10.6)", () => {
 
   it("scales physical damage by Might and enemy damage by level (§7.3, §14.2)", () => {
     const u = scion(1, 0, 3);
-    expect(baseDamage(u, HIT)).toBeCloseTo(u.weapon.power * (1 + u.might / 25));
+    // A one-hand weapon and an empty off hand: the free hand's bonus too.
+    const free = u.weapon.hands === 1 && !u.offhand && !u.offWeapon ? 1 + TUNING.combat.freeHandPct / 100 : 1;
+    expect(baseDamage(u, HIT)).toBeCloseTo(u.weapon.power * free * (1 + u.might / 25));
     const e = enemy(2, 0, 3, "barrow_skeleton", 5);
     expect(baseDamage(e, HIT)).toBeCloseTo((6 + 15 + 2.5) * TUNING.enemies.roles.fodder.atk * (1 + TUNING.combat.enemyLevelFactor * 5) * (TUNING.enemies.softenAtk[4] ?? 1) * TUNING.enemies.atkMult);
   });

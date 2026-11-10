@@ -30,6 +30,9 @@ gen = Path(sys.argv[1])
 out = root / "public/sprites/sovereign-pact/scions"
 out.mkdir(parents=True, exist_ok=True)
 
+# Above the tallest hat (135), below crests (139) and weapons (140, 150).
+SHIELD_FRONT_Z = 136
+
 # Every helmet the generator offers under an attribution-only license (two horned ones are share-alike only).
 HELMS = ["mail", "nasal", "armet", "armet_simple", "barbarian", "barbarian_nasal", "barbarian_viking", "barbuta", "bascinet", "close", "flattop", "greathelm", "kettle", "legion", "morion", "norman", "pointed", "spangenhelm", "spangenhelm_viking", "sugarloaf"]
 # slot -> option -> sheet definition (relative to sheet_definitions/), or several drawn together. A part
@@ -232,15 +235,18 @@ for slot, opts in PICK.items():
                             first = sheet.crop((0, r * CELL, CELL, (r + 1) * CELL))
                             sheet.paste((0, 0, 0, 0), (CELL, r * CELL, 2 * CELL, (r + 1) * CELL))
                             sheet.alpha_composite(first.crop((0, 1, CELL, CELL)), (CELL, r * CELL))
+                    # A shield's front layer goes over every hat and helm (Josh 2026-11-10: the coif showed
+                    # in front of the shield); the generator's own z puts it under the hair.
+                    z = max(layer["zPos"], SHIELD_FRONT_Z) if slot == "shield" and layer["zPos"] >= 100 else layer["zPos"]
                     tag = f"{lk[6:]}{'abcdefgh'[part] if part else ''}"
                     lid = f"{slot}_{oid}_{tag}_{sex[0]}"
                     # Same art for both bodies: keep one file.
                     other = f"{slot}_{oid}_{tag}_m"
                     if sex == "female" and layer.get("female") == layer.get("male"):
-                        manifest["layers"].append({"id": lid, "file": other, "slot": slot, "option": oid, "sex": "f", "z": layer["zPos"], "material": material, **tone})
+                        manifest["layers"].append({"id": lid, "file": other, "slot": slot, "option": oid, "sex": "f", "z": z, "material": material, **tone})
                         continue
                     sheet.save(out / f"{lid}.webp", "WEBP", lossless=True, method=6)
-                    manifest["layers"].append({"id": lid, "file": lid, "slot": slot, "option": oid, "sex": sex[0], "z": layer["zPos"], "material": material, **tone})
+                    manifest["layers"].append({"id": lid, "file": lid, "slot": slot, "option": oid, "sex": sex[0], "z": z, "material": material, **tone})
             for c in d["credits"]:
                 key = c["file"]
                 if key in seen_credits:

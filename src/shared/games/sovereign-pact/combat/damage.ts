@@ -77,6 +77,8 @@ export function baseDamage(u: Combatant, ab: AbilityDef): number {
   // Two-Handed Mastery (§12.12).
   if (kind === "physical" && ab.base === undefined && u.weapon.hands === 2) power *= pct(u.mods.twoHandPct ?? 0);
   if (u.enemyScale !== undefined) return power * u.enemyScale;
+  // A one-hand weapon with nothing in the other hand, no shield and no second blade, strikes harder (Josh 2026-11-10).
+  if (kind === "physical" && ab.base === undefined && u.weapon.hands === 1 && u.weapon.kind !== "unarmed" && u.weapon.kind !== "natural" && !u.offhand && !u.offWeapon) power *= pct(C.freeHandPct);
   // Finale (§12.11) sings with Sagacity.
   if (kind === "magic") return power * (1 + (ab.finale ? u.sagacity / C.sagacityDivisor : u.acuity / C.acuityDivisor)) * (1 + ((u.mods.spellPct ?? 0) + (ab.element ? (u.mods[`spellPct.${ab.element}`] ?? 0) : 0)) / 100);
   if (kind === "heal") return power * (1 + u.sagacity / C.sagacityDivisor);

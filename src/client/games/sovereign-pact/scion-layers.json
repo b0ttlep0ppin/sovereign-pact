@@ -2582,7 +2582,7 @@
    "slot": "shield",
    "option": "heater",
    "sex": "m",
-   "z": 111,
+   "z": 136,
    "material": "cloth"
   },
   {
@@ -2591,7 +2591,7 @@
    "slot": "shield",
    "option": "heater",
    "sex": "f",
-   "z": 111,
+   "z": 136,
    "material": "cloth"
   },
   {
@@ -2600,7 +2600,7 @@
    "slot": "shield",
    "option": "round",
    "sex": "m",
-   "z": 110,
+   "z": 136,
    "material": null
   },
   {
@@ -2609,7 +2609,7 @@
    "slot": "shield",
    "option": "round",
    "sex": "f",
-   "z": 110,
+   "z": 136,
    "material": null
   },
   {
@@ -2636,7 +2636,7 @@
    "slot": "shield",
    "option": "scutum",
    "sex": "m",
-   "z": 110,
+   "z": 136,
    "material": "cloth"
   },
   {
@@ -2645,7 +2645,7 @@
    "slot": "shield",
    "option": "scutum",
    "sex": "f",
-   "z": 110,
+   "z": 136,
    "material": "cloth"
   },
   {

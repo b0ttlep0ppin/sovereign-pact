@@ -83,7 +83,7 @@
       "name": "Spear",
       "slot": "main",
       "type": "spear",
-      "hands": 2,
+      "hands": 1,
       "power": 95,
       "acc": 90,
       "crit": 5,

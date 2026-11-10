@@ -1583,7 +1583,7 @@ Each Job has a sprite outfit (LPC layers) applied over the Scion's body; the pla
 | Sword | 1h / 2h | 100 / 90 / 5 | melee | even | Sword Saint techniques |
 | Axe | 1h / 2h | 115 / 85 / 8 | melee | Arms, Body | Skullsplitter; Bleed on crit |
 | Mace / Hammer | 1h / 2h | 105 / 85 / 5 | melee | Head | Ignores 25% of armor; Stun on crit |
-| Spear | 2h | 95 / 90 / 5 | reach (hits from Middle at full; line:2) | Body | Pin |
+| Spear | 1h (Josh 2026-11-10) | 95 / 90 / 5 | reach (hits from Middle at full; line:2) | Body | Pin |
 | Knife | 1h (pairs) | 60 / 95 / 12 | melee | Arms, Head | Dual-wield friendly; Knife Flurry; +TP gain |
 | Knuckles / claws | pair | 50 / 95 / 8 | melee | even | Pugilist moves scale with level (Iron Fists) |
 | Bow | 2h | 85 / 85 / 8 | ranged (−10% from Front) | Legs, Head | Volley, Pin; ranged ignores formation |

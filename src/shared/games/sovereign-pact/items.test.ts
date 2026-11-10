@@ -49,15 +49,15 @@ describe("wearing gear (§12.3, §13.1)", () => {
     const knight = scion(s, "knight");
     equip(s, knight, mint(s, "sword", 0), "main");
     equip(s, knight, mint(s, "heater_shield", 0), "off");
-    const spear = mint(s, "spear", 0);
-    expect(baseOf(spear).hands).toBe(2);
-    equip(s, knight, spear, "main");
+    const maul = mint(s, "maul", 0);
+    expect(baseOf(maul).hands).toBe(2);
+    equip(s, knight, maul, "main");
     expect(knight.gear.off).toBeUndefined();
     const other = scion(s, "knight");
-    equip(s, other, spear, "main");
+    equip(s, other, maul, "main");
     expect(knight.gear.main).toBeUndefined();
-    expect(other.gear.main).toBe(spear.id);
-    expect(stash(s, 0).map((i) => i.id)).not.toContain(spear.id);
+    expect(other.gear.main).toBe(maul.id);
+    expect(stash(s, 0).map((i) => i.id)).not.toContain(maul.id);
   });
 
   it("adds worn armor up, and slows a Scion carrying too much", () => {
