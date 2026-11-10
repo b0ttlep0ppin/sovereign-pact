@@ -16,7 +16,7 @@
     },
     "temptation": {
       "label": "Hire the sleepers out to the dream-readers.",
-      "text": "The readers pay well to sit by the beds and write down what the sleepers say. What they say is the same for all of them.",
+      "text": "The readers pay well to sit by the beds writing down what the sleepers say. Every sleeper says the same thing.",
       "penalty": 15,
       "effects": [
         {
@@ -30,7 +30,7 @@
       ]
     },
     "triumph": {
-      "text": "The physicians wake them one by one. Every one of them, waking, says the same word, and none of them remember it after.",
+      "text": "The physicians wake them one by one. Each of them says the same word on waking; none of them remember it after.",
       "effects": [
         {
           "accord": 3
@@ -41,11 +41,11 @@
       ]
     },
     "holds": {
-      "text": "Most wake within the month. A few never do, and their families keep them in the attic and listen to them laugh.",
+      "text": "Most wake within the month. A few never do. Their families keep them in the attic, listening to them laugh.",
       "effects": []
     },
     "falters": {
-      "text": "The sickness reaches the Seats. One House's Scion sleeps for a season, and wakes knowing things they should not.",
+      "text": "The sickness reaches the Seats. One House's Scion sleeps for a season, then wakes knowing things they should not.",
       "effects": [
         {
           "accord": -5
@@ -60,7 +60,7 @@
       ]
     },
     "calamity": {
-      "text": "The city sleeps through a whole season. The ones who stay awake keep the fires lit and do not look at the sleepers' faces, which are all turned the same way: towards the Gate.",
+      "text": "The city sleeps through a whole season. Those who stay awake keep the fires lit without looking at the sleepers' faces, which are all turned the same way: towards the Gate.",
       "effects": [
         {
           "accord": -12

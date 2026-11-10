@@ -54,7 +54,7 @@
     {
       "when": "none",
       "option": "fund",
-      "text": "No House pays. The festival never happens, and the people do not forget.",
+      "text": "No House pays. The festival never happens; the people do not forget it.",
       "effects": [
         {
           "accord": -10
@@ -64,7 +64,7 @@
     {
       "when": "all",
       "option": "fund",
-      "text": "Every House pays, and the games are remembered for a generation.",
+      "text": "Every House pays. The games are spoken of for a generation.",
       "effects": [
         {
           "accord": 5

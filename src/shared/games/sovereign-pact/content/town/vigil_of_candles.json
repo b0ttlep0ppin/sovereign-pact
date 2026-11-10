@@ -82,7 +82,7 @@
     {
       "when": "all",
       "option": "candles",
-      "text": "Every House keeps the vigil. At dawn the cathedral is warm as a hearth, and the Rift's light is dimmer than anyone can remember.",
+      "text": "Every House keeps the vigil. At dawn the cathedral is warm as a hearth, while the Rift's light is dimmer than anyone can remember.",
       "effects": [
         {
           "doom": -3

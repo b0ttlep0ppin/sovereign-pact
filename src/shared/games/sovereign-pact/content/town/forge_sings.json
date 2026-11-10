@@ -10,7 +10,7 @@
     "building:forge"
   ],
   "title": "The Forge Sings",
-  "text": "The smith says the iron hums when it cools, a low sweet note like a woman singing far away, and will not stop. He has not slept in days. He stands at the anvil with his eyes shut, his lips moving, and the blades he makes now are very fine.",
+  "text": "The smith says the iron hums as it cools, a low sweet note like a woman singing far away, and it will not stop. He has not slept in days. He stands at the anvil with his eyes shut, lips moving. The blades he makes now are very fine.",
   "rule": "house",
   "options": [
     {
@@ -22,7 +22,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "What comes off the anvil is beautiful and wrong, and the smith weeps to see it.",
+          "text": "What comes off the anvil is beautiful and wrong. The smith weeps to see it.",
           "effects": [
             {
               "score": {
@@ -49,14 +49,14 @@
     },
     {
       "id": "quench",
-      "label": "Quench the forge for a season, before the song takes him entirely.",
+      "label": "Quench the forge for a season before the song takes him entirely.",
       "tags": [
         "cautious"
       ],
       "outcomes": [
         {
           "w": 100,
-          "text": "The humming stops. The smith sleeps for two days, and wakes asking where she went.",
+          "text": "The humming stops. The smith sleeps for two days and wakes asking where she went.",
           "effects": [
             {
               "resources": {

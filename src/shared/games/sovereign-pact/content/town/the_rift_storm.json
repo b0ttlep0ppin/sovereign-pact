@@ -30,7 +30,7 @@
       ]
     },
     "triumph": {
-      "text": "The rods catch the lightning and the roofs hold. When the storm ends, the Gate is dark and quiet, as if it has spent itself for a while.",
+      "text": "The rods catch the lightning; the roofs hold. When the storm ends the Gate is dark and quiet, as if it has spent itself for a while.",
       "effects": [
         {
           "accord": 3
@@ -41,7 +41,7 @@
       ]
     },
     "holds": {
-      "text": "The worst of it is kept off. The glass in the gutters hums for a month.",
+      "text": "The worst of it is kept off. For a month the glass in the gutters hums.",
       "effects": [
         {
           "doom": 1
@@ -49,7 +49,7 @@
       ]
     },
     "falters": {
-      "text": "The storm takes the roofs of the poor quarter and one House's best building. The people under them are found standing upright, glassy-eyed, and they do not lie down again.",
+      "text": "The storm takes the roofs of the poor quarter, along with one House's best building. The people beneath are found standing upright with glassy eyes. They do not lie down again.",
       "effects": [
         {
           "accord": -5
@@ -63,7 +63,7 @@
       ]
     },
     "calamity": {
-      "text": "The storm stays a season. Every House loses someone to the glass, and the Gate is a little wider at the end of it.",
+      "text": "The storm stays a season. Every House loses someone to the glass. When it ends, the Gate is a little wider.",
       "effects": [
         {
           "accord": -12

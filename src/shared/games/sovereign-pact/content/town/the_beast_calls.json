@@ -101,7 +101,7 @@
     {
       "when": "none",
       "option": "watch",
-      "text": "Nobody answers. The calling goes on all winter, and the thing in the hills learns that the city is afraid of it.",
+      "text": "Nobody answers. The calling goes on all winter, until the thing in the hills learns that the city fears it.",
       "effects": [
         {
           "doom": 3

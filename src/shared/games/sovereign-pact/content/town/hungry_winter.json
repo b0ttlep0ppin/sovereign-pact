@@ -7,7 +7,7 @@
     20
   ],
   "title": "The Hungry Winter",
-  "text": "The snow came early and stayed, heaped to the sills, and the river froze solid. The granaries of the lower town are scraped bare. The poor queue at every House's kitchen door in the dark before dawn, silent, their breath hanging over them. Some of them are children.",
+  "text": "The snow came early and stayed, heaped to the sills, and the river froze solid. The granaries of the lower town are scraped bare. In the dark before dawn the poor queue silently at every House's kitchen door, their breath hanging over them. Some of them are children.",
   "rule": "pledges",
   "crisis": {
     "need": {
@@ -15,7 +15,7 @@
     },
     "temptation": {
       "label": "Sell your surplus to the speculators instead.",
-      "text": "The grain merchants pay well, and ask no questions about who goes without.",
+      "text": "The grain merchants pay well. They ask no questions about who goes without.",
       "penalty": 15,
       "effects": [
         {
@@ -34,11 +34,11 @@
       ]
     },
     "holds": {
-      "text": "A hard winter, but the city holds. Some of the night shelters are quieter than they should be.",
+      "text": "The winter is hard, but the city holds. Some of the night shelters are quieter than they should be.",
       "effects": []
     },
     "falters": {
-      "text": "The old and the very young die in the night shelters, and the gravediggers find the ground already open.",
+      "text": "The old and the very young die in the night shelters. When the gravediggers come, they find the ground already open.",
       "effects": [
         {
           "accord": -5
@@ -50,7 +50,7 @@
       ]
     },
     "calamity": {
-      "text": "Famine. The recruit halls empty as the hungry flee, and in the lower town the Houses are cursed, and worse is eaten.",
+      "text": "Famine comes. The hungry flee and the recruit halls empty behind them. In the lower town the Houses are cursed, and worse things are eaten.",
       "effects": [
         {
           "accord": -15

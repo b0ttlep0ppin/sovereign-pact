@@ -16,7 +16,7 @@
     },
     "temptation": {
       "label": "Bottle the blood and sell it as a relic.",
-      "text": "The pilgrims pay anything for a vial. The bishop will preach against whoever is selling it, if he finds out.",
+      "text": "The pilgrims will pay anything for a vial. If the bishop finds out who sells it, he will preach against them.",
       "penalty": 15,
       "effects": [
         {
@@ -33,7 +33,7 @@
       ]
     },
     "triumph": {
-      "text": "The north wall is rebuilt and the bleeding stops. On the first Sunday the whole city fills the nave and sings, and for an hour the Rift is silent.",
+      "text": "The north wall is rebuilt and the bleeding stops. On the first Sunday the whole city fills the nave to sing; for an hour, the Rift is silent.",
       "effects": [
         {
           "accord": 4
@@ -44,11 +44,11 @@
       ]
     },
     "holds": {
-      "text": "The wall stands, patched. The blood dries brown in the joints and nobody washes it off.",
+      "text": "The patched wall stands. The blood dries brown in the joints, and nobody washes it off.",
       "effects": []
     },
     "falters": {
-      "text": "The north wall comes down during the evening office. The bishop is pulled from the rubble alive, and has not stopped praying since.",
+      "text": "The north wall comes down during the evening office. The bishop is pulled alive from the rubble. He has not stopped praying since.",
       "effects": [
         {
           "accord": -6
@@ -59,7 +59,7 @@
       ]
     },
     "calamity": {
-      "text": "The cathedral falls. The bells are found the next morning in the square, upright, ringing on their own, and the city's prayers go unanswered for a long time.",
+      "text": "The cathedral falls. In the morning its bells are found upright in the square, ringing on their own. For a long time after, the city's prayers go unanswered.",
       "effects": [
         {
           "accord": -12

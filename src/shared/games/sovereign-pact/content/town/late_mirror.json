@@ -12,14 +12,14 @@
   "options": [
     {
       "id": "accept",
-      "label": "Hang the late mirror in the hall, and watch for what is coming.",
+      "label": "Hang the late mirror in the hall and watch for what is coming.",
       "tags": [
         "bold"
       ],
       "outcomes": [
         {
           "w": 50,
-          "text": "The mirror shows a knife before it is drawn. The House sleeps safer, and trusts its servants less.",
+          "text": "The mirror shows a knife before it is drawn. The House sleeps safer, though it trusts its servants less.",
           "effects": [
             {
               "score": {
@@ -30,7 +30,7 @@
         },
         {
           "w": 50,
-          "text": "One evening the mirror shows a Scion's chair empty and bloodied. Three days later the chair is empty, and the Scion is with the surgeon.",
+          "text": "One evening the mirror shows a Scion's chair empty and bloodied. Three days later the chair is empty, its Scion with the surgeon.",
           "effects": [
             {
               "scion": {
@@ -43,14 +43,14 @@
     },
     {
       "id": "break",
-      "label": "Break it. No House should see what is coming.",
+      "label": "Break it; no House should see what is coming.",
       "tags": [
         "cautious"
       ],
       "outcomes": [
         {
           "w": 70,
-          "text": "It breaks into seven shards, each one still a moment late. You bury them in seven places.",
+          "text": "It breaks into seven shards, each still a moment late. You bury them in seven places.",
           "effects": []
         },
         {
@@ -68,7 +68,7 @@
     },
     {
       "id": "pass_on",
-      "label": "Take it, and sell it to a rival. Let them see what comes for them.",
+      "label": "Take it and sell it to a rival; let them see what comes for them.",
       "tags": [
         "cruel",
         "clever"

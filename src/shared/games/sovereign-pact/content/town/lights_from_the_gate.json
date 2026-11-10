@@ -10,19 +10,19 @@
     "building:watchtower"
   ],
   "title": "Lights from the Gate",
-  "text": "Your watchtower's keeper reports a line of lanterns coming from the Rift Gate across the fields every night, toward the city. They never arrive. Each night they are a little nearer.",
+  "text": "Your watchtower's keeper reports that every night a line of lanterns comes from the Rift Gate across the fields toward the city. They never arrive, but each night they are a little nearer.",
   "rule": "house",
   "options": [
     {
       "id": "ride_out",
-      "label": "Ride out to meet the lanterns, and learn who carries them.",
+      "label": "Ride out to meet the lanterns and learn who carries them.",
       "tags": [
         "bold"
       ],
       "outcomes": [
         {
           "w": 50,
-          "text": "The lanterns are carried by nobody. The Scion who rode out brings one back, and it shows the way through dark places.",
+          "text": "Nobody carries the lanterns. The Scion who rode out brings one back, and it shows the way through dark places.",
           "effects": [
             {
               "scion": {
@@ -38,7 +38,7 @@
         },
         {
           "w": 50,
-          "text": "The lanterns close around the rider, and the rider comes back at dawn with their hair gone white and nothing to say.",
+          "text": "The lanterns close around the rider, who comes back at dawn with white hair and nothing to say.",
           "effects": [
             {
               "scion": {
@@ -53,7 +53,7 @@
     },
     {
       "id": "warn",
-      "label": "Warn the city, so every door is barred before they arrive.",
+      "label": "Warn the city so every door is barred before they arrive.",
       "tags": [
         "kind"
       ],
@@ -74,14 +74,14 @@
     },
     {
       "id": "watch",
-      "label": "Keep watching, and say nothing. Knowledge is worth more than panic.",
+      "label": "Keep watching and say nothing; knowledge is worth more than panic.",
       "tags": [
         "cautious"
       ],
       "outcomes": [
         {
           "w": 100,
-          "text": "The keeper writes down every night's count. The numbers are rising.",
+          "text": "Each night the keeper writes down the count. The numbers are rising.",
           "effects": [
             {
               "score": {

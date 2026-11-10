@@ -32,7 +32,7 @@
       ]
     },
     "triumph": {
-      "text": "The levees hold and the river goes back into its bed. On the mud it leaves are a thousand footprints, all walking back into the water.",
+      "text": "The levees hold, and the river goes back into its bed. In the mud it leaves are a thousand footprints, all walking back into the water.",
       "effects": [
         {
           "accord": 3
@@ -51,7 +51,7 @@
       ]
     },
     "falters": {
-      "text": "The low town is lost to the water for a season. The drowned float at the windows of their own houses and knock to be let in.",
+      "text": "The low town is lost to the water for a season. The drowned float at the windows of their own houses, knocking to be let in.",
       "effects": [
         {
           "accord": -5
@@ -66,7 +66,7 @@
       ]
     },
     "calamity": {
-      "text": "The river takes the low town and keeps it. Its new bells ring under the water every evening, and some of the Scions who heard them walk into the river after them.",
+      "text": "The river takes the low town and keeps it. Its bells ring under the water every evening; some of the Scions who hear them follow them into the river.",
       "effects": [
         {
           "accord": -12

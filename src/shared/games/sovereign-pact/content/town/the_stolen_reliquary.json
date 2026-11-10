@@ -75,7 +75,7 @@
     {
       "when": "all",
       "option": "accuse",
-      "text": "Every House accuses another. The bishop curses them all from the altar, and nobody returns the heart. It is heard beating under the city for years.",
+      "text": "Every House accuses another. The bishop curses them all from the altar. Nobody returns the heart, which is heard beating under the city for years.",
       "effects": [
         {
           "accord": -4
@@ -87,7 +87,7 @@
     }
   ],
   "blamed": {
-    "text": "The bishop names the House from the pulpit. Its people are spat on in the street, its recruits leave it, and its stores pay for a new reliquary.",
+    "text": "The bishop names the House from the pulpit. Its people are spat on in the street; its recruits leave it. Its stores pay for a new reliquary.",
     "effects": [
       {
         "resources": {

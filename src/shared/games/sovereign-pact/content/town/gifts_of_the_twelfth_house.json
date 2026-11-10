@@ -12,14 +12,14 @@
   "options": [
     {
       "id": "accept",
-      "label": "Accept the gifts with thanks. It would be rude to refuse a House, even one that does not exist.",
+      "label": "Accept the gifts with thanks; it would be rude to refuse a House, even one that does not exist.",
       "tags": [
         "bold"
       ],
       "outcomes": [
         {
           "w": 1,
-          "text": "Every House is richer by a fine thing. The carts leave empty, and the drivers have no faces under their hoods.",
+          "text": "Every House is richer by a fine thing. The carts leave empty, their drivers faceless under their hoods.",
           "effects": [
             {
               "to": "all",
@@ -40,14 +40,14 @@
     },
     {
       "id": "burn",
-      "label": "Burn the gifts in the square, carts and all. Nothing from a Twelfth House is a gift.",
+      "label": "Burn the gifts in the square, carts and all; nothing from a Twelfth House is a gift.",
       "tags": [
         "cautious"
       ],
       "outcomes": [
         {
           "w": 1,
-          "text": "The blades scream in the fire. The city is poorer, and the night is very quiet.",
+          "text": "The blades scream in the fire. The city is poorer for it, and the night is very quiet.",
           "effects": [
             {
               "doom": -3
@@ -62,14 +62,14 @@
     },
     {
       "id": "commons",
-      "label": "Give it all to the Commons, unopened, and let no single House owe the Twelfth.",
+      "label": "Give it all to the Commons unopened, so no single House owes the Twelfth.",
       "tags": [
         "clever"
       ],
       "outcomes": [
         {
           "w": 1,
-          "text": "The Commons' stores swell. In the vault, at night, the wine casks can be heard talking among themselves.",
+          "text": "The Commons' stores swell. At night, in the vault, the wine casks can be heard talking among themselves.",
           "effects": [
             {
               "to": "commons",

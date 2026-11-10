@@ -16,7 +16,7 @@
     },
     "temptation": {
       "label": "Sell your iron to the trappers, at trappers' prices.",
-      "text": "The pelts they bring back are worth a fortune. Some of them have hands.",
+      "text": "The pelts the trappers bring back are worth a fortune. Some of them have hands.",
       "penalty": 15,
       "effects": [
         {
@@ -27,7 +27,7 @@
       ]
     },
     "triumph": {
-      "text": "Spears and fires hold the walls all winter. In the thaw the hunters bring back a skull the size of a cart, and the city hangs it over the gate.",
+      "text": "Spears and fires hold the walls all winter. In the thaw the hunters bring back a skull the size of a cart, which the city hangs over the gate.",
       "effects": [
         {
           "accord": 3
@@ -38,7 +38,7 @@
       ]
     },
     "holds": {
-      "text": "The walls hold. The outlying farms do not, and nobody goes to see what is left of them.",
+      "text": "The walls hold; the outlying farms do not. Nobody goes to see what is left of them.",
       "effects": [
         {
           "resources": {
@@ -49,7 +49,7 @@
       ]
     },
     "falters": {
-      "text": "They come over the wall on the longest night. By morning the snow in the lower town is pink, and one of your recruits is gone with the rest.",
+      "text": "They come over the wall on the longest night. By morning the snow in the lower town is pink. One of your recruits is gone with the rest.",
       "effects": [
         {
           "accord": -5
@@ -61,7 +61,7 @@
       ]
     },
     "calamity": {
-      "text": "The wolves winter inside the walls. They learn the Seats' doors, and the Scions who fight them are never quite warm again.",
+      "text": "The wolves winter inside the walls, where they learn the Seats' doors. The Scions who fight them are never quite warm again.",
       "effects": [
         {
           "accord": -12

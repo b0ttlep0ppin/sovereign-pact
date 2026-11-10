@@ -29,7 +29,7 @@
       ]
     },
     "triumph": {
-      "text": "The debt is paid in full. The collectors walk back into the river, and the King's black seal on the writ crumbles to wet ash. Somewhere far away, something is disappointed.",
+      "text": "The debt is paid in full. The collectors walk back into the river, while the King's black seal on the writ crumbles to wet ash. Somewhere far away, something is disappointed.",
       "effects": [
         {
           "accord": 4
@@ -40,7 +40,7 @@
       ]
     },
     "holds": {
-      "text": "Paid, near enough. The collectors bow and go, but they take the toll-keeper with them, and nobody saw him agree to it.",
+      "text": "The debt is paid, near enough. The collectors bow and go, taking the toll-keeper with them; nobody saw him agree to it.",
       "effects": [
         {
           "doom": 1
@@ -48,7 +48,7 @@
       ]
     },
     "falters": {
-      "text": "Short. The collectors take the balance in kind: a recruit from one House, walking into the river with a smile.",
+      "text": "The payment falls short, so the collectors take the balance in kind. A recruit from one House walks into the river, smiling.",
       "effects": [
         {
           "accord": -5
@@ -63,7 +63,7 @@
       ]
     },
     "calamity": {
-      "text": "Defaulted. The collectors stay, and the square drowns, and every House's ledger turns black in a night. In the Barrows, the old King's drowned court starts to wake.",
+      "text": "The city defaults. The collectors stay until the square drowns, and every House's ledger turns black in a night. In the Barrows, the old King's drowned court begins to wake.",
       "effects": [
         {
           "accord": -10

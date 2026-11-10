@@ -7,12 +7,12 @@
     20
   ],
   "title": "A Crown in the Ashes",
-  "text": "When the old foundry on the river finally burns out, the ashes give up a crown: iron, nailed together, with a saint's name stamped inside it. Every smith in the city wants it melted. Every House wants it worn. The foundry-master will sell it for iron, not gold.",
+  "text": "When the old foundry on the river finally burns out, the ashes give up a crown of iron, nailed together, a saint's name stamped inside it. Every smith in the city wants it melted, and every House wants it worn. The foundry-master will sell it for iron, not gold.",
   "rule": "secret",
   "options": [
     {
       "id": "bid",
-      "label": "Send a sealed bid of iron, and hope the crown comes to your House.",
+      "label": "Send a sealed bid of iron, hoping the crown comes to your House.",
       "tags": [
         "bold"
       ],
@@ -23,21 +23,21 @@
       "outcomes": [
         {
           "w": 1,
-          "text": "Your iron is carted to the ruin. The foundry-master weighs it on a scale with a skull on the other pan.",
+          "text": "Your iron is carted to the ruin, where the foundry-master weighs it against a skull on the other pan.",
           "effects": []
         }
       ]
     },
     {
       "id": "leave",
-      "label": "Let someone else wear it. A saint's crown is a heavy thing.",
+      "label": "Let someone else wear it; a saint's crown is a heavy thing.",
       "tags": [
         "cautious"
       ],
       "outcomes": [
         {
           "w": 1,
-          "text": "You keep your iron, and watch to see whose head the crown ends up on.",
+          "text": "You keep your iron and watch to see whose head the crown ends up on.",
           "effects": []
         }
       ]
@@ -47,7 +47,7 @@
     {
       "when": "none",
       "option": "bid",
-      "text": "Nobody bids. The foundry-master puts the crown on his own head, walks into the river, and is not seen again.",
+      "text": "Nobody bids. The foundry-master sets the crown on his own head and walks into the river. He is not seen again.",
       "effects": [
         {
           "doom": 2
@@ -56,7 +56,7 @@
     }
   ],
   "prize": {
-    "text": "The crown is yours. Whoever wears it hears the iron saint's last sermon every night, word for word, and stands a little straighter in the morning.",
+    "text": "The crown is yours. Whoever wears it hears the iron saint's last sermon every night, word for word, and rises a little straighter in the morning.",
     "effects": [
       {
         "item": {

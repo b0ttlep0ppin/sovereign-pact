@@ -16,7 +16,7 @@
     },
     "temptation": {
       "label": "Grind the pale seeds into flour and sell it to the poor.",
-      "text": "The bread is fine. Better than fine. The poor who eat it sleep well and dream of a mother none of them have met.",
+      "text": "The bread is fine, better than fine. The poor who eat it sleep well, dreaming of a mother none of them have met.",
       "penalty": 20,
       "effects": [
         {
@@ -30,7 +30,7 @@
       ]
     },
     "triumph": {
-      "text": "The fields are burned, the seeds with them, and the bought grain gets the city through. The smoke smells of milk for a week.",
+      "text": "The fields are burned with the seeds in them, and the bought grain gets the city through. For a week the smoke smells of milk.",
       "effects": [
         {
           "accord": 3
@@ -41,7 +41,7 @@
       ]
     },
     "holds": {
-      "text": "Enough grain comes in. Nobody can say for certain every pale seed was burned.",
+      "text": "Enough grain comes in. Nobody can say for certain that every pale seed was burned.",
       "effects": [
         {
           "doom": 1
@@ -49,7 +49,7 @@
       ]
     },
     "falters": {
-      "text": "Not enough grain, and not enough fire. The hungry eat the seeds. They are very calm afterwards, and very hungry.",
+      "text": "There is not enough grain, nor enough fire. The hungry eat the seeds. Afterwards they are very calm, and always hungry.",
       "effects": [
         {
           "accord": -5

@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 80,
-          "text": "The vows are said in the cathedral at midnight, as the old law wants. The crows sit on every pew and watch.",
+          "text": "The vows are said in the cathedral at midnight, as the old law wants, while crows on every pew watch.",
           "effects": [
             {
               "ward_swap": true
@@ -33,7 +33,7 @@
         },
         {
           "w": 20,
-          "text": "The vows are said, and in the morning both brides wake with a thumbprint of ash on their brows.",
+          "text": "The vows are said. In the morning both brides wake with a thumbprint of ash on their brows.",
           "effects": [
             {
               "ward_swap": true
@@ -50,7 +50,7 @@
     },
     {
       "id": "dowry",
-      "label": "Pay the Court a dowry in place of a bride, and keep your blood your own.",
+      "label": "Pay the Court a dowry in place of a bride, keeping your blood your own.",
       "tags": [
         "clever"
       ],
@@ -73,7 +73,7 @@
     },
     {
       "id": "refuse",
-      "label": "Refuse the Court. No House binds yours.",
+      "label": "Refuse the Court; no House binds yours.",
       "tags": [
         "cautious"
       ],
