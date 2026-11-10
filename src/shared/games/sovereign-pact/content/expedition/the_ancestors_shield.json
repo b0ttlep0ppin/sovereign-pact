@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "It comes down easily, as if it had been waiting. The arguing over whose arms it bears lasts the rest of the day, and each of you still sees your own.",
+          "text": "It comes down easily, as though it had been waiting. The Houses argue over whose arms it bears for the rest of the day, each still seeing their own.",
           "effects": [
             {
               "item": {
@@ -37,7 +37,7 @@
         },
         {
           "w": 30,
-          "text": "The ancestor disagrees with all of you, and comes up out of the barrow to say so.",
+          "text": "The ancestor disagrees with every claim. It rises from the barrow to settle the matter.",
           "effects": [
             {
               "encounter": {
@@ -84,7 +84,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The runes name a forgotten branch of a House, and how it ended. They do not say which House, and nobody tells the others what they read.",
+          "text": "The runes name a forgotten branch of a House and tell how it ended. They do not say which House; the wisest keeps what they read to themselves.",
           "effects": [
             {
               "score": {

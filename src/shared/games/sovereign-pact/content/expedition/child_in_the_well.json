@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 55,
-          "text": "A real child, starved and silent, who will not let go of their hand. They take the child home, and it never speaks of the well.",
+          "text": "It is a real child, starved and silent, who will not let go of the healer's hand. They bring the child home, where it never once speaks of the well.",
           "effects": [
             {
               "house_improvement": "recruit"
@@ -57,7 +57,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The voice follows you for a mile, and then it stops asking for its mother and starts asking for you.",
+          "text": "The voice follows you for a mile. Then it stops asking for its mother and begins calling your names instead.",
           "effects": [
             {
               "sanity": -10,
@@ -77,7 +77,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "There is no scream. There is no bottom, either, and the torchlight falls for far too long.",
+          "text": "No scream rises. The torch falls for far too long, its light dwindling to nothing without ever meeting a bottom.",
           "effects": [
             {
               "sanity": -5,

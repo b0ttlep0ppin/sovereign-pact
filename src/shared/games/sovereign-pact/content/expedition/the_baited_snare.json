@@ -9,7 +9,7 @@
     10
   ],
   "title": "The Baited Snare",
-  "text": "The quarry has been here, and it has learned from the hunters who came before you. It left a trap of its own: bones laid out in a careful ring like a snare, around something small and shiny that catches the light just so.",
+  "text": "The quarry has been here, and it has learned from the hunters who came before you. It left a trap of its own: bones laid in a careful ring around something small and shiny that catches the light just so.",
   "options": [
     {
       "id": "disarm",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A trinket the quarry stole from its last hunter, still with a finger in it. You keep the trinket.",
+          "text": "Inside the ring lies a trinket the quarry stole from its last hunter, a finger still caught in it. You keep the trinket.",
           "effects": [
             {
               "item": {
@@ -42,7 +42,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It snaps shut on them, bone teeth in the leg, and the quarry comes to look at what it caught.",
+          "text": "Bone teeth snap shut on their leg. Soon the quarry comes to see what it has caught.",
           "effects": [
             {
               "durability": -25,
@@ -67,7 +67,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The quarry knows you were careful. It is careful too, and has strung more of its bone snares along the long way round.",
+          "text": "The quarry knew you would be careful. It has strung more of its bone snares along the long way round.",
           "effects": [
             {
               "to": "party",

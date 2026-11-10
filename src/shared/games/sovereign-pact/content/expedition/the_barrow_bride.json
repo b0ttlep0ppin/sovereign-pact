@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "She tells her story through the night, and at dawn she lifts her veil and fades, at peace at last.",
+          "text": "She tells her story through the night. At dawn she lifts her veil and fades, at peace at last.",
           "effects": [
             {
               "score": {
@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "She laughs, a sound like dry leaves, and presses her ring into their hand. It is very cold.",
+          "text": "She laughs, a sound like dry leaves, then presses her ring into their hand. It is very cold.",
           "effects": [
             {
               "item": {
@@ -56,7 +56,7 @@
         },
         {
           "w": 50,
-          "text": "She takes them at their word. Her cold fingers close around theirs, and she does not let go, not ever.",
+          "text": "She takes them at their word. Her cold fingers close around theirs and never let go.",
           "effects": [
             {
               "curse": true
@@ -75,7 +75,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "She asks if you have seen him, and asks again, and keeps asking, long after you are out of earshot.",
+          "text": "She asks whether you have seen him. Long after you are out of earshot, she is still asking.",
           "effects": [
             {
               "to": "party",

@@ -35,7 +35,7 @@
         },
         {
           "w": 30,
-          "text": "He takes it and laughs, and his laugh follows you across the water and a long way past it.",
+          "text": "He takes the bread with a laugh that follows you across the water and for a long way beyond.",
           "effects": [
             {
               "sanity": -5
@@ -54,7 +54,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He does not look up. Where you step past him the water turns cold as a grave, and the Leader's feet will not warm all day.",
+          "text": "He does not look up. Where the Leader steps past him the water turns cold as a grave; their feet do not warm for the rest of the day.",
           "effects": [
             {
               "status": "slow"
@@ -73,7 +73,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "Three coins, older than any king. Nobody will ask where they came from, and you do not mean to tell them.",
+          "text": "He has three coins, each older than any king. You agree among yourselves never to say where they came from.",
           "effects": [
             {
               "score": {
@@ -84,7 +84,7 @@
         },
         {
           "w": 40,
-          "text": "Three coins, and something comes with them that was not in his hand.",
+          "text": "His three coins come away easily. Something else comes with them, clinging to the hand that took them.",
           "effects": [
             {
               "score": {

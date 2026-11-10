@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "You catch it while it is weak, and it is still very dangerous, and very afraid.",
+          "text": "You catch it while it is weak. It is still very dangerous, and very afraid.",
           "effects": [
             {
               "encounter": {
@@ -47,7 +47,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "A rival House's arrow, snapped off in the bark. You know who hunts your quarry now.",
+          "text": "Snapped off in the bark is a rival House's arrow. Now you know who else hunts your quarry.",
           "effects": [
             {
               "score": {
@@ -61,7 +61,7 @@
         },
         {
           "w": 40,
-          "text": "Something bigger, and it has been following the blood too, and now it has found you instead.",
+          "text": "Something bigger has been following the blood too. It has found you instead.",
           "effects": [
             {
               "encounter": {
@@ -83,7 +83,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It goes to ground, weaker, and angrier. You hear it moaning at night, and the sound gets into your dreams.",
+          "text": "It goes to ground, weaker and angrier. At night you hear it moaning, a sound that creeps into your dreams.",
           "effects": [
             {
               "to": "party",

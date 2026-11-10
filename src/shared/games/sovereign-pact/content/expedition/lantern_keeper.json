@@ -9,7 +9,7 @@
     10
   ],
   "title": "The Lantern Keeper",
-  "text": "An old woman with a lantern stands where the path should fork, though you cannot see a fork. She will light your way, she says, for a memory. She is looking at the most haunted of you, who has memories they would gladly lose, and she is smiling.",
+  "text": "An old woman with a lantern stands where the path should fork, though you cannot see a fork. She will light your way, she says, for a memory. She is smiling at the most haunted of you, who has memories they would gladly lose.",
   "options": [
     {
       "id": "trade",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "Afterwards they cannot remember their mother's face. The path is short and lit, and they tell themselves it was worth it.",
+          "text": "Afterward they cannot recall their mother's face. The path ahead is short and well lit; they tell themselves the price was fair.",
           "effects": [
             {
               "sanity": -20
@@ -38,7 +38,7 @@
         },
         {
           "w": 30,
-          "text": "She takes more than she said, and smiles while she does it. The path is short, and lit, and they cannot remember why they are crying.",
+          "text": "She takes more than she said, smiling all the while. The path is short and lit, yet they cannot remember why they are crying.",
           "effects": [
             {
               "sanity": -40
@@ -70,7 +70,7 @@
         },
         {
           "w": 24,
-          "text": "You find it, and find her waiting at the end of it, her lantern out, and something in the dark behind her.",
+          "text": "At the end of your path you find her waiting with her lantern dark. Something stands in the shadows behind her.",
           "effects": [
             {
               "fork": {
@@ -83,7 +83,7 @@
         },
         {
           "w": 40,
-          "text": "You find it, and something else finds you, there in the dark where her light does not reach.",
+          "text": "While you search, something else finds you in the dark where her light does not reach.",
           "effects": [
             {
               "encounter": {}

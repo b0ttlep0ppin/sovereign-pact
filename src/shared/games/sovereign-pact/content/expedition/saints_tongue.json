@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 55,
-          "text": "Their hands are warm for days after, and wounds close under them. The murmur never quite leaves their ears.",
+          "text": "For days after, their hands are warm and wounds close beneath them. The murmur never quite leaves their ears.",
           "effects": [
             {
               "trait": "+pious_hands"
@@ -33,7 +33,7 @@
         },
         {
           "w": 45,
-          "text": "The tongue stops, and so does theirs. They will find their voice again after a fight or two, if they are lucky.",
+          "text": "The tongue falls silent, and so does theirs. Their voice will return in time, though not before the next fight.",
           "effects": [
             {
               "status": "silence"
@@ -55,7 +55,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It prays for you as you go, a little louder. You did not ask it to, and you are not sure what it is praying for.",
+          "text": "As you leave, its prayer grows a little louder. None of you can tell what it is praying for.",
           "effects": [
             {
               "sanity": 5

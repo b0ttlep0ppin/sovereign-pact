@@ -9,7 +9,7 @@
     9
   ],
   "title": "The Bishop's Offer",
-  "text": "A bishop of the Court offers absolution from a silk-hung chair, rings on every finger. Salvation has a price, he explains, and the price is a donation, and a name. Which House among you has sinned most? He already knows, he says. He only wants to hear you say it.",
+  "text": "A bishop of the Court offers absolution from a silk-hung chair, rings on every finger. Salvation has a price, he explains: a donation, and a name. Which House among you has sinned most? He already knows, he says. He only wants to hear you say it.",
   "options": [
     {
       "id": "name",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He writes it down in purple ink. The Court will look into it, he says, and smiles. You will have to live with that smile.",
+          "text": "He writes it down in purple ink. The Court will look into it, he says, with a smile you will have to live with.",
           "effects": [
             {
               "score": {
@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Absolved, every one of you, with a wave of a ringed hand. It feels better than it should, and that worries you.",
+          "text": "With a wave of a ringed hand, every one of you is absolved. It feels better than it should, which worries you.",
           "effects": [
             {
               "resources": {
@@ -70,7 +70,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He goes white beneath his paint, and lets you go very quickly, and will remember your faces.",
+          "text": "He goes white beneath his paint and lets you go very quickly. He will remember your faces.",
           "effects": [
             {
               "skip": 1

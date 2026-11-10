@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He shrugs and goes. Everyone sent him away, it seems. He looks tired, and a little disappointed in you all.",
+          "text": "He shrugs and slips away. It seems every House sent him off, which leaves him looking tired and faintly disappointed.",
           "effects": [],
           "when": {
             "none": "inform"
@@ -29,7 +29,7 @@
         },
         {
           "w": 100,
-          "text": "He goes, and in the morning your Scions find that someone has told him exactly where to cut. Trust was a poor shield.",
+          "text": "He goes. By morning it is clear that someone told him exactly where your Scions are weakest.",
           "effects": [
             {
               "sanity": -10
@@ -54,7 +54,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He pays in old silver, warm from his hand. Nobody will ever know, unless he tells them.",
+          "text": "He pays in old silver, still warm from his hand. No one need ever know, unless he chooses to tell.",
           "effects": [
             {
               "resources": {
@@ -73,7 +73,7 @@
         },
         {
           "w": 100,
-          "text": "He pays you, and he pays the others for the same, and goes off laughing into the night with all of your secrets.",
+          "text": "He pays you, then pays the others for the very same service. He leaves laughing into the night, carrying every House's secrets.",
           "effects": [
             {
               "resources": {

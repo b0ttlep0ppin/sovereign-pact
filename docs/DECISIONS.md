@@ -2,6 +2,15 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-10 (implementation, Milestone 8cy): event prose without the AI tells
+
+Josh read the 8cx rewrite and said: **"Your writing style is indicative of Ai. See for example "He wakes in time to shoot, one-eyed and very accurate". Noone forgot he is one eyed from previous statement, seems like your penchant for summarizing what is going on. You also frequently just append random stuff with "and", try a semi colon a comma a new sentence."** His model line: "The archer stirs and swiftly looses an arrow which finds its mark with precision." He asked for every description to be checked again; the flavor stays.
+- **Every event's opening, choice labels and outcomes were reread** and rewritten where they had either tell. Text only; effects, weights and subject rules are unchanged.
+- **No restating.** An outcome never repeats what the opening or the choice already said (the one-eyed archer, "it is only ash, after all") and never ends on a summing-up quip ("That is worse.", "For now, at least.", "Perhaps it was.").
+- **No "and" chains.** Clauses are joined with a comma, a semicolon, a subordinate clause (as, while, until, which) or a new sentence. "And" still joins two actions of one subject or a pair of nouns, as in Josh's own line.
+- **Full sentences.** Fragment outcomes ("Out, gasping, sand in everything") become whole sentences in his slightly formal register.
+- **Josh's own lines from the Event Book stay as he wrote them.**
+
 ## 2026-11-09 (implementation, Milestone 8cx): choices and outcomes in Josh's own style
 
 Josh rewrote eight events in the Event Book (Altar of Hands, Abandoned Kennel, Altar of Scars, Amber Cliff, Ancestor's Shield, Ant Lion, Antler Crown, Abandoned Mill) and asked: **"I've updated some events with my desired writing style and some notes if you think you can emulate it. Do not over index on my specific word choices but the tone and style are appropriate."**

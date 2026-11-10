@@ -9,7 +9,7 @@
     10
   ],
   "title": "The Bleeding Ground",
-  "text": "The grass is red and wet, and the earth is warm underfoot, and it gives a little, like flesh. Something died here, something very big, a long time ago. It is still dying. You can feel the slow beat of it through your boots.",
+  "text": "The grass is red and wet. The earth is warm underfoot and gives a little, like flesh. Something very big died here a long time ago, and it is dying still. You can feel the slow beat of it through your boots.",
   "options": [
     {
       "id": "dig",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "A heart, vast and slow, still beating in the dirt, worth a fortune. The ground moans as it comes free.",
+          "text": "Beneath the dirt lies a heart, vast and slow, still beating. It is worth a fortune, though the ground moans as it comes free.",
           "effects": [
             {
               "resources": {
@@ -35,7 +35,7 @@
         },
         {
           "w": 50,
-          "text": "It is still alive, a little, and it does not want to be dug up. It reaches up through the earth to say so.",
+          "text": "It is still alive, a little, and does not wish to be dug up. It reaches up through the earth to say so.",
           "effects": [
             {
               "encounter": {
@@ -56,7 +56,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Red to the knees, and the warmth stays on your skin all day, beating faintly.",
+          "text": "You come out red to the knees. All day the warmth stays on your skin, beating faintly.",
           "effects": [
             {
               "to": "party",
@@ -76,7 +76,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The ground cools under your feet, and the slow beat fades, and stops.",
+          "text": "The ground cools under your feet. The slow beat fades, then stops.",
           "effects": [
             {
               "to": "party",

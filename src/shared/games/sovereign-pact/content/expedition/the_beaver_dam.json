@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "Fine timber, gnawed to points, as hard as bone.",
+          "text": "The timber is fine, gnawed to points and hard as bone.",
           "effects": [
             {
               "resources": {
@@ -32,7 +32,7 @@
         },
         {
           "w": 40,
-          "text": "The beavers come, and they are the size of bears, and their teeth were made for felling far bigger things than trees.",
+          "text": "The beavers come. They are the size of bears, with teeth made for felling far bigger things than trees.",
           "effects": [
             {
               "encounter": {
@@ -53,7 +53,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They drive a hard bargain, chattering, and do not take their eyes off your axes.",
+          "text": "They drive a hard bargain, chattering, never taking their eyes off your axes.",
           "effects": [
             {
               "resources": {
@@ -75,7 +75,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Clever, terrible work. The House carpenters will want to hear of it, and will not sleep well after.",
+          "text": "It is clever, terrible work. The House carpenters will want to hear of it, though they will not sleep well after.",
           "effects": [
             {
               "house_improvement": "building"

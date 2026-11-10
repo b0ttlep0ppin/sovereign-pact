@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 55,
-          "text": "They lead to a campsite left by someone of a House long before you, and what they could not carry home. Nobody asks what became of them.",
+          "text": "They lead to a campsite left by a House long before yours, along with whatever its people could not carry home. No one asks what became of them.",
           "effects": [
             {
               "item": {
@@ -35,7 +35,7 @@
         },
         {
           "w": 45,
-          "text": "They lead to someone wearing your face, who was hoping you would come.",
+          "text": "At the end of the trail waits someone wearing their face, who has been hoping they would come.",
           "effects": [
             {
               "encounter": {
@@ -56,7 +56,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "For the rest of the day everyone walks a little faster, and nobody looks at the ground.",
+          "text": "For the rest of the day everyone walks a little faster, careful not to look at the ground.",
           "effects": [
             {
               "to": "party",

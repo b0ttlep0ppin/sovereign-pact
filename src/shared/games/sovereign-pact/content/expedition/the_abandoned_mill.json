@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A good haul. The wheel keeps turning the whole time, grinding nothing, faster when your backs are turned.",
+          "text": "The timber and iron come away easily. All the while the wheel keeps turning, grinding nothing, faster whenever your backs are turned.",
           "effects": [
             {
               "resources": {
@@ -43,7 +43,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "Hiding in the cellar, white with flour and terror. Grateful, and very quick to pay you to go.",
+          "text": "The miller is hiding in the cellar, white with flour and terror. He pays you gladly, if only to see you gone.",
           "effects": [
             {
               "resources": {
@@ -59,7 +59,7 @@
         },
         {
           "w": 50,
-          "text": "In the wheel. Going round, and round, and round.",
+          "text": "You find the miller in the wheel, still going round with every turn.",
           "effects": [
             {
               "to": "party",
@@ -79,7 +79,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The wheel turns all night, steady as a heart, and nobody dreams.",
+          "text": "The wheel turns all night, steady as a heartbeat. For once, nobody dreams.",
           "effects": [
             {
               "to": "party",

@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "A room that was never built, full of things that were always theirs. And a letter, sealed, to be opened only at home.",
+          "text": "Behind it lies a room that was never built, full of things that were always theirs. On the table rests a sealed letter, marked to be opened only at home.",
           "effects": [
             {
               "item": {
@@ -38,7 +38,7 @@
         },
         {
           "w": 40,
-          "text": "A hallway of their own house, the way it will look when they are all dead. They close it quickly, but not quickly enough.",
+          "text": "Beyond the door is a hallway of their own house as it will look when they are all dead. They slam it shut, but the sight stays with them.",
           "effects": [
             {
               "sanity": -20
@@ -57,7 +57,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "When you look back the door is gone, and the paint is on your hands. It will not wash off, and the next thing you fight can smell it.",
+          "text": "When you look back the door is gone. Its pale paint is on your hands now, and no amount of scrubbing will lift it. The next thing you fight will smell it on you.",
           "effects": [
             {
               "status": "marked"

@@ -73,7 +73,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The books burn slowly, page by curling page, and something in the stacks screams once, and then is silent.",
+          "text": "The books burn slowly, page by curling page. Somewhere in the stacks a voice screams once, then falls silent.",
           "effects": [
             {
               "to": "party",
@@ -98,7 +98,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The book is heavier than it looks, and warm, and worth it. It does not like the light.",
+          "text": "The book is heavier than it looks and faintly warm. It flinches from the daylight when you reach the surface.",
           "effects": [
             {
               "score": {

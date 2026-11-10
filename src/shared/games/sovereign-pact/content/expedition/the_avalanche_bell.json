@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "ring",
-      "label": "Ring it, and run, and let the mountain bury whatever follows you.",
+      "label": "Ring it, then run, and let the mountain bury whatever follows you.",
       "rule": "leader",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The snow comes down behind you like the end of the world, and buries whatever was following. You hope it was only following.",
+          "text": "The snow comes down behind you like the end of the world, burying whatever was following. You flee with the cold at your heels.",
           "effects": [
             {
               "skip": 1
@@ -55,7 +55,7 @@
         },
         {
           "w": 25,
-          "text": "Someone coughs. The mountain answers, and it does not stop answering for a long time.",
+          "text": "Someone coughs. The mountain answers with a roar that seems to go on forever.",
           "effects": [
             {
               "injury": "body"
@@ -74,7 +74,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Old bronze, very heavy, very valuable, and the pass has no warning now for whoever comes after you.",
+          "text": "The old bronze is heavy and valuable. Without it, the pass has no warning for whoever comes after you.",
           "effects": [
             {
               "resources": {

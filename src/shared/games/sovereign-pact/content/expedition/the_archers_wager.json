@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "They win, and the archer pays in arrows of a strange, dark make, fletched with those unknown feathers.",
+          "text": "They win. The archer pays in arrows of a strange, dark make, fletched with those unknown feathers.",
           "effects": [
             {
               "item": {
@@ -56,7 +56,7 @@
         },
         {
           "w": 30,
-          "text": "The old archer wins without looking, and laughs, and keeps laughing long after you have gone.",
+          "text": "The old archer wins without even looking. His laughter follows you long after you have gone.",
           "effects": [
             {
               "sanity": -5
@@ -80,7 +80,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "He wakes in time to shoot, one-eyed and very accurate.",
+          "text": "The archer stirs and swiftly looses an arrow, which finds the thief's arm with precision.",
           "effects": [
             {
               "durability": -30,
@@ -95,7 +95,7 @@
         },
         {
           "w": 50,
-          "text": "A full quiver, and his curses behind you, very specific ones, that you feel settle on your shoulders.",
+          "text": "You escape with a full quiver. His curses follow, so specific that you feel them settle on your shoulders.",
           "effects": [
             {
               "resources": {

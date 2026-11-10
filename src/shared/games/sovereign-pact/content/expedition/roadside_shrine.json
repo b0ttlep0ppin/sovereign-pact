@@ -22,7 +22,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "Nothing answers, but you all stand up lucky, and no one says it aloud for fear of losing it.",
+          "text": "Nothing answers, yet you all rise feeling fortunate. No one says so aloud for fear of losing it.",
           "effects": [
             {
               "blessing": {
@@ -35,7 +35,7 @@
         },
         {
           "w": 40,
-          "text": "Nothing answers. But kneeling there among the fresh flowers your legs rest, and your wounds stop their aching.",
+          "text": "Nothing answers, but the rest among the fresh flowers eases your aching wounds.",
           "effects": [
             {
               "to": "party",
@@ -55,7 +55,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "They keep for a year without wilting, and so does the one who carries them.",
+          "text": "The flowers keep for a year without wilting. So does the courage of the one who carries them.",
           "effects": [
             {
               "blessing": {
@@ -67,7 +67,7 @@
         },
         {
           "w": 50,
-          "text": "They wilt at once, and so does something in the one who took them, and it does not come back.",
+          "text": "They wilt at once in the bravest's hand. Something within them wilts too, never to return.",
           "effects": [
             {
               "sanity": -20
@@ -87,7 +87,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "No saint answers. The vigil is its own answer, and the Knight rises from it hard as the shrine's stones.",
+          "text": "No saint answers. Even so, the Knight rises from the vigil hard as the shrine's stones.",
           "effects": [
             {
               "status": "protect",

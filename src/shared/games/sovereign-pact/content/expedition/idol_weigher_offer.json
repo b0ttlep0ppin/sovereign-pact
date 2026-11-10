@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Each of you steps onto the scale. You come down lighter, and a little emptier, and the thing in the dark breathes slower, satisfied.",
+          "text": "One by one you step onto the scale and come down lighter, though a little emptier. In the dark, the breathing slows, satisfied.",
           "effects": [
             {
               "to": "party",
@@ -57,7 +57,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He rises from beside his scale, and the thing breathing in the dark behind him rises too, and it is hungry.",
+          "text": "He rises from beside his scale. Behind him, the thing in the dark rises too, hungry.",
           "effects": []
         }
       ]
@@ -73,7 +73,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "The Leader's thumb tips the balance. The judge sees it, and says nothing, and stands. His silence is worse than anger.",
+          "text": "The Leader's thumb tips the balance. The judge sees it but says nothing, only marking the deceit in a ledger of his own.",
           "effects": [
             {
               "growth": {
@@ -84,7 +84,7 @@
         },
         {
           "w": 50,
-          "text": "The thumb slips. The heart is weighed heavy, and something in the dark is fed. Then the judge stands.",
+          "text": "The thumb slips. The heart is weighed heavy, and the thing in the dark is fed from it.",
           "effects": [
             {
               "sanity": -25

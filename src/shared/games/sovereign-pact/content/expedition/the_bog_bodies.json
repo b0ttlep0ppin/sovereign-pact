@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "Old gold, cold and heavy, and the faces do not change. Not that you can see.",
+          "text": "The old gold is cold and heavy. The calm faces do not change, at least not that you can see.",
           "effects": [
             {
               "resources": {
@@ -32,7 +32,7 @@
         },
         {
           "w": 40,
-          "text": "The bodies sit up, peat sliding off their faces, and reach for what was theirs.",
+          "text": "The bodies sit up, peat sliding from their faces, and reach for what was theirs.",
           "effects": [
             {
               "encounter": {
@@ -53,7 +53,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Marks of the old marsh gods, cut into the skin, and the gods' names, and what each body was given for. Some of the gifts are still owed.",
+          "text": "The marks are those of the old marsh gods: their names, cut into the skin beside what each body was given for. Some of those gifts are still owed.",
           "effects": [
             {
               "score": {
@@ -74,7 +74,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The peat closes over their calm faces. The marsh seems grateful, and opens a dry path ahead.",
+          "text": "The peat closes over their calm faces. The marsh seems grateful, opening a dry path ahead.",
           "effects": [
             {
               "to": "party",

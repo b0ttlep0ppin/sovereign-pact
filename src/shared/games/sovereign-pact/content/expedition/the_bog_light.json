@@ -9,7 +9,7 @@
     8
   ],
   "title": "The Bog Light",
-  "text": "A light bobs over the marsh, just ahead, always just ahead, soft and blue as a candle behind a curtain. It waits when you stop. It goes the way you were going anyway, which is either very kind of it, or not kind at all.",
+  "text": "A light bobs over the marsh, always just ahead, soft and blue as a candle behind a curtain. It waits when you stop. It goes the way you were going anyway, which is either very kind of it or not kind at all.",
   "options": [
     {
       "id": "follow",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 40,
-          "text": "It leads you through the marsh by a dry path no map shows, and winks out at the end, satisfied.",
+          "text": "It leads you through the marsh by a dry path no map shows, then winks out at the end, satisfied.",
           "effects": [
             {
               "skip": 1
@@ -30,7 +30,7 @@
         },
         {
           "w": 60,
-          "text": "It leads you into the deep water, and waits, and watches to see who comes to watch you drown.",
+          "text": "It leads you into the deep water. There it waits, watching to see who comes to watch you drown.",
           "effects": [
             {
               "to": "party",
@@ -54,7 +54,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "It is in the jar, beating against the glass, very angry and very bright.",
+          "text": "It beats against the glass of the jar, very angry and very bright.",
           "effects": [
             {
               "resources": {
@@ -65,7 +65,7 @@
         },
         {
           "w": 50,
-          "text": "It is not in the jar. It is behind them, very close, and then it is gone, and they cannot stop shaking.",
+          "text": "The jar is empty. The light is behind them, very close, then gone; they cannot stop shaking.",
           "effects": [
             {
               "sanity": -10
@@ -84,7 +84,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It sulks off over the water, and the mist it leaves behind is the kind that settles in the lungs.",
+          "text": "It sulks off over the water. The mist it leaves behind is the kind that settles in the lungs.",
           "effects": [
             {
               "status": "disease"

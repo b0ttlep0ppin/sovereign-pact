@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "eat",
-      "label": "Your fiercest, the one it hums for, cracks it open and drinks, answering its call.",
+      "label": "Your fiercest fighter cracks it open and drinks deep.",
       "rule": "scion:most_kills",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 45,
-          "text": "Scales first, by evening. Then the hunger, then the fire, and then nothing is ever quite the same.",
+          "text": "By evening scales have begun to spread across their skin. The hunger follows, and after it the fire.",
           "effects": [
             {
               "change": "wyrmling"
@@ -30,7 +30,7 @@
         },
         {
           "w": 35,
-          "text": "It tastes of smoke and iron, and they come away stronger, with a heat in their blood that does not fade.",
+          "text": "It tastes of smoke and iron. They rise stronger than before, with a heat in their blood that never fades.",
           "effects": [
             {
               "stat": {
@@ -41,7 +41,7 @@
         },
         {
           "w": 20,
-          "text": "Something in it fights back on the way down, and it is not done fighting.",
+          "text": "Something in the yolk fights its way back up, tearing at them from the inside.",
           "effects": [
             {
               "injury": "body"
@@ -60,7 +60,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "It goes quiet in the dark of a pack, a warm weight against the spine. The scholars will pay well for it, and ask no questions.",
+          "text": "In the dark of the pack it falls silent, a warm weight against the spine. Scholars at home will pay well for such a thing.",
           "effects": [
             {
               "resources": {
@@ -76,7 +76,7 @@
         },
         {
           "w": 40,
-          "text": "Its mother wants it back. You hear her coming long before you see her, and then the sky is full of her.",
+          "text": "Its mother wants it back. You hear her wings long before she fills the sky above you.",
           "effects": [
             {
               "encounter": {
@@ -97,7 +97,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "It goes out like a coal in the rain. The gold around it is still gold, and you take every piece.",
+          "text": "It dies like a coal dropped in rain. The gold of the nest is still gold, so you take every piece of it.",
           "effects": [
             {
               "resources": {
@@ -108,7 +108,7 @@
         },
         {
           "w": 30,
-          "text": "Its mother heard. The sky goes dark with her, and she is not interested in apologies.",
+          "text": "Its mother heard the shell break. Her shadow darkens the sky as she comes down upon you.",
           "effects": [
             {
               "encounter": {

@@ -9,7 +9,7 @@
     10
   ],
   "title": "The Hunters' Mark",
-  "text": "Fresh blood on the stones, bright and wet, a trail of it leading away between the rocks. It is not your blood. The quarry is hurt, and it is going somewhere it thinks is safe, and it is not being careful anymore.",
+  "text": "Fresh blood on the stones, bright and wet, a trail of it leading away between the rocks. It is not your blood. The quarry is hurt. It is making for somewhere it thinks is safe, no longer careful of the trail it leaves.",
   "options": [
     {
       "id": "follow",
@@ -30,7 +30,7 @@
         },
         {
           "w": 40,
-          "text": "The trail ends in a pool, and the pool was poured. The blood was bait, and the quarry is behind you.",
+          "text": "The trail ends in a pool that was poured, not bled. The blood was bait; the quarry is already behind you.",
           "effects": [
             {
               "encounter": {
@@ -51,7 +51,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Slower, and safer. When you do come on the quarry you come from cover, and the Leader is ready before it is.",
+          "text": "The path is slower but safer. When at last you come upon the quarry, you do so from cover, with the Leader ready before it is.",
           "effects": [
             {
               "tp": 50

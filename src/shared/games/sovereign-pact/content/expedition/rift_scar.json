@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "It hums through you and is gone. Nobody can say what it changed, and nobody likes to think about it.",
+          "text": "The light hums through you and is gone. None of you can say what it changed.",
           "effects": [
             {
               "sanity": -10,
@@ -31,7 +31,7 @@
         },
         {
           "w": 40,
-          "text": "It hums through you and leaves you sharper, as if something on the other side had looked at you and approved.",
+          "text": "The light hums through you, leaving you sharper, as if something on the other side had looked you over and approved.",
           "effects": [
             {
               "jp": 20,

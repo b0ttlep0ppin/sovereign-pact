@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "Black timber, hard as iron, heavy as guilt.",
+          "text": "The black timber comes free, hard as iron and heavy as guilt.",
           "effects": [
             {
               "resources": {
@@ -36,7 +36,7 @@
         },
         {
           "w": 30,
-          "text": "The bog wants it back, and you with it, and it pulls with all its patient strength.",
+          "text": "The bog wants it back, and you along with it. It pulls with all its patient strength.",
           "effects": [
             {
               "to": "party",
@@ -57,7 +57,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A fine black bow, and a long afternoon, and the peat bubbling and sighing the whole time.",
+          "text": "A fine black bow takes shape over a long afternoon. The whole time, the peat bubbles and sighs.",
           "effects": [
             {
               "item": {
@@ -78,7 +78,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "It has waited this long. As you turn, the peat sighs and gives up a small thing it was keeping: a sliver of black wood, hard as iron, that the Leader binds to their weapon.",
+          "text": "As you turn away, the peat sighs and gives up a small thing it was keeping: a sliver of black wood, hard as iron, which the Leader binds to their weapon.",
           "effects": [
             {
               "gear": {
@@ -90,7 +90,7 @@
         },
         {
           "w": 50,
-          "text": "It has waited this long. It will wait for you too, the bog seems to say, and the Leader dreams of black water.",
+          "text": "It will wait for you too, the bog seems to say. That night the Leader dreams of black water.",
           "effects": [
             {
               "sanity": -6
@@ -110,7 +110,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It takes all night and the bog does not like it, but the new limbs are black and hard as iron.",
+          "text": "It takes all night, and the bog does not like it. Still, the new limbs are black and hard as iron.",
           "effects": [
             {
               "gear": {

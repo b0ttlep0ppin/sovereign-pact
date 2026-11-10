@@ -22,7 +22,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "They reach the settlement a week behind you, and tell everyone who saved them. Their stock is better for it, and so is your name.",
+          "text": "They reach the settlement a week behind you, telling everyone who saved them. Their stall opens with better stock for the favor.",
           "effects": [
             {
               "house_improvement": "shop"
@@ -31,7 +31,7 @@
         },
         {
           "w": 40,
-          "text": "Something wants the caravan more than you do, and it has been waiting for you to lead it out.",
+          "text": "Whatever circled the caravan was waiting for someone to lead it into the open. It strikes as soon as the wagons move.",
           "effects": [
             {
               "encounter": {}
@@ -53,7 +53,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The drivers do not fight. They only watch from under the wagons, and remember your colors, and tell everyone who will listen.",
+          "text": "The drivers do not resist. They watch from beneath the wagons, marking your colors, and later tell everyone who will listen.",
           "effects": [
             {
               "resources": {

@@ -10,7 +10,7 @@
     10
   ],
   "title": "The Chained Angel",
-  "text": "Something with burned wings is chained to the shrine's altar with iron links as thick as a wrist. Its feathers have fallen around it like ash, and the stone beneath it is scorched in the shape of its body. It is still alive. It watches you come, and it asks for nothing.",
+  "text": "Something with burned wings is chained to the shrine's altar with iron links as thick as a wrist. Its feathers have fallen around it like ash, and the stone beneath it is scorched in the shape of its body. It is still alive. It watches you approach but asks for nothing.",
   "options": [
     {
       "id": "free",
@@ -22,7 +22,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "The chains break. It follows you home on its ruined wings, and no one knows what it will become.",
+          "text": "The chains fall away. It follows you home on ruined wings, though no one can say what it will become.",
           "effects": [
             {
               "house_improvement": "recruit"
@@ -39,7 +39,7 @@
         },
         {
           "w": 40,
-          "text": "The chains break, and it is gone in a burst of light. Something else, very far off, has noticed what you did.",
+          "text": "As the chains fall away it vanishes in a burst of light. Far off, something else has taken notice of what you did.",
           "effects": [
             {
               "doom": 5
@@ -62,7 +62,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It does not fight. What is left of it is ash, and the ash is holy, and nobody can meet the others' eyes.",
+          "text": "It does not resist. What remains is a heap of holy ash, which you gather in silence, unable to meet one another's eyes.",
           "effects": [
             {
               "resources": {
@@ -92,7 +92,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It watches you go. It does not ask then, either, and somehow that is the hardest part.",
+          "text": "It watches you go without a word of reproach. That silence follows you for the rest of the day.",
           "effects": [
             {
               "to": "party",

@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 35,
-          "text": "They beat him by a hair. He laughs and gives them his quiver, as if he had been waiting years for this.",
+          "text": "They beat him by a hair. Laughing, he gives them his quiver, as if he has waited years for this.",
           "effects": [
             {
               "item": {
@@ -37,7 +37,7 @@
         },
         {
           "w": 65,
-          "text": "He wins, as he always does, and gives them a lesson anyway, out of kindness or pity.",
+          "text": "He wins, as he always does. Out of kindness or pity, he gives them a lesson anyway.",
           "effects": [
             {
               "jp": 80
@@ -61,7 +61,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He hits it anyway, dead centre, and turns his white eyes on the cheat, and does not offer a lesson.",
+          "text": "He hits it anyway, dead centre. Then he turns his white eyes on the cheat and offers no lesson.",
           "effects": [
             {
               "to": "party",
@@ -86,7 +86,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He nods. Most people do. \"Then a lesson for free,\" he says, and shows the Leader how he listens for where a thing will be.",
+          "text": "He nods; most people do. Then a lesson for free, he says, and shows the Leader how he listens for where a thing will be.",
           "effects": [
             {
               "xp": 15,
@@ -120,7 +120,7 @@
         },
         {
           "w": 60,
-          "text": "They lose by a mile. He laughs, and shows them why.",
+          "text": "They lose by a mile. He laughs, then shows them why.",
           "effects": [
             {
               "jp": 50

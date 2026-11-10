@@ -9,7 +9,7 @@
     10
   ],
   "title": "The Bad Air",
-  "text": "The candles gutter, shrink, and burn blue. Your breath comes short and your heartbeat loud in your ears. The air down here is thin and wrong, and it tastes of old pennies, and the dead rats along the wall all died facing the way you came.",
+  "text": "The candles gutter, shrink and burn blue. Your breath comes short; your heartbeat is loud in your ears. The air down here is thin and wrong, tasting of old pennies. The dead rats along the wall all died facing the way you came.",
   "options": [
     {
       "id": "hurry",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "Lungs burning, vision going grey at the edges, everyone makes it. Barely.",
+          "text": "Lungs burning, vision greying at the edges, everyone makes it through by the barest margin.",
           "effects": [
             {
               "to": "party",
@@ -31,7 +31,7 @@
         },
         {
           "w": 30,
-          "text": "Someone breathes. The air gets inside their head and starts rearranging things, and it does not put them back.",
+          "text": "Someone breathes. The air gets inside their head and rearranges things, leaving them out of place.",
           "effects": [
             {
               "status": "confusion"
@@ -53,7 +53,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A side passage, clean air, and something someone hid there, long ago, for a day like this.",
+          "text": "The draught leads to a side passage of clean air. Someone hid something there long ago, against a day like this.",
           "effects": [
             {
               "fork": {
@@ -76,7 +76,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Another way, longer, and the taste of old pennies stays in your mouths all the way.",
+          "text": "The other way is longer. The taste of old pennies stays in your mouths the whole way.",
           "effects": [
             {
               "to": "party",

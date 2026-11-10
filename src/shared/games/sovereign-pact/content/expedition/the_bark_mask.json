@@ -9,7 +9,7 @@
     7
   ],
   "title": "The Bark Mask",
-  "text": "A face has grown into the bark of an old oak, eyes half lidded, mouth knotted shut. It follows the party as you pass, turning in the wood with a creak. It will let the most unseeing of you borrow its eyes, it whispers, for a little while.",
+  "text": "A face has grown into the bark of an old oak, eyes half lidded, mouth knotted shut. It turns in the wood with a creak to follow you as you pass. It will let the most unseeing of you borrow its eyes, it whispers, for a little while.",
   "options": [
     {
       "id": "blind",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "They see every root and snare in the wood, and every path through it, and give the eyes back reluctantly.",
+          "text": "Through the oak's eyes they see every root, snare and path in the wood. They give the eyes back reluctantly.",
           "effects": [
             {
               "growth": {
@@ -35,7 +35,7 @@
         },
         {
           "w": 30,
-          "text": "They see what the wood sees, and the wood is hungry, and it has been looking at all of you for a long time.",
+          "text": "They see what the wood sees. It is hungry, and it has been watching all of you for a long time.",
           "effects": [
             {
               "sanity": -15
@@ -54,7 +54,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The wood screams, every tree at once. The mask is fine work, and its eyes stay shut, but you feel them on you.",
+          "text": "Every tree in the wood screams at once. The mask is fine work with its eyes shut, yet you feel them on you.",
           "effects": [
             {
               "item": {
@@ -78,7 +78,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The face creaks into something like a smile, and the branches part a little.",
+          "text": "The face creaks into something like a smile. Ahead, the branches part a little.",
           "effects": [
             {
               "to": "party",

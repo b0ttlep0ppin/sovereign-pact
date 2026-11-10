@@ -9,7 +9,7 @@
     10
   ],
   "title": "The Bait",
-  "text": "The quarry is too wary to be caught by chance. It has circled your camp three nights running and left nothing but tracks. It might come to bait, the old hunters say, if the bait were living, and warm, and a little hurt.",
+  "text": "The quarry is too wary to be caught by chance. It has circled your camp three nights running, leaving nothing but tracks. The old hunters say it might come to bait, if the bait were living, warm and a little hurt.",
   "options": [
     {
       "id": "bait",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It comes out of the dark for the warm one, hungry and careless, and the rest of you are waiting.",
+          "text": "It comes out of the dark for the warm one, hungry and careless. The rest of you are waiting for it.",
           "effects": [
             {
               "durability": -20,
@@ -46,7 +46,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It works. The goat does not mind as much as you do, and nobody watches what happens to it.",
+          "text": "It works. The goat minds less than you do, and nobody watches what becomes of it.",
           "effects": [
             {
               "resources": {
@@ -70,7 +70,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Days pass, and the nights pass longer. It comes in its own time, on its own terms, when you are at your most tired.",
+          "text": "Days pass, the nights longer still. It comes at last in its own time and on its own terms, when you are at your most tired.",
           "effects": [
             {
               "to": "party",

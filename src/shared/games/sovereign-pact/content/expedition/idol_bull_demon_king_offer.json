@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The fire goes into your arms and does not burn. The gold goes into the fire, and the King's laughter shakes the mountain.",
+          "text": "The fire flows into your arms without burning. Your gold vanishes into the flames while the King's laughter shakes the mountain.",
           "effects": [
             {
               "to": "party",
@@ -61,7 +61,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He stands, slow and enormous, and the mountain behind him roars higher in answer.",
+          "text": "He rises, slow and enormous. Behind him the mountain roars higher in answer.",
           "effects": []
         }
       ]
@@ -77,7 +77,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "The Leader takes the fire and keeps the gold. The King laughs, and picks up his cudgel.",
+          "text": "The Leader takes the fire but keeps the gold. The King only laughs, as though he means to collect later.",
           "effects": [
             {
               "stat": {
@@ -88,7 +88,7 @@
         },
         {
           "w": 40,
-          "text": "He was a demon before he was a king. The fire goes into the Leader the other way, and it burns.",
+          "text": "He was a demon long before he was a king. The fire turns inside the Leader's arms and burns them from within.",
           "effects": [
             {
               "durability": -40,
