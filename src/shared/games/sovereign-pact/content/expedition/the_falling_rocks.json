@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "Everyone makes it but one, who is only grazed, bleeding from the scalp.",
+          "text": "Everyone makes it but one, who is only grazed and bleeding from the scalp.",
           "effects": [
             {
               "durability": -20,
@@ -50,7 +50,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A hand in the collar, a heave, and the rocks land where they were standing.",
+          "text": "A hand in the collar and a heave pull them clear, just as the rocks land where they stood.",
           "effects": [
             {
               "score": {
@@ -74,7 +74,7 @@
       "outcomes": [
         {
           "w": 55,
-          "text": "It holds, and so do they, arms shaking, until the last of you is clear.",
+          "text": "It holds, as do they, arms shaking, until the last of you is clear.",
           "effects": [
             {
               "score": {
@@ -89,7 +89,7 @@
         },
         {
           "w": 45,
-          "text": "It does not hold, and neither do they.",
+          "text": "The overhang gives way, and they go down beneath it.",
           "effects": [
             {
               "injury": "arms"

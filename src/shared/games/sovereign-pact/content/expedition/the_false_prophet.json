@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "The pilgrims turn back to the road, picking up their beads.",
+          "text": "The pilgrims pick up their beads and turn back to the road.",
           "effects": [
             {
               "score": {
@@ -32,7 +32,7 @@
         },
         {
           "w": 40,
-          "text": "He wins, and the pilgrims look at you with pity, and some of you begin to wonder.",
+          "text": "He wins. The pilgrims look at you with pity, and some of you begin to wonder.",
           "effects": [
             {
               "to": "party",
@@ -52,7 +52,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He makes a terrible kind of sense, and it stays with you, like a stone in the shoe.",
+          "text": "He makes a terrible kind of sense. It stays with you like a stone in the shoe.",
           "effects": [
             {
               "score": {
@@ -77,7 +77,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The pilgrims scatter, and some of them run toward the Gate, to see for themselves.",
+          "text": "The pilgrims scatter. Some of them run toward the Gate to see for themselves.",
           "effects": [
             {
               "doom": 1

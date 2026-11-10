@@ -9,7 +9,7 @@
     10
   ],
   "title": "The Hedge Maze",
-  "text": "A hedge maze in the middle of nowhere, perfectly kept, its walls trimmed square and dark green and taller than a horse. No gardener in sight. At its heart, by the way the hedges lean inward, something worth finding, and something that does not want to be found.",
+  "text": "A hedge maze stands in the middle of nowhere, perfectly kept, its walls trimmed square, dark green and taller than a horse. No gardener is in sight. By the way the hedges lean inward, something worth finding lies at its heart, along with something that does not want to be found.",
   "options": [
     {
       "id": "solve",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "Straight to the heart, and a fountain with coins in it, and no gardener. Not that you can see.",
+          "text": "They lead you straight to the heart, where a fountain holds coins. Of the gardener there is no sign, at least none you can see.",
           "effects": [
             {
               "resources": {
@@ -35,7 +35,7 @@
         },
         {
           "w": 30,
-          "text": "The maze changes behind you, quietly, and keeps changing, and something walks the paths you left.",
+          "text": "The maze quietly changes behind you, and keeps changing. Something walks the paths you left.",
           "effects": [
             {
               "to": "party",
@@ -62,7 +62,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The hedges bleed red sap, and the gardener is very upset, and very close.",
+          "text": "The hedges bleed red sap. The gardener is very upset, and very close.",
           "effects": [
             {
               "encounter": {}
@@ -81,7 +81,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It is a very big maze, and it seems to get bigger as you walk.",
+          "text": "It is a very big maze. As you walk, it seems to grow bigger.",
           "effects": [
             {
               "to": "party",

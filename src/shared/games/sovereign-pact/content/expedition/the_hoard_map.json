@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "The hour was right. The dragon sleeps, and you take what you can carry, and you do not breathe until you are out.",
+          "text": "The hour was right. While the dragon sleeps you take what you can carry, not daring to breathe until you are out.",
           "effects": [
             {
               "resources": {
@@ -59,7 +59,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A rival House pays well for it, and goes off into the hills. You do not hear from them again.",
+          "text": "A rival House pays well for it and sets off into the hills. You never hear from them again.",
           "effects": [
             {
               "resources": {
@@ -85,7 +85,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He would have wanted to keep it, and he is still grinning when the earth covers him.",
+          "text": "He would have wanted to keep it. He is still grinning when the earth covers him.",
           "effects": [
             {
               "score": {

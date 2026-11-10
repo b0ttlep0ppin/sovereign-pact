@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "To treasure, left by whoever followed it last. You do not find them.",
+          "text": "It leads to treasure left by whoever followed it last. Of them, you find no sign.",
           "effects": [
             {
               "item": {
@@ -32,7 +32,7 @@
         },
         {
           "w": 50,
-          "text": "To a drop, and a hard landing at the bottom, and the light hovering above, waiting.",
+          "text": "It leads to a drop. After a hard landing at the bottom, you see the light hovering above, waiting.",
           "effects": [
             {
               "to": "party",
@@ -53,7 +53,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It sulks, and dims, and somewhere behind you it brightens again, leading something else your way.",
+          "text": "It sulks and dims. Somewhere behind you it brightens again, leading something else your way.",
           "effects": [
             {
               "fork": {
@@ -76,7 +76,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A light that never goes out, and it never stops pressing against the glass.",
+          "text": "The light never goes out, and it never stops pressing against the glass.",
           "effects": [
             {
               "to": "party",

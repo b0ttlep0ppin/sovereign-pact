@@ -9,7 +9,7 @@
     9
   ],
   "title": "The Hanging Wood",
-  "text": "Every branch for a mile holds a little bundle of cloth and string, swaying, turning, hundreds and hundreds of them. Some are knotted round small bones. Some round teeth. Some of them are still damp, and some of them twitch.",
+  "text": "Every branch for a mile holds a little bundle of cloth and string, hundreds upon hundreds of them, swaying and turning. Some are knotted round small bones, some round teeth. Some are still damp. Some of them twitch.",
   "options": [
     {
       "id": "cut",
@@ -32,7 +32,7 @@
         },
         {
           "w": 50,
-          "text": "Inside is a name, and it is the Leader's, and it is fresh.",
+          "text": "Inside is a name, freshly written. It is the Leader's.",
           "effects": [
             {
               "curse": true
@@ -80,7 +80,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The wood burns screaming, and what comes out of the smoke is not happy about it.",
+          "text": "The wood burns screaming. What comes out of the smoke is not happy about it.",
           "effects": [
             {
               "encounter": {

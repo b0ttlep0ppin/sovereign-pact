@@ -9,7 +9,7 @@
     10
   ],
   "title": "The Census Takers",
-  "text": "Two blank-faced clerks with ledgers stop the party at a crossing, pens raised, smooth heads tilted. Everyone in the city must be counted, they say in one voice. Everyone. They would like your names. Behind them the ledger's pages are thick with names in every hand.",
+  "text": "Two blank-faced clerks with ledgers stop the party at a crossing, pens raised, smooth heads tilted. Everyone in the city must be counted, they say in one voice. They would like your names. Behind them, the ledger's pages are thick with names in every hand.",
   "options": [
     {
       "id": "truth",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They write them down with care, in a hand that is not theirs. Now the city knows you, for better and worse, and it will not forget.",
+          "text": "They write the names down with care, in a hand that is not theirs. Now the city knows you, and it will not forget.",
           "effects": [
             {
               "to": "party",
@@ -44,7 +44,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "They write them down. Somewhere a ledger now lists people who never were, and the city will go looking for them.",
+          "text": "They write the false names down. Somewhere a ledger now lists people who never were, and the city will go looking for them.",
           "effects": [
             {
               "score": {
@@ -55,7 +55,7 @@
         },
         {
           "w": 40,
-          "text": "They write them down, then look up. Nobody has a face to look up with, and still they look.",
+          "text": "They write the names down, then look up. Neither has a face to look up with, yet still they look.",
           "effects": [
             {
               "encounter": {}
@@ -74,7 +74,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The city screams, every blank mouth at once, and comes for the names you took.",
+          "text": "Every blank mouth in the city screams at once. It comes for the names you took.",
           "effects": [
             {
               "score": {

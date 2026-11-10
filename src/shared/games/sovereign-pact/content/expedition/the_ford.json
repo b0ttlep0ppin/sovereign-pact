@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 80,
-          "text": "Wet, cold, across, and the drowned on the far bank watch you come.",
+          "text": "You come across wet and cold. On the far bank, the drowned watch you arrive.",
           "effects": [
             {
               "to": "party",
@@ -31,7 +31,7 @@
         },
         {
           "w": 20,
-          "text": "Someone is swept off their feet and dragged under before the rope holds, and the river takes its due.",
+          "text": "Someone is swept off their feet and dragged under before the rope holds. The river takes its due.",
           "effects": [
             {
               "injury": "legs"
@@ -50,7 +50,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A good rope, and dry packs, and arms that burn for a day.",
+          "text": "The rope holds and the packs stay dry, though their arms burn for a day.",
           "effects": [
             {
               "score": {
@@ -75,7 +75,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A day lost, listening to the river roar, and wondering how many it has taken.",
+          "text": "A day is lost listening to the river roar, wondering how many it has taken.",
           "effects": [
             {
               "to": "party",

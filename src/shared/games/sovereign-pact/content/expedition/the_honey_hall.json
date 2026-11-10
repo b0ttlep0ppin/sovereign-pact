@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "The bees allow it, this once, humming around your heads.",
+          "text": "This once, the bees allow it, humming around your heads.",
           "effects": [
             {
               "to": "party",
@@ -36,7 +36,7 @@
         },
         {
           "w": 40,
-          "text": "The bees do not allow it, and there are a great many bees.",
+          "text": "The bees do not allow it. There are a great many bees.",
           "effects": [
             {
               "to": "party",
@@ -59,7 +59,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Sleepy bees, slow as falling leaves, and a great deal of honey.",
+          "text": "The sleepy bees drift slow as falling leaves, leaving a great deal of honey for the taking.",
           "effects": [
             {
               "resources": {
@@ -84,7 +84,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They follow you to the door, humming. One stings the Leader, gently, almost fondly, and the arm swells stiff.",
+          "text": "They follow you to the door, humming. One stings the Leader gently, almost fondly, and the arm swells stiff.",
           "effects": [
             {
               "status": "might_down"

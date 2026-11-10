@@ -9,7 +9,7 @@
     9
   ],
   "title": "The Faceless Child",
-  "text": "A child with no face tugs at a Scion's sleeve, small fingers cold. Where its face should be there is only smooth skin, like the inside of a shell. It points at the Scion's face, and then at its own blank, and waits, the way a child waits for a sweet.",
+  "text": "A child with no face tugs at a Scion's sleeve, small fingers cold. Where its face should be there is only smooth skin, like the inside of a shell. It points at the Scion's face, then at its own blank, and waits the way a child waits for a sweet.",
   "options": [
     {
       "id": "draw",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The child smiles with the drawn mouth, a crooked charcoal smile, and takes their hand, and leads you out.",
+          "text": "The child smiles with the drawn mouth, a crooked charcoal smile. Taking their hand, it leads you out.",
           "effects": [
             {
               "skip": 1
@@ -43,7 +43,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The child follows you for a mile, pointing at your faces, and then stops, and stands in the road.",
+          "text": "The child follows you for a mile, pointing at your faces. Then it stops and stands in the road.",
           "effects": [
             {
               "to": "party",
@@ -63,7 +63,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It runs, and the street fills with faceless adults, and all of them are turned toward you.",
+          "text": "It runs. The street fills with faceless adults, all of them turned toward you.",
           "effects": [
             {
               "encounter": {

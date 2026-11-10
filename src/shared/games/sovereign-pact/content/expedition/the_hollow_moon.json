@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "A room of silver dust, and a gift laid out on a table, and the wind moaning your names.",
+          "text": "Inside is a room of silver dust with a gift laid out on a table. The wind moans your names.",
           "effects": [
             {
               "item": {
@@ -36,7 +36,7 @@
         },
         {
           "w": 50,
-          "text": "A room of silver dust, and its keeper, who is very lonely and very hungry.",
+          "text": "Inside is a room of silver dust and its keeper, who is very lonely and very hungry.",
           "effects": [
             {
               "encounter": {
@@ -57,7 +57,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Something knocks back, slowly, and the moon drifts higher, out of reach.",
+          "text": "Something knocks back slowly. The moon drifts higher, out of reach.",
           "effects": [
             {
               "score": {

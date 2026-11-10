@@ -9,7 +9,7 @@
     10
   ],
   "title": "The Fallen Star",
-  "text": "A star came down in the night. You saw it fall. It lies at the bottom of a glassy crater, no bigger than a fist, still warm, and still singing, a thin silver note that makes your eyes water and your heart ache for something far away.",
+  "text": "A star came down in the night; you saw it fall. It lies at the bottom of a glassy crater, no bigger than a fist, still warm and still singing. Its thin silver note makes your eyes water and your heart ache for something far away.",
   "options": [
     {
       "id": "dig",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "A heart of star-metal, still singing faintly in the hand, and it never quite stops.",
+          "text": "Its heart of star-metal still sings faintly in the hand. It never quite stops.",
           "effects": [
             {
               "resources": {
@@ -33,7 +33,7 @@
         },
         {
           "w": 40,
-          "text": "Something else came down with it, and it has been waiting at the bottom of the crater.",
+          "text": "Something else came down with it. It has been waiting at the bottom of the crater.",
           "effects": [
             {
               "encounter": {
@@ -54,7 +54,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It sings of the sky it fell from, all night, and you weep without knowing why, and feel better.",
+          "text": "All night it sings of the sky it fell from. You weep without knowing why, and feel better for it.",
           "effects": [
             {
               "to": "party",
@@ -74,7 +74,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "Starlight, in the blood, bright and cold, and it stays.",
+          "text": "Starlight enters their blood, bright and cold, and it stays.",
           "effects": [
             {
               "growth": {
@@ -85,7 +85,7 @@
         },
         {
           "w": 50,
-          "text": "Starlight, too much of it, burning from the inside out.",
+          "text": "Too much starlight floods in, burning them from the inside out.",
           "effects": [
             {
               "status": "burn"

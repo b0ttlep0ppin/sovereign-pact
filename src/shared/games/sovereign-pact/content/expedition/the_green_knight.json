@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "His head rolls in the moss, and he picks it up, and it smiles. He says he will find you again, and you believe him.",
+          "text": "His head rolls in the moss. He picks it up, and it smiles; he says he will find you again, and you believe him.",
           "effects": [
             {
               "score": {
@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "He laughs, a sound like wind, and green buds break out along every scabbard. It is a joke, or a gift.",
+          "text": "He laughs, a sound like wind. Green buds break out along every scabbard, whether as a joke or a gift.",
           "effects": [
             {
               "to": "party",
@@ -55,7 +55,7 @@
         },
         {
           "w": 50,
-          "text": "He laughs, a sound like wind, and the forest is colder to you after.",
+          "text": "He laughs, a sound like wind. After that, the forest is colder to you.",
           "effects": [
             {
               "to": "party",
@@ -75,7 +75,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He loses a riddle, laughing, and gives up his belt of green.",
+          "text": "Laughing, he loses a riddle and gives up his belt of green.",
           "effects": [
             {
               "item": {

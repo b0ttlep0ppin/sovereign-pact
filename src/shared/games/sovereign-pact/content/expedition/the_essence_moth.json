@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Wings full of essence, beating softly against the net until they stop. It feels like a small cruelty.",
+          "text": "Their wings, heavy with essence, beat softly against the net until they stop. It feels like a small cruelty.",
           "effects": [
             {
               "resources": {
@@ -42,7 +42,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Bright, burning, strong, and a hunger behind it like the moths', that does not go away.",
+          "text": "The light burns bright and strong inside them. Behind it comes a hunger like the moths', which does not go away.",
           "effects": [
             {
               "mp": 40
@@ -64,7 +64,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They follow you a while in a pale cloud, glowing, and nothing comes near.",
+          "text": "For a while they follow you in a pale, glowing cloud. Nothing comes near.",
           "effects": [
             {
               "to": "party",

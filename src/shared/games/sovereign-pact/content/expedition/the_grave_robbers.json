@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "The barrow is rich, and its keeper is away. For now.",
+          "text": "The barrow is rich, and its keeper is away for now.",
           "effects": [
             {
               "resources": {
@@ -40,7 +40,7 @@
         },
         {
           "w": 40,
-          "text": "The barrow's keeper is home, and it has been listening to the digging, and it is ready.",
+          "text": "The barrow's keeper is home. It has been listening to the digging, and it is ready.",
           "effects": [
             {
               "encounter": {}
@@ -59,7 +59,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They run, cursing. The barrow is quiet, and seems to thank you.",
+          "text": "They run, cursing. The barrow falls quiet and seems to thank you.",
           "effects": [
             {
               "score": {
@@ -84,7 +84,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Something comes out of the barrow. The thieves do not. You learn a great deal about what lives there.",
+          "text": "Something comes out of the barrow, but the thieves do not. You learn a great deal about what lives there.",
           "effects": [
             {
               "score": {

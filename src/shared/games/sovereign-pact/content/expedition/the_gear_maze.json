@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Through without a scratch, step by counted step. The bones in the oil were not so careful.",
+          "text": "Step by counted step, they lead you through without a scratch. The bones in the oil were not so careful.",
           "effects": [
             {
               "xp": 40
@@ -40,7 +40,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "Through, mostly, with oil and blood on your coats.",
+          "text": "You make it through, mostly, with oil and blood on your coats.",
           "effects": [
             {
               "to": "party",
@@ -50,7 +50,7 @@
         },
         {
           "w": 40,
-          "text": "A sleeve caught, and the arm in it, and the gears do not stop.",
+          "text": "A sleeve catches, and the arm inside it with it. The gears do not stop.",
           "effects": [
             {
               "injury": "arms"
@@ -69,7 +69,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They grind to a halt with a shriek, and the whole ruin shudders awake to see what stopped it.",
+          "text": "They grind to a halt with a shriek. The whole ruin shudders awake to see what stopped them.",
           "effects": [
             {
               "encounter": {

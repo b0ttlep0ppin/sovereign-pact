@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "A cry of thanks from above, and a feather as long as an arm drifts down. It brings luck.",
+          "text": "A cry of thanks comes from above. A feather as long as an arm drifts down, bringing luck.",
           "effects": [
             {
               "blessing": {
@@ -33,7 +33,7 @@
         },
         {
           "w": 30,
-          "text": "The parent thinks you are stealing it, and comes down out of the sky, screaming.",
+          "text": "The parent thinks you are stealing it. It comes down out of the sky, screaming.",
           "effects": [
             {
               "encounter": {
@@ -54,7 +54,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A rare egg, warm against the back, and a shadow circling above you all the rest of the day, waiting for its chance.",
+          "text": "The rare egg rides warm against your back. All day a shadow circles above, waiting for its chance.",
           "effects": [
             {
               "resources": {
@@ -78,7 +78,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "It will be what it will be. The canopy, which was watching, lets you pass unharmed and the road is easy.",
+          "text": "The canopy was watching. It lets you pass unharmed, and the road is easy.",
           "effects": [
             {
               "to": "party",
@@ -88,7 +88,7 @@
         },
         {
           "w": 40,
-          "text": "It will be what it will be. At dusk you hear the mother looking for it, and then you hear her find your trail.",
+          "text": "At dusk you hear the mother searching for it. Then you hear her find your trail.",
           "effects": [
             {
               "fork": {

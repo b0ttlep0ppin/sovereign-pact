@@ -9,7 +9,7 @@
     10
   ],
   "title": "The Hunters' Shrine",
-  "text": "A shrine of skulls where hunters come to ask the hunt's spirit for luck: deer, boar, bear, wolf, piled up into a little hill, antlers woven together into a roof. Fresh blood on the altar stone. Someone has prayed here very recently.",
+  "text": "Hunters come to this shrine of skulls to ask the hunt's spirit for luck. Deer, boar, bear and wolf skulls are piled into a little hill, their antlers woven together into a roof. There is fresh blood on the altar stone; someone has prayed here very recently.",
   "options": [
     {
       "id": "pray",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The hunt's spirit answers, a breath of musk and blood, and luck comes with it.",
+          "text": "The hunt's spirit answers with a breath of musk and blood. Luck comes with it.",
           "effects": [
             {
               "blessing": {
@@ -43,7 +43,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A little luck, and your feet are quick as deer's for a while.",
+          "text": "A little luck follows, and for a while your feet are as quick as a deer's.",
           "effects": [
             {
               "resources": {
@@ -68,7 +68,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The spirit is displeased, and the antler roof creaks, and something follows you out. The skull is old and hard as wyrmbone.",
+          "text": "The spirit is displeased. The antler roof creaks, and something follows you out. The skull is old and hard as wyrmbone.",
           "effects": [
             {
               "curse": true

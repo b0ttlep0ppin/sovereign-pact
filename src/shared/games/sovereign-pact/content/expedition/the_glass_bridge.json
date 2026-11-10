@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 80,
-          "text": "It holds, and the city's people watch every step, and none of them blink.",
+          "text": "It holds. The people of the city watch every step, and none of them blink.",
           "effects": [
             {
               "to": "party",
@@ -31,7 +31,7 @@
         },
         {
           "w": 20,
-          "text": "It cracks under the heaviest, and the people below cheer.",
+          "text": "It cracks under the heaviest of you. The people below cheer.",
           "effects": [
             {
               "injury": "legs"
@@ -50,7 +50,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Fast, and the cracks only start behind you.",
+          "text": "You run fast enough that the cracks only start behind you.",
           "effects": [
             {
               "skip": 1
@@ -69,7 +69,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It is a city from the time before the rift, and it is not empty, and they are waiting for someone to fall.",
+          "text": "It is a city from before the rift. It is not empty; its people are waiting for someone to fall.",
           "effects": [
             {
               "score": {

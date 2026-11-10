@@ -9,7 +9,7 @@
     10
   ],
   "title": "The Healing Hands",
-  "text": "Two stone hands rise from the shrine's floor, cupped as if to hold water, worn smooth and dark by a thousand years of pilgrims. Old blood stains the palms. Pilgrims lay their wounds in them, and some of them walk away whole, and some of them leave something behind.",
+  "text": "Two stone hands rise from the shrine's floor, cupped as if to hold water, worn smooth and dark by a thousand years of pilgrims. Old blood stains the palms. Pilgrims lay their wounds in them; some walk away whole, while others leave something behind.",
   "options": [
     {
       "id": "lay",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The hands close, warm as flesh, and open again, and the wound is gone. Something in the stone keeps the memory of it.",
+          "text": "The hands close, warm as flesh, then open again with the wound gone. Something in the stone keeps the memory of it.",
           "effects": [
             {
               "mend": true
@@ -43,7 +43,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A warmth that spreads up the arm and lasts.",
+          "text": "A warmth spreads up each arm, and it lasts.",
           "effects": [
             {
               "to": "party",
@@ -67,7 +67,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The stone hands close on the thief's fingers, slowly, and grind, and only let go when they are paid.",
+          "text": "The stone hands close slowly on the thief's fingers and grind. They let go only once they are paid.",
           "effects": [
             {
               "resources": {

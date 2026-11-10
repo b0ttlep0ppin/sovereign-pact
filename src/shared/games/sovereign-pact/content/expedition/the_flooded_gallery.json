@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "Cold to the bone and wet, but through.",
+          "text": "You come through, wet and cold to the bone.",
           "effects": [
             {
               "to": "party",
@@ -31,7 +31,7 @@
         },
         {
           "w": 30,
-          "text": "Something in the water, and it was what was gleaming, and it was looking at you.",
+          "text": "The gleam was something in the water, and it was looking at you.",
           "effects": [
             {
               "encounter": {
@@ -52,7 +52,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A drowned miner's lamp and purse, and the miner, who does not mind. He watches them go.",
+          "text": "They find a drowned miner's lamp and purse. The miner does not mind; he watches them go.",
           "effects": [
             {
               "resources": {
@@ -78,7 +78,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Longer, and drier, and not empty.",
+          "text": "The way around is longer and drier, but not empty.",
           "effects": [
             {
               "fork": {

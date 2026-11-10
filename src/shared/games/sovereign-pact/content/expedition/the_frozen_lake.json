@@ -9,7 +9,7 @@
     8
   ],
   "title": "The Frozen Lake",
-  "text": "The way crosses a frozen lake, the ice black and clear and thick as a wall. Something under it is moving. A long pale shape slides beneath your feet, slow and patient, and it follows whoever it has marked.",
+  "text": "The way crosses a frozen lake, the ice black and clear and thick as a wall. Something under it is moving: a long pale shape that slides slowly beneath your feet, following whoever it has marked.",
   "options": [
     {
       "id": "marked",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 65,
-          "text": "It follows them under the ice, nose to their boots, and the others cross safe behind.",
+          "text": "It follows them under the ice, nose to their boots, while the others cross safely behind.",
           "effects": [
             {
               "xp": 80
@@ -34,7 +34,7 @@
         },
         {
           "w": 35,
-          "text": "It breaks the ice beneath them, and the water is black and very cold.",
+          "text": "It breaks the ice beneath them. The water is black and very cold.",
           "effects": [
             {
               "injury": "legs"
@@ -56,7 +56,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Slow, careful, cold, with the pale shape sliding under one of you, then another.",
+          "text": "You cross slowly, carefully and cold, while the pale shape slides beneath one of you, then another.",
           "effects": [
             {
               "to": "party",
@@ -76,7 +76,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It bites, and it is much bigger than the hole.",
+          "text": "It bites. It is much bigger than the hole.",
           "effects": [
             {
               "encounter": {

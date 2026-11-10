@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A good rest under false stars, warm and soft and smelling of rain. It is very hard to leave.",
+          "text": "You rest well under the false stars, warm and soft, the air smelling of rain.",
           "effects": [
             {
               "to": "party",
@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Jars of soft light for the dark ahead, and the dark keeps its distance.",
+          "text": "Jars of soft light go with you into the dark ahead, which keeps its distance.",
           "effects": [
             {
               "to": "party",
@@ -65,7 +65,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They lead to something that eats them, and it is still hungry.",
+          "text": "They lead to something that eats them. It is still hungry.",
           "effects": [
             {
               "encounter": {

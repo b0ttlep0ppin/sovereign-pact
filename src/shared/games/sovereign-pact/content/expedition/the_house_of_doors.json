@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "The right street, under the right sky.",
+          "text": "It opens on the right street, under the right sky.",
           "effects": [
             {
               "skip": 1
@@ -30,7 +30,7 @@
         },
         {
           "w": 30,
-          "text": "The wrong street, and the wrong crowd, and they have been waiting.",
+          "text": "It opens on the wrong street, where the wrong crowd has been waiting.",
           "effects": [
             {
               "encounter": {
@@ -51,7 +51,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Behind one, a merchant's vault. Behind the others, things you do not talk about.",
+          "text": "Behind one lies a merchant's vault. Behind the others are things you do not talk about.",
           "effects": [
             {
               "resources": {
@@ -76,7 +76,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A way back, if you need it, and it feels like a hand on the shoulder.",
+          "text": "Knowing there is a way back feels like a hand on the shoulder.",
           "effects": [
             {
               "to": "party",

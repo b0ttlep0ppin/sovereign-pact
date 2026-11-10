@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 80,
-          "text": "A cold, safe night, and his heart beats slow in the dark, and you count it until dawn.",
+          "text": "The night is cold but safe. His heart beats slowly in the dark, and you count it until dawn.",
           "effects": [
             {
               "to": "party",
@@ -31,7 +31,7 @@
         },
         {
           "w": 20,
-          "text": "Colder than you thought. By morning, a little of the ice is in you too.",
+          "text": "It is colder than you thought. By morning, a little of the ice is in you too.",
           "effects": [
             {
               "to": "party",
@@ -51,7 +51,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A warning, and a way to keep the cold from the heart.",
+          "text": "He gives a warning, along with a way to keep the cold from the heart.",
           "effects": [
             {
               "blessing": {
@@ -73,7 +73,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Through, and frostbitten, and toes that will not warm for days.",
+          "text": "You get through frostbitten, with toes that will not warm for days.",
           "effects": [
             {
               "to": "party",

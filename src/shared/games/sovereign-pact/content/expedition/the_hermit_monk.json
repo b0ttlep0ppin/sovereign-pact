@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He wipes the slate for the first time in forty years, and draws a map. His hand shakes with the effort.",
+          "text": "For the first time in forty years he wipes the slate, then draws a map. His hand shakes with the effort.",
           "effects": [
             {
               "skip": 1
@@ -40,7 +40,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He writes one word, and weeps, and will not wipe it away. They cannot stop thinking about it.",
+          "text": "He writes one word and weeps, refusing to wipe it away. They cannot stop thinking about it.",
           "effects": [
             {
               "foresee": true
@@ -67,7 +67,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He touches each brow with a chalky thumb, and the dust stays all day.",
+          "text": "He touches each brow with a chalky thumb. The dust stays all day.",
           "effects": [
             {
               "to": "party",

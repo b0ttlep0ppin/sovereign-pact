@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Bandages, salves, and a surgeon's notes that make a horrible kind of sense.",
+          "text": "They find bandages, salves and a surgeon's notes that make a horrible kind of sense.",
           "effects": [
             {
               "to": "party",
@@ -44,7 +44,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "An hour of real rest, in a real bed, with nothing watching.",
+          "text": "For an hour they rest in a real bed, with nothing watching.",
           "effects": [
             {
               "sanity": 15
@@ -56,7 +56,7 @@
         },
         {
           "w": 30,
-          "text": "An hour of rest, and a dream about whoever lay on the cot before, and how they died, slowly.",
+          "text": "They rest an hour, dreaming of whoever lay on the cot before and how slowly they died.",
           "effects": [
             {
               "sanity": -10
@@ -75,7 +75,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Silver instruments, old coin, and something under the last cot that you leave where it is.",
+          "text": "You find silver instruments and old coin. What lies under the last cot, you leave where it is.",
           "effects": [
             {
               "resources": {

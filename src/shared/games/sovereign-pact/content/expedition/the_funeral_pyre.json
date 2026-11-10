@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A fine burning. The warrior's fingers stop twitching. She rests, and the mourners weep with relief.",
+          "text": "It is a fine burning. The warrior's fingers go still at last, and the mourners weep with relief.",
           "effects": [
             {
               "resources": {
@@ -47,7 +47,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The barrow dead come to see the burning, and are turned back by your steel.",
+          "text": "The barrow dead come to see the burning. Your steel turns them back.",
           "effects": [
             {
               "encounter": {}
@@ -71,7 +71,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They sell you a sword they should have burned with her, and she would like it back.",
+          "text": "They sell you a sword they should have burned with her. She would like it back.",
           "effects": [
             {
               "resources": {

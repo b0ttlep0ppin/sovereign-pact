@@ -9,7 +9,7 @@
     6
   ],
   "title": "The Grass Fire",
-  "text": "Smoke on the horizon, a long brown wall of it. The plains are burning. Animals are running past you now, deer and wolves and hares side by side, and the wind is bringing the fire this way faster than any of them.",
+  "text": "Smoke rises on the horizon in a long brown wall. The plains are burning. Animals run past you, deer, wolves and hares side by side, and the wind is bringing the fire this way faster than any of them.",
   "options": [
     {
       "id": "run",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "Out ahead of it, gasping, with ash in your hair.",
+          "text": "You stay ahead of it, gasping, with ash in your hair.",
           "effects": [
             {
               "to": "party",
@@ -51,7 +51,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A black patch to shelter in, and the fire roars round you on both sides, and passes.",
+          "text": "It leaves a black patch to shelter in. The fire roars past on both sides, then is gone.",
           "effects": [
             {
               "score": {
@@ -72,7 +72,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Wet, and safe from the fire, and the fleeing beasts are all round you, and frightened, and they do not care who they trample.",
+          "text": "The river keeps the fire off. The fleeing beasts crowd round you there, frightened enough to trample anyone.",
           "effects": [
             {
               "encounter": {}

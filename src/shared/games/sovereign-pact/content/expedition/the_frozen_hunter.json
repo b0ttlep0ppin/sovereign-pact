@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "She thaws, gasping, and before she runs she presses her bow into your hands. She does not look back.",
+          "text": "She thaws, gasping. Before she runs she presses her bow into your hands, and she never looks back.",
           "effects": [
             {
               "item": {
@@ -37,7 +37,7 @@
         },
         {
           "w": 50,
-          "text": "She thaws, and she is still aiming at what is behind you.",
+          "text": "She thaws, still aiming at what stands behind you.",
           "effects": [
             {
               "encounter": {
@@ -58,7 +58,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "You see it before it sees you. Only just.",
+          "text": "You see it just before it sees you.",
           "effects": [
             {
               "encounter": {
@@ -79,7 +79,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "You do not look back. It is very hard. Something breathes the whole way.",
+          "text": "Not looking back is very hard. Something breathes behind you the whole way.",
           "effects": [
             {
               "to": "party",

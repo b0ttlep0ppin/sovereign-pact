@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A vision, sharp as a blade, and a hunger that does not go away, even after eating.",
+          "text": "A vision comes, sharp as a blade. The hunger that follows does not go away, even after eating.",
           "effects": [
             {
               "foresee": true
@@ -46,7 +46,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They break their fast and weep, and eat like animals. Their visions end, and they do not thank you.",
+          "text": "They break their fast weeping and eat like animals. Their visions end, and they do not thank you.",
           "effects": [
             {
               "to": "party",
@@ -71,7 +71,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "Clear-headed and light, as if the bones are made of air.",
+          "text": "You come through clear-headed and light, as if your bones were made of air.",
           "effects": [
             {
               "to": "party",
@@ -81,7 +81,7 @@
         },
         {
           "w": 30,
-          "text": "Faint and dizzy, and the world tilts.",
+          "text": "You come through faint and dizzy, the world tilting beneath you.",
           "effects": [
             {
               "to": "party",

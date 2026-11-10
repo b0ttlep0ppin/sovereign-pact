@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A lost rite of the Six, half burned, and still holy. It warms the hands that hold it.",
+          "text": "It is a lost rite of the Six, half burned but still holy. It warms the hands that hold it.",
           "effects": [
             {
               "score": {
@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The zealots turn on you, faces lit orange, and the crowd stops cheering.",
+          "text": "The zealots turn on you, faces lit orange, as the crowd stops cheering.",
           "effects": [
             {
               "encounter": {}
@@ -69,7 +69,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The zealots bless you, loudly. The novice does not look at you again, and something beyond the Gate is pleased.",
+          "text": "The zealots bless you loudly. The novice never looks at you again, and beyond the Gate something is pleased.",
           "effects": [
             {
               "to": "party",

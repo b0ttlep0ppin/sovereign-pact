@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "Things the Pact does not want known, written very carefully, in a hand that shook.",
+          "text": "The books hold things the Pact does not want known, written very carefully in a hand that shook.",
           "effects": [
             {
               "score": {
@@ -35,7 +35,7 @@
         },
         {
           "w": 30,
-          "text": "Something in the book reads back, and finds them very interesting indeed.",
+          "text": "Something in the book reads back. It finds them very interesting indeed.",
           "effects": [
             {
               "curse": true
@@ -54,7 +54,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It is worth a fortune, and it breathes in the pack, and they will come for it.",
+          "text": "It is worth a fortune. It breathes in the pack, and they will come for it.",
           "effects": [
             {
               "item": {
@@ -80,7 +80,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He smiles in his sleep. On the step outside a single page has blown free, and the Leader reads it before they can stop themself.",
+          "text": "He smiles in his sleep. On the step outside lies a single page blown free, which the Leader reads before they can stop themself.",
           "effects": [
             {
               "jp": 40,
@@ -101,7 +101,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The wards are old, and the Abjurer learns how they were made by taking them apart, and wears what is left.",
+          "text": "The wards are old. The Abjurer learns how they were made by taking them apart, then wears what is left.",
           "effects": [
             {
               "jp": 60,

@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "An old hermit, glad of company. He feeds you, and does not say whose teeth.",
+          "text": "An old hermit answers, glad of company. He feeds you, but does not say whose teeth they were.",
           "effects": [
             {
               "to": "party",
@@ -35,7 +35,7 @@
         },
         {
           "w": 30,
-          "text": "Not a hermit.",
+          "text": "It is not a hermit who answers.",
           "effects": [
             {
               "encounter": {}
@@ -54,7 +54,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A hoard of acorns, and one gold one.",
+          "text": "Inside lies a hoard of acorns, one of them gold.",
           "effects": [
             {
               "resources": {
@@ -75,7 +75,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Eyes in the knot follow you, and a small voice wishes you well. It sounds as if it means it, and the road is gentle after.",
+          "text": "Eyes in the knot follow you, and a small voice wishes you well. It seems to mean it, for the road is gentle afterward.",
           "effects": [
             {
               "to": "party",

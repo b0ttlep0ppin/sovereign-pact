@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "She tells, healer to healer, and gives you her salves for them, and points the way they went.",
+          "text": "She tells them, healer to healer. She gives you her salves and points the way they went.",
           "effects": [
             {
               "to": "party",
@@ -44,7 +44,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "She takes the coin, and blesses the House, and does not mention the bandages again.",
+          "text": "She takes the coin and blesses the House, never mentioning the bandages again.",
           "effects": [
             {
               "resources": {
@@ -70,7 +70,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "She did not. She tells you nothing now, and shuts the door, and you will never know what she saw.",
+          "text": "She did not sell them out. Now she tells you nothing and shuts the door; you will never know what she saw.",
           "effects": [
             {
               "to": "party",

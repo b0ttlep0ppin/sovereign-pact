@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "They do not move. You feel their eyes anyway, all the way across the ice.",
+          "text": "They do not move, yet you feel their eyes all the way across the ice.",
           "effects": [
             {
               "to": "party",
@@ -31,7 +31,7 @@
         },
         {
           "w": 30,
-          "text": "One does.",
+          "text": "One of them wakes.",
           "effects": [
             {
               "encounter": {
@@ -52,7 +52,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Fine steel, and as it comes free, the whole army turns its heads to watch you go.",
+          "text": "The steel is fine. As it comes free, the whole army turns its heads to watch you go.",
           "effects": [
             {
               "item": {
@@ -76,7 +76,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Their stiff banners stir, once, in no wind, as if returning the honour.",
+          "text": "Their stiff banners stir once in no wind, as if returning the honour.",
           "effects": [
             {
               "score": {

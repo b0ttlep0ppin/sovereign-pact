@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Burned to the elbow, and the party through, and their hand-print added to the others in the iron.",
+          "text": "They are burned to the elbow, but the party gets through. Their hand-print joins the others in the iron.",
           "effects": [
             {
               "durability": -30,
@@ -48,7 +48,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Everyone burned a little, and everyone through.",
+          "text": "Everyone is burned a little, but everyone gets through.",
           "effects": [
             {
               "to": "party",
@@ -71,7 +71,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Another way, through the devils' kennels, and the devils' dogs are awake.",
+          "text": "The other way runs through the devils' kennels, where the devils' dogs are awake.",
           "effects": [
             {
               "encounter": {}

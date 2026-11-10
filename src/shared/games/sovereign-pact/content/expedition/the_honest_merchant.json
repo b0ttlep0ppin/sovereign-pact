@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A fair price for a fine thing. It feels like a trick, and it is not.",
+          "text": "She asks a fair price for a fine thing. It feels like a trick, though it is not.",
           "effects": [
             {
               "resources": {
@@ -47,7 +47,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A fair price, counted out in front of you. Unsettling.",
+          "text": "She counts out a fair price in front of you, which is unsettling in itself.",
           "effects": [
             {
               "resources": {

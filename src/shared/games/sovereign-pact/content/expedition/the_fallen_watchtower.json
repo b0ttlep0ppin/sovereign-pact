@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Heavy, good stone, and somewhere under the last of it, a skeleton still facing the road, still watching.",
+          "text": "The stone is heavy and good. Under the last of it lies a skeleton still facing the road, still watching.",
           "effects": [
             {
               "resources": {
@@ -46,7 +46,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The guard's strongbox, under the beacon basket, still locked.",
+          "text": "Under the beacon basket lies the guard's strongbox, still locked.",
           "effects": [
             {
               "resources": {
@@ -68,7 +68,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A watchtower of your own, in time, to watch for whatever came. You hope it does not come again.",
+          "text": "In time your House will have a watchtower of its own, to watch for whatever came. You hope it never comes again.",
           "effects": [
             {
               "house_improvement": "building"

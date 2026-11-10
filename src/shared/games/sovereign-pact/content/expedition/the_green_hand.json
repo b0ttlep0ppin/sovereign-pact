@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "The vine knits the arm, green and gentle, and lets go, and leaves a leaf in the wound that never quite falls out.",
+          "text": "The vine knits the arm, green and gentle, then lets go. It leaves a leaf in the wound that never quite falls out.",
           "effects": [
             {
               "mend": true
@@ -33,7 +33,7 @@
         },
         {
           "w": 30,
-          "text": "The vine takes the arm's strength instead of its hurt, and sighs with pleasure.",
+          "text": "The vine takes the arm's strength instead of its hurt, sighing with pleasure.",
           "effects": [
             {
               "stat": {
@@ -57,7 +57,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It answers, and teaches a little of its green craft.",
+          "text": "It answers, then teaches a little of its green craft.",
           "effects": [
             {
               "growth": {
@@ -81,7 +81,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It screams like a child as it burns, and the ash is worth something.",
+          "text": "It screams like a child as it burns. The ash is worth something.",
           "effects": [
             {
               "to": "party",

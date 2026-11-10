@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "He approves, grunting, and reforges a piece with his cold hands.",
+          "text": "He grunts his approval, then reforges a piece with his cold hands.",
           "effects": [
             {
               "durability": 40
@@ -35,7 +35,7 @@
         },
         {
           "w": 40,
-          "text": "He does not approve, and shows them exactly why, with his cold hands.",
+          "text": "He does not approve. With his cold hands, he shows them exactly why.",
           "effects": [
             {
               "durability": -30,
@@ -55,7 +55,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He nods and walks on, and as he passes he runs a cold thumb over every buckle and rivet you wear. They are tighter after.",
+          "text": "He nods and walks on. As he passes, he runs a cold thumb over every buckle and rivet you wear, leaving them tighter.",
           "effects": [
             {
               "to": "party",
@@ -75,7 +75,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He does not take it well. Nobody has told him in a thousand years, and he does not believe you.",
+          "text": "He does not take it well. No one has told him in a thousand years, and he does not believe you.",
           "effects": [
             {
               "encounter": {}

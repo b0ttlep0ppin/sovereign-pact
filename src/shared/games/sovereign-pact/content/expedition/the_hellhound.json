@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It eats, all three mouths at once, and lets you pass, full. The watching head never stops watching.",
+          "text": "All three mouths eat at once, and it lets you pass, full. The watching head never stops watching.",
           "effects": [
             {
               "resources": {
@@ -42,7 +42,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "All three heads sleep, snoring smoke.",
+          "text": "All three heads fall asleep, snoring smoke.",
           "effects": [
             {
               "skip": 1
@@ -51,7 +51,7 @@
         },
         {
           "w": 40,
-          "text": "Two heads sleep. The third, the watching one, does not, and it has been waiting for this.",
+          "text": "Two heads sleep. The third, the watching one, does not; it has been waiting for this.",
           "effects": [
             {
               "encounter": {}
@@ -70,7 +70,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Three heads, three bites, and the watching one is the worst.",
+          "text": "Each head bites in turn, and the watching one is the worst.",
           "effects": [
             {
               "encounter": {

@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "Good food, odd music with no singer, and little gifts for the guests. You do not ask what is in them.",
+          "text": "There is good food, odd music with no singer and little gifts for the guests. You do not ask what is in them.",
           "effects": [
             {
               "resources": {
@@ -36,7 +36,7 @@
         },
         {
           "w": 30,
-          "text": "You are not guests. You never were. You are the feast.",
+          "text": "You were never guests. You are the feast.",
           "effects": [
             {
               "encounter": {
@@ -57,7 +57,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They are delighted, smooth heads bobbing, and show you a quick way out.",
+          "text": "Delighted, their smooth heads bobbing, they show you a quick way out.",
           "effects": [
             {
               "resources": {
@@ -81,7 +81,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The music follows, and so do their smooth, turning heads, all the way to the edge of the city.",
+          "text": "The music follows you to the edge of the city, as do their smooth, turning heads.",
           "effects": [
             {
               "to": "party",

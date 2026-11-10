@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "She turns a card over, and it is not the one the Leader was born under. It is now, and it always will be.",
+          "text": "She turns over a card that is not the one the Leader was born under. It is now, and always will be.",
           "effects": [
             {
               "tarot": true
@@ -40,7 +40,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Every reading she gives is a little true. The wisest learns how she does it.",
+          "text": "Every reading she gives is a little true. By the end, the wisest has learned how she does it.",
           "effects": [
             {
               "score": {
@@ -64,7 +64,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "She laughs, and shuffles, and lays one card face up on the rock as you go: the Tower. You all walk faster after that.",
+          "text": "She laughs and shuffles, laying one card face up on the rock as you go: the Tower. After that, you all walk faster.",
           "effects": [
             {
               "to": "party",
@@ -85,7 +85,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "She goes white at the third card, and pays them to stop.",
+          "text": "She goes white at the third card and pays them to stop.",
           "effects": [
             {
               "resources": {

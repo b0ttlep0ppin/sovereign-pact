@@ -9,7 +9,7 @@
     10
   ],
   "title": "The Hole in the Sky",
-  "text": "There is a hole in the sky above the road, a ragged black wound in the grey, and the wind blows up into it. Something on the other side is looking down. You can feel it. An eye the size of a field, patient, curious, and paying attention to you.",
+  "text": "There is a hole in the sky above the road, a ragged black wound in the grey, and the wind blows up into it. Something on the other side is looking down. You can feel it: an eye the size of a field, patient and curious, paying attention to you.",
   "options": [
     {
       "id": "look",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "It blinks first. Nobody believes it at first, but it did.",
+          "text": "It blinks first. At first nobody believes it, but it did.",
           "effects": [
             {
               "score": {
@@ -35,7 +35,7 @@
         },
         {
           "w": 50,
-          "text": "It does not blink. It never will. They can still feel it, every day, everywhere.",
+          "text": "It does not blink, and it never will. They can still feel it watching, every day and everywhere.",
           "effects": [
             {
               "sanity": -25
@@ -54,7 +54,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "You walk blind for a mile, and feel it watching every step.",
+          "text": "You walk blind for a mile, feeling it watch every step.",
           "effects": [
             {
               "to": "party",
@@ -78,7 +78,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Something comes down, and it has been wanting to for a long time.",
+          "text": "Something comes down. It has been wanting to for a long time.",
           "effects": [
             {
               "encounter": {
