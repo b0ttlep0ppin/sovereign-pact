@@ -366,6 +366,19 @@ def axehead(sheet: Image.Image) -> Image.Image:
             ln = ((far[0] - hx) ** 2 + (far[1] - hy) ** 2) ** 0.5
             if ln < 6:
                 continue
+            if ROWS[r][0] == "idle" and hy > far[1]:
+                # The mace hangs head down at rest; an axe is held head up (Josh 2026-11-10: "axe seems to be
+                # oriented incorrectly"), so the frame is mirrored top to bottom about the hand.
+                cut = {(x, y): px[x, y] for x, y in pts}
+                for x, y in pts:
+                    px[x, y] = (0, 0, 0, 0)
+                pts = []
+                for (x, y), v in cut.items():
+                    y2 = 2 * far[1] - y
+                    if y0 <= y2 < y0 + CELL:
+                        px[x, y2] = v
+                        pts.append((x, y2))
+                hy = 2 * far[1] - hy
             ux, uy = (hx - far[0]) / ln, (hy - far[1]) / ln  # haft toward the head
             along = lambda x, y: (x - hx) * ux + (y - hy) * uy
             across = lambda x, y: -(x - hx) * uy + (y - hy) * ux
@@ -383,7 +396,8 @@ def axehead(sheet: Image.Image) -> Image.Image:
                 for x in range(x0, x0 + CELL):
                     a, t = along(x, y), across(x, y)
                     s = t * side
-                    if -5 <= a <= 2.5 and abs(t) <= 0.8:
+                    # The haft runs whole from the hand to the head (the ball's cut left a gap in it).
+                    if -ln <= a <= 2.5 and abs(t) <= 0.8:
                         px[x, y] = wood[0] if a > 1.5 else wood[1]
                     elif 0.8 < s <= 7:
                         half = 1.3 + 3.2 * (s - 0.8) / 6.2

@@ -2,6 +2,13 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-10 (implementation, Milestone 8dv): the axe held head up, weapons in metals by quality
+
+Josh: "axe seems to be oriented incorrectly?", then "increasingly better axes should use the better axe sprites (same for all other weapons)" and "you can tint the existing ones different colors too to stretch them further".
+- The axe is cut from the mace's frames with a new head, and the mace hangs head down at rest. At rest the axe is now mirrored about the hand so its head is up, and its haft is painted whole from hand to head.
+- A weapon's metal follows its quality: Crude iron, Common steel as drawn, Fine silver, Masterwork gold, and a Relic or a named weapon gold with a warm glow. Only the grey (steel) pixels change; wood, leather, gems and the outline keep their colours. The generator's other weapon sprites (the gnarled staff and the like) lack casting and swinging frames, so tints stand in for new shapes.
+- Bows have no frames at rest in the generator, so an archer's bow still shows only when they shoot.
+
 ## 2026-11-10 (implementation, Milestone 8du): wider screens, the orders panel padded, passives on switches
 
 Josh: "missing padding down by the bottom of this event window. Also if possible some places it might make sense to use more horizontal space, instead of stacking everything vertical. Various windows might be able to fit to the right etc under 'what happened' etc. Also the passives are enabled via checkbox, i think it'd be more satisfying if the UI looked a little more substantial there, like a big toggle on button that highlights the row".
