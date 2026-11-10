@@ -3,6 +3,7 @@ import { describe, expect, it, vi } from "vitest";
 import { Content, sovereignPact as g } from "@vibepulse/shared/games/sovereign-pact";
 import { seats } from "../../../shared/games/sovereign-pact/testing.ts";
 import { createRng } from "../../../shared/rng.ts";
+import { Emblem, HERALDRY_COLORS } from "./Emblem";
 import HouseDesigner, { missingOf, toggleTrait, traitShape } from "./HouseDesigner";
 
 const founding = () => {
@@ -44,6 +45,25 @@ describe("founding a House (§5.1)", () => {
     const seat = Content.SEATS.find((x) => x.id !== h.seat)!;
     fireEvent.click(screen.getByText(seat.name).closest("li")!.querySelector("button")!);
     expect(sendMove).toHaveBeenCalledWith({ type: "design", house: { seat: seat.id } });
+  });
+
+  it("paints the charge in a color the House picks, or leaves it to the heralds (Josh 2026-11-10)", () => {
+    const { s, view } = founding();
+    const h = view.houses[0]!;
+    const sendMove = vi.fn();
+    render(<HouseDesigner view={view} sendMove={sendMove} />);
+    fireEvent.click(screen.getByRole("tab", { name: "Emblem" }));
+    fireEvent.click(screen.getByRole("button", { name: "Charge color: Gold" }));
+    const move = { type: "design", house: { emblem: { ...h.emblem, chargeColor: "gold" } } } as const;
+    expect(sendMove).toHaveBeenCalledWith(move);
+    const r = g.applyMove(s, "p1", move);
+    if (!r.ok) throw new Error(r.error);
+    expect(r.state.houses[0]!.emblem.chargeColor).toBe("gold");
+    expect(h.colors).not.toContain("gold");
+    const gold = HERALDRY_COLORS.get("gold")!;
+    const { container } = render(<Emblem emblem={r.state.houses[0]!.emblem} colors={h.colors} />);
+    expect(container.innerHTML.toLowerCase()).toContain(gold.toLowerCase());
+    expect(g.applyMove(s, "p1", { type: "design", house: { emblem: { ...h.emblem, chargeColor: "tartan" } } }).ok).toBe(false);
   });
 
   it("offers no theme step for now (Josh 2026-11-05: the town plays the Settlement music)", () => {

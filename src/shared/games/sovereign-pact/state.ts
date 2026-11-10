@@ -165,6 +165,8 @@ export interface Emblem {
   tinctures: string[];
   charge: string;
   secondary?: string;
+  /** The charges' color, a palette id (Josh 2026-11-10); left out, one is picked that reads on the field. */
+  chargeColor?: string;
 }
 
 export interface House {
