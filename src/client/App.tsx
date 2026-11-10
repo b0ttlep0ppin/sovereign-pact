@@ -57,7 +57,10 @@ function CopyTable() {
   const copy = () => {
     let raw = "";
     try {
-      raw = globalThis.localStorage?.getItem(LIVE_KEY) ?? "";
+      // The kept table and the start-of-Year checkpoint both, in case one of them is stale.
+      const live = globalThis.localStorage?.getItem(LIVE_KEY);
+      const save = globalThis.localStorage?.getItem(SAVE_KEY);
+      raw = `{"live":${live ?? "null"},"checkpoint":${save ?? "null"}}`;
     } catch {
       // Storage blocked: nothing to copy.
     }
