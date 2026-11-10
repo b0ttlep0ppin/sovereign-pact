@@ -12,7 +12,7 @@
   "options": [
     {
       "id": "burn",
-      "label": "Burn the black grain.",
+      "label": "Burn the black grain. A hungry winter is better than a cursed one.",
       "tags": [
         "cautious"
       ],
@@ -32,7 +32,7 @@
     },
     {
       "id": "eat",
-      "label": "Bring it in. Grain is grain.",
+      "label": "Bring it in. Grain is grain, and the House must eat.",
       "tags": [
         "reckless"
       ],
@@ -68,7 +68,7 @@
     },
     {
       "id": "sell",
-      "label": "Sell it cheap in the lower town.",
+      "label": "Sell it cheap in the lower town, and let the poor take the risk.",
       "tags": [
         "cruel"
       ],

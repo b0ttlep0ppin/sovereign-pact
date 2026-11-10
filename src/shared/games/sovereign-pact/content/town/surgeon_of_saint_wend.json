@@ -12,7 +12,7 @@
   "options": [
     {
       "id": "give_recruit",
-      "label": "Give him a recruit to work with.",
+      "label": "Give him a recruit to work with, and take what salves he leaves.",
       "tags": [
         "cruel"
       ],
@@ -59,7 +59,7 @@
     },
     {
       "id": "graft",
-      "label": "Let him improve one of your Scions.",
+      "label": "Let him improve one of your Scions, and pray his saint is a kind one.",
       "tags": [
         "bold"
       ],
@@ -102,7 +102,7 @@
     },
     {
       "id": "bar",
-      "label": "Bar the door against him.",
+      "label": "Bar the door against him. Whatever his saint is, it is not yours.",
       "tags": [
         "cautious"
       ],

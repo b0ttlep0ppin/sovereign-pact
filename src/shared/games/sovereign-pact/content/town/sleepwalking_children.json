@@ -12,7 +12,7 @@
   "options": [
     {
       "id": "lock",
-      "label": "Lock the children in at night.",
+      "label": "Lock the children in at night, so they cannot reach the Gate.",
       "tags": [
         "cautious",
         "cruel"
@@ -43,7 +43,7 @@
     },
     {
       "id": "walk",
-      "label": "Send a Scion to walk with them to the Gate.",
+      "label": "Send a Scion to walk with them to the Gate, and learn the song.",
       "tags": [
         "bold"
       ],
@@ -89,7 +89,7 @@
     },
     {
       "id": "wake",
-      "label": "Wake them all at once, with the bells.",
+      "label": "Wake them all at once, with the bells, and break whatever holds them.",
       "tags": [
         "reckless"
       ],

@@ -12,7 +12,7 @@
   "options": [
     {
       "id": "blood",
-      "label": "Every House signs the Pact again, in blood.",
+      "label": "Every House signs the Pact again, in blood, and binds the city anew.",
       "tags": [
         "bold"
       ],
@@ -40,7 +40,7 @@
     },
     {
       "id": "copy",
-      "label": "Have the clerks make a fair copy.",
+      "label": "Have the clerks make a fair copy, and trust ink to hold what ink once held.",
       "tags": [
         "clever"
       ],

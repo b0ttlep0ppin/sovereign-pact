@@ -12,7 +12,7 @@
   "options": [
     {
       "id": "bid",
-      "label": "Send a sealed bid of iron for the coffin.",
+      "label": "Send a sealed bid of iron for the coffin, and claim the honour for your House.",
       "tags": [
         "bold"
       ],
@@ -30,7 +30,7 @@
     },
     {
       "id": "let_it_be",
-      "label": "Let the greatest House have it.",
+      "label": "Let the greatest House have it. Whatever turns over inside is theirs to keep.",
       "tags": [
         "cautious"
       ],

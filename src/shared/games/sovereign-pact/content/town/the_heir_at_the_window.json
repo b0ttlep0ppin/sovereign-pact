@@ -12,7 +12,7 @@
   "options": [
     {
       "id": "confront",
-      "label": "Send a Scion up to meet it.",
+      "label": "Send a Scion up to meet it, and stare it down.",
       "tags": [
         "bold"
       ],
@@ -60,7 +60,7 @@
     },
     {
       "id": "board",
-      "label": "Board up the window.",
+      "label": "Board up the window, and give it nowhere to stand.",
       "tags": [
         "cautious"
       ],
@@ -78,7 +78,7 @@
     },
     {
       "id": "mirror",
-      "label": "Hang a saint's mirror across from it.",
+      "label": "Hang a saint's mirror across from it, so it must face itself.",
       "tags": [
         "kind"
       ],

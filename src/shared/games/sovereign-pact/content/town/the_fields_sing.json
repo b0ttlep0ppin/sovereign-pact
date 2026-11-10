@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "harvest",
-      "label": "Bring in the singing harvest.",
+      "label": "Bring in the singing harvest. The House has never had one so heavy.",
       "tags": [
         "bold"
       ],
@@ -43,7 +43,7 @@
     },
     {
       "id": "burn",
-      "label": "Burn the fields, and the farm with them.",
+      "label": "Burn the fields, and the farm with them, to get your youngest back.",
       "tags": [
         "kind"
       ],
@@ -67,7 +67,7 @@
     },
     {
       "id": "lock",
-      "label": "Lock the youngest in at night and leave the fields be.",
+      "label": "Lock the youngest in at night, and leave the fields be until the harvest is in.",
       "tags": [
         "cautious"
       ],

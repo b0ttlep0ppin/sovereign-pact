@@ -12,7 +12,7 @@
   "options": [
     {
       "id": "pay",
-      "label": "Pay the drowned King what he asks.",
+      "label": "Pay the drowned King what he asks, and keep his favour.",
       "tags": [
         "kind"
       ],
@@ -39,7 +39,7 @@
     },
     {
       "id": "throw_out",
-      "label": "Have a Scion throw the collector in the river.",
+      "label": "Have a Scion throw the collector in the river, back where he belongs.",
       "tags": [
         "bold"
       ],
@@ -92,7 +92,7 @@
     },
     {
       "id": "false_coin",
-      "label": "Pay him in lead painted gold.",
+      "label": "Pay him in lead painted gold. The dead cannot tell the difference.",
       "tags": [
         "clever"
       ],
@@ -131,7 +131,7 @@
     },
     {
       "id": "bar",
-      "label": "Bar the gate and let him stand there.",
+      "label": "Bar the gate and let him stand there until he tires.",
       "tags": [
         "cautious"
       ],

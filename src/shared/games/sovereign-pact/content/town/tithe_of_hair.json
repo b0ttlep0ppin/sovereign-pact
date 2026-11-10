@@ -12,7 +12,7 @@
   "options": [
     {
       "id": "watch",
-      "label": "Set a watch at the bedside through the night.",
+      "label": "Set a watch at the bedside through the night, and catch whatever cuts.",
       "tags": [
         "bold"
       ],
@@ -44,7 +44,7 @@
     },
     {
       "id": "leave_offering",
-      "label": "Leave a lock out each night, willingly.",
+      "label": "Leave a lock out each night, willingly, and keep the knife from the throat.",
       "tags": [
         "clever"
       ],
@@ -76,7 +76,7 @@
     },
     {
       "id": "shear",
-      "label": "Shave every head in the House.",
+      "label": "Shave every head in the House, and leave it nothing to take.",
       "tags": [
         "cautious"
       ],

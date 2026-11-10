@@ -12,7 +12,7 @@
   "options": [
     {
       "id": "enshrine",
-      "label": "Enshrine the bones for the city.",
+      "label": "Enshrine the bones for the city, and let every House share their blessing.",
       "tags": [
         "kind"
       ],
@@ -34,7 +34,7 @@
     },
     {
       "id": "sell",
-      "label": "Sell them to the church across the river.",
+      "label": "Sell them to the church across the river, and be rid of that box.",
       "tags": [
         "clever"
       ],
@@ -55,7 +55,7 @@
     },
     {
       "id": "give",
-      "label": "Give them to one House to keep.",
+      "label": "Give them to one House to keep, and let the others mutter.",
       "tags": [
         "cruel"
       ],

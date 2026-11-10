@@ -12,7 +12,7 @@
   "options": [
     {
       "id": "exorcise",
-      "label": "Pay the priest to drive it out.",
+      "label": "Pay the priest to drive it out, and bring your youngest back.",
       "tags": [
         "kind"
       ],
@@ -41,7 +41,7 @@
     },
     {
       "id": "listen",
-      "label": "Let it finish, and have the scholar write it down.",
+      "label": "Let it finish, and have the scholar write down every word.",
       "tags": [
         "bold"
       ],
@@ -72,7 +72,7 @@
     },
     {
       "id": "wait",
-      "label": "Feed them by spoon, and wait it out.",
+      "label": "Feed them by spoon, and wait it out. Whatever it is, it will tire.",
       "tags": [
         "cautious"
       ],

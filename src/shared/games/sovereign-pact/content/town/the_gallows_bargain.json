@@ -12,7 +12,7 @@
   "options": [
     {
       "id": "pardon",
-      "label": "Buy the grave-robber's pardon.",
+      "label": "Buy the grave-robber's pardon, and learn where the Founder's sword lies.",
       "tags": [
         "bold"
       ],
@@ -52,7 +52,7 @@
     },
     {
       "id": "recruit",
-      "label": "Take him into your service instead of paying.",
+      "label": "Take him into your service instead of paying. A thief who knows graves is useful.",
       "tags": [
         "clever"
       ],
@@ -78,7 +78,7 @@
     },
     {
       "id": "hang",
-      "label": "Let the hangman do his work.",
+      "label": "Let the hangman do his work. A thief's word is worth his neck.",
       "tags": [
         "cautious"
       ],

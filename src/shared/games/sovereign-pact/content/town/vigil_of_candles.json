@@ -12,7 +12,7 @@
   "options": [
     {
       "id": "candles",
-      "label": "Buy candles and keep the vigil.",
+      "label": "Buy candles and keep the vigil, so the dark has light to look at.",
       "tags": [
         "kind"
       ],
@@ -41,7 +41,7 @@
     },
     {
       "id": "vow",
-      "label": "Give a recruit to the vow of silence.",
+      "label": "Give a recruit to the vow of silence, so the dark takes nothing else.",
       "tags": [
         "cruel"
       ],

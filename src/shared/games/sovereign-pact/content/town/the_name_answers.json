@@ -12,7 +12,7 @@
   "options": [
     {
       "id": "feed",
-      "label": "Give it what it asks: a seat, a share, a room.",
+      "label": "Give it what it asks: a seat, a share, a room. It is of the House now.",
       "tags": [
         "kind",
         "reckless"
@@ -54,7 +54,7 @@
     },
     {
       "id": "exorcise",
-      "label": "Bring the priests and the salt.",
+      "label": "Bring the priests and the salt, and drive it out of the House.",
       "tags": [
         "bold"
       ],

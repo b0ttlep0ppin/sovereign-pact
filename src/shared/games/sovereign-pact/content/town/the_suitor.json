@@ -12,7 +12,7 @@
   "options": [
     {
       "id": "accept",
-      "label": "Accept the cold-handed suitor's match.",
+      "label": "Accept the cold-handed suitor's match. Old blood is still blood, and grudges can be useful.",
       "tags": [
         "bold"
       ],
@@ -39,7 +39,7 @@
     },
     {
       "id": "decline",
-      "label": "Decline politely.",
+      "label": "Decline politely. Some lines are meant to stay dead.",
       "tags": [
         "cautious"
       ],

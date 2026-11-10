@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "pay",
-      "label": "Pay the Twelfth House in gold.",
+      "label": "Pay the Twelfth House in gold, and be done with their debt.",
       "tags": [
         "cautious"
       ],
@@ -40,7 +40,7 @@
     },
     {
       "id": "recruits",
-      "label": "Pay them in people.",
+      "label": "Pay them in people, as they would prefer.",
       "tags": [
         "cruel"
       ],
@@ -62,7 +62,7 @@
     },
     {
       "id": "fight",
-      "label": "Drive them out with steel.",
+      "label": "Drive them out with steel. No House wearing your faces collects from you.",
       "tags": [
         "bold"
       ],

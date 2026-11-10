@@ -12,7 +12,7 @@
   "options": [
     {
       "id": "quarantine",
-      "label": "Seal the quarter.",
+      "label": "Seal the quarter, before the smiling spreads.",
       "tags": [
         "cautious"
       ],
@@ -45,7 +45,7 @@
     },
     {
       "id": "cure",
-      "label": "Pay the physicians from the Commons to find a cure.",
+      "label": "Pay the physicians from the Commons to find a cure, whatever it costs.",
       "tags": [
         "kind"
       ],
@@ -87,7 +87,7 @@
     },
     {
       "id": "ask",
-      "label": "Ask the smiling ones what they see.",
+      "label": "Ask the smiling ones what they see, and listen to the answer.",
       "tags": [
         "reckless",
         "clever"
