@@ -9,7 +9,7 @@
     10
   ],
   "title": "The Echo Self",
-  "text": "Each Scion meets themselves coming back the other way along the path. Older. Thinner. Carrying scars they do not have yet. The echoes look tired, and they look sorry, and each of them seems to have something they want to say.",
+  "text": "Each Scion meets themselves coming back the other way along the path, older and thinner, carrying scars they do not have yet. The echoes look tired and sorry. Each seems to have something it wants to say.",
   "options": [
     {
       "id": "talk",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "Advice, from the one who knows how it goes. They take it to heart.",
+          "text": "The echo gives advice, from one who knows how it goes. They take it to heart.",
           "effects": [
             {
               "xp": 60
@@ -33,7 +33,7 @@
         },
         {
           "w": 40,
-          "text": "A warning, and it is not one they wanted, and it comes true in the telling.",
+          "text": "The echo gives a warning they did not want. It comes true in the telling.",
           "effects": [
             {
               "sanity": -15
@@ -52,7 +52,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It does not look back. It never did, and now they know they never will.",
+          "text": "The echo does not look back. It never did, and now they know they never will.",
           "effects": [
             {
               "sanity": -3

@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Fast, and very hot, and the imp is still grinning when you reach the bottom. You do not want to know why.",
+          "text": "The ride is fast and very hot. The imp is still grinning when you reach the bottom, and you do not want to know why.",
           "effects": [
             {
               "skip": 1
@@ -44,7 +44,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They arrive much later, singed, limping, and furious, with stories.",
+          "text": "They arrive much later, singed, limping and furious, with stories to tell.",
           "effects": [
             {
               "durability": -20,

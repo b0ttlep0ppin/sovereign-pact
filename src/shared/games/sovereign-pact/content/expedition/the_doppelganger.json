@@ -9,7 +9,7 @@
     10
   ],
   "title": "The Doppelganger",
-  "text": "At dawn there is one Scion too many in camp. Two of them sit by the fire, the same face, the same scars, the same way of holding a cup. Both of them swear they are the real one. Both of them are frightened, or both of them are very good at it.",
+  "text": "At dawn there is one Scion too many in camp. Two of them sit by the fire with the same face, the same scars, the same way of holding a cup. Each swears to be the real one. Both seem frightened, unless both are very good at it.",
   "options": [
     {
       "id": "ask",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "The false one fumbles a childhood name, and its face slips, and it runs. Nobody sleeps near the fire that night.",
+          "text": "The false one fumbles a childhood name. Its face slips and it runs; that night nobody sleeps near the fire.",
           "effects": [
             {
               "score": {
@@ -35,7 +35,7 @@
         },
         {
           "w": 30,
-          "text": "Both answer perfectly. Both of them smile, in exactly the same way.",
+          "text": "Both answer perfectly. Then both smile, in exactly the same way.",
           "effects": [
             {
               "encounter": {
@@ -56,7 +56,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It gives itself away at the worst possible moment, with a knife, and the face it wears is still the one you trusted.",
+          "text": "It gives itself away at the worst possible moment, with a knife, still wearing the face you trusted.",
           "effects": [
             {
               "encounter": {
@@ -81,7 +81,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Silver burns one of them, and it stops pretending, and what it is underneath is not a person.",
+          "text": "The silver burns one of them. It stops pretending, and what lies underneath is not a person.",
           "effects": [
             {
               "encounter": {

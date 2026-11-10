@@ -9,7 +9,7 @@
     7
   ],
   "title": "The Eelmen",
-  "text": "Slick grey shapes rise around the boat, one after another, until you are ringed. The eelmen of the Marches, with round mouths full of teeth and long cold fingers on the gunwales. They want a toll, and they do not look like they take much else.",
+  "text": "Slick grey shapes rise around the boat, one after another, until you are ringed. These are the eelmen of the Marches, with round mouths full of teeth and long cold fingers on the gunwales. They want a toll, and they do not look like they take much else.",
   "options": [
     {
       "id": "pay",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They sink away, one by one, cold fingers sliding off the gunwales, and you breathe again.",
+          "text": "One by one they sink away, cold fingers sliding off the gunwales. You breathe again.",
           "effects": [
             {
               "resources": {
@@ -42,7 +42,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "In the water, where they are strongest, and there are many more below.",
+          "text": "They pull the fight into the water, where they are strongest. Many more wait below.",
           "effects": [
             {
               "encounter": {
@@ -63,7 +63,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Through the reeds, quickly, with grey heads bobbing all around you.",
+          "text": "They guide you swiftly through the reeds, grey heads bobbing all around you.",
           "effects": [
             {
               "skip": 1

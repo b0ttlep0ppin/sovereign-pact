@@ -37,7 +37,7 @@
         },
         {
           "w": 100,
-          "text": "Somebody signed. You feel the bane land on you in the night, like a cold hand on the chest, and you wonder who.",
+          "text": "Somebody signed. In the night the bane lands on you like a cold hand on the chest, and you wonder who.",
           "effects": [
             {
               "sanity": -15
@@ -59,7 +59,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Only you signed. The boon is real, and warm, and the devil smiles as it folds the paper away. It will keep the paper forever.",
+          "text": "Only you signed. The boon is real and warm; smiling, the devil folds the paper away, to keep forever.",
           "effects": [
             {
               "resources": {
@@ -82,7 +82,7 @@
         },
         {
           "w": 100,
-          "text": "Others signed too. The banes cancel out, and the devil keeps the difference, and thanks you all.",
+          "text": "Others signed too. The banes cancel out, and the devil keeps the difference with thanks to you all.",
           "effects": [
             {
               "doom": 2

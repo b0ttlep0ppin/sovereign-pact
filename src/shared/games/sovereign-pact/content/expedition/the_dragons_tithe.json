@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It chooses. Nobody sees how. The House pays in gold, and the herald blows his horn, and the sky is quiet.",
+          "text": "It chooses, though nobody sees how. That House pays in gold, the herald blows his horn and the sky stays quiet.",
           "effects": [
             {
               "resources": {
@@ -47,7 +47,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The herald whistles, and the sky darkens, and it keeps darkening.",
+          "text": "The herald whistles. The sky darkens, then keeps darkening.",
           "effects": [
             {
               "encounter": {
@@ -73,7 +73,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "The herald is amused, and lets you pass, and laughs about it for a long time.",
+          "text": "Amused, the herald lets you pass. He laughs about it for a long time.",
           "effects": [
             {
               "score": {

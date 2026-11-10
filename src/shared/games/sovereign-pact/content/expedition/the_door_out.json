@@ -9,7 +9,7 @@
     10
   ],
   "title": "The Door Out",
-  "text": "In the dark, a door with light under it. On the other side, voices speaking your language, laughing, the clink of cups, a child's shout. It sounds like home. It is not the way you came, and none of you remember there being a door.",
+  "text": "In the dark stands a door with light under it. On the other side are voices speaking your language, laughter, the clink of cups and a child's shout. It sounds like home. It is not the way you came, and none of you remember there being a door.",
   "options": [
     {
       "id": "open",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 40,
-          "text": "A tavern, somewhere, somewhen. They feed you and send you back better than you were, and you never find the door again.",
+          "text": "It is a tavern, somewhere and somewhen. They feed you and send you back better than you were; you never find the door again.",
           "effects": [
             {
               "to": "party",
@@ -35,7 +35,7 @@
         },
         {
           "w": 60,
-          "text": "The voices stop when the door opens, all at once. Every face inside turns.",
+          "text": "The voices stop all at once when the door opens. Every face inside turns.",
           "effects": [
             {
               "encounter": {
@@ -57,7 +57,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The laughter stops. Someone on the other side whispers a warning, and it is a good one. You do not ask how they knew.",
+          "text": "The laughter stops. Someone on the other side whispers a warning, a good one. You do not ask how they knew.",
           "effects": [
             {
               "skip": 1
@@ -76,7 +76,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The laughter goes on behind you for a long time, and then it starts calling your names.",
+          "text": "The laughter goes on behind you for a long time. Then it starts calling your names.",
           "effects": [
             {
               "to": "party",

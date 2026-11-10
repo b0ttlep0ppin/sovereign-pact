@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "Right. The dragon laughs, a rumble like a landslide, and gives you a scale for luck.",
+          "text": "The answer is right. The dragon laughs, a rumble like a landslide, and gives you a scale for luck.",
           "effects": [
             {
               "resources": {
@@ -35,7 +35,7 @@
         },
         {
           "w": 40,
-          "text": "Wrong. It is not too tired after all.",
+          "text": "The answer is wrong. It is not too tired after all.",
           "effects": [
             {
               "encounter": {
@@ -56,7 +56,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It thinks for an hour, smoke curling, and lets you pass while it thinks. It may still be thinking.",
+          "text": "It thinks for an hour, smoke curling, letting you pass while it thinks. It may still be thinking.",
           "effects": [
             {
               "skip": 1
@@ -80,7 +80,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A long, cold way round, with the dragon's eye on your backs.",
+          "text": "The long way round is cold. The dragon's eye stays on your backs.",
           "effects": [
             {
               "to": "party",

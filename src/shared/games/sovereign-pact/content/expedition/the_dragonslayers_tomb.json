@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It wakes weak, and furious, and remembers the last one who came, and means to do better this time.",
+          "text": "It wakes weak and furious. It remembers the last one who came, and means to do better this time.",
           "effects": [
             {
               "encounter": {
@@ -47,7 +47,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "The slayer's spear, still sharp, still stained.",
+          "text": "Inside lies the slayer's spear, still sharp and still stained.",
           "effects": [
             {
               "item": {
@@ -58,7 +58,7 @@
         },
         {
           "w": 40,
-          "text": "The dragon stirs, and the ember in its chest becomes a fire.",
+          "text": "The dragon stirs. The ember in its chest becomes a fire.",
           "effects": [
             {
               "encounter": {
@@ -79,7 +79,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The dragon opens one eye, and closes it. Its breath as you pass is hot enough to cook the leather off your boots.",
+          "text": "The dragon opens one eye, then closes it. Its breath as you pass is hot enough to cook the leather off your boots.",
           "effects": [
             {
               "to": "party",

@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 55,
-          "text": "They come up gasping, silver in their arms, and the congregation never lifts its heads.",
+          "text": "They come up gasping with silver in their arms. The congregation never lifts its heads.",
           "effects": [
             {
               "resources": {
@@ -37,7 +37,7 @@
         },
         {
           "w": 45,
-          "text": "Something down there holds on, and a bowed head turns to look at them.",
+          "text": "Something down there holds on. A bowed head turns to look at them.",
           "effects": [
             {
               "durability": -30,
@@ -60,7 +60,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The candles flare, and the marsh is quieter for a while, as if the drowned were praying for you.",
+          "text": "The candles flare. For a while the marsh is quieter, as if the drowned were praying for you.",
           "effects": [
             {
               "to": "party",
@@ -84,7 +84,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "The candles watch you go. One goes out as you turn away, and the Leader feels it go out in them too.",
+          "text": "As you turn away, one of the candles goes out. The Leader feels it go out in them too.",
           "effects": [
             {
               "sanity": -10
@@ -93,7 +93,7 @@
         },
         {
           "w": 40,
-          "text": "The candles watch you go, and their light lies on the Leader's face all the next day like a hand of blessing.",
+          "text": "The candles watch you go. All the next day their light lies on the Leader's face like a hand of blessing.",
           "effects": [
             {
               "status": "shell"
@@ -113,7 +113,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "They come up with a candle that does not go out under water.",
+          "text": "They come up holding a candle that does not go out under water.",
           "effects": [
             {
               "item": {
@@ -125,7 +125,7 @@
         },
         {
           "w": 30,
-          "text": "They come up after a long time, with nothing, and something of the chapel in their eyes.",
+          "text": "They come up after a long time with nothing, and something of the chapel in their eyes.",
           "effects": [
             {
               "sanity": -15

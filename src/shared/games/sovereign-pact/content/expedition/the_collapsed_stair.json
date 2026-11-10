@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 80,
-          "text": "They make it, and the rope holds, and the rest follow.",
+          "text": "They make it through. The rope holds, and the rest follow.",
           "effects": [
             {
               "skip": 1
@@ -30,7 +30,7 @@
         },
         {
           "w": 20,
-          "text": "They make it, mostly, and leave some skin on the stone.",
+          "text": "They make it through, though they leave some skin on the stone.",
           "effects": [
             {
               "durability": -25,
@@ -50,7 +50,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "Down and done, with dust in every breath.",
+          "text": "They reach the bottom with dust in every breath.",
           "effects": [
             {
               "skip": 1
@@ -62,7 +62,7 @@
         },
         {
           "w": 40,
-          "text": "The stone gives way under their hand, and the arm takes the fall.",
+          "text": "The stone gives way under their hand. The arm takes the fall.",
           "effects": [
             {
               "injury": "arms"
@@ -81,7 +81,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Longer, darker, and safe, though the smell of something living stays with you.",
+          "text": "The tunnels are longer and darker, but safe. Still, the smell of something living stays with you.",
           "effects": [
             {
               "to": "party",

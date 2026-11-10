@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "The Empress, upright, ripe with plenty. A good harvest for the House.",
+          "text": "The Empress, upright, ripe with plenty, promises a good harvest for the House.",
           "effects": [
             {
               "resources": {
@@ -33,7 +33,7 @@
         },
         {
           "w": 40,
-          "text": "The Empress, reversed, and her painted eyes open, and look straight at them.",
+          "text": "The Empress lies reversed. Her painted eyes open and look straight at them.",
           "effects": [
             {
               "sanity": -10
@@ -52,7 +52,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The Hermit, and his lamp shows the road ahead, and what waits on it in the dark.",
+          "text": "The Hermit's lamp shows the road ahead, and what waits on it in the dark.",
           "effects": [
             {
               "foresee": true
@@ -71,7 +71,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The cards curl and scream in the fire. The Court will hear of it, and so will something else.",
+          "text": "The cards curl and scream in the fire. The Court will hear of it, as will something else.",
           "effects": [
             {
               "score": {

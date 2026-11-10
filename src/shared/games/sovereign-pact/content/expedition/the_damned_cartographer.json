@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "True for a day, and then the roads start to crawl again, and you hear him weeping somewhere behind you.",
+          "text": "It holds true for a day. Then the roads begin to crawl again, and somewhere behind you he is weeping.",
           "effects": [
             {
               "resources": {
@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He draws one last map, a true one, and smiles for the first time in centuries, and fades.",
+          "text": "He draws one last map, a true one. Smiling for the first time in centuries, he fades.",
           "effects": [
             {
               "foresee": true
@@ -70,7 +70,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They change in your pack into maps of nowhere, and nowhere has teeth.",
+          "text": "In your pack they change into maps of nowhere. Nowhere has teeth.",
           "effects": [
             {
               "to": "party",

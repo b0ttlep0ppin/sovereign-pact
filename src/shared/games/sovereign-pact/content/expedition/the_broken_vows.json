@@ -46,7 +46,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Names worth knowing, and the secrets they swore off, and some they did not.",
+          "text": "The names are worth knowing, as are the secrets they swore off. Some they did not.",
           "effects": [
             {
               "score": {
@@ -67,7 +67,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Through the Court as friends, smiling, and something inside each of you tears with the ribbon.",
+          "text": "You pass through the Court as friends, smiling. Something inside each of you tears with the ribbon.",
           "effects": [
             {
               "skip": 2

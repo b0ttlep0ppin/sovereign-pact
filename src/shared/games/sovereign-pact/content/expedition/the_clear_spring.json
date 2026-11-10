@@ -9,7 +9,7 @@
     10
   ],
   "title": "The Clear Spring",
-  "text": "A spring in a white grove, its water so clear it seems not to be there at all. Old bones lie all around it, curled up on the moss, of people who drank and stayed young. And stayed. Some of the skulls still have all their teeth, smiling.",
+  "text": "A spring in a white grove, its water so clear it seems not to be there at all. Old bones lie curled on the moss all around it, the remains of people who drank and stayed young, then simply stayed. Some of the skulls still have all their teeth, smiling.",
   "options": [
     {
       "id": "drink",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "Years fall off them. They feel it in every joint, and they do not want to stop.",
+          "text": "Years fall away from them. They feel it in every joint, and they do not want to stop drinking.",
           "effects": [
             {
               "growth": {
@@ -35,7 +35,7 @@
         },
         {
           "w": 40,
-          "text": "They want to stay. They lie down among the smiling bones, and it takes three of you to drag them away.",
+          "text": "They want to stay. They lie down among the smiling bones; it takes three of you to drag them away.",
           "effects": [
             {
               "sanity": -25
@@ -54,7 +54,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Clear water that never goes stale, and never quite stays still in the bottle.",
+          "text": "The water never goes stale, though it never quite stays still in the bottle.",
           "effects": [
             {
               "resources": {
@@ -75,7 +75,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "The bones watch you go, not unkindly. The spring's chill is on you anyway, and your wounds close in it.",
+          "text": "The bones watch you go, not unkindly. The spring's chill settles on you anyway, closing your wounds.",
           "effects": [
             {
               "to": "party",
@@ -85,7 +85,7 @@
         },
         {
           "w": 40,
-          "text": "The bones watch you go. That night everyone dreams of drinking, and wakes thirsty.",
+          "text": "The bones watch you go. That night everyone dreams of drinking and wakes thirsty.",
           "effects": [
             {
               "to": "party",

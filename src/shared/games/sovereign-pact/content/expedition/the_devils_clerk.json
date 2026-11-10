@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "You are on the list now, in red ink, and the way ahead is shorter. You hope you never learn what the list is for.",
+          "text": "Your names are on the list now, in red ink, and the way ahead is shorter. You hope never to learn what the list is for.",
           "effects": [
             {
               "resources": {
@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "A perfect forgery, thumbprint and all.",
+          "text": "The forgery is perfect, down to the thumbprint.",
           "effects": [
             {
               "skip": 2
@@ -59,7 +59,7 @@
         },
         {
           "w": 40,
-          "text": "It spots it at once, and rings a little bell, and things come.",
+          "text": "It spots the forgery at once and rings a little bell. Things come.",
           "effects": [
             {
               "encounter": {
@@ -80,7 +80,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A thousand damned souls go free in the confusion, and you with them, and something below notices.",
+          "text": "A thousand damned souls go free in the confusion, and you slip out among them. Something below takes notice.",
           "effects": [
             {
               "score": {

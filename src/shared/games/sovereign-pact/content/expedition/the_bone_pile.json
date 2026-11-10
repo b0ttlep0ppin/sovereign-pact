@@ -9,7 +9,7 @@
     10
   ],
   "title": "The Bone Pile",
-  "text": "A pile of bones outside a cave, higher than a man, picked clean and cracked for the marrow. Deer, horse, bear, and some that wore boots. The quarry eats well, and it is not afraid of being found.",
+  "text": "A pile of bones higher than a man lies outside a cave, picked clean and cracked for the marrow. Deer, horse and bear lie among them, along with some that wore boots. The quarry eats well, and it is not afraid of being found.",
   "options": [
     {
       "id": "read",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Hunters, mostly. Lots of hunters. It is not afraid of you at all, and it never has been.",
+          "text": "Hunters, mostly; a great many hunters. It is not afraid of you at all.",
           "effects": [
             {
               "foresee": true
@@ -44,7 +44,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It comes to defend its larder, roaring, and it is bigger than the bones made it seem.",
+          "text": "It comes roaring to defend its larder, bigger than the bones made it seem.",
           "effects": [
             {
               "encounter": {
@@ -65,7 +65,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A good knife in a dead hand, and then the quarry's breath, hot and wet, on your neck.",
+          "text": "You pry a good knife from a dead hand. Then you feel the quarry's breath, hot and wet, on your neck.",
           "effects": [
             {
               "item": {

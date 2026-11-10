@@ -9,7 +9,7 @@
     10
   ],
   "title": "The Choir Loft",
-  "text": "The Shrine's choir loft is empty, its stalls furred with dust, but the hymns go on. Five voices rise from the empty air, pure and cold, and then a gap where a sixth should come. They wait for it. They have been waiting a very long time.",
+  "text": "The Shrine's choir loft is empty, its stalls furred with dust, yet the hymns go on. Five voices rise from the empty air, pure and cold, followed by a gap where a sixth should come. They wait for it. They have been waiting a very long time.",
   "options": [
     {
       "id": "sing",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The hymn completes at last, and the empty air sighs, and the dust settles. Something that has waited a very long time can rest.",
+          "text": "The hymn is complete at last. The empty air sighs, the dust settles, and something that has waited so long can finally rest.",
           "effects": [
             {
               "to": "party",
@@ -44,7 +44,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Beautiful and sad, and always that gap, waiting for someone who never came.",
+          "text": "It is beautiful and sad, with always that gap, waiting for someone who never came.",
           "effects": [
             {
               "to": "party",
@@ -64,7 +64,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The voices stop mid-note. The Shrine goes cold, and something in it turns to look at you.",
+          "text": "The voices stop mid-note. The Shrine goes cold as something within it turns to look at you.",
           "effects": [
             {
               "to": "party",

@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Not them. A mimic, learning. But it knows where they are, and says so, to keep you talking a little longer.",
+          "text": "It is a mimic, still learning. Still, it knows where they are, and says so to keep you talking a little longer.",
           "effects": [
             {
               "foresee": true
@@ -43,7 +43,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It is not them. It never was. It is very glad you came.",
+          "text": "It is not them, and never was. It is very glad you came.",
           "effects": [
             {
               "encounter": {
@@ -64,7 +64,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It keeps calling, muffled, in their voice. You keep walking.",
+          "text": "Muffled beneath the stone, it keeps calling in their voice. You keep walking.",
           "effects": [
             {
               "to": "party",

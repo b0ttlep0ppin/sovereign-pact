@@ -9,7 +9,7 @@
     10
   ],
   "title": "The Dreaming Tent",
-  "text": "A silk tent pitched in the wilderness, empty, warm, and smelling of home: bread, smoke, the soap your mother used. Nobody has pitched it. Anyone who sleeps in it, the scrawl on the tent pole says, dreams very clearly, and does not always wake the same.",
+  "text": "A silk tent is pitched in the wilderness, empty and warm, smelling of home: bread, smoke, the soap your mother used. Nobody has pitched it. Anyone who sleeps in it, says the scrawl on the tent pole, dreams very clearly and does not always wake the same.",
   "options": [
     {
       "id": "sleep",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "The dream is gentle and long, and they wake up someone a little different, and lighter.",
+          "text": "The dream is gentle and long. They wake someone a little different, and lighter.",
           "effects": [
             {
               "sanity": 30
@@ -30,7 +30,7 @@
         },
         {
           "w": 40,
-          "text": "The dream is very, very clear, and it comes back every night after, and it is not gentle.",
+          "text": "The dream is very clear. It returns every night after, and it is never gentle.",
           "effects": [
             {
               "sanity": -10
@@ -52,7 +52,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It is very good silk, and it still smells of home.",
+          "text": "It is very good silk. It still smells of home.",
           "effects": [
             {
               "resources": {
@@ -73,7 +73,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It burns with the smell of somebody's kitchen, and a voice calls a name from inside.",
+          "text": "It burns with the smell of somebody's kitchen. From inside, a voice calls a name.",
           "effects": [
             {
               "to": "party",

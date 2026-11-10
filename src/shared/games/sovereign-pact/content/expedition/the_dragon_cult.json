@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The cultists fight like fanatics, screaming their dragon's name, and something in the peaks hears it.",
+          "text": "The cultists fight like fanatics, screaming their dragon's name. Something in the peaks hears it.",
           "effects": [
             {
               "encounter": {}
@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "A sack of grain on the black slab, and the cultists none the wiser. The dragon may be less forgiving.",
+          "text": "A sack of grain lies on the black slab, and the cultists are none the wiser. The dragon may prove less forgiving.",
           "effects": [
             {
               "score": {
@@ -56,7 +56,7 @@
         },
         {
           "w": 40,
-          "text": "A cultist notices the sack move wrong, and the knives turn toward you.",
+          "text": "A cultist notices the sack moving wrongly. The knives turn toward you.",
           "effects": [
             {
               "encounter": {
@@ -77,7 +77,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "You learn. You do not forget what you watched, however much you try.",
+          "text": "You learn where it feeds. However hard you try, you cannot forget what you watched.",
           "effects": [
             {
               "foresee": true

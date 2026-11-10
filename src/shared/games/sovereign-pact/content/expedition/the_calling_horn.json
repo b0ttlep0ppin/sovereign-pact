@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Every beast for miles hears it, and all of them come, and all of them are angry.",
+          "text": "Every beast for miles hears it. All of them come, and all of them are angry.",
           "effects": [
             {
               "encounter": {
@@ -43,7 +43,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "For another day, and another hunt. The claw marks on the cairn are a reminder of what it calls.",
+          "text": "It rides home in the pack, silent for now. The claw marks on the cairn remind you what it calls.",
           "effects": [
             {
               "item": {
@@ -64,7 +64,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Only the quarry hears, and it comes alone, and curious.",
+          "text": "Only the quarry hears. It comes alone, curious.",
           "effects": [
             {
               "encounter": {

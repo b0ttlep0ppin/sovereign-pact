@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It does nothing at all, but you sleep better, and perhaps that is what you paid for.",
+          "text": "It does nothing at all, yet you sleep better. Perhaps that is what you paid for.",
           "effects": [
             {
               "resources": {
@@ -46,7 +46,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "Pardons to sell back home, and who would ever know?",
+          "text": "You have pardons to sell back home, and no one will ever know.",
           "effects": [
             {
               "resources": {
@@ -62,7 +62,7 @@
         },
         {
           "w": 40,
-          "text": "The pardoner knows his own work, and he knows the guards, and the guards know him.",
+          "text": "The pardoner knows his own work. He also knows the guards, who come at his call.",
           "effects": [
             {
               "encounter": {
@@ -83,7 +83,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The crowd turns on him, and then, because crowds are crowds, on you.",
+          "text": "The crowd turns on him. Then, as crowds will, it turns on you.",
           "effects": [
             {
               "score": {

@@ -9,7 +9,7 @@
     10
   ],
   "title": "The Copper Creek",
-  "text": "A creek running green over copper stones, the water bright and bitter, the banks stained the colour of verdigris. Nothing drinks here. Nothing grows. Easy pickings, if you do not mind your hands turning green for a week.",
+  "text": "A creek runs green over copper stones, the water bright and bitter, the banks stained the colour of verdigris. Nothing drinks here. Nothing grows. It would be easy pickings, if you do not mind your hands turning green for a week.",
   "options": [
     {
       "id": "pan",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A good haul, and green hands for a week, and a bitter taste that will not leave.",
+          "text": "The haul is good. Your hands stay green for a week, along with a bitter taste that will not leave.",
           "effects": [
             {
               "resources": {
@@ -43,7 +43,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A great haul, and the village below runs dry, and curses your name for a generation.",
+          "text": "The haul is great. The village below runs dry and will curse your name for a generation.",
           "effects": [
             {
               "resources": {
@@ -69,7 +69,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A rich vein, and something guarding it that has grown green and bitter too.",
+          "text": "At the source lies a rich vein. Something guards it, grown green and bitter too.",
           "effects": [
             {
               "encounter": {}

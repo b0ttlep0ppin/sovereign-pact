@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "They are kind, in their way, and give a gift for the road, and hold on a little too long.",
+          "text": "They are kind in their way. They give a gift for the road, though they hold on a little too long.",
           "effects": [
             {
               "item": {
@@ -35,7 +35,7 @@
         },
         {
           "w": 40,
-          "text": "They want them to stay, and they do not ask twice.",
+          "text": "They want them to stay. They do not ask twice.",
           "effects": [
             {
               "sanity": -20
@@ -59,7 +59,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They go, hurt, calling softly. The mist feels colder after.",
+          "text": "Hurt, they go back into the mist, calling softly. Afterward the mist feels colder.",
           "effects": [
             {
               "to": "party",
@@ -84,7 +84,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They pass, calling a name. It is the Leader's, and the Leader hears it in every quiet after.",
+          "text": "As they pass, they call a name. It is the Leader's, and the Leader hears it in every quiet moment after.",
           "effects": [
             {
               "sanity": -12

@@ -9,7 +9,7 @@
     10
   ],
   "title": "The Brimstone Spring",
-  "text": "A yellow spring bubbles out of the rock, scalding, crusted with sulphur, and the smell of it is rot and eggs and burnt hair. Pit-folk bathe here and come out red and raw. A body that bathes in it, they say, comes out harder.",
+  "text": "A yellow spring bubbles out of the rock, scalding and crusted with sulphur. It smells of rot, eggs and burnt hair. Pit-folk bathe here and come out red and raw. A body that bathes in it, they say, comes out harder.",
   "options": [
     {
       "id": "bathe",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "It hurts more than anything ever has. They come out red and raw and harder.",
+          "text": "It hurts more than anything ever has. They come out red and raw, but harder.",
           "effects": [
             {
               "growth": {
@@ -36,7 +36,7 @@
         },
         {
           "w": 40,
-          "text": "It hurts more than anything ever has, and some of it does not stop, and never will.",
+          "text": "It hurts more than anything ever has. Some of that pain never stops.",
           "effects": [
             {
               "injury": "body"
@@ -55,7 +55,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Stinking, scalding, and the apothecaries in town will pay for it.",
+          "text": "It stinks and scalds, but the apothecaries in town will pay for it.",
           "effects": [
             {
               "resources": {
@@ -77,7 +77,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The smell follows you for a day, rot and eggs and burnt hair.",
+          "text": "The smell of rot and burnt hair clings to you for a day.",
           "effects": [
             {
               "to": "party",

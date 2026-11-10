@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It is still warm under the soot, and the warmth goes into you like comfort. Your fingers stay black for days.",
+          "text": "It is still warm beneath the soot, a warmth that settles in you like comfort. Your fingers stay black for days.",
           "effects": [
             {
               "to": "party",
@@ -41,7 +41,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The pilgrims cheer. The Court notices, and sends its people after you.",
+          "text": "The pilgrims cheer. The Court notices, sending its people after you.",
           "effects": [
             {
               "score": {
@@ -65,7 +65,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The Court rewards you in silver. The pilgrims weep, and are taken away, and you hear them a long time.",
+          "text": "The Court rewards you in silver. The pilgrims weep as they are taken away; you hear them for a long time.",
           "effects": [
             {
               "resources": {

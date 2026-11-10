@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "It carries you a long way through the dark, and sets you down gently, as if it knew where you were going.",
+          "text": "It carries you a long way through the dark, then sets you down gently, as if it knew where you were going.",
           "effects": [
             {
               "skip": 2
@@ -30,7 +30,7 @@
         },
         {
           "w": 40,
-          "text": "It carries you somewhere you did not mean to go, and leaves without saying goodbye.",
+          "text": "It carries you somewhere you did not mean to go, then drifts off without a goodbye.",
           "effects": [
             {
               "fork": {
@@ -55,7 +55,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Fruit that glows, and tastes of a home none of you have seen.",
+          "text": "The fruit glows. It tastes of a home none of you have seen.",
           "effects": [
             {
               "to": "party",
@@ -75,7 +75,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "As it drifts away, something on it stands up and waves, and keeps waving until it is gone.",
+          "text": "As it drifts away, something on it stands up and waves. It keeps waving until it is gone.",
           "effects": [
             {
               "to": "party",

@@ -9,7 +9,7 @@
     6
   ],
   "title": "The Crow Counsel",
-  "text": "A parliament of crows sits in judgement on a dead oak, row on row, black and glossy and grave. One old bird with a white eye presides. They caw at whoever lags at the back of the line, harsh and accusing, as if the verdict is already in.",
+  "text": "A parliament of crows sits in judgement on a dead oak, row on row, black, glossy and grave. One old bird with a white eye presides. They caw at whoever lags at the back of the line, harsh and accusing, as if the verdict is already in.",
   "options": [
     {
       "id": "slow",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "They judge the laggard worthy, and the white-eyed one shows a shortcut.",
+          "text": "They judge the laggard worthy. The white-eyed one shows them a shortcut.",
           "effects": [
             {
               "skip": 1
@@ -33,7 +33,7 @@
         },
         {
           "w": 30,
-          "text": "They judge the laggard food, and fall on them, beaks first.",
+          "text": "They judge the laggard food and fall on them, beaks first.",
           "effects": [
             {
               "durability": -20,
@@ -56,7 +56,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They go, cawing outrage, and come back with friends, and the friends have friends.",
+          "text": "They go, cawing outrage, only to return with friends, who have friends of their own.",
           "effects": [
             {
               "encounter": {
@@ -77,7 +77,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They caw approval, and leave you be, and the old one keeps the coin.",
+          "text": "They caw approval and leave you be. The old one keeps the coin.",
           "effects": [
             {
               "resources": {

@@ -9,7 +9,7 @@
     10
   ],
   "title": "The Chain Gang",
-  "text": "Souls chained together haul stone up the Pit's wall, step by bleeding step, while an imp walks the line with a whip. None of them look up. Then one of them does, and begs you for help in your own House's tongue.",
+  "text": "Souls chained together haul stone up the Pit's wall, step by bleeding step, while an imp walks the line with a whip. None of them look up until one does. It begs you for help in your own House's tongue.",
   "options": [
     {
       "id": "free",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "They scatter like smoke, and the one who begged leaves you something it hid. Something below takes note of what you did.",
+          "text": "The freed souls scatter like smoke. The one who begged leaves you something it hid, though something below takes note of what you did.",
           "effects": [
             {
               "item": {
@@ -35,7 +35,7 @@
         },
         {
           "w": 30,
-          "text": "The imp screams for its masters, and its masters come.",
+          "text": "The imp screams for its masters. They come.",
           "effects": [
             {
               "encounter": {
@@ -56,7 +56,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It lets the one go, with a sneer, and keeps your gold. You hope the soul gets far.",
+          "text": "With a sneer it lets the one go, keeping your gold. You hope the soul gets far.",
           "effects": [
             {
               "resources": {
@@ -82,7 +82,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The voice follows you down, in your own House's tongue, begging, until you cannot tell it from your own thoughts.",
+          "text": "The voice follows you down, begging in your own House's tongue, until you cannot tell it from your own thoughts.",
           "effects": [
             {
               "to": "party",

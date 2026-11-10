@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "A shortcut, and a good one, and no marks on the post for it.",
+          "text": "It is a good shortcut, with no marks on the post for it.",
           "effects": [
             {
               "skip": 1
@@ -30,7 +30,7 @@
         },
         {
           "w": 40,
-          "text": "A shortcut to something hungry, waiting patiently at the end of it.",
+          "text": "It is a shortcut to something hungry, waiting patiently at the end.",
           "effects": [
             {
               "encounter": {
@@ -51,7 +51,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The long way, and an honest one, and it never once says HOME.",
+          "text": "The long way is an honest one. It never once says HOME.",
           "effects": [
             {
               "to": "party",
@@ -71,7 +71,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The paths straighten out. Something on them is very cross about it.",
+          "text": "The paths straighten out, which makes something on them very cross.",
           "effects": [
             {
               "fork": {

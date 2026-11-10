@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "To a square where the faceless dance, barefoot and silent, and they let you watch. They do not let you forget.",
+          "text": "They lead to a square where the faceless dance, barefoot and silent. They let you watch, but they do not let you forget.",
           "effects": [
             {
               "foresee": true
@@ -34,7 +34,7 @@
         },
         {
           "w": 40,
-          "text": "To where they went, and what took them there.",
+          "text": "They lead to where the owners went, and to what took them there.",
           "effects": [
             {
               "encounter": {}
@@ -53,7 +53,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Every house left as if for a moment, the kettle still warm, and coins on the table.",
+          "text": "Every house was left as if for a moment, the kettle still warm, coins on the table.",
           "effects": [
             {
               "resources": {
@@ -74,7 +74,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Your feet ache to be bare all day, and some of you catch yourselves unlacing your boots.",
+          "text": "All day your feet ache to be bare. Some of you catch yourselves unlacing your boots.",
           "effects": [
             {
               "to": "party",
