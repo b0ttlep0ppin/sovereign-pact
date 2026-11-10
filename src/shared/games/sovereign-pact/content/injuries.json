@@ -22,7 +22,7 @@
       "id": "body",
       "results": [
         { "id": "body_run_through", "max": 1, "band": "devastating", "name": "Run through", "text": "Death.", "death": true },
-        { "id": "body_mortal_wound", "max": 2, "band": "devastating", "name": "Mortal wound", "text": "They know. They fight anyway. Last Stand until the battle ends, then death.", "mortal": true },
+        { "id": "body_mortal_wound", "max": 2, "band": "devastating", "name": "Mortal wound", "text": "They know that death has come for them, yet they fight on for their House and their companions. Last Stand until the battle ends, then death.", "mortal": true },
         { "id": "body_punctured_lung", "max": 3, "band": "moderate", "name": "Punctured lung", "text": "Max HP -25%; cannot Sortie. 3 Years.", "lasting": { "years": 3, "mods": { "maxHpPct": -25, "noSortie": 1 } } },
         { "id": "body_broken_ribs", "max": 4, "band": "moderate", "name": "Broken ribs", "text": "Body Durability -50%, Might -20%. 2 Years.", "lasting": { "years": 2, "mods": { "bodyDurabilityPct": -50, "mightPct": -20 } } },
         { "id": "body_internal_bleeding", "max": 5, "band": "moderate", "name": "Internal bleeding", "text": "Bleed persists across the expedition; healing received -50% until an Infirmary or Soothsayer cure.", "statuses": [{ "id": "bleed", "ticks": 0 }], "lasting": { "years": 0, "mods": { "healingReceivedPct": -50, "persistentBleed": 1 } } },
