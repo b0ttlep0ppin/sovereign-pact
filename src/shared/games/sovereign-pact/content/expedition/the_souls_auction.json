@@ -9,11 +9,11 @@
     10
   ],
   "title": "The Soul Auction",
-  "text": "Devils bid on souls in a burning hall, raising clawed hands, the auctioneer chanting. The lots are paraded on the stage in chains. The next lot is a Scion of your House, sold by a rival, and it is screaming your name.",
+  "text": "In a burning hall, devils bid on souls with raised clawed hands while the auctioneer chants. The lots are paraded on the stage in chains. The next is a Scion of your House, sold by a rival, screaming your name.",
   "options": [
     {
       "id": "bid",
-      "label": "Outbid the devils, whatever it costs. No Scion of yours will be sold.",
+      "label": "Outbid the devils whatever it costs; no Scion of yours will be sold.",
       "rule": "house:highest_standing|vote",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The soul is yours, at a price, and it weeps with relief.",
+          "text": "The soul is yours at a price. It weeps with relief.",
           "effects": [
             {
               "resources": {
@@ -46,7 +46,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "Out the back with it, chains and all.",
+          "text": "They slip out the back with it.",
           "effects": [
             {
               "score": {
@@ -61,7 +61,7 @@
         },
         {
           "w": 50,
-          "text": "Caught, with the lot in your arms.",
+          "text": "They are caught with the lot in their arms.",
           "effects": [
             {
               "encounter": {
@@ -74,7 +74,7 @@
     },
     {
       "id": "leave",
-      "label": "Let the gavel fall. You cannot save every soul.",
+      "label": "Let the gavel fall; you cannot save every soul.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -82,7 +82,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The gavel falls. The screaming goes on for a long time after you leave.",
+          "text": "The gavel falls. The screaming goes on long after you leave.",
           "effects": [
             {
               "doom": 1

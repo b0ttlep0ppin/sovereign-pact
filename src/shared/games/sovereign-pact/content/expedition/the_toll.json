@@ -9,11 +9,11 @@
     8
   ],
   "title": "The Toll",
-  "text": "A bridge of bone arches over nothing, yellowed and creaking. A toll-keeper sits at its foot, hooded, holding out a hand with too many fingers, all of them ringed. It does not speak. It does not need to.",
+  "text": "A bridge of yellowed bone arches creaking over nothing. A hooded toll-keeper sits at its foot, holding out a hand with too many fingers, every one of them ringed. It does not speak, nor does it need to.",
   "options": [
     {
       "id": "pay",
-      "label": "The richest House pays in gold, and buys the bridge's mercy.",
+      "label": "The richest House pays in gold to buy the bridge's mercy.",
       "rule": "house:highest_standing",
       "tags": [
         "cautious"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The coins vanish into the hand. The bridge holds.",
+          "text": "The coins vanish into the hand, and the bridge holds.",
           "effects": [
             {
               "resources": {
@@ -34,7 +34,7 @@
     },
     {
       "id": "fight",
-      "label": "Fight your way across. No hand with that many fingers gets your gold.",
+      "label": "Fight your way across; no hand with that many fingers gets your gold.",
       "rule": "vote",
       "tags": [
         "bold"

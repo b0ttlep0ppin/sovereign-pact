@@ -9,11 +9,11 @@
     10
   ],
   "title": "The Timber Giants",
-  "text": "Trees so tall their tops are lost in mist, their trunks wide as towers, their bark ridged like old skin. Felling one would roof a House. The woodfolk say they are sleeping. In the hush, you can hear them breathe.",
+  "text": "Trees rise so tall their tops are lost in mist, their trunks wide as towers, their bark ridged like old skin. A single one would roof a House. The woodfolk say they are sleeping. In the hush you can hear them breathe.",
   "options": [
     {
       "id": "fell",
-      "label": "The strongest fells one of the giants. One tree would roof a House.",
+      "label": "The strongest fells one of the giants.",
       "rule": "scion:highest:might",
       "tags": [
         "cruel"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "It falls with a sound like a groan, and the others stir.",
+          "text": "It falls with a sound like a groan. The others stir.",
           "effects": [
             {
               "resources": {
@@ -48,7 +48,7 @@
     },
     {
       "id": "deadfall",
-      "label": "Take only what has fallen, and let the giants sleep.",
+      "label": "Take only what has fallen and let the giants sleep.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -56,7 +56,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Enough, and the woodfolk nod.",
+          "text": "There is enough, and the woodfolk nod.",
           "effects": [
             {
               "resources": {
@@ -77,7 +77,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They give a branch of their oldest tree, and it is still breathing.",
+          "text": "They give you a branch of their oldest tree. It is still breathing.",
           "effects": [
             {
               "resources": {

@@ -9,11 +9,11 @@
     10
   ],
   "title": "The Still Traveler",
-  "text": "In the dark between places, a lantern burns, and under it a traveler sits very still, hooded, with a pack exactly like yours, down to the patch and the stain. It does not move. Its hood is turned toward you.",
+  "text": "In the dark between places a lantern burns. Under it a hooded traveler sits very still, with a pack exactly like yours, down to the patch and the stain. It does not move. Its hood is turned toward you.",
   "options": [
     {
       "id": "talk",
-      "label": "The Leader speaks to it, to learn why it carries their pack.",
+      "label": "The Leader speaks to it to learn why it carries their pack.",
       "rule": "leader",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "It is the Leader, a little older. It says one thing, and it is worth the trip.",
+          "text": "It is the Leader, a little older. It says one thing, and that one thing is worth the trip.",
           "effects": [
             {
               "foresee": true
@@ -44,7 +44,7 @@
     },
     {
       "id": "trade",
-      "label": "Swap packs with it, and see what the road has yet to give you.",
+      "label": "Swap packs with it to see what the road has yet to give you.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -52,7 +52,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Its pack holds things you have not found yet, and some things you do not want to find.",
+          "text": "Its pack holds things you have not found yet, some of which you do not want to find.",
           "effects": [
             {
               "item": {
@@ -69,7 +69,7 @@
     },
     {
       "id": "dim",
-      "label": "The Leader puts out its lantern, so it watches no longer.",
+      "label": "The Leader puts out its lantern so it watches no longer.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -77,7 +77,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It goes out. So does the traveler. The dark is darker, and you understand it a little better.",
+          "text": "The lantern goes out, and so does the traveler. The dark is darker now, and you understand it a little better.",
           "effects": [
             {
               "doom": 1

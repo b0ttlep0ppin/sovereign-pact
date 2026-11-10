@@ -9,11 +9,11 @@
     9
   ],
   "title": "The Statue Garden",
-  "text": "A garden of statues, each a traveler caught mid-step: a man with a pack, a woman glancing back, a child reaching for a hand. Their clothes are real, rotting on the stone. Their faces are all smooth, blank stone.",
+  "text": "A garden is full of statues, each a traveler caught mid-step: a man with a pack, a woman glancing back, a child reaching for a hand. Their clothes are real, rotting on the stone. Every face is smooth, blank stone.",
   "options": [
     {
       "id": "search",
-      "label": "Search the statues' packs. They have no use for coin now.",
+      "label": "Search the statues' packs; they have no use for coin now.",
       "rule": "vote",
       "tags": [
         "clever"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "Coins in stone purses, and a carved key.",
+          "text": "Stone purses hold coins, and one holds a carved key.",
           "effects": [
             {
               "resources": {
@@ -45,7 +45,7 @@
     },
     {
       "id": "listen",
-      "label": "The wisest puts an ear to one, to learn what turned them.",
+      "label": "The wisest puts an ear to one to learn what turned them.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "kind"
@@ -53,7 +53,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It is still alive in there. It tells you the way out, and begs you to stay.",
+          "text": "Something is still alive in there. It tells you the way out, then begs you to stay.",
           "effects": [
             {
               "skip": 1
@@ -75,7 +75,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Out, without one more statue. But the stone dust has got into everyone's joints.",
+          "text": "You get out without becoming statues, though the stone dust has got into everyone's joints.",
           "effects": [
             {
               "to": "party",

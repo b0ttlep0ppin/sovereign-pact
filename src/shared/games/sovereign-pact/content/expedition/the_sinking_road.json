@@ -9,11 +9,11 @@
     7
   ],
   "title": "The Sinking Road",
-  "text": "The causeway is going under, slowly, the black water lapping over the stones and creeping higher. Things move in the water on both sides. You have to cross before the road is gone.",
+  "text": "The causeway is slowly going under, the black water lapping over the stones and creeping higher. Things move in the water on both sides. You have to cross before the road is gone.",
   "options": [
     {
       "id": "run",
-      "label": "Run for it, before the road and everything on it is gone.",
+      "label": "Run for it before the road is gone.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "Everyone across, muddy to the knees, and something in the water just behind.",
+          "text": "Everyone gets across, muddy to the knees, with something in the water just behind.",
           "effects": [
             {
               "to": "party",
@@ -31,7 +31,7 @@
         },
         {
           "w": 30,
-          "text": "The slowest are caught by the water, and by what moves in it.",
+          "text": "The water catches the slowest, and so does what moves in it.",
           "effects": [
             {
               "to": "party",
@@ -52,7 +52,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They make it. The last one through swims, and everyone is chilled to a crawl.",
+          "text": "They make it, though the last one through has to swim. Everyone is chilled to a crawl.",
           "effects": [
             {
               "to": "party",
@@ -64,7 +64,7 @@
     },
     {
       "id": "wait",
-      "label": "Camp and wait for the tide to turn. The road will rise again.",
+      "label": "Camp and wait for the tide to turn; the road will rise again.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -72,7 +72,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A long cold night, listening to things move in the water.",
+          "text": "It is a long cold night of listening to things move in the water.",
           "effects": [
             {
               "to": "party",

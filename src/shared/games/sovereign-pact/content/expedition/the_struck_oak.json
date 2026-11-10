@@ -9,7 +9,7 @@
     10
   ],
   "title": "The Struck Oak",
-  "text": "An oak split by lightning, still smoking, though the sky is clear and has been all day. The heartwood glows like embers, red and pulsing. The grass around it is scorched in the shape of a hand.",
+  "text": "An oak split by lightning is still smoking, though the sky is clear and has been all day. Its heartwood glows like embers, red and pulsing. The grass around it is scorched in the shape of a hand.",
   "options": [
     {
       "id": "cut",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "It hums in the hand.",
+          "text": "The heartwood hums in the hand.",
           "effects": [
             {
               "resources": {
@@ -48,7 +48,7 @@
     },
     {
       "id": "shelter",
-      "label": "Shelter under it. Lightning never strikes twice.",
+      "label": "Shelter under it; lightning never strikes twice.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -56,7 +56,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "It doesn't.",
+          "text": "It does not.",
           "effects": [
             {
               "to": "party",
@@ -82,7 +82,7 @@
     },
     {
       "id": "pray",
-      "label": "Leave an offering at its roots, for whatever struck it from a clear sky.",
+      "label": "Leave an offering at its roots for whatever struck it from a clear sky.",
       "rule": "leader",
       "tags": [
         "kind"

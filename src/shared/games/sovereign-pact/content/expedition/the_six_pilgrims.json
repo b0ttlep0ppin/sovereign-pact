@@ -9,11 +9,11 @@
     8
   ],
   "title": "Six Pilgrims",
-  "text": "Six pilgrims at a well, one devoted to each of the Six, arguing with rising fury. Knives are close to coming out. They ask a stranger to settle which god the well belongs to, and they all look at you.",
+  "text": "Six pilgrims at a well, each devoted to one of the Six, argue with rising fury, their knives close to coming out. They want a stranger to settle which god the well belongs to. They all look at you.",
   "options": [
     {
       "id": "one",
-      "label": "The Leader names one god, and lets the other five be angry.",
+      "label": "The Leader names one god and lets the other five be angry.",
       "rule": "leader",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Five pilgrims leave angry. One stays, and blesses you.",
+          "text": "Five pilgrims leave angry. The sixth stays and blesses you.",
           "effects": [
             {
               "blessing": {
@@ -48,7 +48,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They grumble, and share the water, and then they share their food.",
+          "text": "They grumble but share the water. Then they share their food.",
           "effects": [
             {
               "to": "party",
@@ -64,7 +64,7 @@
     },
     {
       "id": "mine",
-      "label": "Say the well belongs to you. Let them argue with that.",
+      "label": "Say the well belongs to you, and let them argue with that.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -72,7 +72,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "All six turn on you, and for once they agree.",
+          "text": "All six turn on you. For once, they agree.",
           "effects": [
             {
               "encounter": {}

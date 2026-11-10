@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "listen",
-      "label": "Listen to the choir, and learn what your song says.",
+      "label": "Listen to the choir to learn what your song says.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "A song of home, and it teaches something.",
+          "text": "It is a song of home, and it teaches something.",
           "effects": [
             {
               "to": "party",
@@ -35,7 +35,7 @@
         },
         {
           "w": 40,
-          "text": "A song of the end, and how it goes.",
+          "text": "It is a song of the end, and how it goes.",
           "effects": [
             {
               "to": "party",
@@ -47,7 +47,7 @@
     },
     {
       "id": "hum",
-      "label": "Hum over it, so you hear only your own tune.",
+      "label": "Hum over it so you hear only your own tune.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -55,7 +55,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Your own tune, thin but yours, and the choir louder around it.",
+          "text": "Your own tune is thin but yours. The choir swells louder around it.",
           "effects": [
             {
               "to": "party",
@@ -75,7 +75,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The choir falls silent, surprised, and the dark lets you through.",
+          "text": "Surprised, the choir falls silent, and the dark lets you through.",
           "effects": [
             {
               "score": {

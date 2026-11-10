@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "ring",
-      "label": "Ring the last whole bell, and see what prayer is answered.",
+      "label": "Ring the last whole bell to see what prayer is answered.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The note goes on for a long time, and fills you.",
+          "text": "The note goes on for a long time, filling you.",
           "effects": [
             {
               "to": "party",
@@ -37,7 +37,7 @@
     },
     {
       "id": "devout",
-      "label": "The devout asks what it would cost, before anything is rung.",
+      "label": "The devout one asks what it would cost before anything is rung.",
       "rule": "scion:trait:devout|scion:highest:sagacity",
       "tags": [
         "clever"
@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The monks tell them, and the price is fair, and they pay it.",
+          "text": "The monks name a fair price, and they pay it.",
           "effects": [
             {
               "blessing": {
@@ -64,7 +64,7 @@
     },
     {
       "id": "take",
-      "label": "The Leader takes it down. A whole bell is worth a fortune.",
+      "label": "The Leader takes it down; a whole bell is worth a fortune.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -72,7 +72,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Heavy, and the monks curse you, every one, in turn.",
+          "text": "It is heavy. Every monk curses you in turn.",
           "effects": [
             {
               "resources": {

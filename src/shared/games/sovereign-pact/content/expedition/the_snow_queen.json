@@ -9,11 +9,11 @@
     8
   ],
   "title": "The Snow Queen",
-  "text": "A woman in white rides by on a sledge drawn by wolves, so beautiful it hurts to look at her, so cold the snow freezes where she passes. She offers to carry one of you to her palace. Her smile does not reach her eyes.",
+  "text": "A woman in white rides by on a sledge drawn by wolves, so beautiful it hurts to look at her. The snow freezes where she passes. She offers to carry one of you to her palace, though her smile does not reach her eyes.",
   "options": [
     {
       "id": "go",
-      "label": "The bravest rides away with her, to learn what lies in her palace.",
+      "label": "The bravest rides away with her to learn what lies in her palace.",
       "rule": "scion:trait:brave|scion:highest:resilience",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "They come back with a sliver of her mirror, and a cold heart that does not thaw.",
+          "text": "They come back with a sliver of her mirror and a heart that does not thaw.",
           "effects": [
             {
               "item": {
@@ -35,7 +35,7 @@
         },
         {
           "w": 40,
-          "text": "They come back with frostbite, and nothing else, and will not say what they saw.",
+          "text": "They come back with frostbite and nothing else, and will not say what they saw.",
           "effects": [
             {
               "injury": "arms"
@@ -46,7 +46,7 @@
     },
     {
       "id": "decline",
-      "label": "Decline her, politely. No one rides with a smile like that.",
+      "label": "Decline her politely; no one rides with a smile like that.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -67,7 +67,7 @@
         },
         {
           "w": 50,
-          "text": "She laughs and is gone, and the cold of her stays in your fingers.",
+          "text": "She laughs and is gone. Her cold stays in your fingers.",
           "effects": [
             {
               "to": "party",
@@ -79,7 +79,7 @@
     },
     {
       "id": "follow",
-      "label": "Follow the sledge tracks, to find where she lives.",
+      "label": "Follow the sledge tracks to find where she lives.",
       "rule": "leader",
       "tags": [
         "bold"

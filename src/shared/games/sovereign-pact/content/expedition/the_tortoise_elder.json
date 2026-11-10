@@ -9,11 +9,11 @@
     6
   ],
   "title": "The Tortoise Elder",
-  "text": "A tortoise as big as a cart, its shell grown over with moss and ferns and little trees, crosses the path one step a minute. It is older than the Pact. Its ancient eye turns to you, slow and knowing.",
+  "text": "A tortoise as big as a cart crosses the path one step a minute, its shell grown over with moss, ferns and little trees. It is older than the Pact. Its ancient eye turns to you, slow and knowing.",
   "options": [
     {
       "id": "wait",
-      "label": "Wait for the old tortoise to cross. It has earned the right of way.",
+      "label": "Wait for the old tortoise to cross; it has earned the right of way.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Hours. It looks at each of you as it passes, and nods, and you feel seen by something very old.",
+          "text": "It takes hours. As it passes it looks at each of you and nods, and you feel seen by something very old.",
           "effects": [
             {
               "to": "party",
@@ -33,7 +33,7 @@
     },
     {
       "id": "ride",
-      "label": "The boldest climbs onto its shell, and lets it carry them a while.",
+      "label": "The boldest climbs onto its shell to be carried a while.",
       "rule": "scion:trait:brave|scion:random",
       "tags": [
         "reckless"
@@ -41,7 +41,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "It carries them, and the party walks alongside, the slow sure way, and its patience gets into them.",
+          "text": "It carries them while the party walks alongside. Its slow, sure patience gets into them.",
           "effects": [
             {
               "blessing": {
@@ -53,7 +53,7 @@
         },
         {
           "w": 40,
-          "text": "It shrugs them off, slowly, and the fall is not slow at all.",
+          "text": "It shrugs them off slowly. The fall is not slow at all.",
           "effects": [
             {
               "durability": -15,
@@ -65,7 +65,7 @@
     },
     {
       "id": "round",
-      "label": "Go round it. You have no hours to spare.",
+      "label": "Go round it; you have no hours to spare.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -73,7 +73,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Round it is a long way too, and its slowness gets into you.",
+          "text": "The way round is long too, and its slowness gets into you.",
           "effects": [
             {
               "to": "party",

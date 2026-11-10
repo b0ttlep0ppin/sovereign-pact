@@ -9,11 +9,11 @@
     10
   ],
   "title": "The Stone Door",
-  "text": "A round stone door in the tunnel wall, carved with a lock of sliding tiles, a puzzle older than the House. The tiles are smooth from old fingers. Beside the door, a skeleton sits with its hands still raised to the puzzle.",
+  "text": "A round stone door is set in the tunnel wall, its lock a puzzle of sliding tiles older than the House, worn smooth by old fingers. Beside the door a skeleton sits, its hands still raised to the puzzle.",
   "options": [
     {
       "id": "solve",
-      "label": "The cleverest works the puzzle, where the skeleton could not.",
+      "label": "The cleverest works the puzzle where the skeleton could not.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "It rolls aside, onto something hidden.",
+          "text": "The door rolls aside onto something hidden.",
           "effects": [
             {
               "fork": {
@@ -34,7 +34,7 @@
         },
         {
           "w": 30,
-          "text": "Wrong. Darts, from holes you did not see.",
+          "text": "They get it wrong. Darts fly from holes no one saw.",
           "effects": [
             {
               "status": "poison"
@@ -45,7 +45,7 @@
     },
     {
       "id": "force",
-      "label": "The strongest forces the door. Puzzles are for the patient.",
+      "label": "The strongest forces the door; puzzles are for the patient.",
       "rule": "scion:highest:might",
       "tags": [
         "bold"
@@ -53,7 +53,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It cracks, and the noise travels, and something comes.",
+          "text": "It cracks loudly enough to carry. Something comes.",
           "effects": [
             {
               "encounter": {
@@ -66,7 +66,7 @@
     },
     {
       "id": "leave",
-      "label": "Leave it closed. The skeleton is warning enough.",
+      "label": "Leave it closed; the skeleton is warning enough.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -74,7 +74,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Some doors are best left. The puzzle stays in your heads, though, and working it in the dark sharpens you.",
+          "text": "The puzzle stays in your heads, though, and working it in the dark sharpens you.",
           "effects": [
             {
               "to": "party",
@@ -95,7 +95,7 @@
       "outcomes": [
         {
           "w": 80,
-          "text": "The pattern is plain to sharp eyes. Inside, a dry room and an old House's coffer.",
+          "text": "The pattern is plain to them. Inside lie a dry room and an old House's coffer.",
           "effects": [
             {
               "item": {
@@ -106,7 +106,7 @@
         },
         {
           "w": 20,
-          "text": "The pattern is plain to sharp eyes, and it was a lock on something that wanted locking.",
+          "text": "The pattern is plain to them. It was a lock on something that wanted locking.",
           "effects": [
             {
               "encounter": {}

@@ -9,11 +9,11 @@
     8
   ],
   "title": "The Toll Keeper",
-  "text": "A bridge of black stone spans nothing, and on it squats a hunched keeper with a wooden bowl, its face lost in a hood. It names a price in a voice like grinding millstones. Bones lie below the bridge, far below, in the dark.",
+  "text": "A bridge of black stone spans nothing. On it squats a hunched keeper with a wooden bowl, its face lost in a hood, naming a price in a voice like grinding millstones. Bones lie far below the bridge in the dark.",
   "options": [
     {
       "id": "pay",
-      "label": "The Leader pays what it asks. The bones below are reason enough.",
+      "label": "The Leader pays what it asks; the bones below are reason enough.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The coins ring in the bowl, and the keeper steps aside, humming something old.",
+          "text": "The coins ring in the bowl. The keeper steps aside, humming something old.",
           "effects": [
             {
               "resources": {
@@ -42,7 +42,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "The keeper thinks for a long while, then laughs, and lets you pass for the pleasure of it.",
+          "text": "The keeper thinks for a long while, then laughs and lets you pass for the pleasure of it.",
           "effects": [
             {
               "xp": 100
@@ -56,7 +56,7 @@
         },
         {
           "w": 40,
-          "text": "It answers at once, and asks one back. Nobody knows it.",
+          "text": "It answers at once and asks one back. Nobody knows the answer.",
           "effects": [
             {
               "sanity": -15
@@ -72,7 +72,7 @@
     },
     {
       "id": "fight",
-      "label": "Shove it off its own bridge, and join it to the bones below.",
+      "label": "Shove it off its own bridge to join the bones below.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -80,7 +80,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It does not go over easily, and it does not go over alone.",
+          "text": "It does not go over easily, nor alone.",
           "effects": [
             {
               "encounter": {}

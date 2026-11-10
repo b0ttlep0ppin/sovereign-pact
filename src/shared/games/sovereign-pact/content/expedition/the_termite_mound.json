@@ -9,11 +9,11 @@
     6
   ],
   "title": "The Termite Mound",
-  "text": "A termite mound taller than a house rises from the plain, red as dried blood, humming with a sound like a thousand tiny voices. Something glints in its walls, high up: metal, and the shape of a hand around it.",
+  "text": "A termite mound taller than a house rises from the plain, red as dried blood, humming like a thousand tiny voices. High up in its walls something glints: metal, with the shape of a hand around it.",
   "options": [
     {
       "id": "dig",
-      "label": "The strongest breaks the mound open, to reach the glint in its walls.",
+      "label": "The strongest breaks the mound open to reach the glint.",
       "rule": "scion:highest:might",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "Old coins the termites built around, and the hand still clutching them.",
+          "text": "The termites built around a clutch of old coins. The hand is still clutching them.",
           "effects": [
             {
               "resources": {
@@ -32,7 +32,7 @@
         },
         {
           "w": 40,
-          "text": "The termites answer, all of them.",
+          "text": "Every termite in the mound answers.",
           "effects": [
             {
               "to": "party",
@@ -44,7 +44,7 @@
     },
     {
       "id": "smoke",
-      "label": "The cleverest smokes them out first, so the dig is quiet.",
+      "label": "The cleverest smokes them out first so the dig is quiet.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -52,7 +52,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A quiet dig, and the coins, and a way through the plain they cleared.",
+          "text": "You dig quietly and take the coins. The termites have cleared a way across the plain.",
           "effects": [
             {
               "resources": {
@@ -68,7 +68,7 @@
     },
     {
       "id": "leave",
-      "label": "Leave it be. A thousand voices is too many to anger.",
+      "label": "Leave it be; a thousand voices are too many to anger.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -88,7 +88,7 @@
     },
     {
       "id": "punch_through",
-      "label": "The Pugilist punches through to the glint, one blow, and damn the insects.",
+      "label": "The Pugilist punches through to the glint in one blow, and damn the insects.",
       "rule": "scion:job:pugilist",
       "only": true,
       "tags": [
@@ -97,7 +97,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "One blow, a cloud of angry insects, and in the Pugilist's fist a lump of voidglass.",
+          "text": "A cloud of angry insects bursts out. In the Pugilist's fist is a lump of voidglass.",
           "effects": [
             {
               "resources": {
@@ -109,7 +109,7 @@
         },
         {
           "w": 40,
-          "text": "One blow, and the mound bites back all the way up the arm.",
+          "text": "The mound bites back all the way up the arm.",
           "effects": [
             {
               "hp": -15,

@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "The note changes to match their heartbeat, and for a while everything is quiet inside.",
+          "text": "The note changes to match their heartbeat. For a while everything inside them is quiet.",
           "effects": [
             {
               "sanity": 25
@@ -35,7 +35,7 @@
         },
         {
           "w": 40,
-          "text": "The note changes to match their heartbeat, and then it stops, and so do they, for a while.",
+          "text": "The note changes to match their heartbeat, then stops. For a while, so do they.",
           "effects": [
             {
               "sanity": -20
@@ -49,7 +49,7 @@
     },
     {
       "id": "cut",
-      "label": "Cut the oak for timber. Wood that old is worth the song.",
+      "label": "Cut the oak for timber; wood that old is worth the song.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -57,7 +57,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It goes on singing all the way down. The wood is very good, and nobody sleeps well near it.",
+          "text": "It goes on singing all the way down. The wood is very good, though nobody sleeps well near it.",
           "effects": [
             {
               "resources": {
@@ -74,7 +74,7 @@
     },
     {
       "id": "pass",
-      "label": "Pass by quietly, and let it sing on.",
+      "label": "Pass by quietly and let it sing on.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -82,7 +82,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The note follows you a little way, then lets you go. It stays in the Leader's head as a calm under everything.",
+          "text": "The note follows you a little way before letting you go. It stays in the Leader's head as a calm beneath everything.",
           "effects": [
             {
               "mp": 25

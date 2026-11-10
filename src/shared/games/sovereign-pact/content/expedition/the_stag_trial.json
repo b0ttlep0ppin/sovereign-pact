@@ -9,11 +9,11 @@
     6
   ],
   "title": "The Stag Trial",
-  "text": "A stag with antlers like a winter tree steps out of the mist, white as bone, its eyes burning. It offers a race to whoever thinks they can win it. It does not say what happens to whoever loses.",
+  "text": "A stag steps out of the mist, white as bone, its antlers like a winter tree and its eyes burning. It offers a race to whoever thinks they can win. It does not say what happens to the loser.",
   "options": [
     {
       "id": "fast",
-      "label": "The fastest races the white stag, and does not ask what losing costs.",
+      "label": "The fastest races the white stag without asking what losing costs.",
       "rule": "scion:highest:speed",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "Neck and neck, and the stag bows, and something of its speed stays with them.",
+          "text": "They run neck and neck until the stag bows. Something of its speed stays with them.",
           "effects": [
             {
               "growth": {
@@ -35,7 +35,7 @@
         },
         {
           "w": 40,
-          "text": "The stag wins, and leaves them in a thicket, bleeding from the legs.",
+          "text": "The stag wins, leaving them bleeding from the legs in a thicket.",
           "effects": [
             {
               "durability": -20,
@@ -47,7 +47,7 @@
     },
     {
       "id": "bow",
-      "label": "Bow to the stag, and decline its race.",
+      "label": "Bow to the stag and decline its race.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -66,7 +66,7 @@
     },
     {
       "id": "shoot",
-      "label": "The Leader shoots it. A white hide is worth a purse.",
+      "label": "The Leader shoots it; a white hide is worth a purse.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -74,7 +74,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The forest goes very quiet, and stays quiet.",
+          "text": "The forest goes very quiet, and stays that way.",
           "effects": [
             {
               "resources": {

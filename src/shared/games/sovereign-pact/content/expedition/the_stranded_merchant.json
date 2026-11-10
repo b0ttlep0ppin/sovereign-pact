@@ -9,11 +9,11 @@
     8
   ],
   "title": "The Stranded Merchant",
-  "text": "A merchant's wagon lies tilted in the road with a broken wheel, its owner sitting on the steps, fanning himself. Fix it, he says, and he will pay well. The wagon's cargo is covered with a tarp. It is lumpy and very still.",
+  "text": "A merchant's wagon lies tilted in the road on a broken wheel while its owner sits on the steps, fanning himself. Fix it, he says, and he will pay well. The cargo under its tarp is lumpy and very still.",
   "options": [
     {
       "id": "fix",
-      "label": "The strongest fixes the wheel, and does not look under the tarp.",
+      "label": "The strongest fixes the wheel without looking under the tarp.",
       "rule": "scion:highest:might",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The merchant pays with a fine thing from the back. You do not see under the tarp.",
+          "text": "The merchant pays with a fine thing from the back. The tarp stays where it is.",
           "effects": [
             {
               "item": {
@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Fair prices, for once. The tarp stays down.",
+          "text": "For once the prices are fair. The tarp stays down.",
           "effects": [
             {
               "resources": {
@@ -63,7 +63,7 @@
     },
     {
       "id": "rob",
-      "label": "Plunder the cargo. He cannot run with a broken wheel.",
+      "label": "Plunder the cargo; he cannot run on a broken wheel.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -71,7 +71,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It is a lot of cargo, and word of it gets around.",
+          "text": "It is a great deal of cargo, and word of it gets around.",
           "effects": [
             {
               "resources": {

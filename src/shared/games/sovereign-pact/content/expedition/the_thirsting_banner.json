@@ -9,11 +9,11 @@
     10
   ],
   "title": "The Thirsting Banner",
-  "text": "A war banner stands planted in a field of old bones, still bright, still snapping in the wind, its red as fresh as blood. Whoever carries it, the stories say, wins every battle but one. The bones around it were all its bearers.",
+  "text": "A war banner stands planted in a field of old bones, still bright and snapping in the wind, its red as fresh as blood. Whoever carries it, the stories say, wins every battle but one. All the bones around it were its bearers.",
   "options": [
     {
       "id": "carry",
-      "label": "The bravest takes up the banner, and trusts the battle it loses is not this one.",
+      "label": "The bravest takes up the banner, trusting the battle it loses is not this one.",
       "rule": "scion:trait:brave|scion:highest:might",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It is light in the hand and very heavy everywhere else.",
+          "text": "It is light in the hand, and heavy everywhere else.",
           "effects": [
             {
               "blessing": {
@@ -38,7 +38,7 @@
     },
     {
       "id": "burn",
-      "label": "Burn the banner, so it claims no more bearers.",
+      "label": "Burn the banner so it claims no more bearers.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -46,7 +46,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It burns slowly, and the bones in the field settle as it goes.",
+          "text": "It burns slowly. The bones in the field settle as it goes.",
           "effects": [
             {
               "to": "party",
@@ -71,7 +71,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Somebody will. Somebody always does. A mile on you find that somebody's leavings, and the Leader learns which battle it loses.",
+          "text": "A mile on you find the leavings of the last fool who carried it. The Leader learns which battle it loses.",
           "effects": [
             {
               "sanity": -5,
@@ -83,7 +83,7 @@
     },
     {
       "id": "curse_to_curse",
-      "label": "The one in cursed gear carries it. They are cursed already, and one curse may cancel another.",
+      "label": "The one in cursed gear carries it, hoping one curse may cancel another.",
       "rule": "scion:cursed",
       "only": true,
       "tags": [
@@ -92,7 +92,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The banner's curse and theirs snarl at each other, and both let go. They put the banner down lighter than they picked it up.",
+          "text": "The banner's curse and theirs snarl at each other until both let go. They put the banner down lighter than they picked it up.",
           "effects": [
             {
               "gear": {

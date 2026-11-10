@@ -9,11 +9,11 @@
     10
   ],
   "title": "The Smoking Mountain",
-  "text": "The mountain ahead is smoking, its slopes black and cracked, the air thick with sulphur. The dragons nest in its warmth: you can see their shapes on the ledges. The path goes over its shoulder, right past them.",
+  "text": "The mountain ahead is smoking, its slopes black and cracked, the air thick with sulphur. Dragons nest in its warmth; you can see their shapes on the ledges. The path goes over its shoulder, right past them.",
   "options": [
     {
       "id": "over",
-      "label": "Go over the shoulder, past the nests, and hope the dragons are sleeping.",
+      "label": "Go over the shoulder past the nests, hoping the dragons are asleep.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "Over, choking on ash, with every kit black with it.",
+          "text": "You get over choking on ash, every kit black with it.",
           "effects": [
             {
               "to": "party",
@@ -31,7 +31,7 @@
         },
         {
           "w": 40,
-          "text": "A dragon's nest on the path, and the dragon in it.",
+          "text": "A nest sits on the path, and its dragon is in it.",
           "effects": [
             {
               "encounter": {
@@ -44,7 +44,7 @@
     },
     {
       "id": "vents",
-      "label": "The sharpest eye finds the old lava tubes, and leads you through the mountain's belly.",
+      "label": "The sharpest finds the old lava tubes and leads you through the mountain's belly.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -52,7 +52,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Through the hot dark and out the far side, with pockets full of glowing stone.",
+          "text": "You pass through the hot dark and out the far side, pockets full of glowing stone.",
           "effects": [
             {
               "skip": 1
@@ -68,7 +68,7 @@
     },
     {
       "id": "round",
-      "label": "Go round, the long way. No path past dragons is worth taking.",
+      "label": "Go round the long way; no path past dragons is worth taking.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -76,7 +76,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Days lost, and the smoke on the horizon the whole time, watching.",
+          "text": "You lose days, and the smoke on the horizon watches you the whole time.",
           "effects": [
             {
               "to": "party",
