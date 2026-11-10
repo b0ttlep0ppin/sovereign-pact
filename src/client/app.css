@@ -35,7 +35,7 @@ body {
 .app__title { margin: 0; font: 400 2rem/1 var(--display); letter-spacing: 0.02em; color: var(--gold); text-shadow: 0 0 12px rgba(220, 181, 94, 0.25), 0 2px 0 #000; }
 .app__spacer { flex: 1; }
 .app__seat { color: var(--muted); font-size: 0.9rem; }
-.app__main { max-width: 1200px; margin: 0 auto; padding: 16px; }
+.app__main { max-width: 1560px; margin: 0 auto; padding: 16px; }
 .app__button { font: inherit; font-variant: small-caps; letter-spacing: 0.04em; padding: 8px 14px; min-height: 40px; border-radius: 2px; border: 1px solid var(--line-hi); background: linear-gradient(var(--panel-hi), var(--panel)); color: var(--text); cursor: pointer; }
 .app__button:hover { border-color: var(--accent); }
 .app__button:focus-visible, select:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }

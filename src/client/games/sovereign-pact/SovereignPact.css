@@ -319,7 +319,7 @@
 .sp-settings summary::-webkit-details-marker { display: none; }
 .sp-settings[open] summary { color: var(--gold); border-color: var(--gold); }
 .sp-settings__body { position: absolute; right: 0; top: calc(100% + 6px); z-index: 20; width: min(420px, 90vw); max-height: 70vh; overflow: auto; padding: 14px; background: var(--panel); border: 1px solid var(--line-hi); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7); }
-.sp-stage { display: grid; grid-template-columns: minmax(0, 1fr) minmax(300px, 380px); gap: 16px; align-items: start; }
+.sp-stage { display: grid; grid-template-columns: minmax(0, 1fr) minmax(320px, 440px); gap: 16px; align-items: start; }
 .sp-stage__side { display: grid; gap: 16px; align-content: start; }
 .sp-chronicle .sp-log { max-height: 320px; overflow: auto; padding-left: 0; list-style: none; }
 @media (max-width: 1100px) { .sp-stage { grid-template-columns: 1fr; } }
@@ -478,6 +478,8 @@
 
 /* What came of the Omens: the town events' account, under the Year's decisions. */
 .sp-omens-told { display: grid; gap: 10px; margin-top: 14px; }
+.sp-panel--omens .sp-omens-told { margin-top: 0; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); align-items: start; }
+.sp-panel--omens .sp-omens-told > h3 { grid-column: 1 / -1; margin: 0; }
 .sp-omens-told .sp-told__where { text-align: left; }
 .sp-omens-told .sp-told__where small { color: #6e6880; letter-spacing: 0.06em; margin-left: 6px; }
 .sp-omens-told .is-private { border-left: 2px solid rgba(110, 90, 140, 0.45); padding-left: 10px; }
@@ -575,3 +577,25 @@
 .sp-gearpick__notes { margin: 0; font-size: 0.74rem; color: var(--muted); }
 .sp-gearpick__props { margin: 0; padding-left: 14px; font-size: 0.76rem; }
 .sp-gearpick__props .is-bad { color: var(--blood-hi); }
+
+/* The formation beside the road (Josh 2026-11-10: "use more horizontal space"): a little smaller there. */
+.sp-stage__side .sp-formation__grid { grid-template-columns: repeat(3, 54px); }
+.sp-stage__side .sp-formation__cell { height: 54px; }
+.sp-panel--orders { padding-bottom: 20px; }
+
+/* Passives (Josh 2026-11-10): a big switch per passive; a passive that is on lights its whole row. */
+.sp-passives { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 8px; }
+.sp-passives li { border: 1px solid var(--line); border-radius: 3px; background: rgba(0, 0, 0, 0.28); transition: background 0.18s, border-color 0.18s, box-shadow 0.18s; }
+.sp-passives li.is-on { border-color: var(--gold); background: linear-gradient(90deg, rgba(150, 40, 34, 0.42), rgba(70, 22, 20, 0.28) 70%); box-shadow: 0 0 12px rgba(220, 181, 94, 0.25), inset 0 0 0 1px rgba(220, 181, 94, 0.2); }
+.sp-passive { all: unset; box-sizing: border-box; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 12px; align-items: center; width: 100%; padding: 10px 12px; cursor: pointer; color: var(--text); }
+.sp-passive:focus-visible { outline: 2px solid var(--gold); outline-offset: -2px; }
+.sp-passive:disabled { cursor: not-allowed; opacity: 0.5; }
+.sp-passive__body { display: grid; gap: 2px; }
+.sp-passive__body small { color: var(--muted); }
+.sp-passive__switch { position: relative; display: block; width: 64px; height: 28px; border-radius: 14px; background: #0b0b0d; border: 1px solid var(--line); box-shadow: inset 0 2px 5px #000; }
+.sp-passive__knob { position: absolute; top: 3px; left: 3px; width: 20px; height: 20px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #8a8c90, #3c3e43 70%); box-shadow: 0 1px 3px #000; transition: left 0.18s; }
+.sp-passive__word { position: absolute; top: 0; right: 9px; line-height: 26px; font: 700 0.72rem/26px var(--body); letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+.is-on .sp-passive__switch { background: radial-gradient(130% 120% at 50% 0%, var(--blood-hi, #a33), var(--blood, #6d1611) 70%, #1e0d0c); border-color: var(--gold); }
+.is-on .sp-passive__knob { left: 41px; background: radial-gradient(circle at 35% 35%, #fff1c4, #d8b45e 60%, #8a6526); }
+.is-on .sp-passive__word { right: auto; left: 10px; color: #f4e2b0; }
+.sp-passive:not(:disabled):hover .sp-passive__switch { border-color: var(--gold); }

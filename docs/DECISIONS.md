@@ -2,6 +2,13 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-10 (implementation, Milestone 8du): wider screens, the orders panel padded, passives on switches
+
+Josh: "missing padding down by the bottom of this event window. Also if possible some places it might make sense to use more horizontal space, instead of stacking everything vertical. Various windows might be able to fit to the right etc under 'what happened' etc. Also the passives are enabled via checkbox, i think it'd be more satisfying if the UI looked a little more substantial there, like a big toggle on button that highlights the row".
+- The orders panel shared a class with the building orders list, which took its padding away; it has its own class now.
+- The page is wider (up to 1560px; this is a desktop game) and the side column a little wider. On the expedition screen the formation stands in the side column under "What happened", so the road and its party, satchel and haul run across the main column. In town, "What came of the Omens" is its own panel under the tabs, laid out in columns, instead of the foot of the side column.
+- Each passive is a big On/Off switch; a passive that is on lights its whole row in gold and oxblood. One that would go over the budget is dimmed and says what it needs.
+
 ## 2026-11-10 (implementation, Milestone 8dt): a battle that ends off screen plays on to its ending
 
 Josh: "the bots are inputting their commands and resolving them instantly, so the combat ends before I see the bots take their actions, it should just continue to play the combat normally and then show us all the victory screen at the end", and "similarly the combat begins before I acknowledge the pop up". When the other Houses' bots finished a live battle, the fight left the state at once and its screen reopened on the ending, skipping every turn not yet played on screen; a fight that started and ended while an outcome card was up opened on its ending too. The client now remembers the turn its live screen had reached: when the battle ends it plays on from that turn to the victory or defeat screen, and one never seen opens on its pause before the fight and plays from the start. A battle the player hid still opens on its ending.

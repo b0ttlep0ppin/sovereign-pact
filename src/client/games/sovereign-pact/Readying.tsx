@@ -89,15 +89,32 @@ function Scion({ p, view, sendMove, canAct }: Props & { p: Person }) {
         Passives <small>{kit.points} of {kit.budget} points</small>
       </h3>
       {passives.length ? (
-        <ul className="sp-lots sp-abilities">
+        <ul className="sp-passives">
           {passives.map((d) => {
             const on = kit.passives.includes(d.id);
+            const over = !on && kit.points + d.points > kit.budget;
+            // A big switch that lights the row (Josh 2026-11-10: the checkbox felt slight).
             return (
-              <li key={d.id}>
-                <label title={d.text}>
-                  <input type="checkbox" checked={on} disabled={!canAct || (!on && kit.points + d.points > kit.budget)} onChange={(e) => send({ type: "passive", person: p.id, ability: d.id, on: e.target.checked })} /> <strong>{d.name}</strong> <small>{d.points} pt</small>
-                  <span className="sp-ability__text">{d.text}</span>
-                </label>
+              <li key={d.id} className={on ? "is-on" : undefined}>
+                <button
+                  type="button"
+                  className="sp-passive"
+                  aria-pressed={on}
+                  aria-label={`${d.name}, ${d.points} pt`}
+                  title={over ? `Needs ${d.points} points; ${kit.budget - kit.points} left.` : d.text}
+                  disabled={!canAct || over}
+                  data-sfx={on ? "ui_select" : "ui_confirm"}
+                  onClick={() => send({ type: "passive", person: p.id, ability: d.id, on: !on })}
+                >
+                  <span className="sp-passive__switch" aria-hidden="true">
+                    <span className="sp-passive__knob" />
+                    <span className="sp-passive__word">{on ? "On" : "Off"}</span>
+                  </span>
+                  <span className="sp-passive__body">
+                    <strong>{d.name}</strong> <small>{d.points} pt</small>
+                    <span className="sp-ability__text">{d.text}</span>
+                  </span>
+                </button>
               </li>
             );
           })}

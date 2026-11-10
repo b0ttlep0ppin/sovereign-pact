@@ -28,6 +28,23 @@ describe("readying Scions", () => {
     expect((within(dear).getByRole("button") as HTMLButtonElement).disabled).toBe(true);
   });
 
+  it("turns a passive on and off with a switch that lights its row (Josh 2026-11-10)", () => {
+    const { s, p } = town();
+    const i = s.people.findIndex((x) => x.id === p.id);
+    s.people[i] = { ...s.people[i]!, learned: ["veteran", "grizzled"], passives: ["veteran"] };
+    const sendMove = vi.fn();
+    render(<Readying view={g.view(s, "p1")} sendMove={sendMove} canAct />);
+    const on = screen.getByRole("button", { name: "Veteran, 2 pt" });
+    expect(on.getAttribute("aria-pressed")).toBe("true");
+    expect(on.closest("li")!.className).toContain("is-on");
+    const off = screen.getByRole("button", { name: "Grizzled, 2 pt" });
+    expect(off.getAttribute("aria-pressed")).toBe("false");
+    fireEvent.click(off);
+    expect(sendMove).toHaveBeenCalledWith({ type: "passive", person: p.id, ability: "grizzled", on: true });
+    fireEvent.click(on);
+    expect(sendMove).toHaveBeenCalledWith({ type: "passive", person: p.id, ability: "veteran", on: false });
+  });
+
   it("takes a Job and puts stashed gear on", () => {
     const { s, p, spear } = town();
     const sendMove = vi.fn();
