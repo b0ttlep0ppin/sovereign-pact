@@ -2,6 +2,12 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-10 (implementation, Milestone 8da): the charge's own color
+
+Josh: **"should probably be able to choose the "Charge" color on your house emblem"**.
+- The Emblem step gets a third row of swatches, **Charge color**, from the same palette as the House colors; both charges take it. **Let the heralds choose** goes back to the old rule (the second color on a plain field, bone or sable on a divided one), which stays the default for new and rerolled Houses.
+- Stored as the emblem's optional `chargeColor` (a palette id); a color outside the palette is refused. The field still always wears the House colors (8ab).
+
 ## 2026-11-10 (implementation, Milestone 8cz): a choice names its Scion
 
 Josh: **"i wouldn't mind the event saying the specific scion who is qualifying for the criteria, "The sharpest eye - Bob - takes up his contest, sure of his aim". Make sure you highlight his name in house color too."**

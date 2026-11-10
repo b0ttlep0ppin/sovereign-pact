@@ -108,6 +108,7 @@ export function cannotDesign(s: SovState, house: number, design: HouseDesign): s
     !HERALDRY.divisions.includes(e.division) ||
     !HERALDRY.charges.includes(e.charge) ||
     (e.secondary !== undefined && !HERALDRY.charges.includes(e.secondary)) ||
+    (e.chargeColor !== undefined && !swatch(e.chargeColor)) ||
     !Array.isArray(e.tinctures) ||
     !e.tinctures.length ||
     !e.tinctures.every((t) => swatch(t) || HERALDRY.metals.includes(t))

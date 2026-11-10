@@ -58,7 +58,7 @@ function Charge({ id, x, y, scale, color, edge }: { id: string; x: number; y: nu
   );
 }
 
-export function Emblem({ emblem, colors, size = 48 }: { emblem: { shield: string; division: string; tinctures: string[]; charge: string; secondary?: string }; colors: [string, string]; size?: number }) {
+export function Emblem({ emblem, colors, size = 48 }: { emblem: { shield: string; division: string; tinctures: string[]; charge: string; secondary?: string; chargeColor?: string }; colors: [string, string]; size?: number }) {
   const id = useId();
   const clip = `${id}-clip`;
   const edge = `${id}-edge`;
@@ -67,8 +67,10 @@ export function Emblem({ emblem, colors, size = 48 }: { emblem: { shield: string
   const outline = SHIELDS[emblem.shield] ?? SHIELDS.heater!;
   const division = DIVISIONS[emblem.division];
   // On a plain field the charge takes the second tincture, unless the two are too alike to tell apart;
-  // on a divided field it is bone (or sable on a pale field), so it reads across both halves.
-  const charge = !division && Math.abs(lum(field) - lum(second)) > 0.25 ? second : lum(field) > 0.6 ? INK : BONE;
+  // on a divided field it is bone (or sable on a pale field), so it reads across both halves. A House
+  // may paint it in a color of its own choosing instead (Josh 2026-11-10).
+  const chosen = emblem.chargeColor ? HERALDRY_COLORS.get(emblem.chargeColor) : undefined;
+  const charge = chosen ?? (!division && Math.abs(lum(field) - lum(second)) > 0.25 ? second : lum(field) > 0.6 ? INK : BONE);
   const name = (c: string) => c.replace(/_/g, " ");
   return (
     <svg className="sp-emblem" width={size} height={(size * 72) / 64} viewBox="0 0 64 72" role="img" aria-label={`${name(emblem.charge)}${emblem.secondary ? ` and ${name(emblem.secondary)}` : ""} on a ${name(emblem.shield)} shield`}>

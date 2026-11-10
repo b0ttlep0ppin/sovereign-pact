@@ -148,7 +148,20 @@ function EmblemStep({ h, design }: StepProps) {
         if (!v) delete next.secondary;
         design({ emblem: next });
       })}
-      <p className="sp-event__status">The emblem is painted in your House colors: change them in the Colors step.</p>
+      <Swatches label="Charge color" value={e.chargeColor ?? ""} onPick={(c) => set({ chargeColor: c })} />
+      <button
+        type="button"
+        className="sp-button sp-button--quiet"
+        aria-pressed={e.chargeColor === undefined}
+        onClick={() => {
+          const next = { ...e };
+          delete next.chargeColor;
+          design({ emblem: next });
+        }}
+      >
+        Let the heralds choose
+      </button>
+      <p className="sp-event__status">The field is painted in your House colors: change them in the Colors step. The charge takes whichever color you pick here.</p>
     </div>
   );
 }
