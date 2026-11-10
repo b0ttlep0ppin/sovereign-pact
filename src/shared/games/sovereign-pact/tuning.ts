@@ -399,6 +399,8 @@ export const TUNING = {
     cost: { action: 100, wait: 60, defend: 60, song: 35 },
     /** Pugilist combos (§12.2): +5 TP per repeat of a move, +10 CT per move beyond the third. */
     combo: { repeatTp: 5, extraCt: 10, freeMoves: 3 },
+    /** A one-hand weapon with the off hand empty (no shield, no second weapon): weapon power +%, first pass (Josh 2026-11-10: "maybe 25% more damage"). */
+    freeHandPct: 25,
     /** Ravager and Sword Saint (§12.12–12.13): Hold Together's HP cap %, Iron Will's HP % threshold, Mirror Stance's TP per counter, One Cut's crit multiplier, Still Water's power %. */
     /** Dual wield (§13.2): the off-hand hit's power %, and with Dual Wield Mastery. */
     dualWield: { offPower: 50, mastery: 80 },

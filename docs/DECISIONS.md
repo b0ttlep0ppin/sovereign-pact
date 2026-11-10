@@ -2,6 +2,13 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-10 (implementation, Milestone 8di): spears in one hand, and a free hand strikes harder
+
+Josh: **"spears should be 1 handed, but any 1 handed weapon wielded with no offhand (either weapon or shield) should have a bit of a bonus, maybe 25% more damage"**. Also **"layering for offhand sprites seems a little off, should be in front of the coif"**.
+- The Spear base is one-handed now. A Knight can carry spear and shield, and spears can be dual wielded like any other one-hander.
+- A one-hand weapon with nothing in the off hand (no shield, no second weapon) gets weapon power +25% (`TUNING.combat.freeHandPct`, first pass). This applies to its basic Attack and weapon skills. Bare hands, creatures' natural weapons and spells don't count.
+- A shield's front layer is now drawn above every hat and helm (z 136: over the tallest hat, under crests and weapons). The cutter (`tools/cut-scions.py`) does the same, so a re-cut keeps it.
+
 ## 2026-11-10 (implementation, Milestone 8dh): each Scion's own gambits
 
 Josh: **"should be a way to configure gambits per scion, that they use for auto rift battles etc"**.
