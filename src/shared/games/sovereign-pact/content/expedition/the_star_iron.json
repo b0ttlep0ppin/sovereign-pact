@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "cut",
-      "label": "Cut the fallen star.",
+      "label": "Cut the fallen star. Iron like this comes once in a lifetime.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -38,7 +38,7 @@
     },
     {
       "id": "study",
-      "label": "The wisest studies it first.",
+      "label": "The wisest studies it first, to learn what it really is.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"

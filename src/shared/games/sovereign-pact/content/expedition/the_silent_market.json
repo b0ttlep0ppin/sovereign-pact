@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "browse",
-      "label": "Browse the stalls, and point.",
+      "label": "Browse the stalls, and point, and hope you point at the right thing.",
       "rule": "vote",
       "tags": [
         "clever"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "A mask that fits perfectly.",
+          "text": "A mask that fits perfectly. It fits a little too well.",
           "effects": [
             {
               "item": {
@@ -45,7 +45,7 @@
     },
     {
       "id": "speak",
-      "label": "The bravest breaks the silence.",
+      "label": "The bravest breaks the silence, and asks whose faces these are.",
       "rule": "scion:trait:brave|scion:highest:resilience",
       "tags": [
         "reckless"
@@ -64,7 +64,7 @@
     },
     {
       "id": "watch",
-      "label": "The sharpest eye watches who buys what.",
+      "label": "The sharpest eye watches who buys what, to learn where the faces come from.",
       "rule": "scion:highest:acuity",
       "tags": [
         "cautious"

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "devout",
-      "label": "The most devout walks the coals.",
+      "label": "The most devout walks the coals, and trusts the Six to know them.",
       "rule": "scion:trait:devout|scion:highest:sagacity",
       "tags": [
         "bold"
@@ -53,7 +53,7 @@
     },
     {
       "id": "pray",
-      "label": "Pray before the shrine.",
+      "label": "Pray before the shrine, and leave the coals to the faithful.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -73,7 +73,7 @@
     },
     {
       "id": "douse",
-      "label": "Douse the coals and take the basin.",
+      "label": "Douse the coals and take the basin. No god needs brass.",
       "rule": "leader",
       "tags": [
         "cruel"

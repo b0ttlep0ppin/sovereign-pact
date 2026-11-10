@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "cross",
-      "label": "Cross on the black crust.",
+      "label": "Cross on the black crust, quickly, before it breaks.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -44,7 +44,7 @@
     },
     {
       "id": "pick",
-      "label": "The sharpest eye picks out the metal.",
+      "label": "The sharpest eye picks out the metal glinting in the crust.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -65,7 +65,7 @@
     },
     {
       "id": "wait",
-      "label": "Wait for it to cool.",
+      "label": "Wait for it to cool. No one wades through fire.",
       "rule": "leader",
       "tags": [
         "cautious"

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "one",
-      "label": "The Leader names one god.",
+      "label": "The Leader names one god, and lets the other five be angry.",
       "rule": "leader",
       "tags": [
         "bold"
@@ -40,7 +40,7 @@
     },
     {
       "id": "all",
-      "label": "The wisest says it belongs to all six.",
+      "label": "The wisest says it belongs to all six, before the knives come out.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "kind"
@@ -64,7 +64,7 @@
     },
     {
       "id": "mine",
-      "label": "Say the well belongs to you.",
+      "label": "Say the well belongs to you. Let them argue with that.",
       "rule": "leader",
       "tags": [
         "cruel"

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "run",
-      "label": "Run for the rocks.",
+      "label": "Run for the rocks, and do not look back.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -48,7 +48,7 @@
     },
     {
       "id": "stand",
-      "label": "The hardiest stands and turns them.",
+      "label": "The hardiest stands and turns them, so the rest can reach the rocks.",
       "rule": "scion:highest:resilience",
       "tags": [
         "bold"
@@ -85,7 +85,7 @@
     },
     {
       "id": "ride",
-      "label": "The quickest leaps onto one.",
+      "label": "The quickest leaps onto one, and rides the stampede out.",
       "rule": "scion:highest:speed",
       "tags": [
         "reckless"

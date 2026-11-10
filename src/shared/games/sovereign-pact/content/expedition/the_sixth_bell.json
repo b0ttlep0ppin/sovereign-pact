@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "ring",
-      "label": "Ring the last whole bell.",
+      "label": "Ring the last whole bell, and see what prayer is answered.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -37,7 +37,7 @@
     },
     {
       "id": "devout",
-      "label": "The devout asks what it would cost.",
+      "label": "The devout asks what it would cost, before anything is rung.",
       "rule": "scion:trait:devout|scion:highest:sagacity",
       "tags": [
         "clever"

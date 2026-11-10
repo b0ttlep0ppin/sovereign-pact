@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "feed",
-      "label": "Feed it a lamp.",
+      "label": "Feed it a lamp. Nothing should be that hungry.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -36,7 +36,7 @@
     },
     {
       "id": "trap",
-      "label": "The cleverest traps it in a jar.",
+      "label": "The cleverest traps it in a jar, before it eats every light you have.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -67,7 +67,7 @@
     },
     {
       "id": "douse",
-      "label": "Douse every light and let it pass.",
+      "label": "Douse every light and let it pass. Better dark than devoured.",
       "rule": "leader",
       "tags": [
         "cautious"

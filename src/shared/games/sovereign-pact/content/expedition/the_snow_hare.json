@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "follow",
-      "label": "Follow the hare with a man's eyes.",
+      "label": "Follow the hare with a man's eyes. It seems to want you to.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -42,7 +42,7 @@
     },
     {
       "id": "speak",
-      "label": "The wisest speaks to it.",
+      "label": "The wisest speaks to it, to learn what it once was.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "kind"
@@ -61,7 +61,7 @@
     },
     {
       "id": "hunt",
-      "label": "Hunt the hare.",
+      "label": "Hunt the hare. Meat is meat, whatever its eyes.",
       "rule": "leader",
       "tags": [
         "cruel"

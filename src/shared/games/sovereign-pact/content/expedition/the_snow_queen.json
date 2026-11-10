@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "go",
-      "label": "The bravest rides away with her.",
+      "label": "The bravest rides away with her, to learn what lies in her palace.",
       "rule": "scion:trait:brave|scion:highest:resilience",
       "tags": [
         "reckless"
@@ -46,7 +46,7 @@
     },
     {
       "id": "decline",
-      "label": "Decline her, politely.",
+      "label": "Decline her, politely. No one rides with a smile like that.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -79,7 +79,7 @@
     },
     {
       "id": "follow",
-      "label": "Follow the sledge tracks.",
+      "label": "Follow the sledge tracks, to find where she lives.",
       "rule": "leader",
       "tags": [
         "bold"

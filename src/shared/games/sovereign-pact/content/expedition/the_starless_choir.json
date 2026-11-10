@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "listen",
-      "label": "Listen to the choir.",
+      "label": "Listen to the choir, and learn what your song says.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -47,7 +47,7 @@
     },
     {
       "id": "hum",
-      "label": "Hum over it.",
+      "label": "Hum over it, so you hear only your own tune.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -67,7 +67,7 @@
     },
     {
       "id": "answer",
-      "label": "The wisest sings back.",
+      "label": "The wisest sings back, in whatever tongue they can.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"

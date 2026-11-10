@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "share",
-      "label": "Share what food there is.",
+      "label": "Share what food there is, though you will go hungrier for it.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -41,7 +41,7 @@
     },
     {
       "id": "send",
-      "label": "Point them home and walk on.",
+      "label": "Point them home and walk on. You cannot feed everyone.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -61,7 +61,7 @@
     },
     {
       "id": "rob",
-      "label": "The Leader takes their last coins.",
+      "label": "The Leader takes their last coins. They will not live to spend them.",
       "rule": "leader",
       "tags": [
         "cruel"

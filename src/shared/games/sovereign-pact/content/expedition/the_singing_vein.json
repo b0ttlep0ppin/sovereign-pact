@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "mine",
-      "label": "Mine the singing crystal.",
+      "label": "Mine the singing crystal, and hope the deeper hum does not mind.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -43,7 +43,7 @@
     },
     {
       "id": "listen",
-      "label": "The keenest ear listens to it.",
+      "label": "The keenest ear listens to it, to hear the shape of the tunnels ahead.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -62,7 +62,7 @@
     },
     {
       "id": "leave",
-      "label": "Leave it singing.",
+      "label": "Leave it singing. Some things should not be silenced.",
       "rule": "leader",
       "tags": [
         "cautious"

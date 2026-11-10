@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "leave",
-      "label": "Leave your shoes on the beams.",
+      "label": "Leave your shoes on the beams, and walk on blessed.",
       "rule": "each_scion",
       "tags": [
         "kind"
@@ -36,7 +36,7 @@
     },
     {
       "id": "keep",
-      "label": "Keep your shoes.",
+      "label": "Keep your shoes. The road ahead is long.",
       "rule": "each_scion",
       "tags": [
         "cautious"

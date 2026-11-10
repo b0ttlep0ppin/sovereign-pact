@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "take",
-      "label": "Take the bloody antler.",
+      "label": "Take the bloody antler. Bone like that is worth carrying.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -34,7 +34,7 @@
     },
     {
       "id": "bait",
-      "label": "The craftiest uses it as bait.",
+      "label": "The craftiest uses it as bait, to draw the angry quarry back.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"
@@ -55,7 +55,7 @@
     },
     {
       "id": "track",
-      "label": "The sharpest eye follows the fresh trail.",
+      "label": "The sharpest eye follows the fresh trail while the quarry still aches.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"

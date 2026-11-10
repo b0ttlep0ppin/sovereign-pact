@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "read",
-      "label": "The wisest reads the stars with the monks.",
+      "label": "The wisest reads the stars with the monks, to learn whose death it means.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -36,7 +36,7 @@
     },
     {
       "id": "pray",
-      "label": "Pray for the missing god.",
+      "label": "Pray for the missing god, and ask the star to come back.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -56,7 +56,7 @@
     },
     {
       "id": "leave",
-      "label": "Leave before the death comes.",
+      "label": "Leave before the death comes. Let it find someone else.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -64,7 +64,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A long night's walk, and you go further than you meant to.",
+          "text": "A long night's walk, and you go further than you meant to. Nobody looks up.",
           "effects": [
             {
               "skip": 1

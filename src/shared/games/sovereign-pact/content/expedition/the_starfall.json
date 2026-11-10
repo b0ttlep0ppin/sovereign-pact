@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "catch",
-      "label": "Catch a falling star.",
+      "label": "Catch a falling star, and hold on though it burns.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -48,7 +48,7 @@
     },
     {
       "id": "wish",
-      "label": "The wisest makes a wish on one.",
+      "label": "The wisest makes a wish on one, as children do.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "kind"
@@ -70,7 +70,7 @@
     },
     {
       "id": "shelter",
-      "label": "Shelter until it stops.",
+      "label": "Shelter until it stops. Do not look at the faces.",
       "rule": "leader",
       "tags": [
         "cautious"

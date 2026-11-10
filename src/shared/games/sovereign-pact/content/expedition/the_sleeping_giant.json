@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "sneak",
-      "label": "Sneak past, all together.",
+      "label": "Sneak past, all together, and do not breathe too loud.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -44,7 +44,7 @@
     },
     {
       "id": "steal",
-      "label": "The quickest goes for the giant's purse.",
+      "label": "The quickest goes for the giant's purse while it dreams.",
       "rule": "scion:highest:speed",
       "tags": [
         "clever"
@@ -86,7 +86,7 @@
     },
     {
       "id": "kill",
-      "label": "Kill it in its sleep.",
+      "label": "Kill it in its sleep. It will never be weaker.",
       "rule": "vote",
       "tags": [
         "bold"

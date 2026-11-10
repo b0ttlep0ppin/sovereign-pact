@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "touch",
-      "label": "The most hurt touches the bones.",
+      "label": "The most hurt touches the bones, and begs the saint for mercy.",
       "rule": "scion:injured:any|scion:lowest:sanity",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "It works, and the pilgrims murmur.",
+          "text": "It works, and the pilgrims murmur. One of them hides her hand.",
           "effects": [
             {
               "mend": true
@@ -44,7 +44,7 @@
     },
     {
       "id": "pray",
-      "label": "Pray before the bones.",
+      "label": "Pray before the bones, among the faithful and the maimed.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -52,7 +52,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A quiet hour, among the missing fingers.",
+          "text": "A quiet hour among the missing fingers, and no one asks for yours.",
           "effects": [
             {
               "to": "party",
@@ -69,7 +69,7 @@
     },
     {
       "id": "take",
-      "label": "The Leader takes a finger bone.",
+      "label": "The Leader takes a finger bone. The saint has plenty.",
       "rule": "leader",
       "tags": [
         "cruel"

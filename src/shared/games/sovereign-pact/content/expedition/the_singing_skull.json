@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "take",
-      "label": "Take it along as a guide.",
+      "label": "Take it along as a guide. A bored soldier still knows the roads.",
       "rule": "leader",
       "tags": [
         "bold"
@@ -49,7 +49,7 @@
     },
     {
       "id": "learn",
-      "label": "The wisest learns its song.",
+      "label": "The wisest learns its song, every verse, even the rude ones.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "kind"
@@ -72,7 +72,7 @@
     },
     {
       "id": "smash",
-      "label": "Smash the skull.",
+      "label": "Smash the skull, and let the soldier rest at last.",
       "rule": "leader",
       "tags": [
         "cruel"

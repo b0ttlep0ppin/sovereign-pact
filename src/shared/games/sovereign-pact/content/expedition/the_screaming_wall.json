@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "answer",
-      "label": "The one being called answers the voice.",
+      "label": "The one being called answers the voice, to learn who knows their name.",
       "rule": "scion:random",
       "tags": [
         "kind"
@@ -46,7 +46,7 @@
     },
     {
       "id": "free",
-      "label": "Pull him free of the wall.",
+      "label": "Pull him free of the wall, whatever he is.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -72,7 +72,7 @@
     },
     {
       "id": "deaf",
-      "label": "Stop your ears and walk on.",
+      "label": "Stop your ears and walk on. Nothing in that wall can be saved.",
       "rule": "leader",
       "tags": [
         "cautious"

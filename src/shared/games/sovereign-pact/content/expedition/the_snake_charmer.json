@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "learn",
-      "label": "The quickest fingers learn her tune.",
+      "label": "The quickest fingers learn her tune, whatever price she names.",
       "rule": "scion:highest:speed",
       "tags": [
         "clever"
@@ -35,7 +35,7 @@
     },
     {
       "id": "pay",
-      "label": "Pay her to clear the road.",
+      "label": "Pay her to clear the road, and keep your distance from the swaying heads.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -59,7 +59,7 @@
     },
     {
       "id": "pipe",
-      "label": "The Leader steals her pipe.",
+      "label": "The Leader steals her pipe. Let the snakes obey someone else.",
       "rule": "leader",
       "tags": [
         "cruel"

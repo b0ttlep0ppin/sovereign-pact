@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "hire",
-      "label": "The Leader hires them for the next fight.",
+      "label": "The Leader hires them for the next fight, before they decide on the other thing.",
       "rule": "leader",
       "tags": [
         "clever"
@@ -50,7 +50,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They laugh, and decide you are not, and pass by.",
+          "text": "They laugh, decide you are not, and pass by.",
           "effects": [
             {
               "score": {
@@ -63,7 +63,7 @@
     },
     {
       "id": "fight",
-      "label": "Strike before they decide.",
+      "label": "Strike before they decide, and let them learn the price of hesitation.",
       "rule": "vote",
       "tags": [
         "bold"

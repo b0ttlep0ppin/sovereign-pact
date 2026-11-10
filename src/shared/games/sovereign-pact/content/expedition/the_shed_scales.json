@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "gather",
-      "label": "Gather the sharp scales.",
+      "label": "Gather the sharp scales, and mind your fingers.",
       "rule": "vote",
       "tags": [
         "clever"
@@ -38,7 +38,7 @@
     },
     {
       "id": "follow",
-      "label": "Follow the trail of scales.",
+      "label": "Follow the trail of scales while the quarry is molting and weak.",
       "rule": "leader",
       "tags": [
         "bold"
@@ -59,7 +59,7 @@
     },
     {
       "id": "study",
-      "label": "The wisest studies the scales.",
+      "label": "The wisest studies the scales, to learn where it is thin.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
