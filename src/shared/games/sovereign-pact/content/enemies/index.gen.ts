@@ -68,6 +68,7 @@ import beast_orc from "./beast_lands/beast_orc.json" with { type: "json" };
 import beast_orc_king from "./beast_lands/beast_orc_king.json" with { type: "json" };
 import beast_redcap from "./beast_lands/beast_redcap.json" with { type: "json" };
 import beast_rhino from "./beast_lands/beast_rhino.json" with { type: "json" };
+import beast_sacred_bull from "./beast_lands/beast_sacred_bull.json" with { type: "json" };
 import beast_tiger_swordsman from "./beast_lands/beast_tiger_swordsman.json" with { type: "json" };
 import beast_troll from "./beast_lands/beast_troll.json" with { type: "json" };
 import beast_weasel_ninja from "./beast_lands/beast_weasel_ninja.json" with { type: "json" };
@@ -352,6 +353,7 @@ export default [
   beast_orc_king,
   beast_redcap,
   beast_rhino,
+  beast_sacred_bull,
   beast_tiger_swordsman,
   beast_troll,
   beast_weasel_ninja,

@@ -82,10 +82,10 @@ describe("the Lair", () => {
 
   it("is led by the quarry: titled, a level up, half again its HP", () => {
     const { enemies } = lair("old_scar");
-    const lead = enemies.find((u) => u.name === "Old Scar, the Great Boar")!;
-    expect(lead.enemy).toBe("beast_wild_boar");
+    const lead = enemies.find((u) => u.name === "Old Scar, the Sacred Bull")!;
+    expect(lead.enemy).toBe("beast_sacred_bull");
     expect(lead.level).toBe(4 + H.levelUp);
-    const plain = enemyCombatant("beast_wild_boar", { id: 1, level: 4 + H.levelUp, col: 0, row: 0 });
+    const plain = enemyCombatant("beast_sacred_bull", { id: 1, level: 4 + H.levelUp, col: 0, row: 0 });
     expect(lead.maxHp).toBe(Math.round((plain.maxHp * H.hpPct) / 100));
     expect(lead.statuses.some((x) => x.id === "enrage")).toBe(true);
   });
@@ -107,7 +107,7 @@ describe("the Lair", () => {
     // The trophy's Valor, on top of what any won battle pays.
     for (const [i, h] of s.houses.entries()) expect(h.score.valor - valor[i]!).toBe(q.trophy.valor + 2 * TUNING.journey.valor.battle);
     expect(s.expedition!.haul!.stores.grain).toBeGreaterThanOrEqual(q.trophy.stores!.grain!);
-    expect(s.log.some((l) => l.includes("Old Scar, the Great Boar is slain"))).toBe(true);
+    expect(s.log.some((l) => l.includes("Old Scar, the Sacred Bull is slain"))).toBe(true);
   });
 });
 

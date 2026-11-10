@@ -360,7 +360,8 @@ export function home(s: SovState, how: NonNullable<Expedition["result"]>): void 
     }
   }
   if (how === "retreated") {
-    log(s, "The expedition turns back; whatever lay at its end stays there.");
+    const leader = s.people.find((p) => p.id === e.leader);
+    log(s, `${leader ? `${leader.name}, the Leader, turns the party back` : "The expedition turns back"}; whatever lay at its end stays there.`);
     for (const h of new Set(marching(s).map((id) => person(s, id).host))) s.houses[h]!.score.valor = Math.max(0, s.houses[h]!.score.valor - J.valor.retreat);
   }
   // §9.9: a party that walks home brings what it carries; a wiped one loses it.
@@ -390,12 +391,16 @@ export function home(s: SovState, how: NonNullable<Expedition["result"]>): void 
 
 /**
  * The bot Leader presses on until half the party is out, badly broken or low on HP, or a Scion is near
- * the end of their Sanity; it never turns back from a mandatory or forced expedition.
+ * the end of their Sanity; it never turns back from a mandatory or forced expedition, nor at the Gate
+ * before the party has met anything, nor while a person's Scion marches (Josh 2026-11-10: "its just
+ * kinda wack to have them turn back at all").
  */
 export function botPress(s: SovState): boolean {
   const e = s.expedition!;
-  if (e.card.type === "mandatory" || e.card.type === "forced" || cannotRetreat(s)) return true;
+  if (e.at === 0 || e.card.type === "mandatory" || e.card.type === "forced" || cannotRetreat(s)) return true;
   const ids = marching(s);
+  const bots = new Set(s.botSeats ?? []);
+  if (s.botSeats && ids.some((id) => !bots.has(person(s, id).host))) return true;
   const all = walkers(s).length;
   if (ids.some((id) => person(s, id).sanity < J.botRetreatSanity)) return false;
   // Under a share of their HP counts as badly hurt.

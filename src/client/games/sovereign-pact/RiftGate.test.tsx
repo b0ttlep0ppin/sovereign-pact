@@ -1,6 +1,7 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 import { sovereignPact as g, type SovState } from "@vibepulse/shared/games/sovereign-pact";
+import { openGate } from "../../../shared/games/sovereign-pact/gate.ts";
 import { found, campaign } from "../../../shared/games/sovereign-pact/testing.ts";
 import ChainMap from "./ChainMap";
 import RiftGate from "./RiftGate";
@@ -18,6 +19,15 @@ const settled = () => {
 };
 
 describe("the Rift Gate's cards (§9.1)", () => {
+  it("says when the Gate stays shut and no expedition goes", () => {
+    const s = found(campaign(2, 4));
+    s.flags.push("expedition_delayed");
+    openGate(s);
+    expect(s.gate?.cards).toEqual([]);
+    render(<RiftGate view={g.view(s, s.players[0]!)} sendMove={() => {}} canVote />);
+    expect(screen.getByText(/No expedition this Year/).textContent).toContain("walls are manned");
+  });
+
   it("lays out each card with its type, pool and level, and the votes cast", () => {
     const s = settled();
     render(<RiftGate view={g.view(s, s.players[0]!)} sendMove={() => {}} canVote />);

@@ -12,8 +12,11 @@ import { setOut } from "./homecoming.ts";
 
 export const seatsOf = (card: ExpeditionCard): number => (card.size === 4 ? 4 : 8);
 
-/** A Scion the House can field: its own (a Ward is its host's), not Lost. The Retired return first (§6.12). */
-export const able = (s: SovState, house: number): Person[] => s.people.filter((p) => p.host === house && p.status === "scion");
+/**
+ * A Scion the House can field: its own (a Ward is its host's), not Lost. The Retired return first (§6.12).
+ * Not those sent through the Rift Gate on its Sortie (Josh 2026-11-10): a Scion goes on one or the other.
+ */
+export const able = (s: SovState, house: number): Person[] => s.people.filter((p) => p.host === house && p.status === "scion" && s.assign[p.id]?.to !== "sortie");
 
 /**
  * The order spare seats go in (§9.2): the House with the fewest expeditions attended, then by rotation
@@ -72,6 +75,8 @@ export function cannotField(s: SovState, house: number, people: unknown): string
   if (!Array.isArray(people) || people.some((id) => typeof id !== "number")) return "Name the Scions you field.";
   if (new Set(people).size !== people.length) return "A Scion can take only one seat.";
   if (people.length > e.seats[house]!) return `Your House has ${e.seats[house]} seat${e.seats[house] === 1 ? "" : "s"}.`;
+  const away = s.people.find((p) => people.includes(p.id) && p.host === house && s.assign[p.id]?.to === "sortie");
+  if (away) return `${away.name} is going on the Sortie, not the expedition.`;
   const mine = new Set(able(s, house).map((p) => p.id));
   if (!people.every((id) => mine.has(id as number))) return "Field only your own Scions.";
   return null;
@@ -187,14 +192,23 @@ export function waiting(s: SovState): number[] {
   return e.party.flatMap((p, i) => (p === null ? [i] : []));
 }
 
+/** Near the end of their Sanity: the bot keeps them home and never makes them Leader, while it has others. */
+const frayed = (p: Person) => +(p.sanity < TUNING.journey.botRetreatSanity);
+
 /** The bot fields its highest-level Scions (healthiest first among equals) and votes for its own best. */
 export function botField(s: SovState, house: number): number[] {
-  const best = [...able(s, house)].sort((a, b) => b.level - a.level || a.injuries.length - b.injuries.length || a.id - b.id);
+  const best = [...able(s, house)].sort((a, b) => frayed(a) - frayed(b) || b.level - a.level || a.injuries.length - b.injuries.length || b.sanity - a.sanity || a.id - b.id);
   return best.slice(0, s.expedition!.seats[house]).map((p) => p.id);
 }
 
+/**
+ * The bot's Leader vote: a person's Scion whenever one marches (Josh 2026-11-10: "bots should probably
+ * never be the leader"), else its own best.
+ */
 export function botLeader(s: SovState, house: number): number {
   const party = roster(s).map((id) => s.people.find((p) => p.id === id)!);
+  const bots = new Set(s.botSeats ?? []);
+  const people = party.filter((p) => !bots.has(p.host));
   const own = party.filter((p) => p.host === house);
-  return [...(own.length ? own : party)].sort((a, b) => b.level - a.level || a.id - b.id)[0]!.id;
+  return [...(people.length ? people : own.length ? own : party)].sort((a, b) => frayed(a) - frayed(b) || b.level - a.level || b.sanity - a.sanity || a.id - b.id)[0]!.id;
 }

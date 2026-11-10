@@ -1,7 +1,7 @@
 // Town event effects (§9.4's catalogue, the parts that touch the town): the tracks, resources, ruined
 // buildings, lost recruits, Sanity, score, flags and the timeline. Each effect names whom it touches;
 // without a subject House, an effect with no `to` falls on one random House.
-import { holders } from "./assign.ts";
+import { holders, lapse } from "./assign.ts";
 import { loseAccord } from "./commons.ts";
 import type { TownEffect, TownScionEffect } from "./content.ts";
 import { caps } from "./combat/build.ts";
@@ -112,6 +112,7 @@ function bestow(s: SovState, e: TownEffect, i: number): void {
     const b = pickBuilding(h, e.raze);
     if (b) {
       delete h.buildings[b];
+      lapse(s, i);
       log(s, `House ${h.name}'s ${BUILDING_BY_ID.get(b)?.name ?? b} is torn down.`);
     }
   }
@@ -159,6 +160,7 @@ export function damage(s: SovState, house: number, building: string): void {
   const h = s.houses[house]!;
   h.buildings[building] = (h.buildings[building] ?? 1) - 1;
   if (!h.buildings[building]) delete h.buildings[building];
+  lapse(s, house);
   log(s, `House ${h.name}'s ${building.replace(/_/g, " ")} is damaged.`);
 }
 

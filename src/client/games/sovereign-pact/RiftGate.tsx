@@ -38,6 +38,14 @@ interface Props {
 
 export default function RiftGate({ view, sendMove, canVote }: Props) {
   const gate = view.gate;
+  // No expedition this Year (a Crisis's calamity): say so, or sealing seems to skip it (Josh 2026-11-10).
+  if (gate?.shut)
+    return (
+      <section className="sp-panel sp-gate" aria-label="The Rift Gate's cards">
+        <h2>The Rift Gate</h2>
+        <p className="sp-gate__lead">No expedition this Year. {gate.shut} Scions can still be sent on a Sortie.</p>
+      </section>
+    );
   if (!gate?.cards.length) return null;
   const choosing = gate.cards.length > 1;
   return (

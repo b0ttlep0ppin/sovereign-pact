@@ -50,6 +50,19 @@ export function slots(s: SovState, house: number, to: AssignmentKind, where?: st
   }
 }
 
+/** A building of `house` is torn down or damaged: the assignments it no longer has room for lapse, the last taken first. */
+export function lapse(s: SovState, house: number): void {
+  const kept = new Map<string, number>();
+  for (const p of s.people) {
+    const a = p.host === house ? s.assign[p.id] : undefined;
+    if (!a) continue;
+    const key = `${a.to}:${a.at ?? ""}`;
+    const n = (kept.get(key) ?? 0) + 1;
+    kept.set(key, n);
+    if (n > slots(s, house, a.to, a.at)) delete s.assign[p.id];
+  }
+}
+
 /** The assignment a person holds, if it is still theirs to hold. */
 const holding = (s: SovState, p: Person): Assignment | undefined => (p.status === "lost" ? undefined : s.assign[p.id]);
 

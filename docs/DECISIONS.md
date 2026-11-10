@@ -2,6 +2,29 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-10 (implementation, Milestone 8dl): a bot Leader never turns back at the Gate
+
+Josh: **"there was no expedition for multiple years in a row it just short circuited and immediately cut to rift gate"**. His table showed why: House Lachrymore's bot made its Knight Leader every Year, and the Knight's Sanity sat below the bot's retreat mark (15), so it turned the party back at the Gate before the first node. His Scions marched and came home with nothing, which looked like a skipped expedition.
+- Josh then: **"bots should probably never be the leader its just kinda wack to have them turn back at all"**. A bot votes for a person's Scion as Leader whenever one marches (the best of them), so a bot leads only a party of bots' Scions. A bot Leader never turns back while a person's Scion marches; with bots alone it keeps its judgment, so all-bot campaigns and the simulator still retreat.
+- `botPress` also always presses on while the party has met nothing yet (`e.at === 0`).
+- `botField` keeps a Scion below the retreat mark home while it has others, and `botLeader` never picks one; among equals, more Sanity goes first.
+- A building torn down or damaged lets go of the assignments it no longer has room for (`lapse`, last taken first), so a razed Chapel doesn't keep its worshippers on the books.
+- The retreat line names the Leader who turned back ("Hamelin, the Leader, turns the party back; …").
+- The Continue screen's "Copy this table for a bug report" copies the kept table and the start-of-Year checkpoint as text, because downloads are blocked inside the artifact's frame.
+
+## 2026-11-10 (implementation, Milestone 8dk): a Sortie's Scions stay off the expedition
+
+Josh: **"should enforce "scions not on expedition" for rift gate sorties"**.
+- A Scion assigned to the Sortie at the Rift Gate cannot take an expedition seat: fielding them is refused ("… is going on the Sortie"), and the seat picker leaves them out. Seats are shared out by the Scions each House has left (`able`), so a House that sends everyone on the Sortie takes no seats. Bots field the same way.
+- Josh: **"i sealed a year and it skipped the expedition, and just went right to sorties?"**. The likely cause is Breach in the Wall's calamity (`expedition_delayed`), which shuts the Gate for a Year, while the town showed nothing about it. The Rift Gate panel now says "No expedition this Year" and why, and the Gate keeps an empty card list with that reason (`gate.shut`).
+- Reading taken: the Sortie wins because it is chosen first, in the Settlement Phase, before the expedition's seats are dealt. Anyone who must go anyway (an event's Regent) is still kept off the Sortie as before.
+
+## 2026-11-10 (implementation, Milestone 8dj): Old Scar is a bull
+
+Josh: **"change old scar the sacred boar to old scar the sacred bull and use CP_B16_bull_murcian for his image"**.
+- The Beast Lands quarry is now "Old Scar, the Sacred Bull". It is a new enemy, `beast_sacred_bull` (a bruiser with Horn Gore and a harder Charge), drawn with the pack's Murcian bull.
+- Reading taken: the bull is `addOnly`, so it never turns up in ordinary Encounters. It appears only as the Hunt's quarry, and the Wild Boar stays in the roster as it was.
+
 ## 2026-11-10 (implementation, Milestone 8di): spears in one hand, and a free hand strikes harder
 
 Josh: **"spears should be 1 handed, but any 1 handed weapon wielded with no offhand (either weapon or shield) should have a bit of a bonus, maybe 25% more damage"**. Also **"layering for offhand sprites seems a little off, should be in front of the coif"**.

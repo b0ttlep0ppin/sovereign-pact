@@ -109,8 +109,9 @@ export function openGate(s: SovState): void {
   // A Crisis's calamity can hold the Year's expedition back while the walls are manned (§3.5).
   if (s.flags.includes("expedition_delayed")) {
     s.flags = s.flags.filter((f) => f !== "expedition_delayed");
-    log(s, "The walls are manned this Year; the Rift Gate stays shut.");
-    return void delete s.gate;
+    const why = "The walls are manned this Year; the Rift Gate stays shut, and no expedition goes out.";
+    s.gate = { cards: [], votes: s.houses.map(() => null), shut: why };
+    return log(s, why);
   }
   // A forcing event in this Year's Omens replaces the whole offer with its one card (§3.2).
   const opened = [...s.events.map((e) => e.id), ...(s.vote?.kind === "event" ? [s.vote.subject] : [])];
