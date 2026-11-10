@@ -10,7 +10,7 @@
     8
   ],
   "title": "The Still-Warm Camp",
-  "text": "A camp, its fire still smouldering, its packs still full, a pot of something going cold on the stones. Bedrolls lie thrown back. Whoever left it left in a hurry and meant to come back, and they have not, and the woods around it are very quiet.",
+  "text": "A camp, its fire still smouldering, its packs still full, a pot of something going cold on the stones. Bedrolls lie thrown back. Whoever left did so in a hurry, meaning to return. They have not, and the woods around are very quiet.",
   "options": [
     {
       "id": "take",
@@ -22,7 +22,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "Timber, iron, a little gold. Nobody comes back for it, and nobody calls out from the trees.",
+          "text": "You gather timber, iron and a little gold. No one returns to claim it.",
           "effects": [
             {
               "resources": {
@@ -35,7 +35,7 @@
         },
         {
           "w": 40,
-          "text": "They come back for it. Not all of them are the people who left, and not all of them are people.",
+          "text": "The owners return for it. Not all of them are the people who left, nor are all of them people.",
           "effects": [
             {
               "encounter": {
@@ -56,7 +56,7 @@
       "outcomes": [
         {
           "w": 40,
-          "text": "You move on. Whoever left it comes back that night and finds the ground disturbed, and follows your tracks.",
+          "text": "Whoever left the camp returns that night, finds the ground disturbed and follows your tracks.",
           "effects": [
             {
               "fork": {
@@ -69,7 +69,7 @@
         },
         {
           "w": 40,
-          "text": "You move on, and an hour later hear screaming from the direction of the camp. Whatever they ran from caught them, and not you.",
+          "text": "An hour later you hear screaming from the direction of the camp. Whatever they fled has caught them instead of you.",
           "effects": [
             {
               "sanity": -8
@@ -78,7 +78,7 @@
         },
         {
           "w": 20,
-          "text": "Later, a cairn by the path, stacked neatly: a gift from strangers, or a thank-you from the woods.",
+          "text": "Further on you find a cairn stacked neatly beside the path, left as a gift from strangers or perhaps as thanks from the woods.",
           "effects": [
             {
               "resources": {
@@ -101,7 +101,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "Quick hands, full pockets. Whoever comes back for these packs will find them light.",
+          "text": "The Vagabond's quick hands fill their pockets. Whoever returns for these packs will find them light.",
           "effects": [
             {
               "resources": {
@@ -112,7 +112,7 @@
         },
         {
           "w": 40,
-          "text": "Quick hands, and in the last pack a letter addressed to the Vagabond, by name, in their own writing.",
+          "text": "In the last pack the Vagabond finds a letter addressed to them by name, written in their own hand.",
           "effects": [
             {
               "resources": {

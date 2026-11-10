@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 55,
-          "text": "The bellows breathe in time with the hammer, as if someone guides it, and the blade comes out fine. Someone was pleased.",
+          "text": "The bellows breathe in time with the hammer, as if someone guides it. The blade comes out fine; somewhere, the smith is pleased.",
           "effects": [
             {
               "item": {
@@ -35,7 +35,7 @@
         },
         {
           "w": 45,
-          "text": "The coals flare white at the first stroke, angry that a stranger dared to touch the smith's work.",
+          "text": "The coals flare white at the first stroke, angry that a stranger dared touch the smith's work.",
           "effects": [
             {
               "durability": -25,
@@ -58,7 +58,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Good iron and old tools, still sharp. The bellows wheeze faster as you carry them out.",
+          "text": "The iron is good and the old tools still sharp. The bellows wheeze faster as you carry them out.",
           "effects": [
             {
               "resources": {
@@ -79,7 +79,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The bellows sigh to a stop, as if someone could rest at last. The coals fade, and the forge is only a forge.",
+          "text": "The bellows sigh to a stop, as if someone could rest at last. As the coals fade, the forge becomes only a forge.",
           "effects": [
             {
               "to": "party",

@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "Crown in hand, and the whole herd thundering behind, squealing murder.",
+          "text": "They snatch the crown and run, the whole herd thundering behind them, squealing murder.",
           "effects": [
             {
               "resources": {
@@ -37,7 +37,7 @@
         },
         {
           "w": 50,
-          "text": "Too slow. A tusk opens the leg to the bone, and the Boar King keeps its crown.",
+          "text": "They are too slow. A tusk opens their leg to the bone, and the Boar King keeps its crown.",
           "effects": [
             {
               "durability": -40,
@@ -57,7 +57,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The herd is busy, grunting and tearing. You are not interesting, for now. You hope it stays that way.",
+          "text": "The herd is busy grunting and tearing at the food. For now, you are of no interest to them.",
           "effects": [
             {
               "resources": {
@@ -81,7 +81,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It is a king for a reason, and its subjects come when it calls.",
+          "text": "It is king for a reason. When it calls, its subjects come.",
           "effects": [
             {
               "encounter": {

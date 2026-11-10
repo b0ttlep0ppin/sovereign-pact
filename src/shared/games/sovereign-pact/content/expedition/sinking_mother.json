@@ -9,7 +9,7 @@
     8
   ],
   "title": "The Sinking Mother",
-  "text": "A woman stands waist-deep in the black water, her arms held out, humming a lullaby you almost know. The water around her does not ripple. She is looking at the most tired of you as if she has been waiting for them all her life, and she is so very patient.",
+  "text": "A woman stands waist-deep in the black water, her arms held out, humming a lullaby you almost know. The water around her does not ripple. She looks at the most tired of you as if she has waited for them all her life.",
   "options": [
     {
       "id": "go",
@@ -22,7 +22,7 @@
       "outcomes": [
         {
           "w": 45,
-          "text": "She holds them under, gently, a long time. What climbs out is green and dripping and still knows your names.",
+          "text": "She holds them under gently for a long time. What climbs out is green and dripping, though it still knows your names.",
           "effects": [
             {
               "change": "marsh_thing"
@@ -31,7 +31,7 @@
         },
         {
           "w": 35,
-          "text": "She kisses their brow and is gone. They come back calmer, holding something she gave them, and will not let anyone else touch it.",
+          "text": "She kisses their brow and is gone. They return calmer, clutching a gift from her that they will let no one else touch.",
           "effects": [
             {
               "sanity": 30
@@ -45,7 +45,7 @@
         },
         {
           "w": 20,
-          "text": "She will not let go, and the water is very cold, and very deep.",
+          "text": "She will not let go. The water is bitterly cold and very deep before the others drag them free.",
           "effects": [
             {
               "injury": "body"
@@ -64,7 +64,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "The humming follows you a while and then stops. The Leader does not stop hearing it, and walks into the next fight half in a dream.",
+          "text": "The humming follows you for a while, then stops. The Leader still hears it, and walks into the next fight half in a dream.",
           "effects": [
             {
               "sanity": -6,
@@ -74,7 +74,7 @@
         },
         {
           "w": 30,
-          "text": "The humming follows you all day, and some of you find yourselves humming along.",
+          "text": "The humming follows you all day. By evening, some of you are humming along without meaning to.",
           "effects": [
             {
               "to": "party",
@@ -95,7 +95,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "She stops, and listens, and sinks out of sight smiling. The tune is the Minstrel's now, and it has power in it.",
+          "text": "She stops to listen, then sinks out of sight with a smile. The tune belongs to the Minstrel now, and there is power in it.",
           "effects": [
             {
               "jp": 40,
@@ -105,7 +105,7 @@
         },
         {
           "w": 40,
-          "text": "She stops, and listens, and takes the Minstrel's voice down into the water with her.",
+          "text": "She stops to listen. When she sinks, she takes the Minstrel's voice down into the water with her.",
           "effects": [
             {
               "status": "silence",

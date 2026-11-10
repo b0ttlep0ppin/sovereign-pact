@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "It wags once, slowly, and goes. It was only looking. This time.",
+          "text": "It wags its tail once, slowly, then goes. This time, it was only looking.",
           "effects": [
             {
               "sanity": 5
@@ -33,7 +33,7 @@
         },
         {
           "w": 50,
-          "text": "It was not only looking. It knows them now, and it will come again, at the end, when they are alone.",
+          "text": "It was not only looking. It knows them now, and it will come again at the end, when they are alone.",
           "effects": [
             {
               "sanity": -20
@@ -55,7 +55,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It eats with a crunch of bone, and goes, and does not come back for anyone. Not yet.",
+          "text": "It eats with a crunch of bone, then leaves. It does not come back for anyone, not yet.",
           "effects": [
             {
               "to": "party",
@@ -79,7 +79,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It goes, without hurry. It will be back, for someone, some day, and it will not forget the fire.",
+          "text": "It leaves without hurry. Some day it will return for someone, and it will not have forgotten the fire.",
           "effects": [
             {
               "doom": 1

@@ -9,7 +9,7 @@
     7
   ],
   "title": "The Bandits' Toll",
-  "text": "A rope across the road, hung with bells, and three bandits behind it. They are very polite and very well armed, and their coats once belonged to better people. A toll, they say, for the road's upkeep. Nobody has kept up this road in a hundred years.",
+  "text": "A rope hung with bells stretches across the road, with three bandits behind it. They are very polite and very well armed, their coats taken from better people. A toll, they say, for the road's upkeep. Nobody has kept up this road in a hundred years.",
   "options": [
     {
       "id": "pay",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They lift the rope with a bow and a jingle of bells, and count your coin very carefully, and watch you go.",
+          "text": "They lift the rope with a bow and a jingle of bells. Each coin is counted carefully as they watch you go.",
           "effects": [
             {
               "resources": {
@@ -42,7 +42,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "By the end they are paying you to leave, and not quite sure why.",
+          "text": "By the end they are paying you to leave, though none of them is sure why.",
           "effects": [
             {
               "resources": {
@@ -58,7 +58,7 @@
         },
         {
           "w": 40,
-          "text": "They are not persuaded. Their smiles stay, but their hands move toward their blades.",
+          "text": "They are not persuaded. Their smiles stay fixed while their hands drift toward their blades.",
           "effects": [
             {
               "encounter": {}
@@ -77,7 +77,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Three bandits, and their friends in the trees, and they were always going to do this whatever you paid.",
+          "text": "The three bandits are not alone; their friends wait in the trees. This was always how it would end, whatever you paid.",
           "effects": [
             {
               "encounter": {

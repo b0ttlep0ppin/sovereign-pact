@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Ten voices whisper their tricks into you at once. You come away cleverer, and you will never be sure again which thoughts are your own.",
+          "text": "Ten voices whisper their tricks into you at once. You leave cleverer than you came, though never again certain which thoughts are your own.",
           "effects": [
             {
               "to": "party",
@@ -56,7 +56,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Ten faces frown at once. He stands, and keeps standing, and he is very tall.",
+          "text": "All ten faces frown at once. He rises from the throne, taller than any man.",
           "effects": []
         }
       ]
@@ -72,7 +72,7 @@
       "outcomes": [
         {
           "w": 55,
-          "text": "The Leader learns the trick and does not bow. Nine of the heads laugh; the tenth draws its sword.",
+          "text": "The Leader learns the trick without bowing. Nine of the heads laugh at such boldness; the tenth only watches.",
           "effects": [
             {
               "stat": {
@@ -83,7 +83,7 @@
         },
         {
           "w": 45,
-          "text": "One of the heads saw it coming. The trick turns in the Leader's hands and goes into all of you instead.",
+          "text": "One of the heads saw it coming. The trick turns in the Leader's hands and spreads through every mind in the party.",
           "effects": [
             {
               "to": "party",

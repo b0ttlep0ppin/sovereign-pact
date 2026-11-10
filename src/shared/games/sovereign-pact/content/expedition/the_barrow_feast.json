@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 45,
-          "text": "The dead drink to the living all night, laughing without breath, and give a gift at parting.",
+          "text": "The dead drink to the living all night, laughing without breath. At parting, they give a gift.",
           "effects": [
             {
               "item": {
@@ -37,7 +37,7 @@
         },
         {
           "w": 55,
-          "text": "The place was set for someone who meant to stay. The Leader's eyes grow heavy, and the dead lean closer, smiling.",
+          "text": "The place was set for someone who meant to stay. The Leader's eyes grow heavy while the dead lean closer, smiling.",
           "effects": [
             {
               "sanity": -25
@@ -59,7 +59,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They raise theirs back, all of them, with a creak of old bones, and the door swings gently shut.",
+          "text": "With a creak of old bones they raise their cups in return. The door swings gently shut.",
           "effects": [
             {
               "to": "party",
@@ -84,7 +84,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The dead stand up, all at once, cups still in their hands. They do use it, it seems.",
+          "text": "The dead rise as one, cups still in their hands. It seems they have a use for it after all.",
           "effects": [
             {
               "resources": {

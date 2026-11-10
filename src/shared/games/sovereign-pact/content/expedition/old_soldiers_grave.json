@@ -36,7 +36,7 @@
         },
         {
           "w": 30,
-          "text": "They stand up older, with grey in their hair that was not there before. The soldier gave what he had, and took a little back.",
+          "text": "They rise older, with grey in their hair that was not there before. The soldier gave what he had but took something in return.",
           "effects": [
             {
               "xp": 40
@@ -58,7 +58,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "The helm turns to watch you go, and every hand on a sword feels heavier for not stopping.",
+          "text": "The helm turns to watch you go. Every hand on a sword feels heavier for not having stopped.",
           "effects": [
             {
               "to": "party",
@@ -68,7 +68,7 @@
         },
         {
           "w": 40,
-          "text": "The helm turns to watch you go, and nods once. Some old soldier is satisfied, and you march the straighter for it.",
+          "text": "The helm turns to watch you go, then nods once. You march straighter for the old soldier's approval.",
           "effects": [
             {
               "to": "party",
@@ -80,7 +80,7 @@
     },
     {
       "id": "sword_down",
-      "label": "The Soldier lays their sword on the cairn, and takes it up again, as the words ask.",
+      "label": "The Soldier lays their sword on the cairn, then takes it up again as the words ask.",
       "rule": "scion:job:soldier",
       "only": true,
       "tags": [
@@ -89,7 +89,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The words were meant for them. The helm nods, and the blade comes away from the cairn truer than it went down.",
+          "text": "The helm nods. The blade comes away from the cairn truer than it was laid down.",
           "effects": [
             {
               "gear": {

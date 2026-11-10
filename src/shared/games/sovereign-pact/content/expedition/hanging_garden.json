@@ -22,7 +22,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "It tastes of every good year. Something in them grows, slow and green and strong.",
+          "text": "It tastes of every good year they have known. Something within them begins to grow, slow and green.",
           "effects": [
             {
               "sanity": 20
@@ -36,7 +36,7 @@
         },
         {
           "w": 40,
-          "text": "It tastes of sleep, and it is in no hurry to let them go. They are still yawning when the next fight finds them.",
+          "text": "A heavy drowsiness follows the first bite. They are still yawning when the next fight finds them.",
           "effects": [
             {
               "status": "sleep"
@@ -55,7 +55,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The vines sway as you pass, disappointed. The smell stays with the Leader, and in it a summer they will dream of, sweetly, for days.",
+          "text": "The vines sway as you pass beneath them. Their scent clings to the Leader, who dreams sweetly of that lost summer for days.",
           "effects": [
             {
               "sanity": 12

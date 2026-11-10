@@ -9,7 +9,7 @@
     10
   ],
   "title": "Ash Rain",
-  "text": "Grey flakes begin to fall from a sky with no fire under it, slow and fat as first snow. Where they land on skin they do not melt. They cling, and they are faintly warm, and they smell of a hearth that went out a long time ago.",
+  "text": "Grey flakes begin to fall from a sky with no fire under it, slow and fat as first snow. Where they land on skin they do not melt. They cling there, faintly warm, carrying the smell of a hearth that went cold long ago.",
   "options": [
     {
       "id": "cover",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It falls the whole night, soft as breath on the back of the neck. Nobody sleeps, and in the morning everyone is grey.",
+          "text": "It falls through the night, soft as breath on the back of the neck. Not one of you sleeps; by morning every face is grey.",
           "effects": [
             {
               "to": "party",
@@ -41,7 +41,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "It is only ash, after all, though the Leader coughs grey all the next day and the cough steals the breath their spells need.",
+          "text": "The Leader breathes in more than they meant to. They cough grey through the next day, short of the breath their spells require.",
           "effects": [
             {
               "mp": -25
@@ -50,7 +50,7 @@
         },
         {
           "w": 50,
-          "text": "It gets into the eyes and the lungs and the joints of armor, and grinds there like grave dirt.",
+          "text": "It works its way into eyes, lungs and the joints of every helm, grinding there like grave dirt.",
           "effects": [
             {
               "to": "party",
@@ -72,7 +72,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Grey as a corpse, and grinning. The ash is war-paint now, and the Ravager carries its heat into the next fight.",
+          "text": "The Ravager grins out from a face as grey as a corpse's. The dead hearth's heat settles in their limbs, waiting for the next fight.",
           "effects": [
             {
               "tp": 60,

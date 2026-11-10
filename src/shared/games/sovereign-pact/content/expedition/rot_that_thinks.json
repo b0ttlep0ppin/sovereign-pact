@@ -22,7 +22,7 @@
       "outcomes": [
         {
           "w": 45,
-          "text": "It is a mind, of a kind. They learn how it changes the things it grows in, and wish they had not.",
+          "text": "It is a mind of sorts. They learn how it changes the things it grows in, and wish they had not.",
           "effects": [
             {
               "growth": {
@@ -38,7 +38,7 @@
         },
         {
           "w": 30,
-          "text": "It learns them too. Something pale begins to grow under their nails, and it will not be cut away.",
+          "text": "It learns them in turn. Something pale begins to grow beneath their nails that no blade can cut away.",
           "effects": [
             {
               "curse": true
@@ -68,7 +68,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It does not scream, but every spore in the air tries to, and the sound gets into your heads.",
+          "text": "It does not scream. Instead every spore in the air seems to try, a sound that crawls into your heads.",
           "effects": [
             {
               "to": "party",
@@ -91,7 +91,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It wants a memory. It takes one, slowly, and pays in Essence that smells of earth. Nobody can recall what it took.",
+          "text": "It wants a memory, which it takes slowly. In return it pays Essence that smells of earth.",
           "effects": [
             {
               "sanity": -15

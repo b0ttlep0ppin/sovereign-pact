@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He blesses you with a sore-covered hand, and the light about him brightens for a moment. Your path feels lucky after.",
+          "text": "He blesses you with a sore-covered hand, the light about him brightening for a moment. The road feels lucky afterward.",
           "effects": [
             {
               "resources": {
@@ -48,7 +48,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "He is. He looks at them, once, and they will never quite meet anyone's eyes again.",
+          "text": "He is. He looks at them once, and after that they can never quite meet anyone's eyes.",
           "effects": [
             {
               "score": {
@@ -62,7 +62,7 @@
         },
         {
           "w": 50,
-          "text": "He is not, but he is very clever, and he gives them a cut of the takings to go away quietly.",
+          "text": "He is not, though he is very clever. He gives them a cut of the takings to go away quietly.",
           "effects": [
             {
               "resources": {
@@ -83,7 +83,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A cold feeling settles on you, and stays all day, as if the road itself has turned its back.",
+          "text": "A cold feeling settles on you and stays all day, as if the road itself has turned its back.",
           "effects": [
             {
               "to": "party",

@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "The plates close over them one by one. When the helm shuts, the eyes inside are not quite theirs any more, and they never will be again.",
+          "text": "Plate by plate, the armor closes over them. When the helm shuts, the eyes looking out from it belong to someone else.",
           "effects": [
             {
               "change": "barrow_knight"
@@ -33,7 +33,7 @@
         },
         {
           "w": 30,
-          "text": "It is only armor after all: very old, very good, and it fits as if it was forged for them. Perhaps it was.",
+          "text": "It is only armor after all, very old and finely made. It fits them as though it had been forged to their measure.",
           "effects": [
             {
               "item": {
@@ -44,7 +44,7 @@
         },
         {
           "w": 20,
-          "text": "It was not empty. It never was.",
+          "text": "Its arms close like a trap. Whatever has been waiting inside the plate draws a blade.",
           "effects": [
             {
               "encounter": {
@@ -57,7 +57,7 @@
     },
     {
       "id": "break",
-      "label": "The strongest breaks it apart before it can move again, and before anyone is tempted.",
+      "label": "The strongest smashes it apart before it can move again, or tempt anyone else.",
       "rule": "scion:highest:might",
       "tags": [
         "bold"
@@ -65,7 +65,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "It comes apart like a dropped pot, and something sighs out of the pieces, grateful or relieved.",
+          "text": "It comes apart like a dropped pot. From the pieces rises a long sigh that sounds almost grateful.",
           "effects": [
             {
               "resources": {
@@ -81,7 +81,7 @@
         },
         {
           "w": 40,
-          "text": "It does not want to be broken, and it has had a long time to learn how to fight.",
+          "text": "It does not wish to be broken. Whatever moves it has had centuries to learn how to fight.",
           "effects": [
             {
               "encounter": {
@@ -102,7 +102,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "It watches you go. That night it is standing at the edge of the firelight, helm turned toward the camp, and nobody sleeps well.",
+          "text": "It watches you leave. That night it stands at the edge of the firelight, its helm turned toward the camp. No one sleeps while it keeps watch.",
           "effects": [
             {
               "to": "party",
@@ -112,7 +112,7 @@
         },
         {
           "w": 40,
-          "text": "It watches you go, and then it is not where you left it. You hear plate on stone behind you for the rest of the day.",
+          "text": "When you glance back, it is no longer where you left it. The scrape of plate on stone follows you for the rest of the day.",
           "effects": [
             {
               "fork": {

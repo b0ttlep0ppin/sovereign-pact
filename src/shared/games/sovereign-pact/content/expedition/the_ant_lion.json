@@ -9,7 +9,7 @@
     6
   ],
   "title": "The Ant Lion",
-  "text": "The sand gives way without a sound and slides, and slides, into a funnel as wide as a field. Bones ring the slope, picked clean and polished. At the bottom, a pair of mandibles opens and waits.",
+  "text": "The sand gives way without a sound, sliding into a funnel as wide as a field. Bones ring the slope, picked clean and polished. At the bottom, a pair of mandibles opens and waits.",
   "options": [
     {
       "id": "climb",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "Out, gasping, sand in everything, the mandibles clicking far below.",
+          "text": "You haul yourselves over the rim, gasping, with sand in everything. Far below, the mandibles click shut.",
           "effects": [
             {
               "to": "party",
@@ -52,7 +52,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "One by one, arms shaking, and the mandibles snap shut on nothing.",
+          "text": "Arms shaking, the strongest pulls them out one at a time. Below, the mandibles snap shut on nothing.",
           "effects": [
             {
               "durability": -10,
@@ -77,7 +77,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It fights from the bottom of its pit, and when it finally dies, one of its mandibles comes away whole: long, hooked and still wet with venom.",
+          "text": "It fights from the bottom of its pit. When at last it dies, one mandible comes away whole, long and hooked, still wet with venom.",
           "effects": [
             {
               "encounter": {}

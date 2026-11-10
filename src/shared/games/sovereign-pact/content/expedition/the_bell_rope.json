@@ -41,7 +41,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Six notes, each deeper than the last, and something listening is pleased.",
+          "text": "Six notes ring out, each deeper than the last. Whatever is listening is pleased.",
           "effects": [
             {
               "blessing": {
@@ -63,7 +63,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The seventh note does not sound. Something hears it anyway, and comes to see who rang, and it is not pleased.",
+          "text": "The seventh note makes no sound. Something hears it anyway and comes to see who rang, displeased.",
           "effects": [
             {
               "encounter": {

@@ -22,7 +22,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "The reflection nods, slowly, and something it knows passes over into you. You do not ask what it cost.",
+          "text": "The reflection nods slowly. Something it knows passes over into you.",
           "effects": [
             {
               "stat": {
@@ -38,7 +38,7 @@
         },
         {
           "w": 50,
-          "text": "The reflection smiles first. Then it keeps smiling after you look away, and you can feel it smiling still.",
+          "text": "The reflection smiles before you do. Long after you look away, you can feel it smiling still.",
           "effects": [
             {
               "sanity": -30
@@ -57,7 +57,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "You keep your eyes on the far bank until it is behind you, and you are still yourself when you get there. That is worth something here.",
+          "text": "You keep your eyes on the far bank until the pool lies behind you. You arrive still wholly yourself.",
           "effects": [
             {
               "sanity": 6

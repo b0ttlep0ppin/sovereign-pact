@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 48,
-          "text": "They sleep. Under the droppings you find the bones of the last party that tried, and a little of what they carried.",
+          "text": "They sleep on. Beneath the droppings lie the bones of the last party that tried, along with some of what they carried.",
           "effects": [
             {
               "resources": {
@@ -32,7 +32,7 @@
         },
         {
           "w": 32,
-          "text": "They sleep. The droppings are another matter: by evening every scratch in the party is red and hot.",
+          "text": "They sleep on, but the droppings are another matter. By evening every scratch in the party is red and hot.",
           "effects": [
             {
               "to": "party",
@@ -42,7 +42,7 @@
         },
         {
           "w": 20,
-          "text": "They wake. Ten thousand of them, screaming, in your hair and your eyes and your mouths.",
+          "text": "They wake. Ten thousand of them, screaming, fill your hair, your eyes and your mouths.",
           "effects": [
             {
               "to": "party",
@@ -66,7 +66,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Foul work, and profitable. The smell will take a week to leave you.",
+          "text": "It is profitable, if foul. The smell takes a week to leave you.",
           "effects": [
             {
               "resources": {
@@ -91,7 +91,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They go in a black storm, and something big that eats them comes in after them, and it is still hungry.",
+          "text": "They pour out in a black storm. Something large that feeds on them comes in after, still hungry.",
           "effects": [
             {
               "encounter": {}

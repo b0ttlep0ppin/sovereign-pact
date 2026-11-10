@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "His hands are quick and clean, and when he is done the old wound is gone, as if it had never been.",
+          "text": "His hands are quick and clean. When he steps back, the old wound is gone as if it had never been.",
           "effects": [
             {
               "mend": true
@@ -30,7 +30,7 @@
         },
         {
           "w": 40,
-          "text": "He fixes it, and while he is in there he leaves a little something of his own. He is still smiling when he sews it shut.",
+          "text": "He mends the wound, though while he is inside he leaves something of his own behind. He is still smiling as he sews it shut.",
           "effects": [
             {
               "mend": true
@@ -52,7 +52,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He shrugs, and goes on smiling, and wipes a blade on his apron as you pass. The Leader keeps seeing that blade when they close their eyes.",
+          "text": "He shrugs, still smiling, and wipes a blade on his apron as you pass. The Leader sees that blade each time they close their eyes.",
           "effects": [
             {
               "sanity": -5

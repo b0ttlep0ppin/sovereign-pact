@@ -11,7 +11,7 @@
     10
   ],
   "title": "The Hidden Trapdoor",
-  "text": "The floor gives way with a crack of old timber under the one with the most weight on their back. They drop into the dark with a shout. The rest of you go after them, sliding down a chute of stone into a shorter, darker way that smells of something that lives there.",
+  "text": "The floor gives way with a crack of old timber under the one with the most weight on their back. They drop into the dark with a shout. The rest of you follow, sliding down a stone chute into a shorter, darker passage that reeks of whatever lives there.",
   "options": [
     {
       "id": "fall",
@@ -20,7 +20,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The fall is short and the way is shorter. Something lives down here, and it heard you land.",
+          "text": "You land hard at the bottom of the chute. The way ahead is shorter, but whatever lives down here heard you arrive.",
           "effects": [
             {
               "durability": -20,

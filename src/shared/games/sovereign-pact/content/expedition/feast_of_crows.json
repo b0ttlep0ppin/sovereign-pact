@@ -22,7 +22,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "They rise like smoke, thousands of wings at once, and the air feels lighter after, as if something has been driven off.",
+          "text": "They rise like smoke, thousands of wings at once. Afterward the air feels lighter, as if something has been driven off.",
           "effects": [
             {
               "doom": -2
@@ -31,7 +31,7 @@
         },
         {
           "w": 40,
-          "text": "They rise like smoke, and then they come down on you, beaks first, for daring to interrupt.",
+          "text": "They rise like smoke, wheel once, then come down on you beak-first for interrupting their meal.",
           "effects": [
             {
               "to": "party",
@@ -51,7 +51,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "The pattern is a warning, written in black wings, and a useful one. The wisest remembers every line of it.",
+          "text": "The pattern is a warning written in black wings. The wisest commits every line of it to memory.",
           "effects": [
             {
               "score": {
@@ -65,7 +65,7 @@
         },
         {
           "w": 50,
-          "text": "The pattern is your own face, picked out in crows, and then it opens its mouth to speak.",
+          "text": "The crows shift until they form a face, the wisest's own, which slowly opens its mouth to speak.",
           "effects": [
             {
               "injury": "sanity"

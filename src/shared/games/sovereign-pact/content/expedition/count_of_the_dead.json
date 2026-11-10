@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "Every name is written down in his careful hand. Something in the barrow is satisfied, and so are you.",
+          "text": "He writes each name in a careful hand. Something deep in the barrow seems satisfied, as are you.",
           "effects": [
             {
               "score": {
@@ -36,7 +36,7 @@
         },
         {
           "w": 30,
-          "text": "One of the names you give him answers from inside the barrow, and walks out to join you, blinking at the light.",
+          "text": "One of the names answers from inside the barrow. Its owner walks out to join you, blinking at the light.",
           "effects": [
             {
               "house_improvement": "recruit"
@@ -59,7 +59,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He writes something down anyway, and blows on the ink, and does not look up again. You do not ask whose name it was.",
+          "text": "He writes something down regardless, blows on the ink and does not look up again. None of you asks whose name it was.",
           "effects": [
             {
               "to": "party",

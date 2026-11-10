@@ -10,7 +10,7 @@
     10
   ],
   "title": "The Field of Flowers",
-  "text": "White flowers to the horizon, under a sky that is for once only a sky. No birds sing. No wind moves the petals. The air is sweet and the ground is soft, and there is nothing wrong here at all, which is the most wrong thing you have seen in days.",
+  "text": "White flowers to the horizon, under a sky that is for once only a sky. No birds sing. No wind moves the petals. The air is sweet, the ground soft. Nothing here is wrong at all, which is the most troubling thing you have seen in days.",
   "options": [
     {
       "id": "rest",
@@ -22,7 +22,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "You sleep in the flowers and wake whole and clear-headed. There was no catch. That is the hardest thing to believe.",
+          "text": "You sleep among the flowers and wake whole, every wound closed and every mind clear. Nothing came for you in the night.",
           "effects": [
             {
               "to": "party",
@@ -46,7 +46,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "You walk through quickly, eyes down. Afterwards, some of you wish you had stayed, and dream of the white petals for weeks.",
+          "text": "You cross the field quickly. Some of you regret not staying; for weeks they dream of white petals.",
           "effects": [
             {
               "to": "party",

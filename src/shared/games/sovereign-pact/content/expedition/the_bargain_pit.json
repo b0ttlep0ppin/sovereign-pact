@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "It comes back up on a warm gust, a heavier purse, the coins slick and faintly warm, as if they had been held in a mouth.",
+          "text": "It returns on a warm gust, heavier than before. The coins are slick and faintly warm, as if they had been held in a mouth.",
           "effects": [
             {
               "resources": {
@@ -32,7 +32,7 @@
         },
         {
           "w": 50,
-          "text": "It does not come back. Far below, something swallows, and breathes a little easier.",
+          "text": "It does not come back. Far below, something swallows and breathes a little easier.",
           "effects": [
             {
               "resources": {
@@ -53,7 +53,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It comes back as something in the veins that was not there before, strong and hot and not entirely theirs.",
+          "text": "The pit returns something into their veins that was not there before, strong and hot and not entirely theirs.",
           "effects": [
             {
               "durability": -25,
@@ -81,7 +81,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The breathing stops. Somewhere a long way down, something is very disappointed in you.",
+          "text": "The breathing stops. Somewhere a long way down, something is bitterly disappointed.",
           "effects": [
             {
               "score": {

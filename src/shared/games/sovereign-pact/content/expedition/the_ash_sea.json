@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A fast, smooth crossing over the grey. The fare comes later, and it comes for everyone, and it does not haggle.",
+          "text": "The crossing is fast and smooth. The fare comes due later, owed by everyone alike.",
           "effects": [
             {
               "skip": 2
@@ -43,7 +43,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Something under the ash takes an interest, and the ash is hot, very hot, all the way down.",
+          "text": "The ash is hot, far hotter than it looks. Halfway across, something beneath its surface takes an interest in you.",
           "effects": [
             {
               "encounter": {
@@ -82,7 +82,7 @@
         },
         {
           "w": 40,
-          "text": "The devil haggles better. It always does, and it smiles as it counts.",
+          "text": "The devil haggles better, as devils always do. It smiles as it counts your coin.",
           "effects": [
             {
               "resources": {

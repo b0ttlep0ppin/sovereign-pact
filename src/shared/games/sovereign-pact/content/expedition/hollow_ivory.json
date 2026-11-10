@@ -9,7 +9,7 @@
     10
   ],
   "title": "Hollow Ivory",
-  "text": "A ribcage the size of a chapel, half sunk in the ground, each rib as thick as a tower. Whatever wore it died long before there were Houses to remember it. The bone is hollow, and something in the hollows hums, a deep, contented sound.",
+  "text": "A ribcage the size of a chapel, half sunk in the ground, each rib as thick as a tower. Whatever wore it died long before there were Houses to remember it. The bone is hollow. From somewhere inside comes a deep, contented hum.",
   "options": [
     {
       "id": "harvest",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 65,
-          "text": "It comes away clean, and hums in the pack all the way home, a little louder whenever anyone sleeps.",
+          "text": "It comes away clean. All the way home it hums in the pack, louder whenever anyone tries to sleep.",
           "effects": [
             {
               "resources": {
@@ -35,7 +35,7 @@
         },
         {
           "w": 35,
-          "text": "It comes away, and so does something that was sleeping in it, and it is not pleased to be woken.",
+          "text": "The ivory comes away, along with whatever was sleeping inside it. It is not pleased to be woken.",
           "effects": [
             {
               "resources": {
@@ -61,7 +61,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The humming stops as you leave, as if it had been listening. It starts again behind you, nearer, and keeps pace.",
+          "text": "The humming stops as you leave, as if it had been listening. Soon it starts again behind you, nearer now, keeping pace.",
           "effects": [
             {
               "fork": {

@@ -22,7 +22,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "The flames gutter and go out. He thanks them with a voice like a cooling coal, and promises he will remember the favor. He sounds as if he means it.",
+          "text": "The flames gutter out. He thanks them in a voice like a cooling coal, promising to remember the favor.",
           "effects": [
             {
               "score": {
@@ -38,7 +38,7 @@
         },
         {
           "w": 40,
-          "text": "The flames do not go out. They spread, gladly, up the sleeve that reached for him, and he watches with polite interest.",
+          "text": "The flames will not go out. Instead they leap gladly up the sleeve that reached for him while he watches with polite interest.",
           "effects": [
             {
               "durability": -30,
@@ -61,7 +61,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He keeps walking, polite and burning, and the grass behind him smokes for an hour.",
+          "text": "He walks on without another word. The grass behind him smokes for an hour.",
           "effects": [
             {
               "to": "party",

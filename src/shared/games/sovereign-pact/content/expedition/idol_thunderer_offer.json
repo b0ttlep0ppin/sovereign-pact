@@ -9,7 +9,7 @@
     10
   ],
   "title": "The Throne in the Clouds",
-  "text": "Above the sixth shrine a throne of storm sits empty but for the one on it. Lightning walks in his beard and the clouds kneel at his feet. He offers strength to anyone who will call him king, and asks only that you kneel too, and leave a little of yourselves behind.",
+  "text": "Above the sixth shrine a throne of storm sits empty but for the one on it. Lightning walks in his beard and the clouds kneel at his feet. He offers strength to anyone who will call him king. He asks only that you kneel, leaving a little of yourselves behind.",
   "options": [
     {
       "id": "kneel",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The thunder goes into your arms. Something of each of you stays kneeling there when you rise, and it will kneel forever.",
+          "text": "The thunder flows into your arms. When you rise, something of each of you remains kneeling at his feet.",
           "effects": [
             {
               "to": "party",
@@ -56,7 +56,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He rises from his throne of storm, and the lightning rises with him, eager.",
+          "text": "He rises from his throne of storm with the lightning crackling eagerly about him.",
           "effects": []
         }
       ]
@@ -72,7 +72,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "The Leader takes the lightning and does not kneel. The Thunderer laughs, and stands, and the clouds scatter from his feet.",
+          "text": "The Leader takes the lightning without kneeling. The Thunderer laughs, amused, as the clouds scatter from his feet.",
           "effects": [
             {
               "stat": {
@@ -83,7 +83,7 @@
         },
         {
           "w": 40,
-          "text": "He sees it coming. The lightning goes the other way, through the Leader's ribs, and the smell of it lingers for days.",
+          "text": "He sees it coming. The lightning goes through the Leader's ribs instead; the smell of scorched flesh lingers for days.",
           "effects": [
             {
               "durability": -40,

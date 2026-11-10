@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "A flattering likeness, kinder than the truth, and they are glad of it.",
+          "text": "The likeness is flattering, kinder than the truth. They are glad of it.",
           "effects": [
             {
               "sanity": 4
@@ -30,7 +30,7 @@
         },
         {
           "w": 40,
-          "text": "A true likeness. It shows what they will look like when they are dead, and it is not long from now.",
+          "text": "The likeness is true. It shows them as they will look in death, and that day is not far off.",
           "effects": [
             {
               "sanity": -12
@@ -49,7 +49,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Paint runs like blood across the floor, and the unfinished faces keep their mouths open, as if to scream.",
+          "text": "Paint runs like blood across the floor. The unfinished faces keep their mouths open, as if to scream.",
           "effects": [
             {
               "sanity": -3

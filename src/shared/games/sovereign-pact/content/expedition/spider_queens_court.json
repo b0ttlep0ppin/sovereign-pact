@@ -22,7 +22,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "She is gracious. She sends you away with a gift of her court's essence and a taste in the mouth you will not lose for days.",
+          "text": "She is gracious, sending you away with a gift of her court's essence. A bitter taste lingers in your mouths for days.",
           "effects": [
             {
               "resources": {
@@ -47,7 +47,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The courtiers stop bowing. All their legs unfold at once, and the cocoons in the rafters stop moving to listen.",
+          "text": "The courtiers stop bowing. All their legs unfold at once while the cocoons in the rafters go still to listen.",
           "effects": [
             {
               "encounter": {
@@ -68,7 +68,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Gold for safe passage. She is pleased, and she will remember your House's name, which is not the same as a kindness.",
+          "text": "She accepts the gold and grants safe passage. She will remember your House's name, which is not the same as a kindness.",
           "effects": [
             {
               "resources": {

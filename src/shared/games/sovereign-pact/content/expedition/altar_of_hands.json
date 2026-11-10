@@ -10,7 +10,7 @@
     8
   ],
   "title": "The Altar of Hands",
-  "text": "A stone table in the dark, set with hands the way another table would be set with plates. Some are wax, some are bone, and one is still warm. In the middle of the stone is a hollow worn smooth, shaped for exactly one more, and it calls to you.",
+  "text": "A stone table in the dark, set with hands the way another table would be set with plates. Some are wax, some are bone, and one is still warm. In the middle of the stone is a hollow worn smooth, shaped for exactly one more, which calls to you.",
   "options": [
     {
       "id": "lay",
@@ -22,7 +22,7 @@
       "outcomes": [
         {
           "w": 45,
-          "text": "The stone closes over the wrist and lets go. The hand that comes back is not quite theirs, and it is better.",
+          "text": "The stone closes over the wrist, then lets go. The hand that comes back is not quite their own, though it is stronger for the change.",
           "effects": [
             {
               "trait": "+grafted"

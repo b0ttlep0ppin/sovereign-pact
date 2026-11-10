@@ -22,7 +22,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "It is true, or near enough: a name, a meeting, a letter. Worth knowing. Worth keeping quiet about.",
+          "text": "What they say is true, or near enough: a name, a meeting, a letter. It is worth knowing, and worth keeping quiet about.",
           "effects": [
             {
               "score": {
@@ -33,7 +33,7 @@
         },
         {
           "w": 50,
-          "text": "It is a lie, told very well, and it settles into whoever heard it like a splinter that will not work its way out.",
+          "text": "It is a lie, told very well. It lodges in the listener like a splinter that will not work its way out.",
           "effects": [
             {
               "sanity": -15
@@ -52,7 +52,7 @@
       "outcomes": [
         {
           "w": 40,
-          "text": "They are grateful, in a cracked, starved voice, and they have nowhere else to go. They follow you home.",
+          "text": "They thank you in a cracked, starved voice. Having nowhere else to go, they follow you home.",
           "effects": [
             {
               "house_improvement": "recruit"
@@ -82,7 +82,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The prisoner laughs at your backs, and keeps calling the name. The Leader hears it all that night, and the next.",
+          "text": "The prisoner laughs at your backs, still calling the name. The Leader hears it all that night and the next.",
           "effects": [
             {
               "sanity": -10

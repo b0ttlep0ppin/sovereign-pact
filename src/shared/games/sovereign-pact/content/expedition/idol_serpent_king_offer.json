@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The serpents eat, politely. You walk out sound in body and a little emptier behind the eyes, and you cannot remember what you lost.",
+          "text": "The serpents feed politely. You walk out sound in body but emptier behind the eyes, unable to recall what was taken.",
           "effects": [
             {
               "to": "party",
@@ -73,7 +73,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "The Leader takes the gift and offers the serpents nothing. The King smiles with both of them, and lets you go. For now.",
+          "text": "The Leader takes the gift and offers the serpents nothing. The King smiles, his serpents with him, and lets you go.",
           "effects": [
             {
               "growth": {
@@ -85,7 +85,7 @@
         },
         {
           "w": 50,
-          "text": "The serpents are quicker than the Leader. They feed anyway, deep, and take more than they were owed.",
+          "text": "The serpents strike before the Leader can pull away. They feed deeply, taking more than they were owed.",
           "effects": [
             {
               "sanity": -25

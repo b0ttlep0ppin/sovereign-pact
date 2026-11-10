@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "They draw every arrow, bristling like a hedgehog, and the rest cross clean behind them.",
+          "text": "They draw every arrow until they bristle like a hedgehog. Behind them, the rest cross unharmed.",
           "effects": [
             {
               "durability": -40,
@@ -36,7 +36,7 @@
         },
         {
           "w": 30,
-          "text": "Too many arrows, too fast. One finds the gap, and it goes deep.",
+          "text": "The arrows come too many and too fast. One finds a gap in the armor and sinks deep.",
           "effects": [
             {
               "injury": "body"
@@ -55,7 +55,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It takes all day, arrows hammering overhead, and dents every shield. Arms ache for days from holding them up.",
+          "text": "The crossing takes all day, with arrows hammering overhead and denting every shield. Arms ache for days from holding them up.",
           "effects": [
             {
               "to": "party",
@@ -76,7 +76,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "A ghost archer company on the ridge, still at war, still shooting. They turn as one to face you, and nock.",
+          "text": "On the ridge stands a company of ghost archers, still fighting a war long ended. As one they turn toward you and nock.",
           "effects": [
             {
               "encounter": {}
@@ -85,7 +85,7 @@
         },
         {
           "w": 40,
-          "text": "No one there. The arrows stop when you stop looking for them, and nobody knows why that is worse.",
+          "text": "The ridge is empty. The arrows stop the moment you stop looking for their source, which unsettles you more than the storm did.",
           "effects": [
             {
               "sanity": -10

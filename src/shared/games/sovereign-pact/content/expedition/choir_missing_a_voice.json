@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 40,
-          "text": "They take the missing part. The song ends, and the light that was singing it stays inside them, burning quietly where their heart used to be.",
+          "text": "They take up the missing part. When the song ends, the light that sang it remains inside them, burning quietly where their heart used to be.",
           "effects": [
             {
               "change": "seraph_husk"
@@ -30,7 +30,7 @@
         },
         {
           "w": 40,
-          "text": "They sing it once, perfectly, and the choir lets them go with a blessing that hums in their bones.",
+          "text": "They sing it once, perfectly. The choir releases them with a blessing that hums in their bones.",
           "effects": [
             {
               "blessing": {
@@ -45,7 +45,7 @@
         },
         {
           "w": 20,
-          "text": "They sing it wrong, and every faceless head turns toward them at once.",
+          "text": "Their voice cracks on the wrong note. Every faceless head turns toward them at once.",
           "effects": [
             {
               "sanity": -30
@@ -65,7 +65,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Nobody speaks for a long time afterwards. Nobody needs to. The hymn stays with you, softly, for days.",
+          "text": "No one speaks for a long time afterward. The hymn stays with you for days, a quiet comfort.",
           "effects": [
             {
               "to": "party",

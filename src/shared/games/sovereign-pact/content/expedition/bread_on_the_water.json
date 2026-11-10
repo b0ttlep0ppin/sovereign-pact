@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It tastes of a kitchen none of you have ever stood in. Someone, somewhere, wanted you to live. For now, at least.",
+          "text": "It tastes of a kitchen none of you have ever stood in. Whoever baked it wanted you to live.",
           "effects": [
             {
               "to": "party",

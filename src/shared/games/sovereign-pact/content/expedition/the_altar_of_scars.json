@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "The wound closes, and leaves a pale mark of favor where it was.",
+          "text": "The wound closes, leaving a pale mark of favor in its place.",
           "effects": [
             {
               "mend": true
@@ -36,7 +36,7 @@
         },
         {
           "w": 40,
-          "text": "The altar takes a little more than the scar, and gives back something hard-won.",
+          "text": "The altar drinks more than the scar alone, though what it returns is a lesson hard-won.",
           "effects": [
             {
               "sanity": -15
@@ -58,7 +58,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A cut across the palm, deep and clean. They are not unblooded now, and they will not forget it.",
+          "text": "The altar opens a deep, clean cut across the palm. They are unblooded no longer.",
           "effects": [
             {
               "durability": -20,
@@ -81,7 +81,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The altar falls quiet, almost sulking, and the party's cuts begin to close.",
+          "text": "The altar falls quiet, almost sulking. Around it, the party's cuts begin to close.",
           "effects": [
             {
               "to": "party",

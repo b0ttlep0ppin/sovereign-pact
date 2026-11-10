@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "He blesses them in a voice that was once used to giving orders, and for a moment the ruins stand tall.",
+          "text": "He blesses them in a voice once used to giving orders. For a moment, the ruins stand tall.",
           "effects": [
             {
               "blessing": {
@@ -38,7 +38,7 @@
         },
         {
           "w": 40,
-          "text": "He takes it and laughs, and his crown is gold for a moment, and so is what he gives back.",
+          "text": "He takes it with a laugh. For a moment his crown is gold, as is the gift he gives back.",
           "effects": [
             {
               "resources": {
@@ -64,7 +64,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He takes it with dignity, and nods, and something in the ruins of his kingdom remembers your faces.",
+          "text": "He bears it with dignity and only nods. Something in the ruins of his kingdom remembers your faces.",
           "effects": [
             {
               "doom": 1
@@ -88,7 +88,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He tells it well, with tears in his eyes, and some of it is even true.",
+          "text": "He tells it well, with tears in his eyes. Some of it is even true.",
           "effects": [
             {
               "score": {

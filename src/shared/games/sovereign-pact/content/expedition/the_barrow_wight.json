@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "Right, every one. It hisses, and gives up a grave-good from the mound, and will not look at them.",
+          "text": "They answer every riddle rightly. With a hiss it gives up a grave-good from the mound, refusing to look at them.",
           "effects": [
             {
               "item": {
@@ -37,7 +37,7 @@
         },
         {
           "w": 30,
-          "text": "Wrong. It reaches out and peels their shadow off the grass like a skin, and pins it down beside the others.",
+          "text": "They answer wrongly. It reaches out, peels their shadow off the grass like a skin and pins it beside the others.",
           "effects": [
             {
               "sanity": -15
@@ -59,7 +59,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It is still thinking when you leave, cold eyes narrowed, muttering into the grass.",
+          "text": "When you leave it is still thinking, cold eyes narrowed, muttering into the grass.",
           "effects": [
             {
               "skip": 1
@@ -78,7 +78,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It unfolds from the mound, long and thin, and the shadows on the grass begin to move with it.",
+          "text": "It unfolds from the mound, long and thin, while the shadows on the grass begin to move with it.",
           "effects": [
             {
               "encounter": {}

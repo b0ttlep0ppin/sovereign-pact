@@ -9,7 +9,7 @@
     10
   ],
   "title": "The Gate's Reflection",
-  "text": "At the very source of the rift the Gate is a mirror, and in it each of you sees your House as it will be when this is over. The throne is behind you, empty, waiting. Something in the glass is waiting too, very still, to see what you will do.",
+  "text": "At the very source of the rift the Gate is a mirror, and in it each of you sees your House as it will be when this is over. Behind you in the glass stands the throne, empty. Something else waits in the reflection, very still, to see what you will do.",
   "options": [
     {
       "id": "look",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "Your House stands in the glass, and stands well. Whatever comes next, you have seen it through already.",
+          "text": "In the glass your House stands strong. Whatever comes next, you have already seen it through.",
           "effects": [
             {
               "foresee": true
@@ -36,7 +36,7 @@
         },
         {
           "w": 30,
-          "text": "The glass shows your House, and then it shows what the throne will cost. You do not look away fast enough.",
+          "text": "The glass shows your House, then the price the throne will exact from it. You cannot look away in time.",
           "effects": [
             {
               "foresee": true

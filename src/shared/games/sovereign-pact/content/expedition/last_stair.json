@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They take the first blow on their shield and their body, and stay standing. The rest come up behind them whole, and ready.",
+          "text": "The first blow lands hard on their shield, but they keep their feet. The rest climb up behind them, whole and ready.",
           "effects": [
             {
               "durability": -25,
@@ -50,7 +50,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Shoulder to shoulder, no one first, no one last, up into the breathing dark.",
+          "text": "You climb together into the breathing dark, none of you first and none last.",
           "effects": []
         }
       ]

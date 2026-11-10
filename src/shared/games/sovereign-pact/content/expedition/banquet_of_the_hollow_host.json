@@ -13,7 +13,7 @@
     "!flag:banquet_seen"
   ],
   "title": "The Banquet",
-  "text": "A long table laid for exactly as many as you are, down to the last cup. The candles are still warm and the wine is still breathing. Nobody has touched the food, and every chair has been pulled out a little, as if the guests only just stood up to greet you.",
+  "text": "A long table laid for exactly as many as you are, down to the last cup. The candles are still warm and the wine is still breathing. Nobody has touched the food. Every chair has been pulled out a little, as if the guests had only just risen to greet you.",
   "options": [
     {
       "id": "eat",
@@ -25,7 +25,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "It is the best meal any of you have had since the rift opened. You sleep well after, and do not wonder who cooked it.",
+          "text": "It is the finest meal any of you have eaten since the rift opened. You sleep deeply afterward, too content to wonder who cooked it.",
           "effects": [
             {
               "to": "party",
@@ -39,7 +39,7 @@
         },
         {
           "w": 35,
-          "text": "The meat moves on the plate. The hosts arrive late, and they are hungry too.",
+          "text": "The meat stirs on the plate. Then the hosts arrive, late and hungry, to join their guests.",
           "effects": [
             {
               "to": "party",
@@ -54,7 +54,7 @@
         },
         {
           "w": 15,
-          "text": "Under one plate lies a ring that fits no finger twice. It is warm, and it is yours now.",
+          "text": "Beneath one plate lies a warm ring that fits no finger twice. It hums faintly with essence as you pocket it.",
           "effects": [
             {
               "to": "party",
@@ -79,7 +79,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "The veteran chews, waits, and nods. It is only food. The rest eat, and nobody mentions the empty chairs.",
+          "text": "The veteran chews slowly, waits, then nods. It is only food after all. The rest eat their fill without mentioning the empty chairs.",
           "effects": [
             {
               "to": "party",
@@ -93,7 +93,7 @@
         },
         {
           "w": 40,
-          "text": "The veteran goes grey and very still, and then laughs too long at something none of you can hear.",
+          "text": "The veteran goes grey and very still, then laughs far too long at a joke none of you can hear.",
           "effects": [
             {
               "injury": "sanity"
@@ -112,7 +112,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "You leave the chairs pushed in. Something sighs as the door closes, and the candles go out one by one behind you.",
+          "text": "Something sighs as the door closes behind you. Through the crack beneath it, you watch the candles go out one by one.",
           "effects": [
             {
               "to": "party",

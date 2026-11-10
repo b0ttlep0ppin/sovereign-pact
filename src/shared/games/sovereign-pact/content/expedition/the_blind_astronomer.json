@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He traces it on the globe with a cracked fingernail, hole by hole, and it is true, every step.",
+          "text": "He traces it on the globe with a cracked fingernail, hole by hole. Every step proves true.",
           "effects": [
             {
               "skip": 1
@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "One of the holes is new: a star that should not be there, and it is coming closer. They cannot stop looking for it in the sky.",
+          "text": "One of the holes is new: a star that should not be there, drawing closer. Afterward they cannot stop searching the sky for it.",
           "effects": [
             {
               "foresee": true
@@ -72,7 +72,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He weeps without eyes, and the stars overhead begin to go wrong, one by one, as you walk away.",
+          "text": "He weeps without eyes. As you walk away, the stars overhead begin to go wrong one by one.",
           "effects": [
             {
               "item": {

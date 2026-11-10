@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "He tells you how the master of this place fights, and you believe him. He has watched it for a long time.",
+          "text": "He tells you how the master of this place fights. He has watched it for a long time, and you believe every word.",
           "effects": [
             {
               "to": "party",
@@ -36,7 +36,7 @@
         },
         {
           "w": 40,
-          "text": "He tells you something. It is not true, and he smiles as he says it.",
+          "text": "He answers truthfully, but the truth is worse than you feared. It weighs on your steps for the rest of the road.",
           "effects": [
             {
               "to": "party",
@@ -60,7 +60,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He nods as if that was the right answer, too, and touches the Leader's brow as they pass. Their head is clearer than it has been in days.",
+          "text": "He nods, as though that were the right answer, and touches the Leader's brow as they pass. Their head is clearer than it has been in days.",
           "effects": [
             {
               "mp": 40,
@@ -81,7 +81,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "He answers in the Soothsayer's own voice. It was the right question after all, and the answer is a number: how high their House stands.",
+          "text": "He answers in the Soothsayer's own voice, naming how high their House will stand when the reckoning comes.",
           "effects": [
             {
               "foresee": true,
@@ -91,7 +91,7 @@
         },
         {
           "w": 30,
-          "text": "He answers, and the answer is about the Soothsayer's own death. They will not say what he told them.",
+          "text": "His answer concerns the Soothsayer's own death. They refuse to repeat what he told them.",
           "effects": [
             {
               "sanity": -15,

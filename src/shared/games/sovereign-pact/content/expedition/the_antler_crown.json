@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "The wood bows to them, every branch at once, and the silence becomes something like welcome.",
+          "text": "Every branch in the wood bows to them at once. The silence that follows feels almost like a welcome.",
           "effects": [
             {
               "blessing": {
@@ -58,7 +58,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The birds start singing again, and the wood lets you through as a friend. Nothing stalks you that night, and you sleep.",
+          "text": "The birds begin to sing again as the wood lets you pass as friends. Nothing stalks you that night, and you sleep soundly.",
           "effects": [
             {
               "to": "party",
@@ -78,7 +78,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It fetches a fine price in town, and thorns find every step of the way out of the wood.",
+          "text": "It will fetch a fine price in town. On the way out, though, thorns find every step you take.",
           "effects": [
             {
               "resources": {

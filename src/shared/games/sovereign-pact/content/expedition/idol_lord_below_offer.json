@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The fevers of the world will pass you by. The god keeps a Year of each of you, folded up somewhere below, and he will not give it back.",
+          "text": "The fevers of the world will pass you by. In return, the god keeps a Year from each of you, folded away somewhere below.",
           "effects": [
             {
               "to": "party",
@@ -57,7 +57,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He rises from his throne of the dead, and he is very much larger standing.",
+          "text": "He rises from his throne of the dead, far larger standing than he seemed seated.",
           "effects": []
         }
       ]
@@ -73,7 +73,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "The Leader takes the blessing and spits in the toll bowl. The god stands, smiling, as if he expected nothing less.",
+          "text": "The Leader takes the blessing and spits in the toll bowl. The god only smiles, as if he expected nothing less.",
           "effects": [
             {
               "blessing": {
@@ -85,7 +85,7 @@
         },
         {
           "w": 50,
-          "text": "The toll takes itself, quietly, from each of you. The god stands anyway, and his dead stand with him.",
+          "text": "The toll takes itself, quietly, from each of you. The god does not even look up.",
           "effects": [
             {
               "to": "party",
