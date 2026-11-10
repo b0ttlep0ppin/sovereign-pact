@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It passes, and you slip by. Where it turned, a cog has worked loose from it over the centuries; good iron, if you have the pack room.",
+          "text": "It passes, and you slip by. Where it turns, a cog has worked loose over the centuries, good iron if you have room in your packs.",
           "effects": [
             {
               "resources": {
@@ -42,7 +42,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "It stops mid-step, spear raised. Its gears are worth a fortune, and it never sees you take them.",
+          "text": "It stops mid-step, spear raised. Its gears are worth a fortune, and it never sees them taken.",
           "effects": [
             {
               "resources": {
@@ -54,7 +54,7 @@
         },
         {
           "w": 40,
-          "text": "It turns. Its lamps fix on you, and its spear comes down.",
+          "text": "It turns. Its lamps fix on you as its spear comes down.",
           "effects": [
             {
               "encounter": {
@@ -75,7 +75,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It fights exactly as it was built to, tirelessly, and it was built very well.",
+          "text": "It fights exactly as it was built to, tirelessly. It was built very well.",
           "effects": [
             {
               "encounter": {}
@@ -100,7 +100,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "One wire pulled, and it stops mid-step, forever. Its insides are worth carrying home.",
+          "text": "One wire pulled, and it stops mid-step forever. Its insides are worth carrying home.",
           "effects": [
             {
               "resources": {
@@ -112,7 +112,7 @@
         },
         {
           "w": 30,
-          "text": "One wire pulled, and it turns its head all the way round.",
+          "text": "One wire pulled, and its head turns all the way round.",
           "effects": [
             {
               "encounter": {}

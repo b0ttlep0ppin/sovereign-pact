@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "The mouth swallows it, and the door opens on a quiet tomb and its treasure.",
+          "text": "The mouth swallows the key. The door opens on a quiet tomb and its treasure.",
           "effects": [
             {
               "resources": {
@@ -37,7 +37,7 @@
         },
         {
           "w": 40,
-          "text": "The door opens on a tomb that was not quiet at all, and has been waiting for a key.",
+          "text": "The door opens on a tomb that was never quiet. Something inside has been waiting for a key.",
           "effects": [
             {
               "encounter": {}
@@ -56,7 +56,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The barrow's maker. He did not want it opened, and he wrote down why, very carefully, in a hand that shook.",
+          "text": "It belonged to the barrow's maker, who did not want it opened. He wrote down why, very carefully, in a hand that shook.",
           "effects": [
             {
               "score": {
@@ -80,7 +80,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It sways after you as you go, though there is no wind, like a finger beckoning.",
+          "text": "Though there is no wind, it sways after you as you go, like a finger beckoning.",
           "effects": [
             {
               "to": "party",

@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "Silent and slow. Something deep in the crystals rings anyway, one long note, and it sets everyone's teeth on edge.",
+          "text": "You move slow and silent, yet deep in the crystals one long note rings anyway, setting everyone's teeth on edge.",
           "effects": [
             {
               "to": "party",
@@ -31,7 +31,7 @@
         },
         {
           "w": 50,
-          "text": "Silent and slow. The crystals hold their tongues, and in the hush everyone's head clears.",
+          "text": "You move slow and silent. The crystals hold their tongues; in the hush, everyone's head clears.",
           "effects": [
             {
               "to": "party",
@@ -51,7 +51,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It shrieks, a hundredfold, and something deep in the cave answers, and it is coming.",
+          "text": "It shrieks a hundredfold. Deep in the cave something answers, and it is coming.",
           "effects": [
             {
               "resources": {
@@ -75,7 +75,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They sing back, softly, and their song shows the way through the dark.",
+          "text": "They sing back softly. Their song shows the way through the dark.",
           "effects": [
             {
               "skip": 1
@@ -95,7 +95,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "The cave sings it back a hundredfold, and the sound fills every one of you like wine.",
+          "text": "The cave sings it back a hundredfold. The sound fills every one of you like wine.",
           "effects": [
             {
               "to": "party",

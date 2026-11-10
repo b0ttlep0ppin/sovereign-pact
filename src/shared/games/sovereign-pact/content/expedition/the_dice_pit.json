@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "The House wins. The devils howl and pay in coin they cannot spend in hell.",
+          "text": "The House wins. The devils howl, paying in coin they cannot spend in hell.",
           "effects": [
             {
               "resources": {
@@ -32,7 +32,7 @@
         },
         {
           "w": 50,
-          "text": "The House loses. Its Scions feel something leave them, and the devils cheer, and pass it around.",
+          "text": "The House loses. Its Scions feel something leave them, which the devils pass around, cheering.",
           "effects": [
             {
               "sanity": -15
@@ -70,7 +70,7 @@
         },
         {
           "w": 40,
-          "text": "Devils know cheating better than anyone. The whole pit turns.",
+          "text": "No one knows cheating better than devils. The whole pit turns on you.",
           "effects": [
             {
               "encounter": {
@@ -91,7 +91,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They do not chase. They will roll again, later, when you are not there to see.",
+          "text": "They do not chase. They will roll again later, when you are not there to see.",
           "effects": [
             {
               "to": "party",

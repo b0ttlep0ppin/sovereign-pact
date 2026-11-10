@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The song closes over the gap like water, and the dead are satisfied, and fall silent. The silence after is very deep.",
+          "text": "The song closes over the gap like water. Satisfied, the dead fall silent, and the silence that follows is very deep.",
           "effects": [
             {
               "to": "party",
@@ -46,7 +46,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The song changes key, and becomes a battle hymn, and the dead stand up to sing it properly.",
+          "text": "The song changes key into a battle hymn. The dead rise from their niches to sing it properly.",
           "effects": [
             {
               "encounter": {}
@@ -65,7 +65,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The song follows you for a mile, faltering at the gap, always at the gap, waiting for someone to fill it.",
+          "text": "The song follows you for a mile. Each time it reaches the gap it falters, waiting for someone to fill it.",
           "effects": [
             {
               "to": "party",

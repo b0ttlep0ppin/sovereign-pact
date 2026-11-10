@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He makes a song of it, a good one, with dragons in it. Your House will be famous, and he has already decided how it ends.",
+          "text": "He makes a good song of it, with dragons in it. Your House will be famous, though he has already decided how it ends.",
           "effects": [
             {
               "score": {
@@ -42,7 +42,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He tells you her name, and her temper, and her one weakness, and then plays a sad chord for all who learned it before you.",
+          "text": "He tells you her name, her temper and her one weakness. Then he plays a sad chord for all who learned it before you.",
           "effects": [
             {
               "foresee": true
@@ -66,7 +66,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "He sings of you anyway, badly, and the song travels home ahead of you. People will hum it at the Leader's House.",
+          "text": "He sings of you anyway, badly, and the song travels home ahead of you. People hum it at the Leader's House.",
           "effects": [
             {
               "score": {
@@ -77,7 +77,7 @@
         },
         {
           "w": 40,
-          "text": "He sings of you anyway, loudly, and the kind of thing that lives in these hills hears it.",
+          "text": "He sings of you anyway, loudly enough that something living in these hills hears it.",
           "effects": [
             {
               "fork": {

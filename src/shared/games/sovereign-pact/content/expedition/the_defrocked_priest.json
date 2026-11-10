@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "A back way through the Court, past every guard.",
+          "text": "He shows you a back way through the Court, past every guard.",
           "effects": [
             {
               "resources": {
@@ -35,7 +35,7 @@
         },
         {
           "w": 30,
-          "text": "He takes the money, and runs, and laughs, and the laugh is the most honest thing about him.",
+          "text": "He takes the money and runs. His laugh is the most honest thing about him.",
           "effects": [
             {
               "resources": {
@@ -56,7 +56,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He weeps, and eats, and tells you everything, every bribe and every body.",
+          "text": "Weeping, he eats, then tells you everything: every bribe and every body.",
           "effects": [
             {
               "foresee": true
@@ -80,7 +80,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The Court thanks you, and lets you pass. You hear him blessing them as they drag him off.",
+          "text": "The Court thanks you and lets you pass. As they drag him off, you hear him blessing them.",
           "effects": [
             {
               "skip": 1

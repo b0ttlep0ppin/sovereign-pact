@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "To the slavers' camp, and the slavers, who are not glad to see you.",
+          "text": "The ruts lead to the slavers' camp. They are not glad to see you.",
           "effects": [
             {
               "encounter": {}
@@ -43,7 +43,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Where they were sold, and to whom, and for how little. The numbers stay with you.",
+          "text": "Beside the names are scratched where they were sold, to whom and for how little. The numbers stay with you.",
           "effects": [
             {
               "foresee": true
@@ -66,7 +66,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It burns high and black. The slavers will see the smoke, and know someone is coming for them.",
+          "text": "It burns high and black. When the slavers see the smoke, they will know someone is coming for them.",
           "effects": [
             {
               "score": {

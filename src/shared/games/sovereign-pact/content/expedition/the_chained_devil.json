@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 40,
-          "text": "It keeps its word, to everyone's surprise, and shows the way out. It does not say what it will do next.",
+          "text": "To everyone's surprise it keeps its word, showing the way out. It does not say what it will do next.",
           "effects": [
             {
               "skip": 2
@@ -33,7 +33,7 @@
         },
         {
           "w": 60,
-          "text": "It keeps its word, in its own way, which is not your way, and you learn the difference the hard way.",
+          "text": "It keeps its word in its own way, which is not yours. You learn the difference the hard way.",
           "effects": [
             {
               "fork": {
@@ -60,7 +60,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It lied to the wrong devil. It tells you who, very gladly, and in great detail.",
+          "text": "It lied to the wrong devil. It tells you which one gladly, in great detail.",
           "effects": [
             {
               "score": {
@@ -81,7 +81,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It curses you as you go, sweetly, by name.",
+          "text": "As you go, it curses you sweetly by name.",
           "effects": [
             {
               "to": "party",

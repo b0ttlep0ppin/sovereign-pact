@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "It fits. It feels right. It feels like it was waiting, and that is the part that worries everyone else.",
+          "text": "It fits and feels right, as though it was waiting for them. That is what worries everyone else.",
           "effects": [
             {
               "score": {
@@ -36,7 +36,7 @@
         },
         {
           "w": 50,
-          "text": "It fits. It whispers. It does not stop.",
+          "text": "It fits. It whispers, and it never stops.",
           "effects": [
             {
               "curse": true
@@ -60,7 +60,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Gold is gold, and the dead king can have his mud.",
+          "text": "Gold is gold. The dead king can keep his mud.",
           "effects": [
             {
               "resources": {
@@ -81,7 +81,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The field is quieter after, as if a long battle had finally ended, and the dead can lie down.",
+          "text": "Afterward the field is quieter. The long battle has ended, and the dead can lie down.",
           "effects": [
             {
               "to": "party",

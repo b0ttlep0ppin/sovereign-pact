@@ -30,7 +30,7 @@
         },
         {
           "w": 40,
-          "text": "Its mother finds you, and she is not little, and she is not grateful.",
+          "text": "Its mother finds you. She is neither little nor grateful.",
           "effects": [
             {
               "encounter": {
@@ -51,7 +51,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It sulks off, smoking, and sets the brush alight behind the Leader out of spite.",
+          "text": "It sulks off, smoking. Out of spite it sets the brush alight behind the Leader.",
           "effects": [
             {
               "hp": -15
@@ -70,7 +70,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A fortune, and the collector's carriage rattles off with it squealing inside. Somewhere, its mother will want to know.",
+          "text": "The collector pays a fortune, and his carriage rattles off with it squealing inside. Somewhere, its mother will want to know.",
           "effects": [
             {
               "resources": {
@@ -95,7 +95,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "It eats the spark and purrs smoke, and rides their shoulder into the next fight, where it is a great help until it gets bored.",
+          "text": "It eats the spark and purrs smoke. It rides their shoulder into the next fight, a great help until it grows bored.",
           "effects": [
             {
               "tp": 100
@@ -104,7 +104,7 @@
         },
         {
           "w": 50,
-          "text": "It eats the spark and wants more, and takes it.",
+          "text": "It eats the spark and wants more, so it takes it.",
           "effects": [
             {
               "hp": -15,

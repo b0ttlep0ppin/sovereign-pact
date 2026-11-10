@@ -30,7 +30,7 @@
         },
         {
           "w": 20,
-          "text": "She keeps a little more than hair, and they will not remember what.",
+          "text": "She keeps more than hair, though they cannot remember what.",
           "effects": [
             {
               "sanity": -8
@@ -49,7 +49,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The wood is less kind. Roots rise to catch the ankle, and the dryad watches from every tree.",
+          "text": "The wood grows less kind. Roots rise to catch the ankle while the dryad watches from every tree.",
           "effects": [
             {
               "durability": -8,

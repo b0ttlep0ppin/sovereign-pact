@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 80,
-          "text": "Not a sound, not a breath. The silence presses on the ears like water.",
+          "text": "Not a sound or a breath escapes you. The silence presses on the ears like water.",
           "effects": [
             {
               "to": "party",
@@ -52,7 +52,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The ceiling hums, and holds, and a hidden door swings open.",
+          "text": "The ceiling hums but holds. A hidden door swings open.",
           "effects": [
             {
               "fork": {
@@ -75,7 +75,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Out, just, and the way back is sealed under a ton of stone.",
+          "text": "You make it out, barely, as the way back is sealed under a ton of stone.",
           "effects": [
             {
               "skip": 1

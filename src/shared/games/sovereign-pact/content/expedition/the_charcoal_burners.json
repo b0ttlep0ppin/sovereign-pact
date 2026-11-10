@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Smoky, choking work, and at the end they share their supper, and their charcoal, and a little of their silence.",
+          "text": "It is smoky, choking work. At the end they share their supper, their charcoal and a little of their silence.",
           "effects": [
             {
               "to": "party",
@@ -46,7 +46,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They tell you which paths the wood keeps, and which it lets go, and which it never gives back.",
+          "text": "They tell you which paths the wood keeps, which it lets go and which it never gives back.",
           "effects": [
             {
               "foresee": true
@@ -65,7 +65,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Their eyes follow you out of the clearing, and their smoke follows you further. Everyone is coughing by dusk.",
+          "text": "Their eyes follow you out of the clearing, their smoke further still. By dusk everyone is coughing.",
           "effects": [
             {
               "to": "party",

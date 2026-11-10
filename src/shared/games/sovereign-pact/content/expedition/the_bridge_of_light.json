@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 75,
-          "text": "It holds, humming under your feet, and you feel braver for it.",
+          "text": "It holds, humming beneath your feet. You feel braver for having trusted it.",
           "effects": [
             {
               "skip": 1
@@ -34,7 +34,7 @@
         },
         {
           "w": 25,
-          "text": "It holds most of you. It does not hold all of you, all the way.",
+          "text": "It holds most of you, though not all of you, and not all the way.",
           "effects": [
             {
               "injury": "legs"
@@ -53,7 +53,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It holds firm under them, and under everyone after, ringing like a struck glass.",
+          "text": "It holds firm under them and under everyone after, ringing like struck glass.",
           "effects": [
             {
               "skip": 1
@@ -77,7 +77,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A long, dull way, and the rainbow glimmers mockingly behind you.",
+          "text": "The other way is long and dull. Behind you, the rainbow glimmers mockingly.",
           "effects": [
             {
               "to": "party",

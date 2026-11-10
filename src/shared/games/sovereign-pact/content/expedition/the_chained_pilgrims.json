@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The others curse you for stealing her penance. She weeps her thanks and runs, and does not look back.",
+          "text": "The others curse you for stealing her penance. Weeping her thanks, she runs without looking back.",
           "effects": [
             {
               "score": {
@@ -46,7 +46,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They walk on, and the one who begged spits at the Leader's feet. The rest bless you for leaving them their pain, a cold, hard blessing.",
+          "text": "The one who begged spits at the Leader's feet. The rest bless you for leaving them their pain, a cold, hard blessing.",
           "effects": [
             {
               "sanity": -5,
@@ -66,7 +66,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Freed, all of them, and furious, and they turn on you for taking their penance away.",
+          "text": "Every one of them is freed, and every one is furious. They turn on you for taking their penance away.",
           "effects": [
             {
               "encounter": {}

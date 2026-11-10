@@ -9,7 +9,7 @@
     10
   ],
   "title": "The Dragon's Shed Skin",
-  "text": "A dragon has shed its skin in the valley, a husk as big as a hall, split down the back where it climbed free. Its scales hang loose and shining in the wind. It still holds the dragon's warmth, and its smell, and something of its rage.",
+  "text": "A dragon has shed its skin in the valley, a husk as big as a hall, split down the back where it climbed free. Its scales hang loose and shining in the wind. It still holds the dragon's warmth and smell, along with something of its rage.",
   "options": [
     {
       "id": "scales",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Wyrmbone and scale, enough to armour a House, and edges that bite the hands that gather them.",
+          "text": "There is wyrmbone and scale enough to armour a House. Their edges bite the hands that gather them.",
           "effects": [
             {
               "resources": {
@@ -46,7 +46,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They smell like dragon for a week. Things in the wild give them a very wide berth.",
+          "text": "For a week they smell like dragon. Things in the wild give them a very wide berth.",
           "effects": [
             {
               "status": "protect"
@@ -68,7 +68,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It burns for a day, and the smoke smells of rage, and somewhere a dragon lifts its head.",
+          "text": "It burns for a day, its smoke heavy with rage. Somewhere, a dragon lifts its head.",
           "effects": [
             {
               "score": {

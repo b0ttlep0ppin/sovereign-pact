@@ -9,7 +9,7 @@
     7
   ],
   "title": "The Drowned Fiddler",
-  "text": "A fiddler sits on a stump in the marsh, wet through, water running from his hair, playing a jig that will not stop. His fingers are blue. The reeds around him are dancing, and the mud is dancing, and your feet are beginning to tap.",
+  "text": "A fiddler sits on a stump in the marsh, wet through, water running from his hair, playing a jig that will not stop. His fingers are blue. The reeds around him are dancing, as is the mud, and your feet are beginning to tap.",
   "options": [
     {
       "id": "dance",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "A wild hour, mud to the knees, and you feel years younger.",
+          "text": "You dance a wild hour with mud to the knees, and come away feeling years younger.",
           "effects": [
             {
               "to": "party",
@@ -31,7 +31,7 @@
         },
         {
           "w": 40,
-          "text": "You cannot stop. Your feet will not stop. The fiddler smiles with blue lips, and plays faster.",
+          "text": "You cannot stop; your feet will not obey you. The fiddler smiles with blue lips and plays faster.",
           "effects": [
             {
               "to": "party",
@@ -55,7 +55,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He plays it, and the marsh weeps, and the reeds lie still, and you pass in peace. He is still weeping when you look back.",
+          "text": "He plays a sad song. The marsh weeps, the reeds lie still and you pass in peace; when you look back, he is still weeping.",
           "effects": [
             {
               "skip": 1

@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They are welcome, and so are their friends, and the fire is warm and strange, and nobody asks too many questions.",
+          "text": "They are welcome, as are their friends. The fire is warm and strange, and nobody asks too many questions.",
           "effects": [
             {
               "to": "party",
@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 55,
-          "text": "A convincing limp, a glass eye, a growl. The keeper nods you in, and the fire is warm.",
+          "text": "A convincing limp, a glass eye and a growl see you through. The keeper nods you in to the warm fire.",
           "effects": [
             {
               "to": "party",
@@ -55,7 +55,7 @@
         },
         {
           "w": 45,
-          "text": "The guests know. Every head turns, antlers and scales and all, and none of them are friendly.",
+          "text": "The guests know. Every head turns, antlers, scales and all, and none of them are friendly.",
           "effects": [
             {
               "encounter": {
@@ -76,7 +76,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Something watches from the windows all night, and does not blink.",
+          "text": "All night something watches from the windows without blinking.",
           "effects": [
             {
               "to": "party",

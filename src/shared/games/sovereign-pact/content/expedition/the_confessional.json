@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "A weight lifted, and the voice says nothing at all, kindly.",
+          "text": "A weight lifts from them. The voice says nothing at all, kindly.",
           "effects": [
             {
               "sanity": 12
@@ -30,7 +30,7 @@
         },
         {
           "w": 30,
-          "text": "The voice listens, and thanks them, and tells it to someone else. They hear it being retold, faintly, as they leave.",
+          "text": "The voice listens and thanks them, then tells it to someone else. As they leave, they hear it being retold, faintly.",
           "effects": [
             {
               "sanity": -5
@@ -49,7 +49,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Other people's sins, whispered through the curtain, and useful ones to know.",
+          "text": "Other people's sins are whispered through the curtain, some of them useful to know.",
           "effects": [
             {
               "xp": 30

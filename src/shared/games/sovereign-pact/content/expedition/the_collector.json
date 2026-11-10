@@ -9,7 +9,7 @@
     10
   ],
   "title": "The Collector",
-  "text": "A polite gentleman in a carriage with no horses has drawn up by the road. Through its window you glimpse jars, and in the jars things that move. He collects curiosities, he says, and he would pay well for the story of how one of you got their worst scar.",
+  "text": "A polite gentleman in a carriage with no horses has drawn up by the road. Through its window you glimpse jars, and in the jars things that move. He collects curiosities, he says. He would pay well for the story of how one of you got their worst scar.",
   "options": [
     {
       "id": "tell",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He pays in old gold and writes every word down, and asks to see the scar, and touches it, gently, lovingly.",
+          "text": "He pays in old gold, writing every word down. Then he asks to see the scar and touches it, gently, lovingly.",
           "effects": [
             {
               "resources": {
@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He pays double, and knows it was a lie, and does not mind. Something in a jar taps the glass.",
+          "text": "He pays double, knowing it was a lie and not minding. Something in a jar taps the glass.",
           "effects": [
             {
               "resources": {
@@ -71,7 +71,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He tips his hat and rolls on. As he goes you see him write something in a small book, and the scarred one cannot stop wondering what.",
+          "text": "He tips his hat and rolls on. As he goes he writes something in a small book, and the scarred one cannot stop wondering what.",
           "effects": [
             {
               "to": "party",

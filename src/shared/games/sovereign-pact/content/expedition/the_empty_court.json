@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The armour kneels back. The herald gives you safe passage and a sealed letter that no one can open, and no one dares to burn.",
+          "text": "The armour kneels back. The herald grants safe passage and a sealed letter that no one can open, and no one dares to burn.",
           "effects": [
             {
               "skip": 1
@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 40,
-          "text": "The armour applauds, slowly, gauntlets clanking, and lets you take the throne's gold.",
+          "text": "The armour applauds slowly, gauntlets clanking, and lets you take the throne's gold.",
           "effects": [
             {
               "resources": {
@@ -61,7 +61,7 @@
         },
         {
           "w": 60,
-          "text": "The armour stands, every suit, all at once, and draws.",
+          "text": "Every suit of armour stands at once and draws.",
           "effects": [
             {
               "encounter": {
@@ -82,7 +82,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The herald announces your departure too, and every empty helm turns to watch you out. It is an honour, of a kind, and word of it will get home.",
+          "text": "The herald announces your departure too, and every empty helm turns to watch you out. It is an honour of a kind; word of it will reach home.",
           "effects": [
             {
               "to": "party",

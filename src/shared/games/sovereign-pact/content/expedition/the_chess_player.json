@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 45,
-          "text": "Checkmate. It bows, slowly, and the board of teeth is yours. You do not ask whose teeth.",
+          "text": "Checkmate. It bows slowly, conceding the board of teeth. You do not ask whose teeth they were.",
           "effects": [
             {
               "score": {
@@ -37,7 +37,7 @@
         },
         {
           "w": 55,
-          "text": "Checkmate. It reaches across the board and takes a little of them, and puts it in the box with the rest.",
+          "text": "Checkmate. It reaches across the board, takes a little of them and puts it in the box with the rest.",
           "effects": [
             {
               "sanity": -20
@@ -61,7 +61,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It sees, and laughs, a long dry laugh, and sweeps the board clean, and lets you go.",
+          "text": "It sees, and laughs a long dry laugh. Sweeping the board clean, it lets you go.",
           "effects": [
             {
               "score": {
@@ -82,7 +82,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It shrugs and sets the pieces up again. The Leader finds themself playing the game in their head all day, and cannot stop, and grows sharper for it.",
+          "text": "It shrugs and sets the pieces up again. All day the Leader plays the game in their head, unable to stop, growing sharper for it.",
           "effects": [
             {
               "jp": 40
@@ -102,7 +102,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "The pieces are clockwork, and the Tinkerer sees the trick in them. Nine moves, and the board is theirs.",
+          "text": "The pieces are clockwork, and the Tinkerer sees the trick in them. Nine moves later, the board is theirs.",
           "effects": [
             {
               "item": {
@@ -113,7 +113,7 @@
         },
         {
           "w": 40,
-          "text": "The pieces are clockwork, and so, the Tinkerer sees too late, is the player. It takes a finger for the insult.",
+          "text": "The pieces are clockwork. Too late, the Tinkerer sees that so is the player. It takes a finger for the insult.",
           "effects": [
             {
               "injury": "arms"

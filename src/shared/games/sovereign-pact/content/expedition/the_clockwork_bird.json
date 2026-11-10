@@ -9,7 +9,7 @@
     9
   ],
   "title": "The Clockwork Bird",
-  "text": "A brass bird flits from beam to beam in the ruined forge, singing a song from the forge's best days, when the furnaces roared and the smiths were proud. Its wings click. Its song is slowing, each note a little lower than the last. It is running down.",
+  "text": "A brass bird flits from beam to beam in the ruined forge, singing a song from the forge's best days, when the furnaces roared and the smiths were proud. Its wings click as it flies. Each note is a little lower than the last; it is running down.",
   "options": [
     {
       "id": "wind",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It sings, brighter, and leads you through the ruins to its maker's room, where it has been waiting to go.",
+          "text": "It sings brighter than before, then leads you through the ruins to its maker's room, where it has long been waiting to go.",
           "effects": [
             {
               "fork": {
@@ -44,7 +44,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "It is a fine toy, and worth a lot, and it never stops trying to escape.",
+          "text": "It is a fine toy worth a good deal, though it never stops trying to escape.",
           "effects": [
             {
               "resources": {
@@ -55,7 +55,7 @@
         },
         {
           "w": 40,
-          "text": "Its beak is sharp, and brass, and it goes for the eyes, and does not like being caught.",
+          "text": "Its brass beak is sharp. It goes for the eyes, fighting hard against the hand that holds it.",
           "effects": [
             {
               "durability": -20,
@@ -75,7 +75,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The song slows, and slows, and stops mid-note, and the forge is very quiet, and very dead.",
+          "text": "The song slows, then stops mid-note. The forge is very quiet, and very dead.",
           "effects": [
             {
               "to": "party",

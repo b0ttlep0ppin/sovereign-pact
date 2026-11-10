@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 55,
-          "text": "The echo says your name the way someone who loved you said it, and for a moment they are there.",
+          "text": "The echo says their name the way someone who loved them once said it. For a moment, that person is there.",
           "effects": [
             {
               "sanity": 15
@@ -30,7 +30,7 @@
         },
         {
           "w": 45,
-          "text": "The echo says your name the way your enemies will, and you learn exactly how much they hate you.",
+          "text": "The echo says their name the way their enemies will. They learn exactly how much they are hated.",
           "effects": [
             {
               "sanity": -15
@@ -52,7 +52,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "You cross in silence, and hear everything the hall says about everyone else. You keep it to yourself.",
+          "text": "They cross in silence, hearing everything the hall says of everyone else, and keep it to themselves.",
           "effects": [
             {
               "xp": 30

@@ -9,7 +9,7 @@
     9
   ],
   "title": "The Broken Hammer",
-  "text": "The head of a great smith's hammer lies split in two on the forge floor, each half the size of a child. Both halves are still warm, and humming, and when you hold them apart they lean toward each other like lovers.",
+  "text": "The head of a great smith's hammer lies split in two on the forge floor, each half the size of a child. Both halves are still warm and humming. When you hold them apart, they lean toward each other like lovers.",
   "options": [
     {
       "id": "take",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Heavy, and warm in the pack, leaning always toward the other half, as if it is pining.",
+          "text": "Each half rides heavy and warm in a pack, always leaning toward the other as if pining.",
           "effects": [
             {
               "to": "party",
@@ -46,7 +46,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "They fuse with a ring like a great bell, and the hammer is whole, and glad.",
+          "text": "They fuse with a ring like a great bell. The hammer is whole again, and glad.",
           "effects": [
             {
               "item": {
@@ -57,7 +57,7 @@
         },
         {
           "w": 50,
-          "text": "They fuse with a blast that throws them across the forge, arms first.",
+          "text": "They fuse with a blast that throws the strongest across the forge, arms first.",
           "effects": [
             {
               "injury": "arms"
@@ -76,7 +76,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The humming stops, and something deep in the forge settles, like a sigh.",
+          "text": "The humming stops. Deep in the forge, something settles with a sigh.",
           "effects": [
             {
               "doom": -1

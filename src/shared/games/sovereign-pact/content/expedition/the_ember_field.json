@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "A good haul, and burned fingers, and boots that smell of smoke for a month.",
+          "text": "The haul is good, though it costs burned fingers and boots that smell of smoke for a month.",
           "effects": [
             {
               "resources": {
@@ -57,7 +57,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Which dragon won, and where it crawled off to heal. It is still there, and still healing.",
+          "text": "The ground shows which dragon won, and where it crawled off to heal. It is still there, still healing.",
           "effects": [
             {
               "foresee": true
@@ -81,7 +81,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "The long way, under a hot wind. Your armour comes out of it baked dry and cracking.",
+          "text": "The long way runs under a hot wind that bakes your armour dry and cracking.",
           "effects": [
             {
               "to": "party",
@@ -92,7 +92,7 @@
         },
         {
           "w": 30,
-          "text": "The long way, under a hot wind, and at the field's edge a dragon scale has blown clear of the embers.",
+          "text": "The long way runs under a hot wind. At the field's edge lies a dragon scale, blown clear of the embers.",
           "effects": [
             {
               "resources": {

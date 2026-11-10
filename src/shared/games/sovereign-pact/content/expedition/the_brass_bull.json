@@ -9,7 +9,7 @@
     10
   ],
   "title": "The Brass Bull",
-  "text": "A brass bull sits over a fire in the Pit, its flanks glowing dull red, smoke curling from its nostrils. Something inside it is singing. The song is high and broken and goes round and round, and it sounds almost like a prayer.",
+  "text": "A brass bull sits over a fire in the Pit, its flanks glowing dull red, smoke curling from its nostrils. Something inside it is singing. The song is high and broken, going round and round, and it sounds almost like a prayer.",
   "options": [
     {
       "id": "open",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "A soul tumbles out, scorched and weeping and grateful, and blesses you with what little it has left.",
+          "text": "A soul tumbles out, scorched and weeping. In gratitude, it blesses you with what little it has left.",
           "effects": [
             {
               "blessing": {
@@ -33,7 +33,7 @@
         },
         {
           "w": 50,
-          "text": "A devil uncoils from inside, freed, grateful in its own way, which is no way you would want.",
+          "text": "A devil uncoils from inside. It is grateful in its own way, which is no way you would want.",
           "effects": [
             {
               "encounter": {
@@ -54,7 +54,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The singing stops, and something inside sighs, and does not sing again.",
+          "text": "The singing stops. Something inside sighs once and never sings again.",
           "effects": [
             {
               "to": "party",
@@ -74,7 +74,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The song follows you down, round and round, a prayer that never ends.",
+          "text": "The song follows you down, round and round, a prayer without end.",
           "effects": [
             {
               "to": "party",

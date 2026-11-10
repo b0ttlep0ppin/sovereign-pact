@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It takes all day and all your warmth. It is a very fine sword, and very cold to hold.",
+          "text": "It takes all day and all your warmth. The sword is very fine, and very cold to hold.",
           "effects": [
             {
               "item": {
@@ -46,7 +46,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "He thaws, and gasps, and thanks you, and tells you where he was going, and why he never got there.",
+          "text": "He thaws with a gasp and thanks you. He tells you where he was going, and why he never got there.",
           "effects": [
             {
               "skip": 1
@@ -60,7 +60,7 @@
         },
         {
           "w": 40,
-          "text": "He thaws hungry, and he has been hungry a very long time.",
+          "text": "He thaws hungry, after a very long time without food.",
           "effects": [
             {
               "encounter": {}
@@ -79,7 +79,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It goes somewhere colder, and something there was keeping house, and does not like visitors.",
+          "text": "It opens somewhere colder. Something there was keeping house, and it does not like visitors.",
           "effects": [
             {
               "fork": {

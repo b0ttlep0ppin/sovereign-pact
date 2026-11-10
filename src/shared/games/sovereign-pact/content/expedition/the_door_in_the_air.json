@@ -9,7 +9,7 @@
     10
   ],
   "title": "The Door in the Air",
-  "text": "A door stands in empty space, frame and all, hanging over the dark with no wall to hold it. It is painted green and has a brass knocker. Through the keyhole, sunlight, warm and golden, and the sound of bees.",
+  "text": "A door stands in empty space, frame and all, hanging over the dark with no wall to hold it. It is painted green, with a brass knocker. Through the keyhole come warm golden sunlight and the sound of bees.",
   "options": [
     {
       "id": "open",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "Sunlight, warm and real, and bees, for one long moment. Then it is gone, and you have it still, and always will.",
+          "text": "For one long moment there is real sunlight, warm, and the sound of bees. Then it is gone, though you carry it with you always.",
           "effects": [
             {
               "to": "party",
@@ -31,7 +31,7 @@
         },
         {
           "w": 50,
-          "text": "Not sunlight. Something on the other side was making the sound of bees, and it is very pleased you opened the door.",
+          "text": "It is not sunlight. Something on the other side was making the sound of bees, and it is very pleased you opened the door.",
           "effects": [
             {
               "encounter": {
@@ -53,7 +53,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Home, small and bright and far away. And the way back to it, if you are quick.",
+          "text": "Through the keyhole lies home, small and bright and far away, along with the way back to it if you are quick.",
           "effects": [
             {
               "foresee": true
@@ -72,7 +72,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "As you go, someone on the other side knocks, politely, three times.",
+          "text": "As you go, someone on the other side knocks politely, three times.",
           "effects": [
             {
               "to": "party",

@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "A lament that eases the heart, and makes the dark feel like home for a little while.",
+          "text": "It plays a lament that eases the heart. For a little while, the dark feels like home.",
           "effects": [
             {
               "to": "party",
@@ -31,7 +31,7 @@
         },
         {
           "w": 40,
-          "text": "A lament that wakes the dead, and they rise up homesick and angry, looking for someone to blame.",
+          "text": "Its lament wakes the dead. They rise homesick and angry, looking for someone to blame.",
           "effects": [
             {
               "encounter": {}
@@ -50,7 +50,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A song of binding, slow and low. The barrow sleeps, and the hair on the strings goes still.",
+          "text": "The wisest plays a song of binding, slow and low. The barrow sleeps; the hair on the strings goes still.",
           "effects": [
             {
               "skip": 1
@@ -74,7 +74,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Somebody screams, somewhere in the dark, as the spine snaps. Not one of you. A shard of the spine comes away hard and old as dragon's bone.",
+          "text": "As the spine snaps, someone screams in the dark, though none of you. A shard of it comes away as hard and old as dragon's bone.",
           "effects": [
             {
               "to": "party",

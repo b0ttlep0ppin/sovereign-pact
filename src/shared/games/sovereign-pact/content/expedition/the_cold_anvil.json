@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 75,
-          "text": "The ring of it goes up the bone like cold fire. The arm is whole, and the ghost nods.",
+          "text": "The ring of it runs up the bone like cold fire. The arm is whole again; the ghost nods.",
           "effects": [
             {
               "mend": true
@@ -33,7 +33,7 @@
         },
         {
           "w": 25,
-          "text": "The anvil rings, and the arm goes numb, and stays a little numb, for something in the blow was not honest.",
+          "text": "The anvil rings and the arm goes numb. Something in the blow was not honest, so a little of the numbness stays.",
           "effects": [
             {
               "stat": {
@@ -54,7 +54,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A blade the ghost is proud of. It nods once, and fades into the frost.",
+          "text": "They forge a blade the ghost is proud of. It nods once, then fades into the frost.",
           "effects": [
             {
               "item": {
@@ -80,7 +80,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Heavy as sin, and the ghost follows it, and stands behind whoever carries it, watching.",
+          "text": "The anvil is heavy as sin. The ghost follows it, standing behind whoever carries it, watching.",
           "effects": [
             {
               "resources": {

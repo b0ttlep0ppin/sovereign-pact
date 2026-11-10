@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 85,
-          "text": "A second rope, then a third. Everyone crosses dry, with the water roaring hungrily below.",
+          "text": "They make a second rope fast, then a third. Everyone crosses dry while the water roars hungrily below.",
           "effects": [
             {
               "xp": 80
@@ -35,7 +35,7 @@
         },
         {
           "w": 15,
-          "text": "The rope snaps halfway, and the water takes them, and spits them out on the rocks, broken.",
+          "text": "The rope snaps halfway. The water takes them, then spits them out broken on the rocks.",
           "effects": [
             {
               "durability": -40,
@@ -59,7 +59,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Cold to the bone, wet, and slower, and the river does not want to let go.",
+          "text": "The river is cold to the bone and does not want to let you go. You climb out soaked and slow.",
           "effects": [
             {
               "to": "party",
@@ -83,7 +83,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "You swim, cursing the cold, but nothing follows you across. Whatever was behind you will have to find its own way.",
+          "text": "You swim, cursing the cold, but nothing follows you across. Whatever was behind you must find its own way.",
           "effects": [
             {
               "to": "party",

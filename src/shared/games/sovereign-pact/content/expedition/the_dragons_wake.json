@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A great dragon notices you mourning, and bows its head to you, once. You will never forget it.",
+          "text": "A great dragon notices you mourning and bows its head to you once. You will never forget it.",
           "effects": [
             {
               "to": "party",
@@ -46,7 +46,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "A dragon's scale, still warm, unseen.",
+          "text": "The dragon's scale is still warm, and no one saw it taken.",
           "effects": [
             {
               "resources": {
@@ -57,7 +57,7 @@
         },
         {
           "w": 40,
-          "text": "Seen. The song stops, and every head turns.",
+          "text": "Someone saw. The song stops, and every head turns.",
           "effects": [
             {
               "encounter": {
@@ -78,7 +78,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The song is a history, older than the Houses, and it names the End Ruler. The name stays with them like a burn.",
+          "text": "The song is a history older than the Houses, and it names the End Ruler. The name stays with the wisest like a burn.",
           "effects": [
             {
               "score": {

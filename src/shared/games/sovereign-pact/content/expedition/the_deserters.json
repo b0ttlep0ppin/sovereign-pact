@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They lead the way, jumping at every shadow, and they lead it true.",
+          "text": "They lead the way, jumping at every shadow, but they lead it true.",
           "effects": [
             {
               "skip": 2
@@ -43,7 +43,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Their House is grateful. The deserters are not, and they say nothing more. You are on your own.",
+          "text": "Their House is grateful. The deserters are not, and say nothing more; you are on your own.",
           "effects": [
             {
               "accord": 2
@@ -62,7 +62,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Enough to go on, and their curses at your backs.",
+          "text": "You learn enough to go on. Their curses follow at your backs.",
           "effects": [
             {
               "skip": 1

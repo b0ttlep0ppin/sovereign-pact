@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "It is just a coin. A very nice one. Probably.",
+          "text": "It is just a coin, a very nice one. Probably.",
           "effects": [
             {
               "resources": {
@@ -32,7 +32,7 @@
         },
         {
           "w": 50,
-          "text": "It is not just a coin. It is warm, and it is smiling wider.",
+          "text": "It is not just a coin. It is warm, and its smile has grown wider.",
           "effects": [
             {
               "resources": {
@@ -56,7 +56,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It rolls back onto the road behind you, face up, smiling, and follows you for a while.",
+          "text": "It rolls back onto the road behind you, face up and smiling, and follows you for a while.",
           "effects": [
             {
               "to": "party",
@@ -76,7 +76,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It goes dull, and stops smiling, and stays gold.",
+          "text": "It goes dull and stops smiling, though it stays gold.",
           "effects": [
             {
               "resources": {

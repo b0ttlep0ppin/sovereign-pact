@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "They roll a long way and stop. They name a House, and gold rains on it out of a clear sky.",
+          "text": "They roll a long way before stopping on a House's emblem. Gold rains on that House out of a clear sky.",
           "effects": [
             {
               "resources": {
@@ -32,7 +32,7 @@
         },
         {
           "w": 50,
-          "text": "They roll a long way and stop. They name a House, and its Scions feel the stones lean on them, heavy and cold.",
+          "text": "They roll a long way before stopping on a House's emblem. Its Scions feel the stones lean on them, heavy and cold.",
           "effects": [
             {
               "sanity": -15
@@ -51,7 +51,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Loaded, every one, and they can read whose hand loaded them.",
+          "text": "Every one is loaded, and the wisest can read whose hand loaded them.",
           "effects": [
             {
               "score": {
@@ -73,7 +73,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The stones hum, disappointed, and as you leave one die rolls over on its own. Every hand in the party itches to throw it for a day after.",
+          "text": "The stones hum with disappointment. As you leave, one die rolls over on its own; for a day after, every hand in the party itches to throw it.",
           "effects": [
             {
               "to": "party",

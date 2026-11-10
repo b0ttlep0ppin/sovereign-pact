@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "The food is real, and very good, and nobody comes back. Nobody.",
+          "text": "The food is real and very good. No one comes back for it.",
           "effects": [
             {
               "to": "party",
@@ -35,7 +35,7 @@
         },
         {
           "w": 40,
-          "text": "The guests come back, and they are hungry, and they are not angry that you sat. They are pleased.",
+          "text": "The guests return, hungry. They are not angry that you sat; they are pleased.",
           "effects": [
             {
               "encounter": {}
@@ -54,7 +54,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Very fine silver, and very cold, and it never warms, no matter how long it is held.",
+          "text": "The silver is very fine and very cold. It never warms, no matter how long it is held.",
           "effects": [
             {
               "resources": {
@@ -78,7 +78,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The candles go out behind you, one by one. The smell of the food follows you for a day, and your own bread tastes of ash beside it.",
+          "text": "Behind you the candles go out one by one. The smell of the food follows you for a day, making your own bread taste of ash.",
           "effects": [
             {
               "to": "party",

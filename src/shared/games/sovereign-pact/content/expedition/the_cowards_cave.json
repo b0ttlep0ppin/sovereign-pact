@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They whisper to the meek one what they are hiding from, and where it sleeps, and how it eats. The meek one does not sleep that night.",
+          "text": "They whisper what they are hiding from, where it sleeps and how it eats. The meek one does not sleep that night.",
           "effects": [
             {
               "foresee": true
@@ -43,7 +43,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A little food, a little shame, and their eyes in the dark following you out.",
+          "text": "You leave with a little food and a little shame. Their eyes follow you out of the dark.",
           "effects": [
             {
               "resources": {
@@ -67,7 +67,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It is awake, and it is bigger than they said, and it has been waiting for someone brave enough.",
+          "text": "It is awake, bigger than they said. It has been waiting for someone brave enough.",
           "effects": [
             {
               "encounter": {

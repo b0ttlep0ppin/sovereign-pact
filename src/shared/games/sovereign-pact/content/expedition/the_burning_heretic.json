@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "She does not scream. The Court approves, warmly. Something far off, beyond the Gate, approves too, and it is hungry for more.",
+          "text": "She does not scream. The Court approves warmly. Far off beyond the Gate, something else approves too, hungry for more.",
           "effects": [
             {
               "score": {
@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The priests stop smiling and call their guards. The crowd remembers your faces kindly, which may not save you.",
+          "text": "The priests stop smiling and call their guards. The crowd will remember your faces kindly, though that may not save you.",
           "effects": [
             {
               "encounter": {}
@@ -69,7 +69,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "A delay, a long dull argument, and in the night she slips her ropes and is gone.",
+          "text": "A long, dull argument delays the burning. In the night she slips her ropes and is gone.",
           "effects": [
             {
               "score": {
@@ -80,7 +80,7 @@
         },
         {
           "w": 40,
-          "text": "The priests listen politely, and then light it themselves, and make you watch until the end.",
+          "text": "The priests listen politely, then light it themselves. They make you watch until the end.",
           "effects": [
             {
               "to": "party",

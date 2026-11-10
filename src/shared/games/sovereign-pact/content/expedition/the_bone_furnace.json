@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "Past, sweating, eyes stinging with ash, and nobody looked up.",
+          "text": "You slip past, sweating, eyes stinging with ash. Not one of them looked up.",
           "effects": [
             {
               "to": "party",
@@ -31,7 +31,7 @@
         },
         {
           "w": 30,
-          "text": "A stoker looks up, and grins, and stops being bored.",
+          "text": "A stoker looks up with a grin. It is no longer bored.",
           "effects": [
             {
               "encounter": {
@@ -52,7 +52,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They love it, gasping at every rival's shame, and wave you through, already retelling it to one another.",
+          "text": "They gasp at every rival's shame. Waving you through, they are already retelling it to one another.",
           "effects": [
             {
               "skip": 1
@@ -76,7 +76,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It goes out with a roar, and so do the devils who fed it, and they are not bored any more.",
+          "text": "It goes out with a roar. The devils who fed it are not bored any longer.",
           "effects": [
             {
               "encounter": {

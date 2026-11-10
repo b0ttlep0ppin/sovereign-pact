@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Better than new, and it whispers, very faintly, all the time, and you never get used to it.",
+          "text": "Your gear is better than new. It whispers faintly all the time, and you never get used to it.",
           "effects": [
             {
               "to": "party",
@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A good price, paid in a small lie, which he stitches in with the rest. You can hear it in there sometimes.",
+          "text": "You pay him a good price in a small lie, which he stitches in with the rest. Sometimes you can hear it in there.",
           "effects": [
             {
               "to": "party",
@@ -65,7 +65,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He is offended, and spits out his pins, and tells his friends, who come to discuss it.",
+          "text": "Offended, he spits out his pins and tells his friends. They come to discuss it with you.",
           "effects": [
             {
               "encounter": {}

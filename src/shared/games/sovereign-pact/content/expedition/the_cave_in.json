@@ -9,7 +9,7 @@
     10
   ],
   "title": "The Cave-In",
-  "text": "The roof comes down behind you with a roar, and then silence, and dust so thick you cannot see your hands. When it clears, the way back is gone, sealed with a wall of broken stone. Somewhere in the dark ahead, something has heard.",
+  "text": "The roof comes down behind you with a roar. Then comes silence, with dust so thick you cannot see your hands. When it clears, the way back is gone, sealed with a wall of broken stone. Somewhere in the dark ahead, something has heard.",
   "options": [
     {
       "id": "dig",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Hours of it, hands bleeding, in the silence, with something listening ahead and never coming closer.",
+          "text": "You dig for hours in silence, hands bleeding. Ahead, something listens but never comes closer.",
           "effects": [
             {
               "to": "party",
@@ -46,7 +46,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Faster, and the stone fights them every inch, as if it wants you to stay.",
+          "text": "The work goes faster, though the stone fights them every inch, as if it wants you to stay.",
           "effects": [
             {
               "durability": -30,
@@ -69,7 +69,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Deeper, into the dark, where the thing that heard is waiting.",
+          "text": "You go deeper into the dark, where the thing that heard you is waiting.",
           "effects": [
             {
               "fork": {

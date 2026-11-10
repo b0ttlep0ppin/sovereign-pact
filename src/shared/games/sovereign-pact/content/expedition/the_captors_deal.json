@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "It works. The chief takes them, and they break their ropes in the night and come back bloody, but whole.",
+          "text": "The chief takes them. In the night they break their ropes, returning bloody but whole.",
           "effects": [
             {
               "skip": 2
@@ -53,7 +53,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The bandits are many, and they fight like people with nothing to lose.",
+          "text": "The bandits are many. They fight like people with nothing left to lose.",
           "effects": [
             {
               "encounter": {
@@ -79,7 +79,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Gold talks, and the ropes come off, and the chief counts every coin twice.",
+          "text": "Gold does the talking. The ropes come off while the chief counts every coin twice.",
           "effects": [
             {
               "resources": {

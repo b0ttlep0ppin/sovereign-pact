@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The cairn grows, and the barrows around you seem to settle, quieter, content to be remembered.",
+          "text": "The cairn grows. Around you the barrows seem to settle, quieter, content to be remembered.",
           "effects": [
             {
               "to": "party",
@@ -46,7 +46,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Bad luck. It is heavier than it should be, and it follows you home, and it gets heavier still.",
+          "text": "The stone is heavier than it should be. It follows you home, growing heavier still.",
           "effects": [
             {
               "curse": true
@@ -65,7 +65,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "A warrior's grave goods, wrapped in rotten cloth.",
+          "text": "Beneath the stones lie a warrior's grave goods, wrapped in rotten cloth.",
           "effects": [
             {
               "item": {
@@ -76,7 +76,7 @@
         },
         {
           "w": 40,
-          "text": "The warrior, and he did not want to be remembered this way.",
+          "text": "Beneath the stones lies the warrior himself, who did not wish to be remembered this way.",
           "effects": [
             {
               "encounter": {

@@ -9,7 +9,7 @@
     9
   ],
   "title": "The Dancing Bear",
-  "text": "A showman with a whip and a great bear on a chain, dancing for nobody on an empty road. The bear's paws are bloody. It turns, and turns, and looks at you over the showman's shoulder as if it knows exactly what you are.",
+  "text": "A showman with a whip leads a great bear on a chain, making it dance for nobody on an empty road. The bear's paws are bloody. It turns and turns, watching you over the showman's shoulder as if it knows exactly what you are.",
   "options": [
     {
       "id": "free",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "The bear walks off into the trees without looking back, and the showman runs the other way.",
+          "text": "The bear walks off into the trees without looking back. The showman runs the other way.",
           "effects": [
             {
               "to": "party",
@@ -36,7 +36,7 @@
         },
         {
           "w": 30,
-          "text": "The bear remembers every whip it ever felt, and does not ask whose they were.",
+          "text": "The bear remembers every whip it ever felt. It does not ask whose they were.",
           "effects": [
             {
               "encounter": {}
@@ -55,7 +55,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It follows you a day, and fights for you like a wall, and then goes home.",
+          "text": "It follows you for a day, fighting for you like a wall, before it goes home.",
           "effects": [
             {
               "resources": {
@@ -80,7 +80,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It is a sad dance, and the bear's eyes never leave you, and you see them for nights after.",
+          "text": "It is a sad dance. The bear's eyes never leave you; you see them for nights after.",
           "effects": [
             {
               "resources": {

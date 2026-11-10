@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "Iron, and thick furs that smell of the dead dogs, and keep out the cold.",
+          "text": "Beneath the lashings lie iron and thick furs. The furs smell of the dead dogs but keep out the cold.",
           "effects": [
             {
               "resources": {
@@ -36,7 +36,7 @@
         },
         {
           "w": 30,
-          "text": "The drift moves, and slides, and buries you to the chest, as it buried them.",
+          "text": "The drift shifts and slides, burying you to the chest as it buried them.",
           "effects": [
             {
               "to": "party",
@@ -56,7 +56,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Under the last dog, curled against its belly, the driver's purse. He must have trusted the dog more than his sled.",
+          "text": "Under the last dog, curled against its belly, lies the driver's purse. He must have trusted the dog more than his sled.",
           "effects": [
             {
               "resources": {
@@ -80,7 +80,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Toward the hills, staggering. Something followed, walking in his footprints, step for step.",
+          "text": "He staggered toward the hills. Something followed, walking in his footprints step for step.",
           "effects": [
             {
               "foresee": true

@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 80,
-          "text": "Across, and the old spine hums under your feet with a strength that stays in the legs.",
+          "text": "The old spine hums under your feet as you cross, a strength that lingers in the legs.",
           "effects": [
             {
               "to": "party",
@@ -31,7 +31,7 @@
         },
         {
           "w": 20,
-          "text": "A vertebra gives under your feet, and the whole spine groans, as if in pain.",
+          "text": "A vertebra gives beneath you. The whole spine groans, as if in pain.",
           "effects": [
             {
               "to": "party",
@@ -52,7 +52,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Wyrmbone, and the bridge lurches, and far down the spine something shifts that should not.",
+          "text": "The rib comes free as good wyrmbone. The bridge lurches, and far down the spine something shifts that should not.",
           "effects": [
             {
               "resources": {
@@ -77,7 +77,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A day's climb, and the hills are not empty, and they have been watching you go.",
+          "text": "The climb takes a day. The hills are not empty, and they watch you all the way.",
           "effects": [
             {
               "fork": {

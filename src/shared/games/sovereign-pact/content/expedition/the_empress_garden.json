@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The garden kneels, every rose, and the scent of it heals. It is hard to leave.",
+          "text": "Every rose in the garden kneels. Their scent heals, and it is hard to leave.",
           "effects": [
             {
               "to": "party",
@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "The roses bleed red sap, and the throne holds a jewelled seed.",
+          "text": "The roses bleed red sap. On the throne lies a jewelled seed.",
           "effects": [
             {
               "resources": {
@@ -56,7 +56,7 @@
         },
         {
           "w": 40,
-          "text": "The thorns fight back, and their poison is sweet, and it lingers.",
+          "text": "The thorns fight back with a sweet poison that lingers.",
           "effects": [
             {
               "to": "party",
@@ -80,7 +80,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A single rose follows you out on the wind, and stays fresh for a year.",
+          "text": "A single rose follows you out on the wind. It stays fresh for a year.",
           "effects": [
             {
               "blessing": {

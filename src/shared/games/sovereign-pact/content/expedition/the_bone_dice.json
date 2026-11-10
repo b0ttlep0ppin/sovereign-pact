@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "Sixes. The skeleton pays out with a clatter and a bow, and seems almost pleased to lose.",
+          "text": "Sixes. The skeleton pays out with a clatter and a bow, seeming almost pleased to lose.",
           "effects": [
             {
               "resources": {
@@ -32,7 +32,7 @@
         },
         {
           "w": 50,
-          "text": "Ones. It takes its winnings, and a little of your nerve along with them, and stacks both neatly at its elbow.",
+          "text": "Ones. It takes its winnings along with a little of your nerve, stacking both neatly at its elbow.",
           "effects": [
             {
               "resources": {
@@ -56,7 +56,7 @@
       "outcomes": [
         {
           "w": 65,
-          "text": "It never sees it. Or it likes to lose to a good cheat. It is hard to tell with a skull.",
+          "text": "It never notices, or perhaps it enjoys losing to a good cheat. With a skull, it is hard to tell.",
           "effects": [
             {
               "resources": {
@@ -72,7 +72,7 @@
         },
         {
           "w": 35,
-          "text": "It sees it. Its jaw stops clicking, and the silence is far worse.",
+          "text": "It sees. Its jaw stops clicking, and the silence that follows is far worse.",
           "effects": [
             {
               "encounter": {}
@@ -91,7 +91,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It shrugs, a long rattle, and throws anyway, for you. You hear the dice come up bad as you walk away.",
+          "text": "It shrugs with a long rattle, then throws for you anyway. As you walk away, you hear the dice come up bad.",
           "effects": [
             {
               "status": "marked"
@@ -111,7 +111,7 @@
       "outcomes": [
         {
           "w": 55,
-          "text": "Sixes. The skeleton's jaw falls off. It pays in old gold, and the Gambler walks away with luck humming in their fingers.",
+          "text": "Sixes. The skeleton's jaw falls off. It pays in old gold while the Gambler walks away with luck humming in their fingers.",
           "effects": [
             {
               "resources": {
@@ -123,7 +123,7 @@
         },
         {
           "w": 45,
-          "text": "Ones. It laughs until its ribs rattle, and takes its winnings out of the Gambler's blood.",
+          "text": "Ones. It laughs until its ribs rattle, then takes its winnings out of the Gambler's blood.",
           "effects": [
             {
               "hp": -30,
