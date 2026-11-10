@@ -280,8 +280,8 @@ export function strike(b: Battle, rng: Rng, u: Combatant, t: Combatant, ab: Abil
   for (const id of ab.dispel ?? []) if (!t.dead) removeStatus(b, t, id);
   // Bloodbound: a summon's blows heal its Conjurer (§12.15).
   const owner = u.owner !== undefined && damage > 0 ? b.units.find((o) => o.id === u.owner && o.mods.bloodbound && !o.dead && !o.down) : undefined;
-  if (owner) owner.hp = Math.max(owner.hp, Math.min(hpCap(owner), owner.hp + Math.round((damage * owner.mods.bloodbound!) / 100)));
-  if (ab.drain && damage > 0 && !u.down && !u.dead) u.hp = Math.min(hpCap(u), u.hp + Math.round((damage * ab.drain) / 100));
+  if (owner) mend(b, owner, u.id, Math.round((damage * owner.mods.bloodbound!) / 100));
+  if (ab.drain && damage > 0 && !u.down && !u.dead) mend(b, u, u.id, Math.round((damage * ab.drain) / 100));
   if (ab.tpSteal && damage > 0) {
     const took = Math.min(t.tp, ab.tpSteal);
     t.tp -= took;
@@ -315,10 +315,21 @@ export function offHandStrike(b: Battle, rng: Rng, u: Combatant, t: Combatant, a
   }
 }
 
+/**
+ * HP that seeps back with no spell cast (a drain, Sanguine blood, Bloodbound, Regen): never past the
+ * cap, never lowering it, and told as a quiet heal so its number shows (Josh 2026-11-10: Sanguine
+ * "wasn't healing, but maybe the green healing numbers weren't popping up").
+ */
+export function mend(b: Battle, u: Combatant, by: number, amount: number): void {
+  const before = u.hp;
+  u.hp = Math.max(u.hp, Math.min(hpCap(u), u.hp + amount));
+  if (u.hp > before) b.events.push({ t: "heal", unit: by, target: u.id, amount: u.hp - before, quiet: true });
+}
+
 /** Draining, Mana-thirst, Siphoning and on-hit ailments (§13.4); Sanguine blood drains on melee blows (§5.7). */
 function afterWeaponHit(b: Battle, rng: Rng, u: Combatant, t: Combatant, damage: number): void {
   const drain = (u.mods.drainPct ?? 0) + (u.weapon.reach !== "ranged" ? (u.mods.meleeDrainPct ?? 0) : 0);
-  if (drain && !u.down) u.hp = Math.min(hpCap(u), u.hp + Math.round((damage * drain) / 100));
+  if (drain && !u.down) mend(b, u, u.id, Math.round((damage * drain) / 100));
   if (u.mods.mpPerHit) u.mp = Math.min(u.maxMp, u.mp + u.mods.mpPerHit);
   if (t.dead) return;
   if (u.mods.siphon) {

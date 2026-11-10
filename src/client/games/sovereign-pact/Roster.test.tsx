@@ -32,6 +32,16 @@ describe("your people", () => {
     expect(sendMove).toHaveBeenCalledWith({ type: "promote", person: recruit.id, job: "knight" });
   });
 
+  it("shows the birth House's traits on a Scion's card, not on a recruit's (Josh 2026-11-10)", () => {
+    const { s, scion, recruit } = town();
+    s.houses[0]!.traits = ["sanguine"];
+    render(<Roster view={g.view(s, "p1")} sendMove={vi.fn()} canAct />);
+    const card = screen.getByRole("listitem", { name: scion.name });
+    const line = within(card).getByText("Sanguine").closest("li")!;
+    expect(line.getAttribute("data-kind")).toBe("Bloodline");
+    expect(within(screen.getByRole("listitem", { name: recruit.name })).queryByText("Sanguine")).toBeNull();
+  });
+
   it("tells what a recruit does with the Year and sets them to train or back to work (8ae)", () => {
     const { s, recruit } = town();
     delete s.assign[recruit.id];

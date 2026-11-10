@@ -2,6 +2,13 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-10 (implementation, Milestone 8dd): HP that seeps back is shown
+
+Josh: **"Do the house traits apply? I feel like I had sanguine and wasn't healing, but maybe the green healing numbers weren't popping up. They should also be on the character sheet"**.
+- They did apply: Sanguine's 5% melee drain reached battle through the birth House (§5.3). It was silent, though. Drains (Sanguine, Draining weapons, draining abilities), Bloodbound and Regen ticks changed HP without any event.
+- They now go through one `mend()`, which emits a `heal` event marked `quiet`. Its green number pops and the log says "X regains N HP", with no heal animation or sound, so a drain doesn't look like a spell. `mend()` never pushes HP past the cap and never lowers it.
+- Each Scion's card lists their birth House's traits after their own, badged House, House flaw, Bloodline or House mark. Wards show the House they were born to. Recruits' cards don't list them, since House traits don't apply to recruits.
+
 ## 2026-11-10 (implementation, Milestone 8dc): the browser keeps the whole table
 
 Josh: **"the game should save more periodically, every republish i'm losing my progress if i'm middle expedition or even now after I got back to town"**.
