@@ -2,6 +2,17 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-10 (implementation, Milestone 8dh): each Scion's own gambits
+
+Josh: **"should be a way to configure gambits per scion, that they use for auto rift battles etc"**.
+- The Readying screen has a Gambits list for each Scion: up to 3 rules (§6.11; `TUNING.gambits.maxRules`), each a When, a Do and a Target chosen from short menus. Arrows reorder them and a cross removes one.
+  - When: always, first turn, an ally below half or near death, an ally down, themselves below half, below 30% or above 80%, a foe winding up, a foe Marked, three or more foes, or one foe left.
+  - Do: Attack, Defend, Wait, or any ability the Scion brings to battle.
+  - Target: offered only for single-target acts. Foe acts can aim at the weakest, nearest, strongest, Marked, winding-up, most battered, thickest crowd or anyone. Ally acts can aim at the most hurt or one who is down.
+- Reading taken: the rules come first, and when none applies the Scion falls back on how they fought before (the satchel when someone needs it, their usual heals and abilities, then attack). A short list therefore never leaves a Scion idle.
+- They apply wherever a Scion fights by gambits: Sorties, a turn or battle handed to the gambits, a "Gambits" table, and an absent player's seat.
+- The rules are saved with the Scion. Older saves still load, since the field is optional at the end of the packed row.
+
 ## 2026-11-10 (implementation, Milestone 8dg): the crown shimmers
 
 Josh: **"add some shimmer to the animation, and slightly thin out the silhouette on the splash screen so its more implying the crown than drawing it"**.

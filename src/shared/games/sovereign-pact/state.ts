@@ -6,7 +6,7 @@ import type { PlayerId } from "../../game.ts";
 import type { FoundingStep, HouseDesign } from "./founding.ts";
 import type { Muster } from "./muster.ts";
 import type { Replay } from "./combat/replay.ts";
-import type { Battle, Cell } from "./combat/types.ts";
+import type { Battle, Cell, GambitRule } from "./combat/types.ts";
 import type { TripEffect } from "./content.ts";
 import type { Command } from "./fight.ts";
 
@@ -96,6 +96,8 @@ export interface Person {
   job: JobId | null;
   /** Where they stand when a battle opens (§10.12, formation.ts): Front/Middle/Back column and row. Unset: their Job's column. */
   post?: [col: number, row: number];
+  /** Their own gambits, first in priority whenever they fight by gambits (gambitset.ts). Unset: their usual ways. */
+  gambits?: GambitRule[];
   secondary?: JobId;
   /** JP earned per Job; buying abilities does not lower it (what is left: progression.ts `jpLeft`). */
   jp: Partial<Record<JobId, number>>;
@@ -633,6 +635,7 @@ export type SovMove =
   | { type: "draft"; share: number }
   /** Place one of your Scions in the formation, or clear their place (col and row null) (§10.12). */
   | { type: "post"; person: number; col: number | null; row: number | null }
+  | { type: "gambits"; person: number; rules: GambitRule[] }
   /** Change a person's hair, hair color or beard, or bare their head ("" goes back to how they were born) (§5.8). */
   | { type: "restyle"; person: number; hair?: string; hair_color?: string; beard?: string; headwear?: string }
   /** Retire a Scion, or bring a Retired one back (§6.12). */

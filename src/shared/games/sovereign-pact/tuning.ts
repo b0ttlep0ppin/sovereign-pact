@@ -64,6 +64,8 @@ export const TUNING = {
   /** Sorties (§6.11, first pass): their battles a level under the Year's band, injuries no worse than Moderate. */
   /** `botMin`: the bot sends no Sortie of fewer Scions than this (tuning pass). */
   sortie: { levelBelow: 1, injuryCap: "moderate" as const, botMin: 2 },
+  /** A Scion's own gambits (gambitset.ts): how many rules they keep, first pass (§6.11 says up to 3). */
+  gambits: { maxRules: 3 },
   /** Loot (§9.8, §9.10, first pass). Drop tables are per pool in content/pools.json. */
   loot: {
     /** Each hit on a drop table: a common material 1 + level/3, Essence 1 + level/4, a rare material 1. */

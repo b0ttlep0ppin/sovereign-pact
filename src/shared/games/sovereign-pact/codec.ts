@@ -112,6 +112,8 @@ export function packPeople(people: readonly Person[]): PackedPeople {
       int(w.secondary === undefined ? -1 : ref(w.secondary));
     }
     list(p.post ?? []);
+    // Their own gambits (gambitset.ts): when, do, and target (+1, 0 for none). Older saves end before it.
+    list((p.gambits ?? []).flatMap((g) => [ref(g.if ?? "always"), ref(g.do), g.target ? ref(g.target) + 1 : 0]));
     return encodeInts(out);
   });
   return { dict, rows };
@@ -181,6 +183,7 @@ export function unpackPeople({ dict, rows }: PackedPeople): Person[] {
       if (sec !== -1) change.was.secondary = str(sec) as JobId;
     }
     const post = list();
+    const rules = at < xs.length ? list() : [];
     const person: Person = {
       id, status, house, host, name, sex, look, age, base, growth, carry, potential, level, xp,
       job: job === -1 ? null : (str(job) as JobId),
@@ -197,6 +200,13 @@ export function unpackPeople({ dict, rows }: PackedPeople): Person[] {
     if (lost.length === 3) person.lost = { year: lost[0]!, pool: str(lost[1]!), level: lost[2]! };
     if (change) person.change = change;
     if (post.length === 2) person.post = [post[0]!, post[1]!];
+    if (rules.length) {
+      person.gambits = Array.from({ length: rules.length / 3 }, (_, i) => {
+        const [w, d, t] = rules.slice(3 * i, 3 * i + 3) as [number, number, number];
+        const when = str(w);
+        return { ...(when !== "always" ? { if: when } : {}), do: str(d), ...(t ? { target: str(t - 1) } : {}) };
+      });
+    }
     return person;
   });
 }

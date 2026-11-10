@@ -5,6 +5,7 @@
 // which only the host House gets.
 import { Content, itemName, itemSheet, TIER_NAMES, type ItemStat, type SovMove, type SovView } from "@vibepulse/shared/games/sovereign-pact";
 import { useState } from "react";
+import Gambits from "./Gambits";
 import { ItemLine } from "./Market";
 import { BONE, GILT, PixelArt } from "./PixelArt";
 import { JOB_ICONS } from "./icons";
@@ -104,6 +105,8 @@ function Scion({ p, view, sendMove, canAct }: Props & { p: Person }) {
       ) : (
         <p className="sp-event__status">No passives bought yet.</p>
       )}
+
+      <Gambits p={p} send={send} canAct={canAct} />
 
       <h3>Gear</h3>
       <div className="sp-doll">

@@ -175,7 +175,7 @@ export function scionCombatant(p: Person, opts: ScionOpts): Combatant {
     steps: 0,
     // Finale (§12.11) is an action the passive brings.
     abilities: [...(o.abilities ?? battleActives(p)), ...(mods.finale ? [FINALE] : [])],
-    gambits: o.gambits ?? [],
+    gambits: o.gambits ?? p.gambits ?? [],
     cooldowns: {},
     // Slow to Wake (§5.7): a House's people may start behind the clock.
     ct: (o.ct ?? 0) + (mods.ctStart ?? 0),
