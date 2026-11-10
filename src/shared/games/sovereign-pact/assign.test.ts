@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { botAssign } from "./bot.ts";
+import { slots } from "./assign.ts";
 import { caps } from "./combat/build.ts";
 import { sovereignPact, type SovMove, type SovState } from "./index.ts";
 import type { Person } from "./state.ts";
@@ -194,7 +195,8 @@ describe("the settlement bot assigns", () => {
         if (s.phase !== "settlement") return;
         for (let i = 0; i < H; i++) {
           const chapel = s.people.filter((p) => p.host === i && s.assign[p.id]?.to === "chapel").length;
-          expect(chapel).toBeLessThanOrEqual(s.houses[i]!.buildings.chapel ? A.chapelSlots[s.houses[i]!.buildings.chapel! - 1]! : 0);
+          // The House's own Chapel, and the Commons' Cathedral's seats once it stands.
+          expect(chapel).toBeLessThanOrEqual(slots(s, i, "chapel"));
         }
       });
     }

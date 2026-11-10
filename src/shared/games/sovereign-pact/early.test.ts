@@ -2,7 +2,7 @@
 // the bots choose and turn back with judgment, and Scions below a level's mark catch up.
 import { describe, expect, it } from "vitest";
 import { ITEM_BASE_BY_ID, JOBS } from "./content.ts";
-import { muster } from "./expedition.ts";
+import { botField, botLeader, muster } from "./expedition.ts";
 import { band, botCard, offer } from "./gate.ts";
 import { baseOf, itemById } from "./items.ts";
 import { botPress } from "./journey.ts";
@@ -82,6 +82,7 @@ describe("the bot Leader", () => {
     e.party = [s.people.filter((p) => p.host === 0 && p.status === "scion").slice(0, 2).map((p) => p.id), s.people.filter((p) => p.host === 1 && p.status === "scion").slice(0, 2).map((p) => p.id)];
     e.leader = e.party[0]![0]!;
     e.chain = ["encounter", "encounter", "boss"];
+    e.at = 1;
     return s;
   }
 
@@ -92,6 +93,40 @@ describe("the bot Leader", () => {
     s.expedition!.carry[a!] = { dur: {}, broken: ["arms", "legs"] };
     expect(botPress(s)).toBe(true);
     s.expedition!.out.push(b!);
+    expect(botPress(s)).toBe(false);
+  });
+
+  it("never turns back at the Gate, before the party has met anything (Josh 2026-11-10)", () => {
+    const s = underway();
+    const [a] = s.expedition!.party.flat() as number[];
+    s.people.find((p) => p.id === a)!.sanity = 3;
+    expect(botPress(s)).toBe(false);
+    s.expedition!.at = 0;
+    expect(botPress(s)).toBe(true);
+  });
+
+  it("keeps a Scion near the end of their Sanity home, and never makes them Leader", () => {
+    const s = calm(campaign(2, 3));
+    s.phase = "expedition";
+    muster(s, { type: "delve", pool: "barrows", level: 1, size: 4 });
+    const mine = s.people.filter((p) => p.host === 1 && p.status === "scion");
+    for (const p of mine) p.level = 1;
+    mine[0]!.level = 3;
+    mine[0]!.sanity = 5;
+    expect(botField(s, 1)).not.toContain(mine[0]!.id);
+    s.expedition!.party = [[], [mine[0]!.id, mine[1]!.id]];
+    expect(botLeader(s, 1)).toBe(mine[1]!.id);
+  });
+
+  it("votes a person's Scion Leader whenever one marches, and never turns back with one (Josh 2026-11-10)", () => {
+    const s = underway();
+    const [a, , c] = s.expedition!.party.flat() as number[];
+    s.botSeats = [1];
+    s.expedition!.leader = c;
+    expect(botLeader(s, 1)).toBe(a);
+    s.people.find((p) => p.id === c)!.sanity = 3;
+    expect(botPress(s)).toBe(true);
+    s.botSeats = [0, 1];
     expect(botPress(s)).toBe(false);
   });
 });

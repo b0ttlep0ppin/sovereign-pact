@@ -192,14 +192,23 @@ export function waiting(s: SovState): number[] {
   return e.party.flatMap((p, i) => (p === null ? [i] : []));
 }
 
+/** Near the end of their Sanity: the bot keeps them home and never makes them Leader, while it has others. */
+const frayed = (p: Person) => +(p.sanity < TUNING.journey.botRetreatSanity);
+
 /** The bot fields its highest-level Scions (healthiest first among equals) and votes for its own best. */
 export function botField(s: SovState, house: number): number[] {
-  const best = [...able(s, house)].sort((a, b) => b.level - a.level || a.injuries.length - b.injuries.length || a.id - b.id);
+  const best = [...able(s, house)].sort((a, b) => frayed(a) - frayed(b) || b.level - a.level || a.injuries.length - b.injuries.length || b.sanity - a.sanity || a.id - b.id);
   return best.slice(0, s.expedition!.seats[house]).map((p) => p.id);
 }
 
+/**
+ * The bot's Leader vote: a person's Scion whenever one marches (Josh 2026-11-10: "bots should probably
+ * never be the leader"), else its own best.
+ */
 export function botLeader(s: SovState, house: number): number {
   const party = roster(s).map((id) => s.people.find((p) => p.id === id)!);
+  const bots = new Set(s.botSeats ?? []);
+  const people = party.filter((p) => !bots.has(p.host));
   const own = party.filter((p) => p.host === house);
-  return [...(own.length ? own : party)].sort((a, b) => b.level - a.level || a.id - b.id)[0]!.id;
+  return [...(people.length ? people : own.length ? own : party)].sort((a, b) => frayed(a) - frayed(b) || b.level - a.level || b.sanity - a.sanity || a.id - b.id)[0]!.id;
 }

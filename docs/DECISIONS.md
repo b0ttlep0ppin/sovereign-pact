@@ -2,6 +2,16 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-10 (implementation, Milestone 8dl): a bot Leader never turns back at the Gate
+
+Josh: **"there was no expedition for multiple years in a row it just short circuited and immediately cut to rift gate"**. His table showed why: House Lachrymore's bot made its Knight Leader every Year, and the Knight's Sanity sat below the bot's retreat mark (15), so it turned the party back at the Gate before the first node. His Scions marched and came home with nothing, which looked like a skipped expedition.
+- Josh then: **"bots should probably never be the leader its just kinda wack to have them turn back at all"**. A bot votes for a person's Scion as Leader whenever one marches (the best of them), so a bot leads only a party of bots' Scions. A bot Leader never turns back while a person's Scion marches; with bots alone it keeps its judgment, so all-bot campaigns and the simulator still retreat.
+- `botPress` also always presses on while the party has met nothing yet (`e.at === 0`).
+- `botField` keeps a Scion below the retreat mark home while it has others, and `botLeader` never picks one; among equals, more Sanity goes first.
+- A building torn down or damaged lets go of the assignments it no longer has room for (`lapse`, last taken first), so a razed Chapel doesn't keep its worshippers on the books.
+- The retreat line names the Leader who turned back ("Hamelin, the Leader, turns the party back; …").
+- The Continue screen's "Copy this table for a bug report" copies the kept table and the start-of-Year checkpoint as text, because downloads are blocked inside the artifact's frame.
+
 ## 2026-11-10 (implementation, Milestone 8dk): a Sortie's Scions stay off the expedition
 
 Josh: **"should enforce "scions not on expedition" for rift gate sorties"**.
