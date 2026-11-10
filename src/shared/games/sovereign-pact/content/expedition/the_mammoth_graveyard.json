@@ -9,11 +9,11 @@
     8
   ],
   "title": "The Mammoth Graveyard",
-  "text": "Tusks rise out of the snow like a forest of ivory, curving up and over, hundreds of them, yellow and white and cracked with age. The old beasts came here to die. Something still guards them. You can feel it watching from among the bones.",
+  "text": "Tusks rise out of the snow like a forest of ivory, hundreds of them curving up and over, yellow and white and cracked with age. The old beasts came here to die. Something still guards them; you can feel it watching from among the bones.",
   "options": [
     {
       "id": "ivory",
-      "label": "Take ivory from the dead. They came here to rest, not to hoard.",
+      "label": "Take ivory from the dead; they came here to rest, not to hoard.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "As much as you can carry, and the bones creak as you go, like something turning over in its sleep.",
+          "text": "You take as much as you can carry. The bones creak as you go, like something turning over in its sleep.",
           "effects": [
             {
               "resources": {
@@ -46,7 +46,7 @@
     },
     {
       "id": "guard",
-      "label": "The sharpest eye finds the guardian first, before anyone touches a tusk.",
+      "label": "The sharpest finds the guardian before anyone touches a tusk.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -54,7 +54,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Asleep, curled among the tusks. You take a little and go softly.",
+          "text": "It sleeps curled among the tusks. You take a little and go softly.",
           "effects": [
             {
               "resources": {
@@ -67,7 +67,7 @@
     },
     {
       "id": "respect",
-      "label": "Leave the dead their ivory. It is all they have left.",
+      "label": "Leave the dead their ivory; it is all they have left.",
       "rule": "leader",
       "tags": [
         "kind"
@@ -75,7 +75,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The wind drops as you go, and the watching eases.",
+          "text": "The wind drops as you go, and the feeling of being watched eases.",
           "effects": [
             {
               "to": "party",

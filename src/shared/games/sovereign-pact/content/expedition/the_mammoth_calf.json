@@ -9,11 +9,11 @@
     8
   ],
   "title": "The Mammoth Calf",
-  "text": "A mammoth calf, lost in the snow, its red fur caked with ice, crying for its mother in long, sad bellows. It is as big as a horse and still a baby. In the distance, the ground shakes, and shakes again, coming closer.",
+  "text": "A mammoth calf is lost in the snow, its red fur caked with ice, crying for its mother in long, sad bellows. It is as big as a horse and still a baby. In the distance the ground shakes, then shakes again, closer.",
   "options": [
     {
       "id": "lead",
-      "label": "Lead the calf toward the shaking, and trust its mother to understand.",
+      "label": "Lead the calf toward the shaking, trusting its mother to understand.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -48,7 +48,7 @@
     },
     {
       "id": "hide",
-      "label": "Hide in the snow until they pass, and keep very still.",
+      "label": "Hide in the snow until they pass, keeping very still.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -56,7 +56,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A whole herd, and a long, freezing wait, and your kit stiff with ice by the end.",
+          "text": "A whole herd goes by. The wait is long and freezing, and your kit is stiff with ice by the end.",
           "effects": [
             {
               "to": "party",
@@ -68,7 +68,7 @@
     },
     {
       "id": "tusks",
-      "label": "The shrewdest says a calf's tusks fetch a price, and the herd is far off yet.",
+      "label": "The shrewdest says a calf's tusks fetch a price while the herd is still far off.",
       "rule": "scion:highest:guile",
       "tags": [
         "cruel"
@@ -76,7 +76,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They do. The herd hears the calf stop crying, and the herd remembers.",
+          "text": "They do fetch a price. The herd hears the calf stop crying, and the herd remembers.",
           "effects": [
             {
               "resources": {

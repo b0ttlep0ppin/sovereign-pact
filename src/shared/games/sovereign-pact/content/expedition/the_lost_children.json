@@ -9,11 +9,11 @@
     7
   ],
   "title": "The Lost Children",
-  "text": "Children's voices in the trees, high and sweet, playing a counting game. One, two, three, and a giggle. They are always just out of sight among the trunks. They want you to play too, they call. Somebody always has to be it.",
+  "text": "Children's voices drift through the trees, high and sweet, playing a counting game. One, two, three, then a giggle. They are always just out of sight among the trunks, calling for you to play too. Somebody always has to be it.",
   "options": [
     {
       "id": "play",
-      "label": "Play their counting game. Somebody has to be it.",
+      "label": "Play their counting game; somebody has to be it.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "They are only children, lost. They show you the way out, giggling.",
+          "text": "They are only lost children after all. Giggling, they show you the way out.",
           "effects": [
             {
               "skip": 1
@@ -48,7 +48,7 @@
     },
     {
       "id": "count",
-      "label": "The cleverest listens to how they count, and what they leave out.",
+      "label": "The cleverest listens to how they count, and to what they leave out.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -56,7 +56,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They skip a number, every time. Something hides in that number, and it is waiting to be found.",
+          "text": "They skip the same number every time. Something hides in that number, waiting to be found.",
           "effects": [
             {
               "foresee": true
@@ -67,7 +67,7 @@
     },
     {
       "id": "leave",
-      "label": "Stop your ears, and walk. Whatever plays out there is no child.",
+      "label": "Stop your ears and walk on; whatever plays out there is no child.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -75,7 +75,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The counting follows until dark, and then it is counting you.",
+          "text": "The counting follows until dark. By then, it is counting you.",
           "effects": [
             {
               "to": "party",

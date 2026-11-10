@@ -9,11 +9,11 @@
     10
   ],
   "title": "The Ice Choir",
-  "text": "Figures frozen in a ring on the ice, mouths open, heads tipped back, hands joined. Frost has filled their eyes. When the wind moves across them, they sing, a low, terrible harmony that makes the ice beneath your feet hum.",
+  "text": "Figures stand frozen in a ring on the ice, mouths open, heads tipped back, hands joined. Frost has filled their eyes. When the wind moves across them they sing a low, terrible harmony that makes the ice beneath your feet hum.",
   "options": [
     {
       "id": "listen",
-      "label": "Stop and listen to the frozen choir, and take whatever comfort it offers.",
+      "label": "Stop and listen to the frozen choir, taking whatever comfort it offers.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -50,7 +50,7 @@
     },
     {
       "id": "break",
-      "label": "Break their ring, and silence the song for good.",
+      "label": "Break their ring and silence the song for good.",
       "rule": "leader",
       "tags": [
         "bold"
@@ -58,7 +58,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The figures shatter like glass, and something under the ice is very angry about it.",
+          "text": "The figures shatter like glass. Something under the ice is very angry about it.",
           "effects": [
             {
               "encounter": {
@@ -71,7 +71,7 @@
     },
     {
       "id": "hurry",
-      "label": "Hurry past with your ears covered, before the song can take hold.",
+      "label": "Hurry past with your ears covered before the song can take hold.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -79,7 +79,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Nobody hears it. Nobody quite forgets it either, and the cold bites harder for the hurry.",
+          "text": "The song never reaches you, but the haste costs you; the cold bites into every strap and buckle.",
           "effects": [
             {
               "to": "party",

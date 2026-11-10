@@ -9,11 +9,11 @@
     9
   ],
   "title": "The Molten Cistern",
-  "text": "A cistern full of metal that never cooled, glowing like a sunset, its surface skinned and wrinkled. Ingots float on top like ice on a pond, bobbing gently. The heat makes your eyes water from ten paces away.",
+  "text": "A cistern brims with metal that never cooled, glowing like a sunset beneath a wrinkled skin. Ingots float on top like ice on a pond, bobbing gently. The heat makes your eyes water from ten paces away.",
   "options": [
     {
       "id": "fish",
-      "label": "Fish out ingots with a pole, and keep well back from the heat.",
+      "label": "Fish out ingots with a pole, keeping well back from the heat.",
       "rule": "vote",
       "tags": [
         "clever"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "A good haul, still smoking.",
+          "text": "You land a good haul, still smoking.",
           "effects": [
             {
               "resources": {
@@ -52,7 +52,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "Star iron, and they pull back before the heat bites.",
+          "text": "They snatch a bar of star iron and pull back before the heat can bite.",
           "effects": [
             {
               "resources": {
@@ -76,7 +76,7 @@
     },
     {
       "id": "leave",
-      "label": "Leave the cistern be. No iron is worth that fire.",
+      "label": "Leave the cistern be; no iron is worth that fire.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -84,7 +84,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It bubbles at you, and one bubble bursts across the Leader's sleeve.",
+          "text": "It bubbles at you as you turn, and one bubble bursts across the Leader's sleeve.",
           "effects": [
             {
               "hp": -10,
@@ -106,7 +106,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "The plate glows red and holds, and comes out with an ingot in its fist.",
+          "text": "The plate glows red but holds. It comes out with an ingot in its fist.",
           "effects": [
             {
               "resources": {

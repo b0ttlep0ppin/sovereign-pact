@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "walk",
-      "label": "Each Scion walks under the green lamps, and sees their own true face.",
+      "label": "Each Scion walks under the green lamps to see their own true face.",
       "rule": "each_scion",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "Their own face, a little older, a little sadder.",
+          "text": "They see their own face, a little older and a little sadder.",
           "effects": [
             {
               "sanity": 5
@@ -30,7 +30,7 @@
         },
         {
           "w": 30,
-          "text": "Not their face. They do not say whose it was.",
+          "text": "It is not their face. They do not say whose it was.",
           "effects": [
             {
               "sanity": -15
@@ -49,7 +49,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The faces in the dark are worse, and they are close.",
+          "text": "The faces waiting in the dark are worse, and closer.",
           "effects": [
             {
               "sanity": -5

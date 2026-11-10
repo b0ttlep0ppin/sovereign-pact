@@ -9,11 +9,11 @@
     8
   ],
   "title": "The King's Barrow",
-  "text": "The greatest barrow of all, a hill raised over a king, its door sealed with his seal in black wax as big as a shield. The seal is broken. Cold air pours out of the gap, and with it a smell of old gold and newer blood.",
+  "text": "The greatest barrow of all is a hill raised over a king. Its door was sealed with his seal in black wax as big as a shield, and the seal is broken. Cold air pours out of the gap, carrying a smell of old gold and newer blood.",
   "options": [
     {
       "id": "enter",
-      "label": "Go into the king's barrow, and see what the robbers woke.",
+      "label": "Go into the king's barrow and see what the robbers woke.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Someone came before you, and woke what was inside, and it is still awake, and still angry.",
+          "text": "Robbers came before you and woke what slept inside. It is still awake and still angry, among the treasure they could not carry.",
           "effects": [
             {
               "encounter": {
@@ -39,7 +39,7 @@
     },
     {
       "id": "track",
-      "label": "The sharpest eye follows the robbers' tracks, to take back what they stole.",
+      "label": "The sharpest follows the robbers' tracks to take back what they stole.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -47,7 +47,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "To their camp, and the king's crown, and the robbers, who are not glad to see you.",
+          "text": "The tracks lead to their camp, where the king's crown sits by the fire. The robbers are not glad to see you.",
           "effects": [
             {
               "encounter": {}
@@ -63,7 +63,7 @@
     },
     {
       "id": "seal",
-      "label": "Reseal the king's door, and let him rest as he was meant to.",
+      "label": "Reseal the king's door and let him rest as he was meant to.",
       "rule": "leader",
       "tags": [
         "kind"
@@ -71,7 +71,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The king thanks you in a dream, and his hand on your shoulder is cold and strong.",
+          "text": "The king thanks you in a dream, his hand cold and strong upon your shoulder.",
           "effects": [
             {
               "blessing": {

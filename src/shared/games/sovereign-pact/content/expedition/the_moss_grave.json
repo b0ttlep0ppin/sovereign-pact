@@ -9,11 +9,11 @@
     7
   ],
   "title": "The Moss Grave",
-  "text": "A grave so overgrown with moss that it has become a hill, soft and green and humming with insects. A sword hilt pokes out of the top, its pommel a silver lion's head. The moss around it has been worn away, as if hands have tugged at it.",
+  "text": "A grave is so overgrown with moss that it has become a hill, soft and green and humming with insects. A sword hilt pokes out of the top, its pommel a silver lion's head. The moss around it has been worn away, as if hands have tugged at it.",
   "options": [
     {
       "id": "dig",
-      "label": "Dig for the sword. Someone has already tried, and failed.",
+      "label": "Dig for the sword, though someone has already tried and failed.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "The sword, and the old bones politely still, and the moss whispering about it after.",
+          "text": "You free the sword while the old bones lie politely still. The moss whispers about it for a long while after.",
           "effects": [
             {
               "item": {
@@ -49,7 +49,7 @@
     },
     {
       "id": "pray",
-      "label": "The devout prays over the grave, for whoever lies beneath.",
+      "label": "The devout one prays over the grave for whoever lies beneath.",
       "rule": "scion:trait:devout|scion:highest:sagacity",
       "tags": [
         "kind"
@@ -57,7 +57,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Something old beneath the moss is grateful, and its courage settles on them.",
+          "text": "Something old beneath the moss is grateful. Its courage settles on them.",
           "effects": [
             {
               "blessing": {
@@ -71,7 +71,7 @@
     },
     {
       "id": "mark",
-      "label": "Mark the grave, and leave it to its moss.",
+      "label": "Mark the grave and leave it to its moss.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -79,7 +79,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A grave is a grave. Those who come after will see you honored it.",
+          "text": "Those who come after will see that you honored it.",
           "effects": [
             {
               "score": {

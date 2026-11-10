@@ -9,11 +9,11 @@
     7
   ],
   "title": "The Lame Horse",
-  "text": "A fine warhorse, saddled and bridled in good leather, stands in the road on three legs. Its eyes roll white. Its rider is nowhere, and there is blood on the saddle, and the stirrups are still swinging.",
+  "text": "A fine warhorse, saddled and bridled in good leather, stands in the road on three legs, its eyes rolling white. Its rider is nowhere to be seen. There is blood on the saddle, and the stirrups are still swinging.",
   "options": [
     {
       "id": "heal",
-      "label": "The best healer sees to its leg, and wins its trust.",
+      "label": "The best healer sees to its leg and wins its trust.",
       "rule": "scion:most_healing",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It walks again, and follows you, and kicks the first thing that comes at you.",
+          "text": "It walks again and follows you down the road, kicking the first thing that comes at you.",
           "effects": [
             {
               "to": "party",
@@ -44,7 +44,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Fine tack, and a purse in the saddlebag, and blood in the purse.",
+          "text": "The tack is fine. In the saddlebag is a purse, sticky with blood.",
           "effects": [
             {
               "resources": {
@@ -58,7 +58,7 @@
     },
     {
       "id": "end",
-      "label": "End its pain. It is the only mercy left to give.",
+      "label": "End its pain; it is the only mercy left to give.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -66,7 +66,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It is the kind thing. It does not feel kind.",
+          "text": "It is the kind thing to do, though it does not feel kind.",
           "effects": [
             {
               "to": "party",

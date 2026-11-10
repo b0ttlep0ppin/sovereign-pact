@@ -9,11 +9,11 @@
     10
   ],
   "title": "The Map of Nowhere",
-  "text": "A map lies on the ground in the dark, unrolled, weighted at the corners with stones. It shows exactly where you stand, down to the stones. It also shows a road running off into the black, clear and well marked, a road that is not there.",
+  "text": "A map lies unrolled on the ground in the dark, weighted at the corners with stones. It shows exactly where you stand, down to those stones. It also shows a clear, well-marked road running off into the black, a road that is not there.",
   "options": [
     {
       "id": "follow",
-      "label": "Follow the road that is not there, and trust the map that knows where you stand.",
+      "label": "Follow the road that is not there, and trust the map.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "It is there when you walk it, and it is short.",
+          "text": "The road is there when you walk it, and it is short.",
           "effects": [
             {
               "skip": 2
@@ -30,7 +30,7 @@
         },
         {
           "w": 40,
-          "text": "It leads somewhere else entirely, and the map does not show the way back.",
+          "text": "It leads somewhere else entirely. The map shows no way back.",
           "effects": [
             {
               "fork": {
@@ -46,7 +46,7 @@
     },
     {
       "id": "study",
-      "label": "The wisest studies whose hand drew it, and how it knew.",
+      "label": "The wisest studies the hand that drew it, and how it knew.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -54,7 +54,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Your own hand, years from now. The ink is not yet dry.",
+          "text": "It is your own hand, years from now. The ink is not yet dry.",
           "effects": [
             {
               "score": {
@@ -70,7 +70,7 @@
     },
     {
       "id": "burn",
-      "label": "Burn the map, before it leads anyone else astray.",
+      "label": "Burn the map before it leads anyone else astray.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -78,7 +78,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The ash spells a word you do not know, and something far off loses its way.",
+          "text": "The ash spells a word you do not know. Somewhere far off, something loses its way.",
           "effects": [
             {
               "doom": -1

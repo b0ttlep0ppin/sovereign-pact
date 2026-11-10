@@ -9,11 +9,11 @@
     9
   ],
   "title": "The Last Apprentice",
-  "text": "A boy has been tending the dead forge alone for years, sweeping, oiling, banking the coals, waiting for his master to come back. He is thin as wire and his eyes are too old. He wants to show someone his work. He has made a great many blades.",
+  "text": "A boy has tended the dead forge alone for years, sweeping, oiling and banking the coals while he waits for his master to come back. He is thin as wire, his eyes too old. He wants to show someone his work. He has made a great many blades.",
   "options": [
     {
       "id": "look",
-      "label": "The strongest arm tests his blades, so that someone finally sees his work.",
+      "label": "The strongest tests his blades, so that someone finally sees his work.",
       "rule": "scion:highest:might",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It is good. He beams, and the forge feels warmer for it, for the first time in years.",
+          "text": "The work is good. He beams, and for the first time in years the forge feels warm.",
           "effects": [
             {
               "item": {
@@ -47,7 +47,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "He packs his hammer, and looks back once, and does not cry.",
+          "text": "He packs his hammer and looks back once. He does not cry.",
           "effects": [
             {
               "house_improvement": "recruit"
@@ -56,7 +56,7 @@
         },
         {
           "w": 40,
-          "text": "He will wait for his master. He will always wait.",
+          "text": "He shakes his head; he will wait for his master, as he always has.",
           "effects": [
             {
               "to": "party",
@@ -76,7 +76,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He lets the fire go out, and sits in the dark, and does not speak.",
+          "text": "He lets the fire go out and sits in the dark without a word. When you go, you take what iron he will no longer need.",
           "effects": [
             {
               "to": "party",

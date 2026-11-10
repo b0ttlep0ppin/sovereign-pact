@@ -9,7 +9,7 @@
     10
   ],
   "title": "The Masked Ball",
-  "text": "Music from a lit hall, a slow waltz, and through the tall windows dancers in masks turning in pairs. A doorman in livery bows and offers masks on a velvet tray. Nobody inside seems to have a face to put one over.",
+  "text": "A slow waltz drifts from a lit hall. Through the tall windows, dancers in masks turn in pairs. A doorman in livery bows and offers masks on a velvet tray, though nobody inside seems to have a face to put one over.",
   "options": [
     {
       "id": "dance",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "They dance until the music stops, and a gloved hand presses a gift into theirs on the way out.",
+          "text": "They dance until the music stops. On the way out, a gloved hand presses a gift into theirs.",
           "effects": [
             {
               "item": {
@@ -37,7 +37,7 @@
         },
         {
           "w": 50,
-          "text": "When the music stops, their mask will not come off for a while, and they do not want it to.",
+          "text": "When the music stops their mask will not come off for a while, and they do not want it to.",
           "effects": [
             {
               "sanity": -25
@@ -51,7 +51,7 @@
     },
     {
       "id": "refuse",
-      "label": "Refuse the masks at the door. You will keep your own faces, thank you.",
+      "label": "Refuse the masks at the door; you will keep your own faces, thank you.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -59,7 +59,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The doorman is offended. So is everyone inside, and they stop dancing, and turn.",
+          "text": "The doorman is offended. So is everyone inside; they stop dancing and turn toward you.",
           "effects": [
             {
               "encounter": {}

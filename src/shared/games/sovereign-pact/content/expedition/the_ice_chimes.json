@@ -9,11 +9,11 @@
     8
   ],
   "title": "The Ice Chimes",
-  "text": "Icicles hang in the cave mouth like the pipes of an organ, long and blue, chiming in the wind. The tune they play is slow and sad and almost a voice. If you stand still and listen, it seems to be calling someone home.",
+  "text": "Icicles hang in the cave mouth like the pipes of an organ, long and blue, chiming in the wind. Their slow, sad tune is almost a voice. If you stand still and listen, it seems to be calling someone home.",
   "options": [
     {
       "id": "listen",
-      "label": "Stop and listen to the chimes, and let them sing you home.",
+      "label": "Stop and listen to the chimes, that they might sing you home.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "A lullaby, slow and sad, and a deep rest.",
+          "text": "It is a lullaby, slow and sad. You rest more deeply than you have in days.",
           "effects": [
             {
               "to": "party",
@@ -31,7 +31,7 @@
         },
         {
           "w": 40,
-          "text": "A song of the frozen dead, and it wants you to lie down and join it, and it is very hard to say no.",
+          "text": "It is a song of the frozen dead, begging you to lie down among them. Refusing is very hard.",
           "effects": [
             {
               "to": "party",
@@ -47,7 +47,7 @@
     },
     {
       "id": "break",
-      "label": "The strongest breaks the chimes, before their song calls anyone else.",
+      "label": "The strongest breaks the chimes before their song calls anyone else.",
       "rule": "scion:highest:might",
       "tags": [
         "bold"
@@ -55,7 +55,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Silence, sudden and total, and something in the cave wakes to it, and wants its music back.",
+          "text": "Silence falls, sudden and total. Something deeper in the cave wakes to it, wanting its music back.",
           "effects": [
             {
               "encounter": {}
@@ -66,7 +66,7 @@
     },
     {
       "id": "hum",
-      "label": "The wisest hums the tune back, and asks the chimes the way.",
+      "label": "The wisest hums the tune back to them, asking the chimes the way.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -74,7 +74,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The chimes answer, note for note, and their song shows the way.",
+          "text": "The chimes answer note for note; their song points the way onward.",
           "effects": [
             {
               "skip": 1

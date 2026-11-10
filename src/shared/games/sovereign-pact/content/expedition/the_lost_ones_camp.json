@@ -9,7 +9,7 @@
     10
   ],
   "title": "The Lost One's Camp",
-  "text": "A cold camp under an overhang: a bedroll, a fire long out, a single bowl licked clean. A journal lies open on the stones, the pages warped with damp, the writing in a Scion's hand. The last entry stops halfway through a word.",
+  "text": "A cold camp lies under an overhang: a bedroll, a fire long out, a single bowl licked clean. A journal lies open on the stones, its pages warped with damp, the writing in a Scion's hand. The last entry stops halfway through a word.",
   "options": [
     {
       "id": "read",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Their last days, and where they went, and what they heard at night. The last word is unfinished, and so is the fear in it.",
+          "text": "It tells of their last days, where they went and what they heard at night. The fear in the unfinished word stays with you.",
           "effects": [
             {
               "skip": 1
@@ -36,7 +36,7 @@
     },
     {
       "id": "track",
-      "label": "The best tracker follows them from here, before the trail goes cold.",
+      "label": "The best tracker follows them from here before the trail goes cold.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -44,7 +44,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Fresh enough. They might still be alive.",
+          "text": "The trail is fresh enough; they might still be alive.",
           "effects": [
             {
               "skip": 1
@@ -58,7 +58,7 @@
     },
     {
       "id": "rest",
-      "label": "Rest here, as they did, and hope your night goes better.",
+      "label": "Rest here as they did, and hope your night goes better.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -66,7 +66,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The fire takes, and the night is quiet, and nothing comes. Nothing came for them either, at first.",
+          "text": "The fire takes and nothing comes in the night. Nothing came for them either, at first.",
           "effects": [
             {
               "to": "party",

@@ -9,7 +9,7 @@
     10
   ],
   "title": "The Lantern Procession",
-  "text": "A procession of floating lanterns drifts by in the dusk, paper and candle, silent, hundreds of them. Each one carries the soul of someone recently dead, the old folk say, on their way to wherever souls go. One of them flickers, and turns toward you.",
+  "text": "A procession of floating lanterns drifts by in the dusk, hundreds of them, silent paper and candle. Each one carries the soul of someone recently dead, the old folk say, on their way to wherever souls go. One of them flickers and turns toward you.",
   "options": [
     {
       "id": "follow",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It is someone they knew, come to say goodbye, and they get to say it back.",
+          "text": "It is someone they knew, come to say goodbye. This time they are able to say it back.",
           "effects": [
             {
               "sanity": 20
@@ -32,7 +32,7 @@
     },
     {
       "id": "catch",
-      "label": "Catch one in a jar. A soul's light is worth a great deal.",
+      "label": "Catch one in a jar; a soul's light is worth a great deal.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -40,7 +40,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It is very bright, and very sad, and it never stops looking for the others. Something beyond the Gate notices the theft.",
+          "text": "It burns bright and sad in the jar, forever searching for the others. Something beyond the Gate notices the theft.",
           "effects": [
             {
               "resources": {
@@ -64,7 +64,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They pass, and the night is darker after, but the one that flickered toward you leaves a little warmth behind in every chest.",
+          "text": "The night is darker once they have passed. Still, the lantern that turned toward you leaves a little warmth in every chest.",
           "effects": [
             {
               "to": "party",
@@ -86,7 +86,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It brightens, and goes on lighter, and its thanks sits in the devout one's hands as warmth.",
+          "text": "It brightens and drifts on lighter. Its thanks lingers in the devout one's hands as warmth.",
           "effects": [
             {
               "status": "regen",

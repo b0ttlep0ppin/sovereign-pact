@@ -9,7 +9,7 @@
     10
   ],
   "title": "The Drawing of Lots",
-  "text": "A spirit squats at the crossroads, a bag of skin and grins, rattling a cup of bones. One House pays the toll for all, it croons, and the bones will decide which. It has been doing this a long time. It is never wrong, it says, and it is never kind.",
+  "text": "A spirit squats at the crossroads, a bag of skin and grins rattling a cup of bones. One House pays the toll for all, it croons, and the bones will decide which. It has done this a long time. It is never wrong, it says, and never kind.",
   "options": [
     {
       "id": "draw",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The bones fall, and the spirit grins at one House, and that House pays. The grin lingers.",
+          "text": "The bones fall. The spirit grins at one House, which pays, and the grin lingers.",
           "effects": [
             {
               "resources": {
@@ -39,7 +39,7 @@
     },
     {
       "id": "richest",
-      "label": "The richest House offers to pay for all, and spares the others the bones.",
+      "label": "The richest House offers to pay for all, sparing the others the bones.",
       "rule": "house:highest_standing",
       "tags": [
         "kind"
@@ -47,7 +47,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The spirit is impressed, which is rare, and it says so to everyone it meets.",
+          "text": "The spirit is impressed, which is rare. It tells everyone it meets.",
           "effects": [
             {
               "resources": {
@@ -68,7 +68,7 @@
     },
     {
       "id": "refuse",
-      "label": "Refuse the toll. No bag of bones decides your fate.",
+      "label": "Refuse the toll; no bag of bones decides your fate.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -76,7 +76,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The spirit takes its due another way, and it brought friends to collect.",
+          "text": "The spirit takes its due another way. It has brought friends to collect.",
           "effects": [
             {
               "encounter": {}

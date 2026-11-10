@@ -9,11 +9,11 @@
     7
   ],
   "title": "The Moth Lantern",
-  "text": "A lantern hangs from a branch over the path, swarmed by moths the size of hands, so many it is hard to see the light. Their wings are furred and grey and their tongues are long. They are drinking its light, and the light is going out.",
+  "text": "A lantern hangs from a branch over the path, swarmed by moths the size of hands, so many the light is hard to see. Their wings are furred and grey, their tongues long. They are drinking its light, and the light is going out.",
   "options": [
     {
       "id": "free",
-      "label": "Beat the moths off the lantern, before its light goes out for good.",
+      "label": "Beat the moths off the lantern before its light goes out for good.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Its light is warm, and lasts the night, and keeps the dark well back.",
+          "text": "Its warm light lasts the night, keeping the dark well back.",
           "effects": [
             {
               "to": "party",
@@ -33,7 +33,7 @@
     },
     {
       "id": "catch",
-      "label": "The sharpest eye catches moths for their dust, carefully.",
+      "label": "The sharpest catches moths for their dust, carefully.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -41,7 +41,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "A pouch of shining dust, still faintly warm.",
+          "text": "They fill a pouch with shining dust, still faintly warm.",
           "effects": [
             {
               "resources": {
@@ -52,7 +52,7 @@
         },
         {
           "w": 30,
-          "text": "The dust gets in their eyes, and the world swims, and the moths circle closer.",
+          "text": "The dust gets in their eyes. The world swims as the moths circle closer.",
           "effects": [
             {
               "status": "confusion"
@@ -63,7 +63,7 @@
     },
     {
       "id": "dark",
-      "label": "Snuff the lantern out. Let the moths starve.",
+      "label": "Snuff the lantern out and let the moths starve.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -71,7 +71,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "In the dark, the moths turn to you, and they are still hungry.",
+          "text": "In the dark the moths turn to you. They are still hungry.",
           "effects": [
             {
               "encounter": {

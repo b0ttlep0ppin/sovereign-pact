@@ -9,11 +9,11 @@
     9
   ],
   "title": "The Mold Room",
-  "text": "A room of casting molds, dozens of them, broken open and empty. All but one. One is still sealed, as big as a coffin, its clay cracked. Something was poured into it a very long time ago and never broken out. Something inside is warm.",
+  "text": "A room of casting molds lies broken open, dozens of them, all empty but one. That one is still sealed, as big as a coffin, its clay cracked. Something was poured into it a very long time ago and never broken out. It is still warm.",
   "options": [
     {
       "id": "break",
-      "label": "The strongest breaks the sealed mold, to see what has waited so long.",
+      "label": "The strongest breaks the sealed mold to see what has waited so long.",
       "rule": "scion:highest:might",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "A blade, perfect, still warm, as if it was poured an hour ago.",
+          "text": "Inside is a perfect blade, as warm as if it was poured an hour ago.",
           "effects": [
             {
               "item": {
@@ -32,7 +32,7 @@
         },
         {
           "w": 40,
-          "text": "A golem, half-made, and angry about it.",
+          "text": "Inside is a golem, half-made and angry about it.",
           "effects": [
             {
               "encounter": {}
@@ -43,7 +43,7 @@
     },
     {
       "id": "leave",
-      "label": "Leave it sealed. Whatever is warm in there has waited for a reason.",
+      "label": "Leave it sealed; whatever is warm in there has waited for a reason.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -51,7 +51,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "Some things should stay in the mold. Something inside it knocks, twice, as you go, and you all hear it in your sleep.",
+          "text": "As you go, something inside knocks twice. You all hear it again in your sleep.",
           "effects": [
             {
               "to": "party",
@@ -61,7 +61,7 @@
         },
         {
           "w": 40,
-          "text": "Some things should stay in the mold. Behind you, it cracks.",
+          "text": "Behind you, the mold cracks open.",
           "effects": [
             {
               "fork": {
@@ -84,7 +84,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Heavy, and worth it, and it bruises every shoulder that carries it.",
+          "text": "It is heavy enough to bruise every shoulder that carries it, though it sells well.",
           "effects": [
             {
               "resources": {

@@ -9,11 +9,11 @@
     10
   ],
   "title": "The Lamp on the Peak",
-  "text": "A single lamp burns on a peak no one could climb, a steady gold point against the dark, high above the clouds. No path. No ropes. Someone has to want very little, the pilgrims say, to be light enough to reach it.",
+  "text": "A single lamp burns on a peak no one could climb, a steady gold point high above the clouds. There is no path and no rope. Only someone who wants very little, the pilgrims say, is light enough to reach it.",
   "options": [
     {
       "id": "hermit",
-      "label": "The one who wants least goes up to the lamp, light enough to reach it.",
+      "label": "The one who wants least goes up to the lamp.",
       "rule": "scion:tarot:hermit|scion:highest:sagacity",
       "tags": [
         "clever"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They come down quieter, with gold in their eyes, and know which way to go.",
+          "text": "They come down quieter, with gold in their eyes. Now they know which way to go.",
           "effects": [
             {
               "foresee": true
@@ -37,7 +37,7 @@
     },
     {
       "id": "climb",
-      "label": "The strongest climbs, sheer will against the mountain.",
+      "label": "The strongest climbs by sheer will against the mountain.",
       "rule": "scion:highest:might",
       "tags": [
         "bold"
@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 40,
-          "text": "They reach it, somehow, bleeding from the fingers, and the lamp is warm.",
+          "text": "Somehow they reach it, fingers bleeding. The lamp is warm in their hands.",
           "effects": [
             {
               "xp": 120
@@ -70,7 +70,7 @@
     },
     {
       "id": "pass",
-      "label": "Leave it. It is not meant for you.",
+      "label": "Leave it; it is not meant for you.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -78,7 +78,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The lamp goes out as you leave, and the dark it leaves is deeper than before. It takes a long while to see by.",
+          "text": "The lamp goes out as you leave. The dark that follows is deeper than before, and your eyes are slow to find their way in it.",
           "effects": [
             {
               "to": "party",

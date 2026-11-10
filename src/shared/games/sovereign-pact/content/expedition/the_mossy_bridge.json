@@ -9,11 +9,11 @@
     7
   ],
   "title": "The Mossy Bridge",
-  "text": "A stone bridge so overgrown it looks like a hill with a hole in it. A sign hangs on it in letters painted with something dark: TOLL. Beneath the arch, a troll the size of a cottage snores, a purse on its belly rising and falling.",
+  "text": "A stone bridge is so overgrown it looks like a hill with a hole in it. A sign hangs from it, painted in something dark: TOLL. Beneath the arch a troll the size of a cottage snores, a purse rising and falling on its belly.",
   "options": [
     {
       "id": "sneak",
-      "label": "Creep across past the sleeping troll, and do not wake it.",
+      "label": "Creep across past the sleeping troll without waking it.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "Across, and the troll snores on. On the far side its toll box sits unattended.",
+          "text": "The troll snores on as you cross. On the far side its toll box sits unattended.",
           "effects": [
             {
               "resources": {
@@ -32,7 +32,7 @@
         },
         {
           "w": 30,
-          "text": "It wakes, and it is very cross about the toll.",
+          "text": "It wakes, very cross about the toll.",
           "effects": [
             {
               "encounter": {}
@@ -51,7 +51,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Honest, and the wood approves, and the path feels lighter.",
+          "text": "The wood seems to approve of honesty; the path feels lighter after.",
           "effects": [
             {
               "resources": {
@@ -68,7 +68,7 @@
     },
     {
       "id": "purse",
-      "label": "The quietest hands lift the troll's purse, as it snores.",
+      "label": "The quietest hands lift the troll's purse as it snores.",
       "rule": "scion:highest:guile",
       "tags": [
         "reckless"
@@ -76,7 +76,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "A fat purse of other travelers' tolls, and the troll never stirs.",
+          "text": "The purse is fat with other travellers' tolls, and the troll never stirs.",
           "effects": [
             {
               "resources": {
@@ -87,7 +87,7 @@
         },
         {
           "w": 40,
-          "text": "A troll's grip, and the crunch of something giving way.",
+          "text": "A troll's hand closes on them. Something gives way with a crunch.",
           "effects": [
             {
               "durability": -25,
@@ -108,7 +108,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The troll is so astonished it gives the coin back, and tells everyone it meets about the honest knight.",
+          "text": "The troll is so astonished it gives the coin back. It tells everyone it meets about the honest knight.",
           "effects": [
             {
               "score": {

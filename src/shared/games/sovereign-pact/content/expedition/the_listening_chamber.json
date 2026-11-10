@@ -9,11 +9,11 @@
     10
   ],
   "title": "The Listening Chamber",
-  "text": "A round chamber of smooth black stone, the floor polished like a drum skin. Every whisper carries for miles, down through cracks into the dark. Something deep below is listening for footsteps. Once, faintly, it taps back.",
+  "text": "A round chamber of smooth black stone opens before you, its floor polished like a drum skin. Every whisper here carries for miles, down through cracks into the dark. Something deep below is listening for footsteps. Once, faintly, it taps back.",
   "options": [
     {
       "id": "creep",
-      "label": "Everyone creeps across, soft as breath, and prays the floor stays silent.",
+      "label": "Everyone creeps across, soft as breath, praying the floor stays silent.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "Nothing hears. Every heartbeat sounds like a drum, and you feel each one.",
+          "text": "Nothing hears you, though every heartbeat sounds like a drum on the way across.",
           "effects": [
             {
               "to": "party",
@@ -31,7 +31,7 @@
         },
         {
           "w": 30,
-          "text": "Something hears, and it comes up through the cracks.",
+          "text": "Something hears. It comes up through the cracks.",
           "effects": [
             {
               "encounter": {
@@ -44,7 +44,7 @@
     },
     {
       "id": "shout",
-      "label": "Shout a challenge down into the dark, and let it know you are not afraid.",
+      "label": "Shout a challenge down into the dark to show it you are not afraid.",
       "rule": "leader",
       "tags": [
         "bold"
@@ -65,7 +65,7 @@
     },
     {
       "id": "listen",
-      "label": "The sharpest ear listens back, to learn what listens below.",
+      "label": "The sharpest ear listens back, to learn what waits below.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -73,7 +73,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They hear it all: where it sleeps, where it eats, where it keeps its things.",
+          "text": "They hear where it sleeps, where it eats and where it keeps its things.",
           "effects": [
             {
               "fork": {

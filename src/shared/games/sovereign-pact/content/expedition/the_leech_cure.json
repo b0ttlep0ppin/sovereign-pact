@@ -9,11 +9,11 @@
     7
   ],
   "title": "The Leech Cure",
-  "text": "A marsh doctor in a coat of eel skin offers to bleed your wounded with his prize leeches. He keeps them in a jar, fat and black and writhing. He swears by them. He has a great many grateful patients, he says, though none of them are here.",
+  "text": "A marsh doctor in a coat of eel skin offers to bleed your wounded with his prize leeches, which he keeps fat, black and writhing in a jar. He swears by them. He has a great many grateful patients, he says, though none of them are here.",
   "options": [
     {
       "id": "accept",
-      "label": "Let him bleed the wounded, and trust his prize leeches.",
+      "label": "Let him bleed the wounded with his prize leeches.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "Pale, and on the mend, with little round scars.",
+          "text": "The wounded come away pale but mending, dotted with little round scars.",
           "effects": [
             {
               "to": "party",
@@ -35,7 +35,7 @@
         },
         {
           "w": 30,
-          "text": "The leeches are not his prize ones, and they leave something behind.",
+          "text": "These are not his prize leeches, and they leave something behind.",
           "effects": [
             {
               "to": "party",
@@ -47,7 +47,7 @@
     },
     {
       "id": "ask",
-      "label": "The sharpest asks to see his notes, before anyone bares an arm.",
+      "label": "The sharpest asks to see his notes before anyone bares an arm.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -55,7 +55,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Gibberish, mostly, but one good recipe in it.",
+          "text": "The notes are mostly gibberish, but one recipe in them is sound.",
           "effects": [
             {
               "mend": true
@@ -66,7 +66,7 @@
     },
     {
       "id": "refuse",
-      "label": "Refuse his leeches, politely. You have bled enough.",
+      "label": "Refuse his leeches politely; you have bled enough.",
       "rule": "leader",
       "tags": [
         "cautious"

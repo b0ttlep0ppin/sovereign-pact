@@ -9,7 +9,7 @@
     10
   ],
   "title": "The Mask Seller",
-  "text": "A stall of masks in the Faceless City, row on row, and each one is a face from your own past: a sister, a first love, a dead friend, yourselves as children. The seller behind the stall has no face. It would like one, it says, very much.",
+  "text": "A stall in the Faceless City holds masks row on row, each a face from your own past: a sister, a first love, a dead friend, yourselves as children. The seller behind the stall has no face. It would like one, it says, very much.",
   "options": [
     {
       "id": "buy",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It fits perfectly. They had forgotten what it felt like to be that person.",
+          "text": "It fits perfectly. They had forgotten what it was like to be that person.",
           "effects": [
             {
               "sanity": 20
@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The mask is magnificent. In the mirror, the Leader is not sure who looks back.",
+          "text": "The mask is magnificent. In the mirror, the Leader is no longer sure who looks back.",
           "effects": [
             {
               "item": {
@@ -61,7 +61,7 @@
     },
     {
       "id": "burn",
-      "label": "Burn the stall and every face on it, so no one else is tempted.",
+      "label": "Burn the stall and every face on it so no one else is tempted.",
       "rule": "vote",
       "tags": [
         "cruel"
@@ -69,7 +69,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The masks scream as they burn, every face in them, and some of the voices you know.",
+          "text": "Every face screams as it burns. Some of the voices you know.",
           "effects": [
             {
               "to": "party",

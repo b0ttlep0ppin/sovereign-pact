@@ -9,11 +9,11 @@
     9
   ],
   "title": "The Ingot Vault",
-  "text": "A vault door stands half open, and inside, ingots of iron and silver are stacked to the ceiling, glinting. Nobody guards it. The floor before it is scorched in a perfect black circle, and in the middle of the circle there are two boots, still smoking.",
+  "text": "A vault door stands half open. Inside, ingots of iron and silver are stacked to the ceiling, and nobody guards them. The floor before the door is scorched in a perfect black circle. In the middle of it stand two boots, still smoking.",
   "options": [
     {
       "id": "run",
-      "label": "The quickest dashes in and out, before the circle can light.",
+      "label": "The quickest dashes in and out before the circle can light.",
       "rule": "scion:highest:speed",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "An armful of ingots, and their boots smoking.",
+          "text": "They come out with an armful of ingots, the soles of their boots smoking.",
           "effects": [
             {
               "resources": {
@@ -32,7 +32,7 @@
         },
         {
           "w": 40,
-          "text": "The circle lights, and the legs in it.",
+          "text": "The circle flares while they are still inside it, searing their legs.",
           "effects": [
             {
               "durability": -30,
@@ -44,7 +44,7 @@
     },
     {
       "id": "study",
-      "label": "The sharpest finds the trigger, before anyone steps in the circle.",
+      "label": "The sharpest searches for the trigger before anyone steps into the circle.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -52,7 +52,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A pressure plate, worn smooth by the last ones who found it. You step around it, carefully.",
+          "text": "They find a pressure plate worn smooth by those who came before. You step around it carefully.",
           "effects": [
             {
               "resources": {
@@ -66,7 +66,7 @@
     },
     {
       "id": "leave",
-      "label": "Leave it. Too obvious a trap, and those boots are a warning.",
+      "label": "Leave it. The trap is too obvious, and those boots are a warning.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -74,7 +74,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Probably. As you go a rat runs across the scorched circle, and the circle flares white, and there is no rat. You will know the next one.",
+          "text": "As you go, a rat runs across the scorched circle. It flares white, and when the light fades the rat is gone. You will know such circles when you see them again.",
           "effects": [
             {
               "to": "party",

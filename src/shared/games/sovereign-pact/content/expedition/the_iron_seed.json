@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "plant",
-      "label": "Plant it in the forge's ashes, and let it grow where it belongs.",
+      "label": "Plant it in the forge's ashes, where it belongs.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "An iron sapling, red as rust, and the ruins feel a little less dead.",
+          "text": "A sapling of iron rises from the ashes. The ruins feel a little less dead around it.",
           "effects": [
             {
               "to": "party",
@@ -44,7 +44,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It grows, slowly, into something worth having, and its roots like the warmth of a body.",
+          "text": "Over the days it grows into something worth having, its roots curled tight against their skin.",
           "effects": [
             {
               "item": {
@@ -57,7 +57,7 @@
     },
     {
       "id": "melt",
-      "label": "Melt it down. Iron that grows roots is iron that wants something.",
+      "label": "Melt it down. Iron that grows roots wants something.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -65,7 +65,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Good iron, and a feeling of having killed something small.",
+          "text": "It makes good iron. Still, everyone feels they have killed something small.",
           "effects": [
             {
               "resources": {

@@ -9,11 +9,11 @@
     9
   ],
   "title": "The Inquisitor",
-  "text": "An inquisitor of the Court stops the party in the road, his face hidden behind a mask of white porcelain, his guards spreading out to block the way. One of you is a heretic, he says, mildly. He wants to know which. He has all day.",
+  "text": "An inquisitor of the Court stops the party in the road, his face hidden behind a mask of white porcelain while his guards spread out to block the way. One of you is a heretic, he says mildly, and he wants to know which. He has all day.",
   "options": [
     {
       "id": "accuse",
-      "label": "Point at a rival House, and let the inquisitor take his heretic from them.",
+      "label": "Point at a rival House and let the inquisitor take his heretic from them.",
       "rule": "house:random|vote",
       "tags": [
         "cruel"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The inquisitor takes note, very carefully, in a little black book. Your rivals will not forget this.",
+          "text": "He takes careful note in a little black book. Your rivals will not forget this.",
           "effects": [
             {
               "score": {
@@ -37,7 +37,7 @@
     },
     {
       "id": "faith",
-      "label": "The devout recites the creed for him, word for word.",
+      "label": "The devout one recites the creed for him, word for word.",
       "rule": "scion:trait:devout|scion:highest:sagacity",
       "tags": [
         "clever"
@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Word-perfect. He sounds disappointed. You may pass.",
+          "text": "They recite it without a single slip. He sounds disappointed as he waves you through.",
           "effects": [
             {
               "skip": 1
@@ -56,7 +56,7 @@
     },
     {
       "id": "strike",
-      "label": "Strike first. No masked man accuses your House of anything.",
+      "label": "Strike first; no masked man accuses your House of anything.",
       "rule": "leader",
       "tags": [
         "bold"
@@ -64,7 +64,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He has guards, and they were hoping you would.",
+          "text": "His guards were hoping you would.",
           "effects": [
             {
               "encounter": {}
