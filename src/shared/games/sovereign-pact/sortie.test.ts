@@ -38,6 +38,17 @@ describe("the Sortie assignment (§6.11)", () => {
 });
 
 describe("going on a Sortie", () => {
+  it("keeps the Scions sent on the Sortie off the expedition (Josh 2026-11-10)", () => {
+    let s = calm(campaign(1, 5));
+    const [a, b] = scions(s);
+    s = move(s, "p1", { type: "assign", person: a!.id, to: "sortie", at: "patrol_the_walls" });
+    s.phase = "expedition";
+    muster(s, { type: "delve", pool: "barrows", level: 1, size: 4 });
+    expect(error(s, "p1", { type: "field", people: [a!.id] })).toMatch(/going on the Sortie/);
+    s = move(s, "p1", { type: "field", people: [b!.id] });
+    expect(sortieParty(s, 0)).toEqual([a!.id]);
+  });
+
   it("sends the House's Sortie Scions not on the expedition; the winners come home with XP, JP and finds", () => {
     let s = calm(campaign(1, 5));
     const team = scions(s);

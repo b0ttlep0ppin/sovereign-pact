@@ -574,7 +574,8 @@ export interface SovState {
   /** The vote now open, if any. */
   vote?: Vote;
   /** The Rift Gate's cards this Year and each House's vote for one (§9.1). */
-  gate?: { cards: ExpeditionCard[]; votes: (number | null)[] };
+  /** The Year's Gate cards; `shut` says why there are none and no expedition goes this Year. */
+  gate?: { cards: ExpeditionCard[]; votes: (number | null)[]; shut?: string };
   /** The Expedition Phase's party (§9.2). */
   expedition?: Expedition;
   /** The opening recruit draft, between the last oath and Year 1. */

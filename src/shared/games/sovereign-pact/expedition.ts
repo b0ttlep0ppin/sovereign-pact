@@ -12,8 +12,11 @@ import { setOut } from "./homecoming.ts";
 
 export const seatsOf = (card: ExpeditionCard): number => (card.size === 4 ? 4 : 8);
 
-/** A Scion the House can field: its own (a Ward is its host's), not Lost. The Retired return first (§6.12). */
-export const able = (s: SovState, house: number): Person[] => s.people.filter((p) => p.host === house && p.status === "scion");
+/**
+ * A Scion the House can field: its own (a Ward is its host's), not Lost. The Retired return first (§6.12).
+ * Not those sent through the Rift Gate on its Sortie (Josh 2026-11-10): a Scion goes on one or the other.
+ */
+export const able = (s: SovState, house: number): Person[] => s.people.filter((p) => p.host === house && p.status === "scion" && s.assign[p.id]?.to !== "sortie");
 
 /**
  * The order spare seats go in (§9.2): the House with the fewest expeditions attended, then by rotation
@@ -72,6 +75,8 @@ export function cannotField(s: SovState, house: number, people: unknown): string
   if (!Array.isArray(people) || people.some((id) => typeof id !== "number")) return "Name the Scions you field.";
   if (new Set(people).size !== people.length) return "A Scion can take only one seat.";
   if (people.length > e.seats[house]!) return `Your House has ${e.seats[house]} seat${e.seats[house] === 1 ? "" : "s"}.`;
+  const away = s.people.find((p) => people.includes(p.id) && p.host === house && s.assign[p.id]?.to === "sortie");
+  if (away) return `${away.name} is going on the Sortie, not the expedition.`;
   const mine = new Set(able(s, house).map((p) => p.id));
   if (!people.every((id) => mine.has(id as number))) return "Field only your own Scions.";
   return null;

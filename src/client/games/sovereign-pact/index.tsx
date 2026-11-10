@@ -628,7 +628,8 @@ function Stores({ mine }: { mine: NonNullable<SovView["mine"]> }) {
 
 /** Your Scions who can take a seat, strongest first. */
 function ableOf(view: SovView) {
-  return view.people.filter((p) => p.host === view.me && p.status === "scion").sort((a, b) => b.level - a.level || a.id - b.id);
+  // Those sent on the Sortie stay at the Rift Gate: they take no seat.
+  return view.people.filter((p) => p.host === view.me && p.status === "scion" && view.mine?.assign[p.id]?.to !== "sortie").sort((a, b) => b.level - a.level || a.id - b.id);
 }
 
 /** The Expedition Phase (§9.2): field your Scions in your seats, then vote the party's Leader. */

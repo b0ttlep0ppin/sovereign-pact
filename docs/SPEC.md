@@ -2001,7 +2001,7 @@ Hazards are entities without turns: they sit on an enemy or player cell and trig
 
 ### 14.9 Hunts, Arcana and Idols [DECIDED]
 
-- **Hunt quarries.** A Hunt card names one elite or boss of its pool with a title ("Old Scar, the Great Boar"; "the Pale Bride of the Marches") and a **trophy**: Valor, a cosmetic for the Seat, a rare material. A named quarry is +1 level, +50% HP, with one extra ability from a short list (Enrage, Flee and Ambush, Call the Pack). The bestiary tracks named kills per House.
+- **Hunt quarries.** A Hunt card names one elite or boss of its pool with a title ("Old Scar, the Sacred Bull"; "the Pale Bride of the Marches") and a **trophy**: Valor, a cosmetic for the Seat, a rare material. A named quarry is +1 level, +50% HP, with one extra ability from a short list (Enrage, Flee and Ambush, Call the Pack). The bestiary tracks named kills per House.
 - **Arcana nodes [DECIDED: mini-bosses inside an expedition].** The 22 Major Arcana (the Scions' Tarot, §6.8) each have a mini-boss. An Arcana appears as a special **node** in an expedition's chain (shown as a face-down card on the chain map), at most once per campaign per Arcana, far more likely when a Scion of that Tarot is in the party; that Scion is the subject of the node's event and gains a permanent trait on the kill. The fight is elite-tier (two phases, no adds beyond its own), fought in the pool's arena, and drops a Relic tied to the card. Three of them (The Tower, Death, The World) are big enough to carry a Hunt card of their own at level 8+. The mapping, from the packs:
 
 | Arcana | Boss | Arcana | Boss |

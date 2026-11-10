@@ -97,10 +97,17 @@ describe("the bot Leader", () => {
 });
 
 describe("the bot's Sorties", () => {
-  it("go with two Scions or more; a lone Scion rests instead", () => {
+  it("go with two Scions or more, the best kept home for the expedition; a lone Scion rests instead", () => {
     const s = calm(campaign(2, 3));
+    // A House with Scions to spare: more of its own, after the training seats and the expedition's.
+    const first = s.people.find((p) => p.host === 0 && p.status === "scion")!;
+    const top = Math.max(...s.people.map((p) => p.id));
+    for (let i = 1; i <= 6; i++) s.people.push({ ...first, id: top + i, name: `${first.name} ${i}`, gear: {}, level: 1 });
     const sortie = (house: number) => [...assignPlan(s, house).values()].filter((a) => a?.to === "sortie").length;
     expect(sortie(0)).toBeGreaterThanOrEqual(TUNING.sortie.botMin);
+    const plan = assignPlan(s, 0);
+    const best = s.people.filter((p) => p.host === 0 && p.status === "scion").sort((a, b) => b.level - a.level || a.id - b.id).slice(0, Math.ceil(TUNING.sortie.botKeepSeats / 2));
+    for (const p of best) expect(plan.get(p.id)?.to).not.toBe("sortie");
     const keep = s.people.find((p) => p.host === 0 && p.status === "scion")!;
     s.people = s.people.filter((p) => p.host !== 0 || p.status !== "scion" || p === keep);
     expect(sortie(0)).toBe(0);

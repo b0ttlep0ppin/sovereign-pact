@@ -102,6 +102,14 @@ export function assignPlan(s: SovState, house: number): Map<number, Assignment |
       if (p.mastered.length) mentors.push({ id: p.id, job: p.mastered[0], room: TUNING.assignments.studentsPerSeat });
     }
   }
+  // The House's strongest stay home for the expedition's seats: a Scion on the Sortie cannot take one (DECISIONS 8dk).
+  const keep = new Set(
+    mine
+      .filter((p) => p.status === "scion")
+      .sort((a, b) => b.level - a.level || a.id - b.id)
+      .slice(0, Math.ceil(TUNING.sortie.botKeepSeats / s.houses.length))
+      .map((p) => p.id),
+  );
   for (const p of mine) {
     if (plan.has(p.id)) continue;
     const work = p.status === "recruit" ? producers.find((b) => take("work", b)) : undefined;
@@ -113,8 +121,8 @@ export function assignPlan(s: SovState, house: number): Map<number, Assignment |
       const m = mentors.find((x) => x.room > 0 && x.id !== p.id);
       if (m) m.room -= 1;
       plan.set(p.id, m ? { to: "train", mentor: m.id, job: m.job } : { to: "train" });
-    } else if (p.status === "scion" && !p.injuries.some((x) => x.years > 0) && take("sortie")) {
-      // A Scion with nothing better to do goes on the House's Sortie (the safest, §6.11); one fielded for the expedition goes there instead.
+    } else if (p.status === "scion" && !keep.has(p.id) && !p.injuries.some((x) => x.years > 0) && take("sortie")) {
+      // A Scion with nothing better to do goes on the House's Sortie (the safest, §6.11).
       plan.set(p.id, { to: "sortie", at: SORTIES[0]!.id });
     } else plan.set(p.id, p.status === "recruit" ? undefined : { to: "rest" });
   }

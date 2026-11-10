@@ -1,6 +1,6 @@
 {
   "quarries": [
-    { "id": "old_scar", "title": "Old Scar, the Great Boar", "enemy": "beast_wild_boar", "ability": "enrage", "trophy": { "valor": 8, "stores": { "grain": 20 } }, "text": "A boar the size of a cart, its hide a map of every spear that failed." },
+    { "id": "old_scar", "title": "Old Scar, the Sacred Bull", "enemy": "beast_sacred_bull", "ability": "enrage", "trophy": { "valor": 8, "stores": { "grain": 20 } }, "text": "A bull the size of a cart, once garlanded by a shrine that no longer stands. Its hide is a map of every spear that failed." },
     { "id": "the_tusked_mountain", "title": "The Tusked Mountain", "enemy": "beast_mammoth", "ability": "call_pack", "trophy": { "valor": 12, "stores": { "wyrmbone": 2 } }, "text": "The herd follows it, and the herd tramples villages." },
     { "id": "the_striped_blade", "title": "Kesh, the Striped Blade", "enemy": "beast_tiger_swordsman", "ability": "ambush", "trophy": { "valor": 12, "stores": { "iron": 10 } }, "text": "A beastfolk duelist who collects the swords of the knights he kills." },
     { "id": "the_white_tyrant", "title": "The White Tyrant", "enemy": "cold_woolly_mammoth", "ability": "call_pack", "trophy": { "valor": 12, "stores": { "grain": 30 } }, "text": "It drives its herd down the passes every winter, and the passes close behind it." },
