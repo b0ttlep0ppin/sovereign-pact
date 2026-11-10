@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "feed",
-      "label": "Feed the holy cat.",
+      "label": "Feed the holy cat. It has outlived every priest here.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -37,7 +37,7 @@
     },
     {
       "id": "pet",
-      "label": "Whoever it chooses pets it.",
+      "label": "Whoever it chooses pets it, and hopes to be chosen kindly.",
       "rule": "scion:random",
       "tags": [
         "reckless"
@@ -69,7 +69,7 @@
     },
     {
       "id": "shoo",
-      "label": "Shoo it off the steps.",
+      "label": "Shoo it off the steps. It is only a cat.",
       "rule": "leader",
       "tags": [
         "cruel"

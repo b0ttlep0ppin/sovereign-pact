@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "hire",
-      "label": "Give the golem a job.",
+      "label": "Give the golem a job. A hundred years is long enough to wait.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It carries your heaviest packs, humming, and leaves at the next fork.",
+          "text": "It carries your heaviest packs, humming, and leaves at the next fork, content.",
           "effects": [
             {
               "to": "party",
@@ -57,7 +57,7 @@
     },
     {
       "id": "talk",
-      "label": "The cleverest asks it about the forge.",
+      "label": "The cleverest asks it about the forge, and what its master made.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"

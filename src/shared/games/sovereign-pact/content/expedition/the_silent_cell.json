@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "hermit",
-      "label": "The Hermit's child sits alone in the cell.",
+      "label": "The Hermit's child sits alone in the cell, as the monks say it wants.",
       "rule": "scion:tarot:hermit|scion:highest:sagacity",
       "tags": [
         "clever"
@@ -35,7 +35,7 @@
     },
     {
       "id": "heal",
-      "label": "The healer lights the candle for the sick.",
+      "label": "The healer lights the candle for the sick, and prays over it.",
       "rule": "scion:trait:pious_hands|scion:most_healing",
       "tags": [
         "kind"
@@ -60,7 +60,7 @@
     },
     {
       "id": "search",
-      "label": "Search the cell.",
+      "label": "Search the cell. Monks keep secrets under stools.",
       "rule": "vote",
       "tags": [
         "reckless"

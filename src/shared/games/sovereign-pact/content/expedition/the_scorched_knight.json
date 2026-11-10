@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "help",
-      "label": "Pry him out of the fused armor.",
+      "label": "Pry him out of the fused armor, however long it takes.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -39,7 +39,7 @@
     },
     {
       "id": "ask",
-      "label": "The wisest asks him about the dragon.",
+      "label": "The wisest asks him about the dragon, while he can still speak.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -58,7 +58,7 @@
     },
     {
       "id": "armor",
-      "label": "The Leader takes his armor. He will not need it.",
+      "label": "The Leader takes his armor. He will not need it where he is going.",
       "rule": "leader",
       "tags": [
         "cruel"

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "tap",
-      "label": "Tap the trees for sap.",
+      "label": "Tap the trees for sap. Alchemists pay well for gold that bleeds.",
       "rule": "vote",
       "tags": [
         "clever"
@@ -34,7 +34,7 @@
     },
     {
       "id": "fell",
-      "label": "Fell the pale trees.",
+      "label": "Fell the pale trees, and take timber and sap both.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -59,7 +59,7 @@
     },
     {
       "id": "plant",
-      "label": "The wisest takes seedlings for the House.",
+      "label": "The wisest takes seedlings for the House, to grow a grove of its own.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "kind"
@@ -67,7 +67,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A grove, in time, that bleeds gold.",
+          "text": "A grove, in time, that bleeds gold. Nobody likes to walk in it after dark.",
           "effects": [
             {
               "house_improvement": "building"

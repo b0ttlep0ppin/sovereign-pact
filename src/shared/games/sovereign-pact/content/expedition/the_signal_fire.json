@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "run",
-      "label": "Run for the far hill.",
+      "label": "Run for the far hill, before the smoke stops for good.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -37,7 +37,7 @@
     },
     {
       "id": "answer",
-      "label": "Light an answering fire.",
+      "label": "Light an answering fire, so they know someone is coming.",
       "rule": "leader",
       "tags": [
         "kind"
@@ -66,7 +66,7 @@
     },
     {
       "id": "scout",
-      "label": "The sharpest eye scouts the way.",
+      "label": "The sharpest eye scouts the way, so you do not break your legs getting there.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"

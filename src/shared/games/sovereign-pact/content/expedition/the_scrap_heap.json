@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "light",
-      "label": "The one with the most room in their pack climbs the heap.",
+      "label": "The one with the most room in their pack climbs the heap, as the rules allow.",
       "rule": "scion:most_open_slots|scion:random",
       "tags": [
         "clever"
@@ -39,7 +39,7 @@
     },
     {
       "id": "heavy",
-      "label": "The most armored climbs it anyway.",
+      "label": "The most armored climbs it anyway. Rules are for tinkers.",
       "rule": "scion:heaviest_gear|scion:highest:might",
       "tags": [
         "reckless"
@@ -70,7 +70,7 @@
     },
     {
       "id": "trade",
-      "label": "Trade with the tinker for parts.",
+      "label": "Trade with the tinker for parts, and leave the heap to him.",
       "rule": "vote",
       "tags": [
         "kind"

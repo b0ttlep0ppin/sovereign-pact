@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "wake",
-      "label": "The Leader wakes the knight.",
+      "label": "The Leader wakes the knight. If this is not the last battle, it is close enough.",
       "rule": "leader",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 40,
-          "text": "He wakes, and fights beside you, and goes back to sleep after.",
+          "text": "He wakes, fights beside you, and goes back to sleep after.",
           "effects": [
             {
               "to": "party",
@@ -49,7 +49,7 @@
     },
     {
       "id": "guard",
-      "label": "Leave an offering and guard his sleep a while.",
+      "label": "Leave an offering and guard his sleep a while, as the stories would want.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -75,7 +75,7 @@
     },
     {
       "id": "sword",
-      "label": "The quietest hands lift the sword from his chest.",
+      "label": "The quietest hands lift the sword from his chest. He will not need it yet.",
       "rule": "scion:highest:guile",
       "tags": [
         "cruel"

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "rake",
-      "label": "Rake as much salt as you can carry.",
+      "label": "Rake as much salt as you can carry. Salt is gold, inland.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -38,7 +38,7 @@
     },
     {
       "id": "slow",
-      "label": "The slowest stays back to watch for the salt-keepers.",
+      "label": "The slowest stays back to watch for the salt-keepers while the rest rake.",
       "rule": "scion:lowest:speed|scion:random",
       "tags": [
         "cautious"
@@ -70,7 +70,7 @@
     },
     {
       "id": "trade",
-      "label": "The shrewdest trades with the salt-keepers.",
+      "label": "The shrewdest trades with the salt-keepers, rather than steal from them.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"

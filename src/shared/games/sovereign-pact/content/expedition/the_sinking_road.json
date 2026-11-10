@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "run",
-      "label": "Run for it.",
+      "label": "Run for it, before the road and everything on it is gone.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -44,7 +44,7 @@
     },
     {
       "id": "slow",
-      "label": "The slowest goes first while there is still road.",
+      "label": "The slowest goes first while there is still road, so no one is left behind.",
       "rule": "scion:lowest:speed|scion:random",
       "tags": [
         "cautious"
@@ -64,7 +64,7 @@
     },
     {
       "id": "wait",
-      "label": "Camp and wait for the tide to turn.",
+      "label": "Camp and wait for the tide to turn. The road will rise again.",
       "rule": "leader",
       "tags": [
         "cautious"

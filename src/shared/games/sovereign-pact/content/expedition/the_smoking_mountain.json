@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "over",
-      "label": "Go over the shoulder, past the nests.",
+      "label": "Go over the shoulder, past the nests, and hope the dragons are sleeping.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -44,7 +44,7 @@
     },
     {
       "id": "vents",
-      "label": "The sharpest eye finds the old lava tubes.",
+      "label": "The sharpest eye finds the old lava tubes, and leads you through the mountain's belly.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -52,7 +52,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Through the mountain's belly, in the hot dark, and out the far side with pockets full of glowing stone.",
+          "text": "Through the hot dark and out the far side, with pockets full of glowing stone.",
           "effects": [
             {
               "skip": 1
@@ -68,7 +68,7 @@
     },
     {
       "id": "round",
-      "label": "Go round, the long way.",
+      "label": "Go round, the long way. No path past dragons is worth taking.",
       "rule": "leader",
       "tags": [
         "cautious"

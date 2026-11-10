@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "learn",
-      "label": "The most curious learns from him.",
+      "label": "The most curious learns from him, while he still has the breath to teach.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -37,7 +37,7 @@
     },
     {
       "id": "news",
-      "label": "Tell him everything. He is lonely.",
+      "label": "Tell him everything of the world. He is lonely, and it costs nothing.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -61,7 +61,7 @@
     },
     {
       "id": "books",
-      "label": "The Leader takes the rarest books.",
+      "label": "The Leader takes the rarest books. They are wasted on a dying man.",
       "rule": "leader",
       "tags": [
         "cruel"

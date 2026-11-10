@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "fill",
-      "label": "Fill the dry bowl.",
+      "label": "Fill the dry bowl, so the forgotten god may drink again.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -50,7 +50,7 @@
     },
     {
       "id": "drink",
-      "label": "The most devout drinks from all five full bowls.",
+      "label": "The most devout drinks from all five full bowls, and trusts the gods to share.",
       "rule": "scion:trait:devout|scion:trait:pious_hands|scion:highest:sagacity",
       "tags": [
         "reckless"
@@ -86,7 +86,7 @@
     },
     {
       "id": "leave",
-      "label": "Leave the bowls as they are.",
+      "label": "Leave the bowls as they are. Whatever the monks will not say, it is not your concern.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -106,7 +106,7 @@
     },
     {
       "id": "fill_the_dry_bowl",
-      "label": "The Soothsayer fills the dry bowl from their own flask.",
+      "label": "The Soothsayer fills the dry bowl from their own flask, as the cards have told them to.",
       "rule": "scion:job:soothsayer",
       "only": true,
       "tags": [

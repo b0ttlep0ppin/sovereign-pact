@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "target",
-      "label": "The one who draws every bolt runs the street first.",
+      "label": "The one who draws every bolt runs the street first, so the rest may follow.",
       "rule": "scion:most_targeted|scion:highest:speed",
       "tags": [
         "bold"
@@ -47,7 +47,7 @@
     },
     {
       "id": "blind",
-      "label": "The one with the poorest eye walks it slowly, unafraid.",
+      "label": "The one with the poorest eye walks it slowly, unafraid of what they cannot see.",
       "rule": "scion:lowest:acuity|scion:random",
       "tags": [
         "reckless"
@@ -80,7 +80,7 @@
     },
     {
       "id": "arm",
-      "label": "The one with the hurt arm holds a shield over the rest.",
+      "label": "The one with the hurt arm holds a shield over the rest. It is hurt already.",
       "rule": "scion:injured:arms|vote",
       "tags": [
         "cautious"

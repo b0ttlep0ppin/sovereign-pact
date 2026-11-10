@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "take",
-      "label": "The strongest takes up the singing blade.",
+      "label": "The strongest takes up the singing blade, and lets it have its wielder.",
       "rule": "scion:highest:might",
       "tags": [
         "bold"
@@ -48,7 +48,7 @@
     },
     {
       "id": "bury",
-      "label": "Bury it.",
+      "label": "Bury it. No good comes of a sword that wants so badly.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -68,7 +68,7 @@
     },
     {
       "id": "talk",
-      "label": "The wisest asks it who it was.",
+      "label": "The wisest asks it who it was, before anyone touches it.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "kind"

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "enter",
-      "label": "Go into the one house still standing.",
+      "label": "Go into the one house still standing, to learn why it was spared.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -45,7 +45,7 @@
     },
     {
       "id": "survey",
-      "label": "The sharpest eye reads the burn marks.",
+      "label": "The sharpest eye reads the burn marks, to learn what did this.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -69,7 +69,7 @@
     },
     {
       "id": "bury",
-      "label": "Bury what can be buried.",
+      "label": "Bury what can be buried. Someone should.",
       "rule": "leader",
       "tags": [
         "kind"

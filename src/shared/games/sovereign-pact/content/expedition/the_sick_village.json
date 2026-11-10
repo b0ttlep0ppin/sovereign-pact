@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "help",
-      "label": "The best healer goes in among the sick.",
+      "label": "The best healer goes in among the sick, whatever it may cost them.",
       "rule": "scion:most_healing",
       "tags": [
         "kind"
@@ -51,7 +51,7 @@
     },
     {
       "id": "supplies",
-      "label": "Leave supplies at the edge of the village.",
+      "label": "Leave supplies at the edge of the village, and keep your distance.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -76,7 +76,7 @@
     },
     {
       "id": "burn",
-      "label": "Burn it, for everyone's safety.",
+      "label": "Burn it, for everyone's safety, before the bark spreads beyond the village.",
       "rule": "leader",
       "tags": [
         "cruel"

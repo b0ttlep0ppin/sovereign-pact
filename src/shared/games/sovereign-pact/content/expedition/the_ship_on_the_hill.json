@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "hold",
-      "label": "The strongest breaks open the chained hold.",
+      "label": "The strongest breaks open the chained hold, to learn what makes that sound.",
       "rule": "scion:highest:might",
       "tags": [
         "bold"
@@ -48,7 +48,7 @@
     },
     {
       "id": "log",
-      "label": "The wisest finds the ship's log.",
+      "label": "The wisest finds the ship's log, to learn how it came to be here.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -73,7 +73,7 @@
     },
     {
       "id": "timber",
-      "label": "Strip the ship for timber.",
+      "label": "Strip the ship for timber, and leave the hold chained.",
       "rule": "leader",
       "tags": [
         "cautious"

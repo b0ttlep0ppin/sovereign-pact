@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "bid",
-      "label": "Outbid the devils.",
+      "label": "Outbid the devils, whatever it costs. No Scion of yours will be sold.",
       "rule": "house:highest_standing|vote",
       "tags": [
         "bold"
@@ -38,7 +38,7 @@
     },
     {
       "id": "steal",
-      "label": "The shrewdest steals the lot from the stage.",
+      "label": "The shrewdest steals the lot from the stage, chains and all.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"
@@ -74,7 +74,7 @@
     },
     {
       "id": "leave",
-      "label": "Let the gavel fall.",
+      "label": "Let the gavel fall. You cannot save every soul.",
       "rule": "leader",
       "tags": [
         "cruel"

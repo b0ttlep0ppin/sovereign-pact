@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "talk",
-      "label": "The least sharp of you talks with her.",
+      "label": "The least sharp of you talks with her, since she will speak to no one else.",
       "rule": "scion:lowest:acuity",
       "tags": [
         "kind"
@@ -37,7 +37,7 @@
     },
     {
       "id": "trick",
-      "label": "The cleverest pretends to be simple.",
+      "label": "The cleverest pretends to be simple, to hear what she would say.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"
@@ -68,7 +68,7 @@
     },
     {
       "id": "pass",
-      "label": "Pass her by.",
+      "label": "Pass her by. Simple truths can wait.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -76,7 +76,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It waves. \"You'll be back,\" it says, and the Leader, oddly, is comforted.",
+          "text": "She waves. \"You'll be back,\" she says, and the Leader, oddly, is comforted.",
           "effects": [
             {
               "sanity": 8

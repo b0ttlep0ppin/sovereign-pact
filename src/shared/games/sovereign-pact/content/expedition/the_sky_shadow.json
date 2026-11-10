@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "hide",
-      "label": "Take cover and wait.",
+      "label": "Take cover and wait, and pray it is not hungry.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -33,7 +33,7 @@
     },
     {
       "id": "watch",
-      "label": "The sharpest eye watches where it lands.",
+      "label": "The sharpest eye watches where it lands, so you know where not to go.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -52,7 +52,7 @@
     },
     {
       "id": "signal",
-      "label": "The Leader signals it, to see what it wants.",
+      "label": "The Leader signals it, to learn what it wants.",
       "rule": "leader",
       "tags": [
         "reckless"

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "touch",
-      "label": "The wisest presses the worn knot.",
+      "label": "The wisest presses the worn knot, where so many hands have pressed before.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "kind"
@@ -49,7 +49,7 @@
     },
     {
       "id": "cut",
-      "label": "Cut the oak for timber.",
+      "label": "Cut the oak for timber. Wood that old is worth the song.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -57,7 +57,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It goes on singing all the way down. The wood is very good.",
+          "text": "It goes on singing all the way down. The wood is very good, and nobody sleeps well near it.",
           "effects": [
             {
               "resources": {
@@ -74,7 +74,7 @@
     },
     {
       "id": "pass",
-      "label": "Pass by quietly.",
+      "label": "Pass by quietly, and let it sing on.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -82,7 +82,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The note follows you a little way, and then it lets you go. It stays in the Leader's head as a calm under everything.",
+          "text": "The note follows you a little way, then lets you go. It stays in the Leader's head as a calm under everything.",
           "effects": [
             {
               "mp": 25

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "weak",
-      "label": "Hold the frailest close.",
+      "label": "Hold the frailest close, before the cold takes them.",
       "rule": "scion:lowest:resilience|scion:lowest:sanity",
       "tags": [
         "kind"
@@ -36,7 +36,7 @@
     },
     {
       "id": "shout",
-      "label": "Shout until something hears.",
+      "label": "Shout until something hears. Anything is better than this.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -57,7 +57,7 @@
     },
     {
       "id": "listen",
-      "label": "The wisest listens to the silence.",
+      "label": "The wisest listens to the silence, to learn what it hides.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"

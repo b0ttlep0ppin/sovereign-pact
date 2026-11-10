@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "rope",
-      "label": "Stay roped and keep on.",
+      "label": "Stay roped and keep on, and whatever walks beside you, do not let go.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -33,7 +33,7 @@
     },
     {
       "id": "lead",
-      "label": "The steadiest leads with eyes shut, by feel.",
+      "label": "The steadiest leads with eyes shut, by feel, so the rest may follow.",
       "rule": "scion:highest:resilience",
       "tags": [
         "bold"
@@ -64,7 +64,7 @@
     },
     {
       "id": "wait",
-      "label": "Wait for cloud.",
+      "label": "Wait for cloud, and spare your eyes.",
       "rule": "leader",
       "tags": [
         "cautious"

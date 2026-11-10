@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "crown",
-      "label": "Take the crown from her head.",
+      "label": "Take the crown from her head. It is the finest thing you have ever seen.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -69,7 +69,7 @@
     },
     {
       "id": "leave",
-      "label": "Let her sleep.",
+      "label": "Let her sleep. Some dreams should not be broken.",
       "rule": "leader",
       "tags": [
         "cautious"

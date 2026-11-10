@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "wise",
-      "label": "The wisest wears the mask of wisdom.",
+      "label": "The wisest wears the mask of wisdom, and lets that god look out.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -34,7 +34,7 @@
     },
     {
       "id": "strong",
-      "label": "The strongest wears the mask of war.",
+      "label": "The strongest wears the mask of war, and lets that god look out.",
       "rule": "scion:highest:might",
       "tags": [
         "bold"
@@ -58,7 +58,7 @@
     },
     {
       "id": "all",
-      "label": "The Leader takes the masks down.",
+      "label": "The Leader takes the masks down. They are only painted wood.",
       "rule": "leader",
       "tags": [
         "cruel"

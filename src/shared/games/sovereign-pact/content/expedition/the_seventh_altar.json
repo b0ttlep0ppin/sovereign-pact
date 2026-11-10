@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "tear",
-      "label": "The strongest tears the seventh altar down.",
+      "label": "The strongest tears the seventh altar down before it can be finished.",
       "rule": "scion:highest:might",
       "tags": [
         "bold"
@@ -38,7 +38,7 @@
     },
     {
       "id": "offer",
-      "label": "The Leader leaves an offering on the seventh.",
+      "label": "The Leader leaves an offering on the seventh, to learn what it answers to.",
       "rule": "leader",
       "tags": [
         "reckless"
@@ -74,7 +74,7 @@
     },
     {
       "id": "study",
-      "label": "The wisest studies who built it.",
+      "label": "The wisest studies who built it, and why.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"

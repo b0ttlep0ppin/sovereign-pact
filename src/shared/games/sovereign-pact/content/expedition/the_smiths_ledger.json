@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "read",
-      "label": "The wisest reads the soot-black ledger.",
+      "label": "The wisest reads the soot-black ledger, to learn what was made here and for whom.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -39,7 +39,7 @@
     },
     {
       "id": "take",
-      "label": "Take the ledger to sell.",
+      "label": "Take the ledger to sell. Names are worth something.",
       "rule": "vote",
       "tags": [
         "cruel"

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "seventh",
-      "label": "Go through the seventh door.",
+      "label": "Go through the seventh door, to meet whatever no one prays to.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -49,7 +49,7 @@
     },
     {
       "id": "six",
-      "label": "The wisest chooses one of the six.",
+      "label": "The wisest chooses one of the six, and trusts the gods they know.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "kind"
@@ -74,7 +74,7 @@
     },
     {
       "id": "shut",
-      "label": "Shut the seventh door.",
+      "label": "Shut the seventh door, before whatever lies behind it comes through.",
       "rule": "leader",
       "tags": [
         "cautious"

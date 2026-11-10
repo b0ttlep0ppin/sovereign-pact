@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "gift",
-      "label": "Give it honey and bread.",
+      "label": "Give it honey and bread, and ask its leave to pass.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -38,7 +38,7 @@
     },
     {
       "id": "bow",
-      "label": "The devout bows to it.",
+      "label": "The devout bows to it, as one bows to the old powers.",
       "rule": "scion:trait:devout|scion:highest:sagacity",
       "tags": [
         "kind"
@@ -60,7 +60,7 @@
     },
     {
       "id": "fight",
-      "label": "The Leader pushes past it.",
+      "label": "The Leader pushes past it. You will not be stopped by a bear.",
       "rule": "leader",
       "tags": [
         "bold"

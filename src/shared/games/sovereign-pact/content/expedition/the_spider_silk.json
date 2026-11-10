@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "harvest",
-      "label": "Harvest the silk.",
+      "label": "Harvest the silk while the spiders are elsewhere.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -45,7 +45,7 @@
     },
     {
       "id": "burn",
-      "label": "Burn the webs.",
+      "label": "Burn the webs, and everything wrapped in them.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -64,7 +64,7 @@
     },
     {
       "id": "study",
-      "label": "The wisest studies how it is spun.",
+      "label": "The wisest studies how it is spun, so the House can weave its like.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "share",
-      "label": "Share their fire in the ring of bones.",
+      "label": "Share their fire in the ring of bones, and do not ask what they fear.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -37,7 +37,7 @@
     },
     {
       "id": "trade",
-      "label": "The shrewdest trades for their furs.",
+      "label": "The shrewdest trades for their furs, against the cold that is coming.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"
@@ -62,7 +62,7 @@
     },
     {
       "id": "ask",
-      "label": "The Leader asks what else hunts the ice.",
+      "label": "The Leader asks what else hunts the ice, and why they keep watching the dark.",
       "rule": "leader",
       "tags": [
         "cautious"

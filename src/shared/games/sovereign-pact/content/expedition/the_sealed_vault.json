@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "break",
-      "label": "Break the century-old seal.",
+      "label": "Break the century-old seal. Whatever tried to get out is long dead.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -45,7 +45,7 @@
     },
     {
       "id": "read",
-      "label": "The wisest reads the crest.",
+      "label": "The wisest reads the crest, to learn whose House sealed it.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -67,7 +67,7 @@
     },
     {
       "id": "leave",
-      "label": "Leave it sealed.",
+      "label": "Leave it sealed. Something wanted out of there badly.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -88,7 +88,7 @@
     },
     {
       "id": "lift_the_wax",
-      "label": "The Vagabond lifts the wax without breaking it.",
+      "label": "The Vagabond lifts the wax without breaking it, so no one will know it was opened.",
       "rule": "scion:job:vagabond",
       "only": true,
       "tags": [
