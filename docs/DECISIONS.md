@@ -2,6 +2,13 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-10 (implementation, Milestone 8df): the rift is a crown
+
+Josh: **"The purple rift should probably have a little more texture, it would be cool if it's silhouette could suggest the shape of a crown, both in the splash screen and on settlement screen, maybe even filling in a bit more every year as you get closer to year twenty"**.
+- One drawing, `RiftCrown`, serves the splash and the Rift Gate. Five points over a band, the middle point tallest, the edges pushed ragged by noise and the inside veined with darker violet.
+- The whole crown is always faintly there as dashed cracks of light. What is torn through fills from the band upward: `year / years`, at least a sliver in Year 1, and all of it in the last Year, when the points close. A bright torn edge marks how far it has reached.
+- The splash shows it about a third filled, above the title. Reading taken: the splash has no campaign to measure, so it shows a fixed amount.
+
 ## 2026-11-10 (implementation, Milestone 8de): traits that bring resources
 
 Josh: **"Could also add or modify existing house traits that add starting resources or resource income"**.

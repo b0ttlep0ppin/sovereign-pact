@@ -1,6 +1,7 @@
 // The splash before the first screen (SPEC §1): how the capital fell through the rift, why the King's
 // chair is empty, and why the Great Houses must swear a pact they each mean to win. The lines rise one
 // by one; a click, Enter or Escape skips to the end, and the button goes on.
+import RiftCrown from "./RiftCrown";
 import { useEffect, useState } from "react";
 import "./Prologue.css";
 
@@ -38,7 +39,7 @@ export default function Prologue({ onDone }: { onDone: () => void }) {
         }
       }}
     >
-      <div className="sp-prologue__rift" aria-hidden="true" />
+      <RiftCrown className="sp-prologue__rift" fill={0.3} />
       <div className="sp-prologue__embers" aria-hidden="true">
         {Array.from({ length: 18 }, (_, i) => (
           <span key={i} style={{ left: `${(i * 53) % 100}%`, animationDelay: `${(i * 0.7) % 6}s`, animationDuration: `${6 + (i % 5)}s` }} />

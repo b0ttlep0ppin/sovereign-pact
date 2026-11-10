@@ -14,7 +14,7 @@
 .sp-map__ground > section { min-width: 0; border-radius: 4px; padding: 8px; display: grid; gap: 6px; align-content: start; }
 .sp-map__ground strong { font-size: 0.8rem; letter-spacing: 0.06em; text-transform: uppercase; }
 .sp-map__gate { grid-area: gate; position: relative; text-align: center; justify-items: center; background: radial-gradient(ellipse at 50% 30%, #4a1f6e, #1a0f24 70%); border: 1px solid #6b3a94; }
-.sp-map__gate-tear { width: 70%; height: 18px; border-radius: 50%; background: linear-gradient(90deg, transparent, #b46cff, #f0d0ff, #b46cff, transparent); animation: sp-shimmer 3.6s ease-in-out infinite; }
+.sp-map__gate-tear { width: min(70%, 260px); height: auto; filter: drop-shadow(0 0 10px rgba(180, 108, 255, 0.5)); }
 @keyframes sp-shimmer { 0%, 100% { opacity: 0.55; transform: scaleX(0.9); } 50% { opacity: 1; transform: scaleX(1.05); } }
 .sp-map__gate small { color: #c9a6e8; }
 .sp-map__commons { grid-area: commons; background: repeating-linear-gradient(0deg, #2a2622 0 22px, #26221e 22px 24px); border: 1px solid #3d362f; }
@@ -70,10 +70,8 @@
 @container (max-width: 640px) {
   .sp-map__ground { grid-template-columns: minmax(0, 1fr); grid-template-areas: "gate" "commons" "s0" "s1" "s2" "s3" "walls"; }
 }
-@media (prefers-reduced-motion: reduce) { .sp-map__gate-tear { animation: none; } }
 .sp-map__purse { font-size: 0.8rem; color: var(--muted); }
 .sp-map__marker { justify-self: start; font-size: 0.75rem; font-weight: 700; padding: 2px 8px; border-radius: 10px; background: var(--blood); color: var(--text); }
-[data-motion="reduced"] .sp-map__gate-tear, [data-flash="reduced"] .sp-map__gate-tear { animation: none; }
 /* The unassigned (Josh 2026-11-02): people with no place this Year wait here, not in the Keep. */
 .sp-map__idle { position: relative; z-index: 2; display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px; margin: -40px 0 10px; padding: 6px 10px; border: 1px dashed #8a6a3a; border-radius: 2px; background: rgba(20, 14, 10, 0.85); }
 .sp-map__idle small { color: var(--muted); }
