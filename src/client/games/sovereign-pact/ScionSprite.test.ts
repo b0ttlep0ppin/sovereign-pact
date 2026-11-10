@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import { Content } from "@vibepulse/shared/games/sovereign-pact";
 import { scionCredits } from "./credits";
 import LAYERS from "./scion-layers.json";
-import { animFor, attackOf, HELMS, KIT, kitOf, lookOf, lunges, piecesOf, underHat, type Pixels } from "./ScionSprite";
+import { animFor, attackOf, HELMS, KIT, kitOf, lookOf, lunges, piecesOf, underHat, WEAPON_GLOW, type Pixels } from "./ScionSprite";
 
 const person = (id: number, over: Partial<{ sex: "m" | "f"; age: number; job: string | null; status: "recruit" | "scion"; look: string[] }> = {}) =>
   ({ id, sex: "m" as const, age: 25, job: "knight", status: "scion", ...over }) as unknown as Parameters<typeof lookOf>[0];
@@ -154,5 +154,18 @@ describe("Scion sprites", () => {
     const soldier = lookOf({ ...person(9, { job: "soldier" }), gear: { main: 6 } } as never, undefined, [{ id: 6, base: "sword" }]);
     expect(piecesOf(soldier).find((p) => p.layer.slot === "armor")).toBeUndefined();
     expect(piecesOf(soldier).find((p) => p.layer.slot === "shirt")?.layer.option).toBe("tshirt");
+  });
+
+  it("gives a finer weapon a finer metal, and a named one a glow (Josh 2026-11-10)", () => {
+    const weapon = (tier: number, named?: string) =>
+      piecesOf(lookOf({ ...person(9, { job: "soldier" }), gear: { main: 1 } } as never, undefined, [{ id: 1, base: "axe", tier, ...(named ? { named } : {}) }])).find((p) => p.layer.slot === "weapon")!;
+    const metal = (LAYERS.palettes as Record<string, { colors: Record<string, string[]> }>).metal!.colors;
+    expect(weapon(2).tones).toBeUndefined(); // Common: steel as drawn
+    expect(weapon(1).tones).toEqual(metal.iron);
+    expect(weapon(3).tones).toEqual(metal.silver);
+    expect(weapon(4).tones).toEqual(metal.gold);
+    expect(weapon(4).glow).toBeUndefined();
+    expect(weapon(5).glow).toBe(WEAPON_GLOW);
+    expect(weapon(3, "widowmaker").glow).toBe(WEAPON_GLOW);
   });
 });

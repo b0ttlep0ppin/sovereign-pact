@@ -127,6 +127,8 @@ export interface ScionLook {
   kit?: Partial<Record<"weapon" | "shield" | "hat" | "armor", string>>;
   /** Bareheaded: no hat, hood or helm (restyled so). */
   bare?: boolean;
+  /** The weapon's quality (1 Crude … 5 Relic) and whether it is a named one: its metal and glow. */
+  arms?: { tier: number; named?: true };
 }
 
 /** Light armor drawn as clothing, dyed leather brown, rather than worked metal: a buttoned doublet, or an
@@ -165,7 +167,18 @@ export const KIT: Record<string, ["weapon" | "shield" | "hat" | "armor", string]
 };
 
 /** The sprite pieces a Scion's worn gear calls for: weapon and armor always (bare when none), a shield or helm when worn. */
-export function kitOf(gear: Person["gear"], items: readonly { id: number; base: string }[]): ScionLook["kit"] {
+type SeenItem = { id: number; base: string; tier?: number; named?: string };
+
+/** The quality of the weapon a Scion holds (main hand first), for its metal: none when bare-handed. */
+export function armsOf(gear: Person["gear"], items: readonly SeenItem[]): ScionLook["arms"] {
+  for (const slot of ["main", "off"] as const) {
+    const item = gear?.[slot] === undefined ? undefined : items.find((i) => i.id === gear[slot]);
+    if (item && KIT[item.base]?.[0] === "weapon" && KIT[item.base]![1]) return { tier: item.tier ?? 2, ...(item.named ? { named: true as const } : {}) };
+  }
+  return undefined;
+}
+
+export function kitOf(gear: Person["gear"], items: readonly SeenItem[]): ScionLook["kit"] {
   const kit: NonNullable<ScionLook["kit"]> = { weapon: "", armor: "" };
   for (const slot of ["main", "off", "head", "body"] as const) {
     const item = gear?.[slot] === undefined ? undefined : items.find((i) => i.id === gear[slot]);
@@ -190,7 +203,8 @@ export function bornLook(p: Pick<Person, "id" | "sex" | "age">): { hair: string;
   };
 }
 
-export function lookOf(p: Pick<Person, "id" | "sex" | "age" | "job" | "status"> & { gear?: Person["gear"]; look?: readonly string[] }, colors: readonly string[] | undefined, items?: readonly { id: number; base: string }[]): ScionLook {
+export function lookOf(p: Pick<Person, "id" | "sex" | "age" | "job" | "status"> & { gear?: Person["gear"]; look?: readonly string[] }, colors: readonly string[] | undefined, items?: readonly SeenItem[]): ScionLook {
+  const arms = items && p.gear && p.status !== "recruit" ? armsOf(p.gear, items) : undefined;
   const elderly = p.age >= 55;
   const born = bornLook(p);
   const chosen = styleOf({ look: [...(p.look ?? [])] });
@@ -207,6 +221,7 @@ export function lookOf(p: Pick<Person, "id" | "sex" | "age" | "job" | "status"> 
     job: p.status === "recruit" ? "recruit" : (p.job ?? "recruit"),
     colors: [HERALDRY_COLORS.get(colors?.[0] ?? "") ?? "#6b5a3a", HERALDRY_COLORS.get(colors?.[1] ?? "") ?? "#8a8a8a"],
     ...(items && p.gear && p.status !== "recruit" ? { kit: kitOf(p.gear, items) } : {}),
+    ...(arms ? { arms } : {}),
   };
 }
 
@@ -299,7 +314,19 @@ interface Piece {
   layer: Layer;
   /** The six tones to recolor the piece with, or none. */
   tones?: string[];
+  /** Recolor every grey (steel) pixel by its brightness instead of by exact palette match: a weapon's metal. */
+  byShade?: true;
+  /** A glow drawn around the piece (a named or Relic weapon). */
+  glow?: string;
 }
+
+/**
+ * A weapon's metal by its quality (Josh 2026-11-10: "increasingly better axes should use the better axe
+ * sprites", "you can tint the existing ones different colors too"): Crude iron, Common steel as drawn,
+ * Fine silver, Masterwork gold; a Relic or a named weapon is gold and glows.
+ */
+export const WEAPON_METAL = ["iron", "iron", "", "silver", "gold", "gold"] as const;
+export const WEAPON_GLOW = "rgba(255, 200, 110, 0.85)";
 
 /** Every piece of a Scion's sprite, back to front. */
 
@@ -331,7 +358,7 @@ export function piecesOf(look: ScionLook): Piece[] {
     ["capetrim", outfit.capetrim, second],
     ["hat", outfit.hat, HELMS.has(outfit.hat ?? "") ? metal : second],
     ["crest", outfit.crest, outfit.crest?.startsWith("plumage") ? main : metal],
-    ["weapon", outfit.weapon, undefined],
+    ["weapon", outfit.weapon, look.arms && WEAPON_METAL[look.arms.tier] ? palettes.metal?.colors[WEAPON_METAL[look.arms.tier]!] : undefined],
     ["shield", outfit.shield, main],
   ];
   const out: Piece[] = [];
@@ -342,8 +369,10 @@ export function piecesOf(look: ScionLook): Piece[] {
       const own = "tone" in layer && layer.tone === "accent" ? (tones === second ? main : second) : tones;
       // Steel stays steel unless their Job's metal is another; a cloth piece always takes its colors.
       const keep = layer.material === "metal" ? own !== undefined && own !== palettes.metal?.colors.steel : !!own;
-      if (layer.material && keep && own) out.push({ layer, tones: own });
-      else out.push({ layer });
+      const glow = slot === "weapon" && look.arms && (look.arms.named || look.arms.tier >= 5) ? { glow: WEAPON_GLOW } : {};
+      if (slot === "weapon" && own) out.push({ layer, tones: own, byShade: true, ...glow });
+      else if (layer.material && keep && own) out.push({ layer, tones: own });
+      else out.push({ layer, ...glow });
     }
   }
   return out.sort((a, b) => a.layer.z - b.layer.z);
@@ -372,12 +401,38 @@ const rgb = (hex: string) => {
   return [(n >> 16) & 255, (n >> 8) & 255, n & 255] as const;
 };
 
+/** Brightness, 0–255. */
+const lum = (r: number, g: number, b: number) => 0.299 * r + 0.587 * g + 0.114 * b;
+
+/**
+ * Every grey pixel (steel: little color in it) takes the tone of `tones` nearest its brightness against the
+ * steel ramp; wood, leather, gems and the dark outline keep theirs.
+ */
+function shade(ctx: CanvasRenderingContext2D, w: number, h: number, tones: string[]): void {
+  const steel = ((LAYERS.palettes as Record<string, { colors: Record<string, string[]> }>).metal?.colors.steel ?? []).map((x) => lum(...rgb(x)));
+  const to = tones.map(rgb);
+  const data = ctx.getImageData(0, 0, w, h);
+  const d = data.data;
+  for (let i = 0; i < d.length; i += 4) {
+    if (!d[i + 3]) continue;
+    const [r, g, b] = [d[i]!, d[i + 1]!, d[i + 2]!];
+    if (Math.max(r, g, b) - Math.min(r, g, b) > 48) continue;
+    const l = lum(r, g, b);
+    if (l < 40) continue;
+    let k = 0;
+    for (let j = 1; j < steel.length; j++) if (Math.abs(steel[j]! - l) < Math.abs(steel[k]! - l)) k = j;
+    const t = to[k] ?? to.at(-1)!;
+    [d[i], d[i + 1], d[i + 2]] = t;
+  }
+  ctx.putImageData(data, 0, 0);
+}
+
 /** A piece drawn on its own canvas, its base palette's colors swapped for `tones`. */
 const recolored = new Map<string, Promise<HTMLCanvasElement | HTMLImageElement>>();
 function pieceImage(piece: Piece): Promise<HTMLCanvasElement | HTMLImageElement> {
   const { layer, tones } = piece;
   if (!tones) return image(layer.file);
-  const key = `${layer.file}|${tones.join()}`;
+  const key = `${layer.file}|${tones.join()}${piece.byShade ? "|shade" : ""}`;
   let p = recolored.get(key);
   if (!p) {
     p = image(layer.file).then((im) => {
@@ -386,6 +441,10 @@ function pieceImage(piece: Piece): Promise<HTMLCanvasElement | HTMLImageElement>
       c.height = im.height;
       const ctx = c.getContext("2d")!;
       ctx.drawImage(im, 0, 0);
+      if (piece.byShade) {
+        shade(ctx, c.width, c.height, tones);
+        return c;
+      }
       const pal = (LAYERS.palettes as Record<string, { base: string; colors: Record<string, string[]> }>)[layer.material!];
       const from = pal?.colors[pal.base];
       if (!from) return c;
@@ -494,6 +553,14 @@ export function sheetOf(look: ScionLook): Promise<string> {
           const cut = underHat(pixels(im), hat);
           layer.getContext("2d")!.putImageData(new ImageData(cut.data, cut.width, cut.height), 0, 0);
           ctx.drawImage(layer, 0, 0);
+        } else if (pieces[i]!.glow) {
+          // A named or Relic weapon glows: a soft halo first, the weapon sharp on top.
+          ctx.save();
+          ctx.shadowColor = pieces[i]!.glow!;
+          ctx.shadowBlur = 5;
+          ctx.drawImage(im, 0, 0);
+          ctx.restore();
+          ctx.drawImage(im, 0, 0);
         } else ctx.drawImage(im, 0, 0);
       }
       return c.toDataURL("image/png");
