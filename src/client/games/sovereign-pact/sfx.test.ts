@@ -4,7 +4,7 @@ import { describe, expect, it } from "vitest";
 import { Content, type ReplayUnit } from "@vibepulse/shared/games/sovereign-pact";
 import { warbandBattle } from "../../../shared/games/sovereign-pact/combat/fixtures.ts";
 import { recorded } from "../../../shared/games/sovereign-pact/combat/replay.ts";
-import { blowOf, soundsOf } from "./sfx";
+import { blowOf, crunchOf, soundsOf } from "./sfx";
 
 const DIR = join(__dirname, "../../../../public/sfx/sovereign-pact");
 const unit = (u: Partial<ReplayUnit> & { id: number }): ReplayUnit => ({ side: "party", name: "x", size: [1, 1], maxHp: 1, maxMp: 0, maxSanity: 1, ...u });
@@ -14,6 +14,10 @@ const units = new Map(
     unit({ id: 2, side: "enemy", enemy: "beast_bat" }),
     unit({ id: 3, side: "enemy", enemy: "beast_behemoth", size: [2, 2] }),
     unit({ id: 4, person: 2, house: 0, weapon: "staff" }),
+    unit({ id: 5, side: "enemy", enemy: "court_dark_knight" }),
+    unit({ id: 6, side: "enemy", enemy: "barrow_bride" }),
+    unit({ id: 7, side: "enemy", enemy: "barrow_banshee" }),
+    unit({ id: 8, person: 3, house: 0, weapon: "sword" }),
   ].map((u) => [u.id, u]),
 );
 const at = (cell: { side: "party" | "enemy" }) => ({ ...cell, col: 0, row: 0 });
@@ -36,9 +40,30 @@ describe("the battle's sound (§16.1)", () => {
     }
   });
 
-  it("swings the Scion's weapon, then lands it", () => {
+  it("swings the Scion's weapon, lands it, then the body gives way", () => {
     const s = soundsOf([{ t: "use", unit: 1, ability: "attack", target: at({ side: "enemy" }) }, { t: "hit", unit: 1, target: 2, damage: 9, crit: true }], units);
-    expect(s.map((x) => x.cue)).toEqual(["swing_heavy", "hit_axe", "crit"]);
+    expect(s.map((x) => x.cue)).toEqual(["swing_heavy", "hit_axe", "crit", "crunch_bone"]);
+    expect(s.find((x) => x.cue === "crunch_bone")!.at).toBeGreaterThan(s.find((x) => x.cue === "hit_axe")!.at);
+    // A miss swings at nothing: no crunch.
+    expect(soundsOf([{ t: "use", unit: 8, ability: "attack", target: at({ side: "enemy" }) }, { t: "miss", unit: 8, target: 2 }], units).map((x) => x.cue)).toEqual(["swing_blade", "miss"]);
+  });
+
+  it("crunches by weapon and by what it strikes", () => {
+    const [axe, bat, knight, bride, banshee, sword] = [1, 2, 5, 6, 7, 8].map((id) => units.get(id));
+    expect(crunchOf(sword, bat)).toBe("crunch_flesh");
+    expect(crunchOf(axe, bat)).toBe("crunch_bone");
+    expect(crunchOf(sword, knight)).toBe("crunch_plate");
+    expect(crunchOf(sword, bride)).toBe("crunch_bone");
+    expect(crunchOf(sword, banshee)).toBeNull();
+    // A creature's own blows already bite and claw.
+    expect(crunchOf(bat, axe)).toBeNull();
+  });
+
+  it("bursts a magic weapon's element after the cut", () => {
+    const fire = soundsOf([{ t: "use", unit: 8, ability: "attack", target: at({ side: "enemy" }) }, { t: "hit", unit: 8, target: 2, damage: 9, element: "fire" }], units);
+    expect(fire.map((x) => x.cue)).toEqual(["swing_blade", "hit_blade", "crunch_flesh", "impact_fire"]);
+    const edge = soundsOf([{ t: "use", unit: 8, ability: "attack", target: at({ side: "enemy" }) }, { t: "hit", unit: 8, target: 2, damage: 9, edge: "holy" }], units);
+    expect(edge.map((x) => x.cue)).toContain("impact_holy");
   });
 
   it("casts a spell by its element", () => {

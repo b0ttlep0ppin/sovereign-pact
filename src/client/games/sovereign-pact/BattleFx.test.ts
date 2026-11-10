@@ -47,5 +47,15 @@ describe("strikesOf", () => {
     spear.set(2, { ...units.get(2)!, weapon: "spear" });
     expect(strikesOf([{ t: "use", unit: 2, ability: "attack", target: { side: "enemy", col: 0, row: 0 } }, { t: "hit", unit: 2, target: 3, damage: 9 }], spear)[0]).toMatchObject({ kind: "melee", thrust: true });
   });
+
+  it("draws a magic weapon's blow as its slash in its element's colours, a creature's as a spell", () => {
+    const armed = new Map(units);
+    armed.set(2, { ...units.get(2)!, weapon: "sword" });
+    const hit = (unit: number, extra: object) => strikesOf([{ t: "use", unit, ability: "attack", target: { side: "enemy", col: 0, row: 0 } }, { t: "hit", unit, target: 3, damage: 9, ...extra }], armed)[0];
+    expect(hit(2, { element: "fire" })).toMatchObject({ kind: "melee", element: "fire", charm: true });
+    expect(hit(2, { edge: "dark" })).toMatchObject({ kind: "melee", element: "dark", charm: true });
+    expect(hit(2, {})).not.toHaveProperty("charm");
+    expect(hit(1, { element: "fire" })).toMatchObject({ kind: "spell", element: "fire" });
+  });
 });
 

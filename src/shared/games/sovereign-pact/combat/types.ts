@@ -369,7 +369,7 @@ export type BattleEvent =
   | { t: "charge"; unit: number; ability: string; target: Cell; ticks: number; telegraph: boolean }
   | { t: "cancel"; unit: number; ability: string }
   | { t: "miss"; unit: number; target: number }
-  | { t: "hit"; unit: number; target: number; damage: number; loc?: Location; crit?: boolean; weak?: boolean; element?: Element }
+  | { t: "hit"; unit: number; target: number; damage: number; loc?: Location; crit?: boolean; weak?: boolean; element?: Element; /** A weapon edge's element, when it added to the blow (§13.4). */ edge?: Element }
   | { t: "heal"; unit: number; target: number; amount: number }
   | { t: "sanity"; target: number; amount: number }
   | { t: "status"; target: number; status: string; on: boolean }
