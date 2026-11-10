@@ -7,12 +7,12 @@
     9
   ],
   "title": "The Drowned King's Tax",
-  "text": "A tax-collector in drowned livery stands at the gate of the richest Seat with river water pouring from his sleeves. He carries a ledger three hundred Years old and the old King's seal, and he says the House owes. He is very polite. He will not leave.",
+  "text": "A tax-collector in drowned livery stands at the gate of the richest Seat, river water pouring from his sleeves. He carries a ledger three hundred Years old and the old King's seal, and says the House owes. He is very polite. He will not leave.",
   "rule": "most_gold",
   "options": [
     {
       "id": "pay",
-      "label": "Pay the drowned King what he asks, and keep his favour.",
+      "label": "Pay the drowned King what he asks to keep his favour.",
       "tags": [
         "kind"
       ],
@@ -39,7 +39,7 @@
     },
     {
       "id": "throw_out",
-      "label": "Have a Scion throw the collector in the river, back where he belongs.",
+      "label": "Have a Scion throw the collector back in the river, where he belongs.",
       "tags": [
         "bold"
       ],
@@ -50,7 +50,7 @@
       "outcomes": [
         {
           "w": 1,
-          "text": "Your Scion throws him in. He comes apart in the water like wet paper, and the ledger floats to the bank. It names debts owed by every House in the city.",
+          "text": "He comes apart in the water like wet paper, and the ledger floats to the bank. It names debts owed by every House in the city.",
           "effects": [
             {
               "scion": {
@@ -73,7 +73,7 @@
         },
         {
           "w": 1,
-          "text": "Your Scion lays hands on him and he holds on. When they pull free, their arm is grey to the elbow and wet, and it will not dry.",
+          "text": "He holds on when your Scion lays hands on him. When they pull free, their arm is grey and wet to the elbow, and it will not dry.",
           "effects": [
             {
               "scion": {
@@ -92,7 +92,7 @@
     },
     {
       "id": "false_coin",
-      "label": "Pay him in lead painted gold. The dead cannot tell the difference.",
+      "label": "Pay him in lead painted gold; the dead cannot tell the difference.",
       "tags": [
         "clever"
       ],
@@ -104,7 +104,7 @@
       "outcomes": [
         {
           "w": 2,
-          "text": "He takes it without looking. Weeks later, every coin in the House's vault has turned to lead for an afternoon, then back.",
+          "text": "He takes it without looking. Weeks later, every coin in the House's vault turns to lead for an afternoon, then back.",
           "effects": [
             {
               "resources": {
@@ -120,7 +120,7 @@
         },
         {
           "w": 1,
-          "text": "He bites the first coin and smiles with black teeth. That night the House's bell tolls once at the third hour, and goes on tolling, every night.",
+          "text": "He bites the first coin and smiles with black teeth. That night the House's bell tolls once at the third hour, and it tolls every night after.",
           "effects": [
             {
               "house_trait": "+the_bell_tolls_for_them"

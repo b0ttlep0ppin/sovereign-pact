@@ -12,7 +12,7 @@
   "options": [
     {
       "id": "agree",
-      "label": "Agree to his price: hair and teeth from everyone. A building by dawn is worth a gap in the smile.",
+      "label": "Agree to his price; a building by dawn is worth a gap in the smile.",
       "tags": [
         "bold"
       ],
@@ -40,7 +40,7 @@
     },
     {
       "id": "haggle",
-      "label": "Offer him a recruit instead, and spare the rest of the House.",
+      "label": "Offer him a recruit instead to spare the rest of the House.",
       "tags": [
         "cruel"
       ],
@@ -50,7 +50,7 @@
       "outcomes": [
         {
           "w": 1,
-          "text": "He looks the recruit over, nods, and takes them by the hand. The building is up by dawn. The recruit is in the mortar, somewhere.",
+          "text": "He looks the recruit over, nods and takes them by the hand. By dawn the building is up, and the recruit is somewhere in the mortar.",
           "effects": [
             {
               "raise": "any"
@@ -64,14 +64,14 @@
     },
     {
       "id": "send_away",
-      "label": "Send him away. Nothing built at midnight stands on honest ground.",
+      "label": "Send him away; nothing built at midnight stands on honest ground.",
       "tags": [
         "cautious"
       ],
       "outcomes": [
         {
           "w": 1,
-          "text": "He tips his cap and goes to the next Seat along. You hear the pliers through the wall.",
+          "text": "He tips his cap and goes to the next Seat along. Through the wall, you hear the pliers.",
           "effects": []
         }
       ]

@@ -7,19 +7,19 @@
     14
   ],
   "title": "Seeds in the Granary",
-  "text": "Every House's granary has filled overnight with pale seeds, mixed in with the grain, soft as skin and faintly warm. Put to the ear, they hum. The farmers say that planted, they would feed the city twice over. The priests say to burn them, and the grain with them.",
+  "text": "Overnight, every House's granary has filled with pale seeds mixed in with the grain, soft as skin and faintly warm. Put to the ear, they hum. Planted, the farmers say, they would feed the city twice over. The priests say to burn them, grain and all.",
   "rule": "each_house",
   "options": [
     {
       "id": "plant",
-      "label": "Plant the pale seeds. A city fed twice over is worth a little humming.",
+      "label": "Plant the pale seeds; a city fed twice over is worth a little humming.",
       "tags": [
         "bold"
       ],
       "outcomes": [
         {
           "w": 1,
-          "text": "The fields come up green in a week and gold in a month. The harvest is enormous. In the furrows at night something hums a lullaby, and your youngest have started humming it too.",
+          "text": "The fields come up green in a week and gold in a month, and the harvest is enormous. At night something hums a lullaby in the furrows, and your youngest have started humming it too.",
           "effects": [
             {
               "resources": {
@@ -68,7 +68,7 @@
     },
     {
       "id": "sell",
-      "label": "Sell the mixed grain on to the other Houses, and let them do the worrying.",
+      "label": "Sell the mixed grain on to the other Houses and let them do the worrying.",
       "tags": [
         "cruel",
         "clever"
@@ -76,7 +76,7 @@
       "outcomes": [
         {
           "w": 1,
-          "text": "They pay well, not knowing. You keep your conscience in the vault with the gold.",
+          "text": "Not knowing, they pay well. You keep your conscience in the vault with the gold.",
           "effects": [
             {
               "resources": {
@@ -92,14 +92,14 @@
     },
     {
       "id": "sift",
-      "label": "Sift out what seeds you can, and keep the grain.",
+      "label": "Sift out what seeds you can and keep the grain.",
       "tags": [
         "cautious"
       ],
       "outcomes": [
         {
           "w": 1,
-          "text": "The servants sift for a week. They miss some, and the grain that is left tastes of milk.",
+          "text": "The servants sift for a week but miss some. The grain that is left tastes of milk.",
           "effects": [
             {
               "resources": {

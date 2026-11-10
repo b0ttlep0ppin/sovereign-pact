@@ -4,7 +4,7 @@
   "weight": 2,
   "years": [2, 20],
   "title": "Raiders at the Ford",
-  "text": "Deserters from some dead lord's army have taken the ford, hanging their tolls from a gibbet by the water. They tax every cart that crosses, in coin or in blood. The militia needs arms and pay before it will march against them.",
+  "text": "Deserters from some dead lord's army have taken the ford, hanging their tolls from a gibbet by the water. Every cart that crosses pays them, in coin or in blood. The militia needs arms and pay before it will march against them.",
   "rule": "pledges",
   "crisis": {
     "need": { "iron": 15, "gold": 40 },

@@ -7,12 +7,12 @@
     20
   ],
   "title": "The Stolen Reliquary",
-  "text": "The reliquary of Saint Wend, a gold box holding her blackened heart, has gone from the cathedral. The bishop has preached for three days that a Great House took it, and that the city will burn until it is returned. Every House has a theory. Every House has an enemy.",
+  "text": "The reliquary of Saint Wend, a gold box holding her blackened heart, is gone from the cathedral. For three days the bishop has preached that a Great House took it, and that the city will burn until it is returned. Every House has a theory, and every House has an enemy.",
   "rule": "secret",
   "options": [
     {
       "id": "accuse",
-      "label": "Name the House you suspect, before the bishop's fires find their own target.",
+      "label": "Name the House you suspect before the bishop's fires find their own target.",
       "tags": [
         "cruel"
       ],
@@ -27,7 +27,7 @@
     },
     {
       "id": "return",
-      "label": "Buy it back from the fences, and return it quietly, so the city does not burn.",
+      "label": "Buy it back from the fences and return it quietly so the city does not burn.",
       "tags": [
         "kind"
       ],
@@ -39,7 +39,7 @@
       "outcomes": [
         {
           "w": 1,
-          "text": "Your agents find it in a pawnshop under the bridge and bring it back without a word. The bishop finds it on the altar at dawn and weeps.",
+          "text": "Your agents find it in a pawnshop under the bridge and bring it back without a word. At dawn the bishop finds it on the altar and weeps.",
           "effects": [
             {
               "accord": 3

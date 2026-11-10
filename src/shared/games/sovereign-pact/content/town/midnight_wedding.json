@@ -7,19 +7,19 @@
     20
   ],
   "title": "The Midnight Wedding",
-  "text": "A contract surfaces, signed by your House three generations ago: one of its children to be wed, at midnight, to a groom from beyond the Gate. The groom has arrived. He is very tall, and he waits in the courtyard without moving.",
+  "text": "A contract surfaces, signed by your House three generations ago, promising one of its children in marriage at midnight to a groom from beyond the Gate. The groom has arrived. He is very tall, and he waits in the courtyard without moving.",
   "rule": "house",
   "options": [
     {
       "id": "honor",
-      "label": "Honor the contract, and give him a child of the House. Your forebears swore it.",
+      "label": "Honor the contract and give him a child of the House, as your forebears swore.",
       "tags": [
         "reckless"
       ],
       "outcomes": [
         {
           "w": 50,
-          "text": "The vows are spoken in a language none of you know. The Scion returns at dawn with a ring of black iron and a stranger's patience.",
+          "text": "The vows are spoken in a language none of you know. The Scion returns at dawn wearing a ring of black iron, with a stranger's patience.",
           "effects": [
             {
               "scion": {
@@ -38,7 +38,7 @@
         },
         {
           "w": 50,
-          "text": "The vows are spoken. The Scion returns at dawn, and in the night they talk in their sleep in his voice.",
+          "text": "The vows are spoken. The Scion returns at dawn, and at night they talk in their sleep in his voice.",
           "effects": [
             {
               "scion": {
@@ -65,7 +65,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "He takes the recruit's hand without looking under the veil. They are not seen again.",
+          "text": "He takes the recruit's hand without looking under the veil. Neither is seen again.",
           "effects": [
             {
               "recruits_lost": 1
@@ -79,7 +79,7 @@
         },
         {
           "w": 30,
-          "text": "He lifts the veil, looks for a long time, and leaves. The courtyard stones are frozen where he stood.",
+          "text": "He lifts the veil and looks for a long time, then leaves. The courtyard stones are frozen where he stood.",
           "effects": [
             {
               "recruits_lost": 1
@@ -93,7 +93,7 @@
     },
     {
       "id": "break",
-      "label": "Tear the contract up in front of him. No child of the House goes beyond the Gate.",
+      "label": "Tear the contract up in front of him; no child of the House goes beyond the Gate.",
       "tags": [
         "bold",
         "cautious"
@@ -101,7 +101,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "He bows, very low, and goes back the way he came. The House's name is a little lighter in old mouths.",
+          "text": "He bows very low and goes back the way he came. In old mouths, the House's name weighs a little less.",
           "effects": [
             {
               "score": {
@@ -112,7 +112,7 @@
         },
         {
           "w": 40,
-          "text": "He goes. The next morning every mirror in the Seat is cracked.",
+          "text": "He goes. The next morning, every mirror in the Seat is cracked.",
           "effects": [
             {
               "score": {

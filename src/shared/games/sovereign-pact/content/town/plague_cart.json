@@ -7,7 +7,7 @@
     20
   ],
   "title": "The Plague Cart",
-  "text": "A cart rolls in at dawn with no driver and no horse, creaking through the open gate on its own. Its cargo is shrouded and humming with flies, and something under the cloth is moving. The physicians want it; the priests want it burned.",
+  "text": "At dawn a cart rolls in with no driver and no horse, creaking through the open gate on its own. Its shrouded cargo hums with flies, and something under the cloth is moving. The physicians want it; the priests want it burned.",
   "rule": "vote",
   "options": [
     {
@@ -19,14 +19,14 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The smoke is black and smells of honey. For a week the bees of the city swarm toward the ashes.",
+          "text": "The smoke is black and smells of honey. For a week the city's bees swarm toward the ashes.",
           "effects": []
         }
       ]
     },
     {
       "id": "quarantine",
-      "label": "Quarantine it outside the walls, and let the guards keep watch.",
+      "label": "Quarantine it outside the walls under the guards' watch.",
       "tags": [
         "clever"
       ],
@@ -60,7 +60,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "The physicians learn much, and the Apothecary's shelves fill with new tinctures, some of which move.",
+          "text": "The physicians learn much, and the Apothecary's shelves fill with new tinctures. Some of them move.",
           "effects": [
             {
               "flag": "plague_studied"
@@ -75,7 +75,7 @@
         },
         {
           "w": 40,
-          "text": "The physicians learn much, and two of them die of it, smiling. The fever spreads to a House.",
+          "text": "The physicians learn much. Two of them die of it, smiling, and the fever spreads to a House.",
           "effects": [
             {
               "flag": "plague_studied"

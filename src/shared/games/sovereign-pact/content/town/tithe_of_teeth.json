@@ -7,12 +7,12 @@
     20
   ],
   "title": "The Tithe of Teeth",
-  "text": "Under the cathedral, behind a door of rib-bones, something is owed a tithe, and this Year it has written down what it wants: teeth. Lots of them. The letter is addressed to the richest House in the city.",
+  "text": "Under the cathedral, behind a door of rib-bones, something is owed a tithe. This Year it has written down what it wants, which is teeth, a great many of them. The letter is addressed to the richest House in the city.",
   "rule": "most_gold",
   "options": [
     {
       "id": "gold",
-      "label": "Pay it in gold teeth, and hope it is not particular.",
+      "label": "Pay it in gold teeth, hoping it is not particular.",
       "tags": [
         "kind"
       ],
@@ -48,7 +48,7 @@
       "outcomes": [
         {
           "w": 1,
-          "text": "Two of your recruits go down the steps with a pair of pliers and come back up with closed mouths. The thing below is very pleased. It sends gifts.",
+          "text": "Two of your recruits go down the steps with a pair of pliers and come back up with closed mouths. The thing below is very pleased, and it sends gifts.",
           "effects": [
             {
               "doom": -6
@@ -68,7 +68,7 @@
     },
     {
       "id": "refuse",
-      "label": "Refuse, and brick up the door of ribs. The city owes it nothing.",
+      "label": "Refuse, and brick up the door of ribs; the city owes it nothing.",
       "tags": [
         "cautious"
       ],

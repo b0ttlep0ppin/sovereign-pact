@@ -7,19 +7,19 @@
     20
   ],
   "title": "The Rebellious Commons",
-  "text": "The guilds have shut the city gates and will not open them until the Houses hear their grievances. Barricades go up in the lanes. Their spokesman is a woman nobody can remember electing, who speaks of the Gate as if she had been through it, and does not blink.",
+  "text": "The guilds have shut the city gates and will not open them until the Houses hear their grievances. Barricades go up in the lanes. Their spokesman is a woman nobody remembers electing. She speaks of the Gate as if she had been through it, and she does not blink.",
   "rule": "vote",
   "options": [
     {
       "id": "hang",
-      "label": "Hang the ringleaders, and remind the city who rules it.",
+      "label": "Hang the ringleaders to remind the city who rules it.",
       "tags": [
         "cruel"
       ],
       "outcomes": [
         {
           "w": 100,
-          "text": "The gates open. The spokesman laughs on the gallows, and the people do not look the Houses in the eye.",
+          "text": "The gates open. The spokesman laughs on the gallows, and the people will not look the Houses in the eye.",
           "effects": [
             {
               "accord": -10
@@ -36,14 +36,14 @@
     },
     {
       "id": "hear",
-      "label": "Hear their grievances. The city cannot stand against the Gate divided.",
+      "label": "Hear their grievances; the city cannot stand against the Gate divided.",
       "tags": [
         "kind"
       ],
       "outcomes": [
         {
           "w": 70,
-          "text": "The grievances are fair, and the Houses answer them. The spokesman is gone the next morning.",
+          "text": "The grievances are fair, and the Houses answer them. The next morning the spokesman is gone.",
           "effects": [
             {
               "accord": 5
@@ -69,14 +69,14 @@
     },
     {
       "id": "pay",
-      "label": "Pay them to open the gates, and settle it with coin.",
+      "label": "Pay them to open the gates and settle it with coin.",
       "tags": [
         "clever"
       ],
       "outcomes": [
         {
           "w": 100,
-          "text": "Coin opens gates. It does not open faces.",
+          "text": "Coin opens gates, though not faces.",
           "effects": [
             {
               "resources": {

@@ -7,12 +7,12 @@
     20
   ],
   "title": "The Old Debt",
-  "text": "A notary arrives with your grandfather's signature on a debt to another Great House: a whole wing of your Seat, pledged against a loan that was never repaid. The other House has not asked for it. The notary says it must be settled before Midwinter, one way or another.",
+  "text": "A notary arrives with your grandfather's signature on a debt to another Great House: a whole wing of your Seat, pledged against a loan never repaid. The other House has not asked for it. The notary says it must be settled before Midwinter, one way or another.",
   "rule": "house",
   "options": [
     {
       "id": "pay_gold",
-      "label": "Pay off your grandfather's debt in gold, and clear his name.",
+      "label": "Pay off your grandfather's debt in gold to clear his name.",
       "tags": [
         "kind"
       ],
@@ -24,7 +24,7 @@
       "outcomes": [
         {
           "w": 1,
-          "text": "The debt is cleared. Your vault is lighter, your grandfather's name is cleaner, and you sleep well.",
+          "text": "The debt is cleared. Your vault is lighter and your grandfather's name cleaner, and you sleep well.",
           "effects": [
             {
               "score": {
@@ -37,7 +37,7 @@
     },
     {
       "id": "give_wing",
-      "label": "Hand over a building to the House you name, as your grandfather pledged.",
+      "label": "Hand a building to the House you name, as your grandfather pledged.",
       "tags": [
         "bold"
       ],
@@ -65,14 +65,14 @@
     },
     {
       "id": "default",
-      "label": "Let the debt ride. Your grandfather's promises died with him.",
+      "label": "Let the debt ride; your grandfather's promises died with him.",
       "tags": [
         "cautious"
       ],
       "outcomes": [
         {
           "w": 1,
-          "text": "Midwinter comes and goes. The notary posts the debt on the Commons door, and the city reads it.",
+          "text": "Midwinter comes and goes. The notary posts the debt on the Commons door for the city to read.",
           "effects": [
             {
               "score": {

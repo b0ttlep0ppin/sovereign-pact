@@ -7,7 +7,7 @@
     20
   ],
   "title": "The Weeping Wax Saint",
-  "text": "One morning a saint of wax stands in the square, weeping real tears. Pilgrims come from three valleys. So do the flies, and the flies are wrong: each has a tiny human face.",
+  "text": "One morning a wax saint stands in the square, weeping real tears. Pilgrims come from three valleys. So do the flies, which are wrong; each has a tiny human face.",
   "rule": "vote",
   "options": [
     {
@@ -19,7 +19,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "Candles and coin fill the square. The saint weeps on, and the flies stay close to it.",
+          "text": "Candles and coin fill the square. The saint weeps on, and the flies stay close.",
           "effects": [
             {
               "to": "commons",
@@ -34,7 +34,7 @@
         },
         {
           "w": 40,
-          "text": "The saint's face softens a little each day. One morning it wears the face of a Scion of the city, who has felt watched ever since.",
+          "text": "Each day the saint's face softens a little. One morning it wears the face of a Scion of the city, who has felt watched ever since.",
           "effects": [
             {
               "accord": 1
@@ -51,14 +51,14 @@
     },
     {
       "id": "melt",
-      "label": "Melt the wax saint down, and learn what is inside it.",
+      "label": "Melt the wax saint down to learn what is inside it.",
       "tags": [
         "bold"
       ],
       "outcomes": [
         {
           "w": 70,
-          "text": "The wax screams as it runs. In the pool at the bottom is a human skull, old and gilded. The faithful do not forgive it.",
+          "text": "The wax screams as it runs. In the pool at the bottom lies an old, gilded human skull. The faithful do not forgive it.",
           "effects": [
             {
               "accord": -3
@@ -73,7 +73,7 @@
         },
         {
           "w": 30,
-          "text": "The wax will not melt. The fire under it does not go out for three days, and takes a House's outbuilding with it.",
+          "text": "The wax will not melt. For three days the fire under it will not go out, and it takes a House's outbuilding with it.",
           "effects": [
             {
               "accord": -2
@@ -96,7 +96,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They pay well and ask nothing. The flies follow the cart out of the city, and then, one by one, come back.",
+          "text": "They pay well and ask nothing. The flies follow the cart out of the city, then come back one by one.",
           "effects": [
             {
               "to": "all",

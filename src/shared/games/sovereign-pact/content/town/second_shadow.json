@@ -12,14 +12,14 @@
   "options": [
     {
       "id": "cut",
-      "label": "Have the Apothecary cut the second shadow away, before it decides to stay still for good.",
+      "label": "Have the Apothecary cut the second shadow away before it decides to stay still for good.",
       "tags": [
         "bold"
       ],
       "outcomes": [
         {
           "w": 60,
-          "text": "It comes away like wet paper, and the Scion sleeps for two days. The wound on their heel never quite closes.",
+          "text": "It comes away like wet paper. The Scion sleeps for two days, and the wound on their heel never quite closes.",
           "effects": [
             {
               "scion": {
@@ -43,7 +43,7 @@
     },
     {
       "id": "listen",
-      "label": "Sit with it in the dark, and learn what it knows.",
+      "label": "Sit with it in the dark to learn what it knows.",
       "tags": [
         "clever",
         "reckless"
@@ -51,7 +51,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "It knows the way through places that are not on any map.",
+          "text": "It knows the way through places that are on no map.",
           "effects": [
             {
               "scion": {
@@ -67,7 +67,7 @@
         },
         {
           "w": 50,
-          "text": "It knows things about the Scion that the Scion did not, and tells them.",
+          "text": "It knows things about the Scion that the Scion did not, and it tells them.",
           "effects": [
             {
               "scion": {
@@ -81,14 +81,14 @@
     },
     {
       "id": "hide",
-      "label": "Keep them out of the light, so the second shadow has nowhere to fall.",
+      "label": "Keep them out of the light so the second shadow has nowhere to fall.",
       "tags": [
         "cautious"
       ],
       "outcomes": [
         {
           "w": 100,
-          "text": "Lamps are moved. Curtains are drawn. The House learns to live in dim rooms.",
+          "text": "Lamps are moved and curtains drawn. The House learns to live in dim rooms.",
           "effects": [
             {
               "sanity": -5

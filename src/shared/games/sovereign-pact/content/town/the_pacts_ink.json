@@ -7,19 +7,19 @@
     19
   ],
   "title": "The Pact's Ink Runs",
-  "text": "In the Commons archive, the Sovereign Pact itself has begun to weep. The ink of the founding signatures is running down the vellum in thin black lines, and the clerks say that if the names wash away, so does the oath that has held the city together. The Houses must decide what to do with it.",
+  "text": "In the Commons archive, the Sovereign Pact itself has begun to weep. The ink of the founding signatures runs down the vellum in thin black lines. If the names wash away, the clerks say, so does the oath that has held the city together. The Houses must decide what to do with it.",
   "rule": "vote",
   "options": [
     {
       "id": "blood",
-      "label": "Every House signs the Pact again, in blood, and binds the city anew.",
+      "label": "Every House signs the Pact again in blood, binding the city anew.",
       "tags": [
         "bold"
       ],
       "outcomes": [
         {
           "w": 1,
-          "text": "Each House sends a Scion to the archive and signs with a cut thumb. The ink stops running. The new signatures are a little too red, and they never quite dry.",
+          "text": "Each House sends a Scion to the archive to sign with a cut thumb, and the ink stops running. The new signatures are a little too red, and they never quite dry.",
           "effects": [
             {
               "to": "all",
@@ -40,14 +40,14 @@
     },
     {
       "id": "copy",
-      "label": "Have the clerks make a fair copy, and trust ink to hold what ink once held.",
+      "label": "Have the clerks make a fair copy, trusting ink to hold what ink once held.",
       "tags": [
         "clever"
       ],
       "outcomes": [
         {
           "w": 1,
-          "text": "The clerks copy it word for word. The copy holds, mostly. Every few nights a clerk finds a word in it that was not in the original.",
+          "text": "The clerks copy it word for word, and the copy mostly holds. Every few nights a clerk finds a word in it that was not in the original.",
           "effects": [
             {
               "accord": 2
@@ -58,14 +58,14 @@
     },
     {
       "id": "let_fade",
-      "label": "Let the old names fade. The Houses are their own now.",
+      "label": "Let the old names fade; the Houses are their own now.",
       "tags": [
         "cautious"
       ],
       "outcomes": [
         {
           "w": 1,
-          "text": "The founding names wash away. The Houses feel lighter, freer, and much less inclined to keep their word.",
+          "text": "The founding names wash away. The Houses feel lighter and freer, and much less inclined to keep their word.",
           "effects": [
             {
               "accord": -5

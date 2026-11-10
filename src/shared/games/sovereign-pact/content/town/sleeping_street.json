@@ -7,19 +7,19 @@
     20
   ],
   "title": "The Street That Fell Asleep",
-  "text": "A whole street fell asleep at noon and has not woken. Their breath frosts in the summer air. Under their lids their eyes all move together, in the same direction.",
+  "text": "At noon a whole street fell asleep, and it has not woken. The sleepers' breath frosts in the summer air. Under their lids, all their eyes move together in the same direction.",
   "rule": "vote",
   "options": [
     {
       "id": "dream",
-      "label": "Send a Scion into the dream after them, to lead the sleepers home.",
+      "label": "Send a Scion into the dream after them to lead the sleepers home.",
       "tags": [
         "bold"
       ],
       "outcomes": [
         {
           "w": 50,
-          "text": "The Scion walks out of the dream with the sleepers behind, and comes back steadier than they went.",
+          "text": "The Scion walks out of the dream with the sleepers behind them, steadier than when they went.",
           "effects": [
             {
               "accord": 4
@@ -39,7 +39,7 @@
         },
         {
           "w": 50,
-          "text": "The sleepers wake. The Scion does not, for three days, and is not the same when they do.",
+          "text": "The sleepers wake, but the Scion does not for three days, and is not the same when they do.",
           "effects": [
             {
               "accord": 3
@@ -58,14 +58,14 @@
     },
     {
       "id": "wall",
-      "label": "Wall up the street, before whatever they dream of comes looking.",
+      "label": "Wall up the street before whatever they dream of comes looking.",
       "tags": [
         "cruel"
       ],
       "outcomes": [
         {
           "w": 100,
-          "text": "The breathing behind the wall stops in a month. The masons do not come back to work.",
+          "text": "Within a month the breathing behind the wall stops. The masons do not come back to work.",
           "effects": [
             {
               "accord": -5
@@ -76,14 +76,14 @@
     },
     {
       "id": "wait",
-      "label": "Wait, and watch the sleepers, and learn where their eyes are looking.",
+      "label": "Wait and watch the sleepers to learn where their eyes are looking.",
       "tags": [
         "cautious"
       ],
       "outcomes": [
         {
           "w": 50,
-          "text": "They wake on the ninth day, starving, unable to say where they were, all facing the same way.",
+          "text": "On the ninth day they wake starving, all facing the same way, unable to say where they were.",
           "effects": []
         },
         {

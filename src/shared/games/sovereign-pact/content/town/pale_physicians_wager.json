@@ -7,12 +7,12 @@
     20
   ],
   "title": "The Pale Physician's Wager",
-  "text": "A plague doctor in a bone-white beak arrives with the fever close behind him. He offers a wager to one House: send someone to sit the night with the dying, and if they are still themselves at dawn, he will drive the fever out. If not, he keeps them.",
+  "text": "A plague doctor in a bone-white beak arrives with the fever close behind him. He offers one House a wager: send someone to sit the night with the dying, and if they are still themselves at dawn, he will drive the fever out. If not, he keeps them.",
   "rule": "random_house",
   "options": [
     {
       "id": "sit",
-      "label": "Send a Scion to sit the night with the dying, and take the doctor's wager.",
+      "label": "Send a Scion to sit the night with the dying, taking the doctor's wager.",
       "tags": [
         "bold",
         "kind"
@@ -24,7 +24,7 @@
       "outcomes": [
         {
           "w": 1,
-          "text": "Your Scion is still themselves at dawn, gaunt and grey but themselves. The doctor bows, and the fever leaves with him.",
+          "text": "At dawn your Scion is gaunt and grey but still themselves. The doctor bows, and the fever leaves with him.",
           "effects": [
             {
               "accord": 6
@@ -41,7 +41,7 @@
         },
         {
           "w": 1,
-          "text": "At dawn your Scion is not quite themselves. The doctor touches his beak to them, fondly, and leaves the fever behind as a gift.",
+          "text": "At dawn your Scion is not quite themselves. The doctor touches his beak to them fondly, and leaves the fever behind as a gift.",
           "effects": [
             {
               "scion": {
@@ -61,7 +61,7 @@
     },
     {
       "id": "pay",
-      "label": "Pay him to take the fever somewhere else. Let some other town bear it.",
+      "label": "Pay him to take the fever somewhere else; let some other town bear it.",
       "tags": [
         "clever"
       ],
@@ -73,7 +73,7 @@
       "outcomes": [
         {
           "w": 1,
-          "text": "He takes the gold and the fever both, and goes to the next town over. You hear nothing from that town again.",
+          "text": "He takes the gold and the fever both to the next town over. You never hear from that town again.",
           "effects": [
             {
               "accord": -1
@@ -84,14 +84,14 @@
     },
     {
       "id": "lock",
-      "label": "Lock the gates against him. No wager with a plague is worth taking.",
+      "label": "Lock the gates against him; no wager with a plague is worth taking.",
       "tags": [
         "cautious"
       ],
       "outcomes": [
         {
           "w": 1,
-          "text": "He waits outside the gates for three days. The fever doesn't.",
+          "text": "He waits outside the gates for three days. The fever does not wait.",
           "effects": [
             {
               "to": "all",

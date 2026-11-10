@@ -7,7 +7,7 @@
     14
   ],
   "title": "The Midwives' Ledger",
-  "text": "The midwives' guild has kept a ledger for a hundred Years, and in the last ten its pages have filled with births marked in ash: children who are born with a thumbprint on the brow and never cry. The guild says the mark runs in one Great House's blood, and will name it if the Houses ask.",
+  "text": "For a hundred Years the midwives' guild has kept a ledger. In the last ten, its pages have filled with births marked in ash: children born with a thumbprint on the brow who never cry. The mark runs in one Great House's blood, the guild says, and they will name it if the Houses ask.",
   "rule": "secret",
   "options": [
     {
@@ -27,7 +27,7 @@
     },
     {
       "id": "burn",
-      "label": "Pay the guild to burn the ledger, before any House is named.",
+      "label": "Pay the guild to burn the ledger before any House is named.",
       "tags": [
         "clever"
       ],
@@ -39,7 +39,7 @@
       "outcomes": [
         {
           "w": 1,
-          "text": "The ledger burns in the guildhall stove. The midwives are paid, and silent, and they keep a second copy.",
+          "text": "The ledger burns in the guildhall stove. The midwives are paid and silent. They keep a second copy.",
           "effects": [
             {
               "score": {
@@ -52,14 +52,14 @@
     },
     {
       "id": "leave",
-      "label": "Leave the midwives to their work. Marked or not, they are children.",
+      "label": "Leave the midwives to their work; marked or not, they are children.",
       "tags": [
         "cautious"
       ],
       "outcomes": [
         {
           "w": 1,
-          "text": "You let it lie. The marked children grow up quiet and watchful, and they all sit together at the Commons.",
+          "text": "You let it lie. The marked children grow up quiet and watchful, and at the Commons they all sit together.",
           "effects": []
         }
       ]

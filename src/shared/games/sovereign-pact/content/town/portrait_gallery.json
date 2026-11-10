@@ -7,12 +7,12 @@
     20
   ],
   "title": "Portrait Gallery",
-  "text": "The painter sets up his easel in the long gallery, where the House's dead look down in oils. One of the House refuses to sit. The painter only smiles. It does not matter, he says; he has painted them before, long ago, and he turns a canvas around to show them.",
+  "text": "The painter sets up his easel in the long gallery, where the House's dead look down in oils. One of the House refuses to sit. The painter only smiles; it does not matter, he says, for he painted them long ago. He turns a canvas around to show them.",
   "rule": "house",
   "options": [
     {
       "id": "insist",
-      "label": "Insist that they sit for him, and learn what he painted long ago.",
+      "label": "Insist that they sit for him, to learn what he painted long ago.",
       "tags": [
         "bold"
       ],
@@ -36,7 +36,7 @@
         },
         {
           "w": 40,
-          "text": "The painter leaves in the night. The portrait's eyes are scratched out from the inside of the canvas.",
+          "text": "The painter leaves in the night. The portrait's eyes have been scratched out from inside the canvas.",
           "effects": [
             {
               "sanity": -10
@@ -47,7 +47,7 @@
     },
     {
       "id": "let_be",
-      "label": "Let it be. Some faces are better left unpainted.",
+      "label": "Let it be; some faces are better left unpainted.",
       "tags": [
         "kind"
       ],

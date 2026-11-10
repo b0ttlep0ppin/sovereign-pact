@@ -7,20 +7,20 @@
     20
   ],
   "title": "The Fields Sing",
-  "text": "The fields you planted with pale seed have begun to sing at night, and your Seat's youngest have started sleepwalking out to them. They lie down in the furrows and smile at the sky. The harvest is due, and it has never been heavier.",
+  "text": "The fields you planted with pale seed have begun to sing at night. Your Seat's youngest have started sleepwalking out to them, lying down in the furrows to smile at the sky. The harvest is due, and it has never been heavier.",
   "rule": "house",
   "chained": true,
   "options": [
     {
       "id": "harvest",
-      "label": "Bring in the singing harvest. The House has never had one so heavy.",
+      "label": "Bring in the singing harvest.",
       "tags": [
         "bold"
       ],
       "outcomes": [
         {
           "w": 1,
-          "text": "The harvest is the greatest in the city's memory. Your youngest Scion sleeps through it in the furrows, and wakes with soil under their tongue and a new calm in their eyes.",
+          "text": "It is the greatest harvest in the city's memory. Your youngest Scion sleeps through it in the furrows, waking with soil under their tongue and a new calm in their eyes.",
           "effects": [
             {
               "resources": {
@@ -67,14 +67,14 @@
     },
     {
       "id": "lock",
-      "label": "Lock the youngest in at night, and leave the fields be until the harvest is in.",
+      "label": "Lock the youngest in at night and leave the fields be until the harvest is in.",
       "tags": [
         "cautious"
       ],
       "outcomes": [
         {
           "w": 1,
-          "text": "They scratch at the doors all night. In the morning the fields are a little closer to the house.",
+          "text": "All night they scratch at the doors. In the morning the fields are a little closer to the house.",
           "effects": [
             {
               "doom": 2

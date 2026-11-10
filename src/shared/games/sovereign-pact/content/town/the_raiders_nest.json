@@ -7,7 +7,7 @@
     19
   ],
   "title": "The Raiders' Nest",
-  "text": "The raids on the outer farms were never bandits. The bodies were eaten, not robbed. Tracks lead back through the Rift Gate to a den in the Beast Lands, and the beasts are learning the way, a little closer each moon. It has to be burned out this Year.",
+  "text": "The raids on the outer farms were never bandits; the bodies were eaten, not robbed. Tracks lead back through the Rift Gate to a den in the Beast Lands, and each moon the beasts learn the way a little better. It has to be burned out this Year.",
   "rule": "vote",
   "forces": {
     "pool": "beast_lands"
@@ -22,7 +22,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Every House gives up iron for spearheads, and the smiths work through the night.",
+          "text": "Every House gives up iron for spearheads while the smiths work through the night.",
           "effects": [
             {
               "resources": {
@@ -36,14 +36,14 @@
     },
     {
       "id": "bait",
-      "label": "Leave a herd out as bait, and draw the beasts away from their den.",
+      "label": "Leave a herd out as bait to draw the beasts from their den.",
       "tags": [
         "clever"
       ],
       "outcomes": [
         {
           "w": 60,
-          "text": "The beasts take the bait, and the den is half empty when the party comes.",
+          "text": "The beasts take the bait. When the party comes, the den is half empty.",
           "effects": [
             {
               "resources": {
@@ -55,7 +55,7 @@
         },
         {
           "w": 40,
-          "text": "The beasts take the bait, and the herd, and come back for more.",
+          "text": "The beasts take the bait, then come back for more.",
           "effects": [
             {
               "resources": {

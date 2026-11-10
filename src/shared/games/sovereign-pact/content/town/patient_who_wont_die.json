@@ -10,7 +10,7 @@
     "building:infirmary"
   ],
   "title": "The Patient Who Will Not Die",
-  "text": "A pilgrim brought to your infirmary with a broken spine has not died in forty days. He does not eat. He does not sleep. He asks, politely, every hour, to be allowed to go.",
+  "text": "A pilgrim brought to your infirmary with a broken spine has not died in forty days. He neither eats nor sleeps. Every hour he asks, politely, to be allowed to go.",
   "rule": "house",
   "options": [
     {
@@ -22,7 +22,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "He thanks the Scion who does it, and closes his eyes. The Scion does not sleep that night.",
+          "text": "He thanks the Scion who does it and closes his eyes. The Scion does not sleep that night.",
           "effects": [
             {
               "scion": {
@@ -34,7 +34,7 @@
         },
         {
           "w": 30,
-          "text": "It does not take. He thanks the Scion anyway. The Scion asks to be moved to another wing.",
+          "text": "It does not take. He thanks the Scion anyway, and the Scion asks to be moved to another wing.",
           "effects": [
             {
               "scion": {
@@ -47,7 +47,7 @@
     },
     {
       "id": "study",
-      "label": "Let the surgeons study him. A man who cannot die has much to teach.",
+      "label": "Let the surgeons study him; a man who cannot die has much to teach.",
       "tags": [
         "clever",
         "cruel"
@@ -72,7 +72,7 @@
         },
         {
           "w": 40,
-          "text": "The surgeons learn too much. One of them takes up his bed when he is gone.",
+          "text": "The surgeons learn too much. When he is gone, one of them takes up his bed.",
           "effects": [
             {
               "score": {
@@ -95,7 +95,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He is carried to the Rift Gate, and set down. He stands, and walks through it on his own, and does not look back.",
+          "text": "He is carried to the Rift Gate and set down. He stands and walks through it on his own, without looking back.",
           "effects": [
             {
               "doom": 1

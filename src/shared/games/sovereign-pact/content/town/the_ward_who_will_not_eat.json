@@ -12,7 +12,7 @@
   "options": [
     {
       "id": "exorcise",
-      "label": "Pay the priest to drive it out, and bring your youngest back.",
+      "label": "Pay the priest to drive it out and bring your youngest back.",
       "tags": [
         "kind"
       ],
@@ -24,7 +24,7 @@
       "outcomes": [
         {
           "w": 1,
-          "text": "The priest prays for three days. On the fourth, your youngest asks for bread, and eats it, and cries. They remember nothing.",
+          "text": "The priest prays for three days. On the fourth your youngest asks for bread, eats it and cries. They remember nothing.",
           "effects": [
             {
               "scion": {
@@ -48,7 +48,7 @@
       "outcomes": [
         {
           "w": 1,
-          "text": "It speaks for a week and then stops. Your youngest wakes thin and strange and full of words that open doors in other languages.",
+          "text": "After a week it stops. Your youngest wakes thin and strange, full of words that open doors in other languages.",
           "effects": [
             {
               "scion": {
@@ -72,14 +72,14 @@
     },
     {
       "id": "wait",
-      "label": "Feed them by spoon, and wait it out. Whatever it is, it will tire.",
+      "label": "Feed them by spoon and wait it out; whatever it is, it will tire.",
       "tags": [
         "cautious"
       ],
       "outcomes": [
         {
           "w": 1,
-          "text": "It leaves in its own time. Your youngest eats again. They still face the Gate when they sleep.",
+          "text": "It leaves in its own time, and your youngest eats again. When they sleep, they still face the Gate.",
           "effects": [
             {
               "scion": {

@@ -7,20 +7,20 @@
     20
   ],
   "title": "The Twelfth House Collects",
-  "text": "The carts come back, three Years to the night, and this time the drivers have faces: yours. They have come to collect what the Twelfth House is owed. They are polite about it. They will not leave until they are paid.",
+  "text": "Three Years to the night, the carts come back. This time the drivers have faces, and they are yours. They have come to collect what the Twelfth House is owed. They are polite about it, and they will not leave until they are paid.",
   "rule": "vote",
   "chained": true,
   "options": [
     {
       "id": "pay",
-      "label": "Pay the Twelfth House in gold, and be done with their debt.",
+      "label": "Pay the Twelfth House in gold and be done with their debt.",
       "tags": [
         "cautious"
       ],
       "outcomes": [
         {
           "w": 1,
-          "text": "Every House pays. The carts leave heavy. A signet ring is left behind on the Commons table.",
+          "text": "Every House pays, and the carts leave heavy. A signet ring is left behind on the Commons table.",
           "effects": [
             {
               "to": "all",
@@ -47,7 +47,7 @@
       "outcomes": [
         {
           "w": 1,
-          "text": "Each House sends a recruit to ride on the carts. They wave as they go. The Twelfth House is satisfied for a generation.",
+          "text": "Each House sends a recruit to ride on the carts, waving as they go. The Twelfth House is satisfied for a generation.",
           "effects": [
             {
               "to": "all",
@@ -62,14 +62,14 @@
     },
     {
       "id": "fight",
-      "label": "Drive them out with steel. No House wearing your faces collects from you.",
+      "label": "Drive them out with steel; no House wearing your faces collects from you.",
       "tags": [
         "bold"
       ],
       "outcomes": [
         {
           "w": 1,
-          "text": "Every House's Scions take to the streets. The drivers die like men and rise again like something else, and it is dawn before the last cart burns.",
+          "text": "Every House's Scions take to the streets. The drivers die like men and rise again as something else, and it is dawn before the last cart burns.",
           "effects": [
             {
               "to": "all",

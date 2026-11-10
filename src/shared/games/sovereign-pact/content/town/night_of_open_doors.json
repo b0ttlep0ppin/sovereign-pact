@@ -7,24 +7,24 @@
     20
   ],
   "title": "The Night of Open Doors",
-  "text": "For one night no lock in the city will hold. Bolts slide back by themselves and doors swing wide on the wind, and something walks the streets, trying every handle. Every House must choose: guard its halls, or hide its stores.",
+  "text": "For one night no lock in the city will hold. Bolts slide back by themselves, doors swing wide on the wind, and something walks the streets trying every handle. Every House must choose whether to guard its halls or hide its stores.",
   "rule": "each_house",
   "options": [
     {
       "id": "guard",
-      "label": "Post guards through the night, and keep whatever walks out of your halls.",
+      "label": "Post guards through the night to keep whatever walks out of your halls.",
       "tags": [
         "bold"
       ],
       "outcomes": [
         {
           "w": 70,
-          "text": "Shapes test the doors, one by one, and move on.",
+          "text": "Shapes test the doors one by one, then move on.",
           "effects": []
         },
         {
           "w": 30,
-          "text": "The guards meet something in the cellars, and come back changed.",
+          "text": "The guards meet something in the cellars. They come back changed.",
           "effects": [
             {
               "sanity": -15
@@ -35,14 +35,14 @@
     },
     {
       "id": "hide",
-      "label": "Hide the stores and bar the inner rooms. Let it walk the halls if it must.",
+      "label": "Hide the stores and bar the inner rooms; let it walk the halls if it must.",
       "tags": [
         "cautious"
       ],
       "outcomes": [
         {
           "w": 60,
-          "text": "The stores are safe. In the morning there are muddy prints outside every inner door.",
+          "text": "The stores are safe. In the morning, muddy prints wait outside every inner door.",
           "effects": []
         },
         {

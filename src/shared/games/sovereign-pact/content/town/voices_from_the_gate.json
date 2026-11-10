@@ -7,12 +7,12 @@
     19
   ],
   "title": "Voices from the Gate",
-  "text": "Every night now the Rift Gate speaks one House's name, in the voices of its own dead. Last night it spoke yours. It is offering something, the old women say: a gift for a House brave enough to walk up to the Gate and listen to the end.",
+  "text": "Every night now the Rift Gate speaks one House's name in the voices of its own dead. Last night it spoke yours. It is offering a gift, the old women say, to a House brave enough to walk up to the Gate and listen to the end.",
   "rule": "random_house",
   "options": [
     {
       "id": "listen",
-      "label": "Send a Scion to listen at the Gate to the end, and take what the dead offer.",
+      "label": "Send a Scion to listen at the Gate to the end and take what the dead offer.",
       "tags": [
         "bold"
       ],
@@ -23,7 +23,7 @@
       "outcomes": [
         {
           "w": 1,
-          "text": "Your Scion listens to the end. The voices give them a gift, cold and heavy, and a message they will only repeat in their sleep.",
+          "text": "Your Scion listens to the end. The voices give them a gift, cold and heavy, with a message they will repeat only in their sleep.",
           "effects": [
             {
               "scion": {
@@ -60,14 +60,14 @@
     },
     {
       "id": "answer",
-      "label": "Answer it from the walls, with the Pact's words, and drown out the dead.",
+      "label": "Answer it from the walls with the Pact's words to drown out the dead.",
       "tags": [
         "kind"
       ],
       "outcomes": [
         {
           "w": 1,
-          "text": "Your Scions shout the Pact's oath back at the Gate all night. By dawn their voices are gone, and so are the Gate's.",
+          "text": "All night your Scions shout the Pact's oath back at the Gate. By dawn their voices are gone, and so are the Gate's.",
           "effects": [
             {
               "doom": -3
@@ -85,14 +85,14 @@
     },
     {
       "id": "stop_ears",
-      "label": "Stop your ears with wax. The dead can call for someone else.",
+      "label": "Stop your ears with wax; the dead can call for someone else.",
       "tags": [
         "cautious"
       ],
       "outcomes": [
         {
           "w": 1,
-          "text": "You hear nothing. The Gate speaks your name every night for a month, and then, worse, stops.",
+          "text": "You hear nothing. For a month the Gate speaks your name every night, and then, worse, it stops.",
           "effects": [
             {
               "sanity": -10

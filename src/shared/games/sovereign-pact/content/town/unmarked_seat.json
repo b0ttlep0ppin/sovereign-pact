@@ -7,12 +7,12 @@
     20
   ],
   "title": "The Unmarked Seat",
-  "text": "A new Seat stands on the hill where there was only grass yesterday, walls of grey stone, towers, a gate. Its banners bear no device. Its windows are lit every night. Nobody goes in or out, but the shapes in the windows move.",
+  "text": "Where there was only grass yesterday, a new Seat stands on the hill, with walls of grey stone, towers and a gate. Its banners bear no device. Every night its windows are lit. Nobody goes in or out, but the shapes in the windows move.",
   "rule": "vote",
   "options": [
     {
       "id": "envoy",
-      "label": "Send an envoy to the Seat on the hill, to learn who has come to the city.",
+      "label": "Send an envoy to the Seat on the hill to learn who has come to the city.",
       "tags": [
         "bold"
       ],
@@ -34,7 +34,7 @@
         },
         {
           "w": 30,
-          "text": "The envoy comes back with a gift, and without a shadow.",
+          "text": "The envoy comes back with a gift, but without a shadow.",
           "effects": [
             {
               "to": "random",
@@ -52,7 +52,7 @@
         },
         {
           "w": 30,
-          "text": "The envoy comes back days later, unable to speak of it and unable to sleep.",
+          "text": "Days later the envoy comes back, unable to speak of it and unable to sleep.",
           "effects": [
             {
               "to": "random",
@@ -66,7 +66,7 @@
     },
     {
       "id": "burn",
-      "label": "Set it alight, before whatever lives there decides to visit.",
+      "label": "Set it alight before whatever lives there decides to visit.",
       "tags": [
         "reckless"
       ],

@@ -7,13 +7,13 @@
     20
   ],
   "title": "The Beast Calls",
-  "text": "The thing that walked the walls has started calling at night: a long low note, like a horn blown underground, that sets the dogs bleeding from their noses. It is calling to something inside the city, and every House would like to know what.",
+  "text": "The thing that walked the walls has started calling at night, a long low note like a horn blown underground that sets the dogs bleeding from their noses. It is calling to something inside the city. Every House would like to know what.",
   "rule": "each_house",
   "chained": true,
   "options": [
     {
       "id": "watch",
-      "label": "Put a Scion on the walls to answer it, and let it know the city does not cower.",
+      "label": "Put a Scion on the walls to answer it, so it knows the city does not cower.",
       "tags": [
         "bold"
       ],
@@ -24,7 +24,7 @@
       "outcomes": [
         {
           "w": 1,
-          "text": "Your Scion stands the wall all night and blows a horn back at it. The calling stops for a week. Your Scion's hands shake for longer.",
+          "text": "Your Scion stands the wall all night, blowing a horn back at it. The calling stops for a week, though your Scion's hands shake for longer.",
           "effects": [
             {
               "scion": {
@@ -41,7 +41,7 @@
         },
         {
           "w": 1,
-          "text": "Your Scion stands the wall all night. In the morning they will not come down, and have to be carried, staring at the hills.",
+          "text": "Your Scion stands the wall all night. In the morning they will not come down, and they are carried off staring at the hills.",
           "effects": [
             {
               "scion": {
@@ -80,14 +80,14 @@
     },
     {
       "id": "shutters",
-      "label": "Shutters, and wax in every ear. Let it call for someone else.",
+      "label": "Close the shutters and put wax in every ear; let it call for someone else.",
       "tags": [
         "cautious"
       ],
       "outcomes": [
         {
           "w": 1,
-          "text": "Your Seat hears nothing. Your dogs are found in the morning standing at the gate, facing out, in a row.",
+          "text": "Your Seat hears nothing. In the morning your dogs are found standing in a row at the gate, facing out.",
           "effects": [
             {
               "sanity": -5
