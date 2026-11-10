@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "fell",
-      "label": "The strongest fells one of the giants.",
+      "label": "The strongest fells one of the giants. One tree would roof a House.",
       "rule": "scion:highest:might",
       "tags": [
         "cruel"
@@ -48,7 +48,7 @@
     },
     {
       "id": "deadfall",
-      "label": "Take only what has fallen.",
+      "label": "Take only what has fallen, and let the giants sleep.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -69,7 +69,7 @@
     },
     {
       "id": "ask",
-      "label": "Ask the woodfolk for a gift.",
+      "label": "Ask the woodfolk for a gift, rather than take one.",
       "rule": "scion:highest:guile|leader",
       "tags": [
         "clever"

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "weak",
-      "label": "Put the weakest in the middle.",
+      "label": "Put the weakest in the middle, and give the bear no easy prey.",
       "rule": "scion:lowest:resilience|scion:lowest:might",
       "tags": [
         "cautious"
@@ -33,7 +33,7 @@
     },
     {
       "id": "feed",
-      "label": "Feed the starving bear.",
+      "label": "Feed the starving bear, so it has no reason to take one of yours.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -59,7 +59,7 @@
     },
     {
       "id": "hunt",
-      "label": "The Leader hunts it.",
+      "label": "The Leader hunts it, before it chooses its moment.",
       "rule": "leader",
       "tags": [
         "bold"

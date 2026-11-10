@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "ford",
-      "label": "Ford the river, lips shut.",
+      "label": "Ford the river with your lips shut tight, and do not taste a drop.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -67,7 +67,7 @@
     },
     {
       "id": "bridge",
-      "label": "The Leader finds the devils' bridge.",
+      "label": "The Leader finds the devils' bridge, and dares whoever keeps it.",
       "rule": "leader",
       "tags": [
         "clever"

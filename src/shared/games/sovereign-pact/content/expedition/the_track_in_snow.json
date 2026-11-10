@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "follow",
-      "label": "Follow the tracks.",
+      "label": "Follow the tracks, and trust that easy is sometimes just easy.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -34,7 +34,7 @@
     },
     {
       "id": "read",
-      "label": "The sharpest eye reads the tracks.",
+      "label": "The sharpest eye reads the tracks, to learn why they are so clear.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -55,7 +55,7 @@
     },
     {
       "id": "wait",
-      "label": "Wait for it to come to you.",
+      "label": "Wait for it to come to you. Let the hunter be hunted.",
       "rule": "leader",
       "tags": [
         "cautious"

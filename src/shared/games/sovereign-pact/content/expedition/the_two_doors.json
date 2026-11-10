@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "riddle",
-      "label": "The wisest asks the riddle's question.",
+      "label": "The wisest asks the riddle's question, as it has always been asked.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -35,7 +35,7 @@
     },
     {
       "id": "fight",
-      "label": "Fight your way past the nearer knight.",
+      "label": "Fight your way past the nearer knight. Riddles are for the bored.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -54,7 +54,7 @@
     },
     {
       "id": "guess",
-      "label": "The Leader picks a door at random.",
+      "label": "The Leader picks a door at random, and trusts to luck.",
       "rule": "leader",
       "tags": [
         "reckless"

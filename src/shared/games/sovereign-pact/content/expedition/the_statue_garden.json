@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "search",
-      "label": "Search the statues' packs.",
+      "label": "Search the statues' packs. They have no use for coin now.",
       "rule": "vote",
       "tags": [
         "clever"
@@ -45,7 +45,7 @@
     },
     {
       "id": "listen",
-      "label": "The wisest puts an ear to one.",
+      "label": "The wisest puts an ear to one, to learn what turned them.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "kind"
@@ -53,7 +53,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It is still alive in there, and tells you the way out, and begs you to stay.",
+          "text": "It is still alive in there. It tells you the way out, and begs you to stay.",
           "effects": [
             {
               "skip": 1
@@ -67,7 +67,7 @@
     },
     {
       "id": "hurry",
-      "label": "Hurry through without looking at the faces.",
+      "label": "Hurry through without looking at the faces, before you join them.",
       "rule": "leader",
       "tags": [
         "cautious"

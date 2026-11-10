@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "talk",
-      "label": "The Leader speaks to it.",
+      "label": "The Leader speaks to it, to learn why it carries their pack.",
       "rule": "leader",
       "tags": [
         "bold"
@@ -44,7 +44,7 @@
     },
     {
       "id": "trade",
-      "label": "Swap packs with it.",
+      "label": "Swap packs with it, and see what the road has yet to give you.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -69,7 +69,7 @@
     },
     {
       "id": "dim",
-      "label": "The Leader puts out its lantern.",
+      "label": "The Leader puts out its lantern, so it watches no longer.",
       "rule": "leader",
       "tags": [
         "cruel"

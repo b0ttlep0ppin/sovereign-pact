@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "boat",
-      "label": "Take the old boat.",
+      "label": "Take the old boat, and trust the fraying rope held for a reason.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -46,7 +46,7 @@
     },
     {
       "id": "swim",
-      "label": "The toughest swims ahead with a rope.",
+      "label": "The toughest swims ahead with a rope, so the rest can cross safely.",
       "rule": "scion:highest:resilience",
       "tags": [
         "bold"
@@ -69,7 +69,7 @@
     },
     {
       "id": "walk",
-      "label": "Walk the bank.",
+      "label": "Walk the bank, and keep clear of the roaring water.",
       "rule": "leader",
       "tags": [
         "cautious"

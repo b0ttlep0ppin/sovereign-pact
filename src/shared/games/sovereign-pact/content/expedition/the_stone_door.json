@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "solve",
-      "label": "The cleverest works the puzzle.",
+      "label": "The cleverest works the puzzle, where the skeleton could not.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -45,7 +45,7 @@
     },
     {
       "id": "force",
-      "label": "The strongest forces the door.",
+      "label": "The strongest forces the door. Puzzles are for the patient.",
       "rule": "scion:highest:might",
       "tags": [
         "bold"
@@ -66,7 +66,7 @@
     },
     {
       "id": "leave",
-      "label": "Leave it closed.",
+      "label": "Leave it closed. The skeleton is warning enough.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -86,7 +86,7 @@
     },
     {
       "id": "sharp_eyes",
-      "label": "The sharpest of you works the tiles.",
+      "label": "The sharpest of you works the tiles, and sees what the skeleton missed.",
       "rule": "scion:trait:sharp",
       "only": true,
       "tags": [

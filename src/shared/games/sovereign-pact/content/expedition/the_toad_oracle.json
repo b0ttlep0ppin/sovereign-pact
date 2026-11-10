@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "listen",
-      "label": "The named Scion listens to the toad.",
+      "label": "The named Scion listens to the toad, since it called for them.",
       "rule": "scion:random",
       "tags": [
         "kind"
@@ -44,7 +44,7 @@
     },
     {
       "id": "feed",
-      "label": "Feed it a fly.",
+      "label": "Feed it a fly, and see what a full toad will say.",
       "rule": "vote",
       "tags": [
         "clever"
@@ -63,7 +63,7 @@
     },
     {
       "id": "kick",
-      "label": "The Leader kicks it off its stone.",
+      "label": "The Leader kicks it off its stone. No toad names a Scion of the House.",
       "rule": "leader",
       "tags": [
         "cruel"

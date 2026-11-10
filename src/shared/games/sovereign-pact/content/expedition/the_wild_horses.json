@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "catch",
-      "label": "The fastest tries to catch one.",
+      "label": "The fastest tries to catch one for the House stables.",
       "rule": "scion:highest:speed",
       "tags": [
         "reckless"
@@ -42,7 +42,7 @@
     },
     {
       "id": "watch",
-      "label": "Watch them run.",
+      "label": "Watch them run, and let them be free.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -62,7 +62,7 @@
     },
     {
       "id": "lure",
-      "label": "The gentlest lures one with food.",
+      "label": "The gentlest lures one with food, and earns its trust.",
       "rule": "scion:fewest_kills|scion:random",
       "tags": [
         "kind"

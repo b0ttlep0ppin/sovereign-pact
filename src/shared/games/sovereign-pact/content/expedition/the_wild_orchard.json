@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "pick",
-      "label": "Pick fast, before the bear comes.",
+      "label": "Pick fast, before the bear comes back for what is his.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -46,7 +46,7 @@
     },
     {
       "id": "share",
-      "label": "Leave the bear his share.",
+      "label": "Leave the bear his share. There is enough for everyone.",
       "rule": "leader",
       "tags": [
         "kind"
@@ -68,7 +68,7 @@
     },
     {
       "id": "fell",
-      "label": "The strongest fells the old trees.",
+      "label": "The strongest fells the old trees. The fruit is not worth a bear.",
       "rule": "scion:highest:might",
       "tags": [
         "bold"

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "climb",
-      "label": "The quickest climbs to the low star.",
+      "label": "The quickest climbs to the low star, to bring it down.",
       "rule": "scion:highest:speed",
       "tags": [
         "reckless"
@@ -51,7 +51,7 @@
     },
     {
       "id": "light",
-      "label": "The wisest tries to light it.",
+      "label": "The wisest tries to light it again, so it may see what it seeks.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "kind"
@@ -74,7 +74,7 @@
     },
     {
       "id": "ignore",
-      "label": "Do not look up.",
+      "label": "Do not look up. Whoever it is looking for, it is not you.",
       "rule": "vote",
       "tags": [
         "cautious"

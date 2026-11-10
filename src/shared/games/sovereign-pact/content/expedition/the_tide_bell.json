@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "tide",
-      "label": "The one with sea in them answers the bell.",
+      "label": "The one with the sea in them answers the bell, and trusts it to let them go.",
       "rule": "scion:trait:tidebound|scion:lowest:sanity",
       "tags": [
         "kind"
@@ -46,7 +46,7 @@
     },
     {
       "id": "dive",
-      "label": "The hardiest dives for the bell.",
+      "label": "The hardiest dives for the bell, to silence its call for good.",
       "rule": "scion:highest:resilience",
       "tags": [
         "bold"
@@ -78,7 +78,7 @@
     },
     {
       "id": "plug",
-      "label": "Stop your ears and go.",
+      "label": "Stop your ears and go, before anyone walks into the waves.",
       "rule": "vote",
       "tags": [
         "cautious"

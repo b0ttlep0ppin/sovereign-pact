@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "follow",
-      "label": "The sharpest eye follows the dead man's map.",
+      "label": "The sharpest eye follows the dead man's map, minding the trap he forgot.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -44,7 +44,7 @@
     },
     {
       "id": "sell",
-      "label": "Keep the map to sell.",
+      "label": "Keep the map to sell, and let some rival walk the traps.",
       "rule": "vote",
       "tags": [
         "cautious"

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "world",
-      "label": "The Empress's child tends the world's candle.",
+      "label": "The Empress's child tends the world's candle, and gives the wax to others.",
       "rule": "scion:tarot:empress|vote",
       "tags": [
         "kind"
@@ -38,7 +38,7 @@
     },
     {
       "id": "self",
-      "label": "The Hermit's child tends the self's candle.",
+      "label": "The Hermit's child tends the self's candle, and keeps the wax for their own soul.",
       "rule": "scion:tarot:hermit|scion:lowest:sanity",
       "tags": [
         "clever"
@@ -62,7 +62,7 @@
     },
     {
       "id": "both",
-      "label": "The Leader snuffs them both.",
+      "label": "The Leader snuffs them both. The Six can choose for themselves.",
       "rule": "leader",
       "tags": [
         "reckless"

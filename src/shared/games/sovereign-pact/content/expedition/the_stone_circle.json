@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "wait",
-      "label": "Wait in the circle for dusk.",
+      "label": "Wait in the circle for dusk, to meet the old powers face to face.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -51,7 +51,7 @@
     },
     {
       "id": "ward",
-      "label": "The wisest wards the circle so you can sleep in it.",
+      "label": "The wisest wards the circle so you can sleep in it, safe from what comes.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -71,7 +71,7 @@
     },
     {
       "id": "leave",
-      "label": "Leave before dusk.",
+      "label": "Leave before dusk. The old powers can meet without you.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -101,7 +101,7 @@
     },
     {
       "id": "stay_till_dusk",
-      "label": "The Magus stays till dusk to speak with what comes.",
+      "label": "The Magus stays till dusk to speak with what comes, and learn what it knows.",
       "rule": "scion:job:magus",
       "only": true,
       "tags": [

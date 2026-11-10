@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "veteran",
-      "label": "The one who has been out most often lays something down.",
+      "label": "The one who has been out most often lays something down, and leaves a little of the Gate behind.",
       "rule": "scion:retired_once|scion:most_expeditions",
       "tags": [
         "kind"
@@ -37,7 +37,7 @@
     },
     {
       "id": "take",
-      "label": "The Leader takes the best of the old weapons.",
+      "label": "The Leader takes the best of the old weapons. Good steel should not rust.",
       "rule": "leader",
       "tags": [
         "cruel"

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "rest",
-      "label": "Rest by the fire while it lasts.",
+      "label": "Rest by the fire while it lasts. Whoever built it is not here.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -48,7 +48,7 @@
     },
     {
       "id": "trap",
-      "label": "The craftiest sets a trap and waits.",
+      "label": "The craftiest sets a trap and waits, to learn who walks in your bootprints.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"
@@ -69,7 +69,7 @@
     },
     {
       "id": "hurry",
-      "label": "Push on before they return.",
+      "label": "Push on before they return, and leave no trail for them to follow.",
       "rule": "leader",
       "tags": [
         "bold"

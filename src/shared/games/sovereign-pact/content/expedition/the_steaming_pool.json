@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "bathe",
-      "label": "Sink into the warm water.",
+      "label": "Sink into the warm water, and let the cold go out of you.",
       "rule": "each_scion",
       "tags": [
         "reckless"
@@ -47,7 +47,7 @@
     },
     {
       "id": "watch",
-      "label": "Keep watch on the dark.",
+      "label": "Keep watch on the dark while the others rest.",
       "rule": "each_scion",
       "tags": [
         "cautious"

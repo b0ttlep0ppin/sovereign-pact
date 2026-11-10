@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "shelter",
-      "label": "Find shelter and wait.",
+      "label": "Find shelter and wait, and do not look out at what walks.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -37,7 +37,7 @@
     },
     {
       "id": "race",
-      "label": "The quickest leads the race to the next ridge.",
+      "label": "The quickest leads the race to the next ridge, before the lightning reaches you.",
       "rule": "scion:highest:speed",
       "tags": [
         "bold"
@@ -65,7 +65,7 @@
     },
     {
       "id": "bottle",
-      "label": "The cleverest catches some lightning in a bottle.",
+      "label": "The cleverest catches some lightning in a bottle. It may be worth the risk.",
       "rule": "scion:highest:acuity",
       "tags": [
         "reckless"

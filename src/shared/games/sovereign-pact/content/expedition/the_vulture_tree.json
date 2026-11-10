@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "help",
-      "label": "The healer goes to see what is still breathing.",
+      "label": "The healer goes to see what is still breathing, before the birds decide.",
       "rule": "scion:most_healing|scion:random",
       "tags": [
         "kind"
@@ -37,7 +37,7 @@
     },
     {
       "id": "leave",
-      "label": "Leave it to the birds.",
+      "label": "Leave it to the birds. Whatever it is, it is beyond saving.",
       "rule": "vote",
       "tags": [
         "cruel"
@@ -57,7 +57,7 @@
     },
     {
       "id": "scare",
-      "label": "Scare the vultures off.",
+      "label": "Scare the vultures off, so it may die in peace.",
       "rule": "leader",
       "tags": [
         "bold"

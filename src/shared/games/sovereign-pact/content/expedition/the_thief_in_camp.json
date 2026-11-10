@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "chase",
-      "label": "The quickest follows the small footprints.",
+      "label": "The quickest follows the small footprints, to take back what was stolen.",
       "rule": "scion:highest:speed",
       "tags": [
         "bold"
@@ -50,7 +50,7 @@
     },
     {
       "id": "count",
-      "label": "Count what is missing and move on.",
+      "label": "Count what is missing and move on. Chasing it is what it wants.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -75,7 +75,7 @@
     },
     {
       "id": "trap",
-      "label": "The craftiest leaves bait for tomorrow night.",
+      "label": "The craftiest leaves bait for tomorrow night, and waits.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"

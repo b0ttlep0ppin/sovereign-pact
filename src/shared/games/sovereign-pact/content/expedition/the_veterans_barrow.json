@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "retired",
-      "label": "Someone who once laid down their arms goes in.",
+      "label": "Someone who once laid down their arms goes in, as the door asks.",
       "rule": "scion:retired_once|scion:most_expeditions",
       "tags": [
         "bold"
@@ -39,7 +39,7 @@
     },
     {
       "id": "force",
-      "label": "The strongest forces the door.",
+      "label": "The strongest forces the door. The dead can sing elsewhere.",
       "rule": "scion:highest:might",
       "tags": [
         "reckless"
@@ -60,7 +60,7 @@
     },
     {
       "id": "pray",
-      "label": "Say the soldiers' prayer and go.",
+      "label": "Say the soldiers' prayer and go, and leave them to their song.",
       "rule": "vote",
       "tags": [
         "kind"

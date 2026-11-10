@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "dig",
-      "label": "The strongest breaks the mound open.",
+      "label": "The strongest breaks the mound open, to reach the glint in its walls.",
       "rule": "scion:highest:might",
       "tags": [
         "bold"
@@ -44,7 +44,7 @@
     },
     {
       "id": "smoke",
-      "label": "The cleverest smokes them out first.",
+      "label": "The cleverest smokes them out first, so the dig is quiet.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -68,7 +68,7 @@
     },
     {
       "id": "leave",
-      "label": "Leave it be.",
+      "label": "Leave it be. A thousand voices is too many to anger.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -88,7 +88,7 @@
     },
     {
       "id": "punch_through",
-      "label": "The Pugilist punches through to the glint.",
+      "label": "The Pugilist punches through to the glint, one blow, and damn the insects.",
       "rule": "scion:job:pugilist",
       "only": true,
       "tags": [

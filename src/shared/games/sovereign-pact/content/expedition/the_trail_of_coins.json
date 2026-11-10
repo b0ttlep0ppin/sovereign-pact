@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "follow",
-      "label": "Follow the coins into the hills.",
+      "label": "Follow the coins into the hills, wherever they lead.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -37,7 +37,7 @@
     },
     {
       "id": "read",
-      "label": "The sharpest eye notices the spacing.",
+      "label": "The sharpest eye notices the spacing, and what it says of whoever dropped them.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -59,7 +59,7 @@
     },
     {
       "id": "wary",
-      "label": "Someone else may be following them too.",
+      "label": "Hang back and watch the trail. Someone else may be following them too.",
       "rule": "leader",
       "tags": [
         "cautious"

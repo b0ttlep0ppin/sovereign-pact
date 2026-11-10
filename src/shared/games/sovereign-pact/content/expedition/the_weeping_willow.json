@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "weak",
-      "label": "The frailest is already nodding. They sit a moment and learn its trick.",
+      "label": "The frailest is already nodding. They sit a moment and learn its trick, before it learns theirs.",
       "rule": "scion:lowest:resilience|scion:random",
       "tags": [
         "reckless"
@@ -45,7 +45,7 @@
     },
     {
       "id": "cut",
-      "label": "The strongest cuts the sleepers free.",
+      "label": "The strongest cuts the sleepers free, whether they wish it or not.",
       "rule": "scion:highest:might",
       "tags": [
         "kind"
@@ -71,7 +71,7 @@
     },
     {
       "id": "burn",
-      "label": "Burn the willow.",
+      "label": "Burn the willow, and wake every sleeper it holds.",
       "rule": "vote",
       "tags": [
         "cruel"

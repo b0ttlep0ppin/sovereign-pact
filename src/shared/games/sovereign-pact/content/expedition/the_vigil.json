@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "join",
-      "label": "Kneel and keep the vigil.",
+      "label": "Kneel and keep the vigil, as the pilgrims do.",
       "rule": "each_scion",
       "tags": [
         "kind"
@@ -35,7 +35,7 @@
     },
     {
       "id": "sleep",
-      "label": "Sleep instead.",
+      "label": "Sleep instead. The road needs you rested more than the altar needs you kneeling.",
       "rule": "each_scion",
       "tags": [
         "cautious"

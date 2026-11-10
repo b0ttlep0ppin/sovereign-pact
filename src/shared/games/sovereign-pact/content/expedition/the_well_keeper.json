@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "answer",
-      "label": "The Leader drinks and answers truly.",
+      "label": "The Leader drinks and answers truly, whatever she asks.",
       "rule": "leader",
       "tags": [
         "bold"
@@ -36,7 +36,7 @@
     },
     {
       "id": "lie",
-      "label": "The best liar drinks and lies.",
+      "label": "The best liar drinks and lies, and hopes she does not notice.",
       "rule": "scion:highest:guile",
       "tags": [
         "cruel"
@@ -68,7 +68,7 @@
     },
     {
       "id": "pass",
-      "label": "Go thirsty.",
+      "label": "Go thirsty. Some questions cost more than water is worth.",
       "rule": "vote",
       "tags": [
         "cautious"

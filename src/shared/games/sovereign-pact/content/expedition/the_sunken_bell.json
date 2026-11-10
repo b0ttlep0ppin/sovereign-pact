@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "pull",
-      "label": "The strongest hauls the bell up.",
+      "label": "The strongest hauls the bell up, to learn what tolls it.",
       "rule": "scion:highest:might",
       "tags": [
         "bold"
@@ -49,7 +49,7 @@
     },
     {
       "id": "cut",
-      "label": "Cut the rope.",
+      "label": "Cut the rope, and silence the bell for good.",
       "rule": "leader",
       "tags": [
         "cautious"

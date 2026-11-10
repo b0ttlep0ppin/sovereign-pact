@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "pay",
-      "label": "The richest House pays in gold.",
+      "label": "The richest House pays in gold, and buys the bridge's mercy.",
       "rule": "house:highest_standing",
       "tags": [
         "cautious"
@@ -34,7 +34,7 @@
     },
     {
       "id": "fight",
-      "label": "Fight your way across.",
+      "label": "Fight your way across. No hand with that many fingers gets your gold.",
       "rule": "vote",
       "tags": [
         "bold"
