@@ -2,6 +2,7 @@
 // One seat is one Great House. Milestone 0 runs the Year loop with the Settlement Phase's seal; every
 // later milestone adds its decisions as moves here.
 import { cannotPost, post } from "./formation.ts";
+import { cannotSetGambits, setGambits } from "./gambitset.ts";
 import { cannotRestyle, restyle } from "./style.ts";
 import type { GameDefinition, GameResult, MoveResult, PlayerId } from "../../game.ts";
 import { TOWN_EVENT_BY_ID } from "./content.ts";
@@ -56,6 +57,7 @@ export { fitsPattern } from "./combat/combos.ts";
 export type { Cell } from "./combat/types.ts";
 export { areaCells } from "./combat/grid.ts";
 export { deploy } from "./formation.ts";
+export { GAMBIT_ACTS, GAMBIT_TARGETS, GAMBIT_WHEN } from "./gambitset.ts";
 export { BEARDS, HEADWEAR, HAIR_COLORS, HAIR_LONG, HAIR_SHORT, HAIR_STYLES, styleOf } from "./style.ts";
 
 export const SOVEREIGN_PACT_OPTIONS: readonly TableOption[] = [
@@ -204,6 +206,12 @@ export function applyMove(state: SovState, playerId: PlayerId, move: SovMove): M
       h.sealed = true;
       s.phaseMoves += 1;
       if (s.houses.every((x) => x.sealed)) closeSettlement(s);
+      return { ok: true, state: s };
+    }
+    case "gambits": {
+      const why = cannotSetGambits(s, house, move);
+      if (why) return fail(why);
+      setGambits(s, move);
       return { ok: true, state: s };
     }
     case "post": {

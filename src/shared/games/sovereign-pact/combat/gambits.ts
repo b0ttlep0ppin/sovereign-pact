@@ -167,12 +167,21 @@ export function decide(b: Battle, rng: Rng, u: Combatant): Plan {
   }
   // A feral Form's pick is the only thing to do.
   if (u.feral) return aimOrApproach(b, rng, u, abilityOf(u, u.feral)!) ?? { action: { do: "wait" } };
-  // A Scion without its own list reaches into the satchel when someone needs it (§13.7).
-  if (!u.gambits.length) {
+  // A Scion's own gambits come first (gambitset.ts); after them, as for one without, the satchel when
+  // someone needs it (§13.7) and their usual ways. A creature's list is all it knows.
+  const own = u.side === "party" && u.person !== undefined ? u.gambits : [];
+  const mine = own.length ? follow(b, rng, u, own) : undefined;
+  if (mine) return mine;
+  if (!u.gambits.length || own.length) {
     const item = itemPlan(b, u);
     if (item) return { action: item };
   }
-  for (const g of u.gambits.length ? u.gambits : defaultGambits(u)) {
+  return follow(b, rng, u, u.gambits.length && !own.length ? u.gambits : defaultGambits(u)) ?? aimOrApproach(b, rng, u, attack) ?? { action: { do: "defend" } };
+}
+
+/** The first of `rules` that holds and can be done now, or undefined. */
+function follow(b: Battle, rng: Rng, u: Combatant, rules: readonly GambitRule[]): Plan | undefined {
+  for (const g of rules) {
     if (!holds(b, u, g.if)) continue;
     if (g.do.startsWith("item:")) {
       const id = g.do.slice(5);
@@ -193,7 +202,7 @@ export function decide(b: Battle, rng: Rng, u: Combatant): Plan {
     const plan = aimOrApproach(b, rng, u, ab, g.target);
     if (plan) return plan;
   }
-  return aimOrApproach(b, rng, u, attack) ?? { action: { do: "defend" } };
+  return undefined;
 }
 
 function aimOrApproach(b: Battle, rng: Rng, u: Combatant, ab: AbilityDef, rule?: string): Plan | undefined {

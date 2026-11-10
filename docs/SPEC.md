@@ -477,7 +477,7 @@ Event-granted, always with a `unique` trait that no generation can roll, often a
 ### 6.11 Sorties (the second party's auto-battle) [DECIDED concept: "gambit" auto-battles for a second party for a little XP, JP or resources]
 
 - One real expedition per Year. Any other able Scions (up to 4) can be sent on a **Sortie**: a short foray chosen from a small list (patrol the walls, hunt the marsh, escort a caravan, dig the old mine).
-- Each Scion is given a **gambit list**: up to 3 rules in priority order from a menu ("Heal ally below 50%", "Attack the weakest", "Attack the nearest", "Defend when below 30% HP", "Use strongest MP ability if MP > 50%", "Hold the back row"…).
+- Each Scion is given a **gambit list**: up to 3 rules in priority order from a menu ("Heal ally below 50%", "Attack the weakest", "Attack the nearest", "Defend when below 30% HP", "Use strongest MP ability if MP > 50%", "Hold the back row"…). [Built 2026-11-10, 8dh: set on the Readying screen as When / Do / Target; the list comes first, then the Scion's usual ways; used in every gambit-fought battle.]
 - The Sortie resolves as 1–2 simulated battles against low-tier enemies using the real combat rules with the gambits as inputs, followed by a short result card (XP, JP, resources, any injuries).
 - Rewards are roughly 25% of an expedition's; injury risk is real but the tables are capped at Moderate.
 - The same gambit engine drives a disconnected player's Scions in real combat, so Vibe Pulse's `botMove` is this engine. [See §4.4]

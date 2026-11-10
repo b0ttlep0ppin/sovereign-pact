@@ -4,7 +4,8 @@
 // (§9.2). A House readies its own Scions and the Wards it hosts (§13.4: the host outfits its Wards).
 import { ABILITY_SET_BY_JOB, ACTIVE_BY_ID, JOB_BY_ID, JOB_PASSIVE_BY_ID, JOBS } from "./content.ts";
 import { baseOf, cannotEquip, equip, itemById, stash } from "./items.ts";
-import { canTakeJob, changeJob, equipPassive, jpLeft, knows, learn, passiveBudget, passivePoints, setSecondary, unequipPassive } from "./progression.ts";
+import { battleActives, canTakeJob, changeJob, equipPassive, jpLeft, knows, learn, passiveBudget, passivePoints, setSecondary, unequipPassive } from "./progression.ts";
+import type { GambitRule } from "./combat/types.ts";
 import { GEAR_SLOTS, type GearSlot, type Item, type JobId, type Person, type SovMove, type SovState } from "./state.ts";
 
 export type OutfitMove = Extract<SovMove, { type: "learn" | "take_job" | "secondary" | "passive" | "equip" | "unequip" }>;
@@ -115,6 +116,9 @@ export interface Kit {
   jobs: JobId[];
   /** Stashed items they may wear, and where. */
   fits: [number, GearSlot][];
+  /** Their own gambits, and the abilities they bring to battle (what a gambit may use). */
+  gambits: GambitRule[];
+  actives: string[];
 }
 
 export function kitOf(s: SovState, house: number, p: Person): Kit {
@@ -132,6 +136,8 @@ export function kitOf(s: SovState, house: number, p: Person): Kit {
     points: passivePoints(p),
     jobs,
     fits,
+    gambits: p.gambits ?? [],
+    actives: battleActives(p).map((a) => a.id),
   };
 }
 
