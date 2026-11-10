@@ -10,7 +10,7 @@
     9
   ],
   "title": "The Miners' Ghosts",
-  "text": "Pale shapes still swing their picks at a seam of ore, as they have for a hundred years, the sound of their blows faint as a memory. The seam glitters. One of them turns, lamp-eyed and courteous, and asks for help with the last stretch.",
+  "text": "Pale shapes still swing their picks at a seam of ore as they have for a hundred years, their blows faint as a memory. The seam glitters. One of them turns, lamp-eyed and courteous, and asks for help with the last stretch.",
   "options": [
     {
       "id": "help",
@@ -22,7 +22,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The seam opens, and the ghosts lay down their picks for good, and thank you with their lamps going out.",
+          "text": "The seam opens. The ghosts lay down their picks for good, their lamps going out one by one in thanks.",
           "effects": [
             {
               "resources": {
@@ -40,7 +40,7 @@
     },
     {
       "id": "take",
-      "label": "Wait for them to break through, then take the ore. The dead have no use for it.",
+      "label": "Wait for them to break through, then take the ore; the dead have no use for it.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -48,7 +48,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "You get the ore. They turn their lamp-eyes on you, all of them, and do not look away, not even when you are gone.",
+          "text": "You get the ore. All of them turn their lamp-eyes on you and do not look away, not even when you are gone.",
           "effects": [
             {
               "resources": {
@@ -73,7 +73,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A cave-in. They show you where the next one will be, and the way around it.",
+          "text": "A cave-in, they say. They show you where the next one will come, and the way around it.",
           "effects": [
             {
               "skip": 1

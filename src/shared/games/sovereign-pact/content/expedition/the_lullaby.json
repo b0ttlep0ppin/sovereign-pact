@@ -9,7 +9,7 @@
     10
   ],
   "title": "The Lullaby",
-  "text": "Someone is singing just past the firelight, low and gentle, an old song your nurses knew. The words are the ones you fell asleep to as a child. The fire burns lower. One of you is already nodding, eyes half closed, smiling.",
+  "text": "Someone is singing just past the firelight, low and gentle: an old song your nurses knew, in the words you fell asleep to as a child. The fire burns lower. One of you is already nodding, eyes half closed, smiling.",
   "options": [
     {
       "id": "listen",
@@ -27,7 +27,7 @@
         },
         {
           "w": 40,
-          "text": "They dream of a different card turning over, and wake under a different star, rested as they have not been in years.",
+          "text": "They dream of a different card turning over. They wake under a different star, rested as they have not been in years.",
           "effects": [
             {
               "tarot": true

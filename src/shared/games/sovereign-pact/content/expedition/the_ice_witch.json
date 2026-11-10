@@ -9,7 +9,7 @@
     8
   ],
   "title": "The Ice Witch",
-  "text": "A witch of the Deep Cold, blue-lipped and beautiful, with frost growing on her eyelashes like lace. She offers to freeze a wound so it will never bleed again. Forever, she says, and touches her own chest, where something is frozen and does not beat.",
+  "text": "A witch of the Deep Cold waits in the snow, blue-lipped and beautiful, frost growing on her eyelashes like lace. She offers to freeze a wound so it will never bleed again. Forever, she says, touching her own chest, where something is frozen and does not beat.",
   "options": [
     {
       "id": "wound",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It stops hurting. It stops feeling. It stops. They will never be quite warm there again.",
+          "text": "The wound stops hurting, then stops feeling anything at all. That place will never be warm again.",
           "effects": [
             {
               "mend": true
@@ -43,7 +43,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "She shrugs and is gone in the snow, and her parting breath frosts every buckle in the party brittle.",
+          "text": "She shrugs and vanishes into the snow. Her parting breath leaves every buckle in the party brittle with frost.",
           "effects": [
             {
               "to": "party",
@@ -56,7 +56,7 @@
     },
     {
       "id": "trade",
-      "label": "The wisest trades her a secret instead, one cold thing for another.",
+      "label": "The wisest offers her a secret instead, one cold thing for another.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -64,7 +64,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "She smiles with blue lips, and gives a charm against the cold.",
+          "text": "She smiles with blue lips and presses a charm against the cold into their hand.",
           "effects": [
             {
               "to": "party",

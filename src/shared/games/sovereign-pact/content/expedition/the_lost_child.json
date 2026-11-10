@@ -9,11 +9,11 @@
     7
   ],
   "title": "The Lost Child",
-  "text": "A child sits on a stone by the road, crying quietly into her sleeve, dressed in a smock and bonnet for a town that burned a hundred years ago. There is soot on her cheeks. She does not seem to have grown up at all, and she does not seem to know.",
+  "text": "A child sits on a stone by the road, crying quietly into her sleeve. She wears a smock and bonnet from a town that burned a hundred years ago, and there is soot on her cheeks. She has not grown up at all, and does not seem to know it.",
   "options": [
     {
       "id": "take",
-      "label": "Take the child along. No one should be left alone out here.",
+      "label": "Take the child along; no one should be left alone out here.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 55,
-          "text": "The child walks with you as far as the next bend, smiles, and is gone. The air smells of bread, and of smoke.",
+          "text": "She walks with you as far as the next bend, smiles, and is gone. The air smells of bread and smoke.",
           "effects": [
             {
               "to": "party",
@@ -36,7 +36,7 @@
         },
         {
           "w": 45,
-          "text": "The child is not a child, and it has been waiting for someone kind.",
+          "text": "The child is not a child. It has been waiting for someone kind.",
           "effects": [
             {
               "encounter": {
@@ -49,7 +49,7 @@
     },
     {
       "id": "ask",
-      "label": "The sharpest asks her questions first, gently, before anyone takes her hand.",
+      "label": "The sharpest asks her a few gentle questions before anyone takes her hand.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -57,7 +57,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Its answers are wrong in small ways, and the questions tell you a great deal about what lives here.",
+          "text": "Her answers are wrong in small ways. Those small wrongs tell you a great deal about what lives here.",
           "effects": [
             {
               "xp": 80
@@ -81,7 +81,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The crying follows you for hours, and then it stops, which is worse.",
+          "text": "The crying follows you for hours. When it stops, the silence is worse.",
           "effects": [
             {
               "to": "party",

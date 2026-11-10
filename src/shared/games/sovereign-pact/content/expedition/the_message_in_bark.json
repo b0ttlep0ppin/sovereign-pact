@@ -9,11 +9,11 @@
     10
   ],
   "title": "The Message in the Bark",
-  "text": "Words cut into a tree trunk in your House's tongue, the letters deep and ragged, cut with a knife held in a shaking hand: STILL ALIVE. GOING NORTH. HURRY. The sap has wept over the cuts and hardened, amber in the cold.",
+  "text": "Words are cut into a tree trunk in your House's tongue, the letters deep and ragged from a knife held in a shaking hand: STILL ALIVE. GOING NORTH. HURRY. The sap has wept over the cuts and hardened amber in the cold.",
   "options": [
     {
       "id": "north",
-      "label": "Go north, and fast. They asked you to hurry.",
+      "label": "Go north, and fast; they asked you to hurry.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "North, at a hard pace, reading every tree you pass.",
+          "text": "You push north at a hard pace, reading every tree you pass.",
           "effects": [
             {
               "skip": 1
@@ -32,7 +32,7 @@
     },
     {
       "id": "read",
-      "label": "The wisest reads the cuts for how long ago, to know how much time remains.",
+      "label": "The wisest reads how old the cuts are, to know how much time remains.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -40,7 +40,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Three days. And they were bleeding when they cut it.",
+          "text": "The cuts are three days old. They were bleeding when they made them.",
           "effects": [
             {
               "foresee": true
@@ -54,7 +54,7 @@
     },
     {
       "id": "answer",
-      "label": "Cut an answer beneath it, so they know you came.",
+      "label": "Cut an answer beneath it so they know you came.",
       "rule": "leader",
       "tags": [
         "kind"
@@ -62,7 +62,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "WE ARE COMING. For them, if they come back this way.",
+          "text": "WE ARE COMING, you carve, in case they come back this way.",
           "effects": [
             {
               "to": "party",

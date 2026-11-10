@@ -9,7 +9,7 @@
     9
   ],
   "title": "The Mock Coronation",
-  "text": "The apostates are crowning a goat as the Ruler of the Pact, robed in stolen velvet, its horns gilded. The crowd howls with laughter. They want a noble to place the crown, for the joke of it, and they have noticed your colours.",
+  "text": "The apostates are crowning a goat as the Ruler of the Pact, robed in stolen velvet, its horns gilded, while the crowd howls with laughter. They want a noble to place the crown for the joke of it. They have noticed your colours.",
   "options": [
     {
       "id": "crown",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The court roars with laughter and lets you through as friends. Somewhere, the joke is heard, and something takes it seriously.",
+          "text": "The crowd roars and lets you through as friends. Somewhere the joke is heard, and something takes it seriously.",
           "effects": [
             {
               "skip": 2
@@ -40,7 +40,7 @@
     },
     {
       "id": "refuse",
-      "label": "Refuse with dignity. You will not mock the Pact for anyone's amusement.",
+      "label": "Refuse with dignity; you will not mock the Pact for anyone's amusement.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -48,7 +48,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They are offended. Then they are armed.",
+          "text": "First they are offended. Then they are armed.",
           "effects": [
             {
               "encounter": {}
@@ -64,7 +64,7 @@
     },
     {
       "id": "steal",
-      "label": "Steal the crown in the uproar, while everyone is laughing.",
+      "label": "Steal the crown in the uproar while everyone is laughing.",
       "rule": "leader",
       "tags": [
         "clever"
@@ -72,7 +72,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Real gold, under the paint, and the whole mob after you, and they are not laughing now.",
+          "text": "Under the paint it is real gold. The whole mob comes after you, and they are not laughing now.",
           "effects": [
             {
               "resources": {

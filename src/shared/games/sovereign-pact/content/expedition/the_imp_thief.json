@@ -9,11 +9,11 @@
     10
   ],
   "title": "The Imp Thief",
-  "text": "An imp darts through camp in a blur of claws and cackling, quicker than a cat, and is gone into the dark with a House's purse in its teeth. You can hear it laughing somewhere out there, and the clink of coins being counted.",
+  "text": "An imp darts through camp in a blur of claws and cackling, quicker than a cat. It vanishes into the dark with a House's purse in its teeth. Somewhere out there it is laughing as it counts the coins.",
   "options": [
     {
       "id": "chase",
-      "label": "The quickest gives chase into the dark, determined to get the purse back.",
+      "label": "The quickest gives chase into the dark to get the purse back.",
       "rule": "scion:highest:speed",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "Caught by the tail, with its whole stash, still cackling.",
+          "text": "They catch it by the tail beside its whole stash. It is still cackling as they empty its hoard.",
           "effects": [
             {
               "resources": {
@@ -32,7 +32,7 @@
         },
         {
           "w": 40,
-          "text": "Into its nest, and it was not alone, and it was never really running.",
+          "text": "It leads them straight into its nest. It was never really running; its kin were waiting.",
           "effects": [
             {
               "encounter": {
@@ -45,7 +45,7 @@
     },
     {
       "id": "let",
-      "label": "Let it go. Chasing an imp into the dark is a fool's errand.",
+      "label": "Let it go; chasing an imp into the dark is a fool's errand.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -53,7 +53,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Lighter, and wiser, and its laughter carries a long way.",
+          "text": "You are lighter by a purse. Its laughter carries a long way through the night.",
           "effects": [
             {
               "resources": {
@@ -66,7 +66,7 @@
     },
     {
       "id": "trap",
-      "label": "The cleverest baits a trap with more gold, and lets greed do the rest.",
+      "label": "The cleverest baits a trap with more gold and lets greed do the rest.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -74,7 +74,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It comes back for seconds, greedy, and leaves the first purse in the trap.",
+          "text": "Greedy for seconds, it comes back and drops the first purse to snatch the bait. The trap snaps shut on its tail.",
           "effects": [
             {
               "resources": {

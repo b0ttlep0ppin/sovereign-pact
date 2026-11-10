@@ -9,7 +9,7 @@
     10
   ],
   "title": "The Lost One's Song",
-  "text": "A song carries on the wind, thin and broken, a House song every child of yours learns at the hearth. Someone is singing it badly, the way a tired person sings to keep from crying. It could be them. It could be something that heard them.",
+  "text": "A song carries on the wind, thin and broken: a House song every child of yours learns at the hearth. Someone is singing it badly, the way a tired person sings to keep from crying. It could be them, or it could be something that heard them.",
   "options": [
     {
       "id": "follow",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Closer. The voice cracks on the same note every time, and you begin to dread that note.",
+          "text": "You draw closer. The voice cracks on the same note every time, and you come to dread that note.",
           "effects": [
             {
               "skip": 1
@@ -32,7 +32,7 @@
     },
     {
       "id": "sing",
-      "label": "The steadiest voice sings the next verse back, so they know they are not alone.",
+      "label": "The steadiest voice sings the next verse back to them.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "kind"
@@ -40,7 +40,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The song answers, stronger, as if whoever sings it has remembered they are not alone.",
+          "text": "The song answers stronger, as if whoever sings it has remembered they are not alone.",
           "effects": [
             {
               "skip": 1
@@ -55,7 +55,7 @@
     },
     {
       "id": "quiet",
-      "label": "Keep silent, in case it is a lure. Something out here may have learned the song.",
+      "label": "Keep silent in case it is a lure; something out here may have learned the song.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -63,7 +63,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "It is not. It was one of yours, lost here, and by the time the Leader knows the voice the singing has stopped.",
+          "text": "It was no lure. It was one of yours, lost here, and by the time the Leader knows the voice the singing has stopped.",
           "effects": [
             {
               "sanity": -12
@@ -72,7 +72,7 @@
         },
         {
           "w": 50,
-          "text": "It is, and it is pleased you came so close.",
+          "text": "It is a lure, and it is pleased you came so close.",
           "effects": [
             {
               "encounter": {

@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "A garden underground, impossible and real, and the warm air knits you as you breathe it.",
+          "text": "You find a garden underground, impossible and real. The warm air knits your wounds as you breathe it.",
           "effects": [
             {
               "to": "party",
@@ -35,7 +35,7 @@
         },
         {
           "w": 50,
-          "text": "A garden underground, and something tending it that does not like guests.",
+          "text": "You find a garden underground. Something tends it, and it does not like guests.",
           "effects": [
             {
               "encounter": {
@@ -48,7 +48,7 @@
     },
     {
       "id": "listen",
-      "label": "The keenest ear listens at the top of the stairs, before anyone descends.",
+      "label": "The keenest ear listens at the top of the stairs before anyone descends.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -56,7 +56,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Rain, and singing, and then nothing at all. But they heard enough to know what lies ahead.",
+          "text": "They hear rain and singing, then nothing at all. It is enough to know what lies ahead.",
           "effects": [
             {
               "foresee": true
@@ -67,7 +67,7 @@
     },
     {
       "id": "up",
-      "label": "Climb back up while you still want to. Some places are not meant for you.",
+      "label": "Climb back up while you still want to; some places are not meant for you.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -75,7 +75,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Some places are not for you. The smell of warm rain stays in the Leader's clothes; it is a comfort, and it should not be.",
+          "text": "The smell of warm rain stays in the Leader's clothes for days. It is a comfort, though it should not be.",
           "effects": [
             {
               "sanity": 8

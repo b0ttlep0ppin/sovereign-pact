@@ -9,11 +9,11 @@
     10
   ],
   "title": "The Kobold Mine",
-  "text": "Kobolds swarm a mine in the hillside, hauling ore for a dragon, whipped by kobold overseers who are whipped by bigger ones. They hate it. They mutter about it. When they see you, they stop, and look at you with a sudden, terrible hope.",
+  "text": "Kobolds swarm a mine in the hillside, hauling ore for a dragon under the whips of overseers, who are whipped by bigger ones in turn. They hate it and mutter about it. When they see you they stop, looking up with a sudden, terrible hope.",
   "options": [
     {
       "id": "hire",
-      "label": "Hire them away from the dragon, and put their hope to good use.",
+      "label": "Hire them away from the dragon; their hope can be put to good use.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They mine gold for you, gladly. The dragon notices, and it does not like losing its miners.",
+          "text": "They gladly mine gold for you instead. The dragon marks the loss of its miners and does not forget it.",
           "effects": [
             {
               "resources": {
@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They scatter, cheering, and the dragon wakes, and wonders where everyone went.",
+          "text": "They scatter, cheering. The noise wakes the dragon, who comes looking for its miners.",
           "effects": [
             {
               "encounter": {
@@ -63,7 +63,7 @@
     },
     {
       "id": "trade",
-      "label": "The shrewdest trades for their secrets, and learns what the dragon keeps.",
+      "label": "The shrewdest trades for their secrets, to learn what the dragon keeps.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"
@@ -71,7 +71,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A way into the hoard, through a tunnel too small for a dragon.",
+          "text": "They whisper of a tunnel into the hoard, one too small for a dragon to follow.",
           "effects": [
             {
               "fork": {

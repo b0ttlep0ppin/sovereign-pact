@@ -9,11 +9,11 @@
     6
   ],
   "title": "The Laughing Hyenas",
-  "text": "Hyenas laugh in the long grass all night, a high, crazed giggling that circles the camp. Every time they laugh, they are a little closer. You can see their eyes now, green in the firelight, dozens of them.",
+  "text": "Hyenas laugh in the long grass all night, a high, crazed giggling that circles the camp. Every time they laugh they are a little closer. You can see dozens of their eyes now, green in the firelight.",
   "options": [
     {
       "id": "fire",
-      "label": "Build the fire high, and wait out the laughter until dawn.",
+      "label": "Build the fire high and wait out the laughter until dawn.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A sleepless night of laughter in the dark, but no visitors. Nobody laughs in the morning.",
+          "text": "Nobody sleeps for the laughter, but nothing comes into the light.",
           "effects": [
             {
               "to": "party",
@@ -65,7 +65,7 @@
     },
     {
       "id": "bait",
-      "label": "Leave them meat away from camp, and hope it keeps them busy.",
+      "label": "Leave them meat away from camp, hoping it keeps them busy.",
       "rule": "leader",
       "tags": [
         "clever"

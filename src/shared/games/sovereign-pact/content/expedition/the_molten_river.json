@@ -9,11 +9,11 @@
     10
   ],
   "title": "The Molten River",
-  "text": "A river of slow fire crosses the valley, orange and black, crawling, steaming where it touches the air. Stepping stones of cooled rock bob on it, rising and sinking. Some of them sink and do not come back up.",
+  "text": "A river of slow fire crawls across the valley, orange and black, steaming where it touches the air. Stepping stones of cooled rock bob on it, rising and sinking. Some sink and do not come back up.",
   "options": [
     {
       "id": "hop",
-      "label": "Hop the stones across the fire, and hope they hold.",
+      "label": "Hop the stones across the fire and hope they hold.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "Across, with singed boots and blistered feet.",
+          "text": "You make it across with singed boots and blistered feet.",
           "effects": [
             {
               "to": "party",
@@ -32,7 +32,7 @@
         },
         {
           "w": 30,
-          "text": "A stone sinks, and fire licks up to the knee.",
+          "text": "A stone sinks, and the fire licks up to the knee.",
           "effects": [
             {
               "to": "party",
@@ -57,7 +57,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Every stone called right, and everyone across.",
+          "text": "They call every stone right; everyone crosses safely.",
           "effects": [
             {
               "xp": 50
@@ -68,7 +68,7 @@
     },
     {
       "id": "bridge",
-      "label": "Wait for a frost-breathing wyrm to cool a bridge, and hope it does not notice you.",
+      "label": "Wait for a frost-breathing wyrm to cool a bridge, hoping it does not notice you.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -76,7 +76,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It comes, and it cools a bridge, and then it sees you.",
+          "text": "It comes and cools a bridge. Then it sees you.",
           "effects": [
             {
               "encounter": {

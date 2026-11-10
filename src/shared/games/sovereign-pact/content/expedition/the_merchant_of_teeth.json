@@ -9,11 +9,11 @@
     10
   ],
   "title": "The Merchant of Teeth",
-  "text": "A smiling trader leans on a cart of fine things, silver and silk and blades, a necklace of human teeth clicking at his throat. He wants nothing you carry, he says, nothing at all. He wants a little of you. Just a little.",
+  "text": "A smiling trader leans on a cart of fine things, silver and silk and blades, a necklace of human teeth clicking at his throat. He wants nothing you carry, he says. He wants a little of you; just a little.",
   "options": [
     {
       "id": "trade",
-      "label": "The Leader trades a little of themselves, for something very fine.",
+      "label": "The Leader trades a little of themselves for something very fine.",
       "rule": "leader",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He takes something you will not miss for years, and hands over something fine. The Leader's step is a little slower after.",
+          "text": "He takes something you will not miss for years and hands over something fine. The Leader's step is a little slower after.",
           "effects": [
             {
               "item": {
@@ -39,7 +39,7 @@
     },
     {
       "id": "haggle",
-      "label": "The cleverest haggles him down, and tries to keep their teeth.",
+      "label": "The cleverest haggles him down, hoping to keep their teeth.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"
@@ -63,7 +63,7 @@
         },
         {
           "w": 55,
-          "text": "He is delighted, and takes a tooth for his trouble, root and all, and adds it to his necklace.",
+          "text": "Delighted, he takes a tooth for his trouble, root and all, to add to his necklace.",
           "effects": [
             {
               "durability": -20,
@@ -78,7 +78,7 @@
     },
     {
       "id": "refuse",
-      "label": "Refuse him politely, and keep every part of yourselves.",
+      "label": "Refuse him politely and keep every part of yourselves.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -86,7 +86,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It shrugs and trundles off, still smiling. In the morning the Leader has a loose tooth that was not loose before.",
+          "text": "He shrugs and trundles off, still smiling. In the morning the Leader has a loose tooth that was not loose before.",
           "effects": [
             {
               "hp": -5,
@@ -98,7 +98,7 @@
     },
     {
       "id": "other_teeth",
-      "label": "The Pugilist offers him some teeth. Not their own.",
+      "label": "The Pugilist offers him some teeth, though not their own.",
       "rule": "scion:job:pugilist",
       "only": true,
       "tags": [
@@ -107,7 +107,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "He is delighted, with the teeth and the knuckles both, and pays in iron rings that fit over them.",
+          "text": "He is delighted with the teeth and the knuckles both, paying in iron rings that fit over them.",
           "effects": [
             {
               "gear": {
@@ -119,7 +119,7 @@
         },
         {
           "w": 30,
-          "text": "He takes the teeth, and then some of the Pugilist's, for his trouble.",
+          "text": "He takes the teeth, then some of the Pugilist's for his trouble.",
           "effects": [
             {
               "hp": -15,

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "follow",
-      "label": "Follow the shadow where it walks, and trust it knows the way.",
+      "label": "Follow the shadow where it walks, trusting it knows the way.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "It walks you, never turning, to the place where it was lost.",
+          "text": "Without ever turning, it walks you to the place where it was lost.",
           "effects": [
             {
               "skip": 2
@@ -30,7 +30,7 @@
         },
         {
           "w": 40,
-          "text": "It walks you to what took it, and then it is gone, and the thing is not.",
+          "text": "It walks you to what took it, then vanishes. The thing does not.",
           "effects": [
             {
               "encounter": {
@@ -51,7 +51,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It does not answer. It only lifts an arm that is not there and points toward the hills, and the cold of it stays with you.",
+          "text": "It does not answer. It only lifts an arm that is not there to point toward the hills, and its cold stays with you.",
           "effects": [
             {
               "skip": 1
@@ -66,7 +66,7 @@
     },
     {
       "id": "flee",
-      "label": "It is an ill omen. Go around it, and do not let it lead you.",
+      "label": "It is an ill omen. Go around it; do not let it lead you.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -74,7 +74,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It waits by the road as you pass, and its head turns to follow you, though it has no face to turn.",
+          "text": "It waits by the road as you pass, its head turning to follow you though it has no face to turn.",
           "effects": [
             {
               "to": "party",

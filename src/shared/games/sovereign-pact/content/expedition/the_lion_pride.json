@@ -41,7 +41,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "They go, snarling, and you drink.",
+          "text": "They slink off, snarling. You drink your fill.",
           "effects": [
             {
               "to": "party",
@@ -72,7 +72,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Unseen, though the old male's ear twitched once.",
+          "text": "They fill the skins unseen, though the old male's ear twitches once.",
           "effects": [
             {
               "to": "party",

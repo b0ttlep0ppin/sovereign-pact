@@ -9,11 +9,11 @@
     7
   ],
   "title": "The Lily Pads",
-  "text": "Lily pads as big as rafts cover a grey lake, edge to edge, from shore to shore. On each one sits a frog the size of a hound, throat pulsing, eyes like brass coins. They watch you. Every so often one of them snaps at a passing heron, and swallows it whole.",
+  "text": "Lily pads as big as rafts cover a grey lake from shore to shore. On each one sits a frog the size of a hound, throat pulsing, eyes like brass coins, watching you. Every so often one snaps up a passing heron and swallows it whole.",
   "options": [
     {
       "id": "hop",
-      "label": "Hop across on the pads, and hope the frogs are not hungry.",
+      "label": "Hop across on the pads and hope the frogs are not hungry.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "The frogs watch with brass eyes, and let you.",
+          "text": "The frogs watch you cross and do nothing.",
           "effects": [
             {
               "skip": 1
@@ -30,7 +30,7 @@
         },
         {
           "w": 40,
-          "text": "The frogs do not let you, and they are very quick.",
+          "text": "The frogs are hungry after all, and very quick.",
           "effects": [
             {
               "encounter": {}
@@ -41,7 +41,7 @@
     },
     {
       "id": "feed",
-      "label": "The kindest tosses them bread, to buy their good mood.",
+      "label": "The kindest tosses them bread to buy their good mood.",
       "rule": "scion:most_healing|scion:highest:sagacity",
       "tags": [
         "kind"
@@ -49,7 +49,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They croak, deep and pleased, and make a path.",
+          "text": "They croak, deep and pleased, then shift aside to open a path.",
           "effects": [
             {
               "skip": 1
@@ -72,7 +72,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A long, wet way, and the frogs watch the whole time.",
+          "text": "The way around is long and wet. The frogs watch you the whole time.",
           "effects": [
             {
               "to": "party",

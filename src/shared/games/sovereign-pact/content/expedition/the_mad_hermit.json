@@ -9,11 +9,11 @@
     10
   ],
   "title": "The Mad Hermit",
-  "text": "A hermit in a cave mouth, wild-haired and wild-eyed, a rusty spear across his knees. He says he is keeping one of your Lost safe inside, safe from the things out there, safe from you. He will not give them back. You can hear someone breathing in the dark behind him.",
+  "text": "A hermit sits in a cave mouth, wild-haired and wild-eyed, a rusty spear across his knees. He says he is keeping one of your Lost safe inside, safe from the things out there and safe from you. He will not give them back. You can hear someone breathing in the dark behind him.",
   "options": [
     {
       "id": "talk",
-      "label": "The kindest talks him round, gently, as one would a frightened child.",
+      "label": "The kindest talks him round gently, as one would a frightened child.",
       "rule": "scion:most_healing|scion:highest:sagacity",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He weeps, and lets them go, and begs you to come back and visit. You will not.",
+          "text": "He weeps as he lets them go, begging you to come back and visit. You will not.",
           "effects": [
             {
               "skip": 2
@@ -37,7 +37,7 @@
     },
     {
       "id": "force",
-      "label": "Force your way past him. Your own are in there.",
+      "label": "Force your way past him; your own are in there.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He fights like a cornered animal, and you are through, and the breathing in the dark is yours.",
+          "text": "He fights like a cornered animal, but you get through. The breathing in the dark is one of yours.",
           "effects": [
             {
               "encounter": {}
@@ -59,7 +59,7 @@
     },
     {
       "id": "trade",
-      "label": "The shrewdest offers him a trade, something to keep him company instead.",
+      "label": "The shrewdest offers him something else to keep him company.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"
@@ -67,7 +67,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A pot and a blanket for a Scion. He counts the stitches in the blanket twice.",
+          "text": "He takes a pot and a blanket in exchange for a Scion, and counts the stitches in the blanket twice.",
           "effects": [
             {
               "resources": {

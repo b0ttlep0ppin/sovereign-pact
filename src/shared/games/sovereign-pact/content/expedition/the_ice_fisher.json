@@ -9,11 +9,11 @@
     8
   ],
   "title": "The Ice Fisher",
-  "text": "An old woman sits on a stool by a hole in the ice, a line dropped into the black water, a lantern beside her. She has not caught anything in years, she says cheerfully, but today she might. The line is moving. Something down there is very big.",
+  "text": "An old woman sits on a stool by a hole in the ice, a line dropped into the black water and a lantern beside her. She has caught nothing in years, she says cheerfully, but today she might. The line is moving. Whatever is down there is very big.",
   "options": [
     {
       "id": "sit",
-      "label": "Sit and fish with her a while. She seems so glad of the company.",
+      "label": "Sit and fish with her a while; she seems so glad of the company.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "She catches something with too many eyes, and gives it to you, and it is good to eat. Nobody asks what it was.",
+          "text": "She hauls up something with too many eyes and shares it out. It tastes good; nobody asks what it was.",
           "effects": [
             {
               "to": "party",
@@ -35,7 +35,7 @@
         },
         {
           "w": 30,
-          "text": "Something catches her line, and pulls, and it is not her husband.",
+          "text": "Something takes her line and pulls hard. When it breaks the surface, it is looking at you.",
           "effects": [
             {
               "encounter": {}
@@ -46,7 +46,7 @@
     },
     {
       "id": "ask",
-      "label": "The wisest asks what she is fishing for, so far out on the ice.",
+      "label": "The wisest asks what she fishes for, so far out on the ice.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -54,7 +54,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Her husband, she says. He fell through in the war. She is sure he will bite one day. Nobody has the heart to tell her otherwise.",
+          "text": "Her husband, she says; he fell through in the war. She is sure he will bite one day. Nobody has the heart to tell her otherwise.",
           "effects": [
             {
               "score": {
@@ -78,7 +78,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "She waves without looking up, and calls after you to keep your feet dry. The Leader doesn't, and the cold gets in.",
+          "text": "She waves without looking up, calling after you to keep your feet dry. The Leader fails to, and the cold seeps in through their boots.",
           "effects": [
             {
               "hp": -10

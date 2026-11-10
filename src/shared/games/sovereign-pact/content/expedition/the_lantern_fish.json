@@ -9,11 +9,11 @@
     10
   ],
   "title": "The Lantern Fish",
-  "text": "A great fish swims through the dark as if it were water, longer than a ship, pale and blind, its mouth hanging open. Before it, on a long stalk, dangles a light, warm and gold and lovely. It is the only warm thing you have seen in days.",
+  "text": "A great fish swims through the dark as if it were water, longer than a ship, pale and blind, its mouth hanging open. A light dangles before it on a long stalk, warm and gold and lovely. It is the only warm thing you have seen in days.",
   "options": [
     {
       "id": "follow",
-      "label": "Follow its warm light. It is the only warmth left down here.",
+      "label": "Follow its light; nothing else down here is warm.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 40,
-          "text": "Toward its mouth.",
+          "text": "The light leads you toward its mouth.",
           "effects": [
             {
               "encounter": {
@@ -32,7 +32,7 @@
         },
         {
           "w": 60,
-          "text": "It leads you a long way, and then turns away, uninterested. You almost miss its light.",
+          "text": "It leads you a long way before turning aside, uninterested. You almost miss its glow.",
           "effects": [
             {
               "skip": 2
@@ -43,7 +43,7 @@
     },
     {
       "id": "dark",
-      "label": "Douse your lights and let it pass, and pray it cannot smell you.",
+      "label": "Douse your lights, let it pass, and pray it cannot smell you.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -63,7 +63,7 @@
     },
     {
       "id": "lure",
-      "label": "The cleverest lures it close with a lamp, and cuts off its light for the House.",
+      "label": "The cleverest lures it close with a lamp, then cuts off its light for the House.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -71,7 +71,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A lantern that never goes out, and a fish that wants it back, very badly.",
+          "text": "Its light becomes a lantern that never goes out. The fish wants it back very badly.",
           "effects": [
             {
               "item": {

@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "A small one, gone into his hand.",
+          "text": "He takes a small one; it is gone before they can miss it.",
           "effects": [
             {
               "sanity": -5
@@ -30,7 +30,7 @@
         },
         {
           "w": 30,
-          "text": "A big one, and he smiles as he takes it.",
+          "text": "He takes a big one, smiling as he does.",
           "effects": [
             {
               "sanity": -15
@@ -49,7 +49,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "Around the river, singed and choking.",
+          "text": "They find a way around the river, singed and choking.",
           "effects": [
             {
               "durability": -20,
@@ -59,7 +59,7 @@
         },
         {
           "w": 40,
-          "text": "Through the fire.",
+          "text": "Their way leads through the fire.",
           "effects": [
             {
               "status": "burn"

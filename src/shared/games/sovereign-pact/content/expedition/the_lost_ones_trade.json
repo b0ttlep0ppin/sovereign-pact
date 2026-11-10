@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He tells you where, and when. It was not long ago, and he will not meet your eyes the whole time.",
+          "text": "He tells you where it happened, and when. It was not long ago, and he never meets your eyes.",
           "effects": [
             {
               "resources": {
@@ -37,7 +37,7 @@
     },
     {
       "id": "threaten",
-      "label": "The strongest asks him again, closer, with a hand on their sword.",
+      "label": "The strongest asks him again, closer, a hand on their sword.",
       "rule": "scion:highest:might",
       "tags": [
         "cruel"
@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "He tells it fast, with a blade at his throat, and the road hears how you got it.",
+          "text": "With a blade at his throat he tells it fast. The road will hear how you got it.",
           "effects": [
             {
               "skip": 1
@@ -57,7 +57,7 @@
         },
         {
           "w": 40,
-          "text": "He whistles, and he has friends.",
+          "text": "He whistles; he has friends.",
           "effects": [
             {
               "encounter": {}
@@ -68,7 +68,7 @@
     },
     {
       "id": "read",
-      "label": "The shrewdest watches his face as he talks, and sorts the truth from the lies.",
+      "label": "The shrewdest watches his face as he talks, sorting truth from lies.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"
@@ -76,7 +76,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He is lying about the bread. He is not lying about the place.",
+          "text": "He is lying about the bread, though not about the place.",
           "effects": [
             {
               "skip": 1

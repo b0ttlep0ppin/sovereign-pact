@@ -9,11 +9,11 @@
     10
   ],
   "title": "The Kobold Envoy",
-  "text": "A kobold in a crown too big for him, the rim resting on his snout, struts up the road with a scroll. He speaks for the dragon of these hills, he squeaks, and the dragon wants tribute. Behind him, very high up, a shadow passes over the sun.",
+  "text": "A kobold in a crown too big for him, the rim resting on his snout, struts up the road with a scroll. He speaks for the dragon of these hills, he squeaks, and the dragon wants tribute. Very high above him, a shadow passes over the sun.",
   "options": [
     {
       "id": "pay",
-      "label": "Pay the dragon's tribute, and keep the shadow overhead in the sky.",
+      "label": "Pay the dragon's tribute and keep that shadow in the sky.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The kobold bows until his crown falls off, and the hills are quiet for you.",
+          "text": "The kobold bows so low his crown falls off. The hills are quiet for you after that.",
           "effects": [
             {
               "resources": {
@@ -37,7 +37,7 @@
     },
     {
       "id": "bluff",
-      "label": "The shrewdest says the House already paid, and hopes the kobold cannot count.",
+      "label": "The shrewdest claims the House has already paid, hoping the kobold cannot count.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"
@@ -80,7 +80,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A gilt crown, and his kin swarming out of the rocks, shrieking.",
+          "text": "The crown is only gilt. His kin come swarming out of the rocks, shrieking.",
           "effects": [
             {
               "resources": {

@@ -9,7 +9,7 @@
     10
   ],
   "title": "The Last Dance",
-  "text": "Music drifts from a ruined ballroom, a waltz from another age, and ghosts are dancing among the fallen chandeliers, in gowns of mist and coats of dust. They turn and turn. One of them stops, and holds out a hand to the party's most troubled soul.",
+  "text": "A waltz from another age drifts from a ruined ballroom, where ghosts in gowns of mist and coats of dust dance among the fallen chandeliers. They turn and turn. One of them stops and holds out a hand to the party's most troubled soul.",
   "options": [
     {
       "id": "dance",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "One dance, slow and cold, and they come out lighter.",
+          "text": "They share one dance, slow and cold, and come away lighter.",
           "effects": [
             {
               "sanity": 25
@@ -30,7 +30,7 @@
         },
         {
           "w": 30,
-          "text": "One dance, and then another, and another, and they cannot stop, and the ghosts do not want them to.",
+          "text": "One dance becomes another, then another. They cannot stop, and the ghosts do not want them to.",
           "effects": [
             {
               "sanity": -10
@@ -44,7 +44,7 @@
     },
     {
       "id": "everyone",
-      "label": "Everyone dances, and the dead have company for one more night.",
+      "label": "Everyone dances, that the dead might have company for one more night.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -52,7 +52,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It is a very long night among the dead, and a good one, and your feet ache at dawn.",
+          "text": "It is a long night among the dead, and a good one. By dawn your feet ache.",
           "effects": [
             {
               "to": "party",
@@ -76,7 +76,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The music follows you to the edge of the ruin, and the Leader keeps wondering what the dance would have been.",
+          "text": "The music follows you to the edge of the ruin. Long after, the Leader wonders what that dance would have been.",
           "effects": [
             {
               "sanity": -6

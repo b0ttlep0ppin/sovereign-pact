@@ -9,11 +9,11 @@
     9
   ],
   "title": "The Mirror Maze",
-  "text": "A maze of mirrors where the reflections walk a step behind you, always a heartbeat slow. Except one. One of the reflections is a step ahead, and it keeps glancing back over its shoulder at you, as if to see if you are following.",
+  "text": "In a maze of mirrors, the reflections walk a step behind you, always a heartbeat slow. One of them is a step ahead instead. It keeps glancing back over its shoulder, as if to see whether you are following.",
   "options": [
     {
       "id": "follow",
-      "label": "The sharpest eye follows the reflection that walks ahead, wherever it leads.",
+      "label": "The sharpest follows the reflection that walks ahead, wherever it leads.",
       "rule": "scion:highest:acuity",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "It leads you out the far side, and waves.",
+          "text": "It leads you out the far side and waves goodbye.",
           "effects": [
             {
               "skip": 1
@@ -30,7 +30,7 @@
         },
         {
           "w": 40,
-          "text": "It leads you to its friends, and they step out of the glass.",
+          "text": "It leads you to its friends. They step out of the glass.",
           "effects": [
             {
               "encounter": {
@@ -43,7 +43,7 @@
     },
     {
       "id": "break",
-      "label": "Smash your way through the mirrors, and leave the reflections in pieces.",
+      "label": "Smash your way through the mirrors, leaving the reflections in pieces.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -51,7 +51,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Glass everywhere, and blood on every hand, and the reflections laughing in the shards.",
+          "text": "Glass is everywhere and every hand is bloody. The reflections laugh at you from the shards.",
           "effects": [
             {
               "to": "party",
@@ -76,7 +76,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It walks into a mirror and does not come out, and the glass goes dark behind it.",
+          "text": "It walks into a mirror and does not come out. The glass goes dark behind it.",
           "effects": [
             {
               "score": {

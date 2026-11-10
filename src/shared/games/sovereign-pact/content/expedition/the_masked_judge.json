@@ -9,11 +9,11 @@
     9
   ],
   "title": "The Masked Judge",
-  "text": "A judge in a blank white mask holds court in the street, on a chair of stacked doors, before a crowd that does not breathe. You are accused, he says. Of what, no one will say. The gallows behind him is already strung.",
+  "text": "A judge in a blank white mask holds court in the street from a chair of stacked doors, before a crowd that does not breathe. You are accused, he says, though no one will say of what. The gallows behind him is already strung.",
   "options": [
     {
       "id": "plead",
-      "label": "The smoothest tongue pleads your case, though no one will name the charge.",
+      "label": "The smoothest tongue pleads your case, charge or no charge.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "Acquitted, and the breathless crowd cheers without a sound.",
+          "text": "You are acquitted. The breathless crowd cheers without a sound.",
           "effects": [
             {
               "score": {
@@ -32,7 +32,7 @@
         },
         {
           "w": 40,
-          "text": "Guilty. The fine is heavy, and the gallows creaks, disappointed.",
+          "text": "Guilty. The fine is heavy, and the gallows creaks in disappointment.",
           "effects": [
             {
               "resources": {
@@ -53,7 +53,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A small fine, and a long stare from the mask, and the feeling of having confessed to something true.",
+          "text": "The fine is small, but the mask stares at you a long while. You feel you have confessed to something true.",
           "effects": [
             {
               "resources": {
@@ -70,7 +70,7 @@
     },
     {
       "id": "unmask",
-      "label": "Tear the mask from the judge, and see who sits in judgement.",
+      "label": "Tear the mask from the judge to see who sits in judgement.",
       "rule": "leader",
       "tags": [
         "reckless"
@@ -78,7 +78,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Under the mask, another mask, and the whole court rises at once.",
+          "text": "Under the mask is another mask. The whole court rises at once.",
           "effects": [
             {
               "encounter": {

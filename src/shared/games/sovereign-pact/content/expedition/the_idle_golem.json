@@ -9,7 +9,7 @@
     10
   ],
   "title": "The Idle Golem",
-  "text": "An iron guardian stands in a ruined square, rusted still in the middle of a stride, one fist raised. Moss grows in its joints. A word is carved on its brow in an old tongue. Change the word, the old stories say, and it might serve a new master.",
+  "text": "An iron guardian stands in a ruined square, rusted still in mid-stride, one fist raised. Moss grows in its joints. A word is carved on its brow in an old tongue; change the word, the stories say, and it might serve a new master.",
   "options": [
     {
       "id": "word",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "It turns, and kneels, and walks with you, a wall of iron at your side.",
+          "text": "It turns and kneels before them. For the rest of the road it walks at your side like a wall of iron.",
           "effects": [
             {
               "to": "party",
@@ -36,7 +36,7 @@
         },
         {
           "w": 50,
-          "text": "It turns, and remembers its orders, and you are not on its list.",
+          "text": "It turns and remembers its orders. You are not among those it was told to spare.",
           "effects": [
             {
               "encounter": {}
@@ -47,7 +47,7 @@
     },
     {
       "id": "scrap",
-      "label": "The strongest breaks it up for iron, before anyone else gets ideas.",
+      "label": "The strongest breaks it up for iron before anyone else gets ideas.",
       "rule": "scion:highest:might",
       "tags": [
         "bold"
@@ -55,7 +55,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It is a great deal of iron, and it does not resist, which is worse. It watches the whole time.",
+          "text": "It yields a great deal of iron without resisting, which is somehow worse. Its eyes follow every blow.",
           "effects": [
             {
               "resources": {
@@ -76,7 +76,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Its head turns to watch you go. It was not still at all.",
+          "text": "As you leave, its head grinds round to follow you.",
           "effects": [
             {
               "to": "party",

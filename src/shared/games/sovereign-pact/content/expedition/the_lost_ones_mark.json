@@ -9,7 +9,7 @@
     10
   ],
   "title": "The Lost One's Mark",
-  "text": "Scratched on a stone at head height, deep and hasty: your House's mark, and an arrow. The scratches are rusty with old blood. Someone you are looking for passed this way, and was hurt, and still stopped to leave this for you.",
+  "text": "Scratched deep and hasty into a stone at head height are your House's mark and an arrow. The scratches are rusty with old blood. Someone you are looking for passed this way hurt, yet still stopped to leave this for you.",
   "options": [
     {
       "id": "follow",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The marks go on, fresher each time.",
+          "text": "The marks go on, each fresher than the last.",
           "effects": [
             {
               "skip": 1
@@ -44,7 +44,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A second mark under the first: a warning about what follows them.",
+          "text": "Beneath the first mark is a second: a warning about what follows them.",
           "effects": [
             {
               "to": "party",
@@ -60,7 +60,7 @@
     },
     {
       "id": "call",
-      "label": "Call out their name, and hope they are still near enough to hear.",
+      "label": "Call out their name, hoping they are still near enough to hear.",
       "rule": "leader",
       "tags": [
         "reckless"
@@ -68,7 +68,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "An answer, far off, weak, but theirs.",
+          "text": "An answer comes from far off. It is weak, but it is theirs.",
           "effects": [
             {
               "to": "party",
@@ -78,7 +78,7 @@
         },
         {
           "w": 50,
-          "text": "Something else answers, in their voice.",
+          "text": "Something else answers in their voice.",
           "effects": [
             {
               "encounter": {

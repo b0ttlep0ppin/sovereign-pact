@@ -9,11 +9,11 @@
     10
   ],
   "title": "The Inverted Tower",
-  "text": "A tower hangs point-down from nothing, its spire aimed at the ground below like a spear. Its windows glow. Its door is at the bottom, which is the top, and it stands open. Somewhere inside, someone is singing upside down.",
+  "text": "A tower hangs point-down from nothing, its spire aimed at the ground like a spear. Its windows glow. Its door, at the bottom that is really its top, stands open. Somewhere inside, someone is singing upside down.",
   "options": [
     {
       "id": "climb",
-      "label": "Climb up into the hanging tower, and see who sings inside.",
+      "label": "Climb up into the hanging tower to see who sings inside.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "A library upside down, its books still readable if you hang by your knees.",
+          "text": "Inside is a library turned on its head; the books can still be read if you hang by your knees.",
           "effects": [
             {
               "score": {
@@ -32,7 +32,7 @@
         },
         {
           "w": 50,
-          "text": "It falls up with you inside, and keeps falling, and you are not sure it ever stops.",
+          "text": "It falls upward with you inside, and keeps falling. Nobody is sure it ever stops.",
           "effects": [
             {
               "to": "party",
@@ -44,7 +44,7 @@
     },
     {
       "id": "look",
-      "label": "The sharpest eye looks in from below, before anyone climbs.",
+      "label": "The sharpest looks in from below before anyone climbs.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -52,7 +52,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Someone upside down looks back, and points the way, and waves.",
+          "text": "Someone upside down looks back at them. With a little wave, it points the way onward.",
           "effects": [
             {
               "skip": 1
@@ -63,7 +63,7 @@
     },
     {
       "id": "leave",
-      "label": "Do not go up. A tower that hangs from nothing is not to be trusted.",
+      "label": "Do not go up; a tower that hangs from nothing is not to be trusted.",
       "rule": "leader",
       "tags": [
         "cautious"

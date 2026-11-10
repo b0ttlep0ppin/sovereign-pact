@@ -9,11 +9,11 @@
     10
   ],
   "title": "The Last Letter",
-  "text": "A letter, sealed, addressed to your House in a careful hand, in the satchel of a body that is not one of yours. A courier, dead in the ditch with arrows in his back. He was carrying it for a Lost Scion, and he very nearly made it.",
+  "text": "A dead courier lies in the ditch with arrows in his back. In his satchel is a sealed letter, addressed to your House in a careful hand. He was carrying it for a Lost Scion, and he very nearly made it.",
   "options": [
     {
       "id": "read",
-      "label": "Break the seal and read it. The Lost cannot wait on courtesy.",
+      "label": "Break the seal and read it; the Lost cannot wait on courtesy.",
       "rule": "vote",
       "tags": [
         "clever"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Where they are, and how long they can hold, and how afraid they are. The fear is in every line.",
+          "text": "It tells where they are and how long they can hold. Their fear shows in every line.",
           "effects": [
             {
               "foresee": true
@@ -43,7 +43,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Honor kept, and the weight of not knowing.",
+          "text": "Your honor is kept, though the weight of not knowing comes with it.",
           "effects": [
             {
               "score": {
@@ -56,7 +56,7 @@
     },
     {
       "id": "courier",
-      "label": "The healer tends the courier's body for burial, as he deserves.",
+      "label": "The healer prepares the courier's body for burial, as he deserves.",
       "rule": "scion:most_healing|scion:random",
       "tags": [
         "kind"
@@ -64,7 +64,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "In his pocket, a second letter, and a way to find them sooner.",
+          "text": "In his pocket they find a second letter, which tells of a faster way to reach the Lost.",
           "effects": [
             {
               "skip": 1
