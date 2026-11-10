@@ -128,8 +128,14 @@ interface Props {
   sound?: number;
   /** A battle being fought now (§10.4): its turn's choices for this seat, or whom it waits on. */
   live?: Live;
-  /** Open on the battle's last turn, for its ending (a battle just fought on screen). */
-  ending?: boolean;
+  /**
+   * A battle that was being fought on screen when it ended: the turn the screen had reached. It plays on
+   * from there to the ending (Josh 2026-11-10: the bots' last turns were skipped when the fight ended on
+   * them); a turn past the last opens on the ending.
+   */
+  from?: number;
+  /** Hears the turn on screen, so a live battle that ends can play on from it. */
+  onAt?: (at: number) => void;
   /** A fight being fought, opened again after it was hidden: it starts at the turn being fought. */
   resume?: boolean;
 }
@@ -149,15 +155,18 @@ const same = (a: Cell, b: Cell) => a.side === b.side && a.col === b.col && a.row
 /** How many turns the log keeps in view when it is not the full log. */
 const LOG_TURNS = 6;
 
-export default function BattleScreen({ replay, view, onClose, waiting = 0, fullLog = false, sound = 0, live, ending = false, resume = false }: Props) {
+export default function BattleScreen({ replay, view, onClose, waiting = 0, fullLog = false, sound = 0, live, from, onAt, resume = false }: Props) {
   const states = useMemo(() => framesOf(replay), [replay]);
   const units = useMemo(() => new Map(replay.units.map((u) => [u.id, u])), [replay]);
+  const ending = from !== undefined && from >= replay.frames.length;
   // A fight opened again while it is being fought picks up where it stands, not from its first turn.
-  const [at, setAt] = useState(ending || resume ? replay.frames.length : 0);
+  const [at, setAt] = useState(resume ? replay.frames.length : Math.min(from ?? 0, replay.frames.length));
   const [playing, setPlaying] = useState(!ending);
   // A pause before the fight (Josh 2026-11-02): where it is, an omen, and what waits.
-  // A live battle opens on its card even when the foes have already moved: they play out after it.
-  const [intro, setIntro] = useState(!ending && !resume);
+  // A live battle opens on its card even when the foes have already moved: they play out after it,
+  // as does one that ended before its card was seen (Josh 2026-11-10: "the combat begins before I acknowledge the pop up").
+  const [intro, setIntro] = useState(!resume && !from);
+  useEffect(() => onAt?.(at), [at, onAt]);
   useEffect(() => {
     if (!intro) return;
     const t = setTimeout(() => setIntro(false), INTRO_MS);
@@ -194,10 +203,10 @@ export default function BattleScreen({ replay, view, onClose, waiting = 0, fullL
   const log = useRef<HTMLOListElement>(null);
   // The log (§15.8) sits in the column under the enemies (Josh: "the combat log can use some of the dead
   // space"): the last few turns, newest at the foot; the full log keeps every turn so far.
-  const from = fullLog ? 0 : Math.max(0, at - LOG_TURNS);
+  const logFrom = fullLog ? 0 : Math.max(0, at - LOG_TURNS);
   const lines = replay.frames
-    .slice(from, at + 1)
-    .flatMap((f, i) => f.ev.map((e) => [from + i, e] as const))
+    .slice(logFrom, at + 1)
+    .flatMap((f, i) => f.ev.map((e) => [logFrom + i, e] as const))
     .filter(([, e]) => e.t !== "turn");
 
   // An injury roll waits on its die (Josh 2026-11-03: "the player should have to click the dice … so

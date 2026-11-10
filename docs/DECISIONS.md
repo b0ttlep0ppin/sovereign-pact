@@ -2,6 +2,10 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-10 (implementation, Milestone 8dt): a battle that ends off screen plays on to its ending
+
+Josh: "the bots are inputting their commands and resolving them instantly, so the combat ends before I see the bots take their actions, it should just continue to play the combat normally and then show us all the victory screen at the end", and "similarly the combat begins before I acknowledge the pop up". When the other Houses' bots finished a live battle, the fight left the state at once and its screen reopened on the ending, skipping every turn not yet played on screen; a fight that started and ended while an outcome card was up opened on its ending too. The client now remembers the turn its live screen had reached: when the battle ends it plays on from that turn to the victory or defeat screen, and one never seen opens on its pause before the fight and plays from the start. A battle the player hid still opens on its ending.
+
 ## 2026-11-10 (implementation, Milestone 8ds): allied bots act every turn they can, and step out of shown attacks
 
 Josh: "allied bots are doing a lot of 'move 1 square, then end turn' they should always try and take an action, and mostly move to get target in range or avoid telegraphed attacks". A gambit rule that could not be done (no MP, a cooldown, nothing in reach) used to step toward the foe and Wait at once, ahead of every later rule and the attack. For Scions (bot seats, Sorties, absent players, auto battles) a rule now only moves if it can act from where it lands; stepping closer and Waiting is the last resort, after every rule and the attack. A Scion standing where a shown attack will land (telegraphed, or read by Commune; not a homing one, and not one that picks its own victims as it lands) steps to the nearest safe cell and acts from there, or Defends there if it cannot. Reading taken: creatures keep their old ways, since the enemy numbers were tuned with them; the sweep shows the party losing about 5 points less HP and taking fewer injury rolls, with win rates unchanged.
