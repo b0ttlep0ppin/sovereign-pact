@@ -2,6 +2,12 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-10 (implementation, Milestone 8dw): the Bestiary's second pass baked in
+
+Josh went through the Bestiary again, mostly the 42 new pictures from 8dp. His sliders on 43 sprites now replace their manifest `tweak`s, and those sprites are re-cut through `tools/sprite_tweak.py` as in 8do.
+- **The Political Merchant** (again "Needs work": "too weird and anime") is drawn as the pack's Minister, a grim courtier with a knife in his hand, and renamed the **Venal Minister**. His bribe, hired help and hidden knife stay.
+- **Answered by his marks:** the Thunderer and the Termite Queen are now "Looks right", so both stay as they are. The Rot Bloom is "Looks right" too, with the note "sprite doesn't really make", read as left over from his earlier note, so it keeps its picture.
+
 ## 2026-11-10 (implementation, Milestone 8dv): the axe held head up, weapons in metals by quality
 
 Josh: "axe seems to be oriented incorrectly?", then "increasingly better axes should use the better axe sprites (same for all other weapons)" and "you can tint the existing ones different colors too to stretch them further".
