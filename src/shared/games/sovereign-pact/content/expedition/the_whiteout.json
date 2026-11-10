@@ -9,11 +9,11 @@
     8
   ],
   "title": "The Whiteout",
-  "text": "Snow so thick you cannot see the Scion in front of you, a wall of white on every side. The wind is a scream, and sometimes it sounds like voices calling your names from the wrong direction.",
+  "text": "The snow is so thick you cannot see the Scion in front of you, a wall of white on every side. The wind screams. Sometimes it sounds like voices calling your names from the wrong direction.",
   "options": [
     {
       "id": "dig",
-      "label": "Dig in and wait it out, and do not answer the voices.",
+      "label": "Dig in and wait it out, without answering the voices.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A cold night in a snow cave, with the voices calling outside.",
+          "text": "You pass a cold night in a snow cave with the voices calling outside.",
           "effects": [
             {
               "to": "party",
@@ -37,7 +37,7 @@
     },
     {
       "id": "lead",
-      "label": "The toughest leads on by compass, and trusts the needle over their ears.",
+      "label": "The toughest leads on by compass, trusting the needle over their ears.",
       "rule": "scion:highest:resilience",
       "tags": [
         "bold"
@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "Out the far side.",
+          "text": "They bring you out the far side.",
           "effects": [
             {
               "skip": 1
@@ -54,7 +54,7 @@
         },
         {
           "w": 40,
-          "text": "In circles, and then over an edge.",
+          "text": "They walk in circles, then over an edge.",
           "effects": [
             {
               "injury": "legs"
@@ -65,7 +65,7 @@
     },
     {
       "id": "call",
-      "label": "Call out to stay together, so no one wanders off.",
+      "label": "Call out to stay together so no one wanders off.",
       "rule": "leader",
       "tags": [
         "kind"
@@ -73,7 +73,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Something else calls back, from close by.",
+          "text": "Something else calls back from close by.",
           "effects": [
             {
               "encounter": {

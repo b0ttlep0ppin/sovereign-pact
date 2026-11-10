@@ -9,7 +9,7 @@
     6
   ],
   "title": "The Vulture Tree",
-  "text": "A dead tree heavy with vultures, dozens of them, hunched and patient. Beneath it, in the shade, something they are waiting on is still breathing. It is hard to tell what it is, or what it was.",
+  "text": "A dead tree sags with dozens of vultures, hunched and patient. Beneath it, in the shade, the thing they are waiting on is still breathing. It is hard to tell what it is, or what it was.",
   "options": [
     {
       "id": "help",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A wounded traveler, who pays in thanks and a map.",
+          "text": "It is a wounded traveler, who pays in thanks and a map.",
           "effects": [
             {
               "skip": 1
@@ -37,7 +37,7 @@
     },
     {
       "id": "leave",
-      "label": "Leave it to the birds. Whatever it is, it is beyond saving.",
+      "label": "Leave it to the birds; whatever it is, it is beyond saving.",
       "rule": "vote",
       "tags": [
         "cruel"
@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The birds lift as you pass, and settle behind, and the breathing stops.",
+          "text": "The birds lift as you pass and settle behind you. The breathing stops.",
           "effects": [
             {
               "to": "party",
@@ -57,7 +57,7 @@
     },
     {
       "id": "scare",
-      "label": "Scare the vultures off, so it may die in peace.",
+      "label": "Scare the vultures off so it may die in peace.",
       "rule": "leader",
       "tags": [
         "bold"

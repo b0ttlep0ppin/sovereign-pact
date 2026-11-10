@@ -9,7 +9,7 @@
     10
   ],
   "title": "The Well-Keeper",
-  "text": "An old woman sits by a well, knitting, a bucket of gold at her feet that catches the light. A drink, she says, costs a true answer to one question. She does not look up from her knitting. She already knows the question.",
+  "text": "An old woman sits knitting by a well, a bucket of gold at her feet catching the light. A drink, she says, costs a true answer to one question. She does not look up from her knitting; she already knows the question.",
   "options": [
     {
       "id": "answer",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "She asks something hard. The truth costs, and the water heals.",
+          "text": "She asks something hard. The truth costs them, but the water heals.",
           "effects": [
             {
               "sanity": -10
@@ -36,7 +36,7 @@
     },
     {
       "id": "lie",
-      "label": "The best liar drinks and lies, and hopes she does not notice.",
+      "label": "The best liar drinks and lies, hoping she does not notice.",
       "rule": "scion:highest:guile",
       "tags": [
         "cruel"
@@ -44,7 +44,7 @@
       "outcomes": [
         {
           "w": 40,
-          "text": "She lets it pass, and laughs.",
+          "text": "She laughs and lets it pass.",
           "effects": [
             {
               "to": "party",
@@ -54,7 +54,7 @@
         },
         {
           "w": 60,
-          "text": "The water turns to sand in the mouth, and the tongue stays dry a long while.",
+          "text": "The water turns to sand in their mouth. Their tongue stays dry a long while.",
           "effects": [
             {
               "sanity": -10
@@ -68,7 +68,7 @@
     },
     {
       "id": "pass",
-      "label": "Go thirsty. Some questions cost more than water is worth.",
+      "label": "Go thirsty; some questions cost more than water is worth.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -76,7 +76,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Thirsty, and none the wiser, and she never once looks up.",
+          "text": "You leave thirsty and none the wiser. She never once looks up.",
           "effects": [
             {
               "to": "party",

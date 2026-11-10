@@ -9,11 +9,11 @@
     10
   ],
   "title": "The Wounded Hound",
-  "text": "The House's hound, which went with the Lost, limps out of the brush and whines, one leg dragging, its coat matted with blood. It noses at your hands, then turns and looks back the way it came.",
+  "text": "The House's hound, which went with the Lost, limps out of the brush whining, one leg dragging, its coat matted with blood. It noses at your hands, then turns to look back the way it came.",
   "options": [
     {
       "id": "heal",
-      "label": "The healer tends the hound, so it can lead you to them faster.",
+      "label": "The healer tends the hound so it can lead you to them faster.",
       "rule": "scion:most_healing|scion:highest:sagacity",
       "tags": [
         "kind"
@@ -32,7 +32,7 @@
     },
     {
       "id": "follow",
-      "label": "Follow it as it is. There is no time to waste.",
+      "label": "Follow it as it is; there is no time to waste.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -40,7 +40,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Slowly, but it knows the way.",
+          "text": "It goes slowly, but it knows the way.",
           "effects": [
             {
               "skip": 1
@@ -51,7 +51,7 @@
     },
     {
       "id": "track",
-      "label": "The sharpest eye tracks its blood back, to find what hurt it.",
+      "label": "The sharpest tracks its blood back to find what hurt it.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -59,7 +59,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "To what hurt it.",
+          "text": "They find what hurt it, and it is still close.",
           "effects": [
             {
               "encounter": {

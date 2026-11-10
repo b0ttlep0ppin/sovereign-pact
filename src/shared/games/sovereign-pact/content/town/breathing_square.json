@@ -12,7 +12,7 @@
   "options": [
     {
       "id": "dig",
-      "label": "Dig up the square, and learn what breathes beneath the city.",
+      "label": "Dig up the square to learn what breathes beneath the city.",
       "tags": [
         "bold",
         "reckless"
@@ -20,7 +20,7 @@
       "outcomes": [
         {
           "w": 40,
-          "text": "Under the stones lies an eye the size of a cart, closed. It does not open. You fill it in, quickly.",
+          "text": "Under the stones lies a closed eye the size of a cart. It does not open, and you fill it in quickly.",
           "effects": [
             {
               "to": "all",
@@ -35,7 +35,7 @@
         },
         {
           "w": 30,
-          "text": "Under the stones, a vault of the old city, sealed before the Pact was sworn.",
+          "text": "Under the stones is a vault of the old city, sealed before the Pact was sworn.",
           "effects": [
             {
               "to": "all",
@@ -68,14 +68,14 @@
     },
     {
       "id": "pave",
-      "label": "Pave over it with fresh stone, and hope it sleeps on.",
+      "label": "Pave over it with fresh stone, hoping it sleeps on.",
       "tags": [
         "cautious"
       ],
       "outcomes": [
         {
           "w": 80,
-          "text": "The breathing slows, and stops. Probably.",
+          "text": "The breathing slows, then stops, or seems to.",
           "effects": [
             {
               "to": "all",
@@ -104,14 +104,14 @@
     },
     {
       "id": "shrine",
-      "label": "Raise a shrine over it, and pray it never wakes.",
+      "label": "Raise a shrine over it and pray it never wakes.",
       "tags": [
         "kind"
       ],
       "outcomes": [
         {
           "w": 60,
-          "text": "The city prays. The breathing slows to a crawl.",
+          "text": "The city prays, and the breathing slows to a crawl.",
           "effects": [
             {
               "to": "commons",
@@ -126,7 +126,7 @@
         },
         {
           "w": 40,
-          "text": "The prayers are answered. Not by any god the priests know.",
+          "text": "The prayers are answered, though not by any god the priests know.",
           "effects": [
             {
               "to": "commons",

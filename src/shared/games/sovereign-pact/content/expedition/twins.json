@@ -9,11 +9,11 @@
     10
   ],
   "title": "The Twins",
-  "text": "Two children in matching grey wait where the path splits, holding hands. One always lies and one always tells the truth, they say together, and smile the same smile. Their feet do not quite touch the ground.",
+  "text": "Two children in matching grey wait where the path splits, holding hands. One always lies and one always tells the truth, they say together, smiling the same smile. Their feet do not quite touch the ground.",
   "options": [
     {
       "id": "ask",
-      "label": "The cleverest asks the right question, and listens to both answers.",
+      "label": "The cleverest asks the right question and listens to both answers.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "The answer comes, and it is the true one. A short way, safe.",
+          "text": "The answer is true, and the way it shows is short and safe.",
           "effects": [
             {
               "fork": {
@@ -32,7 +32,7 @@
         },
         {
           "w": 40,
-          "text": "The answer comes, and leads past a buried cache.",
+          "text": "The answer leads past a buried cache.",
           "effects": [
             {
               "fork": {
@@ -47,7 +47,7 @@
     },
     {
       "id": "pick",
-      "label": "The Leader picks a path and walks it. Children do not choose your road.",
+      "label": "The Leader picks a path and walks it; children do not choose your road.",
       "rule": "leader",
       "tags": [
         "reckless"

@@ -9,11 +9,11 @@
     10
   ],
   "title": "The Wild Orchard",
-  "text": "An orchard gone wild, the trees heavy with fruit and good timber, the ground thick with windfalls buzzing with wasps. A bear thinks it is his. You can see where he has been, and he is not far.",
+  "text": "An orchard has gone wild, the trees heavy with fruit and good timber, the ground thick with windfalls buzzing with wasps. A bear thinks it is his. You can see where he has been, and he is not far.",
   "options": [
     {
       "id": "pick",
-      "label": "Pick fast, before the bear comes back for what is his.",
+      "label": "Pick fast before the bear comes back for what is his.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "Baskets full.",
+          "text": "You fill basket after basket.",
           "effects": [
             {
               "resources": {
@@ -33,7 +33,7 @@
         },
         {
           "w": 40,
-          "text": "The bear.",
+          "text": "The bear comes back.",
           "effects": [
             {
               "encounter": {
@@ -46,7 +46,7 @@
     },
     {
       "id": "share",
-      "label": "Leave the bear his share. There is enough for everyone.",
+      "label": "Leave the bear his share; there is enough for everyone.",
       "rule": "leader",
       "tags": [
         "kind"
@@ -54,7 +54,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He watches from the trees, and lets you take half.",
+          "text": "He watches from the trees and lets you take half.",
           "effects": [
             {
               "resources": {
@@ -68,7 +68,7 @@
     },
     {
       "id": "fell",
-      "label": "The strongest fells the old trees. The fruit is not worth a bear.",
+      "label": "The strongest fells the old trees; the fruit is not worth a bear.",
       "rule": "scion:highest:might",
       "tags": [
         "bold"
@@ -76,7 +76,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Fine timber, and the bear does not come. You wonder why.",
+          "text": "The timber is fine, and the bear does not come. You wonder why.",
           "effects": [
             {
               "resources": {

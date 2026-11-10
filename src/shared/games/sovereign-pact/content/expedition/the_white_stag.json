@@ -9,11 +9,11 @@
     8
   ],
   "title": "The White Stag",
-  "text": "A white stag watches from the ridge, unafraid, its antlers silver against the sky. The hunters' songs in town say whoever takes it will never miss again. The songs do not say what else happens to them.",
+  "text": "A white stag watches from the ridge, unafraid, its antlers silver against the sky. The hunters' songs in town say whoever takes it will never miss again. The songs do not say what else befalls them.",
   "options": [
     {
       "id": "hunt",
-      "label": "The keenest eye takes the shot, and claims what the songs promise.",
+      "label": "The keenest eye takes the shot to claim what the songs promise.",
       "rule": "scion:highest:acuity",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 40,
-          "text": "One arrow, clean. The hide is like snow, and the hand that drew the bow is steadier for it.",
+          "text": "One arrow flies clean. The hide is like snow, and the hand that drew the bow is steadier for it.",
           "effects": [
             {
               "trait": "+keen_eyed"
@@ -35,7 +35,7 @@
         },
         {
           "w": 60,
-          "text": "The arrow goes wide, and the stag looks at them for a long moment before it goes.",
+          "text": "The arrow goes wide. The stag looks at them a long moment before it goes.",
           "effects": [
             {
               "sanity": -10
@@ -46,7 +46,7 @@
     },
     {
       "id": "follow",
-      "label": "Follow it, and see where it leads.",
+      "label": "Follow it to see where it leads.",
       "rule": "vote",
       "tags": [
         "clever"
@@ -54,7 +54,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It leads you round a pack of something hungry and leaves you at a better road.",
+          "text": "It leads you round a pack of something hungry and leaves you on a better road.",
           "effects": [
             {
               "skip": 1
@@ -65,7 +65,7 @@
     },
     {
       "id": "bow",
-      "label": "Bow to the stag, and let it go untouched.",
+      "label": "Bow to the stag and let it go untouched.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -73,7 +73,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It bows back. Everyone feels lighter.",
+          "text": "It bows back, and everyone feels lighter.",
           "effects": [
             {
               "to": "party",

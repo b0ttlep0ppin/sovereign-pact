@@ -9,11 +9,11 @@
     7
   ],
   "title": "The Witch's Hut",
-  "text": "A hut on chicken legs scratches in the leaves, turning to face you, its door creaking open. The witch inside is all knuckles and teeth. She offers a trade: a year of your life for a cure. She has jars of years on her shelves.",
+  "text": "A hut on chicken legs scratches in the leaves, turning to face you as its door creaks open. The witch inside is all knuckles and teeth. For a year of your life, she offers a cure. Her shelves are lined with jars of years.",
   "options": [
     {
       "id": "trade",
-      "label": "The most wounded trades her a year, and takes the cure.",
+      "label": "The most wounded trades her a year and takes the cure.",
       "rule": "scion:injured:any|scion:lowest:sanity",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The wound closes. They feel older, and they move like it. A new jar sits on her shelf.",
+          "text": "The wound closes, but they feel older and move like it. A new jar sits on her shelf.",
           "effects": [
             {
               "mend": true
@@ -37,7 +37,7 @@
     },
     {
       "id": "haggle",
-      "label": "The shrewdest haggles her down. A year is too dear.",
+      "label": "The shrewdest haggles her down; a year is too dear.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"
@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "A month instead of a year, and the cure is good.",
+          "text": "She settles for a month instead, and the cure is good.",
           "effects": [
             {
               "to": "party",
@@ -66,7 +66,7 @@
     },
     {
       "id": "leave",
-      "label": "Leave her be. No cure is worth the years on those shelves.",
+      "label": "Leave her be; no cure is worth the years on those shelves.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -74,7 +74,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "The hut follows a while, then loses interest. Where its claws scratched the path it left a bundle of good herbs.",
+          "text": "The hut follows a while before losing interest. Where its claws scratched the path, it has left a bundle of good herbs.",
           "effects": [
             {
               "to": "party",
@@ -84,7 +84,7 @@
         },
         {
           "w": 50,
-          "text": "The hut follows a while, then loses interest, and the witch leans out and spits after you.",
+          "text": "The hut follows a while before losing interest. The witch leans out to spit after you.",
           "effects": [
             {
               "to": "party",
@@ -105,7 +105,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "She cackles, takes a lock of hair instead of a year, and the cure is real.",
+          "text": "She cackles and takes a lock of hair instead of a year. The cure is real.",
           "effects": [
             {
               "mend": true,

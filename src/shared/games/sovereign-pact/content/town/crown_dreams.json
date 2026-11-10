@@ -7,7 +7,7 @@
     9
   ],
   "title": "Dreams of a Drowned Crown",
-  "text": "In every Seat on the same night, someone dreams of the same palace: green water in the throne room, courtiers with their eyes eaten, and on the throne a King with his crown nailed on. He beckons. In the morning, the dreamers' pillows are wet.",
+  "text": "On the same night, in every Seat, someone dreams of the same palace: green water in the throne room, courtiers with their eyes eaten, and on the throne a King with his crown nailed on, beckoning. In the morning the dreamers' pillows are wet.",
   "rule": "each_house",
   "options": [
     {
@@ -19,7 +19,7 @@
       "outcomes": [
         {
           "w": 1,
-          "text": "Night after night they walk the drowned palace and map it. They come to know its every door. They come to know its King, too, and he them.",
+          "text": "Night after night they walk the drowned palace and map it, until they know its every door. They come to know its King, too, and he them.",
           "effects": [
             {
               "scion": {
@@ -40,7 +40,7 @@
     },
     {
       "id": "chapel",
-      "label": "Have the chapel keep a vigil over the dreamer, so the King cannot find them.",
+      "label": "Have the chapel keep a vigil over the dreamer so the King cannot find them.",
       "tags": [
         "kind"
       ],
@@ -52,7 +52,7 @@
       "outcomes": [
         {
           "w": 1,
-          "text": "The priests sit by the bed and sing. The dreamer sleeps without dreams, and the King's face on the throne turns to look for someone else.",
+          "text": "The priests sit by the bed and sing. The dreamer sleeps without dreams, and on the throne the King turns his face to look for someone else.",
           "effects": [
             {
               "doom": -1
@@ -63,7 +63,7 @@
     },
     {
       "id": "wake",
-      "label": "Wake them every hour until it stops. No King will have them.",
+      "label": "Wake them every hour until it stops; no King will have them.",
       "tags": [
         "cautious"
       ],

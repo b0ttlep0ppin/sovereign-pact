@@ -10,7 +10,7 @@
     7
   ],
   "title": "Wolves at the Fire",
-  "text": "Eyes in the dark, all the way around the camp, green and steady. They come closer each time the fire burns down. You can hear them breathing, and once, very softly, something that sounds like laughter.",
+  "text": "Eyes ring the camp in the dark, green and steady, coming closer each time the fire burns down. You can hear them breathing. Once, very softly, comes something that sounds like laughter.",
   "options": [
     {
       "id": "fight",
@@ -33,7 +33,7 @@
     },
     {
       "id": "feed",
-      "label": "Throw them the food, and hope a full pack is a patient one.",
+      "label": "Throw them the food, hoping a full pack is a patient one.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -41,7 +41,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The pack eats and goes. So does the night's rest, and the food.",
+          "text": "The pack eats and goes, taking the food and the night's rest with it.",
           "effects": [
             {
               "to": "party",
@@ -57,7 +57,7 @@
     },
     {
       "id": "sing",
-      "label": "The wisest sings to them, and hopes the laughter was only wind.",
+      "label": "The wisest sings to them, hoping the laughter was only wind.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "kind"
@@ -65,7 +65,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "The wolves lie down to listen, and in the morning they are still there, waiting to run with you.",
+          "text": "The wolves lie down to listen. In the morning they are still there, waiting to run with you.",
           "effects": [
             {
               "to": "party",

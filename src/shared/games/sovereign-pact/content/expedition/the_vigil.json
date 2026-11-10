@@ -9,7 +9,7 @@
     10
   ],
   "title": "The Vigil",
-  "text": "Pilgrims keep an all-night vigil at a roadside altar, kneeling in a ring of candles, swaying, murmuring. Their eyes do not close. They invite you to join them. Some of them have been kneeling so long their knees have bled into the stone.",
+  "text": "Pilgrims keep an all-night vigil at a roadside altar, kneeling in a ring of candles, swaying and murmuring with eyes that never close. They invite you to join them. Some have knelt so long that their knees have bled into the stone.",
   "options": [
     {
       "id": "join",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A long night, a clear morning, and stiff legs that will not hurry.",
+          "text": "After a long night comes a clear morning, though their legs are too stiff to hurry.",
           "effects": [
             {
               "sanity": 10
@@ -35,7 +35,7 @@
     },
     {
       "id": "sleep",
-      "label": "Sleep instead. The road needs you rested more than the altar needs you kneeling.",
+      "label": "Sleep instead; the road needs you rested more than the altar needs you kneeling.",
       "rule": "each_scion",
       "tags": [
         "cautious"
@@ -43,7 +43,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Rested, while the murmuring goes on all night around you.",
+          "text": "You rest while the murmuring goes on all night around you.",
           "effects": [
             {
               "sanity": 3

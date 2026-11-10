@@ -9,11 +9,11 @@
     10
   ],
   "title": "The Trail of Coins",
-  "text": "House coins lie dropped one by one along a path, a clever Scion's breadcrumbs, glinting in the mud. They lead off into the hills. You are not the only ones who might have found them.",
+  "text": "House coins lie dropped one by one along a path, glinting in the mud, a clever Scion's breadcrumbs leading off into the hills. You may not be the only ones to have found them.",
   "options": [
     {
       "id": "follow",
-      "label": "Follow the coins into the hills, wherever they lead.",
+      "label": "Follow the coins into the hills wherever they lead.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They lead on, and you pocket them as you go, one by one.",
+          "text": "They lead on, and you pocket them one by one as you go.",
           "effects": [
             {
               "skip": 1
@@ -37,7 +37,7 @@
     },
     {
       "id": "read",
-      "label": "The sharpest eye notices the spacing, and what it says of whoever dropped them.",
+      "label": "The sharpest notices the spacing, and what it says of whoever dropped them.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Closer together here. They were running.",
+          "text": "Here they fall closer together. They were running.",
           "effects": [
             {
               "foresee": true
@@ -59,7 +59,7 @@
     },
     {
       "id": "wary",
-      "label": "Hang back and watch the trail. Someone else may be following them too.",
+      "label": "Hang back and watch the trail; someone else may be following them too.",
       "rule": "leader",
       "tags": [
         "cautious"

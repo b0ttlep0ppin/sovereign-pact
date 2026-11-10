@@ -9,11 +9,11 @@
     6
   ],
   "title": "The Watering Hole",
-  "text": "Every beast of the plains comes to drink at one pool at dusk: lions beside antelope, wolves beside deer. For an hour, they keep a truce. The water is pink in the sunset. No one has ever seen what happens when the hour is up.",
+  "text": "At dusk every beast of the plains comes to drink at one pool, lions beside antelope, wolves beside deer, keeping a truce for an hour. The water is pink in the sunset. No one has ever seen what happens when the hour is up.",
   "options": [
     {
       "id": "drink",
-      "label": "Drink with the beasts, and keep the truce as they do.",
+      "label": "Drink with the beasts and keep the truce as they do.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 85,
-          "text": "The beasts let you be. You have never felt so watched or so safe.",
+          "text": "The beasts let you be. You have never felt so watched, or so safe.",
           "effects": [
             {
               "to": "party",
@@ -48,7 +48,7 @@
     },
     {
       "id": "watch",
-      "label": "The sharpest eye watches which beasts come, to learn what roams ahead.",
+      "label": "The sharpest watches which beasts come, to learn what roams ahead.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -67,7 +67,7 @@
     },
     {
       "id": "break",
-      "label": "Break the truce while they drink. They will never be easier prey.",
+      "label": "Break the truce while they drink; they will never be easier prey.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -75,7 +75,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Easy kills, at first, and the plains remember.",
+          "text": "The kills are easy at first. The plains remember.",
           "effects": [
             {
               "encounter": {

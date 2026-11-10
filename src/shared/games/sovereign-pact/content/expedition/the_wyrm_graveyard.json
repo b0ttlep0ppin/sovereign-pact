@@ -9,7 +9,7 @@
     10
   ],
   "title": "The Wyrm Graveyard",
-  "text": "A valley of great bones, ribs like the vaults of cathedrals, skulls like houses, where old wyrms go to die. One of them has not quite finished. Its breath is a slow rasp. Its eye is open, and it is looking at you.",
+  "text": "Old wyrms come to die in this valley of great bones, with ribs like cathedral vaults and skulls like houses. One of them has not quite finished. Its breath is a slow rasp. Its eye is open, and it is looking at you.",
   "options": [
     {
       "id": "mercy",
@@ -39,7 +39,7 @@
     },
     {
       "id": "bones",
-      "label": "Take bones from the dead ones, and leave the dying one in peace.",
+      "label": "Take bones from the dead ones and leave the dying one in peace.",
       "rule": "leader",
       "tags": [
         "clever"
@@ -61,7 +61,7 @@
     },
     {
       "id": "listen",
-      "label": "The wisest listens to what it has to say, before it says nothing ever again.",
+      "label": "The wisest listens to what it has to say before it falls silent for good.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "bold"

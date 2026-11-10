@@ -9,11 +9,11 @@
     6
   ],
   "title": "The Wildebeest Crossing",
-  "text": "A herd of wildebeest crosses the river in a thundering mass, churning the water brown, bellowing. Crocodiles wait in the shallows, still as logs, and every so often one of the herd goes under and does not come up.",
+  "text": "A herd of wildebeest crosses the river in a thundering, bellowing mass, churning the water brown. Crocodiles wait in the shallows, still as logs. Every so often one of the herd goes under and does not come up.",
   "options": [
     {
       "id": "wait",
-      "label": "Wait for the herd to pass, and let the crocodiles eat their fill.",
+      "label": "Wait for the herd to pass while the crocodiles eat their fill.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Hours, and then a calm river. The crocodiles are fat and lazy, and you cross rested by the wait.",
+          "text": "After hours the river is calm and the crocodiles fat and lazy. You cross rested by the wait.",
           "effects": [
             {
               "to": "party",
@@ -42,7 +42,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "The crocodiles have other things to eat.",
+          "text": "The crocodiles are busy with the herd.",
           "effects": [
             {
               "skip": 1
@@ -51,7 +51,7 @@
         },
         {
           "w": 40,
-          "text": "A crocodile prefers you.",
+          "text": "One crocodile prefers you.",
           "effects": [
             {
               "encounter": {
@@ -64,7 +64,7 @@
     },
     {
       "id": "watch",
-      "label": "The sharpest eye watches for the safe ford, away from the logs that are not logs.",
+      "label": "The sharpest watches for a safe ford, away from the logs that are not logs.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -72,7 +72,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Upstream, where the crocodiles are not.",
+          "text": "Upstream, where there are no crocodiles, they find it.",
           "effects": [
             {
               "xp": 30

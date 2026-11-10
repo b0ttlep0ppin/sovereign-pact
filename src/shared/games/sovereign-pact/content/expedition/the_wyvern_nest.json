@@ -9,7 +9,7 @@
     10
   ],
   "title": "The Wyvern Nest",
-  "text": "A wyvern's nest on a crag, a ragged bowl of bones and branches. The eggs are warm and speckled green. The mother is away. Her shriek, somewhere on the wind, is getting closer.",
+  "text": "A wyvern's nest sits on a crag, a ragged bowl of bones and branches holding warm, speckled green eggs. The mother is away. Her shriek is somewhere on the wind, getting closer.",
   "options": [
     {
       "id": "eggs",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "Away before she returns.",
+          "text": "They are away before she returns.",
           "effects": [
             {
               "resources": {
@@ -46,7 +46,7 @@
     },
     {
       "id": "wait",
-      "label": "Wait in ambush for the mother, and kill her as she lands.",
+      "label": "Wait in ambush for the mother and kill her as she lands.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -72,7 +72,7 @@
     },
     {
       "id": "leave",
-      "label": "Leave the nest. Nothing is worth a mother's fury.",
+      "label": "Leave the nest; nothing is worth a mother's fury.",
       "rule": "leader",
       "tags": [
         "kind"
@@ -80,7 +80,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "She circles overhead as you go, and does not dive. Her shadow crosses you again and again until nobody can stop flinching.",
+          "text": "She circles overhead as you go but does not dive. Her shadow crosses you again and again until nobody can stop flinching.",
           "effects": [
             {
               "to": "party",

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "light",
-      "label": "Light a candle for the party, and add your prayer to the river.",
+      "label": "Light a candle for the party, adding your prayer to the river.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A small flame among hundreds, and it leans toward you.",
+          "text": "Your small flame burns among hundreds, leaning toward you.",
           "effects": [
             {
               "resources": {
@@ -46,7 +46,7 @@
       "outcomes": [
         {
           "w": 80,
-          "text": "A flame that burns bright and steady.",
+          "text": "The flame burns bright and steady.",
           "effects": [
             {
               "sanity": 6
@@ -55,7 +55,7 @@
         },
         {
           "w": 20,
-          "text": "A flame that will not stay lit, however often they try.",
+          "text": "However often they try, the flame will not stay lit.",
           "effects": [
             {
               "sanity": -6
@@ -66,7 +66,7 @@
     },
     {
       "id": "wax",
-      "label": "The Leader gathers the spent wax to sell. The prayers are already said.",
+      "label": "The Leader gathers the spent wax to sell; the prayers are already said.",
       "rule": "leader",
       "tags": [
         "cruel"

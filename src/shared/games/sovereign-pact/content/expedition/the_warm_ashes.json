@@ -9,11 +9,11 @@
     8
   ],
   "title": "The Warm Ashes",
-  "text": "A campfire, still warm, set exactly the way you set yours, stones in the same ring, wood in the same stack. Someone is a few hours ahead of you, or a few hours behind. Their bootprints match yours.",
+  "text": "A campfire is still warm, set exactly the way you set yours, the stones in the same ring and the wood in the same stack. Someone is a few hours ahead of you, or a few hours behind. Their bootprints match yours.",
   "options": [
     {
       "id": "rest",
-      "label": "Rest by the fire while it lasts. Whoever built it is not here.",
+      "label": "Rest by the fire while it lasts; whoever built it is not here.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -48,7 +48,7 @@
     },
     {
       "id": "trap",
-      "label": "The craftiest sets a trap and waits, to learn who walks in your bootprints.",
+      "label": "The craftiest sets a trap and waits to learn who walks in your bootprints.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"
@@ -77,7 +77,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "You make good time, and leave nothing to follow.",
+          "text": "You make good time, leaving nothing to follow.",
           "effects": [
             {
               "skip": 1

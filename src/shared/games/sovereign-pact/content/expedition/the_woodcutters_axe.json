@@ -9,7 +9,7 @@
     7
   ],
   "title": "The Woodcutter's Axe",
-  "text": "An axe stuck in a living tree, the handle worn smooth by a hand long gone. The tree has grown around the blade, swallowing it, and the bark around the wound is dark and wet, as if it still bleeds.",
+  "text": "An axe is stuck in a living tree, its handle worn smooth by a hand long gone. The tree has grown around the blade, swallowing it, and the bark around the wound is dark and wet as if it still bleeds.",
   "options": [
     {
       "id": "pull",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "A fine old axe, and the tree sighs.",
+          "text": "It is a fine old axe. The tree sighs as it comes free.",
           "effects": [
             {
               "item": {
@@ -43,7 +43,7 @@
     },
     {
       "id": "leave",
-      "label": "Leave the axe where it is. The tree has made its peace with it.",
+      "label": "Leave the axe where it is; the tree has made its peace with it.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -51,7 +51,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The wood watches you go, approving.",
+          "text": "The wood watches you go with approval.",
           "effects": [
             {
               "to": "party",
@@ -71,7 +71,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Good timber, and it bleeds as it falls. The wood remembers.",
+          "text": "The timber is good, but the tree bleeds as it falls. The wood remembers.",
           "effects": [
             {
               "resources": {

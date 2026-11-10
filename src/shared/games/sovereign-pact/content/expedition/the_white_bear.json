@@ -9,11 +9,11 @@
     8
   ],
   "title": "The White Bear",
-  "text": "A great white bear sits in the snow, watching, its breath steaming. It has not eaten in a long time: its ribs show through its fur. It knows who is weakest. It has been watching them all morning.",
+  "text": "A great white bear sits in the snow, watching, its breath steaming, its ribs showing through its fur. It knows who is weakest. It has been watching them all morning.",
   "options": [
     {
       "id": "weak",
-      "label": "Put the weakest in the middle, and give the bear no easy prey.",
+      "label": "Put the weakest in the middle and give the bear no easy prey.",
       "rule": "scion:lowest:resilience|scion:lowest:might",
       "tags": [
         "cautious"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The bear follows all day, but it does not attack the circle.",
+          "text": "The bear follows all day, but it never attacks the circle.",
           "effects": [
             {
               "to": "party",
@@ -33,7 +33,7 @@
     },
     {
       "id": "feed",
-      "label": "Feed the starving bear, so it has no reason to take one of yours.",
+      "label": "Feed the bear so it has no reason to take one of yours.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -41,7 +41,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It eats, and walks away, and does not look back.",
+          "text": "It eats and walks away without looking back.",
           "effects": [
             {
               "resources": {
@@ -59,7 +59,7 @@
     },
     {
       "id": "hunt",
-      "label": "The Leader hunts it, before it chooses its moment.",
+      "label": "The Leader hunts it before it chooses its moment.",
       "rule": "leader",
       "tags": [
         "bold"
@@ -67,7 +67,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It has been waiting for that.",
+          "text": "It was waiting for that.",
           "effects": [
             {
               "encounter": {

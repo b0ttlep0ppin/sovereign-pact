@@ -7,7 +7,7 @@
     20
   ],
   "title": "The Cousin's Claim",
-  "text": "A cousin from a branch thought dead these thirty years arrives at the gate in a dusty coach, with papers, a claim on the House's name, and the founder's own eyes. The old servants cross themselves when they see that face. It has not aged at all since the portraits.",
+  "text": "A cousin from a branch thought dead these thirty years arrives at the gate in a dusty coach, bearing papers, a claim on the House's name and the founder's own eyes. The old servants cross themselves at that face. It has not aged at all since the portraits.",
   "rule": "house",
   "options": [
     {
@@ -32,14 +32,14 @@
     },
     {
       "id": "duel",
-      "label": "Settle the claim by duel at dawn, and let steel decide whose House it is.",
+      "label": "Settle the claim by duel at dawn; let steel decide whose House it is.",
       "tags": [
         "bold"
       ],
       "outcomes": [
         {
           "w": 60,
-          "text": "Steel settles it at dawn. The claim is torn up and the cousin is buried in the family plot, where they say they belonged all along.",
+          "text": "Steel settles it. The claim is torn up, and the cousin is buried in the family plot, where they always said they belonged.",
           "effects": [
             {
               "score": {
@@ -50,7 +50,7 @@
         },
         {
           "w": 40,
-          "text": "Honor is satisfied, at the cost of a scar and a bad Year. The cousin laughs as they bleed, and the laugh is the founder's.",
+          "text": "Honor is satisfied at the cost of a scar and a bad Year. The cousin laughs as they bleed, and the laugh is the founder's.",
           "effects": [
             {
               "sanity": -10
@@ -67,14 +67,14 @@
     },
     {
       "id": "recognize",
-      "label": "Recognize the claim, and the face. Blood is blood, however long it has been gone.",
+      "label": "Recognize the claim, and the face; blood is blood, however long it has been gone.",
       "tags": [
         "kind"
       ],
       "outcomes": [
         {
           "w": 100,
-          "text": "The cousin joins the household with their papers and their grudges, and the old portraits seem to turn toward them.",
+          "text": "The cousin joins the household with their papers and their grudges. The old portraits seem to turn toward them.",
           "effects": [
             {
               "recruit_gain": 1

@@ -9,11 +9,11 @@
     9
   ],
   "title": "The Whispering Well",
-  "text": "A well without a bucket, its stones slick with moss. Down in the dark, something whispers the names of everyone in the party, one after another, very fast, and then starts over. It knows the names your mothers called you.",
+  "text": "A well without a bucket stands with its stones slick with moss. Down in the dark something whispers the name of everyone in the party, one after another, very fast, then starts over. It knows the names your mothers called you.",
   "options": [
     {
       "id": "coin",
-      "label": "The Leader throws down a coin and wishes, to quiet the whispering.",
+      "label": "The Leader throws down a coin and wishes for the whispering to stop.",
       "rule": "leader",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "The whispering stops, and something is grateful.",
+          "text": "The whispering stops. Something is grateful.",
           "effects": [
             {
               "resources": {
@@ -87,7 +87,7 @@
     },
     {
       "id": "shout",
-      "label": "Shout your own names back down, and drown it out.",
+      "label": "Shout your own names back down to drown it out.",
       "rule": "vote",
       "tags": [
         "bold"

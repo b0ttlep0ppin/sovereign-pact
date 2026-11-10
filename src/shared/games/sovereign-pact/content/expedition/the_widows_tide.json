@@ -9,11 +9,11 @@
     10
   ],
   "title": "The Widow's Tide",
-  "text": "The tide here goes out a mile, sucking back off the mudflat with a long wet sigh, and comes back all at once. Wreckage glints on the mud: a chest, a sword, a figurehead with a woman's face. The sea is already turning.",
+  "text": "Here the tide goes out a mile, sucking back off the mudflat with a long wet sigh, then comes back all at once. Wreckage glints on the mud: a chest, a sword, a figurehead with a woman's face. The sea is already turning.",
   "options": [
     {
       "id": "tide",
-      "label": "Someone the sea knows walks out for the wreck, and trusts the water to wait.",
+      "label": "Someone the sea knows walks out for the wreck, trusting the water to wait.",
       "rule": "scion:trait:tidebound|scion:highest:speed",
       "tags": [
         "bold"
@@ -55,7 +55,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "Planks, rope, and a strongbox.",
+          "text": "You come back with planks, rope and a strongbox.",
           "effects": [
             {
               "resources": {
@@ -80,7 +80,7 @@
     },
     {
       "id": "wait",
-      "label": "Wait for the tide to bring it in. The sea gives back what it takes, in time.",
+      "label": "Wait for the tide to bring it in; the sea gives back what it takes, in time.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -88,7 +88,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It brings in a little, and the dead.",
+          "text": "It brings in a little wreckage, and the dead.",
           "effects": [
             {
               "resources": {

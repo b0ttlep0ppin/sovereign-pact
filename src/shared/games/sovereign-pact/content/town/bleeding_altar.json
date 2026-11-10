@@ -10,19 +10,19 @@
     "building:chapel"
   ],
   "title": "The Bleeding Altar",
-  "text": "The altar in your chapel bleeds at the hour of matins. The blood is warm, and it runs uphill, toward the window that faces the Rift Gate.",
+  "text": "At the hour of matins, the altar in your chapel bleeds. The blood is warm, and it runs uphill toward the window that faces the Rift Gate.",
   "rule": "house",
   "options": [
     {
       "id": "consecrate",
-      "label": "Have the altar consecrated again, and pay whatever the priest asks.",
+      "label": "Have the altar consecrated again, paying whatever the priest asks.",
       "tags": [
         "cautious"
       ],
       "outcomes": [
         {
           "w": 70,
-          "text": "The bleeding stops. The priest who did it leaves the city that night, and does not say why.",
+          "text": "The bleeding stops. The priest who did it leaves the city that night without saying why.",
           "effects": [
             {
               "resources": {
@@ -49,7 +49,7 @@
     },
     {
       "id": "collect",
-      "label": "Collect the blood in a bowl. Something that runs uphill is worth keeping.",
+      "label": "Collect the blood in a bowl; something that runs uphill is worth keeping.",
       "tags": [
         "clever",
         "reckless"
@@ -57,7 +57,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "The blood dries to a fine red ash that the Apothecary pays well for.",
+          "text": "The blood dries to a fine red ash, which the Apothecary pays well for.",
           "effects": [
             {
               "resources": {
@@ -91,7 +91,7 @@
     },
     {
       "id": "pray",
-      "label": "Kneel and pray with it, and learn what prays through the altar.",
+      "label": "Kneel and pray with it to learn what prays through the altar.",
       "tags": [
         "kind"
       ],

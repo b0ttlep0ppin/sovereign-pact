@@ -9,11 +9,11 @@
     7
   ],
   "title": "The Weeping Willow",
-  "text": "A willow drips sap that smells of sleep, of warm beds and summer afternoons. Its roots have wrapped a dozen sleepers, smiling, and grown into them. The frailest of you is nodding already.",
+  "text": "A willow drips sap that smells of sleep, of warm beds and summer afternoons. Its roots have wrapped a dozen smiling sleepers and grown into them. The frailest of you is nodding already.",
   "options": [
     {
       "id": "weak",
-      "label": "The frailest is already nodding. They sit a moment and learn its trick, before it learns theirs.",
+      "label": "The frailest sits a moment to learn its trick before it learns theirs.",
       "rule": "scion:lowest:resilience|scion:random",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "They wake, and know how to sleep anywhere.",
+          "text": "They wake knowing how to sleep anywhere.",
           "effects": [
             {
               "sanity": 20
@@ -53,7 +53,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Most wake, weeping to be woken. One gives you a ring.",
+          "text": "Most wake weeping at being woken. One gives you a ring.",
           "effects": [
             {
               "item": {
@@ -71,7 +71,7 @@
     },
     {
       "id": "burn",
-      "label": "Burn the willow, and wake every sleeper it holds.",
+      "label": "Burn the willow to wake every sleeper it holds.",
       "rule": "vote",
       "tags": [
         "cruel"
@@ -79,7 +79,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The sleepers scream as they wake, and some of them do not stop.",
+          "text": "The sleepers scream as they wake. Some of them do not stop.",
           "effects": [
             {
               "to": "party",

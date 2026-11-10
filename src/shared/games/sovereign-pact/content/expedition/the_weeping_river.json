@@ -9,11 +9,11 @@
     10
   ],
   "title": "The Weeping River",
-  "text": "A river of tears runs through the Pit, clear and salt and very cold, and the sound of it is the sound of a thousand people weeping. To drink from it is to remember every sorrow. Downstream, a bridge of devils' iron spans it.",
+  "text": "A river of tears runs through the Pit, clear, salt and very cold, with the sound of a thousand people weeping. To drink from it is to remember every sorrow. Downstream, a bridge of devils' iron spans it.",
   "options": [
     {
       "id": "ford",
-      "label": "Ford the river with your lips shut tight, and do not taste a drop.",
+      "label": "Ford the river with your lips shut tight, tasting not a drop.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 80,
-          "text": "Across, wet and grieving for things you never lost.",
+          "text": "You cross wet, grieving for things you never lost.",
           "effects": [
             {
               "to": "party",
@@ -31,7 +31,7 @@
         },
         {
           "w": 20,
-          "text": "A splash in the mouth, and every sorrow at once.",
+          "text": "Water splashes into a mouth, and every sorrow comes at once.",
           "effects": [
             {
               "to": "party",
@@ -43,7 +43,7 @@
     },
     {
       "id": "drink",
-      "label": "The bravest drinks, to know what the river knows.",
+      "label": "The bravest drinks to know what the river knows.",
       "rule": "scion:trait:brave|scion:highest:resilience",
       "tags": [
         "reckless"
@@ -51,7 +51,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Every sorrow, and among them a secret.",
+          "text": "Among all the sorrows is a secret.",
           "effects": [
             {
               "sanity": -20
@@ -67,7 +67,7 @@
     },
     {
       "id": "bridge",
-      "label": "The Leader finds the devils' bridge, and dares whoever keeps it.",
+      "label": "The Leader finds the devils' bridge and dares whoever keeps it.",
       "rule": "leader",
       "tags": [
         "clever"
@@ -75,7 +75,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Guarded, and the guards are glad of the company.",
+          "text": "Its guards are glad of the company.",
           "effects": [
             {
               "encounter": {}

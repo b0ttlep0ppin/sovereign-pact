@@ -9,11 +9,11 @@
     6
   ],
   "title": "The Wolf Mother",
-  "text": "A she-wolf the size of a horse lies across the path with her cubs tumbling around her. She is not hungry. She is tired, and grey at the muzzle, and she watches you with old eyes. Her lip lifts, just a little.",
+  "text": "A she-wolf the size of a horse lies across the path while her cubs tumble around her. She is not hungry, only tired, grey at the muzzle. She watches you with old eyes, her lip lifting just a little.",
   "options": [
     {
       "id": "wait",
-      "label": "Wait for her to move. She has earned her rest.",
+      "label": "Wait for her to move; she has earned her rest.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "She moves at dusk, and lets you pass.",
+          "text": "At dusk she moves and lets you pass.",
           "effects": [
             {
               "to": "party",
@@ -33,7 +33,7 @@
     },
     {
       "id": "gentle",
-      "label": "The gentlest walks past her, slowly, eyes down.",
+      "label": "The gentlest walks past her slowly, eyes down.",
       "rule": "scion:fewest_kills|scion:highest:sagacity",
       "tags": [
         "kind"
@@ -53,7 +53,7 @@
         },
         {
           "w": 30,
-          "text": "She snaps, once, in warning.",
+          "text": "She snaps once in warning.",
           "effects": [
             {
               "durability": -30,
@@ -65,7 +65,7 @@
     },
     {
       "id": "drive",
-      "label": "The Leader drives her off the path. There is no time to wait.",
+      "label": "The Leader drives her off the path; there is no time to wait.",
       "rule": "leader",
       "tags": [
         "cruel"
