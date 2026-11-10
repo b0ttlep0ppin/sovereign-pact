@@ -5,7 +5,8 @@
 import { ITEM_BASES, NAMED, NAMED_BY_ID, POOL_BY_ID, RARE_MATERIALS } from "./content.ts";
 import { baseOf, cannotEquip, madeNamed, mintNamed, rollProps, stock } from "./items.ts";
 import { present } from "./events.ts";
-import { battle } from "./journey.ts";
+import { battle, halt } from "./journey.ts";
+import { snap, tell } from "./told.ts";
 import type { GearSlot, Item, ItemTier, Share, SovState, Stores } from "./state.ts";
 import { TUNING } from "./tuning.ts";
 import { built } from "./commons.ts";
@@ -93,10 +94,15 @@ export function cache(s: SovState): void {
 /** The Cache opened, once nothing inside waits any more. */
 export function openCache(s: SovState): void {
   log(s, "The party opens an old cache.");
+  const before = snap(s, [], []);
   const [lo, hi] = L.cache.items as [number, number];
   const n = lo + withRng(s, (rng) => rng.int(hi - lo + 1));
   for (let i = 0; i < n; i++) find(s, chance(s, L.cache.masterworkPerLevel * s.expedition!.card.level) ? 4 : 3);
   gather(s, L.cache.rolls);
+  // What it held, on the outcome card (Josh 2026-11-10: "caches should notify of the items they found in a popup").
+  const e = s.expedition!;
+  e.told = { id: "", where: "A cache", n: e.at, parts: [{ label: "The party pries open an old cache.", who: "", text: "Whoever hid it never came back for it.", lines: tell(s, before) }] };
+  halt(s);
 }
 
 /** A beaten boss: a Masterwork item per House present and one more, and three rolls on the table. */
