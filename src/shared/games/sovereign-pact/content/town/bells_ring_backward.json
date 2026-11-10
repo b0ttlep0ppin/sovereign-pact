@@ -12,7 +12,7 @@
   "options": [
     {
       "id": "silence",
-      "label": "Cut the bell ropes.",
+      "label": "Cut the bell ropes, and silence whatever is ringing them.",
       "tags": [
         "cautious"
       ],
@@ -43,7 +43,7 @@
     },
     {
       "id": "listen",
-      "label": "Gather the scholars and write down what the bells say.",
+      "label": "Gather the scholars and write down what the bells say, whatever it costs to hear.",
       "tags": [
         "clever",
         "reckless"

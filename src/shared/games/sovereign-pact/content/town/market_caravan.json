@@ -12,7 +12,7 @@
   "options": [
     {
       "id": "buy",
-      "label": "Buy rare materials from the veiled traders (40 Gold).",
+      "label": "Buy rare materials from the veiled traders, whoever they are (40 Gold).",
       "tags": [
         "bold"
       ],
@@ -33,7 +33,7 @@
     },
     {
       "id": "pass",
-      "label": "Look, but buy nothing.",
+      "label": "Look, but buy nothing. Nothing that arrives unseen should be trusted.",
       "tags": [
         "cautious"
       ],

@@ -50,7 +50,7 @@
     },
     {
       "id": "strike",
-      "label": "Strike the extra name out.",
+      "label": "Strike the extra name out, and hope it stays struck.",
       "tags": [
         "cautious"
       ],
@@ -77,7 +77,7 @@
     },
     {
       "id": "claim",
-      "label": "Claim the name as a child of the House before anyone asks.",
+      "label": "Claim the name as a child of the House before anyone asks whose it is.",
       "tags": [
         "clever",
         "cruel"

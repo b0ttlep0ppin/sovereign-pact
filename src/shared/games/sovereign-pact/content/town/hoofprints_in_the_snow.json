@@ -12,7 +12,7 @@
   "options": [
     {
       "id": "follow",
-      "label": "Send a Scion to follow the tracks.",
+      "label": "Send a Scion to follow the tracks, and learn how big it is.",
       "tags": [
         "bold"
       ],
@@ -60,7 +60,7 @@
     },
     {
       "id": "salt",
-      "label": "Lay salt and iron along the whole wall.",
+      "label": "Lay salt and iron along the whole wall, and keep it out.",
       "tags": [
         "kind"
       ],
@@ -87,7 +87,7 @@
     },
     {
       "id": "hush",
-      "label": "Tell the children to stop drawing them.",
+      "label": "Tell the children to stop drawing them, before the fear spreads.",
       "tags": [
         "cautious"
       ],

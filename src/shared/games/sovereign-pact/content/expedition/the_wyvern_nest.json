@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "eggs",
-      "label": "The quickest takes an egg.",
+      "label": "The quickest takes an egg before the shriek gets any closer.",
       "rule": "scion:highest:speed",
       "tags": [
         "reckless"
@@ -46,7 +46,7 @@
     },
     {
       "id": "wait",
-      "label": "Wait in ambush for the mother.",
+      "label": "Wait in ambush for the mother, and kill her as she lands.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -72,7 +72,7 @@
     },
     {
       "id": "leave",
-      "label": "Leave the nest.",
+      "label": "Leave the nest. Nothing is worth a mother's fury.",
       "rule": "leader",
       "tags": [
         "kind"

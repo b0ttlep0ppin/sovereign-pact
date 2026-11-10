@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "bathe",
-      "label": "Let the strangest of you bathe in it.",
+      "label": "Let the strangest of you bathe in it, and wash away what is not theirs.",
       "rule": "scion:changed|vote",
       "tags": [
         "kind"
@@ -44,7 +44,7 @@
     },
     {
       "id": "fill",
-      "label": "Fill the flasks and go.",
+      "label": "Fill the flasks and go, before the moss takes your shape.",
       "rule": "leader",
       "tags": [
         "clever"

@@ -15,7 +15,7 @@
   "options": [
     {
       "id": "count",
-      "label": "Go down and count the dead.",
+      "label": "Go down and count the dead, to learn which of them walked.",
       "tags": [
         "bold"
       ],
@@ -50,7 +50,7 @@
     },
     {
       "id": "seal",
-      "label": "Seal the crypt with iron and salt.",
+      "label": "Seal the crypt with iron and salt, so nothing else comes up.",
       "tags": [
         "cautious"
       ],
@@ -70,7 +70,7 @@
     },
     {
       "id": "leave_open",
-      "label": "Leave it open, and set a place at table.",
+      "label": "Leave it open, and set a place at table for whoever comes up.",
       "tags": [
         "kind",
         "reckless"

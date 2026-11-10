@@ -12,7 +12,7 @@
   "options": [
     {
       "id": "bribe",
-      "label": "Send the physicians a gift, and say nothing.",
+      "label": "Send the physicians a gift, and say nothing. A will is only ink.",
       "tags": [
         "cruel",
         "clever"
@@ -50,7 +50,7 @@
     },
     {
       "id": "abstain",
-      "label": "Send flowers, and nothing else.",
+      "label": "Send flowers, and nothing else. Let him die with his honor.",
       "tags": [
         "cautious"
       ],

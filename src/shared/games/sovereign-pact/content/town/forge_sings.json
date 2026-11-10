@@ -15,7 +15,7 @@
   "options": [
     {
       "id": "listen",
-      "label": "Let the smith follow the song.",
+      "label": "Let the smith follow the song, and see what it makes of him.",
       "tags": [
         "bold"
       ],
@@ -49,7 +49,7 @@
     },
     {
       "id": "quench",
-      "label": "Quench the forge for a season.",
+      "label": "Quench the forge for a season, before the song takes him entirely.",
       "tags": [
         "cautious"
       ],

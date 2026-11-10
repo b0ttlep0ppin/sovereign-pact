@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "wait",
-      "label": "Wait for the herd to pass.",
+      "label": "Wait for the herd to pass, and let the crocodiles eat their fill.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -34,7 +34,7 @@
     },
     {
       "id": "among",
-      "label": "Cross in the middle of the herd.",
+      "label": "Cross in the middle of the herd, where the crocodiles have better things to eat.",
       "rule": "leader",
       "tags": [
         "reckless"
@@ -64,7 +64,7 @@
     },
     {
       "id": "watch",
-      "label": "The sharpest eye watches for the safe ford.",
+      "label": "The sharpest eye watches for the safe ford, away from the logs that are not logs.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"

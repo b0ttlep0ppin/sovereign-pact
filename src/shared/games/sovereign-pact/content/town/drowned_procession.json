@@ -12,7 +12,7 @@
   "options": [
     {
       "id": "open",
-      "label": "Open the door and hear the names they ask for.",
+      "label": "Open the door and hear the names they ask for, whatever they may be.",
       "tags": [
         "kind",
         "bold"
@@ -47,7 +47,7 @@
     },
     {
       "id": "bar",
-      "label": "Bar the door and wait for dawn.",
+      "label": "Bar the door and wait for dawn. The drowned can ask elsewhere.",
       "tags": [
         "cautious"
       ],
@@ -74,7 +74,7 @@
     },
     {
       "id": "follow",
-      "label": "Follow the drowned to the Gate.",
+      "label": "Follow the drowned to the Gate, to learn what they mean to do there.",
       "tags": [
         "reckless"
       ],

@@ -12,7 +12,7 @@
   "options": [
     {
       "id": "gold",
-      "label": "Pay in Gold.",
+      "label": "Pay in Gold, and keep your years for yourselves.",
       "tags": [
         "clever"
       ],
@@ -49,7 +49,7 @@
     },
     {
       "id": "years",
-      "label": "Pay in years, as they prefer.",
+      "label": "Pay in years, as they prefer. Their wares are worth more that way.",
       "tags": [
         "reckless"
       ],
@@ -100,7 +100,7 @@
     },
     {
       "id": "stay",
-      "label": "Keep the House at home.",
+      "label": "Keep the House at home. Nothing sold among the bones is worth buying.",
       "tags": [
         "cautious"
       ],

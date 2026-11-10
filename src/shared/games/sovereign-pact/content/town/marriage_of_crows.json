@@ -12,7 +12,7 @@
   "options": [
     {
       "id": "wed",
-      "label": "Agree to a marriage pact with another House.",
+      "label": "Agree to a marriage pact with another House, and bind yourselves by blood.",
       "tags": [
         "kind",
         "bold"
@@ -50,7 +50,7 @@
     },
     {
       "id": "dowry",
-      "label": "Pay the Court a dowry in place of a bride.",
+      "label": "Pay the Court a dowry in place of a bride, and keep your blood your own.",
       "tags": [
         "clever"
       ],
@@ -73,7 +73,7 @@
     },
     {
       "id": "refuse",
-      "label": "Refuse the Court.",
+      "label": "Refuse the Court. No House binds yours.",
       "tags": [
         "cautious"
       ],

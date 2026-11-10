@@ -15,7 +15,7 @@
   "options": [
     {
       "id": "sit",
-      "label": "Take the empty chair and sit with the dead.",
+      "label": "Take the empty chair and sit with the dead. It was left for you.",
       "tags": [
         "bold"
       ],
@@ -44,7 +44,7 @@
     },
     {
       "id": "seal",
-      "label": "Seal the crypt doors on the feast.",
+      "label": "Seal the crypt doors on the feast, and let the dead dine alone.",
       "tags": [
         "cautious"
       ],

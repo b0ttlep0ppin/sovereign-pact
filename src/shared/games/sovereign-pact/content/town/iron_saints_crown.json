@@ -12,7 +12,7 @@
   "options": [
     {
       "id": "bid",
-      "label": "Send a sealed bid of iron.",
+      "label": "Send a sealed bid of iron, and hope the crown comes to your House.",
       "tags": [
         "bold"
       ],
@@ -30,7 +30,7 @@
     },
     {
       "id": "leave",
-      "label": "Let someone else wear it.",
+      "label": "Let someone else wear it. A saint's crown is a heavy thing.",
       "tags": [
         "cautious"
       ],

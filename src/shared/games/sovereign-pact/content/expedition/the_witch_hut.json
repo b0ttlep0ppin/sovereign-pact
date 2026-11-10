@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "trade",
-      "label": "The most wounded trades her a year.",
+      "label": "The most wounded trades her a year, and takes the cure.",
       "rule": "scion:injured:any|scion:lowest:sanity",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The wound closes. They feel older, and they move like it.",
+          "text": "The wound closes. They feel older, and they move like it. A new jar sits on her shelf.",
           "effects": [
             {
               "mend": true
@@ -37,7 +37,7 @@
     },
     {
       "id": "haggle",
-      "label": "The shrewdest haggles her down.",
+      "label": "The shrewdest haggles her down. A year is too dear.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"
@@ -66,7 +66,7 @@
     },
     {
       "id": "leave",
-      "label": "Leave her be.",
+      "label": "Leave her be. No cure is worth the years on those shelves.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -105,7 +105,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "She cackles, and takes a lock of hair instead of a year, and the cure is real.",
+          "text": "She cackles, takes a lock of hair instead of a year, and the cure is real.",
           "effects": [
             {
               "mend": true,

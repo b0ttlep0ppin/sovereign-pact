@@ -15,7 +15,7 @@
   "options": [
     {
       "id": "burn",
-      "label": "Burn the screaming field.",
+      "label": "Burn the screaming field, and buy your seed from somewhere sane.",
       "tags": [
         "cautious"
       ],
@@ -36,7 +36,7 @@
     },
     {
       "id": "harvest",
-      "label": "Bring the harvest in anyway.",
+      "label": "Bring the harvest in anyway. Bread is bread, and winter is coming.",
       "tags": [
         "reckless"
       ],
@@ -73,7 +73,7 @@
     },
     {
       "id": "ask",
-      "label": "Ask the grain what it wants.",
+      "label": "Ask the grain what it wants, and hope it is something you can give.",
       "tags": [
         "clever"
       ],

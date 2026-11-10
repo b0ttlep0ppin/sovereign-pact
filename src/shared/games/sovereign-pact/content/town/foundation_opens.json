@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "descend",
-      "label": "Send a Scion down the steps that were never built.",
+      "label": "Send a Scion down the steps that were never built, to learn what the foundation held.",
       "tags": [
         "bold"
       ],
@@ -59,7 +59,7 @@
     },
     {
       "id": "seal",
-      "label": "Pour the cellar full of lead.",
+      "label": "Pour the cellar full of lead, and seal whatever breathes below.",
       "tags": [
         "cautious"
       ],

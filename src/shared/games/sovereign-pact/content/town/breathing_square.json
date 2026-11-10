@@ -12,7 +12,7 @@
   "options": [
     {
       "id": "dig",
-      "label": "Dig up the square and see what breathes.",
+      "label": "Dig up the square, and learn what breathes beneath the city.",
       "tags": [
         "bold",
         "reckless"
@@ -68,7 +68,7 @@
     },
     {
       "id": "pave",
-      "label": "Pave over it with fresh stone.",
+      "label": "Pave over it with fresh stone, and hope it sleeps on.",
       "tags": [
         "cautious"
       ],
@@ -104,7 +104,7 @@
     },
     {
       "id": "shrine",
-      "label": "Raise a shrine over it, and pray it sleeps.",
+      "label": "Raise a shrine over it, and pray it never wakes.",
       "tags": [
         "kind"
       ],

@@ -12,7 +12,7 @@
   "options": [
     {
       "id": "hang",
-      "label": "Hang the drowned bell in the Commons.",
+      "label": "Hang the drowned bell in the Commons, and let its congregation keep watch over the city.",
       "tags": [
         "bold"
       ],
@@ -33,7 +33,7 @@
     },
     {
       "id": "sink",
-      "label": "Row it out and sink it again.",
+      "label": "Row it out and sink it again, before its congregation follows it ashore.",
       "tags": [
         "cautious"
       ],
@@ -55,7 +55,7 @@
     },
     {
       "id": "melt",
-      "label": "Melt it down in the Commons forge.",
+      "label": "Melt it down in the Commons forge. Good bronze should not go to waste.",
       "tags": [
         "clever"
       ],

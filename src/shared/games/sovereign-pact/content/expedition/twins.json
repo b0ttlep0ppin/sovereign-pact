@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "ask",
-      "label": "The cleverest asks the right question.",
+      "label": "The cleverest asks the right question, and listens to both answers.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"
@@ -47,7 +47,7 @@
     },
     {
       "id": "pick",
-      "label": "The Leader picks a path and walks it.",
+      "label": "The Leader picks a path and walks it. Children do not choose your road.",
       "rule": "leader",
       "tags": [
         "reckless"

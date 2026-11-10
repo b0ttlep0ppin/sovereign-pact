@@ -12,7 +12,7 @@
   "options": [
     {
       "id": "sit",
-      "label": "Send a Scion to sit the night with the dying.",
+      "label": "Send a Scion to sit the night with the dying, and take the doctor's wager.",
       "tags": [
         "bold",
         "kind"
@@ -61,7 +61,7 @@
     },
     {
       "id": "pay",
-      "label": "Pay him to take the fever somewhere else.",
+      "label": "Pay him to take the fever somewhere else. Let some other town bear it.",
       "tags": [
         "clever"
       ],
@@ -84,7 +84,7 @@
     },
     {
       "id": "lock",
-      "label": "Lock the gates against him.",
+      "label": "Lock the gates against him. No wager with a plague is worth taking.",
       "tags": [
         "cautious"
       ],

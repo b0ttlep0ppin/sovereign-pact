@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "mercy",
-      "label": "The most blooded gives it a clean end.",
+      "label": "The most blooded gives it a clean end, as a warrior would want.",
       "rule": "scion:most_kills",
       "tags": [
         "kind"
@@ -39,7 +39,7 @@
     },
     {
       "id": "bones",
-      "label": "Take bones from the dead ones and leave it be.",
+      "label": "Take bones from the dead ones, and leave the dying one in peace.",
       "rule": "leader",
       "tags": [
         "clever"
@@ -61,7 +61,7 @@
     },
     {
       "id": "listen",
-      "label": "The wisest listens to what it has to say.",
+      "label": "The wisest listens to what it has to say, before it says nothing ever again.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "bold"

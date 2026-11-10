@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "kneel",
-      "label": "Kneel for his fire.",
+      "label": "Kneel for his fire, and trust his gods to be gentle.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -43,7 +43,7 @@
     },
     {
       "id": "brave",
-      "label": "The bravest asks for the full blessing.",
+      "label": "The bravest asks for the full blessing, whatever it leaves behind.",
       "rule": "scion:trait:brave|scion:highest:resilience",
       "tags": [
         "reckless"
@@ -68,7 +68,7 @@
     },
     {
       "id": "refuse",
-      "label": "Refuse his blessing.",
+      "label": "Refuse his blessing. You kneel to no dragon.",
       "rule": "vote",
       "tags": [
         "bold"

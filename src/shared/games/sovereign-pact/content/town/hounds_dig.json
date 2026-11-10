@@ -15,7 +15,7 @@
   "options": [
     {
       "id": "look",
-      "label": "Drive the hounds off and look.",
+      "label": "Drive the hounds off and look at what they found.",
       "tags": [
         "bold"
       ],
@@ -49,7 +49,7 @@
     },
     {
       "id": "fill",
-      "label": "Fill the hole and chain the hounds.",
+      "label": "Fill the hole and chain the hounds. Some things are buried for a reason.",
       "tags": [
         "cautious"
       ],
@@ -63,7 +63,7 @@
     },
     {
       "id": "let_them",
-      "label": "Let the hounds have what they found.",
+      "label": "Let the hounds have what they found. They dug for it.",
       "tags": [
         "reckless"
       ],

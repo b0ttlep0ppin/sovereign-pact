@@ -12,7 +12,7 @@
   "options": [
     {
       "id": "pay",
-      "label": "Pay the kingdom's old debt (50 Gold).",
+      "label": "Pay the kingdom's old debt, and be rid of him (50 Gold).",
       "tags": [
         "kind"
       ],
@@ -40,7 +40,7 @@
     },
     {
       "id": "refuse",
-      "label": "Refuse the grey man.",
+      "label": "Refuse the grey man. The kingdom's debts are not yours.",
       "tags": [
         "bold"
       ],
@@ -64,7 +64,7 @@
     },
     {
       "id": "vagabonds",
-      "label": "Set the Vagabonds on him.",
+      "label": "Set the Vagabonds on him, and let the ledger go missing.",
       "tags": [
         "cruel",
         "clever"
