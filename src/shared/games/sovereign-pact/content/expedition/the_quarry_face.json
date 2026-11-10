@@ -9,7 +9,7 @@
     10
   ],
   "title": "The Quarry Face",
-  "text": "A cliff of fine dressed stone rises from the hillside, half quarried long ago and left. The tools are still here, rusted where they fell, as if the workers set them down mid-blow and walked away. Nobody knows why they stopped.",
+  "text": "A cliff of fine dressed stone rises from the hillside, half quarried long ago and left. The tools still lie rusted where they fell, as if the workers set them down mid-blow and walked away. Nobody knows why they stopped.",
   "options": [
     {
       "id": "cut",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 80,
-          "text": "Good stone, and a great deal of it, and arms that ache to the shoulder.",
+          "text": "You cut a great deal of good stone, and every arm aches to the shoulder.",
           "effects": [
             {
               "resources": {
@@ -37,7 +37,7 @@
         },
         {
           "w": 20,
-          "text": "The face gives way, the way it did for the last workers.",
+          "text": "The face gives way, as it did for the last workers.",
           "effects": [
             {
               "resources": {
@@ -53,7 +53,7 @@
     },
     {
       "id": "survey",
-      "label": "The sharpest eye finds the best seam, so you cut little and cut well.",
+      "label": "The sharpest finds the best seam, so you cut little and cut well.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -61,7 +61,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A little, but the finest, and a few old coins in the rubble.",
+          "text": "The stone is little but the finest, with a few old coins in the rubble.",
           "effects": [
             {
               "resources": {
@@ -75,7 +75,7 @@
     },
     {
       "id": "tools",
-      "label": "Take the abandoned tools. Iron is iron, whoever dropped it.",
+      "label": "Take the abandoned tools; iron is iron, whoever dropped it.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -83,7 +83,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Rusted, but good. You try not to wonder why they were dropped.",
+          "text": "They are rusted but good. You try not to wonder why they were dropped.",
           "effects": [
             {
               "resources": {

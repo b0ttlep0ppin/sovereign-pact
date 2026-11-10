@@ -9,7 +9,7 @@
     7
   ],
   "title": "The Peat Cutters",
-  "text": "Peat cutters stand around a hole in the bog, spades lowered, not speaking. They have found a body, perfectly kept, its skin gone brown as tanned leather, a torc of gold at its throat. Its face is calm. Its throat was cut.",
+  "text": "Peat cutters stand around a hole in the bog, spades lowered, not speaking. They have found a body perfectly kept, its skin gone brown as tanned leather, a torc of gold at its throat. Its face is calm, though its throat was cut.",
   "options": [
     {
       "id": "buy",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Old gold, older magic, warm from a throat that has been cold a thousand years.",
+          "text": "The torc is old gold bound with older magic. It is warm from a throat that has been cold a thousand years.",
           "effects": [
             {
               "resources": {
@@ -39,7 +39,7 @@
     },
     {
       "id": "bury",
-      "label": "The kindest asks them to bury it again, and leave the dead to their work.",
+      "label": "The kindest asks them to bury it again and leave the dead to their work.",
       "rule": "scion:most_healing|scion:highest:sagacity",
       "tags": [
         "kind"
@@ -47,7 +47,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They grumble, and do it, and whatever the body was keeping down stays down.",
+          "text": "They grumble but do it. Whatever the body was keeping down stays down.",
           "effects": [
             {
               "to": "party",
@@ -62,7 +62,7 @@
     },
     {
       "id": "study",
-      "label": "The wisest studies the body, to learn why its throat was cut.",
+      "label": "The wisest studies the body to learn why its throat was cut.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "cautious"
@@ -70,7 +70,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A sacrifice, to keep something down, and the sacrifice is wearing off. The cutters go pale when they hear it.",
+          "text": "It was a sacrifice to keep something down, and the sacrifice is wearing off. The cutters go pale when they hear it.",
           "effects": [
             {
               "score": {

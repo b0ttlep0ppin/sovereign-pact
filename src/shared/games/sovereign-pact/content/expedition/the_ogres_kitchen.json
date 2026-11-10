@@ -9,7 +9,7 @@
     9
   ],
   "title": "The Ogre's Kitchen",
-  "text": "An ogre is cooking a stew big enough to bathe in, stirring with a cartwheel, humming happily. It is friendly. It waves. It is short of one ingredient, it says, and it is looking at the party the way a cook looks at a market stall.",
+  "text": "An ogre is cooking a stew big enough to bathe in, stirring it with a cartwheel and humming happily. It is friendly; it waves. It is short of one ingredient, it says, and it looks at the party the way a cook looks at a market stall.",
   "options": [
     {
       "id": "cook",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It loves the stew, forgets what it meant to add, and pays in shiny things. It licks the cartwheel clean.",
+          "text": "It loves the stew so much it forgets what it meant to add, and pays in shiny things. It licks the cartwheel clean.",
           "effects": [
             {
               "resources": {
@@ -39,7 +39,7 @@
     },
     {
       "id": "feed",
-      "label": "Give it your food instead, and hope a full ogre is a friendly one.",
+      "label": "Give it your food instead, hoping a full ogre is a friendly one.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -47,7 +47,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It is grateful in an ogre way, heavy and hard to carry, and it will keep you safe a while.",
+          "text": "Its gratitude comes in ogre gifts, heavy and hard to carry. It will keep you safe a while.",
           "effects": [
             {
               "to": "party",

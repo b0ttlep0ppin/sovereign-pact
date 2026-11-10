@@ -9,7 +9,7 @@
     8
   ],
   "title": "The Mourners",
-  "text": "Hired mourners wail at a barrow no one has visited in centuries, tearing at robes gone to cobweb, their voices thin as wind. They have been mourning a long, long time. They are still waiting to be paid, and they look at you with hope.",
+  "text": "Hired mourners wail at a barrow no one has visited in centuries, tearing at robes gone to cobweb, their voices thin as wind. They are still waiting to be paid. They look at you with hope.",
   "options": [
     {
       "id": "pay",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They fall silent at last, and fade, and the barrow is quiet. The quiet feels like thanks.",
+          "text": "At last they fall silent and fade. The quiet over the barrow feels like thanks.",
           "effects": [
             {
               "resources": {
@@ -38,7 +38,7 @@
     },
     {
       "id": "join",
-      "label": "The steadiest voice mourns beside them, and learns the old lament.",
+      "label": "The steadiest voice mourns beside them, learning the old lament.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "kind"
@@ -62,7 +62,7 @@
     },
     {
       "id": "drive",
-      "label": "Drive them off. The dead have no use for coin, and neither do their mourners.",
+      "label": "Drive them off; the dead have no use for coin, and neither do their mourners.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -70,7 +70,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They wail louder, and the barrow wakes to see why.",
+          "text": "They wail louder. The barrow wakes to see why.",
           "effects": [
             {
               "encounter": {}

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "tell",
-      "label": "Tell it the truth. It deserves to know it died here.",
+      "label": "Tell it the truth; it deserves to know it died here.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It weeps without a sound, and walks on, and does not ask again.",
+          "text": "It weeps without a sound and walks on. It does not ask again.",
           "effects": [
             {
               "to": "party",
@@ -41,7 +41,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It smiles, and fades, at peace. The lie sits lightly, for a lie.",
+          "text": "It smiles and fades, at peace. For a lie, it sits lightly.",
           "effects": [
             {
               "to": "party",
@@ -66,7 +66,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "At the shrine it blesses them, and is gone. They feel the blessing settle like a cloak.",
+          "text": "At the shrine it blesses them and is gone. The blessing settles on them like a cloak.",
           "effects": [
             {
               "blessing": {

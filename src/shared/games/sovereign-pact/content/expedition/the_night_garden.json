@@ -9,11 +9,11 @@
     10
   ],
   "title": "The Night Garden",
-  "text": "A garden of pale flowers that bloom only in the dark, white as bone, wide open, swaying. Their scent is heavy and sweet as old perfume. Breathe it, and you forget why you came. Breathe it longer, and you forget there was anywhere else.",
+  "text": "A garden of pale flowers blooms only in the dark, white as bone, wide open and swaying. Their scent is heavy and sweet as old perfume. Breathe it, and you forget why you came; breathe it longer, and you forget there was anywhere else.",
   "options": [
     {
       "id": "pick",
-      "label": "Pick a pale flower each, and breathe deep of forgetting.",
+      "label": "Pick a pale flower each and breathe deep of forgetting.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "Sweet forgetting, and rest, and you do not dream.",
+          "text": "Sweet forgetting brings rest without dreams.",
           "effects": [
             {
               "to": "party",
@@ -55,7 +55,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Out, gasping, all of you. The one who led spent everything on it, and comes out with their blood up.",
+          "text": "They bring every one of you out, gasping. Leading cost them dearly, and their blood is up for it.",
           "effects": [
             {
               "hp": -10,
@@ -67,7 +67,7 @@
     },
     {
       "id": "study",
-      "label": "The wisest studies the flowers, to learn what they could be made into.",
+      "label": "The wisest studies the flowers to learn what they could be made into.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -75,7 +75,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A drug for sleepless nights, worth its weight, and worse in larger doses.",
+          "text": "They would make a drug for sleepless nights, worth its weight, and worse in larger doses.",
           "effects": [
             {
               "resources": {
@@ -97,7 +97,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Their chest goes strange and wide for an hour, and they lead the party through on one long breath. It hurts, after.",
+          "text": "Their chest goes strange and wide for an hour as they lead the party through on one long breath. It hurts after.",
           "effects": [
             {
               "jp": 30

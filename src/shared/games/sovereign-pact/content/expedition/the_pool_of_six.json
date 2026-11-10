@@ -9,7 +9,7 @@
     10
   ],
   "title": "The Pool of Six",
-  "text": "A still pool at the Shrine, ringed with six pale stones. It shows each person who looks into it the god who favors them, a face rising up out of the dark. Some see nothing at all, and walk away very quiet.",
+  "text": "A still pool at the Shrine is ringed with six pale stones. To each person who looks in, it shows the god who favors them, a face rising up out of the dark. Some see nothing at all, and walk away very quiet.",
   "options": [
     {
       "id": "look",
@@ -31,7 +31,7 @@
         },
         {
           "w": 40,
-          "text": "Nothing. Only dark water, and your own face, alone.",
+          "text": "They see only dark water and their own face, alone.",
           "effects": [
             {
               "to": "party",
@@ -43,7 +43,7 @@
     },
     {
       "id": "devout",
-      "label": "The devout drinks from the pool, and takes the gods into themselves.",
+      "label": "The devout one drinks from the pool, taking the gods into themselves.",
       "rule": "scion:trait:devout|scion:highest:sagacity",
       "tags": [
         "kind"
@@ -51,7 +51,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A blessing, and it will last for years.",
+          "text": "Their blessing will last for years.",
           "effects": [
             {
               "blessing": {
@@ -65,7 +65,7 @@
     },
     {
       "id": "pass",
-      "label": "Do not look. Some answers are better left in the water.",
+      "label": "Do not look; some answers are better left in the water.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -73,7 +73,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Walking on, you all feel that somewhere, someone approves.",
+          "text": "As you walk on, you all feel that someone, somewhere, approves.",
           "effects": [
             {
               "to": "party",

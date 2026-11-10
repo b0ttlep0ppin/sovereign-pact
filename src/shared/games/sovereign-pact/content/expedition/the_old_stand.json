@@ -9,11 +9,11 @@
     10
   ],
   "title": "The Old Stand",
-  "text": "A stand of huge, straight trees, perfect timber, taller than any tower, their bark silver and smooth. A ring of standing stones surrounds them, each one carved with a face. The faces are all frowning, and none of the stones are mossy.",
+  "text": "A stand of huge, straight trees rises taller than any tower, their bark silver and smooth, perfect timber. A ring of standing stones surrounds them, each carved with a face. All the faces are frowning, and none of the stones are mossy.",
   "options": [
     {
       "id": "fell",
-      "label": "Fell the silver trees. Timber like this would raise towers at home.",
+      "label": "Fell the silver trees; timber like this would raise towers at home.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "Fine timber, a great deal of it, and the stone faces frown harder.",
+          "text": "You take a great deal of fine timber. The stone faces frown harder.",
           "effects": [
             {
               "resources": {
@@ -32,7 +32,7 @@
         },
         {
           "w": 40,
-          "text": "The stones were guarding the trees, and they still are.",
+          "text": "The stones were guarding the trees, and still are.",
           "effects": [
             {
               "resources": {
@@ -56,7 +56,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "One tree, given freely, and the stone faces ease.",
+          "text": "One tree is given freely, and the stone faces ease.",
           "effects": [
             {
               "resources": {
@@ -73,7 +73,7 @@
     },
     {
       "id": "deadfall",
-      "label": "Take only the fallen wood, and leave the stones nothing to frown at.",
+      "label": "Take only the fallen wood, leaving the stones nothing to frown at.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -81,7 +81,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Less, but no one minds, and no stone turns to watch you go.",
+          "text": "It is less, but no one minds. No stone turns to watch you go.",
           "effects": [
             {
               "resources": {

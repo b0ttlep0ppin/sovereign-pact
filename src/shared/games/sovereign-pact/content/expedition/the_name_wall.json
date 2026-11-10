@@ -9,7 +9,7 @@
     9
   ],
   "title": "The Name Wall",
-  "text": "A wall covered in names, thousands of them, crossed out one by one in red. These were the faceless, the old folk say, before. Before they forgot. Near the bottom, written fresh, uncrossed, in your own handwriting, is a Scion's name.",
+  "text": "A wall is covered in thousands of names, each crossed out in red. These were the faceless before they forgot, the old folk say. Near the bottom, fresh and uncrossed, a Scion's name is written in your own handwriting.",
   "options": [
     {
       "id": "cross",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "The city takes them in, and lets you all pass. They feel it take something with it.",
+          "text": "The city takes them in and lets you all pass, though they feel it take something from them.",
           "effects": [
             {
               "skip": 2
@@ -47,7 +47,7 @@
     },
     {
       "id": "scrub",
-      "label": "Scrub the name off the wall. It was not yours to write.",
+      "label": "Scrub the name off the wall; it was not yours to write.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -55,7 +55,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It comes back, fainter, as you watch, in the same hand.",
+          "text": "As you watch, it comes back fainter in the same hand.",
           "effects": [
             {
               "to": "party",
@@ -75,7 +75,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Some you know from the House's histories, and now you know how they ended.",
+          "text": "Some are names from the House's histories. Now you know how they ended.",
           "effects": [
             {
               "score": {

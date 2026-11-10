@@ -9,11 +9,11 @@
     9
   ],
   "title": "The Procession",
-  "text": "A line of penitents whips their own backs as they walk, singing, all going the same way: toward the Court. Their blood spatters the road in a long red line. They ask you, very kindly, to walk with them a while.",
+  "text": "A line of penitents walks toward the Court, singing as they whip their own backs. Their blood spatters the road in a long red line. They ask you very kindly to walk with them a while.",
   "options": [
     {
       "id": "walk",
-      "label": "Walk with the penitents, and let them carry you through the Court's gates.",
+      "label": "Walk with the penitents and let them carry you through the Court's gates.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They take you through the gates as one of theirs, singing, and their blood is on your boots.",
+          "text": "Singing, they take you through the gates as one of theirs. Their blood is on your boots.",
           "effects": [
             {
               "skip": 1
@@ -36,7 +36,7 @@
     },
     {
       "id": "question",
-      "label": "The wisest asks them what they repent, and listens closely.",
+      "label": "The wisest asks them what they repent, listening closely.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -57,7 +57,7 @@
     },
     {
       "id": "break",
-      "label": "Break up the procession. This is no faith worth walking with.",
+      "label": "Break up the procession; this is no faith worth walking with.",
       "rule": "leader",
       "tags": [
         "bold"
@@ -65,7 +65,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They do not break easily, and they keep singing as they fight.",
+          "text": "They do not break easily. They keep singing as they fight.",
           "effects": [
             {
               "encounter": {}

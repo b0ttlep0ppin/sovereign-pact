@@ -9,11 +9,11 @@
     8
   ],
   "title": "The Open Coffin",
-  "text": "An open coffin lies in the barrow's mouth, lined with rotten velvet. A voice inside, sweet and patient, says that the first who lies in it will have its treasure. It has been calling all along, softly, to the frailest of you, by name.",
+  "text": "An open coffin lies in the barrow's mouth, lined with rotten velvet. A sweet, patient voice inside says that the first to lie in it will have its treasure. All along it has been calling softly to the frailest of you, by name.",
   "options": [
     {
       "id": "weak",
-      "label": "The frailest lies down in it. The voice has been calling to them all along, and they want to answer.",
+      "label": "The frailest lies down in it, wanting to answer.",
       "rule": "scion:lowest:resilience|scion:random",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "The lid shuts, and opens. They come out with a dead king's ring, and something of the dark behind their eyes.",
+          "text": "The lid shuts, then opens. They come out with a dead king's ring and something of the dark behind their eyes.",
           "effects": [
             {
               "item": {
@@ -35,7 +35,7 @@
         },
         {
           "w": 40,
-          "text": "The lid shuts and stays shut a while, and when it opens they are not all the way back.",
+          "text": "The lid shuts and stays shut a while. When it opens, they are not all the way back.",
           "effects": [
             {
               "injury": "sanity"
@@ -46,7 +46,7 @@
     },
     {
       "id": "prise",
-      "label": "The shrewdest prises out the lining, and takes the treasure without lying down.",
+      "label": "The shrewdest prises out the lining to take the treasure without lying down.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"
@@ -54,7 +54,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Gold sewn into the silk, and the voice goes quiet with offense.",
+          "text": "Gold is sewn into the silk. The voice goes quiet with offense.",
           "effects": [
             {
               "resources": {
@@ -67,7 +67,7 @@
     },
     {
       "id": "close",
-      "label": "Close the lid and nail it shut. No one answers that voice.",
+      "label": "Close the lid and nail it shut; no one answers that voice.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -75,7 +75,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Something knocks from inside as you leave, patient and polite.",
+          "text": "As you leave, something knocks from inside, patient and polite.",
           "effects": [
             {
               "to": "party",

@@ -9,11 +9,11 @@
     10
   ],
   "title": "The Pit Gladiators",
-  "text": "Damned souls fight in an arena of bone for the devils' amusement, hacking at each other with rusted blades, healing, fighting again. The winner goes free, they say. No one in the stands can remember a winner.",
+  "text": "Damned souls fight in an arena of bone for the devils' amusement, hacking at each other with rusted blades, healing and fighting again. The winner goes free, they say, though no one in the stands can remember a winner.",
   "options": [
     {
       "id": "fight",
-      "label": "The strongest steps into the arena, to win what no one here has won.",
+      "label": "The strongest steps into the arena to win what no one here has won.",
       "rule": "scion:highest:might",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "Victory, and the roar of the stands, and the devils taking note.",
+          "text": "They win to a roar from the stands. The devils take note.",
           "effects": [
             {
               "score": {
@@ -35,7 +35,7 @@
         },
         {
           "w": 40,
-          "text": "Defeat, and the long walk out on someone else's legs.",
+          "text": "They lose, and leave the arena carried on someone else's legs.",
           "effects": [
             {
               "injury": "body"
@@ -46,7 +46,7 @@
     },
     {
       "id": "free",
-      "label": "Free a gladiator, and deny the devils their sport.",
+      "label": "Free a gladiator and deny the devils their sport.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -54,7 +54,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The devils are displeased, and they come down from the stands.",
+          "text": "The devils are displeased. They come down from the stands.",
           "effects": [
             {
               "encounter": {}
@@ -70,7 +70,7 @@
     },
     {
       "id": "bet",
-      "label": "The shrewdest bets on the fights, and plays the devils at their own game.",
+      "label": "The shrewdest bets on the fights, playing the devils at their own game.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"
@@ -78,7 +78,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "Winnings in devil coin, hot to the touch.",
+          "text": "They win a purse of devil coin, hot to the touch.",
           "effects": [
             {
               "resources": {
@@ -89,7 +89,7 @@
         },
         {
           "w": 50,
-          "text": "Lost, every coin. The devils laugh as they count it.",
+          "text": "They lose every coin. The devils laugh as they count it.",
           "effects": [
             {
               "resources": {

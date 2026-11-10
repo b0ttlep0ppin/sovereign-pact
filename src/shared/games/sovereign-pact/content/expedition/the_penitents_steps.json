@@ -9,11 +9,11 @@
     10
   ],
   "title": "The Penitent's Steps",
-  "text": "Three thousand stone steps climb the mountainside, worn into bowls by knees, stained brown in the hollows. Climb on your knees, the old priests said, and be forgiven. From the top, faintly, a bell rings each time someone reaches it.",
+  "text": "Three thousand stone steps climb the mountainside, worn into bowls by knees and stained brown in the hollows. Climb on your knees, the old priests said, and be forgiven. Each time someone reaches the top, a bell rings faintly.",
   "options": [
     {
       "id": "kneel",
-      "label": "Climb on your knees, all of you together, and be forgiven as the priests promised.",
+      "label": "Climb on your knees, all of you together, to be forgiven as the priests promised.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It takes a day and a night, and the stone takes skin. You are forgiven something, and you feel it go.",
+          "text": "It takes a day and a night, and the stone takes skin. You are forgiven something; you feel it go.",
           "effects": [
             {
               "to": "party",
@@ -38,7 +38,7 @@
     },
     {
       "id": "walk",
-      "label": "Walk up like anyone else. You have no time to crawl.",
+      "label": "Walk up like anyone else; you have no time to crawl.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -46,7 +46,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Faster, and the priests at the top look at you sideways, and say so in their letters home.",
+          "text": "It is faster, but the priests at the top look at you sideways and say so in their letters home.",
           "effects": [
             {
               "score": {
@@ -67,7 +67,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Three thousand steps, and their legs are ruined for it. They talk about it at the top for years.",
+          "text": "Their legs are ruined by the climb. At the top, people talk about it for years.",
           "effects": [
             {
               "score": {

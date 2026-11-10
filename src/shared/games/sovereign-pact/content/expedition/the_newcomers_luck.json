@@ -9,7 +9,7 @@
     7
   ],
   "title": "The Newcomer's Luck",
-  "text": "A glint in a stream, down among the stones, a flash of gold so quick that only fresh eyes would notice it. The old hands have learned not to look at shiny things out here. It is the youngest of you who sees it.",
+  "text": "Gold flashes in a stream, down among the stones, so quick that only fresh eyes would notice it. The old hands have learned not to look at shiny things out here. It is the youngest of you who sees it.",
   "options": [
     {
       "id": "young",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "Gold, a fistful, washed down from somewhere upstream. Their grin lasts all day.",
+          "text": "It is a fistful of gold, washed down from somewhere upstream. Their grin lasts all day.",
           "effects": [
             {
               "resources": {
@@ -35,7 +35,7 @@
         },
         {
           "w": 30,
-          "text": "Something in the stream bites, and it was waiting.",
+          "text": "Something in the stream bites. It was waiting.",
           "effects": [
             {
               "status": "poison"
@@ -50,7 +50,7 @@
     },
     {
       "id": "old",
-      "label": "The most traveled goes instead. Old hands know which glints are traps.",
+      "label": "The most traveled goes instead; old hands know which glints are traps.",
       "rule": "scion:most_expeditions",
       "tags": [
         "cautious"
@@ -58,7 +58,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Gold, and the old hand knows exactly where the rest is.",
+          "text": "It is gold, and the old hand knows exactly where the rest of it lies.",
           "effects": [
             {
               "resources": {
@@ -71,7 +71,7 @@
     },
     {
       "id": "leave",
-      "label": "Leave it. Shiny things out here are bait.",
+      "label": "Leave it; shiny things out here are bait.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -79,7 +79,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Maybe it was. The youngest of you thinks about it all day, and looks harder at the next stream.",
+          "text": "The youngest thinks about it all day, and looks harder at the next stream.",
           "effects": [
             {
               "to": "party",

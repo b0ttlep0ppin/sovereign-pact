@@ -9,7 +9,7 @@
     9
   ],
   "title": "The Pit Brawl",
-  "text": "A ring of demons squats around a fighting pit, roaring, stamping, gnawing on bones. The sand below is black with old blood. They want a champion from the living, and they will let the rest pass if one fights. Their eyes go to whoever has killed the most.",
+  "text": "A ring of demons squats around a fighting pit, roaring, stamping, gnawing on bones. The sand below is black with old blood. If one of the living fights as their champion, they will let the rest pass. Their eyes go to whoever has killed the most.",
   "options": [
     {
       "id": "fight",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 55,
-          "text": "They win, and the demons cheer like a crowd at a fair.",
+          "text": "They win. The demons cheer like a crowd at a fair.",
           "effects": [
             {
               "score": {
@@ -35,7 +35,7 @@
         },
         {
           "w": 45,
-          "text": "They lose, and live, which the demons find very funny.",
+          "text": "They lose and live, which the demons find very funny.",
           "effects": [
             {
               "injury": "body"
@@ -49,7 +49,7 @@
     },
     {
       "id": "cheat",
-      "label": "The craftiest fixes the fight. Demons are not the only ones who can cheat.",
+      "label": "The craftiest fixes the fight; demons are not the only ones who can cheat.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"
@@ -75,7 +75,7 @@
     },
     {
       "id": "all",
-      "label": "Everyone goes down into the pit together. Let them choke on the whole party.",
+      "label": "Everyone goes down into the pit together; let them choke on the whole party.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -83,7 +83,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The demons love it, and send down something worth the crowd.",
+          "text": "The demons love it. They send down something worthy of the crowd.",
           "effects": [
             {
               "encounter": {

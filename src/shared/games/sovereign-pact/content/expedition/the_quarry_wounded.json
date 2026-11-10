@@ -9,11 +9,11 @@
     10
   ],
   "title": "The Wounded Quarry",
-  "text": "The quarry lies on its side in the bracken, breathing hard, an arrow that is not yours buried in its flank. Someone else has wounded it. Its eye rolls toward you, and it gathers its legs beneath it. It can still fight.",
+  "text": "The quarry lies on its side in the bracken, breathing hard, an arrow that is not yours buried in its flank. Its eye rolls toward you as it gathers its legs beneath it. It can still fight.",
   "options": [
     {
       "id": "finish",
-      "label": "Finish it while it is down. It will not be this weak again.",
+      "label": "Finish it while it is down; it will not be this weak again.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -40,7 +40,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It lets them, trembling, and limps away. The hunt is over another way.",
+          "text": "Trembling, it lets them work, then limps away. The hunt ends another way.",
           "effects": [
             {
               "score": {
@@ -56,7 +56,7 @@
     },
     {
       "id": "who",
-      "label": "The sharpest eye finds who wounded it, and why they did not finish the job.",
+      "label": "The sharpest finds who wounded it, and why they did not finish the job.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -64,7 +64,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A rival House's arrow, fletched in their colours.",
+          "text": "The arrow belongs to a rival House, fletched in their colours.",
           "effects": [
             {
               "score": {

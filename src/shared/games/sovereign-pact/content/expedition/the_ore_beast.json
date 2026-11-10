@@ -9,7 +9,7 @@
     10
   ],
   "title": "The Ore Beast",
-  "text": "A rock-skinned beast grazes on a hillside, as big as an ox, chewing ore with a sound like a millstone. Sparks fly from its teeth. Behind it lies a trail of its droppings, and its droppings are pure iron.",
+  "text": "A rock-skinned beast as big as an ox grazes on a hillside, chewing ore with a sound like a millstone, sparks flying from its teeth. Behind it lies a trail of droppings that are pure iron.",
   "options": [
     {
       "id": "follow",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Unpleasant work, and profitable, and the beast keeps looking back.",
+          "text": "The work is unpleasant but profitable. The beast keeps looking back.",
           "effects": [
             {
               "resources": {
@@ -38,7 +38,7 @@
     },
     {
       "id": "hunt",
-      "label": "Hunt it for its metal hide, and the bone beneath.",
+      "label": "Hunt it for its metal hide and the bone beneath.",
       "rule": "leader",
       "tags": [
         "bold"
@@ -46,7 +46,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Its hide is half metal, and it fights like it. What it leaves behind is worth the bruises.",
+          "text": "Its hide is half metal, and it fights that way. What it leaves behind is worth the bruises.",
           "effects": [
             {
               "encounter": {
@@ -73,7 +73,7 @@
       "outcomes": [
         {
           "w": 40,
-          "text": "It follows. It will graze the House's slag heap for years.",
+          "text": "It follows you home, where it will graze the House's slag heap for years.",
           "effects": [
             {
               "house_improvement": "building"
@@ -82,7 +82,7 @@
         },
         {
           "w": 60,
-          "text": "It wanders off, unbothered, and leaves you a little more iron for your trouble.",
+          "text": "It wanders off, unbothered, leaving a little more iron for your trouble.",
           "effects": [
             {
               "resources": {

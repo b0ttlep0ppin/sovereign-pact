@@ -9,11 +9,11 @@
     10
   ],
   "title": "The One Rope",
-  "text": "A chasm, and one old rope across it, fraying, groaning, good for one more crossing at most. Below, the river roars. Behind, something is coming, crashing through the trees. Each House decides, alone, whether to wait its turn.",
+  "text": "One old rope crosses a chasm, fraying and groaning, good for one more crossing at most. Below, the river roars. Behind you, something comes crashing through the trees. Each House decides alone whether to wait its turn.",
   "options": [
     {
       "id": "wait",
-      "label": "Wait your turn, and trust the other Houses to wait theirs.",
+      "label": "Wait your turn, trusting the other Houses to wait theirs.",
       "rule": "secret",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Every House waited. The rope held for all of you, somehow, and the Houses look at each other differently now.",
+          "text": "Every House waited, and somehow the rope held for all of you. The Houses look at each other differently now.",
           "effects": [
             {
               "score": {
@@ -38,7 +38,7 @@
         },
         {
           "w": 100,
-          "text": "Someone else rushed it, and the rope went with them. You go the long way round, with the crashing close behind.",
+          "text": "Someone else rushed it, and the rope went with them. You go the long way round with the crashing close behind.",
           "effects": [
             {
               "to": "party",
@@ -57,7 +57,7 @@
     },
     {
       "id": "rush",
-      "label": "Cut in and cross first. The rope will not hold for everyone.",
+      "label": "Cut in and cross first; the rope will not hold for everyone.",
       "rule": "secret",
       "tags": [
         "cruel"
@@ -82,7 +82,7 @@
         },
         {
           "w": 100,
-          "text": "Everyone rushed it at once. The rope did not hold, and nobody will forget who pushed.",
+          "text": "Everyone rushed at once. The rope did not hold, and nobody will forget who pushed.",
           "effects": [
             {
               "injury": "legs"

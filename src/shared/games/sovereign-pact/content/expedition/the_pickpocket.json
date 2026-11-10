@@ -9,11 +9,11 @@
     9
   ],
   "title": "The Pickpocket",
-  "text": "A child in a porcelain mask bumps into a Scion in the crowd, murmurs a sorry in a voice far too old, and is gone. So is their purse. A small white face looks back once from the mouth of an alley, then vanishes.",
+  "text": "A child in a porcelain mask bumps into a Scion in the crowd and murmurs sorry in a voice far too old. Then the child is gone, and so is the purse. A small white face looks back once from the mouth of an alley before it vanishes.",
   "options": [
     {
       "id": "chase",
-      "label": "The fastest gives chase before the white face vanishes for good.",
+      "label": "The fastest gives chase before the white face is gone for good.",
       "rule": "scion:highest:speed",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "Caught, and the purse back, and more besides. Under the mask the child is very old.",
+          "text": "They catch the child and win back the purse, with more besides. Under the mask, the child is very old.",
           "effects": [
             {
               "resources": {
@@ -32,7 +32,7 @@
         },
         {
           "w": 40,
-          "text": "Lost in the crowd, and the purse with it, and two more purses gone in the chase.",
+          "text": "They lose the child in the crowd, along with the purse and two more taken during the chase.",
           "effects": [
             {
               "resources": {
@@ -45,7 +45,7 @@
     },
     {
       "id": "let",
-      "label": "Let the child keep it. Whatever wears that mask needs it more.",
+      "label": "Let the child keep it; whatever wears that mask needs it more.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -53,7 +53,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Gone. Somewhere, a small white face is grateful.",
+          "text": "Somewhere, a small white face is grateful.",
           "effects": [
             {
               "resources": {
@@ -71,7 +71,7 @@
     },
     {
       "id": "watch",
-      "label": "The sharpest eye watches where it runs, to learn where such things hide.",
+      "label": "The sharpest watches where it runs, to learn where such things hide.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -79,7 +79,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "To a thieves' den, with a back door you can use.",
+          "text": "It runs to a thieves' den with a back door you can use.",
           "effects": [
             {
               "skip": 1

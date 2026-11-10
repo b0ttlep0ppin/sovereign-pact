@@ -9,11 +9,11 @@
     10
   ],
   "title": "The Puppet Show",
-  "text": "A puppet theatre on a cart, curtains open, no puppeteer in sight, playing to an audience of silent crows. The little wooden figures fight and bleed red paint. They look like you, every one of you, down to the scars.",
+  "text": "A puppet theatre stands on a cart, curtains open and no puppeteer in sight, playing to an audience of silent crows. The little wooden figures fight and bleed red paint. Every one of them looks like you, down to the scars.",
   "options": [
     {
       "id": "watch",
-      "label": "Watch the show to its end, to learn how your story goes.",
+      "label": "Watch the show to its end to learn how your story goes.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "It ends happily, against all odds. It is a comfort, and you do not ask why.",
+          "text": "Against all odds it ends happily. It is a comfort, and you do not ask why.",
           "effects": [
             {
               "to": "party",
@@ -31,7 +31,7 @@
         },
         {
           "w": 50,
-          "text": "It ends as such shows do, with every little wooden you lying still, and the crows applauding.",
+          "text": "It ends as such shows do, with every little wooden you lying still while the crows applaud.",
           "effects": [
             {
               "to": "party",
@@ -43,7 +43,7 @@
     },
     {
       "id": "strings",
-      "label": "The sharpest eye looks for the strings, to find whoever works them.",
+      "label": "The sharpest looks for the strings, to find whoever works them.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -51,7 +51,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "There are none, and then there are, and they lead off into the trees to something hidden.",
+          "text": "There are none, and then there are. They lead off into the trees to something hidden.",
           "effects": [
             {
               "fork": {

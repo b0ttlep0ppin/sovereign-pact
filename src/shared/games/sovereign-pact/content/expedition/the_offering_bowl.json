@@ -9,7 +9,7 @@
     10
   ],
   "title": "The Offering Bowl",
-  "text": "A great bronze bowl, green with age, where pilgrims leave gifts for the Six. It is heaped with coins and rings and little carved saints, spilling over the rim onto the floor. The monks have not emptied it in years. Nobody is watching it.",
+  "text": "A great bronze bowl, green with age, holds the gifts pilgrims leave for the Six. Coins, rings and little carved saints are heaped high, spilling over the rim onto the floor. The monks have not emptied it in years. Nobody is watching it.",
   "options": [
     {
       "id": "give",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The Six notice, and are pleased. For a while, luck walks with you.",
+          "text": "The Six notice and are pleased. For a while, luck walks with you.",
           "effects": [
             {
               "resources": {
@@ -40,7 +40,7 @@
     },
     {
       "id": "take",
-      "label": "Plunder the bowl. Nobody is watching.",
+      "label": "Plunder the bowl while nobody is watching.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -64,7 +64,7 @@
     },
     {
       "id": "count",
-      "label": "The wisest counts what is there, and reads the prayers left with it.",
+      "label": "The wisest counts what is there and reads the prayers left with it.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -72,7 +72,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Offerings from every House, and what each House prays for, and some of the prayers are about you.",
+          "text": "There are offerings from every House, each with its prayer. Some of the prayers are about you.",
           "effects": [
             {
               "score": {

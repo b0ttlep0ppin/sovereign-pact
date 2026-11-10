@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "accept",
-      "label": "Accept their terms. Your Lost matter more than your pride.",
+      "label": "Accept their terms; your Lost matter more than your pride.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Your Lost come home. The favor will be called, and they will choose the hour.",
+          "text": "Your Lost come home. The favor will be called in at an hour of their choosing.",
           "effects": [
             {
               "skip": 2
@@ -43,7 +43,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Gold, not favors. The rider looks disappointed.",
+          "text": "They take gold instead of a favor. The rider looks disappointed.",
           "effects": [
             {
               "resources": {
@@ -59,7 +59,7 @@
     },
     {
       "id": "refuse",
-      "label": "Refuse, and find your Lost yourselves. No House will hold this over you.",
+      "label": "Refuse, and find your Lost yourselves; no House will hold this over you.",
       "rule": "leader",
       "tags": [
         "bold"
@@ -67,7 +67,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The long way, and the honest one.",
+          "text": "You take the long way, and the honest one.",
           "effects": [
             {
               "score": {

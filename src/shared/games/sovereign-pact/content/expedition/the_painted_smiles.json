@@ -9,11 +9,11 @@
     9
   ],
   "title": "The Painted Smiles",
-  "text": "The faceless here have painted smiles on their blank faces, wide red smiles in thick greasepaint. They smile at you, all of them, all the time, from doorways and windows and rooftops. Their smiles are cracking at the edges.",
+  "text": "The faceless here have painted wide red smiles on their blank faces in thick greasepaint. They smile at you all the time, from doorways and windows and rooftops. Their smiles are cracking at the edges.",
   "options": [
     {
       "id": "smile",
-      "label": "Smile back at them, and hope you smile the way they do.",
+      "label": "Smile back at them, hoping you smile the way they do.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "They are delighted, and give you gifts, and keep smiling.",
+          "text": "They are delighted. They give you gifts, still smiling.",
           "effects": [
             {
               "resources": {
@@ -36,7 +36,7 @@
         },
         {
           "w": 30,
-          "text": "Your smile is wrong somehow, and every painted smile drops at once.",
+          "text": "Your smile is wrong somehow. Every painted smile drops at once.",
           "effects": [
             {
               "encounter": {
@@ -71,7 +71,7 @@
     },
     {
       "id": "hurry",
-      "label": "Hurry past the smiling faces, and do not meet their eyes.",
+      "label": "Hurry past the smiling faces without meeting their eyes.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -79,7 +79,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The smiles follow you, from every window, until long after there are no more windows.",
+          "text": "The smiles follow you from every window until long after there are no more windows.",
           "effects": [
             {
               "to": "party",

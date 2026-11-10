@@ -9,11 +9,11 @@
     7
   ],
   "title": "The Mud Men",
-  "text": "Figures of mud rise from the marsh at dusk, one after another, and stand in a ring around the camp. They have no faces, only dimples where faces would be. They do nothing. They make no sound. They watch, all night, and the ring is a little closer at dawn.",
+  "text": "Figures of mud rise from the marsh at dusk, one after another, and stand in a ring around the camp. They have no faces, only dimples where faces would be. They make no sound and do nothing but watch, all night. At dawn the ring is a little closer.",
   "options": [
     {
       "id": "wait",
-      "label": "Wait out the night inside the ring. They have done nothing yet.",
+      "label": "Wait out the night inside the ring; they have done nothing yet.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -54,7 +54,7 @@
     },
     {
       "id": "study",
-      "label": "The wisest watches them back all night, to learn what they want.",
+      "label": "The wisest watches them back all night to learn what they want.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -62,7 +62,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They are pointing. All of them, the same way, and that way is shorter. Nobody asks why they would help.",
+          "text": "They are all pointing the same way, which proves shorter. Nobody asks why they would help.",
           "effects": [
             {
               "skip": 1

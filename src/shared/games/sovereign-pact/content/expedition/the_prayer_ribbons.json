@@ -9,7 +9,7 @@
     10
   ],
   "title": "The Prayer Ribbons",
-  "text": "A tree hung with thousands of prayer ribbons, one tied by every pilgrim who passed, faded to grey by sun and rain. They rustle like whispers in the wind. Some are your House's colors, tied by Scions long dead.",
+  "text": "A tree is hung with thousands of prayer ribbons, one tied by every pilgrim who passed, all faded grey by sun and rain. They rustle like whispers in the wind. Some are in your House's colors, tied by Scions long dead.",
   "options": [
     {
       "id": "tie",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A prayer for the House, among a thousand others, whispering with them.",
+          "text": "Your prayer for the House hangs among a thousand others, whispering with them.",
           "effects": [
             {
               "score": {
@@ -46,7 +46,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Prayers of your ancestors, and one secret they should not have tied to a tree.",
+          "text": "They hold your ancestors' prayers, and one secret they should never have tied to a tree.",
           "effects": [
             {
               "score": {
@@ -67,7 +67,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Petty, and satisfying, and the whispering stops for a moment.",
+          "text": "It is petty and satisfying. For a moment the whispering stops.",
           "effects": [
             {
               "score": {

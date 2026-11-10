@@ -9,7 +9,7 @@
     8
   ],
   "title": "The Northern Lights",
-  "text": "The lights in the sky come down to the ice, green and violet ribbons of them, and dance among you. They are cold, colder than the snow. They brush your faces like curious fingers. They seem to be trying to learn what you are.",
+  "text": "The lights in the sky come down to the ice in green and violet ribbons and dance among you. They are colder than the snow. They brush your faces like curious fingers, as if trying to learn what you are.",
   "options": [
     {
       "id": "dance",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "Light and cold joy, and laughter you did not know you had left.",
+          "text": "There is cold joy in it, and laughter you did not know you had left.",
           "effects": [
             {
               "sanity": 15
@@ -30,7 +30,7 @@
         },
         {
           "w": 30,
-          "text": "Too cold. The lights leave frost where they touched, and it does not melt.",
+          "text": "The lights leave frost where they touched, and it does not melt.",
           "effects": [
             {
               "status": "frozen"
@@ -41,7 +41,7 @@
     },
     {
       "id": "still",
-      "label": "Stand still and let them look, and hope curiosity is all they feel.",
+      "label": "Stand still and let them look, hoping curiosity is all they feel.",
       "rule": "each_scion",
       "tags": [
         "cautious"
@@ -49,7 +49,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They pass through you, cold and curious, and something in you is lighter when they go.",
+          "text": "They pass through you, and something in you is lighter when they go.",
           "effects": [
             {
               "sanity": 3

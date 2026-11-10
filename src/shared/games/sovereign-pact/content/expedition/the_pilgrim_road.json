@@ -9,7 +9,7 @@
     10
   ],
   "title": "The Pilgrim Road",
-  "text": "The road is lined with little shrines, each with a candle burning in a niche, each to someone who did not finish this journey. There are hundreds. The newest has no name on it yet, and its candle is unlit.",
+  "text": "Little shrines line the road by the hundred, each with a candle burning in a niche for someone who did not finish this journey. The newest has no name on it yet. Its candle is unlit.",
   "options": [
     {
       "id": "light",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It takes all day. The road feels lighter after, and the unlit one is lit.",
+          "text": "It takes all day. The road feels lighter after, the unlit candle burning with the rest.",
           "effects": [
             {
               "to": "party",
@@ -55,7 +55,7 @@
     },
     {
       "id": "pass",
-      "label": "Walk past without stopping. The dead can light their own candles.",
+      "label": "Walk past without stopping; the dead can light their own candles.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -63,7 +63,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The candles go out as you pass, one by one, all the way down the road.",
+          "text": "One by one, the candles go out as you pass, all the way down the road.",
           "effects": [
             {
               "to": "party",

@@ -9,7 +9,7 @@
     10
   ],
   "title": "The Other Party",
-  "text": "Another expedition is camped ahead, laughing around the fire, wearing the colours of a House that fell a hundred years ago. Their gear is old-fashioned and new. They wave you over. They have not noticed the time.",
+  "text": "Another expedition is camped ahead, laughing around the fire, wearing the colours of a House that fell a hundred years ago. Their gear is old-fashioned yet new. They wave you over; they have not noticed the time.",
   "options": [
     {
       "id": "warn",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They go very quiet, give you everything they carry, and walk into the dark one by one.",
+          "text": "They go very quiet. They give you everything they carry, then walk into the dark one by one.",
           "effects": [
             {
               "item": {
@@ -46,7 +46,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They tell old stories of your Houses, some true, and laugh at the wrong places.",
+          "text": "They tell old stories of your Houses, some of them true, and laugh in the wrong places.",
           "effects": [
             {
               "score": {
@@ -63,7 +63,7 @@
     },
     {
       "id": "rob",
-      "label": "The quietest takes their supplies while they sleep. They will not need them.",
+      "label": "The quietest takes their supplies while they sleep; they will not need them.",
       "rule": "scion:highest:guile",
       "tags": [
         "cruel"
@@ -71,7 +71,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Old gold spends just as well. In the morning their camp is empty, and the fire long cold.",
+          "text": "Old gold spends just as well. In the morning their camp is empty, the fire long cold.",
           "effects": [
             {
               "resources": {
