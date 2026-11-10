@@ -12,7 +12,7 @@ import { canShift, feralPick, graft, revert, shift } from "./forms.ts";
 import { keepParts, missingParts, offerParts, spendParts } from "./parts.ts";
 import { crescendo, playSong } from "./songs.ts";
 import { atCap, deathThroes, devour, hasRoom, openingSummons, raise, sacrifice, summon } from "./summons.ts";
-import { affinityMult, offHandStrike, strike } from "./damage.ts";
+import { affinityMult, knit, offHandStrike, strike } from "./damage.ts";
 import { hasStatus, isFree, standing } from "./grid.ts";
 import { kill } from "./injury.ts";
 import { cannotUseItem, itemAbility, spendItem } from "./items.ts";
@@ -124,7 +124,7 @@ function beginTurn(b: Battle, rng: Rng, u: Combatant): boolean {
   // Attuned and Resolute accessories (§13.4).
   if (u.mods.mpPerTurn) u.mp = Math.min(u.maxMp, u.mp + u.mods.mpPerTurn);
   if (u.mods.sanityPerTurn) u.sanity = Math.min(u.maxSanity, u.sanity + u.mods.sanityPerTurn);
-  if (u.mods.durPctPerTurn && u.dur && u.maxDur) for (const l of LOCATIONS) u.dur[l] = Math.min(u.maxDur[l], u.dur[l] + Math.round((u.maxDur[l] * u.mods.durPctPerTurn) / 100));
+  if (u.mods.durPctPerTurn && u.dur && u.maxDur) for (const l of LOCATIONS) knit(b, u.id, u, l, Math.round((u.maxDur[l] * u.mods.durPctPerTurn) / 100), true);
   if (hasStatus(u, "fear") && (u.mods.sanityTakenPct ?? 0) > -100) u.sanity = Math.max(0, u.sanity - 5);
   // An opening's Hiding ends at the next turn; Vanish's (value 1) only when the Vagabond acts.
   if (hasStatus(u, "hidden") && u.turns > 1 && statusValue(u, "hidden") !== 1) removeStatus(b, u, "hidden");

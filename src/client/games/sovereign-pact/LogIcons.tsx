@@ -103,7 +103,7 @@ export function BattleLine({ e, text, replay, view, ability }: { e: BattleEvent;
   const lead = unit(leadOf(e));
   let tail: ReactNode = null;
   if (e.t === "hit") tail = <Mark kind={harmOf(e, ability, lead)} />;
-  else if (e.t === "heal") tail = <Mark kind="heal" />;
+  else if (e.t === "heal" || e.t === "mend") tail = <Mark kind="heal" />;
   else if (e.t === "injury") tail = <Mark kind="blood" />;
   else if (e.t === "sanity" && e.amount < 0) tail = <Mark kind="mind" />;
   else if (e.t === "status" && e.on) {

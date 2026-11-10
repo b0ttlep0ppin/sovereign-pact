@@ -78,9 +78,9 @@ export function strikesOf(ev: Event[], units: Map<number, ReplayUnit>): Strike[]
       }
       continue;
     }
-    if (e.t !== "hit" && e.t !== "miss" && e.t !== "heal") continue;
-    // HP seeping back (a drain, Regen) shows only as its number.
-    if (e.t === "heal" && e.quiet) continue;
+    if (e.t !== "hit" && e.t !== "miss" && e.t !== "heal" && e.t !== "mend") continue;
+    // HP or Durability seeping back (a drain, Regen) shows only as its number.
+    if ((e.t === "heal" || e.t === "mend") && e.quiet) continue;
     if (!units.has(e.unit) || !units.has(e.target)) continue;
     if (user !== e.unit) {
       used = undefined;
@@ -89,7 +89,7 @@ export function strikesOf(ev: Event[], units: Map<number, ReplayUnit>): Strike[]
     if (out.some((s) => s.wave === wave && s.to === e.target && s.kind === "mind")) continue;
     const act = used ? Content.ACTIVE_BY_ID.get(used) : undefined;
     let kind: StrikeKind;
-    if (e.t === "heal") kind = "heal";
+    if (e.t === "heal" || e.t === "mend") kind = "heal";
     else if (act?.kind === "magic" || act?.kind === "support") kind = "spell";
     // A ranged ability, or any blow from a bow or crossbow: an arrow or bolt flies from where they stand.
     else if (act?.reach === "ranged" || RANGED.has(units.get(e.unit)?.weapon ?? "")) kind = "shot";

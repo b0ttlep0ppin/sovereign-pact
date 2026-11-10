@@ -371,6 +371,8 @@ export type BattleEvent =
   | { t: "miss"; unit: number; target: number }
   | { t: "hit"; unit: number; target: number; damage: number; loc?: Location; crit?: boolean; weak?: boolean; element?: Element; /** A weapon edge's element, when it added to the blow (§13.4). */ edge?: Element }
   | { t: "heal"; unit: number; target: number; amount: number; /** HP that seeps back with no spell cast (a drain, Sanguine blood, Regen): shown as a number only. */ quiet?: boolean }
+  /** Durability put back on one location (Knit Bone, a salve, Durability regen); `unbroken` when it was Broken and holds again. */
+  | { t: "mend"; unit: number; target: number; loc: Location; amount: number; unbroken?: true; quiet?: true }
   | { t: "sanity"; target: number; amount: number }
   | { t: "status"; target: number; status: string; on: boolean }
   | { t: "injury"; target: number; table: string; roll: number; total: number; result: string; rerolled?: number; tooth?: true; rite?: true }

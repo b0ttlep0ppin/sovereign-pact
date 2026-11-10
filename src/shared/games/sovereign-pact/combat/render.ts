@@ -74,6 +74,8 @@ export function describeEvent(b: Battle, e: BattleEvent): string {
     case "heal":
       if (e.quiet) return `${n(e.target)} regains ${e.amount} HP`;
       return `${n(e.unit)} heals ${n(e.target)} for ${e.amount}`;
+    case "mend":
+      return `${e.quiet ? `${n(e.target)} regains ${e.amount} Durability (${e.loc})` : `${n(e.unit)} mends ${n(e.target)}'s ${e.loc} (+${e.amount} Durability)`}${e.unbroken ? ", no longer Broken" : ""}`;
     case "sanity":
       return `${n(e.target)} loses ${e.amount} Sanity`;
     case "status":
