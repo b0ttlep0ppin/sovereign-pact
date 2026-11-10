@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "dig",
-      "label": "Dig in and wait it out.",
+      "label": "Dig in and wait it out, and do not answer the voices.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -37,7 +37,7 @@
     },
     {
       "id": "lead",
-      "label": "The toughest leads on by compass.",
+      "label": "The toughest leads on by compass, and trusts the needle over their ears.",
       "rule": "scion:highest:resilience",
       "tags": [
         "bold"
@@ -65,7 +65,7 @@
     },
     {
       "id": "call",
-      "label": "Call out to stay together.",
+      "label": "Call out to stay together, so no one wanders off.",
       "rule": "leader",
       "tags": [
         "kind"

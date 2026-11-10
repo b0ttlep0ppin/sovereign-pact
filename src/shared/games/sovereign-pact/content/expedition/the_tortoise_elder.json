@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "wait",
-      "label": "Wait for the old tortoise to cross.",
+      "label": "Wait for the old tortoise to cross. It has earned the right of way.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -33,7 +33,7 @@
     },
     {
       "id": "ride",
-      "label": "The boldest climbs onto its shell.",
+      "label": "The boldest climbs onto its shell, and lets it carry them a while.",
       "rule": "scion:trait:brave|scion:random",
       "tags": [
         "reckless"
@@ -65,7 +65,7 @@
     },
     {
       "id": "round",
-      "label": "Go round it.",
+      "label": "Go round it. You have no hours to spare.",
       "rule": "leader",
       "tags": [
         "cautious"

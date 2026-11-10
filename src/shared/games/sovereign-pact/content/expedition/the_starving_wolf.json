@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "feed",
-      "label": "Feed the wolf.",
+      "label": "Feed the wolf. A starving thing that asks so politely deserves a meal.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It eats, and lies down by the fire, and is gone in the morning. Its pack leads you a better way.",
+          "text": "It eats, lies down by the fire, and is gone in the morning. Its pack leads you a better way.",
           "effects": [
             {
               "to": "party",
@@ -36,7 +36,7 @@
     },
     {
       "id": "drive",
-      "label": "Drive it away from the fire.",
+      "label": "Drive it away from the fire before its pack grows bolder.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -56,7 +56,7 @@
     },
     {
       "id": "kill",
-      "label": "The most blooded kills it for its pelt.",
+      "label": "The most blooded kills it for its pelt. It will not starve any longer.",
       "rule": "scion:most_kills",
       "tags": [
         "cruel"

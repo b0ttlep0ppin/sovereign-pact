@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "rest",
-      "label": "Rest in the golden garden.",
+      "label": "Rest in the golden garden, where no hour is ever lost.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -37,7 +37,7 @@
     },
     {
       "id": "turn",
-      "label": "The Leader turns the dial.",
+      "label": "The Leader turns the dial, to set the garden's time going again.",
       "rule": "leader",
       "tags": [
         "reckless"
@@ -75,7 +75,7 @@
     },
     {
       "id": "take",
-      "label": "The strongest wrenches out the gnomon.",
+      "label": "The strongest wrenches out the gnomon. Stopped time is worth something.",
       "rule": "scion:highest:might",
       "tags": [
         "clever"

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "pull",
-      "label": "The Leader pulls the thread.",
+      "label": "The Leader pulls the thread, to learn what unravels.",
       "rule": "leader",
       "tags": [
         "reckless"
@@ -42,7 +42,7 @@
     },
     {
       "id": "cut",
-      "label": "Cut the thread.",
+      "label": "Cut the thread, before it pulls anything else apart.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -61,7 +61,7 @@
     },
     {
       "id": "tie",
-      "label": "The wisest ties it off.",
+      "label": "The wisest ties it off, so nothing comes undone.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"

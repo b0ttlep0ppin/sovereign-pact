@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "drink",
-      "label": "Drink with the beasts, and keep the truce.",
+      "label": "Drink with the beasts, and keep the truce as they do.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -48,7 +48,7 @@
     },
     {
       "id": "watch",
-      "label": "The sharpest eye watches which beasts come.",
+      "label": "The sharpest eye watches which beasts come, to learn what roams ahead.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -67,7 +67,7 @@
     },
     {
       "id": "break",
-      "label": "Break the truce while they drink.",
+      "label": "Break the truce while they drink. They will never be easier prey.",
       "rule": "leader",
       "tags": [
         "cruel"

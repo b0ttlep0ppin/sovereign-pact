@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "scout",
-      "label": "The quickest scouts the banks first.",
+      "label": "The quickest scouts the banks first, to learn what stirs the bracken.",
       "rule": "scion:highest:speed",
       "tags": [
         "clever"
@@ -34,7 +34,7 @@
     },
     {
       "id": "through",
-      "label": "Go through fast, shields up.",
+      "label": "Go through fast, shields up, and trust speed over caution.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -65,7 +65,7 @@
     },
     {
       "id": "over",
-      "label": "Go over the banks the hard way.",
+      "label": "Go over the banks the hard way, and leave the road to whoever waits on it.",
       "rule": "leader",
       "tags": [
         "cautious"

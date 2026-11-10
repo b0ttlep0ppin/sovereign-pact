@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "carry",
-      "label": "The bravest takes up the banner.",
+      "label": "The bravest takes up the banner, and trusts the battle it loses is not this one.",
       "rule": "scion:trait:brave|scion:highest:might",
       "tags": [
         "bold"
@@ -38,7 +38,7 @@
     },
     {
       "id": "burn",
-      "label": "Burn the banner.",
+      "label": "Burn the banner, so it claims no more bearers.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -83,7 +83,7 @@
     },
     {
       "id": "curse_to_curse",
-      "label": "The one in cursed gear carries it. They are cursed already.",
+      "label": "The one in cursed gear carries it. They are cursed already, and one curse may cancel another.",
       "rule": "scion:cursed",
       "only": true,
       "tags": [

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "accept",
-      "label": "Accept it as a sign.",
+      "label": "Accept it as a sign, and bleed as the Six will it.",
       "rule": "scion:trait:devout|scion:random",
       "tags": [
         "kind"
@@ -38,7 +38,7 @@
     },
     {
       "id": "bind",
-      "label": "Bind the hands and go.",
+      "label": "Bind the hands and go, before the monks make a saint of them.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -58,7 +58,7 @@
     },
     {
       "id": "fake",
-      "label": "The shrewdest makes the most of it.",
+      "label": "The shrewdest makes the most of it. Miracles are good for business.",
       "rule": "scion:highest:guile",
       "tags": [
         "cruel"
@@ -82,7 +82,7 @@
     },
     {
       "id": "taste_it",
-      "label": "The Ravager tastes the blood.",
+      "label": "The Ravager tastes the blood, to know if it is truly holy.",
       "rule": "scion:job:ravager",
       "only": true,
       "tags": [

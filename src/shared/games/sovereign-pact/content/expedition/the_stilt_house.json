@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "call",
-      "label": "Call up to whoever is inside.",
+      "label": "Call up to whoever is inside, and ask for shelter.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -47,7 +47,7 @@
     },
     {
       "id": "climb",
-      "label": "The quickest shins up a stilt.",
+      "label": "The quickest shins up a stilt, to learn who put out the light.",
       "rule": "scion:highest:speed",
       "tags": [
         "bold"
@@ -71,7 +71,7 @@
     },
     {
       "id": "pass",
-      "label": "Pass under the house.",
+      "label": "Pass under the house. Whoever is up there wants no visitors.",
       "rule": "leader",
       "tags": [
         "cautious"

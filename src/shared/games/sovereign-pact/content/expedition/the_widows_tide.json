@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "tide",
-      "label": "Someone the sea knows walks out for the wreck.",
+      "label": "Someone the sea knows walks out for the wreck, and trusts the water to wait.",
       "rule": "scion:trait:tidebound|scion:highest:speed",
       "tags": [
         "bold"
@@ -47,7 +47,7 @@
     },
     {
       "id": "together",
-      "label": "Everyone runs out and grabs what they can.",
+      "label": "Everyone runs out and grabs what they can before the sea turns.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -80,7 +80,7 @@
     },
     {
       "id": "wait",
-      "label": "Wait for the tide to bring it in.",
+      "label": "Wait for the tide to bring it in. The sea gives back what it takes, in time.",
       "rule": "leader",
       "tags": [
         "cautious"

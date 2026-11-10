@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "pay",
-      "label": "The Leader pays what it asks.",
+      "label": "The Leader pays what it asks. The bones below are reason enough.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -34,7 +34,7 @@
     },
     {
       "id": "riddle",
-      "label": "The wisest offers it a riddle instead.",
+      "label": "The wisest offers it a riddle instead of coin.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -72,7 +72,7 @@
     },
     {
       "id": "fight",
-      "label": "Shove it off its own bridge.",
+      "label": "Shove it off its own bridge, and join it to the bones below.",
       "rule": "vote",
       "tags": [
         "bold"

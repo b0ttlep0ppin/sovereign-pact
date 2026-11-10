@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "look",
-      "label": "The sharpest eye looks back at the star.",
+      "label": "The sharpest eye looks back at the star, to learn what it sees.",
       "rule": "scion:highest:acuity",
       "tags": [
         "bold"
@@ -54,7 +54,7 @@
     },
     {
       "id": "veil",
-      "label": "Cover every face and walk on.",
+      "label": "Cover every face and walk on, and give it nothing to look at.",
       "rule": "vote",
       "tags": [
         "cautious"

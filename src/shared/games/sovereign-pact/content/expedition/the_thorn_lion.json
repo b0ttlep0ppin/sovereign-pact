@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "help",
-      "label": "The bravest pulls the thorn.",
+      "label": "The bravest pulls the thorn, and trusts the lion to know a kindness.",
       "rule": "scion:trait:brave|scion:highest:resilience",
       "tags": [
         "kind"
@@ -47,7 +47,7 @@
     },
     {
       "id": "avoid",
-      "label": "Give it a wide berth.",
+      "label": "Give it a wide berth. Pain makes any beast dangerous.",
       "rule": "vote",
       "tags": [
         "cautious"

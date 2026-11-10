@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "listen",
-      "label": "Listen to the faceless crier's news.",
+      "label": "Listen to the faceless crier's news, and learn what else he knows.",
       "rule": "vote",
       "tags": [
         "clever"
@@ -47,7 +47,7 @@
     },
     {
       "id": "pay",
-      "label": "The shrewdest pays him to cry a lie about a rival.",
+      "label": "The shrewdest pays him to cry a lie about a rival, in that same cheerful voice.",
       "rule": "scion:highest:guile",
       "tags": [
         "cruel"
@@ -73,7 +73,7 @@
     },
     {
       "id": "silence",
-      "label": "The Leader silences him.",
+      "label": "The Leader silences him before he cries anything more about the House.",
       "rule": "leader",
       "tags": [
         "bold"

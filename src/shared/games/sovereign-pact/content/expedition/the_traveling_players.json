@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "watch",
-      "label": "Watch the play about your Houses.",
+      "label": "Watch the play about your Houses, and learn what the world thinks of you.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -38,7 +38,7 @@
     },
     {
       "id": "correct",
-      "label": "The best talker corrects them.",
+      "label": "The best talker corrects them, so the story is told your way.",
       "rule": "scion:highest:guile",
       "tags": [
         "bold"

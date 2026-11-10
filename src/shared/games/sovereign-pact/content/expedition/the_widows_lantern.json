@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "lie",
-      "label": "The Leader tells her he is coming home.",
+      "label": "The Leader tells her he is coming home, so she may rest at last.",
       "rule": "leader",
       "tags": [
         "kind"
@@ -58,7 +58,7 @@
     },
     {
       "id": "search",
-      "label": "The sharpest eye promises to look for him.",
+      "label": "The sharpest eye promises to look for him, and means it.",
       "rule": "scion:highest:acuity",
       "tags": [
         "bold"

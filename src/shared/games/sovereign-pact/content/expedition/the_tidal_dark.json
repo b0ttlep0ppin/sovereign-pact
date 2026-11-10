@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "comb",
-      "label": "Comb the shore between tides.",
+      "label": "Comb the shore between tides, and gather what the dark leaves behind.",
       "rule": "vote",
       "tags": [
         "clever"
@@ -44,7 +44,7 @@
     },
     {
       "id": "race",
-      "label": "The quickest runs the shore at low tide.",
+      "label": "The quickest runs the shore at low tide, and races the dark back.",
       "rule": "scion:highest:speed",
       "tags": [
         "bold"
@@ -70,7 +70,7 @@
     },
     {
       "id": "high",
-      "label": "Keep to high ground.",
+      "label": "Keep to high ground, and watch what the tide does.",
       "rule": "leader",
       "tags": [
         "cautious"

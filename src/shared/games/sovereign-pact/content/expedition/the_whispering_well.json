@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "coin",
-      "label": "The Leader throws down a coin and wishes.",
+      "label": "The Leader throws down a coin and wishes, to quiet the whispering.",
       "rule": "leader",
       "tags": [
         "kind"
@@ -51,7 +51,7 @@
     },
     {
       "id": "climb",
-      "label": "The strongest climbs down to see.",
+      "label": "The strongest climbs down to see what knows your names.",
       "rule": "scion:highest:might",
       "tags": [
         "reckless"
@@ -87,7 +87,7 @@
     },
     {
       "id": "shout",
-      "label": "Shout your own names back down.",
+      "label": "Shout your own names back down, and drown it out.",
       "rule": "vote",
       "tags": [
         "bold"

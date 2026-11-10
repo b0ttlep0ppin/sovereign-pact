@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "marked",
-      "label": "The one they watch goes alone to meet them.",
+      "label": "The one they watch goes alone to meet them, and learns what they want.",
       "rule": "scion:most_targeted",
       "tags": [
         "bold"
@@ -48,7 +48,7 @@
     },
     {
       "id": "ambush",
-      "label": "The craftiest sets an ambush for them.",
+      "label": "The craftiest sets an ambush, and turns the watcher into the watched.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"
@@ -69,7 +69,7 @@
     },
     {
       "id": "ignore",
-      "label": "Keep walking.",
+      "label": "Keep walking. If they wanted a fight, they would have had one.",
       "rule": "vote",
       "tags": [
         "cautious"

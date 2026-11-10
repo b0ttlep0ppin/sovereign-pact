@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "track",
-      "label": "The sharpest eye reads the three trails.",
+      "label": "The sharpest eye reads the three trails, to learn which one is true.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -35,7 +35,7 @@
     },
     {
       "id": "split",
-      "label": "Split up and search all three.",
+      "label": "Split up and search all three. There is no time to choose.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -69,7 +69,7 @@
     },
     {
       "id": "call",
-      "label": "Call out the House's cry.",
+      "label": "Call out the House's cry, so they know you have come.",
       "rule": "leader",
       "tags": [
         "bold"

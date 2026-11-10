@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "drink",
-      "label": "Drink from the silver bowl.",
+      "label": "Drink from the silver bowl, as the pilgrims do.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -43,7 +43,7 @@
     },
     {
       "id": "pray",
-      "label": "The devout prays before the icon.",
+      "label": "The devout prays before the icon, and asks why it weeps.",
       "rule": "scion:trait:devout|scion:highest:sagacity",
       "tags": [
         "kind"
@@ -65,7 +65,7 @@
     },
     {
       "id": "bottle",
-      "label": "The Leader bottles the tears to sell.",
+      "label": "The Leader bottles the tears to sell. A god's grief is worth a fortune.",
       "rule": "leader",
       "tags": [
         "cruel"

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "hunt",
-      "label": "The keenest eye takes the shot.",
+      "label": "The keenest eye takes the shot, and claims what the songs promise.",
       "rule": "scion:highest:acuity",
       "tags": [
         "bold"
@@ -65,7 +65,7 @@
     },
     {
       "id": "bow",
-      "label": "Bow to the stag.",
+      "label": "Bow to the stag, and let it go untouched.",
       "rule": "vote",
       "tags": [
         "kind"

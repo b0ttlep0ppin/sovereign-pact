@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "read",
-      "label": "The wisest reads the rewritten pages.",
+      "label": "The wisest reads the rewritten pages, to learn what the Court truly believes.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -43,7 +43,7 @@
     },
     {
       "id": "gather",
-      "label": "Gather the pages to restore the book.",
+      "label": "Gather the pages to restore the book, door by door, whatever the Court thinks.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -67,7 +67,7 @@
     },
     {
       "id": "burn",
-      "label": "Burn every page.",
+      "label": "Burn every page, so the new words spread no further.",
       "rule": "leader",
       "tags": [
         "bold"

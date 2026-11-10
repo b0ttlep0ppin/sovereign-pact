@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "cut",
-      "label": "The strongest cuts out the glowing heartwood.",
+      "label": "The strongest cuts out the glowing heartwood while it still burns.",
       "rule": "scion:highest:might",
       "tags": [
         "bold"
@@ -82,7 +82,7 @@
     },
     {
       "id": "pray",
-      "label": "Leave an offering at its roots.",
+      "label": "Leave an offering at its roots, for whatever struck it from a clear sky.",
       "rule": "leader",
       "tags": [
         "kind"

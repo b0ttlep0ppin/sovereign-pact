@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "fix",
-      "label": "The strongest fixes the wheel.",
+      "label": "The strongest fixes the wheel, and does not look under the tarp.",
       "rule": "scion:highest:might",
       "tags": [
         "kind"
@@ -37,7 +37,7 @@
     },
     {
       "id": "buy",
-      "label": "The Leader buys from the cargo.",
+      "label": "The Leader buys from the cargo while he is desperate enough to bargain.",
       "rule": "leader",
       "tags": [
         "clever"
@@ -63,7 +63,7 @@
     },
     {
       "id": "rob",
-      "label": "Take the cargo.",
+      "label": "Plunder the cargo. He cannot run with a broken wheel.",
       "rule": "leader",
       "tags": [
         "cruel"

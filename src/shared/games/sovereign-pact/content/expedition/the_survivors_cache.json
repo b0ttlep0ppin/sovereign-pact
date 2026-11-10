@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "read",
-      "label": "The cleverest reads the cipher.",
+      "label": "The cleverest reads the cipher, to learn what became of them.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -35,7 +35,7 @@
     },
     {
       "id": "eat",
-      "label": "Eat, and leave something in return.",
+      "label": "Eat, and leave something in return, as your House would want.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -60,7 +60,7 @@
     },
     {
       "id": "take",
-      "label": "The Leader takes all of it.",
+      "label": "The Leader takes all of it. They will not need it if you find them first.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -68,7 +68,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They will not need it if you find them first. That is what you tell yourselves.",
+          "text": "That is what you tell yourselves.",
           "effects": [
             {
               "to": "party",

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "free",
-      "label": "Chip him out of the ice.",
+      "label": "Chip him out of the ice, before the sun does it for you.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -46,7 +46,7 @@
     },
     {
       "id": "read",
-      "label": "The sharpest eye reads his lips.",
+      "label": "The sharpest eye reads his lips, to learn what he is saying.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -68,7 +68,7 @@
     },
     {
       "id": "leave",
-      "label": "Leave him to the sun.",
+      "label": "Leave him to the sun. He is too far gone to save.",
       "rule": "leader",
       "tags": [
         "cautious"
