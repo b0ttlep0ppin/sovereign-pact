@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "wish",
-      "label": "Drop a coin and wish.",
+      "label": "Drop a coin and wish, as every pilgrim has before you.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -38,7 +38,7 @@
     },
     {
       "id": "take",
-      "label": "The Leader scoops up the coins.",
+      "label": "The Leader scoops up the coins. A fortune should not sit in a hole.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -62,7 +62,7 @@
     },
     {
       "id": "pray",
-      "label": "The devout prays over the well.",
+      "label": "The devout prays over the well, for all who wished here.",
       "rule": "scion:trait:devout|scion:most_healing",
       "tags": [
         "kind"

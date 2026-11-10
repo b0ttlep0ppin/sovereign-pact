@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "eat",
-      "label": "Sit and eat with the pilgrims.",
+      "label": "Sit and eat with the pilgrims, and rest your feet among the faithful.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -37,7 +37,7 @@
     },
     {
       "id": "trade",
-      "label": "Trade at the feast-day market.",
+      "label": "Trade at the feast-day market while the town is in a generous mood.",
       "rule": "leader",
       "tags": [
         "clever"
@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Good prices, and good wares, and nobody asks where you have been.",
+          "text": "Good prices and good wares, and nobody asks where you have been.",
           "effects": [
             {
               "item": {
@@ -63,7 +63,7 @@
     },
     {
       "id": "preach",
-      "label": "The devout leads the feast in prayer.",
+      "label": "The devout leads the feast in prayer, so the town remembers which House gave thanks.",
       "rule": "scion:trait:devout|scion:highest:sagacity",
       "tags": [
         "kind"

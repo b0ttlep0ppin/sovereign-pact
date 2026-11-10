@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "free",
-      "label": "Free every prisoner.",
+      "label": "Free every prisoner. No one deserves to die in a cage.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -48,7 +48,7 @@
     },
     {
       "id": "question",
-      "label": "The sharpest eye questions them first.",
+      "label": "The sharpest eye questions them first, to learn which of them belongs in the cage.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -56,7 +56,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "You free the ones who deserve it, and leave the laughing one where he is.",
+          "text": "You free the ones who deserve it, and leave the laughing one where he is. He laughs as you go.",
           "effects": [
             {
               "score": {
@@ -74,7 +74,7 @@
     },
     {
       "id": "leave",
-      "label": "Leave them caged.",
+      "label": "Leave them caged. Whatever tore out those throats may come back for them.",
       "rule": "leader",
       "tags": [
         "cruel"

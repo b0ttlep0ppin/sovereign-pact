@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "watch",
-      "label": "Watch the show to its end.",
+      "label": "Watch the show to its end, to learn how your story goes.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -43,7 +43,7 @@
     },
     {
       "id": "strings",
-      "label": "The sharpest eye looks for the strings.",
+      "label": "The sharpest eye looks for the strings, to find whoever works them.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -66,7 +66,7 @@
     },
     {
       "id": "burn",
-      "label": "Burn the cart.",
+      "label": "Burn the cart before the show can finish.",
       "rule": "leader",
       "tags": [
         "bold"

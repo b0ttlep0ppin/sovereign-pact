@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "wait",
-      "label": "Wait for them to finish.",
+      "label": "Wait for them to finish. No one steps between two bulls.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -33,7 +33,7 @@
     },
     {
       "id": "antler",
-      "label": "The quickest snatches a shed antler from between them.",
+      "label": "The quickest snatches a shed antler from between them while they fight.",
       "rule": "scion:highest:speed",
       "tags": [
         "bold"
@@ -65,7 +65,7 @@
     },
     {
       "id": "hunt",
-      "label": "The Leader brings one down while they are busy.",
+      "label": "The Leader brings one down while they are busy with each other.",
       "rule": "leader",
       "tags": [
         "cruel"

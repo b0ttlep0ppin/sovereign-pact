@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "track",
-      "label": "The best tracker follows the blood.",
+      "label": "The best tracker follows the blood while it is still fresh.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Straight to where it rests, licking its wound.",
+          "text": "Straight to where it rests, licking its wound. It does not hear you coming.",
           "effects": [
             {
               "skip": 1
@@ -35,7 +35,7 @@
     },
     {
       "id": "trap",
-      "label": "The craftiest sets a trap on its trail.",
+      "label": "The craftiest sets a trap on its trail, in case it doubles back.",
       "rule": "scion:highest:guile",
       "tags": [
         "cautious"
@@ -59,7 +59,7 @@
     },
     {
       "id": "rush",
-      "label": "Run it down now, while it bleeds.",
+      "label": "Run it down now, while it bleeds and before it heals.",
       "rule": "vote",
       "tags": [
         "bold"

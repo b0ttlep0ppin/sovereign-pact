@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "tiptoe",
-      "label": "Tiptoe past the horn.",
+      "label": "Tiptoe past the horn, and pray the snoring does not stop.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 75,
-          "text": "It snores on. You come out the far side mud to the knee, and the mud dries on your greaves hard as stone.",
+          "text": "It snores on. You come out mud to the knee, and the mud dries on your greaves hard as stone.",
           "effects": [
             {
               "to": "party",
@@ -45,7 +45,7 @@
     },
     {
       "id": "quick",
-      "label": "The quickest leads, setting the pace.",
+      "label": "The quickest leads, setting a pace fast enough to be past before it stirs.",
       "rule": "scion:highest:speed",
       "tags": [
         "bold"
@@ -64,7 +64,7 @@
     },
     {
       "id": "mud",
-      "label": "Roll in the mud to hide your scent.",
+      "label": "Roll in the mud to hide your scent from everything that hunts by smell.",
       "rule": "leader",
       "tags": [
         "clever"

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "chase",
-      "label": "The fastest goes over the rooftops after them.",
+      "label": "The fastest goes over the rooftops after them, to take back what is the House's.",
       "rule": "scion:highest:speed",
       "tags": [
         "reckless"
@@ -48,7 +48,7 @@
     },
     {
       "id": "street",
-      "label": "Follow from the street below.",
+      "label": "Follow from the street below, and keep them in sight.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -69,7 +69,7 @@
     },
     {
       "id": "ahead",
-      "label": "The cleverest guesses where they will come down.",
+      "label": "The cleverest guesses where they will come down, and waits there.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "loot",
-      "label": "The Leader takes the best of the armor.",
+      "label": "The Leader takes the best of the armor. Its owners are long gone.",
       "rule": "leader",
       "tags": [
         "clever"
@@ -50,7 +50,7 @@
     },
     {
       "id": "salute",
-      "label": "Salute them and march past in step.",
+      "label": "Salute them and march past in step, as soldiers to soldiers.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -75,7 +75,7 @@
     },
     {
       "id": "command",
-      "label": "The strongest orders them to stand down.",
+      "label": "The strongest orders them to stand down, and hopes to be obeyed.",
       "rule": "scion:highest:might",
       "tags": [
         "bold"

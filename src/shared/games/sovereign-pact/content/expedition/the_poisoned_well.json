@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "share",
-      "label": "Pass your antidote round to everyone.",
+      "label": "Pass your antidote round to everyone, and trust the others will do the same.",
       "rule": "secret",
       "tags": [
         "kind"
@@ -57,7 +57,7 @@
     },
     {
       "id": "hoard",
-      "label": "Keep your antidote for your own.",
+      "label": "Keep your antidote for your own. Let the other Houses look to theirs.",
       "rule": "secret",
       "tags": [
         "cautious"

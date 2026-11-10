@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "walk",
-      "label": "Walk with the penitents.",
+      "label": "Walk with the penitents, and let them carry you through the Court's gates.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They take you through the Court's gates as one of theirs, singing, and their blood is on your boots.",
+          "text": "They take you through the gates as one of theirs, singing, and their blood is on your boots.",
           "effects": [
             {
               "skip": 1
@@ -36,7 +36,7 @@
     },
     {
       "id": "question",
-      "label": "The wisest asks them what they repent.",
+      "label": "The wisest asks them what they repent, and listens closely.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -57,7 +57,7 @@
     },
     {
       "id": "break",
-      "label": "Break up the procession.",
+      "label": "Break up the procession. This is no faith worth walking with.",
       "rule": "leader",
       "tags": [
         "bold"

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "kneel",
-      "label": "Kneel as it passes.",
+      "label": "Kneel as it passes. The guards are watching.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -33,7 +33,7 @@
     },
     {
       "id": "steal",
-      "label": "The deftest hands steal the hand.",
+      "label": "The deftest hands steal the saint's hand from its golden cage.",
       "rule": "scion:highest:guile",
       "tags": [
         "cruel"
@@ -68,7 +68,7 @@
     },
     {
       "id": "devout",
-      "label": "The devout asks to touch it.",
+      "label": "The devout asks to touch it, and begs its healing.",
       "rule": "scion:trait:devout|scion:highest:sagacity",
       "tags": [
         "kind"

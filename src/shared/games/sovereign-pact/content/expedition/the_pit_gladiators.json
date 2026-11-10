@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "fight",
-      "label": "The strongest steps into the arena.",
+      "label": "The strongest steps into the arena, to win what no one here has won.",
       "rule": "scion:highest:might",
       "tags": [
         "bold"
@@ -46,7 +46,7 @@
     },
     {
       "id": "free",
-      "label": "Free a gladiator.",
+      "label": "Free a gladiator, and deny the devils their sport.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -70,7 +70,7 @@
     },
     {
       "id": "bet",
-      "label": "The shrewdest bets on the fights.",
+      "label": "The shrewdest bets on the fights, and plays the devils at their own game.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"
@@ -89,7 +89,7 @@
         },
         {
           "w": 50,
-          "text": "Lost, every coin.",
+          "text": "Lost, every coin. The devils laugh as they count it.",
           "effects": [
             {
               "resources": {

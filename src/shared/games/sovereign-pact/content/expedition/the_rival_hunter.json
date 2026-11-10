@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "join",
-      "label": "Hunt together, for an even split.",
+      "label": "Hunt together, for an even split, and keep an eye on that bow.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -48,7 +48,7 @@
     },
     {
       "id": "race",
-      "label": "The quickest races them to the quarry.",
+      "label": "The quickest races them to the quarry, to take the kill for the House.",
       "rule": "scion:highest:speed",
       "tags": [
         "bold"
@@ -72,7 +72,7 @@
     },
     {
       "id": "rob",
-      "label": "Rob them of their fine gear.",
+      "label": "Rob them of their fine gear. A lone hunter out here will not be missed.",
       "rule": "leader",
       "tags": [
         "cruel"

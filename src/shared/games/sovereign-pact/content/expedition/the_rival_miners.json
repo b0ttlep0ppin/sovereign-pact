@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "share",
-      "label": "Share the seam with them.",
+      "label": "Share the seam with them. There is enough iron for two Houses.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -37,7 +37,7 @@
     },
     {
       "id": "drive",
-      "label": "Drive them off the seam.",
+      "label": "Drive them off the seam. You came for it first, whatever their banner says.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -61,7 +61,7 @@
     },
     {
       "id": "trick",
-      "label": "The shrewdest tricks them into leaving.",
+      "label": "The shrewdest tricks them into leaving, so no blood is spilled over it.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"

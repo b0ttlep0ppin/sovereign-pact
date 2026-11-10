@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "killer",
-      "label": "The one with the most kills steps up.",
+      "label": "The one with the most kills steps up to claim the sword.",
       "rule": "scion:most_kills",
       "tags": [
         "bold"
@@ -39,7 +39,7 @@
     },
     {
       "id": "healer",
-      "label": "The one who has saved the most lives steps up.",
+      "label": "The one who has saved the most lives steps up, and calls that the better fighting.",
       "rule": "scion:most_healing",
       "tags": [
         "kind"
@@ -64,7 +64,7 @@
     },
     {
       "id": "nobody",
-      "label": "Say nothing.",
+      "label": "Say nothing. The dead can judge for themselves.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -72,7 +72,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The wind waits a long time, and then gives up. The field's dead walk behind you a while, like an honour guard.",
+          "text": "The wind waits a long time, then gives up. The field's dead walk behind you a while, like an honour guard.",
           "effects": [
             {
               "to": "party",
@@ -84,7 +84,7 @@
     },
     {
       "id": "answer",
-      "label": "The Sword Saint answers the voice.",
+      "label": "The Sword Saint answers the voice, as one who has given their life to the blade.",
       "rule": "scion:job:sword_saint",
       "only": true,
       "tags": [

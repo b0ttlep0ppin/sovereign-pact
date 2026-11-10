@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "smoke",
-      "label": "Smoke it out of the lair.",
+      "label": "Smoke it out of the lair, and meet it in the open where you can see it.",
       "rule": "vote",
       "tags": [
         "clever"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It comes out angry, and blind with smoke, and you are ready.",
+          "text": "It comes out angry and blind with smoke, and you are ready.",
           "effects": [
             {
               "encounter": {
@@ -34,7 +34,7 @@
     },
     {
       "id": "enter",
-      "label": "The Leader goes in after it.",
+      "label": "The Leader goes in after it, into the dark where the bones lie.",
       "rule": "leader",
       "tags": [
         "bold"
@@ -42,7 +42,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Into its own den, in the dark, where it knows every stone. Brave, and foolish.",
+          "text": "Into its own den, in the dark, where it knows every stone. Brave, and foolish, and remembered.",
           "effects": [
             {
               "encounter": {
@@ -60,7 +60,7 @@
     },
     {
       "id": "loot",
-      "label": "The quickest loots the dead hunters first.",
+      "label": "The quickest loots the dead hunters first. They will not mind.",
       "rule": "scion:highest:speed",
       "tags": [
         "reckless"

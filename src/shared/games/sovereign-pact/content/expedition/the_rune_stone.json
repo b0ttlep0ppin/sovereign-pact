@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "read",
-      "label": "The wisest reads the runes.",
+      "label": "The wisest reads the runes, and the name on the last line.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -41,7 +41,7 @@
     },
     {
       "id": "rub",
-      "label": "Take a rubbing to sell to scholars.",
+      "label": "Take a rubbing to sell to scholars, and do not look at the last line.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -67,7 +67,7 @@
     },
     {
       "id": "topple",
-      "label": "Topple the stone.",
+      "label": "Topple the stone, so it can name no one else.",
       "rule": "leader",
       "tags": [
         "reckless"

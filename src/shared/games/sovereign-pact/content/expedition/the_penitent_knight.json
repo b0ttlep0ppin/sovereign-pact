@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "accept",
-      "label": "Let him earn his forgiveness at your side.",
+      "label": "Let him earn his forgiveness at your side, and spend his blood before yours.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -38,7 +38,7 @@
     },
     {
       "id": "judge",
-      "label": "The wisest asks him what he did.",
+      "label": "The wisest asks him what he did, before anyone trusts him with their back.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -46,7 +46,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Something terrible. He tells it all, and then tells you where the Court keeps its secrets.",
+          "text": "Something terrible. He tells it all, then tells you where the Court keeps its secrets, as if one confession demanded another.",
           "effects": [
             {
               "score": {
@@ -59,7 +59,7 @@
     },
     {
       "id": "refuse",
-      "label": "Refuse him.",
+      "label": "Refuse him. Whatever he did, it is not yours to forgive.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -67,7 +67,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He walks on, chains dragging, and kneels to pray for the Leader anyway. It helps.",
+          "text": "He walks on, chains dragging, and kneels to pray for the Leader anyway. It helps, which is somehow worse.",
           "effects": [
             {
               "status": "protect"
@@ -78,7 +78,7 @@
     },
     {
       "id": "swear_him_in",
-      "label": "Our own Knight hears his oath.",
+      "label": "Our own Knight hears his oath, knight to knight, and binds it to their own.",
       "rule": "scion:job:knight",
       "only": true,
       "tags": [

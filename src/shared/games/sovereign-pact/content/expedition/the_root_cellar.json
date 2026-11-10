@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "take",
-      "label": "Take what you need from the stores.",
+      "label": "Take what you need from the stores. Whoever keeps them is not here.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -44,7 +44,7 @@
     },
     {
       "id": "leave",
-      "label": "Leave coin for what you take.",
+      "label": "Leave coin for what you take, and hope its owner is honest too.",
       "rule": "leader",
       "tags": [
         "kind"
@@ -73,7 +73,7 @@
     },
     {
       "id": "search",
-      "label": "The sharpest eye searches deeper.",
+      "label": "The sharpest eye searches deeper, to see where the stair leads.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"

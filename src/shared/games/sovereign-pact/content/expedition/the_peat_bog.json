@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "cut",
-      "label": "Cut peat from the old steps.",
+      "label": "Cut peat from the old steps. It burns all winter, and the House will be glad of it.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Heavy, wet work, and once a spade strikes something soft.",
+          "text": "Heavy, wet work, and once a spade strikes something soft. Nobody digs there again.",
           "effects": [
             {
               "resources": {
@@ -38,7 +38,7 @@
     },
     {
       "id": "bodies",
-      "label": "The sharpest eye finds what the bog keeps.",
+      "label": "The sharpest eye searches the black water for what the bog keeps.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -46,7 +46,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "An old sword in the peat, and the hand that held it, brown as leather.",
+          "text": "An old sword in the peat, and the hand that held it, brown as leather. The fingers do not want to let go.",
           "effects": [
             {
               "item": {
@@ -59,7 +59,7 @@
     },
     {
       "id": "leave",
-      "label": "Leave the bog be.",
+      "label": "Leave the bog be. What it keeps, it keeps.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -67,7 +67,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Bogs swallow people. Not you, though it takes the Leader's boot to the knee and the greave with it.",
+          "text": "Bogs swallow people. Not you, though it takes the Leader's boot to the knee, and the greave with it.",
           "effects": [
             {
               "durability": -30,

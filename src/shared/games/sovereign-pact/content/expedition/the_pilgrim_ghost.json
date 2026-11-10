@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "tell",
-      "label": "Tell it the truth.",
+      "label": "Tell it the truth. It deserves to know it died here.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It weeps, without a sound, and walks on.",
+          "text": "It weeps without a sound, and walks on, and does not ask again.",
           "effects": [
             {
               "to": "party",
@@ -33,7 +33,7 @@
     },
     {
       "id": "lie",
-      "label": "Tell it the shrine is not far.",
+      "label": "Tell it the shrine is not far, and let it go believing.",
       "rule": "leader",
       "tags": [
         "kind"
@@ -41,7 +41,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It smiles, and fades, at peace.",
+          "text": "It smiles, and fades, at peace. The lie sits lightly, for a lie.",
           "effects": [
             {
               "to": "party",
@@ -58,7 +58,7 @@
     },
     {
       "id": "lead",
-      "label": "The devout leads it all the way there.",
+      "label": "The devout leads it all the way to the shrine, so its pilgrimage is finished at last.",
       "rule": "scion:trait:devout|scion:highest:sagacity",
       "tags": [
         "kind"
@@ -66,7 +66,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "At the shrine it blesses them, and is gone.",
+          "text": "At the shrine it blesses them, and is gone. They feel the blessing settle like a cloak.",
           "effects": [
             {
               "blessing": {

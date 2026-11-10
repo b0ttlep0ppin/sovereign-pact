@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "cut",
-      "label": "Everyone takes up a rusted tool and cuts.",
+      "label": "Everyone takes up a rusted tool and cuts where the workers left off.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -53,7 +53,7 @@
     },
     {
       "id": "survey",
-      "label": "The sharpest eye finds the best seam.",
+      "label": "The sharpest eye finds the best seam, so you cut little and cut well.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -75,7 +75,7 @@
     },
     {
       "id": "tools",
-      "label": "Take the abandoned tools.",
+      "label": "Take the abandoned tools. Iron is iron, whoever dropped it.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -83,7 +83,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Rusted, but iron is iron. You try not to wonder why they were dropped.",
+          "text": "Rusted, but good. You try not to wonder why they were dropped.",
           "effects": [
             {
               "resources": {

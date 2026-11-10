@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "light",
-      "label": "Light a candle at every shrine.",
+      "label": "Light a candle at every shrine, so none who fell here are left in the dark.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -33,7 +33,7 @@
     },
     {
       "id": "pray",
-      "label": "The most devout prays at the newest shrine.",
+      "label": "The most devout prays at the newest shrine, for whoever it is waiting for.",
       "rule": "scion:trait:devout|scion:highest:sagacity",
       "tags": [
         "kind"
@@ -55,7 +55,7 @@
     },
     {
       "id": "pass",
-      "label": "Walk past without stopping.",
+      "label": "Walk past without stopping. The dead can light their own candles.",
       "rule": "leader",
       "tags": [
         "cautious"

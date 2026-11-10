@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "take",
-      "label": "Take the boat.",
+      "label": "Take the boat, and trust whoever left it.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "It carries you far, and lets you off gently, and drifts back the way it came.",
+          "text": "It carries you far, lets you off gently, and drifts back the way it came.",
           "effects": [
             {
               "skip": 2
@@ -46,7 +46,7 @@
     },
     {
       "id": "read",
-      "label": "The wisest reads the note again.",
+      "label": "The wisest reads the note again, to learn whose careful hand wrote it.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -67,7 +67,7 @@
     },
     {
       "id": "burn",
-      "label": "Burn the boat.",
+      "label": "Burn the boat. No gift out here comes without a hook.",
       "rule": "leader",
       "tags": [
         "cautious"

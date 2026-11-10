@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "target",
-      "label": "The one it hunts walks alone, as bait.",
+      "label": "The one it hunts walks alone as bait, to draw it out of the trees.",
       "rule": "scion:most_targeted|scion:highest:resilience",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It strikes, out of nowhere, and you strike back.",
+          "text": "It strikes out of nowhere, and you strike back.",
           "effects": [
             {
               "encounter": {
@@ -38,7 +38,7 @@
     },
     {
       "id": "together",
-      "label": "Stay close together.",
+      "label": "Stay close together, and give it no one to single out.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -58,7 +58,7 @@
     },
     {
       "id": "first",
-      "label": "Hunt the mate first.",
+      "label": "Hunt the mate first, before it chooses its moment.",
       "rule": "leader",
       "tags": [
         "bold"

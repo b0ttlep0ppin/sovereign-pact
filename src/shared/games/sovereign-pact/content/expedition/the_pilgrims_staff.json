@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "take",
-      "label": "The devout takes up the staff.",
+      "label": "The devout takes up the staff, as if it were left for them.",
       "rule": "scion:trait:devout|scion:highest:sagacity",
       "tags": [
         "kind"
@@ -37,7 +37,7 @@
     },
     {
       "id": "leave",
-      "label": "Leave it for its owner.",
+      "label": "Leave it for its owner. Someone will come back for it.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A limping pilgrim passes later, and smiles to see it, and has no shadow either.",
+          "text": "A limping pilgrim passes later, smiles to see it, and has no shadow either.",
           "effects": [
             {
               "score": {
@@ -58,7 +58,7 @@
     },
     {
       "id": "pull",
-      "label": "The strongest pulls it from the road.",
+      "label": "The strongest wrenches it from the road, whether it wishes to come or not.",
       "rule": "scion:highest:might",
       "tags": [
         "bold"

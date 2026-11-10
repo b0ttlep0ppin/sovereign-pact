@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "walk",
-      "label": "Walk the rotten planks, carefully.",
+      "label": "Walk the rotten planks, carefully, and do not look down.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -30,7 +30,7 @@
         },
         {
           "w": 30,
-          "text": "A plank gives, and a leg goes through, and something below brushes it.",
+          "text": "A plank gives, a leg goes through, and something below brushes it.",
           "effects": [
             {
               "to": "party",
@@ -43,7 +43,7 @@
     },
     {
       "id": "light",
-      "label": "The lightest-laden goes first and tests each plank.",
+      "label": "The lightest-laden goes first and tests each plank for the rest.",
       "rule": "scion:most_open_slots",
       "tags": [
         "clever"
@@ -65,7 +65,7 @@
     },
     {
       "id": "swim",
-      "label": "Swim for the boat.",
+      "label": "Swim for the boat, and trust the black water to be only water.",
       "rule": "leader",
       "tags": [
         "reckless"

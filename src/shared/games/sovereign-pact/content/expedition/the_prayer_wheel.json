@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "turn",
-      "label": "Each of you gives the wheel a turn.",
+      "label": "Each of you gives the wheel a turn, and sends a prayer to the Six.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -33,7 +33,7 @@
     },
     {
       "id": "spin",
-      "label": "The strongest spins it as hard as they can.",
+      "label": "The strongest spins it as hard as they can, to send a thousand prayers at once.",
       "rule": "scion:highest:might",
       "tags": [
         "reckless"
@@ -70,7 +70,7 @@
     },
     {
       "id": "read",
-      "label": "The wisest reads the prayers.",
+      "label": "The wisest reads the prayers carved upon the wheel.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"

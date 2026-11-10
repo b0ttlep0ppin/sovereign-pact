@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "carry",
-      "label": "Carry their offering on to the shrine.",
+      "label": "Carry their offering on to the shrine, and finish what they could not.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -38,7 +38,7 @@
     },
     {
       "id": "pray",
-      "label": "The devout prays at the fresh grave.",
+      "label": "The devout prays at the fresh grave, for the one who did not make it.",
       "rule": "scion:trait:devout|scion:highest:sagacity",
       "tags": [
         "kind"
@@ -46,7 +46,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The pilgrim's last wish, whispered from under the loose earth.",
+          "text": "The pilgrim's last wish, whispered from under the loose earth. It is a kind one.",
           "effects": [
             {
               "blessing": {
@@ -60,7 +60,7 @@
     },
     {
       "id": "take",
-      "label": "The Leader takes the offering.",
+      "label": "The Leader takes the offering. The dead have no use for silver.",
       "rule": "leader",
       "tags": [
         "cruel"

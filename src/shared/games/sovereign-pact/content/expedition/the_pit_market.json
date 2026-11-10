@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "trade",
-      "label": "The craftiest haggles at a stall.",
+      "label": "The craftiest haggles at a stall, and hopes the price is paid in coin.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"
@@ -53,7 +53,7 @@
     },
     {
       "id": "steal",
-      "label": "The quickest steals from the stalls.",
+      "label": "The quickest steals from the stalls while the stallholders count their fingers.",
       "rule": "scion:highest:speed",
       "tags": [
         "reckless"
@@ -90,7 +90,7 @@
     },
     {
       "id": "leave",
-      "label": "Leave the market.",
+      "label": "Leave the market, before someone names a price for you.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -98,7 +98,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A hundred eyes follow you out. None follow further, but a hand did while you were watching the eyes, and a purse is gone.",
+          "text": "A hundred eyes follow you out, and none follow further. But a hand did while you watched the eyes, and a purse is gone.",
           "effects": [
             {
               "resources": {

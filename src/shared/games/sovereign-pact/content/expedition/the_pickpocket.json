@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "chase",
-      "label": "The fastest gives chase.",
+      "label": "The fastest gives chase before the white face vanishes for good.",
       "rule": "scion:highest:speed",
       "tags": [
         "bold"
@@ -45,7 +45,7 @@
     },
     {
       "id": "let",
-      "label": "Let the child keep it.",
+      "label": "Let the child keep it. Whatever wears that mask needs it more.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -71,7 +71,7 @@
     },
     {
       "id": "watch",
-      "label": "The sharpest eye watches where it runs.",
+      "label": "The sharpest eye watches where it runs, to learn where such things hide.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
