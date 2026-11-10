@@ -9,11 +9,11 @@
     10
   ],
   "title": "The Scholar's Tower",
-  "text": "A tower crammed with books to the rafters, mouldering, stacked on the stairs, and a scholar too old to leave it, thin as a quill, ink-stained to the elbow. He offers to teach one of you anything in exchange for news of the world. He has not seen anyone in a very long time.",
+  "text": "Books crowd this tower to the rafters, mouldering, stacked on the stairs. A scholar too old to leave lives among them, thin as a quill and ink-stained to the elbow. He offers to teach one of you anything in exchange for news of the world; he has not seen anyone in a very long time.",
   "options": [
     {
       "id": "learn",
-      "label": "The most curious learns from him, while he still has the breath to teach.",
+      "label": "The most curious learns from him while he still has the breath to teach.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A week's lessons in a night, and a head too full to sleep.",
+          "text": "They take a week's lessons in a night, their head too full to sleep after.",
           "effects": [
             {
               "jp": 120
@@ -37,7 +37,7 @@
     },
     {
       "id": "news",
-      "label": "Tell him everything of the world. He is lonely, and it costs nothing.",
+      "label": "Tell him everything of the world; he is lonely, and it costs nothing.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He listens like a child, and gives you a map in thanks.",
+          "text": "He listens like a child and gives you a map in thanks.",
           "effects": [
             {
               "skip": 1
@@ -61,7 +61,7 @@
     },
     {
       "id": "books",
-      "label": "The Leader takes the rarest books. They are wasted on a dying man.",
+      "label": "The Leader takes the rarest books; they are wasted on a dying man.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -69,7 +69,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He weeps, and does not stop you, and you can hear him for a long way.",
+          "text": "He weeps but does not stop you. You can hear him for a long way.",
           "effects": [
             {
               "score": {

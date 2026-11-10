@@ -9,11 +9,11 @@
     8
   ],
   "title": "The Seal Hunters",
-  "text": "Hunters on the ice, wrapped in furs, clubbing seals by a breathing hole until the snow is red. They have a fire going in a ring of bones. They offer to share it. They keep glancing at the dark beyond the light.",
+  "text": "Hunters wrapped in furs club seals by a breathing hole until the snow is red. They have a fire going in a ring of bones and offer to share it. They keep glancing at the dark beyond the light.",
   "options": [
     {
       "id": "share",
-      "label": "Share their fire in the ring of bones, and do not ask what they fear.",
+      "label": "Share their fire, and do not ask what they fear.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Warm, fed, and full of their stories, and none of you look at the dark either.",
+          "text": "You are warmed and fed and full of their stories. None of you look at the dark either.",
           "effects": [
             {
               "to": "party",
@@ -37,7 +37,7 @@
     },
     {
       "id": "trade",
-      "label": "The shrewdest trades for their furs, against the cold that is coming.",
+      "label": "The shrewdest trades for their furs against the cold to come.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"
@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Good furs, thick and warm, that turn the cold like armor.",
+          "text": "The furs are thick and warm. They turn the cold like armor.",
           "effects": [
             {
               "resources": {
@@ -70,7 +70,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They tell you, and where, and they stop glancing at the dark only when they are done.",
+          "text": "They tell you what hunts the ice, and where. Only when they are done do they stop glancing at the dark.",
           "effects": [
             {
               "foresee": true

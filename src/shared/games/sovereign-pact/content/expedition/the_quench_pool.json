@@ -9,11 +9,11 @@
     9
   ],
   "title": "The Quench Pool",
-  "text": "A pool where the forge's blades were quenched, a thousand years of them. The water is black and thick as oil and still faintly warm, and it hardens whatever is dipped in it. A smith's hand lies at the bottom, hard as iron.",
+  "text": "A thousand years of the forge's blades were quenched in this pool. The water is black, thick as oil and still faintly warm, and it hardens whatever is dipped in it. A smith's hand lies at the bottom, hard as iron.",
   "options": [
     {
       "id": "dip",
-      "label": "Dip your weapons and armor in the black water, and trust a thousand years of smithing.",
+      "label": "Dip your weapons and armor in the black water, trusting a thousand years of smithing.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "Harder, sharper, and faintly warm for days.",
+          "text": "Everything comes out harder and sharper, faintly warm for days.",
           "effects": [
             {
               "to": "party",
@@ -31,7 +31,7 @@
         },
         {
           "w": 30,
-          "text": "Brittle, and it cracks at the first strain.",
+          "text": "Everything comes out brittle. It cracks at the first strain.",
           "effects": [
             {
               "to": "party",
@@ -44,7 +44,7 @@
     },
     {
       "id": "drink",
-      "label": "The toughest drinks the quench water, to harden more than steel.",
+      "label": "The toughest drinks the quench water, hoping to harden more than steel.",
       "rule": "scion:highest:resilience",
       "tags": [
         "reckless"
@@ -52,7 +52,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "Iron in the blood, and in the bones after.",
+          "text": "Iron enters their blood, and their bones after.",
           "effects": [
             {
               "growth": {
@@ -63,7 +63,7 @@
         },
         {
           "w": 50,
-          "text": "Iron in the gut, and it does not want to stay there.",
+          "text": "The iron sits in their gut, and it does not want to stay there.",
           "effects": [
             {
               "status": "poison"
@@ -77,7 +77,7 @@
     },
     {
       "id": "bottle",
-      "label": "Bottle some for the House smiths. They will know its worth.",
+      "label": "Bottle some for the House smiths; they will know its worth.",
       "rule": "leader",
       "tags": [
         "clever"
@@ -85,7 +85,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They will know what to do with it. They will not ask about the hand.",
+          "text": "The smiths will know what to do with it. They will not ask about the hand.",
           "effects": [
             {
               "resources": {

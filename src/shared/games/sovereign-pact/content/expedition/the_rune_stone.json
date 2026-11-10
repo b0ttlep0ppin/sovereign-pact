@@ -9,7 +9,7 @@
     8
   ],
   "title": "The Rune Stone",
-  "text": "A standing stone carved with runes stands half sunk in the turf, lichen in the cuts. Some say the runes change each time you look. They do: when you look back, the last line now names one of you.",
+  "text": "A standing stone carved with runes stands half sunk in the turf, lichen in the cuts. Some say the runes change each time you look, and they do: when you look back, the last line names one of you.",
   "options": [
     {
       "id": "read",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "A warning about the road ahead, and they will not forget it.",
+          "text": "It is a warning about the road ahead, one they will not forget.",
           "effects": [
             {
               "foresee": true
@@ -30,7 +30,7 @@
         },
         {
           "w": 30,
-          "text": "A curse on whoever reads, and they have read it.",
+          "text": "It is a curse on whoever reads it, and they have read it.",
           "effects": [
             {
               "curse": true
@@ -41,7 +41,7 @@
     },
     {
       "id": "rub",
-      "label": "Take a rubbing to sell to scholars, and do not look at the last line.",
+      "label": "Take a rubbing to sell to scholars, without looking at the last line.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -49,7 +49,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Scholars pay well, and do not ask whose name is on the last line.",
+          "text": "Scholars pay well, and they do not ask whose name is on it.",
           "effects": [
             {
               "resources": {
@@ -67,7 +67,7 @@
     },
     {
       "id": "topple",
-      "label": "Topple the stone, so it can name no one else.",
+      "label": "Topple the stone so it can name no one else.",
       "rule": "leader",
       "tags": [
         "reckless"
@@ -75,7 +75,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "What was under it was sleeping.",
+          "text": "Something was sleeping under it.",
           "effects": [
             {
               "encounter": {}

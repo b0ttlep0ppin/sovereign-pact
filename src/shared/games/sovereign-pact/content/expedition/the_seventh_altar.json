@@ -9,7 +9,7 @@
     9
   ],
   "title": "The Seventh Altar",
-  "text": "Six altars stand in a ring, each to one of the Six, each carved and worn by centuries of prayer. Between two of them, where no altar should be, someone has built a seventh out of bones. It is newer than the others. It is not finished.",
+  "text": "Six altars stand in a ring, one for each of the Six, carved and worn by centuries of prayer. Between two of them, where no altar should be, someone has built a seventh out of bones. It is newer than the others, and not yet finished.",
   "options": [
     {
       "id": "tear",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The bones come apart easily, as if relieved. The Six are pleased.",
+          "text": "The bones come apart easily, almost with relief. The Six are pleased.",
           "effects": [
             {
               "to": "party",
@@ -38,7 +38,7 @@
     },
     {
       "id": "offer",
-      "label": "The Leader leaves an offering on the seventh, to learn what it answers to.",
+      "label": "The Leader leaves an offering on the seventh to learn what it answers to.",
       "rule": "leader",
       "tags": [
         "reckless"
@@ -46,7 +46,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "Something takes it gratefully, and gives back. The seventh altar is a little more finished.",
+          "text": "Something takes it gratefully and gives back. The seventh altar is a little more finished.",
           "effects": [
             {
               "growth": {
@@ -60,7 +60,7 @@
         },
         {
           "w": 50,
-          "text": "Something takes it, and then takes hold of the Leader.",
+          "text": "Something takes it, then takes hold of the Leader.",
           "effects": [
             {
               "curse": true
@@ -82,7 +82,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A name, scratched on a thighbone. Someone in town will want to hear it.",
+          "text": "A name is scratched on a thighbone. Someone in town will want to hear it.",
           "effects": [
             {
               "score": {

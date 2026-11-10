@@ -9,7 +9,7 @@
     10
   ],
   "title": "The Scorched Village",
-  "text": "A village burned so hot the stones ran like wax and the well boiled dry. Shadows of people are burned onto the walls. One house stands untouched in the middle of it all, its door open, its curtains stirring.",
+  "text": "A village burned so hot that the stones ran like wax and the well boiled dry. Shadows of people are burned onto the walls. In the middle of it all, one house stands untouched, its door open, its curtains stirring.",
   "options": [
     {
       "id": "enter",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "A dragon's gift to a favorite. It forgot to come back.",
+          "text": "It holds a dragon's gift to a favorite. The dragon forgot to come back.",
           "effects": [
             {
               "item": {
@@ -32,7 +32,7 @@
         },
         {
           "w": 40,
-          "text": "A dragon's favorite. It is home.",
+          "text": "It belongs to a dragon's favorite, who is home.",
           "effects": [
             {
               "encounter": {
@@ -45,7 +45,7 @@
     },
     {
       "id": "survey",
-      "label": "The sharpest eye reads the burn marks, to learn what did this.",
+      "label": "The sharpest reads the burn marks to learn what did this.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -53,7 +53,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It came from the north, and it is old, and it took its time.",
+          "text": "It came from the north. It is old, and it took its time.",
           "effects": [
             {
               "foresee": true
@@ -69,7 +69,7 @@
     },
     {
       "id": "bury",
-      "label": "Bury what can be buried. Someone should.",
+      "label": "Bury what can be buried; someone should.",
       "rule": "leader",
       "tags": [
         "kind"
@@ -77,7 +77,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Long work, and the shadows on the walls do not fade. But the dead rest.",
+          "text": "It is long work. The shadows on the walls do not fade, but the dead rest.",
           "effects": [
             {
               "to": "party",

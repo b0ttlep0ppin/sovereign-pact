@@ -9,11 +9,11 @@
     10
   ],
   "title": "The Sealed Vault",
-  "text": "A vault door of black iron in the rock, carved with a House's crest, not yours, and sealed in red wax a century old. Scratches cover the door. They are on the inside of the frame, where something tried to get out.",
+  "text": "A vault door of black iron is set in the rock, carved with a House's crest that is not yours and sealed in red wax a century old. Scratches cover the inside of the frame, where something tried to get out.",
   "options": [
     {
       "id": "break",
-      "label": "Break the century-old seal. Whatever tried to get out is long dead.",
+      "label": "Break the old seal; whatever tried to get out is long dead.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "Old wealth, and nothing else.",
+          "text": "There is old wealth inside, and nothing else.",
           "effects": [
             {
               "resources": {
@@ -32,7 +32,7 @@
         },
         {
           "w": 40,
-          "text": "Old guardians, and they have been waiting.",
+          "text": "Old guardians wait inside.",
           "effects": [
             {
               "encounter": {
@@ -45,7 +45,7 @@
     },
     {
       "id": "read",
-      "label": "The wisest reads the crest, to learn whose House sealed it.",
+      "label": "The wisest reads the crest to learn whose House sealed it.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -53,7 +53,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A House that fell. Its secrets are worth more than its gold.",
+          "text": "It belonged to a House that fell. Its secrets are worth more than its gold.",
           "effects": [
             {
               "score": {
@@ -67,7 +67,7 @@
     },
     {
       "id": "leave",
-      "label": "Leave it sealed. Something wanted out of there badly.",
+      "label": "Leave it sealed; something wanted out of there badly.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -75,7 +75,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Some doors are best left. The crest stays in the Leader's mind, and when they meet that House again they will know a thing about them.",
+          "text": "The crest stays in the Leader's mind. When they meet that House again, they will know a thing about them.",
           "effects": [
             {
               "score": {
@@ -97,7 +97,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "In and out, and the seal looks as it did. Inside was old money and older letters, and the letters are worth more.",
+          "text": "They are in and out, the seal looking as it did. Inside were old money and older letters, and the letters are worth more.",
           "effects": [
             {
               "resources": {
@@ -111,7 +111,7 @@
         },
         {
           "w": 30,
-          "text": "In, and the vault was sealed for a reason: something has waited a century to get out.",
+          "text": "The vault was sealed for a reason. Something has waited a century to get out.",
           "effects": [
             {
               "encounter": {}

@@ -9,11 +9,11 @@
     10
   ],
   "title": "The Salt Pans",
-  "text": "Shallow pans of salt shine white to the horizon, crusted and glittering, raked into neat rows by hands that are nowhere to be seen. Salt is gold, inland. Somewhere out on the flats, the salt-keepers are watching their pans.",
+  "text": "Shallow pans of salt shine white to the horizon, crusted and glittering, raked into neat rows by hands that are nowhere to be seen. Inland, salt is gold. Somewhere out on the flats, the salt-keepers are watching their pans.",
   "options": [
     {
       "id": "rake",
-      "label": "Rake as much salt as you can carry. Salt is gold, inland.",
+      "label": "Rake as much salt as you can carry.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Heavy work, heavy packs, and the rows behind you raked smooth again by morning.",
+          "text": "The work is heavy and so are the packs. By morning, the rows behind you have been raked smooth again.",
           "effects": [
             {
               "resources": {
@@ -46,7 +46,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "They see them coming. You leave in time.",
+          "text": "They see the keepers coming, and you leave in time.",
           "effects": [
             {
               "resources": {
@@ -70,7 +70,7 @@
     },
     {
       "id": "trade",
-      "label": "The shrewdest trades with the salt-keepers, rather than steal from them.",
+      "label": "The shrewdest trades with the salt-keepers rather than steal from them.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"
@@ -78,7 +78,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Salt for iron, fair, with hands that are very dry.",
+          "text": "They trade salt for iron, fairly, with hands that are very dry.",
           "effects": [
             {
               "resources": {

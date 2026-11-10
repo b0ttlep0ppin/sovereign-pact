@@ -9,11 +9,11 @@
     10
   ],
   "title": "The Sap Trees",
-  "text": "A grove of pale trees that bleed a golden sap from every crack in their bark. It runs thick and slow and smells of honey and something like blood. Alchemists pay well for it. The trees shiver when they are cut.",
+  "text": "A grove of pale trees bleeds golden sap from every crack in the bark. It runs thick and slow, smelling of honey and something like blood. Alchemists pay well for it. The trees shiver when they are cut.",
   "options": [
     {
       "id": "tap",
-      "label": "Tap the trees for sap. Alchemists pay well for gold that bleeds.",
+      "label": "Tap the trees for sap; alchemists pay well for gold that bleeds.",
       "rule": "vote",
       "tags": [
         "clever"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Jars of it, warm and golden, and the trees shiver for each one.",
+          "text": "You fill jars with it, warm and golden. The trees shiver for each one.",
           "effects": [
             {
               "resources": {
@@ -34,7 +34,7 @@
     },
     {
       "id": "fell",
-      "label": "Fell the pale trees, and take timber and sap both.",
+      "label": "Fell the pale trees for both timber and sap.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -42,7 +42,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Timber and sap both, and a sound from each trunk as it falls.",
+          "text": "Each trunk makes a sound as it falls.",
           "effects": [
             {
               "resources": {
@@ -67,7 +67,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A grove, in time, that bleeds gold. Nobody likes to walk in it after dark.",
+          "text": "In time a grove grows that bleeds gold. Nobody likes to walk in it after dark.",
           "effects": [
             {
               "house_improvement": "building"

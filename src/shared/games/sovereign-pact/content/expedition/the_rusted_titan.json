@@ -9,7 +9,7 @@
     9
   ],
   "title": "The Rusted Titan",
-  "text": "A war machine the size of a tower lies on its side in the slag, rusted solid, its great hands clawing at the earth. Its plates are scarred with old wounds. Deep in its chest, its heart still glows, and pulses, slow as sleep.",
+  "text": "A war machine the size of a tower lies on its side in the slag, rusted solid, its great hands clawing at the earth, its plates scarred with old wounds. Deep in its chest its heart still glows, pulsing slow as sleep.",
   "options": [
     {
       "id": "heart",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "It comes free, warm as a coal, and the glow goes out of the titan's eyes.",
+          "text": "It comes free, warm as a coal. The glow goes out of the titan's eyes.",
           "effects": [
             {
               "resources": {
@@ -54,7 +54,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Old forge-craft for the House's smiths, and dreams of iron hands for weeks.",
+          "text": "The old forge-craft goes home to the House's smiths, who dream of iron hands for weeks.",
           "effects": [
             {
               "house_improvement": "shop"
@@ -65,7 +65,7 @@
     },
     {
       "id": "strip",
-      "label": "Strip the titan's plates. Iron like that would arm a House.",
+      "label": "Strip the titan's plates; iron like that would arm a House.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -73,7 +73,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Iron, a great deal of it, and the heart pulses a little faster as you work.",
+          "text": "You take a great deal of iron. The heart pulses a little faster as you work.",
           "effects": [
             {
               "resources": {

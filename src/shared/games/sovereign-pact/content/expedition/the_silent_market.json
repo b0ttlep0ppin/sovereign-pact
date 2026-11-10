@@ -9,11 +9,11 @@
     9
   ],
   "title": "The Silent Market",
-  "text": "A market where no one speaks. The faceless trade by pointing and nodding, their blank heads tilting. Every stall sells faces: young, old, smiling, weeping, hung on hooks like hams. Some of the faces blink.",
+  "text": "No one speaks in this market. The faceless trade by pointing and nodding, their blank heads tilting. Every stall sells faces, young and old, smiling and weeping, hung on hooks like hams. Some of the faces blink.",
   "options": [
     {
       "id": "browse",
-      "label": "Browse the stalls, and point, and hope you point at the right thing.",
+      "label": "Browse the stalls and point, hoping you point at the right thing.",
       "rule": "vote",
       "tags": [
         "clever"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "A mask that fits perfectly. It fits a little too well.",
+          "text": "You find a mask that fits perfectly, a little too well.",
           "effects": [
             {
               "item": {
@@ -32,7 +32,7 @@
         },
         {
           "w": 40,
-          "text": "You point at the wrong thing, and the seller nods, and takes your coin.",
+          "text": "You point at the wrong thing. The seller nods and takes your coin.",
           "effects": [
             {
               "resources": {
@@ -45,7 +45,7 @@
     },
     {
       "id": "speak",
-      "label": "The bravest breaks the silence, and asks whose faces these are.",
+      "label": "The bravest breaks the silence to ask whose faces these are.",
       "rule": "scion:trait:brave|scion:highest:resilience",
       "tags": [
         "reckless"
@@ -64,7 +64,7 @@
     },
     {
       "id": "watch",
-      "label": "The sharpest eye watches who buys what, to learn where the faces come from.",
+      "label": "The sharpest watches who buys what, to learn where the faces come from.",
       "rule": "scion:highest:acuity",
       "tags": [
         "cautious"

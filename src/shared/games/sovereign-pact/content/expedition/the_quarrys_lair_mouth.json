@@ -9,11 +9,11 @@
     10
   ],
   "title": "The Lair Mouth",
-  "text": "The quarry's lair is a cave mouth in the hillside, and it is littered with the bones of hunters who came before, still in their rotting leathers, purses still at their belts. The air coming out of it is warm and smells of meat.",
+  "text": "The quarry's lair is a cave mouth in the hillside, littered with the bones of hunters who came before. They still wear their rotting leathers, their purses still at their belts. The air coming out of the cave is warm and smells of meat.",
   "options": [
     {
       "id": "smoke",
-      "label": "Smoke it out of the lair, and meet it in the open where you can see it.",
+      "label": "Smoke it out of the lair and meet it in the open, where you can see it.",
       "rule": "vote",
       "tags": [
         "clever"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It comes out angry and blind with smoke, and you are ready.",
+          "text": "It comes out angry and blind with smoke. You are ready.",
           "effects": [
             {
               "encounter": {
@@ -34,7 +34,7 @@
     },
     {
       "id": "enter",
-      "label": "The Leader goes in after it, into the dark where the bones lie.",
+      "label": "The Leader goes in after it, into the dark among the bones.",
       "rule": "leader",
       "tags": [
         "bold"
@@ -42,7 +42,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Into its own den, in the dark, where it knows every stone. Brave, and foolish, and remembered.",
+          "text": "It knows every stone of its own den in the dark. Going in was brave and foolish, and it will be remembered.",
           "effects": [
             {
               "encounter": {
@@ -60,7 +60,7 @@
     },
     {
       "id": "loot",
-      "label": "The quickest loots the dead hunters first. They will not mind.",
+      "label": "The quickest loots the dead hunters first; they will not mind.",
       "rule": "scion:highest:speed",
       "tags": [
         "reckless"
@@ -68,7 +68,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A good bow from a dead hand, and behind you, the quarry wakes.",
+          "text": "They pull a good bow from a dead hand. Behind them, the quarry wakes.",
           "effects": [
             {
               "item": {

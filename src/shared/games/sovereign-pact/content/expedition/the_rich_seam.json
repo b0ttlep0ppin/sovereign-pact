@@ -9,11 +9,11 @@
     10
   ],
   "title": "The Rich Seam",
-  "text": "A vein of good stone and iron runs right along the path, close to the surface, gleaming in the wet rock. A fortune for the digging. But every hour spent here is an hour the Gate stays open, and things come through it.",
+  "text": "A vein of good stone and iron runs right along the path, close to the surface, gleaming in the wet rock. It would be a fortune for the digging. Yet every hour spent here is an hour the Gate stays open, and things come through it.",
   "options": [
     {
       "id": "dig",
-      "label": "Dig all day. A fortune like this will not come again.",
+      "label": "Dig all day; a fortune like this will not come again.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "A heavy haul, and every tool blunted.",
+          "text": "The haul is heavy, and every tool is blunted by it.",
           "effects": [
             {
               "resources": {
@@ -37,7 +37,7 @@
         },
         {
           "w": 30,
-          "text": "Digging makes noise, and something comes through the Gate to see.",
+          "text": "The digging makes noise. Something comes through the Gate to see.",
           "effects": [
             {
               "resources": {
@@ -61,7 +61,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A little, safely, and no time lost.",
+          "text": "You take a little, safely, and lose no time.",
           "effects": [
             {
               "resources": {
@@ -75,7 +75,7 @@
     },
     {
       "id": "mark",
-      "label": "The cleverest maps it for another trip, when time is kinder.",
+      "label": "The cleverest maps it for another trip when time is kinder.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"

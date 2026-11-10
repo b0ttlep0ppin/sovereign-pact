@@ -9,11 +9,11 @@
     10
   ],
   "title": "The Shed Scales",
-  "text": "Scales the quarry has shed lie scattered along its path, each the size of a hand and sharp as a knife at the edge. They glitter in the mud like coins. Some have blood on them. Not the quarry's.",
+  "text": "Scales the quarry has shed lie scattered along its path, each the size of a hand and sharp as a knife at the edge. They glitter in the mud like coins. Some have blood on them that is not the quarry's.",
   "options": [
     {
       "id": "gather",
-      "label": "Gather the sharp scales, and mind your fingers.",
+      "label": "Gather the sharp scales, minding your fingers.",
       "rule": "vote",
       "tags": [
         "clever"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Good for armor, and every hand cut gathering them.",
+          "text": "They will make good armor, though every hand is cut gathering them.",
           "effects": [
             {
               "resources": {
@@ -46,7 +46,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "To the quarry, molting and weak, and too slow to run.",
+          "text": "You find it too slow to run.",
           "effects": [
             {
               "encounter": {
@@ -59,7 +59,7 @@
     },
     {
       "id": "study",
-      "label": "The wisest studies the scales, to learn where it is thin.",
+      "label": "The wisest studies the scales to learn where it is thin.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -67,7 +67,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Its weak point, under the left wing, where the scales grow thin.",
+          "text": "Under the left wing, the scales grow thin.",
           "effects": [
             {
               "to": "party",

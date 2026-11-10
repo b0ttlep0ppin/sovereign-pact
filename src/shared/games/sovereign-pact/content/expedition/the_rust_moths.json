@@ -9,7 +9,7 @@
     10
   ],
   "title": "The Rust Moths",
-  "text": "A cloud of moths with wings the color of rust settles over the party, soft as ash, thousands of them. Where they land, iron turns orange and flakes away. A buckle crumbles. A blade begins to bloom with rot.",
+  "text": "Thousands of moths with wings the color of rust settle over the party, soft as ash. Where they land, iron turns orange and flakes away. A buckle crumbles. A blade begins to bloom with rot.",
   "options": [
     {
       "id": "run",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Most of the gear makes it. Some of the armor does not.",
+          "text": "Most of the gear makes it, though some of the armor does not.",
           "effects": [
             {
               "to": "party",
@@ -34,7 +34,7 @@
     },
     {
       "id": "heaviest",
-      "label": "The most armored draws them off, and gives the moths a feast.",
+      "label": "The most armored draws them off, giving the moths a feast.",
       "rule": "scion:heaviest_gear",
       "tags": [
         "bold"
@@ -42,7 +42,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They feast on that armor until it falls apart, and the rest of you go free.",
+          "text": "They feast on that armor until it falls apart, while the rest of you go free.",
           "effects": [
             {
               "durability": -40,
@@ -59,7 +59,7 @@
     },
     {
       "id": "smoke",
-      "label": "The cleverest smokes them off with a fire, to save what iron is left.",
+      "label": "The cleverest smokes them off with a fire to save what iron is left.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -67,7 +67,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Sleepy moths, drifting down like ash, and their dust is worth something.",
+          "text": "The moths drift down like ash, sleepy, and their dust is worth something.",
           "effects": [
             {
               "resources": {

@@ -9,7 +9,7 @@
     9
   ],
   "title": "The Shooting Gallery",
-  "text": "Masked crossbowmen lean from a gallery above the street and shoot at anyone who walks below, for sport, laughing behind their blank faces. The cobbles are bristling with bolts. The street is the only way through.",
+  "text": "Masked crossbowmen lean from a gallery above the street, laughing behind their blank faces as they shoot at anyone who walks below. The cobbles bristle with bolts. The street is the only way through.",
   "options": [
     {
       "id": "target",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "Every bolt goes after them, and misses, and the masks applaud.",
+          "text": "Every bolt goes after them and misses. The masks applaud.",
           "effects": [
             {
               "score": {
@@ -55,7 +55,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "The masks are so puzzled they forget to shoot.",
+          "text": "The masks are so puzzled that they forget to shoot.",
           "effects": [
             {
               "score": {
@@ -80,7 +80,7 @@
     },
     {
       "id": "arm",
-      "label": "The one with the hurt arm holds a shield over the rest. It is hurt already.",
+      "label": "The one with the hurt arm holds a shield over the rest, since it is hurt already.",
       "rule": "scion:injured:arms|vote",
       "tags": [
         "cautious"
@@ -88,7 +88,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The rest cross under cover. The shield bearer catches up last, bruised, with the shield full of bolts.",
+          "text": "The rest cross under cover. The shield bearer catches up last, bruised, the shield full of bolts.",
           "effects": [
             {
               "durability": -20,

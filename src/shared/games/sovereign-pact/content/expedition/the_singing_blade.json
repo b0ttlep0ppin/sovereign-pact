@@ -9,11 +9,11 @@
     10
   ],
   "title": "The Singing Blade",
-  "text": "A sword lies in the path, bright as the day it was forged, singing a battle hymn in a woman's voice. It wants a wielder. It is very insistent. The song grows louder, and angrier, the longer you stand there.",
+  "text": "A sword lies in the path, bright as the day it was forged, singing a battle hymn in a woman's voice. It wants a wielder, very insistently. The longer you stand there, the louder and angrier its song grows.",
   "options": [
     {
       "id": "take",
-      "label": "The strongest takes up the singing blade, and lets it have its wielder.",
+      "label": "The strongest takes up the singing blade.",
       "rule": "scion:highest:might",
       "tags": [
         "bold"
@@ -32,7 +32,7 @@
         },
         {
           "w": 40,
-          "text": "It sings through every fight, and every night, and will not stop.",
+          "text": "It sings through every fight and every night, and it will not stop.",
           "effects": [
             {
               "item": {
@@ -48,7 +48,7 @@
     },
     {
       "id": "bury",
-      "label": "Bury it. No good comes of a sword that wants so badly.",
+      "label": "Bury it; no good comes of a sword that wants so badly.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -56,7 +56,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It sings under the earth for a long time, and it is not a hymn any more.",
+          "text": "It sings under the earth for a long time. It is not a hymn any more.",
           "effects": [
             {
               "to": "party",
@@ -68,7 +68,7 @@
     },
     {
       "id": "talk",
-      "label": "The wisest asks it who it was, before anyone touches it.",
+      "label": "The wisest asks it who it was before anyone touches it.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "kind"
@@ -76,7 +76,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A champion of an old House. She tells you how she died, and how to avoid it.",
+          "text": "She was a champion of an old House. She tells you how she died, and how to avoid it.",
           "effects": [
             {
               "score": {

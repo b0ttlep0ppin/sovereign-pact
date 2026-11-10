@@ -9,7 +9,7 @@
     10
   ],
   "title": "The Silent Cell",
-  "text": "A monk's cell at the Shrine, bare stone, empty but for a stool and a single candle, unlit. The air inside is very still. It waits for the one who wants to be alone, the monks say, and keeps them a while.",
+  "text": "A monk's cell at the Shrine is bare stone, empty but for a stool and a single unlit candle. The air inside is very still. It waits for the one who wants to be alone, the monks say, and keeps them a while.",
   "options": [
     {
       "id": "hermit",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A night in silence, and they hear the Six.",
+          "text": "In a night of silence, they hear the Six.",
           "effects": [
             {
               "jp": 60
@@ -35,7 +35,7 @@
     },
     {
       "id": "heal",
-      "label": "The healer lights the candle for the sick, and prays over it.",
+      "label": "The healer lights the candle for the sick and prays over it.",
       "rule": "scion:trait:pious_hands|scion:most_healing",
       "tags": [
         "kind"
@@ -43,7 +43,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Their hands warm, and the warmth spreads to everyone they touch.",
+          "text": "Their hands grow warm, and the warmth spreads to everyone they touch.",
           "effects": [
             {
               "to": "party",
@@ -60,7 +60,7 @@
     },
     {
       "id": "search",
-      "label": "Search the cell. Monks keep secrets under stools.",
+      "label": "Search the cell; monks keep secrets under stools.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -68,7 +68,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A hidden relic under the stool, and a curse on the hand that takes it.",
+          "text": "Under the stool is a hidden relic, with a curse on the hand that takes it.",
           "effects": [
             {
               "item": {

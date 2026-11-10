@@ -9,11 +9,11 @@
     10
   ],
   "title": "The Shrine of Trials",
-  "text": "A shrine to the Six with a basin of coals before it, glowing red, never fed. The devout may walk the coals and be blessed, the sign says. Anyone else is burned. The stones around the basin are scattered with cinders that look like toes.",
+  "text": "Before a shrine to the Six sits a basin of coals glowing red, though no one feeds it. The devout may walk the coals and be blessed, the sign says; anyone else is burned. Cinders that look like toes are scattered on the stones around the basin.",
   "options": [
     {
       "id": "devout",
-      "label": "The most devout walks the coals, and trusts the Six to know them.",
+      "label": "The most devout walks the coals, trusting the Six to know them.",
       "rule": "scion:trait:devout|scion:highest:sagacity",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "Not a blister. The Six are pleased.",
+          "text": "They cross without a blister. The Six are pleased.",
           "effects": [
             {
               "blessing": {
@@ -53,7 +53,7 @@
     },
     {
       "id": "pray",
-      "label": "Pray before the shrine, and leave the coals to the faithful.",
+      "label": "Pray before the shrine and leave the coals to the faithful.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -61,7 +61,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The coals glow kindly, and warm you through.",
+          "text": "The coals glow kindly, warming you through.",
           "effects": [
             {
               "to": "party",
@@ -73,7 +73,7 @@
     },
     {
       "id": "douse",
-      "label": "Douse the coals and take the basin. No god needs brass.",
+      "label": "Douse the coals and take the basin; no god needs brass.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -81,7 +81,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Brass, heavy, and very old, and the coals hiss as they die.",
+          "text": "The brass is heavy and very old. The coals hiss as they die.",
           "effects": [
             {
               "resources": {

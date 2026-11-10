@@ -9,11 +9,11 @@
     10
   ],
   "title": "The Sellswords",
-  "text": "A band of sellswords lounges by the otherworld road, between contracts, scarred and patient, their gear mismatched from a dozen dead owners. They would fight beside you for a fee, they say. Or rob you for free. They have not decided which.",
+  "text": "A band of sellswords lounges by the otherworld road between contracts, scarred and patient, their gear gathered from a dozen dead owners. They would fight beside you for a fee, they say, or rob you for free. They have not decided which.",
   "options": [
     {
       "id": "hire",
-      "label": "The Leader hires them for the next fight, before they decide on the other thing.",
+      "label": "The Leader hires them for the next fight before they decide on the other thing.",
       "rule": "leader",
       "tags": [
         "clever"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They earn every coin, and do not ask for more. This time.",
+          "text": "They earn every coin and do not ask for more, this time.",
           "effects": [
             {
               "resources": {
@@ -50,7 +50,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They laugh, decide you are not, and pass by.",
+          "text": "They laugh, agree you are not, and pass by.",
           "effects": [
             {
               "score": {
@@ -63,7 +63,7 @@
     },
     {
       "id": "fight",
-      "label": "Strike before they decide, and let them learn the price of hesitation.",
+      "label": "Strike before they decide; let them learn the price of hesitation.",
       "rule": "vote",
       "tags": [
         "bold"

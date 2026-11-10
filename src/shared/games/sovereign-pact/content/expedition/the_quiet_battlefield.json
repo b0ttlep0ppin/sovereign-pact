@@ -9,7 +9,7 @@
     10
   ],
   "title": "The Quiet Battlefield",
-  "text": "An old battlefield, very still, the grass grown over the bones. A sword stands upright in the middle of it with a ring of clean ground around it where nothing grows. A voice on the wind asks who fought best among you.",
+  "text": "An old battlefield lies very still, the grass grown over the bones. A sword stands upright in the middle of it, ringed by clean ground where nothing grows. A voice on the wind asks who among you fought best.",
   "options": [
     {
       "id": "killer",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The sword comes free in their hand, and the wind sighs, satisfied.",
+          "text": "The sword comes free in their hand. The wind sighs, satisfied.",
           "effects": [
             {
               "item": {
@@ -39,7 +39,7 @@
     },
     {
       "id": "healer",
-      "label": "The one who has saved the most lives steps up, and calls that the better fighting.",
+      "label": "The one who has saved the most lives steps up, calling that the better fighting.",
       "rule": "scion:most_healing",
       "tags": [
         "kind"
@@ -47,7 +47,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The sword stays put. The wind says this was the right answer anyway, and something settles in them.",
+          "text": "The sword stays put, but the wind says it was the right answer. Something settles in them.",
           "effects": [
             {
               "to": "party",
@@ -64,7 +64,7 @@
     },
     {
       "id": "nobody",
-      "label": "Say nothing. The dead can judge for themselves.",
+      "label": "Say nothing; the dead can judge for themselves.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -72,7 +72,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The wind waits a long time, then gives up. The field's dead walk behind you a while, like an honour guard.",
+          "text": "The wind waits a long time, then gives up. For a while the field's dead walk behind you like an honour guard.",
           "effects": [
             {
               "to": "party",
@@ -93,7 +93,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "The sword in the ring comes out of the ground for them. It wants to fight again.",
+          "text": "The sword comes out of the ground for them. It wants to fight again.",
           "effects": [
             {
               "item": {
@@ -104,7 +104,7 @@
         },
         {
           "w": 40,
-          "text": "The sword comes out of the ground, and the field's dead come with it, to see if the answer was true.",
+          "text": "The sword comes out of the ground, and the field's dead rise with it to test whether the answer was true.",
           "effects": [
             {
               "encounter": {}

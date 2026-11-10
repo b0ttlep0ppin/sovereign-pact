@@ -9,7 +9,7 @@
     9
   ],
   "title": "The Shy Ghost",
-  "text": "A small ghost follows the party at a distance, a pale shape no bigger than a child, ducking behind trees whenever anyone looks. At night it comes closer. It seems afraid of some of you more than others.",
+  "text": "A small ghost follows the party at a distance, a pale shape no bigger than a child, ducking behind trees whenever anyone looks. At night it comes closer. It seems more afraid of some of you than others.",
   "options": [
     {
       "id": "quiet",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It comes close, gives them something it was keeping, and is gone.",
+          "text": "It comes close and gives them something it was keeping. Then it is gone.",
           "effects": [
             {
               "item": {
@@ -37,7 +37,7 @@
     },
     {
       "id": "chase",
-      "label": "The quickest chases it down, to learn what it wants.",
+      "label": "The quickest chases it down to learn what it wants.",
       "rule": "scion:highest:speed",
       "tags": [
         "reckless"
@@ -55,7 +55,7 @@
         },
         {
           "w": 50,
-          "text": "It flees into a cave, and shows you a way through.",
+          "text": "It flees into a cave, showing you a way through.",
           "effects": [
             {
               "skip": 1
@@ -66,7 +66,7 @@
     },
     {
       "id": "ignore",
-      "label": "Let it follow. It means no harm, or not yet.",
+      "label": "Let it follow; it means no harm, or not yet.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -74,7 +74,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It follows for a while and then is gone. In the morning everyone's boots have been cleaned and their buckles mended.",
+          "text": "It follows for a while, then is gone. In the morning everyone's boots have been cleaned and their buckles mended.",
           "effects": [
             {
               "to": "party",

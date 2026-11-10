@@ -9,11 +9,11 @@
     9
   ],
   "title": "The Ring of Mushrooms",
-  "text": "A perfect ring of white mushrooms in a clearing, pale as knucklebones, and music from nowhere, sweet and thin. Step in, the stories say, and you dance for a night or a hundred years. In the middle of the ring lies a single shoe.",
+  "text": "A perfect ring of white mushrooms, pale as knucklebones, grows in a clearing, while sweet, thin music plays from nowhere. Step in, the stories say, and you dance for a night or a hundred years. In the middle of the ring lies a single shoe.",
   "options": [
     {
       "id": "dance",
-      "label": "The boldest steps into the ring, and dances to the music from nowhere.",
+      "label": "The boldest steps into the ring to dance.",
       "rule": "scion:trait:brave|scion:random",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "They dance for a night, and come out laughing, and younger in the eyes.",
+          "text": "They dance for a night and come out laughing, younger in the eyes.",
           "effects": [
             {
               "sanity": 25
@@ -35,7 +35,7 @@
         },
         {
           "w": 40,
-          "text": "They dance for longer than a night, and sleep where they fall.",
+          "text": "They dance for longer than a night, then sleep where they fall.",
           "effects": [
             {
               "sanity": -20
@@ -57,7 +57,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The music stops, all at once. The mushrooms are worth a great deal to the right apothecary.",
+          "text": "The music stops all at once. The mushrooms are worth a great deal to the right apothecary.",
           "effects": [
             {
               "resources": {
@@ -70,7 +70,7 @@
     },
     {
       "id": "around",
-      "label": "Walk well round the ring, and do not listen too closely.",
+      "label": "Walk well round the ring, without listening too closely.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -99,7 +99,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "In and out, with a fistful of fair-folk coin and a grin.",
+          "text": "They are in and out with a fistful of fair-folk coin and a grin.",
           "effects": [
             {
               "resources": {
@@ -111,7 +111,7 @@
         },
         {
           "w": 50,
-          "text": "In, and the music notices. They come out next morning, still dancing, a year older in the face.",
+          "text": "The music notices. They come out next morning, still dancing, a year older in the face.",
           "effects": [
             {
               "sanity": -15,

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "buy",
-      "label": "Buy one of his saints. A good forgery serves as well as the real thing.",
+      "label": "Buy one of his saints; a good forgery serves as well as the real thing.",
       "rule": "vote",
       "tags": [
         "clever"
@@ -39,7 +39,7 @@
     },
     {
       "id": "expose",
-      "label": "Expose him to the Court, and let the faithful judge him.",
+      "label": "Expose him to the Court and let the faithful judge him.",
       "rule": "leader",
       "tags": [
         "kind"
@@ -47,7 +47,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The Court thanks you. He does not, and neither do the friends who bought from him.",
+          "text": "The Court thanks you. He does not, nor do the friends who bought from him.",
           "effects": [
             {
               "score": {
@@ -65,7 +65,7 @@
     },
     {
       "id": "blackmail",
-      "label": "The shrewdest blackmails him, for whatever true relics he keeps hidden.",
+      "label": "The shrewdest blackmails him for whatever true relics he keeps hidden.",
       "rule": "scion:highest:guile",
       "tags": [
         "cruel"
@@ -73,7 +73,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A real relic, from his private collection, and a man who now hates you.",
+          "text": "He gives up a real relic from his private collection. He hates you now.",
           "effects": [
             {
               "score": {

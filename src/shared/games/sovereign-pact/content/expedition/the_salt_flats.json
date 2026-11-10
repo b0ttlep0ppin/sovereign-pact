@@ -9,7 +9,7 @@
     10
   ],
   "title": "The Salt Flats",
-  "text": "White salt to the edge of the world, cracked into tiles, and a glare that burns the eyes and splits the lips. Ahead, always ahead, a lake shimmers that is not there. The bones of those who walked toward it lie bleached along the way.",
+  "text": "White salt stretches to the edge of the world, cracked into tiles, its glare burning the eyes and splitting the lips. Ahead, always ahead, a lake shimmers that is not there. The bones of those who walked toward it lie bleached along the way.",
   "options": [
     {
       "id": "mirage",
@@ -34,7 +34,7 @@
         },
         {
           "w": 60,
-          "text": "There is no lake. There never was. Only more bones, and the glare.",
+          "text": "There never was a lake. There are only more bones, and the glare.",
           "effects": [
             {
               "to": "party",
@@ -50,7 +50,7 @@
     },
     {
       "id": "read",
-      "label": "The sharpest eye reads the true way through the glare.",
+      "label": "The sharpest reads the true way through the glare.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -58,7 +58,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Old cart ruts under the crust, going straight across.",
+          "text": "Old cart ruts run under the crust, straight across.",
           "effects": [
             {
               "skip": 1
@@ -72,7 +72,7 @@
     },
     {
       "id": "march",
-      "label": "Cover your eyes and march by the compass. Trust nothing you can see.",
+      "label": "Cover your eyes and march by the compass, trusting nothing you can see.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -80,7 +80,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Slow, blind, and safe, though the salt gets into everything.",
+          "text": "You go slow and blind but safe, though the salt gets into everything.",
           "effects": [
             {
               "to": "party",

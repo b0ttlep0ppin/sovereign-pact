@@ -9,11 +9,11 @@
     10
   ],
   "title": "The Rival Miners",
-  "text": "Another House's miners are already working the seam you came for, their banner planted in the spoil heap. They stop swinging their picks when they see you. Their overseer counts your number, and then counts his own.",
+  "text": "Another House's miners are already working the seam you came for, their banner planted in the spoil heap. They stop swinging their picks when they see you. Their overseer counts your number, then counts his own.",
   "options": [
     {
       "id": "share",
-      "label": "Share the seam with them. There is enough iron for two Houses.",
+      "label": "Share the seam with them; there is enough iron for two Houses.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Half each, and nobody draws steel.",
+          "text": "You split it half and half, and nobody draws steel.",
           "effects": [
             {
               "resources": {
@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They go, and they will remember, and so will their House.",
+          "text": "They go. They will remember, and so will their House.",
           "effects": [
             {
               "resources": {
@@ -61,7 +61,7 @@
     },
     {
       "id": "trick",
-      "label": "The shrewdest tricks them into leaving, so no blood is spilled over it.",
+      "label": "The shrewdest tricks them into leaving so no blood is spilled.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"
@@ -69,7 +69,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A rumor of a better seam, a day's walk off. They thank you for it.",
+          "text": "They hear of a better seam a day's walk off, and thank you for the rumor.",
           "effects": [
             {
               "resources": {

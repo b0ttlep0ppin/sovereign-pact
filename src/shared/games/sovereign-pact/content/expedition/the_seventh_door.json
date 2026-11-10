@@ -9,11 +9,11 @@
     10
   ],
   "title": "The Seventh Door",
-  "text": "Six doors in the Shrine, each to a god, each carved with that god's sign. A seventh, unmarked and older than the rest, stands ajar. Cold air comes through the gap, and a smell like turned earth.",
+  "text": "Six doors in the Shrine each lead to a god, each carved with that god's sign. A seventh, unmarked and older than the rest, stands ajar. Cold air comes through the gap with a smell like turned earth.",
   "options": [
     {
       "id": "seventh",
-      "label": "Go through the seventh door, to meet whatever no one prays to.",
+      "label": "Go through the seventh door to meet whatever no one prays to.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "A god no one prays to, glad of visitors, and its gifts are strange.",
+          "text": "A god no one prays to is glad of visitors. Its gifts are strange.",
           "effects": [
             {
               "growth": {
@@ -36,7 +36,7 @@
         },
         {
           "w": 50,
-          "text": "Something that is not a god.",
+          "text": "Something that is not a god waits behind it.",
           "effects": [
             {
               "encounter": {
@@ -49,7 +49,7 @@
     },
     {
       "id": "six",
-      "label": "The wisest chooses one of the six, and trusts the gods they know.",
+      "label": "The wisest chooses one of the six, trusting the gods they know.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "kind"
@@ -57,7 +57,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The right one, and warm light behind it.",
+          "text": "They choose rightly. Warm light waits behind it.",
           "effects": [
             {
               "to": "party",
@@ -74,7 +74,7 @@
     },
     {
       "id": "shut",
-      "label": "Shut the seventh door, before whatever lies behind it comes through.",
+      "label": "Shut the seventh door before whatever lies behind it comes through.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -82,7 +82,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It does not want to shut. It takes all of you, and arms that ache for days.",
+          "text": "It does not want to shut. It takes all of you, and every arm aches for days.",
           "effects": [
             {
               "to": "party",

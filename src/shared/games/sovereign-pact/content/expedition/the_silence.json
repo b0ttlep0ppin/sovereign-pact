@@ -9,7 +9,7 @@
     10
   ],
   "title": "The Silence",
-  "text": "Sound stops. No footsteps, no breath, no heartbeat in the ears. Mouths move and nothing comes. The dark presses close, as if listening. The frailest feel it first, a cold creeping in from the edges of the self.",
+  "text": "Sound stops. There are no footsteps, no breath, no heartbeat in the ears; mouths move and nothing comes out. The dark presses close as if listening. The frailest feel it first, a cold creeping in from the edges of the self.",
   "options": [
     {
       "id": "weak",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They come through, shaking, and holding them steadies the rest of you.",
+          "text": "They come through shaking. Holding them steadies the rest of you.",
           "effects": [
             {
               "sanity": -10
@@ -36,7 +36,7 @@
     },
     {
       "id": "shout",
-      "label": "Shout until something hears. Anything is better than this.",
+      "label": "Shout until something hears; anything is better than this.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -57,7 +57,7 @@
     },
     {
       "id": "listen",
-      "label": "The wisest listens to the silence, to learn what it hides.",
+      "label": "The wisest listens to the silence to learn what it hides.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -65,7 +65,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "In it, the shape of the way out, and the shape of what is listening.",
+          "text": "In it they hear the shape of the way out, and the shape of what is listening.",
           "effects": [
             {
               "foresee": true

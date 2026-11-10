@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "You get there first, worn ragged, and their mark on the tree still in your head.",
+          "text": "You get there first, worn ragged, their mark still in your head.",
           "effects": [
             {
               "skip": 1
@@ -36,7 +36,7 @@
     },
     {
       "id": "join",
-      "label": "Catch them up and join forces. The trail is dangerous enough already.",
+      "label": "Catch them up and join forces; the trail is dangerous enough already.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -44,7 +44,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They share the trail, and the credit, and the watch at night.",
+          "text": "They share the trail, the credit and the watch at night.",
           "effects": [
             {
               "to": "party",
@@ -61,7 +61,7 @@
     },
     {
       "id": "sabotage",
-      "label": "The craftiest lays a false trail for them, and repays their mark in kind.",
+      "label": "The craftiest lays a false trail for them, repaying their mark in kind.",
       "rule": "scion:highest:guile",
       "tags": [
         "cruel"

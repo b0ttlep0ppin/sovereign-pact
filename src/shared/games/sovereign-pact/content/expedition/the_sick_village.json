@@ -9,7 +9,7 @@
     10
   ],
   "title": "The Sick Village",
-  "text": "A village where everyone is ill with something that turns the skin to bark, cracking and rough, the eyes going green and blind. They beg for help from a careful distance, holding out stiff wooden hands. A child among them is putting out leaves.",
+  "text": "Everyone in this village is ill with something that turns the skin to bark, cracked and rough, while the eyes go green and blind. They beg for help from a careful distance, holding out stiff wooden hands. A child among them is putting out leaves.",
   "options": [
     {
       "id": "help",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "They help a great many, and are not taken by it.",
+          "text": "They help a great many and are not taken by it.",
           "effects": [
             {
               "score": {
@@ -35,7 +35,7 @@
         },
         {
           "w": 30,
-          "text": "They help a great many, and bring a little of it out with them, under the skin.",
+          "text": "They help a great many, but carry a little of it out with them, under the skin.",
           "effects": [
             {
               "score": {
@@ -51,7 +51,7 @@
     },
     {
       "id": "supplies",
-      "label": "Leave supplies at the edge of the village, and keep your distance.",
+      "label": "Leave supplies at the edge of the village and keep your distance.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -59,7 +59,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They wave from the distance with stiff wooden hands.",
+          "text": "They wave their thanks from afar.",
           "effects": [
             {
               "to": "party",
@@ -76,7 +76,7 @@
     },
     {
       "id": "burn",
-      "label": "Burn it, for everyone's safety, before the bark spreads beyond the village.",
+      "label": "Burn it for everyone's safety, before the bark spreads.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -84,7 +84,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It is the safe thing. The child with leaves does not run.",
+          "text": "It is the safe thing to do. The child with leaves does not run.",
           "effects": [
             {
               "to": "party",

@@ -9,11 +9,11 @@
     10
   ],
   "title": "The Shrine of Feet",
-  "text": "A shrine hung with the worn shoes of a thousand pilgrims, dangling from every beam and branch, swaying, creaking. Leave yours, the monks say, and walk on blessed. Their own feet are bare and black and hard as horn.",
+  "text": "The worn shoes of a thousand pilgrims hang from every beam and branch of this shrine, swaying and creaking. Leave yours, the monks say, and walk on blessed. Their own feet are bare and black and hard as horn.",
   "options": [
     {
       "id": "leave",
-      "label": "Leave your shoes on the beams, and walk on blessed.",
+      "label": "Leave your shoes on the beams and walk on blessed.",
       "rule": "each_scion",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Blessed, and barefoot, and the road is very hard.",
+          "text": "You walk on blessed and barefoot. The road is very hard.",
           "effects": [
             {
               "sanity": 8
@@ -36,7 +36,7 @@
     },
     {
       "id": "keep",
-      "label": "Keep your shoes. The road ahead is long.",
+      "label": "Keep your shoes; the road ahead is long.",
       "rule": "each_scion",
       "tags": [
         "cautious"
@@ -44,7 +44,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The monks shake their heads, and a thousand shoes creak overhead.",
+          "text": "The monks shake their heads as a thousand shoes creak overhead.",
           "effects": [
             {
               "sanity": -2

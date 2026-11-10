@@ -9,11 +9,11 @@
     10
   ],
   "title": "The Signal Fire",
-  "text": "Smoke rises from a far hill, broken into puffs, in the pattern your House uses. Someone is still alive out there. The smoke stops, starts again, weaker. It is a long way, and the land between is broken.",
+  "text": "Smoke rises from a far hill in broken puffs, in the pattern your House uses. Someone is still alive out there. The smoke stops, then starts again, weaker. It is a long way, and the land between is broken.",
   "options": [
     {
       "id": "run",
-      "label": "Run for the far hill, before the smoke stops for good.",
+      "label": "Run for the far hill before the smoke stops for good.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Closer, over broken ground, on battered legs.",
+          "text": "You draw closer over broken ground, your legs battered by it.",
           "effects": [
             {
               "skip": 1
@@ -37,7 +37,7 @@
     },
     {
       "id": "answer",
-      "label": "Light an answering fire, so they know someone is coming.",
+      "label": "Light an answering fire so they know someone is coming.",
       "rule": "leader",
       "tags": [
         "kind"
@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "The smoke changes. They saw.",
+          "text": "The smoke changes; they saw.",
           "effects": [
             {
               "to": "party",
@@ -66,7 +66,7 @@
     },
     {
       "id": "scout",
-      "label": "The sharpest eye scouts the way, so you do not break your legs getting there.",
+      "label": "The sharpest scouts the way so you do not break your legs getting there.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -74,7 +74,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A safe path to the hill, if you are quick.",
+          "text": "They find a safe path to the hill, if you are quick.",
           "effects": [
             {
               "skip": 1

@@ -9,11 +9,11 @@
     10
   ],
   "title": "The Simple Oracle",
-  "text": "An oracle sits in a hut of sticks, an old woman with eyes like a child's. She will only speak to whoever in the party is the least clever, and she greets them like an old friend, by a name that is almost theirs.",
+  "text": "An oracle sits in a hut of sticks, an old woman with eyes like a child's. She will speak only to the least clever of the party. She greets them like an old friend, by a name that is almost theirs.",
   "options": [
     {
       "id": "talk",
-      "label": "The least sharp of you talks with her, since she will speak to no one else.",
+      "label": "The least sharp of you talks with her.",
       "rule": "scion:lowest:acuity",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "She tells them something simple and true, and they understand it better than any of you could.",
+          "text": "She tells them something simple and true. They understand it better than any of you could.",
           "effects": [
             {
               "growth": {
@@ -37,7 +37,7 @@
     },
     {
       "id": "trick",
-      "label": "The cleverest pretends to be simple, to hear what she would say.",
+      "label": "The cleverest pretends to be simple to hear what she would say.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"
@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 40,
-          "text": "She plays along, and gives a clever answer.",
+          "text": "She plays along and gives a clever answer.",
           "effects": [
             {
               "score": {
@@ -56,7 +56,7 @@
         },
         {
           "w": 60,
-          "text": "She is not fooled, and she is hurt, and the hut goes cold.",
+          "text": "She is not fooled, and she is hurt. The hut goes cold.",
           "effects": [
             {
               "to": "party",
@@ -68,7 +68,7 @@
     },
     {
       "id": "pass",
-      "label": "Pass her by. Simple truths can wait.",
+      "label": "Pass her by; simple truths can wait.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -76,7 +76,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "She waves. \"You'll be back,\" she says, and the Leader, oddly, is comforted.",
+          "text": "She waves. \"You'll be back,\" she says, and oddly the Leader is comforted.",
           "effects": [
             {
               "sanity": 8
