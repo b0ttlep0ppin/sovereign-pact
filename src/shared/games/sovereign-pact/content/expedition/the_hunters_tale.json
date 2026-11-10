@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He tells you where it hides, and what it fears, and what it did to his arm, slowly, in detail.",
+          "text": "He tells you where it hides, what it fears and, slowly and in detail, what it did to his arm.",
           "effects": [
             {
               "resources": {
@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He tells them the trick he never got to use, and grips their wrist hard as he does.",
+          "text": "He tells them the trick he never got to use, gripping their wrist hard as he does.",
           "effects": [
             {
               "xp": 80
@@ -68,7 +68,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He calls after you exactly how he lost, in detail, and you cannot stop hearing it.",
+          "text": "He calls after you exactly how he lost, in detail. You cannot stop hearing it.",
           "effects": [
             {
               "to": "party",

@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A place to come back to, and to build on.",
+          "text": "It is a place to come back to, and to build on.",
           "effects": [
             {
               "house_improvement": "building"
@@ -40,7 +40,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Clean water, clean heads, and the deer come down to drink beside you.",
+          "text": "The clean water clears your heads. The deer come down to drink beside you.",
           "effects": [
             {
               "to": "party",
@@ -64,7 +64,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Spiteful work, and the deer stop coming, and something in the hills notices what you did.",
+          "text": "It is spiteful work. The deer stop coming, and something in the hills notices what you did.",
           "effects": [
             {
               "score": {

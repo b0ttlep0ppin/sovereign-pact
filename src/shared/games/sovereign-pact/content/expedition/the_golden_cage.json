@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "It flies, singing in your mother's voice, and the song stays with you, kind.",
+          "text": "It flies off singing in your mother's voice. The song stays with you, kind.",
           "effects": [
             {
               "to": "party",
@@ -31,7 +31,7 @@
         },
         {
           "w": 40,
-          "text": "It flies, and laughs, in a voice that is not your mother's at all, and never was.",
+          "text": "It flies off laughing in a voice that was never your mother's at all.",
           "effects": [
             {
               "to": "party",
@@ -51,7 +51,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Very fine gold. The bird does not speak again, but it watches, and it waits.",
+          "text": "The gold is very fine. The bird does not speak again, but it watches and waits.",
           "effects": [
             {
               "resources": {
@@ -76,7 +76,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It says something only your mother knew, and then something she never told anyone, and should not have.",
+          "text": "It says something only your mother knew. Then it says something she never told anyone, and should not have.",
           "effects": [
             {
               "score": {

@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It works, and she strokes the lock of hair as if it were gold, and puts it somewhere safe. They wonder, after, what she will do with it.",
+          "text": "The cure works. She strokes the lock of hair as if it were gold before putting it somewhere safe, and afterward they wonder what she will do with it.",
           "effects": [
             {
               "mend": true
@@ -46,7 +46,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A good potion, foul-tasting and strong.",
+          "text": "The potion is foul-tasting and strong.",
           "effects": [
             {
               "resources": {
@@ -71,7 +71,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It stands up anyway, and watches you go, and the witch throws a pinch of something after you that sets every eye streaming.",
+          "text": "It stands up anyway to watch you go. The witch throws a pinch of something after you that sets every eye streaming.",
           "effects": [
             {
               "to": "party",

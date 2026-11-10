@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "They come back with their arms full, and frost in their hair, and will not say what they saw.",
+          "text": "They come back with arms full and frost in their hair, and will not say what they saw.",
           "effects": [
             {
               "item": {
@@ -35,7 +35,7 @@
         },
         {
           "w": 50,
-          "text": "They come back with their eyes wrong, and something of the night side clinging to them, and it will not let go.",
+          "text": "They come back with their eyes wrong. Something of the night side clings to them and will not let go.",
           "effects": [
             {
               "sanity": -25
@@ -57,7 +57,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Whatever is on the other side cannot get through all that iron, though it tries, and the dents prove it.",
+          "text": "Whatever waits on the other side cannot get through all that iron. It tries, as the dents prove.",
           "effects": [
             {
               "xp": 120
@@ -80,7 +80,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "It closes very easily. Too easily. That night a cold draught blows into the camp from nowhere, and nobody sleeps.",
+          "text": "It closes far too easily. That night a cold draught blows into camp from nowhere, and nobody sleeps.",
           "effects": [
             {
               "to": "party",
@@ -90,7 +90,7 @@
         },
         {
           "w": 40,
-          "text": "It closes very easily. Too easily. Behind you, from the night side, something knocks.",
+          "text": "It closes far too easily. Behind you, from the night side, something knocks.",
           "effects": [
             {
               "fork": {
@@ -114,7 +114,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "Something small and willing comes through, and rides at the Conjurer's shoulder into the next fight.",
+          "text": "Something small and willing comes through. It rides at the Conjurer's shoulder into the next fight.",
           "effects": [
             {
               "tp": 100,

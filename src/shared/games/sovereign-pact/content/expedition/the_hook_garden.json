@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "The key, to a devil's strongbox, and the box is full.",
+          "text": "The key opens a devil's strongbox, and the box is full.",
           "effects": [
             {
               "resources": {
@@ -33,7 +33,7 @@
         },
         {
           "w": 40,
-          "text": "A hook takes them instead, through the coat and the skin, and it does not want to let go.",
+          "text": "A hook takes them instead, through coat and skin, and it does not want to let go.",
           "effects": [
             {
               "durability": -25,
@@ -53,7 +53,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They thank you, sobbing, and the gardener comes to see who is pruning.",
+          "text": "They thank you, sobbing. The gardener comes to see who has been pruning.",
           "effects": [
             {
               "score": {
@@ -77,7 +77,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Chains brush every shoulder, and every hook turns to follow.",
+          "text": "Chains brush every shoulder. Every hook turns to follow.",
           "effects": [
             {
               "to": "party",

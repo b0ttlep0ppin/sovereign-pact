@@ -9,7 +9,7 @@
     10
   ],
   "title": "The Hall of Clocks",
-  "text": "A hall of a thousand clocks, from the floor to the high dark ceiling, each telling a different time, each ticking at its own pace. The noise is like rain. One of them, small and black, is ticking backward, and the hands on your own heartbeat seem to follow it.",
+  "text": "A hall of a thousand clocks rises from the floor to the high dark ceiling, each telling a different time at its own pace. The noise is like rain. One of them, small and black, ticks backward, and your own heartbeat seems to follow it.",
   "options": [
     {
       "id": "wind",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "Time catches up all at once, and carries you a long way ahead.",
+          "text": "Time catches up all at once, carrying you a long way ahead.",
           "effects": [
             {
               "skip": 2
@@ -30,7 +30,7 @@
         },
         {
           "w": 40,
-          "text": "Time catches up with you, and it has been waiting, and it is not gentle.",
+          "text": "Time catches up with you. It has been waiting, and it is not gentle.",
           "effects": [
             {
               "to": "party",
@@ -76,7 +76,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Silence, at last, and something that was waiting for the silence.",
+          "text": "At last there is silence. Something was waiting for it.",
           "effects": [
             {
               "encounter": {

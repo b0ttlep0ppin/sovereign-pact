@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He says three words, and they help, and they will not say what they were, not even to you.",
+          "text": "He says three words that help. They will not say what the words were, not even to you.",
           "effects": [
             {
               "growth": {
@@ -47,7 +47,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A small good thing, added to the mouldering pile.",
+          "text": "It is a small good thing, added to the mouldering pile.",
           "effects": [
             {
               "to": "party",
@@ -67,7 +67,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He sends them down humbled, and very quiet, and they do not talk about what he said.",
+          "text": "He sends them down humbled and very quiet. Like the others, they do not talk about what he said.",
           "effects": [
             {
               "sanity": -10

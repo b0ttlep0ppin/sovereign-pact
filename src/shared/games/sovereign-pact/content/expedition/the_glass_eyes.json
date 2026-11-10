@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "It sees things you cannot, and turns in its little box to show you.",
+          "text": "It sees things you cannot, turning in its little box to show you.",
           "effects": [
             {
               "foresee": true
@@ -35,7 +35,7 @@
         },
         {
           "w": 40,
-          "text": "It sees you, and tells someone what it saw, and they come to find you.",
+          "text": "It sees you, then tells someone what it saw. They come to find you.",
           "effects": [
             {
               "resources": {
@@ -59,7 +59,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Oil and glass and eyes across the cobbles. Silence. Every faceless head in the street turns your way.",
+          "text": "Oil, glass and eyes spill across the cobbles. In the silence that follows, every faceless head in the street turns your way.",
           "effects": [
             {
               "encounter": {
@@ -80,7 +80,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They keep looking, through the cloth. The Leader feels them on the back of the neck all through the next fight, and so do the things they fight.",
+          "text": "They keep looking through the cloth. All through the next fight the Leader feels them on the back of the neck, as do the things they fight.",
           "effects": [
             {
               "status": "exposed"
@@ -100,7 +100,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Eye to eye with the jar, and the jar blinks first. Whatever it was looking for, it will not find it in them again.",
+          "text": "The jar blinks first. Whatever it was looking for, it will not find it in them again.",
           "effects": [
             {
               "gear": {

@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Every flask you have, cold and bright and humming, and the well no lower for it.",
+          "text": "You fill every flask you have, cold, bright and humming. The well is no lower for it.",
           "effects": [
             {
               "resources": {
@@ -42,7 +42,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "They glow for a day, faintly, from the inside. Nobody likes to look at them.",
+          "text": "For a day they glow faintly from the inside. Nobody likes to look at them.",
           "effects": [
             {
               "growth": {
@@ -57,7 +57,7 @@
         },
         {
           "w": 40,
-          "text": "It burns going down, cold fire, and keeps burning long after.",
+          "text": "It burns going down, a cold fire that keeps burning long after.",
           "effects": [
             {
               "status": "burn"
@@ -79,7 +79,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A rival will find the sign, and know whose it is.",
+          "text": "The sign is posted. Any rival who finds it will know whose well this is.",
           "effects": [
             {
               "resources": {

@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It takes an hour, and nobody minds. The wind stops while you work, as if in respect.",
+          "text": "It takes an hour, and nobody minds. While you work the wind stops, as if in respect.",
           "effects": [
             {
               "to": "party",
@@ -46,7 +46,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It fits, perfectly, as if it was made for the one wearing it now. Nobody says anything for a while.",
+          "text": "It fits perfectly, as if made for the one wearing it now. For a while, nobody says anything.",
           "effects": [
             {
               "item": {
@@ -71,7 +71,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They tell of a House that held this place once, and what it found here, and why nobody remembers them.",
+          "text": "The letters tell of a House that once held this place, what it found here and why nobody remembers it.",
           "effects": [
             {
               "score": {

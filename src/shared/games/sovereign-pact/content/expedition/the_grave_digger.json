@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He names a rival House, and keeps digging, and does not look up. You do not ask about the others.",
+          "text": "He names a rival House and keeps digging without looking up. You do not ask about the others.",
           "effects": [
             {
               "score": {
@@ -63,7 +63,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He weeps, and the barrows stir, waiting for their beds, and growing impatient.",
+          "text": "He weeps. The barrows stir, waiting for their beds, growing impatient.",
           "effects": [
             {
               "encounter": {}

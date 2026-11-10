@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It sheds the quarry's shape like a coat, and what is underneath fights.",
+          "text": "It sheds the quarry's shape like a coat. What lies underneath fights back.",
           "effects": [
             {
               "encounter": {
@@ -42,7 +42,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It leads you to the real one without ever knowing it, and you leave it to its borrowed shape.",
+          "text": "Without ever knowing it, it leads you to the real one. You leave it to its borrowed shape.",
           "effects": [
             {
               "skip": 1
@@ -66,7 +66,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "It wants the quarry dead too, and it walks with you a while, close enough to touch.",
+          "text": "It wants the quarry dead too. It walks with you a while, close enough to touch.",
           "effects": [
             {
               "to": "party",

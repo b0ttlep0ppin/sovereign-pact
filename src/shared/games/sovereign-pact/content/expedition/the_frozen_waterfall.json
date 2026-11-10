@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "Up and over, a long way ahead, fingers numb.",
+          "text": "You climb up and over with numb fingers, coming out a long way ahead.",
           "effects": [
             {
               "skip": 1
@@ -55,7 +55,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "A hermit's hoard, long frozen, and the hermit too, still curled up against the cold.",
+          "text": "Inside lies a hermit's hoard, long frozen, with the hermit still curled up beside it against the cold.",
           "effects": [
             {
               "resources": {
@@ -67,7 +67,7 @@
         },
         {
           "w": 40,
-          "text": "A bear's den, and the bear was the one scratching, and it is very hungry after its long sleep.",
+          "text": "It is a bear's den. The bear did the scratching, and it is very hungry after its long sleep.",
           "effects": [
             {
               "encounter": {}
@@ -86,7 +86,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Slow, and cold, and the scratching follows you a while.",
+          "text": "The path round is slow and cold. The scratching follows you for a while.",
           "effects": [
             {
               "to": "party",

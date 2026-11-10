@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It eats the iron with a hiss, and hands back a better blade.",
+          "text": "It eats the iron with a hiss, then hands back a better blade.",
           "effects": [
             {
               "resources": {
@@ -47,7 +47,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It drinks the warmth from their arm, leaving it grey and cold, and gives a gift for it. The arm never feels quite warm again.",
+          "text": "It drinks the warmth from their arm, leaving it grey and cold, and grants a gift in return. The arm never feels quite warm again.",
           "effects": [
             {
               "durability": -30,

@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "You understand the Court now, and you wish you did not.",
+          "text": "Now you understand the Court, and you wish you did not.",
           "effects": [
             {
               "score": {
@@ -36,7 +36,7 @@
         },
         {
           "w": 50,
-          "text": "You almost agree, and you cannot remember why that frightens you.",
+          "text": "You almost agree with him, though you cannot remember why that frightens you.",
           "effects": [
             {
               "to": "party",
@@ -60,7 +60,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "The preacher falls silent, and the empty crowd turns on him.",
+          "text": "The preacher falls silent. The empty crowd turns on him.",
           "effects": [
             {
               "xp": 60
@@ -74,7 +74,7 @@
         },
         {
           "w": 40,
-          "text": "He is better at this, much better, and the empty crowd laughs at you.",
+          "text": "He is much better at this than you. The empty crowd laughs at you.",
           "effects": [
             {
               "sanity": -15
@@ -93,7 +93,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "You hear it anyway, faint, like water in the walls.",
+          "text": "You hear it anyway, faintly, like water in the walls.",
           "effects": [
             {
               "to": "party",

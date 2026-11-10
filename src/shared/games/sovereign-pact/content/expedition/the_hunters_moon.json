@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "There it is, black against the red, and it cannot hide tonight. Neither can you.",
+          "text": "There it is, black against the red. It cannot hide tonight, and neither can you.",
           "effects": [
             {
               "encounter": {
@@ -47,7 +47,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It moves in the night, close by. You hear it pass the camp, slowly, and keep going. Nobody breathes until it is gone.",
+          "text": "In the night it moves close by. You hear it pass the camp slowly, then go on; nobody breathes until it is gone.",
           "effects": [
             {
               "to": "party",
@@ -67,7 +67,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The moon answers, and the shadows lean your way.",
+          "text": "The moon answers. The shadows lean your way.",
           "effects": [
             {
               "blessing": {

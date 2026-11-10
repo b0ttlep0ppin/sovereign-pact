@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Fresh feet and a lighter heart, and they hum while they work.",
+          "text": "They hum as they work. You leave with fresh feet and lighter hearts.",
           "effects": [
             {
               "to": "party",
@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They give news back, in low voices: what waits on the road ahead.",
+          "text": "In low voices they give news back: what waits on the road ahead.",
           "effects": [
             {
               "foresee": true
@@ -64,7 +64,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They bless you anyway, and it is a real blessing: the Leader's feet do not ache, and their scrapes close as they walk.",
+          "text": "They bless you anyway, and it is a real blessing. The Leader's feet do not ache, and their scrapes close as they walk.",
           "effects": [
             {
               "status": "regen"

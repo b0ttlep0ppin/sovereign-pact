@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It points the way, and fades, and you all feel how long it waited for someone to come.",
+          "text": "It points the way, then fades. You all feel how long it waited for someone to come.",
           "effects": [
             {
               "skip": 1
@@ -44,7 +44,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A long hour of searching. It thanks you, and is gone, and the road feels lighter.",
+          "text": "After a long hour of searching, it thanks you and is gone. The road feels lighter.",
           "effects": [
             {
               "score": {

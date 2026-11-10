@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 55,
-          "text": "A turn here, a tap there, and the engine gives up a gift of worked iron and a breath of essence.",
+          "text": "After a careful turn here and a tap there, the engine gives up a gift of worked iron and a breath of essence.",
           "effects": [
             {
               "resources": {
@@ -36,7 +36,7 @@
         },
         {
           "w": 45,
-          "text": "A turn here, a tap there, and it explodes in light and heat, and leaves a little of their shape on the floor.",
+          "text": "At the first careful turn it explodes in light and heat, burning a little of their shape into the floor.",
           "effects": [
             {
               "to": "party",
@@ -59,7 +59,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The light dies. Something somewhere in the Forge Ruins stops working, and is glad to rest.",
+          "text": "The light dies. Somewhere in the Forge Ruins, something stops working and is glad to rest.",
           "effects": [
             {
               "score": {
@@ -83,7 +83,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It goes on turning, as it has for a thousand years. Its heat stays in the Leader's bones, and their hands are quick at the next fight.",
+          "text": "It turns on, as it has for a thousand years. Its heat settles in the Leader's bones, quickening their hands for the next fight.",
           "effects": [
             {
               "tp": 30
@@ -103,7 +103,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "It pours into them like a river, and goes on pouring for days.",
+          "text": "It pours into them like a river, and it goes on pouring for days.",
           "effects": [
             {
               "mp": 100,
@@ -113,7 +113,7 @@
         },
         {
           "w": 40,
-          "text": "It pours in, and keeps pouring, and burns all the way down.",
+          "text": "It pours in without stopping, burning all the way down.",
           "effects": [
             {
               "mp": 100,

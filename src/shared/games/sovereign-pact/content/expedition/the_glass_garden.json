@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "It never wilts and never breaks, and it chimes when no one is near.",
+          "text": "It never wilts and never breaks. When no one is near, it chimes.",
           "effects": [
             {
               "score": {
@@ -32,7 +32,7 @@
         },
         {
           "w": 50,
-          "text": "The gardener comes, and it is not happy about its rose, and it has been gardening a long time.",
+          "text": "The gardener comes, unhappy about its rose. It has been gardening a long time.",
           "effects": [
             {
               "encounter": {}
@@ -51,7 +51,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The flowers chime a little tune, and the way out is shorter than the way in.",
+          "text": "The flowers chime a little tune. The way out is shorter than the way in.",
           "effects": [
             {
               "skip": 1
@@ -74,7 +74,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Not one petal touched, and you feel the garden relax behind you.",
+          "text": "You touch not one petal. Behind you, the garden seems to relax.",
           "effects": [
             {
               "to": "party",

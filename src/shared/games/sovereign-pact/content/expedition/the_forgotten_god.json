@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It does what it can, which is a little, and it is so very grateful.",
+          "text": "It does what little it can, so very grateful to be remembered.",
           "effects": [
             {
               "to": "party",
@@ -47,7 +47,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It gives far more than it should, for a promise of remembrance. Do not forget. It will know.",
+          "text": "For a promise of remembrance it gives far more than it should. If you forget, it will know.",
           "effects": [
             {
               "growth": {
@@ -73,7 +73,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A very small voice, cursing, and the curse is not small at all.",
+          "text": "A very small voice curses you. The curse is not small at all.",
           "effects": [
             {
               "curse": true

@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It breathes, and finishes the word at last, and the word is a blessing, and it settles on them like light.",
+          "text": "It breathes again and finishes the word at last. The word is a blessing, which settles on the healer like light.",
           "effects": [
             {
               "blessing": {
@@ -46,7 +46,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A name, and a warning about the End Ruler, and then its light goes out. The word stays with them, heavy and bright.",
+          "text": "The word is a name, with a warning about the End Ruler. Then its light goes out, leaving the word with them, heavy and bright.",
           "effects": [
             {
               "score": {
@@ -70,7 +70,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Each one is worth a fortune. It watches you take them, and its eyes never close.",
+          "text": "Each feather is worth a fortune. It watches you take them, and its eyes never close.",
           "effects": [
             {
               "score": {

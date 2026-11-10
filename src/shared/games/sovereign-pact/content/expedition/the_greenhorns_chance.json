@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It is quick and ugly, and they will remember its eyes for a long time.",
+          "text": "It is quick and ugly. They will remember its eyes for a long time.",
           "effects": [
             {
               "xp": 120
@@ -43,7 +43,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It limps off into the trees, and something in the wood is grateful.",
+          "text": "It limps off into the trees. Something in the wood is grateful.",
           "effects": [
             {
               "to": "party",
@@ -76,7 +76,7 @@
         },
         {
           "w": 50,
-          "text": "It watches you go, and the Leader knows they should have let it be finished. It sits badly.",
+          "text": "It watches you go. The Leader knows they should have let it be finished, and that sits badly.",
           "effects": [
             {
               "sanity": -5
@@ -96,7 +96,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It is quick and clean, and the least blooded learns it from someone who knows.",
+          "text": "It is done quickly and cleanly, a lesson learned from someone who knows.",
           "effects": [
             {
               "jp": 20

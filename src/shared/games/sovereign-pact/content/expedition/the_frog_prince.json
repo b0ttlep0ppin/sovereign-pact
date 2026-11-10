@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 40,
-          "text": "A prince, wet and grateful and naked. His House will remember.",
+          "text": "He becomes a prince, wet, grateful and naked. His House will remember the favor.",
           "effects": [
             {
               "score": {
@@ -37,7 +37,7 @@
         },
         {
           "w": 60,
-          "text": "Still a frog. A poisonous one, and very sorry about it.",
+          "text": "He remains a frog, a poisonous one, and he is very sorry about it.",
           "effects": [
             {
               "status": "poison"
@@ -56,7 +56,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Real gold, and a very angry frog, who knows a witch, and will tell her.",
+          "text": "The gold is real. The frog is very angry, and he knows a witch whom he will tell.",
           "effects": [
             {
               "resources": {
@@ -80,7 +80,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He croaks after you, a very small curse, and that night every waterskin in the party tastes of pond.",
+          "text": "He croaks a very small curse after you. That night every waterskin in the party tastes of pond.",
           "effects": [
             {
               "to": "party",
@@ -101,7 +101,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "He is a prince, briefly, long enough to press a ring into their hand, and then a frog again, weeping.",
+          "text": "He is a prince just long enough to press a ring into their hand, then a frog again, weeping.",
           "effects": [
             {
               "item": {
@@ -112,7 +112,7 @@
         },
         {
           "w": 50,
-          "text": "Nothing happens at all, except the taste, which lasts.",
+          "text": "Nothing happens at all, save for the taste, which lasts.",
           "effects": [
             {
               "sanity": -5

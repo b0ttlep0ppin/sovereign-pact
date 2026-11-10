@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They love the story, the dead, and carry you further than they meant to, and the cold stays in your bones.",
+          "text": "The dead love the story and carry you further than they meant to. Their cold stays in your bones.",
           "effects": [
             {
               "skip": 1
@@ -44,7 +44,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The goods are old, and real, and cold to the touch.",
+          "text": "The goods are old and real, cold to the touch.",
           "effects": [
             {
               "resources": {
@@ -70,7 +70,7 @@
       "outcomes": [
         {
           "w": 40,
-          "text": "The last camel looks back at you. Its rider drops something as it passes, and when you pick it up it is cold and very old.",
+          "text": "As the last camel passes, its rider drops something. When you pick it up, it is cold and very old.",
           "effects": [
             {
               "item": {
@@ -81,7 +81,7 @@
         },
         {
           "w": 60,
-          "text": "The last camel looks back at you, and in its eyes you see your own road, longer than you thought.",
+          "text": "The last camel looks back at you. In its eyes you see your own road, longer than you thought.",
           "effects": [
             {
               "to": "party",

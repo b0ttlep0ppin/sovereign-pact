@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A drowned soldier's gear, cleaned, still smelling of the deep. It never quite dries.",
+          "text": "You buy a drowned soldier's gear, cleaned but still smelling of the deep. It never quite dries.",
           "effects": [
             {
               "resources": {
@@ -47,7 +47,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A good price, and gossip, and wet coins in change.",
+          "text": "You get a good price and some gossip, with wet coins in change.",
           "effects": [
             {
               "resources": {

@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "She pays well for a long look at their face, touches it, and gives it back. It does not feel quite the same.",
+          "text": "She pays well for a long look at their face. She touches it, then gives it back, though it does not feel quite the same.",
           "effects": [
             {
               "resources": {
@@ -47,7 +47,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "Someone else's face, peeled from somewhere. She never notices, and you do not ask where it came from.",
+          "text": "Someone else's face, peeled from somewhere, changes hands. She never notices, and you do not ask where it came from.",
           "effects": [
             {
               "resources": {
@@ -83,7 +83,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "She laughs behind her hand, and for a day the Leader keeps hearing her laugh come out of their own mouth.",
+          "text": "She laughs behind her hand. For a day the Leader keeps hearing that laugh come out of their own mouth.",
           "effects": [
             {
               "sanity": -8

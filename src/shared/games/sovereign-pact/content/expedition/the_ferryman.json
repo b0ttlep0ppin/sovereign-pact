@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It is a great deal of coin, and he counts it with long grey fingers, slowly, and twice.",
+          "text": "It is a great deal of coin. He counts it slowly with long grey fingers, then counts it again.",
           "effects": [
             {
               "resources": {
@@ -42,7 +42,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Everyone forgets something. Nobody can say what. Everyone keeps looking for it.",
+          "text": "Everyone forgets something, though no one can say what. Everyone keeps looking for it.",
           "effects": [
             {
               "to": "party",
@@ -66,7 +66,7 @@
       "outcomes": [
         {
           "w": 40,
-          "text": "They make it across, half drowned, and drag a rope for the rest. The ferryman watches, unsmiling.",
+          "text": "They make it across half drowned, dragging a rope for the rest. The ferryman watches, unsmiling.",
           "effects": [
             {
               "score": {
@@ -81,7 +81,7 @@
         },
         {
           "w": 60,
-          "text": "The river is not water, and it does not want to give them back.",
+          "text": "The river is not water. It does not want to give them back.",
           "effects": [
             {
               "sanity": -25

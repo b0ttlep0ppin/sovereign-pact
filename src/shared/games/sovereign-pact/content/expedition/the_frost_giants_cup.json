@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "Giant's mead. They feel enormous, and very loud, and they sing all the way down the glacier.",
+          "text": "It is giant's mead. They feel enormous and very loud, singing all the way down the glacier.",
           "effects": [
             {
               "growth": {
@@ -36,7 +36,7 @@
         },
         {
           "w": 40,
-          "text": "Giant's poison, thick and sweet, and cramping, and it does not want to leave.",
+          "text": "It is giant's poison, thick and sweet. The cramps it brings do not want to leave.",
           "effects": [
             {
               "status": "poison"
@@ -58,7 +58,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It sells for a fortune to anyone who wants to keep things cold.",
+          "text": "It will sell for a fortune to anyone who wants to keep things cold.",
           "effects": [
             {
               "resources": {
@@ -79,7 +79,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It comes back thirsty, and finds you at its cup, and it is not the sharing kind.",
+          "text": "It returns thirsty to find you at its cup. It is not the sharing kind.",
           "effects": [
             {
               "encounter": {

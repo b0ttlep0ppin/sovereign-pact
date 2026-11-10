@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "The ghosts of the smiths rise to work, silent and grey, and make you something. They do not stop when you leave.",
+          "text": "The ghosts of the smiths rise silent and grey to work, making you something. They do not stop when you leave.",
           "effects": [
             {
               "item": {
@@ -32,7 +32,7 @@
         },
         {
           "w": 50,
-          "text": "Something else rises to the call, and it is not a smith.",
+          "text": "Something else rises to the call. It is not a smith.",
           "effects": [
             {
               "encounter": {}
@@ -51,7 +51,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Heavy, and worth it, and the halls are very quiet after, as if something has been lost.",
+          "text": "The bell is heavy and worth it. Afterward the halls are very quiet, as if something has been lost.",
           "effects": [
             {
               "resources": {
@@ -76,7 +76,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The rope sways as you pass. Somewhere deep in the halls a hammer starts up anyway, and the Leader's armour rings in answer. By morning its dents are gone.",
+          "text": "The rope sways as you pass. Deep in the halls a hammer starts up anyway; the Leader's armour rings in answer, and by morning its dents are gone.",
           "effects": [
             {
               "gear": {
@@ -99,7 +99,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The bell's voice goes through the halls and through the plate, and every hammer in the dark answers. By morning the plate is better than its maker left it.",
+          "text": "The bell's voice passes through the halls and through the plate. Every hammer in the dark answers, and by morning the plate is better than its maker left it.",
           "effects": [
             {
               "gear": {

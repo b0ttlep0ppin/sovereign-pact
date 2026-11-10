@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He swallows it whole, and bows, and shows you a dry path through the marsh.",
+          "text": "He swallows it whole and bows, then shows you a dry path through the marsh.",
           "effects": [
             {
               "skip": 1
@@ -40,7 +40,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He stalks off into the fog. The marsh is less friendly after, and it remembers, and so does he.",
+          "text": "He stalks off into the fog. Afterward the marsh is less friendly; it remembers, and so does he.",
           "effects": [
             {
               "to": "party",
@@ -60,7 +60,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Just reeds, and a curse, and he will remember this slight forever. So will you.",
+          "text": "It is only reeds, though a curse comes with it. He will remember this slight forever.",
           "effects": [
             {
               "curse": true

@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 80,
-          "text": "Across, with the frozen faces watching every step, and one of them blinking.",
+          "text": "You cross with the frozen faces watching every step. One of them blinks.",
           "effects": [
             {
               "to": "party",
@@ -31,7 +31,7 @@
         },
         {
           "w": 20,
-          "text": "The ice cracks under the slowest, and a frozen hand reaches up through the crack.",
+          "text": "The ice cracks under the slowest. A frozen hand reaches up through the crack.",
           "effects": [
             {
               "durability": -30,
@@ -51,7 +51,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Safe, but the cold gets into them, and stays.",
+          "text": "They cross safely, but the cold gets into them and stays.",
           "effects": [
             {
               "status": "slow"
@@ -73,7 +73,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "They thaw, gasping, and give thanks with a ring.",
+          "text": "The traveller thaws, gasping, and gives thanks with a ring.",
           "effects": [
             {
               "item": {
@@ -84,7 +84,7 @@
         },
         {
           "w": 50,
-          "text": "They thaw, and they are not grateful at all.",
+          "text": "The traveller thaws, and is not grateful at all.",
           "effects": [
             {
               "encounter": {

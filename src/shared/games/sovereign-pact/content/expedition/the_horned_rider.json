@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "He judges them fairly, and gives them a horn to call the herd.",
+          "text": "He judges them fairly and gives them a horn to call the herd.",
           "effects": [
             {
               "item": {
@@ -37,7 +37,7 @@
         },
         {
           "w": 50,
-          "text": "He judges them harshly, and the herd turns as one.",
+          "text": "He judges them harshly. The herd turns as one.",
           "effects": [
             {
               "encounter": {
@@ -58,7 +58,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He is satisfied, and the herd parts to let you pass.",
+          "text": "He is satisfied. The herd parts to let you pass.",
           "effects": [
             {
               "skip": 1
@@ -77,7 +77,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The herd passes, a thousand elk, and tramples your packs.",
+          "text": "The herd thunders past, a thousand elk, trampling your packs.",
           "effects": [
             {
               "resources": {

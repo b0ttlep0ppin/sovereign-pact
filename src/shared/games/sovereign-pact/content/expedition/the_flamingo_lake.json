@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Good salt, and it sells well, and the flamingos never stop honking.",
+          "text": "The salt is good and sells well. The flamingos never stop honking.",
           "effects": [
             {
               "resources": {
@@ -42,7 +42,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "An afternoon of pink and quiet. For once, nothing is wrong, and that is almost more than you can bear.",
+          "text": "You pass an afternoon of pink and quiet. For once nothing is wrong, which is almost more than you can bear.",
           "effects": [
             {
               "to": "party",
@@ -62,7 +62,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "A long pink feather, for luck.",
+          "text": "They bring back a long pink feather, for luck.",
           "effects": [
             {
               "blessing": {
@@ -74,7 +74,7 @@
         },
         {
           "w": 40,
-          "text": "The flock rises all at once in a roar of wings, and the salt crust cuts like glass.",
+          "text": "The flock rises all at once in a roar of wings. The salt crust underfoot cuts like glass.",
           "effects": [
             {
               "durability": -10,

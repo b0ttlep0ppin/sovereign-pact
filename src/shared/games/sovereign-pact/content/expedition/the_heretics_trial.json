@@ -36,7 +36,7 @@
         },
         {
           "w": 45,
-          "text": "The judges unlock her chains. She was not telling the truth, and she has friends.",
+          "text": "The judges unlock her chains. She was lying, and she has friends.",
           "effects": [
             {
               "encounter": {
@@ -57,7 +57,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The Court is pleased with you, in its way. You hear the pyre from the road, and her voice, still hoarse, still saying she is innocent.",
+          "text": "In its way, the Court is pleased with you. From the road you hear the pyre, and her hoarse voice still insisting she is innocent.",
           "effects": [
             {
               "score": {
@@ -82,7 +82,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It is not a trial. It was never a trial. You learn a great deal about how the Court thinks.",
+          "text": "It was never a trial at all. You learn a great deal about how the Court thinks.",
           "effects": [
             {
               "score": {

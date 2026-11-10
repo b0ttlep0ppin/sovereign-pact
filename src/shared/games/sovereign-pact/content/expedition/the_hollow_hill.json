@@ -9,7 +9,7 @@
     10
   ],
   "title": "The Hollow Hill",
-  "text": "A door in a green hill, round and painted blue, and music and light and laughter spilling out from inside. A small figure at the door bows you in, smiling with too many teeth. Time runs strangely under hills. Everyone knows that. The music is very good.",
+  "text": "A round door painted blue is set in a green hill, with music, light and laughter spilling out from inside. A small figure at the door bows you in, smiling with too many teeth. Everyone knows that time runs strangely under hills. The music is very good.",
   "options": [
     {
       "id": "enter",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "One night, a feast, and you come out the next morning, well fed and only a little older.",
+          "text": "After a night of feasting you come out the next morning well fed and only a little older.",
           "effects": [
             {
               "to": "party",
@@ -35,7 +35,7 @@
         },
         {
           "w": 40,
-          "text": "One night, and you come out a week later, and something of the music stayed in you, and it will not leave.",
+          "text": "You come out after one night to find a week has passed. Something of the music stayed in you, and it will not leave.",
           "effects": [
             {
               "to": "party",
@@ -60,7 +60,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The small figure takes it gravely, and gives one back with too many teeth.",
+          "text": "The small figure takes it gravely, then gives one back with too many teeth.",
           "effects": [
             {
               "resources": {
@@ -87,7 +87,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The door closes. The music stops. Nobody says so, but everyone hums the tune for a day after, and is cheered by it.",
+          "text": "The door closes and the music stops. Nobody mentions it, but for a day everyone hums the tune and is cheered by it.",
           "effects": [
             {
               "to": "party",
@@ -108,7 +108,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The music inside stops to listen. When it starts again it is your tune, and the small figure brings the player a gift for it.",
+          "text": "The music inside stops to listen. When it starts again it plays your tune, and the small figure brings the player a gift for it.",
           "effects": [
             {
               "item": {

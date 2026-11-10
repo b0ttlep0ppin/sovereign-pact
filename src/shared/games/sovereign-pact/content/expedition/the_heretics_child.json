@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "She clings to your hand, and the Court sends its hunters after you, and they are very eager.",
+          "text": "She clings to your hand. The Court sends its hunters after you, and they are very eager.",
           "effects": [
             {
               "score": {
@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "She gets away, and no one ever knows how.",
+          "text": "She gets away, and no one ever learns how.",
           "effects": [
             {
               "score": {
@@ -67,7 +67,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "She watches you go, the bead in her fist. You will think of her when you smell smoke.",
+          "text": "She watches you go, the bead in her fist. Whenever you smell smoke, you will think of her.",
           "effects": [
             {
               "to": "party",

@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "They pass. The rain stops. Where the procession walked you find a dropped wedding gift: a silk purse, heavy.",
+          "text": "The procession passes and the rain stops. Where they walked lies a dropped wedding gift, a heavy silk purse.",
           "effects": [
             {
               "resources": {
@@ -32,7 +32,7 @@
         },
         {
           "w": 30,
-          "text": "They pass. The rain stops. One fox turns back, looks right at your hiding place, and smiles. It will remember you.",
+          "text": "The procession passes and the rain stops. One fox turns back to look straight at your hiding place, smiling; it will remember you.",
           "effects": [
             {
               "to": "party",
@@ -52,7 +52,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A fox comes back alone, in silk, with a gift of its own, and bows. Luck follows you out of the wood.",
+          "text": "A fox returns alone in silk, bearing a gift of its own, and bows. Luck follows you out of the wood.",
           "effects": [
             {
               "resources": {
@@ -79,7 +79,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "Unseen, and they learn the foxes' secret road.",
+          "text": "Unseen, they learn the foxes' secret road.",
           "effects": [
             {
               "skip": 1
@@ -88,7 +88,7 @@
         },
         {
           "w": 50,
-          "text": "Seen. The bride lifts her veil, and smiles, and there is nothing beneath it but teeth.",
+          "text": "They are seen. The bride lifts her veil and smiles; beneath it is nothing but teeth.",
           "effects": [
             {
               "curse": true

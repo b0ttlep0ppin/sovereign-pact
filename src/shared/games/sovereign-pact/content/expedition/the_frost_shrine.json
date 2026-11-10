@@ -9,7 +9,7 @@
     8
   ],
   "title": "The Frost Shrine",
-  "text": "A shrine of ice to a winter god, its altar glittering blue. Offerings lie frozen into it, layer on layer: coins, a sword, a lock of hair, a child's doll with its arms out. The doll's eyes have frost on the lashes.",
+  "text": "A shrine of ice to a winter god, its altar glittering blue. Offerings lie frozen into it layer on layer: coins, a sword, a lock of hair, a child's doll with its arms held out. There is frost on the doll's lashes.",
   "options": [
     {
       "id": "offer",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The coin freezes into the altar. The wind drops for a day.",
+          "text": "The coin freezes into the altar. For a day the wind drops.",
           "effects": [
             {
               "resources": {
@@ -49,7 +49,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "Cold steel that never dulls, and never warms.",
+          "text": "The steel is cold. It never dulls, and it never warms.",
           "effects": [
             {
               "item": {
@@ -60,7 +60,7 @@
         },
         {
           "w": 50,
-          "text": "The god takes something back, in ice, from the hand that took the sword.",
+          "text": "The god takes something back in ice from the hand that took the sword.",
           "effects": [
             {
               "to": "party",
@@ -83,7 +83,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The winter god listens, and the cold becomes a kind of strength that settles in the bones.",
+          "text": "The winter god listens. The cold becomes a kind of strength that settles in the bones.",
           "effects": [
             {
               "blessing": {
