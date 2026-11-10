@@ -29,7 +29,7 @@ const PLACE_TEXT: Record<string, string> = {
   rest: "Rest: recover 25% Sanity; injuries heal at the usual pace. Room for everyone.",
   guard: "Guard the walls: each guard turns aside a quarter of the harm an Omen aims at your House (lost stores, gold and Sanity; a building ruined or a recruit lost may be saved). 2 places.",
   oversee: "Oversee works: each Scion here lets your House start one more building or upgrade this Year, on top of the one your masons manage. Up to 3. They stay until the Year's works stand.",
-  sortie: "Sortie through the Rift Gate: up to 4 Scions not on the expedition fight 1–2 battles on their own (by their gambits) as the expedition comes home, a level easier than the Year's. XP for each battle won, JP if they come through, finds for your House. Injuries no worse than Moderate.",
+  sortie: "Sortie through the Rift Gate: up to 4 Scions not on the expedition fight 1–2 battles on their own (by their gambits) as the expedition comes home, a level easier than the Year's. XP and JP for each battle won, more for every foe slain and growing with the Years; JP if they come through; finds for your House. Injuries no worse than Moderate.",
   chapel: "Chapel: Sanity fully restored and mental ailments cured. 2, 4 or 6 places by its level.",
   infirmary: "Infirmary: one injury heals a Year sooner, and disease is cured. 1, 2 or 4 places by its level.",
   scriptorium: "Study: JP in their current Job without a Mentor (slower than training).",
@@ -197,7 +197,7 @@ export default function TownMap({ view, sendMove, canAssign }: Props) {
                 </select>
               </label>
               <small className="sp-map__sortie-text">
-                {chosen.text} {chosen.battles === 1 ? "One battle" : `${chosen.battles} battles`} in {Content.POOL_BY_ID.get(chosen.pool)?.name ?? chosen.pool}, a level easier than the Year's: {chosen.xp} XP for each won, {chosen.jp} JP if they come through
+                {chosen.text} {chosen.battles === 1 ? "One battle" : `${chosen.battles} battles`} in {Content.POOL_BY_ID.get(chosen.pool)?.name ?? chosen.pool}, a level easier than the Year's: {chosen.xp} XP and more for each won, {chosen.jp} JP if they come through
                 {chosen.rolls ? ", finds for your House" : ""}
                 {chosen.gold ? `, ${chosen.gold} Gold` : ""}. Injuries no worse than Moderate.
               </small>

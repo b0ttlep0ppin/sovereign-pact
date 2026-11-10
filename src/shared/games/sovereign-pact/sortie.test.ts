@@ -9,6 +9,7 @@ import { partyOf } from "./journey.ts";
 import { levelUp } from "./progression.ts";
 import { runSorties, sortieParty } from "./sortie.ts";
 import { calm, campaign } from "./testing.ts";
+import { TUNING } from "./tuning.ts";
 
 const g = sovereignPact;
 const move = (s: SovState, player: string, m: SovMove): SovState => {
@@ -65,8 +66,13 @@ describe("going on a Sortie", () => {
     const after = s.people.find((p) => p.id === b!.id)!;
     expect(s.log.some((l) => l.includes("Sortie: Dig the old mine"))).toBe(true);
     expect(s.log.some((l) => l.includes("Dig the old mine, done"))).toBe(true);
-    expect(after.xp).toBe(before.xp + 2 * SORTIE_BY_ID.get("dig_the_old_mine")!.xp);
-    expect(after.jp[after.job!]! - (before.jp[before.job!] ?? 0)).toBe(25);
+    // Two battles won: the card's XP for each and a share of an expedition battle's, more for every foe
+    // slain; the card's JP for coming through, and a share of each battle's (Josh 2026-11-10).
+    const def = SORTIE_BY_ID.get("dig_the_old_mine")!;
+    const P = TUNING.progression;
+    const total = (p: typeof before) => p.level * P.xpPerLevel + p.xp;
+    expect(total(after) - total(before)).toBeGreaterThanOrEqual(2 * (def.xp + Math.round((P.battleXp * P.sortiePct) / 100)));
+    expect(after.jp[after.job!]! - (before.jp[before.job!] ?? 0)).toBeGreaterThanOrEqual(def.jp + 2 * Math.round((P.battleJp * P.sortiePct) / 100));
     expect(after.hist.sorties).toBe(1);
     expect(s.people.find((p) => p.id === a!.id)!.hist.sorties).toBeUndefined();
     expect(s.houses[0]!.stores.iron ?? 0).toBeGreaterThan(iron);

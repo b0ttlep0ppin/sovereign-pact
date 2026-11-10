@@ -7,7 +7,8 @@ import { band, botCard, offer } from "./gate.ts";
 import { baseOf, itemById } from "./items.ts";
 import { botPress } from "./journey.ts";
 import { assignPlan } from "./bot.ts";
-import { levelUp, mayWield, xpAt } from "./progression.ts";
+import { battlePay, grown, levelUp, mayWield, xpAt } from "./progression.ts";
+import type { Battle } from "./combat/types.ts";
 import { promoteRecruit } from "./promotion.ts";
 import type { ExpeditionCard, SovState } from "./state.ts";
 import { calm, campaign } from "./testing.ts";
@@ -45,9 +46,13 @@ describe("catch-up XP", () => {
     expect(xpAt({ level: 1 }, 100, 3)).toBe(Math.round(100 * (1 + (2 * P.catchUpPct) / 100)));
     expect(xpAt({ level: 1 }, 100, 20)).toBe(Math.round(100 * (1 + (P.catchUpLevels * P.catchUpPct) / 100)));
   });
-  it("pays a fresh party about a level and a half for a five-battle expedition", () => {
-    expect(5 * P.battleXp + P.expeditionXp).toBe(150);
-    expect(5 * P.battleJp + P.expeditionJp).toBe(250);
+  it("pays a won five-battle expedition of three foes a battle about two levels and 250 JP in Year 1, more later (Josh 2026-11-10)", () => {
+    const b = { units: Array.from({ length: 3 }, () => ({ side: "enemy", dead: true })) } as unknown as Battle;
+    const won = (year: number) => ({ xp: 5 * battlePay(b, year).xp + grown(P.expeditionXp, year), jp: 5 * battlePay(b, year).jp + grown(P.expeditionJp, year) });
+    expect(won(1)).toEqual({ xp: 210, jp: 255 });
+    expect(won(11).xp).toBeGreaterThan(won(1).xp * 1.3);
+    // A Sortie battle pays more than an expedition battle, as it has no homecoming and a card of its own.
+    expect(battlePay(b, 1, P.sortiePct).xp).toBeGreaterThan(battlePay(b, 1).xp);
   });
 });
 

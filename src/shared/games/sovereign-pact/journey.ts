@@ -17,7 +17,7 @@ import { play } from "./fight.ts";
 import { roster } from "./expedition.ts";
 import { gearTotals } from "./items.ts";
 import { bossLoot, cache, encounterLoot, openCache, shareOut } from "./loot.ts";
-import { gainJp, gainXp, xpAt } from "./progression.ts";
+import { battlePay, gainJp, gainXp, grown, xpAt } from "./progression.ts";
 import { LOCATIONS, type Expedition, type LiveFight, type NodeKind, type Person, type SovState, type Then } from "./state.ts";
 import { devastate } from "./timeline.ts";
 import { TUNING } from "./tuning.ts";
@@ -143,6 +143,7 @@ const sumMods = (a: Record<string, number>, b: Record<string, number>) => {
 function settle(s: SovState, b: Battle, cause: string): void {
   const e = s.expedition!;
   const won = b.outcome === "victory";
+  const pay = battlePay(b, s.year);
   // What a Vagabond stole joins the satchel, as the thief's House's (§12.6).
   for (const ev of b.events) if (ev.t === "pocket") (e.satchel ??= []).push({ id: ev.item, house: person(s, b.units.find((u) => u.id === ev.unit)!.person!).host });
   // The first packed of a kind is the first used.
@@ -173,7 +174,7 @@ function settle(s: SovState, b: Battle, cause: string): void {
     const part = u.mods.packRat ? u.parts?.[0] : undefined;
     e.carry[p.id] = { dur: { ...u.dur! }, broken: [...u.broken], ...(Object.keys(mods).length ? { mods } : {}), ...(hurt ? { hurt, hpMax: u.maxHp } : {}), ...(shrugged ? { shrugged } : {}), ...(part ? { part } : {}) };
     if (u.catatonic && !e.out.includes(p.id)) e.out.push(p.id);
-    if (won) p = gainJp(gainXp(p, xpAt(p, P.battleXp, top)), P.battleJp);
+    if (won) p = gainJp(gainXp(p, xpAt(p, pay.xp, top)), pay.jp);
     s.people[s.people.findIndex((x) => x.id === p.id)] = p;
   }
 }
@@ -347,7 +348,7 @@ export function home(s: SovState, how: NonNullable<Expedition["result"]>): void 
     const top = Math.max(1, ...marching(s).map((id) => person(s, id).level));
     for (const id of marching(s)) {
       const i = s.people.findIndex((p) => p.id === id);
-      s.people[i] = gainJp(gainXp(s.people[i]!, xpAt(s.people[i]!, P.expeditionXp, top)), P.expeditionJp);
+      s.people[i] = gainJp(gainXp(s.people[i]!, xpAt(s.people[i]!, grown(P.expeditionXp, s.year), top)), grown(P.expeditionJp, s.year));
     }
     log(s, "The expedition returns in triumph.");
     // A Rescue card's Lost come home with the party (§9.9).
