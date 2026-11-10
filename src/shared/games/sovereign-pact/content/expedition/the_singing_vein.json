@@ -9,11 +9,11 @@
     10
   ],
   "title": "The Singing Vein",
-  "text": "A vein of crystal runs through the rock, pale blue and glowing faintly. It rings like glass when touched, and the whole tunnel hums with it, a long low note that settles in the bones. Something deeper in the rock hums back.",
+  "text": "A vein of crystal runs through the rock, pale blue and glowing faintly. It rings like glass when touched, filling the tunnel with a long low hum that settles in the bones. Something deeper in the rock hums back.",
   "options": [
     {
       "id": "mine",
-      "label": "Mine the singing crystal, and hope the deeper hum does not mind.",
+      "label": "Mine the singing crystal, hoping the deeper hum does not mind.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "Crystal that holds essence, ringing in the sack.",
+          "text": "The crystal holds essence. It rings in the sack as you walk.",
           "effects": [
             {
               "resources": {
@@ -32,7 +32,7 @@
         },
         {
           "w": 40,
-          "text": "The hum becomes a shriek, and the tunnel answers.",
+          "text": "The hum becomes a shriek. The tunnel answers.",
           "effects": [
             {
               "encounter": {}
@@ -43,7 +43,7 @@
     },
     {
       "id": "listen",
-      "label": "The keenest ear listens to it, to hear the shape of the tunnels ahead.",
+      "label": "The keenest ear listens to it to hear the shape of the tunnels ahead.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -51,7 +51,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It echoes the shape of the tunnels ahead, and you know the way.",
+          "text": "The echoes trace the tunnels ahead. You know the way.",
           "effects": [
             {
               "skip": 1
@@ -62,7 +62,7 @@
     },
     {
       "id": "leave",
-      "label": "Leave it singing. Some things should not be silenced.",
+      "label": "Leave it singing; some things should not be silenced.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -70,7 +70,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The hum follows you a while, soothing, until the deeper hum takes over.",
+          "text": "Its soothing hum follows you a while, until the deeper hum takes over.",
           "effects": [
             {
               "to": "party",

@@ -9,11 +9,11 @@
     9
   ],
   "title": "The Slag Golem",
-  "text": "A golem of cooled slag sits on a heap, its body pitted and black, its eyes two glowing coals. It is humming a work song, very slowly. It wants a job, it says. It has not had one in a hundred years.",
+  "text": "A golem of cooled slag sits on a heap, its body pitted and black, its eyes two glowing coals. It is humming a work song very slowly. It wants a job, it says; it has not had one in a hundred years.",
   "options": [
     {
       "id": "hire",
-      "label": "Give the golem a job. A hundred years is long enough to wait.",
+      "label": "Give the golem a job; a hundred years is long enough to wait.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It carries your heaviest packs, humming, and leaves at the next fork, content.",
+          "text": "It carries your heaviest packs, humming, until it leaves you at the next fork, content.",
           "effects": [
             {
               "to": "party",
@@ -57,7 +57,7 @@
     },
     {
       "id": "talk",
-      "label": "The cleverest asks it about the forge, and what its master made.",
+      "label": "The cleverest asks it about the forge and what its master made.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"

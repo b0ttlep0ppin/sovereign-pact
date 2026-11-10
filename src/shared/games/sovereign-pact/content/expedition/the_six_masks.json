@@ -9,11 +9,11 @@
     10
   ],
   "title": "The Six Masks",
-  "text": "Six masks hang on the Shrine's wall, one for each god, carved of pale wood and painted. Their eyeholes are dark. Wearing one, the monks say, lets that god see through your eyes. They do not say what it costs.",
+  "text": "Six masks hang on the Shrine's wall, one for each god, carved of pale wood and painted, their eyeholes dark. Wearing one, the monks say, lets that god see through your eyes. They do not say what it costs.",
   "options": [
     {
       "id": "wise",
-      "label": "The wisest wears the mask of wisdom, and lets that god look out.",
+      "label": "The wisest wears the mask of wisdom and lets that god look out.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The god sees through their eyes, and approves.",
+          "text": "The god looks through their eyes, and approves.",
           "effects": [
             {
               "growth": {
@@ -34,7 +34,7 @@
     },
     {
       "id": "strong",
-      "label": "The strongest wears the mask of war, and lets that god look out.",
+      "label": "The strongest wears the mask of war and lets that god look out.",
       "rule": "scion:highest:might",
       "tags": [
         "bold"
@@ -42,7 +42,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The god sees through their eyes, and wants more. It does not leave entirely.",
+          "text": "The god looks through their eyes and wants more. It never leaves entirely.",
           "effects": [
             {
               "growth": {
@@ -58,7 +58,7 @@
     },
     {
       "id": "all",
-      "label": "The Leader takes the masks down. They are only painted wood.",
+      "label": "The Leader takes the masks down; they are only painted wood.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -66,7 +66,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Off the wall, they are only wood. But the monks remember, and so do the gods.",
+          "text": "Off the wall, they are only wood. The monks remember, and so do the gods.",
           "effects": [
             {
               "resources": {

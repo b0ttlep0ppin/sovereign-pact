@@ -9,11 +9,11 @@
     8
   ],
   "title": "The Sunken Bell",
-  "text": "A bell tolls under the black water, once every hundred heartbeats, a deep dull sound you feel in the chest. There is a rope on the bank, tied off to a post, leading down. It is taut. Every time the bell tolls, it jerks.",
+  "text": "Under the black water a bell tolls once every hundred heartbeats, a deep dull sound you feel in the chest. A rope tied off to a post on the bank leads down into the water. It is taut, and it jerks every time the bell tolls.",
   "options": [
     {
       "id": "pull",
-      "label": "The strongest hauls the bell up, to learn what tolls it.",
+      "label": "The strongest hauls the bell up to learn what tolls it.",
       "rule": "scion:highest:might",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 55,
-          "text": "A chapel bell, green with age. Its tone clears the head.",
+          "text": "Up comes a chapel bell, green with age. Its tone clears the head.",
           "effects": [
             {
               "to": "party",
@@ -36,7 +36,7 @@
         },
         {
           "w": 45,
-          "text": "Something is holding the other end, and it lets go only when it is out of the water.",
+          "text": "Something holds the other end. It lets go only once it is out of the water.",
           "effects": [
             {
               "encounter": {
@@ -49,7 +49,7 @@
     },
     {
       "id": "cut",
-      "label": "Cut the rope, and silence the bell for good.",
+      "label": "Cut the rope and silence the bell for good.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -57,7 +57,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The bell stops. The marsh is very quiet after, and something below is very angry.",
+          "text": "The bell stops, and the marsh is very quiet. Something below is very angry.",
           "effects": [
             {
               "to": "party",

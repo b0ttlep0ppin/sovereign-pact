@@ -9,7 +9,7 @@
     6
   ],
   "title": "The Starving Pilgrims",
-  "text": "A line of pilgrims in rags shuffles past, too thin to walk much further, going the way you came. Their lips are cracked. Their bones show through their skin. They do not ask for anything. They only look.",
+  "text": "A line of pilgrims in rags shuffles past, going the way you came, too thin to walk much further. Their lips are cracked, their bones showing through their skin. They do not ask for anything. They only look.",
   "options": [
     {
       "id": "share",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "You go hungrier, and they go on. Word of it will reach town before you do.",
+          "text": "They go on, and you go hungrier. Word of it will reach town before you do.",
           "effects": [
             {
               "to": "party",
@@ -41,7 +41,7 @@
     },
     {
       "id": "send",
-      "label": "Point them home and walk on. You cannot feed everyone.",
+      "label": "Point them home and walk on; you cannot feed everyone.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -49,7 +49,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They do not thank you. They only look, and keep looking.",
+          "text": "They do not thank you. They only keep looking.",
           "effects": [
             {
               "to": "party",
@@ -61,7 +61,7 @@
     },
     {
       "id": "rob",
-      "label": "The Leader takes their last coins. They will not live to spend them.",
+      "label": "The Leader takes their last coins; they will not live to spend them.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -69,7 +69,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It is easy, and nobody looks at anyone for the rest of the day.",
+          "text": "It is easy. Nobody looks at anyone for the rest of the day.",
           "effects": [
             {
               "resources": {

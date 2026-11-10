@@ -9,11 +9,11 @@
     10
   ],
   "title": "The Thief in Camp",
-  "text": "Someone has been through the packs in the night, very neatly, folding everything back. Small footprints lead off into the dark, bare and narrow, with too many toes. Things are missing, and whoever took them knew exactly what to look for.",
+  "text": "Someone went through the packs in the night, very neatly, folding everything back. Small footprints lead off into the dark, bare and narrow, with too many toes. Things are missing, and whoever took them knew exactly what to look for.",
   "options": [
     {
       "id": "chase",
-      "label": "The quickest follows the small footprints, to take back what was stolen.",
+      "label": "The quickest follows the small footprints to take back what was stolen.",
       "rule": "scion:highest:speed",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "A goblin, and a nest of stolen things.",
+          "text": "A goblin sits in a nest of stolen things.",
           "effects": [
             {
               "resources": {
@@ -37,7 +37,7 @@
         },
         {
           "w": 40,
-          "text": "A goblin, and its friends.",
+          "text": "A goblin waits with its friends.",
           "effects": [
             {
               "encounter": {
@@ -50,7 +50,7 @@
     },
     {
       "id": "count",
-      "label": "Count what is missing and move on. Chasing it is what it wants.",
+      "label": "Count what is missing and move on; a chase is what it wants.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -58,7 +58,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Food, mostly. And a little of everyone's coin, and the straps cut neat.",
+          "text": "It took food mostly, a little of everyone's coin, and the straps are cut clean.",
           "effects": [
             {
               "resources": {
@@ -75,7 +75,7 @@
     },
     {
       "id": "trap",
-      "label": "The craftiest leaves bait for tomorrow night, and waits.",
+      "label": "The craftiest leaves bait for tomorrow night and waits.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"
@@ -83,7 +83,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It comes back, and stays caught, and tells you what it knows.",
+          "text": "It comes back and is caught. It tells you what it knows.",
           "effects": [
             {
               "skip": 1

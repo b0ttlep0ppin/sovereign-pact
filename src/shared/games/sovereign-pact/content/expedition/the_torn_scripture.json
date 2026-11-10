@@ -9,11 +9,11 @@
     9
   ],
   "title": "The Torn Scripture",
-  "text": "The apostates have torn a holy book into pages and nailed them to every door in the street. Each page has been rewritten in a careful hand, the old words crossed out, new ones written over them. The new words are worse.",
+  "text": "The apostates have torn a holy book apart and nailed its pages to every door in the street. Each page has been rewritten in a careful hand, the old words crossed out and new ones written over them. The new words are worse.",
   "options": [
     {
       "id": "read",
-      "label": "The wisest reads the rewritten pages, to learn what the Court truly believes.",
+      "label": "The wisest reads the rewritten pages to learn what the Court truly believes.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "The Court's real creed, in their own hand.",
+          "text": "It is the Court's real creed, in their own hand.",
           "effects": [
             {
               "score": {
@@ -32,7 +32,7 @@
         },
         {
           "w": 30,
-          "text": "It makes too much sense, and they cannot unread it.",
+          "text": "It makes too much sense. They cannot unread it.",
           "effects": [
             {
               "sanity": -12
@@ -43,7 +43,7 @@
     },
     {
       "id": "gather",
-      "label": "Gather the pages to restore the book, door by door, whatever the Court thinks.",
+      "label": "Gather the pages door by door to restore the book, whatever the Court thinks.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -51,7 +51,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Slow, careful work, door by door, and the Court notices.",
+          "text": "The work is slow and careful, and the Court notices.",
           "effects": [
             {
               "score": {
@@ -67,7 +67,7 @@
     },
     {
       "id": "burn",
-      "label": "Burn every page, so the new words spread no further.",
+      "label": "Burn every page so the new words spread no further.",
       "rule": "leader",
       "tags": [
         "bold"

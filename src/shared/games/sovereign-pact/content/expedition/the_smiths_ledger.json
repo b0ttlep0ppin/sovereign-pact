@@ -9,11 +9,11 @@
     9
   ],
   "title": "The Smith's Ledger",
-  "text": "The forge master's ledger lies open on a bench, thick with soot, its pages brittle. Every blade made here is listed, and who it was made for, in a cramped and careful hand. The last entries are written in something darker than ink.",
+  "text": "The forge master's ledger lies open on a bench, thick with soot, its pages brittle. Every blade made here is listed in a cramped, careful hand, with the name of the one it was made for. The last entries are written in something darker than ink.",
   "options": [
     {
       "id": "read",
-      "label": "The wisest reads the soot-black ledger, to learn what was made here and for whom.",
+      "label": "The wisest reads the ledger to learn what was made here and for whom.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A blade made for your House, never collected. And where it is kept.",
+          "text": "One blade was made for your House and never collected. The ledger says where it is kept.",
           "effects": [
             {
               "item": {
@@ -39,7 +39,7 @@
     },
     {
       "id": "take",
-      "label": "Take the ledger to sell. Names are worth something.",
+      "label": "Take the ledger to sell; names are worth something.",
       "rule": "vote",
       "tags": [
         "cruel"
@@ -47,7 +47,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Collectors will pay, and so will the families named in it.",
+          "text": "Collectors will pay for it, and so will the families named in it.",
           "effects": [
             {
               "resources": {

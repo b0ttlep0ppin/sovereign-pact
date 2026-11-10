@@ -9,11 +9,11 @@
     10
   ],
   "title": "The Storm",
-  "text": "A storm out of nowhere, the sky going black in a breath. Purple lightning walks across the land on long legs, striding, stooping, and where its feet come down the ground smokes. It is coming this way.",
+  "text": "A storm comes out of nowhere, the sky going black in a breath. Purple lightning walks across the land on long legs, striding and stooping, and the ground smokes where its feet come down. It is coming this way.",
   "options": [
     {
       "id": "shelter",
-      "label": "Find shelter and wait, and do not look out at what walks.",
+      "label": "Find shelter and wait, without looking out at what walks.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A long cold wait in a cave, with the lightning stepping past outside.",
+          "text": "You wait a long, cold while in a cave as the lightning steps past outside.",
           "effects": [
             {
               "to": "party",
@@ -37,7 +37,7 @@
     },
     {
       "id": "race",
-      "label": "The quickest leads the race to the next ridge, before the lightning reaches you.",
+      "label": "The quickest leads the race to the next ridge before the lightning reaches you.",
       "rule": "scion:highest:speed",
       "tags": [
         "bold"
@@ -54,7 +54,7 @@
         },
         {
           "w": 40,
-          "text": "The lightning stoops, and catches someone.",
+          "text": "The lightning stoops and catches someone.",
           "effects": [
             {
               "injury": "body"
@@ -65,7 +65,7 @@
     },
     {
       "id": "bottle",
-      "label": "The cleverest catches some lightning in a bottle. It may be worth the risk.",
+      "label": "The cleverest catches some lightning in a bottle; it may be worth the risk.",
       "rule": "scion:highest:acuity",
       "tags": [
         "reckless"
@@ -73,7 +73,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "A bottle of lightning, humming.",
+          "text": "The bottle hums with lightning.",
           "effects": [
             {
               "resources": {
@@ -84,7 +84,7 @@
         },
         {
           "w": 50,
-          "text": "The bottle holds. The hand does not.",
+          "text": "The bottle holds, though the hand does not.",
           "effects": [
             {
               "durability": -30,

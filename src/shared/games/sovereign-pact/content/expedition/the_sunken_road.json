@@ -9,11 +9,11 @@
     10
   ],
   "title": "The Sunken Road",
-  "text": "An old road sunk between high banks, shaded by trees, quiet. Too quiet: no birds. A perfect place for an ambush, and everyone knows it. On the banks above, the bracken stirs, though there is no wind.",
+  "text": "An old road runs sunk between high banks, shaded by trees and quiet. There are no birds. It is a perfect place for an ambush, as everyone knows. On the banks above, the bracken stirs, though there is no wind.",
   "options": [
     {
       "id": "scout",
-      "label": "The quickest scouts the banks first, to learn what stirs the bracken.",
+      "label": "The quickest scouts the banks first to learn what stirs the bracken.",
       "rule": "scion:highest:speed",
       "tags": [
         "clever"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Bandits, napping. They wake up surrounded.",
+          "text": "Bandits are napping there. They wake up surrounded.",
           "effects": [
             {
               "encounter": {
@@ -34,7 +34,7 @@
     },
     {
       "id": "through",
-      "label": "Go through fast, shields up, and trust speed over caution.",
+      "label": "Go through fast with shields up, trusting speed over caution.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -42,7 +42,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "Nothing there after all. Only the bracken, stirring.",
+          "text": "There is nothing there after all but the bracken, stirring.",
           "effects": [
             {
               "to": "party",
@@ -52,7 +52,7 @@
         },
         {
           "w": 40,
-          "text": "Something there after all.",
+          "text": "There is something there after all.",
           "effects": [
             {
               "encounter": {
@@ -65,7 +65,7 @@
     },
     {
       "id": "over",
-      "label": "Go over the banks the hard way, and leave the road to whoever waits on it.",
+      "label": "Go over the banks the hard way, leaving the road to whoever waits on it.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -73,7 +73,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Brambles and mud, and no ambush.",
+          "text": "It is all brambles and mud, but there is no ambush.",
           "effects": [
             {
               "to": "party",

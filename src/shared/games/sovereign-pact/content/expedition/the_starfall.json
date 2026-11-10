@@ -9,11 +9,11 @@
     10
   ],
   "title": "The Starfall",
-  "text": "Stars fall through the dark like slow snow, silent, drifting. Where they land, they hiss and dim and go out. Some of them look up as they fall, and some of them have faces.",
+  "text": "Stars fall through the dark like slow snow, silent and drifting. Where they land they hiss, dim and go out. Some of them look up as they fall. Some of them have faces.",
   "options": [
     {
       "id": "catch",
-      "label": "Catch a falling star, and hold on though it burns.",
+      "label": "Catch a falling star and hold on, though it burns.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "It burns, and it is yours.",
+          "text": "It burns, but it is yours.",
           "effects": [
             {
               "resources": {
@@ -56,7 +56,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Something, somewhere, hears, and a falling face smiles.",
+          "text": "Somewhere something hears, and a falling face smiles.",
           "effects": [
             {
               "blessing": {
@@ -70,7 +70,7 @@
     },
     {
       "id": "shelter",
-      "label": "Shelter until it stops. Do not look at the faces.",
+      "label": "Shelter until it stops, and do not look at the faces.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -78,7 +78,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It does not stop for a long time, and the faces keep falling.",
+          "text": "It does not stop for a long time. The faces keep falling.",
           "effects": [
             {
               "to": "party",

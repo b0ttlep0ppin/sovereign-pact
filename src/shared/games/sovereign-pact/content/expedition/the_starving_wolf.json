@@ -9,11 +9,11 @@
     6
   ],
   "title": "The Starving Wolf",
-  "text": "A wolf, ribs showing like the staves of a barrel, walks right up to the fire and sits, like a dog that wants feeding. Its tongue lolls. Its eyes are yellow and very patient. Out in the dark, nothing else moves. Not yet.",
+  "text": "A wolf with ribs showing like the staves of a barrel walks right up to the fire and sits, like a dog that wants feeding. Its tongue lolls. Its yellow eyes are very patient. Out in the dark nothing else moves, not yet.",
   "options": [
     {
       "id": "feed",
-      "label": "Feed the wolf. A starving thing that asks so politely deserves a meal.",
+      "label": "Feed the wolf; a starving thing that asks so politely deserves a meal.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It eats, lies down by the fire, and is gone in the morning. Its pack leads you a better way.",
+          "text": "It eats and lies down by the fire. In the morning it is gone, and its pack leads you a better way.",
           "effects": [
             {
               "to": "party",
@@ -44,7 +44,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It goes, and its pack watches from the trees all night.",
+          "text": "It goes. Its pack watches from the trees all night.",
           "effects": [
             {
               "to": "party",
@@ -56,7 +56,7 @@
     },
     {
       "id": "kill",
-      "label": "The most blooded kills it for its pelt. It will not starve any longer.",
+      "label": "The most blooded kills it for its pelt; it will starve no longer.",
       "rule": "scion:most_kills",
       "tags": [
         "cruel"
@@ -64,7 +64,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A good pelt. The pack does not forgive.",
+          "text": "The pelt is good. The pack does not forgive.",
           "effects": [
             {
               "resources": {

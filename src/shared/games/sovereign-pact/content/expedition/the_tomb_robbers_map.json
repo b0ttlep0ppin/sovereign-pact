@@ -9,11 +9,11 @@
     8
   ],
   "title": "The Tomb Robber's Map",
-  "text": "A dead robber lies in the barrow's passage, his skull caved in, a map clutched in his fingers. It marks a burial chamber nobody has opened. It also marks his trap, in his own hand, with a cross. He seems to have forgotten it.",
+  "text": "A dead robber lies in the barrow's passage, his skull caved in, a map clutched in his fingers. It marks a burial chamber nobody has opened. It also marks his trap with a cross in his own hand, which he seems to have forgotten.",
   "options": [
     {
       "id": "follow",
-      "label": "The sharpest eye follows the dead man's map, minding the trap he forgot.",
+      "label": "The sharpest follows the dead man's map, minding the trap he forgot.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "Past his trap, into the chamber, and nothing has touched it since the day it was sealed.",
+          "text": "They lead you past the trap into a chamber nothing has touched since the day it was sealed.",
           "effects": [
             {
               "item": {
@@ -52,7 +52,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A rival will pay well, and walk into the traps instead of you.",
+          "text": "A rival will pay well for it.",
           "effects": [
             {
               "resources": {
@@ -70,7 +70,7 @@
     },
     {
       "id": "burn",
-      "label": "Burn it. Let the dead keep their things.",
+      "label": "Burn it; let the dead keep their things.",
       "rule": "leader",
       "tags": [
         "kind"

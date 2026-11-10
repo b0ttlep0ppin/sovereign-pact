@@ -9,11 +9,11 @@
     8
   ],
   "title": "The Steaming Pool",
-  "text": "A hot spring in the rocks, clear and steaming, in a place so cold the breath freezes on the lips. The water is warm as blood. Moss grows green around its edge. Each Scion can take a moment in it, or keep watch on the dark around.",
+  "text": "A hot spring steams in the rocks, clear and warm as blood, in a place so cold the breath freezes on the lips. Moss grows green around its edge. Each Scion can take a moment in it, or keep watch on the dark around.",
   "options": [
     {
       "id": "bathe",
-      "label": "Sink into the warm water, and let the cold go out of you.",
+      "label": "Sink into the warm water and let the cold go out of you.",
       "rule": "each_scion",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 75,
-          "text": "The heat goes into the bones and takes the aches out with it.",
+          "text": "The heat sinks into the bones and draws the aches out.",
           "effects": [
             {
               "sanity": 10
@@ -55,7 +55,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Nothing comes. Someone has to watch anyway, and they learn a great deal about the dark.",
+          "text": "Nothing comes, but they learn a great deal about the dark from watching it.",
           "effects": [
             {
               "jp": 40

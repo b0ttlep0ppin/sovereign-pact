@@ -9,11 +9,11 @@
     7
   ],
   "title": "The Toad Oracle",
-  "text": "A toad the size of a dog squats on a stone in the reeds, warty and wet, its throat swelling and sinking. It croaks, very clearly, the name of a Scion. Then it waits, its gold eyes fixed on them.",
+  "text": "A toad the size of a dog squats on a stone in the reeds, warty and wet, its throat swelling and sinking. Very clearly, it croaks a Scion's name. Then it waits, gold eyes fixed on them.",
   "options": [
     {
       "id": "listen",
-      "label": "The named Scion listens to the toad, since it called for them.",
+      "label": "The named Scion listens, since it called for them.",
       "rule": "scion:random",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "It tells them their fortune. It is a good one.",
+          "text": "It tells them their fortune, a good one.",
           "effects": [
             {
               "blessing": {
@@ -33,7 +33,7 @@
         },
         {
           "w": 40,
-          "text": "It tells them their fortune.",
+          "text": "It tells them their fortune, and they wish it had not.",
           "effects": [
             {
               "sanity": -12
@@ -44,7 +44,7 @@
     },
     {
       "id": "feed",
-      "label": "Feed it a fly, and see what a full toad will say.",
+      "label": "Feed it a fly to see what a full toad will say.",
       "rule": "vote",
       "tags": [
         "clever"

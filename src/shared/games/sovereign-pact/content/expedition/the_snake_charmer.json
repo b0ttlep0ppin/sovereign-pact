@@ -9,7 +9,7 @@
     6
   ],
   "title": "The Snake Charmer",
-  "text": "An old woman sits among a hundred snakes, playing a pipe, and they sway around her like grass in a wind. Her eyes are slit like theirs. She will teach the tune, for a price. The snakes turn their heads to look at you.",
+  "text": "An old woman sits among a hundred snakes, playing a pipe while they sway around her like grass in the wind. Her eyes are slit like theirs. She will teach the tune for a price. The snakes turn their heads to look at you.",
   "options": [
     {
       "id": "learn",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Snakes will not bite them now, nor most other poisons. They hum it in their sleep.",
+          "text": "Snakes will not bite them now, nor will most other poisons. They hum the tune in their sleep.",
           "effects": [
             {
               "blessing": {
@@ -35,7 +35,7 @@
     },
     {
       "id": "pay",
-      "label": "Pay her to clear the road, and keep your distance from the swaying heads.",
+      "label": "Pay her to clear the road, keeping your distance from the swaying heads.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -43,7 +43,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "She plays, and the snakes part, every head turned to watch you pass.",
+          "text": "She plays, and the snakes part, every head turning to watch you pass.",
           "effects": [
             {
               "resources": {
@@ -59,7 +59,7 @@
     },
     {
       "id": "pipe",
-      "label": "The Leader steals her pipe. Let the snakes obey someone else.",
+      "label": "The Leader steals her pipe; let the snakes obey someone else.",
       "rule": "leader",
       "tags": [
         "cruel"

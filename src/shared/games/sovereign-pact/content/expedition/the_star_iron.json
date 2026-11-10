@@ -9,11 +9,11 @@
     10
   ],
   "title": "The Star Iron",
-  "text": "A fallen star lies in a crater of glass, still warm, still faintly glowing, ticking as it cools. Its iron is the best there is, they say. The grass around the crater has grown strange, twisted, and the air hums.",
+  "text": "A fallen star lies in a crater of glass, still warm and faintly glowing, ticking as it cools. Its iron is the best there is, they say. The grass around the crater has grown twisted and strange, and the air hums.",
   "options": [
     {
       "id": "cut",
-      "label": "Cut the fallen star. Iron like this comes once in a lifetime.",
+      "label": "Cut the fallen star; iron like this comes once in a lifetime.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Star iron, heavy as sin, and it scars every tool that touches it.",
+          "text": "Star iron is heavy as sin. It scars every tool that touches it.",
           "effects": [
             {
               "resources": {
@@ -38,7 +38,7 @@
     },
     {
       "id": "study",
-      "label": "The wisest studies it first, to learn what it really is.",
+      "label": "The wisest studies it first to learn what it really is.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -46,7 +46,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It is not iron. It is something else, and it is worth more.",
+          "text": "It is not iron but something else, worth more.",
           "effects": [
             {
               "resources": {
@@ -59,7 +59,7 @@
     },
     {
       "id": "leave",
-      "label": "Leave it. Stars should not be cut.",
+      "label": "Leave it; stars should not be cut.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -67,7 +67,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It hums as you go, softer, almost grateful.",
+          "text": "Its hum softens as you go, almost grateful.",
           "effects": [
             {
               "to": "party",

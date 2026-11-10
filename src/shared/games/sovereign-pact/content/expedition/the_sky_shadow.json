@@ -9,11 +9,11 @@
     10
   ],
   "title": "The Sky Shadow",
-  "text": "A shadow sweeps over the party, vast as a cloud, and the birds go silent. The air smells of smoke. Something is circling high above, too high to see clearly, a long dark shape against the sun.",
+  "text": "A shadow vast as a cloud sweeps over the party, and the birds go silent. The air smells of smoke. Something circles high above, too high to see clearly, a long dark shape against the sun.",
   "options": [
     {
       "id": "hide",
-      "label": "Take cover and wait, and pray it is not hungry.",
+      "label": "Take cover and wait, praying it is not hungry.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It passes. Hours lost, under the smell of smoke.",
+          "text": "It passes, though you lose hours under the smell of smoke.",
           "effects": [
             {
               "to": "party",
@@ -33,7 +33,7 @@
     },
     {
       "id": "watch",
-      "label": "The sharpest eye watches where it lands, so you know where not to go.",
+      "label": "The sharpest watches where it lands, so you know where not to go.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -41,7 +41,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Its lair, and when it leaves it.",
+          "text": "They see its lair, and learn when it leaves.",
           "effects": [
             {
               "foresee": true
@@ -52,7 +52,7 @@
     },
     {
       "id": "signal",
-      "label": "The Leader signals it, to learn what it wants.",
+      "label": "The Leader signals it to learn what it wants.",
       "rule": "leader",
       "tags": [
         "reckless"
@@ -60,7 +60,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "An old dragon, curious, who gives you a ride.",
+          "text": "It is an old dragon, curious, and it gives you a ride.",
           "effects": [
             {
               "skip": 2
@@ -74,7 +74,7 @@
         },
         {
           "w": 50,
-          "text": "A young dragon, hungry.",
+          "text": "It is a young dragon, and hungry.",
           "effects": [
             {
               "encounter": {

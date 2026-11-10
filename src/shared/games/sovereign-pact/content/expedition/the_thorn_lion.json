@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "help",
-      "label": "The bravest pulls the thorn, and trusts the lion to know a kindness.",
+      "label": "The bravest pulls the thorn, trusting the lion to know a kindness.",
       "rule": "scion:trait:brave|scion:highest:resilience",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "It purrs, a sound like rocks rolling, and guards your camp that night.",
+          "text": "It purrs like rocks rolling and guards your camp that night.",
           "effects": [
             {
               "to": "party",
@@ -47,7 +47,7 @@
     },
     {
       "id": "avoid",
-      "label": "Give it a wide berth. Pain makes any beast dangerous.",
+      "label": "Give it a wide berth; pain makes any beast dangerous.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -55,7 +55,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "A long way round, and it limps after you, growling, so nobody rests.",
+          "text": "You go the long way round. It limps after you, growling, so nobody rests.",
           "effects": [
             {
               "to": "party",
@@ -65,7 +65,7 @@
         },
         {
           "w": 40,
-          "text": "A long way round, and it follows, and the thorn has made it mean.",
+          "text": "You go the long way round, but it follows. The thorn has made it mean.",
           "effects": [
             {
               "fork": {

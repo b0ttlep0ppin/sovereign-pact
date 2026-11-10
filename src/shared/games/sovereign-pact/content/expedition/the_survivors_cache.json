@@ -9,11 +9,11 @@
     10
   ],
   "title": "The Survivor's Cache",
-  "text": "A cache hidden the way your House teaches, under a flat stone by a split tree: food wrapped in oilcloth, a dagger, a note in your House's cipher. The handwriting is shaky. The last line is pressed so hard it tore the paper.",
+  "text": "Under a flat stone by a split tree, hidden the way your House teaches, lies a cache: food wrapped in oilcloth, a dagger, a note in your House's cipher. The handwriting is shaky. The last line is pressed so hard it tore the paper.",
   "options": [
     {
       "id": "read",
-      "label": "The cleverest reads the cipher, to learn what became of them.",
+      "label": "The cleverest reads the cipher to learn what became of them.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The note says where they went to ground, and what to beware.",
+          "text": "The note says where they went to ground, and what to beware of.",
           "effects": [
             {
               "foresee": true
@@ -43,7 +43,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Strength for the road, and coin for them if they come back this way.",
+          "text": "The food gives you strength for the road. You leave coin for them in case they come back this way.",
           "effects": [
             {
               "to": "party",
@@ -60,7 +60,7 @@
     },
     {
       "id": "take",
-      "label": "The Leader takes all of it. They will not need it if you find them first.",
+      "label": "The Leader takes all of it; they will not need it if you find them first.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -68,7 +68,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "That is what you tell yourselves.",
+          "text": "So you tell yourselves.",
           "effects": [
             {
               "to": "party",

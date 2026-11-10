@@ -9,7 +9,7 @@
     10
   ],
   "title": "The Stopped Sundial",
-  "text": "A sundial in an overgrown garden where the shadow never moves. It is always the same hour here, late afternoon, golden and drowsy. The roses never fade. Bees hang still in the air above them.",
+  "text": "In an overgrown garden stands a sundial whose shadow never moves. It is always the same golden, drowsy hour of late afternoon here. The roses never fade, and bees hang still in the air above them.",
   "options": [
     {
       "id": "rest",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "You rest a long time, and no time passes at all.",
+          "text": "You rest a long time, though no time passes at all.",
           "effects": [
             {
               "to": "party",
@@ -37,7 +37,7 @@
     },
     {
       "id": "turn",
-      "label": "The Leader turns the dial, to set the garden's time going again.",
+      "label": "The Leader turns the dial to set the garden's time going again.",
       "rule": "leader",
       "tags": [
         "reckless"
@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "Time starts again, and the garden blooms, and the bees fly.",
+          "text": "Time starts again. The garden blooms and the bees fly.",
           "effects": [
             {
               "score": {
@@ -60,7 +60,7 @@
         },
         {
           "w": 50,
-          "text": "Time starts again, all of it at once, and the Leader feels every hour of it.",
+          "text": "Time starts again all at once, and the Leader feels every hour of it.",
           "effects": [
             {
               "to": "party",
@@ -75,7 +75,7 @@
     },
     {
       "id": "take",
-      "label": "The strongest wrenches out the gnomon. Stopped time is worth something.",
+      "label": "The strongest wrenches out the gnomon; stopped time is worth something.",
       "rule": "scion:highest:might",
       "tags": [
         "clever"
@@ -83,7 +83,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Bronze, old, and humming with stopped hours, and the roses begin to brown.",
+          "text": "The old bronze hums with stopped hours. Behind you, the roses begin to brown.",
           "effects": [
             {
               "score": {

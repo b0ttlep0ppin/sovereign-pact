@@ -9,11 +9,11 @@
     8
   ],
   "title": "The Stampede",
-  "text": "The ground starts to shake long before anything can be seen, and dust rises on the horizon in a wall. Something huge is coming across the plain, a great many of them, and they are not stopping. The birds have already fled.",
+  "text": "The ground starts to shake long before anything can be seen, and dust rises on the horizon like a wall. A great many huge things are coming across the plain, and they are not stopping. The birds have already fled.",
   "options": [
     {
       "id": "run",
-      "label": "Run for the rocks, and do not look back.",
+      "label": "Run for the rocks without looking back.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -56,7 +56,7 @@
       "outcomes": [
         {
           "w": 45,
-          "text": "They stand, and the herd splits around them like water around a stone. The others will tell this one for years.",
+          "text": "The herd splits around them like water around a stone. The others will tell this one for years.",
           "effects": [
             {
               "score": {
@@ -85,7 +85,7 @@
     },
     {
       "id": "ride",
-      "label": "The quickest leaps onto one, and rides the stampede out.",
+      "label": "The quickest leaps onto one and rides the stampede out.",
       "rule": "scion:highest:speed",
       "tags": [
         "reckless"
@@ -93,7 +93,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "They ride it for a mile, whooping, and drop off at the far side with a horn for a trophy.",
+          "text": "They ride it a mile, whooping, and drop off at the far side with a horn for a trophy.",
           "effects": [
             {
               "score": {

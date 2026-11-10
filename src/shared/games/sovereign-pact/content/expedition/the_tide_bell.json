@@ -9,11 +9,11 @@
     10
   ],
   "title": "The Tide Bell",
-  "text": "A bell rings under the water when the tide turns, a sweet and lonely sound. The sea people say it calls home anyone who hears it, and the shore is lined with footprints walking into the waves. None walk out.",
+  "text": "When the tide turns, a bell rings under the water, sweet and lonely. The sea people say it calls home anyone who hears it. The shore is lined with footprints walking into the waves, and none walk out.",
   "options": [
     {
       "id": "tide",
-      "label": "The one with the sea in them answers the bell, and trusts it to let them go.",
+      "label": "The one with the sea in them answers the bell, trusting it to let them go.",
       "rule": "scion:trait:tidebound|scion:lowest:sanity",
       "tags": [
         "kind"
@@ -30,7 +30,7 @@
         },
         {
           "w": 30,
-          "text": "They nearly do not come back, and come back harder.",
+          "text": "They very nearly do not come back. They return harder for it.",
           "effects": [
             {
               "sanity": -15
@@ -46,7 +46,7 @@
     },
     {
       "id": "dive",
-      "label": "The hardiest dives for the bell, to silence its call for good.",
+      "label": "The hardiest dives for the bell to silence its call for good.",
       "rule": "scion:highest:resilience",
       "tags": [
         "bold"
@@ -54,7 +54,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "Old bronze, heavy with essence.",
+          "text": "They bring up old bronze, heavy with essence.",
           "effects": [
             {
               "resources": {
@@ -78,7 +78,7 @@
     },
     {
       "id": "plug",
-      "label": "Stop your ears and go, before anyone walks into the waves.",
+      "label": "Stop your ears and go before anyone walks into the waves.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -86,7 +86,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It rings anyway, in your dreams, and in the dreams you walk toward it.",
+          "text": "It rings anyway in your dreams. In them, you walk toward it.",
           "effects": [
             {
               "to": "party",

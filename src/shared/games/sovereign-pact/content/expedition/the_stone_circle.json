@@ -9,11 +9,11 @@
     10
   ],
   "title": "The Stone Circle",
-  "text": "Nine standing stones lean together on the hill, and in their middle the grass is dry in the rain. The air there is warm and smells of old smoke. Old powers meet here at dusk. The sun is already low.",
+  "text": "Nine standing stones lean together on the hill. In their middle the grass is dry in the rain, and the air is warm and smells of old smoke. Old powers meet here at dusk, and the sun is already low.",
   "options": [
     {
       "id": "wait",
-      "label": "Wait in the circle for dusk, to meet the old powers face to face.",
+      "label": "Wait in the circle for dusk to meet the old powers face to face.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "The powers come, and are curious, and are kind.",
+          "text": "The powers come. They are curious, and kind.",
           "effects": [
             {
               "to": "party",
@@ -36,7 +36,7 @@
         },
         {
           "w": 50,
-          "text": "The powers come, and are not kind.",
+          "text": "The powers come, and they are not kind.",
           "effects": [
             {
               "curse": true
@@ -59,7 +59,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A full night's sleep, the first in days, and dreams of smoke.",
+          "text": "You get a full night's sleep, the first in days, and dream of smoke.",
           "effects": [
             {
               "to": "party",
@@ -71,7 +71,7 @@
     },
     {
       "id": "leave",
-      "label": "Leave before dusk. The old powers can meet without you.",
+      "label": "Leave before dusk; the old powers can meet without you.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -79,7 +79,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "Behind you, the stones begin to hum, and the hum fills you up like a drink.",
+          "text": "Behind you the stones begin to hum. The sound fills you up like a drink.",
           "effects": [
             {
               "to": "party",
@@ -89,7 +89,7 @@
         },
         {
           "w": 50,
-          "text": "Behind you, the stones begin to hum, and it is in the ground under your camp all night.",
+          "text": "Behind you the stones begin to hum. All night you feel it in the ground under your camp.",
           "effects": [
             {
               "to": "party",
@@ -110,7 +110,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "The old powers come, and speak, and the Magus understands one word in three. It is enough.",
+          "text": "The old powers come and speak. The Magus understands one word in three, which is enough.",
           "effects": [
             {
               "jp": 60,
@@ -120,7 +120,7 @@
         },
         {
           "w": 40,
-          "text": "The old powers come, and the Magus understands every word, and wishes they did not.",
+          "text": "The old powers come and speak. The Magus understands every word, and wishes they did not.",
           "effects": [
             {
               "jp": 80,

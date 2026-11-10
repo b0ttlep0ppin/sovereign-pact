@@ -9,11 +9,11 @@
     8
   ],
   "title": "The Thawing Man",
-  "text": "A man frozen in the ice is thawing in a shaft of sun, water running from his hair and beard. His skin is blue. His eyes are open. His lips are moving, slowly, shaping the same words over and over.",
+  "text": "A man frozen in the ice is thawing in a shaft of sun, water running from his hair and beard. His skin is blue and his eyes are open. His lips move slowly, shaping the same words over and over.",
   "options": [
     {
       "id": "free",
-      "label": "Chip him out of the ice, before the sun does it for you.",
+      "label": "Chip him out of the ice before the sun does it for you.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "A soldier of the last war, who tells you of the road, and dies glad.",
+          "text": "He was a soldier of the last war. He tells you of the road and dies glad.",
           "effects": [
             {
               "foresee": true
@@ -35,7 +35,7 @@
         },
         {
           "w": 40,
-          "text": "Not a man.",
+          "text": "He is not a man.",
           "effects": [
             {
               "encounter": {}
@@ -46,7 +46,7 @@
     },
     {
       "id": "read",
-      "label": "The sharpest eye reads his lips, to learn what he is saying.",
+      "label": "The sharpest reads his lips to learn what he is saying.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -54,7 +54,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A warning, over and over, and it is about you.",
+          "text": "He repeats a warning over and over. It is about you.",
           "effects": [
             {
               "foresee": true
@@ -68,7 +68,7 @@
     },
     {
       "id": "leave",
-      "label": "Leave him to the sun. He is too far gone to save.",
+      "label": "Leave him to the sun; he is too far gone to save.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -76,7 +76,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "His lips keep moving, all the way out of sight.",
+          "text": "His lips keep moving until he is out of sight.",
           "effects": [
             {
               "to": "party",

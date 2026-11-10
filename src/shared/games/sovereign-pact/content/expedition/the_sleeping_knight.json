@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "wake",
-      "label": "The Leader wakes the knight. If this is not the last battle, it is close enough.",
+      "label": "The Leader wakes the knight; if this is not the last battle, it is close enough.",
       "rule": "leader",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 40,
-          "text": "He wakes, fights beside you, and goes back to sleep after.",
+          "text": "He wakes and fights beside you, then goes back to sleep.",
           "effects": [
             {
               "to": "party",
@@ -75,7 +75,7 @@
     },
     {
       "id": "sword",
-      "label": "The quietest hands lift the sword from his chest. He will not need it yet.",
+      "label": "The quietest hands lift the sword from his chest; he will not need it yet.",
       "rule": "scion:highest:guile",
       "tags": [
         "cruel"
@@ -83,7 +83,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He does not wake. Yet.",
+          "text": "He does not wake, not yet.",
           "effects": [
             {
               "item": {

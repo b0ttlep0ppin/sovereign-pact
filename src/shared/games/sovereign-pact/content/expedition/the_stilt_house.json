@@ -9,11 +9,11 @@
     7
   ],
   "title": "The Stilt House",
-  "text": "A house on stilts above the bog, crooked and black with damp, a light in the window. The ladder has been pulled up. As you come close, the light goes out. Something shifts on the boards overhead.",
+  "text": "A crooked house stands on stilts above the bog, black with damp, a light in its window. The ladder has been pulled up. As you come close the light goes out, and something shifts on the boards overhead.",
   "options": [
     {
       "id": "call",
-      "label": "Call up to whoever is inside, and ask for shelter.",
+      "label": "Call up to whoever is inside and ask for shelter.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "A family of eel-catchers, who let down the ladder and let you sleep dry.",
+          "text": "A family of eel-catchers lets down the ladder. You sleep dry that night.",
           "effects": [
             {
               "to": "party",
@@ -35,7 +35,7 @@
         },
         {
           "w": 30,
-          "text": "No one answers, and the boards above go very still.",
+          "text": "No one answers. The boards above go very still.",
           "effects": [
             {
               "to": "party",
@@ -47,7 +47,7 @@
     },
     {
       "id": "climb",
-      "label": "The quickest shins up a stilt, to learn who put out the light.",
+      "label": "The quickest shins up a stilt to learn who put out the light.",
       "rule": "scion:highest:speed",
       "tags": [
         "bold"
@@ -55,7 +55,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Empty, a meal still warm on the table, and a window facing the road ahead.",
+          "text": "The house is empty, a meal still warm on the table. Its window looks out over the road ahead.",
           "effects": [
             {
               "resources": {
@@ -71,7 +71,7 @@
     },
     {
       "id": "pass",
-      "label": "Pass under the house. Whoever is up there wants no visitors.",
+      "label": "Pass under the house; whoever is up there wants no visitors.",
       "rule": "leader",
       "tags": [
         "cautious"

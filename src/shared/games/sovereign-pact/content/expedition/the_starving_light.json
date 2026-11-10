@@ -9,11 +9,11 @@
     10
   ],
   "title": "The Starving Light",
-  "text": "A light floats in the dark, small and pale and lonely. It drifts toward your lamps, and they gutter and dim as it nears, the flames bending toward it. It is hungry. It is always hungry.",
+  "text": "A small, pale, lonely light floats in the dark. As it drifts toward your lamps they gutter and dim, their flames bending toward it. It is hungry, as it always is.",
   "options": [
     {
       "id": "feed",
-      "label": "Feed it a lamp. Nothing should be that hungry.",
+      "label": "Feed it a lamp; nothing should be that hungry.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It drinks the flame and grows bright, and goes ahead of you, lighting the way.",
+          "text": "It drinks the flame and grows bright, then goes ahead of you, lighting the way.",
           "effects": [
             {
               "skip": 1
@@ -36,7 +36,7 @@
     },
     {
       "id": "trap",
-      "label": "The cleverest traps it in a jar, before it eats every light you have.",
+      "label": "The cleverest traps it in a jar before it eats every light you have.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -44,7 +44,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "A jar of starlight, beating against the glass.",
+          "text": "Starlight beats against the glass of the jar.",
           "effects": [
             {
               "resources": {
@@ -55,7 +55,7 @@
         },
         {
           "w": 40,
-          "text": "It eats the jar, and keeps eating, and it tastes like you.",
+          "text": "It eats the jar and keeps eating. It tastes like you.",
           "effects": [
             {
               "to": "party",
@@ -67,7 +67,7 @@
     },
     {
       "id": "douse",
-      "label": "Douse every light and let it pass. Better dark than devoured.",
+      "label": "Douse every light and let it pass; better dark than devoured.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -75,7 +75,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Utter dark, until it goes, and it takes its time.",
+          "text": "The dark is utter until it goes, and it takes its time.",
           "effects": [
             {
               "to": "party",

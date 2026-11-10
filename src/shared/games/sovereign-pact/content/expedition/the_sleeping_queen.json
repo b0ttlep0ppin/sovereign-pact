@@ -9,11 +9,11 @@
     8
   ],
   "title": "The Sleeping Queen",
-  "text": "A queen lies on a stone bier in the barrow's heart, not rotted at all, her skin like milk, her lips red. Her crown is the finest thing you have ever seen. Her chest does not rise. Her eyes, under the lids, move.",
+  "text": "In the barrow's heart a queen lies on a stone bier, not rotted at all, her skin like milk, her lips red. Her crown is the finest thing you have ever seen. Her chest does not rise, yet under the lids her eyes move.",
   "options": [
     {
       "id": "crown",
-      "label": "Take the crown from her head. It is the finest thing you have ever seen.",
+      "label": "Take the crown from her head.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 40,
-          "text": "She sleeps on. Her eyes move faster under the lids.",
+          "text": "She sleeps on, though her eyes move faster under the lids.",
           "effects": [
             {
               "item": {
@@ -69,7 +69,7 @@
     },
     {
       "id": "leave",
-      "label": "Let her sleep. Some dreams should not be broken.",
+      "label": "Let her sleep; some dreams should not be broken.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -77,7 +77,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "You close the door softly. Her dream slips out with you, and the Leader sleeps it that night: a queen's sleep, deep and whole.",
+          "text": "You close the door softly, but her dream slips out with you. That night the Leader sleeps it, deep and whole.",
           "effects": [
             {
               "sanity": 12

@@ -9,11 +9,11 @@
     10
   ],
   "title": "The Six Stars",
-  "text": "On the Shrine's roof, the monks read the six stars of the gods with bronze tubes and silent lips. Tonight one is missing. When a star goes out, they say, someone below dies before dawn. They look at each of you in turn.",
+  "text": "On the Shrine's roof, the monks read the six stars of the gods through bronze tubes, their lips moving silently. Tonight one star is missing. When a star goes out, they say, someone below dies before dawn. They look at each of you in turn.",
   "options": [
     {
       "id": "read",
-      "label": "The wisest reads the stars with the monks, to learn whose death it means.",
+      "label": "The wisest reads the stars with the monks to learn whose death it means.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The missing star means a death. They know where, and soon.",
+          "text": "The death will come soon. Now they know where.",
           "effects": [
             {
               "foresee": true
@@ -44,7 +44,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The star comes back, faintly, and the monks breathe again.",
+          "text": "The star returns, faintly. The monks breathe again.",
           "effects": [
             {
               "to": "party",
@@ -56,7 +56,7 @@
     },
     {
       "id": "leave",
-      "label": "Leave before the death comes. Let it find someone else.",
+      "label": "Leave before the death comes; let it find someone else.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -64,7 +64,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A long night's walk, and you go further than you meant to. Nobody looks up.",
+          "text": "You walk through the night and go further than you meant to. Nobody looks up.",
           "effects": [
             {
               "skip": 1

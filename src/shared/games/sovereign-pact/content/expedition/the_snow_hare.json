@@ -9,11 +9,11 @@
     8
   ],
   "title": "The Snow Hare",
-  "text": "A white hare sits in the snow ahead and does not run. It is watching the party with a man's eyes, brown and sad and knowing. When you stop, it stops. When you move, it hops a little way ahead.",
+  "text": "A white hare sits in the snow ahead and does not run. It watches the party with a man's eyes, brown and sad and knowing. When you stop, it stops; when you move, it hops a little way ahead.",
   "options": [
     {
       "id": "follow",
-      "label": "Follow the hare with a man's eyes. It seems to want you to.",
+      "label": "Follow the hare; it seems to want you to.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "To a hidden cave, warm and dry, and the hare gone.",
+          "text": "It leads you to a hidden cave, warm and dry, and then it is gone.",
           "effects": [
             {
               "to": "party",
@@ -31,7 +31,7 @@
         },
         {
           "w": 40,
-          "text": "To a hunter's snare, and the hare watching from the drift.",
+          "text": "It leads you to a hunter's snare, then watches from the drift.",
           "effects": [
             {
               "injury": "legs"
@@ -42,7 +42,7 @@
     },
     {
       "id": "speak",
-      "label": "The wisest speaks to it, to learn what it once was.",
+      "label": "The wisest speaks to it to learn what it once was.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "kind"
@@ -50,7 +50,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A shapeshifter, sad and tired, who warns you of what is ahead.",
+          "text": "It is a shapeshifter, sad and tired, and it warns you of what lies ahead.",
           "effects": [
             {
               "foresee": true
@@ -61,7 +61,7 @@
     },
     {
       "id": "hunt",
-      "label": "Hunt the hare. Meat is meat, whatever its eyes.",
+      "label": "Hunt the hare; meat is meat, whatever its eyes.",
       "rule": "leader",
       "tags": [
         "cruel"

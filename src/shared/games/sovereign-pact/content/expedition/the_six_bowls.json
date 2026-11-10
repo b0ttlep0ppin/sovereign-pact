@@ -9,11 +9,11 @@
     10
   ],
   "title": "The Six Bowls",
-  "text": "Six bowls of beaten bronze sit on six pillars, one for each of the gods the shrine was built for. Five are full of clear water. One is dry, cracked, its bottom furred with dust. The monks will not say why.",
+  "text": "Six bowls of beaten bronze sit on six pillars, one for each god the shrine was built for. Five are full of clear water. The sixth is dry and cracked, its bottom furred with dust. The monks will not say why.",
   "options": [
     {
       "id": "fill",
-      "label": "Fill the dry bowl, so the forgotten god may drink again.",
+      "label": "Fill the dry bowl so the forgotten god may drink again.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "The water shines, just for a moment. Someone, long ago, is grateful.",
+          "text": "The water shines for a moment. Someone, long ago, is grateful.",
           "effects": [
             {
               "to": "party",
@@ -50,7 +50,7 @@
     },
     {
       "id": "drink",
-      "label": "The most devout drinks from all five full bowls, and trusts the gods to share.",
+      "label": "The most devout drinks from all five full bowls, trusting the gods to share.",
       "rule": "scion:trait:devout|scion:trait:pious_hands|scion:highest:sagacity",
       "tags": [
         "reckless"
@@ -58,7 +58,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "Five gods' water, and none of them minds.",
+          "text": "None of the five gods minds.",
           "effects": [
             {
               "growth": {
@@ -72,7 +72,7 @@
         },
         {
           "w": 50,
-          "text": "Five gods' water, and one of them minds very much.",
+          "text": "One of the five minds very much.",
           "effects": [
             {
               "sanity": -30
@@ -86,7 +86,7 @@
     },
     {
       "id": "leave",
-      "label": "Leave the bowls as they are. Whatever the monks will not say, it is not your concern.",
+      "label": "Leave the bowls as they are; whatever the monks will not say is not your concern.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -94,7 +94,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The water does not ripple as you pass. The god of the dry bowl notices that you did not fill it.",
+          "text": "The water does not ripple as you pass. The god of the dry bowl marks that you left it empty.",
           "effects": [
             {
               "sanity": -6,
@@ -115,7 +115,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The sixth god drinks. The Soothsayer's cards stay warm in their pocket for a long time after.",
+          "text": "The sixth god drinks. For a long time after, the Soothsayer's cards stay warm in their pocket.",
           "effects": [
             {
               "blessing": {

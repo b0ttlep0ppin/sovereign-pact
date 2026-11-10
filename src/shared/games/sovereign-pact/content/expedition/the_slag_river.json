@@ -9,11 +9,11 @@
     9
   ],
   "title": "The Slag River",
-  "text": "A river of cooling slag crosses the ruin, a black crust over red, steaming and ticking as it cools. Bits of good metal glint in the crust. Here and there the crust has broken, and the red glows through.",
+  "text": "A river of slag crosses the ruin, a black crust over red, steaming and ticking as it cools. Bits of good metal glint in the crust. Here and there it has broken, and the red glows through.",
   "options": [
     {
       "id": "cross",
-      "label": "Cross on the black crust, quickly, before it breaks.",
+      "label": "Cross quickly on the black crust before it breaks.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "Across, boots smoking.",
+          "text": "You cross with your boots smoking.",
           "effects": [
             {
               "to": "party",
@@ -44,7 +44,7 @@
     },
     {
       "id": "pick",
-      "label": "The sharpest eye picks out the metal glinting in the crust.",
+      "label": "The sharpest picks out the metal glinting in the crust.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -52,7 +52,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A pocketful of good iron, still hot.",
+          "text": "They gather a pocketful of good iron, still hot.",
           "effects": [
             {
               "resources": {
@@ -65,7 +65,7 @@
     },
     {
       "id": "wait",
-      "label": "Wait for it to cool. No one wades through fire.",
+      "label": "Wait for it to cool; no one wades through fire.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -73,7 +73,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It cools. Something else comes along the bank while you wait.",
+          "text": "It cools. While you wait, something else comes along the bank.",
           "effects": [
             {
               "encounter": {}

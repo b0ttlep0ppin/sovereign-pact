@@ -9,11 +9,11 @@
     10
   ],
   "title": "The Sleeping Giant",
-  "text": "A shape the size of a hill rises and falls in its sleep, each breath a gale that flattens the grass. Its purse, as big as a cart, lies open by its hand, spilling gold. Its eyelids twitch, as if it dreams.",
+  "text": "A shape the size of a hill rises and falls in its sleep, each breath a gale that flattens the grass. Its purse, as big as a cart, lies open by its hand, spilling gold. Its eyelids twitch as it dreams.",
   "options": [
     {
       "id": "sneak",
-      "label": "Sneak past, all together, and do not breathe too loud.",
+      "label": "Sneak past all together, without breathing too loud.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "Not a breath out of place.",
+          "text": "Nobody makes a sound.",
           "effects": [
             {
               "to": "party",
@@ -52,7 +52,7 @@
       "outcomes": [
         {
           "w": 55,
-          "text": "In and out, and the giant only sighs.",
+          "text": "They are in and out, and the giant only sighs.",
           "effects": [
             {
               "resources": {
@@ -69,7 +69,7 @@
         },
         {
           "w": 45,
-          "text": "The giant wakes up with you in its hand.",
+          "text": "The giant wakes with them in its hand.",
           "effects": [
             {
               "injury": "body"
@@ -86,7 +86,7 @@
     },
     {
       "id": "kill",
-      "label": "Kill it in its sleep. It will never be weaker.",
+      "label": "Kill it in its sleep; it will never be weaker.",
       "rule": "vote",
       "tags": [
         "bold"

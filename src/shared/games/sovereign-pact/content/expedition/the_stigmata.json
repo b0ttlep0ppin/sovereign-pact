@@ -9,7 +9,7 @@
     10
   ],
   "title": "The Stigmata",
-  "text": "At a shrine, a Scion's hands begin to bleed: slowly, then steadily, from wounds in the palms that were not there a moment ago. It does not hurt. The monks fall to their knees and begin to weep, and to pray, and to stare.",
+  "text": "At a shrine, a Scion's hands begin to bleed, slowly and then steadily, from wounds in the palms that were not there a moment ago. It does not hurt. The monks fall to their knees, weeping and praying, staring.",
   "options": [
     {
       "id": "accept",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They are holy now, in the monks' eyes, and their hands do not stop bleeding for days.",
+          "text": "In the monks' eyes they are holy now. Their hands do not stop bleeding for days.",
           "effects": [
             {
               "score": {
@@ -58,7 +58,7 @@
     },
     {
       "id": "fake",
-      "label": "The shrewdest makes the most of it. Miracles are good for business.",
+      "label": "The shrewdest makes the most of it; miracles are good for business.",
       "rule": "scion:highest:guile",
       "tags": [
         "cruel"
@@ -66,7 +66,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Donations pour in, and the monks will never know what the Six thought of it.",
+          "text": "Donations pour in. The monks will never know what the Six thought of it.",
           "effects": [
             {
               "resources": {
@@ -82,7 +82,7 @@
     },
     {
       "id": "taste_it",
-      "label": "The Ravager tastes the blood, to know if it is truly holy.",
+      "label": "The Ravager tastes the blood to know if it is truly holy.",
       "rule": "scion:job:ravager",
       "only": true,
       "tags": [
@@ -91,7 +91,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The monks scream. The Ravager does not care: the blood is holy and it burns going down, like a war-cry.",
+          "text": "The monks scream. The Ravager does not care; the blood is holy, and it burns going down like a war-cry.",
           "effects": [
             {
               "tp": 100,
