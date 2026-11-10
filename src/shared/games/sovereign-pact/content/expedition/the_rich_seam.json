@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "dig",
-      "label": "Dig all day.",
+      "label": "Dig all day. A fortune like this will not come again.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -53,7 +53,7 @@
     },
     {
       "id": "quick",
-      "label": "Take what lies loose and go.",
+      "label": "Take what lies loose and go, before the Gate notices you lingering.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -75,7 +75,7 @@
     },
     {
       "id": "mark",
-      "label": "The cleverest maps it for another trip.",
+      "label": "The cleverest maps it for another trip, when time is kinder.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"

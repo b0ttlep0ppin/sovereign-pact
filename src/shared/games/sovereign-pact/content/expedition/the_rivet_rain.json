@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "dash",
-      "label": "Dash across between gusts.",
+      "label": "Dash across between gusts, and keep your heads down.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -45,7 +45,7 @@
     },
     {
       "id": "time",
-      "label": "The sharpest eye times the wind.",
+      "label": "The sharpest eye times the wind, so you cross when the iron is still.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -66,7 +66,7 @@
     },
     {
       "id": "shield",
-      "label": "The strongest holds a door over everyone's heads.",
+      "label": "The strongest holds a door over everyone's heads, and takes the hail themselves.",
       "rule": "scion:highest:might",
       "tags": [
         "kind"

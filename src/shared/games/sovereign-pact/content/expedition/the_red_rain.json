@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "shelter",
-      "label": "Shelter and wait it out.",
+      "label": "Shelter and wait it out. Nothing good falls from a sky like that.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -33,7 +33,7 @@
     },
     {
       "id": "collect",
-      "label": "Catch it in every flask you have.",
+      "label": "Catch it in every flask you have. Whatever it is, it is rare.",
       "rule": "leader",
       "tags": [
         "clever"
@@ -54,7 +54,7 @@
     },
     {
       "id": "drink",
-      "label": "Someone drinks it, on a dare.",
+      "label": "Someone drinks it, on a dare, to see what the sky is bleeding.",
       "rule": "scion:random",
       "tags": [
         "reckless"

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "stack",
-      "label": "Take the stacked stone.",
+      "label": "Take the stacked stone, cut and waiting as if for you.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Already cut, and waiting, as if for you.",
+          "text": "Already cut, and waiting, and nobody asks who it was waiting for.",
           "effects": [
             {
               "resources": {
@@ -34,7 +34,7 @@
     },
     {
       "id": "dive",
-      "label": "The toughest dives along the taut ropes.",
+      "label": "The toughest dives along the taut ropes, to learn what holds them.",
       "rule": "scion:highest:resilience",
       "tags": [
         "reckless"
@@ -56,7 +56,7 @@
     },
     {
       "id": "claim",
-      "label": "Claim the quarry for the House.",
+      "label": "Claim the quarry for the House, before another banner goes up.",
       "rule": "leader",
       "tags": [
         "bold"

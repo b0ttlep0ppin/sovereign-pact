@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "kneel",
-      "label": "Climb on your knees, all of you together.",
+      "label": "Climb on your knees, all of you together, and be forgiven as the priests promised.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It takes a day and a night, and the stone takes skin. You are forgiven something.",
+          "text": "It takes a day and a night, and the stone takes skin. You are forgiven something, and you feel it go.",
           "effects": [
             {
               "to": "party",
@@ -38,7 +38,7 @@
     },
     {
       "id": "walk",
-      "label": "Walk up like anyone else.",
+      "label": "Walk up like anyone else. You have no time to crawl.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -59,7 +59,7 @@
     },
     {
       "id": "carry",
-      "label": "The strongest carries the weakest up.",
+      "label": "The strongest carries the weakest up, every one of the three thousand steps.",
       "rule": "scion:highest:might",
       "tags": [
         "bold"

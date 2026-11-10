@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "buy",
-      "label": "The sharpest eye picks the one that looks least fake.",
+      "label": "The sharpest eye picks the one that looks least fake, and pays for the gamble.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -50,7 +50,7 @@
     },
     {
       "id": "expose",
-      "label": "Expose him to the other pilgrims.",
+      "label": "Expose him to the other pilgrims, and let them deal with him.",
       "rule": "leader",
       "tags": [
         "bold"
@@ -71,7 +71,7 @@
     },
     {
       "id": "partner",
-      "label": "The shrewdest offers to sell for him, for a cut.",
+      "label": "The shrewdest offers to sell for him, for a cut of the pilgrims' coin.",
       "rule": "scion:highest:guile",
       "tags": [
         "cruel"

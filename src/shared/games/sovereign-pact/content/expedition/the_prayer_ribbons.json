@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "tie",
-      "label": "Tie a ribbon for the House.",
+      "label": "Tie a ribbon for the House, beside those your ancestors left.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -38,7 +38,7 @@
     },
     {
       "id": "read",
-      "label": "The wisest reads your House's old ribbons.",
+      "label": "The wisest reads your House's old ribbons, to learn what your forebears prayed for.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -59,7 +59,7 @@
     },
     {
       "id": "cut",
-      "label": "Cut down a rival's ribbon.",
+      "label": "Cut down a rival's ribbon, and let their prayers go unheard.",
       "rule": "leader",
       "tags": [
         "cruel"

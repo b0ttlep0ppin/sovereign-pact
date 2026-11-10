@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "finish",
-      "label": "Finish it while it is down.",
+      "label": "Finish it while it is down. It will not be this weak again.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -32,7 +32,7 @@
     },
     {
       "id": "mercy",
-      "label": "The healer tends its wound instead.",
+      "label": "The healer tends its wound instead, and ends the hunt with mercy.",
       "rule": "scion:most_healing|scion:fewest_kills",
       "tags": [
         "kind"
@@ -56,7 +56,7 @@
     },
     {
       "id": "who",
-      "label": "The sharpest eye finds who wounded it.",
+      "label": "The sharpest eye finds who wounded it, and why they did not finish the job.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"

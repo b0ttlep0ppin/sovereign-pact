@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "rush",
-      "label": "Rush into the black thorn.",
+      "label": "Rush into the black thorn, and catch it before it knows you are there.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -36,7 +36,7 @@
     },
     {
       "id": "burn",
-      "label": "Burn it out of the thicket.",
+      "label": "Burn it out of the thicket, and meet it as it runs.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -57,7 +57,7 @@
     },
     {
       "id": "wait",
-      "label": "The patient one waits for it to come out.",
+      "label": "The patient one waits for it to come out, however long that takes.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "cautious"

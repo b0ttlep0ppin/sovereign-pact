@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "run",
-      "label": "Run before they eat the gear.",
+      "label": "Run before they eat the gear down to nothing.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -34,7 +34,7 @@
     },
     {
       "id": "heaviest",
-      "label": "The most armored draws them off.",
+      "label": "The most armored draws them off, and gives the moths a feast.",
       "rule": "scion:heaviest_gear",
       "tags": [
         "bold"
@@ -59,7 +59,7 @@
     },
     {
       "id": "smoke",
-      "label": "The cleverest smokes them off with a fire.",
+      "label": "The cleverest smokes them off with a fire, to save what iron is left.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"

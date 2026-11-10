@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "buy",
-      "label": "Buy the quarry from them.",
+      "label": "Buy the quarry from them, so it is yours to hunt and not theirs to sell.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -37,7 +37,7 @@
     },
     {
       "id": "drive",
-      "label": "Drive the poachers off.",
+      "label": "Drive the poachers off. This hunt is yours.",
       "rule": "leader",
       "tags": [
         "bold"
@@ -60,7 +60,7 @@
     },
     {
       "id": "free",
-      "label": "The gentlest frees the beast.",
+      "label": "The gentlest frees the beast, whatever it might do once loose.",
       "rule": "scion:fewest_kills|scion:highest:sagacity",
       "tags": [
         "kind"
@@ -68,7 +68,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It does not attack. It watches, a long moment, and goes, and the way it goes is shorter.",
+          "text": "It does not attack. It watches a long moment, and goes, and the way it goes is shorter.",
           "effects": [
             {
               "score": {

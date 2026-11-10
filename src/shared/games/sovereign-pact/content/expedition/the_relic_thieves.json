@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "chase",
-      "label": "Chase the thieves into the hills.",
+      "label": "Chase the thieves into the hills, and win back what was stolen.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -37,7 +37,7 @@
     },
     {
       "id": "track",
-      "label": "The sharpest eye tracks them to their hideout.",
+      "label": "The sharpest eye tracks them to their hideout, to catch them unawares.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -63,7 +63,7 @@
     },
     {
       "id": "buy",
-      "label": "The Leader buys the relic from the thieves, for yourselves.",
+      "label": "The Leader buys the relic from the thieves, and keeps it for the House.",
       "rule": "leader",
       "tags": [
         "cruel"

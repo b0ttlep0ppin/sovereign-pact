@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "climb",
-      "label": "The quickest climbs the broken stair.",
+      "label": "The quickest climbs the broken stair, to see the whole way ahead.",
       "rule": "scion:highest:speed",
       "tags": [
         "bold"
@@ -44,7 +44,7 @@
     },
     {
       "id": "signal",
-      "label": "Light the old beacon.",
+      "label": "Light the old beacon, and call for whoever still keeps watch.",
       "rule": "leader",
       "tags": [
         "reckless"
@@ -77,7 +77,7 @@
     },
     {
       "id": "pass",
-      "label": "Walk on by.",
+      "label": "Walk on by. The crow can keep its tower.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -85,7 +85,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The tower watches you go. Without its view you walk straight into what you would have seen.",
+          "text": "The tower watches you go. Without its view, you walk straight into what you would have seen.",
           "effects": [
             {
               "fork": {

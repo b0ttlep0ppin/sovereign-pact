@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "pay",
-      "label": "Leave coin in the basket.",
+      "label": "Leave coin in the basket, and hope it matters enough.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -38,7 +38,7 @@
     },
     {
       "id": "sin",
-      "label": "Each Scion leaves a sin behind.",
+      "label": "Each Scion leaves a sin behind, and crosses lighter for it.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -58,7 +58,7 @@
     },
     {
       "id": "force",
-      "label": "Push past him onto the bridge.",
+      "label": "Push past him onto the bridge. No toll-keeper owns the road to the gods.",
       "rule": "leader",
       "tags": [
         "cruel"

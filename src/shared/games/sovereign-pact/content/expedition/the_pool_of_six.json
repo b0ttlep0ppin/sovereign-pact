@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "look",
-      "label": "Each Scion looks into the pool.",
+      "label": "Each Scion looks into the pool, to learn which god favors them.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -43,7 +43,7 @@
     },
     {
       "id": "devout",
-      "label": "The devout drinks from the pool.",
+      "label": "The devout drinks from the pool, and takes the gods into themselves.",
       "rule": "scion:trait:devout|scion:highest:sagacity",
       "tags": [
         "kind"
@@ -65,7 +65,7 @@
     },
     {
       "id": "pass",
-      "label": "Do not look.",
+      "label": "Do not look. Some answers are better left in the water.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -73,7 +73,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Some things are better not known. Walking on, you all feel that somewhere, someone approves.",
+          "text": "Walking on, you all feel that somewhere, someone approves.",
           "effects": [
             {
               "to": "party",

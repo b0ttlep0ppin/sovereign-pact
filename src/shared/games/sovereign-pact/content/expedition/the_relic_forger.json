@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "buy",
-      "label": "Buy one of his saints.",
+      "label": "Buy one of his saints. A good forgery serves as well as the real thing.",
       "rule": "vote",
       "tags": [
         "clever"
@@ -39,7 +39,7 @@
     },
     {
       "id": "expose",
-      "label": "Expose him to the Court.",
+      "label": "Expose him to the Court, and let the faithful judge him.",
       "rule": "leader",
       "tags": [
         "kind"
@@ -65,7 +65,7 @@
     },
     {
       "id": "blackmail",
-      "label": "The shrewdest blackmails him.",
+      "label": "The shrewdest blackmails him, for whatever true relics he keeps hidden.",
       "rule": "scion:highest:guile",
       "tags": [
         "cruel"

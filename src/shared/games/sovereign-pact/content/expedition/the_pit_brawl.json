@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "fight",
-      "label": "The one with the most kills goes down into the pit.",
+      "label": "The one with the most kills goes down into the pit, so the rest may pass.",
       "rule": "scion:most_kills",
       "tags": [
         "bold"
@@ -49,7 +49,7 @@
     },
     {
       "id": "cheat",
-      "label": "The craftiest fixes the fight.",
+      "label": "The craftiest fixes the fight. Demons are not the only ones who can cheat.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"
@@ -75,7 +75,7 @@
     },
     {
       "id": "all",
-      "label": "Everyone goes down into the pit together.",
+      "label": "Everyone goes down into the pit together. Let them choke on the whole party.",
       "rule": "vote",
       "tags": [
         "reckless"

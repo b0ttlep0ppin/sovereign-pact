@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "strong",
-      "label": "The strongest tries the sword.",
+      "label": "The strongest tries the sword, as so many tried before them.",
       "rule": "scion:highest:might",
       "tags": [
         "bold"
@@ -49,7 +49,7 @@
     },
     {
       "id": "weak",
-      "label": "The weakest tries, for luck.",
+      "label": "The weakest tries, for luck. Stranger things have happened.",
       "rule": "scion:lowest:might",
       "tags": [
         "reckless"
@@ -85,7 +85,7 @@
     },
     {
       "id": "read",
-      "label": "The sharpest eye reads the scratches.",
+      "label": "The sharpest eye reads the scratches, to learn who clawed at the stone before.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"

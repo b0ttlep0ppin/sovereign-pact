@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "heart",
-      "label": "The strongest pries out the titan's heart.",
+      "label": "The strongest pries out the titan's heart while it still sleeps.",
       "rule": "scion:highest:might",
       "tags": [
         "bold"
@@ -46,7 +46,7 @@
     },
     {
       "id": "study",
-      "label": "The cleverest studies how it was made.",
+      "label": "The cleverest studies how it was made, so the House may make its like.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -54,7 +54,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Old forge-craft, for the House's smiths, and dreams of iron hands for weeks.",
+          "text": "Old forge-craft for the House's smiths, and dreams of iron hands for weeks.",
           "effects": [
             {
               "house_improvement": "shop"
@@ -65,7 +65,7 @@
     },
     {
       "id": "strip",
-      "label": "Strip the titan's plates.",
+      "label": "Strip the titan's plates. Iron like that would arm a House.",
       "rule": "vote",
       "tags": [
         "cautious"

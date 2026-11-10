@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "race",
-      "label": "The quickest sets a punishing pace to beat them.",
+      "label": "The quickest sets a punishing pace to beat them to the prize.",
       "rule": "scion:highest:speed",
       "tags": [
         "bold"
@@ -36,7 +36,7 @@
     },
     {
       "id": "join",
-      "label": "Catch them up and join forces.",
+      "label": "Catch them up and join forces. The trail is dangerous enough already.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -61,7 +61,7 @@
     },
     {
       "id": "sabotage",
-      "label": "The craftiest lays a false trail for them.",
+      "label": "The craftiest lays a false trail for them, and repays their mark in kind.",
       "rule": "scion:highest:guile",
       "tags": [
         "cruel"

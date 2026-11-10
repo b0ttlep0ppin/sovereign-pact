@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "accept",
-      "label": "Accept their terms.",
+      "label": "Accept their terms. Your Lost matter more than your pride.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -35,7 +35,7 @@
     },
     {
       "id": "bargain",
-      "label": "The shrewdest bargains for gold instead.",
+      "label": "The shrewdest bargains for gold instead, so no favor hangs over the House.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"
@@ -59,7 +59,7 @@
     },
     {
       "id": "refuse",
-      "label": "Refuse, and find your Lost yourselves.",
+      "label": "Refuse, and find your Lost yourselves. No House will hold this over you.",
       "rule": "leader",
       "tags": [
         "bold"

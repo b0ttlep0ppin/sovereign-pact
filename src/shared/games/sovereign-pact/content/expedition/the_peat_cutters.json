@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "buy",
-      "label": "Buy the torc from the cutters.",
+      "label": "Buy the torc from the cutters before they think to sell it elsewhere.",
       "rule": "vote",
       "tags": [
         "clever"
@@ -39,7 +39,7 @@
     },
     {
       "id": "bury",
-      "label": "The kindest asks them to bury it again.",
+      "label": "The kindest asks them to bury it again, and leave the dead to their work.",
       "rule": "scion:most_healing|scion:highest:sagacity",
       "tags": [
         "kind"
@@ -62,7 +62,7 @@
     },
     {
       "id": "study",
-      "label": "The wisest studies the body.",
+      "label": "The wisest studies the body, to learn why its throat was cut.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "cautious"
@@ -70,7 +70,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A sacrifice, to keep something down, and the sacrifice is wearing off.",
+          "text": "A sacrifice, to keep something down, and the sacrifice is wearing off. The cutters go pale when they hear it.",
           "effects": [
             {
               "score": {

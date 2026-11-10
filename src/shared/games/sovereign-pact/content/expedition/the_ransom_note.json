@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "pay",
-      "label": "Pay the ransom at the hollow oak.",
+      "label": "Pay the ransom at the hollow oak, and pray they keep their word.",
       "rule": "house:lowest_standing|vote",
       "tags": [
         "cautious"
@@ -52,7 +52,7 @@
     },
     {
       "id": "ambush",
-      "label": "The craftiest lies in wait at the oak.",
+      "label": "The craftiest lies in wait at the oak, to catch whoever comes for the gold.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"
@@ -78,7 +78,7 @@
     },
     {
       "id": "ignore",
-      "label": "Tear it down and keep looking.",
+      "label": "Tear it down and keep looking. You will not be bled by thieves.",
       "rule": "leader",
       "tags": [
         "bold"

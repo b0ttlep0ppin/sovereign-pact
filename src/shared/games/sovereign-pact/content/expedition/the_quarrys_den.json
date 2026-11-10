@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "young",
-      "label": "The Leader takes the young.",
+      "label": "The Leader takes the young. Its bones will fetch a fine price.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Its bones will fetch a price. The quarry will come for it, and soon, and from behind.",
+          "text": "The quarry will come for it, and soon, and from behind.",
           "effects": [
             {
               "encounter": {
@@ -40,7 +40,7 @@
     },
     {
       "id": "wait",
-      "label": "Wait in the den for the parent.",
+      "label": "Wait in the den for the parent, and meet it on ground of your choosing.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -64,7 +64,7 @@
     },
     {
       "id": "spare",
-      "label": "The gentlest leaves the young unharmed.",
+      "label": "The gentlest leaves the young unharmed, and hopes the parent remembers.",
       "rule": "scion:fewest_kills|scion:highest:sagacity",
       "tags": [
         "kind"
