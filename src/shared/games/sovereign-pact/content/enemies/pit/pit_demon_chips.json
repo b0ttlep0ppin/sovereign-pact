@@ -1,8 +1,8 @@
 {
   "id": "pit_demon_chips",
-  "name": "Demon Chips",
+  "name": "Possessed Grimoire",
   "pool": "pit",
-  "tags": ["demon"],
+  "tags": ["demon", "cursed"],
   "role": "swarm",
   "size": [1, 1],
   "levels": [6, 10],
@@ -10,17 +10,17 @@
   "affinity": {"fire": 25, "dark": 25, "holy": -25, "water": -25},
   "immune": ["fear", "charm"],
   "abilities": [
-    {"id": "nip", "shape": "single", "side": "player", "power": 0.8},
-    {"id": "chip_burst", "shape": "adjacent", "side": "player", "power": 0.6, "kind": "magic", "element": "fire", "cooldown": 3},
+    {"id": "snap_shut", "shape": "single", "side": "player", "power": 0.8},
+    {"id": "burning_page", "shape": "adjacent", "side": "player", "power": 0.6, "kind": "magic", "element": "fire", "cooldown": 3},
     {"id": "overrun", "shape": "band:3", "side": "player", "power": 0.6, "cooldown": 1}
   ],
   "gambits": [
     {"if": "swarm>=5", "do": "overrun"},
-    {"if": "turn%3==2", "do": "chip_burst"},
-    {"do": "nip", "target": "column_weighted"}
+    {"if": "turn%3==2", "do": "burning_page"},
+    {"do": "snap_shut", "target": "column_weighted"}
   ],
   "bestiary": {
-    "lore": "Splinters of a bigger demon, still angry about it.",
+    "lore": "Torn from a book of names in the Pit. Every page still curses the name written on it.",
     "weakness": "Holy. They burst when crowded together."
   }
 }

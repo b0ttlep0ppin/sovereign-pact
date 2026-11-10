@@ -37,7 +37,7 @@ describe("hazards", () => {
     expect(forge / 2000).toBeGreaterThan(0.25);
     expect(forge / 2000).toBeLessThan(0.35);
     expect(wild / 2000).toBeLessThan(0.14);
-    const all = ["explosive_barrel", "poison_gas_crate", "alarm_bell", "rotating_saw", "rockfall"];
+    const all = ["explosive_barrel", "poison_gas_crate", "alarm_bell", "rockfall"];
     for (let i = 0; i < 200; i++) expect([undefined, "bear_trap"]).toContain(rollHazard(rng, "forge_ruins", all)?.id);
   });
 
@@ -51,7 +51,7 @@ describe("hazards", () => {
     expect(b.outcome).toBe("victory");
   });
 
-  it("an Explosive Barrel goes up when struck, hurting its own side and the Front beside E1", () => {
+  it("a Devil Egg bursts when struck, hurting its own side and the Front beside E1", () => {
     const barrel = hazardCombatant(hz("explosive_barrel"), 4, 900, 0, 4);
     const { b, party } = field([barrel]);
     const skeleton = b.units.find((u) => u.enemy === "barrow_skeleton")!;
@@ -64,7 +64,7 @@ describe("hazards", () => {
     expect(front.hp).toBeLessThan(fr);
   });
 
-  it("a Poison Gas Crate vents on the Front every 200 ticks while it stands", () => {
+  it("a Rot Bloom vents on the Front every 200 ticks while it stands", () => {
     const crate = hazardCombatant(hz("poison_gas_crate"), 4, 900, 1, 3);
     const { b, party } = field([crate]);
     const front = party.find((u) => u.col === 0)!;
@@ -88,17 +88,6 @@ describe("hazards", () => {
     const two = field([bell2]).b;
     for (let i = 0; i < 30; i++) step(two, createRng(i));
     expect(bell2.dead).toBe(true);
-  });
-
-  it("a Rotating Saw bites the Arms of the Scion at the Front of its row", () => {
-    const saw = hazardCombatant(hz("rotating_saw"), 4, 900, 0, 3);
-    const { b, party } = field([saw]);
-    const front = party.find((u) => u.col === 0)!;
-    front.row = 3;
-    for (let i = 0; i < 100; i++) step(b, createRng(i));
-    const bites = b.events.filter((e) => e.t === "hit" && e.unit === saw.id && e.target === front.id);
-    expect(bites.length).toBeGreaterThanOrEqual(5);
-    expect(bites.filter((e) => e.t === "hit" && e.loc === "arms").length * 2).toBeGreaterThan(bites.length);
   });
 
   it("a Rockfall says where it will fall, and falls on that band three turns later", () => {

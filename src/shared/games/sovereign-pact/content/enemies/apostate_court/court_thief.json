@@ -1,6 +1,6 @@
 {
   "id": "court_thief",
-  "name": "Thief",
+  "name": "Cutthroat",
   "pool": "apostate_court",
   "tags": ["humanoid", "bandit"],
   "role": "lurker",

@@ -1,8 +1,8 @@
 {
   "id": "cold_winter_fairy",
-  "name": "Winter Fairy",
+  "name": "Frost Wight",
   "pool": "deep_cold",
-  "tags": ["ice", "fey", "flyer"],
+  "tags": ["ice", "spirit"],
   "role": "caster",
   "size": [1, 1],
   "levels": [3, 6],
@@ -18,7 +18,7 @@
     {"do": "frost_kiss", "target": "lowest_hp"}
   ],
   "bestiary": {
-    "lore": "She paints the frost on the windows. She would like to paint you.",
+    "lore": "It paints the frost on the windows. It would like to paint you.",
     "weakness": "Fire. She flies: the Back must reach her."
   }
 }

@@ -1,8 +1,8 @@
 {
   "id": "beast_goblin_shaman",
-  "name": "Goblin Shaman",
+  "name": "War-Paint Shaman",
   "pool": "beast_lands",
-  "tags": ["humanoid", "goblin"],
+  "tags": ["humanoid"],
   "role": "support",
   "size": [1, 1],
   "levels": [1, 4],

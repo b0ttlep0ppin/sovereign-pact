@@ -1,8 +1,8 @@
 {
   "id": "marsh_tadpole",
-  "name": "Tadpole Swarm",
+  "name": "Bog Fly Swarm",
   "pool": "drowned_marches",
-  "tags": ["aquatic"],
+  "tags": ["insect", "flyer"],
   "role": "swarm",
   "size": [1, 1],
   "levels": [2, 5],
@@ -10,12 +10,12 @@
   "affinity": {"water": 25, "wind": -25},
   "immune": ["fear", "charm"],
   "abilities": [
-    {"id": "nibble", "shape": "single", "side": "player", "power": 0.8},
+    {"id": "bite", "shape": "single", "side": "player", "power": 0.8},
     {"id": "overrun", "shape": "band:3", "side": "player", "power": 0.6, "cooldown": 1}
   ],
   "gambits": [
     {"if": "swarm>=5", "do": "overrun"},
-    {"do": "nibble", "target": "column_weighted"}
+    {"do": "bite", "target": "column_weighted"}
   ],
   "bestiary": {
     "lore": "Thousands, and every one the size of a fist.",

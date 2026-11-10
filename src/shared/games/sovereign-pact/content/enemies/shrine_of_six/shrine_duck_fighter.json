@@ -1,23 +1,23 @@
 {
   "id": "shrine_duck_fighter",
-  "name": "Duck Fighter",
+  "name": "Tide Warden",
   "pool": "shrine_of_six",
-  "tags": ["beastfolk"],
+  "tags": ["elemental"],
   "role": "bruiser",
   "size": [1, 1],
   "levels": [4, 9],
   "stats": {"speed": 11},
   "affinity": {"water": 50, "fire": -50},
   "abilities": [
-    {"id": "wing_jab", "shape": "single", "side": "player", "power": 0.5, "hits": 3},
-    {"id": "splash_kick", "shape": "row", "side": "player", "power": 0.8, "kind": "magic", "element": "water", "cooldown": 2}
+    {"id": "crashing_fist", "shape": "single", "side": "player", "power": 0.5, "hits": 3},
+    {"id": "undertow", "shape": "row", "side": "player", "power": 0.8, "kind": "magic", "element": "water", "cooldown": 2}
   ],
   "gambits": [
-    {"if": "turn%2==1", "do": "splash_kick", "target": "densest_row"},
-    {"do": "wing_jab", "target": "column_weighted"}
+    {"if": "turn%2==1", "do": "undertow", "target": "densest_row"},
+    {"do": "crashing_fist", "target": "column_weighted"}
   ],
   "bestiary": {
-    "lore": "The Water shrine's keeper of the gate. Do not laugh. It has heard it before.",
+    "lore": "The Water shrine's keeper of the gate. It was poured into the shape of a man and told to keep the gate.",
     "weakness": "Fire."
   }
 }

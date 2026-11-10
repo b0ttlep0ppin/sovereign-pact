@@ -1,6 +1,6 @@
 {
   "id": "arcana_lovers",
-  "name": "The Twin Tempters",
+  "name": "The Tempter",
   "pool": "faceless_city",
   "tags": ["demon", "horror", "arcana"],
   "role": "boss",
@@ -21,15 +21,15 @@
     {"do": "jealous_kiss", "target": "back_random"}
   ],
   "phases": [
-    {"at": "hp<=0.5", "name": "A Lovers' Quarrel", "speed": 14, "say": "(They turn on each other, and then, together, on you.)", "gambits": [{"if": "turn%2==0", "do": "sweet_whisper", "target": "highest_might"}, {"do": "heartbreak", "target": "densest_row"}]}
+    {"at": "hp<=0.5", "name": "A Lover Spurned", "speed": 14, "say": "(Its sweetness curdles; now it wants you only to ruin you.)", "gambits": [{"if": "turn%2==0", "do": "sweet_whisper", "target": "highest_might"}, {"do": "heartbreak", "target": "densest_row"}]}
   ],
   "say": {
-    "open": "Stay. Stay with us. Why would you ever go home?",
-    "death": "Together... always..."
+    "open": "Stay. Stay with me. Why would you ever go home?",
+    "death": "You would have been... so happy..."
   },
   "bestiary": {
-    "lore": "The card of choice and union, made flesh twice over: a pair of tempters who will have one of you, whichever you choose.",
+    "lore": "The card of choice and union, made flesh: a tempter who will have one of you, whichever you choose.",
     "weakness": "Holy, heavily. Guard the strongest from the whispers.",
-    "pattern": "Every third turn a whisper charms the strongest; heartbreak on a row and a leaping poisoned kiss on the Back between. At the quarrel, the whispers come every other turn."
+    "pattern": "Every third turn a whisper charms the strongest; heartbreak on a row and a leaping poisoned kiss on the Back between. Spurned, it whispers every other turn."
   }
 }

@@ -1,8 +1,8 @@
 {
   "id": "cold_frost_slime",
-  "name": "Frost Slime",
+  "name": "Rime Wolf",
   "pool": "deep_cold",
-  "tags": ["ice", "slime"],
+  "tags": ["ice", "beast"],
   "role": "fodder",
   "size": [1, 1],
   "levels": [3, 6],
@@ -10,15 +10,15 @@
   "affinity": {"water": 25, "fire": -50},
   "immune": ["poison", "fear", "frozen"],
   "abilities": [
-    {"id": "chill_ooze", "shape": "single", "side": "player", "power": 0.9, "statuses": [{"id": "slow", "chance": 30, "ticks": 200}]},
+    {"id": "frost_bite", "shape": "single", "side": "player", "power": 0.9, "statuses": [{"id": "slow", "chance": 30, "ticks": 200}]},
     {"id": "cold_snap", "shape": "adjacent", "side": "player", "power": 0.6, "kind": "magic", "element": "water", "cooldown": 3, "statuses": [{"id": "frozen", "chance": 15, "ticks": 200}]}
   ],
   "gambits": [
     {"if": "turn%3==2", "do": "cold_snap"},
-    {"do": "chill_ooze", "target": "column_weighted"}
+    {"do": "frost_bite", "target": "column_weighted"}
   ],
   "bestiary": {
-    "lore": "A puddle that froze around something and kept moving.",
+    "lore": "A wolf whose coat has frozen into spines. It still hunts with the pack.",
     "weakness": "Fire melts it fast."
   }
 }

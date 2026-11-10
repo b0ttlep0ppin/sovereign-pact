@@ -1,6 +1,6 @@
 {
   "id": "marsh_moray_eel",
-  "name": "Moray Eel",
+  "name": "Giant Leech",
   "pool": "drowned_marches",
   "tags": ["aquatic", "beast"],
   "role": "lurker",
@@ -16,7 +16,7 @@
     {"do": "lunge", "target": "lowest_hp"}
   ],
   "bestiary": {
-    "lore": "It waits in a crack in the stone and strikes from it.",
+    "lore": "It waits in the silt and fastens on whatever wades past.",
     "weakness": "Wind. Hit it when it lands."
   }
 }
