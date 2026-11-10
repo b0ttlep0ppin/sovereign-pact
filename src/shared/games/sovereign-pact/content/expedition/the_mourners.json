@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "pay",
-      "label": "Pay them for their centuries.",
+      "label": "Pay them for their centuries of grief, so they may finally rest.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They fall silent at last, and fade, and the barrow is quiet.",
+          "text": "They fall silent at last, and fade, and the barrow is quiet. The quiet feels like thanks.",
           "effects": [
             {
               "resources": {
@@ -38,7 +38,7 @@
     },
     {
       "id": "join",
-      "label": "The steadiest voice mourns with them.",
+      "label": "The steadiest voice mourns beside them, and learns the old lament.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "kind"
@@ -46,7 +46,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They teach the old lament, the one nobody sings any more.",
+          "text": "They teach the lament nobody sings any more. It lingers in the throat for days.",
           "effects": [
             {
               "jp": 40
@@ -62,7 +62,7 @@
     },
     {
       "id": "drive",
-      "label": "Drive them off.",
+      "label": "Drive them off. The dead have no use for coin, and neither do their mourners.",
       "rule": "leader",
       "tags": [
         "cruel"

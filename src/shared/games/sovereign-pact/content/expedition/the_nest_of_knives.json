@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "climb",
-      "label": "The quickest climbs for an iron egg.",
+      "label": "The quickest climbs for an iron egg while the wings beat somewhere above.",
       "rule": "scion:highest:speed",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "An iron egg, warm, heavy, worth a fortune.",
+          "text": "An iron egg, warm and heavy and worth a fortune. Something above stops beating its wings.",
           "effects": [
             {
               "resources": {
@@ -46,7 +46,7 @@
     },
     {
       "id": "knives",
-      "label": "Pull blades from the bottom of the nest.",
+      "label": "Pull blades from the bottom of the nest, where the bird will not miss them.",
       "rule": "leader",
       "tags": [
         "clever"
@@ -54,7 +54,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Fine blades, all of them, and one still has a hand's warmth in the grip.",
+          "text": "Fine blades, all of them, and one still holds a hand's warmth in the grip.",
           "effects": [
             {
               "item": {
@@ -67,7 +67,7 @@
     },
     {
       "id": "leave",
-      "label": "Leave the tree alone.",
+      "label": "Leave the tree alone. Nothing that builds with knives should be crossed.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -75,7 +75,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Something with iron feathers watches you go, and drops one point-down in the earth beside you. Good iron.",
+          "text": "Something with iron feathers watches you go, and drops one point-down in the earth beside you. Good iron, and a warning.",
           "effects": [
             {
               "resources": {

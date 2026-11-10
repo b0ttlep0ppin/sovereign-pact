@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He tells you where, and when. It was not long ago, and he will not meet your eyes.",
+          "text": "He tells you where, and when. It was not long ago, and he will not meet your eyes the whole time.",
           "effects": [
             {
               "resources": {
@@ -37,7 +37,7 @@
     },
     {
       "id": "threaten",
-      "label": "The strongest asks him again, closer.",
+      "label": "The strongest asks him again, closer, with a hand on their sword.",
       "rule": "scion:highest:might",
       "tags": [
         "cruel"
@@ -68,7 +68,7 @@
     },
     {
       "id": "read",
-      "label": "The shrewdest watches his face as he talks.",
+      "label": "The shrewdest watches his face as he talks, and sorts the truth from the lies.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"

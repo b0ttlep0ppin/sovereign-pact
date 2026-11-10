@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "empress",
-      "label": "The Empress's child speaks with her.",
+      "label": "The Empress's child kneels before her and speaks, as she asked.",
       "rule": "scion:tarot:empress|vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "She blesses them with the old rite, the one from before the Court turned.",
+          "text": "She blesses them in the old rite, from before the Court turned. Her hand is cold on their brow, and the cold stays a while.",
           "effects": [
             {
               "blessing": {
@@ -40,7 +40,7 @@
     },
     {
       "id": "question",
-      "label": "The wisest questions her.",
+      "label": "The wisest questions her about the Court, and what it worships now.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -48,7 +48,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "She tells of the Court's schism, and who started it, and smiles at the end.",
+          "text": "She tells of the Court's schism and who began it, and smiles at the end, as if the tale were a gift. It may be a warning.",
           "effects": [
             {
               "score": {
@@ -59,7 +59,7 @@
         },
         {
           "w": 30,
-          "text": "She calls the guards.",
+          "text": "She calls the guards, and her smile never changes.",
           "effects": [
             {
               "encounter": {}
@@ -70,7 +70,7 @@
     },
     {
       "id": "seize",
-      "label": "Seize her on her throne of roses.",
+      "label": "Seize her on her throne of roses, before her silent nuns can close ranks.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -78,7 +78,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Her nuns fight like cats, and in silence.",
+          "text": "Her nuns fight like cats, and never make a sound. The roses are wet when it is over.",
           "effects": [
             {
               "encounter": {

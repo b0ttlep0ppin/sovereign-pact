@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "read",
-      "label": "The wisest reads the journal.",
+      "label": "The wisest reads the journal, to learn what became of them.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Their last days, and where they went, and what they heard at night.",
+          "text": "Their last days, and where they went, and what they heard at night. The last word is unfinished, and so is the fear in it.",
           "effects": [
             {
               "skip": 1
@@ -36,7 +36,7 @@
     },
     {
       "id": "track",
-      "label": "The best tracker follows them from here.",
+      "label": "The best tracker follows them from here, before the trail goes cold.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -58,7 +58,7 @@
     },
     {
       "id": "rest",
-      "label": "Rest here, as they did.",
+      "label": "Rest here, as they did, and hope your night goes better.",
       "rule": "vote",
       "tags": [
         "cautious"

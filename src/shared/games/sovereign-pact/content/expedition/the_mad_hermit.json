@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "talk",
-      "label": "The kindest talks him round.",
+      "label": "The kindest talks him round, gently, as one would a frightened child.",
       "rule": "scion:most_healing|scion:highest:sagacity",
       "tags": [
         "kind"
@@ -37,7 +37,7 @@
     },
     {
       "id": "force",
-      "label": "Force your way past him.",
+      "label": "Force your way past him. Your own are in there.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -59,7 +59,7 @@
     },
     {
       "id": "trade",
-      "label": "The shrewdest offers him a trade.",
+      "label": "The shrewdest offers him a trade, something to keep him company instead.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"

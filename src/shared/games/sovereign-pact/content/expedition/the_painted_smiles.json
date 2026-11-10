@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "smile",
-      "label": "Smile back at them.",
+      "label": "Smile back at them, and hope you smile the way they do.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -49,7 +49,7 @@
     },
     {
       "id": "paint",
-      "label": "The shrewdest paints a smile on their own face.",
+      "label": "The shrewdest paints a smile on their own face, to pass for one of them.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"
@@ -57,7 +57,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They take them for one of their own, and lead you out. The paint is hard to wash off.",
+          "text": "They take them for one of their own and lead you out. The paint is hard to wash off.",
           "effects": [
             {
               "skip": 2
@@ -71,7 +71,7 @@
     },
     {
       "id": "hurry",
-      "label": "Hurry past the smiling faces.",
+      "label": "Hurry past the smiling faces, and do not meet their eyes.",
       "rule": "leader",
       "tags": [
         "cautious"

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "break",
-      "label": "The strongest breaks the sealed mold.",
+      "label": "The strongest breaks the sealed mold, to see what has waited so long.",
       "rule": "scion:highest:might",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "A blade, perfect, still warm.",
+          "text": "A blade, perfect, still warm, as if it was poured an hour ago.",
           "effects": [
             {
               "item": {
@@ -43,7 +43,7 @@
     },
     {
       "id": "leave",
-      "label": "Leave it sealed.",
+      "label": "Leave it sealed. Whatever is warm in there has waited for a reason.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -76,7 +76,7 @@
     },
     {
       "id": "sell",
-      "label": "Haul it out to sell.",
+      "label": "Haul it out to sell, still sealed, and let the buyer open it.",
       "rule": "leader",
       "tags": [
         "clever"

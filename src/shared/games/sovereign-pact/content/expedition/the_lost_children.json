@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "play",
-      "label": "Play their counting game.",
+      "label": "Play their counting game. Somebody has to be it.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -35,7 +35,7 @@
         },
         {
           "w": 50,
-          "text": "They are not children.",
+          "text": "They are not children, and you are it.",
           "effects": [
             {
               "encounter": {
@@ -48,7 +48,7 @@
     },
     {
       "id": "count",
-      "label": "The cleverest listens to how they count.",
+      "label": "The cleverest listens to how they count, and what they leave out.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -56,7 +56,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They skip a number, every time. Something hides in that number.",
+          "text": "They skip a number, every time. Something hides in that number, and it is waiting to be found.",
           "effects": [
             {
               "foresee": true
@@ -67,7 +67,7 @@
     },
     {
       "id": "leave",
-      "label": "Stop your ears, and walk.",
+      "label": "Stop your ears, and walk. Whatever plays out there is no child.",
       "rule": "leader",
       "tags": [
         "cautious"

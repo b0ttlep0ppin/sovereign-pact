@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "lead",
-      "label": "Lead the calf toward the shaking.",
+      "label": "Lead the calf toward the shaking, and trust its mother to understand.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -48,7 +48,7 @@
     },
     {
       "id": "hide",
-      "label": "Hide in the snow until they pass.",
+      "label": "Hide in the snow until they pass, and keep very still.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -68,7 +68,7 @@
     },
     {
       "id": "tusks",
-      "label": "The shrewdest says a calf's tusks fetch a price.",
+      "label": "The shrewdest says a calf's tusks fetch a price, and the herd is far off yet.",
       "rule": "scion:highest:guile",
       "tags": [
         "cruel"

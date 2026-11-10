@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "listen",
-      "label": "Who falls asleep?",
+      "label": "Let the song take whoever is already nodding, and keep watch over them through the night.",
       "rule": "scion:lowest:acuity",
       "outcomes": [
         {

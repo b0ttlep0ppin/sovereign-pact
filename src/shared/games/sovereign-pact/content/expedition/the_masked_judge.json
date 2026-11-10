@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "plead",
-      "label": "The smoothest tongue pleads your case.",
+      "label": "The smoothest tongue pleads your case, though no one will name the charge.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"
@@ -45,7 +45,7 @@
     },
     {
       "id": "confess",
-      "label": "Confess to whatever he likes.",
+      "label": "Confess to whatever he likes, and pay the fine before the rope.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -70,7 +70,7 @@
     },
     {
       "id": "unmask",
-      "label": "Tear the mask from the judge.",
+      "label": "Tear the mask from the judge, and see who sits in judgement.",
       "rule": "leader",
       "tags": [
         "reckless"

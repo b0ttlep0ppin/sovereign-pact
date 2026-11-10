@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "north",
-      "label": "Go north, and fast.",
+      "label": "Go north, and fast. They asked you to hurry.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -32,7 +32,7 @@
     },
     {
       "id": "read",
-      "label": "The wisest reads the cuts for how long ago.",
+      "label": "The wisest reads the cuts for how long ago, to know how much time remains.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -54,7 +54,7 @@
     },
     {
       "id": "answer",
-      "label": "Cut an answer beneath it.",
+      "label": "Cut an answer beneath it, so they know you came.",
       "rule": "leader",
       "tags": [
         "kind"

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "take",
-      "label": "Take the child along.",
+      "label": "Take the child along. No one should be left alone out here.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 55,
-          "text": "The child walks with you as far as the next bend, smiles, and is gone. The air smells of bread.",
+          "text": "The child walks with you as far as the next bend, smiles, and is gone. The air smells of bread, and of smoke.",
           "effects": [
             {
               "to": "party",
@@ -36,7 +36,7 @@
         },
         {
           "w": 45,
-          "text": "The child is not a child.",
+          "text": "The child is not a child, and it has been waiting for someone kind.",
           "effects": [
             {
               "encounter": {
@@ -49,7 +49,7 @@
     },
     {
       "id": "ask",
-      "label": "The sharpest asks her questions first.",
+      "label": "The sharpest asks her questions first, gently, before anyone takes her hand.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -73,7 +73,7 @@
     },
     {
       "id": "leave",
-      "label": "Leave her on her stone.",
+      "label": "Leave her on her stone. Whatever she is, she has waited a hundred years already.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -81,7 +81,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The crying follows you for hours.",
+          "text": "The crying follows you for hours, and then it stops, which is worse.",
           "effects": [
             {
               "to": "party",

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "take",
-      "label": "The Leader takes a pup to raise.",
+      "label": "The Leader takes a pup to raise, before the mother comes home.",
       "rule": "leader",
       "tags": [
         "reckless"
@@ -43,7 +43,7 @@
     },
     {
       "id": "leave",
-      "label": "Leave the pups and go quietly.",
+      "label": "Leave the pups and go quietly. No mother forgives a stolen child.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -63,7 +63,7 @@
     },
     {
       "id": "hunt",
-      "label": "Wait by the den for the mother.",
+      "label": "Wait by the den for the mother, and kill her when she comes home.",
       "rule": "vote",
       "tags": [
         "bold"

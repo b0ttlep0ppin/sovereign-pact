@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "brave",
-      "label": "The bravest stands their ground before it.",
+      "label": "The bravest stands their ground before it, since it is them it has chosen.",
       "rule": "scion:trait:brave|scion:highest:might",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "It snorts, long and hot, and steps aside for them alone.",
+          "text": "It snorts, long and hot, and steps aside for them alone. They do not breathe until it has passed.",
           "effects": [
             {
               "score": {
@@ -35,7 +35,7 @@
         },
         {
           "w": 30,
-          "text": "It charges anyway, and the old scars on its hide get a new story.",
+          "text": "It charges anyway, and the scars on its hide get a new story.",
           "effects": [
             {
               "durability": -40,
@@ -47,7 +47,7 @@
     },
     {
       "id": "hunt",
-      "label": "Bring the old bull down.",
+      "label": "Bring the old bull down where every hunter before you failed.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -55,7 +55,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It does not go down easily, and it does not go down alone, but it goes down.",
+          "text": "It does not go down easily, and it does not go down alone, but it goes down. Its horns are worth a purse.",
           "effects": [
             {
               "encounter": {
@@ -73,7 +73,7 @@
     },
     {
       "id": "around",
-      "label": "Go the long way round.",
+      "label": "Go the long way round. That bull has outlived better hunters than you.",
       "rule": "leader",
       "tags": [
         "cautious"

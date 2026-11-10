@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "down",
-      "label": "Go down toward the singing.",
+      "label": "Go down toward the singing, deeper than anyone has gone before.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -48,7 +48,7 @@
     },
     {
       "id": "listen",
-      "label": "The keenest ear listens at the top of the stairs.",
+      "label": "The keenest ear listens at the top of the stairs, before anyone descends.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -67,7 +67,7 @@
     },
     {
       "id": "up",
-      "label": "Climb back up while you still want to.",
+      "label": "Climb back up while you still want to. Some places are not meant for you.",
       "rule": "leader",
       "tags": [
         "cautious"

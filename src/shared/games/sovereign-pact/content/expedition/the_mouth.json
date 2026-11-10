@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "run",
-      "label": "Run past the lip.",
+      "label": "Run past the lip while it breathes out, and pray it does not breathe in.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "Past, at a dead run, with its hot breath on your necks. Everyone's heart is going like a drum when the next fight comes.",
+          "text": "Past, at a dead run, with its hot breath on your necks. Every heart is still pounding when the next fight comes.",
           "effects": [
             {
               "to": "party",
@@ -31,7 +31,7 @@
         },
         {
           "w": 30,
-          "text": "It snaps.",
+          "text": "It snaps, and the teeth close on legs.",
           "effects": [
             {
               "to": "party",
@@ -44,7 +44,7 @@
     },
     {
       "id": "feed",
-      "label": "Throw something in to feed it.",
+      "label": "Throw something in to feed it, and hope a full mouth is a kind one.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -52,7 +52,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It closes, slowly, satisfied, and the way beyond is shorter for it.",
+          "text": "It closes, slowly, satisfied, and the way beyond is shorter for it. Somewhere below, it chews.",
           "effects": [
             {
               "resources": {
@@ -68,7 +68,7 @@
     },
     {
       "id": "look",
-      "label": "The wisest looks down into it.",
+      "label": "The wisest leans over the teeth and looks down into it, to find where it leads.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -76,7 +76,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "Down there, past the teeth, the way out.",
+          "text": "Down there, past the teeth, is the way out.",
           "effects": [
             {
               "foresee": true

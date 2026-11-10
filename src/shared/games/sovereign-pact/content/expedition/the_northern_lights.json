@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "dance",
-      "label": "Dance with the lights.",
+      "label": "Dance with the lights, and let them learn what you are.",
       "rule": "each_scion",
       "tags": [
         "kind"
@@ -30,7 +30,7 @@
         },
         {
           "w": 30,
-          "text": "Too cold. The lights leave frost where they touched.",
+          "text": "Too cold. The lights leave frost where they touched, and it does not melt.",
           "effects": [
             {
               "status": "frozen"
@@ -41,7 +41,7 @@
     },
     {
       "id": "still",
-      "label": "Stand still and let them look.",
+      "label": "Stand still and let them look, and hope curiosity is all they feel.",
       "rule": "each_scion",
       "tags": [
         "cautious"
@@ -49,7 +49,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They pass through you, cold and curious, and something in you is lighter.",
+          "text": "They pass through you, cold and curious, and something in you is lighter when they go.",
           "effects": [
             {
               "sanity": 3

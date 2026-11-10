@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "free",
-      "label": "Beat the moths off the lantern.",
+      "label": "Beat the moths off the lantern, before its light goes out for good.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -33,7 +33,7 @@
     },
     {
       "id": "catch",
-      "label": "The sharpest eye catches moths for their dust.",
+      "label": "The sharpest eye catches moths for their dust, carefully.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -52,7 +52,7 @@
         },
         {
           "w": 30,
-          "text": "The dust gets in their eyes, and the world swims.",
+          "text": "The dust gets in their eyes, and the world swims, and the moths circle closer.",
           "effects": [
             {
               "status": "confusion"
@@ -63,7 +63,7 @@
     },
     {
       "id": "dark",
-      "label": "Snuff the lantern out.",
+      "label": "Snuff the lantern out. Let the moths starve.",
       "rule": "leader",
       "tags": [
         "cruel"

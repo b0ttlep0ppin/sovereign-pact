@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "cross",
-      "label": "The named Scion crosses out their own name.",
+      "label": "The named Scion crosses out their own name, so the city takes them for one of its own.",
       "rule": "scion:random",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "The city takes them for one of its own, and lets you all pass. They feel it take them.",
+          "text": "The city takes them in, and lets you all pass. They feel it take something with it.",
           "effects": [
             {
               "skip": 2
@@ -47,7 +47,7 @@
     },
     {
       "id": "scrub",
-      "label": "Scrub the name off the wall.",
+      "label": "Scrub the name off the wall. It was not yours to write.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -55,7 +55,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It comes back, fainter, as you watch.",
+          "text": "It comes back, fainter, as you watch, in the same hand.",
           "effects": [
             {
               "to": "party",
@@ -67,7 +67,7 @@
     },
     {
       "id": "read",
-      "label": "The wisest reads the other names.",
+      "label": "The wisest reads the other names, to learn who stood here before you.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -75,7 +75,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Some you know, from the House's histories, and how they ended.",
+          "text": "Some you know from the House's histories, and now you know how they ended.",
           "effects": [
             {
               "score": {

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "young",
-      "label": "The least traveled wades in after the glint.",
+      "label": "The least traveled wades in after the glint, still young enough to believe in luck.",
       "rule": "scion:fewest_expeditions",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "Gold, a fistful, from somewhere upstream.",
+          "text": "Gold, a fistful, washed down from somewhere upstream. Their grin lasts all day.",
           "effects": [
             {
               "resources": {
@@ -50,7 +50,7 @@
     },
     {
       "id": "old",
-      "label": "The most traveled goes instead, to be safe.",
+      "label": "The most traveled goes instead. Old hands know which glints are traps.",
       "rule": "scion:most_expeditions",
       "tags": [
         "cautious"
@@ -71,7 +71,7 @@
     },
     {
       "id": "leave",
-      "label": "Leave it. It is a trap.",
+      "label": "Leave it. Shiny things out here are bait.",
       "rule": "leader",
       "tags": [
         "cautious"

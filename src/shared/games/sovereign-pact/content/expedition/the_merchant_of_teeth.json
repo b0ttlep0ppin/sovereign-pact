@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "trade",
-      "label": "The Leader trades a little of themselves.",
+      "label": "The Leader trades a little of themselves, for something very fine.",
       "rule": "leader",
       "tags": [
         "reckless"
@@ -39,7 +39,7 @@
     },
     {
       "id": "haggle",
-      "label": "The cleverest haggles him down.",
+      "label": "The cleverest haggles him down, and tries to keep their teeth.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"
@@ -63,7 +63,7 @@
         },
         {
           "w": 55,
-          "text": "He is delighted, and takes a tooth for his trouble, root and all.",
+          "text": "He is delighted, and takes a tooth for his trouble, root and all, and adds it to his necklace.",
           "effects": [
             {
               "durability": -20,
@@ -78,7 +78,7 @@
     },
     {
       "id": "refuse",
-      "label": "Refuse him politely.",
+      "label": "Refuse him politely, and keep every part of yourselves.",
       "rule": "leader",
       "tags": [
         "cautious"

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "dance",
-      "label": "The most charming puts on a mask and goes in to dance.",
+      "label": "The most charming puts on a mask and goes in to dance, curious what lies beneath the others.",
       "rule": "scion:highest:guile",
       "tags": [
         "bold"
@@ -51,7 +51,7 @@
     },
     {
       "id": "refuse",
-      "label": "Refuse the masks at the door.",
+      "label": "Refuse the masks at the door. You will keep your own faces, thank you.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -59,7 +59,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The doorman is offended. So is everyone inside, and they stop dancing.",
+          "text": "The doorman is offended. So is everyone inside, and they stop dancing, and turn.",
           "effects": [
             {
               "encounter": {}

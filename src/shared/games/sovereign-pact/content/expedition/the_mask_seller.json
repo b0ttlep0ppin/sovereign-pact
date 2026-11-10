@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "buy",
-      "label": "Buy back a face you lost.",
+      "label": "Buy back a face you lost, and remember who you used to be.",
       "rule": "scion:lowest:sanity",
       "tags": [
         "kind"
@@ -37,7 +37,7 @@
     },
     {
       "id": "trade",
-      "label": "The Leader trades their own face for the finest mask.",
+      "label": "The Leader trades their own face for the finest mask, tempted by its splendour.",
       "rule": "leader",
       "tags": [
         "reckless"
@@ -61,7 +61,7 @@
     },
     {
       "id": "burn",
-      "label": "Burn the stall and every face on it.",
+      "label": "Burn the stall and every face on it, so no one else is tempted.",
       "rule": "vote",
       "tags": [
         "cruel"

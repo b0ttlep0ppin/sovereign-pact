@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "pick",
-      "label": "Pick the glowing mushrooms.",
+      "label": "Pick the glowing mushrooms. Healers and alchemists pay dearly for them.",
       "rule": "vote",
       "tags": [
         "clever"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "Baskets of soft light.",
+          "text": "Baskets of soft light, and the rats watch you carry them out.",
           "effects": [
             {
               "resources": {
@@ -32,7 +32,7 @@
         },
         {
           "w": 30,
-          "text": "Spores, in a pale cloud, and the cellar starts to tilt.",
+          "text": "Spores burst in a pale cloud, and the cellar starts to tilt.",
           "effects": [
             {
               "to": "party",
@@ -44,7 +44,7 @@
     },
     {
       "id": "eat",
-      "label": "The toughest tries one.",
+      "label": "The toughest eats one, to see what the healers see.",
       "rule": "scion:highest:resilience",
       "tags": [
         "reckless"
@@ -52,7 +52,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "Visions, and then clarity, and they see the road ahead.",
+          "text": "Visions, then clarity, and the road ahead laid out like a map.",
           "effects": [
             {
               "foresee": true
@@ -61,7 +61,7 @@
         },
         {
           "w": 50,
-          "text": "Visions, and then vomiting, and then worse.",
+          "text": "Visions, then vomiting, then worse.",
           "effects": [
             {
               "status": "poison"
@@ -72,7 +72,7 @@
     },
     {
       "id": "seed",
-      "label": "Take spores home to grow.",
+      "label": "Take spores home, and grow the light in the dark beneath your own House.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -80,7 +80,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A crop for the House, grown in the dark under its floors.",
+          "text": "A crop for the House, grown under its floors. The cellar smells of it for years.",
           "effects": [
             {
               "house_improvement": "building"

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "search",
-      "label": "The hardiest searches the empty barrow.",
+      "label": "The hardiest searches the empty barrow, in case its owner left in a hurry.",
       "rule": "scion:highest:resilience",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 55,
-          "text": "Grave goods, left behind by whoever walked out.",
+          "text": "Grave goods, left behind by whoever walked out. They may want them back.",
           "effects": [
             {
               "item": {
@@ -50,7 +50,7 @@
     },
     {
       "id": "close",
-      "label": "Close the barrow again.",
+      "label": "Close the barrow again, so whoever left has no bed to return to.",
       "rule": "vote",
       "tags": [
         "kind"

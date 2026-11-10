@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "veteran",
-      "label": "Someone who has retired once sits down at their fire.",
+      "label": "Someone who has walked away before sits at their fire, and earns their trust.",
       "rule": "scion:retired_once|scion:most_expeditions",
       "tags": [
         "kind"
@@ -36,7 +36,7 @@
     },
     {
       "id": "green",
-      "label": "The greenest Scion asks to learn.",
+      "label": "The greenest Scion asks to learn, and takes whatever lesson they are given.",
       "rule": "scion:fewest_expeditions|scion:random",
       "tags": [
         "kind"
@@ -58,7 +58,7 @@
     },
     {
       "id": "recruit",
-      "label": "Ask one to come back to the House.",
+      "label": "Ask one of them to come back to the House, and fight for something again.",
       "rule": "house:random",
       "tags": [
         "bold"
@@ -75,7 +75,7 @@
         },
         {
           "w": 60,
-          "text": "They will not go back. Not ever. They give you their old map instead.",
+          "text": "They will not go back. Not ever. They give you their old map instead, and turn back to the fire.",
           "effects": [
             {
               "skip": 1

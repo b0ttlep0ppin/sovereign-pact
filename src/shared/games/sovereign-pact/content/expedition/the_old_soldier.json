@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "learn",
-      "label": "The greenest learns at his feet.",
+      "label": "The greenest learns at his feet, while he still thinks there is a war to win.",
       "rule": "scion:fewest_expeditions",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He is a hard teacher, and a good one, and he never once asks their name.",
+          "text": "He is a hard teacher and a good one, and he never once asks their name.",
           "effects": [
             {
               "xp": 150
@@ -35,7 +35,7 @@
     },
     {
       "id": "relieve",
-      "label": "The Leader relieves him of duty.",
+      "label": "The Leader relieves him of duty, and tells him the war is over.",
       "rule": "leader",
       "tags": [
         "kind"
@@ -43,7 +43,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He salutes, and goes home at last, wherever that is now.",
+          "text": "He salutes, and goes home at last, wherever home is now. The road feels emptier without him.",
           "effects": [
             {
               "to": "party",
@@ -60,7 +60,7 @@
     },
     {
       "id": "enlist",
-      "label": "Ask him to march with you.",
+      "label": "Ask him to march with you. A soldier without a war needs one.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -68,7 +68,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He marches with you as far as the next fight, and stands in front, and fights like ten.",
+          "text": "He marches with you as far as the next fight, stands in front, and fights like ten.",
           "effects": [
             {
               "to": "party",

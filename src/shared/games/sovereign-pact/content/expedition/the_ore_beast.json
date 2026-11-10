@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "follow",
-      "label": "Follow it and gather what it leaves.",
+      "label": "Follow it and gather what it leaves, however foul the work.",
       "rule": "vote",
       "tags": [
         "clever"
@@ -38,7 +38,7 @@
     },
     {
       "id": "hunt",
-      "label": "Hunt it for its metal hide.",
+      "label": "Hunt it for its metal hide, and the bone beneath.",
       "rule": "leader",
       "tags": [
         "bold"
@@ -46,7 +46,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Its hide is half metal, and it fights like it.",
+          "text": "Its hide is half metal, and it fights like it. What it leaves behind is worth the bruises.",
           "effects": [
             {
               "encounter": {
@@ -65,7 +65,7 @@
     },
     {
       "id": "tame",
-      "label": "The gentlest tries to lead it home.",
+      "label": "The gentlest tries to lead it home, where the slag heaps could feed it for years.",
       "rule": "scion:fewest_kills|scion:highest:sagacity",
       "tags": [
         "kind"

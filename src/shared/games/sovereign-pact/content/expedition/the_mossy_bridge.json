@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "sneak",
-      "label": "Creep across past the sleeping troll.",
+      "label": "Creep across past the sleeping troll, and do not wake it.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -32,7 +32,7 @@
         },
         {
           "w": 30,
-          "text": "It wakes.",
+          "text": "It wakes, and it is very cross about the toll.",
           "effects": [
             {
               "encounter": {}
@@ -43,7 +43,7 @@
     },
     {
       "id": "pay",
-      "label": "Leave the toll on its belly.",
+      "label": "Leave the toll on its belly, as an honest traveller would.",
       "rule": "leader",
       "tags": [
         "kind"
@@ -68,7 +68,7 @@
     },
     {
       "id": "purse",
-      "label": "The quietest hands lift the troll's purse.",
+      "label": "The quietest hands lift the troll's purse, as it snores.",
       "rule": "scion:highest:guile",
       "tags": [
         "reckless"
@@ -99,7 +99,7 @@
     },
     {
       "id": "pay_the_toll",
-      "label": "The Knight wakes the troll and pays the toll to its face.",
+      "label": "The Knight wakes the troll and pays the toll to its face, as honour demands.",
       "rule": "scion:job:knight",
       "only": true,
       "tags": [

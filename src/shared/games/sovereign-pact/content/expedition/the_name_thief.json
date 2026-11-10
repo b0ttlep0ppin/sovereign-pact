@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "confront",
-      "label": "The Scion with the strongest will confronts the thief.",
+      "label": "The Scion with the strongest will confronts the thief and demands their name back.",
       "rule": "scion:highest:sagacity|scion:highest:resilience",
       "tags": [
         "bold"
@@ -30,7 +30,7 @@
         },
         {
           "w": 40,
-          "text": "The thief smiles with their mouth and keeps the name a while longer.",
+          "text": "The thief smiles with their mouth and keeps the name a while longer. It sounds better on them.",
           "effects": [
             {
               "sanity": -15
@@ -41,7 +41,7 @@
     },
     {
       "id": "buy",
-      "label": "Buy the name back.",
+      "label": "Buy the name back. Better to pay than to argue over who you are.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -62,7 +62,7 @@
     },
     {
       "id": "steal",
-      "label": "The shrewdest steals the thief's name in return.",
+      "label": "The shrewdest steals the thief's own name in return, to see how they like it.",
       "rule": "scion:highest:guile",
       "tags": [
         "cruel"
@@ -70,7 +70,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A useful name to have, and nobody here will miss it.",
+          "text": "A useful name to have, and nobody here will miss it. Not even its owner, it seems.",
           "effects": [
             {
               "score": {
