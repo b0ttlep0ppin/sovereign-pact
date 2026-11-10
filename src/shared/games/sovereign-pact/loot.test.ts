@@ -52,15 +52,16 @@ describe("drop tables (§9.8)", () => {
     let s = underway(1, card(1, "beast_lands"));
     for (const p of s.people) while (p.status === "scion" && p.level < 15) Object.assign(p, levelUp(p));
     s.expedition!.chain = ["encounter", "encounter", "encounter", "boss"];
-    const grain = s.houses[0]!.stores.grain ?? 0;
+    const before = { ...s.houses[0]!.stores };
     // Each House reads the battle's end before the party goes on.
     for (let i = 0; i < 3; i++) {
       for (const h of s.expedition!.halt ?? []) s = move(s, s.players[h]!, { type: "onward" });
       s = move(s, "p1", { type: "press_on" });
     }
     expect(s.log.filter((l) => l.includes("wins a battle")).length).toBe(3);
-    expect(s.expedition!.haul!.stores.grain).toBeGreaterThan(0);
-    expect(s.houses[0]!.stores.grain ?? 0).toBe(grain);
+    const found = Object.entries(s.expedition!.haul!.stores).filter(([, n]) => (n ?? 0) > 0);
+    expect(found.length).toBeGreaterThan(0);
+    for (const [m] of found) expect(s.houses[0]!.stores[m] ?? 0).toBe(before[m] ?? 0);
   });
 });
 

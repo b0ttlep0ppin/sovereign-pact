@@ -99,7 +99,8 @@ describe("spending from Year 1 (Josh's playtest, 2026-11-02: \"not enough chance
     expect(botShop(s, 0)).toBe(better.id);
     s.houses[0]!.gold = listPrice(better) + TUNING.shops.botReserve - 1;
     expect(botShop(s, 0)).toBeNull();
-    const junk = mint(s, base, 0, 1).id;
+    // Two-handed, so it can't fill an empty off hand: no one would wear it over what they have.
+    const junk = mint(s, "greatsword", 0, 1).id;
     expect(botSell(s, 0)).toBe(junk);
   });
 });

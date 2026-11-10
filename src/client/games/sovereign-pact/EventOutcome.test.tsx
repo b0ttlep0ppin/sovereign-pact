@@ -2,6 +2,7 @@ import { fireEvent, render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 import { sovereignPact as g, type SovMove, type SovState } from "@vibepulse/shared/games/sovereign-pact";
 import { able, muster } from "../../../shared/games/sovereign-pact/expedition.ts";
+import { levelUp } from "../../../shared/games/sovereign-pact/progression.ts";
 import { calm, campaign } from "../../../shared/games/sovereign-pact/testing.ts";
 import SovereignPact from "./index";
 
@@ -44,6 +45,8 @@ describe("events (Josh's playtest: name your own Scion; then see what it did)", 
 
   it("when the outcome starts a fight, tells it first and opens the battle on 'To arms' (Josh 2026-11-03)", () => {
     let s = atChapel();
+    // Strong enough to win the fight, whichever Scions the House was dealt.
+    for (const p of s.people) while (p.status === "scion" && p.level < 15) Object.assign(p, levelUp(p));
     s.expedition!.seen.push("the_toll");
     s.expedition!.event = { id: "the_toll", votes: [null] };
     const r = g.applyMove(s, "p1", { type: "decide", option: 1 });

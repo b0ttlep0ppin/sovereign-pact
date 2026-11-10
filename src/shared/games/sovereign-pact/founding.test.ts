@@ -127,4 +127,18 @@ describe("founding the Houses (§5.1)", () => {
     s = move(s, "p1", { type: "swear", ambition: 0 });
     expect(s.houses[0]!.debt).toBe(HOUSE_TRAIT_BY_ID.get("debt_ridden")!.economy!.startDebt);
   });
+
+  it("gives traits' starting resources when the campaign begins (Josh 2026-11-10)", () => {
+    const start = (traits: string[]) => {
+      let s = fresh(1);
+      s = move(s, "p1", { type: "design", house: { traits } });
+      s = move(s, "p1", { type: "swear", ambition: 0 });
+      return s.houses[0]!;
+    };
+    const plain = start(["sun_blessed", "iron_discipline", "pious", "thrifty", "debt_ridden", "drunkards"]);
+    const rich = start(["deep_coffers", "iron_discipline", "deep_delvers", "charcoal_burners", "debt_ridden", "drunkards"]);
+    expect(rich.gold - plain.gold).toBe(HOUSE_TRAIT_BY_ID.get("deep_coffers")!.economy!["start.gold"]);
+    expect((rich.stores.iron ?? 0) - (plain.stores.iron ?? 0)).toBe(10);
+    expect((rich.stores.timber ?? 0) - (plain.stores.timber ?? 0)).toBe(20);
+  });
 });

@@ -6,7 +6,7 @@
 import type { Rng } from "../../rng.ts";
 import { HERALDRY, HOUSE_TRAIT_BY_ID, HOUSE_TRAITS, SEAT_BY_ID, SEATS, type HouseTraitDef } from "./content.ts";
 import { dealAmbition, namesTaken, randomHouse, rollRecruit } from "./generate.ts";
-import { econ } from "./houses.ts";
+import { econ, econEach } from "./houses.ts";
 import { openMuster } from "./muster.ts";
 import { ELEMENTS, type Ambition, type Element, type House, type SovMove, type SovState } from "./state.ts";
 import { forHouses, TUNING } from "./tuning.ts";
@@ -152,6 +152,11 @@ function begin(s: SovState): void {
       delete h.dealt;
       // Debt-Ridden: the creditors followed them through the rift (§5.7).
       h.debt += econ(h, "startDebt");
+      // Traits that bring resources with them: Deep Coffers' Gold, Charcoal Burners' Timber… (Josh 2026-11-10).
+      for (const [m, n] of econEach(h, "start.")) {
+        if (m === "gold") h.gold += n;
+        else h.stores[m] = (h.stores[m] ?? 0) + n;
+      }
       // The Seat's head start (DECISIONS 8ah): a building, or another recruit.
       const seat = SEAT_BY_ID.get(h.seat);
       for (const [b, level] of Object.entries(seat?.start?.buildings ?? {})) h.buildings[b] = Math.max(h.buildings[b] ?? 0, level);

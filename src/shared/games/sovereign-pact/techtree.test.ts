@@ -30,6 +30,8 @@ describe("the Commons tech tree: the Flesh branch", () => {
     const s = campaign(1, 4);
     s.commons.built = {};
     const p = s.people.find((x) => x.status === "scion")!;
+    // No traits of their own to round against (Glass Jaw's Head −25%…).
+    p.traits = [];
     const plain = scionCombatant(p, { id: 1, col: 0, row: 0 });
     s.commons.built = { armour_of_the_pact: 2, bonesetters_hall: 1 };
     const fitted = scionCombatant(p, { id: 1, col: 0, row: 0, commons: commonsMods(s) });

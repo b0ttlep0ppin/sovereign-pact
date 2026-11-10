@@ -6,7 +6,7 @@ import { ATTACK, act, mpCost } from "./combat/battle.ts";
 import { caps, enemyCombatant, newBattle, scionCombatant } from "./combat/build.ts";
 import { hitChance, strike } from "./combat/damage.ts";
 import { atLevel } from "./combat/fixtures.ts";
-import { ABILITY_SETS, HOUSE_TRAITS, JOB_BY_ID } from "./content.ts";
+import { ABILITY_SETS, HOUSE_TRAIT_BY_ID, HOUSE_TRAITS, JOB_BY_ID } from "./content.ts";
 import { promote, rollRecruit } from "./generate.ts";
 import { jpFor } from "./assign.ts";
 import { byPct, houseEffects, opposite } from "./houses.ts";
@@ -166,6 +166,16 @@ describe("House traits in the economy (§5.7)", () => {
     const base = upkeepDue(s, 0).gold;
     s.houses[0]!.traits = ["gluttonous"];
     expect(upkeepDue(s, 0).gold).toBe(byPct(base, 10));
+  });
+
+  it("yields resources each Year by trait, tithed like any income (Josh 2026-11-10)", () => {
+    const iron = (traits: string[]) => {
+      const s = solo(traits);
+      const before = s.houses[0]!.stores.iron ?? 0;
+      return (seal(s).houses[0]!.stores.iron ?? 0) - before;
+    };
+    const made = HOUSE_TRAIT_BY_ID.get("deep_delvers")!.economy!["yield.iron"]!;
+    expect(iron(["deep_delvers"]) - iron([])).toBe(made - Math.round(made * TUNING.economy.tithe));
   });
 
   it("charges Debt-Ridden interest, pays debts down from Gold, and lets Light-Fingered Servants steal", () => {

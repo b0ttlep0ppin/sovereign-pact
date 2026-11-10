@@ -218,16 +218,16 @@ Rules:
 | Students of the Arcane | "Every child learns the words before they learn to walk." | Acuity growth +15%; max MP +10%; Magus, Conjurer, Abjurer Job XP +15% |
 | Iron Discipline | "Ranks hold. Ranks always hold." | Resilience growth +10%; Wait/Defend costs 50 CT instead of 60 |
 | Martial Lineage | "Every portrait in the hall holds a blade." | Might growth +10%; Arms Durability +15%; Soldier, Knight, Ravager, Sword Saint Job XP +15% |
-| Old Blood of Kings | "Their claim is older than the throne." | Recruit pool +1; Charm resist +25%; Lineage score +10% |
-| Forge-Born | "Soot in the cradle, sparks at the wedding." | Fire +15%; crafting costs −15%; Might growth +5% |
+| Old Blood of Kings | "Their claim is older than the throne." | Recruit pool +1; Charm resist +25%; Lineage score +10%; start with 30 more Gold |
+| Forge-Born | "Soot in the cradle, sparks at the wedding." | Fire +15%; crafting costs −15%; Might growth +5%; +4 Iron each Year |
 | Silver Tongues | "They never lie. They never need to." | Intrigue score +10%; your Crisis pledges can never be leaked; persuasion-tagged events resolve in your favor more often |
 | Salt in the Veins | "Born on decks, buried at sea." | Water +20%; Legs Durability +10%; sea and drowning events offer an extra option |
-| Hunters of the Deep Wood | "They hear the forest breathe." | Wind +15%; bow and thrown weapon accuracy +10%; Legs Durability +10% |
-| Faithful of the Pale Saint | "Their prayers are answered. Not always kindly." | Sanity +20%; mental ailment resist +15%; Soothsayer Job XP +15% |
+| Hunters of the Deep Wood | "They hear the forest breathe." | Wind +15%; bow and thrown weapon accuracy +10%; Legs Durability +10%; +4 Timber each Year |
+| Faithful of the Pale Saint | "Their prayers are answered. Not always kindly." | Sanity +20%; mental ailment resist +15%; Soothsayer Job XP +15%; +4 Essence each Year |
 | Long-Lived | "Grandmother fought in the war before the last war." | Mentors teach 50% faster; injuries heal 1 Year sooner; Retired Scions keep their passives |
 | Many-Branched Tree | "There is always another cousin." | +1 recruit arrival every other Year; recruit growths −5% |
 | Lucky Star | "Fortune has a favorite, and it's them." | Tarot drawn twice, keep the better; crit chance +3%; Gambler Job XP +20% |
-| Deep Coffers | "Old mines, older debts owed to them." | Income +20%; Earth +15% |
+| Deep Coffers | "Old mines, older debts owed to them." | Income +20%; start with 40 more Gold; Earth +15% |
 | Fleet of Foot | "Couriers, outriders, thieves." | 30% of recruits roll the innate trait Fleet (+1 Speed); move CT cost −10 |
 | Unbroken | "Whatever happens, they get back up." | Injury table rolls +1 step on all locations |
 | Beastmasters | "The kennels are larger than the house." | Conjurer summons +15% HP; beast-tagged events offer an extra option; Alterer beast forms last 20% longer |
@@ -258,10 +258,15 @@ Rules:
 | Tinkerers' Blood | "They take apart clocks for fun." | Tinkerers start battles with +1 Component |
 | Dicers | "They bet on everything, including you." | Gambler dice: one reroll per battle |
 | Horse-Lords | "They ride before they walk." | Travel and pursuit events offer an extra option; escape checks +20% |
-| Grave-Keepers | "They know every name in the cemetery." | Death-tagged events offer an extra option; Sanity loss from corpses −50% |
+| Grave-Keepers | "They know every name in the cemetery." | Death-tagged events offer an extra option; Sanity loss from corpses −50%; +4 Essence each Year |
 | Ink and Seal | "Every bargain is written down." | Your deals are always public and count double for Renown; your Wards' Loyalty swings are halved |
 | Hound-Loyal | "Their servants would die for them, and have." | Wards placed with you are 20% less likely to leak intel |
 | Sure-Footed | "They have never fallen. Not once." | Knockdown and Slow resist +25% |
+| Charcoal Burners | "The woods burn slow for them, and the smoke never leaves their clothes." | Start with 20 more Timber; +4 Timber each Year |
+| Stonecutters | "They know which stone will bear a wall and which will bear a grave." | Start with 15 more Stone; +4 Stone each Year |
+| Full Cellars | "Their cellars were full the winter everyone else starved. Nobody asks how." | Start with 30 more Grain; +4 Grain each Year |
+| Keepers of the Vigil | "A candle burns in every window of their halls, and something in the dark is grateful for it." | +4 Essence each Year; Sanity +5% |
+| Deep Delvers | "They dug too deep once. They have not stopped digging." | Start with 10 Iron; +4 Iron each Year |
 
 #### Major Flaws
 
@@ -309,7 +314,7 @@ Rules:
 | Demon-Blooded | "A bargain sealed in the family's blood." | Dark +30%, Fire +15%; Might and Acuity growth +10%. Holy −40%; holy-faction events turn hostile; possession events can target your Scions | Horns, red or ashen skin, ember eyes |
 | Grave-Touched | "Their dead don't stay buried. Neither, quite, do they." | Dark +40%; Poison and Death resist +50%. Healing received −25%; no natural HP regeneration on expeditions | Pallid or grey skin, sunken eyes; rare skeletal features |
 | Fae-Changeling | "Not every child in the nursery is theirs." | 50% of recruits roll Fleet; Charm resist +50%; Wind +20%. Cannot wear heavy armor; changeling events may swap a recruit | Pointed ears, odd-colored eyes |
-| Wyrm-Blooded | "Scales under the skin." | Max HP +15%; Fire +25%. Relics can never leave the House (no gifts or trades); Treasury upkeep +10% | Scaled patches, slit pupils, rare small horns |
+| Wyrm-Blooded | "Scales under the skin." | Max HP +15%; Fire +25%; start with 60 more Gold (the hoard). Relics can never leave the House (no gifts or trades); Treasury upkeep +10% | Scaled patches, slit pupils, rare small horns |
 | Moon-Cursed | "On certain nights, the hounds don't bark at them. They flee." | Alterer werewolf form for any Scion as an innate ability; Might growth +10%. Full-moon events: chance of uncontrolled frenzy in town | Wolfish features, rare tails |
 | Hollow-Eyed Seers | "They see what's coming. It doesn't help them sleep." | Once per event, preview one outcome; Acuity growth +15%. Sanity −25% | Pale eyes, eye-markings |
 | Sanguine | "They drink to their health. Not wine." | Melee attacks drain 5% of damage as HP. Holy −40%; daylight events cost HP | Very pale skin, red eyes |
