@@ -2,6 +2,10 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-10 (implementation, Milestone 8dn): a bigger pool of given names
+
+Josh: **"need a bigger pool of names, seeing a lot of repeats"**. The given names grow from 44 women's and 42 men's to 189 and 198, all medieval European (English, Norman, Frankish, Norse, Occitan, Italian, Welsh and Irish), none shared between the lists or with House names or other content. A new recruit's name is also kept from the dead in every House's Chronicle (`namesTaken`), not only from the living and the muster.
+
 ## 2026-11-10 (implementation, Milestone 8dm): rewards grow with foes slain and with the Years
 
 Josh: **"after battle / expedition rewards could be juiced slightly, scaling with number of enemies killed. Probably should get 0.8 to 1.5 levels on average for an expedition, and maybe 90-150 jp on average, probably like 2/3rds that for a rift sortie"**, then **"can gradually increase exp and jp rewards over time but thats like year 1"**.

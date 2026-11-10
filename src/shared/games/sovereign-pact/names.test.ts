@@ -2,6 +2,9 @@
 // reads statuses as words ("is asleep", "gains Protect").
 import { describe, expect, it } from "vitest";
 import { statusLine } from "./combat/render.ts";
+import { createRng } from "../../rng.ts";
+import { NAMES } from "./content.ts";
+import { namesTaken, rollRecruit } from "./generate.ts";
 import { campaign, sealYear } from "./testing.ts";
 
 const firstNames = (names: string[]): string[] => names.map((n) => n.split(" ")[0]!);
@@ -16,6 +19,23 @@ describe("names", () => {
         expect(new Set(firstNames(all)).size, `seed ${seed}, Year ${s.year}`).toBe(all.length);
         s = sealYear(s);
       }
+    }
+  });
+
+  it("holds enough names for a campaign, and keeps the Chronicled dead's names off new recruits (Josh 2026-11-10)", () => {
+    for (const sex of ["f", "m"] as const) {
+      expect(NAMES.given[sex].length).toBeGreaterThanOrEqual(180);
+      expect(new Set(NAMES.given[sex]).size).toBe(NAMES.given[sex].length);
+    }
+    const s = campaign(2, 1);
+    const dead = s.people[0]!;
+    s.people = s.people.slice(1);
+    s.houses[0]!.chronicle.push({ name: dead.name, year: 1, cause: "test", level: 1 });
+    expect(namesTaken(s).has(dead.name)).toBe(true);
+    const free = NAMES.given[dead.sex].filter((n) => !namesTaken(s).has(n));
+    for (let seed = 1; seed <= 40; seed++) {
+      const p = rollRecruit(createRng(seed), 999, 0, undefined, new Set([...namesTaken(s), ...free.slice(1)]));
+      if (p.sex === dead.sex) expect(p.name).toBe(free[0]);
     }
   });
 });

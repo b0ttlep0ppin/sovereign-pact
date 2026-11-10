@@ -72,7 +72,8 @@ export function dealAmbition(rng: Rng): Ambition {
  */
 export function rollRecruit(rng: Rng, id: number, house: number, blood?: Pick<House, "traits" | "element" | "bane">, taken?: Set<string>): Person {
   const sex = rng.int(2) === 0 ? "f" : "m";
-  // No two living people share a given name while the list lasts (Josh saw two Ursulas in one muster).
+  // No two living people share a given name while the list lasts (Josh saw two Ursulas in one muster), nor
+  // the living and the Chronicled dead; the list is long enough for a whole campaign (Josh 2026-11-10).
   const free = NAMES.given[sex].filter((x) => !taken?.has(x));
   const [lo, hi] = TUNING.recruits.baseRoll;
   const potential = rollPotential(rng);
@@ -164,5 +165,6 @@ export function randomHouse(rng: Rng, takenNames: readonly string[], takenColors
   };
 }
 
-/** Every given name in use: the living, and the muster's volunteers. */
-export const namesTaken = (s: Pick<SovState, "people"> & Partial<Pick<SovState, "muster">>): Set<string> => new Set([...s.people, ...(s.muster?.pool ?? [])].map((p) => p.name));
+/** Every given name in use: the living, the muster's volunteers, and the dead in the Houses' Chronicles (so a fallen Scion's name is not worn again soon). */
+export const namesTaken = (s: Pick<SovState, "people"> & Partial<Pick<SovState, "muster" | "houses">>): Set<string> =>
+  new Set([...s.people, ...(s.muster?.pool ?? []), ...(s.houses ?? []).flatMap((h) => h.chronicle ?? [])].map((p) => p.name));
