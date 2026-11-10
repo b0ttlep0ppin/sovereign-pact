@@ -1,25 +1,25 @@
 {
   "id": "shrine_fairy",
-  "name": "Fairy",
+  "name": "Gale Shade",
   "pool": "shrine_of_six",
-  "tags": ["fey", "flyer"],
+  "tags": ["elemental", "flyer"],
   "role": "support",
   "size": [1, 1],
   "levels": [4, 10],
   "stats": {"hp": 0.7, "speed": 13},
   "affinity": {"wind": 50, "earth": -50},
   "abilities": [
-    {"id": "pixie_dust", "shape": "single", "side": "ally", "power": 1.2, "kind": "heal"},
+    {"id": "stinging_grit", "shape": "single", "side": "ally", "power": 1.2, "kind": "heal"},
     {"id": "wind_blessing", "shape": "single", "side": "ally", "power": 0, "kind": "support", "statuses": [{"id": "haste", "chance": 100, "ticks": 200}], "cooldown": 3},
-    {"id": "prank", "shape": "single", "side": "player", "power": 0.3, "kind": "magic", "statuses": [{"id": "confusion", "chance": 30, "ticks": 200}], "reach": "ranged"}
+    {"id": "cutting_gust", "shape": "single", "side": "player", "power": 0.3, "kind": "magic", "statuses": [{"id": "confusion", "chance": 30, "ticks": 200}], "reach": "ranged"}
   ],
   "gambits": [
-    {"if": "ally.hp<0.5", "do": "pixie_dust", "target": "ally_lowest_hp"},
+    {"if": "ally.hp<0.5", "do": "stinging_grit", "target": "ally_lowest_hp"},
     {"if": "turn%3==1", "do": "wind_blessing", "target": "ally_lowest_hp"},
-    {"do": "prank", "target": "highest_might"}
+    {"do": "cutting_gust", "target": "highest_might"}
   ],
   "bestiary": {
-    "lore": "The Wind shrine's fairies play with travellers. The game is not kind.",
+    "lore": "The Wind shrine's shades play with travellers. The game is not kind.",
     "weakness": "Earth. She flies."
   }
 }

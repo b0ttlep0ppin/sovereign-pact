@@ -1,28 +1,22 @@
 {
   "hazards": [
     {
-      "id": "explosive_barrel", "name": "Explosive Barrel", "side": "enemy", "cols": [0, 1, 2], "hp": 0, "weight": 3,
+      "id": "explosive_barrel", "name": "Devil Egg", "side": "enemy", "cols": [0, 1, 2], "hp": 0, "weight": 3,
       "trigger": { "kind": "destroyed" },
       "effect": { "id": "barrel_blast", "shape": "burst:3x3", "side": "player", "power": 1.6, "element": "fire", "statuses": [{ "id": "burn", "chance": 40, "ticks": 200 }] },
-      "lore": "Black powder, or something like it. It will not wait for you to decide who it is for."
+      "lore": "Something inside is nearly ready to hatch. It will not wait for you to decide who it is for."
     },
     {
-      "id": "poison_gas_crate", "name": "Poison Gas Crate", "side": "enemy", "cols": [1], "hp": 0.5, "weight": 2,
+      "id": "poison_gas_crate", "name": "Rot Bloom", "side": "enemy", "cols": [1], "hp": 0.5, "weight": 2,
       "trigger": { "kind": "every", "ticks": 200 },
       "effect": { "id": "gas_cloud", "shape": "column:F", "side": "player", "power": 0.2, "statuses": [{ "id": "poison", "chance": 70, "ticks": 300 }] },
-      "lore": "It hisses every few breaths. Breaking it stops the hissing."
+      "lore": "It breathes out a yellow cloud every few breaths. Cutting it down stops the breathing."
     },
     {
       "id": "alarm_bell", "name": "Alarm Bell", "side": "enemy", "cols": [2], "hp": 0.4, "weight": 2, "bait": true,
       "trigger": { "kind": "struck_or_timer", "ticks": 300 },
       "reinforce": 2,
       "lore": "Strike it and it rings. Leave it and they ring it anyway."
-    },
-    {
-      "id": "rotating_saw", "name": "Rotating Saw", "side": "enemy", "cols": [0], "hp": 0.6, "weight": 2,
-      "trigger": { "kind": "front_row", "ticks": 100 },
-      "effect": { "id": "saw_bite", "shape": "single", "side": "player", "power": 0.6, "locationBias": "arms" },
-      "lore": "It spins in its lane and takes a bite of whoever stands in front of it."
     },
     {
       "id": "rockfall", "name": "Rockfall", "side": "party", "weight": 2, "telegraph": true,

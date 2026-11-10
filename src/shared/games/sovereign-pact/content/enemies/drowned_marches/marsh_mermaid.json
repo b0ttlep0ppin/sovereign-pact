@@ -1,8 +1,8 @@
 {
   "id": "marsh_mermaid",
-  "name": "Mermaid",
+  "name": "Deep Priest",
   "pool": "drowned_marches",
-  "tags": ["aquatic", "fey"],
+  "tags": ["aquatic", "humanoid"],
   "role": "caster",
   "size": [1, 1],
   "levels": [4, 7],
@@ -10,16 +10,16 @@
   "affinity": {"water": 25, "wind": -25},
   "abilities": [
     {"id": "maelstrom", "shape": "burst:3x3", "side": "player", "power": 1.1, "kind": "magic", "charge": 100, "telegraph": true, "cooldown": 3, "element": "water"},
-    {"id": "pearl_song", "shape": "single", "side": "ally", "power": 1.4, "kind": "heal"},
+    {"id": "tide_blessing", "shape": "single", "side": "ally", "power": 1.4, "kind": "heal"},
     {"id": "bubble_bolt", "shape": "single", "side": "player", "power": 0.9, "kind": "magic", "statuses": [{"id": "slow", "chance": 30, "ticks": 200}], "element": "water", "reach": "ranged"}
   ],
   "gambits": [
     {"if": "turn%3==1", "do": "maelstrom", "target": "densest_cluster"},
-    {"if": "ally.hp<0.4", "do": "pearl_song", "target": "ally_lowest_hp"},
+    {"if": "ally.hp<0.4", "do": "tide_blessing", "target": "ally_lowest_hp"},
     {"do": "bubble_bolt", "target": "lowest_hp"}
   ],
   "bestiary": {
-    "lore": "Not kind, not cruel; curious, and very old.",
+    "lore": "A priest of the drowned gods, very old and very patient. It sings the water up around its enemies.",
     "weakness": "Wind. Scatter before the maelstrom."
   }
 }

@@ -1,6 +1,6 @@
 {
   "id": "arcana_empress",
-  "name": "The Empress of Thorns",
+  "name": "The Emperor of Thorns",
   "pool": "hollow_wood",
   "tags": ["divine", "plant", "arcana"],
   "role": "boss",
@@ -21,15 +21,15 @@
     {"do": "thorned_embrace", "target": "nearest"}
   ],
   "phases": [
-    {"at": "hp<=0.5", "name": "Full Bloom", "speed": 11, "say": "(Every thorn on her opens into a flower, and every flower has teeth.)", "gambits": [{"if": "turn%2==0", "do": "blossom_storm", "target": "densest_cluster"}, {"do": "thorned_embrace", "target": "lowest_hp"}]}
+    {"at": "hp<=0.5", "name": "Full Bloom", "speed": 11, "say": "(Every thorn on him opens into a flower, and every flower has teeth.)", "gambits": [{"if": "turn%2==0", "do": "blossom_storm", "target": "densest_cluster"}, {"do": "thorned_embrace", "target": "lowest_hp"}]}
   ],
   "say": {
-    "open": "(The wood leans toward her, the way a field leans toward the sun.)",
-    "death": "(She wilts, and the wood sighs.)"
+    "open": "(The wood leans toward him, the way a field leans toward the sun.)",
+    "death": "(He wilts, and the wood sighs.)"
   },
   "bestiary": {
-    "lore": "The card of abundance, grown wild in the Hollow Wood: a mother of thorns who will not let anything leave her garden.",
-    "weakness": "Fire, heavily. Burn through her regrowth.",
-    "pattern": "Thorns root and bleed the nearest; a sleeping blossom storm on three rows every third turn; she regrows when hurt. In Full Bloom the storm comes every other turn."
+    "lore": "The card of abundance, grown wild in the Hollow Wood: a lord of thorns who will not let anything leave his garden.",
+    "weakness": "Fire, heavily. Burn through his regrowth.",
+    "pattern": "Thorns root and bleed the nearest; a sleeping blossom storm on three rows every third turn; he regrows when hurt. In Full Bloom the storm comes every other turn."
   }
 }

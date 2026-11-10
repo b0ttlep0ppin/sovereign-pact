@@ -1,6 +1,6 @@
 {
   "id": "arcana_judgement",
-  "name": "The Last Trumpeter",
+  "name": "The Knight of Judgement",
   "pool": "shrine_of_six",
   "tags": ["divine", "humanoid", "armored", "arcana"],
   "role": "boss",
@@ -26,11 +26,11 @@
     {"at": "hp<=0.5", "name": "The Graves Open", "speed": 11, "say": "Rise. All of you. Rise and be judged.", "gambits": [{"if": "turn%3==0", "do": "last_trumpet"}, {"if": "turn%4==1", "do": "rise_again"}, {"do": "verdict", "target": "marked"}]}
   ],
   "say": {
-    "open": "(A soldier in white stands at the shrine's door with a trumpet, and lifts it to his lips.)",
+    "open": "(A knight in white stands at the shrine's door. Somewhere above him, a trumpet sounds.)",
     "death": "(The trumpet falls silent. The dead lie down again.)"
   },
   "bestiary": {
-    "lore": "The card of reckoning and rising: a herald of the shrine who sounds the last call, and rises from every fall to sound it again.",
+    "lore": "The card of reckoning and rising: a knight of the shrine who sounds the last call, and rises from every fall to sound it again.",
     "weakness": "Dark, heavily. Interrupt the trumpet while it charges.",
     "pattern": "Every fourth turn the last trumpet on everyone (Deaf, sometimes Stun); verdicts on the weakest armor between, and every Front struck on the odd turns; he rises when hurt. When the graves open the trumpet sounds every third turn."
   }

@@ -1,6 +1,6 @@
 {
   "id": "pit_demon_gunner",
-  "name": "Demon Gunner",
+  "name": "Demon Artillerist",
   "pool": "pit",
   "tags": ["demon", "humanoid"],
   "role": "artillery",

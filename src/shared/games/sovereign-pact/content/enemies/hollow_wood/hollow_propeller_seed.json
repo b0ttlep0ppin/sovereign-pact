@@ -1,18 +1,18 @@
 {
   "id": "hollow_propeller_seed",
-  "name": "Propeller Seed",
+  "name": "Night Moth",
   "pool": "hollow_wood",
-  "tags": ["plant", "flyer"],
+  "tags": ["insect", "flyer"],
   "role": "artillery",
   "size": [1, 1],
   "levels": [1, 4],
   "stats": {"hp": 0.7, "speed": 10},
   "affinity": {"earth": 25, "water": 25, "fire": -25},
   "abilities": [
-    {"id": "seed_drop", "shape": "lob", "side": "player", "power": 0.9, "reach": "ranged"}
+    {"id": "scale_dust", "shape": "lob", "side": "player", "power": 0.9, "reach": "ranged"}
   ],
   "gambits": [
-    {"do": "seed_drop", "target": "lob"}
+    {"do": "scale_dust", "target": "lob"}
   ],
   "bestiary": {
     "lore": "A seed the size of a shield, spinning down from the canopy.",

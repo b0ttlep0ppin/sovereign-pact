@@ -1,6 +1,6 @@
 {
   "id": "court_enemy_soldier",
-  "name": "Enemy Soldier",
+  "name": "Levy Pikeman",
   "pool": "apostate_court",
   "tags": ["humanoid", "reach"],
   "role": "fodder",

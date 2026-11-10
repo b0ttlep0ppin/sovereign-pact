@@ -1,20 +1,20 @@
 {
   "id": "beast_weasel_ninja",
-  "name": "Weasel Ninja",
+  "name": "Clawed Stalker",
   "pool": "beast_lands",
-  "tags": ["beastfolk"],
+  "tags": ["beast"],
   "role": "lurker",
   "size": [1, 1],
   "levels": [1, 4],
   "stats": {"speed": 14},
   "affinity": {"fire": -25},
   "abilities": [
-    {"id": "shadow_cut", "shape": "single", "side": "player", "power": 1.1, "leap": true, "crit": 15},
+    {"id": "raking_claws", "shape": "single", "side": "player", "power": 1.1, "leap": true, "crit": 15},
     {"id": "vanish", "shape": "self", "side": "self", "power": 0, "kind": "support", "statuses": [{"id": "hidden", "chance": 100, "ticks": 100}], "cooldown": 3}
   ],
   "gambits": [
     {"if": "self.hp<0.5", "do": "vanish"},
-    {"do": "shadow_cut", "target": "empty_cell"}
+    {"do": "raking_claws", "target": "empty_cell"}
   ],
   "bestiary": {
     "lore": "It is in the formation before anyone sees it move.",

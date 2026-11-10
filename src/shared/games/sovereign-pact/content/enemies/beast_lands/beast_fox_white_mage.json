@@ -1,25 +1,25 @@
 {
   "id": "beast_fox_white_mage",
-  "name": "Fox White Mage",
+  "name": "Hedge Hag",
   "pool": "beast_lands",
-  "tags": ["beastfolk"],
+  "tags": ["humanoid", "cursed"],
   "role": "support",
   "size": [1, 1],
   "levels": [2, 6],
   "stats": {"speed": 12},
   "affinity": {"fire": 25, "water": -25},
   "abilities": [
-    {"id": "fox_fire_balm", "shape": "single", "side": "ally", "power": 1.6, "kind": "heal", "element": "holy"},
+    {"id": "rot_poultice", "shape": "single", "side": "ally", "power": 1.6, "kind": "heal", "element": "holy"},
     {"id": "veil", "shape": "single", "side": "ally", "power": 0, "kind": "support", "statuses": [{"id": "protect", "chance": 100, "ticks": 300}], "cooldown": 3},
-    {"id": "foxfire", "shape": "single", "side": "player", "power": 0.8, "kind": "magic", "element": "fire", "reach": "ranged"}
+    {"id": "witchfire", "shape": "single", "side": "player", "power": 0.8, "kind": "magic", "element": "fire", "reach": "ranged"}
   ],
   "gambits": [
-    {"if": "ally.hp<0.6", "do": "fox_fire_balm", "target": "ally_lowest_hp"},
+    {"if": "ally.hp<0.6", "do": "rot_poultice", "target": "ally_lowest_hp"},
     {"if": "turn%3==0", "do": "veil", "target": "ally_lowest_hp"},
-    {"do": "foxfire", "target": "lowest_hp"}
+    {"do": "witchfire", "target": "lowest_hp"}
   ],
   "bestiary": {
-    "lore": "A beast-folk healer. Some say she treats Scions too, for a price.",
+    "lore": "A hag of the hedgerows who tends the pack for a share of the kill. Some say she treats Scions too, for a price.",
     "weakness": "Silence her. Water douses the foxfire."
   }
 }

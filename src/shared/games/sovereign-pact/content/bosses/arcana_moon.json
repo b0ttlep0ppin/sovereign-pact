@@ -1,8 +1,8 @@
 {
   "id": "arcana_moon",
-  "name": "The Smiling Moon",
+  "name": "The Moon-Hound",
   "pool": "faceless_city",
-  "tags": ["spirit", "horror", "flyer", "arcana"],
+  "tags": ["spirit", "horror", "beast", "arcana"],
   "role": "boss",
   "size": [2, 2],
   "at": "E2",
@@ -21,11 +21,11 @@
     {"do": "moonbeam", "target": "back_random"}
   ],
   "phases": [
-    {"at": "hp<=0.5", "name": "The Wide Grin", "speed": 11, "say": "(The smile widens past the edges of its face.)", "gambits": [{"if": "turn%3==0", "do": "lullaby_of_tides"}, {"do": "false_light", "target": "densest_row"}]}
+    {"at": "hp<=0.5", "name": "The Long Howl", "speed": 11, "say": "(It throws back its head, and the moon answers.)", "gambits": [{"if": "turn%3==0", "do": "lullaby_of_tides"}, {"do": "false_light", "target": "densest_row"}]}
   ],
-  "say": {"open": "(A smile hangs in the dark where the sky should be.)", "death": "(The smile fades last of all.)"},
+  "say": {"open": "(A hound with the moon in its eyes waits at the edge of the road.)", "death": "(It bays once, and the moon goes dark.)"},
   "bestiary": {
-    "lore": "The card of illusion and the long night: a moon that smiles at travelers and leads them off the road.",
+    "lore": "The card of illusion and the long night: a hound that bays at the moon and leads travelers off the road.",
     "weakness": "Fire. Keep Sanity high; a sleeping party is a feast.",
     "pattern": "Every fourth turn a lullaby on everyone (Sanity, Sleep); false light confuses and blinds a row; moonbeams hit the Back. At half, the lullaby every third turn."
   }
