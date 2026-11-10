@@ -9,11 +9,11 @@
     10
   ],
   "title": "The Shrine Cat",
-  "text": "A fat old cat sleeps on the altar steps, grey and scarred, one eye milky. The priests say it is holy, that it has lived here longer than any of them. It opens its good eye and looks at you. It is very hungry.",
+  "text": "A fat old cat sleeps on the altar steps, grey and scarred, one eye milky. The priests say it is holy and has lived here longer than any of them. It opens its good eye and looks at you. It is very hungry.",
   "options": [
     {
       "id": "feed",
-      "label": "Feed the holy cat. It has outlived every priest here.",
+      "label": "Feed the holy cat; it has outlived every priest here.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It purrs, a sound too deep for its size. The priests bless the party.",
+          "text": "It purrs, a sound too deep for its size, and the priests bless the party.",
           "effects": [
             {
               "to": "party",
@@ -37,7 +37,7 @@
     },
     {
       "id": "pet",
-      "label": "Whoever it chooses pets it, and hopes to be chosen kindly.",
+      "label": "Whoever it chooses pets it, hoping to be chosen kindly.",
       "rule": "scion:random",
       "tags": [
         "reckless"
@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "It allows this, and blinks its milky eye at them.",
+          "text": "It allows this, blinking slowly at them.",
           "effects": [
             {
               "blessing": {
@@ -69,7 +69,7 @@
     },
     {
       "id": "shoo",
-      "label": "Shoo it off the steps. It is only a cat.",
+      "label": "Shoo it off the steps; it is only a cat.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -77,7 +77,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The priests are horrified, and the cat watches you all the way out.",
+          "text": "The priests are horrified. The cat watches you all the way out.",
           "effects": [
             {
               "score": {

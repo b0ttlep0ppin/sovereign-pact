@@ -9,11 +9,11 @@
     6
   ],
   "title": "The Rutting Elk",
-  "text": "Two great elk lock antlers in the clearing, bellowing, steam pouring from their nostrils, hooves tearing the earth. Too lost in their fight to notice you. One is bleeding badly from the neck. Shed antlers lie in the churned mud between them.",
+  "text": "Two great elk lock antlers in the clearing, bellowing, steam pouring from their nostrils, hooves tearing the earth. They are too lost in their fight to notice you. One is bleeding badly from the neck. Shed antlers lie in the churned mud between them.",
   "options": [
     {
       "id": "wait",
-      "label": "Wait for them to finish. No one steps between two bulls.",
+      "label": "Wait for them to finish; no one steps between two bulls.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The loser limps away. The winner bellows at you, and goes, and its challenge stays in your blood.",
+          "text": "The loser limps away. The winner bellows at you before it goes, and its challenge stays in your blood.",
           "effects": [
             {
               "to": "party",
@@ -41,7 +41,7 @@
       "outcomes": [
         {
           "w": 65,
-          "text": "A fine antler, and no harm done.",
+          "text": "It is a fine antler, taken without harm.",
           "effects": [
             {
               "resources": {
@@ -53,7 +53,7 @@
         },
         {
           "w": 35,
-          "text": "An elk turns, antlers first.",
+          "text": "An elk turns on them, antlers first.",
           "effects": [
             {
               "durability": -25,
@@ -73,7 +73,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Meat for the road, and the other elk charges.",
+          "text": "You have meat for the road, but the other elk charges.",
           "effects": [
             {
               "encounter": {

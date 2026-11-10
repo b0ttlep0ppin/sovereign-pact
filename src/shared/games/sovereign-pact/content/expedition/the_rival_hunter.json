@@ -9,11 +9,11 @@
     10
   ],
   "title": "The Rival Hunter",
-  "text": "Another hunter, alone, after the same quarry, and far better equipped than you: a bow of black horn, a coat of scales, a pack of trophies. They suggest working together for an even split. Their hand never strays far from the bow.",
+  "text": "Another hunter, alone, is after the same quarry and far better equipped than you, with a bow of black horn, a coat of scales and a pack of trophies. They suggest working together for an even split. Their hand never strays far from the bow.",
   "options": [
     {
       "id": "join",
-      "label": "Hunt together, for an even split, and keep an eye on that bow.",
+      "label": "Hunt together for an even split, keeping an eye on that bow.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -36,7 +36,7 @@
         },
         {
           "w": 20,
-          "text": "At the end they take the trophy and run, and you never saw the bow come up.",
+          "text": "At the end they take the trophy and run. You never saw the bow come up.",
           "effects": [
             {
               "to": "party",
@@ -48,7 +48,7 @@
     },
     {
       "id": "race",
-      "label": "The quickest races them to the quarry, to take the kill for the House.",
+      "label": "The quickest races them to the quarry to take the kill for the House.",
       "rule": "scion:highest:speed",
       "tags": [
         "bold"
@@ -56,7 +56,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "You get there first, and they arrive in time to watch.",
+          "text": "You get there first. They arrive in time to watch.",
           "effects": [
             {
               "skip": 1
@@ -72,7 +72,7 @@
     },
     {
       "id": "rob",
-      "label": "Rob them of their fine gear. A lone hunter out here will not be missed.",
+      "label": "Rob them of their fine gear; a lone hunter out here will not be missed.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -80,7 +80,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Very good gear. They will not be needing it, and you do not look back.",
+          "text": "The gear is very good. They will not be needing it, and you do not look back.",
           "effects": [
             {
               "item": {

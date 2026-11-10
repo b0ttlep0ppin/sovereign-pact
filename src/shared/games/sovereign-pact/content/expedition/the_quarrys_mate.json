@@ -9,11 +9,11 @@
     10
   ],
   "title": "The Quarry's Mate",
-  "text": "The quarry is not alone. Its mate shadows the party through the trees, never quite seen, a shape at the edge of the light. It is watching for the one who strikes first. When you stop, it stops.",
+  "text": "The quarry is not alone. Its mate shadows the party through the trees, never quite seen, a shape at the edge of the light, watching for the one who strikes first. When you stop, it stops.",
   "options": [
     {
       "id": "target",
-      "label": "The one it hunts walks alone as bait, to draw it out of the trees.",
+      "label": "The one it hunts walks alone as bait to draw it out of the trees.",
       "rule": "scion:most_targeted|scion:highest:resilience",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It strikes out of nowhere, and you strike back.",
+          "text": "It strikes out of nowhere, and they strike back.",
           "effects": [
             {
               "encounter": {
@@ -38,7 +38,7 @@
     },
     {
       "id": "together",
-      "label": "Stay close together, and give it no one to single out.",
+      "label": "Stay close together, giving it no one to single out.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -46,7 +46,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It does not attack. It waits, and you all feel it waiting.",
+          "text": "It does not attack. You all feel it waiting.",
           "effects": [
             {
               "to": "party",
@@ -66,7 +66,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Two quarries, then, and this one was ready for you.",
+          "text": "Now there are two quarries, and this one was ready for you.",
           "effects": [
             {
               "encounter": {}

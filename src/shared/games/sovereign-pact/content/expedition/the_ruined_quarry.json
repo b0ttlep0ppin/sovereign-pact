@@ -9,7 +9,7 @@
     10
   ],
   "title": "The Ruined Quarry",
-  "text": "An old quarry, flooded to the brim with green water, cut stone still stacked neatly at the edge as if waiting for a cart. Ropes trail from the stacks down into the water. They are taut, as if something below is holding them.",
+  "text": "An old quarry is flooded to the brim with green water, cut stone still stacked neatly at the edge as if waiting for a cart. Ropes trail from the stacks down into the water. They are taut, as if something below is holding them.",
   "options": [
     {
       "id": "stack",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Already cut, and waiting, and nobody asks who it was waiting for.",
+          "text": "Nobody asks who the stone was waiting for.",
           "effects": [
             {
               "resources": {
@@ -34,7 +34,7 @@
     },
     {
       "id": "dive",
-      "label": "The toughest dives along the taut ropes, to learn what holds them.",
+      "label": "The toughest dives along the taut ropes to learn what holds them.",
       "rule": "scion:highest:resilience",
       "tags": [
         "reckless"
@@ -42,7 +42,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A drowned quarryman's tools and coin, and the quarryman, still holding on.",
+          "text": "They find a drowned quarryman's tools and coin. The quarryman is still holding on.",
           "effects": [
             {
               "resources": {
@@ -56,7 +56,7 @@
     },
     {
       "id": "claim",
-      "label": "Claim the quarry for the House, before another banner goes up.",
+      "label": "Claim the quarry for the House before another banner goes up.",
       "rule": "leader",
       "tags": [
         "bold"

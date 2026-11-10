@@ -9,11 +9,11 @@
     10
   ],
   "title": "The Relic Thieves",
-  "text": "Thieves have robbed a pilgrims' caravan of its relic and fled into the hills, leaving one guard dead in the road. The pilgrims kneel in the dust, tearing their clothes, and beg for help. Their tracks are still fresh.",
+  "text": "Thieves have robbed a pilgrims' caravan of its relic and fled into the hills, leaving one guard dead in the road. The pilgrims kneel in the dust, tearing their clothes and begging for help. The tracks are still fresh.",
   "options": [
     {
       "id": "chase",
-      "label": "Chase the thieves into the hills, and win back what was stolen.",
+      "label": "Chase the thieves into the hills to win back what was stolen.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They fight for it, and lose, and the pilgrims sing your names.",
+          "text": "They fight for it and lose. The pilgrims sing your names.",
           "effects": [
             {
               "encounter": {}
@@ -37,7 +37,7 @@
     },
     {
       "id": "track",
-      "label": "The sharpest eye tracks them to their hideout, to catch them unawares.",
+      "label": "The sharpest tracks them to their hideout to catch them unawares.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Asleep, the lot of them. You take back the relic, and their loot.",
+          "text": "The lot of them are asleep. You take back the relic, along with their loot.",
           "effects": [
             {
               "resources": {
@@ -63,7 +63,7 @@
     },
     {
       "id": "buy",
-      "label": "The Leader buys the relic from the thieves, and keeps it for the House.",
+      "label": "The Leader buys the relic from the thieves and keeps it for the House.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -71,7 +71,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A relic is a relic. The pilgrims will never know who has it.",
+          "text": "The pilgrims will never know who has it.",
           "effects": [
             {
               "resources": {

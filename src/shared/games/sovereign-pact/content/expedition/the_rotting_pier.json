@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "walk",
-      "label": "Walk the rotten planks, carefully, and do not look down.",
+      "label": "Walk the rotten planks carefully, without looking down.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "To the boat, and a short way across the black water.",
+          "text": "You reach the boat, and it is a short way across the black water.",
           "effects": [
             {
               "skip": 1
@@ -30,7 +30,7 @@
         },
         {
           "w": 30,
-          "text": "A plank gives, a leg goes through, and something below brushes it.",
+          "text": "A plank gives and a leg goes through. Something below brushes it.",
           "effects": [
             {
               "to": "party",
@@ -51,7 +51,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Every bad plank found, and everyone across.",
+          "text": "They find every bad plank, and everyone gets across.",
           "effects": [
             {
               "skip": 1
@@ -65,7 +65,7 @@
     },
     {
       "id": "swim",
-      "label": "Swim for the boat, and trust the black water to be only water.",
+      "label": "Swim for the boat, trusting the black water to be only water.",
       "rule": "leader",
       "tags": [
         "reckless"

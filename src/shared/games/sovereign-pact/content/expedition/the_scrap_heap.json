@@ -9,7 +9,7 @@
     10
   ],
   "title": "The Scrap Heap",
-  "text": "A hill of broken arms and armor, rusted swords and split shields and helms with the heads still in them. A tinker squats on top, grinning. The one carrying least may take the most, he says. Those are the rules of the heap.",
+  "text": "A hill of broken arms and armor rises from the ground: rusted swords, split shields, helms with the heads still in them. A tinker squats on top, grinning. By the rules of the heap, he says, the one carrying least may take the most.",
   "options": [
     {
       "id": "light",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They come down loaded, and do not look at the helms.",
+          "text": "They come down loaded, careful not to look at the helms.",
           "effects": [
             {
               "item": {
@@ -39,7 +39,7 @@
     },
     {
       "id": "heavy",
-      "label": "The most armored climbs it anyway. Rules are for tinkers.",
+      "label": "The most armored climbs it anyway; rules are for tinkers.",
       "rule": "scion:heaviest_gear|scion:highest:might",
       "tags": [
         "reckless"
@@ -47,7 +47,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "The heap slides, and takes their legs with it.",
+          "text": "The heap slides, taking their legs with it.",
           "effects": [
             {
               "durability": -40,
@@ -57,7 +57,7 @@
         },
         {
           "w": 50,
-          "text": "They find the tinker's own good hammer, buried deep.",
+          "text": "Buried deep, they find the tinker's own good hammer.",
           "effects": [
             {
               "item": {
@@ -70,7 +70,7 @@
     },
     {
       "id": "trade",
-      "label": "Trade with the tinker for parts, and leave the heap to him.",
+      "label": "Trade with the tinker for parts and leave the heap to him.",
       "rule": "vote",
       "tags": [
         "kind"

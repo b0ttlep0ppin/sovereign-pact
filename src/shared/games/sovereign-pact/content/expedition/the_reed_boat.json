@@ -9,11 +9,11 @@
     7
   ],
   "title": "The Reed Boat",
-  "text": "A boat of woven reeds is tied at the water's edge, with a paddle laid in it and a note weighted with a stone: take me where you need to go. The handwriting is neat and careful. The ink is still wet.",
+  "text": "A boat of woven reeds is tied at the water's edge, a paddle laid in it. A note weighted with a stone reads: take me where you need to go. The handwriting is neat and careful, the ink still wet.",
   "options": [
     {
       "id": "take",
-      "label": "Take the boat, and trust whoever left it.",
+      "label": "Take the boat and trust whoever left it.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "It carries you far, lets you off gently, and drifts back the way it came.",
+          "text": "It carries you far and lets you off gently, then drifts back the way it came.",
           "effects": [
             {
               "skip": 2
@@ -46,7 +46,7 @@
     },
     {
       "id": "read",
-      "label": "The wisest reads the note again, to learn whose careful hand wrote it.",
+      "label": "The wisest reads the note again, to learn whose hand wrote it.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -54,7 +54,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Written in a drowned woman's hand. You leave the boat where it is.",
+          "text": "It was written in a drowned woman's hand. You leave the boat where it is.",
           "effects": [
             {
               "score": {
@@ -67,7 +67,7 @@
     },
     {
       "id": "burn",
-      "label": "Burn the boat. No gift out here comes without a hook.",
+      "label": "Burn the boat; no gift out here comes without a hook.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -75,7 +75,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Something in the water screams, and does not follow.",
+          "text": "Something in the water screams. It does not follow.",
           "effects": [
             {
               "to": "party",

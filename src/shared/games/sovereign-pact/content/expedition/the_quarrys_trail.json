@@ -9,7 +9,7 @@
     10
   ],
   "title": "The Quarry's Trail",
-  "text": "Fresh tracks in the mud, deep and wide apart, the claws dragging. Whatever you are hunting passed here not long ago, and it was hurt: there is blood on the leaves at shoulder height. Yours, if you are slow.",
+  "text": "Fresh tracks lie deep and wide apart in the mud, the claws dragging. Whatever you are hunting passed here not long ago, and it was hurt; there is blood on the leaves at shoulder height. If you are slow, the next blood will be yours.",
   "options": [
     {
       "id": "track",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Straight to where it rests, licking its wound. It does not hear you coming.",
+          "text": "It leads straight to where the quarry rests, licking its wound. It does not hear you coming.",
           "effects": [
             {
               "skip": 1
@@ -35,7 +35,7 @@
     },
     {
       "id": "trap",
-      "label": "The craftiest sets a trap on its trail, in case it doubles back.",
+      "label": "The craftiest sets a trap on its trail in case it doubles back.",
       "rule": "scion:highest:guile",
       "tags": [
         "cautious"
@@ -43,7 +43,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It does not come back this way, but the waiting sharpens everyone.",
+          "text": "It never comes back this way, but the waiting sharpens everyone.",
           "effects": [
             {
               "to": "party",

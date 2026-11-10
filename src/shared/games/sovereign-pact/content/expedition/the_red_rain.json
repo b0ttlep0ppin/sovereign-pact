@@ -9,11 +9,11 @@
     10
   ],
   "title": "The Red Rain",
-  "text": "The sky clouds over, low and bruised, and it rains warm and red. It smells of copper. It runs down faces and pools in the folds of cloaks, and it does not wash off.",
+  "text": "The sky clouds over, low and bruised, and it rains warm and red. The rain smells of copper. It runs down faces and pools in the folds of cloaks, and it does not wash off.",
   "options": [
     {
       "id": "shelter",
-      "label": "Shelter and wait it out. Nothing good falls from a sky like that.",
+      "label": "Shelter and wait it out; nothing good falls from a sky like that.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It takes all day, and the day is gone, and the red stays in the creases of your hands.",
+          "text": "It rains all day. When it stops, the red is still in the creases of your hands.",
           "effects": [
             {
               "to": "party",
@@ -33,7 +33,7 @@
     },
     {
       "id": "collect",
-      "label": "Catch it in every flask you have. Whatever it is, it is rare.",
+      "label": "Catch it in every flask you have; whatever it is, it is rare.",
       "rule": "leader",
       "tags": [
         "clever"
@@ -41,7 +41,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It thickens in the flask to something precious, and something that still feels warm.",
+          "text": "In the flask it thickens to something precious, still warm to the touch.",
           "effects": [
             {
               "resources": {
@@ -62,7 +62,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "It burns going down, and their blood runs fast, and the next fight comes faster.",
+          "text": "It burns going down. Their blood runs fast, and the next fight comes faster.",
           "effects": [
             {
               "status": "haste"
@@ -74,7 +74,7 @@
         },
         {
           "w": 40,
-          "text": "It burns going down, and keeps burning, and keeps on.",
+          "text": "It burns going down, and it does not stop burning.",
           "effects": [
             {
               "status": "burn"

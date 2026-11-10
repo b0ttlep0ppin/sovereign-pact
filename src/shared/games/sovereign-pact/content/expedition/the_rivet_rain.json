@@ -9,11 +9,11 @@
     9
   ],
   "title": "The Rivet Rain",
-  "text": "The forge's ruined roof hangs overhead, a sky of rusted iron plates. Each time the wind blows through it, rivets come loose and fall like hail, hot from the sun, hard enough to crack a skull. The floor below is studded with them.",
+  "text": "The forge's ruined roof hangs overhead, a sky of rusted iron plates. Each time the wind blows through it, rivets come loose and fall like hail, hot from the sun and hard enough to crack a skull. The floor below is studded with them.",
   "options": [
     {
       "id": "dash",
-      "label": "Dash across between gusts, and keep your heads down.",
+      "label": "Dash across between gusts with your heads down.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "Across, with a few dents in the helms.",
+          "text": "You make it across with a few dents in the helms.",
           "effects": [
             {
               "to": "party",
@@ -32,7 +32,7 @@
         },
         {
           "w": 30,
-          "text": "A big gust, and iron hail, and ringing heads.",
+          "text": "A big gust brings down a hail of iron. Heads ring.",
           "effects": [
             {
               "to": "party",
@@ -45,7 +45,7 @@
     },
     {
       "id": "time",
-      "label": "The sharpest eye times the wind, so you cross when the iron is still.",
+      "label": "The sharpest times the wind, so you cross when the iron is still.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -53,7 +53,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Across without a scratch, and a pocketful of rivets.",
+          "text": "You cross without a scratch and leave with a pocketful of rivets.",
           "effects": [
             {
               "resources": {
@@ -66,7 +66,7 @@
     },
     {
       "id": "shield",
-      "label": "The strongest holds a door over everyone's heads, and takes the hail themselves.",
+      "label": "The strongest holds a door over everyone's heads, taking the hail themselves.",
       "rule": "scion:highest:might",
       "tags": [
         "kind"
@@ -74,7 +74,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It rings like a bell all the way across, and their arms ring with it.",
+          "text": "The door rings like a bell all the way across, and their arms ring with it.",
           "effects": [
             {
               "durability": -15,

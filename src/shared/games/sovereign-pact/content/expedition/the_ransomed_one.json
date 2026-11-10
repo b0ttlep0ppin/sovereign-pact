@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "buy",
-      "label": "Buy the cloak and read the note. It may be all that is left of them.",
+      "label": "Buy the cloak and read the note; it may be all that is left of them.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A map, in their hand, and the hand was shaking.",
+          "text": "It is a map in their hand, and the hand was shaking.",
           "effects": [
             {
               "resources": {
@@ -37,7 +37,7 @@
     },
     {
       "id": "seller",
-      "label": "The shrewdest questions the seller, to learn where he found it.",
+      "label": "The shrewdest questions the seller to learn where he found it.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"
@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He found it near a cave, he says, and he did not go in. He points, and will not look that way.",
+          "text": "He found it near a cave, he says, and did not go in. He points the way without looking.",
           "effects": [
             {
               "skip": 1

@@ -9,11 +9,11 @@
     10
   ],
   "title": "The Relic Seller",
-  "text": "A man at the roadside sells holy relics from a blanket: a saint's finger, a feather from an angel, a bottle of the Six's tears. Most of it is fake, and he knows you know. One small box at the back he keeps a hand on.",
+  "text": "A man at the roadside sells holy relics from a blanket: a saint's finger, an angel's feather, a bottle of the Six's tears. Most of it is fake, and he knows you know. He keeps a hand on one small box at the back.",
   "options": [
     {
       "id": "buy",
-      "label": "The sharpest eye picks the one that looks least fake, and pays for the gamble.",
+      "label": "The sharpest picks the one that looks least fake and pays for the gamble.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -50,7 +50,7 @@
     },
     {
       "id": "expose",
-      "label": "Expose him to the other pilgrims, and let them deal with him.",
+      "label": "Expose him to the other pilgrims and let them deal with him.",
       "rule": "leader",
       "tags": [
         "bold"
@@ -58,7 +58,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They take his stall apart, and him with it, and thank you.",
+          "text": "They take his stall apart, and him with it, then thank you.",
           "effects": [
             {
               "score": {
@@ -79,7 +79,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Pilgrims are easy marks, and the gold is heavy, and so is the feeling.",
+          "text": "Pilgrims are easy marks. The gold is heavy, and so is the feeling.",
           "effects": [
             {
               "resources": {

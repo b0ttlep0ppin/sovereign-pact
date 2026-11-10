@@ -9,11 +9,11 @@
     10
   ],
   "title": "The Ruined Watchtower",
-  "text": "A watchtower still stands on a hill, black against the sky, its stair half gone, an old beacon basket at its crown. From the top you could see the whole way ahead. A crow sits on the beacon, watching you climb the slope.",
+  "text": "A watchtower stands black against the sky on a hill, its stair half gone, an old beacon basket at its crown. From the top you could see the whole way ahead. A crow sits on the beacon, watching you climb the slope.",
   "options": [
     {
       "id": "climb",
-      "label": "The quickest climbs the broken stair, to see the whole way ahead.",
+      "label": "The quickest climbs the broken stair to see the way ahead.",
       "rule": "scion:highest:speed",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 75,
-          "text": "They see it all from the top: the way, the danger, and a shortcut.",
+          "text": "From the top they see the way, the danger and a shortcut.",
           "effects": [
             {
               "skip": 1
@@ -33,7 +33,7 @@
         },
         {
           "w": 25,
-          "text": "The stair gives at the top, and they come down faster than they went up.",
+          "text": "The stair gives at the top. They come down faster than they went up.",
           "effects": [
             {
               "injury": "legs"
@@ -44,7 +44,7 @@
     },
     {
       "id": "signal",
-      "label": "Light the old beacon, and call for whoever still keeps watch.",
+      "label": "Light the old beacon to call whoever still keeps watch.",
       "rule": "leader",
       "tags": [
         "reckless"
@@ -52,7 +52,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "Somewhere, someone answers, and sends help.",
+          "text": "Somewhere someone answers, and sends help.",
           "effects": [
             {
               "to": "party",
@@ -77,7 +77,7 @@
     },
     {
       "id": "pass",
-      "label": "Walk on by. The crow can keep its tower.",
+      "label": "Walk on by; the crow can keep its tower.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -85,7 +85,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The tower watches you go. Without its view, you walk straight into what you would have seen.",
+          "text": "Without the view from the top, you walk straight into what you would have seen.",
           "effects": [
             {
               "fork": {

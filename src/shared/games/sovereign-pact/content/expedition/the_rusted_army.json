@@ -9,11 +9,11 @@
     9
   ],
   "title": "The Rusted Army",
-  "text": "Rank on rank of empty armor stands to attention in a long field, rust running down the breastplates like tears. Not a body in any of it. As you pass, one helm turns slowly to follow you, with a sound of grinding iron.",
+  "text": "Rank on rank of empty armor stands to attention in a long field, rust running down the breastplates like tears. There is not a body in any of it. As you pass, one helm turns slowly to follow you with a sound of grinding iron.",
   "options": [
     {
       "id": "loot",
-      "label": "The Leader takes the best of the armor. Its owners are long gone.",
+      "label": "The Leader takes the best of the armor; its owners are long gone.",
       "rule": "leader",
       "tags": [
         "clever"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 65,
-          "text": "Most is past saving, but not all.",
+          "text": "Most of it is past saving, though not all.",
           "effects": [
             {
               "item": {
@@ -58,7 +58,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Every helm turns to watch you go, and the field feels honored.",
+          "text": "Every helm turns to watch you go. The field feels honored.",
           "effects": [
             {
               "to": "party",
@@ -75,7 +75,7 @@
     },
     {
       "id": "command",
-      "label": "The strongest orders them to stand down, and hopes to be obeyed.",
+      "label": "The strongest orders them to stand down, hoping to be obeyed.",
       "rule": "scion:highest:might",
       "tags": [
         "bold"
@@ -83,7 +83,7 @@
       "outcomes": [
         {
           "w": 40,
-          "text": "They kneel, one by one, all down the field.",
+          "text": "One by one, all down the field, they kneel.",
           "effects": [
             {
               "score": {

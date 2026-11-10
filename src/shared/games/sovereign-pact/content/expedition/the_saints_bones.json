@@ -9,11 +9,11 @@
     10
   ],
   "title": "The Saint's Bones",
-  "text": "A reliquary of bones lies in a ruined chapel, its glass broken, its gold long stripped, the bones themselves unguarded and yellow as old wax. Pilgrims kneel around it in the rubble. They say the bones cure the sick. Some of the pilgrims are missing fingers.",
+  "text": "A reliquary lies in a ruined chapel, its glass broken, its gold long stripped, the bones within unguarded and yellow as old wax. Pilgrims kneel around it in the rubble. They say the bones cure the sick, though some of the pilgrims are missing fingers.",
   "options": [
     {
       "id": "touch",
-      "label": "The most hurt touches the bones, and begs the saint for mercy.",
+      "label": "The most hurt touches the bones and begs the saint for mercy.",
       "rule": "scion:injured:any|scion:lowest:sanity",
       "tags": [
         "kind"
@@ -33,7 +33,7 @@
         },
         {
           "w": 30,
-          "text": "Nothing happens, and the pilgrims look away.",
+          "text": "Nothing happens. The pilgrims look away.",
           "effects": [
             {
               "sanity": -5
@@ -52,7 +52,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A quiet hour among the missing fingers, and no one asks for yours.",
+          "text": "You pass a quiet hour among the missing fingers. No one asks for yours.",
           "effects": [
             {
               "to": "party",
@@ -69,7 +69,7 @@
     },
     {
       "id": "take",
-      "label": "The Leader takes a finger bone. The saint has plenty.",
+      "label": "The Leader takes a finger bone; the saint has plenty.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -77,7 +77,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A relic is a relic. The saint may not agree.",
+          "text": "It is a true relic, though the saint may not agree to the gift.",
           "effects": [
             {
               "score": {

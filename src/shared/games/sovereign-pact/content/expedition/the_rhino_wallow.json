@@ -9,11 +9,11 @@
     6
   ],
   "title": "The Rhino Wallow",
-  "text": "A mud wallow steams in the heat, and a rhino sleeps in it, snoring like distant thunder, flies crawling on its hide. The only path runs right past its horn. Its small eye is shut. Mostly shut.",
+  "text": "A mud wallow steams in the heat. A rhino sleeps in it, snoring like distant thunder, flies crawling on its hide. The only path runs right past its horn. Its small eye is shut, or mostly shut.",
   "options": [
     {
       "id": "tiptoe",
-      "label": "Tiptoe past the horn, and pray the snoring does not stop.",
+      "label": "Tiptoe past the horn and pray the snoring does not stop.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 75,
-          "text": "It snores on. You come out mud to the knee, and the mud dries on your greaves hard as stone.",
+          "text": "It snores on. You come out mud to the knee, and the mud dries on your greaves as hard as stone.",
           "effects": [
             {
               "to": "party",
@@ -45,7 +45,7 @@
     },
     {
       "id": "quick",
-      "label": "The quickest leads, setting a pace fast enough to be past before it stirs.",
+      "label": "The quickest leads at a pace fast enough to be past before it stirs.",
       "rule": "scion:highest:speed",
       "tags": [
         "bold"
@@ -53,7 +53,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Past before it stirs, and only the flies notice.",
+          "text": "You are past before it stirs. Only the flies notice.",
           "effects": [
             {
               "xp": 30
@@ -72,7 +72,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Filthy, and stinking, and unseen by anything for a day.",
+          "text": "You stink, but for a day nothing sees you.",
           "effects": [
             {
               "to": "party",

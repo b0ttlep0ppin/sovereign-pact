@@ -9,7 +9,7 @@
     10
   ],
   "title": "The Ransom Note",
-  "text": "A note is pinned to a tree with a knife: the Lost are held, and the price is gold, left at the hollow oak by nightfall. A lock of hair is tied to it with string. You know whose it is.",
+  "text": "A note is pinned to a tree with a knife: the Lost are held, and the price is gold, to be left at the hollow oak by nightfall. A lock of hair is tied to it with string. You know whose it is.",
   "options": [
     {
       "id": "pay",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "The gold is taken, and a path is marked in chalk on the trees.",
+          "text": "The gold is taken. A path appears, marked in chalk on the trees.",
           "effects": [
             {
               "resources": {
@@ -35,7 +35,7 @@
         },
         {
           "w": 30,
-          "text": "The gold is taken. Nothing else happens. Nothing at all.",
+          "text": "The gold is taken, and nothing else happens at all.",
           "effects": [
             {
               "resources": {
@@ -52,7 +52,7 @@
     },
     {
       "id": "ambush",
-      "label": "The craftiest lies in wait at the oak, to catch whoever comes for the gold.",
+      "label": "The craftiest lies in wait at the oak to catch whoever comes for the gold.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"
@@ -60,7 +60,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The kidnappers come for their gold, and find you instead.",
+          "text": "The kidnappers come for their gold and find you instead.",
           "effects": [
             {
               "encounter": {
@@ -78,7 +78,7 @@
     },
     {
       "id": "ignore",
-      "label": "Tear it down and keep looking. You will not be bled by thieves.",
+      "label": "Tear it down and keep looking; you will not be bled by thieves.",
       "rule": "leader",
       "tags": [
         "bold"
@@ -86,7 +86,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Whoever wrote it is watching now, and you can feel where from.",
+          "text": "Whoever wrote it is watching now. You can feel where from.",
           "effects": [
             {
               "to": "party",

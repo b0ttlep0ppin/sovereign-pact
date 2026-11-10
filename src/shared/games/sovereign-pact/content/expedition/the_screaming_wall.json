@@ -9,7 +9,7 @@
     10
   ],
   "title": "The Screaming Wall",
-  "text": "A wall built of the damned, bodies mortared together, still alive, still screaming, hands clawing out between the stones. Their faces press at you as you pass. One of them is calling a Scion by name, over and over, in a voice they know.",
+  "text": "A wall is built of the damned, their bodies mortared together, still alive and screaming, hands clawing out between the stones. Their faces press toward you as you pass. One of them calls a Scion by name over and over, in a voice they know.",
   "options": [
     {
       "id": "answer",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "An ancestor, who tells them a secret of the House before the wall swallows him back.",
+          "text": "It is an ancestor. He tells them a secret of the House before the wall swallows him back.",
           "effects": [
             {
               "score": {
@@ -35,7 +35,7 @@
         },
         {
           "w": 50,
-          "text": "A liar, who only wanted to be heard, and will not stop now.",
+          "text": "It is a liar who only wanted to be heard. Now he will not stop.",
           "effects": [
             {
               "sanity": -15
@@ -72,7 +72,7 @@
     },
     {
       "id": "deaf",
-      "label": "Stop your ears and walk on. Nothing in that wall can be saved.",
+      "label": "Stop your ears and walk on; nothing in that wall can be saved.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -80,7 +80,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "You hear it for a day after, and the name most of all.",
+          "text": "You hear it for a day after, the name most of all.",
           "effects": [
             {
               "to": "party",
