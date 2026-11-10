@@ -71,6 +71,20 @@ describe("the battle screen (§15.5)", () => {
     vi.useRealTimers();
   });
 
+  it("plays on from where a live battle's screen was when it ended, then shows the ending (Josh 2026-11-10)", () => {
+    vi.useFakeTimers();
+    const { view, replay } = setup();
+    const from = Math.max(1, replay.frames.length - 2);
+    render(<BattleScreen replay={replay} view={view} onClose={() => {}} from={from} />);
+    // No pause before it: it was already seen; the last turns play, not the ending at once.
+    expect(screen.queryByRole("region", { name: "Before the battle" })).toBe(null);
+    expect(screen.getByText(`Turn ${from} of ${replay.frames.length}`)).toBeTruthy();
+    expect(screen.queryByRole("button", { name: "Continue" })).toBe(null);
+    for (let i = 0; i < 40 && !screen.queryByRole("button", { name: "Continue" }); i++) act(() => void vi.advanceTimersByTime(1500));
+    expect(screen.getByRole("button", { name: "Continue" })).toBeTruthy();
+    vi.useRealTimers();
+  });
+
   it("waits on its owner to throw an injury's die, then shows where it landed and what it does (Josh's playtest)", () => {
     vi.useFakeTimers();
     const { view, replay } = setup();

@@ -103,22 +103,23 @@ const readWatch = (): boolean => {
  * The battles this seat has been sent, kept by the screen (the state drops them a move later), and
  * the queue to watch: new battles open on their own unless the viewer turned that off.
  */
-function useBattles(battles: SovView["battles"], quiet: boolean) {
+function useBattles(battles: SovView["battles"], quiet: boolean, liveFrom: () => number) {
   const [last, setLast] = useState(battles);
   const [seen, setSeen] = useState<Seen[]>(battles);
   const [auto, setAuto] = useState(readWatch);
   const [queue, setQueue] = useState<string[]>(() => (readWatch() ? battles.map((b) => b.key) : []));
-  // Battles just fought on screen open on their ending, not from the start (Josh: not "instantly cut back").
-  const [ended, setEnded] = useState<string[]>([]);
+  // Battles just fought on screen open where the screen had got to, not from the start (Josh: not
+  // "instantly cut back"), and play on to their ending.
+  const [ended, setEnded] = useState<Record<string, number>>({});
   if (battles !== last) {
     setLast(battles);
     const fresh = battles.filter((b) => !seen.some((x) => x.key === b.key));
     if (fresh.length) {
       setSeen([...seen, ...fresh].slice(-12));
-      // A battle just fought on screen opens on its ending; others play from the start if watched.
+      // A battle just fought on screen opens where it was; others play from the start if watched.
       if (quiet) {
         setQueue([...queue, ...fresh.map((b) => b.key)]);
-        setEnded([...ended, ...fresh.map((b) => b.key)]);
+        setEnded({ ...ended, ...Object.fromEntries(fresh.map((b) => [b.key, liveFrom()])) });
       } else if (auto) setQueue([...queue, ...fresh.map((b) => b.key)]);
     }
   }
@@ -130,16 +131,21 @@ function useBattles(battles: SovView["battles"], quiet: boolean) {
       // Storage blocked: the choice lasts this visit.
     }
   };
-  return { seen, auto, toggle, watching: seen.find((b) => b.key === queue[0]), ending: ended.includes(queue[0] ?? ""), waiting: Math.max(0, queue.length - 1), watch: (key: string) => setQueue([key]), next: () => setQueue(queue.slice(1)) };
+  return { seen, auto, toggle, watching: seen.find((b) => b.key === queue[0]), from: ended[queue[0] ?? ""], waiting: Math.max(0, queue.length - 1), watch: (key: string) => setQueue([key]), next: () => setQueue(queue.slice(1)) };
 }
 
 export default function SovereignPact({ view, isMyTurn, sendMove, lastError }: Props) {
   const fight = view.expedition?.fight ?? null;
   // The render a live battle ends on still knows it was live, so its replay does not open again.
   const [wasLive, setWasLive] = useState(!!fight);
-  if (wasLive !== !!fight) setWasLive(!!fight);
-  const battles = useBattles(view.battles, wasLive);
+  // The turn the live battle's screen has reached; a hidden battle opens on its ending.
+  const [liveAt, setLiveAt] = useState(0);
+  if (wasLive !== !!fight) {
+    if (fight) setLiveAt(0);
+    setWasLive(!!fight);
+  }
   const [hidden, setHidden] = useState(false);
+  const battles = useBattles(view.battles, wasLive, () => (hidden ? Infinity : liveAt));
   if (hidden && !fight) setHidden(false);
   // A fight hidden and opened again picks up at the turn being fought.
   const [resumed, setResumed] = useState(false);
@@ -280,7 +286,7 @@ export default function SovereignPact({ view, isMyTurn, sendMove, lastError }: P
     </div>
   );
   const battle = battles.watching ? (
-    <BattleScreen key={battles.watching.key} replay={battles.watching} view={view} onClose={battles.next} waiting={battles.waiting} ending={battles.ending} fullLog={access.log} sound={music.sfx ? music.sfxVolume : 0} />
+    <BattleScreen key={battles.watching.key} replay={battles.watching} view={view} onClose={battles.next} waiting={battles.waiting} from={battles.from} fullLog={access.log} sound={music.sfx ? music.sfxVolume : 0} />
   ) : fight && !hidden ? (
     <BattleScreen
       key="live"
@@ -291,6 +297,7 @@ export default function SovereignPact({ view, isMyTurn, sendMove, lastError }: P
         setResumed(true);
       }}
       resume={resumed}
+      onAt={setLiveAt}
       fullLog={access.log}
       sound={music.sfx ? music.sfxVolume : 0}
       live={{
