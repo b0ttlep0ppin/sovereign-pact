@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "hire",
-      "label": "Hire them away from the dragon.",
+      "label": "Hire them away from the dragon, and put their hope to good use.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They mine gold for you, gladly. The dragon notices.",
+          "text": "They mine gold for you, gladly. The dragon notices, and it does not like losing its miners.",
           "effects": [
             {
               "resources": {
@@ -37,7 +37,7 @@
     },
     {
       "id": "free",
-      "label": "Free them.",
+      "label": "Free them, and let the dragon dig its own gold.",
       "rule": "leader",
       "tags": [
         "bold"
@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They scatter, cheering, and the dragon wakes.",
+          "text": "They scatter, cheering, and the dragon wakes, and wonders where everyone went.",
           "effects": [
             {
               "encounter": {
@@ -63,7 +63,7 @@
     },
     {
       "id": "trade",
-      "label": "The shrewdest trades for their secrets.",
+      "label": "The shrewdest trades for their secrets, and learns what the dragon keeps.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"

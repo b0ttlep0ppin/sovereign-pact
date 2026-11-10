@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "climb",
-      "label": "Climb up into the hanging tower.",
+      "label": "Climb up into the hanging tower, and see who sings inside.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -32,7 +32,7 @@
         },
         {
           "w": 50,
-          "text": "It falls up with you inside, and keeps falling.",
+          "text": "It falls up with you inside, and keeps falling, and you are not sure it ever stops.",
           "effects": [
             {
               "to": "party",
@@ -44,7 +44,7 @@
     },
     {
       "id": "look",
-      "label": "The sharpest eye looks in from below.",
+      "label": "The sharpest eye looks in from below, before anyone climbs.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -63,7 +63,7 @@
     },
     {
       "id": "leave",
-      "label": "Do not go up.",
+      "label": "Do not go up. A tower that hangs from nothing is not to be trusted.",
       "rule": "leader",
       "tags": [
         "cautious"

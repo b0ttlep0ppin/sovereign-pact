@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "read",
-      "label": "The wisest reads while the librarian sleeps.",
+      "label": "The wisest reads while the librarian sleeps, careful not to wake the books.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "Things the Pact does not want known, written very carefully.",
+          "text": "Things the Pact does not want known, written very carefully, in a hand that shook.",
           "effects": [
             {
               "score": {
@@ -35,7 +35,7 @@
         },
         {
           "w": 30,
-          "text": "Something in the book reads back, and finds them interesting.",
+          "text": "Something in the book reads back, and finds them very interesting indeed.",
           "effects": [
             {
               "curse": true
@@ -46,7 +46,7 @@
     },
     {
       "id": "steal",
-      "label": "Steal the oldest book.",
+      "label": "Steal the oldest book. Knowledge this forbidden must be worth a fortune.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -72,7 +72,7 @@
     },
     {
       "id": "leave",
-      "label": "Let the librarian sleep.",
+      "label": "Let the librarian sleep, and the books with him.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -92,7 +92,7 @@
     },
     {
       "id": "warded_shelf",
-      "label": "The Abjurer reads the warded shelf.",
+      "label": "The Abjurer reads the warded shelf, eager to learn how its wards were made.",
       "rule": "scion:job:abjurer",
       "only": true,
       "tags": [

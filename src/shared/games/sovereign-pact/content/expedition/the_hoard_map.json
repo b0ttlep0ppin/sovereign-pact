@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "go",
-      "label": "Go for the dragon's hoard.",
+      "label": "Go for the dragon's hoard, and trust a dying man's map.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "The hour was right. The dragon sleeps, and you take what you can carry.",
+          "text": "The hour was right. The dragon sleeps, and you take what you can carry, and you do not breathe until you are out.",
           "effects": [
             {
               "resources": {
@@ -51,7 +51,7 @@
     },
     {
       "id": "sell",
-      "label": "The shrewdest sells the map.",
+      "label": "The shrewdest sells the map, and lets someone else test it.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"
@@ -59,7 +59,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A rival House pays well for it, and goes off into the hills. You do not hear from them.",
+          "text": "A rival House pays well for it, and goes off into the hills. You do not hear from them again.",
           "effects": [
             {
               "resources": {
@@ -77,7 +77,7 @@
     },
     {
       "id": "bury",
-      "label": "Bury the hunter, and his map with him.",
+      "label": "Bury the hunter, and his map with him, and let the dragon sleep.",
       "rule": "leader",
       "tags": [
         "kind"

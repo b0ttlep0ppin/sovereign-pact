@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "fish",
-      "label": "The quickest hands catch him a fish.",
+      "label": "The quickest hands catch him a fish, and give it with the courtesy he expects.",
       "rule": "scion:highest:speed",
       "tags": [
         "kind"
@@ -32,7 +32,7 @@
     },
     {
       "id": "refuse",
-      "label": "Refuse him his fish.",
+      "label": "Refuse him his fish. A heron is no king of yours.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -40,7 +40,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He stalks off into the fog. The marsh is less friendly after, and it remembers.",
+          "text": "He stalks off into the fog. The marsh is less friendly after, and it remembers, and so does he.",
           "effects": [
             {
               "to": "party",
@@ -52,7 +52,7 @@
     },
     {
       "id": "crown",
-      "label": "Snatch his crown of reeds.",
+      "label": "Snatch his crown of reeds, and see how royal he is without it.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -60,7 +60,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Just reeds, and a curse, and he will remember this slight forever.",
+          "text": "Just reeds, and a curse, and he will remember this slight forever. So will you.",
           "effects": [
             {
               "curse": true

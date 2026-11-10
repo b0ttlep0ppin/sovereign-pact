@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "send",
-      "label": "Send through whoever is carrying least.",
+      "label": "Send through whoever is carrying least, so they can bring back the most.",
       "rule": "scion:most_open_slots",
       "tags": [
         "reckless"
@@ -35,7 +35,7 @@
         },
         {
           "w": 50,
-          "text": "They come back with their eyes wrong, and something of the night side clinging to them.",
+          "text": "They come back with their eyes wrong, and something of the night side clinging to them, and it will not let go.",
           "effects": [
             {
               "sanity": -25
@@ -49,7 +49,7 @@
     },
     {
       "id": "heavy",
-      "label": "The most armored goes through first.",
+      "label": "The most armoured goes through first, trusting their iron to protect them.",
       "rule": "scion:heaviest_gear",
       "tags": [
         "bold"
@@ -72,7 +72,7 @@
     },
     {
       "id": "close",
-      "label": "Close the door on the night.",
+      "label": "Close the door on the night, before whatever is hungry comes through.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -105,7 +105,7 @@
     },
     {
       "id": "call_through",
-      "label": "The Conjurer calls something through from the night side.",
+      "label": "The Conjurer calls something through from the night side, hoping it is small.",
       "rule": "scion:job:conjurer",
       "only": true,
       "tags": [

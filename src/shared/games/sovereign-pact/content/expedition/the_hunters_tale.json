@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "drink",
-      "label": "Buy the old hunter his drink.",
+      "label": "Buy the old hunter his drink, and listen to what he lost.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He tells you where it hides, and what it fears, and what it did to his arm.",
+          "text": "He tells you where it hides, and what it fears, and what it did to his arm, slowly, in detail.",
           "effects": [
             {
               "resources": {
@@ -37,7 +37,7 @@
     },
     {
       "id": "veteran",
-      "label": "The most seasoned trades stories with him.",
+      "label": "The most seasoned trades stories with him, hunter to hunter.",
       "rule": "scion:most_expeditions|scion:most_kills",
       "tags": [
         "clever"
@@ -60,7 +60,7 @@
     },
     {
       "id": "scoff",
-      "label": "Scoff at him, and go on.",
+      "label": "Scoff at him, and go on. A one-armed man has nothing to teach you.",
       "rule": "leader",
       "tags": [
         "bold"

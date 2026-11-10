@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "plant",
-      "label": "Plant it in the forge's ashes.",
+      "label": "Plant it in the forge's ashes, and let it grow where it belongs.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -36,7 +36,7 @@
     },
     {
       "id": "keep",
-      "label": "The wisest keeps it close.",
+      "label": "The wisest keeps it close, curious what it will grow into.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -57,7 +57,7 @@
     },
     {
       "id": "melt",
-      "label": "Melt it down.",
+      "label": "Melt it down. Iron that grows roots is iron that wants something.",
       "rule": "leader",
       "tags": [
         "cruel"

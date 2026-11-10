@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "pay",
-      "label": "Pay the dragon's tribute.",
+      "label": "Pay the dragon's tribute, and keep the shadow overhead in the sky.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -37,7 +37,7 @@
     },
     {
       "id": "bluff",
-      "label": "The shrewdest says the House already paid.",
+      "label": "The shrewdest says the House already paid, and hopes the kobold cannot count.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"
@@ -72,7 +72,7 @@
     },
     {
       "id": "seize",
-      "label": "Seize the kobold and his crown.",
+      "label": "Seize the kobold and his crown, and see what the dragon does about it.",
       "rule": "leader",
       "tags": [
         "cruel"

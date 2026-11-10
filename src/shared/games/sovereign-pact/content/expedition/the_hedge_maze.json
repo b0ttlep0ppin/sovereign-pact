@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "solve",
-      "label": "The cleverest leads the way through.",
+      "label": "The cleverest leads the way through, determined to reach its heart.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "Straight to the heart, and a fountain with coins in it, and no gardener.",
+          "text": "Straight to the heart, and a fountain with coins in it, and no gardener. Not that you can see.",
           "effects": [
             {
               "resources": {
@@ -35,7 +35,7 @@
         },
         {
           "w": 30,
-          "text": "The maze changes behind you, quietly, and keeps changing.",
+          "text": "The maze changes behind you, quietly, and keeps changing, and something walks the paths you left.",
           "effects": [
             {
               "to": "party",
@@ -54,7 +54,7 @@
     },
     {
       "id": "cut",
-      "label": "The strongest cuts straight through the hedges.",
+      "label": "The strongest cuts straight through the hedges. No maze will hold you.",
       "rule": "scion:highest:might",
       "tags": [
         "bold"
@@ -62,7 +62,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The hedges bleed red sap, and the gardener is very upset.",
+          "text": "The hedges bleed red sap, and the gardener is very upset, and very close.",
           "effects": [
             {
               "encounter": {}
@@ -73,7 +73,7 @@
     },
     {
       "id": "around",
-      "label": "Go around it.",
+      "label": "Go around it, and leave its heart to whatever guards it.",
       "rule": "vote",
       "tags": [
         "cautious"

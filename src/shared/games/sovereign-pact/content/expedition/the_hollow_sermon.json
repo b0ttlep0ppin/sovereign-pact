@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "listen",
-      "label": "Listen to his sermon to the end.",
+      "label": "Listen to his sermon to the end, and learn what the Court preaches.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -52,7 +52,7 @@
     },
     {
       "id": "argue",
-      "label": "The wisest argues back.",
+      "label": "The wisest argues back, before his words take root.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "bold"
@@ -74,7 +74,7 @@
         },
         {
           "w": 40,
-          "text": "He is better at this, much better, and the empty crowd laughs.",
+          "text": "He is better at this, much better, and the empty crowd laughs at you.",
           "effects": [
             {
               "sanity": -15
@@ -85,7 +85,7 @@
     },
     {
       "id": "stop",
-      "label": "Stop your ears and walk on.",
+      "label": "Stop your ears and walk on, before his words find their way in.",
       "rule": "leader",
       "tags": [
         "cautious"

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "dance",
-      "label": "The most troubled takes the ghost's hand.",
+      "label": "The most troubled takes the ghost's hand, longing for one moment of grace.",
       "rule": "scion:lowest:sanity",
       "tags": [
         "kind"
@@ -30,7 +30,7 @@
         },
         {
           "w": 30,
-          "text": "One dance, and then another, and another, and they cannot stop.",
+          "text": "One dance, and then another, and another, and they cannot stop, and the ghosts do not want them to.",
           "effects": [
             {
               "sanity": -10
@@ -44,7 +44,7 @@
     },
     {
       "id": "everyone",
-      "label": "Everyone dances.",
+      "label": "Everyone dances, and the dead have company for one more night.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -68,7 +68,7 @@
     },
     {
       "id": "leave",
-      "label": "Leave them to their ball.",
+      "label": "Leave them to their ball. The dead have their own music.",
       "rule": "leader",
       "tags": [
         "cautious"

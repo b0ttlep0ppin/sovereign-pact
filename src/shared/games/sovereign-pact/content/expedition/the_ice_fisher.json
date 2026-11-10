@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "sit",
-      "label": "Sit and fish with her.",
+      "label": "Sit and fish with her a while. She seems so glad of the company.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "She catches something with too many eyes, and gives it to you, and it is good to eat.",
+          "text": "She catches something with too many eyes, and gives it to you, and it is good to eat. Nobody asks what it was.",
           "effects": [
             {
               "to": "party",
@@ -46,7 +46,7 @@
     },
     {
       "id": "ask",
-      "label": "The wisest asks what she is fishing for.",
+      "label": "The wisest asks what she is fishing for, so far out on the ice.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -54,7 +54,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Her husband, she says. He fell through in the war. She is sure he will bite one day.",
+          "text": "Her husband, she says. He fell through in the war. She is sure he will bite one day. Nobody has the heart to tell her otherwise.",
           "effects": [
             {
               "score": {
@@ -70,7 +70,7 @@
     },
     {
       "id": "move",
-      "label": "Move on before dark.",
+      "label": "Move on before dark. The ice is no place to be at night.",
       "rule": "leader",
       "tags": [
         "cautious"

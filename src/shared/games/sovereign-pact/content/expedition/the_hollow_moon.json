@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "enter",
-      "label": "Climb up and go into the moon.",
+      "label": "Climb up and go into the moon, and see who lives there.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "A room of silver dust, and a gift laid out on a table, and the wind moaning.",
+          "text": "A room of silver dust, and a gift laid out on a table, and the wind moaning your names.",
           "effects": [
             {
               "item": {
@@ -49,7 +49,7 @@
     },
     {
       "id": "knock",
-      "label": "The wisest knocks first.",
+      "label": "The wisest knocks first, as any guest should.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "kind"
@@ -73,7 +73,7 @@
     },
     {
       "id": "away",
-      "label": "Walk away from it.",
+      "label": "Walk away from it. No moon should hang so low.",
       "rule": "leader",
       "tags": [
         "cautious"

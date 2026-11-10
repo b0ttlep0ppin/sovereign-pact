@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "pray",
-      "label": "The most blooded prays at the shrine of skulls.",
+      "label": "The most blooded prays at the shrine of skulls, one hunter to another.",
       "rule": "scion:most_kills|scion:highest:might",
       "tags": [
         "bold"
@@ -35,7 +35,7 @@
     },
     {
       "id": "offer",
-      "label": "Leave an offering on the bloody stone.",
+      "label": "Leave an offering on the bloody stone, and ask the spirit for swift feet.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -60,7 +60,7 @@
     },
     {
       "id": "skull",
-      "label": "Take a skull from the pile.",
+      "label": "Take a skull from the pile. The spirit has so many.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -68,7 +68,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The spirit is displeased, and the antler roof creaks, and something follows you out.",
+          "text": "The spirit is displeased, and the antler roof creaks, and something follows you out. The skull is old and hard as wyrmbone.",
           "effects": [
             {
               "curse": true

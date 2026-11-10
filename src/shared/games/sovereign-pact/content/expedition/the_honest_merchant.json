@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "buy",
-      "label": "Buy something good from her.",
+      "label": "Buy something good from her, and try not to wonder what the catch is.",
       "rule": "leader",
       "tags": [
         "clever"
@@ -39,7 +39,7 @@
     },
     {
       "id": "sell",
-      "label": "Sell her what you have spare.",
+      "label": "Sell her what you have spare, and count your coin twice.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -60,7 +60,7 @@
     },
     {
       "id": "ask",
-      "label": "The wisest asks why she is honest out here.",
+      "label": "The wisest asks why she is honest out here, where nothing else is.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "kind"

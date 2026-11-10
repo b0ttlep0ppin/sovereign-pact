@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "look",
-      "label": "The strongest arm tests his blades.",
+      "label": "The strongest arm tests his blades, so that someone finally sees his work.",
       "rule": "scion:highest:might",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It is good. He beams, and the forge feels warmer for it.",
+          "text": "It is good. He beams, and the forge feels warmer for it, for the first time in years.",
           "effects": [
             {
               "item": {
@@ -39,7 +39,7 @@
     },
     {
       "id": "recruit",
-      "label": "Offer him a place in the House.",
+      "label": "Offer him a place in the House, and a reason to leave.",
       "rule": "house:random",
       "tags": [
         "kind"
@@ -47,7 +47,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "He packs his hammer, and looks back once.",
+          "text": "He packs his hammer, and looks back once, and does not cry.",
           "effects": [
             {
               "house_improvement": "recruit"
@@ -68,7 +68,7 @@
     },
     {
       "id": "truth",
-      "label": "Tell him his master is dead.",
+      "label": "Tell him his master is dead. He deserves to know.",
       "rule": "leader",
       "tags": [
         "cruel"

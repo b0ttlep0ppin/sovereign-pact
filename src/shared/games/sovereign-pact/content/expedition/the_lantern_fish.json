@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "follow",
-      "label": "Follow its warm light.",
+      "label": "Follow its warm light. It is the only warmth left down here.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -32,7 +32,7 @@
         },
         {
           "w": 60,
-          "text": "It leads you a long way, and then turns away, uninterested.",
+          "text": "It leads you a long way, and then turns away, uninterested. You almost miss its light.",
           "effects": [
             {
               "skip": 2
@@ -43,7 +43,7 @@
     },
     {
       "id": "dark",
-      "label": "Douse your lights and let it pass.",
+      "label": "Douse your lights and let it pass, and pray it cannot smell you.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -63,7 +63,7 @@
     },
     {
       "id": "lure",
-      "label": "The cleverest lures it with a lamp and cuts off its light.",
+      "label": "The cleverest lures it close with a lamp, and cuts off its light for the House.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -71,7 +71,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A lantern that never goes out, and a fish that wants it back.",
+          "text": "A lantern that never goes out, and a fish that wants it back, very badly.",
           "effects": [
             {
               "item": {

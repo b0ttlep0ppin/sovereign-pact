@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "weak",
-      "label": "The weakest steps in to be made strong.",
+      "label": "The weakest steps in to be made strong, desperate enough to trust the voice.",
       "rule": "scion:lowest:might|scion:random",
       "tags": [
         "reckless"
@@ -50,7 +50,7 @@
     },
     {
       "id": "scarred",
-      "label": "The most battle-scarred knows the trick: wedge the lid.",
+      "label": "The most battle-scarred knows the trick: wedge the lid, and take the iron.",
       "rule": "scion:injured:any|scion:highest:resilience",
       "tags": [
         "clever"
@@ -74,7 +74,7 @@
     },
     {
       "id": "leave",
-      "label": "Close the lid, and walk on.",
+      "label": "Close the lid, and walk on. No strength is worth that embrace.",
       "rule": "vote",
       "tags": [
         "cautious"

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "follow",
-      "label": "The most troubled follows the lantern that turned to them.",
+      "label": "The most troubled follows the lantern that turned to them, knowing who it must be.",
       "rule": "scion:lowest:sanity",
       "tags": [
         "kind"
@@ -32,7 +32,7 @@
     },
     {
       "id": "catch",
-      "label": "Catch one in a jar.",
+      "label": "Catch one in a jar. A soul's light is worth a great deal.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -40,7 +40,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It is very bright, and very sad, and it never stops looking for the others.",
+          "text": "It is very bright, and very sad, and it never stops looking for the others. Something beyond the Gate notices the theft.",
           "effects": [
             {
               "resources": {
@@ -56,7 +56,7 @@
     },
     {
       "id": "bow",
-      "label": "Bow until they pass.",
+      "label": "Bow until they pass, and let the dead go on their way.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -77,7 +77,7 @@
     },
     {
       "id": "pray_for_it",
-      "label": "The devout one prays for the lantern that came close.",
+      "label": "The devout one prays for the lantern that came close, to light its way.",
       "rule": "scion:trait:devout",
       "only": true,
       "tags": [

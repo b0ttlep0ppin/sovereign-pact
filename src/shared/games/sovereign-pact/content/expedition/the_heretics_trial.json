@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "free",
-      "label": "Find her innocent.",
+      "label": "Find her innocent, and pray she is what she says.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -36,7 +36,7 @@
         },
         {
           "w": 45,
-          "text": "The judges unlock her chains. She was not telling the truth.",
+          "text": "The judges unlock her chains. She was not telling the truth, and she has friends.",
           "effects": [
             {
               "encounter": {
@@ -49,7 +49,7 @@
     },
     {
       "id": "condemn",
-      "label": "Find her guilty.",
+      "label": "Find her guilty. The Court has already built the pyre.",
       "rule": "vote",
       "tags": [
         "cruel"
@@ -57,7 +57,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The Court is pleased with you, in its way. You hear the pyre from the road.",
+          "text": "The Court is pleased with you, in its way. You hear the pyre from the road, and her voice, still hoarse, still saying she is innocent.",
           "effects": [
             {
               "score": {
@@ -74,7 +74,7 @@
     },
     {
       "id": "question",
-      "label": "The wisest cross-examines the judges.",
+      "label": "The wisest cross-examines the judges, to learn what this trial truly is.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"

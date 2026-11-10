@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "feed",
-      "label": "Feed all three heads.",
+      "label": "Feed all three heads, and pray it is enough for the one that watches.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -34,7 +34,7 @@
     },
     {
       "id": "sing",
-      "label": "The steadiest voice sings it to sleep.",
+      "label": "The steadiest voice sings it to sleep, softly, head by head.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -51,7 +51,7 @@
         },
         {
           "w": 40,
-          "text": "Two heads sleep. The third, the watching one, does not.",
+          "text": "Two heads sleep. The third, the watching one, does not, and it has been waiting for this.",
           "effects": [
             {
               "encounter": {}
@@ -62,7 +62,7 @@
     },
     {
       "id": "fight",
-      "label": "Fight it.",
+      "label": "Fight it. Three heads only means three throats to cut.",
       "rule": "leader",
       "tags": [
         "bold"

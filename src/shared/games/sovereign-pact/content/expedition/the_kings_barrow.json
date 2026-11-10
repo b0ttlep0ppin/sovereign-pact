@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "enter",
-      "label": "Go into the king's barrow.",
+      "label": "Go into the king's barrow, and see what the robbers woke.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Someone came before you, and woke what was inside, and it is still awake.",
+          "text": "Someone came before you, and woke what was inside, and it is still awake, and still angry.",
           "effects": [
             {
               "encounter": {
@@ -39,7 +39,7 @@
     },
     {
       "id": "track",
-      "label": "The sharpest eye follows the robbers' tracks.",
+      "label": "The sharpest eye follows the robbers' tracks, to take back what they stole.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -63,7 +63,7 @@
     },
     {
       "id": "seal",
-      "label": "Reseal the king's door.",
+      "label": "Reseal the king's door, and let him rest as he was meant to.",
       "rule": "leader",
       "tags": [
         "kind"

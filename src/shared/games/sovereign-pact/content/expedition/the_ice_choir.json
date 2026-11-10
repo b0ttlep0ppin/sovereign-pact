@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "listen",
-      "label": "Stop and listen to the frozen choir.",
+      "label": "Stop and listen to the frozen choir, and take whatever comfort it offers.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -35,7 +35,7 @@
         },
         {
           "w": 45,
-          "text": "The song is an invitation. One of the figures is new.",
+          "text": "The song is an invitation. One of the figures is new, and it is wearing your clothes.",
           "effects": [
             {
               "to": "party",
@@ -50,7 +50,7 @@
     },
     {
       "id": "break",
-      "label": "Break their ring.",
+      "label": "Break their ring, and silence the song for good.",
       "rule": "leader",
       "tags": [
         "bold"
@@ -71,7 +71,7 @@
     },
     {
       "id": "hurry",
-      "label": "Hurry past with your ears covered.",
+      "label": "Hurry past with your ears covered, before the song can take hold.",
       "rule": "leader",
       "tags": [
         "cautious"

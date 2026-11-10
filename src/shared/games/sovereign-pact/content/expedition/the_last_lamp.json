@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "carry",
-      "label": "Carry the little lamp.",
+      "label": "Carry the little lamp, and the dark with it, held at bay.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -37,7 +37,7 @@
     },
     {
       "id": "feed",
-      "label": "Each Scion feeds it a memory.",
+      "label": "Each Scion feeds it a memory, so that it burns brighter.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It burns brighter, and each of you is missing something.",
+          "text": "It burns brighter, and each of you is missing something, and none of you can say what.",
           "effects": [
             {
               "to": "party",
@@ -61,7 +61,7 @@
     },
     {
       "id": "out",
-      "label": "Put it out.",
+      "label": "Put it out. Whatever is in the dark, you would rather face it now.",
       "rule": "leader",
       "tags": [
         "reckless"
@@ -69,7 +69,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The dark comes in.",
+          "text": "The dark comes in, all at once, and it has been waiting a very long time.",
           "effects": [
             {
               "encounter": {

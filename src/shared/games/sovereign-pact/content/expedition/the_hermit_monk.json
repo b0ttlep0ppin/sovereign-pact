@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "way",
-      "label": "Ask him the way.",
+      "label": "Ask him the way. It is the safest thing to ask.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He wipes the slate for the first time in forty years, and draws a map.",
+          "text": "He wipes the slate for the first time in forty years, and draws a map. His hand shakes with the effort.",
           "effects": [
             {
               "skip": 1
@@ -32,7 +32,7 @@
     },
     {
       "id": "future",
-      "label": "The wisest asks about the House's future.",
+      "label": "The wisest asks about the House's future, though the answer may not be kind.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -40,7 +40,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He writes one word, and weeps, and will not wipe it away.",
+          "text": "He writes one word, and weeps, and will not wipe it away. They cannot stop thinking about it.",
           "effects": [
             {
               "foresee": true
@@ -59,7 +59,7 @@
     },
     {
       "id": "bless",
-      "label": "Ask for his blessing.",
+      "label": "Ask for his blessing, and carry it with you on the road.",
       "rule": "leader",
       "tags": [
         "kind"

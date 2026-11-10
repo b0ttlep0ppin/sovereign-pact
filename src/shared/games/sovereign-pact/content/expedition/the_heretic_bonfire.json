@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "read",
-      "label": "The wisest reads the novice's page.",
+      "label": "The wisest reads the novice's page, before the zealots see it.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A lost rite of the Six, half burned, and still holy.",
+          "text": "A lost rite of the Six, half burned, and still holy. It warms the hands that hold it.",
           "effects": [
             {
               "score": {
@@ -37,7 +37,7 @@
     },
     {
       "id": "save",
-      "label": "Pull books from the fire.",
+      "label": "Pull books from the fire, whatever the zealots may think.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The zealots turn on you, faces lit orange.",
+          "text": "The zealots turn on you, faces lit orange, and the crowd stops cheering.",
           "effects": [
             {
               "encounter": {}
@@ -61,7 +61,7 @@
     },
     {
       "id": "burn",
-      "label": "Throw the page into the fire too.",
+      "label": "Throw the page into the fire too. It is safer that way.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -69,7 +69,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The zealots bless you, loudly. The novice does not look at you again.",
+          "text": "The zealots bless you, loudly. The novice does not look at you again, and something beyond the Gate is pleased.",
           "effects": [
             {
               "to": "party",
