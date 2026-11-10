@@ -9,7 +9,7 @@
     9
   ],
   "title": "The Mother Superior",
-  "text": "An abbess of the Apostate Court holds an audience in a rotting garden, enthroned among dead roses, her habit embroidered with inverted holy signs. Her nuns stand silent in rows. She will speak, she says, only to someone born under the Empress.",
+  "text": "An abbess of the Apostate Court holds audience in a rotting garden, enthroned among dead roses, her habit embroidered with inverted holy signs. Her nuns stand silent in rows. She will speak, she says, only to someone born under the Empress.",
   "options": [
     {
       "id": "empress",
@@ -40,7 +40,7 @@
     },
     {
       "id": "question",
-      "label": "The wisest questions her about the Court, and what it worships now.",
+      "label": "The wisest questions her about the Court and what it worships now.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -48,7 +48,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "She tells of the Court's schism and who began it, and smiles at the end, as if the tale were a gift. It may be a warning.",
+          "text": "She tells of the Court's schism and who began it, smiling at the end as if the tale were a gift. It may be a warning.",
           "effects": [
             {
               "score": {
@@ -59,7 +59,7 @@
         },
         {
           "w": 30,
-          "text": "She calls the guards, and her smile never changes.",
+          "text": "She calls the guards without her smile ever changing.",
           "effects": [
             {
               "encounter": {}
@@ -78,7 +78,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Her nuns fight like cats, and never make a sound. The roses are wet when it is over.",
+          "text": "Her nuns fight like cats without ever making a sound. The roses are wet when it is over.",
           "effects": [
             {
               "encounter": {

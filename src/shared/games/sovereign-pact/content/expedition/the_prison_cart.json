@@ -9,11 +9,11 @@
     10
   ],
   "title": "The Prison Cart",
-  "text": "A cart of caged prisoners stands in the road, its guards dead around it, throats torn out by something with small teeth. The prisoners press against the bars and beg to be freed. One of them is laughing, and cannot stop.",
+  "text": "A cart of caged prisoners stands in the road, its guards dead around it, their throats torn out by something with small teeth. The prisoners press against the bars, begging to be freed. One of them is laughing and cannot stop.",
   "options": [
     {
       "id": "free",
-      "label": "Free every prisoner. No one deserves to die in a cage.",
+      "label": "Free every prisoner; no one deserves to die in a cage.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "They scatter, thanking you. The laughing one stays, and offers to serve.",
+          "text": "They scatter with thanks. The laughing one stays behind and offers to serve.",
           "effects": [
             {
               "house_improvement": "recruit"
@@ -48,7 +48,7 @@
     },
     {
       "id": "question",
-      "label": "The sharpest eye questions them first, to learn which of them belongs in the cage.",
+      "label": "The sharpest questions them first, to learn which of them belongs in the cage.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -56,7 +56,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "You free the ones who deserve it, and leave the laughing one where he is. He laughs as you go.",
+          "text": "You free those who deserve it and leave the laughing one where he is. He laughs as you go.",
           "effects": [
             {
               "score": {
@@ -74,7 +74,7 @@
     },
     {
       "id": "leave",
-      "label": "Leave them caged. Whatever tore out those throats may come back for them.",
+      "label": "Leave them caged; whatever tore out those throats may come back for them.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -82,7 +82,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Their shouting follows you a long way, and the laughing goes on longer.",
+          "text": "Their shouting follows you a long way. The laughing goes on longer.",
           "effects": [
             {
               "to": "party",

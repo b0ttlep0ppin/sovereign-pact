@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "pay",
-      "label": "Leave coin in the basket, and hope it matters enough.",
+      "label": "Leave coin in the basket, hoping it matters enough.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He lets you pass with a blessing, and does not look at the coin.",
+          "text": "He lets you pass with a blessing, never looking at the coin.",
           "effects": [
             {
               "resources": {
@@ -38,7 +38,7 @@
     },
     {
       "id": "sin",
-      "label": "Each Scion leaves a sin behind, and crosses lighter for it.",
+      "label": "Each Scion leaves a sin behind and crosses lighter for it.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -46,7 +46,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Lighter, every one. He puts the sins in the basket with the teeth.",
+          "text": "Every one of you crosses lighter. He puts the sins in the basket with the teeth.",
           "effects": [
             {
               "to": "party",
@@ -58,7 +58,7 @@
     },
     {
       "id": "force",
-      "label": "Push past him onto the bridge. No toll-keeper owns the road to the gods.",
+      "label": "Push past him onto the bridge; no toll-keeper owns the road to the gods.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -66,7 +66,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The shrine will not open for you, and what you did here is written down somewhere.",
+          "text": "The shrine will not open for you. What you did here is written down somewhere.",
           "effects": [
             {
               "doom": 1

@@ -9,7 +9,7 @@
     9
   ],
   "title": "The Penance Wheel",
-  "text": "A wheel stands in the court's square, taller than a man and stained dark at the rim. The court ties a penitent to it, and anyone may spin it, for luck. Today's penitent hangs upside down and weeps without sound. The crowd waits to see who spins first.",
+  "text": "A wheel taller than a man stands in the court's square, stained dark at the rim. The court ties a penitent to it, and anyone may spin it for luck. Today's penitent hangs upside down, weeping without sound, while the crowd waits to see who spins first.",
   "options": [
     {
       "id": "free",
@@ -43,7 +43,7 @@
     },
     {
       "id": "spin",
-      "label": "The Leader spins the wheel, as the custom asks, and takes the luck it offers.",
+      "label": "The Leader spins the wheel as the custom asks, taking the luck it offers.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -51,7 +51,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Luck, of a kind, and his screams for every turn of it. The crowd cheers each one.",
+          "text": "The luck is of a kind, and he screams with every turn of it. The crowd cheers each scream.",
           "effects": [
             {
               "resources": {
@@ -68,7 +68,7 @@
     },
     {
       "id": "watch",
-      "label": "The sharpest eye watches the crowd instead, to see who enjoys it most.",
+      "label": "The sharpest watches the crowd instead, to see who enjoys it most.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"

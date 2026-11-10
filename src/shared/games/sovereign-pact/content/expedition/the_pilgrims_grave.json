@@ -9,11 +9,11 @@
     10
   ],
   "title": "The Pilgrim's Grave",
-  "text": "A fresh grave by the shrine road, the earth still loose, a pilgrim who did not make it. Their offering still lies on the mound, wrapped in clean cloth, untouched by animals. Something has been keeping the crows away.",
+  "text": "A fresh grave lies by the shrine road, its earth still loose, for a pilgrim who did not make it. Their offering still rests on the mound, wrapped in clean cloth, untouched by animals. Something has been keeping the crows away.",
   "options": [
     {
       "id": "carry",
-      "label": "Carry their offering on to the shrine, and finish what they could not.",
+      "label": "Carry their offering on to the shrine, finishing what they could not.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The priests bless you for it, and add a name to their prayers.",
+          "text": "The priests bless you for it and add a name to their prayers.",
           "effects": [
             {
               "to": "party",
@@ -38,7 +38,7 @@
     },
     {
       "id": "pray",
-      "label": "The devout prays at the fresh grave, for the one who did not make it.",
+      "label": "The devout one prays at the grave for the one who did not make it.",
       "rule": "scion:trait:devout|scion:highest:sagacity",
       "tags": [
         "kind"
@@ -46,7 +46,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The pilgrim's last wish, whispered from under the loose earth. It is a kind one.",
+          "text": "From under the loose earth the pilgrim whispers a last wish. It is a kind one.",
           "effects": [
             {
               "blessing": {
@@ -60,7 +60,7 @@
     },
     {
       "id": "take",
-      "label": "The Leader takes the offering. The dead have no use for silver.",
+      "label": "The Leader takes the offering; the dead have no use for silver.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -68,7 +68,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Good silver, and a heavy heart, and the crows come back the moment you leave.",
+          "text": "The silver is good, though it sits heavy on the heart. The crows come back the moment you leave.",
           "effects": [
             {
               "resources": {

@@ -9,11 +9,11 @@
     8
   ],
   "title": "The Open Grave",
-  "text": "A barrow open to the sky, its stone door pulled off and thrown aside like a blanket. The bier inside is empty. The shroud lies beside it, folded neatly, the way someone folds their bedclothes before going out for the day.",
+  "text": "A barrow lies open to the sky, its stone door pulled off and thrown aside like a blanket. The bier inside is empty. The shroud lies beside it, folded neatly, the way someone folds their bedclothes before going out for the day.",
   "options": [
     {
       "id": "search",
-      "label": "The hardiest searches the empty barrow, in case its owner left in a hurry.",
+      "label": "The hardiest searches the empty barrow in case its owner left in a hurry.",
       "rule": "scion:highest:resilience",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 55,
-          "text": "Grave goods, left behind by whoever walked out. They may want them back.",
+          "text": "Whoever walked out left grave goods behind. They may want them back.",
           "effects": [
             {
               "item": {
@@ -58,7 +58,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It takes all of you to lift the door, and every arm aches. The barrow seems quieter for it.",
+          "text": "Lifting the door takes all of you, and every arm aches after. The barrow seems quieter for it.",
           "effects": [
             {
               "to": "party",

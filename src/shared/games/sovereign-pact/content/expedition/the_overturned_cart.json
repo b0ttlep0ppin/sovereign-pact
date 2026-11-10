@@ -9,11 +9,11 @@
     7
   ],
   "title": "The Overturned Cart",
-  "text": "A cart lies on its side in a ditch, wheels in the air, its mule long gone. Sacks of grain have split open in the mud. There is a locked chest among them, and a smell of something that is not grain, sweet and heavy, and the flies are thick.",
+  "text": "A cart lies on its side in a ditch, wheels in the air, its mule long gone. Sacks of grain have split open in the mud. Among them is a locked chest. A smell hangs over it that is not grain, sweet and heavy, and the flies are thick.",
   "options": [
     {
       "id": "chest",
-      "label": "The craftiest picks the chest's lock, before whoever owned it comes looking.",
+      "label": "The craftiest picks the chest's lock before whoever owned it comes looking.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "Coin, and a letter that someone in town would pay to see.",
+          "text": "Inside is coin, along with a letter someone in town would pay to see.",
           "effects": [
             {
               "resources": {
@@ -37,7 +37,7 @@
         },
         {
           "w": 30,
-          "text": "A needle in the lock, and something on the needle.",
+          "text": "A needle hides in the lock, with something on the needle.",
           "effects": [
             {
               "status": "poison"
@@ -53,7 +53,7 @@
     },
     {
       "id": "smell",
-      "label": "The hardiest goes down into the ditch, to learn what the sweet smell is.",
+      "label": "The hardiest goes down into the ditch to learn what the sweet smell is.",
       "rule": "scion:highest:resilience",
       "tags": [
         "bold"
@@ -61,7 +61,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Whatever ate the mule is still in the ditch, and it is still hungry.",
+          "text": "Whatever ate the mule is still in the ditch. It is still hungry.",
           "effects": [
             {
               "encounter": {
@@ -82,7 +82,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Bread for a week, from the sacks the flies have not found.",
+          "text": "The sacks the flies have not found give bread for a week.",
           "effects": [
             {
               "to": "party",

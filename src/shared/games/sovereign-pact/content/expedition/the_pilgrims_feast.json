@@ -9,11 +9,11 @@
     10
   ],
   "title": "The Pilgrims' Feast",
-  "text": "It is a feast day in the shrine town, and the tables run the length of the street, loaded with bread and roast meat and dark wine. The pilgrims share with anyone who has walked the road. Their feet are bandaged, their smiles fixed and bright.",
+  "text": "It is a feast day in the shrine town. Tables run the length of the street, loaded with bread, roast meat and dark wine, and the pilgrims share with anyone who has walked the road. Their feet are bandaged, their smiles fixed and bright.",
   "options": [
     {
       "id": "eat",
-      "label": "Sit and eat with the pilgrims, and rest your feet among the faithful.",
+      "label": "Sit and eat with the pilgrims, resting your feet among the faithful.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Full, and among friends, and their fixed smiles hardly seem strange by the end.",
+          "text": "You eat your fill among friends. By the end, their fixed smiles hardly seem strange.",
           "effects": [
             {
               "to": "party",
@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Good prices and good wares, and nobody asks where you have been.",
+          "text": "The prices are good and the wares better. Nobody asks where you have been.",
           "effects": [
             {
               "item": {

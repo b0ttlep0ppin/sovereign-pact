@@ -9,7 +9,7 @@
     9
   ],
   "title": "The Name Thief",
-  "text": "Someone in the city has stolen a Scion's name. They are wearing it in the market right now, answering to it, buying and laughing and signing debts with it. People believe them. When the Scion says their own name aloud, it sounds wrong in their mouth.",
+  "text": "Someone in the city has stolen a Scion's name. They are wearing it in the market right now, answering to it, buying and laughing and signing debts with it, and people believe them. When the Scion says their own name aloud, it sounds wrong in their mouth.",
   "options": [
     {
       "id": "confront",
@@ -30,7 +30,7 @@
         },
         {
           "w": 40,
-          "text": "The thief smiles with their mouth and keeps the name a while longer. It sounds better on them.",
+          "text": "The thief smiles with the Scion's mouth and keeps the name a while longer. It sounds better on them.",
           "effects": [
             {
               "sanity": -15
@@ -41,7 +41,7 @@
     },
     {
       "id": "buy",
-      "label": "Buy the name back. Better to pay than to argue over who you are.",
+      "label": "Buy the name back; better to pay than to argue over who you are.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -49,7 +49,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Names are cheap here. That should worry you more than it does.",
+          "text": "Names are cheap here, which should worry you more than it does.",
           "effects": [
             {
               "resources": {
@@ -70,7 +70,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A useful name to have, and nobody here will miss it. Not even its owner, it seems.",
+          "text": "It is a useful name to have. Nobody here will miss it, not even its owner, it seems.",
           "effects": [
             {
               "score": {

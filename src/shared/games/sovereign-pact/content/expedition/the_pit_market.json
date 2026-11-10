@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "trade",
-      "label": "The craftiest haggles at a stall, and hopes the price is paid in coin.",
+      "label": "The craftiest haggles at a stall, hoping the price is paid in coin.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "They talk the stallholder down to something reasonable, and walk away with a real find.",
+          "text": "They talk the stallholder down to something reasonable and walk away with a real find.",
           "effects": [
             {
               "item": {
@@ -37,7 +37,7 @@
         },
         {
           "w": 40,
-          "text": "The price was more than it seemed, and they pay it with their hands.",
+          "text": "The price was more than it seemed. They pay it with their hands.",
           "effects": [
             {
               "item": {
@@ -61,7 +61,7 @@
       "outcomes": [
         {
           "w": 45,
-          "text": "In and out before anyone counts their fingers.",
+          "text": "They are in and out before anyone thinks to count.",
           "effects": [
             {
               "resources": {
@@ -90,7 +90,7 @@
     },
     {
       "id": "leave",
-      "label": "Leave the market, before someone names a price for you.",
+      "label": "Leave the market before someone names a price for you.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -98,7 +98,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A hundred eyes follow you out, and none follow further. But a hand did while you watched the eyes, and a purse is gone.",
+          "text": "A hundred eyes follow you to the door and no further. While you watched the eyes, a hand took a purse.",
           "effects": [
             {
               "resources": {

@@ -9,11 +9,11 @@
     7
   ],
   "title": "The Owl Parliament",
-  "text": "A hundred owls sit in the branches in rows, like a court in session, grey and white and gold, their eyes enormous. One old owl sits higher than the rest. They fall silent when you arrive, every one, and turn their heads all the way round to look at you.",
+  "text": "A hundred owls sit in rows in the branches like a court in session, grey and white and gold, their eyes enormous. One old owl sits higher than the rest. Every one falls silent when you arrive, turning their heads all the way round to look at you.",
   "options": [
     {
       "id": "plead",
-      "label": "The wisest pleads the party's case before the court, and hopes the owls are merciful.",
+      "label": "The wisest pleads the party's case before the court, hoping the owls are merciful.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "They hoot, all together, and the way through the wood opens.",
+          "text": "They hoot all together, and the way through the wood opens.",
           "effects": [
             {
               "skip": 1
@@ -35,7 +35,7 @@
         },
         {
           "w": 30,
-          "text": "They find against you, and a hundred eyes follow you out.",
+          "text": "They find against you. A hundred eyes follow you out.",
           "effects": [
             {
               "to": "party",
@@ -47,7 +47,7 @@
     },
     {
       "id": "wait",
-      "label": "Stand and wait for their verdict, and listen while they deliberate.",
+      "label": "Stand and wait for their verdict while they deliberate.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -55,7 +55,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They lose interest and talk among themselves. You learn a great deal from what they say about you.",
+          "text": "They lose interest and talk among themselves. What they say about you teaches you a great deal.",
           "effects": [
             {
               "to": "party",
@@ -67,7 +67,7 @@
     },
     {
       "id": "scatter",
-      "label": "Scatter the court. You will not be judged by birds.",
+      "label": "Scatter the court; you will not be judged by birds.",
       "rule": "leader",
       "tags": [
         "reckless"
@@ -75,7 +75,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A storm of feathers, and something bigger wakes in the branches.",
+          "text": "Feathers storm up. Something bigger wakes in the branches.",
           "effects": [
             {
               "encounter": {

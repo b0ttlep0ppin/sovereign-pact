@@ -9,7 +9,7 @@
     8
   ],
   "title": "The Pack Den",
-  "text": "A den under the roots of a great tree, and in it a litter of pups with eyes like coals, tumbling over each other, growling in small voices. The bones around the den are fresh. The mother is out hunting. Not far out.",
+  "text": "Under the roots of a great tree is a den, where a litter of pups with eyes like coals tumble over each other, growling in small voices. The bones around the den are fresh. The mother is out hunting, though not far.",
   "options": [
     {
       "id": "take",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 40,
-          "text": "It bites, then settles, then follows. It will be a great hound, or something else.",
+          "text": "It bites, then settles, then follows. It will grow into a great hound, or something else.",
           "effects": [
             {
               "house_improvement": "recruit"
@@ -30,7 +30,7 @@
         },
         {
           "w": 60,
-          "text": "The mother was not far out.",
+          "text": "She was not far out.",
           "effects": [
             {
               "encounter": {
@@ -43,7 +43,7 @@
     },
     {
       "id": "leave",
-      "label": "Leave the pups and go quietly. No mother forgives a stolen child.",
+      "label": "Leave the pups and go quietly; no mother forgives a stolen child.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -51,7 +51,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The mother passes you on the path an hour later, bloody to the shoulder, and only looks.",
+          "text": "An hour later the mother passes you on the path, bloody to the shoulder. She only looks.",
           "effects": [
             {
               "to": "party",

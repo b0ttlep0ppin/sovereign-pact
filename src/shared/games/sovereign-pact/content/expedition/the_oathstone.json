@@ -9,7 +9,7 @@
     10
   ],
   "title": "The Oathstone",
-  "text": "A standing stone where knights swore oaths, its face carved with their names, hundreds of them, the oldest worn almost smooth. One name has been scratched out, gouged deep, and something else written over it, in letters that hurt to look at.",
+  "text": "Knights once swore oaths at this standing stone, and hundreds of their names are carved on its face, the oldest worn almost smooth. One name has been gouged out. Something else is written over it, in letters that hurt to look at.",
   "options": [
     {
       "id": "swear",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The stone takes the oath. So does the one who swore it, and they are bound to it now, for good or ill.",
+          "text": "The stone takes the oath. So does the one who swore it, who is bound to it now for good or ill.",
           "effects": [
             {
               "growth": {
@@ -39,7 +39,7 @@
     },
     {
       "id": "read",
-      "label": "The sharpest eye reads what was written over the gouged name, though it hurts to look.",
+      "label": "The sharpest reads what was written over the gouged name, though it hurts to look.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -47,7 +47,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A curse on an oathbreaker, and the name of a House you know.",
+          "text": "It is a curse on an oathbreaker, and the name of a House you know.",
           "effects": [
             {
               "score": {
@@ -68,7 +68,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "Every oath ever sworn on it is released, and the air feels clean.",
+          "text": "Every oath ever sworn on it is released. The air feels clean.",
           "effects": [
             {
               "to": "party",
@@ -81,7 +81,7 @@
         },
         {
           "w": 50,
-          "text": "Every oath ever sworn on it is broken, and the oathbreakers wake.",
+          "text": "Every oath ever sworn on it is broken. The oathbreakers wake.",
           "effects": [
             {
               "encounter": {}

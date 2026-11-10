@@ -9,7 +9,7 @@
     10
   ],
   "title": "The Old Hunters' Camp",
-  "text": "A camp of trophies, bones and rusted traps, a lean-to rotting in the rain. Someone hunted the same quarry here, years ago, and kept careful notes. The last pages are spattered. The last line just says: it learns.",
+  "text": "Trophies, bones and rusted traps litter a camp where a lean-to rots in the rain. Years ago someone hunted the same quarry here, keeping careful notes. The last pages are spattered. The last line says only: it learns.",
   "options": [
     {
       "id": "notes",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Its habits, its weak side, the way it always turns left. The last pages are about how it stopped turning left.",
+          "text": "They tell of its habits, its weak side and how it always turns left. The last pages are about how it stopped turning left.",
           "effects": [
             {
               "to": "party",
@@ -46,7 +46,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Old iron, still good, set around your camp each night. Nothing trips them yet.",
+          "text": "The old iron is still good. You set it around camp each night, and nothing trips it yet.",
           "effects": [
             {
               "resources": {
@@ -63,7 +63,7 @@
     },
     {
       "id": "trophies",
-      "label": "Take the dead hunter's trophies. He will not need them now.",
+      "label": "Take the dead hunter's trophies; he will not need them now.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -71,7 +71,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Heads and horns, and an ivory you cannot place. They will sell.",
+          "text": "Among the heads and horns is an ivory you cannot place. They will sell.",
           "effects": [
             {
               "resources": {

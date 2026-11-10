@@ -9,11 +9,11 @@
     8
   ],
   "title": "The Proving Stone",
-  "text": "A boulder with a sword driven into it to the hilt, and many hands' worth of scratches gouged around the guard, where fingers clawed. A sign beside it is carved in a dead language. Everyone knows what it says.",
+  "text": "A sword is driven to the hilt into a boulder. Around the guard, many hands have gouged scratches where fingers clawed. A sign beside it is carved in a dead language, though everyone knows what it says.",
   "options": [
     {
       "id": "strong",
-      "label": "The strongest tries the sword, as so many tried before them.",
+      "label": "The strongest tries the sword, as so many did before them.",
       "rule": "scion:highest:might",
       "tags": [
         "bold"
@@ -37,7 +37,7 @@
         },
         {
           "w": 65,
-          "text": "It does not, and the stone seems amused, and their arms ache for days.",
+          "text": "It does not move. The stone seems amused, and their arms ache for days.",
           "effects": [
             {
               "durability": -10,
@@ -49,7 +49,7 @@
     },
     {
       "id": "weak",
-      "label": "The weakest tries, for luck. Stranger things have happened.",
+      "label": "The weakest tries it for luck; stranger things have happened.",
       "rule": "scion:lowest:might",
       "tags": [
         "reckless"
@@ -74,7 +74,7 @@
         },
         {
           "w": 75,
-          "text": "It does not. Nobody laughs, and they learn something from trying.",
+          "text": "It does not move, but nobody laughs. They learn something from trying.",
           "effects": [
             {
               "xp": 40
@@ -85,7 +85,7 @@
     },
     {
       "id": "read",
-      "label": "The sharpest eye reads the scratches, to learn who clawed at the stone before.",
+      "label": "The sharpest reads the scratches to learn who clawed at the stone before.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -93,7 +93,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Names. Hundreds of them. Some are from your Houses, and some are fresh.",
+          "text": "Hundreds of names are scratched there. Some are from your Houses, and some are fresh.",
           "effects": [
             {
               "score": {

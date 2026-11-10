@@ -9,11 +9,11 @@
     7
   ],
   "title": "The Net Mender",
-  "text": "An old woman mends nets on a stilt-house over the marsh, her fingers quick, humming to herself. The nets hang drying all around, and they are full. Not of fish. Of shoes, hands, a doll, a crown. Her nets catch whatever the water takes.",
+  "text": "An old woman mends nets on a stilt-house over the marsh, humming to herself, her fingers quick. Her nets hang drying all around, full not of fish but of shoes, hands, a doll and a crown. Her nets catch whatever the water takes.",
   "options": [
     {
       "id": "tide",
-      "label": "The one with the sea in them helps her haul, and the water gives up what it holds.",
+      "label": "The one with the sea in them helps her haul, so the water gives up what it holds.",
       "rule": "scion:trait:tidebound|scion:highest:resilience",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The net comes up heavy with a drowned knight's gear, and nothing of the knight. She does not seem surprised.",
+          "text": "The net comes up heavy with a drowned knight's gear, though nothing of the knight. She does not seem surprised.",
           "effects": [
             {
               "item": {
@@ -37,7 +37,7 @@
     },
     {
       "id": "arm",
-      "label": "The one with the hurt arm lets her bind it in net-cord, and does not ask what she hums.",
+      "label": "The one with the hurt arm lets her bind it in net-cord, without asking what she hums.",
       "rule": "scion:injured:arms|scion:random",
       "tags": [
         "kind"
@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Old marsh-craft. It holds, and it costs, and the humming stays in their head.",
+          "text": "The old marsh-craft holds, though she charges for it. Her humming stays in their head for days.",
           "effects": [
             {
               "mend": true
@@ -61,7 +61,7 @@
     },
     {
       "id": "cut",
-      "label": "Cut her nets loose, and free whatever the water took.",
+      "label": "Cut her nets loose to free whatever the water took.",
       "rule": "vote",
       "tags": [
         "cruel"
@@ -69,7 +69,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Whatever was in them swims free, and it remembers you.",
+          "text": "Whatever was in them swims free. It remembers you.",
           "effects": [
             {
               "doom": 1

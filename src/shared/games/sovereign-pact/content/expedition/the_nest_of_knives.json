@@ -9,7 +9,7 @@
     10
   ],
   "title": "The Nest of Knives",
-  "text": "A bird's nest woven of knives, blades and handles and broken swords, wedged in a dead tree. In it sit three eggs of iron, dull and heavy. Something above beats its wings, slow and huge, and every feather sounds like steel.",
+  "text": "A bird's nest woven of knives, blades and broken swords is wedged in a dead tree. In it sit three dull, heavy eggs of iron. Somewhere above, something beats its wings, slow and huge, every feather sounding like steel.",
   "options": [
     {
       "id": "climb",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 50,
-          "text": "An iron egg, warm and heavy and worth a fortune. Something above stops beating its wings.",
+          "text": "The egg is warm, heavy and worth a fortune. Above, the wingbeats stop.",
           "effects": [
             {
               "resources": {
@@ -54,7 +54,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Fine blades, all of them, and one still holds a hand's warmth in the grip.",
+          "text": "The blades are all fine work. One still holds a hand's warmth in the grip.",
           "effects": [
             {
               "item": {
@@ -67,7 +67,7 @@
     },
     {
       "id": "leave",
-      "label": "Leave the tree alone. Nothing that builds with knives should be crossed.",
+      "label": "Leave the tree alone; nothing that builds with knives should be crossed.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -75,7 +75,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Something with iron feathers watches you go, and drops one point-down in the earth beside you. Good iron, and a warning.",
+          "text": "Something with iron feathers watches you go. It drops one point-down in the earth beside you, good iron and a warning both.",
           "effects": [
             {
               "resources": {

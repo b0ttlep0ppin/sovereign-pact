@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It fits their hand as if made for it, and the incense follows them.",
+          "text": "It fits their hand as if made for it. The smell of incense follows them.",
           "effects": [
             {
               "item": {
@@ -37,7 +37,7 @@
     },
     {
       "id": "leave",
-      "label": "Leave it for its owner. Someone will come back for it.",
+      "label": "Leave it for its owner; someone will come back for it.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -45,7 +45,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A limping pilgrim passes later, smiles to see it, and has no shadow either.",
+          "text": "Later a limping pilgrim passes and smiles to see it. He has no shadow either.",
           "effects": [
             {
               "score": {
@@ -77,7 +77,7 @@
         },
         {
           "w": 50,
-          "text": "It does not want them, and it twists their arms to say so.",
+          "text": "It does not want them. It twists their arms to say so.",
           "effects": [
             {
               "durability": -15,

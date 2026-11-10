@@ -9,7 +9,7 @@
     6
   ],
   "title": "The Old Bull",
-  "text": "A huge old bull blocks the trail, broad as a wagon, its hide a map of scars from every hunter who tried for it. Broken spearheads are still lodged in its hump. It looks at the bravest of you, and only them, as if it knows.",
+  "text": "A huge old bull blocks the trail, broad as a wagon, its hide a map of scars from every hunter who tried for it. Broken spearheads are still lodged in its hump. It looks at the bravest of you, and only at them, as if it knows.",
   "options": [
     {
       "id": "brave",
@@ -35,7 +35,7 @@
         },
         {
           "w": 30,
-          "text": "It charges anyway, and the scars on its hide get a new story.",
+          "text": "It charges anyway. The scars on its hide gain a new story.",
           "effects": [
             {
               "durability": -40,
@@ -55,7 +55,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It does not go down easily, and it does not go down alone, but it goes down. Its horns are worth a purse.",
+          "text": "It does not go down easily or alone, but it goes down. Its horns are worth a purse.",
           "effects": [
             {
               "encounter": {
@@ -73,7 +73,7 @@
     },
     {
       "id": "around",
-      "label": "Go the long way round. That bull has outlived better hunters than you.",
+      "label": "Go the long way round; that bull has outlived better hunters than you.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -81,7 +81,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "A day lost to the brambles, and the bull's eyes on your backs the whole first hour.",
+          "text": "You lose a day to the brambles, with the bull's eyes on your backs for the first hour.",
           "effects": [
             {
               "to": "party",

@@ -9,11 +9,11 @@
     10
   ],
   "title": "The Peat Bog",
-  "text": "A bog of good black peat, the kind that burns all winter, cut in old steps by spades long rotted. The surface quivers when you stand on it. Bogs keep what falls into them, the old cutters said, and they never give it back whole.",
+  "text": "A bog of good black peat, the kind that burns all winter, has been cut in old steps by spades long rotted. The surface quivers when you stand on it. Bogs keep what falls into them, the old cutters said, and never give it back whole.",
   "options": [
     {
       "id": "cut",
-      "label": "Cut peat from the old steps. It burns all winter, and the House will be glad of it.",
+      "label": "Cut peat from the old steps; it burns all winter, and the House will be glad of it.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Heavy, wet work, and once a spade strikes something soft. Nobody digs there again.",
+          "text": "The work is heavy and wet. Once a spade strikes something soft, and nobody digs there again.",
           "effects": [
             {
               "resources": {
@@ -38,7 +38,7 @@
     },
     {
       "id": "bodies",
-      "label": "The sharpest eye searches the black water for what the bog keeps.",
+      "label": "The sharpest searches the black water for what the bog keeps.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -46,7 +46,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "An old sword in the peat, and the hand that held it, brown as leather. The fingers do not want to let go.",
+          "text": "An old sword lies in the peat, still gripped by a hand gone brown as leather. The fingers do not want to let go.",
           "effects": [
             {
               "item": {
@@ -59,7 +59,7 @@
     },
     {
       "id": "leave",
-      "label": "Leave the bog be. What it keeps, it keeps.",
+      "label": "Leave the bog be; what it keeps, it keeps.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -67,7 +67,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Bogs swallow people. Not you, though it takes the Leader's boot to the knee, and the greave with it.",
+          "text": "On the way out the bog takes the Leader's leg to the knee. They pull free, but the greave stays behind.",
           "effects": [
             {
               "durability": -30,

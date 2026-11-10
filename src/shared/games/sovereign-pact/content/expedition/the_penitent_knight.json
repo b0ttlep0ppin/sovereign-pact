@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "accept",
-      "label": "Let him earn his forgiveness at your side, and spend his blood before yours.",
+      "label": "Let him earn his forgiveness at your side, spending his blood before yours.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He fights like a man with nothing left to lose, and puts himself in front of every blow.",
+          "text": "He fights like a man with nothing left to lose, putting himself in front of every blow.",
           "effects": [
             {
               "to": "party",
@@ -46,7 +46,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Something terrible. He tells it all, then tells you where the Court keeps its secrets, as if one confession demanded another.",
+          "text": "It was something terrible. He tells it all, then tells you where the Court keeps its secrets, as if one confession demanded another.",
           "effects": [
             {
               "score": {
@@ -59,7 +59,7 @@
     },
     {
       "id": "refuse",
-      "label": "Refuse him. Whatever he did, it is not yours to forgive.",
+      "label": "Refuse him; whatever he did, it is not yours to forgive.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -87,7 +87,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Two knights kneel in the road, and the penitent's oath binds to the Knight's. He walks away forgiven. The Knight walks away harder to break.",
+          "text": "Two knights kneel in the road as the penitent's oath binds to the Knight's. He walks away forgiven; the Knight walks away harder to break.",
           "effects": [
             {
               "xp": 30,

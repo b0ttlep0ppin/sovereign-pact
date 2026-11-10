@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "turn",
-      "label": "Each of you gives the wheel a turn, and sends a prayer to the Six.",
+      "label": "Each of you gives the wheel a turn, sending a prayer to the Six.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Prayers, and a lightness, and the wheel's groan in your chest.",
+          "text": "A lightness comes with the prayers. The wheel's groan lingers in your chest.",
           "effects": [
             {
               "to": "party",
@@ -33,7 +33,7 @@
     },
     {
       "id": "spin",
-      "label": "The strongest spins it as hard as they can, to send a thousand prayers at once.",
+      "label": "The strongest spins it as hard as they can, sending a thousand prayers at once.",
       "rule": "scion:highest:might",
       "tags": [
         "reckless"
@@ -41,7 +41,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "A thousand prayers at once, and one of them answered.",
+          "text": "One of the thousand is answered.",
           "effects": [
             {
               "blessing": {
@@ -53,7 +53,7 @@
         },
         {
           "w": 40,
-          "text": "It flies off its axle, and the monks will be talking about it for a while.",
+          "text": "It flies off its axle. The monks will be talking about it for a while.",
           "effects": [
             {
               "durability": -15,
@@ -78,7 +78,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "One of them is a prayer for your House, written long ago, in a hand you almost know.",
+          "text": "One is a prayer for your House, written long ago in a hand you almost know.",
           "effects": [
             {
               "score": {

@@ -9,7 +9,7 @@
     7
   ],
   "title": "The Old Soldier",
-  "text": "A veteran sits by the road in rusted mail, back straight, spear upright, waiting for orders from a war that ended long ago. He does not know it ended. He offers, gruffly, to teach a trick or two to anyone green enough to need it.",
+  "text": "A veteran sits by the road in rusted mail, back straight, spear upright, waiting for orders from a war that ended long ago. He does not know it ended. He gruffly offers to teach a trick or two to anyone green enough to need it.",
   "options": [
     {
       "id": "learn",
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He is a hard teacher and a good one, and he never once asks their name.",
+          "text": "He is a hard teacher and a good one. He never once asks their name.",
           "effects": [
             {
               "xp": 150
@@ -35,7 +35,7 @@
     },
     {
       "id": "relieve",
-      "label": "The Leader relieves him of duty, and tells him the war is over.",
+      "label": "The Leader relieves him of duty and tells him the war is over.",
       "rule": "leader",
       "tags": [
         "kind"
@@ -43,7 +43,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He salutes, and goes home at last, wherever home is now. The road feels emptier without him.",
+          "text": "He salutes and goes home at last, wherever home is now. The road feels emptier without him.",
           "effects": [
             {
               "to": "party",
@@ -60,7 +60,7 @@
     },
     {
       "id": "enlist",
-      "label": "Ask him to march with you. A soldier without a war needs one.",
+      "label": "Ask him to march with you; a soldier without a war needs one.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -68,7 +68,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "He marches with you as far as the next fight, stands in front, and fights like ten.",
+          "text": "He marches with you as far as the next fight, where he stands in front and fights like ten.",
           "effects": [
             {
               "to": "party",

@@ -9,11 +9,11 @@
     9
   ],
   "title": "The Poisoned Well",
-  "text": "Water at last, cold and sweet, and the party has drunk deep before anyone notices the dead birds around the well, feathers stuck to the stones. Bellies start to cramp. Each House has a little antidote, enough for its own. It could be shared.",
+  "text": "Water at last, cold and sweet. The party has drunk deep before anyone notices the dead birds around the well, their feathers stuck to the stones. Bellies start to cramp. Each House has enough antidote for its own, though it could be shared.",
   "options": [
     {
       "id": "share",
-      "label": "Pass your antidote round to everyone, and trust the others will do the same.",
+      "label": "Pass your antidote round to everyone, trusting the others to do the same.",
       "rule": "secret",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Everyone shared, and there is enough for all with some left over.",
+          "text": "Everyone shared. There is enough for all, with some left over.",
           "effects": [
             {
               "to": "party",
@@ -39,7 +39,7 @@
         },
         {
           "w": 100,
-          "text": "You shared. Not everyone did, and your own go without.",
+          "text": "You shared, but not everyone did. Your own go without.",
           "effects": [
             {
               "status": "poison"
@@ -57,7 +57,7 @@
     },
     {
       "id": "hoard",
-      "label": "Keep your antidote for your own. Let the other Houses look to theirs.",
+      "label": "Keep your antidote for your own; let the other Houses look to theirs.",
       "rule": "secret",
       "tags": [
         "cautious"
@@ -65,7 +65,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Your own are fine. The others are fine too, thanks to people better than you.",
+          "text": "Your own are fine. So are the others, thanks to people better than you.",
           "effects": [
             {
               "score": {
@@ -79,7 +79,7 @@
         },
         {
           "w": 100,
-          "text": "Every House kept its own. Everyone lives, and nobody forgets.",
+          "text": "Every House kept its own. Everyone lives, but nobody forgets.",
           "effects": [
             {
               "accord": -2

@@ -9,11 +9,11 @@
     10
   ],
   "title": "The Quarry's Den",
-  "text": "The den is empty: a hollow of trampled earth, bones gnawed clean, a nest of fur and feathers. In the middle, something it was guarding, small and alive and mewling. Far off, through the trees, something answers.",
+  "text": "The den is empty: a hollow of trampled earth, bones gnawed clean, a nest of fur and feathers. In the middle lies what it was guarding, small and alive and mewling. Far off through the trees, something answers.",
   "options": [
     {
       "id": "young",
-      "label": "The Leader takes the young. Its bones will fetch a fine price.",
+      "label": "The Leader takes the young; its bones will fetch a fine price.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The quarry will come for it, and soon, and from behind.",
+          "text": "The quarry will come for it soon, and from behind.",
           "effects": [
             {
               "encounter": {
@@ -48,7 +48,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It comes home, and finds you there, and it is angry.",
+          "text": "It comes home to find you there. It is angry.",
           "effects": [
             {
               "encounter": {}
@@ -64,7 +64,7 @@
     },
     {
       "id": "spare",
-      "label": "The gentlest leaves the young unharmed, and hopes the parent remembers.",
+      "label": "The gentlest leaves the young unharmed, hoping the parent remembers.",
       "rule": "scion:fewest_kills|scion:highest:sagacity",
       "tags": [
         "kind"
@@ -72,7 +72,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The quarry finds it whole, and is slower to fight, and you are glad of it.",
+          "text": "The quarry finds its young whole and is slower to fight. You are glad of it.",
           "effects": [
             {
               "to": "party",

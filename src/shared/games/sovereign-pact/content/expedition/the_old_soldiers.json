@@ -9,11 +9,11 @@
     10
   ],
   "title": "The Old Soldiers",
-  "text": "A camp of veterans who left the Gate behind long ago and never went home. Their fire is small and their faces are hard. They do not trust nobles. They will share the fire, though, with anyone who has served and come back.",
+  "text": "Veterans who left the Gate behind long ago, and never went home, keep a camp here. Their fire is small and their faces hard. They do not trust nobles, though they will share the fire with anyone who has served and come back.",
   "options": [
     {
       "id": "veteran",
-      "label": "Someone who has walked away before sits at their fire, and earns their trust.",
+      "label": "Someone who has walked away before sits at their fire to earn their trust.",
       "rule": "scion:retired_once|scion:most_expeditions",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They trade stories past midnight, the true ones, the ones nobody tells at home.",
+          "text": "They trade stories past midnight, the true ones nobody tells at home.",
           "effects": [
             {
               "to": "party",
@@ -44,7 +44,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The veterans are hard teachers, and they do not soften what they teach.",
+          "text": "The veterans are hard teachers. They do not soften what they teach.",
           "effects": [
             {
               "xp": 120
@@ -58,7 +58,7 @@
     },
     {
       "id": "recruit",
-      "label": "Ask one of them to come back to the House, and fight for something again.",
+      "label": "Ask one of them to come back to the House and fight for something again.",
       "rule": "house:random",
       "tags": [
         "bold"
@@ -75,7 +75,7 @@
         },
         {
           "w": 60,
-          "text": "They will not go back. Not ever. They give you their old map instead, and turn back to the fire.",
+          "text": "They will never go back. Instead they give you their old map and turn back to the fire.",
           "effects": [
             {
               "skip": 1
