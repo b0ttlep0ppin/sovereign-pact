@@ -4,11 +4,25 @@
 .sp-crown__glow { fill: #a05ae8; opacity: 0.75; }
 .sp-crown__jewel { fill: #fff2ff; filter: drop-shadow(0 0 2px #e0b0ff); }
 .sp-crown__band { fill: none; stroke: #2a0a44; stroke-width: 2.4; opacity: 0.8; }
-.sp-crown__edge { stroke: #f4dcff; stroke-width: 1.6; filter: drop-shadow(0 0 3px #c88cff); }
 .sp-crown__body, .sp-crown__glow { animation: sp-crown-breathe 5s ease-in-out infinite; transform-origin: 50% 100%; }
 @keyframes sp-crown-breathe { 50% { opacity: 0.82; } }
 .sp-crown__jewel { animation: sp-crown-wink 3.2s ease-in-out infinite; }
 .sp-crown__jewel:nth-of-type(2n) { animation-delay: 1.1s; }
 @keyframes sp-crown-wink { 50% { opacity: 0.35; } }
+/* The shimmer: motes of light drifting up off the outline, each from its own spot, fading as they go. */
+.sp-crown__motes rect { fill: #ecd2ff; opacity: 0; animation: sp-crown-fizz 3s ease-out infinite; }
+/* Carbonation: pixels fizzing up off the torn edge and fading as they rise. */
+.sp-crown__fizz rect { fill: #f3dcff; opacity: 0; animation: sp-crown-fizz 2s ease-out infinite; }
+@keyframes sp-crown-fizz { 0% { transform: translateY(0); opacity: 0; } 12% { opacity: 0.95; } 100% { transform: translateY(var(--rise, -14px)); opacity: 0; } }
+/* The splash's crown: implied, not drawn. */
+.sp-crown--faint .sp-crown__ghost { stroke-width: 0.45; stroke-dasharray: 3 5 1 7; opacity: 0.45; fill: rgba(40, 10, 60, 0.15); }
+.sp-crown--faint .sp-crown__body { opacity: 0.5; }
+.sp-crown--faint .sp-crown__glow { opacity: 0.4; }
+.sp-crown--faint .sp-crown__band { stroke-width: 1.2; }
+.sp-crown--faint .sp-crown__motes rect { fill: #d8b4f6; }
+@keyframes sp-crown-breathe-faint { 50% { opacity: 0.36; } }
+.sp-crown--faint .sp-crown__body, .sp-crown--faint .sp-crown__glow { animation-name: sp-crown-breathe-faint; }
 @media (prefers-reduced-motion: reduce) { .sp-crown__body, .sp-crown__glow, .sp-crown__jewel { animation: none; } }
 [data-motion="reduced"] .sp-crown__body, [data-motion="reduced"] .sp-crown__glow, [data-motion="reduced"] .sp-crown__jewel { animation: none; }
+@media (prefers-reduced-motion: reduce) { .sp-crown__fizz, .sp-crown__motes { display: none; } }
+[data-motion="reduced"] .sp-crown__fizz, [data-motion="reduced"] .sp-crown__motes { display: none; }
