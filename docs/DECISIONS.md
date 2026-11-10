@@ -2,6 +2,10 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-10 (implementation, Milestone 8ds): allied bots act every turn they can, and step out of shown attacks
+
+Josh: "allied bots are doing a lot of 'move 1 square, then end turn' they should always try and take an action, and mostly move to get target in range or avoid telegraphed attacks". A gambit rule that could not be done (no MP, a cooldown, nothing in reach) used to step toward the foe and Wait at once, ahead of every later rule and the attack. For Scions (bot seats, Sorties, absent players, auto battles) a rule now only moves if it can act from where it lands; stepping closer and Waiting is the last resort, after every rule and the attack. A Scion standing where a shown attack will land (telegraphed, or read by Commune; not a homing one, and not one that picks its own victims as it lands) steps to the nearest safe cell and acts from there, or Defends there if it cannot. Reading taken: creatures keep their old ways, since the enemy numbers were tuned with them; the sweep shows the party losing about 5 points less HP and taking fewer injury rolls, with win rates unchanged.
+
 ## 2026-11-10 (implementation, Milestone 8dr): Knit Bone mends a Broken location, and every mend shows
 
 Josh: "seems like knit bone didn't do anything when i cast it?" It restored Durability, but to the most hurt location, which is usually a Broken one, and that location stayed Broken for the rest of the fight (the card still read "Broken" and the next hit there still forced an injury roll). Reading taken from §7.4 ("healers' Durability restoration matters"): any Durability put back on a Broken location makes it hold again. Every restore (Knit Bone, salves, Durability regen) now sends a `mend` battle event: the log says who mended which location and whether it is no longer Broken, a green "+N" pops over the Scion with the location, and the heal animation and sound play. Regen's per-turn mend shows only its number.
