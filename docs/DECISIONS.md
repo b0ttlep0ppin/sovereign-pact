@@ -10,17 +10,18 @@ Josh: **"Could also add or modify existing house traits that add starting resour
   - Old Blood of Kings: +30 Gold at the start.
   - Deep Coffers: +40 Gold at the start.
   - Wyrm-Blooded: +60 Gold at the start (the hoard).
-  - Forge-Born: +2 Iron a Year.
-  - Hunters of the Deep Wood: +2 Timber a Year.
-  - Faithful of the Pale Saint: +1 Essence a Year.
-  - Grave-Keepers: +1 Essence a Year.
+  - Forge-Born: +4 Iron a Year.
+  - Hunters of the Deep Wood: +4 Timber a Year.
+  - Faithful of the Pale Saint: +4 Essence a Year.
+  - Grave-Keepers: +4 Essence a Year.
 - New Minor Traits, which bring the Minor list to 29 of SPEC's target of 30:
-  - Charcoal Burners: +20 Timber, then +3 a Year.
-  - Stonecutters: +15 Stone, then +2 a Year.
+  - Charcoal Burners: +20 Timber, then +4 a Year.
+  - Stonecutters: +15 Stone, then +4 a Year.
   - Full Cellars: +30 Grain, then +4 a Year.
-  - Keepers of the Vigil: +2 Essence a Year and Sanity +5%.
-  - Deep Delvers: +10 Iron, then +2 a Year.
-- The Major list stays at the spec's 20. Every number is a first pass, smaller than a level-1 producer's 8 a Year.
+  - Keepers of the Vigil: +4 Essence a Year and Sanity +5%.
+  - Deep Delvers: +10 Iron, then +4 a Year.
+- The Major list stays at the spec's 20.
+- Josh, an hour later: **"since they stack with buildings it should probably be like +4 a year"**. Every trait's yearly yield is now +4, Essence included. The starting amounts stay first-pass.
 
 ## 2026-11-10 (implementation, Milestone 8dd): HP that seeps back is shown
 
