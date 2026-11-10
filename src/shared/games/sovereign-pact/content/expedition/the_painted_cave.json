@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "study",
-      "label": "The wisest studies the newest painting.",
+      "label": "The wisest studies the newest painting, to learn what it shows of what comes next.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -37,7 +37,7 @@
     },
     {
       "id": "add",
-      "label": "Paint something of your own on the wall.",
+      "label": "Paint something of your own on the wall, and leave your mark among the old ones.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -57,7 +57,7 @@
     },
     {
       "id": "deface",
-      "label": "Scratch out your own picture.",
+      "label": "Scratch out your own picture, and refuse whatever it foretold.",
       "rule": "leader",
       "tags": [
         "reckless"

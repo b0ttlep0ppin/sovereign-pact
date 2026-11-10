@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "follow",
-      "label": "Follow the bloody arrow.",
+      "label": "Follow the bloody arrow, as they hoped you would.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -36,7 +36,7 @@
     },
     {
       "id": "read",
-      "label": "The sharpest reads the stone for more.",
+      "label": "The sharpest reads the stone for more, in case they left a warning.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -60,7 +60,7 @@
     },
     {
       "id": "call",
-      "label": "Call out their name.",
+      "label": "Call out their name, and hope they are still near enough to hear.",
       "rule": "leader",
       "tags": [
         "reckless"

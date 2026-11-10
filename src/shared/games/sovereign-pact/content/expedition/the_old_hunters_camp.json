@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "notes",
-      "label": "The wisest reads the spattered notes.",
+      "label": "The wisest reads the spattered notes, to learn what the hunter learned too late.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Its habits, its weak side, and the way it always turns left. The last pages are about how it stopped turning left.",
+          "text": "Its habits, its weak side, the way it always turns left. The last pages are about how it stopped turning left.",
           "effects": [
             {
               "to": "party",
@@ -38,7 +38,7 @@
     },
     {
       "id": "traps",
-      "label": "Mend the old traps and carry them along.",
+      "label": "Mend the old traps and carry them along, so what hunted him finds iron first.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -46,7 +46,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Old iron, still good, and set around your camp each night.",
+          "text": "Old iron, still good, set around your camp each night. Nothing trips them yet.",
           "effects": [
             {
               "resources": {
@@ -63,7 +63,7 @@
     },
     {
       "id": "trophies",
-      "label": "Take the dead hunter's trophies.",
+      "label": "Take the dead hunter's trophies. He will not need them now.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -71,7 +71,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Heads and horns. They will sell. The hunter will not need them.",
+          "text": "Heads and horns, and an ivory you cannot place. They will sell.",
           "effects": [
             {
               "resources": {

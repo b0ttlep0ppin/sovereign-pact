@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "hop",
-      "label": "Hop the stones across the fire.",
+      "label": "Hop the stones across the fire, and hope they hold.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -49,7 +49,7 @@
     },
     {
       "id": "swift",
-      "label": "The quickest goes first and calls the safe stones.",
+      "label": "The quickest goes first and calls the safe stones for the rest.",
       "rule": "scion:highest:speed",
       "tags": [
         "clever"
@@ -68,7 +68,7 @@
     },
     {
       "id": "bridge",
-      "label": "Wait for a frost-breathing wyrm to cool a bridge.",
+      "label": "Wait for a frost-breathing wyrm to cool a bridge, and hope it does not notice you.",
       "rule": "leader",
       "tags": [
         "cautious"

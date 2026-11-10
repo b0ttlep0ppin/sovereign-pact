@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "fell",
-      "label": "Fell the silver trees.",
+      "label": "Fell the silver trees. Timber like this would raise towers at home.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -48,7 +48,7 @@
     },
     {
       "id": "ask",
-      "label": "The wisest asks the stones' leave first.",
+      "label": "The wisest asks the stones' leave first, as the old folk would have.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "kind"
@@ -73,7 +73,7 @@
     },
     {
       "id": "deadfall",
-      "label": "Take only the fallen wood.",
+      "label": "Take only the fallen wood, and leave the stones nothing to frown at.",
       "rule": "leader",
       "tags": [
         "cautious"

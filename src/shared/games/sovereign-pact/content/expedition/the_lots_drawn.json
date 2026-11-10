@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "draw",
-      "label": "Let the bones choose.",
+      "label": "Let the bones choose, and accept whatever they decide.",
       "rule": "house:random",
       "tags": [
         "cautious"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The bones fall, and the spirit grins at one House, and that House pays.",
+          "text": "The bones fall, and the spirit grins at one House, and that House pays. The grin lingers.",
           "effects": [
             {
               "resources": {
@@ -39,7 +39,7 @@
     },
     {
       "id": "richest",
-      "label": "The richest House offers to pay for all.",
+      "label": "The richest House offers to pay for all, and spares the others the bones.",
       "rule": "house:highest_standing",
       "tags": [
         "kind"
@@ -68,7 +68,7 @@
     },
     {
       "id": "refuse",
-      "label": "Refuse the toll.",
+      "label": "Refuse the toll. No bag of bones decides your fate.",
       "rule": "vote",
       "tags": [
         "bold"

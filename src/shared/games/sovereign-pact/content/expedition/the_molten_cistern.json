@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "fish",
-      "label": "Fish out ingots with a pole.",
+      "label": "Fish out ingots with a pole, and keep well back from the heat.",
       "rule": "vote",
       "tags": [
         "clever"
@@ -44,7 +44,7 @@
     },
     {
       "id": "reach",
-      "label": "The quickest reaches for the best ingot.",
+      "label": "The quickest reaches for the best ingot, fast enough to beat the heat.",
       "rule": "scion:highest:speed",
       "tags": [
         "reckless"
@@ -76,7 +76,7 @@
     },
     {
       "id": "leave",
-      "label": "Leave the cistern be.",
+      "label": "Leave the cistern be. No iron is worth that fire.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -97,7 +97,7 @@
     },
     {
       "id": "wade_in",
-      "label": "The one in plate wades in for an ingot.",
+      "label": "The one in plate wades in for an ingot, trusting their steel to hold.",
       "rule": "scion:wears:plate",
       "only": true,
       "tags": [

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "ivory",
-      "label": "Take ivory from the dead.",
+      "label": "Take ivory from the dead. They came here to rest, not to hoard.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 60,
-          "text": "As much as you can carry, and the bones creak as you go.",
+          "text": "As much as you can carry, and the bones creak as you go, like something turning over in its sleep.",
           "effects": [
             {
               "resources": {
@@ -46,7 +46,7 @@
     },
     {
       "id": "guard",
-      "label": "The sharpest eye finds the guardian first.",
+      "label": "The sharpest eye finds the guardian first, before anyone touches a tusk.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"
@@ -67,7 +67,7 @@
     },
     {
       "id": "respect",
-      "label": "Leave the dead their ivory.",
+      "label": "Leave the dead their ivory. It is all they have left.",
       "rule": "leader",
       "tags": [
         "kind"

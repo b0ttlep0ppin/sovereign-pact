@@ -14,7 +14,7 @@
   "options": [
     {
       "id": "help",
-      "label": "Take up a pick and help them finish.",
+      "label": "Take up a pick and help them finish, so they may finally rest.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -40,7 +40,7 @@
     },
     {
       "id": "take",
-      "label": "Wait for them to break through, then take the ore.",
+      "label": "Wait for them to break through, then take the ore. The dead have no use for it.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -48,7 +48,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "You get the ore. They turn their lamp-eyes on you, all of them, and do not look away.",
+          "text": "You get the ore. They turn their lamp-eyes on you, all of them, and do not look away, not even when you are gone.",
           "effects": [
             {
               "resources": {
@@ -65,7 +65,7 @@
     },
     {
       "id": "ask",
-      "label": "The wisest asks them how they died.",
+      "label": "The wisest asks them how they died, and what they know of these tunnels.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"

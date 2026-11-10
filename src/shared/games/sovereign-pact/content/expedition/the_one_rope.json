@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "wait",
-      "label": "Wait your turn, and trust the others to wait theirs.",
+      "label": "Wait your turn, and trust the other Houses to wait theirs.",
       "rule": "secret",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Every House waited. The rope held for all of you, somehow, and the Houses look at each other differently.",
+          "text": "Every House waited. The rope held for all of you, somehow, and the Houses look at each other differently now.",
           "effects": [
             {
               "score": {
@@ -57,7 +57,7 @@
     },
     {
       "id": "rush",
-      "label": "Cut in and cross first.",
+      "label": "Cut in and cross first. The rope will not hold for everyone.",
       "rule": "secret",
       "tags": [
         "cruel"

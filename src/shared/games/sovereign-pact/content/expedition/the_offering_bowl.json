@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "give",
-      "label": "Give something to the Six.",
+      "label": "Give something to the Six, and ask them to watch over the road.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "The Six notice, and are pleased.",
+          "text": "The Six notice, and are pleased. For a while, luck walks with you.",
           "effects": [
             {
               "resources": {
@@ -40,7 +40,7 @@
     },
     {
       "id": "take",
-      "label": "Take something from the bowl.",
+      "label": "Plunder the bowl. Nobody is watching.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -64,7 +64,7 @@
     },
     {
       "id": "count",
-      "label": "The wisest counts what is there.",
+      "label": "The wisest counts what is there, and reads the prayers left with it.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"

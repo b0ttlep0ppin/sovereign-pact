@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "follow",
-      "label": "Follow the road that is not there.",
+      "label": "Follow the road that is not there, and trust the map that knows where you stand.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -46,7 +46,7 @@
     },
     {
       "id": "study",
-      "label": "The wisest studies whose hand drew it.",
+      "label": "The wisest studies whose hand drew it, and how it knew.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -70,7 +70,7 @@
     },
     {
       "id": "burn",
-      "label": "Burn the map.",
+      "label": "Burn the map, before it leads anyone else astray.",
       "rule": "leader",
       "tags": [
         "cautious"

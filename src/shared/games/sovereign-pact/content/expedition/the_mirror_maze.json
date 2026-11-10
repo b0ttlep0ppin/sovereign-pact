@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "follow",
-      "label": "The sharpest eye follows the reflection that walks ahead.",
+      "label": "The sharpest eye follows the reflection that walks ahead, wherever it leads.",
       "rule": "scion:highest:acuity",
       "tags": [
         "reckless"
@@ -43,7 +43,7 @@
     },
     {
       "id": "break",
-      "label": "Smash your way through the mirrors.",
+      "label": "Smash your way through the mirrors, and leave the reflections in pieces.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -68,7 +68,7 @@
     },
     {
       "id": "guile",
-      "label": "The shrewdest tricks the reflection.",
+      "label": "The shrewdest tricks the reflection into a mirror it cannot leave.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"

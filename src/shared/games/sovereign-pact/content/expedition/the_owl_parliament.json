@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "plead",
-      "label": "The wisest pleads the party's case before them.",
+      "label": "The wisest pleads the party's case before the court, and hopes the owls are merciful.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "kind"
@@ -47,7 +47,7 @@
     },
     {
       "id": "wait",
-      "label": "Stand and wait for their verdict.",
+      "label": "Stand and wait for their verdict, and listen while they deliberate.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -55,7 +55,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "They lose interest, and talk among themselves. You learn a great deal from what they say about you.",
+          "text": "They lose interest and talk among themselves. You learn a great deal from what they say about you.",
           "effects": [
             {
               "to": "party",
@@ -67,7 +67,7 @@
     },
     {
       "id": "scatter",
-      "label": "Scatter the court.",
+      "label": "Scatter the court. You will not be judged by birds.",
       "rule": "leader",
       "tags": [
         "reckless"

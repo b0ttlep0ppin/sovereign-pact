@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "creep",
-      "label": "Everyone creeps across.",
+      "label": "Everyone creeps across, soft as breath, and prays the floor stays silent.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 70,
-          "text": "Nothing hears. Every heartbeat sounds like a drum.",
+          "text": "Nothing hears. Every heartbeat sounds like a drum, and you feel each one.",
           "effects": [
             {
               "to": "party",
@@ -31,7 +31,7 @@
         },
         {
           "w": 30,
-          "text": "Something hears.",
+          "text": "Something hears, and it comes up through the cracks.",
           "effects": [
             {
               "encounter": {
@@ -44,7 +44,7 @@
     },
     {
       "id": "shout",
-      "label": "Shout a challenge down into the dark.",
+      "label": "Shout a challenge down into the dark, and let it know you are not afraid.",
       "rule": "leader",
       "tags": [
         "bold"
@@ -52,7 +52,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "It comes up.",
+          "text": "It comes up, and it is not afraid either.",
           "effects": [
             {
               "encounter": {
@@ -65,7 +65,7 @@
     },
     {
       "id": "listen",
-      "label": "The sharpest ear listens back.",
+      "label": "The sharpest ear listens back, to learn what listens below.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"

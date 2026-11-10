@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "follow",
-      "label": "Follow the song into the wind.",
+      "label": "Follow the song into the wind, toward whoever is singing it.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -21,7 +21,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Closer. The voice cracks on the same note every time.",
+          "text": "Closer. The voice cracks on the same note every time, and you begin to dread that note.",
           "effects": [
             {
               "skip": 1
@@ -32,7 +32,7 @@
     },
     {
       "id": "sing",
-      "label": "The steadiest voice sings the next verse back.",
+      "label": "The steadiest voice sings the next verse back, so they know they are not alone.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "kind"
@@ -55,7 +55,7 @@
     },
     {
       "id": "quiet",
-      "label": "Keep silent, in case it is a lure.",
+      "label": "Keep silent, in case it is a lure. Something out here may have learned the song.",
       "rule": "leader",
       "tags": [
         "cautious"
@@ -72,7 +72,7 @@
         },
         {
           "w": 50,
-          "text": "It is.",
+          "text": "It is, and it is pleased you came so close.",
           "effects": [
             {
               "encounter": {

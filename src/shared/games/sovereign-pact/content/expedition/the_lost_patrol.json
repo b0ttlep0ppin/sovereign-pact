@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "feed",
-      "label": "Share your supplies and send them home.",
+      "label": "Share your supplies and send them home, though it leaves you thin.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -41,7 +41,7 @@
     },
     {
       "id": "enlist",
-      "label": "The poorest House asks them to serve.",
+      "label": "The poorest House asks them to serve, and offers them a home.",
       "rule": "house:lowest_standing",
       "tags": [
         "clever"
@@ -60,7 +60,7 @@
     },
     {
       "id": "rob",
-      "label": "Strip their gear. They are as good as dead.",
+      "label": "Strip their gear. They are as good as dead anyway.",
       "rule": "leader",
       "tags": [
         "cruel"

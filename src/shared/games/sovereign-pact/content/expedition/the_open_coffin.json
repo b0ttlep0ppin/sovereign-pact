@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "weak",
-      "label": "The frailest lies down in it. The voice has been calling to them all along.",
+      "label": "The frailest lies down in it. The voice has been calling to them all along, and they want to answer.",
       "rule": "scion:lowest:resilience|scion:random",
       "tags": [
         "reckless"
@@ -35,7 +35,7 @@
         },
         {
           "w": 40,
-          "text": "The lid shuts, and stays shut a while, and when it opens they are not all the way back.",
+          "text": "The lid shuts and stays shut a while, and when it opens they are not all the way back.",
           "effects": [
             {
               "injury": "sanity"
@@ -46,7 +46,7 @@
     },
     {
       "id": "prise",
-      "label": "The shrewdest prises out the lining.",
+      "label": "The shrewdest prises out the lining, and takes the treasure without lying down.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"
@@ -67,7 +67,7 @@
     },
     {
       "id": "close",
-      "label": "Close the lid and nail it shut.",
+      "label": "Close the lid and nail it shut. No one answers that voice.",
       "rule": "vote",
       "tags": [
         "cautious"

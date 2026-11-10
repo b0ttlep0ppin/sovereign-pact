@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "pick",
-      "label": "Pick a pale flower each.",
+      "label": "Pick a pale flower each, and breathe deep of forgetting.",
       "rule": "vote",
       "tags": [
         "reckless"
@@ -47,7 +47,7 @@
     },
     {
       "id": "breathe",
-      "label": "The toughest holds their breath and leads.",
+      "label": "The toughest holds their breath and leads the rest through the scent.",
       "rule": "scion:highest:resilience",
       "tags": [
         "cautious"
@@ -67,7 +67,7 @@
     },
     {
       "id": "study",
-      "label": "The wisest studies the flowers.",
+      "label": "The wisest studies the flowers, to learn what they could be made into.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -88,7 +88,7 @@
     },
     {
       "id": "change_the_lungs",
-      "label": "The Alterer changes their lungs to bear the scent.",
+      "label": "The Alterer changes their own lungs to bear the scent, and leads the way.",
       "rule": "scion:job:alterer",
       "only": true,
       "tags": [
@@ -97,7 +97,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Their chest goes strange and wide for an hour, and they lead the party through on one long breath.",
+          "text": "Their chest goes strange and wide for an hour, and they lead the party through on one long breath. It hurts, after.",
           "effects": [
             {
               "jp": 30

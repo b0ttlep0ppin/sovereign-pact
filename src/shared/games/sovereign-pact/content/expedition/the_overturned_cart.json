@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "chest",
-      "label": "The craftiest picks the chest's lock.",
+      "label": "The craftiest picks the chest's lock, before whoever owned it comes looking.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"
@@ -53,7 +53,7 @@
     },
     {
       "id": "smell",
-      "label": "The hardiest goes down to find out what the smell is.",
+      "label": "The hardiest goes down into the ditch, to learn what the sweet smell is.",
       "rule": "scion:highest:resilience",
       "tags": [
         "bold"
@@ -74,7 +74,7 @@
     },
     {
       "id": "grain",
-      "label": "Take the grain and go.",
+      "label": "Take the grain and go, before the flies find out who you are.",
       "rule": "vote",
       "tags": [
         "cautious"

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "crown",
-      "label": "The shrewdest plays along and crowns the goat.",
+      "label": "The shrewdest plays along and crowns the goat, for the sake of passage.",
       "rule": "scion:highest:guile",
       "tags": [
         "reckless"
@@ -40,7 +40,7 @@
     },
     {
       "id": "refuse",
-      "label": "Refuse, with dignity.",
+      "label": "Refuse with dignity. You will not mock the Pact for anyone's amusement.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -64,7 +64,7 @@
     },
     {
       "id": "steal",
-      "label": "Steal the crown in the uproar.",
+      "label": "Steal the crown in the uproar, while everyone is laughing.",
       "rule": "leader",
       "tags": [
         "clever"
@@ -72,7 +72,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "Real gold, under the paint, and the whole mob after you.",
+          "text": "Real gold, under the paint, and the whole mob after you, and they are not laughing now.",
           "effects": [
             {
               "resources": {
