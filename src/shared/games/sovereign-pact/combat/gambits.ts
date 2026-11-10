@@ -11,7 +11,7 @@ import { cannotUseItem, itemAbility, itemPlan } from "./items.ts";
 import { fallen, hasRoom, prey } from "./summons.ts";
 
 export { holds };
-import { hasStatus, isFree, other, pickWeighted, standing } from "./grid.ts";
+import { hasStatus, isFree, other, pickWeighted, shapeCells, standing } from "./grid.ts";
 import { allegiance, bestCell, cellOf, crossDistance, isSingle, singleTargets, targetSide } from "./targets.ts";
 import type { Location } from "../state.ts";
 import { COLS, type AbilityDef, type Battle, type Combatant, type GambitRule } from "./types.ts";
@@ -118,7 +118,7 @@ export function aim(b: Battle, rng: Rng, u: Combatant, ab: AbilityDef, rule = de
 }
 
 /** A cell within 2 steps from which `ab` has a target, nearest first (melee closing in, §10.4). */
-function approach(b: Battle, rng: Rng, u: Combatant, ab: AbilityDef, rule?: string): Plan | undefined {
+function approach(b: Battle, rng: Rng, u: Combatant, ab: AbilityDef, rule?: string, closeIn = true): Plan | undefined {
   if (u.mods.noMove || hasStatus(u, "rooted") || hasStatus(u, "frozen")) return undefined;
   const { col, row } = u;
   const options: [number, number, number][] = [];
@@ -139,6 +139,7 @@ function approach(b: Battle, rng: Rng, u: Combatant, ab: AbilityDef, rule?: stri
     if (action) return { move: [c, r], action };
   }
   // Nothing in reach yet: close in on the nearest foe's rows (and the Front), then Wait (§10.4).
+  if (!closeIn) return undefined;
   const rows = foes(b, u).flatMap((f) => Array.from({ length: f.size[1] }, (_, i) => f.row + i));
   if (!rows.length) return undefined;
   const gap = (r: number) => Math.min(...rows.map((x) => Math.max(0, Math.abs(x - r) - (u.size[1] - 1))));
@@ -167,6 +168,16 @@ export function decide(b: Battle, rng: Rng, u: Combatant): Plan {
   }
   // A feral Form's pick is the only thing to do.
   if (u.feral) return aimOrApproach(b, rng, u, abilityOf(u, u.feral)!) ?? { action: { do: "wait" } };
+  if (u.side === "party") {
+    const out = dodge(b, rng, u);
+    if (out) return out;
+  }
+  return usual(b, rng, u);
+}
+
+/** What `u` does by its lists: a Scion's own gambits first, then the satchel, its usual ways and the attack; with `closeIn`, a step toward the foe and Wait when nothing can be done. */
+function usual(b: Battle, rng: Rng, u: Combatant, closeIn = true): Plan {
+  const attack = abilityOf(u, "attack")!;
   // A Scion's own gambits come first (gambitset.ts); after them, as for one without, the satchel when
   // someone needs it (§13.7) and their usual ways. A creature's list is all it knows.
   const own = u.side === "party" && u.person !== undefined ? u.gambits : [];
@@ -176,7 +187,9 @@ export function decide(b: Battle, rng: Rng, u: Combatant): Plan {
     const item = itemPlan(b, u);
     if (item) return { action: item };
   }
-  return follow(b, rng, u, u.gambits.length && !own.length ? u.gambits : defaultGambits(u)) ?? aimOrApproach(b, rng, u, attack) ?? { action: { do: "defend" } };
+  const plan = follow(b, rng, u, u.gambits.length && !own.length ? u.gambits : defaultGambits(u)) ?? aimOrApproach(b, rng, u, attack);
+  if (plan) return plan;
+  return (closeIn && u.side === "party" ? approach(b, rng, u, attack, undefined, true) : undefined) ?? { action: { do: "defend" } };
 }
 
 /** The first of `rules` that holds and can be done now, or undefined. */
@@ -205,10 +218,60 @@ function follow(b: Battle, rng: Rng, u: Combatant, rules: readonly GambitRule[])
   return undefined;
 }
 
-function aimOrApproach(b: Battle, rng: Rng, u: Combatant, ab: AbilityDef, rule?: string): Plan | undefined {
+// A Scion's rule only steps somewhere if it can act from there; closing in and Waiting is the last
+// resort, after every rule and the attack (Josh 2026-11-10: allied bots kept "move 1 square, then
+// end turn"). A creature still closes in on its first rule that cannot reach.
+function aimOrApproach(b: Battle, rng: Rng, u: Combatant, ab: AbilityDef, rule?: string, closeIn = u.side !== "party"): Plan | undefined {
   const action = aim(b, rng, u, ab, rule);
   if (action) return { action };
-  return isSingle(ab) && ab.side === "foe" ? approach(b, rng, u, ab, rule) : undefined;
+  return isSingle(ab) && ab.side === "foe" ? approach(b, rng, u, ab, rule, closeIn) : undefined;
+}
+
+/** Every cell of `u`'s side that a foe's shown charge (telegraphed, or read by Commune) will strike where it stands. */
+export function dangerCells(b: Battle, u: Combatant): Set<string> {
+  const out = new Set<string>();
+  for (const f of b.units) {
+    const c = f.charge;
+    if (!c || f.dead || f.side === u.side || c.target.side !== u.side || c.homingOn !== undefined) continue;
+    if (!c.ability.telegraph && !hasStatus(f, "communed")) continue;
+    const cells = (c.ability.shape ?? "single") === "single" ? [c.target] : shapeCells(c.ability.shape, c.target, f);
+    for (const x of cells) out.add(`${x.col}:${x.row}`);
+  }
+  return out;
+}
+
+/** A Scion standing where a shown attack will land steps out of it, acting from the new cell if it can (Josh 2026-11-10). */
+function dodge(b: Battle, rng: Rng, u: Combatant): Plan | undefined {
+  if (u.mods.noMove || hasStatus(u, "rooted") || hasStatus(u, "frozen")) return undefined;
+  const danger = dangerCells(b, u);
+  const covers = (c: number, r: number) => Array.from({ length: u.size[0] * u.size[1] }, (_, i) => `${c + (i % u.size[0])}:${r + Math.floor(i / u.size[0])}`).some((k) => danger.has(k));
+  if (!danger.size || !covers(u.col, u.row)) return undefined;
+  const reach = Math.min(TUNING.combat.move.maxCells, u.mods.maxMove ?? 9);
+  const safe: [number, number, number][] = [];
+  for (let dc = -2; dc <= 2; dc++) {
+    for (let dr = -reach; dr <= reach; dr++) {
+      const c = u.col + dc;
+      const r = u.row + dr;
+      const d = Math.abs(dc) + Math.abs(dr);
+      if (d < 1 || d > reach || !isFree(b, u.side, c, r, u.size, u.id) || covers(c, r)) continue;
+      safe.push([c, r, d * 10 + c]);
+    }
+  }
+  if (!safe.length) return undefined;
+  safe.sort((x, y) => x[2] - y[2]);
+  const { col, row } = u;
+  try {
+    for (const [c, r] of safe) {
+      u.col = c;
+      u.row = r;
+      const plan = usual(b, rng, u, false);
+      if (!plan.move && plan.action.do !== "wait" && plan.action.do !== "defend") return { move: [c, r], action: plan.action };
+    }
+  } finally {
+    u.col = col;
+    u.row = row;
+  }
+  return { move: [safe[0]![0], safe[0]![1]], action: { do: "defend" } };
 }
 
 /** Without a list: heal the hurt if it can, then each ability in order, then attack. */
