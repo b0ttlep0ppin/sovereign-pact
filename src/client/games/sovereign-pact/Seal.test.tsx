@@ -1,6 +1,6 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
-import { sovereignPact as g, type SovMove } from "@vibepulse/shared/games/sovereign-pact";
+import { Content, sovereignPact as g, type SovMove } from "@vibepulse/shared/games/sovereign-pact";
 import { answerOwed, campaign, found } from "../../../shared/games/sovereign-pact/testing.ts";
 import SovereignPact from "./index";
 
@@ -22,6 +22,9 @@ describe("sealing the Year (Josh 2026-11-02)", () => {
 
   it("holds the Seal back while a town event waits on the House's choice, and says which (Josh 2026-11-03)", () => {
     const s = found(campaign(1, 2));
+    // A town event waiting on this House, whatever the Year's omens dealt.
+    const event = Content.TOWN_EVENTS.find((e) => !e.crisis)!;
+    s.events = [{ key: event.id, id: event.id, deciders: [0], choices: [null] }];
     const v = g.view(s, s.players[0]!);
     expect(v.mine!.owed).toBeTruthy();
     render(<SovereignPact me="p1" players={[]} isMyTurn sendMove={() => undefined} lastError={null} view={v} />);

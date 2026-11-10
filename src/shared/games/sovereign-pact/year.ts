@@ -10,8 +10,8 @@ import { setRecruitsToWork, yearOfAssignments } from "./assign.ts";
 import { caps } from "./combat/build.ts";
 import type { House, Person, SovState } from "./state.ts";
 import { built, completeProjects, hostPerks } from "./commons.ts";
-import { completeWorks, produce, upkeepDue } from "./town.ts";
-import { byPct, econ } from "./houses.ts";
+import { completeWorks, income, produce, upkeepDue } from "./town.ts";
+import { byPct, econ, econEach } from "./houses.ts";
 import { wardYear } from "./wards.ts";
 import { fallen } from "./lifecycle.ts";
 import { chosenCard, openGate, scheduleForced } from "./gate.ts";
@@ -157,6 +157,14 @@ export function reckoning(s: SovState): void {
       const titheMarket = Math.round(TUNING.commons.marketGold * TUNING.economy.tithe);
       s.commons.gold += titheMarket;
       h.gold += TUNING.commons.marketGold - titheMarket;
+    }
+    // Traits that yield each Year (Forge-Born's Iron, Keepers of the Vigil's Essence…), tithed like any income.
+    for (const [m, n] of econEach(h, "yield.")) {
+      if (m === "gold") {
+        const tithe = Math.round(n * TUNING.economy.tithe);
+        s.commons.gold += tithe;
+        h.gold += n - tithe;
+      } else income(s, h, m, n);
     }
     payUpkeep(s, i, h);
     settleDebts(h);

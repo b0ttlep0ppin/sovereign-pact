@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { createRng } from "../../rng.ts";
+import { SEAT_BY_ID } from "./content.ts";
 import { sovereignPact, type SovState } from "./index.ts";
 import { answerOwed, ashore, calm, campaign, playOut, sealYear, seats } from "./testing.ts";
 import { TUNING } from "./tuning.ts";
@@ -21,7 +22,8 @@ describe("setup", () => {
     for (let i = 0; i < H; i++) {
       const mine = s.people.filter((p) => p.host === i);
       expect(mine.filter((p) => p.status === "scion")).toHaveLength(TUNING.houses.startScions[H - 1]!);
-      expect(mine.filter((p) => p.status === "recruit")).toHaveLength(TUNING.houses.startRecruits[H - 1]!);
+      // The Seat may bring one more (DECISIONS 8ah).
+      expect(mine.filter((p) => p.status === "recruit")).toHaveLength(TUNING.houses.startRecruits[H - 1]! + (SEAT_BY_ID.get(s.houses[i]!.seat)?.start?.recruits ?? 0));
     }
     expect(new Set(s.houses.map((h) => h.colors[0])).size).toBe(H);
     expect(new Set(s.houses.map((h) => h.name)).size).toBe(H);

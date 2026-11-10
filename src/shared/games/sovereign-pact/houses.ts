@@ -32,6 +32,12 @@ type Blood = Pick<House, "traits" | "element" | "bane"> & { seat?: string };
 /** One economy knob of a House's traits and Seat (0 when none names it). */
 export const econ = (h: Blood, key: string): number => houseEffects(h).economy[key] ?? 0;
 
+/** The House's resources by trait under `prefix` ("start." at founding, "yield." each Year): [material or "gold", n]. */
+export const econEach = (h: Blood, prefix: "start." | "yield."): [string, number][] =>
+  Object.entries(houseEffects(h).economy)
+    .filter(([k, n]) => k.startsWith(prefix) && n)
+    .map(([k, n]) => [k.slice(prefix.length), n]);
+
 /** `n` raised or lowered by `pct` %, rounded. */
 export const byPct = (n: number, pct: number): number => Math.round((n * (100 + pct)) / 100);
 
