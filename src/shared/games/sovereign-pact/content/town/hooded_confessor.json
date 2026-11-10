@@ -12,7 +12,7 @@
   "options": [
     {
       "id": "welcome",
-      "label": "Let him hear the city's sins.",
+      "label": "Let him hear the city's sins. A city unburdened sleeps easier.",
       "tags": [
         "kind"
       ],
@@ -45,7 +45,7 @@
     },
     {
       "id": "seize",
-      "label": "Seize his black book.",
+      "label": "Seize his black book, before it is read by someone worse.",
       "tags": [
         "bold",
         "cruel"
@@ -80,7 +80,7 @@
     },
     {
       "id": "ignore",
-      "label": "Leave him to his booth.",
+      "label": "Leave him to his booth. Confession is between a soul and its confessor.",
       "tags": [
         "cautious"
       ],

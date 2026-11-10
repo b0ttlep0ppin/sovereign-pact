@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "heal",
-      "label": "The healer tends the hound.",
+      "label": "The healer tends the hound, so it can lead you to them faster.",
       "rule": "scion:most_healing|scion:highest:sagacity",
       "tags": [
         "kind"
@@ -32,7 +32,7 @@
     },
     {
       "id": "follow",
-      "label": "Follow it as it is.",
+      "label": "Follow it as it is. There is no time to waste.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -51,7 +51,7 @@
     },
     {
       "id": "track",
-      "label": "The sharpest eye tracks its blood back.",
+      "label": "The sharpest eye tracks its blood back, to find what hurt it.",
       "rule": "scion:highest:acuity",
       "tags": [
         "clever"

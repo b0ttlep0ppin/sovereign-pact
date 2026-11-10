@@ -12,7 +12,7 @@
   "options": [
     {
       "id": "honor",
-      "label": "Honor the contract, and give him a child of the House.",
+      "label": "Honor the contract, and give him a child of the House. Your forebears swore it.",
       "tags": [
         "reckless"
       ],
@@ -57,7 +57,7 @@
     },
     {
       "id": "substitute",
-      "label": "Dress a recruit in the bridal veil.",
+      "label": "Dress a recruit in the bridal veil, and pray he does not look beneath it.",
       "tags": [
         "cruel",
         "clever"
@@ -93,7 +93,7 @@
     },
     {
       "id": "break",
-      "label": "Tear the contract up in front of him.",
+      "label": "Tear the contract up in front of him. No child of the House goes beyond the Gate.",
       "tags": [
         "bold",
         "cautious"

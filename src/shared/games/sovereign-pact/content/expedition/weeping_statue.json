@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "drink",
-      "label": "The healer drinks the saint's tears.",
+      "label": "The healer drinks the saint's tears, and takes her grief inside them.",
       "rule": "scion:most_healing",
       "tags": [
         "kind"
@@ -47,7 +47,7 @@
     },
     {
       "id": "leave",
-      "label": "Leave her to her grief.",
+      "label": "Leave her to her grief. Some sorrows are not yours to share.",
       "rule": "vote",
       "tags": [
         "cautious"

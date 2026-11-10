@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "face",
-      "label": "The most travelled faces it alone.",
+      "label": "The most travelled faces it alone, since no one else will do.",
       "rule": "scion:most_expeditions",
       "tags": [
         "bold"

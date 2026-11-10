@@ -14,7 +14,7 @@
   "options": [
     {
       "id": "fight",
-      "label": "Drive them off with fire.",
+      "label": "Drive them off with fire before they come any closer.",
       "rule": "vote",
       "tags": [
         "bold"
@@ -33,7 +33,7 @@
     },
     {
       "id": "feed",
-      "label": "Throw them the food.",
+      "label": "Throw them the food, and hope a full pack is a patient one.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -57,7 +57,7 @@
     },
     {
       "id": "sing",
-      "label": "The wisest sings to them.",
+      "label": "The wisest sings to them, and hopes the laughter was only wind.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "kind"

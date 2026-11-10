@@ -12,7 +12,7 @@
   "options": [
     {
       "id": "burn",
-      "label": "Burn the stock, mold and all.",
+      "label": "Burn the stock, mold and all, before it reaches the house.",
       "tags": [
         "cautious"
       ],
@@ -32,7 +32,7 @@
     },
     {
       "id": "scrape",
-      "label": "Scrape away the mold and save what you can.",
+      "label": "Scrape away the mold and save what you can. The House cannot spare the grain.",
       "tags": [
         "clever"
       ],

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "pull",
-      "label": "The strongest pulls the axe from the tree.",
+      "label": "The strongest pulls the axe from the tree, whatever the wood thinks of it.",
       "rule": "scion:highest:might",
       "tags": [
         "bold"
@@ -43,7 +43,7 @@
     },
     {
       "id": "leave",
-      "label": "Leave the axe where it is.",
+      "label": "Leave the axe where it is. The tree has made its peace with it.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -63,7 +63,7 @@
     },
     {
       "id": "cut",
-      "label": "Cut the tree down for timber.",
+      "label": "Cut the tree down for timber, axe and all.",
       "rule": "leader",
       "tags": [
         "cruel"

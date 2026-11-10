@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "sap",
-      "label": "The Leader collects the sap.",
+      "label": "The Leader collects the sap, and does not look too closely at what is caught in it.",
       "rule": "leader",
       "tags": [
         "clever"
@@ -34,7 +34,7 @@
     },
     {
       "id": "climb",
-      "label": "The strongest climbs into the wound.",
+      "label": "The strongest climbs into the wound, to learn what lives inside the root.",
       "rule": "scion:highest:might",
       "tags": [
         "reckless"
@@ -67,7 +67,7 @@
     },
     {
       "id": "bind",
-      "label": "Bind the wound with what cloth you have.",
+      "label": "Bind the wound with what cloth you have, so the root may heal.",
       "rule": "vote",
       "tags": [
         "kind"

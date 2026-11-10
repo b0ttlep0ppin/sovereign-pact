@@ -12,7 +12,7 @@
   "options": [
     {
       "id": "bid",
-      "label": "Send a sealed bid to the cathedral steps.",
+      "label": "Send a sealed bid to the cathedral steps, and hope the bishop's hand blesses your House.",
       "tags": [
         "bold"
       ],
@@ -30,7 +30,7 @@
     },
     {
       "id": "stay_away",
-      "label": "Keep your people indoors until dawn.",
+      "label": "Keep your people indoors until dawn. Nothing sold at midnight is worth the price.",
       "tags": [
         "cautious"
       ],

@@ -12,7 +12,7 @@
   "options": [
     {
       "id": "gold",
-      "label": "Pay the founder's debt in Gold.",
+      "label": "Pay the founder's debt in Gold, and keep the House's blood its own.",
       "tags": [
         "cautious"
       ],
@@ -32,7 +32,7 @@
     },
     {
       "id": "blood",
-      "label": "Pay it in blood.",
+      "label": "Pay it in blood, as the founder perhaps intended.",
       "tags": [
         "cruel"
       ],
@@ -76,7 +76,7 @@
     },
     {
       "id": "refuse",
-      "label": "Refuse him, and burn the ledger.",
+      "label": "Refuse him, and burn the ledger. The dead do not collect.",
       "tags": [
         "bold",
         "reckless"

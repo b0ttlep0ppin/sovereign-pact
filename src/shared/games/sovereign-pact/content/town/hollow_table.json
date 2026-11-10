@@ -12,7 +12,7 @@
   "options": [
     {
       "id": "attend",
-      "label": "Send your sharpest Scion to dine with the dead lord.",
+      "label": "Send your sharpest Scion to dine with the dead lord, and eat nothing.",
       "tags": [
         "bold"
       ],
@@ -56,7 +56,7 @@
     },
     {
       "id": "proxy",
-      "label": "Send a recruit in your place, in your colours.",
+      "label": "Send a recruit in your place, in your colours. The dead lord may not notice.",
       "tags": [
         "cruel",
         "clever"
@@ -94,7 +94,7 @@
     },
     {
       "id": "decline",
-      "label": "Send your regrets.",
+      "label": "Send your regrets. No living House dines with the dead.",
       "tags": [
         "cautious"
       ],

@@ -15,7 +15,7 @@
   "options": [
     {
       "id": "release",
-      "label": "Grant him a merciful end.",
+      "label": "Grant him a merciful end, as he asks.",
       "tags": [
         "kind"
       ],
@@ -47,7 +47,7 @@
     },
     {
       "id": "study",
-      "label": "Let the surgeons study him.",
+      "label": "Let the surgeons study him. A man who cannot die has much to teach.",
       "tags": [
         "clever",
         "cruel"
@@ -88,7 +88,7 @@
     },
     {
       "id": "turn_out",
-      "label": "Carry him out of the gate.",
+      "label": "Carry him out of the gate, and let the road decide what he is.",
       "tags": [
         "cautious"
       ],

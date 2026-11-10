@@ -12,7 +12,7 @@
   "options": [
     {
       "id": "accept",
-      "label": "Hang the late mirror in the hall.",
+      "label": "Hang the late mirror in the hall, and watch for what is coming.",
       "tags": [
         "bold"
       ],
@@ -43,7 +43,7 @@
     },
     {
       "id": "break",
-      "label": "Break it.",
+      "label": "Break it. No House should see what is coming.",
       "tags": [
         "cautious"
       ],
@@ -68,7 +68,7 @@
     },
     {
       "id": "pass_on",
-      "label": "Take it, and sell it to a rival.",
+      "label": "Take it, and sell it to a rival. Let them see what comes for them.",
       "tags": [
         "cruel",
         "clever"

@@ -12,7 +12,7 @@
   "options": [
     {
       "id": "walk",
-      "label": "Send a Scion to walk with them to the Gate.",
+      "label": "Send a Scion to walk with them to the Gate, and keep it shut another hundred Years.",
       "tags": [
         "bold"
       ],
@@ -62,7 +62,7 @@
     },
     {
       "id": "alms",
-      "label": "Give them bread for the road.",
+      "label": "Give them bread for the road, though they will not eat it.",
       "tags": [
         "kind"
       ],
@@ -85,14 +85,14 @@
     },
     {
       "id": "doors",
-      "label": "Keep your doors shut until they pass.",
+      "label": "Keep your doors shut until they pass. Let another House walk with them.",
       "tags": [
         "cautious"
       ],
       "outcomes": [
         {
           "w": 1,
-          "text": "They wait at your door until midnight, singing without words, then file on.",
+          "text": "They wait at your door until midnight, singing without words, then file on. The ash on your step does not sweep away.",
           "effects": []
         }
       ]

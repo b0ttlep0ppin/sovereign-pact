@@ -12,7 +12,7 @@
   "options": [
     {
       "id": "welcome",
-      "label": "Welcome the drowned cousin home.",
+      "label": "Welcome the drowned cousin home. Blood is blood, wet or dry.",
       "tags": [
         "kind",
         "reckless"
@@ -50,7 +50,7 @@
     },
     {
       "id": "test",
-      "label": "Test them with silver and salt.",
+      "label": "Test them with silver and salt, to learn what came back from the river.",
       "tags": [
         "clever"
       ],
@@ -82,7 +82,7 @@
     },
     {
       "id": "refuse",
-      "label": "Turn them away at the gate.",
+      "label": "Turn them away at the gate. The House buried them once already.",
       "tags": [
         "cautious"
       ],

@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "pay",
-      "label": "Pay the shepherd.",
+      "label": "Pay the shepherd. A week's head start is worth the coin.",
       "rule": "vote",
       "tags": [
         "cautious"
@@ -37,7 +37,7 @@
     },
     {
       "id": "charm",
-      "label": "The smoothest charms it out of him.",
+      "label": "The smoothest charms it out of him, and learns what else he saw.",
       "rule": "scion:highest:guile",
       "tags": [
         "clever"
@@ -59,7 +59,7 @@
     },
     {
       "id": "frighten",
-      "label": "The strongest frightens it out of him.",
+      "label": "The strongest frightens it out of him. There is no time to bargain.",
       "rule": "scion:highest:might",
       "tags": [
         "cruel"

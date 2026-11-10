@@ -27,7 +27,7 @@
     },
     {
       "id": "cut_down",
-      "label": "Pay the hangman to cut them down and burn them.",
+      "label": "Pay the hangman to cut them down and burn them, before they say too much.",
       "tags": [
         "clever"
       ],
@@ -52,7 +52,7 @@
     },
     {
       "id": "ignore",
-      "label": "Stop up your ears and walk past.",
+      "label": "Stop up your ears and walk past. The dead lie as well as the living.",
       "tags": [
         "cautious"
       ],

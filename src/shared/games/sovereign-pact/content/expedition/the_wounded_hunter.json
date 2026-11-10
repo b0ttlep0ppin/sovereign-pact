@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "help",
-      "label": "The healer helps him.",
+      "label": "The healer helps him. His House would do the same for yours. Perhaps.",
       "rule": "scion:most_healing|scion:random",
       "tags": [
         "kind"
@@ -36,7 +36,7 @@
     },
     {
       "id": "leave",
-      "label": "The Leader leaves him in the ferns.",
+      "label": "The Leader leaves him in the ferns. The hunt waits for no one.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -55,7 +55,7 @@
     },
     {
       "id": "ask",
-      "label": "Ask what he saw, then go.",
+      "label": "Ask what he saw, then go, before what mauled him comes back.",
       "rule": "vote",
       "tags": [
         "cautious"

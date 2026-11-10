@@ -12,7 +12,7 @@
   "options": [
     {
       "id": "pay",
-      "label": "Pay the cousin to go away (25 Gold).",
+      "label": "Pay the cousin to go away, and hope they stay gone (25 Gold).",
       "tags": [
         "cautious"
       ],
@@ -32,7 +32,7 @@
     },
     {
       "id": "duel",
-      "label": "Settle the claim by duel at dawn.",
+      "label": "Settle the claim by duel at dawn, and let steel decide whose House it is.",
       "tags": [
         "bold"
       ],
@@ -67,7 +67,7 @@
     },
     {
       "id": "recognize",
-      "label": "Recognize the claim, and the face.",
+      "label": "Recognize the claim, and the face. Blood is blood, however long it has been gone.",
       "tags": [
         "kind"
       ],

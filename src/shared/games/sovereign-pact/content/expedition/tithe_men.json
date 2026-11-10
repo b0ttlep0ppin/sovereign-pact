@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "pay",
-      "label": "The richest House pays them in Essence.",
+      "label": "The richest House pays them in Essence, and buys the road.",
       "rule": "house:highest_standing",
       "tags": [
         "cautious"
@@ -34,7 +34,7 @@
     },
     {
       "id": "refuse",
-      "label": "Refuse the tithe.",
+      "label": "Refuse the tithe. No ledger here has any right to you.",
       "rule": "vote",
       "tags": [
         "bold"

@@ -12,7 +12,7 @@
   "options": [
     {
       "id": "enter",
-      "label": "Walk into the wing that was never built.",
+      "label": "Walk into the wing that was never built, to learn what your House will become.",
       "tags": [
         "bold",
         "reckless"
@@ -54,7 +54,7 @@
     },
     {
       "id": "brick",
-      "label": "Brick it up.",
+      "label": "Brick it up. The future can stay behind a wall.",
       "tags": [
         "cautious"
       ],

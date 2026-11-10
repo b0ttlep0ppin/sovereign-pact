@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "trade",
-      "label": "Offer him bread for the herbs.",
+      "label": "Offer him bread for the herbs, as one would a wary neighbour.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -37,7 +37,7 @@
     },
     {
       "id": "learn",
-      "label": "The wisest watches how he moves.",
+      "label": "The wisest watches how he moves, to learn the wood as he knows it.",
       "rule": "scion:highest:sagacity",
       "tags": [
         "clever"
@@ -61,7 +61,7 @@
     },
     {
       "id": "chase",
-      "label": "Chase him off.",
+      "label": "Chase him off before he decides what to do with that club.",
       "rule": "leader",
       "tags": [
         "cruel"

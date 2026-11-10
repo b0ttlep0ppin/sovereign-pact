@@ -15,7 +15,7 @@
   "options": [
     {
       "id": "break_through",
-      "label": "Break through to whatever is knocking.",
+      "label": "Break through to whatever is knocking, in case it is a crew still living.",
       "tags": [
         "bold",
         "reckless"
@@ -62,7 +62,7 @@
     },
     {
       "id": "answer",
-      "label": "Knock back, three and three, and wait.",
+      "label": "Knock back, three and three, and wait to learn what answers.",
       "tags": [
         "clever"
       ],
@@ -91,7 +91,7 @@
     },
     {
       "id": "seal",
-      "label": "Collapse the gallery.",
+      "label": "Collapse the gallery, and bury whatever knocks.",
       "tags": [
         "cautious"
       ],

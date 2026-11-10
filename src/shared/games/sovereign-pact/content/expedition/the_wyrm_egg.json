@@ -13,7 +13,7 @@
   "options": [
     {
       "id": "take",
-      "label": "The Leader takes the wyrm egg.",
+      "label": "The Leader takes the wyrm egg. A shell like that is worth a fortune.",
       "rule": "leader",
       "tags": [
         "reckless"
@@ -50,7 +50,7 @@
     },
     {
       "id": "smash",
-      "label": "The Leader smashes it.",
+      "label": "The Leader smashes it, so one less wyrm darkens the sky.",
       "rule": "leader",
       "tags": [
         "cruel"
@@ -75,7 +75,7 @@
     },
     {
       "id": "guard",
-      "label": "Keep it warm until its mother comes.",
+      "label": "Keep it warm until its mother comes, and trust she knows a kindness.",
       "rule": "vote",
       "tags": [
         "kind"
@@ -83,7 +83,7 @@
       "outcomes": [
         {
           "w": 100,
-          "text": "She comes at dusk, and looks at you for a long time, and lets you go.",
+          "text": "She comes at dusk, looks at you for a long time, and lets you go.",
           "effects": [
             {
               "to": "party",

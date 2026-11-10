@@ -12,7 +12,7 @@
   "options": [
     {
       "id": "accept",
-      "label": "Accept the gifts with thanks.",
+      "label": "Accept the gifts with thanks. It would be rude to refuse a House, even one that does not exist.",
       "tags": [
         "bold"
       ],
@@ -40,7 +40,7 @@
     },
     {
       "id": "burn",
-      "label": "Burn the gifts in the square, carts and all.",
+      "label": "Burn the gifts in the square, carts and all. Nothing from a Twelfth House is a gift.",
       "tags": [
         "cautious"
       ],
@@ -62,7 +62,7 @@
     },
     {
       "id": "commons",
-      "label": "Give it all to the Commons, unopened.",
+      "label": "Give it all to the Commons, unopened, and let no single House owe the Twelfth.",
       "tags": [
         "clever"
       ],
