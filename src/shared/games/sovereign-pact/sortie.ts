@@ -12,7 +12,7 @@ import { holders, slots } from "./assign.ts";
 import { roster } from "./expedition.ts";
 import { band } from "./gate.ts";
 import { die, partyOf, person } from "./journey.ts";
-import { gainJp, gainXp } from "./progression.ts";
+import { battlePay, gainJp, gainXp, grown } from "./progression.ts";
 import type { SovState, Stores } from "./state.ts";
 import { TUNING } from "./tuning.ts";
 import { log, withRng } from "./year.ts";
@@ -64,7 +64,7 @@ function sortie(s: SovState, house: number, def: SortieDef, ids: number[]): void
   if (won < def.battles) return;
   for (const id of ids) {
     const i = s.people.findIndex((x) => x.id === id);
-    if (i >= 0) s.people[i] = gainJp(s.people[i]!, def.jp);
+    if (i >= 0) s.people[i] = gainJp(s.people[i]!, grown(def.jp, s.year));
   }
   if (def.gold) H.gold += def.gold;
   for (const [k, v] of Object.entries(def.score ?? {})) H.score[k as keyof typeof H.score] += v!;
@@ -88,7 +88,11 @@ function settle(s: SovState, b: Battle, def: SortieDef, won: boolean): void {
     }
     p.sanity = u.sanity;
     p.mp = u.mp;
-    if (won) p = gainXp(p, def.xp);
+    if (won) {
+      // The card's XP, and a share of an expedition battle's pay for the foes slain (Josh 2026-11-10).
+      const pay = battlePay(b, s.year, TUNING.progression.sortiePct);
+      p = gainJp(gainXp(p, grown(def.xp, s.year) + pay.xp), pay.jp);
+    }
     s.people[s.people.findIndex((x) => x.id === p.id)] = p;
   }
 }

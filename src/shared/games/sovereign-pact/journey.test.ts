@@ -130,12 +130,17 @@ describe("walking it", () => {
     let s = underway(card(1), 12);
     s.expedition!.chain = ["encounter", "boss"];
     const ids = s.expedition!.party[0]!;
-    const before = ids.map((id) => s.people.find((p) => p.id === id)!.xp);
+    const P = TUNING.progression;
+    const total = (id: number) => ((p) => p.level * P.xpPerLevel + p.xp)(s.people.find((p) => p.id === id)!);
+    const before = ids.map(total);
     s = move(s, "p1", { type: "press_on" });
     expect(s.log.some((l) => l.includes("wins a battle"))).toBe(true);
     ids.forEach((id, i) => {
       const p = s.people.find((x) => x.id === id)!;
-      expect(p.xp).toBe(before[i]! + TUNING.progression.battleXp);
+      // The battle's base, and more for each foe slain.
+      const gain = total(id) - before[i]!;
+      expect(gain).toBeGreaterThan(P.battleXp);
+      expect((gain - P.battleXp) % P.killXp).toBe(0);
       expect(p.jp[p.job!]).toBeGreaterThanOrEqual(TUNING.progression.battleJp);
       expect(s.expedition!.carry[id]).toBeDefined();
     });

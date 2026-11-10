@@ -2,6 +2,14 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-10 (implementation, Milestone 8dm): rewards grow with foes slain and with the Years
+
+Josh: **"after battle / expedition rewards could be juiced slightly, scaling with number of enemies killed. Probably should get 0.8 to 1.5 levels on average for an expedition, and maybe 90-150 jp on average, probably like 2/3rds that for a rift sortie"**, then **"can gradually increase exp and jp rewards over time but thats like year 1"**.
+- A won battle pays each Scion `battleXp` 20 + `killXp` 4 and `battleJp` 25 + `killJp` 6 for every foe slain (not Parts or hazards; progression.ts `battlePay`). A won expedition adds `expeditionXp` 50 and `expeditionJp` 40. Base JP came down (40 → 25, 50 → 40) so the kills carry it.
+- Every reward, a Sortie card's own XP and JP included, grows `growPct` 4% for each Year after the first (Year 11 pays 1.4×, Year 20 about 1.76×).
+- A Sortie battle pays its card's XP plus `sortiePct` 175% of an expedition battle's pay, since it has no homecoming bonus and only one or two battles.
+- Measured over bot campaigns (2 and 3 Houses, 5 seeds each), per Scion, every outcome counted: Year 1 expeditions average 1.07 levels and 128 JP (won ones 1.41 levels, 165 JP); Years 2–6 1.1–1.4 levels and 100–140 JP. Sorties: 0.65–0.69 levels and 77–81 JP, about two thirds.
+
 ## 2026-11-10 (implementation, Milestone 8dl): a bot Leader never turns back at the Gate
 
 Josh: **"there was no expedition for multiple years in a row it just short circuited and immediately cut to rift gate"**. His table showed why: House Lachrymore's bot made its Knight Leader every Year, and the Knight's Sanity sat below the bot's retreat mark (15), so it turned the party back at the Gate before the first node. His Scions marched and came home with nothing, which looked like a skipped expedition.

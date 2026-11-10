@@ -3,6 +3,7 @@
 // returns a new Person.
 import { ABILITY_SET_BY_JOB, ACTIVE_BY_ID, CHANGE_BY_ID, JOB_BY_ID, JOB_PASSIVE_BY_ID, TAROT_BY_ID, TRAIT_BY_ID, type ActiveDef, type JobDef } from "./content.ts";
 import { jobStat, maxMp } from "./formulas.ts";
+import type { Battle } from "./combat/types.ts";
 import { STATS, type JobId, type Person, type Six, type Stat } from "./state.ts";
 import { TUNING } from "./tuning.ts";
 
@@ -39,6 +40,18 @@ export function gainXp(p: Person, xp: number): Person {
 export function xpAt(p: Pick<Person, "level">, xp: number, top: number): number {
   return Math.round(xp * (1 + (P.catchUpPct / 100) * Math.min(P.catchUpLevels, Math.max(0, top - p.level))));
 }
+
+/** Foes slain in a battle: the enemy side's dead, not its Parts or hazards. */
+export const slain = (b: Pick<Battle, "units">): number => b.units.filter((u) => u.side === "enemy" && u.dead && u.partOf === undefined && u.hazard === undefined).length;
+
+/** Pay grows with the Years: +`growPct`% for each Year after the first (Josh 2026-11-10). */
+export const grown = (n: number, year: number, pct = 100): number => Math.round((n * pct * (100 + P.growPct * Math.max(0, year - 1))) / 10_000);
+
+/** What a won battle pays each Scion before catch-up: a base, and more for every foe slain (Josh 2026-11-10). */
+export const battlePay = (b: Pick<Battle, "units">, year: number, pct = 100): { xp: number; jp: number } => ({
+  xp: grown(P.battleXp + P.killXp * slain(b), year, pct),
+  jp: grown(P.battleJp + P.killJp * slain(b), year, pct),
+});
 
 export function gainXpUpTo(p: Person, xp: number, maxLevel: number): Person {
   if (p.level >= maxLevel) return p;

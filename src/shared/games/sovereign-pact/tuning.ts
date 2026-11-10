@@ -505,8 +505,19 @@ export const TUNING = {
      */
     battleXp: 20,
     expeditionXp: 50,
-    battleJp: 40,
-    expeditionJp: 50,
+    battleJp: 25,
+    expeditionJp: 40,
+    /**
+     * Josh 2026-11-10: rewards "scaling with number of enemies killed", about 0.8–1.5 levels and 90–150 JP
+     * an expedition, two thirds of that for a Sortie. Each foe slain in a won battle adds this much to
+     * every Scion's battle pay (progression.ts `battlePay`); a Sortie battle pays `sortiePct`% of an
+     * expedition battle on top of its card's own XP.
+     */
+    killXp: 4,
+    killJp: 6,
+    sortiePct: 175,
+    /** Every reward above, and a Sortie card's own, grows this % for each Year after the first (Josh: "can gradually increase exp and jp rewards over time"). */
+    growPct: 4,
     /** Battle and expedition XP +this % per level a Scion stands below the highest level that marched with them, up to `catchUpLevels` levels (progression.ts xpAt). */
     catchUpPct: 50,
     catchUpLevels: 3,
