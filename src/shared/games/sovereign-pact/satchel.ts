@@ -26,6 +26,32 @@ const rescuees = (s: SovState): number[] => (s.expedition!.card.type === "rescue
 /** The marching Scion as a combatant, for their maxima. */
 const unit = (s: SovState, id: number) => partyOf(s, [id], s.expedition!.carry)[0]!;
 
+/**
+ * A battle consumable that only mends one ally (a Tonic, a Salve, an Ether) can be taken between nodes too
+ * (Josh 2026-11-11: "between events on the expedition, should be able to heal up and use items"): nothing
+ * in it but HP, Durability, MP or Sanity restored.
+ */
+export function onTheRoad(id: string): boolean {
+  const b = CONSUMABLE_BY_ID.get(id)?.battle;
+  if (!b || b.side !== "ally" || b.shape !== "single") return false;
+  const keys = Object.keys(b).filter((k) => !["shape", "side", "power", "kind", "reach"].includes(k));
+  return keys.length > 0 && keys.every((k) => k === "restore" || k === "mpPct" || k === "sanityPct") && (!b.restore || b.restore.loc !== "random");
+}
+
+/** Why a road consumable would do nothing for Scion `id`: already whole in what it mends. */
+function whole(s: SovState, itemId: string, id: number): string | null {
+  const b = CONSUMABLE_BY_ID.get(itemId)!.battle!;
+  const u = unit(s, id);
+  const p = person(s, id);
+  const short = [
+    !!b.restore?.hpPct && u.hp < u.maxHp,
+    !!b.restore?.durPct && LOCATIONS.some((l) => (u.dur?.[l] ?? 0) < (u.maxDur?.[l] ?? 0)),
+    !!b.mpPct && p.mp < u.maxMp,
+    !!b.sanityPct && p.sanity < u.maxSanity,
+  ];
+  return short.some(Boolean) ? null : `${p.name} needs none.`;
+}
+
 /** Why `house` cannot use `id` from the satchel now (on Scion `on`, where it takes one), or null. */
 export function cannotOpen(s: SovState, house: number, move: { id: string; person?: number }): string | null {
   const e = s.expedition;
@@ -36,6 +62,10 @@ export function cannotOpen(s: SovState, house: number, move: { id: string; perso
   if (!e.satchel?.some((x) => x.id === move.id)) return "The satchel holds none.";
   const def = CONSUMABLE_BY_ID.get(move.id)!;
   if (def.use === "camp" && !atCamp(s)) return "That is used at a Camp.";
+  if (def.use === "battle" && onTheRoad(move.id)) {
+    if (move.person === undefined || !ids.includes(move.person)) return "Name a marching Scion.";
+    return whole(s, move.id, move.person);
+  }
   if (def.use === "battle") return "That is used in battle.";
   if (def.use === "held" || def.use === "town") return "That is not opened on the road.";
   if (move.id === "lantern" && (e.at >= e.chain.length || e.lit === e.at)) return e.at >= e.chain.length ? "There is no node ahead." : "The way ahead is already lit.";
@@ -74,6 +104,26 @@ export function open(s: SovState, move: { id: string; person?: number }): void {
       p.sanity = Math.max(0, p.sanity - pctOf(u.maxSanity, W.flaskSanityPct));
     }
     log(s, `${p.name} takes ${def.name}.`);
+  } else if (def.use === "battle" && onTheRoad(move.id)) {
+    // Between nodes: what the road wore down mends, and it carries into the next battle.
+    const b = def.battle!;
+    const p = person(s, move.person!);
+    const u = unit(s, p.id);
+    const c = (e.carry[p.id] ??= { dur: {}, broken: [] });
+    if (b.restore?.hpPct && c.hurt) c.hurt = Math.max(0, c.hurt - pctOf(u.maxHp, b.restore.hpPct)) || undefined;
+    if (b.restore?.durPct) {
+      const share = (l: (typeof LOCATIONS)[number]) => (u.maxDur?.[l] ? (u.dur?.[l] ?? 0) / u.maxDur[l] : 1);
+      const locs = b.restore.loc === "all" ? LOCATIONS : [LOCATIONS.reduce((a, l) => (share(l) < share(a) ? l : a))];
+      for (const l of locs) {
+        const max = u.maxDur?.[l] ?? 0;
+        c.dur[l] = Math.min(max, (u.dur?.[l] ?? max) + pctOf(max, b.restore.durPct));
+        if (c.dur[l]! > 0) c.broken = c.broken.filter((x) => x !== l);
+      }
+    }
+    if (b.mpPct) p.mp = Math.min(u.maxMp, p.mp + pctOf(u.maxMp, b.mpPct));
+    if (b.sanityPct) p.sanity = Math.min(u.maxSanity, p.sanity + pctOf(u.maxSanity, b.sanityPct));
+    if (c.hurt === undefined) delete c.hurt;
+    log(s, `${p.name} takes ${def.name} on the road.`);
   } else if (move.id === "lantern") {
     e.lit = e.at;
     log(s, "A Lantern is lit against the dark ahead.");

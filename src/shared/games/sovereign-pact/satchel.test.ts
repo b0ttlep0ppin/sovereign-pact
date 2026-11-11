@@ -52,9 +52,31 @@ describe("Camp items (§13.7)", () => {
   it("are opened only at a Camp, and only what the satchel holds", () => {
     const s = camped(["pilgrims_bread", "tonic"]);
     expect(error(s, { type: "use_item", id: "widows_tea", person: scion(s, 0).id })).toMatch(/holds none/);
-    expect(error(s, { type: "use_item", id: "tonic" })).toMatch(/used in battle/);
+    expect(error(s, { type: "use_item", id: "tonic" })).toMatch(/Name a marching Scion/);
+    expect(error(s, { type: "use_item", id: "tonic", person: scion(s, 0).id })).toMatch(/needs none/);
     s.expedition!.at = 2;
     expect(error(s, { type: "use_item", id: "pilgrims_bread" })).toMatch(/at a Camp/);
+  });
+
+  it("mends HP, Durability and MP between nodes with a Tonic, a Salve or an Ether (Josh 2026-11-11)", () => {
+    let s = camped(["tonic", "whole_salve", "ether", "firebomb"]);
+    s.expedition!.at = 2;
+    const id = scion(s, 0).id;
+    const u = unit(s, 0);
+    s.expedition!.carry[id] = { dur: { body: 0, head: 1 }, broken: ["body"], hurt: Math.round(u.maxHp / 2), hpMax: u.maxHp };
+    scion(s, 0).mp = 0;
+    const offered = g.view(s, "p1").opens.map((o) => o.id);
+    expect(offered).toEqual(expect.arrayContaining(["tonic", "whole_salve", "ether"]));
+    expect(offered).not.toContain("firebomb");
+    expect(g.view(s, "p1").opens.find((o) => o.id === "tonic")!.people).toEqual([id]);
+    s = move(s, { type: "use_item", id: "tonic", person: id });
+    expect(unit(s, 0).hp).toBe(u.maxHp - Math.round(u.maxHp / 2) + Math.round((u.maxHp * 25) / 100));
+    s = move(s, { type: "use_item", id: "whole_salve", person: id });
+    expect(unit(s, 0).dur!.body).toBe(Math.round((u.maxDur!.body * 20) / 100));
+    expect(unit(s, 0).broken).not.toContain("body");
+    s = move(s, { type: "use_item", id: "ether", person: id });
+    expect(scion(s, 0).mp).toBe(Math.round((u.maxMp * 25) / 100));
+    expect(s.expedition!.satchel!.map((x) => x.id)).toEqual(["firebomb"]);
   });
 
   it("Pilgrim's Bread restores the whole party's MP", () => {
