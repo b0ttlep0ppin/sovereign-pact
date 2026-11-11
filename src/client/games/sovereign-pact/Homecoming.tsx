@@ -22,7 +22,7 @@ function readSeen(): string | null {
 const HEADLINE: Record<Account["result"], string> = {
   won: "Home in triumph",
   retreated: "Home, turned back",
-  wiped: "None came home",
+  wiped: "The party is overrun",
   unanswered: "No one went",
   stayed: "The Gate stayed shut",
 };
@@ -71,9 +71,11 @@ export default function Homecoming({ view, onClose }: { view: SovView; onClose: 
                   <small>House {view.houses[p.house]?.name}</small>
                 </span>
                 {p.fate ? (
-                  <span className="sp-homecoming__fate">{p.fate === "fell" ? "Fell in the otherworld" : "Lost in the otherworld"}</span>
+                  <span className="sp-homecoming__fate">{p.fate === "fell" ? "Fell in the otherworld" : "Lost in the otherworld; a Rescue may yet find them"}</span>
                 ) : (
                   <span className="sp-homecoming__gain">
+                    {/* §9.9: a wiped party's Scions not left behind crawl home (Josh 2026-11-11: "None came home" read as all lost). */}
+                    {h.result === "wiped" ? <b className="sp-homecoming__crawled">Crawled home</b> : null}
                     {p.levelTo > p.levelFrom ? (
                       <b className="sp-homecoming__level">
                         Level {p.levelFrom} → {p.levelTo}

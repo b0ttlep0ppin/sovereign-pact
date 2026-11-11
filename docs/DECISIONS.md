@@ -2,6 +2,11 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-11 (implementation, Milestone 8dz): an injury's die keeps its secret; a wiped party's homecoming says who crawled home
+- Josh: an injury roll made Aelfric "collapse with body: bruised deep while the dice model to roll was still up". Until the die is thrown, the target keeps the fall and status marks they had before the roll (HP still drops with the blow), and the log stops at the injury line. All of it shows once the die lands.
+- The battle log was a turn ahead: it listed the turn about to play beside the one on screen. It now lists only turns that have played.
+- Josh: "I just lost aelfric and engelram in a failed expedition, but they are still in my settlement." That is SPEC §9.9 working: in a wiped party each Scion has a 50% chance to be Lost, and the rest crawl home. The homecoming headline "None came home" said otherwise. It now reads "The party is overrun"; each survivor is marked "Crawled home", and each Lost Scion "Lost in the otherworld; a Rescue may yet find them".
+
 ## 2026-11-10 (implementation, Milestone 8dy): settlement sub-pages, faces to pick Scions by, each Scion's choice laid out
 
 Josh: "it would make sense for the different settlement pages to have sub-pages" (Readying: Jobs and abilities, gear, gambits), "move the 'what became of the omens' page ... maybe it could be a subtab on another page like the houses (maybe deals could be a sub page of The Houses)", "choosing your scion in the readying page should have their face as well", and the each-Scion event picker ("For Aelfric") was "cramped and weird looking ... use color coding of names, faces".

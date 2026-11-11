@@ -32,4 +32,28 @@ describe("the homecoming (Josh's playtest)", () => {
     rerender(<SovereignPact {...props} view={{ ...v }} />);
     expect(screen.queryByRole("dialog", { name: "The homecoming" })).toBeNull();
   });
+
+  it("says which of a wiped party crawled home and which were left behind (Josh 2026-11-11)", () => {
+    const s = found(campaign(1, 2));
+    const [a, b] = s.people.filter((x) => x.status === "scion");
+    b!.status = "lost";
+    s.homecoming = {
+      year: 1,
+      card: { type: "delve", pool: "barrows", level: 3, size: 4 },
+      result: "wiped",
+      people: [
+        { id: a!.id, name: a!.name, house: 0, levelFrom: 1, levelTo: 1, xp: 20, jp: 10, injuries: [] },
+        { id: b!.id, name: b!.name, house: 0, levelFrom: 1, levelTo: 1, xp: 0, jp: 0, injuries: [], fate: "lost" },
+      ],
+      claims: [],
+    };
+    const props = { me: "p1", players: [], isMyTurn: true, sendMove: (() => {}) as (m: SovMove) => void, lastError: null };
+    render(<SovereignPact {...props} view={g.view(s, s.players[0]!)} />);
+    const card = screen.getByRole("dialog", { name: "The homecoming" });
+    expect(card.textContent).toContain("The party is overrun");
+    expect(card.textContent).not.toContain("None came home");
+    const [home, lost] = card.querySelectorAll(".sp-homecoming__party li");
+    expect(home!.textContent).toContain("Crawled home");
+    expect(lost!.textContent).toContain("Lost in the otherworld");
+  });
 });
