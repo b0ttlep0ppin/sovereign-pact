@@ -14,12 +14,12 @@ import { checkpoint, describeSave, restore, type SovSave } from "./save.ts";
 import { placements } from "./score.ts";
 import { BASE_JOBS, type CampaignOptions, type House, type SovMove, type SovState } from "./state.ts";
 import { assign, cannotAssign } from "./assign.ts";
-import { cannotPledge, pledge } from "./commons.ts";
+import { cannotDonate, cannotPledge, donate, pledge } from "./commons.ts";
 import { cannotChoose, choose } from "./omens.ts";
 import { bid, botSell, botShop, buy, cannotAuction, cannotBid, cannotBuy, cannotSell, putUp, sell } from "./market.ts";
 import { accept, cannotAccept, cannotDecline, cannotOffer, decline, offer } from "./deals.ts";
-import { cannotCrisisPledge, cannotTempt, crisisPledge, tempt } from "./crisis.ts";
-import { cannotLevy, cannotPropose, cannotSite, cannotVote, castVote, owed, propose, proposeLevy } from "./votes.ts";
+import { cannotAskCommons, cannotCrisisPledge, cannotTempt, crisisPledge, tempt } from "./crisis.ts";
+import { cannotLevy, cannotPropose, cannotSite, cannotVote, castVote, owed, propose, proposeCrisisAid, proposeLevy } from "./votes.ts";
 import { botDeal, botAssign, botPromote, botBuild, botChoice, botCrisis, botPledge, botPropose, botChampion, botTarget, botVote } from "./bot.ts";
 import { build, cannotBuild, unbuild } from "./town.ts";
 import { cannotPromote, promoteRecruit } from "./promotion.ts";
@@ -509,6 +509,24 @@ export function applyMove(state: SovState, playerId: PlayerId, move: SovMove): M
       if (why) return fail(why);
       s.proposers.push(house);
       propose(s, house, move.project, move.host ?? house);
+      s.phaseMoves += 1;
+      return { ok: true, state: s };
+    }
+    case "donate": {
+      if (s.phase !== "settlement") return fail("Gifts to the Commons are made in the Settlement Phase.");
+      if (h.sealed) return fail("Unseal the Year first.");
+      const why = cannotDonate(s, house, move.give ?? {});
+      if (why) return fail(why);
+      donate(s, house, move.give);
+      s.phaseMoves += 1;
+      return { ok: true, state: s };
+    }
+    case "ask_commons": {
+      if (s.phase !== "settlement") return fail("Motions are made in the Settlement Phase.");
+      if (h.sealed) return fail("Unseal the Year first.");
+      const why = cannotAskCommons(s);
+      if (why) return fail(why);
+      proposeCrisisAid(s, house);
       s.phaseMoves += 1;
       return { ok: true, state: s };
     }

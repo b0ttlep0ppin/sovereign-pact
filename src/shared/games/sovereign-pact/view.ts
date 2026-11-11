@@ -45,6 +45,7 @@ import { cannotLay, OFFERINGS } from "./altar.ts";
 import { cannotOrder } from "./orders.ts";
 import { buildCost, cannotBuild, levelOf } from "./town.ts";
 import { cannotLevy, cannotPropose, owed } from "./votes.ts";
+import { cannotAskCommons, commonsCrisisGift, crisisRoom } from "./crisis.ts";
 import { cannotOpen } from "./satchel.ts";
 import { ceremonies } from "./promotion.ts";
 import { cureOf, mends } from "./cures.ts";
@@ -111,7 +112,8 @@ export interface PrivateHouse {
   /** This House's own Crisis pledge, and whether it gave in to the temptation. */
   /** What the House must answer before it may seal: a vote or a town event (Josh 2026-11-03). */
   owed: string | null;
-  crisis: { pledge: Partial<Record<string, number>>; tempted: boolean } | null;
+  /** `room`: how much more of each needed resource this House may pledge (its pledge and the Commons' gift count; no other House's). */
+  crisis: { pledge: Partial<Record<string, number>>; tempted: boolean; ask: string | null; gift: Partial<Record<string, number>>; room: Partial<Record<string, number>> } | null;
   /** This House's Year assignments, by person id (§8.3). */
   assign: Record<number, Assignment>;
   /** Recruits with no assignment who will work a producer on their own this Year: person id -> building (DECISIONS 8ae). */
@@ -212,7 +214,8 @@ export interface SovView {
   doom: number;
   commons: SovState["commons"];
   /** This Year's Crisis: its Need is public, every pledge private (§3.5). */
-  crisis: { id: string; need: Partial<Record<string, number>> } | null;
+  /** The Crisis: its Need, and what the Commons gave it by vote (public). */
+  crisis: { id: string; need: Partial<Record<string, number>>; commons?: Partial<Record<string, number>> } | null;
   /** This Year's shop stock and House lots; the viewer's own bids only (§13.4a); `cost` is a shop lot's price to the viewer. */
   market: (Lot & { cost?: number })[];
   /** Deals the viewer may see: its own, those offered to it, and public ones. */
@@ -373,7 +376,7 @@ export function view(s: SovState, playerId: PlayerId): SovView {
     deals: dealsFor(s, me),
     // A shop lot's price to the viewer (its discount, §5.7); sealed lots show their reserve.
     market: marketFor(s, me).map((l) => (me !== null && l.shop !== null && !l.auction ? { ...l, cost: priceFor(s, me, l) } : l)),
-    crisis: s.crisis ? { id: s.crisis.id, need: s.crisis.need } : null,
+    crisis: s.crisis ? { id: s.crisis.id, need: s.crisis.need, ...(s.crisis.commons ? { commons: s.crisis.commons } : {}) } : null,
     timeline: timelineFor(s, me),
     houses: s.houses.map((h, i) => publicHouse(s, h, i)),
     mine:
@@ -413,7 +416,7 @@ export function view(s: SovState, playerId: PlayerId): SovView {
             draught: s.people.filter((p) => !cannotDrinkDraught(s, me, p.id)).map((p) => p.id),
             insight,
             owed: owed(s, me),
-            crisis: s.crisis ? { pledge: s.crisis.pledges[me]!, tempted: s.crisis.tempted[me]! } : null,
+            crisis: s.crisis ? { pledge: s.crisis.pledges[me]!, tempted: s.crisis.tempted[me]!, ask: cannotAskCommons(s), gift: commonsCrisisGift(s), room: Object.fromEntries(Object.keys(s.crisis.need).map((k) => [k, crisisRoom(s, me, k)])) } : null,
             notes: s.notes[me] ?? [],
             // Dark Bargains offered to this House alone (§14.7a).
             bargains: s.bargains.pending.filter((b) => b.house === me).map((b) => b.id),

@@ -62,6 +62,15 @@ describe("building", () => {
     expect(stock.textContent).toContain("7 Grain");
     expect(screen.queryByText(FARM.name)).toBeNull();
   });
+
+  it("gives Gold and materials to the Commons (Josh 2026-11-11)", () => {
+    const sendMove = vi.fn();
+    render(<Works view={g.view(town(), "p1")} sendMove={sendMove} canAct part="commons" />);
+    const gift = screen.getByRole("group", { name: "Give to the Commons" });
+    fireEvent.change(within(gift).getByLabelText("Give gold"), { target: { value: "5" } });
+    fireEvent.click(within(gift).getByRole("button", { name: "Give to the Commons" }));
+    expect(sendMove).toHaveBeenCalledWith({ type: "donate", give: { gold: 5 } });
+  });
 });
 
 describe("the Altar of Offerings (Josh 2026-11-03: sacrifice small stuff for an expedition bonus)", () => {

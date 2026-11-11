@@ -58,6 +58,35 @@ export default function Works({ view, sendMove, canAct, part }: Props & { part: 
 
 const STOCK = ["gold", "grain", "timber", "stone", "iron", "essence"] as const;
 
+/** A gift to the Commons' stock (Josh 2026-11-11: "donate resources to the commons"): public, final, Renown by share. */
+function Donate({ mine, sendMove }: { mine: Mine; sendMove: Props["sendMove"] }) {
+  const [give, setGive] = useState<Record<string, number>>({});
+  const have = (k: string) => (k === "gold" ? mine.gold : (mine.stores[k] ?? 0));
+  const any = STOCK.some((k) => (give[k] ?? 0) > 0);
+  return (
+    <div className="sp-pledge sp-donate" aria-label="Give to the Commons" role="group">
+      {STOCK.map((k) => (
+        <span key={k} className="sp-amount-row">
+          <span>{k[0]!.toUpperCase() + k.slice(1)}</span>
+          <Amount label={`Give ${k}`} max={have(k)} value={give[k] ?? 0} onChange={(n) => setGive({ ...give, [k]: n })} />
+          <small> of {have(k)}</small>
+        </span>
+      ))}
+      <button
+        type="button"
+        className="sp-button sp-button--quiet"
+        disabled={!any}
+        onClick={() => {
+          sendMove({ type: "donate", give: Object.fromEntries(STOCK.filter((k) => (give[k] ?? 0) > 0).map((k) => [k, give[k]!])) });
+          setGive({});
+        }}
+      >
+        Give to the Commons
+      </button>
+    </div>
+  );
+}
+
 function Commons({ view, mine, sendMove, canAct }: { view: SovView; mine: Mine; sendMove: Props["sendMove"]; canAct: boolean }) {
   const held = (k: string) => (k === "gold" ? view.commons.gold : (view.commons.stores[k] ?? 0));
   return (
@@ -71,8 +100,9 @@ function Commons({ view, mine, sendMove, canAct }: { view: SovView; mine: Mine; 
           </li>
         ))}
       </ul>
+      {canAct ? <Donate mine={mine} sendMove={sendMove} /> : null}
       <p className="sp-event__status">
-        Every House tithes into the Commons, and spending it takes a vote. Pledges are public and final, and earn Renown by share. A project stands in the district the Houses vote to site it in
+        Every House tithes into the Commons, and any House may give to it; a gift earns Renown by share. Spending it takes a vote, on a project or, in a Crisis, on the city's Need. Pledges are public and final, and earn Renown by share. A project stands in the district the Houses vote to site it in
         (else the biggest pledger's), and its host takes a perk every Year.
       </p>
       {canAct && view.houses.length > 1 ? (

@@ -3,6 +3,7 @@
 // among those who voted for a tied option [DECIDED]. With one House there is no vote: it decides.
 import { built, loseAccord, spendCommons, stillNeeded } from "./commons.ts";
 import { PROJECT_BY_ID, TOWN_EVENT_BY_ID } from "./content.ts";
+import { commonsGive } from "./crisis.ts";
 import { cautious, recordOmen, settleEventVote } from "./omens.ts";
 import type { SovState, Vote } from "./state.ts";
 import { TUNING } from "./tuning.ts";
@@ -27,6 +28,8 @@ export function owed(s: SovState, house: number): string | null {
         ? `spending the Commons on the ${PROJECT_BY_ID.get(s.vote.subject)?.name ?? s.vote.subject}`
         : s.vote.kind === "levy"
           ? "the levy"
+          : s.vote.kind === "crisis"
+            ? "the Commons' help in the Crisis"
           : (TOWN_EVENT_BY_ID.get(s.vote.subject)?.title ?? s.vote.subject);
     return `Vote first: ${what}.`;
   }
@@ -73,6 +76,15 @@ export function proposeLevy(s: SovState, house: number): void {
   s.vote = { kind: "levy", subject: "levy", options: ["yes", "no"], by: s.houses.map(() => null), proposer: house };
   log(s, `House ${s.houses[house]!.name} moves a levy of ${TUNING.commons.levyGold} Gold on every House, for the Commons.`);
   s.houses.forEach((h, i) => i !== house && (h.sealed = false));
+}
+
+/** A motion that the Commons give from its stock to this Year's Crisis (Josh 2026-11-11); once a Crisis. */
+export function proposeCrisisAid(s: SovState, house: number): void {
+  s.crisis!.asked = true;
+  s.vote = { kind: "crisis", subject: s.crisis!.id, options: ["yes", "no"], by: s.houses.map(() => null), proposer: house };
+  log(s, `House ${s.houses[house]!.name} moves that the Commons give to the Crisis.`);
+  s.houses.forEach((h, i) => i !== house && (h.sealed = false));
+  if (s.houses.length === 1) castVote(s, house, 0);
 }
 
 export function cannotVote(s: SovState, house: number, choice: number): string | null {
@@ -154,6 +166,16 @@ export function settleVote(s: SovState): void {
       s.commons.gold += raised;
     });
     log(s, yes ? `The levy passes: ${raised} Gold goes into the Commons.` : "The Houses refuse the levy.");
+  }
+  if (vote.kind === "crisis") {
+    const yes = vote.options[choice] === "yes";
+    let gift: Partial<Record<string, number>> = {};
+    recordOmen(s, "council:crisis", undefined, null, `${yes ? "The motion passes" : "The motion fails"}${counted}.`, "", () => {
+      if (yes) gift = commonsGive(s);
+    });
+    const what = Object.entries(gift).map(([k, n]) => `${n} ${k[0]!.toUpperCase()}${k.slice(1)}`).join(" and ");
+    s.omensTold!.at(-1)!.text = yes ? `The Commons gives ${what || "nothing"} to the Crisis.` : "The Commons' stock stays where it is; the Houses meet the Crisis alone.";
+    log(s, yes ? `The Commons gives ${what || "nothing"} to the Crisis.` : "The Houses refuse to spend the Commons on the Crisis.");
   }
   if (vote.kind === "spend") {
     const name = PROJECT_BY_ID.get(vote.subject)!.name;

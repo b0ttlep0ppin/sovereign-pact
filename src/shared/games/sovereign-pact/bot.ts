@@ -4,6 +4,7 @@
 import { cannotAssign, slots, type AssignMove } from "./assign.ts";
 import { cannotPledge, projectCost, stillNeeded } from "./commons.ts";
 import { cannotPropose } from "./votes.ts";
+import { crisisRoom } from "./crisis.ts";
 import { BUILDING_BY_ID, SORTIES, TOWN_EVENT_BY_ID } from "./content.ts";
 import { cannotAfford, cautious } from "./omens.ts";
 import { fallen } from "./lifecycle.ts";
@@ -203,6 +204,8 @@ export function botVote(s: SovState, house: number): number {
   const v = s.vote!;
   if (v.kind === "event") return botChoice(s, house, v.subject);
   // A levy: a House with Gold to spare pays for the city it has to live in.
+  // The Commons' help in a Crisis: a bot would rather the city stood (Josh 2026-11-11).
+  if (v.kind === "crisis") return v.options.indexOf("yes");
   if (v.kind === "levy") return v.options.indexOf(s.houses[house]!.gold >= 3 * TUNING.commons.levyGold ? "yes" : "no");
   return PROJECT_PLAN.includes(v.subject) ? v.options.indexOf("yes") : v.options.indexOf("no");
 }
@@ -245,7 +248,7 @@ export function botCrisis(s: SovState, house: number): Partial<Record<string, nu
   for (const [k, need] of Object.entries(c.need)) {
     const owed = Math.ceil((need ?? 0) / s.houses.length) - (c.pledges[house]![k] ?? 0);
     const spare = k === "gold" ? h.gold - upkeepGold(s, house) : (h.stores[k] ?? 0) - (k === "grain" ? grainNeed(s, house) : 0);
-    const n = Math.min(owed, spare);
+    const n = Math.min(owed, spare, crisisRoom(s, house, k));
     if (n > 0) give[k] = n;
   }
   return Object.keys(give).length ? give : null;

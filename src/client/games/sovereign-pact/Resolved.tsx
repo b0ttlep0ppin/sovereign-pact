@@ -14,6 +14,7 @@ const keyOf = (o: Omen) => `${o.year}:${o.id}:${o.house ?? ""}:${o.by ?? ""}:${o
 /** What an account is about: the event or Crisis, the Council's motion, the building's order, the altar. */
 export function toldTitle(id: string): string {
   if (id === "council:levy") return "The Commons Council: the levy";
+  if (id === "council:crisis") return "The Commons Council: help in the Crisis";
   if (id.startsWith("council:")) return `The Commons Council: the ${Content.PROJECT_BY_ID.get(id.slice(8))?.name ?? id.slice(8)}`;
   if (id.startsWith("order:")) return `Year order: the ${Content.BUILDING_BY_ID.get(id.slice(6))?.name ?? id.slice(6)}`;
   if (id.startsWith("altar:")) return "The Altar of Offerings";
