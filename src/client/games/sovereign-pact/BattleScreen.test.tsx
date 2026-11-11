@@ -1,6 +1,6 @@
 import { act, fireEvent, render, screen, within } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
-import { Content, sovereignPact as g } from "@vibepulse/shared/games/sovereign-pact";
+import { Content, FLAG, sovereignPact as g, type Vitals } from "@vibepulse/shared/games/sovereign-pact";
 import { warbandBattle } from "../../../shared/games/sovereign-pact/combat/fixtures.ts";
 import { recorded } from "../../../shared/games/sovereign-pact/combat/replay.ts";
 import { found, campaign } from "../../../shared/games/sovereign-pact/testing.ts";
@@ -111,6 +111,33 @@ describe("the battle screen (§15.5)", () => {
     // The ending names it, and says what it does on hover.
     fireEvent.keyDown(screen.getByRole("dialog"), { key: "End" });
     expect(screen.getByLabelText(`${hit.name}: ${hit.text}`).getAttribute("data-tip")).toBe(hit.text);
+    vi.useRealTimers();
+  });
+
+  it("keeps an injury's result, the fall and its marks back until the die is thrown (Josh 2026-11-11)", () => {
+    vi.useFakeTimers();
+    const { view, replay } = setup();
+    const scion = replay.units.find((u) => u.side === "party" && u.partOf === undefined)!;
+    const body = Content.INJURY_TABLES.find((x) => x.id === "body")!;
+    const hit = body.results.find((r) => r.band === "moderate")!;
+    const was = replay.start.find((v) => v[0] === scion.id)!;
+    const fallen: Vitals = [was[0], 0, was[2], was[3], was[4], was[5], was[6], FLAG.down, was[8], ["bleeding"]];
+    const frames = replay.frames.map((f, i) => (i === 0 ? { ...f, ev: [...f.ev, { t: "injury" as const, target: scion.id, table: "body", roll: hit.max, total: hit.max, result: hit.id }], vit: [...f.vit.filter((v) => v[0] !== scion.id), fallen] } : f));
+    const owned = { ...replay, frames, units: replay.units.map((u) => (u.side === "party" ? { ...u, house: 0 } : u)) };
+    const { container } = render(<BattleScreen replay={owned} view={view} onClose={() => {}} />);
+    const token = () => container.querySelector(`.sp-unit[data-unit="${scion.id}"]`)!;
+    const log = () => screen.getByRole("list", { name: "Battle log" }).textContent ?? "";
+    // Before the first turn plays, the log says nothing of it.
+    expect(log()).toBe("");
+    act(() => void vi.advanceTimersByTime(5000));
+    act(() => void vi.advanceTimersByTime(3000));
+    const die = screen.getByRole("button", { name: `Roll the d20 for ${scion.name}` });
+    expect(token().className).not.toContain("is-down");
+    expect(log()).not.toContain(hit.name);
+    fireEvent.click(die);
+    act(() => void vi.advanceTimersByTime(1600));
+    expect(token().className).toContain("is-down");
+    expect(log()).toContain(hit.name);
     vi.useRealTimers();
   });
 

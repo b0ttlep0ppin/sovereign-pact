@@ -174,14 +174,30 @@ export default function BattleScreen({ replay, view, onClose, waiting = 0, fullL
   }, [intro]);
   const [speed, setSpeed] = useState<(typeof SPEEDS)[number]>(1);
   const last = replay.frames.length;
-  const vit = states[at]!;
   const ev = at > 0 ? replay.frames[at - 1]!.ev : NONE;
+  const injury = ev.find((e) => e.t === "injury");
+  // An injury roll waits on its die (Josh 2026-11-03: "the player should have to click the dice … so
+  // theres more drama"): the owner's click throws it, anyone else's rolls on its own; once it lands the
+  // result holds the screen long enough to read.
+  const [rolledAt, setRolledAt] = useState(-1);
+  const held = !!injury && rolledAt !== at;
+  // Until the die lands, its target stands as they stood before it (Josh 2026-11-11: the Scion collapsed
+  // "while the dice model to roll was still up"): no fall, no new marks.
+  const vit = useMemo(() => {
+    const now = states[at]!;
+    if (!held || injury?.t !== "injury") return now;
+    const was = states[at - 1]?.get(injury.target);
+    const v = now.get(injury.target);
+    if (!was || !v) return now;
+    const out = new Map(now);
+    out.set(injury.target, [v[0], v[1], v[2], v[3], v[4], v[5], v[6], was[7], v[8], was[9]]);
+    return out;
+  }, [states, at, held, injury]);
   // A turn waiting on this seat's command is the one on screen.
   const commanding = live?.turn && at >= last ? live.turn : null;
   const actor = commanding?.unit ?? actorOf(ev);
   const name = (id: number) => units.get(id)?.name ?? "someone";
   const pops = popsOf(ev, at, units);
-  const injury = ev.find((e) => e.t === "injury");
   const end = replay.frames.at(-1)?.ev.find((e) => e.t === "end");
   // The turn order (§10.4): a battle being fought forecasts it; one being watched knows it.
   const order = live && at >= last ? (live.order ?? []) : replay.frames.slice(at).flatMap((f) => f.ev.filter((e) => e.t === "turn").map((e) => ({ unit: e.unit, charge: false }))).slice(0, 8);
@@ -203,19 +219,19 @@ export default function BattleScreen({ replay, view, onClose, waiting = 0, fullL
   const log = useRef<HTMLOListElement>(null);
   // The log (§15.8) sits in the column under the enemies (Josh: "the combat log can use some of the dead
   // space"): the last few turns, newest at the foot; the full log keeps every turn so far.
+  // Only the turns played so far; a die not yet thrown keeps its result and what follows from it unsaid.
   const logFrom = fullLog ? 0 : Math.max(0, at - LOG_TURNS);
   const lines = replay.frames
-    .slice(logFrom, at + 1)
-    .flatMap((f, i) => f.ev.map((e) => [logFrom + i, e] as const))
+    .slice(logFrom, at)
+    .flatMap((f, i) => {
+      const turn = logFrom + i;
+      const upTo = held && turn === at - 1 ? f.ev.indexOf(injury!) : -1;
+      return (upTo >= 0 ? f.ev.slice(0, upTo) : f.ev).map((e) => [turn, e] as const);
+    })
     .filter(([, e]) => e.t !== "turn");
 
-  // An injury roll waits on its die (Josh 2026-11-03: "the player should have to click the dice … so
-  // theres more drama"): the owner's click throws it, anyone else's rolls on its own; once it lands the
-  // result holds the screen long enough to read.
-  const [rolledAt, setRolledAt] = useState(-1);
   // Its card stays until it is put away (Josh 2026-11-03: it stayed "til someone else takes a turn").
   const [doneAt, setDoneAt] = useState(-1);
-  const held = !!injury && rolledAt !== at;
   const mine = injury?.t === "injury" && units.get(injury.target)?.house === (view.me ?? 0);
   useEffect(() => {
     // A fight being fought only plays forward (Josh 2026-11-03: "I don't know if we need all this replay
@@ -274,7 +290,7 @@ export default function BattleScreen({ replay, view, onClose, waiting = 0, fullL
   useEffect(() => root.current?.focus(), [aimingNow]);
   useEffect(() => {
     if (log.current) log.current.scrollTop = log.current.scrollHeight;
-  }, [fullLog, at]);
+  }, [fullLog, at, held]);
 
   const color = (u: ReplayUnit) => (u.house !== undefined ? HERALDRY_COLORS.get(view.houses[u.house]?.colors[0] ?? "") : undefined);
   const shown = (u: ReplayUnit) => {
@@ -506,7 +522,7 @@ export default function BattleScreen({ replay, view, onClose, waiting = 0, fullL
             <DiceTray key={at} ev={ev} name={name} speed={speed} />
             <ol className={`sp-battle__log${fullLog ? " is-full" : ""}`} aria-label="Battle log" ref={log}>
               {lines.map(([turn, e], i) => (
-                <li key={`${turn}:${i}`} className={`sp-logline${turn === at ? " is-now" : ""}`}>
+                <li key={`${turn}:${i}`} className={`sp-logline${turn === at - 1 ? " is-now" : ""}`}>
                   <small>{turn + 1}. </small>
                   <BattleLine
                     e={e}

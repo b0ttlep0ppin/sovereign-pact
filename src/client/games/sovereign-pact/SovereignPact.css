@@ -409,6 +409,7 @@
 .sp-homecoming__gain { display: flex; flex-wrap: wrap; gap: 4px 12px; align-items: baseline; font-variant-numeric: tabular-nums; }
 .sp-homecoming__gain em { color: #e08a7a; font-style: normal; font-size: 0.88rem; }
 .sp-homecoming__level { color: var(--gold); }
+.sp-homecoming__crawled { color: #cfc2a8; font-style: italic; font-weight: 400; }
 .sp-homecoming__party li.is-fell strong { color: #c03a32; text-decoration: line-through; }
 .sp-homecoming__party li.is-lost strong { color: #b8a080; }
 .sp-homecoming__fate { color: #c8786a; font-style: italic; }
