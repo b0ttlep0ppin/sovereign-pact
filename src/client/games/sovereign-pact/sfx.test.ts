@@ -36,8 +36,12 @@ describe("the battle's sound (§16.1)", () => {
       const roll = new Map(replay.units.map((u) => [u.id, u]));
       const heard = replay.frames.flatMap((f) => soundsOf(f.ev, roll));
       expect(heard.length).toBeGreaterThan(replay.frames.length / 2);
-      for (const s of heard) expect(Content.SFX_BY_ID.has(s.cue), s.cue).toBe(true);
+      for (const s of heard) expect(Content.SFX_BY_ID.has(s.cue) || s.cue.startsWith("song:"), s.cue).toBe(true);
     }
+  });
+
+  it("plays a song's own notes, not a blessing's cue (Josh 2026-11-11)", () => {
+    expect(soundsOf([{ t: "use", unit: 4, ability: "hearthsong", target: at({ side: "party" }) }], units).map((x) => x.cue)).toEqual(["song:hearthsong"]);
   });
 
   it("swings the Scion's weapon, lands it, then the body gives way", () => {

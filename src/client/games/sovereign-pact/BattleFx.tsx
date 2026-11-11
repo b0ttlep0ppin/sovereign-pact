@@ -6,6 +6,7 @@
 // turn land one after another (waves). `strikesOf` is pure; the motion is CSS and the Web Animations API,
 // skipped when motion is reduced.
 import { Content, statusMeta, type Replay, type ReplayUnit } from "@vibepulse/shared/games/sovereign-pact";
+import { NOTE_GLYPHS, songLook } from "./songs";
 import { statusLook } from "./statusLook";
 import { useEffect, useRef, useState, type CSSProperties, type RefObject } from "react";
 
@@ -29,6 +30,10 @@ export interface Strike {
   thrust?: boolean;
   /** A magic weapon's blow (an elemental weapon, an edge or an enchantment): the steel's marks in its element's colours. */
   charm?: boolean;
+  /** A Minstrel's song reaching a hearer: notes fly to them (songs.ts). */
+  song?: string;
+  /** A blessing torn away by a Siphon: it is drawn back to the one who struck. */
+  siphon?: true;
 }
 
 /** Weapons that stab rather than cut. */
@@ -55,16 +60,30 @@ export function strikesOf(ev: Event[], units: Map<number, ReplayUnit>): Strike[]
     if (user !== unit || out.at(-1)?.wave === wave) wave++;
     user = unit;
   };
-  for (const e of ev) {
+  for (const [i, e] of ev.entries()) {
     if (e.t === "use") {
       used = e.ability;
       begin(e.unit);
       const act = Content.ACTIVE_BY_ID.get(e.ability);
+      // A song (Josh 2026-11-11): its hearers' statuses come before the "use", so it is drawn here, a strike to each.
+      if (act?.song && units.has(e.unit)) {
+        const heard: number[] = [];
+        for (let j = i - 1; j >= 0 && ev[j]!.t !== "use"; j--) {
+          const x = ev[j]!;
+          if (x.t === "status" && x.on && x.status.split("@")[0] === act.id && units.has(x.target) && !heard.includes(x.target)) heard.unshift(x.target);
+        }
+        for (const to of heard) out.push({ from: e.unit, to, kind: act.side === "foe" ? "bane" : "boon", wave, status: act.id, song: act.id });
+      }
       // A spell that only frays the mind (Mind Blight) still lands.
       if (act?.sanity) {
         const s = ev.find((x) => x.t === "sanity");
         if (s?.t === "sanity" && units.has(s.target) && units.has(e.unit)) out.push({ from: e.unit, to: s.target, kind: "mind", wave, element: "dark" });
       }
+      continue;
+    }
+    // A Siphon tears a blessing away and draws it back to the one who struck.
+    if (e.t === "status" && !e.on && e.by !== undefined && units.has(e.by) && units.has(e.target)) {
+      out.push({ from: e.by, to: e.target, kind: "bane", wave, status: e.status.split("@")[0]!, siphon: true });
       continue;
     }
     // Blessings and curses that come with no blow (Josh 2026-11-03: heals and buffs "feel kinda flat").
@@ -118,7 +137,8 @@ export const FX_COLORS: Record<string, [string, string]> = {
 };
 
 /** What a blessing or curse is drawn in: its status's colour and glyph (a cure is pale, Sanity a calm blue). */
-export function boonLook(s: Pick<Strike, "kind" | "status">): { color: string; glyph: string } {
+export function boonLook(s: Pick<Strike, "kind" | "status"> & { song?: string; siphon?: true }): { color: string; glyph: string } {
+  if (s.song) return { color: songLook(s.song).color, glyph: "♪" };
   if (s.kind === "heal") return { color: "#8fe89a", glyph: "✚" };
   if (s.status === "cure") return { color: "#dff4ff", glyph: "✧" };
   if (s.status === "sanity") return { color: "#9ab8ff", glyph: "◉" };
@@ -274,7 +294,7 @@ export default function BattleFx({ planes, strikes, turn, speed }: { planes: Ref
   return (
     <div className="sp-fx" aria-hidden="true" key={turn}>
       {drawn.at.map(({ from, to, s }, i) => (
-        <StrikeFx key={i} i={i} from={from} to={to} s={s} ms={ms} />
+        <StrikeFx key={i} i={i} lead={drawn.at.findIndex((x) => x.s.wave === s.wave) === i} from={from} to={to} s={s} ms={ms} />
       ))}
     </div>
   );
@@ -306,7 +326,7 @@ export function ScreenFx({ strikes, turn, speed }: { strikes: Strike[]; turn: nu
 }
 
 /** One strike's marks: the streak or projectile across the gap, then what it does on arrival. */
-function StrikeFx({ from, to, s, i, ms }: { from: Pt; to: Pt; s: Strike; i: number; ms: (n: number) => string }) {
+function StrikeFx({ from, to, s, i, lead, ms }: { from: Pt; to: Pt; s: Strike; i: number; lead: boolean; ms: (n: number) => string }) {
   const [core, glow] = FX_COLORS[s.element ?? "none"]!;
   const dx = to.x - from.x;
   const dy = to.y - from.y;
@@ -318,6 +338,8 @@ function StrikeFx({ from, to, s, i, ms }: { from: Pt; to: Pt; s: Strike; i: numb
   const vars = (kind ? { ["--core" as string]: "#fffbe8", ["--glow" as string]: kind.color, ["--c" as string]: kind.color } : { ["--core" as string]: core, ["--glow" as string]: glow }) as CSSProperties;
   const at = (p: Pt, extra: CSSProperties = {}): CSSProperties => ({ ...vars, left: p.x, top: p.y, ...extra });
   const sparks = s.miss ? 0 : s.kind === "spell" ? 18 : s.kind === "heal" ? 18 : s.kind === "boon" ? 14 : s.kind === "bane" ? 10 : s.crit ? 16 : 11;
+  if (s.song) return <SongFx from={from} to={to} s={s} lead={lead} vars={vars} ms={ms} />;
+  if (s.siphon) return <SiphonFx from={from} to={to} s={s} vars={vars} ms={ms} />;
   if (kind) return <BoonFx from={from} to={to} s={s} glyph={kind.glyph} sparks={sparks} vars={vars} ms={ms} />;
   return (
     <>
@@ -445,6 +467,66 @@ function BoonFx({ from, to, s, glyph, sparks, vars, ms }: { from: Pt; to: Pt; s:
           })}
         />
       ))}
+    </>
+  );
+}
+
+/**
+ * A song reaching one hearer (Josh 2026-11-11: "musical notes" hitting those a song reaches): notes rise
+ * from the Minstrel as they play, a few fly to the hearer, and land rising round an ally or settling on a foe.
+ */
+function SongFx({ from, to, s, lead, vars, ms }: { from: Pt; to: Pt; s: Strike; lead: boolean; vars: CSSProperties; ms: (n: number) => string }) {
+  const start = s.wave * WAVE_MS;
+  const impact = landsAt(s);
+  const at = (p: Pt, extra: CSSProperties = {}): CSSProperties => ({ ...vars, left: p.x, top: p.y, ...extra });
+  const bane = s.kind === "bane";
+  const travel = s.from !== s.to;
+  const glyph = (j: number) => NOTE_GLYPHS[(j + s.to) % NOTE_GLYPHS.length];
+  return (
+    <>
+      {lead
+        ? [0, 1, 2, 3].map((j) => (
+            <span key={`p${j}`} className="sp-fx__note is-rise" style={at(from, { ["--sx" as string]: `${(j % 2 ? 1 : -1) * (10 + j * 6)}px`, ["--rot" as string]: `${(j % 2 ? 1 : -1) * 18}deg`, animationDelay: ms(start + j * 110), animationDuration: ms(900) })}>
+              {glyph(j)}
+            </span>
+          ))
+        : null}
+      {travel
+        ? [0, 1, 2].map((j) => (
+            <span key={`t${j}`} className="sp-fx__note is-fly" style={at(from, { ["--dx" as string]: `${to.x - from.x}px`, ["--dy" as string]: `${to.y - from.y}px`, ["--lift" as string]: `${-36 - j * 16}px`, animationDelay: ms(impact - 440 + j * 70), animationDuration: ms(440) })}>
+              {glyph(j + 1)}
+            </span>
+          ))
+        : null}
+      <span className={`sp-fx__rune${bane ? " is-bane" : ""}`} style={at(to, { animationDelay: ms(impact), animationDuration: ms(bane ? 640 : 900) })} />
+      {[0, 1, 2].map((j) => (
+        <span key={`l${j}`} className={`sp-fx__note ${bane ? "is-settle" : "is-rise"}`} style={at(to, { ["--sx" as string]: `${(j - 1) * 22}px`, ["--rot" as string]: `${(j - 1) * 14}deg`, animationDelay: ms(impact + j * 90), animationDuration: ms(bane ? 760 : 1000) })}>
+          {glyph(j + 2)}
+        </span>
+      ))}
+    </>
+  );
+}
+
+const SIPHON_COLOR = "#9a4ae0";
+
+/** A Siphon (Josh 2026-11-11): the torn-away blessing's sign is wrenched off the foe and drawn back to the one who struck. */
+function SiphonFx({ from, to, s, vars, ms }: { from: Pt; to: Pt; s: Strike; vars: CSSProperties; ms: (n: number) => string }) {
+  const impact = landsAt(s);
+  const at = (p: Pt, extra: CSSProperties = {}): CSSProperties => ({ ...vars, left: p.x, top: p.y, ...extra });
+  const back = { ["--dx" as string]: `${from.x - to.x}px`, ["--dy" as string]: `${from.y - to.y}px` };
+  // The pull itself is drawn in a thief's violet; only the stolen sign keeps its blessing's colour.
+  const violet = { ["--c" as string]: SIPHON_COLOR };
+  return (
+    <>
+      <span className="sp-fx__rune is-bane" style={at(to, { ...violet, animationDelay: ms(impact - 80), animationDuration: ms(640) })} />
+      <span className="sp-fx__siphon-glyph" style={at(to, { ...back, animationDelay: ms(impact), animationDuration: ms(760) })}>
+        {statusLook(s.status ?? "").glyph}
+      </span>
+      {[0, 1, 2, 3, 4, 5].map((j) => (
+        <span key={j} className="sp-fx__wisp is-siphon" style={at(to, { ...back, ...violet, ["--lift" as string]: `${(j % 2 ? 1 : -1) * (14 + j * 5)}px`, animationDelay: ms(impact + 120 + j * 55), animationDuration: ms(420) })} />
+      ))}
+      <span className="sp-fx__halo is-siphon" style={at(from, { animationDelay: ms(impact + 520), animationDuration: ms(600) })} />
     </>
   );
 }

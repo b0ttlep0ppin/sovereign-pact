@@ -42,6 +42,27 @@ describe("strikesOf", () => {
     expect(strikesOf([use("attack"), { t: "status", target: 2, status: "regen", on: true }, { t: "heal", unit: 1, target: 2, amount: 5 }], units).map((x) => x.kind)).toEqual(["heal"]);
   });
 
+  it("sends a song's notes from the Minstrel to each hearer, and draws a Siphon back to the one who struck (Josh 2026-11-11)", () => {
+    const song = strikesOf([
+      { t: "status", target: 1, status: "hearthsong", on: true },
+      { t: "status", target: 2, status: "hearthsong", on: true },
+      { t: "use", unit: 1, ability: "hearthsong", target: { side: "party", col: 0, row: 0 } },
+    ], units);
+    expect(song).toEqual([
+      { from: 1, to: 1, kind: "boon", wave: 0, status: "hearthsong", song: "hearthsong" },
+      { from: 1, to: 2, kind: "boon", wave: 0, status: "hearthsong", song: "hearthsong" },
+    ]);
+    const dirge = strikesOf([{ t: "status", target: 3, status: "dirge", on: true }, { t: "use", unit: 1, ability: "dirge", target: { side: "enemy", col: 0, row: 0 } }], units);
+    expect(dirge[0]).toMatchObject({ kind: "bane", song: "dirge", to: 3 });
+    const siphon = strikesOf([
+      { t: "use", unit: 1, ability: "attack", target: { side: "enemy", col: 0, row: 0 } },
+      { t: "hit", unit: 1, target: 3, damage: 9 },
+      { t: "status", target: 3, status: "haste", on: false, by: 1 },
+    ], units);
+    expect(siphon.map((x) => x.kind)).toEqual(["melee", "bane"]);
+    expect(siphon[1]).toMatchObject({ from: 1, to: 3, wave: 0, status: "haste", siphon: true });
+  });
+
   it("draws a spear's blow as a thrust", () => {
     const spear = new Map(units);
     spear.set(2, { ...units.get(2)!, weapon: "spear" });

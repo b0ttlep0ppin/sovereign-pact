@@ -112,6 +112,17 @@ describe("hits and damage (§10.6)", () => {
     expect(t.broken.includes("body") || b.events.some((x) => x.t === "steeled") || t.dead).toBe(true);
   });
 
+  it("tears a blessing away with a Siphon, naming who took it for the field to draw (Josh 2026-11-11)", () => {
+    const u = scion(1, 0, 3);
+    u.mods.siphon = 1;
+    const t = enemy(9, 0, 3);
+    const b = battle(u, t);
+    addStatus(b, t, "haste", 50);
+    strike(b, scripted(0, 0.99, 0), u, t, HIT);
+    expect(t.statuses.some((x) => x.id === "haste")).toBe(false);
+    expect(b.events).toContainEqual({ t: "status", target: 9, status: "haste", on: false, by: 1 });
+  });
+
   it("takes only a share of a blow's damage from the location's Durability (Josh 2026-11-11)", () => {
     const e = enemy(9, 0, 3);
     const t = scion(1, 0, 3, { hp: 999, maxHp: 999 });

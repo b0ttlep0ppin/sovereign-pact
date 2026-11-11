@@ -557,3 +557,41 @@ button.sp-injury__die.is-waiting:hover, button.sp-injury__die.is-waiting:focus-v
 @keyframes sp-fx-fall { 0% { opacity: 0; transform: rotate(var(--a)) translateX(calc(var(--d) * 2)); } 25% { opacity: 1; } 100% { opacity: 0; transform: rotate(var(--a)) translateX(2px) translateY(20px); } }
 .sp-screenfx__tint--heal { background: radial-gradient(ellipse at 50% 100%, rgba(150, 230, 140, 0.22), rgba(255, 230, 160, 0.12) 50%, transparent 80%); }
 .sp-screenfx__tint--boon { background: radial-gradient(ellipse at 50% 100%, color-mix(in srgb, var(--c) 16%, transparent), transparent 70%); }
+/* A Minstrel's song (Josh 2026-11-11): notes rise as they play, fly to each hearer, and rise round an ally or settle on a foe. */
+.sp-fx__note {
+  margin: -14px 0 0 -8px; font-size: 27px; line-height: 1; font-weight: 700; color: var(--c);
+  text-shadow: 0 0 6px var(--c), 0 0 2px #000, 0 1px 0 #000; animation-timing-function: ease-in-out;
+}
+.sp-fx__note.is-fly { animation-name: sp-fx-note-fly; animation-timing-function: linear; }
+@keyframes sp-fx-note-fly {
+  0% { opacity: 0; translate: 0 0; rotate: -18deg; scale: 0.7; }
+  15% { opacity: 1; }
+  50% { translate: calc(var(--dx) * 0.5) calc(var(--dy) * 0.5 + var(--lift)); rotate: 14deg; scale: 1.1; }
+  100% { opacity: 1; translate: var(--dx) var(--dy); rotate: -6deg; scale: 0.9; }
+}
+.sp-fx__note.is-rise { animation-name: sp-fx-note-rise; }
+@keyframes sp-fx-note-rise {
+  0% { opacity: 0; translate: 0 8px; scale: 0.5; rotate: 0deg; }
+  20% { opacity: 1; scale: 1.15; }
+  60% { translate: calc(var(--sx) * 0.6) -28px; }
+  100% { opacity: 0; translate: var(--sx) -56px; scale: 0.8; rotate: var(--rot); }
+}
+.sp-fx__note.is-settle { animation-name: sp-fx-note-settle; text-shadow: 0 0 8px #000, 0 0 4px var(--c), 0 1px 0 #000; }
+@keyframes sp-fx-note-settle {
+  0% { opacity: 0; translate: var(--sx) -46px; scale: 1.2; rotate: var(--rot); }
+  30% { opacity: 1; }
+  100% { opacity: 0; translate: 0 6px; scale: 0.7; rotate: 0deg; }
+}
+/* A Siphon (Josh 2026-11-11): the stolen blessing's sign is wrenched off the foe and pulled back in dark wisps. */
+.sp-fx__siphon-glyph {
+  margin: -44px 0 0 0; translate: -50% 0; font-size: 38px; font-weight: 700; line-height: 1; color: var(--c);
+  text-shadow: 0 0 8px #7a2ac0, 0 0 2px #000, 0 1px 0 #000; animation-name: sp-fx-siphon-glyph; animation-timing-function: ease-in;
+}
+@keyframes sp-fx-siphon-glyph {
+  0% { opacity: 0; transform: translate(0, 10px) scale(0.6); }
+  25% { opacity: 1; transform: translate(0, -10px) scale(1.3); }
+  45% { transform: translate(calc(var(--dx) * 0.1), -14px) scale(1); }
+  100% { opacity: 0; transform: translate(var(--dx), var(--dy)) scale(0.4); }
+}
+.sp-fx__wisp.is-siphon { width: 12px; height: 12px; margin: -6px 0 0 -6px; background: radial-gradient(circle, #f0dcff 0 25%, var(--c) 55%, transparent 72%); animation-timing-function: ease-in; }
+.sp-fx__halo.is-siphon { background: radial-gradient(ellipse, rgba(240, 220, 255, 0.6), rgba(120, 40, 190, 0.4) 50%, transparent 70%); }
