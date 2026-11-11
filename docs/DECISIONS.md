@@ -2,6 +2,11 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-11 (implementation, Milestone 8ea): the town's pages renamed and split
+- Josh: "Your People" has Scions / Formation / Recruits; "Readying" is now "Preparation"; "Building" is now "Construction", with Your House and The Commons; "Market" is now "Commerce", with The Market and The Quartermaster.
+- Reading taken: the Scions page also holds the Retired and the Lost, and Recruits shows only while the House has one. The Market holds the shops and sealed bids. The Quartermaster holds the supplies (consumables) and the stash of unworn gear to sell or put up for bids.
+- The Commons page opens with what the Commons holds, Gold and each material, so its stock can be read at a glance.
+
 ## 2026-11-11 (implementation, Milestone 8dz): an injury's die keeps its secret; a wiped party's homecoming says who crawled home
 - Josh: an injury roll made Aelfric "collapse with body: bruised deep while the dice model to roll was still up". Until the die is thrown, the target keeps the fall and status marks they had before the roll (HP still drops with the blow), and the log stops at the injury line. All of it shows once the die lands.
 - The battle log was a turn ahead: it listed the turn about to play beside the one on screen. It now lists only turns that have played.

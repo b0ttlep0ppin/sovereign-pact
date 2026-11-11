@@ -21,7 +21,7 @@ describe("the market (§8.6, §13.4a)", () => {
   it("sells a shop's goods at the House's price", () => {
     const { view, shop } = town();
     const sendMove = vi.fn();
-    render(<Market view={view} sendMove={sendMove} canAct />);
+    render(<Market view={view} sendMove={sendMove} canAct part="market" />);
     const lot = view.market.find((l) => l.item.id === shop.item.id)!;
     expect(lot.cost).toBeDefined();
     const row = screen.getAllByText(itemName(shop.item))[0]!.closest("li")!;
@@ -32,7 +32,7 @@ describe("the market (§8.6, §13.4a)", () => {
   it("takes a sealed bid at or above the reserve", () => {
     const { view, sealed } = town();
     const sendMove = vi.fn();
-    render(<Market view={view} sendMove={sendMove} canAct />);
+    render(<Market view={view} sendMove={sendMove} canAct part="market" />);
     fireEvent.change(screen.getByLabelText(`Bid on ${itemName(sealed.item)}`), { target: { value: "45" } });
     fireEvent.click(screen.getByRole("button", { name: "Bid" }));
     expect(sendMove).toHaveBeenCalledWith({ type: "bid", item: 9901, gold: 45 });
@@ -41,7 +41,7 @@ describe("the market (§8.6, §13.4a)", () => {
   it("sells consumables the House can buy, at its price", () => {
     const { view } = town();
     const sendMove = vi.fn();
-    render(<Market view={view} sendMove={sendMove} canAct />);
+    render(<Market view={view} sendMove={sendMove} canAct part="quartermaster" />);
     const first = view.mine!.shop[0]!;
     const name = Content.CONSUMABLE_BY_ID.get(first.id)!.name;
     const row = screen.getByText(name).closest("li")!;
@@ -57,7 +57,7 @@ describe("the market (§8.6, §13.4a)", () => {
     const price = view.mine!.sells![9950]!;
     expect(price).toBeGreaterThan(0);
     const sendMove = vi.fn();
-    render(<Market view={view} sendMove={sendMove} canAct />);
+    render(<Market view={view} sendMove={sendMove} canAct part="quartermaster" />);
     const row = screen.getByRole("button", { name: `Sell, ${price} Gold` }).closest("li")!;
     fireEvent.click(within(row).getByRole("button", { name: `Sell, ${price} Gold` }));
     expect(sendMove).toHaveBeenCalledWith({ type: "sell", item: 9950 });

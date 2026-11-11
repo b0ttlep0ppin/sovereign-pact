@@ -4,6 +4,7 @@ import { Content, sovereignPact as g } from "@vibepulse/shared/games/sovereign-p
 import { calm, campaign } from "../../../shared/games/sovereign-pact/testing.ts";
 import { mintNamed } from "../../../shared/games/sovereign-pact/items.ts";
 import Roster from "./Roster";
+import SovereignPact from "./index";
 
 /** A calm settlement: House 0 with Gold, a Retired Scion, a Tarot Token, and a Surgeon's Kit for an injured Scion. */
 function town() {
@@ -104,5 +105,29 @@ describe("restyling on the card (§5.8)", () => {
     fireEvent.click(headwear);
     expect(sendMove).toHaveBeenLastCalledWith({ type: "restyle", person: scion.id, headwear: "off" });
     expect(within(card).getByRole("group", { name: `Beard for ${scion.name}` })).toBeTruthy();
+  });
+});
+
+describe("the town's pages (Josh 2026-11-11)", () => {
+  it("names them Preparation, Construction and Commerce, and splits Your people into Scions, Formation and Recruits", () => {
+    localStorage.clear();
+    const s = calm(campaign(2, 3));
+    const props = { me: "p1", players: [], isMyTurn: true, sendMove: vi.fn(), lastError: null };
+    render(<SovereignPact {...props} view={g.view(s, "p1")} />);
+    for (const d of ["What was decided", "The homecoming"]) {
+      const card = screen.queryByRole("dialog", { name: d });
+      if (card) fireEvent.click(within(card).getAllByRole("button").at(-1)!);
+    }
+    for (const name of ["Preparation", "Construction", "Commerce"]) expect(screen.getByRole("tab", { name })).toBeTruthy();
+    expect(screen.queryByRole("tab", { name: "Readying" })).toBeNull();
+    fireEvent.click(screen.getByRole("tab", { name: "Your people" }));
+    const people = screen.getByRole("tablist", { name: "Your people" });
+    expect(within(people).getAllByRole("tab").map((t) => t.textContent)).toEqual(["Scions", "Formation", "Recruits"]);
+    fireEvent.click(within(people).getByRole("tab", { name: "Recruits" }));
+    expect(screen.getByRole("region", { name: "Recruits" })).toBeTruthy();
+    fireEvent.click(screen.getByRole("tab", { name: "Construction" }));
+    expect(within(screen.getByRole("tablist", { name: "Construction" })).getAllByRole("tab").map((t) => t.textContent)).toEqual(["Your House", "The Commons"]);
+    fireEvent.click(screen.getByRole("tab", { name: "Commerce" }));
+    expect(within(screen.getByRole("tablist", { name: "Commerce" })).getAllByRole("tab").map((t) => t.textContent)).toEqual(["The Market", "The Quartermaster"]);
   });
 });

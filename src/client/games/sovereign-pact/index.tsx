@@ -431,14 +431,44 @@ export default function SovereignPact({ view, isMyTurn, sendMove, lastError }: P
                     store="sovereign-pact:tab:people"
                     label="Your people"
                     tabs={[
-                      ["roster", "Roster", <Roster view={view} sendMove={sendMove} canAct={open} />],
+                      // Josh 2026-11-11: "Scions / Formation / Recruits".
+                      ["roster", "Scions", <Roster view={view} sendMove={sendMove} canAct={open} only={["scion", "retired", "lost"]} />],
                       ["formation", "Formation", ownScions.length ? <Formation view={view} people={ownScions} sendMove={sendMove} canAct={!!mine && view.phase !== "over"} /> : null],
+                      ["recruits", "Recruits", view.people.some((p) => p.host === view.me && p.status === "recruit") ? <Roster view={view} sendMove={sendMove} canAct={open} only={["recruit"]} /> : null],
                     ]}
                   />,
                 ],
-                ["readying", "Readying", view.phase === "settlement" ? <Readying view={view} sendMove={sendMove} canAct={open} /> : null],
-                ["building", "Building", view.phase === "settlement" ? <Works view={view} sendMove={sendMove} canAct={open} /> : null],
-                ["market", "Market", view.phase === "settlement" ? <Market view={view} sendMove={sendMove} canAct={open} /> : null],
+                ["readying", "Preparation", view.phase === "settlement" ? <Readying view={view} sendMove={sendMove} canAct={open} /> : null],
+                [
+                  "building",
+                  "Construction",
+                  view.phase === "settlement" ? (
+                    <Tabs
+                      sub
+                      store="sovereign-pact:tab:building"
+                      label="Construction"
+                      tabs={[
+                        ["house", "Your House", <Works view={view} sendMove={sendMove} canAct={open} part="house" />],
+                        ["commons", "The Commons", <Works view={view} sendMove={sendMove} canAct={open} part="commons" />],
+                      ]}
+                    />
+                  ) : null,
+                ],
+                [
+                  "market",
+                  "Commerce",
+                  view.phase === "settlement" ? (
+                    <Tabs
+                      sub
+                      store="sovereign-pact:tab:market"
+                      label="Commerce"
+                      tabs={[
+                        ["market", "The Market", <Market view={view} sendMove={sendMove} canAct={open} part="market" />],
+                        ["quartermaster", "The Quartermaster", <Market view={view} sendMove={sendMove} canAct={open} part="quartermaster" />],
+                      ]}
+                    />
+                  ) : null,
+                ],
                 [
                   "houses",
                   "The Houses",

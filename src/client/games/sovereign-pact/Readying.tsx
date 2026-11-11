@@ -43,7 +43,7 @@ export default function Readying({ view, sendMove, canAct }: Props) {
   const p = scions.find((x) => x.id === pick) ?? scions[0];
   if (!p?.kit) return null;
   return (
-    <section className="sp-panel sp-ready" aria-label="Readying">
+    <section className="sp-panel sp-ready" aria-label="Preparation">
       <h2>Ready your Scions</h2>
       <div className="sp-ready__tabs" role="tablist" aria-label="Scions">
         {scions.map((x) => (

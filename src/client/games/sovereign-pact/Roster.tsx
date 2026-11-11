@@ -40,15 +40,20 @@ export function TraitLine({ kind, name, text, tarot }: { kind?: string; name: st
   );
 }
 
-export default function Roster({ view, sendMove, canAct }: Props) {
+/**
+ * The House's people, or some of them: Your people's Scions page holds the Scions, the Retired and the Lost,
+ * its Recruits page the recruits (Josh 2026-11-11).
+ */
+export default function Roster({ view, sendMove, canAct, only }: Props & { only?: Person["status"][] }) {
   const me = view.me;
   const mine = view.mine;
   if (me === null || !mine) return null;
-  const own = view.people.filter((p) => p.host === me);
+  const own = view.people.filter((p) => p.host === me && (!only || only.includes(p.status)));
+  const recruits = only?.length === 1 && only[0] === "recruit";
   return (
-    <section className="sp-panel sp-roster" aria-label="Your people">
-      <h2>Your people</h2>
-      {own.length ? null : <p className="sp-event__status">{view.phase === "founding" ? (view.muster ? "Your first Scions are chosen in the muster above." : "Your first Scions are chosen once every House has sworn the Pact.") : "Nobody is left."}</p>}
+    <section className="sp-panel sp-roster" aria-label={recruits ? "Recruits" : "Your people"}>
+      <h2>{recruits ? "Recruits" : "Your people"}</h2>
+      {own.length || recruits ? null : <p className="sp-event__status">{view.phase === "founding" ? (view.muster ? "Your first Scions are chosen in the muster above." : "Your first Scions are chosen once every House has sworn the Pact.") : "Nobody is left."}</p>}
       {GROUPS.map(({ status, title }) => {
         const group = own.filter((p) => p.status === status);
         if (!group.length) return null;

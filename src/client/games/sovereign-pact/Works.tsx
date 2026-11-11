@@ -16,15 +16,16 @@ export const costText = (r: Partial<Record<string, number>>) =>
     .map(([k, n]) => `${n} ${word(k)}`)
     .join(", ") || "nothing";
 
-export default function Works({ view, sendMove, canAct }: Props) {
+/** Construction (Josh 2026-11-11): one page for the House's own buildings, one for the Commons' projects. */
+export default function Works({ view, sendMove, canAct, part }: Props & { part: "house" | "commons" }) {
   const mine = view.mine;
   const me = view.me;
   if (me === null || !mine) return null;
+  if (part === "commons") return <Commons view={view} mine={mine} sendMove={sendMove} canAct={canAct} />;
   const works = view.houses[me]?.works ?? [];
   return (
-    <section className="sp-panel sp-works" aria-label="Building">
-      <h2>Building</h2>
-      <h3>Your House</h3>
+    <section className="sp-panel sp-works" aria-label="Your House's buildings">
+      <h2>Your House</h2>
       <ul className="sp-lots sp-abilities">
         {mine.builds.map((b) => {
           const def = Content.BUILDING_BY_ID.get(b.id);
@@ -51,10 +52,28 @@ export default function Works({ view, sendMove, canAct }: Props) {
           );
         })}
       </ul>
-      <h3>The Commons</h3>
+    </section>
+  );
+}
+
+const STOCK = ["gold", "grain", "timber", "stone", "iron", "essence"] as const;
+
+function Commons({ view, mine, sendMove, canAct }: { view: SovView; mine: Mine; sendMove: Props["sendMove"]; canAct: boolean }) {
+  const held = (k: string) => (k === "gold" ? view.commons.gold : (view.commons.stores[k] ?? 0));
+  return (
+    <section className="sp-panel sp-works" aria-label="The Commons">
+      <h2>The Commons</h2>
+      {/* What the Commons holds, at a glance (Josh 2026-11-11). */}
+      <ul className="sp-commons__stock" aria-label="The Commons holds">
+        {STOCK.map((k) => (
+          <li key={k} className={held(k) ? undefined : "is-empty"}>
+            <strong>{held(k)}</strong> <small>{k[0]!.toUpperCase() + k.slice(1)}</small>
+          </li>
+        ))}
+      </ul>
       <p className="sp-event__status">
-        Pledges are public and final, and earn Renown by share. The Commons holds {costText({ gold: view.commons.gold, ...view.commons.stores })}; spending it takes a vote. A project stands in
-        the district the Houses vote to site it in (else the biggest pledger's), and its host takes a perk every Year.
+        Every House tithes into the Commons, and spending it takes a vote. Pledges are public and final, and earn Renown by share. A project stands in the district the Houses vote to site it in
+        (else the biggest pledger's), and its host takes a perk every Year.
       </p>
       {canAct && view.houses.length > 1 ? (
         <p className="sp-levy">
