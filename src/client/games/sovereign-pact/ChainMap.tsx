@@ -1,7 +1,8 @@
 // The expedition's chain (SPEC §9.3, §15.2): the places passed shown for what they were, the rest face
 // down until reached, the boss waiting at the end. Beside it the party, its Leader, the satchel and
 // the haul so far. A 2×4 card shows each party's road.
-import { Content, itemName, type SovMove, type SovView } from "@vibepulse/shared/games/sovereign-pact";
+import { Content, itemName, TUNING, type SovMove, type SovView } from "@vibepulse/shared/games/sovereign-pact";
+import ItemIcon from "./ItemIcon";
 import { useState } from "react";
 import { CARD_TYPES, quarryOf } from "./RiftGate";
 import { HERALDRY_COLORS } from "./Emblem";
@@ -101,21 +102,7 @@ export default function ChainMap({ view, sendMove }: { view: SovView; sendMove?:
         </section>
         <section className="sp-expedition__col" aria-label="The satchel">
           <h3>Satchel</h3>
-          {satchel.length ? (
-            <ul className="sp-expedition__list">
-              {satchel.map(([id, n]) => {
-                const def = Content.CONSUMABLE_BY_ID.get(id);
-                return (
-                  <li key={id} title={def?.text}>
-                    {def?.name ?? id}
-                    {n > 1 ? <small> ×{n}</small> : null}
-                  </li>
-                );
-              })}
-            </ul>
-          ) : (
-            <p className="sp-expedition__empty">Empty.</p>
-          )}
+          <SatchelGrid kinds={satchel} />
           {sendMove && view.opens.length ? (
             <div className="sp-actions sp-satchel" aria-label="Open the satchel">
               {view.opens.map((o) => (
@@ -149,6 +136,45 @@ export default function ChainMap({ view, sendMove }: { view: SovView; sendMove?:
   );
 }
 
+/**
+ * The satchel's slots as a grid (Josh 2026-11-11: "a grid that showed items with icons in it"): one item
+ * to a slot, alike kept together, the empty slots left showing. Pointing at one names it beneath.
+ */
+function SatchelGrid({ kinds }: { kinds: [string, number][] }) {
+  const slots = kinds.flatMap(([id, n]) => Array.from({ length: n }, () => id));
+  const [shown, setShown] = useState<string | undefined>(undefined);
+  const id = shown && slots.includes(shown) ? shown : slots[0];
+  const def = id ? Content.CONSUMABLE_BY_ID.get(id) : undefined;
+  const count = id ? (kinds.find(([k]) => k === id)?.[1] ?? 0) : 0;
+  return (
+    <>
+      <ul className="sp-satchel-grid" aria-label={`${slots.length} of ${TUNING.consumables.satchel} slots filled`}>
+        {Array.from({ length: Math.max(TUNING.consumables.satchel, slots.length) }, (_, i) => {
+          const at = slots[i];
+          const name = at ? (Content.CONSUMABLE_BY_ID.get(at)?.name ?? at) : undefined;
+          return (
+            <li key={i} className={at ? (at === id ? "is-shown" : "") : "is-empty"}>
+              {at ? (
+                <button type="button" title={name} aria-label={name} aria-pressed={at === id} onClick={() => setShown(at)} onMouseEnter={() => setShown(at)} onFocus={() => setShown(at)}>
+                  <ItemIcon id={at} size={26} />
+                </button>
+              ) : null}
+            </li>
+          );
+        })}
+      </ul>
+      {def ? (
+        <p className="sp-satchel-grid__about">
+          <strong>{def.name}</strong>
+          {count > 1 ? <small> ×{count}</small> : null} <span>{def.text}</span>
+        </p>
+      ) : (
+        <p className="sp-expedition__empty">Empty.</p>
+      )}
+    </>
+  );
+}
+
 /** One kind from the satchel: a button, with a Scion to name when it goes to one. */
 function Open({ open, view, sendMove }: { open: SovView["opens"][number]; view: SovView; sendMove: (m: SovMove) => void }) {
   const [who, setWho] = useState(open.people?.[0] ?? -1);
@@ -157,7 +183,7 @@ function Open({ open, view, sendMove }: { open: SovView["opens"][number]; view: 
   if (!open.people) {
     return (
       <button type="button" className="sp-button sp-button--quiet" title={def?.text} onClick={() => sendMove({ type: "use_item", id: open.id })}>
-        Use {name}
+        <ItemIcon id={open.id} size={16} /> Use {name}
       </button>
     );
   }
@@ -171,7 +197,7 @@ function Open({ open, view, sendMove }: { open: SovView["opens"][number]; view: 
         ))}
       </select>
       <button type="button" className="sp-button sp-button--quiet" onClick={() => sendMove({ type: "use_item", id: open.id, person: who })}>
-        Use {name}
+        <ItemIcon id={open.id} size={16} /> Use {name}
       </button>
     </span>
   );

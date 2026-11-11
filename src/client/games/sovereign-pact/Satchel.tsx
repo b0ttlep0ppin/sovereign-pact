@@ -3,6 +3,7 @@
 // grows with the Scions it fields, from the consumables it holds at home; what goes unused comes home.
 import { Content, type SovView } from "@vibepulse/shared/games/sovereign-pact";
 import Amount from "./Amount";
+import ItemIcon from "./ItemIcon";
 
 export type Pack = Record<string, number>;
 
@@ -44,7 +45,8 @@ export default function Satchel({ view, fielded, pack, setPack }: { view: SovVie
             const others = packed - Math.min(mine, packed);
             return (
               <li key={id} title={def?.text}>
-                <span>
+                <ItemIcon id={id} size={26} />
+                <span className="sp-satchel-pack__what">
                   <strong>{def?.name ?? id}</strong> <small>you hold {held}</small>
                   <span className="sp-ability__text">{def?.text}</span>
                 </span>

@@ -2,6 +2,10 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-11 (implementation, Milestone 8ei): the satchel as a grid of icons
+- Josh: "it'd be cool if satchel had a grid that showed items with icons in it". Every consumable now has a 12×12 pixel icon drawn for this game (`client/games/sovereign-pact/itemIcons.ts`: twenty-two shapes, each item one of them in its own colour).
+- Reading taken: on the expedition map the satchel shows all its slots, one item to a slot with alike kept together, and the empty slots dimmed. Pointing at a slot names the item and what it does beneath the grid. The muster's packing list and the "Use" buttons carry the icons too.
+
 ## 2026-11-11 (implementation, Milestone 8eh): a blow takes 55% of its damage from the location
 - Josh: "maybe they should take like 55% of the damage, seems like my body parts are scaling up durability faster than i woulda thought". `combat.durabilityTakenPct` 35 → 55. Growth per level stays at 1.
 
