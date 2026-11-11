@@ -2,6 +2,7 @@
 // the BOOM libraries into public/sfx/sovereign-pact/<cue>-<take>.ogg. What a turn sounds like follows
 // from its events: the blow's weapon or the spell's element, the creature that bites, who falls.
 import { Content, type Replay, type ReplayUnit } from "@vibepulse/shared/games/sovereign-pact";
+import { playSong } from "./songs";
 
 type Event = Replay["frames"][number]["ev"][number];
 
@@ -71,7 +72,7 @@ const TAGS: ReadonlyMap<string, readonly string[]> = new Map([
 ]);
 
 /** Each ability's kind and element, from the Jobs' tables and the creatures' own. */
-type Kind = { kind?: string; element?: string | null };
+type Kind = { kind?: string; element?: string | null; song?: unknown };
 const ABILITIES: ReadonlyMap<string, Kind> = new Map<string, Kind>([
   ...[...Content.ENEMIES, ...Content.BOSSES].flatMap((e) => e.abilities.map((a): [string, Kind] => [a.id, a])),
   ...Content.ABILITY_SETS.flatMap((set) => set.actives.map((a): [string, Kind] => [a.id, a])),
@@ -113,7 +114,9 @@ export function soundsOf(ev: readonly Event[], units: ReadonlyMap<number, Replay
   const spell = kind === "magic" || (element && kind !== "physical");
   const [swing, blow] = blowOf(by);
   if (use) {
-    if (spell) add(`cast_${element ?? "arcane"}`, 0);
+    // A song plays its own few notes (songs.ts), not the cue of a blessing.
+    if (ab?.song && use) add(`song:${use.ability}`, 0);
+    else if (spell) add(`cast_${element ?? "arcane"}`, 0);
     else if (kind === "heal") add("heal", 0);
     else if (kind === "support" && !hits.length) add(use.target.side === by?.side ? "buff" : "debuff", 0);
     else if (swing) add(swing, 0);
@@ -159,6 +162,7 @@ export const canPlay = (): boolean => typeof Audio !== "undefined" && !globalThi
 
 /** Plays a random take of `cue`, its pitch nudged ±5% so repeats differ (§16.1). */
 export function playCue(cue: string, volume: number): void {
+  if (cue.startsWith("song:")) return playSong(cue.slice(5), volume);
   const takes = Content.SFX_BY_ID.get(cue)?.takes ?? 1;
   const play = (take: number) => {
     const audio = new Audio(sfxUrl(cue, take));

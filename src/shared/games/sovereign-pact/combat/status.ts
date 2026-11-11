@@ -209,11 +209,12 @@ export function endSongs(b: Battle, u: Combatant, layer?: keyof NonNullable<Comb
   }
 }
 
-export function removeStatus(b: Battle, u: Combatant, id: string): void {
+/** Ends a status; `by` names who tore it away (a Siphon), for the field to draw. */
+export function removeStatus(b: Battle, u: Combatant, id: string, by?: number): void {
   if (!hasStatus(u, id)) return;
   for (const s of u.statuses) if (s.id === id) addMods(u, s.mods, -1);
   u.statuses = u.statuses.filter((s) => s.id !== id);
-  b.events.push({ t: "status", target: u.id, status: id, on: false });
+  b.events.push({ t: "status", target: u.id, status: id, on: false, ...(by !== undefined ? { by } : {}) });
 }
 
 export const statusValue = (u: Combatant, id: string): number | undefined => u.statuses.find((s) => s.id === id)?.value;

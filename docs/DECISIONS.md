@@ -2,6 +2,12 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-11 (implementation, Milestone 8eg): songs' notes and motifs, and the Siphon drawn
+- Josh: "musical notes" animations hitting those a song reaches, "a couple" of notes played "unique for each song", and "siphon could use an animation".
+- When a Minstrel starts a song, notes rise from them and a few fly to each hearer in the song's own colour; they rise round an ally and settle down onto a foe. Each of the twelve songs plays a two-to-four-note motif on a small synthesised voice (a plucked lute, a pipe, a low drone or a drum), in place of the blessing's cue. Colours and motifs live in `client/games/sovereign-pact/songs.ts`.
+- Reading taken: only the moment a song starts is drawn and heard. A chorus's pulses every 50 ticks (Hearthsong's HP, Fountain's MP, Drumbeat's TP) still show only their numbers, so the field does not fill with notes on every tick.
+- A Siphon's torn-away blessing is drawn: its sign is wrenched off the foe and pulled back to the attacker in violet wisps. The status event now names who tore it away (`by`), which is what the field reads.
+
 ## 2026-11-11 (implementation, Milestone 8ef): mending on the road between expedition events
 - Josh: "between events on the expedition, should be able to heal up and use items probably". On the map between nodes, the Satchel can now open a healing item on one marching Scion: a Tonic, Strong Tonic or Vital Draught for HP, a Bone Salve or Whole Salve for Durability, an Ether or Mana Crystal for MP. It works as it would in battle (the same share of the maximum), and the item is spent.
 - Reading taken: only single-target ally items whose whole effect is a restore (HP, Durability, MP or Sanity) count. Items with a random location, battle buffs and party-wide items stay battle-only. A Scion already full in what the item mends refuses it ("needs none"), so nothing is wasted by a misclick.

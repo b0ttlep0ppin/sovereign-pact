@@ -374,7 +374,7 @@ export type BattleEvent =
   /** Durability put back on one location (Knit Bone, a salve, Durability regen); `unbroken` when it was Broken and holds again. */
   | { t: "mend"; unit: number; target: number; loc: Location; amount: number; unbroken?: true; quiet?: true }
   | { t: "sanity"; target: number; amount: number }
-  | { t: "status"; target: number; status: string; on: boolean }
+  | { t: "status"; target: number; status: string; on: boolean; /** Who tore it away (a Siphon). */ by?: number }
   | { t: "injury"; target: number; table: string; roll: number; total: number; result: string; rerolled?: number; tooth?: true; rite?: true }
   | { t: "steeled"; target: number; loc: Location | "sanity" }
   | { t: "down"; target: number }

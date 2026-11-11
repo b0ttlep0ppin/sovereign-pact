@@ -336,7 +336,7 @@ function afterWeaponHit(b: Battle, rng: Rng, u: Combatant, t: Combatant, damage:
   if (t.dead) return;
   if (u.mods.siphon) {
     const buff = t.statuses.find((x) => meta(x.id).kind === "buff" && !meta(x.id).fixed);
-    if (buff) removeStatus(b, t, buff.id);
+    if (buff) removeStatus(b, t, buff.id, u.id);
   }
   for (const [k, chance] of Object.entries(u.mods)) if (k.startsWith("onHit.") && !t.dead) tryStatus(b, rng, t, k.slice(6), chance);
   if (hasStatus(u, "envenom") && !t.dead) tryStatus(b, rng, t, "poison", 100);
