@@ -6,6 +6,8 @@
 import { Content, itemName, itemSheet, TIER_NAMES, type ItemStat, type SovMove, type SovView } from "@vibepulse/shared/games/sovereign-pact";
 import { useState } from "react";
 import Gambits from "./Gambits";
+import Tabs from "./Tabs";
+import ScionFace from "./ScionFace";
 import { ItemLine } from "./Market";
 import { BONE, GILT, PixelArt } from "./PixelArt";
 import { JOB_ICONS } from "./icons";
@@ -46,7 +48,11 @@ export default function Readying({ view, sendMove, canAct }: Props) {
       <div className="sp-ready__tabs" role="tablist" aria-label="Scions">
         {scions.map((x) => (
           <button key={x.id} type="button" role="tab" aria-selected={x.id === p.id} className={`sp-button${x.id === p.id ? "" : " sp-button--quiet"}`} onClick={() => setPick(x.id)}>
-            {x.name} <small>L{x.level} {jobName(x.job)}</small>
+            {/* Their face, so each Scion is known at a glance (Josh 2026-11-10). */}
+            <ScionFace person={x} view={view} />
+            <span>
+              {x.name} <small>L{x.level} {jobName(x.job)}</small>
+            </span>
           </button>
         ))}
       </div>
@@ -69,79 +75,96 @@ function Scion({ p, view, sendMove, canAct }: Props & { p: Person }) {
   const choose = (slot: Slot) => setChoosing((c) => (c === slot ? null : slot));
   return (
     <div className="sp-ready__scion" role="tabpanel" aria-label={p.name}>
-      <Jobs p={p} send={send} canAct={canAct} />
+      {/* One part of a Scion at a time (Josh 2026-11-10: "under readying ... the page where you learn / set
+          abilities and pick jobs / the page where you configure gear / the page where you set gambits"). */}
+      <Tabs
+        sub
+        store="sovereign-pact:tab:readying"
+        label={`Readying ${p.name}`}
+        tabs={[
+          [
+            "jobs",
+            "Jobs and abilities",
+            <>
+              <Jobs p={p} send={send} canAct={canAct} />
+              <h3>Secondary set</h3>
+              {seconds.length ? (
+                <select value={kit.secondary ?? ""} disabled={!canAct} aria-label="Secondary set" onChange={(e) => send({ type: "secondary", person: p.id, job: (e.target.value || null) as JobId | null })}>
+                  <option value="">None</option>
+                  {seconds.map((j) => (
+                    <option key={j} value={j}>
+                      {jobName(j)}
+                    </option>
+                  ))}
+                </select>
+              ) : (
+                <p className="sp-event__status">Learn an active in another Job to bring it as a secondary set.</p>
+              )}
 
-      <h3>Secondary set</h3>
-      {seconds.length ? (
-        <select value={kit.secondary ?? ""} disabled={!canAct} aria-label="Secondary set" onChange={(e) => send({ type: "secondary", person: p.id, job: (e.target.value || null) as JobId | null })}>
-          <option value="">None</option>
-          {seconds.map((j) => (
-            <option key={j} value={j}>
-              {jobName(j)}
-            </option>
-          ))}
-        </select>
-      ) : (
-        <p className="sp-event__status">Learn an active in another Job to bring it as a secondary set.</p>
-      )}
-
-      <h3>
-        Passives <small>{kit.points} of {kit.budget} points</small>
-      </h3>
-      {passives.length ? (
-        <ul className="sp-passives">
-          {passives.map((d) => {
-            const on = kit.passives.includes(d.id);
-            const over = !on && kit.points + d.points > kit.budget;
-            // A big switch that lights the row (Josh 2026-11-10: the checkbox felt slight).
-            return (
-              <li key={d.id} className={on ? "is-on" : undefined}>
-                <button
-                  type="button"
-                  className="sp-passive"
-                  aria-pressed={on}
-                  aria-label={`${d.name}, ${d.points} pt`}
-                  title={over ? `Needs ${d.points} points; ${kit.budget - kit.points} left.` : d.text}
-                  disabled={!canAct || over}
-                  data-sfx={on ? "ui_select" : "ui_confirm"}
-                  onClick={() => send({ type: "passive", person: p.id, ability: d.id, on: !on })}
-                >
-                  <span className="sp-passive__switch" aria-hidden="true">
-                    <span className="sp-passive__knob" />
-                    <span className="sp-passive__word">{on ? "On" : "Off"}</span>
-                  </span>
-                  <span className="sp-passive__body">
-                    <strong>{d.name}</strong> <small>{d.points} pt</small>
-                    <span className="sp-ability__text">{d.text}</span>
-                  </span>
-                </button>
-              </li>
-            );
-          })}
-        </ul>
-      ) : (
-        <p className="sp-event__status">No passives bought yet.</p>
-      )}
-
-      <Gambits p={p} send={send} canAct={canAct} />
-
-      <h3>Gear</h3>
-      <div className="sp-doll">
-        <ul className="sp-doll__slots" aria-label="Armor">
-          {LEFT.map((slot) => (
-            <GearSlot key={slot} slot={slot} p={p} view={view} send={send} canAct={canAct} open={choosing === slot} choose={choose} />
-          ))}
-        </ul>
-        <div className="sp-doll__figure" aria-hidden="true">
-          <ScionSprite look={lookOf(p, view.houses[p.host]?.colors, view.items)} anim="idle" frame={0} size={224} />
-        </div>
-        <ul className="sp-doll__slots" aria-label="Arms and trinkets">
-          {RIGHT.map((slot) => (
-            <GearSlot key={slot} slot={slot} p={p} view={view} send={send} canAct={canAct} open={choosing === slot} choose={choose} />
-          ))}
-        </ul>
-      </div>
-      {choosing ? <GearChoices slot={choosing} p={p} view={view} send={send} close={() => setChoosing(null)} /> : null}
+              <h3>
+                Passives <small>{kit.points} of {kit.budget} points</small>
+              </h3>
+              {passives.length ? (
+                <ul className="sp-passives">
+                  {passives.map((d) => {
+                    const on = kit.passives.includes(d.id);
+                    const over = !on && kit.points + d.points > kit.budget;
+                    // A big switch that lights the row (Josh 2026-11-10: the checkbox felt slight).
+                    return (
+                      <li key={d.id} className={on ? "is-on" : undefined}>
+                        <button
+                          type="button"
+                          className="sp-passive"
+                          aria-pressed={on}
+                          aria-label={`${d.name}, ${d.points} pt`}
+                          title={over ? `Needs ${d.points} points; ${kit.budget - kit.points} left.` : d.text}
+                          disabled={!canAct || over}
+                          data-sfx={on ? "ui_select" : "ui_confirm"}
+                          onClick={() => send({ type: "passive", person: p.id, ability: d.id, on: !on })}
+                        >
+                          <span className="sp-passive__switch" aria-hidden="true">
+                            <span className="sp-passive__knob" />
+                            <span className="sp-passive__word">{on ? "On" : "Off"}</span>
+                          </span>
+                          <span className="sp-passive__body">
+                            <strong>{d.name}</strong> <small>{d.points} pt</small>
+                            <span className="sp-ability__text">{d.text}</span>
+                          </span>
+                        </button>
+                      </li>
+                    );
+                  })}
+                </ul>
+              ) : (
+                <p className="sp-event__status">No passives bought yet.</p>
+              )}
+            </>,
+          ],
+          [
+            "gear",
+            "Gear",
+            <>
+              <div className="sp-doll">
+                <ul className="sp-doll__slots" aria-label="Armor">
+                  {LEFT.map((slot) => (
+                    <GearSlot key={slot} slot={slot} p={p} view={view} send={send} canAct={canAct} open={choosing === slot} choose={choose} />
+                  ))}
+                </ul>
+                <div className="sp-doll__figure" aria-hidden="true">
+                  <ScionSprite look={lookOf(p, view.houses[p.host]?.colors, view.items)} anim="idle" frame={0} size={224} />
+                </div>
+                <ul className="sp-doll__slots" aria-label="Arms and trinkets">
+                  {RIGHT.map((slot) => (
+                    <GearSlot key={slot} slot={slot} p={p} view={view} send={send} canAct={canAct} open={choosing === slot} choose={choose} />
+                  ))}
+                </ul>
+              </div>
+              {choosing ? <GearChoices slot={choosing} p={p} view={view} send={send} close={() => setChoosing(null)} /> : null}
+            </>,
+          ],
+          ["gambits", "Gambits", <Gambits p={p} send={send} canAct={canAct} />],
+        ]}
+      />
     </div>
   );
 }

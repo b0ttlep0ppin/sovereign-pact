@@ -159,6 +159,8 @@
 
 /* Readying Scions (§12.1, §13.1). */
 .sp-ready__tabs { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+.sp-ready__tabs > button { display: inline-flex; align-items: center; gap: 8px; }
+.sp-scion-face { display: inline-block; overflow: hidden; border: 1px solid var(--line); border-radius: 2px; background: var(--panel-hi); flex: none; vertical-align: middle; }
 .sp-ready__scion h3 { margin: 14px 0 6px; font-size: 0.85rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
 .sp-ready__scion h3 small { text-transform: none; letter-spacing: 0; }
 .sp-ready__scion select { font: inherit; padding: 6px; background: var(--panel); color: var(--text); border: 1px solid var(--line); border-radius: 4px; max-width: 100%; }
@@ -329,6 +331,11 @@
 .sp-tabs__tab:hover { color: var(--text); }
 .sp-tabs__tab[aria-selected="true"] { color: var(--gold); background: var(--panel-hi); border-color: var(--line-hi); box-shadow: inset 0 2px 0 var(--gold); }
 .sp-tabs__body { padding-top: 16px; display: grid; gap: 16px; }
+/* Sub-pages inside a tab (Readying's Jobs, Gear and Gambits; the Houses' Deals and Omens): a lighter bar. */
+.sp-tabs--sub > .sp-tabs__bar { border-bottom-color: var(--line); gap: 2px; }
+.sp-tabs--sub > .sp-tabs__bar > .sp-tabs__tab { padding: 5px 12px; font-size: 0.92em; background: none; border-color: transparent; }
+.sp-tabs--sub > .sp-tabs__bar > .sp-tabs__tab[aria-selected="true"] { background: var(--panel-hi); border-color: var(--line); box-shadow: inset 0 -2px 0 var(--gold); }
+.sp-tabs--sub > .sp-tabs__body { padding-top: 12px; gap: 12px; }
 .sp--founding { max-width: 1280px; margin: 0 auto; }
 
 /* The formation (DECISIONS 8ag): the party's 3×8 grid, the foe to the left. */
@@ -451,6 +458,16 @@
 .sp-told__buttons { display: flex; flex-direction: column; align-items: center; }
 .sp-told__arms { margin: 0 0 8px; color: #d89a80; font-style: italic; }
 .sp-event-vote { display: grid; gap: 8px; }
+/* Each Scion chooses in turn (§9.4 each_scion): who has chosen, and the one choosing with their face. */
+.sp-each { display: grid; gap: 12px; }
+.sp-each__who { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
+.sp-each__who li { display: inline-flex; align-items: center; gap: 6px; padding: 3px 10px 3px 3px; border: 1px solid var(--line); border-radius: 2px; background: rgba(0, 0, 0, 0.25); }
+.sp-each__who li small { color: var(--muted); }
+.sp-each__who li.is-now { border-color: var(--gold); box-shadow: inset 0 0 0 1px rgba(200, 160, 80, 0.25); }
+.sp-each__who li.is-done { opacity: 0.6; }
+.sp-each__now { display: grid; gap: 10px; padding: 12px; border: 1px solid var(--line-hi); border-radius: 2px; background: var(--panel-hi); }
+.sp-each__ask { display: flex; align-items: center; gap: 12px; }
+.sp-each__ask p { margin: 0; font-size: 1.1em; }
 .sp-event-vote__option { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
 .sp-event-vote__who { color: #a89480; font-size: 0.88em; }
 .sp-event-vote__only { color: var(--gold); font-size: 0.82em; font-style: italic; }
