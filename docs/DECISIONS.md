@@ -2,6 +2,12 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-11 (implementation, Milestone 8ee): Durability grows a little, and a blow takes only a share of its damage from the location
+- Josh: "there should probably be some body part durability growth alongside HP", then "the durability growth should be mild, but the amount of HP damage they deal to you shouldn't be dealt as 100% durability damage to the part, should be a fraction like 35%". This supersedes Q87 (no growth).
+- `formulas.durabilityPerLevel` 0 → 1. `combat.durabilityTakenPct` is 35: a blow's hit location loses 35% of the HP damage (rounded, at least 1) instead of all of it. Locations break and roll injuries far less often from ordinary hits. HP at 0 still rolls.
+- The simulator's win curve (Barrows Warband, soldier/knight/magus/soothsayer, 60 runs) hardly moves: L3 S3 65 → 68%, L5 S6 32 → 33%.
+- Fix found on the way: an expedition event that killed the Leader crashed `halt()`. The command now passes on there as it does after a battle (`succeed`).
+
 ## 2026-11-11 (implementation, Milestone 8ed): a big party's cards in two columns
 - Josh: "having to scroll down to see when you have a lot of scions is kinda annoying", then "could you do two rows and move the chars further towards the combat log?". With more than four in the party, the party's cards sit in two columns. The right-hand column widens to hold them, and the field draws in toward the log to make room. The cards keep their full size, so nothing gets harder to read.
 

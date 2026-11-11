@@ -318,7 +318,11 @@ export function succeed(s: SovState): void {
 export function halt(s: SovState): void {
   const e = s.expedition!;
   if (e.result || e.leader === undefined) return;
-  const houses = new Set([...marching(s).map((id) => person(s, id).host), person(s, e.leader).host]);
+  // An event that killed the Leader hands the command on, as a battle does.
+  succeed(s);
+  // The Leader may have died in what just happened: their House then waits only if a Scion of theirs still marches.
+  const leader = s.people.find((p) => p.id === e.leader);
+  const houses = new Set([...marching(s).map((id) => person(s, id).host), ...(leader ? [leader.host] : [])]);
   e.halt = [...houses].sort((a, b) => a - b);
 }
 

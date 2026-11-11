@@ -413,7 +413,8 @@ function applyHit(b: Battle, rng: Rng, u: Combatant, t: Combatant, ab: AbilityDe
       t.hp = 1;
     }
   }
-  if (loc && t.dur) t.dur[loc] = Math.max(0, t.dur[loc] - left);
+  // The location takes a share of the blow (Josh 2026-11-11), at least 1 for any blow that lands.
+  if (loc && t.dur && left > 0) t.dur[loc] = Math.max(0, t.dur[loc] - Math.max(1, Math.round((left * C.durabilityTakenPct) / 100)));
   if (left > 0 && hasStatus(t, "sleep")) removeStatus(b, t, "sleep");
 
   // Readiness damage (§10.4): bosses take half.
