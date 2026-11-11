@@ -17,6 +17,8 @@
 .sp-battle__turn { margin-left: auto; font-variant-numeric: tabular-nums; }
 .sp-battle__headline { margin: 0; min-height: 1.5em; text-align: center; font: 400 1.4rem/1.1 var(--display); color: var(--gold); letter-spacing: 0.02em; }
 .sp-battle__field { display: grid; grid-template-columns: minmax(150px, 220px) 1fr minmax(170px, 250px); gap: 12px; align-items: start; }
+.sp-battle__field.is-big-party { grid-template-columns: minmax(150px, 220px) 1fr minmax(340px, 480px); }
+.sp-battle__field.is-big-party > .sp-battle__panel ul { grid-template-columns: 1fr 1fr; align-items: start; }
 .sp-battle__planes { position: relative; display: grid; grid-template-columns: 1fr clamp(170px, 16vw, 260px) 1fr; gap: 8px; align-items: center; perspective: 900px; min-width: 0; }
 /* Sized by the grids beside it, never by its own lines (Josh 2026-11-03: the log "seems to be growing window size"). */
 .sp-battle__gap { align-self: stretch; contain: size; display: grid; grid-template-rows: auto minmax(0, 1fr); min-width: 0; background: linear-gradient(90deg, transparent, rgba(120, 100, 140, 0.08), transparent); }
@@ -155,7 +157,7 @@
 /* Under 900 px the panels go under the field (§15.8). */
 @media (max-width: 900px) {
   .sp-battle { padding: 8px 16px; }
-  .sp-battle__field { grid-template-columns: 1fr 1fr; }
+  .sp-battle__field, .sp-battle__field.is-big-party { grid-template-columns: 1fr 1fr; }
   .sp-battle__planes { grid-column: 1 / -1; grid-row: 1; }
   .sp-grid { height: min(52vh, 440px); }
 }

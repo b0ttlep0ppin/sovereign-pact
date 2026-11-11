@@ -2,6 +2,9 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-11 (implementation, Milestone 8ed): a big party's cards in two columns
+- Josh: "having to scroll down to see when you have a lot of scions is kinda annoying", then "could you do two rows and move the chars further towards the combat log?". With more than four in the party, the party's cards sit in two columns. The right-hand column widens to hold them, and the field draws in toward the log to make room. The cards keep their full size, so nothing gets harder to read.
+
 ## 2026-11-11 (implementation, Milestone 8ec): packing the satchel at the muster, the heater shield at rest, ability costs, the newest Scion last
 - Josh: "when choosing your scions you should be able to fill your satchel with items for the expedition". The `field` move could already carry a `pack`, but nothing on screen offered it. The muster now lists every consumable the House holds that works away from town, with an amount for each. The House's share of slots grows with the Scions it fields (`packRoom`, §9.10). What goes unused comes home as before.
 - Josh: "heater shield not appearing at all". In the generator, the heater shield rests behind the body when idle facing left, so only its rim showed. `tools/cut-scions.py` now gives a shield like that the walk's standing frame for its front layer at rest and drops the rim from its back layer. Only the two heater sheets changed.

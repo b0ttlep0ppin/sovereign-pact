@@ -141,6 +141,19 @@ describe("the battle screen (§15.5)", () => {
     vi.useRealTimers();
   });
 
+  it("lays a big party's cards in two columns (Josh 2026-11-11)", () => {
+    const { view, replay } = setup();
+    const { container, unmount } = render(<BattleScreen replay={replay} view={view} onClose={() => {}} />);
+    const party = replay.units.filter((u) => u.side === "party" && u.partOf === undefined).length;
+    expect(container.querySelector(".sp-battle__field")!.classList.contains("is-big-party")).toBe(party > 4);
+    unmount();
+    const scion = replay.units.find((u) => u.side === "party" && u.partOf === undefined)!;
+    const more = [1, 2, 3].map((k) => ({ ...scion, id: 900 + k, name: `Extra ${k}` }));
+    const start = [...replay.start, ...more.map((u) => [u.id, ...replay.start.find((v) => v[0] === scion.id)!.slice(1)] as typeof replay.start[number])];
+    const big = render(<BattleScreen replay={{ ...replay, units: [...replay.units, ...more], start }} view={view} onClose={() => {}} />);
+    expect(big.container.querySelector(".sp-battle__field.is-big-party")).not.toBeNull();
+  });
+
   it("folds the frames into each turn's vitals", () => {
     const { replay } = setup();
     const states = framesOf(replay);

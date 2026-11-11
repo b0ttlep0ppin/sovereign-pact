@@ -511,7 +511,8 @@ export default function BattleScreen({ replay, view, onClose, waiting = 0, fullL
           })}
         </ol>
       ) : null}
-      <div className="sp-battle__field">
+      {/* A big party's cards go in two columns, the field drawing in toward the log to make room (Josh 2026-11-11). */}
+      <div className={`sp-battle__field${side("party").length > 4 ? " is-big-party" : ""}`}>
         <div className="sp-battle__side">
           <Panel title="Enemies" units={side("enemy").filter((u) => !u.hazard)} vit={vit} actor={actor} hover={hover} onHover={setHover} />
         </div>
