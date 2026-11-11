@@ -22,7 +22,8 @@ export function ItemLine({ item }: { item: Item }) {
   );
 }
 
-export default function Market({ view, sendMove, canAct }: Props) {
+/** Commerce (Josh 2026-11-11): the Market (the shops and sealed bids), and the Quartermaster (supplies and the stash). */
+export default function Market({ view, sendMove, canAct, part }: Props & { part: "market" | "quartermaster" }) {
   const mine = view.mine;
   const me = view.me;
   const [bids, setBids] = useState<Record<number, number>>({});
@@ -33,13 +34,14 @@ export default function Market({ view, sendMove, canAct }: Props) {
   const shops = view.market.filter((l) => !l.auction);
   const sealed = view.market.filter((l) => l.auction);
   return (
-    <section className="sp-panel sp-market" aria-label="The market">
-      <h2>The market</h2>
+    <section className="sp-panel sp-market" aria-label={part === "market" ? "The Market" : "The Quartermaster"}>
+      <h2>{part === "market" ? "The Market" : "The Quartermaster"}</h2>
       <p className="sp-market__purse">
         Your purse: <strong>{mine.gold} Gold</strong>
       </p>
-      {!shops.length && !sealed.length && !mine.shop.length ? <p className="sp-event__status">Nothing is for sale yet: the Commons has built no shops, and no House has put anything up.</p> : null}
-      {shops.length ? (
+      {part === "quartermaster" && !mine.shop.length && !stash.length ? <p className="sp-event__status">The quartermaster has no supplies yet, and your stash is empty.</p> : null}
+      {part === "market" && !shops.length && !sealed.length ? <p className="sp-event__status">Nothing is for sale yet: the Commons has built no shops, and no House has put anything up.</p> : null}
+      {part === "market" && shops.length ? (
         <>
           <h3>In the shops</h3>
           <ul className="sp-lots">
@@ -55,7 +57,7 @@ export default function Market({ view, sendMove, canAct }: Props) {
           </ul>
         </>
       ) : null}
-      {sealed.length ? (
+      {part === "market" && sealed.length ? (
         <>
           <h3>Sealed bids</h3>
           <p className="sp-event__status">The highest bid wins at the seal; nobody sees another's bid.</p>
@@ -87,7 +89,7 @@ export default function Market({ view, sendMove, canAct }: Props) {
           </ul>
         </>
       ) : null}
-      {mine.shop.length ? (
+      {part === "quartermaster" && mine.shop.length ? (
         <>
           <h3>Consumables</h3>
           <ul className="sp-lots">
@@ -108,7 +110,7 @@ export default function Market({ view, sendMove, canAct }: Props) {
           </ul>
         </>
       ) : null}
-      {stash.length && canAct && (mine.sells || view.houses.length > 1) ? (
+      {part === "quartermaster" && stash.length && canAct && (mine.sells || view.houses.length > 1) ? (
         <>
           <h3>Your stash</h3>
           <p className="sp-event__status">Gear nobody wears. The shops buy it for a fraction of its worth{view.houses.length > 1 ? "; another House may pay more at sealed bids" : ""}.</p>

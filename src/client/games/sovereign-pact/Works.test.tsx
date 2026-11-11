@@ -20,14 +20,14 @@ describe("building", () => {
     const s = town();
     const sendMove = vi.fn();
     const view = g.view(s, "p1");
-    const { rerender } = render(<Works view={view} sendMove={sendMove} canAct />);
+    const { rerender } = render(<Works view={view} sendMove={sendMove} canAct part="house" />);
     const farm = view.mine!.builds.find((b) => b.id === "farm")!;
     const row = screen.getByText(FARM.name).closest("li")!;
     fireEvent.click(within(row).getByRole("button", { name: `Build, ${costText(farm.cost!)}` }));
     expect(sendMove).toHaveBeenCalledWith({ type: "build", building: "farm" });
     const r = g.applyMove(s, "p1", { type: "build", building: "farm" });
     if (!r.ok) throw new Error(r.error);
-    rerender(<Works view={g.view(r.state, "p1")} sendMove={sendMove} canAct />);
+    rerender(<Works view={g.view(r.state, "p1")} sendMove={sendMove} canAct part="house" />);
     fireEvent.click(within(screen.getByText(FARM.name).closest("li")!).getByRole("button", { name: /Cancel/ }));
     expect(sendMove).toHaveBeenCalledWith({ type: "unbuild", building: "farm" });
   });
@@ -35,7 +35,7 @@ describe("building", () => {
   it("pledges to a Commons project and proposes spending the Commons on it", () => {
     const s = town();
     const sendMove = vi.fn();
-    render(<Works view={g.view(s, "p1")} sendMove={sendMove} canAct />);
+    render(<Works view={g.view(s, "p1")} sendMove={sendMove} canAct part="commons" />);
     const row = screen.getByText(GRANARY.name).closest("li")!;
     fireEvent.change(within(row).getByLabelText("Gold"), { target: { value: "5" } });
     fireEvent.click(within(row).getByRole("button", { name: "Pledge" }));
@@ -45,10 +45,22 @@ describe("building", () => {
   });
 
   it("offers no buttons once sealed", () => {
-    render(<Works view={g.view(town(), "p1")} sendMove={() => {}} canAct={false} />);
+    render(<Works view={g.view(town(), "p1")} sendMove={() => {}} canAct={false} part="house" />);
     const row = screen.getByText(FARM.name).closest("li")!;
     expect((within(row).getByRole("button") as HTMLButtonElement).disabled).toBe(true);
+    render(<Works view={g.view(town(), "p1")} sendMove={() => {}} canAct={false} part="commons" />);
     expect(screen.queryByRole("button", { name: "Pledge" })).toBeNull();
+  });
+
+  it("shows what the Commons holds on its own page (Josh 2026-11-11)", () => {
+    const s = town();
+    s.commons.gold = 27;
+    s.commons.stores = { grain: 7 };
+    render(<Works view={g.view(s, "p1")} sendMove={() => {}} canAct part="commons" />);
+    const stock = screen.getByRole("list", { name: "The Commons holds" });
+    expect(stock.textContent).toContain("27 Gold");
+    expect(stock.textContent).toContain("7 Grain");
+    expect(screen.queryByText(FARM.name)).toBeNull();
   });
 });
 
@@ -59,13 +71,13 @@ describe("the Altar of Offerings (Josh 2026-11-03: sacrifice small stuff for an 
     expect(g.view(s, "p1").mine!.altar).toBeNull();
     s.commons.built.altar_of_offerings = 1;
     const sendMove = vi.fn();
-    const { rerender } = render(<Works view={g.view(s, "p1")} sendMove={sendMove} canAct />);
+    const { rerender } = render(<Works view={g.view(s, "p1")} sendMove={sendMove} canAct part="commons" />);
     const altar = screen.getByRole("region", { name: "The Altar of Offerings" });
     fireEvent.click(within(within(altar).getByText("Lay Grain").closest("li")!).getByRole("button", { name: "Offer" }));
     expect(sendMove).toHaveBeenCalledWith({ type: "altar", gift: "grain" });
     const r = g.applyMove(s, "p1", { type: "altar", gift: "grain" });
     if (!r.ok) throw new Error(r.error);
-    rerender(<Works view={g.view(r.state, "p1")} sendMove={sendMove} canAct />);
+    rerender(<Works view={g.view(r.state, "p1")} sendMove={sendMove} canAct part="commons" />);
     expect(within(screen.getByRole("region", { name: "The Altar of Offerings" })).getByText(/Every battle opens with 15 TP/)).toBeTruthy();
   });
 });
@@ -74,7 +86,7 @@ describe("the Commons Council (Josh 2026-11-03: debated by the players)", () => 
   it("proposes the Commons pay for a project sited in a chosen House's district, and moves a levy", () => {
     const s = town();
     const sendMove = vi.fn();
-    render(<Works view={g.view(s, "p1")} sendMove={sendMove} canAct />);
+    render(<Works view={g.view(s, "p1")} sendMove={sendMove} canAct part="commons" />);
     const row = screen.getByText(GRANARY.name).closest("li")!;
     expect(within(row).getByText(new RegExp(`Host's perk: ${GRANARY.host!.text.replace(/[+]/g, "\\+")}`))).toBeTruthy();
     fireEvent.change(within(row).getByLabelText("Site it in"), { target: { value: "1" } });
@@ -91,7 +103,7 @@ describe("Year orders (Josh 2026-11-03: only Year orders)", () => {
     s.houses[0]!.buildings = { training_ground: 1, forge: 1 };
     s.houses[0]!.stores = { ...s.houses[0]!.stores, iron: 30 };
     const sendMove = vi.fn();
-    render(<Works view={g.view(s, "p1")} sendMove={sendMove} canAct />);
+    render(<Works view={g.view(s, "p1")} sendMove={sendMove} canAct part="house" />);
     const forge = screen.getByRole("list", { name: "Forge orders" });
     expect(within(forge).getByText(/Craft a Common piece/)).toBeTruthy();
     expect(within(forge).queryByText(/Craft a Fine piece/)).toBeNull();
