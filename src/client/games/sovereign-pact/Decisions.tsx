@@ -20,6 +20,7 @@ const amounts = (r: Partial<Record<string, number>>) =>
 export function voteText(vote: NonNullable<SovView["vote"]>, houses?: SovView["houses"]): { question: string; options: string[] } {
   const yesNo = vote.options.map((o) => (o === "yes" ? "Yes" : "No"));
   if (vote.kind === "levy") return { question: `Levy ${TUNING.commons.levyGold} Gold on every House, for the Commons?`, options: yesNo };
+  if (vote.kind === "crisis") return { question: `Should the Commons give from its stock to the Crisis, ${Content.TOWN_EVENT_BY_ID.get(vote.subject)?.title ?? vote.subject}?`, options: yesNo };
   if (vote.kind === "spend") {
     const p = Content.PROJECT_BY_ID.get(vote.subject);
     const host = vote.host !== undefined && houses && houses.length > 1 ? houses[vote.host] : undefined;
@@ -264,16 +265,29 @@ function CrisisCard({ view, sendMove, canAct }: Props) {
       <h3>Crisis: {ev?.title}</h3>
       <p>{ev?.text}</p>
       <p>
-        <strong>The city needs</strong> {amounts(c.need)}. Pledges are private and spent whatever comes; anything given beyond the Need goes back to each House in proportion to what it gave.
+        <strong>The city needs</strong> {amounts(c.need)}. Pledges are private and spent whatever comes. No House may pledge more than the Need; if the Houses together give more, the rest goes back to each in proportion to what it gave.
       </p>
       <p className="sp-private">Your pledge so far: {own && amounts(own.pledge) ? amounts(own.pledge) : "nothing"}.</p>
+      {/* The Commons may help, by vote; it gives what it holds of the Need, and takes back what the Houses' pledges cover (Josh 2026-11-11). */}
+      {c.commons ? (
+        <p>The Commons gave {amounts(c.commons)}.</p>
+      ) : own ? (
+        <p className="sp-crisis__commons">
+          {amounts(own.gift) ? <>The Commons holds {amounts(own.gift)} of what the city needs. </> : null}
+          {canAct ? (
+            <button type="button" className="sp-button sp-button--quiet" disabled={!!own.ask} title={own.ask ?? undefined} onClick={() => sendMove({ type: "ask_commons" })}>
+              Ask the Commons to give
+            </button>
+          ) : null}
+        </p>
+      ) : null}
       {canAct ? (
         <div className="sp-pledge">
           {keys.map((k) => (
             <span key={k} className="sp-amount-row">
               <span>{word(k)}</span>
-              <Amount label={word(k)} max={have(k)} value={give[k] ?? 0} onChange={(n) => setGive({ ...give, [k]: n })} />
-              <small> of {have(k)}</small>
+              <Amount label={word(k)} max={Math.min(have(k), own?.room[k] ?? have(k))} value={give[k] ?? 0} onChange={(n) => setGive({ ...give, [k]: n })} />
+              <small> of {have(k)}{own && (own.room[k] ?? 0) < have(k) ? `; the city needs ${own.room[k] ?? 0} more from you` : ""}</small>
             </span>
           ))}
           <button

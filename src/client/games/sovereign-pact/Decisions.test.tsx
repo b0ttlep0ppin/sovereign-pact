@@ -64,6 +64,22 @@ describe("the Settlement Phase's decisions", () => {
     expect(sendMove).toHaveBeenCalledWith({ type: "tempt" });
   });
 
+  it("asks the Commons to give to the Crisis, and then says what it gave (Josh 2026-11-11)", () => {
+    const { s } = town();
+    delete s.vote;
+    s.commons.gold = 14;
+    const sendMove = vi.fn();
+    const { unmount } = render(<Decisions view={g.view(s, s.players[0]!)} sendMove={sendMove} canAct />);
+    const card = screen.getByLabelText("The Crisis");
+    expect(card.textContent).toContain("The Commons holds 14 Gold of what the city needs");
+    fireEvent.click(within(card).getByRole("button", { name: "Ask the Commons to give" }));
+    expect(sendMove).toHaveBeenCalledWith({ type: "ask_commons" });
+    unmount();
+    s.crisis!.commons = { gold: 14 };
+    render(<Decisions view={g.view(s, s.players[0]!)} sendMove={sendMove} canAct />);
+    expect(screen.getByLabelText("The Crisis").textContent).toContain("The Commons gave 14 Gold.");
+  });
+
   it("answers a Dark Bargain, naming the rival it falls on", () => {
     const { view } = town();
     const sendMove = vi.fn();

@@ -45,12 +45,55 @@ describe("Crises (§3.5)", () => {
     expect(t.houses.map((h) => h.stores.grain)).toEqual([200, 200]);
   });
 
+  it("lets a House move that the Commons give to the Crisis, and takes back what the pledges cover (Josh 2026-11-11)", () => {
+    let s = winter();
+    s.commons.stores.grain = 30;
+    expect(view(s, "p1").mine!.crisis!.gift).toEqual({ grain: 30 });
+    s = move(s, "p1", { type: "ask_commons" });
+    expect(s.vote?.kind).toBe("crisis");
+    expect(error(s, "p2", { type: "ask_commons" })).toMatch(/already/);
+    s = move(s, "p1", { type: "vote", choice: 0 });
+    s = move(s, "p2", { type: "vote", choice: 0 });
+    expect(s.crisis!.commons).toEqual({ grain: 30 });
+    expect(s.commons.stores.grain).toBe(0);
+    expect(view(s, "p2").crisis!.commons).toEqual({ grain: 30 });
+    // The Houses pledge 25: the Commons tops up only the 15 left short, and keeps its other 15.
+    s.crisis!.pledges = [{ grain: 25 }, {}];
+    refundExcess(s);
+    expect(s.crisis!.commons).toEqual({ grain: 15 });
+    expect(s.commons.stores.grain).toBe(15);
+    expect(s.crisis!.pledges).toEqual([{ grain: 25 }, {}]);
+    expect(crisisScore(s)).toBe(100);
+  });
+
+  it("takes no pledge beyond what the city still needs from that House (Josh 2026-11-11)", () => {
+    let s = winter();
+    expect(error(s, "p1", { type: "crisis_pledge", give: { grain: 41 } })).toMatch(/needs only 40 more grain/);
+    s = move(s, "p1", { type: "crisis_pledge", give: { grain: 30 } });
+    expect(view(s, "p1").mine!.crisis!.room).toEqual({ grain: 10 });
+    expect(error(s, "p1", { type: "crisis_pledge", give: { grain: 11 } })).toMatch(/needs only 10 more/);
+    // Another House's pledge is private, so it does not shrink this one's room.
+    s = move(s, "p2", { type: "crisis_pledge", give: { grain: 40 } });
+    expect(view(s, "p2").mine!.crisis!.room).toEqual({ grain: 0 });
+    expect(view(s, "p1").mine!.crisis!.room).toEqual({ grain: 10 });
+  });
+
+  it("keeps the Commons' stock where it is when the motion fails", () => {
+    let s = winter();
+    s.commons.stores.grain = 30;
+    s = move(s, "p1", { type: "ask_commons" });
+    s = move(s, "p1", { type: "vote", choice: 1 });
+    s = move(s, "p2", { type: "vote", choice: 1 });
+    expect(s.crisis!.commons).toBeUndefined();
+    expect(s.commons.stores.grain).toBe(30);
+  });
+
   it("takes private pledges of what is needed, shown to no other House", () => {
     let s = winter();
     s = move(s, "p1", { type: "crisis_pledge", give: { grain: 15 } });
     s = move(s, "p1", { type: "crisis_pledge", give: { grain: 5 } });
     expect(s.houses[0]!.stores.grain).toBe(180);
-    expect(view(s, "p1").mine!.crisis).toEqual({ pledge: { grain: 20 }, tempted: false });
+    expect(view(s, "p1").mine!.crisis).toMatchObject({ pledge: { grain: 20 }, tempted: false });
     const theirs = JSON.stringify(view(s, "p2"));
     expect(theirs).not.toContain('"pledges"');
     expect(view(s, "p2").crisis).toEqual({ id: "hungry_winter", need: { grain: 40 } });

@@ -133,3 +133,37 @@ export function loseAccord(s: SovState, n: number): void {
   const cut = built(s, "court_of_peers") ? Math.round((n * (100 - C.courtAccordPct)) / 100) : n;
   s.accord = Math.max(0, s.accord - cut);
 }
+
+/** What may go into the Commons' own stock: Gold and the five materials. */
+const STOCK = new Set(["gold", "grain", "timber", "stone", "iron", "essence"]);
+
+/** Why House `house` cannot give `give` to the Commons' stock, or null. */
+export function cannotDonate(s: SovState, house: number, give: Partial<Record<string, number>>): string | null {
+  const h = s.houses[house]!;
+  const parts = Object.entries(give).filter(([, n]) => (n ?? 0) > 0);
+  if (!parts.length || parts.some(([k, n]) => !STOCK.has(k) || !Number.isInteger(n))) return "Give whole amounts of Gold or materials.";
+  for (const [k, n] of parts) if ((k === "gold" ? h.gold : (h.stores[k] ?? 0)) < n!) return "You do not have that much to give.";
+  return null;
+}
+
+/** A gift to the Commons' stock (§8.1): public, final, and paid in Renown by share as a pledge is. */
+export function donate(s: SovState, house: number, give: Partial<Record<string, number>>): number {
+  const h = s.houses[house]!;
+  let units = 0;
+  for (const [k, n] of Object.entries(give)) {
+    if (!n || n <= 0) continue;
+    if (k === "gold") {
+      h.gold -= n;
+      s.commons.gold += n;
+    } else {
+      h.stores[k] = (h.stores[k] ?? 0) - n;
+      s.commons.stores[k] = (s.commons.stores[k] ?? 0) + n;
+    }
+    units += n;
+  }
+  const was = h.donated ?? 0;
+  h.donated = was + units;
+  h.score.renown += Math.floor(h.donated / C.renownPer) - Math.floor(was / C.renownPer);
+  log(s, `House ${h.name} gives ${units} to the Commons.`);
+  return units;
+}

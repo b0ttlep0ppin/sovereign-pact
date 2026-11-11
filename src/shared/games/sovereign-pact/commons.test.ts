@@ -75,6 +75,23 @@ describe("shared projects (§8.5)", () => {
     expect(s.commons.funds.armorer).toBeDefined();
   });
 
+  it("takes gifts of Gold and materials into the Commons' stock, with Renown by share (Josh 2026-11-11)", () => {
+    let s = rich(2);
+    const gold = s.commons.gold;
+    const renown = s.houses[0]!.score.renown;
+    s = move(s, "p1", { type: "donate", give: { gold: 15, timber: 10 } });
+    expect(s.commons.gold).toBe(gold + 15);
+    expect(s.commons.stores.timber).toBeGreaterThanOrEqual(10);
+    expect(s.houses[0]!.gold).toBe(4985);
+    expect(s.houses[0]!.score.renown).toBe(renown + Math.floor(25 / C.renownPer));
+    // The odd units carry over to the next gift.
+    s = move(s, "p1", { type: "donate", give: { grain: 5 } });
+    expect(s.houses[0]!.score.renown).toBe(renown + 3);
+    expect(error(s, "p1", { type: "donate", give: { gold: 99999 } })).toMatch(/that much/);
+    expect(error(s, "p1", { type: "donate", give: { gold: 1.5 } })).toMatch(/whole/);
+    expect(error(s, "p1", { type: "donate", give: {} })).toMatch(/whole/);
+  });
+
   it("refuses pledges a House cannot cover, and unknown projects", () => {
     const s = calm(campaign(2, 4));
     s.houses[0]!.gold = 3;

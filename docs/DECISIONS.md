@@ -2,6 +2,14 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-11 (implementation, Milestone 8eb): gifts to the Commons, and the Commons' help in a Crisis
+- Josh: "you should be able to request the commons contribute during crises" and "donate resources to the commons". SPEC §8.1 already says the Commons' stock is spent only by vote and that Houses may give to it at will.
+- A gift (Gold or any of the five materials) goes into the Commons' stock. It is public and final. It earns Renown by share, as a project pledge does: 1 per `TUNING.commons.renownPer` units, with odd units carried over to the next gift.
+- Once a Crisis, any House may move that the Commons give. The move puts a yes/no vote to the Houses; solo, the move is the decision. A tie works as it does for any vote. It does not use up the House's one proposal of the Year. If the vote passes, the Commons gives what it holds of each needed resource, up to that resource's Need. The amount is public, shown on the Crisis card.
+- Reading taken: the Commons only tops up what the Houses leave short. At the seal, the Commons gets its share of any excess back first; then the Houses' own excess goes back in proportion, as before. Houses' pledges stay private, so the Commons' gift never shows what anyone pledged.
+- Josh: "you shouldn't be able to pledge more than is needed in a crisis". A House's Crisis pledge of a resource is capped at the Need, less what it has already pledged and less the Commons' gift. Other Houses' pledges are private, so they do not lower the cap, and the proportional refund at the seal still applies when the Houses together give more than the Need.
+- Bots vote yes on the Commons' help and do not move it themselves yet. That joins the OPEN list of bot motions.
+
 ## 2026-11-11 (implementation, Milestone 8ea): the town's pages renamed and split
 - Josh: "Your People" has Scions / Formation / Recruits; "Readying" is now "Preparation"; "Building" is now "Construction", with Your House and The Commons; "Market" is now "Commerce", with The Market and The Quartermaster.
 - Reading taken: the Scions page also holds the Retired and the Lost, and Recruits shows only while the House has one. The Market holds the shops and sealed bids. The Quartermaster holds the supplies (consumables) and the stash of unworn gear to sell or put up for bids.

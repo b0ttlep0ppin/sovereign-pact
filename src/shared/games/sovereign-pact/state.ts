@@ -208,6 +208,8 @@ export interface House {
   sealed: boolean;
   /** Recruits promoted this Year (§6.5). */
   promotions?: number;
+  /** Units given to the Commons' own stock over the campaign: its Renown is paid by share, as a pledge's is. */
+  donated?: number;
   /** Buildings already set their Year order this Year (orders.ts), cleared when the next Year opens. */
   ordered?: string[];
   /** What the House laid on the Altar of Offerings this Year (cleared at the Reckoning). */
@@ -412,7 +414,7 @@ export type NodeKind = "encounter" | "event" | "camp" | "cache" | "boss" | "gate
 
 export interface Vote {
   /** What it decides: "spend" (the Commons' stock on a project), "levy" (a Gold levy on every House into the Commons); events add their own kinds. */
-  kind: "spend" | "event" | "levy";
+  kind: "spend" | "event" | "levy" | "crisis";
   /** A spend's proposed site: the House whose district the project would stand in. */
   host?: number;
   /** The project (or event) it is about. */
@@ -430,6 +432,9 @@ export interface Crisis {
   need: Partial<Record<string, number>>;
   pledges: Partial<Record<string, number>>[];
   tempted: boolean[];
+  /** What the Commons gave by vote (public), and whether a House has moved that it give. */
+  commons?: Partial<Record<string, number>>;
+  asked?: boolean;
 }
 
 /** A town event waiting on choices (§8.8): who must choose, and what each House chose (by option index). */
@@ -653,6 +658,10 @@ export type SovMove =
   | { type: "pledge"; project: string; give: Partial<Record<string, number>> }
   /** Pledge to this Year's Crisis, privately (§3.5). */
   | { type: "crisis_pledge"; give: Partial<Record<string, number>> }
+  /** Give Gold and materials to the Commons' own stock, unearmarked (§8.1: "Houses may also pledge extra to it at will"). */
+  | { type: "donate"; give: Partial<Record<string, number>> }
+  /** Move that the Commons give from its stock to this Year's Crisis (a vote of the Houses; Josh 2026-11-11). */
+  | { type: "ask_commons" }
   /** Buy a shop item at its list price (first come), or bid sealed on a lot at auction (§13.4a). */
   | { type: "buy"; item: number }
   | { type: "bid"; item: number; gold: number }
