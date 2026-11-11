@@ -36,6 +36,8 @@ describe("promotion (§6.5)", () => {
     expect(Object.keys(p.gear).length).toBeGreaterThan(0);
     expect(view(s, "p2").people.find((x) => x.id === r.id)!.tarot).toBe(r.tarot);
     expect(s.log.at(-1)).toMatch(/raises .* to Scion/);
+    // The newest Scion is listed last (Josh 2026-11-11).
+    expect(view(s, "p1").people.filter((x) => x.host === 0 && x.status === "scion").at(-1)!.id).toBe(r.id);
   });
 
   it("holds one ceremony a Year, two with a Chapel, and refuses what it cannot do", () => {

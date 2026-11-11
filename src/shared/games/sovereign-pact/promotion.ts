@@ -27,7 +27,9 @@ export function promoteRecruit(s: SovState, house: number, person: number, job: 
   const i = s.people.findIndex((x) => x.id === person);
   // A new Scion starts with a little JP in the Job, enough for a first ability (tuning pass).
   const scion = gainJp(promote(s.people[i]!, job), TUNING.progression.startJp, job);
-  s.people[i] = scion;
+  // The newest Scion goes to the end of the House's lists (Josh 2026-11-11), after those raised before.
+  s.people.splice(i, 1);
+  s.people.push(scion);
   h.gold -= T.gold;
   h.promotions = (h.promotions ?? 0) + 1;
   equipStarter(s, scion);

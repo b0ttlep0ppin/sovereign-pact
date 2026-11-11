@@ -21,6 +21,7 @@ import Formation from "./Formation";
 import Decisions, { OmensPanel } from "./Decisions";
 import Tabs from "./Tabs";
 import ScionFace from "./ScionFace";
+import Satchel, { fitted, type Pack } from "./Satchel";
 import Market from "./Market";
 import HouseDesigner from "./HouseDesigner";
 import Readying from "./Readying";
@@ -660,6 +661,7 @@ function Muster({ view, sendMove, chosen, setChosen, openBattle }: { view: SovVi
   const seats = e.seats[me] ?? 0;
   const able = ableOf(view);
   const name = (id: number) => view.people.find((p) => p.id === id)?.name ?? `#${id}`;
+  const [packing, setPacking] = useState<Pack>({});
   if (e.pool && e.draft?.length) {
     const turn = e.draft[0]!;
     const label = (x: (typeof e.pool)[number]) =>
@@ -810,8 +812,17 @@ function Muster({ view, sendMove, chosen, setChosen, openBattle }: { view: SovVi
           );
         })}
       </div>
+      {seats ? <Satchel view={view} fielded={chosen.length} pack={packing} setPack={setPacking} /> : null}
       <div className="sp-actions">
-        <button type="button" className="sp-button" data-sfx={chosen.length ? "ui_confirm" : "ui_back"} onClick={() => sendMove({ type: "field", people: chosen })}>
+        <button
+          type="button"
+          className="sp-button"
+          data-sfx={chosen.length ? "ui_confirm" : "ui_back"}
+          onClick={() => {
+            const pack = chosen.length ? fitted(packing, e.packRoom?.[chosen.length] ?? 0) : {};
+            sendMove({ type: "field", people: chosen, ...(Object.keys(pack).length ? { pack } : {}) });
+          }}
+        >
           {chosen.length ? `Send ${chosen.length} Scion${chosen.length === 1 ? "" : "s"} on the expedition` : "Decline the seats"}
         </button>
       </div>

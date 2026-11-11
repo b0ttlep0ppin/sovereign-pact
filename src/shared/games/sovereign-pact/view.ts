@@ -8,7 +8,7 @@ import { dealsFor } from "./deals.ts";
 import { eachScion, foresee, offered, secretEvent } from "./events.ts";
 import { fightView, type FightView } from "./fight.ts";
 import { canSell, marketFor, priceFor, sellPrice } from "./market.ts";
-import { cannotDrawTarot, cannotDrinkDraught, consumablePrice, forSale } from "./consumables.ts";
+import { cannotDrawTarot, cannotDrinkDraught, consumablePrice, forSale, packRoom } from "./consumables.ts";
 import { eventsFor } from "./omens.ts";
 import { fallen } from "./lifecycle.ts";
 import { timelineFor } from "./timeline.ts";
@@ -458,6 +458,8 @@ export type ExpeditionView = Omit<Expedition, "fight"> & {
   ahead?: (number | null)[];
   /** The event's options no one in the party can take (an `only` option with nobody fitting), by index. */
   closed?: number[];
+  /** While this House has not fielded: the satchel slots it may pack for each number of Scions it fields (§9.10). */
+  packRoom?: number[];
 };
 
 function expeditionView(s: SovState, e: Expedition, me: number | null): ExpeditionView {
@@ -480,6 +482,7 @@ function expeditionView(s: SovState, e: Expedition, me: number | null): Expediti
     delete seen.props;
     return seen;
   };
+  if (me !== null && e.party[me] === null) v.packRoom = Array.from({ length: (e.seats[me] ?? 0) + 1 }, (_, n) => packRoom(s, me, n));
   if (e.haul) v.haul = { ...e.haul, items: e.haul.items.map(blind) };
   if (e.pool) v.pool = e.pool.map((x) => (x.item ? { ...x, item: blind(x.item) } : x));
   return v;

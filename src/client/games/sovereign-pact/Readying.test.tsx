@@ -1,6 +1,6 @@
 import { fireEvent, render, screen, within } from "@testing-library/react";
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import { sovereignPact as g } from "@vibepulse/shared/games/sovereign-pact";
+import { Content, sovereignPact as g } from "@vibepulse/shared/games/sovereign-pact";
 import { calm, campaign } from "../../../shared/games/sovereign-pact/testing.ts";
 import { mint } from "../../../shared/games/sovereign-pact/items.ts";
 import { gainJp } from "../../../shared/games/sovereign-pact/progression.ts";
@@ -30,6 +30,9 @@ describe("readying Scions", () => {
     const row = within(panel).getByText("Heavy Blow").closest("li")!;
     fireEvent.click(within(row).getByRole("button", { name: /Learn, 50 JP/ }));
     expect(sendMove).toHaveBeenCalledWith({ type: "learn", person: p.id, ability: "heavy_blow" });
+    // Each active says what it costs to use (Josh 2026-11-11).
+    const heavy = Content.ABILITY_SET_BY_JOB.get("soldier")!.actives.find((a) => a.id === "heavy_blow")!;
+    expect(row.textContent).toContain(heavy.tp ? `${heavy.tp} TP` : heavy.mp ? `${heavy.mp} MP` : "free");
     const dear = within(panel).getByText("Savage Strikes").closest("li")!;
     expect((within(dear).getByRole("button") as HTMLButtonElement).disabled).toBe(true);
   });
