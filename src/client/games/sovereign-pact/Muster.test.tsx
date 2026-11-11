@@ -1,6 +1,6 @@
 import { fireEvent, render, screen, within } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
-import { sovereignPact as g, type SovMove, type SovState } from "@vibepulse/shared/games/sovereign-pact";
+import { Content, sovereignPact as g, type SovMove, type SovState } from "@vibepulse/shared/games/sovereign-pact";
 import { TRIP_EVENTS } from "../../../shared/games/sovereign-pact/content.ts";
 import { calm, campaign } from "../../../shared/games/sovereign-pact/testing.ts";
 import { able, muster } from "../../../shared/games/sovereign-pact/expedition.ts";
@@ -36,6 +36,31 @@ describe("fielding your seats on an expedition (§9.2)", () => {
     expect(standing()).toBe(1);
     fireEvent.click(screen.getByRole("button", { name: "Send 1 Scion on the expedition" }));
     expect(sendMove).toHaveBeenCalledWith({ type: "field", people: [expect.any(Number)] });
+  });
+
+  it("packs the satchel from the House's stock as it fields its Scions (Josh 2026-11-11)", () => {
+    const s = calm(campaign(1, 5));
+    s.phase = "expedition";
+    muster(s, { type: "resource", pool: "beast_lands", level: 1, size: 4 });
+    s.expedition!.seats[0] = 2;
+    const tonic = Content.CONSUMABLES.find((c) => c.use === "battle")!;
+    const kit = Content.CONSUMABLES.find((c) => c.use === "town");
+    s.houses[0]!.consumables = { [tonic.id]: 20, ...(kit ? { [kit.id]: 1 } : {}) };
+    const sendMove = vi.fn();
+    render(<SovereignPact me="p1" players={[]} isMyTurn={true} sendMove={sendMove} lastError={null} view={g.view(s, "p1")} />);
+    const satchel = screen.getByRole("region", { name: "Pack the satchel" });
+    if (kit) expect(within(satchel).queryByText(kit.name)).toBeNull();
+    const room = g.view(s, "p1").expedition!.packRoom![2]!;
+    expect(room).toBeGreaterThan(0);
+    // Room for the two fielded Scions' share, and no more.
+    fireEvent.change(within(satchel).getByLabelText(`Pack ${tonic.name}, slider`), { target: { value: "99" } });
+    expect(satchel.textContent).toContain(`${room} of your ${room} slots`);
+    fireEvent.click(screen.getByRole("button", { name: "Send 2 Scions on the expedition" }));
+    const sent = sendMove.mock.calls.at(-1)![0] as Extract<SovMove, { type: "field" }>;
+    expect(sent.pack).toEqual({ [tonic.id]: room });
+    const r = g.applyMove(s, "p1", sent);
+    if (!r.ok) throw new Error(r.error);
+    expect(r.state.expedition!.satchel).toHaveLength(room);
   });
 
   it("declines the seats when no one is chosen", () => {

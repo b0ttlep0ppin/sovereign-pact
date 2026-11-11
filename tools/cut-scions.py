@@ -139,7 +139,7 @@ COLS = max(n for _, _, n in ROWS)
 
 def find(base: Path, anim: str, prefer: str | None = None) -> Path | None:
     """The file a layer draws `anim` with: <anim>.png, or <anim>/<variant>.png."""
-    for a in [anim, *FALLBACK[anim]]:
+    for a in [anim, *FALLBACK.get(anim, [])]:
         if (base / f"{a}.png").exists():
             return base / f"{a}.png"
         if (base / a).is_dir():
@@ -150,6 +150,19 @@ def find(base: Path, anim: str, prefer: str | None = None) -> Path | None:
             if files:
                 return files[0]
     return None
+
+
+def rests_behind(d: dict, sex: str) -> bool:
+    """Whether a shield's front layer has nothing in its idle facing left: it rests behind the body."""
+    for lk, layer in d.items():
+        if not lk.startswith("layer_") or layer.get("zPos", 0) < 100 or sex not in layer:
+            continue
+        idle = find(gen / "spritesheets" / layer[sex], "idle")
+        if idle is None:
+            return False
+        im = Image.open(idle).convert("RGBA")
+        return im.height >= 128 and im.crop((0, 64, im.width, 128)).getbbox() is None
+    return False
 
 
 def custom(base: Path, prefer: str | None = None) -> Path | None:
@@ -235,6 +248,19 @@ for slot, opts in PICK.items():
                             first = sheet.crop((0, r * CELL, CELL, (r + 1) * CELL))
                             sheet.paste((0, 0, 0, 0), (CELL, r * CELL, 2 * CELL, (r + 1) * CELL))
                             sheet.alpha_composite(first.crop((0, 1, CELL, CELL)), (CELL, r * CELL))
+                    if slot == "shield" and rests_behind(d, sex):
+                        # The heater shield's idle facing left sits behind the body in the generator, where
+                        # it hides all but its rim (Josh 2026-11-11: "heater shield not appearing at all").
+                        # At rest it is carried as it is on the walk: its front layer takes the walk's
+                        # standing frame, and the back layer's rim goes.
+                        sheet.paste((0, 0, 0, 0), (0, CELL, CELL * COLS, 2 * CELL))
+                        if layer["zPos"] >= 100:
+                            walk = find(path, "walk", prefer)
+                            if walk is not None:
+                                stand = Image.open(walk).convert("RGBA").crop((0, 64, 64, 128))
+                                off = (CELL - 64) // 2
+                                sheet.alpha_composite(stand, (off, CELL + off))
+                                sheet.alpha_composite(stand.crop((0, 1, 64, 64)), (CELL + off, CELL + off))
                     # A shield's front layer goes over every hat and helm (Josh 2026-11-10: the coif showed
                     # in front of the shield); the generator's own z puts it under the hair.
                     z = max(layer["zPos"], SHIELD_FRONT_Z) if slot == "shield" and layer["zPos"] >= 100 else layer["zPos"]

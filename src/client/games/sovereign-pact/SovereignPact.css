@@ -177,6 +177,7 @@
 /* Building (§8.2, §8.5). */
 .sp-works h3 { margin: 14px 0 6px; font-size: 0.85rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
 .sp-works li.is-rising { outline: 1px dashed var(--line); }
+.sp-ability__cost { color: #9db4cf; }
 .sp-commons__stock { display: flex; flex-wrap: wrap; gap: 6px; margin: 4px 0 10px; padding: 0; list-style: none; }
 .sp-commons__stock li { display: grid; justify-items: center; min-width: 5.2em; padding: 6px 10px; background: rgba(255, 255, 255, 0.04); border: 1px solid var(--line); }
 .sp-commons__stock strong { font-size: 1.3rem; font-variant-numeric: tabular-nums; }
@@ -622,3 +623,9 @@
 .is-on .sp-passive__knob { left: 41px; background: radial-gradient(circle at 35% 35%, #fff1c4, #d8b45e 60%, #8a6526); }
 .is-on .sp-passive__word { right: auto; left: 10px; color: #f4e2b0; }
 .sp-passive:not(:disabled):hover .sp-passive__switch { border-color: var(--gold); }
+/* Packing the satchel at the muster (Josh 2026-11-11). */
+.sp-satchel-pack { margin: 10px 0; }
+.sp-satchel-pack h3 { margin: 0 0 6px; font-size: 0.85rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.sp-satchel-pack h3 small { text-transform: none; letter-spacing: 0; margin-left: 6px; }
+.sp-satchel-pack__list { display: grid; gap: 4px; margin: 0; padding: 0; list-style: none; }
+.sp-satchel-pack__list li { display: flex; gap: 10px; align-items: center; justify-content: space-between; padding: 4px 8px; background: rgba(255, 255, 255, 0.04); }

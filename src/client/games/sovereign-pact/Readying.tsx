@@ -219,12 +219,14 @@ function Jobs({ p, send, canAct }: { p: Person; send: (m: SovMove) => void; canA
             </button>
           ) : null}
           <ul className="sp-lots sp-abilities">
-            {[...set.actives.map((a) => ({ ...a, points: 0 })), ...set.passives].map((a) => {
+            {[...set.actives.map((a) => ({ ...a, points: 0 })), ...set.passives.map((a) => ({ ...a, mp: 0, tp: 0 }))].map((a) => {
               const has = known.has(a.id) || kit.mastered.includes(job.id);
               return (
                 <li key={a.id} className={has ? "is-known" : undefined}>
                   <span title={a.text}>
                     <strong>{a.name}</strong> <small>{a.points ? `passive, ${a.points} pt` : "active"}</small>
+                    {/* What it costs to use (Josh 2026-11-11). */}
+                    {a.mp || a.tp ? <small className="sp-ability__cost"> · {[a.mp ? `${a.mp} MP` : "", a.tp ? `${a.tp} TP` : ""].filter(Boolean).join(", ")}</small> : !a.points ? <small className="sp-ability__cost"> · free</small> : null}
                     {a.later ? <small> (not in battle yet)</small> : null}
                     <span className="sp-ability__text">{a.text}</span>
                   </span>

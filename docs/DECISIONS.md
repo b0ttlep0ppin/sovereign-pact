@@ -2,6 +2,12 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-11 (implementation, Milestone 8ec): packing the satchel at the muster, the heater shield at rest, ability costs, the newest Scion last
+- Josh: "when choosing your scions you should be able to fill your satchel with items for the expedition". The `field` move could already carry a `pack`, but nothing on screen offered it. The muster now lists every consumable the House holds that works away from town, with an amount for each. The House's share of slots grows with the Scions it fields (`packRoom`, §9.10). What goes unused comes home as before.
+- Josh: "heater shield not appearing at all". In the generator, the heater shield rests behind the body when idle facing left, so only its rim showed. `tools/cut-scions.py` now gives a shield like that the walk's standing frame for its front layer at rest and drops the rim from its back layer. Only the two heater sheets changed.
+- Josh: learning abilities should show their MP / TP cost. Each active in a Job's list now shows its cost ("15 MP", "20 TP", or "free").
+- Josh: newly raised Scions should appear at the end of the Scions list. A promotion moves the person to the end of `people`, so the roster, Preparation and the muster all list them last.
+
 ## 2026-11-11 (implementation, Milestone 8eb): gifts to the Commons, and the Commons' help in a Crisis
 - Josh: "you should be able to request the commons contribute during crises" and "donate resources to the commons". SPEC §8.1 already says the Commons' stock is spent only by vote and that Houses may give to it at will.
 - A gift (Gold or any of the five materials) goes into the Commons' stock. It is public and final. It earns Renown by share, as a project pledge does: 1 per `TUNING.commons.renownPer` units, with odd units carried over to the next gift.
