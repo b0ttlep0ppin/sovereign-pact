@@ -2,6 +2,11 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-11 (implementation, Milestone 8ef): mending on the road between expedition events
+- Josh: "between events on the expedition, should be able to heal up and use items probably". On the map between nodes, the Satchel can now open a healing item on one marching Scion: a Tonic, Strong Tonic or Vital Draught for HP, a Bone Salve or Whole Salve for Durability, an Ether or Mana Crystal for MP. It works as it would in battle (the same share of the maximum), and the item is spent.
+- Reading taken: only single-target ally items whose whole effect is a restore (HP, Durability, MP or Sanity) count. Items with a random location, battle buffs and party-wide items stay battle-only. A Scion already full in what the item mends refuses it ("needs none"), so nothing is wasted by a misclick.
+- Bots do not mend on the road yet; their Scions still use these items in battle.
+
 ## 2026-11-11 (implementation, Milestone 8ee): Durability grows a little, and a blow takes only a share of its damage from the location
 - Josh: "there should probably be some body part durability growth alongside HP", then "the durability growth should be mild, but the amount of HP damage they deal to you shouldn't be dealt as 100% durability damage to the part, should be a fraction like 35%". This supersedes Q87 (no growth).
 - `formulas.durabilityPerLevel` 0 → 1. `combat.durabilityTakenPct` is 35: a blow's hit location loses 35% of the HP damage (rounded, at least 1) instead of all of it. Locations break and roll injuries far less often from ordinary hits. HP at 0 still rolls.
