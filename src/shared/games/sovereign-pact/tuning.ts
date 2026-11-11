@@ -489,8 +489,8 @@ export const TUNING = {
     poison: 3,
     bleed: 2,
     bleedDurability: 2,
-    /** % of a blow's HP damage its hit location also loses in Durability (Josh 2026-11-11: "a fraction like 35%"). */
-    durabilityTakenPct: 35,
+    /** % of a blow's HP damage its hit location also loses in Durability (Josh 2026-11-11: "a fraction like 35%", then "like 55%"). */
+    durabilityTakenPct: 55,
     burn: 3,
     regen: 3,
     /** Bosses take Readiness damage at half (§10.4). */

@@ -2,6 +2,9 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-11 (implementation, Milestone 8eh): a blow takes 55% of its damage from the location
+- Josh: "maybe they should take like 55% of the damage, seems like my body parts are scaling up durability faster than i woulda thought". `combat.durabilityTakenPct` 35 → 55. Growth per level stays at 1.
+
 ## 2026-11-11 (implementation, Milestone 8eg): songs' notes and motifs, and the Siphon drawn
 - Josh: "musical notes" animations hitting those a song reaches, "a couple" of notes played "unique for each song", and "siphon could use an animation".
 - When a Minstrel starts a song, notes rise from them and a few fly to each hearer in the song's own colour; they rise round an ally and settle down onto a foe. Each of the twelve songs plays a two-to-four-note motif on a small synthesised voice (a plucked lute, a pipe, a low drone or a drum), in place of the blessing's cue. Colours and motifs live in `client/games/sovereign-pact/songs.ts`.
