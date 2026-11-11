@@ -42,6 +42,13 @@ describe("your people", () => {
     expect(within(screen.getByRole("listitem", { name: recruit.name })).queryByText("Sanguine")).toBeNull();
   });
 
+  it("shows a Scion's growths without a Scriptorium, a recruit's only with one (Josh 2026-11-10)", () => {
+    const { s, scion, recruit } = town();
+    render(<Roster view={g.view(s, "p1")} sendMove={vi.fn()} canAct />);
+    expect(within(screen.getByRole("listitem", { name: scion.name })).getAllByTitle(/growth per level/)).toHaveLength(6);
+    expect(within(screen.getByRole("listitem", { name: recruit.name })).queryAllByTitle(/growth per level/)).toHaveLength(0);
+  });
+
   it("tells what a recruit does with the Year and sets them to train or back to work (8ae)", () => {
     const { s, recruit } = town();
     delete s.assign[recruit.id];

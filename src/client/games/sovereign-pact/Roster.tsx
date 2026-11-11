@@ -105,6 +105,7 @@ function Card({ p, view, sendMove, canAct }: Props & { p: Person }) {
           base={p.base}
           stats={p.stats}
           from={p.statFrom}
+          growth={p.growth}
           extra={
             <>
               {p.sanity !== undefined ? (
