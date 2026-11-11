@@ -1,6 +1,7 @@
 import { fireEvent, render, screen, within } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
-import { sovereignPact as g } from "@vibepulse/shared/games/sovereign-pact";
+import { sovereignPact as g, type SovMove, type SovState } from "@vibepulse/shared/games/sovereign-pact";
+import { TRIP_EVENTS } from "../../../shared/games/sovereign-pact/content.ts";
 import { calm, campaign } from "../../../shared/games/sovereign-pact/testing.ts";
 import { able, muster } from "../../../shared/games/sovereign-pact/expedition.ts";
 import SovereignPact from "./index";
@@ -52,5 +53,33 @@ describe("your stores", () => {
     const band = screen.getByRole("list", { name: "Your stores" });
     expect(within(band).getByText(/Gold/).textContent).toContain(String(s.houses[0]!.gold));
     for (const k of ["Grain", "Timber", "Stone", "Iron", "Essence"]) expect(within(band).getByText(new RegExp(k))).toBeTruthy();
+  });
+});
+
+describe("an event each Scion answers for themself (§9.4 each_scion)", () => {
+  it("names the one choosing with their face, puts the choice in their name, and lists who is still to choose (Josh 2026-11-10)", () => {
+    const play = (s: SovState, m: SovMove) => {
+      const r = g.applyMove(s, "p1", m);
+      if (!r.ok) throw new Error(r.error);
+      return r.state;
+    };
+    let s = calm(campaign(1, 5));
+    s.phase = "expedition";
+    muster(s, { type: "delve", pool: "apostate_court", level: 3, size: 4 });
+    s = play(s, { type: "field", people: able(s, 0).slice(0, s.expedition!.seats[0]).map((p) => p.id) });
+    s.expedition!.chain = ["event", "boss"];
+    s.expedition!.seen = TRIP_EVENTS.filter((d) => d.id !== "the_confessional").map((d) => d.id);
+    s = play(s, { type: "press_on" });
+    expect(s.expedition!.event?.id).toBe("the_confessional");
+    const first = s.people.find((p) => p.id === +Object.keys(s.expedition!.event!.picks!)[0]!)!;
+    const sendMove = vi.fn();
+    render(<SovereignPact me="p1" players={[]} isMyTurn={true} sendMove={sendMove} lastError={null} view={g.view(s, "p1")} />);
+    const now = screen.getByRole("region", { name: `${first.name} chooses` });
+    expect(now.querySelector(".sp-scion-face")).not.toBeNull();
+    expect(now.textContent).toContain(`What does ${first.name} do?`);
+    const confess = within(now).getByRole("button", { name: new RegExp(`^${first.name} steps behind the curtain`) });
+    expect(within(screen.getByRole("list", { name: "Your Scions choose in turn" })).getAllByRole("listitem").length).toBe(Object.keys(s.expedition!.event!.picks!).length);
+    fireEvent.click(confess);
+    expect(sendMove).toHaveBeenCalledWith({ type: "decide", option: 0, person: first.id });
   });
 });

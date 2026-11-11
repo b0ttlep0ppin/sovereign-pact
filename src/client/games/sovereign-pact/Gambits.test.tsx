@@ -15,7 +15,9 @@ describe("a Scion's gambits on the Readying screen", () => {
     let s = calm(campaign(1, 3));
     const p = s.people.find((x) => x.host === 0 && x.status === "scion")!;
     const sendMove = vi.fn();
+    localStorage.clear();
     const { rerender } = render(<Readying view={g.view(s, "p1")} sendMove={sendMove} canAct />);
+    fireEvent.click(screen.getByRole("tab", { name: "Gambits" }));
     fireEvent.click(screen.getByRole("button", { name: "Add a gambit" }));
     expect(sendMove).toHaveBeenLastCalledWith({ type: "gambits", person: p.id, rules: [{ do: "attack" }] });
     s = apply(s, sendMove.mock.lastCall![0]);

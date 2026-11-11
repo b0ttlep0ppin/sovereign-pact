@@ -3,7 +3,7 @@
 // rules can be watched in play; Milestone 8 gives it screens: founding, the town, the expedition, battle.
 import type { GameClientProps } from "@vibepulse/shared";
 import { Content, nominable, TIER_NAMES, type SovMove, type SovView } from "@vibepulse/shared/games/sovereign-pact";
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useEffect, useRef, useState } from "react";
 import AccessPanel, { accessAttrs, useAccess } from "./Access";
 import BattleScreen from "./BattleScreen";
 import Homecoming, { useHomecoming } from "./Homecoming";
@@ -19,12 +19,14 @@ import ChainMap from "./ChainMap";
 import Deals from "./Deals";
 import Formation from "./Formation";
 import Decisions, { OmensPanel } from "./Decisions";
+import Tabs from "./Tabs";
+import ScionFace from "./ScionFace";
 import Market from "./Market";
 import HouseDesigner from "./HouseDesigner";
 import Readying from "./Readying";
 import Roster from "./Roster";
 import ScionSprite, { lookOf } from "./ScionSprite";
-import { HERALDRY_COLORS, Emblem } from "./Emblem";
+import { HERALDRY_COLORS, Emblem, inkOf } from "./Emblem";
 import { Named } from "./Named";
 import RiftGate from "./RiftGate";
 import TownMap from "./TownMap";
@@ -417,25 +419,44 @@ export default function SovereignPact({ view, isMyTurn, sendMove, lastError }: P
           <div className="sp-stage__main">
             <TownMap view={view} sendMove={sendMove} canAssign={open} />
             <Tabs
+              store="sovereign-pact:tab"
+              label="The town"
               tabs={[
                 ["gate", "The Rift Gate", view.phase === "settlement" || view.phase === "omens" ? <RiftGate view={view} sendMove={sendMove} canVote={open} /> : null],
                 [
                   "people",
                   "Your people",
-                  <>
-                    <Roster view={view} sendMove={sendMove} canAct={open} />
-                    {ownScions.length ? <Formation view={view} people={ownScions} sendMove={sendMove} canAct={!!mine && view.phase !== "over"} /> : null}
-                  </>,
+                  <Tabs
+                    sub
+                    store="sovereign-pact:tab:people"
+                    label="Your people"
+                    tabs={[
+                      ["roster", "Roster", <Roster view={view} sendMove={sendMove} canAct={open} />],
+                      ["formation", "Formation", ownScions.length ? <Formation view={view} people={ownScions} sendMove={sendMove} canAct={!!mine && view.phase !== "over"} /> : null],
+                    ]}
+                  />,
                 ],
                 ["readying", "Readying", view.phase === "settlement" ? <Readying view={view} sendMove={sendMove} canAct={open} /> : null],
                 ["building", "Building", view.phase === "settlement" ? <Works view={view} sendMove={sendMove} canAct={open} /> : null],
                 ["market", "Market", view.phase === "settlement" ? <Market view={view} sendMove={sendMove} canAct={open} /> : null],
-                ["deals", "Deals", view.phase === "settlement" ? <Deals view={view} sendMove={sendMove} canAct={open} /> : null],
-                ["houses", "The Houses", houses],
+                [
+                  "houses",
+                  "The Houses",
+                  // Deals and the Omens' outcomes are between the Houses, so they are its sub-pages (Josh 2026-11-10).
+                  <Tabs
+                    sub
+                    store="sovereign-pact:tab:houses"
+                    label="The Houses"
+                    tabs={[
+                      ["houses", "The Houses", houses],
+                      ["deals", "Deals", view.phase === "settlement" ? <Deals view={view} sendMove={sendMove} canAct={open} /> : null],
+                      ["omens", "What came of the Omens", view.phase === "settlement" && view.me !== null && view.omens?.length ? <OmensPanel view={view} /> : null],
+                    ]}
+                  />,
+                ],
                 ["battles", "Battles", battleList],
               ]}
             />
-            {view.phase === "settlement" ? <OmensPanel view={view} /> : null}
           </div>
           <aside className="sp-stage__side">
             {view.phase === "settlement" ? <Decisions view={view} sendMove={sendMove} canAct={open} omens={false} /> : null}
@@ -444,43 +465,6 @@ export default function SovereignPact({ view, isMyTurn, sendMove, lastError }: P
         </div>
       )}
       {told.open && (told.fight || battles.watching) ? <EventOutcome view={view} onClose={told.close} toArms /> : battle ?? (homecoming.open ? <Homecoming view={view} onClose={homecoming.close} /> : camp.open ? <CampScene key={view.expedition?.talked?.length} view={view} onClose={camp.close} /> : told.open ? <EventOutcome view={view} onClose={told.close} /> : resolved.open && view.phase === "settlement" ? <Resolved view={view} fresh={resolved.fresh} onClose={resolved.close} /> : null)}
-    </div>
-  );
-}
-
-const TAB_KEY = "sovereign-pact:tab";
-
-/** The town's panels, one at a time under the map; the last one opened is remembered. */
-function Tabs({ tabs }: { tabs: [string, string, ReactNode][] }) {
-  const live = tabs.filter(([, , body]) => body);
-  const [tab, setTab] = useState(() => {
-    try {
-      return globalThis.localStorage?.getItem(TAB_KEY) ?? "gate";
-    } catch {
-      return "gate";
-    }
-  });
-  const shown = live.find(([id]) => id === tab) ?? live[0];
-  const pick = (id: string) => {
-    setTab(id);
-    try {
-      globalThis.localStorage?.setItem(TAB_KEY, id);
-    } catch {
-      // Storage blocked: the tab lasts this visit.
-    }
-  };
-  return (
-    <div className="sp-tabs">
-      <div className="sp-tabs__bar" role="tablist" aria-label="The town">
-        {live.map(([id, label]) => (
-          <button key={id} type="button" role="tab" className="sp-tabs__tab" aria-selected={shown?.[0] === id} onClick={() => pick(id)}>
-            {label}
-          </button>
-        ))}
-      </div>
-      <div className="sp-tabs__body" role="tabpanel" aria-label={shown?.[1]}>
-        {shown?.[2]}
-      </div>
     </div>
   );
 }
@@ -676,23 +660,8 @@ function Muster({ view, sendMove, chosen, setChosen, openBattle }: { view: SovVi
           <strong>{ev?.title}</strong> {ev?.text}
         </p>
         {ev?.options.every((o) => o.rule === "secret") ? <p>Each House chooses in secret, for its own Scions.</p> : null}
-        {mine === null && e.event.picks ? (
-          // Each Scion's House picks for them (§9.4 each_scion): the first of yours still to choose.
-          (() => {
-            const next = Object.entries(e.event.picks).find(([id, v]) => v === null && view.people.find((p) => p.id === +id)?.host === me)?.[0];
-            return (
-              <div className="sp-actions">
-                <span>For {name(+next!)}:</span>
-                {ev?.options.map((o, i) =>
-                  e.closed?.includes(i) ? null : (
-                    <button key={o.id} type="button" className="sp-button" onClick={() => sendMove({ type: "decide", option: i, person: +next! })}>
-                      {o.label}
-                    </button>
-                  ),
-                )}
-              </div>
-            );
-          })()
+        {mine === null && e.event.picks && ev ? (
+          <EachScion view={view} sendMove={sendMove} picks={e.event.picks} options={ev.options} closed={e.closed} />
         ) : mine === null && ev ? (
           <EventVote view={view} sendMove={sendMove} />
         ) : (
@@ -840,6 +809,59 @@ function onlyBecause(rule: string): string {
  * A party vote on an event (§9.4). Where a choice asks someone to step up, the House may name one of its
  * own Scions (Josh, 2026-11-02); left alone, the rule picks, and the card says whom.
  */
+/**
+ * An each_scion event (§9.4): every Scion of yours in the party chooses for themself, one at a time. Who is
+ * choosing now, with their face and their name in their House's colour, and the choice put in their name
+ * (Josh 2026-11-10: "For Aelfric" was "cramped and weird looking").
+ */
+function EachScion({ view, sendMove, picks, options, closed }: { view: SovView; sendMove: (m: SovMove) => void; picks: Record<number, number | null>; options: readonly { id: string; label: string }[]; closed?: readonly number[] }) {
+  const me = view.me!;
+  const mine = Object.entries(picks).flatMap(([id, v]) => {
+    const p = view.people.find((x) => x.id === +id);
+    return p && p.host === me ? [{ p, v }] : [];
+  });
+  const now = mine.find((x) => x.v === null)?.p;
+  const ink = (p: (typeof mine)[number]["p"]) => ({ color: inkOf(view.houses[p.host]?.colors) });
+  // "Each Scion steps behind the curtain" reads "Aelfric steps behind the curtain" for the one choosing.
+  const theirs = (label: string) => (now && /^Each Scion\b/.test(label) ? <><span className="sp-named" style={ink(now)}>{now.name}</span>{label.slice("Each Scion".length)}</> : label);
+  return (
+    <div className="sp-each">
+      {mine.length > 1 ? (
+        <ol className="sp-each__who" aria-label="Your Scions choose in turn">
+          {mine.map(({ p, v }) => (
+            <li key={p.id} className={p === now ? "is-now" : v !== null ? "is-done" : undefined}>
+              <ScionFace person={p} view={view} size={28} />
+              <span className="sp-named" style={ink(p)}>{p.name}</span>
+              <small>{v !== null ? "has chosen" : p === now ? "choosing" : "waits"}</small>
+            </li>
+          ))}
+        </ol>
+      ) : null}
+      {now ? (
+        <section className="sp-each__now" aria-label={`${now.name} chooses`}>
+          <header className="sp-each__ask">
+            <ScionFace person={now} view={view} size={48} />
+            <p>
+              What does <span className="sp-named" style={ink(now)}>{now.name}</span> do?
+            </p>
+          </header>
+          <div className="sp-event-vote">
+            {options.map((o, i) =>
+              closed?.includes(i) ? null : (
+                <div key={o.id} className="sp-event-vote__option">
+                  <button type="button" className="sp-button" onClick={() => sendMove({ type: "decide", option: i, person: now.id })}>
+                    {theirs(o.label)}
+                  </button>
+                </div>
+              ),
+            )}
+          </div>
+        </section>
+      ) : null}
+    </div>
+  );
+}
+
 function EventVote({ view, sendMove }: { view: SovView; sendMove: (m: SovMove) => void }) {
   const e = view.expedition!;
   const me = view.me!;

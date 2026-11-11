@@ -2,6 +2,13 @@
 
 Newest first. Each entry: date, decision, who decided, where it lands in SPEC.md.
 
+## 2026-11-10 (implementation, Milestone 8dy): settlement sub-pages, faces to pick Scions by, each Scion's choice laid out
+
+Josh: "it would make sense for the different settlement pages to have sub-pages" (Readying: Jobs and abilities, gear, gambits), "move the 'what became of the omens' page ... maybe it could be a subtab on another page like the houses (maybe deals could be a sub page of The Houses)", "choosing your scion in the readying page should have their face as well", and the each-Scion event picker ("For Aelfric") was "cramped and weird looking ... use color coding of names, faces".
+- One `Tabs` component draws the town's tabs and the sub-pages inside them, each remembering the page last opened. Readying has **Jobs and abilities** (Jobs, secondary set, passives), **Gear** (the paper doll) and **Gambits**. **The Houses** has the Houses, **Deals** and **What came of the Omens** (Deals is no longer a town tab of its own). **Your people** has the **Roster** and the **Formation**. Of his two readings for the Omens, the sub-page under The Houses was taken: it keeps them out of the current tab and leaves the right-hand column to the Year's decisions.
+- The Readying Scion tabs show each Scion's face.
+- An each_scion event now shows your Scions in a row (face, name in their House's colour, "has chosen", "choosing" or "waits"), then the one choosing with a larger face, "What does Eva do?", and the choices as a list. A choice that opens "Each Scion" reads with their name instead ("Eva steps behind the curtain...").
+
 ## 2026-11-10 (implementation, Milestone 8dw): the Bestiary's second pass baked in
 
 Josh went through the Bestiary again, mostly the 42 new pictures from 8dp. His sliders on 43 sprites now replace their manifest `tweak`s, and those sprites are re-cut through `tools/sprite_tweak.py` as in 8do.

@@ -1,5 +1,5 @@
 import { fireEvent, render, screen, within } from "@testing-library/react";
-import { describe, expect, it, vi } from "vitest";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import { sovereignPact as g } from "@vibepulse/shared/games/sovereign-pact";
 import { calm, campaign } from "../../../shared/games/sovereign-pact/testing.ts";
 import { mint } from "../../../shared/games/sovereign-pact/items.ts";
@@ -15,7 +15,13 @@ function town() {
   return { s, p: s.people[i]!, spear };
 }
 
+/** Opens one of a Scion's pages: Jobs and abilities (the first), Gear or Gambits. */
+const page = (name: string) => fireEvent.click(screen.getByRole("tab", { name }));
+
 describe("readying Scions", () => {
+  // The page last opened is remembered; each test starts on the first.
+  beforeEach(() => localStorage.clear());
+
   it("buys an ability with JP, refusing what it cannot afford", () => {
     const { s, p } = town();
     const sendMove = vi.fn();
@@ -54,6 +60,7 @@ describe("readying Scions", () => {
     expect(screen.getByLabelText("Magus abilities").textContent).toContain("must take this Job to learn here");
     fireEvent.click(screen.getByRole("button", { name: "Take Job" }));
     expect(sendMove).toHaveBeenCalledWith({ type: "take_job", person: p.id, job: "magus" });
+    page("Gear");
     const main = within(screen.getByRole("list", { name: "Arms and trinkets" })).getByText("Main hand").closest("li")!;
     fireEvent.click(within(main).getByRole("button", { name: /Wear/ }));
     const choices = screen.getByRole("region", { name: "Choose for Main hand" });
@@ -75,6 +82,7 @@ describe("readying Scions", () => {
     s.people.find((x) => x.id === p.id)!.gear = { main: sword.id };
     spear.props = [["keen", 12]];
     render(<Readying view={g.view(s, "p1")} sendMove={vi.fn()} canAct />);
+    page("Gear");
     const main = within(screen.getByRole("list", { name: "Arms and trinkets" })).getByText("Main hand").closest("li")!;
     expect(main.textContent).toMatch(/Power \d+ · Accuracy \d+% · Crit \d+%/);
     fireEvent.click(within(main).getByRole("button", { name: /Change/ }));
@@ -94,6 +102,19 @@ describe("readying Scions", () => {
     expect(spectator.container.innerHTML).toBe("");
   });
 
+  it("shows each Scion's face to pick them by, and one page of them at a time (Josh 2026-11-10)", () => {
+    const { s, p } = town();
+    const { container } = render(<Readying view={g.view(s, "p1")} sendMove={vi.fn()} canAct />);
+    const scions = s.people.filter((x) => x.host === 0 && x.status === "scion").length;
+    expect(container.querySelectorAll(".sp-ready__tabs .sp-scion-face").length).toBe(scions);
+    expect(screen.getByRole("tab", { name: new RegExp(p.name) })).toBeTruthy();
+    expect(screen.getByRole("list", { name: "Jobs" })).toBeTruthy();
+    expect(screen.queryByRole("list", { name: "Armor" })).toBeNull();
+    page("Gambits");
+    expect(screen.getByRole("button", { name: "Add a gambit" })).toBeTruthy();
+    expect(screen.queryByRole("list", { name: "Jobs" })).toBeNull();
+  });
+
   it("shows a locked Job's abilities and what opens it, and wears gear on a paper doll", () => {
     const { s, p } = town();
     render(<Readying view={g.view(s, "p1")} sendMove={vi.fn()} canAct />);
@@ -102,6 +123,7 @@ describe("readying Scions", () => {
     expect(detail.textContent).toContain("Opens with 400 JP as a Soldier and 400 JP as a Knight");
     expect(within(detail).queryByRole("button", { name: /Learn/ })).toBeNull();
     expect(screen.queryByRole("button", { name: "Take Job" })).toBeNull();
+    page("Gear");
     const armor = screen.getByRole("list", { name: "Armor" });
     expect(within(armor).getByText("Head")).toBeTruthy();
     expect(within(screen.getByRole("list", { name: "Arms and trinkets" })).getByText("Main hand")).toBeTruthy();
