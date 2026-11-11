@@ -629,3 +629,14 @@
 .sp-satchel-pack h3 small { text-transform: none; letter-spacing: 0; margin-left: 6px; }
 .sp-satchel-pack__list { display: grid; gap: 4px; margin: 0; padding: 0; list-style: none; }
 .sp-satchel-pack__list li { display: flex; gap: 10px; align-items: center; justify-content: space-between; padding: 4px 8px; background: rgba(255, 255, 255, 0.04); }
+/* The satchel's slots (Josh 2026-11-11: "a grid that showed items with icons in it"). */
+.sp-satchel-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(36px, 1fr)); gap: 4px; }
+.sp-satchel-grid li { aspect-ratio: 1; display: grid; place-items: center; background: rgba(0, 0, 0, 0.45); border: 1px solid rgba(150, 110, 90, 0.28); border-radius: 2px; box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.6); }
+.sp-satchel-grid li.is-empty { opacity: 0.45; }
+.sp-satchel-grid li.is-shown { border-color: var(--accent); }
+.sp-satchel-grid button { display: grid; place-items: center; width: 100%; height: 100%; padding: 0; background: none; border: 0; cursor: pointer; }
+.sp-satchel-grid button:hover .sp-item-icon, .sp-satchel-grid button:focus-visible .sp-item-icon { filter: brightness(1.25); }
+.sp-satchel-grid__about { margin: 0; font-size: 0.82rem; }
+.sp-satchel-grid__about span { color: var(--muted); }
+.sp-satchel-pack__what { flex: 1; }
+.sp-item-icon { flex: none; image-rendering: pixelated; vertical-align: middle; }
