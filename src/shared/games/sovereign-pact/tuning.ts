@@ -378,8 +378,11 @@ export const TUNING = {
   formulas: {
     maxHp: { base: 20, might: 1, resilience: 3, level: 2 },
     maxMp: { base: 10, acuity: 2, sagacity: 2, level: 1 },
-    /** Durability per location: base + coefficient × stat (§7.3), plus `durabilityPerLevel` × level (0: Josh kept the spec, Q87). */
-    durabilityPerLevel: 0,
+    /**
+     * Durability per location: base + coefficient × stat (§7.3), plus `durabilityPerLevel` × level. Josh kept
+     * the spec's 0 at Q87, then asked for "some body part durability growth alongside HP" that is "mild" (2026-11-11): 1 a level.
+     */
+    durabilityPerLevel: 1,
     durability: {
       head: { base: 10, stat: "acuity", per: 1.5 },
       body: { base: 15, stat: "resilience", per: 2 },
@@ -486,6 +489,8 @@ export const TUNING = {
     poison: 3,
     bleed: 2,
     bleedDurability: 2,
+    /** % of a blow's HP damage its hit location also loses in Durability (Josh 2026-11-11: "a fraction like 35%"). */
+    durabilityTakenPct: 35,
     burn: 3,
     regen: 3,
     /** Bosses take Readiness damage at half (§10.4). */

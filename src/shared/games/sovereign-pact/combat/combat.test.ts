@@ -112,6 +112,18 @@ describe("hits and damage (§10.6)", () => {
     expect(t.broken.includes("body") || b.events.some((x) => x.t === "steeled") || t.dead).toBe(true);
   });
 
+  it("takes only a share of a blow's damage from the location's Durability (Josh 2026-11-11)", () => {
+    const e = enemy(9, 0, 3);
+    const t = scion(1, 0, 3, { hp: 999, maxHp: 999 });
+    const before = t.dur!.body;
+    const b = battle(e, t);
+    strike(b, scripted(0, 0.99), e, t, { ...HIT, aim: "body", power: 3 });
+    const hit = b.events.find((x) => x.t === "hit");
+    expect(hit?.t === "hit" && hit.damage).toBeGreaterThan(3);
+    const dmg = hit?.t === "hit" ? hit.damage : 0;
+    expect(before - t.dur!.body).toBe(Math.max(1, Math.round((dmg * TUNING.combat.durabilityTakenPct) / 100)));
+  });
+
   it("kills enemies at 0 HP and credits the kill", () => {
     const u = scion(1, 0, 3);
     const t = enemy(9, 0, 3);
